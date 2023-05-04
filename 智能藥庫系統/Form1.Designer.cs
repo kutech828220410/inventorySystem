@@ -318,6 +318,7 @@
             this.rJ_Lable104 = new MyUI.RJ_Lable();
             this.plC_RJ_ChechBox_批次過帳_公藥_產出日期 = new MyUI.PLC_RJ_ChechBox();
             this.rJ_GroupBox17 = new MyUI.RJ_GroupBox();
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細 = new SQLUI.SQL_DataGridView();
             this.panel_批次過帳 = new System.Windows.Forms.Panel();
             this.plC_RJ_ScreenButton35 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton18 = new MyUI.PLC_RJ_ScreenButton();
@@ -1156,7 +1157,6 @@
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.ContentsPanel = new MyUI.RJ_Pannel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細 = new SQLUI.SQL_DataGridView();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
@@ -8247,6 +8247,65 @@
             this.rJ_GroupBox17.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_GroupBox17.TitleTexts = "批次過帳明細";
             // 
+            // sqL_DataGridView_批次過帳_公藥_批次過帳明細
+            // 
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.AutoSelectToDeep = false;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.BorderRadius = 0;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.BorderSize = 2;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeadersHeight = 23;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns1"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns2"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns3"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns4"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns5"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns6"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns7"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns8"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns9"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns10"))));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Font = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.ImageBox = false;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Location = new System.Drawing.Point(5, 5);
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Name = "sqL_DataGridView_批次過帳_公藥_批次過帳明細";
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Password = "user82822040";
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Port = ((uint)(3306u));
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.RowsHeight = 60;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Server = "localhost";
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Size = new System.Drawing.Size(1620, 663);
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.TabIndex = 137;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.TableName = "posting_sd0_public";
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.UserName = "root";
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.可拖曳欄位寬度 = true;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.可選擇多列 = true;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.自動換行 = true;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.表單字體 = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.顯示CheckBox = true;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.顯示首列 = true;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.顯示首行 = true;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
             // panel_批次過帳
             // 
             this.panel_批次過帳.Controls.Add(this.plC_RJ_ScreenButton35);
@@ -8647,6 +8706,7 @@
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Columns12"))));
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Columns13"))));
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Columns14"))));
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Columns15"))));
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.DataBaseName = "storehouse_0";
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Dock = System.Windows.Forms.DockStyle.Left;
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Font = new System.Drawing.Font("新細明體", 12F);
@@ -29523,65 +29583,6 @@
             this.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
             this.ContentsPanel.Size = new System.Drawing.Size(1624, 663);
             this.ContentsPanel.TabIndex = 2;
-            // 
-            // sqL_DataGridView_批次過帳_公藥_批次過帳明細
-            // 
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.AutoSelectToDeep = false;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.BorderRadius = 0;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.BorderSize = 2;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeadersHeight = 23;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns1"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns2"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns3"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns4"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns5"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns6"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns7"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns8"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns9"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_批次過帳_公藥_批次過帳明細.Columns10"))));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Font = new System.Drawing.Font("新細明體", 12F);
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.ImageBox = false;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Location = new System.Drawing.Point(5, 5);
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Name = "sqL_DataGridView_批次過帳_公藥_批次過帳明細";
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Password = "user82822040";
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Port = ((uint)(3306u));
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.rowHeaderBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.RowsHeight = 60;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Server = "localhost";
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.Size = new System.Drawing.Size(1620, 663);
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.TabIndex = 137;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.TableName = "posting_sd0_public";
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.UserName = "root";
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.可拖曳欄位寬度 = true;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.可選擇多列 = true;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.自動換行 = true;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.表單字體 = new System.Drawing.Font("新細明體", 12F);
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.顯示CheckBox = true;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.顯示首列 = true;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.顯示首行 = true;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_批次過帳_公藥_批次過帳明細.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
             // Form1
             // 

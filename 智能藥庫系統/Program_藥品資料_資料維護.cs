@@ -20,6 +20,7 @@ namespace 智能藥庫系統
         {
             GUID,
             藥品碼,
+            料號,
             中文名稱,
             藥品名稱,
             藥品學名,
@@ -37,6 +38,7 @@ namespace 智能藥庫系統
         public enum enum_藥品資料_資料維護_雲端藥檔_匯出
         {
             藥品碼,
+            料號,
             中文名稱,
             藥品名稱,
             藥品學名,
@@ -51,6 +53,7 @@ namespace 智能藥庫系統
         public enum enum_藥品資料_資料維護_雲端藥檔_匯入
         {
             藥品碼,
+            料號,
             中文名稱,
             藥品名稱,
             藥品學名,
@@ -93,10 +96,12 @@ namespace 智能藥庫系統
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
 
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Init();
-            if(!this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_IsTableCreat())
+            
+            if (!this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_IsTableCreat())
             {
                 this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_CreateTable();
             }
+            else this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_CheckAllColumnName(true);
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.DataGridRefreshEvent += SqL_DataGridView_藥品資料_資料維護_雲端藥檔_DataGridRefreshEvent;
 
    
