@@ -47,21 +47,7 @@ namespace 智能藥庫系統
             刪除選取資料,
         }
         #endregion
-        public enum enum_補給驗收入庫
-        {
-            GUID,
-            藥品碼,
-            數量,
-            效期,
-            批號,
-            驗收時間,
-            加入時間,
-            狀態,
-            來源,
-            備註,
-            
-        }
-  
+
         private void sub_Program_系統_Init()
         {
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_寫入報表設定, dBConfigClass.DB_posting_server);
@@ -71,11 +57,7 @@ namespace 智能藥庫系統
             if (!this.sqL_DataGridView_特殊輸出表.SQL_IsTableCreat()) this.sqL_DataGridView_特殊輸出表.SQL_CreateTable();
             this.sqL_DataGridView_特殊輸出表.MouseDown += SqL_DataGridView_特殊輸出表_MouseDown;
 
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_補給驗收入庫, dBConfigClass.DB_posting_server);           
-            this.sqL_DataGridView_補給驗收入庫.Init();
-            if (!this.sqL_DataGridView_補給驗收入庫.SQL_IsTableCreat()) this.sqL_DataGridView_補給驗收入庫.SQL_CreateTable();
-            
-
+     
             this.plC_UI_Init.Add_Method(this.sub_Program_系統);
         }
 

@@ -27,7 +27,8 @@ namespace 智能藥庫系統
             藥品碼,
             藥品名稱,
             包裝單位,
-            數量,
+            應收數量,
+            實收數量,
             效期,
             批號,
             驗收時間,
@@ -50,6 +51,10 @@ namespace 智能藥庫系統
         private void sub_Program_藥庫_驗收入庫_過帳明細_Init()
         {
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Init();
+            if (this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_IsTableCreat() == false)
+            {
+                this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_CreateTable();
+            }
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.DataGridRefreshEvent += sqL_DataGridView_藥庫_過帳明細_驗收入庫明細_DataGridRefreshEvent;
 
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_全部顯示.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_全部顯示_MouseDownEvent;
@@ -86,30 +91,6 @@ namespace 智能藥庫系統
         }
 
         #region Function
-        private List<object[]> Function_藥庫_驗收入庫_過帳明細_取得資料()
-        {           
-            List<object[]> list_補給驗收入庫 = this.sqL_DataGridView_補給驗收入庫.SQL_GetAllRows(false);
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥庫_藥品資料.SQL_GetAllRows(false);
-            List<object[]> list_藥品資料_buf = new List<object[]>();
-            List<object[]> list_藥庫_驗收入庫 = new List<object[]>();
-            for (int i = 0; i < list_補給驗收入庫.Count; i++)
-            {
-                object[] value = list_補給驗收入庫[i].CopyRow(new enum_補給驗收入庫(),new enum_藥庫_驗收入庫_過帳明細());
-
-                string 藥品碼 = value[(int)enum_藥庫_驗收入庫_過帳明細.藥品碼].ObjectToString();
-                藥品碼 = 藥品碼.Substring(藥品碼.Length - 5, 5);
-                value[(int)enum_藥庫_驗收入庫_過帳明細.藥品碼] = 藥品碼;
-
-                list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥庫_藥品資料.藥品碼, 藥品碼);
-                if (list_藥品資料_buf.Count == 0) continue;
-
-                value[(int)enum_藥庫_驗收入庫_過帳明細.藥品名稱] = list_藥品資料_buf[0][(int)enum_藥庫_藥品資料.藥品名稱];
-                value[(int)enum_藥庫_驗收入庫_過帳明細.包裝單位] = list_藥品資料_buf[0][(int)enum_藥庫_藥品資料.包裝單位];
-                list_藥庫_驗收入庫.Add(value);
-            }
-            list_藥庫_驗收入庫.Sort(new ICP_驗收入庫_過帳明細());
-            return list_藥庫_驗收入庫; 
-        }
         private void Function_藥庫_驗收入庫_過帳明細_選取資料過帳(List<object[]> list_藥庫_驗收入庫_過帳明細)
         {
             List<object[]> list_交易紀錄_add = new List<object[]>();
@@ -127,19 +108,18 @@ namespace 智能藥庫系統
                 string 效期 = list_藥庫_驗收入庫_過帳明細[i][(int)enum_藥庫_驗收入庫_過帳明細.效期].ObjectToString();
                 if (效期.StringIsEmpty()) 效期 = list_藥庫_驗收入庫_過帳明細[i][(int)enum_藥庫_驗收入庫_過帳明細.效期].ToDateString();
                 string 批號 = list_藥庫_驗收入庫_過帳明細[i][(int)enum_藥庫_驗收入庫_過帳明細.批號].ObjectToString();
-                string 數量 = list_藥庫_驗收入庫_過帳明細[i][(int)enum_藥庫_驗收入庫_過帳明細.數量].ObjectToString();
+                string 實收數量 = list_藥庫_驗收入庫_過帳明細[i][(int)enum_藥庫_驗收入庫_過帳明細.實收數量].ObjectToString();
 
-                object[] value = list_藥庫_驗收入庫_過帳明細[i].CopyRow(new enum_藥庫_驗收入庫_過帳明細(), new enum_補給驗收入庫());
-                value[(int)enum_藥庫_驗收入庫_過帳明細.藥品碼] = $"A0000{藥品碼}";
+                object[] value = list_藥庫_驗收入庫_過帳明細[i];
                 List<DeviceBasic> deviceBasics_buf = deviceBasics.SortByCode(藥品碼);
 
                 if (deviceBasics_buf.Count > 0)
                 {
                     string 庫存量 = deviceBasics_buf[0].Inventory.ToString();
 
-                    deviceBasics_buf[0].效期庫存異動(效期, 批號, 數量);
+                    deviceBasics_buf[0].效期庫存異動(效期, 批號, 實收數量);
                     deviceBasics_replace.Add(deviceBasics_buf[0]);
-                    value[(int)enum_補給驗收入庫.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.過帳完成.GetEnumName();
+                    value[(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.過帳完成.GetEnumName();
                     list_藥庫_驗收入庫_過帳明細[i][(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.過帳完成.GetEnumName();
                     list_藥庫_驗收入庫_過帳明細_replace.Add(list_藥庫_驗收入庫_過帳明細[i]);
 
@@ -148,7 +128,7 @@ namespace 智能藥庫系統
                     string GUID = Guid.NewGuid().ToString();
                     string 動作 = enum_交易記錄查詢動作.驗收入庫.GetEnumName();
                     string 藥品名稱 = list_藥庫_驗收入庫_過帳明細[i][(int)enum_藥庫_驗收入庫_過帳明細.藥品名稱].ObjectToString();
-                    string 交易量 = 數量;
+                    string 交易量 = 實收數量;
                     string 結存量 = deviceBasics_buf[0].Inventory.ToString();
                     string 操作人 = this.登入者名稱;
                     string 操作時間 = DateTime.Now.ToDateTimeString_6();
@@ -171,7 +151,7 @@ namespace 智能藥庫系統
                 }
                 else
                 {
-                    value[(int)enum_補給驗收入庫.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.未建立儲位.GetEnumName();
+                    value[(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.未建立儲位.GetEnumName();
                     list_藥庫_驗收入庫_過帳明細[i][(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.未建立儲位.GetEnumName();
                     list_藥庫_驗收入庫_過帳明細_replace.Add(list_藥庫_驗收入庫_過帳明細[i]);
                 }
@@ -179,7 +159,7 @@ namespace 智能藥庫系統
             }
             dialog_Prcessbar.State = "上傳儲位資料...";
             this.DeviceBasicClass_藥庫.SQL_ReplaceDeviceBasic(deviceBasics_replace);
-            this.sqL_DataGridView_補給驗收入庫.SQL_ReplaceExtra(list_補給驗收入庫_replace, false);
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_ReplaceExtra(list_補給驗收入庫_replace, false);
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.ReplaceExtra(list_藥庫_驗收入庫_過帳明細_replace, true);
             this.sqL_DataGridView_交易記錄查詢.SQL_AddRows(list_交易紀錄_add, false);
             dialog_Prcessbar.Close();
@@ -216,7 +196,7 @@ namespace 智能藥庫系統
         }
         private void PlC_RJ_Button_藥庫_驗收入庫_過帳明細_全部顯示_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.RefreshGrid(this.Function_藥庫_驗收入庫_過帳明細_取得資料());
+            sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_GetAllRows(true);
         }
         private void PlC_RJ_Button_藥庫_驗收入庫_過帳明細_選取資料刪除_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -227,8 +207,7 @@ namespace 智能藥庫系統
                 MyMessageBox.ShowDialog("未選取資料!");
                 return;
             }
-            List<object[]> list_驗收入庫明細_buf = list_驗收入庫明細.CopyRows(new enum_藥庫_驗收入庫_過帳明細(), new enum_補給驗收入庫());
-            this.sqL_DataGridView_補給驗收入庫.SQL_DeleteExtra(list_驗收入庫明細_buf, false);
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_DeleteExtra(list_驗收入庫明細, false);
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.DeleteExtra(list_驗收入庫明細, true);
             MyMessageBox.ShowDialog("刪除完成!");
         }
@@ -252,16 +231,15 @@ namespace 智能藥庫系統
 
             for (int i = 0; i < list_驗收入庫明細.Count; i++)
             {
-                object[] value = list_驗收入庫明細[i].CopyRow(new enum_藥庫_驗收入庫_過帳明細(), new enum_補給驗收入庫());
+                object[] value = list_驗收入庫明細[i];
                 string 藥品碼 = list_驗收入庫明細[i][(int)enum_藥庫_驗收入庫_過帳明細.藥品碼].ObjectToString();
-                value[(int)enum_藥庫_驗收入庫_過帳明細.藥品碼] = $"A0000{藥品碼}";
-                value[(int)enum_補給驗收入庫.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.等待過帳.GetEnumName();
+                value[(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.等待過帳.GetEnumName();
                 list_補給驗收入庫_replace.Add(value);
 
                 list_驗收入庫明細[i][(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.等待過帳.GetEnumName();
                 list_驗收入庫明細_replace.Add(list_驗收入庫明細[i]);
             }
-            this.sqL_DataGridView_補給驗收入庫.SQL_ReplaceExtra(list_補給驗收入庫_replace, false);
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_ReplaceExtra(list_補給驗收入庫_replace, false);
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.ReplaceExtra(list_驗收入庫明細_replace, true);
             MyMessageBox.ShowDialog("設定完成!");
         }
@@ -274,22 +252,21 @@ namespace 智能藥庫系統
 
             for (int i = 0; i < list_驗收入庫明細.Count; i++)
             {
-                object[] value = list_驗收入庫明細[i].CopyRow(new enum_藥庫_驗收入庫_過帳明細(), new enum_補給驗收入庫());
+                object[] value = list_驗收入庫明細[i];
                 string 藥品碼 = list_驗收入庫明細[i][(int)enum_藥庫_驗收入庫_過帳明細.藥品碼].ObjectToString();
-                value[(int)enum_藥庫_驗收入庫_過帳明細.藥品碼] = $"A0000{藥品碼}";
-                value[(int)enum_補給驗收入庫.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.等待過帳.GetEnumName();
+                value[(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.等待過帳.GetEnumName();
                 list_補給驗收入庫_replace.Add(value);
 
                 list_驗收入庫明細[i][(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.忽略過帳.GetEnumName();
                 list_驗收入庫明細_replace.Add(list_驗收入庫明細[i]);
             }
-            this.sqL_DataGridView_補給驗收入庫.SQL_ReplaceExtra(list_補給驗收入庫_replace, false);
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_ReplaceExtra(list_補給驗收入庫_replace, false);
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.ReplaceExtra(list_驗收入庫明細_replace, true);
             MyMessageBox.ShowDialog("設定完成!");
         }
         private void PlC_RJ_Button_藥庫_驗收入庫_過帳明細_顯示異常過帳_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.Function_藥庫_驗收入庫_過帳明細_取得資料();
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_GetAllRows(false);
             list_value = (from value in list_value
                           where value[(int)enum_藥庫_驗收入庫_過帳明細.狀態].ObjectToString() == enum_藥庫_驗收入庫_過帳明細_狀態.庫存不足.GetEnumName()
                           || value[(int)enum_藥庫_驗收入庫_過帳明細.狀態].ObjectToString() == enum_藥庫_驗收入庫_過帳明細_狀態.找無此藥品.GetEnumName()
@@ -301,7 +278,7 @@ namespace 智能藥庫系統
         }
         private void PlC_RJ_Button_藥庫_驗收入庫_過帳明細_顯示等待過帳_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.Function_藥庫_驗收入庫_過帳明細_取得資料();
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_GetAllRows(false);
             list_value = (from value in list_value
                           where value[(int)enum_藥庫_驗收入庫_過帳明細.狀態].ObjectToString() == enum_藥庫_驗收入庫_過帳明細_狀態.等待過帳.GetEnumName()
                           select value).ToList();
