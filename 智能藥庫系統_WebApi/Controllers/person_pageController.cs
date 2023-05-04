@@ -12,8 +12,22 @@ using System.Text.Json.Serialization;
 using System.Configuration;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace 智慧調劑台管理系統_WebApi
+namespace 智慧藥庫系統_WebApi
 {
+    public enum enum_person_page
+    {
+        GUID,
+        ID,
+        姓名,
+        性別,
+        密碼,
+        單位,
+        權限等級,
+        顏色,
+        卡號,
+        一維條碼,
+        識別圖案,
+    }
     [Route("api/[controller]")]
     [ApiController]
     public class person_pageController : ControllerBase
@@ -44,20 +58,7 @@ namespace 智慧調劑台管理系統_WebApi
             [JsonPropertyName("UID")]
             public string 卡號 { get; set; }
         }
-        public enum enum_person_page
-        {
-            GUID,
-            ID,
-            姓名,
-            性別,
-            密碼,
-            單位,
-            權限等級,
-            顏色,
-            卡號,
-            一維條碼,
-            識別圖案,
-        }
+       
         // GET: api/<person_pageController>
         [HttpGet]
         public string Get(string ID ,string? name, string? UID)
