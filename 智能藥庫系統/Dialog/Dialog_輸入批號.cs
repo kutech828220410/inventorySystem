@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace 智能藥庫系統
 {
-    public partial class Dialog_寫入批號 : Form
+    public partial class Dialog_輸入批號 : Form
     {
         public static Form form;
         public new DialogResult ShowDialog()
@@ -61,18 +61,18 @@ namespace 智能藥庫系統
                 this.rJ_TextBox_批號.Texts = value;
             }
         }
-        public Dialog_寫入批號()
+        public Dialog_輸入批號()
         {
             InitializeComponent();
         }
-        public Dialog_寫入批號(string value)
+        public Dialog_輸入批號(string value)
         {
             InitializeComponent();
             this.value = value;
            
         }
 
-        private void Dialog_寫入批號_Load(object sender, EventArgs e)
+        private void Dialog_輸入批號_Load(object sender, EventArgs e)
         {
             this.Value = value;
             this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
@@ -208,7 +208,7 @@ namespace 智能藥庫系統
             this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable1.TextColor = System.Drawing.Color.White;
             // 
-            // Dialog_寫入批號
+            // Dialog_輸入批號
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -220,9 +220,9 @@ namespace 智能藥庫系統
             this.Controls.Add(this.rJ_Button_取消);
             this.Controls.Add(this.rJ_TextBox_批號);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "Dialog_寫入批號";
+            this.Name = "Dialog_輸入批號";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Dialog_寫入批號_Load);
+            this.Load += new System.EventHandler(this.Dialog_輸入批號_Load);
             this.ResumeLayout(false);
 
         }

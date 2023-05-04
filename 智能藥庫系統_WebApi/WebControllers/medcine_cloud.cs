@@ -13,40 +13,38 @@ using System.Configuration;
 
 namespace 智慧藥庫系統_WebApi
 {
-    enum enum_medicine_page_cloud
-    {
-        GUID,
-        藥品碼,
-        料號,
-        中文名稱,
-        藥品名稱,
-        藥品學名,
-        健保碼,
-        包裝單位,
-        包裝數量,
-        最小包裝單位,
-        最小包裝數量,
-        藥品條碼1,
-        藥品條碼2,
-        警訊藥品,
-        管制級別,
-        類別
-    }
     [Route("api/[controller]")]
     [ApiController]
     public class MED_page_cloudController : Controller
     {
         static private string DataBaseName = ConfigurationManager.AppSettings["medicine_page_cloud_database"];
-        static private string IP = ConfigurationManager.AppSettings["medicine_page_cloud_IP"];
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-    
+        static private string IP = ConfigurationManager.AppSettings["medicine_page_cloud_IP"];
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         private SQLControl sQLControl_medicine_page_cloud = new SQLControl(IP, DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
 
-     
+        private enum enum_medicine_page_cloud
+        {
+            GUID,
+            藥品碼,
+            料號,
+            中文名稱,
+            藥品名稱,
+            藥品學名,
+            健保碼,
+            包裝單位,
+            包裝數量,
+            最小包裝單位,
+            最小包裝數量,
+            藥品條碼1,
+            藥品條碼2,
+            警訊藥品,
+            管制級別,
+            類別
+        }
         public class class_medicine_page_firstclass_data
         {
             public string GUID { get; set; }

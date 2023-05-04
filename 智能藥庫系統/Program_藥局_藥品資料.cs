@@ -425,10 +425,10 @@ namespace 智能藥庫系統
                 {
                     return;
                 }
-                Dialog_寫入批號 dialog_寫入批號 = new Dialog_寫入批號();
-                if (dialog_寫入批號.ShowDialog() == DialogResult.Yes)
+                Dialog_輸入批號 Dialog_輸入批號 = new Dialog_輸入批號();
+                if (Dialog_輸入批號.ShowDialog() == DialogResult.Yes)
                 {
-                    批號 = dialog_寫入批號.Value;
+                    批號 = Dialog_輸入批號.Value;
                 }
                 else
                 {
@@ -530,10 +530,10 @@ namespace 智能藥庫系統
                 string 舊批號 = value[(int)enum_藥局_藥品資料_效期及庫存.批號].ObjectToString();
                 string 新批號 = "";
 
-                Dialog_寫入批號 dialog_寫入批號 = new Dialog_寫入批號();
-                if (dialog_寫入批號.ShowDialog() == DialogResult.Yes)
+                Dialog_輸入批號 Dialog_輸入批號 = new Dialog_輸入批號();
+                if (Dialog_輸入批號.ShowDialog() == DialogResult.Yes)
                 {
-                    新批號 = dialog_寫入批號.Value;
+                    新批號 = Dialog_輸入批號.Value;
                 }
                 else
                 {

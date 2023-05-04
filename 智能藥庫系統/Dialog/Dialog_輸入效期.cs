@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Basic;
 namespace 智能藥庫系統
 {
-    public partial class Dialog_寫入效期 : Form
+    public partial class Dialog_輸入效期 : Form
     {
         public static Form form;
         public new DialogResult ShowDialog()
@@ -79,7 +79,7 @@ namespace 智能藥庫系統
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        public Dialog_寫入效期()
+        public Dialog_輸入效期()
         {
             InitializeComponent();
             this.TopMost = true;
@@ -158,14 +158,14 @@ namespace 智能藥庫系統
             this.Close();
         }
 
-        private void Dialog_寫入效期_Load(object sender, EventArgs e)
+        private void Dialog_輸入效期_Load(object sender, EventArgs e)
         {
             this.TopLevel = true;
             this.TopMost = true;
           
         }
 
-        private void Dialog_寫入效期_Shown(object sender, EventArgs e)
+        private void Dialog_輸入效期_Shown(object sender, EventArgs e)
         {
             this.touchch_TextBox_Year.Focus();
         }
@@ -321,7 +321,7 @@ namespace 智能藥庫系統
             this.touchch_TextBox_Day.UnderlineStyle = false;
             this.touchch_TextBox_Day._TextChanged += new System.EventHandler(this.touchch_TextBox_Day_TextChanged);
             // 
-            // Dialog_寫入效期
+            // Dialog_輸入效期
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -337,12 +337,12 @@ namespace 智能藥庫系統
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "Dialog_寫入效期";
+            this.Name = "Dialog_輸入效期";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.Dialog_寫入效期_Load);
-            this.Shown += new System.EventHandler(this.Dialog_寫入效期_Shown);
+            this.Load += new System.EventHandler(this.Dialog_輸入效期_Load);
+            this.Shown += new System.EventHandler(this.Dialog_輸入效期_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

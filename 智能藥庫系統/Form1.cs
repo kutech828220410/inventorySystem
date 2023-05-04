@@ -166,8 +166,8 @@ namespace 智能藥庫系統
                 this.plC_RJ_Button_測試.MouseDownEvent += PlC_RJ_Button_測試_MouseDownEvent;
                 MyMessageBox.音效 = false;
                 Dialog_Prcessbar.form = this.FindForm();
-                Dialog_寫入批號.form = this.FindForm();
-                Dialog_寫入效期.form = this.FindForm();
+                Dialog_輸入批號.form = this.FindForm();
+                Dialog_輸入效期.form = this.FindForm();
                 Dialog_輸入備註.form = this.FindForm();
                 Dialog_寫入藥品碼.form = this.FindForm();
                 Dialog_更換密碼.form = this.FindForm();

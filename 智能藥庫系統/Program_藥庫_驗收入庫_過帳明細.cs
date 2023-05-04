@@ -32,7 +32,7 @@ namespace 智能藥庫系統
             效期,
             批號,
             驗收時間,
-            加入時間,
+            入庫時間,
             狀態,
             來源,
             備註,
@@ -66,11 +66,13 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_顯示等待過帳.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_顯示等待過帳_MouseDownEvent;
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_藥品碼篩選.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_藥品碼篩選_MouseDownEvent;
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_藥品名稱篩選.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_藥品名稱篩選_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_新增資料.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_新增資料_MouseDownEvent;
+
 
             this.plC_UI_Init.Add_Method(sub_Program_藥庫_驗收入庫_過帳明細);
         }
 
-    
+     
 
         private bool flag_藥庫_驗收入庫_過帳明細 = false;
         private void sub_Program_藥庫_驗收入庫_過帳明細()
@@ -193,6 +195,59 @@ namespace 智能藥庫系統
                     this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
+        }
+        private void PlC_RJ_Button_藥庫_驗收入庫_過帳明細_新增資料_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_寫入藥品碼 dialog_寫入藥品碼 = new Dialog_寫入藥品碼();
+            DialogResult dialogResult = dialog_寫入藥品碼.ShowDialog();
+            if (dialogResult != DialogResult.Yes) return;
+            string 藥品碼 = dialog_寫入藥品碼.Value;
+            string 藥品名稱 = "";
+            string 效期 = "";
+            string 批號 = "";
+            string 料號 = "";
+            string 包裝單位 = "";
+            string 應收數量 = "";
+            string 實收數量 = "";
+            if (藥品碼.StringIsEmpty()) return;
+            List<object[]> list_藥檔資料 = this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_GetAllRows(false);
+            list_藥檔資料 = list_藥檔資料.GetRows((int)enum_藥品資料_資料維護_雲端藥檔.藥品碼, 藥品碼);
+            if (list_藥檔資料.Count == 0) return;
+            料號 = list_藥檔資料[0][(int)enum_藥品資料_資料維護_雲端藥檔.料號].ObjectToString();
+            包裝單位 = list_藥檔資料[0][(int)enum_藥品資料_資料維護_雲端藥檔.包裝單位].ObjectToString();
+            藥品名稱 = list_藥檔資料[0][(int)enum_藥品資料_資料維護_雲端藥檔.藥品名稱].ObjectToString();
+
+            Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
+            if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
+            應收數量 = dialog_NumPannel.Value.ToString();
+            實收數量 = "0";
+
+            Dialog_輸入效期 dialog_輸入效期 = new Dialog_輸入效期();
+            if (dialog_輸入效期.ShowDialog() != DialogResult.Yes) return;
+            效期 = dialog_輸入效期.Value;
+
+            Dialog_輸入批號 Dialog_輸入批號 = new Dialog_輸入批號();
+            if (Dialog_輸入批號.ShowDialog() != DialogResult.Yes) return;
+            批號 = Dialog_輸入批號.Value;
+
+            object[] value = new object[new enum_藥庫_驗收入庫_過帳明細().GetLength()];
+            value[(int)enum_藥庫_驗收入庫_過帳明細.GUID] = Guid.NewGuid().ToString();
+            value[(int)enum_藥庫_驗收入庫_過帳明細.藥品碼] = 藥品碼;
+            value[(int)enum_藥庫_驗收入庫_過帳明細.藥品名稱] = 藥品名稱;
+            value[(int)enum_藥庫_驗收入庫_過帳明細.包裝單位] = 包裝單位;
+            value[(int)enum_藥庫_驗收入庫_過帳明細.應收數量] = 應收數量;
+            value[(int)enum_藥庫_驗收入庫_過帳明細.實收數量] = 實收數量;
+            value[(int)enum_藥庫_驗收入庫_過帳明細.效期] = 效期;
+            value[(int)enum_藥庫_驗收入庫_過帳明細.批號] = 批號;
+            value[(int)enum_藥庫_驗收入庫_過帳明細.驗收時間] = DateTime.Now.ToDateTimeString();
+            value[(int)enum_藥庫_驗收入庫_過帳明細.入庫時間] = DateTime.MinValue.ToDateTimeString();
+            value[(int)enum_藥庫_驗收入庫_過帳明細.狀態] = enum_藥庫_驗收入庫_過帳明細_狀態.等待過帳.GetEnumName();
+            value[(int)enum_藥庫_驗收入庫_過帳明細.來源] = "";
+            value[(int)enum_藥庫_驗收入庫_過帳明細.備註] = "";
+
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_AddRow(value, false);
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.AddRow(value, true);
+       
         }
         private void PlC_RJ_Button_藥庫_驗收入庫_過帳明細_全部顯示_MouseDownEvent(MouseEventArgs mevent)
         {

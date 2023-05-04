@@ -237,10 +237,10 @@ namespace 智能藥庫系統
             }
             if (device.取得庫存(寫入效期) == -1)
             {
-                Dialog_寫入批號 dialog_寫入批號 = new Dialog_寫入批號();
-                if (dialog_寫入批號.ShowDialog() == DialogResult.Yes)
+                Dialog_輸入批號 Dialog_輸入批號 = new Dialog_輸入批號();
+                if (Dialog_輸入批號.ShowDialog() == DialogResult.Yes)
                 {
-                    寫入批號 = dialog_寫入批號.Value;
+                    寫入批號 = Dialog_輸入批號.Value;
                 }
                 else
                 {
