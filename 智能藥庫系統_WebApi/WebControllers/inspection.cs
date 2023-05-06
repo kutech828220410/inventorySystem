@@ -47,6 +47,8 @@ namespace 智慧藥庫系統_WebApi
         {
             [JsonPropertyName("GUID")]
             public string GUID { get; set; }
+            [JsonPropertyName("OD_SN")]
+            public string 請購單號 { get; set; }
             [JsonPropertyName("CODE")]
             public string 藥品碼 { get; set; }
             [JsonPropertyName("SKDIACODE")]
@@ -65,10 +67,13 @@ namespace 智慧藥庫系統_WebApi
             public string 批號 { get; set; }
             [JsonPropertyName("MIS_CREATEDTTM")]
             public string 驗收時間 { get; set; }
+            [JsonPropertyName("OD_CREATEDTTM")]
+            public string 請購時間 { get; set; }
         }
         public enum enum_藥庫_驗收入庫_過帳明細
         {
             GUID,
+            請購單號,
             藥品碼,
             料號,
             藥品名稱,
@@ -79,6 +84,7 @@ namespace 智慧藥庫系統_WebApi
             批號,
             驗收時間,
             入庫時間,
+            請購時間,
             狀態,
             來源,
             備註,
