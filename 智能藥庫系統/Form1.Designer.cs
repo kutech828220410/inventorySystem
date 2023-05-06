@@ -22271,6 +22271,7 @@
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns11"))));
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns12"))));
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns13"))));
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns14"))));
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.ImageBox = false;

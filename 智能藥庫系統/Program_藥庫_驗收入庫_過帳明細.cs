@@ -24,6 +24,7 @@ namespace 智能藥庫系統
         public enum enum_藥庫_驗收入庫_過帳明細
         {
             GUID,
+            請購單號,
             藥品碼,
             料號,
             藥品名稱,
