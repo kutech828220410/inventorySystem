@@ -28,13 +28,12 @@ namespace 智慧調劑台管理系統_WebApi
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAllOrigins",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                               .AllowAnyHeader()
-                               .AllowAnyMethod();
-                    });
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
             });
 
             services.AddControllers();
@@ -52,7 +51,7 @@ namespace 智慧調劑台管理系統_WebApi
 
             app.UseRouting();
 
-            app.UseCors("AllowAllOrigins"); // 啟用CORS
+            app.UseCors(); // 啟用CORS
 
             app.UseAuthorization();
 
