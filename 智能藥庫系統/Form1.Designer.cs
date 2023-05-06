@@ -1142,6 +1142,7 @@
             this.ContentsPanel = new MyUI.RJ_Pannel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購單號 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間 = new MyUI.PLC_RJ_Button();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
@@ -21679,6 +21680,7 @@
             // tabPage30
             // 
             this.tabPage30.BackColor = System.Drawing.Color.White;
+            this.tabPage30.Controls.Add(this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間);
             this.tabPage30.Controls.Add(this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購單號);
             this.tabPage30.Controls.Add(this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_新增資料);
             this.tabPage30.Controls.Add(this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_藥品名稱篩選);
@@ -22274,6 +22276,7 @@
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns12"))));
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns13"))));
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns14"))));
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns15"))));
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.ImageBox = false;
@@ -29062,6 +29065,49 @@
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購單號.顯示 = false;
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購單號.顯示狀態 = false;
             // 
+            // plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間
+            // 
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.AutoResetState = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.BackgroundColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.Bool = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.BorderRadius = 5;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.BorderSize = 0;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.but_press = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.Location = new System.Drawing.Point(833, 639);
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.Name = "plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間";
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.OFF_文字內容 = "設定請購時間";
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.ON_BorderSize = 5;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.ON_文字內容 = "設定請購時間";
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.Size = new System.Drawing.Size(201, 101);
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.State = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.TabIndex = 239;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.Text = "設定請購時間";
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.Texts = "設定請購時間";
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.字型鎖住 = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.文字鎖住 = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.致能讀取位置 = "S4077";
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.讀取位元反向 = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.讀寫鎖住 = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.音效 = true;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.顯示 = false;
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.顯示狀態 = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -30568,6 +30614,7 @@
         private MyUI.RJ_Pannel ContentsPanel;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥庫_驗收入庫_過帳明細_新增資料;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購單號;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間;
     }
 }
 
