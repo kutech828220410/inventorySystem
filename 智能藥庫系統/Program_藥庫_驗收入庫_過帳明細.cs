@@ -25,6 +25,7 @@ namespace 智能藥庫系統
         {
             GUID,
             藥品碼,
+            料號,
             藥品名稱,
             包裝單位,
             應收數量,
@@ -54,6 +55,10 @@ namespace 智能藥庫系統
             if (this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_IsTableCreat() == false)
             {
                 this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_CreateTable();
+            }
+            else
+            {
+                this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_CheckAllColumnName(true);
             }
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.DataGridRefreshEvent += sqL_DataGridView_藥庫_過帳明細_驗收入庫明細_DataGridRefreshEvent;
 
@@ -233,6 +238,7 @@ namespace 智能藥庫系統
             object[] value = new object[new enum_藥庫_驗收入庫_過帳明細().GetLength()];
             value[(int)enum_藥庫_驗收入庫_過帳明細.GUID] = Guid.NewGuid().ToString();
             value[(int)enum_藥庫_驗收入庫_過帳明細.藥品碼] = 藥品碼;
+            value[(int)enum_藥庫_驗收入庫_過帳明細.料號] = 料號;
             value[(int)enum_藥庫_驗收入庫_過帳明細.藥品名稱] = 藥品名稱;
             value[(int)enum_藥庫_驗收入庫_過帳明細.包裝單位] = 包裝單位;
             value[(int)enum_藥庫_驗收入庫_過帳明細.應收數量] = 應收數量;

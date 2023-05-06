@@ -37,11 +37,11 @@ namespace 智能藥庫系統
         }
         public enum enum_藥品資料_資料維護_雲端藥檔_匯出
         {
-            藥品碼,
+            藥碼,
             料號,
             中文名稱,
-            藥品名稱,
-            藥品學名,
+            藥名,
+            商品名,
             健保碼,
             包裝單位,
             包裝數量,
@@ -52,11 +52,14 @@ namespace 智能藥庫系統
         }
         public enum enum_藥品資料_資料維護_雲端藥檔_匯入
         {
-            藥品碼,
+            [Description("藥品碼")]
+            藥碼,
             料號,
             中文名稱,
-            藥品名稱,
-            藥品學名,
+            [Description("藥品名稱")]
+            藥名,
+            [Description("藥品學名")]
+            商品名,
             健保碼,
             包裝單位,
             包裝數量,
@@ -194,12 +197,22 @@ namespace 智能藥庫系統
                 }));
                 DataTable dataTable = this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.GetDataTable();
                 dataTable = dataTable.ReorderTable(new enum_藥品資料_資料維護_雲端藥檔_匯出());
-                CSVHelper.SaveFile(dataTable, this.saveFileDialog_SaveExcel.FileName);
+                string Extension = System.IO.Path.GetExtension(this.saveFileDialog_SaveExcel.FileName);
+                if (Extension == ".txt")
+                {
+                    CSVHelper.SaveFile(dataTable, this.saveFileDialog_SaveExcel.FileName);
+                }
+                else if (Extension == ".xls")
+                {
+                    MyOffice.ExcelClass.NPOI_SaveFile(dataTable, this.saveFileDialog_SaveExcel.FileName);
+                }
                 this.Invoke(new Action(delegate
                 {
                     this.Cursor = Cursors.Default;
                 }));
-         
+              
+                MyMessageBox.ShowDialog("匯出完成");
+
             }
         }
         private void PlC_RJ_Button_藥品資料_資料維護_雲端藥檔_匯入_MouseDownEvent(MouseEventArgs mevent)
@@ -217,7 +230,17 @@ namespace 智能藥庫系統
                 }));
          
                 DataTable dataTable = new DataTable();
-                CSVHelper.LoadFile(this.openFileDialog_LoadExcel.FileName, 0, dataTable);
+
+                string Extension = System.IO.Path.GetExtension(this.openFileDialog_LoadExcel.FileName);
+                if (Extension == ".txt")
+                {
+                    CSVHelper.LoadFile(this.openFileDialog_LoadExcel.FileName, 0, dataTable);
+                }
+                else if (Extension == ".xls")
+                {
+                    dataTable = MyOffice.ExcelClass.NPOI_LoadFile(this.openFileDialog_LoadExcel.FileName);
+                }
+
                 DataTable datatable_buf = dataTable.ReorderTable(new enum_藥品資料_資料維護_雲端藥檔_匯入());
                 if (datatable_buf == null)
                 {
@@ -241,7 +264,7 @@ namespace 智能藥庫系統
                 for (int i = 0; i < list_LoadValue.Count; i++)
                 {
                     object[] value_load = list_LoadValue[i];
-                    value_load = value_load.CopyRow(new enum_藥品資料_資料維護_雲端藥檔_匯入(), new enum_藥品資料_資料維護_雲端藥檔());
+                    value_load = value_load.CopyRow(new enum_藥品資料_資料維護_雲端藥檔_匯入().GetEnumDescriptions(), new enum_藥品資料_資料維護_雲端藥檔().GetEnumNames());
                     value_load[(int)enum_藥品資料_資料維護_雲端藥檔.藥品碼] = this.Function_藥品碼檢查(value_load[(int)enum_藥品資料_資料維護_雲端藥檔.藥品碼].ObjectToString());
                     list_SQL_Value_buf = list_SQL_Value.GetRows((int)enum_藥品資料_資料維護_雲端藥檔.藥品碼, value_load[(int)enum_藥品資料_資料維護_雲端藥檔.藥品碼].ObjectToString());
                     if (list_SQL_Value_buf.Count > 0)
@@ -270,7 +293,7 @@ namespace 智能藥庫系統
                     }
                 }
                 this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_AddRows(list_Add, false);
-                this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_ReplaceExtra(enum_藥品資料_資料維護_雲端藥檔.GUID.GetEnumName(), list_Replace_SerchValue, list_Replace_Value, false);
+                this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_ReplaceExtra(list_Replace_Value, false);
          
                 this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_GetAllRows(true);
                 this.Invoke(new Action(delegate
