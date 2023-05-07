@@ -34,6 +34,11 @@ namespace 智慧調劑台管理系統_WebApi
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.WithOrigins("http://103.1.221.188:4433")
+                        .WithExposedHeaders("Content-Disposition");
+                });
             });
 
             services.AddControllers();

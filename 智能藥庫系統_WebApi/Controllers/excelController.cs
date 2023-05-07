@@ -15,11 +15,14 @@ using System.Configuration;
 using IBM.Data.DB2.Core;
 using MyOffice;
 using NPOI;
-namespace 智慧調劑台管理系統_WebApi
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.IO;
+namespace 智慧藥庫系統_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class excelController : ControllerBase
+    public class excelController : Controller
     {
         public class class_emg_apply
         {
@@ -88,6 +91,56 @@ namespace 智慧調劑台管理系統_WebApi
             return json;
         }
 
+        [Route("test")]
+        [HttpGet]
+        public HttpResponseMessage Get_test()
+        {
+            //string loadText = Basic.MyFileStream.LoadFileAllText(@"C:\excel.txt", "utf-8");
+            //SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
+            //byte[] excelBytes = sheetClass.NPOI_GetBytes();
+
+            byte[] excelBytes = System.IO.File.ReadAllBytes(@"C:\TEST.xls");
+
+            // 創建 HttpResponseMessage 對象
+            HttpResponseMessage response = new HttpResponseMessage();
+
+            response.Content = new ByteArrayContent(excelBytes);
+
+            // 設置 Content-Type 和 Content-Disposition 標頭
+            response.Content.Headers.Add("Content-Disposition", string.Format("attachment; filename=Excel.xls"));
+
+            return response;
+
+        }
+        [Route("downloadfile")]
+        [HttpGet]
+        public async Task<ActionResult> DownloadExcelFile()
+        {
+            string loadText = Basic.MyFileStream.LoadFileAllText(@"C:\excel.txt", "utf-8");
+            SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
+            byte[] excelData = sheetClass.NPOI_GetBytes();
+            Stream stream = new MemoryStream(excelData);
+            return await Task.FromResult(File(stream, "application/vnd.ms-excel", "excel-file.xls"));
+        }
+
+        [Route("image")]
+        [HttpGet]
+        public HttpResponseMessage GetImage()
+        {
+            var imgPath = @"C:\background.jpg";
+            //从图片中读取byte  
+            var imgByte = System.IO.File.ReadAllBytes(imgPath);
+            //从图片中读取流  
+            var imgStream = new MemoryStream(System.IO.File.ReadAllBytes(imgPath));
+            var resp = new HttpResponseMessage(System.Net.HttpStatusCode.OK)
+            {
+                Content = new ByteArrayContent(imgByte)
+                //或者  
+                //Content = new StreamContent(stream)  
+            };
+            resp.Content.Headers.ContentType = new MediaTypeHeaderValue("image/jpg");
+            return resp;
+        }
         public class Distinct_class_Emg_Applies : IEqualityComparer<class_emg_apply>
         {
             public bool Equals(class_emg_apply x, class_emg_apply y)

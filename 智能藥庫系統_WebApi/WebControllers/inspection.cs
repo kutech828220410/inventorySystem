@@ -35,19 +35,32 @@ namespace 智慧藥庫系統_WebApi
 
         public class returnData
         {
-            private List<class_output_inspection_data> _data = new List<class_output_inspection_data>();
+            private List<object> _data = new List<object>();
             private int _code = 0;
             private string _result = "";
 
-            public List<class_output_inspection_data> Data { get => _data; set => _data = value; }
+            public List<object> Data { get => _data; set => _data = value; }
             public int Code { get => _code; set => _code = value; }
             public string Result { get => _result; set => _result = value; }
+        }
+        public class class_output_inspection_date
+        {
+            [JsonPropertyName("OD_SN_S")]
+            public string 請購單號 { get; set; }
+            [JsonPropertyName("MIS_CREATEDTTM")]
+            public string 驗收時間 { get; set; }
+
+            public class_output_inspection_date ObjToData(object data)
+            {
+                string jsondata = data.JsonSerializationt();
+                return jsondata.JsonDeserializet<class_output_inspection_date>();
+            }
         }
         public class class_output_inspection_data
         {
             [JsonPropertyName("GUID")]
             public string GUID { get; set; }
-            [JsonPropertyName("OD_SN")]
+            [JsonPropertyName("OD_SN_L")]
             public string 請購單號 { get; set; }
             [JsonPropertyName("CODE")]
             public string 藥品碼 { get; set; }
@@ -69,6 +82,12 @@ namespace 智慧藥庫系統_WebApi
             public string 驗收時間 { get; set; }
             [JsonPropertyName("OD_CREATEDTTM")]
             public string 請購時間 { get; set; }
+
+            public class_output_inspection_data ObjToData(object data)
+            {
+                string jsondata = data.JsonSerializationt();
+                return jsondata.JsonDeserializet<class_output_inspection_data>();
+            }
         }
         public enum enum_藥庫_驗收入庫_過帳明細
         {
@@ -102,6 +121,7 @@ namespace 智慧藥庫系統_WebApi
                 class_output_inspection_data class_Output_Inspection_Data = new class_output_inspection_data();
                 string GUID = list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.GUID].ObjectToString();
                 string 藥品碼 = list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.藥品碼].ObjectToString();
+                string 請購單號 = list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.請購單號].ObjectToString();
                 list_medecine_buf = list_medecine.GetRows((int)enum_medicine_page_cloud.藥品碼, 藥品碼);
                 if (list_medecine_buf.Count == 0) continue;
                 string 藥品名稱 = list_medecine_buf[0][(int)enum_medicine_page_cloud.藥品名稱].ObjectToString();
@@ -112,8 +132,11 @@ namespace 智慧藥庫系統_WebApi
                 string 效期 = list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.效期].ToDateString();
                 string 批號 = list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.批號].ObjectToString();
                 string 驗收時間 = list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.驗收時間].ToDateTimeString();
+                string 請購時間 = list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.請購時間].ToDateTimeString();
 
                 class_Output_Inspection_Data.GUID = GUID;
+                class_Output_Inspection_Data.請購單號 = 請購單號;
+
                 class_Output_Inspection_Data.藥品碼 = 藥品碼;
                 class_Output_Inspection_Data.料號 = 料號;
                 class_Output_Inspection_Data.藥品名稱 = 藥品名稱;
@@ -123,6 +146,7 @@ namespace 智慧藥庫系統_WebApi
                 class_Output_Inspection_Data.效期 = 效期;
                 class_Output_Inspection_Data.批號 = 批號;
                 class_Output_Inspection_Data.驗收時間 = 驗收時間;
+                class_Output_Inspection_Data.請購時間 = 請購時間;
                 returnData.Data.Add(class_Output_Inspection_Data);
             }
             returnData.Code = 200;
@@ -138,7 +162,9 @@ namespace 智慧藥庫系統_WebApi
             List<object[]> list_inspection_buf = new List<object[]>();
             for (int i = 0; i < data.Data.Count; i++)
             {
-                class_output_inspection_data class_Output_Inspection_Data = data.Data[i] as class_output_inspection_data;
+
+                class_output_inspection_data class_Output_Inspection_Data = new class_output_inspection_data();
+                class_Output_Inspection_Data = class_Output_Inspection_Data.ObjToData(data.Data[i]);
                 list_inspection_buf = list_inspection.GetRows((int)enum_藥庫_驗收入庫_過帳明細.GUID, class_Output_Inspection_Data.GUID);
                 if (list_inspection_buf.Count == 0) continue;
 
@@ -153,6 +179,52 @@ namespace 智慧藥庫系統_WebApi
             data.Result = "Inspection data update 成功!";
             return data.JsonSerializationt();
         }
+        [Route("get_od_Date")]
+        [HttpGet]
+        public string Get_OD_Date()
+        {
+            returnData returnData = new returnData();
+            List<object[]> list_inspection = this.sQLControl_inspection.GetAllRows(null);
 
+            list_inspection = list_inspection.Distinct(new Distinct_inspection_date()).ToList();
+            returnData.Code = 200;
+            returnData.Result = "取得請購日期表成功!";
+            for(int i = 0; i < list_inspection.Count; i++)
+            {
+                class_output_inspection_date class_Output_Inspection_Date = new class_output_inspection_date();
+                class_Output_Inspection_Date.請購單號 = Function_解析請購單號(list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.請購單號].ObjectToString());
+                class_Output_Inspection_Date.驗收時間 = list_inspection[i][(int)enum_藥庫_驗收入庫_過帳明細.驗收時間].ToDateString();
+
+
+                returnData.Data.Add(class_Output_Inspection_Date);
+            }
+            return returnData.JsonSerializationt(true);
+        }
+
+
+        static public string Function_解析請購單號(string ODSN)
+        {
+            string[] ODSN_Ary = ODSN.Split('-');
+            if (ODSN_Ary.Length != 2) return ODSN;
+            return ODSN_Ary[0];
+        }
+        public class Distinct_inspection_date : IEqualityComparer<object[]>
+        {
+            public bool Equals(object[] x, object[] y)
+            {
+                bool flag_驗收時間 = (x[(int)enum_藥庫_驗收入庫_過帳明細.驗收時間].ToDateString() == y[(int)enum_藥庫_驗收入庫_過帳明細.驗收時間].ToDateString());
+                string 請購單號_x = x[(int)enum_藥庫_驗收入庫_過帳明細.請購單號].ObjectToString();
+                請購單號_x = Function_解析請購單號(請購單號_x);
+                string 請購單號_y = y[(int)enum_藥庫_驗收入庫_過帳明細.請購單號].ObjectToString();
+                請購單號_y = Function_解析請購單號(請購單號_y);
+                bool flag_請購單號 = (請購單號_x == 請購單號_y);
+                return (flag_請購單號 && flag_驗收時間);
+            }
+
+            public int GetHashCode(object[] obj)
+            {
+                return 1;
+            }
+        }
     }
 }
