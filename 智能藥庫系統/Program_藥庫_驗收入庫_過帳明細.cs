@@ -76,12 +76,12 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_新增資料.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_新增資料_MouseDownEvent;
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購單號.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購單號_MouseDownEvent;
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_設定請購時間_MouseDownEvent;
-
+            this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_設定驗收時間.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_設定驗收時間_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(sub_Program_藥庫_驗收入庫_過帳明細);
         }
 
-     
+       
 
         private bool flag_藥庫_驗收入庫_過帳明細 = false;
         private void sub_Program_藥庫_驗收入庫_過帳明細()
@@ -218,6 +218,22 @@ namespace 智能藥庫系統
             }
            
             
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_ReplaceExtra(list_value, false);
+            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.ReplaceExtra(list_value, true);
+        }
+        private void PlC_RJ_Button_藥庫_驗收入庫_過帳明細_設定驗收時間_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Get_All_Select_RowsValues();
+            if (list_value.Count == 0) return;
+            Dialog_寫入藥品碼 dialog_寫入藥品碼 = new Dialog_寫入藥品碼();
+            DialogResult dialogResult = dialog_寫入藥品碼.ShowDialog();
+            if (dialogResult != DialogResult.Yes) return;
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                list_value[i][(int)enum_藥庫_驗收入庫_過帳明細.驗收時間] = dialog_寫入藥品碼.Value;
+            }
+
+
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SQL_ReplaceExtra(list_value, false);
             this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.ReplaceExtra(list_value, true);
         }
