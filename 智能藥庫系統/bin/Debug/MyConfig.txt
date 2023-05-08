@@ -1,0 +1,7 @@
+{
+  "FTP_Server": "",
+  "貨架數量": 8,
+  "主機模式": false,
+  "FTP_username": "",
+  "FTP_password": ""
+}
