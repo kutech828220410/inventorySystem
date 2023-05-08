@@ -24,7 +24,7 @@ namespace 智能藥庫系統
     {
         MyThread MyThread_檢查Pannel35_主畫面;
         MyThread MyThread_檢查Pannel35_數字鍵盤頁面;
-        MyThread MyThread_檢查Pannel35_區域亮燈;
+        MyThread MyThread_檢查區域亮燈;
         private void sub_Program_工程模式_Init()
         {
             this.sqL_DataGridView_入庫原因維護.Init();
@@ -51,12 +51,12 @@ namespace 智能藥庫系統
             this.MyThread_檢查Pannel35_數字鍵盤頁面.Add_Method(sub_Program_檢查Pannel35_數字鍵盤頁面);
             this.MyThread_檢查Pannel35_數字鍵盤頁面.Trigger();
 
-            this.MyThread_檢查Pannel35_區域亮燈 = new MyThread();
-            this.MyThread_檢查Pannel35_區域亮燈.AutoStop(true);
-            this.MyThread_檢查Pannel35_區域亮燈.AutoRun(true);
-            this.MyThread_檢查Pannel35_區域亮燈.SetSleepTime(500);
-            this.MyThread_檢查Pannel35_區域亮燈.Add_Method(sub_Program_檢查Pannel35_區域亮燈);
-            this.MyThread_檢查Pannel35_區域亮燈.Trigger();
+            this.MyThread_檢查區域亮燈 = new MyThread();
+            this.MyThread_檢查區域亮燈.AutoStop(true);
+            this.MyThread_檢查區域亮燈.AutoRun(true);
+            this.MyThread_檢查區域亮燈.SetSleepTime(500);
+            this.MyThread_檢查區域亮燈.Add_Method(sub_Program_檢查_區域亮燈);
+            this.MyThread_檢查區域亮燈.Trigger();
 
             this.plC_UI_Init.Add_Method(sub_Program_工程模式);
         }
@@ -243,56 +243,57 @@ namespace 智能藥庫系統
 
 
         #endregion
-        #region PLC_檢查Pannel35_區域亮燈
-        PLC_Device PLC_Device_檢查Pannel35_區域亮燈 = new PLC_Device("");
-        PLC_Device PLC_Device_檢查Pannel35_區域亮燈_OK = new PLC_Device("");
-        int cnt_Program_檢查Pannel35_區域亮燈 = 65534;
-        void sub_Program_檢查Pannel35_區域亮燈()
+        #region PLC_檢查區域亮燈
+        PLC_Device PLC_Device_檢查區域亮燈 = new PLC_Device("");
+        PLC_Device PLC_Device_檢查區域亮燈_OK = new PLC_Device("");
+        int cnt_Program_檢查_區域亮燈 = 65534;
+        void sub_Program_檢查_區域亮燈()
         {
-            if (PLC_Device_主機模式.Bool) PLC_Device_檢查Pannel35_區域亮燈.Bool = true;
-            if (cnt_Program_檢查Pannel35_區域亮燈 == 65534)
+            if (PLC_Device_主機模式.Bool) PLC_Device_檢查區域亮燈.Bool = true;
+            if (cnt_Program_檢查_區域亮燈 == 65534)
             {
-                PLC_Device_檢查Pannel35_區域亮燈.SetComment("PLC_檢查Pannel35_區域亮燈");
-                PLC_Device_檢查Pannel35_區域亮燈_OK.SetComment("PLC_檢查Pannel35_區域亮燈_OK");
-                PLC_Device_檢查Pannel35_區域亮燈.Bool = false;
-                cnt_Program_檢查Pannel35_區域亮燈 = 65535;
+      
+                PLC_Device_檢查區域亮燈.Bool = false;
+                cnt_Program_檢查_區域亮燈 = 65535;
             }
-            if (cnt_Program_檢查Pannel35_區域亮燈 == 65535) cnt_Program_檢查Pannel35_區域亮燈 = 1;
-            if (cnt_Program_檢查Pannel35_區域亮燈 == 1) cnt_Program_檢查Pannel35_區域亮燈_檢查按下(ref cnt_Program_檢查Pannel35_區域亮燈);
-            if (cnt_Program_檢查Pannel35_區域亮燈 == 2) cnt_Program_檢查Pannel35_區域亮燈_初始化(ref cnt_Program_檢查Pannel35_區域亮燈);
-            if (cnt_Program_檢查Pannel35_區域亮燈 == 3) cnt_Program_檢查Pannel35_區域亮燈 = 65500;
-            if (cnt_Program_檢查Pannel35_區域亮燈 > 1) cnt_Program_檢查Pannel35_區域亮燈_檢查放開(ref cnt_Program_檢查Pannel35_區域亮燈);
+            if (cnt_Program_檢查_區域亮燈 == 65535) cnt_Program_檢查_區域亮燈 = 1;
+            if (cnt_Program_檢查_區域亮燈 == 1) cnt_Program_檢查_區域亮燈_檢查按下(ref cnt_Program_檢查_區域亮燈);
+            if (cnt_Program_檢查_區域亮燈 == 2) cnt_Program_檢查_區域亮燈_初始化(ref cnt_Program_檢查_區域亮燈);
+            if (cnt_Program_檢查_區域亮燈 == 3) cnt_Program_檢查_區域亮燈 = 65500;
+            if (cnt_Program_檢查_區域亮燈 > 1) cnt_Program_檢查_區域亮燈_檢查放開(ref cnt_Program_檢查_區域亮燈);
 
-            if (cnt_Program_檢查Pannel35_區域亮燈 == 65500)
+            if (cnt_Program_檢查_區域亮燈 == 65500)
             {
-                PLC_Device_檢查Pannel35_區域亮燈.Bool = false;
-                PLC_Device_檢查Pannel35_區域亮燈_OK.Bool = false;
-                cnt_Program_檢查Pannel35_區域亮燈 = 65535;
+                PLC_Device_檢查區域亮燈.Bool = false;
+                PLC_Device_檢查區域亮燈_OK.Bool = false;
+                cnt_Program_檢查_區域亮燈 = 65535;
             }
         }
-        void cnt_Program_檢查Pannel35_區域亮燈_檢查按下(ref int cnt)
+        void cnt_Program_檢查_區域亮燈_檢查按下(ref int cnt)
         {
-            if (PLC_Device_檢查Pannel35_區域亮燈.Bool) cnt++;
+            if (PLC_Device_檢查區域亮燈.Bool) cnt++;
         }
-        void cnt_Program_檢查Pannel35_區域亮燈_檢查放開(ref int cnt)
+        void cnt_Program_檢查_區域亮燈_檢查放開(ref int cnt)
         {
-            if (!PLC_Device_檢查Pannel35_區域亮燈.Bool) cnt = 65500;
+            if (!PLC_Device_檢查區域亮燈.Bool) cnt = 65500;
         }
-        void cnt_Program_檢查Pannel35_區域亮燈_初始化(ref int cnt)
+        void cnt_Program_檢查_區域亮燈_初始化(ref int cnt)
         {
-            List<StorageUI_WT32.UDP_READ> uDP_READs = this.storageUI_WT32.GerAllUDP_READ();
+            List<StorageUI_WT32.UDP_READ> uDP_READs_WT32 = this.storageUI_WT32.GerAllUDP_READ();
+            List<StorageUI_EPD_266.UDP_READ> uDP_READs_EPD266 = this.storageUI_EPD_266.GerAllUDP_READ();
             List<object[]> list_貨架區域儲位列表 = this.sqL_DataGridView_貨架區域儲位列表.SQL_GetAllRows(false);
             List<object[]> list_貨架區域儲位列表_buf = new List<object[]>();
             List<string> list_master_guid_on = new List<string>();
             List<string> list_master_guid_on_buf = new List<string>();
             List<string> list_master_guid_off = new List<string>();
             List<string> list_master_guid_off_buf = new List<string>();
-            List<Storage> storages = this.List_Pannel35_本地資料;
-            for (int i = 0; i < uDP_READs.Count; i++)
+
+            List<Storage> storages_WT32 = this.List_Pannel35_本地資料;
+            for (int i = 0; i < uDP_READs_WT32.Count; i++)
             {
-                if (uDP_READs[i].WS2812_State)
+                if (uDP_READs_WT32[i].WS2812_State)
                 {
-                    Storage storage = storages.SortByIP(uDP_READs[i].IP);
+                    Storage storage = storages_WT32.SortByIP(uDP_READs_WT32[i].IP);
                     if (storage == null) continue;
                     string master_guid = storage.Master_GUID;
                     list_master_guid_on_buf = (from value in list_master_guid_on
@@ -304,9 +305,28 @@ namespace 智能藥庫系統
                     }
                 }
             }
+            List<Storage> storages_EPD266 = this.List_EPD266_本地資料;
+            for (int i = 0; i < uDP_READs_WT32.Count; i++)
+            {
+                if (uDP_READs_EPD266[i].WS2812_State)
+                {
+                    Storage storage = storages_EPD266.SortByIP(uDP_READs_EPD266[i].IP);
+                    if (storage == null) continue;
+                    string master_guid = storage.Master_GUID;
+                    list_master_guid_on_buf = (from value in list_master_guid_on
+                                               where value == master_guid
+                                               select value).ToList();
+                    if (list_master_guid_on_buf.Count == 0)
+                    {
+                        list_master_guid_on.LockAdd(master_guid);
+                    }
+                }
+            }
+
+
             for (int i = 0; i < list_貨架區域儲位列表.Count; i++)
             {
-                string guid = list_貨架區域儲位列表[i][(int)enum_藥庫_儲位設定_區域儲位.GUID].ObjectToString();
+                string guid = list_貨架區域儲位列表[i][(int)enum_藥庫_儲位管理_區域儲位.GUID].ObjectToString();
                 list_master_guid_on_buf = (from value in list_master_guid_on
                                            where value == guid
                                            select value).ToList();
@@ -322,12 +342,12 @@ namespace 智能藥庫系統
                 List<Task> taskList_on = new List<Task>();
                 for (int i = 0; i < list_master_guid_on.Count; i++)
                 {
-                    list_貨架區域儲位列表_buf = list_貨架區域儲位列表.GetRows((int)enum_藥庫_儲位設定_區域儲位.GUID, list_master_guid_on[i]);
+                    list_貨架區域儲位列表_buf = list_貨架區域儲位列表.GetRows((int)enum_藥庫_儲位管理_區域儲位.GUID, list_master_guid_on[i]);
                     if (list_貨架區域儲位列表_buf.Count > 0)
                     {
-                        string IP = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位設定_區域儲位.IP].ObjectToString();
-                        int Port = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位設定_區域儲位.Port].ObjectToString().StringToInt32();
-                        int Num = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位設定_區域儲位.Num].ObjectToString().StringToInt32();
+                        string IP = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.IP].ObjectToString();
+                        int Port = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Port].ObjectToString().StringToInt32();
+                        int Num = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Num].ObjectToString().StringToInt32();
                         taskList_on.Add(Task.Run(() =>
                         {
                             if(!this.rfiD_UI.Get_IO_Output(IP, Port, Num))
@@ -351,12 +371,12 @@ namespace 智能藥庫系統
                 List<Task> taskList_off = new List<Task>();
                 for (int i = 0; i < list_master_guid_off.Count; i++)
                 {
-                    list_貨架區域儲位列表_buf = list_貨架區域儲位列表.GetRows((int)enum_藥庫_儲位設定_區域儲位.GUID, list_master_guid_off[i]);
+                    list_貨架區域儲位列表_buf = list_貨架區域儲位列表.GetRows((int)enum_藥庫_儲位管理_區域儲位.GUID, list_master_guid_off[i]);
                     if (list_貨架區域儲位列表_buf.Count > 0)
                     {
-                        string IP = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位設定_區域儲位.IP].ObjectToString();
-                        int Port = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位設定_區域儲位.Port].ObjectToString().StringToInt32();
-                        int Num = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位設定_區域儲位.Num].ObjectToString().StringToInt32();
+                        string IP = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.IP].ObjectToString();
+                        int Port = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Port].ObjectToString().StringToInt32();
+                        int Num = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Num].ObjectToString().StringToInt32();
                         if (IP.StringIsEmpty()) continue;
                         taskList_off.Add(Task.Run(() =>
                         {

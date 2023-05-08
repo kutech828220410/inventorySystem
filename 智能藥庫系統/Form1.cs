@@ -182,7 +182,7 @@ namespace 智能藥庫系統
 
             PLC_UI_Init.Set_PLC_ScreenPage(panel_Main, this.plC_ScreenPage_Main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫, this.plC_ScreenPage_藥庫);
-            PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_儲位設定, this.plC_ScreenPage_藥庫_儲位設定);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_儲位管理, this.plC_ScreenPage_藥庫_儲位管理);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_撥補, this.plC_ScreenPage_藥庫_撥補);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_撥補_藥局, this.plC_ScreenPage_藥庫_撥補_藥局);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_緊急訂單, this.plC_ScreenPage_藥庫_緊急訂單);
@@ -216,9 +216,10 @@ namespace 智能藥庫系統
             this.sub_Program_藥品資料_資料維護_Init();
             this.sub_Program_藥品資料_藥品群組_Init();
             this.sub_Program_藥庫_藥品資料_Init();
-            this.sub_Program_藥庫_儲位設定_Init();
-            this.sub_Program_藥庫_儲位設定_區域儲位_Init();
-            this.sub_Program_藥庫_儲位設定_Pannel35_Init();
+            this.sub_Program_藥庫_儲位管理_Init();
+            this.sub_Program_藥庫_儲位管理_區域儲位_Init();
+            this.sub_Program_藥庫_儲位管理_Pannel35_Init();
+            this.sub_Program_藥庫_儲位設定_EPD266_Init();
             this.sub_Program_藥庫_入庫_Init();
             this.sub_Program_藥庫_每日訂單_下訂單_Init();
             this.sub_Program_藥庫_每日訂單_訂單查詢_Init();

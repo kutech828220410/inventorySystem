@@ -43,7 +43,9 @@ namespace 智能藥庫系統
             安全庫存,
             藥品條碼1,
             藥品條碼2,
-            狀態,
+            警訊藥品,
+            管制級別,
+            類別,
         }
         public enum enum_藥庫_藥品資料_匯出
         {
@@ -86,6 +88,7 @@ namespace 智能藥庫系統
 
             this.sqL_DataGridView_藥庫_藥品資料.Init();
             if (!this.sqL_DataGridView_藥庫_藥品資料.SQL_IsTableCreat()) this.sqL_DataGridView_藥庫_藥品資料.SQL_CreateTable();
+            else this.sqL_DataGridView_藥庫_藥品資料.SQL_CheckAllColumnName(true);
             this.sqL_DataGridView_藥庫_藥品資料.DataGridRowsChangeEvent += SqL_DataGridView_藥庫_藥品資料_DataGridRowsChangeEvent;
             this.sqL_DataGridView_藥庫_藥品資料.RowEnterEvent += SqL_DataGridView_藥庫_藥品資料_RowEnterEvent;
             this.sqL_DataGridView_藥庫_藥品資料_效期及庫存.Init();

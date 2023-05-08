@@ -18,13 +18,13 @@ namespace 智能藥庫系統
     {
 
         private Storage WT32_Storage_Copy;
-        private enum enum_藥庫_儲位設定_Pannel35_效期及庫存
+        private enum enum_藥庫_儲位管理_Pannel35_效期及庫存
         {
             效期,
             批號,
             庫存,
         }
-        private enum enum_藥庫_儲位設定_Pannel35_儲位資料
+        private enum enum_藥庫_儲位管理_Pannel35_儲位資料
         {
             GUID,
             IP,
@@ -39,108 +39,106 @@ namespace 智能藥庫系統
             庫存,
             區域儲位,
         }
-        private void sub_Program_藥庫_儲位設定_Pannel35_Init()
+        private void sub_Program_藥庫_儲位管理_Pannel35_Init()
         {
             this.storageUI_WT32.Init(dBConfigClass.DB_Basic);
             this.pannel35_Pannel.Init(this.storageUI_WT32.List_UDP_Local);
             this.pannel35_Pannel.EditFinishedEvent += Pannel35_Pannel_EditFinishedEvent;
             this.Function_從SQL取得儲位到本地資料();
 
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Init();
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Init();
 
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.Init();
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.Init();
 
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.Set_ColumnVisible(false, new enum_藥庫_藥品資料().GetEnumNames());
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.Set_ColumnVisible(true, enum_藥庫_藥品資料.藥品碼, enum_藥庫_藥品資料.藥品名稱, enum_藥庫_藥品資料.中文名稱, enum_藥庫_藥品資料.包裝單位);
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Set_ColumnVisible(false, new enum_藥庫_藥品資料().GetEnumNames());
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Set_ColumnVisible(true, enum_藥庫_藥品資料.藥品碼, enum_藥庫_藥品資料.藥品名稱, enum_藥庫_藥品資料.中文名稱, enum_藥庫_藥品資料.包裝單位);
 
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.RowEnterEvent += SqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料_RowEnterEvent;
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.RowEnterEvent += SqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料_RowEnterEvent;
 
-            this.plC_RJ_ComboBox_藥庫_儲位設定_Pannel35_區域儲位_搜尋.Enter += PlC_RJ_ComboBox_藥庫_儲位設定_Pannel35_區域儲位_搜尋_Enter;
-            this.rJ_TextBox_藥庫_儲位設定_Pannel35_儲位名稱.KeyPress += RJ_TextBox_藥庫_儲位設定_Pannel35_儲位名稱_KeyPress;
-
-
-
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_藥品名稱_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_藥品名稱_搜尋_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_藥品碼_搜尋_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_填入資料.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_填入資料_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_新增效期.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_新增效期_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_修正庫存.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_修正庫存_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_修正批號.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_修正批號_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_輸入.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_輸入_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_複製格式.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_複製格式_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_貼上格式.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_貼上格式_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_區域儲位設定.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_區域儲位設定_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品碼_搜尋_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_藥品名稱_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品名稱_搜尋_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_區域儲位_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_區域儲位_搜尋_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_顯示全部.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_顯示全部_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_更新畫面.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_更新畫面_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_面板亮燈.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_面板亮燈_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_清除燈號.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_清除燈號_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_清除儲位.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_清除儲位_MouseDownEvent;
+            this.plC_RJ_ComboBox_藥庫_儲位管理_Pannel35_區域儲位_搜尋.Enter += PlC_RJ_ComboBox_藥庫_儲位管理_Pannel35_區域儲位_搜尋_Enter;
+            this.rJ_TextBox_藥庫_儲位管理_Pannel35_儲位名稱.KeyPress += RJ_TextBox_藥庫_儲位管理_Pannel35_儲位名稱_KeyPress;
 
 
-            this.plC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_測試初始化.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_測試初始化_MouseDownEvent;
 
-            this.plC_UI_Init.Add_Method(sub_Program_藥庫_儲位設定_Pannel35);
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_填入資料.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_填入資料_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_新增效期.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_新增效期_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_修正庫存.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_修正庫存_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_修正批號.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_修正批號_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_輸入.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_輸入_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_複製格式.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_複製格式_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_貼上格式.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_貼上格式_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_區域儲位管理.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_區域儲位管理_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品碼_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_藥品名稱_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品名稱_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_區域儲位_搜尋.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_區域儲位_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_顯示全部.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_顯示全部_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_更新畫面.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_更新畫面_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_面板亮燈.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_面板亮燈_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_清除燈號.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_清除燈號_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_清除儲位.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_清除儲位_MouseDownEvent;
+
+
+            this.plC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_測試初始化.MouseDownEvent += PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_測試初始化_MouseDownEvent;
+
+            this.plC_UI_Init.Add_Method(sub_Program_藥庫_儲位管理_Pannel35);
         }
 
-
-
-        private bool flag_藥庫_儲位設定_Pannel35 = false;
-        private void sub_Program_藥庫_儲位設定_Pannel35()
+        private bool flag_藥庫_儲位管理_Pannel35 = false;
+        private void sub_Program_藥庫_儲位管理_Pannel35()
         {
-            if (this.plC_ScreenPage_Main.PageText == "藥庫" && this.plC_ScreenPage_藥庫.PageText == "儲位設定" && this.plC_ScreenPage_藥庫_儲位設定.PageText == "Pannel35")
+            if (this.plC_ScreenPage_Main.PageText == "藥庫" && this.plC_ScreenPage_藥庫.PageText == "儲位管理" && this.plC_ScreenPage_藥庫_儲位管理.PageText == "Pannel35")
             {
-                if (!this.flag_藥庫_儲位設定_Pannel35)
+                if (!this.flag_藥庫_儲位管理_Pannel35)
                 {
-                    this.PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = true;
-                    this.flag_藥庫_儲位設定_Pannel35 = true;
+                    this.PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = true;
+                    this.flag_藥庫_儲位管理_Pannel35 = true;
                 }
             }
             else
             {
-                this.flag_藥庫_儲位設定_Pannel35 = false;
+                this.flag_藥庫_儲位管理_Pannel35 = false;
             }
 
-            this.sub_Program_藥庫_儲位設定_Pannel35_資料更新();
+            this.sub_Program_藥庫_儲位管理_Pannel35_資料更新();
         }
 
-        #region PLC_藥庫_儲位設定_Pannel35_資料更新
-        PLC_Device PLC_Device_藥庫_儲位設定_Pannel35_資料更新 = new PLC_Device("");
-        int cnt_Program_藥庫_儲位設定_Pannel35_資料更新 = 65534;
-        void sub_Program_藥庫_儲位設定_Pannel35_資料更新()
+        #region PLC_藥庫_儲位管理_Pannel35_資料更新
+        PLC_Device PLC_Device_藥庫_儲位管理_Pannel35_資料更新 = new PLC_Device("");
+        int cnt_Program_藥庫_儲位管理_Pannel35_資料更新 = 65534;
+        void sub_Program_藥庫_儲位管理_Pannel35_資料更新()
         {
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 == 65534)
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 == 65534)
             {
-                PLC_Device_藥庫_儲位設定_Pannel35_資料更新.SetComment("PLC_藥庫_儲位設定_Pannel35_資料更新");
-                PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = false;
-                cnt_Program_藥庫_儲位設定_Pannel35_資料更新 = 65535;
+                PLC_Device_藥庫_儲位管理_Pannel35_資料更新.SetComment("PLC_藥庫_儲位管理_Pannel35_資料更新");
+                PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = false;
+                cnt_Program_藥庫_儲位管理_Pannel35_資料更新 = 65535;
             }
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 == 65535) cnt_Program_藥庫_儲位設定_Pannel35_資料更新 = 1;
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 == 1) cnt_Program_藥庫_儲位設定_Pannel35_資料更新_檢查按下(ref cnt_Program_藥庫_儲位設定_Pannel35_資料更新);
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 == 2) cnt_Program_藥庫_儲位設定_Pannel35_資料更新_初始化(ref cnt_Program_藥庫_儲位設定_Pannel35_資料更新);
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 == 3) cnt_Program_藥庫_儲位設定_Pannel35_資料更新_更新藥檔(ref cnt_Program_藥庫_儲位設定_Pannel35_資料更新);
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 == 4) cnt_Program_藥庫_儲位設定_Pannel35_資料更新_更新面板資料(ref cnt_Program_藥庫_儲位設定_Pannel35_資料更新);
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 == 5) cnt_Program_藥庫_儲位設定_Pannel35_資料更新 = 65500;
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 > 1) cnt_Program_藥庫_儲位設定_Pannel35_資料更新_檢查放開(ref cnt_Program_藥庫_儲位設定_Pannel35_資料更新);
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 == 65535) cnt_Program_藥庫_儲位管理_Pannel35_資料更新 = 1;
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 == 1) cnt_Program_藥庫_儲位管理_Pannel35_資料更新_檢查按下(ref cnt_Program_藥庫_儲位管理_Pannel35_資料更新);
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 == 2) cnt_Program_藥庫_儲位管理_Pannel35_資料更新_初始化(ref cnt_Program_藥庫_儲位管理_Pannel35_資料更新);
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 == 3) cnt_Program_藥庫_儲位管理_Pannel35_資料更新_更新藥檔(ref cnt_Program_藥庫_儲位管理_Pannel35_資料更新);
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 == 4) cnt_Program_藥庫_儲位管理_Pannel35_資料更新_更新面板資料(ref cnt_Program_藥庫_儲位管理_Pannel35_資料更新);
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 == 5) cnt_Program_藥庫_儲位管理_Pannel35_資料更新 = 65500;
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 > 1) cnt_Program_藥庫_儲位管理_Pannel35_資料更新_檢查放開(ref cnt_Program_藥庫_儲位管理_Pannel35_資料更新);
 
-            if (cnt_Program_藥庫_儲位設定_Pannel35_資料更新 == 65500)
+            if (cnt_Program_藥庫_儲位管理_Pannel35_資料更新 == 65500)
             {
-                PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = false;
-                cnt_Program_藥庫_儲位設定_Pannel35_資料更新 = 65535;
+                PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = false;
+                cnt_Program_藥庫_儲位管理_Pannel35_資料更新 = 65535;
             }
         }
-        void cnt_Program_藥庫_儲位設定_Pannel35_資料更新_檢查按下(ref int cnt)
+        void cnt_Program_藥庫_儲位管理_Pannel35_資料更新_檢查按下(ref int cnt)
         {
-            if (PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool) cnt++;
+            if (PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool) cnt++;
         }
-        void cnt_Program_藥庫_儲位設定_Pannel35_資料更新_檢查放開(ref int cnt)
+        void cnt_Program_藥庫_儲位管理_Pannel35_資料更新_檢查放開(ref int cnt)
         {
-            if (!PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool) cnt = 65500;
+            if (!PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool) cnt = 65500;
         }
-        void cnt_Program_藥庫_儲位設定_Pannel35_資料更新_初始化(ref int cnt)
+        void cnt_Program_藥庫_儲位管理_Pannel35_資料更新_初始化(ref int cnt)
         {
             MyTimer_TickTime.TickStop();
             MyTimer_TickTime.StartTickTime(50000);
@@ -148,7 +146,7 @@ namespace 智能藥庫系統
             Console.Write($"儲位管理Pannel35:從SQL取得資料 ,耗時 :{MyTimer_TickTime.GetTickTime().ToString("0.000")}\n");
             cnt++;
         }
-        void cnt_Program_藥庫_儲位設定_Pannel35_資料更新_更新藥檔(ref int cnt)
+        void cnt_Program_藥庫_儲位管理_Pannel35_資料更新_更新藥檔(ref int cnt)
         {
             MyTimer_TickTime.TickStop();
             MyTimer_TickTime.StartTickTime(50000);
@@ -244,7 +242,7 @@ namespace 智能藥庫系統
             Console.Write($"儲位管理Pannel35:更新藥檔完成 ,耗時 :{MyTimer_TickTime.GetTickTime().ToString("0.000")}\n");
             cnt++;
         }
-        void cnt_Program_藥庫_儲位設定_Pannel35_資料更新_更新面板資料(ref int cnt)
+        void cnt_Program_藥庫_儲位管理_Pannel35_資料更新_更新面板資料(ref int cnt)
         {
             MyTimer_TickTime.TickStop();
             MyTimer_TickTime.StartTickTime(50000);
@@ -254,31 +252,31 @@ namespace 智能藥庫系統
 
             for (int i = 0; i < this.List_Pannel35_本地資料.Count; i++)
             {
-                object[] value = new object[new enum_藥庫_儲位設定_Pannel35_儲位資料().GetLength()];
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.GUID] = List_Pannel35_本地資料[i].GUID;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.儲位名稱] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品碼] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品名稱] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品學名] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品中文名稱] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.包裝單位] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品條碼1] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.庫存] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
+                object[] value = new object[new enum_藥庫_儲位管理_Pannel35_儲位資料().GetLength()];
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.GUID] = List_Pannel35_本地資料[i].GUID;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.儲位名稱] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品碼] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品名稱] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品學名] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品中文名稱] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.包裝單位] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品條碼1] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.庫存] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
 
                 string Master_GUID = List_Pannel35_本地資料[i].Master_GUID;
 
-                list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位設定_區域儲位.GUID, Master_GUID);
+                list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位管理_區域儲位.GUID, Master_GUID);
                 if(list_區域儲位_buf.Count > 0)
                 {
-                    value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.區域儲位] = list_區域儲位_buf[0][(int)enum_藥庫_儲位設定_區域儲位.名稱].ObjectToString();
+                    value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.區域儲位] = list_區域儲位_buf[0][(int)enum_藥庫_儲位管理_區域儲位.名稱].ObjectToString();
                 }
 
                 list_value.Add(value);
             }
-            list_value.Sort(new ICP_藥庫_儲位設定_Pannel35_抽屜列表());
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.RefreshGrid(list_value);
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.On_RowEnter();
+            list_value.Sort(new ICP_藥庫_儲位管理_Pannel35_抽屜列表());
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.RefreshGrid(list_value);
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.On_RowEnter();
             Console.Write($"儲位管理Pannel35:更新儲位資料完成 ,耗時 :{MyTimer_TickTime.GetTickTime().ToString("0.000")}\n");
             cnt++;
         }
@@ -289,64 +287,64 @@ namespace 智能藥庫系統
     
         #endregion
         #region Event
-        private void SqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料_RowEnterEvent(object[] RowValue)
+        private void SqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料_RowEnterEvent(object[] RowValue)
         {
-            string IP = RowValue[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString();
+            string IP = RowValue[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
             Storage storage = this.List_Pannel35_本地資料.SortByIP(IP);
             if (storage == null) return;
             this.pannel35_Pannel.Set_Stroage(storage);
-            this.rJ_TextBox_藥庫_儲位設定_Pannel35_儲位名稱.Texts = (string)storage.GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value);
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.ClearGrid();
+            this.rJ_TextBox_藥庫_儲位管理_Pannel35_儲位名稱.Texts = (string)storage.GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value);
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.ClearGrid();
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < storage.List_Validity_period.Count; i++)
             {
-                object[] value = new object[new enum_藥庫_儲位設定_Pannel35_效期及庫存().GetLength()];
-                value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.效期] = storage.List_Validity_period[i];
-                value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.批號] = storage.List_Lot_number[i];
-                value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.庫存] = storage.List_Inventory[i];
+                object[] value = new object[new enum_藥庫_儲位管理_Pannel35_效期及庫存().GetLength()];
+                value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.效期] = storage.List_Validity_period[i];
+                value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.批號] = storage.List_Lot_number[i];
+                value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.庫存] = storage.List_Inventory[i];
                 list_value.Add(value);
             }
 
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.RefreshGrid(list_value);
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.RefreshGrid(list_value);
 
         }
-        private void PlC_RJ_ComboBox_藥庫_儲位設定_Pannel35_區域儲位_搜尋_Enter(object sender, EventArgs e)
+        private void PlC_RJ_ComboBox_藥庫_儲位管理_Pannel35_區域儲位_搜尋_Enter(object sender, EventArgs e)
         {
-            this.plC_RJ_ComboBox_藥庫_儲位設定_Pannel35_區域儲位_搜尋.SetDataSource(this.Function_藥庫_儲位設定_區域儲位_取得選單());
+            this.plC_RJ_ComboBox_藥庫_儲位管理_Pannel35_區域儲位_搜尋.SetDataSource(this.Function_藥庫_儲位管理_區域儲位_取得選單());
         }
-        private void RJ_TextBox_藥庫_儲位設定_Pannel35_儲位名稱_KeyPress(object sender, KeyPressEventArgs e)
+        private void RJ_TextBox_藥庫_儲位管理_Pannel35_儲位名稱_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar == (char)Keys.Enter)
             {
-                PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_輸入_MouseDownEvent(null);
+                PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_輸入_MouseDownEvent(null);
             }
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            if(rJ_TextBox_藥庫_儲位設定_Pannel35_藥品搜尋_藥品碼.Texts.StringIsEmpty())
+            if(rJ_TextBox_藥庫_儲位管理_Pannel35_藥品搜尋_藥品碼.Texts.StringIsEmpty())
             {
                 return;
             }
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.SQL_GetAllRows(false);
-            list_value = list_value.GetRowsByLike((int)enum_藥庫_藥品資料.藥品碼, rJ_TextBox_藥庫_儲位設定_Pannel35_藥品搜尋_藥品碼.Texts);
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.SQL_GetAllRows(false);
+            list_value = list_value.GetRowsByLike((int)enum_藥庫_藥品資料.藥品碼, rJ_TextBox_藥庫_儲位管理_Pannel35_藥品搜尋_藥品碼.Texts);
 
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.RefreshGrid(list_value);
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.RefreshGrid(list_value);
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (rJ_TextBox_藥庫_儲位設定_Pannel35_藥品搜尋_藥品名稱.Texts.StringIsEmpty())
+            if (rJ_TextBox_藥庫_儲位管理_Pannel35_藥品搜尋_藥品名稱.Texts.StringIsEmpty())
             {
                 return;
             }
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.SQL_GetAllRows(false);
-            list_value = list_value.GetRowsByLike((int)enum_藥庫_藥品資料.藥品名稱, rJ_TextBox_藥庫_儲位設定_Pannel35_藥品搜尋_藥品名稱.Texts);
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.SQL_GetAllRows(false);
+            list_value = list_value.GetRowsByLike((int)enum_藥庫_藥品資料.藥品名稱, rJ_TextBox_藥庫_儲位管理_Pannel35_藥品搜尋_藥品名稱.Texts);
 
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.RefreshGrid(list_value);
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.RefreshGrid(list_value);
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品搜尋_填入資料_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品搜尋_填入資料_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.Get_All_Select_RowsValues();
-            List<object[]> list_儲位資料 = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Get_All_Select_RowsValues();
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Get_All_Select_RowsValues();
+            List<object[]> list_儲位資料 = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Get_All_Select_RowsValues();
             if(list_藥品資料.Count == 0)
             {
                 this.Invoke(new Action(delegate
@@ -363,14 +361,14 @@ namespace 智能藥庫系統
                 }));
                 return;
             }
-            string IP = list_儲位資料[0][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString();
+            string IP = list_儲位資料[0][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
             Storage storage = this.storageUI_WT32.SQL_GetStorage(IP);
             if (storage == null) return;
             storage.Code = list_藥品資料[0][(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
             this.storageUI_WT32.SQL_ReplaceStorage(storage);
-            this.PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = true;
+            this.PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = true;
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_新增效期_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_新增效期_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
@@ -444,27 +442,27 @@ namespace 智能藥庫系統
 
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
 
-                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.GetRows((int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP, storage.IP, false);
+                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.GetRows((int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP, storage.IP, false);
                 if (list_value.Count == 0) return;
-                list_value[0][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.庫存] = storage.取得庫存();
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Replace((int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP, storage.IP, list_value[0], true);
+                list_value[0][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.庫存] = storage.取得庫存();
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Replace((int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP, storage.IP, list_value[0], true);
 
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.ClearGrid();
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.ClearGrid();
                 list_value = new List<object[]>();
                 for (int i = 0; i < storage.List_Validity_period.Count; i++)
                 {
-                    object[] value = new object[new enum_藥庫_儲位設定_Pannel35_效期及庫存().GetLength()];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.效期] = storage.List_Validity_period[i];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.批號] = storage.List_Lot_number[i];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.庫存] = storage.List_Inventory[i];
+                    object[] value = new object[new enum_藥庫_儲位管理_Pannel35_效期及庫存().GetLength()];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.效期] = storage.List_Validity_period[i];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.批號] = storage.List_Lot_number[i];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.庫存] = storage.List_Inventory[i];
                     list_value.Add(value);
                 }
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.RefreshGrid(list_value);
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.RefreshGrid(list_value);
                 this.Function_設定雲端資料更新();
                 this.storageUI_WT32.Set_ToPage(storage, StorageUI_WT32.enum_Page.主頁面, true);
             }));
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_修正批號_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_修正批號_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
@@ -474,14 +472,14 @@ namespace 智能藥庫系統
                     MyMessageBox.ShowDialog("未選擇儲位!");
                     return;
                 }
-                object[] value = sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.GetRowValues();
+                object[] value = sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.GetRowValues();
                 if (value == null)
                 {
                     MyMessageBox.ShowDialog("未選擇效期!");
                     return;
                 }
-                string 效期 = value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.效期].ObjectToString();
-                string 舊批號 = value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.批號].ObjectToString();
+                string 效期 = value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.效期].ObjectToString();
+                string 舊批號 = value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.批號].ObjectToString();
                 string 新批號 = "";
 
                 Dialog_輸入批號 Dialog_輸入批號 = new Dialog_輸入批號();
@@ -524,27 +522,27 @@ namespace 智能藥庫系統
 
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
 
-                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.GetRows((int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP, storage.IP, false);
+                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.GetRows((int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP, storage.IP, false);
                 if (list_value.Count == 0) return;
-                list_value[0][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.庫存] = storage.取得庫存();
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Replace((int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP, storage.IP, list_value[0], true);
+                list_value[0][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.庫存] = storage.取得庫存();
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Replace((int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP, storage.IP, list_value[0], true);
 
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.ClearGrid();
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.ClearGrid();
                 list_value = new List<object[]>();
                 for (int i = 0; i < storage.List_Validity_period.Count; i++)
                 {
-                    value = new object[new enum_藥庫_儲位設定_Pannel35_效期及庫存().GetLength()];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.效期] = storage.List_Validity_period[i];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.批號] = storage.List_Lot_number[i];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.庫存] = storage.List_Inventory[i];
+                    value = new object[new enum_藥庫_儲位管理_Pannel35_效期及庫存().GetLength()];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.效期] = storage.List_Validity_period[i];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.批號] = storage.List_Lot_number[i];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.庫存] = storage.List_Inventory[i];
                     list_value.Add(value);
                 }
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.RefreshGrid(list_value);
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.RefreshGrid(list_value);
                 this.Function_設定雲端資料更新();
                 this.storageUI_WT32.Set_ToPage(storage, StorageUI_WT32.enum_Page.主頁面, true);
             }));
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_修正庫存_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_修正庫存_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
@@ -554,14 +552,14 @@ namespace 智能藥庫系統
                     MyMessageBox.ShowDialog("未選擇儲位!");
                     return;
                 }
-                object[] value = sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.GetRowValues();
+                object[] value = sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.GetRowValues();
                 if (value == null)
                 {
                     MyMessageBox.ShowDialog("未選擇效期!");
                     return;
                 }
-                string 效期 = value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.效期].ObjectToString();
-                string 批號 = value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.批號].ObjectToString();
+                string 效期 = value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.效期].ObjectToString();
+                string 批號 = value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.批號].ObjectToString();
                 string 數量 = "";
                 Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
                 if (dialog_NumPannel.ShowDialog() == DialogResult.Yes)
@@ -606,28 +604,28 @@ namespace 智能藥庫系統
 
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
 
-                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.GetRows((int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP, storage.IP, false);
+                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.GetRows((int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP, storage.IP, false);
                 if (list_value.Count == 0) return;
-                list_value[0][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.庫存] = storage.取得庫存();
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Replace((int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP, storage.IP, list_value[0], true);
+                list_value[0][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.庫存] = storage.取得庫存();
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Replace((int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP, storage.IP, list_value[0], true);
 
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.ClearGrid();
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.ClearGrid();
                 list_value = new List<object[]>();
                 for (int i = 0; i < storage.List_Validity_period.Count; i++)
                 {
-                    value = new object[new enum_藥庫_儲位設定_Pannel35_效期及庫存().GetLength()];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.效期] = storage.List_Validity_period[i];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.批號] = storage.List_Lot_number[i];
-                    value[(int)enum_藥庫_儲位設定_Pannel35_效期及庫存.庫存] = storage.List_Inventory[i];
+                    value = new object[new enum_藥庫_儲位管理_Pannel35_效期及庫存().GetLength()];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.效期] = storage.List_Validity_period[i];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.批號] = storage.List_Lot_number[i];
+                    value[(int)enum_藥庫_儲位管理_Pannel35_效期及庫存.庫存] = storage.List_Inventory[i];
                     list_value.Add(value);
                 }
 
-                this.sqL_DataGridView_藥庫_儲位設定_Pannel35_效期及庫存.RefreshGrid(list_value);
+                this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.RefreshGrid(list_value);
                 this.Function_設定雲端資料更新();
                 this.storageUI_WT32.Set_ToPage(storage, StorageUI_WT32.enum_Page.主頁面, true);
             }));
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_輸入_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_輸入_MouseDownEvent(MouseEventArgs mevent)
         {
             Storage storage = this.pannel35_Pannel.CurrentStorage;
             if (storage == null)
@@ -638,13 +636,13 @@ namespace 智能藥庫系統
                 }));
                 return;
             }
-            storage.SetValue(Device.ValueName.儲位名稱, Device.ValueType.Value, this.rJ_TextBox_藥庫_儲位設定_Pannel35_儲位名稱.Texts);
+            storage.SetValue(Device.ValueName.儲位名稱, Device.ValueType.Value, this.rJ_TextBox_藥庫_儲位管理_Pannel35_儲位名稱.Texts);
             this.storageUI_WT32.SQL_ReplaceStorage(storage);
             this.pannel35_Pannel.Set_Stroage(storage);
 
-            this.PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = true;
+            this.PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = true;
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_貼上格式_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_貼上格式_MouseDownEvent(MouseEventArgs mevent)
         {
             if (this.WT32_Storage_Copy == null)
             {
@@ -654,7 +652,7 @@ namespace 智能藥庫系統
                 }));
                 return;
             }
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Get_All_Select_RowsValues();
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Get_All_Select_RowsValues();
             if (list_value.Count == 0)
             {
                 this.Invoke(new Action(delegate
@@ -668,7 +666,7 @@ namespace 智能藥庫系統
             List<Storage> storages_replaceValue = new List<Storage>();
             for (int i = 0; i < list_value.Count; i++)
             {
-                string IP = list_value[i][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString();
+                string IP = list_value[i][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
                 storages_buf = (from value in storages
                                 where value.IP == IP
                                 select value).ToList();
@@ -685,13 +683,13 @@ namespace 智能藥庫系統
 
             this.storageUI_WT32.SQL_ReplaceStorage(storages_replaceValue);
         
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.On_RowEnter();
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.On_RowEnter();
             this.Invoke(new Action(delegate
             {
                 MyMessageBox.ShowDialog("貼上完成!");
             }));
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_複製格式_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_複製格式_MouseDownEvent(MouseEventArgs mevent)
         {
             Storage storage = this.pannel35_Pannel.CurrentStorage;
             if (storage == null)
@@ -708,10 +706,10 @@ namespace 智能藥庫系統
                 MyMessageBox.ShowDialog("複製完成!");
             }));
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_區域儲位設定_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_區域儲位管理_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_Replace_Value = new List<object[]>();
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Get_All_Select_RowsValues();
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Get_All_Select_RowsValues();
             List<object[]> list_區域儲位 = sqL_DataGridView_貨架區域儲位列表.SQL_GetAllRows(false);
             List<object[]> list_區域儲位_buf = new List<object[]>();
             if (list_value.Count ==0)
@@ -729,7 +727,7 @@ namespace 智能藥庫系統
             for (int i = 0; i < list_value.Count; i++)
             {
                 storages_buf = (from temp in storages
-                                where temp.IP == list_value[i][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString()
+                                where temp.IP == list_value[i][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString()
                                 select temp).ToList();
                 if(storages_buf.Count > 0)
                 {
@@ -741,8 +739,8 @@ namespace 智能藥庫系統
             string value = "";
             this.Invoke(new Action(delegate
             {
-                Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(Function_藥庫_儲位設定_區域儲位_取得選單());
-                dialog_ContextMenuStrip.TitleText = "區域儲位設定";
+                Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(Function_藥庫_儲位管理_區域儲位_取得選單());
+                dialog_ContextMenuStrip.TitleText = "區域儲位管理";
                 dialog_ContextMenuStrip.ControlsTextAlign = ContentAlignment.MiddleLeft;
                 dialog_ContextMenuStrip.ControlsHeight = 40;
                 dialogResult = dialog_ContextMenuStrip.ShowDialog();
@@ -757,10 +755,10 @@ namespace 智能藥庫系統
                     int 序號 = strArray[0].StringToInt32();
                     if (序號 <= 0) return;
                     string Master_GUID = "";
-                    list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位設定_區域儲位.序號, 序號.ToString());
+                    list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位管理_區域儲位.序號, 序號.ToString());
                     if (list_區域儲位_buf.Count > 0)
                     {
-                        Master_GUID = list_區域儲位_buf[0][(int)enum_藥庫_儲位設定_區域儲位.GUID].ObjectToString();
+                        Master_GUID = list_區域儲位_buf[0][(int)enum_藥庫_儲位管理_區域儲位.GUID].ObjectToString();
                         for (int i = 0; i < storages_replace.Count; i++)
                         {
                             storages_replace[i].Master_GUID = Master_GUID;
@@ -769,12 +767,12 @@ namespace 智能藥庫系統
                     }
                 }
                 this.Function_設定雲端資料更新();
-                PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = true;
+                PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = true;
             }
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_區域儲位_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_區域儲位_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (plC_RJ_ComboBox_藥庫_儲位設定_Pannel35_區域儲位_搜尋.Texts.StringIsEmpty())
+            if (plC_RJ_ComboBox_藥庫_儲位管理_Pannel35_區域儲位_搜尋.Texts.StringIsEmpty())
             {
                 this.Invoke(new Action(delegate
                 {
@@ -788,49 +786,49 @@ namespace 智能藥庫系統
             List<Storage> storages = this.List_Pannel35_本地資料;
             List<Storage> storages_buf = new List<Storage>();
 
-            string[] strArray = myConvert.分解分隔號字串(plC_RJ_ComboBox_藥庫_儲位設定_Pannel35_區域儲位_搜尋.Texts, ".");
+            string[] strArray = myConvert.分解分隔號字串(plC_RJ_ComboBox_藥庫_儲位管理_Pannel35_區域儲位_搜尋.Texts, ".");
             if (strArray.Length != 2) return;
             int 序號 = strArray[0].StringToInt32();
             string Master_GUID = "";
             if (序號 <= 0) return;
-            list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位設定_區域儲位.序號, 序號.ToString());
+            list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位管理_區域儲位.序號, 序號.ToString());
             if (list_區域儲位_buf.Count == 0) return;
-            Master_GUID = list_區域儲位_buf[0][(int)enum_藥庫_儲位設定_區域儲位.GUID].ObjectToString();
+            Master_GUID = list_區域儲位_buf[0][(int)enum_藥庫_儲位管理_區域儲位.GUID].ObjectToString();
 
             storages_buf = (from value in storages
                             where value.Master_GUID == Master_GUID
                             select value).ToList();
             for (int i = 0; i < storages_buf.Count; i++)
             {
-                object[] value = new object[new enum_藥庫_儲位設定_Pannel35_儲位資料().GetLength()];
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.GUID] = storages_buf[i].GUID;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP] = storages_buf[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.儲位名稱] = storages_buf[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品碼] = storages_buf[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品名稱] = storages_buf[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品學名] = storages_buf[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品中文名稱] = storages_buf[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.包裝單位] = storages_buf[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品條碼1] = storages_buf[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.庫存] = storages_buf[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
+                object[] value = new object[new enum_藥庫_儲位管理_Pannel35_儲位資料().GetLength()];
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.GUID] = storages_buf[i].GUID;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP] = storages_buf[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.儲位名稱] = storages_buf[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品碼] = storages_buf[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品名稱] = storages_buf[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品學名] = storages_buf[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品中文名稱] = storages_buf[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.包裝單位] = storages_buf[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品條碼1] = storages_buf[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.庫存] = storages_buf[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
 
                 Master_GUID = storages_buf[i].Master_GUID;
 
-                list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位設定_區域儲位.GUID, Master_GUID);
+                list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位管理_區域儲位.GUID, Master_GUID);
                 if (list_區域儲位_buf.Count > 0)
                 {
-                    value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.區域儲位] = list_區域儲位_buf[0][(int)enum_藥庫_儲位設定_區域儲位.名稱].ObjectToString();
+                    value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.區域儲位] = list_區域儲位_buf[0][(int)enum_藥庫_儲位管理_區域儲位.名稱].ObjectToString();
                 }
 
                 list_value.Add(value);
             }
-            list_value.Sort(new ICP_藥庫_儲位設定_Pannel35_抽屜列表());
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.RefreshGrid(list_value);
+            list_value.Sort(new ICP_藥庫_儲位管理_Pannel35_抽屜列表());
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.RefreshGrid(list_value);
 
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (rJ_TextBox_藥庫_儲位設定_Pannel35_藥品名稱_搜尋.Texts.StringIsEmpty())
+            if (rJ_TextBox_藥庫_儲位管理_Pannel35_藥品名稱_搜尋.Texts.StringIsEmpty())
             {
                 this.Invoke(new Action(delegate
                 {
@@ -844,38 +842,38 @@ namespace 智能藥庫系統
             List<Storage> storages = this.List_Pannel35_本地資料;
             List<Storage> storages_buf = new List<Storage>();
             storages_buf = (from value in storages
-                            where value.Code.ToUpper().Contains(rJ_TextBox_藥庫_儲位設定_Pannel35_藥品名稱_搜尋.Texts.ToUpper())
+                            where value.Code.ToUpper().Contains(rJ_TextBox_藥庫_儲位管理_Pannel35_藥品名稱_搜尋.Texts.ToUpper())
                             select value).ToList();
             for (int i = 0; i < storages_buf.Count; i++)
             {
-                object[] value = new object[new enum_藥庫_儲位設定_Pannel35_儲位資料().GetLength()];
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.GUID] = storages_buf[i].GUID;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP] = storages_buf[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.儲位名稱] = storages_buf[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品碼] = storages_buf[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品名稱] = storages_buf[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品學名] = storages_buf[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品中文名稱] = storages_buf[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.包裝單位] = storages_buf[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品條碼1] = storages_buf[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.庫存] = storages_buf[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
+                object[] value = new object[new enum_藥庫_儲位管理_Pannel35_儲位資料().GetLength()];
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.GUID] = storages_buf[i].GUID;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP] = storages_buf[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.儲位名稱] = storages_buf[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品碼] = storages_buf[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品名稱] = storages_buf[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品學名] = storages_buf[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品中文名稱] = storages_buf[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.包裝單位] = storages_buf[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品條碼1] = storages_buf[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.庫存] = storages_buf[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
 
                 string Master_GUID = storages_buf[i].Master_GUID;
 
-                list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位設定_區域儲位.GUID, Master_GUID);
+                list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位管理_區域儲位.GUID, Master_GUID);
                 if (list_區域儲位_buf.Count > 0)
                 {
-                    value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.區域儲位] = list_區域儲位_buf[0][(int)enum_藥庫_儲位設定_區域儲位.名稱].ObjectToString();
+                    value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.區域儲位] = list_區域儲位_buf[0][(int)enum_藥庫_儲位管理_區域儲位.名稱].ObjectToString();
                 }
 
                 list_value.Add(value);
             }
-            list_value.Sort(new ICP_藥庫_儲位設定_Pannel35_抽屜列表());
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.RefreshGrid(list_value);
+            list_value.Sort(new ICP_藥庫_儲位管理_Pannel35_抽屜列表());
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.RefreshGrid(list_value);
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            if(rJ_TextBox_藥庫_儲位設定_Pannel35_藥品碼_搜尋.Texts.StringIsEmpty())
+            if(rJ_TextBox_藥庫_儲位管理_Pannel35_藥品碼_搜尋.Texts.StringIsEmpty())
             {
                 this.Invoke(new Action(delegate
                 {
@@ -889,43 +887,43 @@ namespace 智能藥庫系統
             List<Storage> storages = this.List_Pannel35_本地資料;
             List<Storage> storages_buf = new List<Storage>();
             storages_buf = (from value in storages
-                            where value.Code.ToUpper().Contains(rJ_TextBox_藥庫_儲位設定_Pannel35_藥品碼_搜尋.Texts.ToUpper())
+                            where value.Code.ToUpper().Contains(rJ_TextBox_藥庫_儲位管理_Pannel35_藥品碼_搜尋.Texts.ToUpper())
                             select value).ToList();
             for (int i = 0; i < storages_buf.Count; i++)
             {
-                object[] value = new object[new enum_藥庫_儲位設定_Pannel35_儲位資料().GetLength()];
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.GUID] = storages_buf[i].GUID;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP] = storages_buf[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.儲位名稱] = storages_buf[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品碼] = storages_buf[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品名稱] = storages_buf[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品學名] = storages_buf[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品中文名稱] = storages_buf[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.包裝單位] = storages_buf[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.藥品條碼1] = storages_buf[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString(); ;
-                value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.庫存] = storages_buf[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
+                object[] value = new object[new enum_藥庫_儲位管理_Pannel35_儲位資料().GetLength()];
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.GUID] = storages_buf[i].GUID;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP] = storages_buf[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.儲位名稱] = storages_buf[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品碼] = storages_buf[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品名稱] = storages_buf[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品學名] = storages_buf[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品中文名稱] = storages_buf[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.包裝單位] = storages_buf[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.藥品條碼1] = storages_buf[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString(); ;
+                value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.庫存] = storages_buf[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
 
                 string Master_GUID = storages_buf[i].Master_GUID;
 
-                list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位設定_區域儲位.GUID, Master_GUID);
+                list_區域儲位_buf = list_區域儲位.GetRows((int)enum_藥庫_儲位管理_區域儲位.GUID, Master_GUID);
                 if (list_區域儲位_buf.Count > 0)
                 {
-                    value[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.區域儲位] = list_區域儲位_buf[0][(int)enum_藥庫_儲位設定_區域儲位.名稱].ObjectToString();
+                    value[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.區域儲位] = list_區域儲位_buf[0][(int)enum_藥庫_儲位管理_區域儲位.名稱].ObjectToString();
                 }
 
                 list_value.Add(value);
             }
-            list_value.Sort(new ICP_藥庫_儲位設定_Pannel35_抽屜列表());
-            this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.RefreshGrid(list_value);
+            list_value.Sort(new ICP_藥庫_儲位管理_Pannel35_抽屜列表());
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.RefreshGrid(list_value);
 
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_顯示全部_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_顯示全部_MouseDownEvent(MouseEventArgs mevent)
         {
-            PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = true;
+            PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = true;
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_更新畫面_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_更新畫面_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Get_All_Select_RowsValues();
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Get_All_Select_RowsValues();
             if(list_value.Count == 0)
             {
                 this.Invoke(new Action(delegate
@@ -939,7 +937,7 @@ namespace 智能藥庫系統
             for (int i = 0; i < list_value.Count; i++)
             {
                 List<Storage> storages_buf = (from value in storages
-                                              where value.IP == list_value[i][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString()
+                                              where value.IP == list_value[i][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString()
                                               select value).ToList();
                 if (storages_buf.Count > 0)
                 {
@@ -956,9 +954,9 @@ namespace 智能藥庫系統
 
 
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_面板亮燈_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_面板亮燈_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Get_All_Select_RowsValues();
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Get_All_Select_RowsValues();
             if (list_value.Count == 0)
             {
                 this.Invoke(new Action(delegate
@@ -974,17 +972,17 @@ namespace 智能藥庫系統
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     List<Storage> storages_buf = (from value in storages
-                                                  where value.IP == list_value[i][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString()
+                                                  where value.IP == list_value[i][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString()
                                                   select value).ToList();
                     if (storages_buf.Count > 0)
                     {
                         taskList.Add(Task.Run(() =>
                         {
                             Color color = Color.Black;
-                            if (radioButton_藥庫_儲位設定_Pannel35_儲位名稱_面板亮燈_紅.Checked) color = Color.Red;
-                            if (radioButton_藥庫_儲位設定_Pannel35_儲位名稱_面板亮燈_綠.Checked) color = Color.Lime;
-                            if (radioButton_藥庫_儲位設定_Pannel35_儲位名稱_面板亮燈_藍.Checked) color = Color.Blue;
-                            if (radioButton_藥庫_儲位設定_Pannel35_儲位名稱_面板亮燈_白.Checked) color = Color.White;
+                            if (radioButton_藥庫_儲位管理_Pannel35_儲位名稱_面板亮燈_紅.Checked) color = Color.Red;
+                            if (radioButton_藥庫_儲位管理_Pannel35_儲位名稱_面板亮燈_綠.Checked) color = Color.Lime;
+                            if (radioButton_藥庫_儲位管理_Pannel35_儲位名稱_面板亮燈_藍.Checked) color = Color.Blue;
+                            if (radioButton_藥庫_儲位管理_Pannel35_儲位名稱_面板亮燈_白.Checked) color = Color.White;
 
                             this.storageUI_WT32.Set_WS2812_Blink(storages_buf[0], 500, color);
                         }));
@@ -999,9 +997,9 @@ namespace 智能藥庫系統
 
             }
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_清除燈號_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_清除燈號_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Get_All_Select_RowsValues();
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Get_All_Select_RowsValues();
             if (list_value.Count == 0)
             {
                 this.Invoke(new Action(delegate
@@ -1017,7 +1015,7 @@ namespace 智能藥庫系統
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     List<Storage> storages_buf = (from value in storages
-                                                  where value.IP == list_value[i][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString()
+                                                  where value.IP == list_value[i][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString()
                                                   select value).ToList();
                     if (storages_buf.Count > 0)
                     {
@@ -1038,9 +1036,9 @@ namespace 智能藥庫系統
             }
           
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_清除儲位_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_清除儲位_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.Get_All_Select_RowsValues();
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Get_All_Select_RowsValues();
             if(list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("未選取儲位!");
@@ -1051,30 +1049,30 @@ namespace 智能藥庫系統
                 string IP = "";
                 for (int i = 0; i < list_value.Count; i++)
                 {
-                    IP = list_value[i][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString();
+                    IP = list_value[i][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
                     Storage storage = this.List_Pannel35_本地資料.SortByIP(IP);
                     if (storage == null) return;
                     storage.ClearStorage();
                     this.storageUI_WT32.SQL_ReplaceStorage(storage);
                 }
             }
-            this.PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = true;
+            this.PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = true;
             while (true)
             {
-                if (this.PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool == false) break;
+                if (this.PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool == false) break;
                 System.Threading.Thread.Sleep(10);
             }
         }
 
-        private void PlC_RJ_Button_藥庫_儲位設定_Pannel35_儲位名稱_測試初始化_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥庫_儲位管理_Pannel35_儲位名稱_測試初始化_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_藥品資料.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.SQL_GetAllRows(false);
             list_藥品資料 = (from value in list_藥品資料
                          where value[(int)enum_藥庫_藥品資料.基準量].ObjectToString().StringToInt32() > 0
                          where value[(int)enum_藥庫_藥品資料.安全庫存].ObjectToString().StringToInt32() > 0
                          select value).ToList();
-            List<object[]> list_儲位資料 = this.sqL_DataGridView_藥庫_儲位設定_Pannel35_儲位資料.GetAllRows();
-            list_儲位資料.Sort(new ICP_藥庫_儲位設定_Pannel35_抽屜列表());
+            List<object[]> list_儲位資料 = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.GetAllRows();
+            list_儲位資料.Sort(new ICP_藥庫_儲位管理_Pannel35_抽屜列表());
             List<Storage> storages_Add = new List<Storage>();
 
             Dialog_Prcessbar dialog_Prcessbar = new Dialog_Prcessbar(list_儲位資料.Count);
@@ -1083,7 +1081,7 @@ namespace 智能藥庫系統
             for (int i = 0; i < list_儲位資料.Count; i++)
             {
                 dialog_Prcessbar.Value = i;
-                IP = list_儲位資料[i][(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString();
+                IP = list_儲位資料[i][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
                 Storage storage = this.List_Pannel35_本地資料.SortByIP(IP);
                 if (storage == null) continue;
                 if (i >= list_藥品資料.Count) continue;
@@ -1095,11 +1093,11 @@ namespace 智能藥庫系統
             }
             dialog_Prcessbar.State = "上傳儲位資料...";
             this.storageUI_WT32.SQL_ReplaceStorage(storages_Add);
-            this.PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool = true;
+            this.PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = true;
             dialog_Prcessbar.State = "更新儲位資料...";
             while (true)
             {
-                if (this.PLC_Device_藥庫_儲位設定_Pannel35_資料更新.Bool == false) break;
+                if (this.PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool == false) break;
                 System.Threading.Thread.Sleep(10);
             }
           
@@ -1113,12 +1111,12 @@ namespace 智能藥庫系統
         }
         #endregion
 
-        private class ICP_藥庫_儲位設定_Pannel35_抽屜列表 : IComparer<object[]>
+        private class ICP_藥庫_儲位管理_Pannel35_抽屜列表 : IComparer<object[]>
         {
             public int Compare(object[] x, object[] y)
             {
-                string IP_0 = x[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString();
-                string IP_1 = y[(int)enum_藥庫_儲位設定_Pannel35_儲位資料.IP].ObjectToString();
+                string IP_0 = x[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
+                string IP_1 = y[(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
                 string[] IP_0_Array = IP_0.Split('.');
                 string[] IP_1_Array = IP_1.Split('.');
                 IP_0 = "";

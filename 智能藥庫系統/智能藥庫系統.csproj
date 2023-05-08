@@ -204,6 +204,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program_藥庫_儲位設定_EPD266.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialog\Dialog_列印及匯出.cs">
       <SubType>Form</SubType>
     </Compile>
