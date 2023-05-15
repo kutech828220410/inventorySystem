@@ -1237,6 +1237,7 @@
             this.tabPage41 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_驗收入庫資料 = new SQLUI.SQL_DataGridView();
             this.sqL_DataGridView_驗收入庫效期批號 = new SQLUI.SQL_DataGridView();
+            this.plC_RJ_ScreenButton39 = new MyUI.PLC_RJ_ScreenButton();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
@@ -24791,6 +24792,7 @@
             // 
             // panel_藥庫_驗收入庫
             // 
+            this.panel_藥庫_驗收入庫.Controls.Add(this.plC_RJ_ScreenButton39);
             this.panel_藥庫_驗收入庫.Controls.Add(this.plC_RJ_ScreenButton43);
             this.panel_藥庫_驗收入庫.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_藥庫_驗收入庫.Location = new System.Drawing.Point(0, 0);
@@ -31673,6 +31675,8 @@
             this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns6"))));
             this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns7"))));
             this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns8"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns9"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns10"))));
             this.sqL_DataGridView_驗收入庫效期批號.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_驗收入庫效期批號.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_驗收入庫效期批號.ImageBox = false;
@@ -31704,6 +31708,46 @@
             this.sqL_DataGridView_驗收入庫效期批號.顯示首行 = true;
             this.sqL_DataGridView_驗收入庫效期批號.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_驗收入庫效期批號.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫效期批號.MouseDown += new System.Windows.Forms.MouseEventHandler(this.sqL_DataGridView_驗收入庫效期批號_MouseDown);
+            // 
+            // plC_RJ_ScreenButton39
+            // 
+            this.plC_RJ_ScreenButton39.but_press = false;
+            this.plC_RJ_ScreenButton39.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButton39.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.plC_RJ_ScreenButton39.IconSize = 40;
+            this.plC_RJ_ScreenButton39.Location = new System.Drawing.Point(168, 2);
+            this.plC_RJ_ScreenButton39.Margin = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_ScreenButton39.Name = "plC_RJ_ScreenButton39";
+            this.plC_RJ_ScreenButton39.OffBackColor = System.Drawing.Color.DodgerBlue;
+            this.plC_RJ_ScreenButton39.OffFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton39.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton39.OffIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton39.OffText = "驗收入庫效期批號";
+            this.plC_RJ_ScreenButton39.OnBackColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton39.OnFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_ScreenButton39.OnForeColor = System.Drawing.Color.DodgerBlue;
+            this.plC_RJ_ScreenButton39.OnIconColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_ScreenButton39.OnText = "驗收入庫效期批號";
+            this.plC_RJ_ScreenButton39.ShowIcon = false;
+            this.plC_RJ_ScreenButton39.Size = new System.Drawing.Size(233, 48);
+            this.plC_RJ_ScreenButton39.TabIndex = 76;
+            this.plC_RJ_ScreenButton39.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButton39.寫入位置註解 = "";
+            this.plC_RJ_ScreenButton39.寫入元件位置 = "";
+            this.plC_RJ_ScreenButton39.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
+            this.plC_RJ_ScreenButton39.控制位址 = "D0";
+            this.plC_RJ_ScreenButton39.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButton39.致能讀取位置 = "";
+            this.plC_RJ_ScreenButton39.讀取位元反向 = false;
+            this.plC_RJ_ScreenButton39.讀取位置註解 = "";
+            this.plC_RJ_ScreenButton39.讀取元件位置 = "";
+            this.plC_RJ_ScreenButton39.音效 = true;
+            this.plC_RJ_ScreenButton39.頁面名稱 = "驗收入庫效期批號";
+            this.plC_RJ_ScreenButton39.頁面編號 = 0;
+            this.plC_RJ_ScreenButton39.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButton39.顯示狀態 = false;
+            this.plC_RJ_ScreenButton39.顯示讀取位置 = "S4077";
             // 
             // Form1
             // 
@@ -33339,6 +33383,7 @@
         private System.Windows.Forms.TabPage tabPage41;
         private SQLUI.SQL_DataGridView sqL_DataGridView_驗收入庫資料;
         private SQLUI.SQL_DataGridView sqL_DataGridView_驗收入庫效期批號;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton39;
     }
 }
 

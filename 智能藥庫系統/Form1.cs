@@ -430,5 +430,10 @@ namespace 智能藥庫系統
       
 
         }
+
+        private void sqL_DataGridView_驗收入庫效期批號_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.sqL_DataGridView_驗收入庫效期批號.SQL_GetAllRows(true);
+        }
     }
 }
