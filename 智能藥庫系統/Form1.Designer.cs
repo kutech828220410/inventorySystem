@@ -979,7 +979,6 @@
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_選取資料過帳 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_全部顯示 = new MyUI.PLC_RJ_Button();
             this.rJ_GroupBox13 = new MyUI.RJ_GroupBox();
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細 = new SQLUI.SQL_DataGridView();
             this.panel_藥庫_驗收入庫 = new System.Windows.Forms.Panel();
             this.plC_RJ_ScreenButton43 = new MyUI.PLC_RJ_ScreenButton();
             this.panel_藥庫 = new System.Windows.Forms.Panel();
@@ -1233,6 +1232,11 @@
             this.ContentsPanel = new MyUI.RJ_Pannel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.tabPage31 = new System.Windows.Forms.TabPage();
+            this.rJ_GroupBox2 = new MyUI.RJ_GroupBox();
+            this.tabPage41 = new System.Windows.Forms.TabPage();
+            this.sqL_DataGridView_驗收入庫資料 = new SQLUI.SQL_DataGridView();
+            this.sqL_DataGridView_驗收入庫效期批號 = new SQLUI.SQL_DataGridView();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
@@ -1599,6 +1603,9 @@
             this.tabPage35.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel_系統.SuspendLayout();
+            this.tabPage31.SuspendLayout();
+            this.rJ_GroupBox2.ContentsPanel.SuspendLayout();
+            this.rJ_GroupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer_init
@@ -3785,7 +3792,7 @@
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -13466,7 +13473,7 @@
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -16026,7 +16033,7 @@
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeadersHeight = 15;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.Font = new System.Drawing.Font("標楷體", 9F);
@@ -20813,7 +20820,7 @@
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeadersHeight = 18;
+            this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeadersHeight = 4;
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.DataBaseName = "OD_VM";
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.Dock = System.Windows.Forms.DockStyle.Top;
@@ -21131,7 +21138,7 @@
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeadersHeight = 18;
+            this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeadersHeight = 4;
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.DataBaseName = "OD_VM";
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.Dock = System.Windows.Forms.DockStyle.Top;
@@ -21258,7 +21265,7 @@
             this.sqL_DataGridView_訂單管理_發票內容.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_訂單管理_發票內容.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_訂單管理_發票內容.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_訂單管理_發票內容.columnHeadersHeight = 18;
+            this.sqL_DataGridView_訂單管理_發票內容.columnHeadersHeight = 15;
             this.sqL_DataGridView_訂單管理_發票內容.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_訂單管理_發票內容.DataBaseName = "OD_VM";
             this.sqL_DataGridView_訂單管理_發票內容.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -22111,7 +22118,7 @@
             this.sqL_DataGridView_訂單管理_訂單內容.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_訂單管理_訂單內容.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_訂單管理_訂單內容.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_訂單管理_訂單內容.columnHeadersHeight = 18;
+            this.sqL_DataGridView_訂單管理_訂單內容.columnHeadersHeight = 15;
             this.sqL_DataGridView_訂單管理_訂單內容.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_訂單管理_訂單內容.DataBaseName = "OD_VM";
             this.sqL_DataGridView_訂單管理_訂單內容.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -22197,7 +22204,7 @@
             this.sqL_DataGridView_訂單管理_訂單列表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_訂單管理_訂單列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_訂單管理_訂單列表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_訂單管理_訂單列表.columnHeadersHeight = 18;
+            this.sqL_DataGridView_訂單管理_訂單列表.columnHeadersHeight = 15;
             this.sqL_DataGridView_訂單管理_訂單列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_訂單管理_訂單列表.DataBaseName = "OD_VM";
             this.sqL_DataGridView_訂單管理_訂單列表.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -24070,6 +24077,8 @@
             this.plC_ScreenPage_藥庫_驗收入庫.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.plC_ScreenPage_藥庫_驗收入庫.BackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_藥庫_驗收入庫.Controls.Add(this.tabPage30);
+            this.plC_ScreenPage_藥庫_驗收入庫.Controls.Add(this.tabPage31);
+            this.plC_ScreenPage_藥庫_驗收入庫.Controls.Add(this.tabPage41);
             this.plC_ScreenPage_藥庫_驗收入庫.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_ScreenPage_藥庫_驗收入庫.ForekColor = System.Drawing.Color.Black;
             this.plC_ScreenPage_藥庫_驗收入庫.ItemSize = new System.Drawing.Size(54, 21);
@@ -24752,7 +24761,7 @@
             this.rJ_GroupBox13.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox13.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox13.ContentsPanel.BorderSize = 2;
-            this.rJ_GroupBox13.ContentsPanel.Controls.Add(this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細);
+            this.rJ_GroupBox13.ContentsPanel.Controls.Add(this.sqL_DataGridView_驗收入庫資料);
             this.rJ_GroupBox13.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox13.ContentsPanel.ForeColor = System.Drawing.Color.White;
             this.rJ_GroupBox13.ContentsPanel.IsSelected = false;
@@ -24778,71 +24787,7 @@
             this.rJ_GroupBox13.TitleForeColor = System.Drawing.Color.White;
             this.rJ_GroupBox13.TitleHeight = 37;
             this.rJ_GroupBox13.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_GroupBox13.TitleTexts = "驗收入庫明細";
-            // 
-            // sqL_DataGridView_藥庫_過帳明細_驗收入庫明細
-            // 
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.AutoSelectToDeep = false;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.BorderRadius = 0;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.BorderSize = 2;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.columnHeadersHeight = 44;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns1"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns2"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns3"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns4"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns5"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns6"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns7"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns8"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns9"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns10"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns11"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns12"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns13"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns14"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Columns15"))));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Font = new System.Drawing.Font("新細明體", 12F);
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.ImageBox = false;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Location = new System.Drawing.Point(5, 5);
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Name = "sqL_DataGridView_藥庫_過帳明細_驗收入庫明細";
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Password = "user82822040";
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Port = ((uint)(3306u));
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.rowHeaderBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.RowsHeight = 60;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Server = "localhost";
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.Size = new System.Drawing.Size(1612, 582);
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.TabIndex = 136;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.TableName = "inspection";
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.UserName = "root";
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.可拖曳欄位寬度 = true;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.可選擇多列 = true;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.自動換行 = true;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.表單字體 = new System.Drawing.Font("新細明體", 12F);
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.顯示CheckBox = true;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.顯示首列 = true;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.顯示首行 = true;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_過帳明細_驗收入庫明細.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.rJ_GroupBox13.TitleTexts = "驗收入庫資料";
             // 
             // panel_藥庫_驗收入庫
             // 
@@ -26699,7 +26644,7 @@
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.DataBaseName = "storehouse_0";
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -29004,7 +28949,7 @@
             this.sqL_DataGridView_盤點作業_新增盤點_已選擇藥品.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點作業_新增盤點_已選擇藥品.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點作業_新增盤點_已選擇藥品.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點作業_新增盤點_已選擇藥品.columnHeadersHeight = 18;
+            this.sqL_DataGridView_盤點作業_新增盤點_已選擇藥品.columnHeadersHeight = 15;
             this.sqL_DataGridView_盤點作業_新增盤點_已選擇藥品.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_盤點作業_新增盤點_已選擇藥品.DataBaseName = "storehouse_0";
             this.sqL_DataGridView_盤點作業_新增盤點_已選擇藥品.Dock = System.Windows.Forms.DockStyle.Top;
@@ -29222,7 +29167,7 @@
             this.sqL_DataGridView_盤點作業_新增盤點_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點作業_新增盤點_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點作業_新增盤點_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點作業_新增盤點_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_盤點作業_新增盤點_藥品資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_盤點作業_新增盤點_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_盤點作業_新增盤點_藥品資料.DataBaseName = "storehouse_0";
             this.sqL_DataGridView_盤點作業_新增盤點_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -31585,6 +31530,181 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1624, 663);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // tabPage31
+            // 
+            this.tabPage31.BackColor = System.Drawing.Color.White;
+            this.tabPage31.Controls.Add(this.rJ_GroupBox2);
+            this.tabPage31.Location = new System.Drawing.Point(4, 25);
+            this.tabPage31.Name = "tabPage31";
+            this.tabPage31.Size = new System.Drawing.Size(1622, 857);
+            this.tabPage31.TabIndex = 1;
+            this.tabPage31.Text = "驗收入庫效期批號";
+            // 
+            // rJ_GroupBox2
+            // 
+            // 
+            // rJ_GroupBox2.ContentsPanel
+            // 
+            this.rJ_GroupBox2.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_GroupBox2.ContentsPanel.BorderRadius = 5;
+            this.rJ_GroupBox2.ContentsPanel.BorderSize = 2;
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.sqL_DataGridView_驗收入庫效期批號);
+            this.rJ_GroupBox2.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_GroupBox2.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.ContentsPanel.IsSelected = false;
+            this.rJ_GroupBox2.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.rJ_GroupBox2.ContentsPanel.Name = "ContentsPanel";
+            this.rJ_GroupBox2.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.rJ_GroupBox2.ContentsPanel.Size = new System.Drawing.Size(1622, 592);
+            this.rJ_GroupBox2.ContentsPanel.TabIndex = 2;
+            this.rJ_GroupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_GroupBox2.Location = new System.Drawing.Point(0, 0);
+            this.rJ_GroupBox2.Name = "rJ_GroupBox2";
+            this.rJ_GroupBox2.PannelBackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.PannelBorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_GroupBox2.PannelBorderRadius = 5;
+            this.rJ_GroupBox2.PannelBorderSize = 2;
+            this.rJ_GroupBox2.Size = new System.Drawing.Size(1622, 629);
+            this.rJ_GroupBox2.TabIndex = 140;
+            this.rJ_GroupBox2.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.rJ_GroupBox2.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_GroupBox2.TitleBorderRadius = 5;
+            this.rJ_GroupBox2.TitleBorderSize = 0;
+            this.rJ_GroupBox2.TitleFont = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_GroupBox2.TitleForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.TitleHeight = 37;
+            this.rJ_GroupBox2.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_GroupBox2.TitleTexts = "驗收入庫效期批號";
+            // 
+            // tabPage41
+            // 
+            this.tabPage41.Location = new System.Drawing.Point(4, 25);
+            this.tabPage41.Name = "tabPage41";
+            this.tabPage41.Size = new System.Drawing.Size(1622, 857);
+            this.tabPage41.TabIndex = 2;
+            this.tabPage41.Text = "tabPage41";
+            this.tabPage41.UseVisualStyleBackColor = true;
+            // 
+            // sqL_DataGridView_驗收入庫資料
+            // 
+            this.sqL_DataGridView_驗收入庫資料.AutoSelectToDeep = false;
+            this.sqL_DataGridView_驗收入庫資料.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_驗收入庫資料.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_驗收入庫資料.BorderRadius = 0;
+            this.sqL_DataGridView_驗收入庫資料.BorderSize = 2;
+            this.sqL_DataGridView_驗收入庫資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫資料.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_驗收入庫資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_驗收入庫資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_驗收入庫資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_驗收入庫資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_驗收入庫資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫資料.columnHeadersHeight = 44;
+            this.sqL_DataGridView_驗收入庫資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns1"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns2"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns3"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns4"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns5"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns6"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns7"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns8"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns9"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns10"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns11"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns12"))));
+            this.sqL_DataGridView_驗收入庫資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫資料.Columns13"))));
+            this.sqL_DataGridView_驗收入庫資料.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_驗收入庫資料.Font = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_驗收入庫資料.ImageBox = false;
+            this.sqL_DataGridView_驗收入庫資料.Location = new System.Drawing.Point(5, 5);
+            this.sqL_DataGridView_驗收入庫資料.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sqL_DataGridView_驗收入庫資料.Name = "sqL_DataGridView_驗收入庫資料";
+            this.sqL_DataGridView_驗收入庫資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_驗收入庫資料.Password = "user82822040";
+            this.sqL_DataGridView_驗收入庫資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_驗收入庫資料.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_驗收入庫資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.sqL_DataGridView_驗收入庫資料.RowsHeight = 60;
+            this.sqL_DataGridView_驗收入庫資料.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_驗收入庫資料.Server = "localhost";
+            this.sqL_DataGridView_驗收入庫資料.Size = new System.Drawing.Size(1612, 582);
+            this.sqL_DataGridView_驗收入庫資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_驗收入庫資料.TabIndex = 137;
+            this.sqL_DataGridView_驗收入庫資料.TableName = "inspection";
+            this.sqL_DataGridView_驗收入庫資料.UserName = "root";
+            this.sqL_DataGridView_驗收入庫資料.可拖曳欄位寬度 = true;
+            this.sqL_DataGridView_驗收入庫資料.可選擇多列 = true;
+            this.sqL_DataGridView_驗收入庫資料.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫資料.自動換行 = true;
+            this.sqL_DataGridView_驗收入庫資料.表單字體 = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_驗收入庫資料.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_驗收入庫資料.顯示CheckBox = true;
+            this.sqL_DataGridView_驗收入庫資料.顯示首列 = true;
+            this.sqL_DataGridView_驗收入庫資料.顯示首行 = true;
+            this.sqL_DataGridView_驗收入庫資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
+            // sqL_DataGridView_驗收入庫效期批號
+            // 
+            this.sqL_DataGridView_驗收入庫效期批號.AutoSelectToDeep = false;
+            this.sqL_DataGridView_驗收入庫效期批號.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_驗收入庫效期批號.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_驗收入庫效期批號.BorderRadius = 0;
+            this.sqL_DataGridView_驗收入庫效期批號.BorderSize = 2;
+            this.sqL_DataGridView_驗收入庫效期批號.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫效期批號.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_驗收入庫效期批號.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_驗收入庫效期批號.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_驗收入庫效期批號.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_驗收入庫效期批號.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_驗收入庫效期批號.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫效期批號.columnHeadersHeight = 23;
+            this.sqL_DataGridView_驗收入庫效期批號.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns1"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns2"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns3"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns4"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns5"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns6"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns7"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收入庫效期批號.Columns8"))));
+            this.sqL_DataGridView_驗收入庫效期批號.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_驗收入庫效期批號.Font = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_驗收入庫效期批號.ImageBox = false;
+            this.sqL_DataGridView_驗收入庫效期批號.Location = new System.Drawing.Point(5, 5);
+            this.sqL_DataGridView_驗收入庫效期批號.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sqL_DataGridView_驗收入庫效期批號.Name = "sqL_DataGridView_驗收入庫效期批號";
+            this.sqL_DataGridView_驗收入庫效期批號.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_驗收入庫效期批號.Password = "user82822040";
+            this.sqL_DataGridView_驗收入庫效期批號.Port = ((uint)(3306u));
+            this.sqL_DataGridView_驗收入庫效期批號.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_驗收入庫效期批號.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫效期批號.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.sqL_DataGridView_驗收入庫效期批號.RowsHeight = 60;
+            this.sqL_DataGridView_驗收入庫效期批號.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_驗收入庫效期批號.Server = "localhost";
+            this.sqL_DataGridView_驗收入庫效期批號.Size = new System.Drawing.Size(1612, 582);
+            this.sqL_DataGridView_驗收入庫效期批號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_驗收入庫效期批號.TabIndex = 138;
+            this.sqL_DataGridView_驗收入庫效期批號.TableName = "sub_inspection";
+            this.sqL_DataGridView_驗收入庫效期批號.UserName = "root";
+            this.sqL_DataGridView_驗收入庫效期批號.可拖曳欄位寬度 = true;
+            this.sqL_DataGridView_驗收入庫效期批號.可選擇多列 = true;
+            this.sqL_DataGridView_驗收入庫效期批號.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫效期批號.自動換行 = true;
+            this.sqL_DataGridView_驗收入庫效期批號.表單字體 = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_驗收入庫效期批號.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_驗收入庫效期批號.顯示CheckBox = true;
+            this.sqL_DataGridView_驗收入庫效期批號.顯示首列 = true;
+            this.sqL_DataGridView_驗收入庫效期批號.顯示首行 = true;
+            this.sqL_DataGridView_驗收入庫效期批號.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_驗收入庫效期批號.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -32003,6 +32123,9 @@
             this.tabPage35.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.panel_系統.ResumeLayout(false);
+            this.tabPage31.ResumeLayout(false);
+            this.rJ_GroupBox2.ContentsPanel.ResumeLayout(false);
+            this.rJ_GroupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -32821,7 +32944,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥庫_驗收入庫_過帳明細_選取資料過帳;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥庫_驗收入庫_過帳明細_全部顯示;
         private MyUI.RJ_GroupBox rJ_GroupBox13;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_藥庫_過帳明細_驗收入庫明細;
         private System.Windows.Forms.Panel panel_藥庫_驗收入庫;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton43;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥庫_驗收入庫_過帳明細_選取資料刪除;
@@ -33212,6 +33334,11 @@
         private MyUI.RJ_Pannel ContentsPanel;
         private H_Pannel_lib.StorageUI_EPD_266 storageUI_EPD_266;
         private System.Windows.Forms.FontDialog fontDialog;
+        private System.Windows.Forms.TabPage tabPage31;
+        private MyUI.RJ_GroupBox rJ_GroupBox2;
+        private System.Windows.Forms.TabPage tabPage41;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_驗收入庫資料;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_驗收入庫效期批號;
     }
 }
 
