@@ -31,6 +31,9 @@
     <Reference Include="MySQL_Login">
       <HintPath>0.DLL\MySQL_Login.dll</HintPath>
     </Reference>
+    <Reference Include="MyUI">
+      <HintPath>..\0.DLL\MyUI.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>0.DLL\NPOI.dll</HintPath>
     </Reference>
