@@ -49,6 +49,7 @@ namespace 智慧藥庫系統_WebApi
             public int Code { get => _code; set => _code = value; }
             public string Result { get => _result; set => _result = value; }
         }
+
         public class class_output_inspection_date
         {
             [JsonPropertyName("OD_SN_S")]
