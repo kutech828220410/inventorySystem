@@ -93,10 +93,15 @@ namespace 智慧藥庫系統_WebApi
 
                 return inventory_Creat_OUT;
             }
+            static public inventory_creat_OUT ObjToData(object data)
+            {
+                string jsondata = data.JsonSerializationt();
+                return jsondata.JsonDeserializet<inventory_creat_OUT>();
+            }
         }
-        [Route("inventory_creat")]
+        [Route("creat")]
         [HttpGet]
-        public string Get()
+        public string Get_creat()
         {
             returnData _returnData = new returnData();
             List<object[]> list_盤點單號 = sQLControl_inventory.GetAllRows(null);
@@ -108,9 +113,28 @@ namespace 智慧藥庫系統_WebApi
             _returnData.Code = 200;
             _returnData.Result = "取得盤點單號成功!";
             return _returnData.JsonSerializationt();
+        }
+        [Route("creat")]
+        [HttpPost]
+        public string POST_creat([FromBody] returnData returnData)
+        {
+            if (returnData.Data.Count == 0)
+            {
+                returnData.Code = -1;
+                returnData.Result = "輸入Data長度錯誤!";
+            }
+            inventory_creat_OUT inventory_Creat_OUT = inventory_creat_OUT.ObjToData(returnData.Data[0]);
+            if(inventory_Creat_OUT == null)
+            {
+                returnData.Code = -2;
+                returnData.Result = "輸入資料錯誤!";
+            }
+            inventory_Creat_OUT.GUID = Guid.NewGuid().ToString();
+            inventory_Creat_OUT.盤點單號 = $"{DateTime.Now.ToShortDateString()}";
+
+
 
         }
-
 
     }
 }
