@@ -29,6 +29,7 @@ namespace 智能藥庫系統
         private void sub_Program_盤點作業_資料庫_Init()
         {
             this.sqL_DataGridView_盤點單號.Init();
+
             if (this.sqL_DataGridView_盤點單號.SQL_IsTableCreat() == false)
             {
                 this.sqL_DataGridView_盤點單號.SQL_CreateTable();
