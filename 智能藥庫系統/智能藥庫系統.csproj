@@ -204,6 +204,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program_盤點作業_資料庫.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_藥庫_儲位設定_EPD266.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,9 +272,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_盤點作業.cs" />
-    <Compile Include="Program_盤點作業_盤點狀態.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Program_盤點狀態_新增盤點.cs">
       <SubType>Form</SubType>
     </Compile>

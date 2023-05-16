@@ -209,8 +209,8 @@ namespace 智能藥庫系統
 
             this.sub_Program_系統_Init();
             this.sub_Program_人員資料_Init();
-            this.sub_Program_盤點作業_盤點狀態_Init();
             this.sub_Program_盤點作業_新增盤點_Init();
+            this.sub_Program_盤點作業_資料庫_Init();
             this.sub_Program_登入畫面_Init();
             this.sub_Program_交易紀錄查詢_Init();
             this.sub_Program_藥品資料_資料維護_Init();
@@ -251,7 +251,6 @@ namespace 智能藥庫系統
             this.sub_Program_周邊設備_麻醉部ADC_Init();
             this.sub_Program_戰情白板_Init();
 
-            this.plC_RJ_Button1.MouseDownEvent += PlC_RJ_Button1_MouseDownEvent;
 
             this.Function_堆疊資料_刪除指定調劑台名稱母資料("藥庫");
             this.WindowState = FormWindowState.Maximized;
