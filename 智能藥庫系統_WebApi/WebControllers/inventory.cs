@@ -139,8 +139,8 @@ namespace 智慧藥庫系統_WebApi
             List<object[]> list_盤點單號 = sQLControl_inventory.GetAllRows(null);
             list_盤點單號 = list_盤點單號.GetRowsInDate((int)enum_盤點單號.建表時間, DateTime.Now);
             inventory_Creat_OUT.GUID = Guid.NewGuid().ToString();
-            inventory_Creat_OUT.盤點單號 = $"{DateTime.Now.Get_DateTimeTINY()}_{list_盤點單號.Count}";
-            inventory_Creat_OUT.建表時間 = DateTime.Now.ToDateTimeString();
+            inventory_Creat_OUT.盤點單號 = $"{DateTime.Now.ToDateTinyString()}_{list_盤點單號.Count}";
+            inventory_Creat_OUT.建表時間 = DateTime.Now.ToDateTinyString();
             inventory_Creat_OUT.盤點開始時間 = DateTime.MinValue.ToDateTimeString();
             inventory_Creat_OUT.盤點結束時間 = DateTime.MinValue.ToDateTimeString();
             inventory_Creat_OUT.盤點狀態 = "等待開始盤點";
