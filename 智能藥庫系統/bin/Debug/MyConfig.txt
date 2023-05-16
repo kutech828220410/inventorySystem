@@ -3,5 +3,6 @@
   "貨架數量": 8,
   "主機模式": false,
   "FTP_username": "",
-  "FTP_password": ""
+  "FTP_password": "",
+  "線上更新": true
 }

@@ -507,4 +507,3 @@ C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統_W
 C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統_WebApi\obj\Debug\net5.0\智慧藥庫系統_WebApi.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統_WebApi\obj\Debug\net5.0\智慧藥庫系統_WebApi.pdb
 C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統_WebApi\obj\Debug\net5.0\智慧藥庫系統_WebApi.genruntimeconfig.cache
-C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統_WebApi\obj\Debug\net5.0\智慧藥庫系統_WebApi.csproj.AssemblyReference.cache
