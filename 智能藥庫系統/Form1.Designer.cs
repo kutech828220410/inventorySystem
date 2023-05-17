@@ -29084,7 +29084,7 @@
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Location = new System.Drawing.Point(871, 109);
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Location = new System.Drawing.Point(1159, 13);
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Name = "plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示";
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.OFF_文字內容 = "全部顯示";
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
