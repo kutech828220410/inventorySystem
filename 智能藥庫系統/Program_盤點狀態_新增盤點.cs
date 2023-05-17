@@ -34,10 +34,11 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Init();
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent;
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_新建盤點表.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_新建盤點表_MouseDownEvent;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_刪除資料.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_刪除資料_MouseDownEvent;
             this.plC_UI_Init.Add_Method(sub_Program_盤點作業_新增盤點);
         }
 
-      
+     
 
         private bool flag_Program_盤點作業_新增盤點_Init = false;
         private void sub_Program_盤點作業_新增盤點()
@@ -93,6 +94,30 @@ namespace 智能藥庫系統
             string json = Basic.Net.WEBApiPostJson(dBConfigClass.Inventory_post_creat_ApiURL, InData.JsonSerializationt());
             returnData returnData = json.JsonDeserializet<returnData>();
             if(returnData == null)
+            {
+                MyMessageBox.ShowDialog("回傳格式錯誤!");
+                return;
+            }
+            MyMessageBox.ShowDialog(returnData.Result);
+        }
+        private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_刪除資料_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Get_All_Checked_RowsValues();
+            if(list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取資料!");
+            }
+            if (MyMessageBox.ShowDialog($"是否刪除選取{list_value.Count}筆資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            returnData InData = new returnData();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                inventoryClass.creat_OUT creat_OUT = new inventoryClass.creat_OUT();
+                creat_OUT.GUID = list_value[i][(int)enum_盤點作業_新增盤點_盤點單號.GUID].ObjectToString();
+                InData.Data.Add(creat_OUT);
+            }
+            string json = Basic.Net.WEBApiPostJson(dBConfigClass.Inventory_post_delete_ApiURL, InData.JsonSerializationt());
+            returnData returnData = json.JsonDeserializet<returnData>();
+            if (returnData == null)
             {
                 MyMessageBox.ShowDialog("回傳格式錯誤!");
                 return;
