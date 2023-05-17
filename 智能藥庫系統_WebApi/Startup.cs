@@ -12,7 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace 智慧調劑台管理系統_WebApi
+namespace MyWebApi
 {
     public class Startup
     {

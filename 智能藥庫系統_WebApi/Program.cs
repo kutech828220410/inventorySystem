@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace 智慧調劑台管理系統_WebApi
+namespace MyWebApi
 {
     public class Program
     {

@@ -45,5 +45,7 @@
     "TableName": ""
   },
   "Emg_apply_ApiURL": "https://103.1.221.188:4433/api/excel/emg_apply/",
-  "MedPrice_ApiURL": "https://103.1.221.188:4433/api/MedPrice"
+  "MedPrice_ApiURL": "https://103.1.221.188:4433/api/MedPrice",
+  "Inventory_get_creat_ApiURL": "http://103.1.221.188:4433/api/inventory/creat",
+  "Inventory_post_creat_ApiURL": "http://103.1.221.188:4433/api/inventory/creat"
 }

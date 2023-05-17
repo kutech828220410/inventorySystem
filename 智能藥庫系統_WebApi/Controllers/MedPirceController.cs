@@ -15,7 +15,7 @@ using System.Configuration;
 using IBM.Data.DB2.Core;
 using MyOffice;
 using NPOI;
-namespace 智慧調劑台管理系統_WebApi
+namespace MyWebApi
 {
     [Route("api/[controller]")]
     [ApiController]

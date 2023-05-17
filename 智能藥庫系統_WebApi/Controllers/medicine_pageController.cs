@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using H_Pannel_lib;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace 智慧調劑台管理系統_WebApi
+namespace MyWebApi
 {
     public class class_medicine_page_firstclass_data
     {

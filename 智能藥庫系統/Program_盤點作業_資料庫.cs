@@ -46,6 +46,7 @@ namespace 智能藥庫系統
         private void SqL_DataGridView_盤點單號_MouseDown(object sender, MouseEventArgs e)
         {
             this.sqL_DataGridView_盤點單號.SQL_GetAllRows(true);
+
         }
     }
 }

@@ -1136,6 +1136,9 @@
             this.盤點作業 = new System.Windows.Forms.TabPage();
             this.plC_ScreenPage_盤點作業 = new MyUI.PLC_ScreenPage();
             this.tabPage22 = new System.Windows.Forms.TabPage();
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_GroupBox6 = new MyUI.PLC_RJ_GroupBox();
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號 = new SQLUI.SQL_DataGridView();
             this.tabPage17 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox12 = new MyUI.RJ_GroupBox();
             this.sqL_DataGridView_盤點作業_盤點狀態_盤點明細 = new SQLUI.SQL_DataGridView();
@@ -1224,6 +1227,7 @@
             this.ContentsPanel = new MyUI.RJ_Pannel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示 = new MyUI.PLC_RJ_Button();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
@@ -1552,6 +1556,9 @@
             this.panel_人員資料.SuspendLayout();
             this.盤點作業.SuspendLayout();
             this.plC_ScreenPage_盤點作業.SuspendLayout();
+            this.tabPage22.SuspendLayout();
+            this.plC_RJ_GroupBox6.ContentsPanel.SuspendLayout();
+            this.plC_RJ_GroupBox6.SuspendLayout();
             this.tabPage17.SuspendLayout();
             this.rJ_GroupBox12.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox12.SuspendLayout();
@@ -29008,11 +29015,148 @@
             // tabPage22
             // 
             this.tabPage22.BackColor = System.Drawing.Color.White;
+            this.tabPage22.Controls.Add(this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示);
+            this.tabPage22.Controls.Add(this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API);
+            this.tabPage22.Controls.Add(this.plC_RJ_GroupBox6);
             this.tabPage22.Location = new System.Drawing.Point(4, 25);
             this.tabPage22.Name = "tabPage22";
             this.tabPage22.Size = new System.Drawing.Size(1630, 938);
             this.tabPage22.TabIndex = 1;
             this.tabPage22.Text = "新增盤點";
+            // 
+            // plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API
+            // 
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.AutoResetState = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.BackgroundColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.Bool = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.BorderRadius = 5;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.but_press = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.Location = new System.Drawing.Point(1487, 878);
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.Name = "plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.OFF_文字內容 = "取得API";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.ON_BorderSize = 5;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.ON_文字內容 = "取得API";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.Size = new System.Drawing.Size(139, 52);
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.State = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.TabIndex = 166;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.Text = "取得API";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.Texts = "取得API";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.字型鎖住 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.文字鎖住 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.讀取位元反向 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.讀寫鎖住 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.音效 = true;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.顯示 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.顯示狀態 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.顯示讀取位置 = "S4077";
+            // 
+            // plC_RJ_GroupBox6
+            // 
+            // 
+            // plC_RJ_GroupBox6.ContentsPanel
+            // 
+            this.plC_RJ_GroupBox6.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox6.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_GroupBox6.ContentsPanel.BorderRadius = 5;
+            this.plC_RJ_GroupBox6.ContentsPanel.BorderSize = 2;
+            this.plC_RJ_GroupBox6.ContentsPanel.Controls.Add(this.sqL_DataGridView_盤點作業_新增盤點_盤點單號);
+            this.plC_RJ_GroupBox6.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_GroupBox6.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox6.ContentsPanel.IsSelected = false;
+            this.plC_RJ_GroupBox6.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.plC_RJ_GroupBox6.ContentsPanel.Name = "ContentsPanel";
+            this.plC_RJ_GroupBox6.ContentsPanel.Size = new System.Drawing.Size(863, 901);
+            this.plC_RJ_GroupBox6.ContentsPanel.TabIndex = 2;
+            this.plC_RJ_GroupBox6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_GroupBox6.Location = new System.Drawing.Point(0, 0);
+            this.plC_RJ_GroupBox6.Name = "plC_RJ_GroupBox6";
+            this.plC_RJ_GroupBox6.PannelBackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox6.PannelBorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_GroupBox6.PannelBorderRadius = 5;
+            this.plC_RJ_GroupBox6.PannelBorderSize = 2;
+            this.plC_RJ_GroupBox6.Size = new System.Drawing.Size(863, 938);
+            this.plC_RJ_GroupBox6.TabIndex = 2;
+            this.plC_RJ_GroupBox6.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.plC_RJ_GroupBox6.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_GroupBox6.TitleBorderRadius = 5;
+            this.plC_RJ_GroupBox6.TitleBorderSize = 0;
+            this.plC_RJ_GroupBox6.TitleFont = new System.Drawing.Font("新細明體", 12F);
+            this.plC_RJ_GroupBox6.TitleForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox6.TitleHeight = 37;
+            this.plC_RJ_GroupBox6.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.plC_RJ_GroupBox6.TitleTexts = "盤點單號";
+            // 
+            // sqL_DataGridView_盤點作業_新增盤點_盤點單號
+            // 
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.AutoSelectToDeep = true;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.BorderRadius = 0;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.BorderSize = 2;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.columnHeadersHeight = 23;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns"))));
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns1"))));
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns2"))));
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns3"))));
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns4"))));
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns5"))));
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_新增盤點_盤點單號.Columns6"))));
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.ImageBox = false;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Margin = new System.Windows.Forms.Padding(5);
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Name = "sqL_DataGridView_盤點作業_新增盤點_盤點單號";
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Password = "user82822040";
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.RowsColor = System.Drawing.SystemColors.Window;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.RowsHeight = 60;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Server = "127.0.0.0";
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Size = new System.Drawing.Size(863, 901);
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.TabIndex = 136;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.TableName = "inventory_creat";
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.UserName = "root";
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.可選擇多列 = false;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.自動換行 = true;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.顯示CheckBox = false;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.顯示首列 = true;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.顯示首行 = true;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
             // tabPage17
             // 
@@ -31235,6 +31379,48 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1624, 663);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示
+            // 
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.AutoResetState = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Bool = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.BorderRadius = 5;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.but_press = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Location = new System.Drawing.Point(871, 3);
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Name = "plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.OFF_文字內容 = "全部顯示";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.ON_BorderSize = 5;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.ON_文字內容 = "全部顯示";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Size = new System.Drawing.Size(138, 90);
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.State = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.TabIndex = 167;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Text = "全部顯示";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.Texts = "全部顯示";
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.字型鎖住 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.文字鎖住 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.讀取位元反向 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.讀寫鎖住 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.音效 = true;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.顯示 = false;
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.顯示狀態 = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -31613,6 +31799,9 @@
             this.panel_人員資料.ResumeLayout(false);
             this.盤點作業.ResumeLayout(false);
             this.plC_ScreenPage_盤點作業.ResumeLayout(false);
+            this.tabPage22.ResumeLayout(false);
+            this.plC_RJ_GroupBox6.ContentsPanel.ResumeLayout(false);
+            this.plC_RJ_GroupBox6.ResumeLayout(false);
             this.tabPage17.ResumeLayout(false);
             this.rJ_GroupBox12.ContentsPanel.ResumeLayout(false);
             this.rJ_GroupBox12.ResumeLayout(false);
@@ -32854,6 +33043,10 @@
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點單號;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton40;
         private MyUI.RJ_Pannel ContentsPanel;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API;
+        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox6;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_盤點作業_新增盤點_盤點單號;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示;
     }
 }
 

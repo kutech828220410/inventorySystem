@@ -47,7 +47,8 @@ namespace 智能藥庫系統
 
             private string emg_apply_ApiURL = "";
             private string medPrice_ApiURL = "";
-
+            private string inventory_get_creat_ApiURL = "";
+            private string inventory_post_creat_ApiURL = "";
 
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
@@ -56,6 +57,8 @@ namespace 智能藥庫系統
             public SQL_DataGridView.ConnentionClass DB_order_server { get => dB_order_server; set => dB_order_server = value; }
             public string Emg_apply_ApiURL { get => emg_apply_ApiURL; set => emg_apply_ApiURL = value; }
             public string MedPrice_ApiURL { get => medPrice_ApiURL; set => medPrice_ApiURL = value; }
+            public string Inventory_get_creat_ApiURL { get => inventory_get_creat_ApiURL; set => inventory_get_creat_ApiURL = value; }
+            public string Inventory_post_creat_ApiURL { get => inventory_post_creat_ApiURL; set => inventory_post_creat_ApiURL = value; }
         }
         public class MyConfigClass
         {

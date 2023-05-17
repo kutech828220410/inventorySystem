@@ -11,7 +11,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using System.Configuration;
 
-namespace 智慧藥庫系統_WebApi
+namespace MyWebApi
 {
     [Route("api/[controller]")]
     [ApiController]

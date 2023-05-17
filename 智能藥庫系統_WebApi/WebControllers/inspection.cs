@@ -16,7 +16,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
 using MyUI;
-namespace 智慧藥庫系統_WebApi
+namespace MyWebApi
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -18,7 +18,7 @@ using NPOI;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
-namespace 智慧藥庫系統_WebApi
+namespace MyWebApi
 {
     [Route("api/[controller]")]
     [ApiController]
