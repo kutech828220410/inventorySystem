@@ -65,7 +65,7 @@ namespace HIS_WebApi
                 returnData.Code = -1;
                 returnData.Result = "輸入Data長度錯誤!";
             }
-            inventoryClass.creat_OUT inventory_Creat_OUT = inventoryClass.creat_OUT.ObjToData(returnData.Data[0]);
+            inventoryClass.creat_OUT inventory_Creat_OUT = inventoryClass.creat_OUT.ObjToClass(returnData.Data[0]);
             if(inventory_Creat_OUT == null)
             {
                 returnData.Code = -2;
@@ -99,7 +99,7 @@ namespace HIS_WebApi
           
             for (int i = 0; i < returnData.Data.Count; i++)
             {
-                inventoryClass.creat_OUT inventory_Creat_OUT = inventoryClass.creat_OUT.ObjToData(returnData.Data[i]);
+                inventoryClass.creat_OUT inventory_Creat_OUT = inventoryClass.creat_OUT.ObjToClass(returnData.Data[i]);
                 string GUID = inventory_Creat_OUT.GUID;
                 list_盤點單號_buf = list_盤點單號.GetRows((int)enum_盤點單號.GUID, GUID);
                 if(list_盤點單號_buf.Count > 0)

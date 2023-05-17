@@ -68,7 +68,7 @@ namespace 智能藥庫系統
             List<inventoryClass.creat_OUT> inventory_Creat_OUTs = new List<inventoryClass.creat_OUT>();
             for (int i = 0; i < returnData.Data.Count; i++)
             {
-                inventoryClass.creat_OUT inventory_creat_OUT = inventoryClass.creat_OUT.ObjToData(returnData.Data[i]);
+                inventoryClass.creat_OUT inventory_creat_OUT = inventoryClass.creat_OUT.ObjToClass(returnData.Data[i]);
                 inventory_Creat_OUTs.Add(inventory_creat_OUT);
             }
             for (int i = 0; i < inventory_Creat_OUTs.Count; i++)
