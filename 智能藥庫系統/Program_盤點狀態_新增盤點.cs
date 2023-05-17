@@ -12,6 +12,7 @@ using SQLUI;
 using MyUI;
 using Basic;
 using H_Pannel_lib;
+using HIS_WebApi;
 namespace 智能藥庫系統
 {
     public enum enum_盤點作業_新增盤點_盤點單號
@@ -56,17 +57,28 @@ namespace 智能藥庫系統
         }
 
         #region Function
+        private void Function_盤點作業_取得盤點單號()
+        {
+            string json = Basic.Net.WEBApiGet(dBConfigClass.Inventory_get_creat_ApiURL);
+            HIS_WebApi.inventoryController.returnData returnData = json.JsonDeserializet<inventoryController.returnData>();
+            List<inventoryController.inventory_creat_OUT> inventory_Creat_OUTs = new List<inventoryController.inventory_creat_OUT>();
+            for (int i = 0; i < returnData.Data.Count; i++)
+            {
+                inventoryController.inventory_creat_OUT inventory_creat_OUT = inventoryController.inventory_creat_OUT.ObjToData(returnData.Data[i]);
+                inventory_Creat_OUTs.Add(inventory_creat_OUT);
+            }
+            
+        }
         #endregion
         #region Event
         private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API_MouseDownEvent(MouseEventArgs mevent)
         {
-            string json = Basic.Net.WEBApiGet(dBConfigClass.Inventory_get_creat_ApiURL);
+            
 
-            Console.WriteLine(json);
         }
         private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent(MouseEventArgs mevent)
         {
-            throw new NotImplementedException();
+            this.Function_盤點作業_取得盤點單號();
         }
         #endregion
 
