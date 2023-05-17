@@ -12,7 +12,7 @@ using SQLUI;
 using MyUI;
 using Basic;
 using H_Pannel_lib;
-using HIS_WebApi;
+using HIS_DB_Lib;
 namespace 智能藥庫系統
 {
     public enum enum_盤點作業_新增盤點_盤點單號
@@ -59,14 +59,7 @@ namespace 智能藥庫系統
         #region Function
         private void Function_盤點作業_取得盤點單號()
         {
-            string json = Basic.Net.WEBApiGet(dBConfigClass.Inventory_get_creat_ApiURL);
-            HIS_WebApi.inventoryController.returnData returnData = json.JsonDeserializet<inventoryController.returnData>();
-            List<inventoryController.inventory_creat_OUT> inventory_Creat_OUTs = new List<inventoryController.inventory_creat_OUT>();
-            for (int i = 0; i < returnData.Data.Count; i++)
-            {
-                inventoryController.inventory_creat_OUT inventory_creat_OUT = inventoryController.inventory_creat_OUT.ObjToData(returnData.Data[i]);
-                inventory_Creat_OUTs.Add(inventory_creat_OUT);
-            }
+          
             
         }
         #endregion
@@ -78,7 +71,14 @@ namespace 智能藥庫系統
         }
         private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.Function_盤點作業_取得盤點單號();
+            string json = Basic.Net.WEBApiGet(dBConfigClass.Inventory_get_creat_ApiURL);
+            returnData returnData = json.JsonDeserializet<returnData>();
+            List<inventoryClass.creat_OUT> inventory_Creat_OUTs = new List<inventoryClass.creat_OUT>();
+            for (int i = 0; i < returnData.Data.Count; i++)
+            {
+                inventoryClass.creat_OUT inventory_creat_OUT = inventoryClass.creat_OUT.ObjToData(returnData.Data[i]);
+                inventory_Creat_OUTs.Add(inventory_creat_OUT);
+            }
         }
         #endregion
 

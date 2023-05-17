@@ -79,8 +79,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\HCGUI.dll</HintPath>
     </Reference>
-    <Reference Include="HIS_WebApi">
-      <HintPath>..\智能藥庫系統_WebApi\bin\Debug\net5.0\HIS_WebApi.dll</HintPath>
+    <Reference Include="HIS_DB_Lib">
+      <HintPath>..\0.DLL\HIS_DB_Lib.dll</HintPath>
     </Reference>
     <Reference Include="H_Pannel_lib">
       <HintPath>..\0.DLL\H_Pannel_lib.dll</HintPath>
@@ -516,7 +516,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\智能藥庫系統_WebApi\bin\Debug\net5.0\HIS_WebApi.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
