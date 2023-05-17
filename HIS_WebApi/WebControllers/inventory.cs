@@ -37,9 +37,7 @@ namespace HIS_WebApi
         private SQLControl sQLControl_medicine_page_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
 
         private SQLControl sQLControl_inventory = new SQLControl(IP, DataBaseName, "inventory_creat", UserName, Password, Port, SSLMode);
-
-       
-       
+           
         [Route("creat")]
         [HttpGet]
         public string Get_creat()
@@ -117,9 +115,14 @@ namespace HIS_WebApi
         {
             public int Compare(object x, object y)
             {
-                return ((inventoryClass.creat_OUT)y).建表時間.CompareTo(((inventoryClass.creat_OUT)x).建表時間);
+                return ((inventoryClass.creat_OUT)x).建表時間.CompareTo(((inventoryClass.creat_OUT)y).建表時間);
             }
         }
+        [Route("start_Inv")]
+        [HttpPost]
+        public string POST_creat([FromBody] returnData returnData)
+        {
 
+        }
     }
 }

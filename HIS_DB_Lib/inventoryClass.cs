@@ -42,7 +42,6 @@ namespace HIS_DB_Lib
     }
     public class inventoryClass
     {
-
         public class creat_OUT
         {
             [JsonPropertyName("GUID")]

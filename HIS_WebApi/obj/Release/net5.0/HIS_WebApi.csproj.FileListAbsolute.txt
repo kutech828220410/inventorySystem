@@ -525,7 +525,6 @@ C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\bin\Release\net5.0\CallBackUI.dll
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\bin\Release\net5.0\MeasureSystemFunction.dll
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\bin\Release\net5.0\MVSDK.dll
-C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.GenerateResource.cache
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.GeneratedMSBuildEditorConfig.editorconfig
@@ -542,3 +541,4 @@ C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Relea
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
