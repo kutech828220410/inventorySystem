@@ -66,9 +66,9 @@ namespace HIS_DB_Lib
                 inventory_Creat_OUT.GUID = value[(int)enum_盤點單號.GUID].ObjectToString();
                 inventory_Creat_OUT.盤點單號 = value[(int)enum_盤點單號.盤點單號].ObjectToString();
                 inventory_Creat_OUT.建表人 = value[(int)enum_盤點單號.建表人].ObjectToString();
-                inventory_Creat_OUT.建表時間 = value[(int)enum_盤點單號.建表時間].ToDateString();
-                inventory_Creat_OUT.盤點開始時間 = value[(int)enum_盤點單號.盤點開始時間].ToDateString();
-                inventory_Creat_OUT.盤點結束時間 = value[(int)enum_盤點單號.盤點結束時間].ToDateString();
+                inventory_Creat_OUT.建表時間 = value[(int)enum_盤點單號.建表時間].ToDateTimeString();
+                inventory_Creat_OUT.盤點開始時間 = value[(int)enum_盤點單號.盤點開始時間].ToDateTimeString();
+                inventory_Creat_OUT.盤點結束時間 = value[(int)enum_盤點單號.盤點結束時間].ToDateTimeString();
                 inventory_Creat_OUT.盤點狀態 = value[(int)enum_盤點單號.盤點狀態].ObjectToString();
 
 
