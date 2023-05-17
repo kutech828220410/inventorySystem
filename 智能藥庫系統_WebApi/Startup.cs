@@ -12,7 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace MyWebApi
+namespace HIS_WebApi
 {
     public class Startup
     {

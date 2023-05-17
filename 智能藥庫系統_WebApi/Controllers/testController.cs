@@ -15,7 +15,7 @@ using System.Configuration;
 using IBM.Data.DB2.Core;
 using MyOffice;
 using NPOI;
-namespace MyWebApi
+namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,7 +25,7 @@ namespace MyWebApi
         public string Get()
         {
             string str = System.Environment.CurrentDirectory;
-            //string jsonstring = MyFileStream.LoadFileAllText(@"C:\Users\HS\Documents\MyWebApi\MyWebApi\bin\Release\net5.0\test.txt", "utf-8");
+            //string jsonstring = MyFileStream.LoadFileAllText(@"C:\Users\HS\Documents\HIS_WebApi\HIS_WebApi\bin\Release\net5.0\test.txt", "utf-8");
             string jsonstring = MyFileStream.LoadFileAllText(@$"{str}\test.txt", "utf-8");
             return "Api test sucess!";
         }

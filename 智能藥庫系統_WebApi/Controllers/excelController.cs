@@ -18,7 +18,7 @@ using NPOI;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
-namespace MyWebApi
+namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]

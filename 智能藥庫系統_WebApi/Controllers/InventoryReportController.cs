@@ -11,7 +11,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using System.Configuration;
 
-namespace MyWebApi
+namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]

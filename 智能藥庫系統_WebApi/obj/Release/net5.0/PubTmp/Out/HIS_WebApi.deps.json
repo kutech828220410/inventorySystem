@@ -6,7 +6,7 @@
   "compilationOptions": {
     "defines": [
       "TRACE",
-      "DEBUG",
+      "RELEASE",
       "NET",
       "NET5_0",
       "NETCOREAPP",
@@ -31,7 +31,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "智慧藥庫系統_WebApi/1.0.0": {
+      "HIS_WebApi/1.0.0": {
         "dependencies": {
           "IBM.Data.DB2.Core": "3.1.0.600",
           "MySql.Data": "8.0.29",
@@ -326,10 +326,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "智慧藥庫系統_WebApi.dll": {}
+          "HIS_WebApi.dll": {}
         },
         "compile": {
-          "智慧藥庫系統_WebApi.dll": {}
+          "HIS_WebApi.dll": {}
         }
       },
       "BouncyCastle.NetCore/1.8.5": {
@@ -2461,7 +2461,7 @@
     }
   },
   "libraries": {
-    "智慧藥庫系統_WebApi/1.0.0": {
+    "HIS_WebApi/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

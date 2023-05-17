@@ -12,7 +12,7 @@ using System.Text.Json.Serialization;
 using System.Configuration;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MyWebApi
+namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
