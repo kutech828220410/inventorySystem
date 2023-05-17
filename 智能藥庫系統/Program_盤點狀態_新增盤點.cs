@@ -32,9 +32,8 @@ namespace 智能藥庫系統
         {
 
             this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Init();
-            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API_MouseDownEvent;
             this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent;
-
+            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_新建盤點表.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_新建盤點表_MouseDownEvent;
             this.plC_UI_Init.Add_Method(sub_Program_盤點作業_新增盤點);
         }
 
@@ -57,20 +56,12 @@ namespace 智能藥庫系統
         }
 
         #region Function
-        private void Function_盤點作業_取得盤點單號()
-        {
-          
-            
-        }
+
         #endregion
         #region Event
-        private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_取得API_MouseDownEvent(MouseEventArgs mevent)
-        {
-            
-
-        }
         private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent(MouseEventArgs mevent)
         {
+            List<object[]> list_value = new List<object[]>();
             string json = Basic.Net.WEBApiGet(dBConfigClass.Inventory_get_creat_ApiURL);
             returnData returnData = json.JsonDeserializet<returnData>();
             List<inventoryClass.creat_OUT> inventory_Creat_OUTs = new List<inventoryClass.creat_OUT>();
@@ -79,6 +70,34 @@ namespace 智能藥庫系統
                 inventoryClass.creat_OUT inventory_creat_OUT = inventoryClass.creat_OUT.ObjToData(returnData.Data[i]);
                 inventory_Creat_OUTs.Add(inventory_creat_OUT);
             }
+            for (int i = 0; i < inventory_Creat_OUTs.Count; i++)
+            {
+                object[] value = new object[new enum_盤點作業_新增盤點_盤點單號().GetLength()];
+                value[(int)enum_盤點作業_新增盤點_盤點單號.GUID] = inventory_Creat_OUTs[i].GUID;
+                value[(int)enum_盤點作業_新增盤點_盤點單號.盤點單號] = inventory_Creat_OUTs[i].盤點單號;
+                value[(int)enum_盤點作業_新增盤點_盤點單號.建表人] = inventory_Creat_OUTs[i].建表人;
+                value[(int)enum_盤點作業_新增盤點_盤點單號.建表時間] = inventory_Creat_OUTs[i].建表時間;
+                value[(int)enum_盤點作業_新增盤點_盤點單號.盤點開始時間] = inventory_Creat_OUTs[i].盤點開始時間;
+                value[(int)enum_盤點作業_新增盤點_盤點單號.盤點結束時間] = inventory_Creat_OUTs[i].盤點結束時間;
+                value[(int)enum_盤點作業_新增盤點_盤點單號.盤點狀態] = inventory_Creat_OUTs[i].盤點狀態;
+                list_value.Add(value);
+            }
+            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_新建盤點表_MouseDownEvent(MouseEventArgs mevent)
+        {
+            returnData InData = new returnData();
+            inventoryClass.creat_OUT creat_OUT = new inventoryClass.creat_OUT();
+            creat_OUT.建表人 = 登入者名稱;
+            InData.Data.Add(creat_OUT);
+            string json = Basic.Net.WEBApiPostJson(dBConfigClass.Inventory_post_creat_ApiURL, InData.JsonSerializationt());
+            returnData returnData = json.JsonDeserializet<returnData>();
+            if(returnData == null)
+            {
+                MyMessageBox.ShowDialog("回傳格式錯誤!");
+                return;
+            }
+            MyMessageBox.ShowDialog(returnData.Result);
         }
         #endregion
 
