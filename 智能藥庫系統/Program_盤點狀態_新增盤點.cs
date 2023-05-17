@@ -99,6 +99,7 @@ namespace 智能藥庫系統
                 return;
             }
             MyMessageBox.ShowDialog(returnData.Result);
+            PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent(null);
         }
         private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_刪除資料_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -106,6 +107,7 @@ namespace 智能藥庫系統
             if(list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("未選取資料!");
+                return;
             }
             if (MyMessageBox.ShowDialog($"是否刪除選取{list_value.Count}筆資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             returnData InData = new returnData();
@@ -123,6 +125,7 @@ namespace 智能藥庫系統
                 return;
             }
             MyMessageBox.ShowDialog(returnData.Result);
+            PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent(null);
         }
         #endregion
 
