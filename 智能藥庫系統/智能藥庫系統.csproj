@@ -360,6 +360,12 @@
     <Compile Include="Program_藥庫_驗收入庫_過帳明細.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_藥庫_驗收入庫_資料庫.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_藥庫_驗收入庫_新增驗收.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialog\Dialog_列印及匯出.resx">
       <DependentUpon>Dialog_列印及匯出.cs</DependentUpon>

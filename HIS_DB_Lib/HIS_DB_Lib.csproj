@@ -80,7 +80,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicClass.cs" />
+    <Compile Include="inspectionClass.cs" />
     <Compile Include="inventoryClass.cs" />
+    <Compile Include="medClass.cs" />
+    <Compile Include="medCouldClass.cs" />
+    <Compile Include="medDrugstoreClass.cs" />
+    <Compile Include="medPharmacyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

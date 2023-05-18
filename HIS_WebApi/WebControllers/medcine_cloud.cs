@@ -37,10 +37,10 @@ namespace HIS_WebApi
     [ApiController]
     public class MED_page_cloudController : Controller
     {
-        static private string DataBaseName = ConfigurationManager.AppSettings["medicine_page_cloud_database"];
+        static private string DataBaseName = ConfigurationManager.AppSettings["MED_cloud_DB"];
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string IP = ConfigurationManager.AppSettings["medicine_page_cloud_IP"];
+        static private string IP = ConfigurationManager.AppSettings["MED_cloud_IP"];
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 

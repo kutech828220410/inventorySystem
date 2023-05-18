@@ -1,7 +1,7 @@
 {
   "DB_Basic": {
     "DataBaseName": "ds01",
-    "IP": "103.1.221.188",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -10,7 +10,7 @@
   },
   "DB_person_page": {
     "DataBaseName": "ds01_vm",
-    "IP": "103.1.221.188",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -19,7 +19,7 @@
   },
   "DB_Medicine_Cloud": {
     "DataBaseName": "dbvm",
-    "IP": "103.1.221.188",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -28,7 +28,7 @@
   },
   "DB_posting_server": {
     "DataBaseName": "ds01_vm",
-    "IP": "103.1.221.188",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -44,9 +44,9 @@
     "MySqlSslMode": 0,
     "TableName": ""
   },
-  "Emg_apply_ApiURL": "https://103.1.221.188:4433/api/excel/emg_apply/",
-  "MedPrice_ApiURL": "https://103.1.221.188:4433/api/MedPrice",
-  "Inventory_get_creat_ApiURL": "http://103.1.221.188:4433/api/inventory/creat",
-  "Inventory_post_creat_ApiURL": "http://103.1.221.188:4433/api/inventory/creat",
-  "Inventory_post_delete_ApiURL": "http://103.1.221.188:4433/api/inventory/delete"
+  "Emg_apply_ApiURL": "https://127.0.0.1:4433/api/excel/emg_apply/",
+  "MedPrice_ApiURL": "https://127.0.0.1:4433/api/MedPrice",
+  "Inventory_get_creat_ApiURL": "http://127.0.0.1:4433/api/inventory/creat",
+  "Inventory_post_creat_ApiURL": "http://127.0.0.1:4433/api/inventory/creat",
+  "Inventory_post_delete_ApiURL": "http://127.0.0.1:4433/api/inventory/delete"
 }

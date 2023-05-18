@@ -24,22 +24,13 @@ namespace HIS_DB_Lib
         盤點單號,
         藥品碼,
         料號,
-        一維條碼,
+        藥品條碼1,
+        藥品條碼2,
         理論值,
         盤點量,
-        操作人,
-        盤點時間,
+        新增時間,
     }
-    public class returnData
-    {
-        private List<object> _data = new List<object>();
-        private int _code = 0;
-        private string _result = "";
 
-        public List<object> Data { get => _data; set => _data = value; }
-        public int Code { get => _code; set => _code = value; }
-        public string Result { get => _result; set => _result = value; }
-    }
     public class inventoryClass
     {
         public class creat_OUT
@@ -48,7 +39,7 @@ namespace HIS_DB_Lib
             public string GUID { get; set; }
             [JsonPropertyName("INV_SN_L")]
             public string 盤點單號 { get; set; }
-            [JsonPropertyName("CREAT_OP")]
+            [JsonPropertyName("CREAT_OPERATOR")]
             public string 建表人 { get; set; }
             [JsonPropertyName("CREAT_TIME")]
             public string 建表時間 { get; set; }
@@ -102,16 +93,18 @@ namespace HIS_DB_Lib
             public string 藥品碼 { get; set; }
             [JsonPropertyName("SKDIACODE")]
             public string 料號 { get; set; }
-            [JsonPropertyName("START_TIME")]
-            public string 一維條碼 { get; set; }
+            [JsonPropertyName("BACCODE1")]
+            public string 藥品條碼1 { get; set; }
+            [JsonPropertyName("BACCODE2")]
+            public string 藥品條碼2 { get; set; }
             [JsonPropertyName("THEOR_VAL")]
             public string 理論值 { get; set; }
             [JsonPropertyName("QTY")]
             public string 盤點量 { get; set; }
             [JsonPropertyName("OPERATOR")]
             public string 操作人 { get; set; }
-            [JsonPropertyName("INV_TIME")]
-            public string 盤點時間 { get; set; }
+            [JsonPropertyName("ADD_TIME")]
+            public string 新增時間 { get; set; }
 
             static public object[] ClassToSQL(Inv_OUT _class)
             {
@@ -121,10 +114,11 @@ namespace HIS_DB_Lib
                 value[(int)enum_盤點內容.盤點單號] = _class.盤點單號;
                 value[(int)enum_盤點內容.藥品碼] = _class.藥品碼;
                 value[(int)enum_盤點內容.料號] = _class.料號;
+                value[(int)enum_盤點內容.藥品條碼1] = _class.藥品條碼1;
+                value[(int)enum_盤點內容.藥品條碼2] = _class.藥品條碼2;
                 value[(int)enum_盤點內容.理論值] = _class.理論值;
                 value[(int)enum_盤點內容.盤點量] = _class.盤點量;
-                value[(int)enum_盤點內容.操作人] = _class.操作人;
-                value[(int)enum_盤點內容.盤點時間] = _class.盤點時間;
+                value[(int)enum_盤點內容.新增時間] = _class.新增時間;
                 return value;
             }
             static public Inv_OUT SQLToClass(object[] value)
@@ -135,10 +129,11 @@ namespace HIS_DB_Lib
                 _class.盤點單號 = value[(int)enum_盤點內容.盤點單號].ObjectToString();
                 _class.藥品碼 = value[(int)enum_盤點內容.藥品碼].ToDateTimeString();
                 _class.料號 = value[(int)enum_盤點內容.料號].ToDateTimeString();
+                _class.藥品條碼1 = value[(int)enum_盤點內容.藥品條碼1].ToDateTimeString();
+                _class.藥品條碼2 = value[(int)enum_盤點內容.藥品條碼2].ToDateTimeString();
                 _class.理論值 = value[(int)enum_盤點內容.理論值].ToDateTimeString();
                 _class.盤點量 = value[(int)enum_盤點內容.盤點量].ObjectToString();
-                _class.操作人 = value[(int)enum_盤點內容.操作人].ObjectToString();
-                _class.盤點時間 = value[(int)enum_盤點內容.盤點時間].ObjectToString();
+                _class.新增時間 = value[(int)enum_盤點內容.新增時間].ObjectToString();
                 return _class;
             }
             static public Inv_OUT ObjToClass(object data)

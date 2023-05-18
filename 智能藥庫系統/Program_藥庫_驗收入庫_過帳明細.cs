@@ -66,24 +66,17 @@ namespace 智能藥庫系統
         private void sub_Program_藥庫_驗收入庫_過帳明細_Init()
         {
             this.sqL_DataGridView_驗收入庫資料.Init();
-            if (this.sqL_DataGridView_驗收入庫資料.SQL_IsTableCreat() == false)
-            {
-                this.sqL_DataGridView_驗收入庫資料.SQL_CreateTable();
-            }
-            else
-            {
-                this.sqL_DataGridView_驗收入庫資料.SQL_CheckAllColumnName(true);
-            }
+            
             this.sqL_DataGridView_驗收入庫資料.DataGridRefreshEvent += sqL_DataGridView_藥庫_過帳明細_驗收入庫明細_DataGridRefreshEvent;
 
-            this.sqL_DataGridView_驗收入庫效期批號.Init();
-            if(this.sqL_DataGridView_驗收入庫效期批號.SQL_IsTableCreat() ==false)
+            this.sqL_DataGridView_驗收內容.Init();
+            if(this.sqL_DataGridView_驗收內容.SQL_IsTableCreat() ==false)
             {
-                this.sqL_DataGridView_驗收入庫效期批號.SQL_CreateTable();
+                this.sqL_DataGridView_驗收內容.SQL_CreateTable();
             }
             else
             {
-                this.sqL_DataGridView_驗收入庫效期批號.SQL_CheckAllColumnName(true);
+                this.sqL_DataGridView_驗收內容.SQL_CheckAllColumnName(true);
             }
 
             this.plC_RJ_Button_藥庫_驗收入庫_過帳明細_全部顯示.MouseDownEvent += PlC_RJ_Button_藥庫_驗收入庫_過帳明細_全部顯示_MouseDownEvent;
@@ -108,7 +101,7 @@ namespace 智能藥庫系統
         private bool flag_藥庫_驗收入庫_過帳明細 = false;
         private void sub_Program_藥庫_驗收入庫_過帳明細()
         {
-            if (this.plC_ScreenPage_Main.PageText == "藥庫" && this.plC_ScreenPage_藥庫.PageText == "緊急訂單" && this.plC_ScreenPage_藥庫_驗收入庫.PageText == "過帳明細")
+            if (this.plC_ScreenPage_Main.PageText == "藥庫" && this.plC_ScreenPage_藥庫.PageText == "驗收入庫" && this.plC_ScreenPage_藥庫_驗收入庫.PageText == "過帳明細")
             {
                 if (!this.flag_藥庫_驗收入庫_過帳明細)
                 {

@@ -11,6 +11,7 @@ using System.Diagnostics;
 using MyUI;
 using Basic;
 using H_Pannel_lib;
+using HIS_DB_Lib;
 namespace 智能藥庫系統
 {
     public partial class Form1 : Form
@@ -23,30 +24,7 @@ namespace 智能藥庫系統
             批號,
             庫存,
         }
-        public enum enum_藥庫_藥品資料
-        {
-            GUID,
-            藥品碼,
-            中文名稱,
-            藥品名稱,
-            藥品學名,
-            藥品群組,
-            健保碼,
-            包裝單位,
-            包裝數量,
-            最小包裝單位,
-            最小包裝數量,
-            藥局庫存,
-            藥庫庫存,
-            總庫存,
-            基準量,
-            安全庫存,
-            藥品條碼1,
-            藥品條碼2,
-            警訊藥品,
-            管制級別,
-            類別,
-        }
+     
         public enum enum_藥庫_藥品資料_匯出
         {
             藥品碼,
@@ -88,7 +66,10 @@ namespace 智能藥庫系統
 
             this.sqL_DataGridView_藥庫_藥品資料.Init();
             if (!this.sqL_DataGridView_藥庫_藥品資料.SQL_IsTableCreat()) this.sqL_DataGridView_藥庫_藥品資料.SQL_CreateTable();
-            else this.sqL_DataGridView_藥庫_藥品資料.SQL_CheckAllColumnName(true);
+            else
+            {
+                this.sqL_DataGridView_藥庫_藥品資料.SQL_CheckAllColumnName(true);
+            }
             this.sqL_DataGridView_藥庫_藥品資料.DataGridRowsChangeEvent += SqL_DataGridView_藥庫_藥品資料_DataGridRowsChangeEvent;
             this.sqL_DataGridView_藥庫_藥品資料.RowEnterEvent += SqL_DataGridView_藥庫_藥品資料_RowEnterEvent;
             this.sqL_DataGridView_藥庫_藥品資料_效期及庫存.Init();
