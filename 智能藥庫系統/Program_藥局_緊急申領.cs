@@ -75,7 +75,7 @@ namespace 智能藥庫系統
         private bool flag_Program_藥局_緊急申領_Init = false;
         private void sub_Program_藥局_緊急申領()
         {
-            if (this.plC_ScreenPage_Main.PageText == "藥局" && this.plC_ScreenPage_藥局.PageText == "大武院區" && this.plC_ScreenPage_藥局.PageText == "緊急申領")
+            if (this.plC_ScreenPage_Main.PageText == "藥局" && this.plC_ScreenPage_藥局.PageText == "緊急申領")
             {
                 if (!flag_Program_藥局_緊急申領_Init)
                 {
@@ -201,8 +201,8 @@ namespace 智能藥庫系統
         }
         private void PlC_RJ_Button_藥局_緊急申領_藥品資料_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥局_緊急申領_藥品資料.SQL_GetAllRows(false);
-            this.sqL_DataGridView_藥局_藥品資料.RowsChangeFunction(list_value);
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.SQL_GetAllRows(false);
+            this.sqL_DataGridView_藥庫_藥品資料.RowsChangeFunction(list_value);
 
             if (this.rJ_TextBox_藥局_緊急申領_藥品資料_藥品碼.Texts.StringIsEmpty() == false)
             {

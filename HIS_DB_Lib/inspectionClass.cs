@@ -49,6 +49,7 @@ namespace HIS_DB_Lib
         請購單號,
         藥品碼,
         料號,
+        應收數量,
         藥品條碼1,
         藥品條碼2,
         新增時間,
@@ -63,8 +64,9 @@ namespace HIS_DB_Lib
         料號,
         藥品條碼1,
         藥品條碼2,
-        應收數量,
         實收數量,
+        效期,
+        批號,
         驗收時間,
         狀態,
     }
@@ -125,7 +127,11 @@ namespace HIS_DB_Lib
                 string jsondata = data.JsonSerializationt();
                 return jsondata.JsonDeserializet<creat>();
             }
-
+            static public List<creat> ObjToListClass(object data)
+            {
+                string jsondata = data.JsonSerializationt();
+                return jsondata.JsonDeserializet<List<creat>>();
+            }
         }
         public class content
         {
@@ -141,10 +147,20 @@ namespace HIS_DB_Lib
             public string 藥品碼 { get; set; }
             [JsonPropertyName("SKDIACODE")]
             public string 料號 { get; set; }
+            [JsonPropertyName("CHT_NAME")]
+            public string 中文名稱 { get; set; }
+            [JsonPropertyName("NAME")]
+            public string 藥品名稱 { get; set; }
+            [JsonPropertyName("PAKAGE")]
+            public string 包裝單位 { get; set; }
             [JsonPropertyName("BARCODE1")]
             public string 藥品條碼1 { get; set; }
             [JsonPropertyName("BARCODE2")]
             public string 藥品條碼2 { get; set; }
+            [JsonPropertyName("END_QTY")]
+            public string 實收數量 { get; set; }
+            [JsonPropertyName("START_QTY")]
+            public string 應收數量 { get; set; }
             [JsonPropertyName("ADD_TIME")]
             public string 新增時間 { get; set; }
 
@@ -162,6 +178,7 @@ namespace HIS_DB_Lib
                 value[(int)enum_驗收內容.料號] = _class.料號;
                 value[(int)enum_驗收內容.藥品條碼1] = _class.藥品條碼1;
                 value[(int)enum_驗收內容.藥品條碼2] = _class.藥品條碼2;
+                value[(int)enum_驗收內容.應收數量] = _class.應收數量;
                 value[(int)enum_驗收內容.新增時間] = _class.新增時間;
 
                 return value;
@@ -177,6 +194,7 @@ namespace HIS_DB_Lib
                 _class.料號 = value[(int)enum_驗收內容.料號].ObjectToString();
                 _class.藥品條碼1 = value[(int)enum_驗收內容.藥品條碼1].ObjectToString();
                 _class.藥品條碼2 = value[(int)enum_驗收內容.藥品條碼2].ObjectToString();
+                _class.應收數量 = value[(int)enum_驗收內容.應收數量].ObjectToString();
                 _class.新增時間 = value[(int)enum_驗收內容.新增時間].ToDateTimeString();
                 return _class;
             }
@@ -184,6 +202,11 @@ namespace HIS_DB_Lib
             {
                 string jsondata = data.JsonSerializationt();
                 return jsondata.JsonDeserializet<content>();
+            }
+            static public List<content> ObjToListClass(object data)
+            {
+                string jsondata = data.JsonSerializationt();
+                return jsondata.JsonDeserializet<List<content>>();
             }
 
         }
@@ -201,14 +224,22 @@ namespace HIS_DB_Lib
             public string 藥品碼 { get; set; }
             [JsonPropertyName("SKDIACODE")]
             public string 料號 { get; set; }
+            [JsonPropertyName("CHT_NAME")]
+            public string 中文名稱 { get; set; }
+            [JsonPropertyName("NAME")]
+            public string 藥品名稱 { get; set; }
+            [JsonPropertyName("PAKAGE")]
+            public string 包裝單位 { get; set; }
             [JsonPropertyName("BARCODE1")]
             public string 藥品條碼1 { get; set; }
             [JsonPropertyName("BARCODE2")]
             public string 藥品條碼2 { get; set; }
-            [JsonPropertyName("START_QTY")]
-            public string 應收數量 { get; set; }
             [JsonPropertyName("END_QTY")]
             public string 實收數量 { get; set; }
+            [JsonPropertyName("VAL")]
+            public string 效期 { get; set; }
+            [JsonPropertyName("LOT")]
+            public string 批號 { get; set; }
             [JsonPropertyName("ACPT_TIME")]
             public string 驗收時間 { get; set; }
             [JsonPropertyName("STATE")]
@@ -225,9 +256,10 @@ namespace HIS_DB_Lib
                 value[(int)enum_驗收明細.料號] = _class.料號;
                 value[(int)enum_驗收明細.藥品條碼1] = _class.藥品條碼1;
                 value[(int)enum_驗收明細.藥品條碼2] = _class.藥品條碼2;
-                value[(int)enum_驗收明細.應收數量] = _class.應收數量;
                 value[(int)enum_驗收明細.實收數量] = _class.實收數量;
                 value[(int)enum_驗收明細.驗收時間] = _class.驗收時間;
+                value[(int)enum_驗收明細.效期] = _class.效期;
+                value[(int)enum_驗收明細.批號] = _class.批號;
                 value[(int)enum_驗收明細.狀態] = _class.狀態;
 
                 return value;
@@ -243,9 +275,11 @@ namespace HIS_DB_Lib
                 _class.料號 = value[(int)enum_驗收明細.料號].ObjectToString();
                 _class.藥品條碼1 = value[(int)enum_驗收明細.藥品條碼1].ObjectToString();
                 _class.藥品條碼2 = value[(int)enum_驗收明細.藥品條碼2].ObjectToString();
-                _class.應收數量 = value[(int)enum_驗收明細.應收數量].ObjectToString();
                 _class.實收數量 = value[(int)enum_驗收明細.實收數量].ObjectToString();
                 _class.驗收時間 = value[(int)enum_驗收明細.驗收時間].ToDateTimeString();
+                _class.效期 = value[(int)enum_驗收明細.效期].ObjectToString();
+                _class.批號 = value[(int)enum_驗收明細.批號].ObjectToString();
+                _class.狀態 = value[(int)enum_驗收明細.狀態].ObjectToString();
 
                 return _class;
             }
@@ -253,6 +287,11 @@ namespace HIS_DB_Lib
             {
                 string jsondata = data.JsonSerializationt();
                 return jsondata.JsonDeserializet<sub_content>();
+            }
+            static public List<sub_content> ObjToListClass(object data)
+            {
+                string jsondata = data.JsonSerializationt();
+                return jsondata.JsonDeserializet<List<sub_content>>();
             }
         }
     }

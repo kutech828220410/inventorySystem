@@ -357,6 +357,9 @@
     <Compile Include="Program_藥品資料_資料維護.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_藥庫_驗收入庫_單號查詢.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_藥庫_驗收入庫_過帳明細.cs">
       <SubType>Form</SubType>
     </Compile>

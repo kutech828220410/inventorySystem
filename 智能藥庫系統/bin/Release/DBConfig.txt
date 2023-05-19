@@ -48,5 +48,6 @@
   "MedPrice_ApiURL": "https://127.0.0.1:4433/api/MedPrice",
   "Inventory_get_creat_ApiURL": "http://127.0.0.1:4433/api/inventory/creat",
   "Inventory_post_creat_ApiURL": "http://127.0.0.1:4433/api/inventory/creat",
-  "Inventory_post_delete_ApiURL": "http://127.0.0.1:4433/api/inventory/delete"
+  "Inventory_post_delete_ApiURL": "http://127.0.0.1:4433/api/inventory/delete",
+  "Inspection_ApiURL": "https://127.0.0.1/api/inspection"
 }

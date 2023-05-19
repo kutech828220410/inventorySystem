@@ -50,6 +50,7 @@ namespace 智能藥庫系統
             private string inventory_get_creat_ApiURL = "";
             private string inventory_post_creat_ApiURL = "";
             private string inventory_post_delete_ApiURL = "";
+            private string inspection_ApiURL = "";
 
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
@@ -61,6 +62,7 @@ namespace 智能藥庫系統
             public string Inventory_get_creat_ApiURL { get => inventory_get_creat_ApiURL; set => inventory_get_creat_ApiURL = value; }
             public string Inventory_post_creat_ApiURL { get => inventory_post_creat_ApiURL; set => inventory_post_creat_ApiURL = value; }
             public string Inventory_post_delete_ApiURL { get => inventory_post_delete_ApiURL; set => inventory_post_delete_ApiURL = value; }
+            public string Inspection_ApiURL { get => inspection_ApiURL; set => inspection_ApiURL = value; }
         }
         public class MyConfigClass
         {
@@ -235,6 +237,7 @@ namespace 智能藥庫系統
             this.sub_Program_藥庫_驗收入庫_過帳明細_Init();
             this.sub_Program_藥庫_驗收入庫_資料庫_Init();
             this.sub_Program_藥庫_驗收入庫_新增驗收_Init();
+            this.sub_Program_藥庫_驗收入庫_單號查詢_Init();
 
             this.sub_Program_藥庫_緊急訂單_下訂單_Init();
             this.sub_Program_藥庫_緊急訂單_信箱設定_Init();
