@@ -161,11 +161,11 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         
-            list_inspection_creat_buf = list_inspection_creat.GetRows((int)enum_驗收單號.請購單號, creat.請購單號);
+            list_inspection_creat_buf = list_inspection_creat.GetRows((int)enum_驗收單號.驗收單號, creat.驗收單號);
             if (list_inspection_creat_buf.Count > 0)
             {
                 returnData.Code = -6;
-                returnData.Result += $"請購單號: {creat.請購單號} 已存在,請刪除後再建立! \n";
+                returnData.Result += $"請購單號: {creat.驗收單號} 已存在,請刪除後再建立! \n";
                 return returnData.JsonSerializationt();
             }
             creat.GUID = Guid.NewGuid().ToString();
@@ -341,7 +341,8 @@ namespace HIS_WebApi
                 value[(int)enum_驗收明細.效期] = sub_content.效期;
                 value[(int)enum_驗收明細.批號] = sub_content.批號;
                 value[(int)enum_驗收明細.實收數量] = sub_content.實收數量;
-                value[(int)enum_驗收明細.驗收時間] = DateTime.Now.ToDateTimeString();
+                value[(int)enum_驗收明細.操作人] = sub_content.操作人;
+                value[(int)enum_驗收明細.操作時間] = DateTime.Now.ToDateTimeString();
                 value[(int)enum_驗收明細.狀態] = "未鎖定";
 
                 list_add.Add(value);

@@ -47,9 +47,7 @@ namespace 智能藥庫系統
 
             private string emg_apply_ApiURL = "";
             private string medPrice_ApiURL = "";
-            private string inventory_get_creat_ApiURL = "";
-            private string inventory_post_creat_ApiURL = "";
-            private string inventory_post_delete_ApiURL = "";
+            private string inventory_ApiURL = "";        
             private string inspection_ApiURL = "";
 
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
@@ -59,10 +57,8 @@ namespace 智能藥庫系統
             public SQL_DataGridView.ConnentionClass DB_order_server { get => dB_order_server; set => dB_order_server = value; }
             public string Emg_apply_ApiURL { get => emg_apply_ApiURL; set => emg_apply_ApiURL = value; }
             public string MedPrice_ApiURL { get => medPrice_ApiURL; set => medPrice_ApiURL = value; }
-            public string Inventory_get_creat_ApiURL { get => inventory_get_creat_ApiURL; set => inventory_get_creat_ApiURL = value; }
-            public string Inventory_post_creat_ApiURL { get => inventory_post_creat_ApiURL; set => inventory_post_creat_ApiURL = value; }
-            public string Inventory_post_delete_ApiURL { get => inventory_post_delete_ApiURL; set => inventory_post_delete_ApiURL = value; }
             public string Inspection_ApiURL { get => inspection_ApiURL; set => inspection_ApiURL = value; }
+            public string Inventory_ApiURL { get => inventory_ApiURL; set => inventory_ApiURL = value; }
         }
         public class MyConfigClass
         {
@@ -217,7 +213,10 @@ namespace 智能藥庫系統
             this.sub_Program_系統_Init();
             this.sub_Program_人員資料_Init();
             this.sub_Program_盤點作業_新增盤點_Init();
+            this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();
+
+
             this.sub_Program_登入畫面_Init();
             this.sub_Program_交易紀錄查詢_Init();
             this.sub_Program_藥品資料_資料維護_Init();

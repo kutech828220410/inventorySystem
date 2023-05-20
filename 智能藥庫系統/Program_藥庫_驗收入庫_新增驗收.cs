@@ -31,10 +31,10 @@ namespace 智能藥庫系統
         }
         private void sub_Program_藥庫_驗收入庫_新增驗收_Init()
         {
-            this.sqL_DataGridView_驗收入庫_新增驗收.Init(this.sqL_DataGridView_藥局_藥品資料);
-            this.sqL_DataGridView_驗收入庫_新增驗收.Set_ColumnVisible(false, new enum_藥局_藥品資料().GetEnumNames());
-            this.sqL_DataGridView_驗收入庫_新增驗收.Set_ColumnVisible(true, enum_藥局_藥品資料.藥品碼, enum_藥局_藥品資料.藥品名稱, enum_藥局_藥品資料.料號, enum_藥局_藥品資料.中文名稱, enum_藥局_藥品資料.包裝單位);
-            this.sqL_DataGridView_驗收入庫_新增驗收.RowDoubleClickEvent += SqL_DataGridView_驗收入庫_新增驗收_RowDoubleClickEvent;
+            this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
+            this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.Set_ColumnVisible(false, new enum_藥庫_藥品資料().GetEnumNames());
+            this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.Set_ColumnVisible(true, enum_藥庫_藥品資料.藥品碼, enum_藥庫_藥品資料.藥品名稱, enum_藥庫_藥品資料.料號, enum_藥庫_藥品資料.中文名稱, enum_藥庫_藥品資料.包裝單位);
+            this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.RowDoubleClickEvent += SqL_DataGridView_驗收入庫_新增驗收_藥品資料_RowDoubleClickEvent;
 
             this.sqL_DataGridView_驗收入庫_驗收藥品清單.Init();
             this.sqL_DataGridView_驗收入庫_驗收藥品清單.DataGridRowsChangeRefEvent += SqL_DataGridView_驗收入庫_驗收藥品清單_DataGridRowsChangeRefEvent;
@@ -43,14 +43,14 @@ namespace 智能藥庫系統
 
 
             this.plC_RJ_Button_驗收入庫_新增驗收_自動生成.MouseDownEvent += PlC_RJ_Button_驗收入庫_新增驗收_自動生成_MouseDownEvent;
-            this.plC_RJ_Button_驗收入庫_新增驗收_搜尋.MouseDownEvent += PlC_RJ_Button_驗收入庫_新增驗收_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_驗收入庫_新增驗收_藥品資料_搜尋.MouseDownEvent += PlC_RJ_Button_驗收入庫_新增驗收_藥品資料_搜尋_MouseDownEvent; ;
             this.plC_RJ_Button_驗收入庫_新增驗收_刪除選取資料.MouseDownEvent += PlC_RJ_Button_驗收入庫_新增驗收_刪除選取資料_MouseDownEvent;
             this.plC_RJ_Button_驗收入庫_新增驗收_送出.MouseDownEvent += PlC_RJ_Button_驗收入庫_新增驗收_送出_MouseDownEvent;
             this.plC_RJ_Button_驗收入庫_新增驗收_建立測試單.MouseDownEvent += PlC_RJ_Button_驗收入庫_新增驗收_建立測試單_MouseDownEvent;
             this.plC_UI_Init.Add_Method(sub_Program_藥庫_驗收入庫_新增驗收);
         }
 
-  
+     
 
         private bool flag_藥庫_驗收入庫_新增驗收 = false;
         private void sub_Program_藥庫_驗收入庫_新增驗收()
@@ -75,13 +75,13 @@ namespace 智能藥庫系統
 
         #endregion
         #region Event
-        private void SqL_DataGridView_驗收入庫_新增驗收_RowDoubleClickEvent(object[] RowValue)
+        private void SqL_DataGridView_驗收入庫_新增驗收_藥品資料_RowDoubleClickEvent(object[] RowValue)
         {
-            string 藥品碼 = RowValue[(int)enum_藥局_藥品資料.藥品碼].ObjectToString();
-            string 料號 = RowValue[(int)enum_藥局_藥品資料.料號].ObjectToString();
-            string 藥品名稱 = RowValue[(int)enum_藥局_藥品資料.藥品名稱].ObjectToString();
-            string 藥品條碼1 = RowValue[(int)enum_藥局_藥品資料.藥品條碼1].ObjectToString();
-            string 藥品條碼2 = RowValue[(int)enum_藥局_藥品資料.藥品條碼2].ObjectToString();
+            string 藥品碼 = RowValue[(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
+            string 料號 = RowValue[(int)enum_藥庫_藥品資料.料號].ObjectToString();
+            string 藥品名稱 = RowValue[(int)enum_藥庫_藥品資料.藥品名稱].ObjectToString();
+            string 藥品條碼1 = RowValue[(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
+            string 藥品條碼2 = RowValue[(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
             string 驗收量 = "0";
             List<object[]> list_驗收藥品清單 = this.sqL_DataGridView_驗收入庫_驗收藥品清單.GetAllRows();
             list_驗收藥品清單 = list_驗收藥品清單.GetRows((int)enum_驗收入庫_驗收藥品清單.藥品碼, 藥品碼);
@@ -97,8 +97,6 @@ namespace 智能藥庫系統
             value[(int)enum_驗收入庫_驗收藥品清單.藥品條碼2] = 藥品條碼2;
 
             this.sqL_DataGridView_驗收入庫_驗收藥品清單.AddRow(value, true);
-
-
         }
         private void SqL_DataGridView_驗收入庫_驗收藥品清單_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
@@ -130,26 +128,27 @@ namespace 智能藥庫系統
                 this.rJ_TextBox_驗收入庫_新增驗收_驗收單號.Texts = $"{returnData.Value}";
             }));
         }
-        private void PlC_RJ_Button_驗收入庫_新增驗收_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_驗收入庫_新增驗收_藥品資料_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥局_藥品資料.SQL_GetAllRows(false);
-            this.sqL_DataGridView_藥局_藥品資料.RowsChangeFunction(list_value);
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.SQL_GetAllRows(false);
+            this.sqL_DataGridView_藥庫_藥品資料.RowsChangeFunction(list_value);
 
-            if (this.rJ_TextBox_驗收入庫_新增驗收_藥碼搜尋.Texts.StringIsEmpty() == false)
+            if (this.rJ_TextBox_驗收入庫_新增驗收_藥品資料_藥碼搜尋.Texts.StringIsEmpty() == false)
             {
-                list_value = list_value.GetRowsStartWithByLike((int)enum_藥局_藥品資料.藥品碼, this.rJ_TextBox_驗收入庫_新增驗收_藥碼搜尋.Texts);
+                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.藥品碼, this.rJ_TextBox_驗收入庫_新增驗收_藥品資料_藥碼搜尋.Texts);
             }
-            if (this.rJ_TextBox_驗收入庫_新增驗收_藥名搜尋.Texts.StringIsEmpty() == false)
+            if (this.rJ_TextBox_驗收入庫_新增驗收_藥品資料_藥名搜尋.Texts.StringIsEmpty() == false)
             {
-                list_value = list_value.GetRowsStartWithByLike((int)enum_藥局_藥品資料.藥品名稱, this.rJ_TextBox_驗收入庫_新增驗收_藥名搜尋.Texts);
+                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.藥品名稱, this.rJ_TextBox_驗收入庫_新增驗收_藥品資料_藥名搜尋.Texts);
             }
-            if (this.rJ_TextBox_驗收入庫_新增驗收_料號搜尋.Texts.StringIsEmpty() == false)
+            if (this.rJ_TextBox_驗收入庫_新增驗收_藥品資料_料號搜尋.Texts.StringIsEmpty() == false)
             {
-                list_value = list_value.GetRowsStartWithByLike((int)enum_藥局_藥品資料.料號, this.rJ_TextBox_驗收入庫_新增驗收_料號搜尋.Texts);
+                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.料號, this.rJ_TextBox_驗收入庫_新增驗收_藥品資料_料號搜尋.Texts);
             }
-            
-            this.sqL_DataGridView_驗收入庫_新增驗收.RefreshGrid(list_value);
+
+            this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.RefreshGrid(list_value);
         }
+
         private void PlC_RJ_Button_驗收入庫_新增驗收_刪除選取資料_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_驗收入庫_驗收藥品清單.Get_All_Checked_RowsValues();
@@ -203,7 +202,7 @@ namespace 智能藥庫系統
         private void PlC_RJ_Button_驗收入庫_新增驗收_建立測試單_MouseDownEvent(MouseEventArgs mevent)
         {
             this.PlC_RJ_Button_驗收入庫_新增驗收_自動生成_MouseDownEvent(null);
-            List<object[]> list_value = this.sqL_DataGridView_藥局_藥品資料.SQL_GetAllRows(false);
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.SQL_GetAllRows(false);
             string 驗收單號 = this.rJ_TextBox_驗收入庫_新增驗收_驗收單號.Texts;
             returnData returnData = new returnData();
             inspectionClass.creat creat = new inspectionClass.creat();
@@ -215,11 +214,11 @@ namespace 智能藥庫系統
                 inspectionClass.content content = new inspectionClass.content();
                 content.請購單號 = creat.請購單號;
                 content.驗收單號 = creat.驗收單號;
-                content.藥品碼 = list_value[i][(int)enum_藥局_藥品資料.藥品碼].ObjectToString();
-                content.料號 = list_value[i][(int)enum_藥局_藥品資料.料號].ObjectToString();
+                content.藥品碼 = list_value[i][(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
+                content.料號 = list_value[i][(int)enum_藥庫_藥品資料.料號].ObjectToString();
                 content.應收數量 = (i + 1).ToString();
-                content.藥品條碼1 = list_value[i][(int)enum_藥局_藥品資料.藥品條碼1].ObjectToString();
-                content.藥品條碼2 = list_value[i][(int)enum_藥局_藥品資料.藥品條碼2].ObjectToString();
+                content.藥品條碼1 = list_value[i][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
+                content.藥品條碼2 = list_value[i][(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
                 creat.Contents.Add(content);
             }
             returnData.Data = creat;

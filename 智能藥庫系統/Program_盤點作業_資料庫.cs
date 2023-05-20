@@ -37,10 +37,19 @@ namespace 智能藥庫系統
             {
                 this.sqL_DataGridView_盤點內容.SQL_CheckAllColumnName(true);
             }
+            this.sqL_DataGridView_盤點明細.Init();
+            if (this.sqL_DataGridView_盤點明細.SQL_IsTableCreat() == false)
+            {
+                this.sqL_DataGridView_盤點明細.SQL_CreateTable();
+            }
+            else
+            {
+                this.sqL_DataGridView_盤點明細.SQL_CheckAllColumnName(true);
+            }
 
-            
             this.sqL_DataGridView_盤點單號.MouseDown += SqL_DataGridView_盤點單號_MouseDown;
             this.sqL_DataGridView_盤點內容.MouseDown += SqL_DataGridView_盤點內容_MouseDown;
+            this.sqL_DataGridView_盤點明細.MouseDown += SqL_DataGridView_盤點明細_MouseDown;
 
         }
 
@@ -52,7 +61,10 @@ namespace 智能藥庫系統
         private void SqL_DataGridView_盤點單號_MouseDown(object sender, MouseEventArgs e)
         {
             this.sqL_DataGridView_盤點單號.SQL_GetAllRows(true);
-
+        }
+        private void SqL_DataGridView_盤點明細_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.sqL_DataGridView_盤點明細.SQL_GetAllRows(true);
         }
     }
 }

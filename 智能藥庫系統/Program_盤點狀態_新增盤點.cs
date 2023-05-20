@@ -15,30 +15,45 @@ using H_Pannel_lib;
 using HIS_DB_Lib;
 namespace 智能藥庫系統
 {
-    public enum enum_盤點作業_新增盤點_盤點單號
+
+    public enum enum_盤點作業_盤點藥品清單
     {
         GUID,
-        盤點單號,
-        建表人,
-        建表時間,
-        盤點開始時間,
-        盤點結束時間,
-        盤點狀態
+        藥品碼,
+        料號,
+        藥品名稱,
+        藥品條碼1,
+        藥品條碼2,
+        理論值,
+
     }
 
     public partial class Form1 : Form
     {
         private void sub_Program_盤點作業_新增盤點_Init()
         {
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.Init();
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.DataGridRowsChangeRefEvent += SqL_DataGridView_盤點作業_盤點藥品清單_DataGridRowsChangeRefEvent;
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.RowEndEditEvent += SqL_DataGridView_盤點作業_盤點藥品清單_RowEndEditEvent1;
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.CellValidatingEvent += SqL_DataGridView_盤點作業_盤點藥品清單_CellValidatingEvent1;
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.Paint += SqL_DataGridView_盤點作業_盤點藥品清單_Paint;
 
-            this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Init();
-            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent;
-            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_新建盤點表.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_新建盤點表_MouseDownEvent;
-            this.plC_RJ_Button_盤點作業_新增盤點_盤點單號_刪除資料.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_盤點單號_刪除資料_MouseDownEvent;
+            this.sqL_DataGridView_盤點作業_藥品資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
+            this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(false, new enum_藥庫_藥品資料().GetEnumNames());
+            this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(true, enum_藥庫_藥品資料.藥品碼, enum_藥庫_藥品資料.藥品名稱, enum_藥庫_藥品資料.料號, enum_藥庫_藥品資料.中文名稱, enum_藥庫_藥品資料.包裝單位, enum_藥庫_藥品資料.藥庫庫存);
+            this.sqL_DataGridView_盤點作業_藥品資料.RowDoubleClickEvent += SqL_DataGridView_盤點作業_藥品資料_RowDoubleClickEvent;
+            this.sqL_DataGridView_盤點作業_藥品資料.DataGridRowsChangeRefEvent += SqL_DataGridView_盤點作業_藥品資料_DataGridRowsChangeRefEvent;
+
+            this.plC_RJ_Button_盤點作業_新增盤點_自動生成.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent;
+            this.plC_RJ_Button_盤點作業_藥品資料_搜尋.MouseDownEvent += PlC_RJ_Button_盤點作業_藥品資料_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_盤點作業_盤點藥品清單_刪除.MouseDownEvent += PlC_RJ_Button_盤點作業_盤點藥品清單_刪除_MouseDownEvent;
+            this.plC_RJ_Button_盤點作業_盤點藥品清單_送出.MouseDownEvent += PlC_RJ_Button_盤點作業_盤點藥品清單_送出_MouseDownEvent;
+            this.plC_RJ_Button_盤點作業_新增盤點_建立測試單.MouseDownEvent += PlC_RJ_Button_盤點作業_新增盤點_建立測試單_MouseDownEvent;
+
             this.plC_UI_Init.Add_Method(sub_Program_盤點作業_新增盤點);
         }
 
-     
+  
 
         private bool flag_Program_盤點作業_新增盤點_Init = false;
         private void sub_Program_盤點作業_新增盤點()
@@ -47,6 +62,7 @@ namespace 智能藥庫系統
             {
                 if (!flag_Program_盤點作業_新增盤點_Init)
                 {
+                    PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(null);
                     flag_Program_盤點作業_新增盤點_Init = true;
                 }
             }
@@ -60,75 +76,174 @@ namespace 智能藥庫系統
 
         #endregion
         #region Event
-        private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent(MouseEventArgs mevent)
+        private void SqL_DataGridView_盤點作業_盤點藥品清單_Paint(object sender, PaintEventArgs e)
         {
-            //List<object[]> list_value = new List<object[]>();
-            //string json = Basic.Net.WEBApiGet(dBConfigClass.Inventory_get_creat_ApiURL);
-            //returnData returnData = json.JsonDeserializet<returnData>();
-            //List<inventoryClass.creat_OUT> inventory_Creat_OUTs = new List<inventoryClass.creat_OUT>();
-            //for (int i = 0; i < returnData.Data.Count; i++)
-            //{
-            //    inventoryClass.creat_OUT inventory_creat_OUT = inventoryClass.creat_OUT.ObjToClass(returnData.Data[i]);
-            //    inventory_Creat_OUTs.Add(inventory_creat_OUT);
-            //}
-            //for (int i = 0; i < inventory_Creat_OUTs.Count; i++)
-            //{
-            //    object[] value = new object[new enum_盤點作業_新增盤點_盤點單號().GetLength()];
-            //    value[(int)enum_盤點作業_新增盤點_盤點單號.GUID] = inventory_Creat_OUTs[i].GUID;
-            //    value[(int)enum_盤點作業_新增盤點_盤點單號.盤點單號] = inventory_Creat_OUTs[i].盤點單號;
-            //    value[(int)enum_盤點作業_新增盤點_盤點單號.建表人] = inventory_Creat_OUTs[i].建表人;
-            //    value[(int)enum_盤點作業_新增盤點_盤點單號.建表時間] = inventory_Creat_OUTs[i].建表時間;
-            //    value[(int)enum_盤點作業_新增盤點_盤點單號.盤點開始時間] = inventory_Creat_OUTs[i].盤點開始時間;
-            //    value[(int)enum_盤點作業_新增盤點_盤點單號.盤點結束時間] = inventory_Creat_OUTs[i].盤點結束時間;
-            //    value[(int)enum_盤點作業_新增盤點_盤點單號.盤點狀態] = inventory_Creat_OUTs[i].盤點狀態;
-            //    list_value.Add(value);
-            //}
-            //this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.RefreshGrid(list_value);
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.RefreshGrid();
         }
-        private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_新建盤點表_MouseDownEvent(MouseEventArgs mevent)
+        private void SqL_DataGridView_盤點作業_盤點藥品清單_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
-        //    returnData InData = new returnData();
-        //    inventoryClass.creat_OUT creat_OUT = new inventoryClass.creat_OUT();
-        //    creat_OUT.建表人 = 登入者名稱;
-        //    InData.Data.Add(creat_OUT);
-        //    string json = Basic.Net.WEBApiPostJson(dBConfigClass.Inventory_post_creat_ApiURL, InData.JsonSerializationt());
-        //    returnData returnData = json.JsonDeserializet<returnData>();
-        //    if(returnData == null)
-        //    {
-        //        MyMessageBox.ShowDialog("回傳格式錯誤!");
-        //        return;
-        //    }
-        //    MyMessageBox.ShowDialog(returnData.Result);
-        //    PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent(null);
+            RowsList.Sort(new ICP_盤點作業_盤點藥品清單());
         }
-        private void PlC_RJ_Button_盤點作業_新增盤點_盤點單號_刪除資料_MouseDownEvent(MouseEventArgs mevent)
+        private void SqL_DataGridView_盤點作業_盤點藥品清單_RowEndEditEvent1(object[] RowValue, int rowIndex, int colIndex, string value)
         {
-            //List<object[]> list_value = this.sqL_DataGridView_盤點作業_新增盤點_盤點單號.Get_All_Checked_RowsValues();
-            //if(list_value.Count == 0)
-            //{
-            //    MyMessageBox.ShowDialog("未選取資料!");
-            //    return;
-            //}
-            //if (MyMessageBox.ShowDialog($"是否刪除選取{list_value.Count}筆資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-            //returnData InData = new returnData();
-            //for (int i = 0; i < list_value.Count; i++)
-            //{
-            //    inventoryClass.creat_OUT creat_OUT = new inventoryClass.creat_OUT();
-            //    creat_OUT.GUID = list_value[i][(int)enum_盤點作業_新增盤點_盤點單號.GUID].ObjectToString();
-            //    InData.Data.Add(creat_OUT);
-            //}
-            //string json = Basic.Net.WEBApiPostJson(dBConfigClass.Inventory_post_delete_ApiURL, InData.JsonSerializationt());
-            //returnData returnData = json.JsonDeserializet<returnData>();
-            //if (returnData == null)
-            //{
-            //    MyMessageBox.ShowDialog("回傳格式錯誤!");
-            //    return;
-            //}
-            //MyMessageBox.ShowDialog(returnData.Result);
-            //PlC_RJ_Button_盤點作業_新增盤點_盤點單號_全部顯示_MouseDownEvent(null);
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.ReplaceExtra(RowValue, true);
+        }
+
+        private void SqL_DataGridView_盤點作業_盤點藥品清單_CellValidatingEvent1(object[] RowValue, int rowIndex, int colIndex, string value, DataGridViewCellValidatingEventArgs e)
+        {
+            string 異動量 = value;
+            if (異動量.StringToInt32() < 0)
+            {
+                MyMessageBox.ShowDialog("請輸入正確數字(大於'0')!");
+                e.Cancel = true;
+            }
+        }
+        private void SqL_DataGridView_盤點作業_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
+        {
+            RowsList = this.sqL_DataGridView_藥庫_藥品資料.RowsChangeFunction(RowsList);
+        }
+        private void SqL_DataGridView_盤點作業_藥品資料_RowDoubleClickEvent(object[] RowValue)
+        {
+            
+            string 藥品碼 = RowValue[(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
+            string 料號 = RowValue[(int)enum_藥庫_藥品資料.料號].ObjectToString();
+            string 藥品名稱 = RowValue[(int)enum_藥庫_藥品資料.藥品名稱].ObjectToString();
+            string 藥品條碼1 = RowValue[(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
+            string 藥品條碼2 = RowValue[(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
+            string 理論值 = RowValue[(int)enum_藥庫_藥品資料.藥庫庫存].ObjectToString();
+            List<object[]> list_盤點藥品清單 = this.sqL_DataGridView_盤點作業_盤點藥品清單.GetAllRows();
+            list_盤點藥品清單 = list_盤點藥品清單.GetRows((int)enum_盤點作業_盤點藥品清單.藥品碼, 藥品碼);
+            if (list_盤點藥品清單.Count != 0) return;
+            object[] value = new object[new enum_盤點作業_盤點藥品清單().GetLength()];
+
+            value[(int)enum_盤點作業_盤點藥品清單.GUID] = Guid.NewGuid().ToString();
+            value[(int)enum_盤點作業_盤點藥品清單.藥品碼] = 藥品碼;
+            value[(int)enum_盤點作業_盤點藥品清單.料號] = 料號;
+            value[(int)enum_盤點作業_盤點藥品清單.藥品名稱] = 藥品名稱;
+            value[(int)enum_盤點作業_盤點藥品清單.理論值] = 理論值;
+            value[(int)enum_盤點作業_盤點藥品清單.藥品條碼1] = 藥品條碼1;
+            value[(int)enum_盤點作業_盤點藥品清單.藥品條碼2] = 藥品條碼2;
+
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.AddRow(value, true);
+        }
+        private void PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string json = Basic.Net.WEBApiGet($"{dBConfigClass.Inventory_ApiURL}/new_IC_SN");
+            Console.WriteLine(json);
+            this.Invoke(new Action(delegate
+            {
+                returnData returnData = json.JsonDeserializet<returnData>();
+                if (returnData == null) return;
+                if (returnData.Code != 200) return;
+                this.rJ_TextBox_盤點作業_新增盤點_盤點單號.Texts = $"{returnData.Value}";
+            }));
+        }
+        private void PlC_RJ_Button_盤點作業_藥品資料_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_盤點作業_藥品資料.SQL_GetAllRows(false);
+
+            if (this.rJ_TextBox_盤點作業_藥品資料_藥碼搜尋.Texts.StringIsEmpty() == false)
+            {
+                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.藥品碼, this.rJ_TextBox_盤點作業_藥品資料_藥碼搜尋.Texts);
+            }
+            if (this.rJ_TextBox_盤點作業_藥品資料_藥名搜尋.Texts.StringIsEmpty() == false)
+            {
+                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.藥品名稱, this.rJ_TextBox_盤點作業_藥品資料_藥名搜尋.Texts);
+            }
+            if (this.rJ_TextBox_盤點作業_藥品資料_料號搜尋.Texts.StringIsEmpty() == false)
+            {
+                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.料號, this.rJ_TextBox_盤點作業_藥品資料_料號搜尋.Texts);
+            }
+
+            this.sqL_DataGridView_盤點作業_藥品資料.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_盤點作業_盤點藥品清單_刪除_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_盤點作業_藥品資料.Get_All_Checked_RowsValues();
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取資料!");
+                return;
+            }
+            this.sqL_DataGridView_盤點作業_藥品資料.DeleteExtra(list_value, true);
+        }
+        private void PlC_RJ_Button_盤點作業_盤點藥品清單_送出_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_盤點藥品清單 = this.sqL_DataGridView_盤點作業_盤點藥品清單.GetAllRows();
+            list_盤點藥品清單 = (from value in list_盤點藥品清單
+                           where value[(int)enum_盤點作業_盤點藥品清單.理論值].StringToInt32() > 0
+                           select value).ToList();
+            if (list_盤點藥品清單.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未建立藥品盤點資料!");
+                return;
+            }
+            if (rJ_TextBox_盤點作業_新增盤點_盤點單號.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("盤點單號空白!");
+                return;
+            }
+            returnData returnData = new returnData();
+            inventoryClass.creat creat = new inventoryClass.creat();
+            creat.建表人 = 登入者名稱;
+            creat.盤點單號 = rJ_TextBox_盤點作業_新增盤點_盤點單號.Text;
+            for (int i = 0; i < list_盤點藥品清單.Count; i++)
+            {
+                inventoryClass.content content = new inventoryClass.content();
+                content.盤點單號 = creat.盤點單號;
+                content.藥品碼 = list_盤點藥品清單[i][(int)enum_盤點作業_盤點藥品清單.藥品碼].ObjectToString();
+                content.料號 = list_盤點藥品清單[i][(int)enum_盤點作業_盤點藥品清單.料號].ObjectToString();
+                content.理論值 = list_盤點藥品清單[i][(int)enum_盤點作業_盤點藥品清單.理論值].ObjectToString();
+                content.藥品條碼1 = list_盤點藥品清單[i][(int)enum_盤點作業_盤點藥品清單.藥品條碼1].ObjectToString();
+                content.藥品條碼2 = list_盤點藥品清單[i][(int)enum_盤點作業_盤點藥品清單.藥品條碼2].ObjectToString();
+                creat.Contents.Add(content);
+            }
+            returnData.Data = creat;
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_add", json_in);
+            Console.WriteLine(json);
+            returnData = json.JsonDeserializet<returnData>();
+            MyMessageBox.ShowDialog($"{returnData.Result}");
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.ClearGrid();
+        }
+        private void PlC_RJ_Button_盤點作業_新增盤點_建立測試單_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(null);
+            List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.SQL_GetAllRows(false);
+            string 盤點單號 = this.rJ_TextBox_盤點作業_新增盤點_盤點單號.Texts;
+            returnData returnData = new returnData();
+            inventoryClass.creat creat = new inventoryClass.creat();
+            creat.建表人 = 登入者名稱;
+            creat.盤點單號 = 盤點單號;
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                inventoryClass.content content = new inventoryClass.content();
+                content.盤點單號 = creat.盤點單號;
+                content.藥品碼 = list_value[i][(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
+                content.料號 = list_value[i][(int)enum_藥庫_藥品資料.料號].ObjectToString();
+                content.理論值 = (i + 1).ToString();
+                content.藥品條碼1 = list_value[i][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
+                content.藥品條碼2 = list_value[i][(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
+                creat.Contents.Add(content);
+            }
+            returnData.Data = creat;
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_add", returnData.JsonSerializationt());
+            Console.WriteLine(json);
+            returnData = json.JsonDeserializet<returnData>();
+            MyMessageBox.ShowDialog($"{returnData.Result}");
+            this.sqL_DataGridView_盤點作業_盤點藥品清單.ClearGrid();
         }
         #endregion
 
-
+        private class ICP_盤點作業_盤點藥品清單 : IComparer<object[]>
+        {
+            public int Compare(object[] x, object[] y)
+            {
+                string 藥品碼0 = x[(int)enum_盤點作業_盤點藥品清單.藥品碼].ObjectToString();
+                string 藥品碼1 = y[(int)enum_盤點作業_盤點藥品清單.藥品碼].ObjectToString();
+                int temp = 藥品碼0.CompareTo(藥品碼1);
+                return temp;
+            }
+        }
     }
 }

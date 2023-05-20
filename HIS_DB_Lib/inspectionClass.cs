@@ -8,27 +8,6 @@ using Basic;
 
 namespace HIS_DB_Lib
 {
-    public class class_sub_inspection_data
-    {
-        [JsonPropertyName("GUID")]
-        public string GUID { get; set; }
-        [JsonPropertyName("Master_GUID")]
-        public string Master_GUID { get; set; }
-        [JsonPropertyName("VAL_DATE")]
-        public string 效期 { get; set; }
-        [JsonPropertyName("LOT_NUMBER")]
-        public string 批號 { get; set; }
-        [JsonPropertyName("QTY")]
-        public string 數量 { get; set; }
-        [JsonPropertyName("MIS_CREATEDTTM")]
-        public string 驗收時間 { get; set; }
-        [JsonPropertyName("OPERATOR")]
-        public string 操作人 { get; set; }
-        [JsonPropertyName("LOCK")]
-        public string 已鎖定 { get; set; }
-        [JsonPropertyName("Update")]
-        public string 更新 { get; set; }
-    }
     public enum enum_驗收單號
     {
         GUID,
@@ -67,7 +46,8 @@ namespace HIS_DB_Lib
         實收數量,
         效期,
         批號,
-        驗收時間,
+        操作時間,
+        操作人,
         狀態,
     }
     public class inspectionClass
@@ -84,11 +64,11 @@ namespace HIS_DB_Lib
             public string 建表人 { get; set; }
             [JsonPropertyName("CT_TIME")]
             public string 建表時間 { get; set; }
-            [JsonPropertyName("ACPT_START_TIME")]
+            [JsonPropertyName("START_TIME")]
             public string 驗收開始時間 { get; set; }
-            [JsonPropertyName("ACPT_END_TIME")]
+            [JsonPropertyName("END_TIME")]
             public string 驗收結束時間 { get; set; }
-            [JsonPropertyName("ACPT_END_STATE")]
+            [JsonPropertyName("END_STATE")]
             public string 驗收狀態 { get; set; }
            
 
@@ -240,8 +220,10 @@ namespace HIS_DB_Lib
             public string 效期 { get; set; }
             [JsonPropertyName("LOT")]
             public string 批號 { get; set; }
-            [JsonPropertyName("ACPT_TIME")]
-            public string 驗收時間 { get; set; }
+            [JsonPropertyName("OP")]
+            public string 操作人 { get; set; }
+            [JsonPropertyName("OP_TIME")]
+            public string 操作時間 { get; set; }
             [JsonPropertyName("STATE")]
             public string 狀態 { get; set; }
 
@@ -257,7 +239,8 @@ namespace HIS_DB_Lib
                 value[(int)enum_驗收明細.藥品條碼1] = _class.藥品條碼1;
                 value[(int)enum_驗收明細.藥品條碼2] = _class.藥品條碼2;
                 value[(int)enum_驗收明細.實收數量] = _class.實收數量;
-                value[(int)enum_驗收明細.驗收時間] = _class.驗收時間;
+                value[(int)enum_驗收明細.操作時間] = _class.操作時間;
+                value[(int)enum_驗收明細.操作人] = _class.操作人;
                 value[(int)enum_驗收明細.效期] = _class.效期;
                 value[(int)enum_驗收明細.批號] = _class.批號;
                 value[(int)enum_驗收明細.狀態] = _class.狀態;
@@ -276,7 +259,8 @@ namespace HIS_DB_Lib
                 _class.藥品條碼1 = value[(int)enum_驗收明細.藥品條碼1].ObjectToString();
                 _class.藥品條碼2 = value[(int)enum_驗收明細.藥品條碼2].ObjectToString();
                 _class.實收數量 = value[(int)enum_驗收明細.實收數量].ObjectToString();
-                _class.驗收時間 = value[(int)enum_驗收明細.驗收時間].ToDateTimeString();
+                _class.操作人 = value[(int)enum_驗收明細.操作人].ObjectToString();
+                _class.操作時間 = value[(int)enum_驗收明細.操作時間].ToDateTimeString();
                 _class.效期 = value[(int)enum_驗收明細.效期].ObjectToString();
                 _class.批號 = value[(int)enum_驗收明細.批號].ObjectToString();
                 _class.狀態 = value[(int)enum_驗收明細.狀態].ObjectToString();

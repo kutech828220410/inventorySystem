@@ -38,6 +38,7 @@ namespace 智能藥庫系統
             批號,
             實收數量,
             驗收時間,
+            操作人,
 
         }
         private void sub_Program_藥庫_驗收入庫_單號查詢_Init()
@@ -168,7 +169,9 @@ namespace 智能藥庫系統
                 value[(int)enum_藥庫_驗收入庫_單號查詢_驗收藥品明細.效期] = sub_Content.效期;
                 value[(int)enum_藥庫_驗收入庫_單號查詢_驗收藥品明細.批號] = sub_Content.批號;
                 value[(int)enum_藥庫_驗收入庫_單號查詢_驗收藥品明細.實收數量] = sub_Content.實收數量;
-                value[(int)enum_藥庫_驗收入庫_單號查詢_驗收藥品明細.驗收時間] = sub_Content.驗收時間;
+                value[(int)enum_藥庫_驗收入庫_單號查詢_驗收藥品明細.操作人] = sub_Content.操作人;
+                value[(int)enum_藥庫_驗收入庫_單號查詢_驗收藥品明細.驗收時間] = sub_Content.操作時間;
+        
                 list_驗收藥品明細.Add(value);
             }
             sqL_DataGridView_藥庫_驗收入庫_單號查詢_驗收藥品明細.RefreshGrid(list_驗收藥品明細);
@@ -285,11 +288,12 @@ namespace 智能藥庫系統
             sub_Content.效期 = 效期;
             sub_Content.批號 = 批號;
             sub_Content.實收數量 = 數量;
+            sub_Content.操作人 = 登入者名稱;
             returnData.Data = sub_Content;
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inspection_ApiURL}/sub_content_add", json_in);
             returnData = json.JsonDeserializet<returnData>();
-            MyMessageBox.ShowDialog(returnData.Result);
+            if (returnData.Code < 0) MyMessageBox.ShowDialog(returnData.Result);
             Function_藥庫_驗收入庫_單號查詢_選擇驗收單號(rJ_TextBox_藥庫_驗收入庫_單號查詢_驗收單號.Text);
             Function_藥庫_驗收入庫_單號查詢_取得驗收明細(Master_GUID);
 

@@ -210,6 +210,9 @@
     <Compile Include="Program_盤點作業_資料庫.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_盤點狀態_單號查詢.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_藥庫_儲位設定_EPD266.cs">
       <SubType>Form</SubType>
     </Compile>
