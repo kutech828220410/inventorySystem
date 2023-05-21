@@ -251,6 +251,62 @@ namespace HIS_WebApi
 
             return POST_creat_add(returnData);
         }
+        //盤點單鎖定
+        [Route("creat_lock")]
+        [HttpPost]
+        public string POST_creat_lock([FromBody] returnData returnData)
+        {
+            inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+            if (creat == null)
+            {
+                returnData.Code = -5;
+                returnData.Result += $"Data資料錯誤!";
+                return returnData.JsonSerializationt();
+            }
+            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            List<object[]> list_inventory_creat_buf = new List<object[]>();
+            list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, creat.盤點單號);
+            if(list_inventory_creat_buf.Count == 0)
+            {
+                returnData.Code = -5;
+                returnData.Result += $"找無此盤點單號!";
+                return returnData.JsonSerializationt();
+            }
+            list_inventory_creat_buf[0][(int)enum_盤點單號.盤點狀態] = "鎖定";
+            sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_inventory_creat_buf);
+            creat.盤點狀態 = "鎖定";
+            returnData.Code = 200;
+            returnData.Value = "盤點單鎖定成功!";
+            return returnData.JsonSerializationt(true);
+        }
+        //盤點單解鎖
+        [Route("creat_unlock")]
+        [HttpPost]
+        public string POST_creat_unlock([FromBody] returnData returnData)
+        {
+            inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+            if (creat == null)
+            {
+                returnData.Code = -5;
+                returnData.Result += $"Data資料錯誤!";
+                return returnData.JsonSerializationt();
+            }
+            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            List<object[]> list_inventory_creat_buf = new List<object[]>();
+            list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, creat.盤點單號);
+            if (list_inventory_creat_buf.Count == 0)
+            {
+                returnData.Code = -5;
+                returnData.Result += $"找無此盤點單號!";
+                return returnData.JsonSerializationt();
+            }
+            list_inventory_creat_buf[0][(int)enum_盤點單號.盤點狀態] = "等待盤點";
+            sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_inventory_creat_buf);
+            creat.盤點狀態 = "等待盤點";
+            returnData.Code = 200;
+            returnData.Value = "盤點單鎖定成功!";
+            return returnData.JsonSerializationt(true);
+        }
         //以盤點單號刪除盤點單
         [Route("creat_delete_by_IC_SN")]
         [HttpPost]
