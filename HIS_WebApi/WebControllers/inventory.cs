@@ -16,6 +16,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
 using MyUI;
+using H_Pannel_lib;
 using HIS_DB_Lib;
 namespace HIS_WebApi
 {
@@ -39,6 +40,7 @@ namespace HIS_WebApi
         private SQLControl sQLControl_inventory_content = new SQLControl(IP, DataBaseName, "inventory_content", UserName, Password, Port, SSLMode);
         private SQLControl sQLControl_inventory_sub_content = new SQLControl(IP, DataBaseName, "inventory_sub_content", UserName, Password, Port, SSLMode);
         private SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+
 
         //取得可建立今日最新盤點單
         [Route("new_IC_SN")]
@@ -181,6 +183,7 @@ namespace HIS_WebApi
                 creat.Contents[i].GUID = Guid.NewGuid().ToString();
                 creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
                 creat.Contents[i].Master_GUID = creat.GUID;
+                creat.Contents[i].盤點單號 = creat.盤點單號;
                 value[(int)enum_盤點內容.GUID] = creat.Contents[i].GUID;
                 value[(int)enum_盤點內容.Master_GUID] = creat.Contents[i].Master_GUID;
                 value[(int)enum_盤點內容.藥品碼] = creat.Contents[i].藥品碼;
@@ -199,6 +202,40 @@ namespace HIS_WebApi
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"成功加入新盤點單! 共{list_inventory_content_add.Count}筆資料";
             return returnData.JsonSerializationt(true);
+        }
+        [Route("creat_add")]
+        [HttpGet]
+        public string GET_creat_add()
+        {
+            firstclass_deviceController firstclass_DeviceController = new firstclass_deviceController();
+            returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN().JsonDeserializet<returnData>();
+            string str_IC_SN = returnData_GET_new_IC_SN.Value;
+            List<DeviceBasic> deviceBasics = firstclass_DeviceController.Function_Get_firstclass_device();
+            List<object[]> list_MED_cloud = this.sQLControl_MED_cloud.GetAllRows(null);
+            List<object[]> list_MED_cloud_buf = new List<object[]>();
+            returnData returnData = new returnData();
+            inventoryClass.creat creat = new inventoryClass.creat();
+            creat.盤點單號 = str_IC_SN;
+            for (int i = 0; i < deviceBasics.Count; i++)
+            {
+                list_MED_cloud_buf = list_MED_cloud.GetRows((int)enum_medicine_page_cloud.藥品碼, deviceBasics[i].Code);
+                if(list_MED_cloud_buf.Count > 0)
+                {
+                    inventoryClass.content content = new inventoryClass.content();
+                    content.藥品碼 = list_MED_cloud_buf[0][(int)enum_medicine_page_cloud.藥品碼].ObjectToString();
+                    content.藥品名稱 = list_MED_cloud_buf[0][(int)enum_medicine_page_cloud.藥品名稱].ObjectToString();
+                    content.中文名稱 = list_MED_cloud_buf[0][(int)enum_medicine_page_cloud.中文名稱].ObjectToString();
+                    content.料號 = list_MED_cloud_buf[0][(int)enum_medicine_page_cloud.料號].ObjectToString();
+                    content.藥品條碼1 = list_MED_cloud_buf[0][(int)enum_medicine_page_cloud.藥品條碼1].ObjectToString();
+                    content.藥品條碼2 = list_MED_cloud_buf[0][(int)enum_medicine_page_cloud.藥品條碼2].ObjectToString();
+                    content.包裝單位 = list_MED_cloud_buf[0][(int)enum_medicine_page_cloud.包裝單位].ObjectToString();
+                    content.理論值 = deviceBasics[i].Inventory;
+                    creat.Contents.Add(content);
+                }
+            }
+            returnData.Data = creat;
+
+            return POST_creat_add(returnData);
         }
         //以盤點單號刪除盤點單
         [Route("creat_delete_by_IC_SN")]
@@ -427,5 +464,6 @@ namespace HIS_WebApi
             returnData.Result = $"成功! {myTimer.ToString()}";
             return returnData;
         }
+       
     }
 }
