@@ -1362,6 +1362,7 @@
             this.sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細 = new SQLUI.SQL_DataGridView();
             this.rJ_Lable162 = new MyUI.RJ_Lable();
             this.checkBox_盤點作業_單號查詢_盤點藥品明細_輸入效期批號 = new System.Windows.Forms.CheckBox();
+            this.plC_RJ_Button_盤點作業_單號查詢_下載 = new MyUI.PLC_RJ_Button();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
@@ -3972,7 +3973,7 @@
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_戰情白板_自選藥品_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -13654,7 +13655,7 @@
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -16214,7 +16215,7 @@
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeadersHeight = 15;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.Font = new System.Drawing.Font("標楷體", 9F);
@@ -21001,7 +21002,7 @@
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeadersHeight = 18;
+            this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeadersHeight = 4;
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.DataBaseName = "OD_VM";
             this.sqL_DataGridView_緊急訂單_下訂單_供應商搜尋.Dock = System.Windows.Forms.DockStyle.Top;
@@ -21319,7 +21320,7 @@
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeadersHeight = 18;
+            this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeadersHeight = 4;
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.DataBaseName = "OD_VM";
             this.sqL_DataGridView_緊急訂單_下訂單_藥品搜尋.Dock = System.Windows.Forms.DockStyle.Top;
@@ -21446,7 +21447,7 @@
             this.sqL_DataGridView_訂單管理_發票內容.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_訂單管理_發票內容.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_訂單管理_發票內容.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_訂單管理_發票內容.columnHeadersHeight = 18;
+            this.sqL_DataGridView_訂單管理_發票內容.columnHeadersHeight = 15;
             this.sqL_DataGridView_訂單管理_發票內容.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_訂單管理_發票內容.DataBaseName = "OD_VM";
             this.sqL_DataGridView_訂單管理_發票內容.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -22299,7 +22300,7 @@
             this.sqL_DataGridView_訂單管理_訂單內容.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_訂單管理_訂單內容.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_訂單管理_訂單內容.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_訂單管理_訂單內容.columnHeadersHeight = 18;
+            this.sqL_DataGridView_訂單管理_訂單內容.columnHeadersHeight = 15;
             this.sqL_DataGridView_訂單管理_訂單內容.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_訂單管理_訂單內容.DataBaseName = "OD_VM";
             this.sqL_DataGridView_訂單管理_訂單內容.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -22385,7 +22386,7 @@
             this.sqL_DataGridView_訂單管理_訂單列表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_訂單管理_訂單列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_訂單管理_訂單列表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_訂單管理_訂單列表.columnHeadersHeight = 18;
+            this.sqL_DataGridView_訂單管理_訂單列表.columnHeadersHeight = 15;
             this.sqL_DataGridView_訂單管理_訂單列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_訂單管理_訂單列表.DataBaseName = "OD_VM";
             this.sqL_DataGridView_訂單管理_訂單列表.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -24577,7 +24578,7 @@
             this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.DataBaseName = "storehouse_0";
             this.sqL_DataGridView_驗收入庫_新增驗收_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -28877,7 +28878,7 @@
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.DataBaseName = "storehouse_0";
             this.sqL_DataGridView_藥局_緊急申領_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -31339,7 +31340,7 @@
             this.sqL_DataGridView_盤點作業_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點作業_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點作業_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點作業_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_盤點作業_藥品資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_盤點作業_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_盤點作業_藥品資料.DataBaseName = "storehouse_0";
             this.sqL_DataGridView_盤點作業_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -33849,6 +33850,7 @@
             // panel180
             // 
             this.panel180.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel180.Controls.Add(this.plC_RJ_Button_盤點作業_單號查詢_下載);
             this.panel180.Controls.Add(this.plC_RJ_Button_盤點作業_單號查詢_選擇);
             this.panel180.Controls.Add(this.rJ_Lable151);
             this.panel180.Controls.Add(this.comboBoxr_盤點作業_單號查詢_盤點單號);
@@ -34690,6 +34692,48 @@
             this.checkBox_盤點作業_單號查詢_盤點藥品明細_輸入效期批號.TabIndex = 244;
             this.checkBox_盤點作業_單號查詢_盤點藥品明細_輸入效期批號.Text = "輸入效期批號";
             this.checkBox_盤點作業_單號查詢_盤點藥品明細_輸入效期批號.UseVisualStyleBackColor = true;
+            // 
+            // plC_RJ_Button_盤點作業_單號查詢_下載
+            // 
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.AutoResetState = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.Bool = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.BorderRadius = 5;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.but_press = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.Location = new System.Drawing.Point(970, 14);
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.Name = "plC_RJ_Button_盤點作業_單號查詢_下載";
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.OFF_文字內容 = "下載";
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.ON_BorderSize = 5;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.ON_文字內容 = "下載";
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.Size = new System.Drawing.Size(127, 53);
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.State = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.TabIndex = 240;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.Text = "下載";
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.Texts = "下載";
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.字型鎖住 = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.文字鎖住 = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.讀取位元反向 = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.讀寫鎖住 = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.音效 = true;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.顯示 = false;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.顯示狀態 = false;
             // 
             // Form1
             // 
@@ -36506,6 +36550,7 @@
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細;
         private MyUI.RJ_Lable rJ_Lable162;
         private System.Windows.Forms.CheckBox checkBox_盤點作業_單號查詢_盤點藥品明細_輸入效期批號;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_盤點作業_單號查詢_下載;
     }
 }
 

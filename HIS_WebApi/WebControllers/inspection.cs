@@ -515,58 +515,7 @@ namespace HIS_WebApi
         //    return data.JsonSerializationt();
         //}
 
-        //[Route("download_excel")]
-        //[HttpPost]
-        //public async Task<ActionResult> Post_download_excel([FromBody] returnData data)
-        //{
-        //    string jsonstr = Post_OD_Date(data);
-        //    string 請購單號 = "";
-        //    string 驗收時間 = "";
-        //    int NumOfRow = 0;
-        //    for (int i = 0; i < data.Data.Count; i++)
-        //    {
-        //        class_output_inspection_date class_Output_Inspection_Date = new class_output_inspection_date();
-        //        class_Output_Inspection_Date = class_Output_Inspection_Date.ObjToData(data.Data[i]);
-
-        //        驗收時間 += class_Output_Inspection_Date.驗收時間;
-        //        請購單號 += class_Output_Inspection_Date.請購單號;
-        //        if (i != data.Data.Count - 1)
-        //        {
-        //            驗收時間 += ",";
-        //            請購單號 += ",";
-        //        }
-        //    }
-
-
-        //    returnData returnData = jsonstr.JsonDeserializet<returnData>();
-        //    returnData.Code = 200;
-        //    List<SheetClass> sheetClasses = new List<SheetClass>();
-        //    string loadText = Basic.MyFileStream.LoadFileAllText(@"C:\excel.txt", "utf-8");
-        //    SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
-        //    sheetClass.ReplaceCell(1, 2, $"{驗收時間}");
-        //    sheetClass.ReplaceCell(1, 6, $"{請購單號}");
-        //    NumOfRow = 0;
-        //    for (int i = 0; i < returnData.Data.Count; i++)
-        //    {
-        //        class_output_inspection_data class_Output_Inspection_Data = new class_output_inspection_data();
-        //        class_Output_Inspection_Data = class_Output_Inspection_Data.ObjToData(returnData.Data[i]);
-        //        sheetClass.AddNewCell_Webapi(NumOfRow + 3, 0, $"{class_Output_Inspection_Data.請購單號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-        //        sheetClass.AddNewCell_Webapi(NumOfRow + 3, 1, $"{class_Output_Inspection_Data.藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-        //        sheetClass.AddNewCell_Webapi(NumOfRow + 3, 2, $"{class_Output_Inspection_Data.料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-        //        sheetClass.AddNewCell_Webapi(NumOfRow + 3, NumOfRow + 3, 3, 4, $"{class_Output_Inspection_Data.藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-        //        //sheetClass.AddNewCell_Webapi(NumOfRow + 3, 5, $"{class_Output_Inspection_Data.效期}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-        //        //sheetClass.AddNewCell_Webapi(NumOfRow + 3, 6, $"{class_Output_Inspection_Data.批號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-        //        sheetClass.AddNewCell_Webapi(NumOfRow + 3, 7, $"{class_Output_Inspection_Data.應收數量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-        //        sheetClass.AddNewCell_Webapi(NumOfRow + 3, 8, $"{class_Output_Inspection_Data.實收數量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-
-        //        NumOfRow++;
-        //    }
-
-
-        //    byte[] excelData = sheetClass.NPOI_GetBytes();
-        //    Stream stream = new MemoryStream(excelData);
-        //    return await Task.FromResult(File(stream, "application/vnd.ms-excel", $"{DateTime.Now.ToDateString("-")}_驗收入庫清單.xls"));
-        //}
+       
 
     }
 }

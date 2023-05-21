@@ -13,6 +13,9 @@ using MyUI;
 using Basic;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using System.Net;
+using System.Net.Http;
+
 namespace 智能藥庫系統
 {
 
@@ -52,11 +55,12 @@ namespace 智能藥庫系統
             this.plC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容.MouseDownEvent += PlC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容_MouseDownEvent;
             this.plC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細.MouseDownEvent += PlC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細_MouseDownEvent;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細.MouseDownEvent += PlC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細_MouseDownEvent;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.MouseClickEvent += PlC_RJ_Button_盤點作業_單號查詢_下載_MouseClickEvent;
 
             this.plC_UI_Init.Add_Method(sub_Program_盤點作業_單號查詢);
         }
 
-     
+
 
         private bool flag_Program_盤點作業_單號查詢_Init = false;
         private void sub_Program_盤點作業_單號查詢()
@@ -182,12 +186,12 @@ namespace 智能藥庫系統
             }
             sqL_DataGridView_盤點作業_單號查詢_盤點藥品明細.RefreshGrid(list_盤點藥品明細);
         }
-        private void Function_盤點作業_單號查詢_刪除盤點單號(string ACPT_SN)
+        private void Function_盤點作業_單號查詢_刪除盤點單號(string IC_SN)
         {
             List<string> str_ary = new List<string>();
             returnData returnData = new returnData();
             inventoryClass.creat creat = new inventoryClass.creat();
-            creat.盤點單號 = ACPT_SN;
+            creat.盤點單號 = IC_SN;
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_delete_by_IC_SN", json_in);
@@ -195,11 +199,11 @@ namespace 智能藥庫系統
             MyMessageBox.ShowDialog(returnData.Result);
             Function_盤點作業_單號查詢_清除顯示UI();
         }
-        private void Function_盤點作業_單號查詢_選擇盤點單號(string ACPT_SN)
+        private void Function_盤點作業_單號查詢_選擇盤點單號(string IC_SN)
         {
             returnData returnData = new returnData();
             inventoryClass.creat creat = new inventoryClass.creat();
-            creat.盤點單號 = ACPT_SN;
+            creat.盤點單號 = IC_SN;
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_get_by_IC_SN", json_in);
@@ -344,8 +348,38 @@ namespace 智能藥庫系統
             Function_盤點作業_單號查詢_選擇盤點單號(rJ_TextBox_盤點作業_單號查詢_盤點單號.Text);
             Function_盤點作業_單號查詢_取得盤點明細(Master_GUID);
         }
+        private void PlC_RJ_Button_盤點作業_單號查詢_下載_MouseClickEvent(MouseEventArgs mevent)
+        {
+            returnData returnData = new returnData();
+            inventoryClass.creat creat = new inventoryClass.creat();
+            this.Invoke(new Action(delegate
+            {
+                creat.盤點單號 = comboBoxr_盤點作業_單號查詢_盤點單號.Text;
+            }));
+            returnData.Data = creat;
+            string json_in = returnData.JsonSerializationt(true);
+            try
+            {
+                byte[] excelData = Net.WEBApiPostJsonBytes($"{dBConfigClass.Inventory_ApiURL}/download_excel_by_IC_SN", json_in);
+
+                this.Invoke(new Action(delegate
+                {
+                    if (this.saveFileDialog_SaveExcel.ShowDialog() == DialogResult.OK)
+                    {
+                        excelData.SaveFileStream(saveFileDialog_SaveExcel.FileName);
+
+                        MyMessageBox.ShowDialog("Excel 文件下载成功！");
+                    }
+                }));
+            }
+            catch
+            {
+                MyMessageBox.ShowDialog("Excel 文件下载失敗！");
+            }
+          
+        }
         #endregion
-
-
+      
+        
     }
 }

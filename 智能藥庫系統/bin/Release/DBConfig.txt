@@ -47,5 +47,5 @@
   "Emg_apply_ApiURL": "https://127.0.0.1:4433/api/excel/emg_apply/",
   "MedPrice_ApiURL": "https://127.0.0.1:4433/api/MedPrice",
   "Inspection_ApiURL": "http://103.1.221.188:4433/api/inspection",
-  "Inventory_ApiURL": "http://103.1.221.188:4433/api/inventory"
+  "Inventory_ApiURL": "http://127.0.0.1:4433/api/inventory"
 }

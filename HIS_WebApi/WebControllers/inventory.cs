@@ -411,6 +411,58 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt();
         }
 
+
+        [Route("download_excel_by_IC_SN")]
+        [HttpPost]
+        public async Task<ActionResult> Post_download_excel_by_IC_SN([FromBody] returnData returnData)
+        {
+
+            string json = POST_creat_get_by_IC_SN(returnData);
+            returnData = json.JsonDeserializet<returnData>();
+            if(returnData.Code != 200)
+            {
+                return null;
+            }
+            List<inventoryClass.creat> creats = inventoryClass.creat.ObjToListClass(returnData.Data);
+            inventoryClass.creat creat = creats[0];
+            List<SheetClass> sheetClasses = new List<SheetClass>();
+            string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_inventory.txt", "utf-8");
+            SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
+            sheetClass.ReplaceCell(1, 1, $"{creat.盤點單號}");
+            sheetClass.ReplaceCell(1, 5, $"{creat.建表人}");
+            sheetClass.ReplaceCell(2, 1, $"{creat.盤點開始時間}");
+            sheetClass.ReplaceCell(2, 5, $"{creat.盤點結束時間}");
+            int NumOfRow = 0;
+            for (int i = 0; i < creat.Contents.Count; i++)
+            {
+                int 差異量 = 0;
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                if (creat.Contents[i].理論值.StringIsEmpty() && creat.Contents[i].盤點量.StringIsEmpty())
+                {
+                    差異量 = creat.Contents[i].理論值.StringToInt32() - creat.Contents[i].盤點量.StringToInt32();
+                }
+                else
+                {
+
+                }
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 7, $"{差異量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+
+                NumOfRow++;
+            }
+ 
+
+
+            byte[] excelData = sheetClass.NPOI_GetBytes();
+            Stream stream = new MemoryStream(excelData);
+            return await Task.FromResult(File(stream, "application/vnd.ms-excel", $"{DateTime.Now.ToDateString("-")}_盤點表.xls"));
+        }
+
         public returnData Function_Get_inventory_creat(List<object[]> list_inventory_creat)
         {
             return Function_Get_inventory_creat(list_inventory_creat, true);
