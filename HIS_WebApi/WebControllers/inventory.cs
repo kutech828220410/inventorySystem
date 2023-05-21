@@ -205,15 +205,22 @@ namespace HIS_WebApi
         }
         [Route("creat_add")]
         [HttpGet]
-        public string GET_creat_add()
+        public string GET_creat_add(string TableName)
         {
-            firstclass_deviceController firstclass_DeviceController = new firstclass_deviceController();
+            returnData returnData = new returnData();
+            if (TableName.StringIsEmpty())
+            {
+                returnData.Code = -5;
+                returnData.Value = "請輸入TableName!";
+                return returnData.JsonSerializationt();
+            }
+            deviceController deviceController = new deviceController();
             returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN().JsonDeserializet<returnData>();
             string str_IC_SN = returnData_GET_new_IC_SN.Value;
-            List<DeviceBasic> deviceBasics = firstclass_DeviceController.Function_Get_firstclass_device();
+            List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(TableName);
             List<object[]> list_MED_cloud = this.sQLControl_MED_cloud.GetAllRows(null);
             List<object[]> list_MED_cloud_buf = new List<object[]>();
-            returnData returnData = new returnData();
+           
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.盤點單號 = str_IC_SN;
             for (int i = 0; i < deviceBasics.Count; i++)
