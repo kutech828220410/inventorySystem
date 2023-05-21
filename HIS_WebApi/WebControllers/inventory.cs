@@ -127,7 +127,7 @@ namespace HIS_WebApi
         //盤點單新增
         [Route("creat_add")]
         [HttpPost]
-        public string POST_creat([FromBody] returnData returnData)
+        public string POST_creat_add([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
