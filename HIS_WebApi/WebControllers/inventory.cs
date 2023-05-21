@@ -458,9 +458,9 @@ namespace HIS_WebApi
  
 
 
-            byte[] excelData = sheetClass.NPOI_GetBytes();
+            byte[] excelData = sheetClass.NPOI_GetBytes(Excel_Type.xlsx);
             Stream stream = new MemoryStream(excelData);
-            return await Task.FromResult(File(stream, "application/vnd.ms-excel", $"{DateTime.Now.ToDateString("-")}_盤點表.xls"));
+            return await Task.FromResult(File(stream, "application/vnd.ms-excel", $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
         }
 
         public returnData Function_Get_inventory_creat(List<object[]> list_inventory_creat)

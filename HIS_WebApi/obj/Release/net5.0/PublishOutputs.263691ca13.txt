@@ -138,6 +138,7 @@ C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\r
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Basic.dll
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_DB_Lib.dll
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\H_Pannel_lib.dll
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\ICSharpCode.SharpZipLib.dll
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\MyOffice.dll
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\MySQL_Login.dll

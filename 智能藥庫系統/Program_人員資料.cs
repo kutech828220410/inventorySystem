@@ -340,6 +340,11 @@ namespace 智能藥庫系統
                     MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
                     MyMessageBox.ShowDialog("匯出完成!");
                 }
+                else if (Extension == ".xlsx")
+                {
+                    MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                    MyMessageBox.ShowDialog("匯出完成!");
+                }
             }
         }
         private void Function_人員資料_匯入()
