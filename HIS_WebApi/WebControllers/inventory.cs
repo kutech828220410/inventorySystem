@@ -90,7 +90,14 @@ namespace HIS_WebApi
 
             List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
             list_inventory_creat = list_inventory_creat.GetRowsInDate((int)enum_盤點單號.建表時間, creat.建表時間.StringToDateTime());
-            returnData = Function_Get_inventory_creat(list_inventory_creat);
+            if(returnData.Value == "1")
+            {
+                returnData = Function_Get_inventory_creat(list_inventory_creat ,false);
+            }
+            else
+            {
+                returnData = Function_Get_inventory_creat(list_inventory_creat);
+            }
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"取得盤點資料成功!";
@@ -406,6 +413,10 @@ namespace HIS_WebApi
 
         public returnData Function_Get_inventory_creat(List<object[]> list_inventory_creat)
         {
+            return Function_Get_inventory_creat(list_inventory_creat, true);
+        }
+        public returnData Function_Get_inventory_creat(List<object[]> list_inventory_creat, bool allData)
+        {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             returnData returnData = new returnData();
@@ -427,43 +438,47 @@ namespace HIS_WebApi
             for (int i = 0; i < list_inventory_creat.Count; i++)
             {
                 inventoryClass.creat creat = inventoryClass.creat.SQLToClass(list_inventory_creat[i]);
-                list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.Master_GUID, creat.GUID);
-                for (int k = 0; k < list_inventory_content_buf.Count; k++)
+                if(allData)
                 {
-                    inventoryClass.content content = inventoryClass.content.SQLToClass(list_inventory_content_buf[k]);
-                    藥品碼 = content.藥品碼;
-                    藥品名稱 = "";
-                    中文名稱 = "";
-                    包裝單位 = "";
-                    list_MED_cloud_buf = list_MED_cloud.GetRows((int)enum_雲端藥檔.藥品碼, 藥品碼);
-                    if (list_MED_cloud_buf.Count > 0)
+                    list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.Master_GUID, creat.GUID);
+                    for (int k = 0; k < list_inventory_content_buf.Count; k++)
                     {
-                        藥品名稱 = list_MED_cloud_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
-                        中文名稱 = list_MED_cloud_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString();
-                        包裝單位 = list_MED_cloud_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
-                    }
-                    content.藥品名稱 = 藥品名稱;
-                    content.中文名稱 = 中文名稱;
-                    content.包裝單位 = 包裝單位;
-
-                    int 盤點量 = 0;
-                    list_inventory_sub_content_buf = list_inventory_sub_content.GetRows((int)enum_盤點明細.Master_GUID, content.GUID);
-                    for (int m = 0; m < list_inventory_sub_content_buf.Count; m++)
-                    {
-                        inventoryClass.sub_content sub_Content = inventoryClass.sub_content.SQLToClass(list_inventory_sub_content_buf[m]);
-                        sub_Content.藥品名稱 = 藥品名稱;
-                        sub_Content.中文名稱 = 中文名稱;
-                        sub_Content.包裝單位 = 包裝單位;
-                        if (sub_Content.盤點量.StringIsInt32())
+                        inventoryClass.content content = inventoryClass.content.SQLToClass(list_inventory_content_buf[k]);
+                        藥品碼 = content.藥品碼;
+                        藥品名稱 = "";
+                        中文名稱 = "";
+                        包裝單位 = "";
+                        list_MED_cloud_buf = list_MED_cloud.GetRows((int)enum_雲端藥檔.藥品碼, 藥品碼);
+                        if (list_MED_cloud_buf.Count > 0)
                         {
-                            盤點量 += sub_Content.盤點量.StringToInt32();
+                            藥品名稱 = list_MED_cloud_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
+                            中文名稱 = list_MED_cloud_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString();
+                            包裝單位 = list_MED_cloud_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
                         }
-                        content.Sub_content.Add(sub_Content);
-                    }
-                    content.盤點量 = 盤點量.ToString();
+                        content.藥品名稱 = 藥品名稱;
+                        content.中文名稱 = 中文名稱;
+                        content.包裝單位 = 包裝單位;
 
-                    creat.Contents.Add(content);
+                        int 盤點量 = 0;
+                        list_inventory_sub_content_buf = list_inventory_sub_content.GetRows((int)enum_盤點明細.Master_GUID, content.GUID);
+                        for (int m = 0; m < list_inventory_sub_content_buf.Count; m++)
+                        {
+                            inventoryClass.sub_content sub_Content = inventoryClass.sub_content.SQLToClass(list_inventory_sub_content_buf[m]);
+                            sub_Content.藥品名稱 = 藥品名稱;
+                            sub_Content.中文名稱 = 中文名稱;
+                            sub_Content.包裝單位 = 包裝單位;
+                            if (sub_Content.盤點量.StringIsInt32())
+                            {
+                                盤點量 += sub_Content.盤點量.StringToInt32();
+                            }
+                            content.Sub_content.Add(sub_Content);
+                        }
+                        content.盤點量 = 盤點量.ToString();
+
+                        creat.Contents.Add(content);
+                    }
                 }
+               
                 creats.Add(creat);
             }
             returnData.Data = creats;
