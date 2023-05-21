@@ -455,12 +455,13 @@ namespace HIS_WebApi
 
                 NumOfRow++;
             }
- 
 
+            string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            string xls_command = "application/vnd.ms-excel";
 
             byte[] excelData = sheetClass.NPOI_GetBytes(Excel_Type.xlsx);
             Stream stream = new MemoryStream(excelData);
-            return await Task.FromResult(File(stream, "application/vnd.ms-excel", $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
+            return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
         }
 
         public returnData Function_Get_inventory_creat(List<object[]> list_inventory_creat)
