@@ -252,7 +252,7 @@ namespace HIS_WebApi
             return POST_creat_add(returnData);
         }
         //盤點單鎖定
-        [Route("creat_lock")]
+        [Route("creat_lock_by_IC_SN")]
         [HttpPost]
         public string POST_creat_lock([FromBody] returnData returnData)
         {
@@ -274,13 +274,19 @@ namespace HIS_WebApi
             }
             list_inventory_creat_buf[0][(int)enum_盤點單號.盤點狀態] = "鎖定";
             sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_inventory_creat_buf);
-            creat.盤點狀態 = "鎖定";
+            creat.GUID = list_inventory_creat_buf[0][(int)enum_盤點單號.GUID].ObjectToString();
+            creat.盤點狀態 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點狀態].ObjectToString();
+            creat.建表人 = list_inventory_creat_buf[0][(int)enum_盤點單號.建表人].ObjectToString();
+            creat.建表時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.建表時間].ToDateTimeString();
+            creat.盤點開始時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點開始時間].ToDateTimeString();
+            creat.盤點結束時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點結束時間].ToDateTimeString();
             returnData.Code = 200;
             returnData.Value = "盤點單鎖定成功!";
+            returnData.Data = creat;
             return returnData.JsonSerializationt(true);
         }
         //盤點單解鎖
-        [Route("creat_unlock")]
+        [Route("creat_unlock_by_IC_SN")]
         [HttpPost]
         public string POST_creat_unlock([FromBody] returnData returnData)
         {
@@ -302,9 +308,15 @@ namespace HIS_WebApi
             }
             list_inventory_creat_buf[0][(int)enum_盤點單號.盤點狀態] = "等待盤點";
             sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_inventory_creat_buf);
-            creat.盤點狀態 = "等待盤點";
+            creat.GUID = list_inventory_creat_buf[0][(int)enum_盤點單號.GUID].ObjectToString();
+            creat.盤點狀態 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點狀態].ObjectToString();
+            creat.建表人 = list_inventory_creat_buf[0][(int)enum_盤點單號.建表人].ObjectToString();
+            creat.建表時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.建表時間].ToDateTimeString();
+            creat.盤點開始時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點開始時間].ToDateTimeString();
+            creat.盤點結束時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點結束時間].ToDateTimeString();
             returnData.Code = 200;
-            returnData.Value = "盤點單鎖定成功!";
+            returnData.Value = "盤點單解鎖成功!";
+            returnData.Data = creat;
             return returnData.JsonSerializationt(true);
         }
         //以盤點單號刪除盤點單
