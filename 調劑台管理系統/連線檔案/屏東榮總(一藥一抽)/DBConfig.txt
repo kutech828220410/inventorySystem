@@ -10,7 +10,7 @@
   },
   "DB_person_page": {
     "DataBaseName": "dbvm",
-    "IP": "localhost",
+    "IP": "10.18.1.146",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -19,7 +19,7 @@
   },
   "DB_order_list": {
     "DataBaseName": "dbvm",
-    "IP": "localhost",
+    "IP": "10.18.1.146",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -28,14 +28,12 @@
   },
   "DB_Medicine_Cloud": {
     "DataBaseName": "dbvm",
-    "IP": "localhost",
+    "IP": "10.18.1.146",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
     "MySqlSslMode": 0,
     "TableName": ""
   },
-  "OrderApiURL": "http://192.168.24.61/dbvm/BBAR?barcode=",
-  "MedApiURL": "",
-  "Med_Update_ApiURL": ""
+  "OrderApiURL": ""
 }

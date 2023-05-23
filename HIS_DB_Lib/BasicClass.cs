@@ -10,6 +10,8 @@ namespace HIS_DB_Lib
     {
         private object _data = new object();
         private int _code = 0;
+        private string _server = "";
+        private string _dbName = "";
         private string _result = "";
         private string _value = "";
         private string _timeTaken = "";
@@ -19,5 +21,7 @@ namespace HIS_DB_Lib
         public string Result { get => _result; set => _result = value; }
         public string Value { get => _value; set => _value = value; }
         public string TimeTaken { get => _timeTaken; set => _timeTaken = value; }
+        public string Server { get => _server; set => _server = value; }
+        public string DbName { get => _dbName; set => _dbName = value; }
     }
 }

@@ -36,26 +36,27 @@ namespace HIS_WebApi
         static private string MDC_DataBaseName = ConfigurationManager.AppSettings["MED_cloud_DB"];
         static private string MDC_IP = ConfigurationManager.AppSettings["MED_cloud_IP"];
 
-        private SQLControl sQLControl_inventory_creat = new SQLControl(IP, DataBaseName, "inventory_creat", UserName, Password, Port, SSLMode);
-        private SQLControl sQLControl_inventory_content = new SQLControl(IP, DataBaseName, "inventory_content", UserName, Password, Port, SSLMode);
-        private SQLControl sQLControl_inventory_sub_content = new SQLControl(IP, DataBaseName, "inventory_sub_content", UserName, Password, Port, SSLMode);
-        private SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+     
 
 
         //取得可建立今日最新盤點單
         [Route("new_IC_SN")]
         [HttpGet]
-        public string GET_new_IC_SN()
+        public string GET_new_IC_SN(returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            returnData returnData = new returnData();
-            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             List<object[]> list_inventory_creat_buf = new List<object[]>();
 
             list_inventory_creat_buf = list_inventory_creat.GetRowsInDate((int)enum_盤點單號.建表時間, DateTime.Now);
 
-            List<object[]> list_medecine = this.sQLControl_MED_cloud.GetAllRows(null);
+            List<object[]> list_medecine = sQLControl_MED_cloud.GetAllRows(null);
             List<object[]> list_medecine_buf = new List<object[]>();
             string 盤點單號 = "";
             int index = 0;
@@ -80,7 +81,10 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             string[] date_ary = returnData.Value.Split(',');
             if (date_ary.Length != 2)
             {
@@ -99,9 +103,10 @@ namespace HIS_WebApi
             }
             DateTime date_st = date_ary[0].StringToDateTime();
             DateTime date_end = date_ary[1].StringToDateTime();
-            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             list_inventory_creat = list_inventory_creat.GetRowsInDateEx((int)enum_盤點單號.建表時間, date_st, date_end);
-            returnData = Function_Get_inventory_creat(list_inventory_creat, false);
+            returnData = Function_Get_inventory_creat(returnData.Server, returnData.DbName, list_inventory_creat, false);
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"取得盤點資料成功!";
@@ -116,6 +121,10 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
             if (creat.建表時間.Check_Date_String() == false)
             {
@@ -123,16 +132,16 @@ namespace HIS_WebApi
                 returnData.Result = "輸入日期格式錯誤!";
                 return returnData.JsonSerializationt();
             }
-
-            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             list_inventory_creat = list_inventory_creat.GetRowsInDate((int)enum_盤點單號.建表時間, creat.建表時間.StringToDateTime());
             if(returnData.Value == "1")
             {
-                returnData = Function_Get_inventory_creat(list_inventory_creat ,false);
+                returnData = Function_Get_inventory_creat(returnData.Server, returnData.DbName, list_inventory_creat,false);
             }
             else
             {
-                returnData = Function_Get_inventory_creat(list_inventory_creat);
+                returnData = Function_Get_inventory_creat(returnData.Server, returnData.DbName, list_inventory_creat);
             }
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
@@ -147,14 +156,15 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
-            //if (returnData.Value.StringIsEmpty())
-            //{
-            //    returnData.Code = -5;
-            //    returnData.Result = "輸入盤點單號不得空白!";
-            //    return returnData.JsonSerializationt();
-            //}
-            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+       
+            sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             list_inventory_creat = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, creat.盤點單號);
             if (list_inventory_creat.Count == 0)
             {
@@ -162,7 +172,7 @@ namespace HIS_WebApi
                 returnData.Result = $"查無此單號資料[{returnData.Value}]!";
                 return returnData.JsonSerializationt();
             }
-            returnData = Function_Get_inventory_creat(list_inventory_creat);
+            returnData = Function_Get_inventory_creat(returnData.Server, returnData.DbName, list_inventory_creat);
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"取得盤點資料成功!";
@@ -176,16 +186,22 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
-            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             List<object[]> list_inventory_creat_buf = new List<object[]>();
-            List<object[]> list_inventory_content = this.sQLControl_inventory_content.GetAllRows(null);
+            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
             List<object[]> list_inventory_content_buf = new List<object[]>();
-            List<object[]> list_inventory_sub_content = this.sQLControl_inventory_sub_content.GetAllRows(null);
+            List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetAllRows(null);
             List<object[]> list_inventory_sub_content_buf = new List<object[]>();
 
 
-            List<object[]> list_medecine = this.sQLControl_MED_cloud.GetAllRows(null);
+            List<object[]> list_medecine = sQLControl_MED_cloud.GetAllRows(null);
             List<object[]> list_medecine_buf = new List<object[]>();
             if (creat == null)
             {
@@ -248,8 +264,12 @@ namespace HIS_WebApi
         }
         [Route("creat_add")]
         [HttpGet]
-        public string GET_creat_add(string TableName)
+        public string GET_creat_add(string IP, string DBName, string TableName)
         {
+            SQLControl sQLControl_inventory_creat = new SQLControl(IP, DBName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(IP, DBName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(IP, DBName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             returnData returnData = new returnData();
             if (TableName.StringIsEmpty())
             {
@@ -257,11 +277,13 @@ namespace HIS_WebApi
                 returnData.Value = "請輸入TableName!";
                 return returnData.JsonSerializationt();
             }
+            returnData.Server = IP;
+            returnData.DbName = DBName;
             deviceController deviceController = new deviceController();
-            returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN().JsonDeserializet<returnData>();
+            returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
             string str_IC_SN = returnData_GET_new_IC_SN.Value;
-            List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(TableName);
-            List<object[]> list_MED_cloud = this.sQLControl_MED_cloud.GetAllRows(null);
+            List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(IP , DBName,TableName);
+            List<object[]> list_MED_cloud = sQLControl_MED_cloud.GetAllRows(null);
             List<object[]> list_MED_cloud_buf = new List<object[]>();
            
             inventoryClass.creat creat = new inventoryClass.creat();
@@ -293,6 +315,10 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
             if (creat == null)
             {
@@ -300,7 +326,7 @@ namespace HIS_WebApi
                 returnData.Result += $"Data資料錯誤!";
                 return returnData.JsonSerializationt();
             }
-            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             List<object[]> list_inventory_creat_buf = new List<object[]>();
             list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, creat.盤點單號);
             if(list_inventory_creat_buf.Count == 0)
@@ -331,6 +357,10 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
             if (creat == null)
             {
@@ -338,7 +368,7 @@ namespace HIS_WebApi
                 returnData.Result += $"Data資料錯誤!";
                 return returnData.JsonSerializationt();
             }
-            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             List<object[]> list_inventory_creat_buf = new List<object[]>();
             list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, creat.盤點單號);
             if (list_inventory_creat_buf.Count == 0)
@@ -369,11 +399,15 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             List<object[]> list_inventory_creat_buf = new List<object[]>();
-            List<object[]> list_inventory_content = this.sQLControl_inventory_content.GetAllRows(null);
+            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
             List<object[]> list_inventory_content_buf = new List<object[]>();
-            List<object[]> list_inventory_sub_content = this.sQLControl_inventory_sub_content.GetAllRows(null);
+            List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetAllRows(null);
             List<object[]> list_inventory_sub_content_buf = new List<object[]>();
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
 
@@ -388,9 +422,9 @@ namespace HIS_WebApi
             list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.盤點單號, creat.盤點單號);
             list_inventory_sub_content_buf = list_inventory_sub_content.GetRows((int)enum_盤點明細.盤點單號, creat.盤點單號);
 
-            this.sQLControl_inventory_creat.DeleteExtra(null, list_inventory_creat_buf);
-            this.sQLControl_inventory_content.DeleteExtra(null, list_inventory_content_buf);
-            this.sQLControl_inventory_sub_content.DeleteExtra(null, list_inventory_sub_content_buf);
+            sQLControl_inventory_creat.DeleteExtra(null, list_inventory_creat_buf);
+            sQLControl_inventory_content.DeleteExtra(null, list_inventory_content_buf);
+            sQLControl_inventory_sub_content.DeleteExtra(null, list_inventory_sub_content_buf);
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"已將[{ creat.盤點單號}]刪除!";
@@ -407,6 +441,10 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             if (returnData.Data == null)
             {
                 returnData.Code = -5;
@@ -419,8 +457,8 @@ namespace HIS_WebApi
             {
                 list_GUID.Add(contents[i].GUID);
             }
-            this.sQLControl_inventory_content.DeleteExtra(null, enum_盤點內容.GUID.GetEnumName(), list_GUID);
-            this.sQLControl_inventory_sub_content.DeleteExtra(null, enum_盤點明細.Master_GUID.GetEnumName(), list_GUID);
+            sQLControl_inventory_content.DeleteExtra(null, enum_盤點內容.GUID.GetEnumName(), list_GUID);
+            sQLControl_inventory_sub_content.DeleteExtra(null, enum_盤點明細.Master_GUID.GetEnumName(), list_GUID);
             returnData.Data = null;
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
@@ -436,6 +474,10 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             inventoryClass.content content = inventoryClass.content.ObjToClass(returnData.Data);
             //if (returnData.Value.StringIsEmpty())
             //{
@@ -446,7 +488,7 @@ namespace HIS_WebApi
 
             string GUID = content.GUID;
             returnData.Data = null;
-            List<object[]> list_inventory_sub_content = this.sQLControl_inventory_sub_content.GetAllRows(null);
+            List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetAllRows(null);
             List<object[]> list_inventory_sub_content_buf = new List<object[]>();
             list_inventory_sub_content_buf = list_inventory_sub_content.GetRows((int)enum_盤點明細.Master_GUID, GUID);
             List<inventoryClass.sub_content> sub_Contents = new List<inventoryClass.sub_content>();
@@ -467,8 +509,11 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-
-            List<object[]> list_inventory_content = this.sQLControl_inventory_content.GetAllRows(null);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
             List<object[]> list_inventory_content_buf = new List<object[]>();
             List<object[]> list_add = new List<object[]>();
             inventoryClass.sub_content sub_content = inventoryClass.sub_content.ObjToClass(returnData.Data);
@@ -494,7 +539,7 @@ namespace HIS_WebApi
 
                 list_add.Add(value);
             }
-            this.sQLControl_inventory_sub_content.AddRows(null, list_add);
+            sQLControl_inventory_sub_content.AddRows(null, list_add);
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"新增批效成功!";
@@ -508,13 +553,17 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             List<inventoryClass.sub_content> sub_contents = inventoryClass.sub_content.ObjToListClass(returnData.Data);
             List<object> list_GUID = new List<object>();
             for (int i = 0; i < sub_contents.Count; i++)
             {
                 list_GUID.Add(sub_contents[i].GUID);
             }
-            this.sQLControl_inventory_sub_content.DeleteExtra(null, enum_盤點明細.GUID.GetEnumName(), list_GUID);
+            sQLControl_inventory_sub_content.DeleteExtra(null, enum_盤點明細.GUID.GetEnumName(), list_GUID);
             returnData = new returnData();
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
@@ -529,6 +578,7 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+
             string json = POST_creat_get_by_IC_SN(returnData);
             returnData = json.JsonDeserializet<returnData>();
             if(returnData.Code != 200)
@@ -581,21 +631,25 @@ namespace HIS_WebApi
             return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
         }
 
-        public returnData Function_Get_inventory_creat(List<object[]> list_inventory_creat)
+        public returnData Function_Get_inventory_creat(string Server, string DbName, List<object[]> list_inventory_creat)
         {
-            return Function_Get_inventory_creat(list_inventory_creat, true);
+            return Function_Get_inventory_creat(Server , DbName, list_inventory_creat, true);
         }
-        public returnData Function_Get_inventory_creat(List<object[]> list_inventory_creat, bool allData)
+        public returnData Function_Get_inventory_creat(string Server, string DbName, List<object[]> list_inventory_creat, bool allData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(Server, DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(Server, DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             returnData returnData = new returnData();
             List<object[]> list_inventory_creat_buf = new List<object[]>();
-            List<object[]> list_inventory_content = this.sQLControl_inventory_content.GetAllRows(null);
+            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
             List<object[]> list_inventory_content_buf = new List<object[]>();
-            List<object[]> list_inventory_sub_content = this.sQLControl_inventory_sub_content.GetAllRows(null);
+            List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetAllRows(null);
             List<object[]> list_inventory_sub_content_buf = new List<object[]>();
-            List<object[]> list_sub_inventory = this.sQLControl_inventory_sub_content.GetAllRows(null);
+            List<object[]> list_sub_inventory = sQLControl_inventory_sub_content.GetAllRows(null);
             List<object[]> list_sub_inventory_buf = new List<object[]>();
 
             List<object[]> list_MED_cloud = sQLControl_MED_cloud.GetAllRows(null);

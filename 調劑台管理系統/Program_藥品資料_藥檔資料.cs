@@ -92,9 +92,11 @@ namespace 調劑台管理系統
 
     public partial class Form1 : Form
     {
-     
+        private DeviceBasicClass DeviceBasicClass_儲位庫存 = new DeviceBasicClass();
+
         private void Program_藥品資料_藥檔資料_Init()
         {
+            this.DeviceBasicClass_儲位庫存.Init(dBConfigClass.DB_Basic, "devicebasic_jsonstring");
             this.sqL_DataGridView_藥品群組.Init();
             if (!this.sqL_DataGridView_藥品群組.SQL_IsTableCreat()) this.sqL_DataGridView_藥品群組.SQL_CreateTable();
             Function_藥品群組_初始化表單();

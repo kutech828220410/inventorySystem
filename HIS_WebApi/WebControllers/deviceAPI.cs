@@ -25,21 +25,19 @@ namespace HIS_WebApi
     [ApiController]
     public class deviceController : Controller
     {
-        static private string DataBaseName = ConfigurationManager.AppSettings["database"];
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string IP = ConfigurationManager.AppSettings["IP"];
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("getall")]
         [HttpGet]
-        public string POST_firstclass_device_get(string TableName)
+        public string POST_firstclass_device_get(string IP, string DBName, string TableName)
         {
             returnData returnData = new returnData();
             try
             {
-                List<DeviceBasic> deviceBasics = Function_Get_device(TableName);
+                List<DeviceBasic> deviceBasics = Function_Get_device(IP , DBName ,TableName);
                 returnData.Code = 200;
                 returnData.Value = $"Device取得成功!TableName : {TableName}";
                 returnData.Data = deviceBasics;
@@ -55,9 +53,9 @@ namespace HIS_WebApi
 
         }
 
-        public List<DeviceBasic> Function_Get_device(string TableName)
+        public List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName)
         {
-            SQLControl sQLControl_device = new SQLControl(IP, DataBaseName, TableName, UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);
             List<DeviceBasic> deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceBasic(sQLControl_device);
             List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
             for (int i = 0; i < deviceBasics.Count; i++)

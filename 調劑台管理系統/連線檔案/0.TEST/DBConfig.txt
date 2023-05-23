@@ -36,6 +36,5 @@
     "TableName": ""
   },
   "OrderApiURL": "http://192.168.24.61/dbvm/BBAR?barcode=",
-  "MedApiURL": "",
-  "Med_Update_ApiURL": ""
+  "MedApiURL": ""
 }
