@@ -665,7 +665,7 @@ namespace HIS_WebApi
             {
                 string Code0 = x.建表時間;
                 string Code1 = y.建表時間;
-                return Code0.CompareTo(Code1);
+                return Code1.CompareTo(Code0);
             }
         }
     }
