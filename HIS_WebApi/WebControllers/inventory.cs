@@ -74,6 +74,42 @@ namespace HIS_WebApi
         }
 
         //以建表日搜尋盤點單
+        [Route("creat_get_by_CT_TIME_ST_END")]
+        [HttpPost]
+        public string POST_creat_get_by_CT_TIME_ST_END([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+
+            string[] date_ary = returnData.Value.Split(',');
+            if (date_ary.Length != 2)
+            {
+                returnData.Code = -5;
+                returnData.Result = "輸入日期格式錯誤!";
+                return returnData.JsonSerializationt();
+            }
+            else
+            {
+                if(!date_ary[0].Check_Date_String() || !date_ary[1].Check_Date_String())
+                {
+                    returnData.Code = -5;
+                    returnData.Result = "輸入日期格式錯誤!";
+                    return returnData.JsonSerializationt();
+                }
+            }
+            DateTime date_st = date_ary[0].StringToDateTime();
+            DateTime date_end = date_ary[1].StringToDateTime();
+            List<object[]> list_inventory_creat = this.sQLControl_inventory_creat.GetAllRows(null);
+            list_inventory_creat = list_inventory_creat.GetRowsInDateEx((int)enum_盤點單號.建表時間, date_st, date_end);
+            returnData = Function_Get_inventory_creat(list_inventory_creat, false);
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Result = $"取得盤點資料成功!";
+
+            return returnData.JsonSerializationt(true);
+        }
+
+        //以建表日搜尋盤點單
         [Route("creat_get_by_CT_TIME")]
         [HttpPost]
         public string POST_creat_get_by_CT_TIME([FromBody] returnData returnData)
@@ -256,6 +292,8 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_creat_lock([FromBody] returnData returnData)
         {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
             if (creat == null)
             {
@@ -283,6 +321,8 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.Value = "盤點單鎖定成功!";
             returnData.Data = creat;
+            returnData.TimeTaken = myTimer.ToString();
+
             return returnData.JsonSerializationt(true);
         }
         //盤點單解鎖
@@ -290,6 +330,8 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_creat_unlock([FromBody] returnData returnData)
         {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
             if (creat == null)
             {
@@ -317,6 +359,8 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.Value = "盤點單解鎖成功!";
             returnData.Data = creat;
+            returnData.TimeTaken = myTimer.ToString();
+
             return returnData.JsonSerializationt(true);
         }
         //以盤點單號刪除盤點單
@@ -484,7 +528,8 @@ namespace HIS_WebApi
         [HttpPost]
         public async Task<ActionResult> Post_download_excel_by_IC_SN([FromBody] returnData returnData)
         {
-
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
             string json = POST_creat_get_by_IC_SN(returnData);
             returnData = json.JsonDeserializet<returnData>();
             if(returnData.Code != 200)
@@ -495,6 +540,7 @@ namespace HIS_WebApi
             inventoryClass.creat creat = creats[0];
             List<SheetClass> sheetClasses = new List<SheetClass>();
             string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_inventory.txt", "utf-8");
+            Console.WriteLine($"取得creats {myTimer.ToString()}");
             SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
             sheetClass.ReplaceCell(1, 1, $"{creat.盤點單號}");
             sheetClass.ReplaceCell(1, 5, $"{creat.建表人}");
@@ -504,13 +550,13 @@ namespace HIS_WebApi
             for (int i = 0; i < creat.Contents.Count; i++)
             {
                 int 差異量 = 0;
-                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                 if (creat.Contents[i].理論值.StringIsEmpty() && creat.Contents[i].盤點量.StringIsEmpty())
                 {
                     差異量 = creat.Contents[i].理論值.StringToInt32() - creat.Contents[i].盤點量.StringToInt32();
@@ -519,10 +565,14 @@ namespace HIS_WebApi
                 {
 
                 }
-                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 7, $"{差異量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 7, $"{差異量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
 
                 NumOfRow++;
             }
+            Console.WriteLine($"寫入Sheet {myTimer.ToString()}");
+         
+            sheetClass.NewCell_Webapi_Buffer_Caculate();
+            Console.WriteLine($"NewCell_Webapi_Buffer_Caculate {myTimer.ToString()}");
 
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
