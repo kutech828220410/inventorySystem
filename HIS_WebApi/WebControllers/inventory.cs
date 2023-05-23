@@ -203,8 +203,8 @@ namespace HIS_WebApi
             }
             creat.GUID = Guid.NewGuid().ToString();
             creat.建表時間 = DateTime.Now.ToDateTimeString();
-            creat.盤點開始時間 = DateTime.MinValue.ToDateTimeString();
-            creat.盤點結束時間 = DateTime.MinValue.ToDateTimeString();
+            creat.盤點開始時間 = DateTime.MaxValue.ToDateTimeString();
+            creat.盤點結束時間 = DateTime.MaxValue.ToDateTimeString();
 
             List<object[]> list_inventory_creat_add = new List<object[]>();
             List<object[]> list_inventory_content_add = new List<object[]>();
