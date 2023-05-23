@@ -652,11 +652,21 @@ namespace HIS_WebApi
                
                 creats.Add(creat);
             }
+            creats.Sort(new ICP_creat_by_CT_TIME());
             returnData.Data = creats;
             returnData.Code = 200;
             returnData.Result = $"成功! {myTimer.ToString()}";
             return returnData;
         }
-       
+
+        private class ICP_creat_by_CT_TIME : IComparer<inventoryClass.creat>
+        {
+            public int Compare(inventoryClass.creat x, inventoryClass.creat y)
+            {
+                string Code0 = x.建表時間;
+                string Code1 = y.建表時間;
+                return Code0.CompareTo(Code1);
+            }
+        }
     }
 }
