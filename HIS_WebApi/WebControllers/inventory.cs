@@ -284,7 +284,6 @@ namespace HIS_WebApi
                 }
             }
             returnData.Data = creat;
-
             return POST_creat_add(returnData);
         }
         //盤點單鎖定
