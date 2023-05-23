@@ -127,6 +127,8 @@ namespace 智能藥庫系統
             returnData returnData = new returnData();
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表時間 = date;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_get_by_CT_TIME", json_in);
@@ -154,6 +156,8 @@ namespace 智能藥庫系統
             returnData returnData = new returnData();
             inventoryClass.content content = new inventoryClass.content();
             content.GUID = Content_GUID;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             returnData.Data = content;
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_content_get_by_content_GUID", json_in);
@@ -192,6 +196,8 @@ namespace 智能藥庫系統
             returnData returnData = new returnData();
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.盤點單號 = IC_SN;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_delete_by_IC_SN", json_in);
@@ -204,6 +210,8 @@ namespace 智能藥庫系統
             returnData returnData = new returnData();
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.盤點單號 = IC_SN;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_get_by_IC_SN", json_in);
@@ -261,6 +269,8 @@ namespace 智能藥庫系統
                 contents.Add(content);
             }
             returnData.Data = contents;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/contents_delete_by_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -313,6 +323,8 @@ namespace 智能藥庫系統
             sub_Content.盤點量 = 數量;
             sub_Content.操作人 = 登入者名稱;
             returnData.Data = sub_Content;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_content_add", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -341,6 +353,8 @@ namespace 智能藥庫系統
                 Master_GUID = list_value[i][(int)enum_盤點作業_單號查詢_盤點藥品明細.Master_GUID].ObjectToString();
             }
             returnData.Data = sub_contents;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_contents_delete_by_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -357,6 +371,8 @@ namespace 智能藥庫系統
                 creat.盤點單號 = comboBoxr_盤點作業_單號查詢_盤點單號.Text;
             }));
             returnData.Data = creat;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             string json_in = returnData.JsonSerializationt(true);
             try
             {

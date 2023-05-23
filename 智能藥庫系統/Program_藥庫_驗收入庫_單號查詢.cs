@@ -284,6 +284,7 @@ namespace 智能藥庫系統
             數量 = dialog_NumPannel.Value.ToString();
             returnData returnData = new returnData();
             inspectionClass.sub_content sub_Content = new inspectionClass.sub_content();
+          
             sub_Content.Master_GUID = Master_GUID;
             sub_Content.效期 = 效期;
             sub_Content.批號 = 批號;

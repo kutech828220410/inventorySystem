@@ -41,7 +41,7 @@ namespace HIS_WebApi
 
         //取得可建立今日最新盤點單
         [Route("new_IC_SN")]
-        [HttpGet]
+        [HttpPost]
         public string GET_new_IC_SN(returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -262,27 +262,25 @@ namespace HIS_WebApi
             returnData.Result = $"成功加入新盤點單! 共{list_inventory_content_add.Count}筆資料";
             return returnData.JsonSerializationt(true);
         }
-        [Route("creat_add")]
-        [HttpGet]
-        public string GET_creat_add(string IP, string DBName, string TableName)
+        [Route("creat_auto_add")]
+        [HttpPost]
+        public string GET_creat_add([FromBody] returnData returnData)
         {
-            SQLControl sQLControl_inventory_creat = new SQLControl(IP, DBName, "inventory_creat", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inventory_content = new SQLControl(IP, DBName, "inventory_content", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inventory_sub_content = new SQLControl(IP, DBName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.DbName, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
-            returnData returnData = new returnData();
-            if (TableName.StringIsEmpty())
+            if (returnData.TableName.StringIsEmpty())
             {
                 returnData.Code = -5;
                 returnData.Value = "請輸入TableName!";
                 return returnData.JsonSerializationt();
             }
-            returnData.Server = IP;
-            returnData.DbName = DBName;
+
             deviceController deviceController = new deviceController();
             returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
             string str_IC_SN = returnData_GET_new_IC_SN.Value;
-            List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(IP , DBName,TableName);
+            List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName);
             List<object[]> list_MED_cloud = sQLControl_MED_cloud.GetAllRows(null);
             List<object[]> list_MED_cloud_buf = new List<object[]>();
            
@@ -578,10 +576,13 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-
+            string server = returnData.Server;
+            string dbName = returnData.DbName;
             string json = POST_creat_get_by_IC_SN(returnData);
             returnData = json.JsonDeserializet<returnData>();
-            if(returnData.Code != 200)
+            returnData.Server = server;
+            returnData.DbName = dbName;
+            if (returnData.Code != 200)
             {
                 return null;
             }
@@ -599,13 +600,13 @@ namespace HIS_WebApi
             for (int i = 0; i < creat.Contents.Count; i++)
             {
                 int 差異量 = 0;
-                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                 if (creat.Contents[i].理論值.StringIsEmpty() && creat.Contents[i].盤點量.StringIsEmpty())
                 {
                     差異量 = creat.Contents[i].理論值.StringToInt32() - creat.Contents[i].盤點量.StringToInt32();
@@ -614,13 +615,13 @@ namespace HIS_WebApi
                 {
 
                 }
-                sheetClass.AddNewCell_Webapi_Buffer(NumOfRow + 3, 7, $"{差異量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(NumOfRow + 3, 7, $"{差異量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
 
                 NumOfRow++;
             }
             Console.WriteLine($"寫入Sheet {myTimer.ToString()}");
          
-            sheetClass.NewCell_Webapi_Buffer_Caculate();
+           // sheetClass.NewCell_Webapi_Buffer_Caculate();
             Console.WriteLine($"NewCell_Webapi_Buffer_Caculate {myTimer.ToString()}");
 
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -639,6 +640,7 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
+
             SQLControl sQLControl_inventory_creat = new SQLControl(Server, DbName, "inventory_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DbName, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
@@ -708,6 +710,9 @@ namespace HIS_WebApi
             creats.Sort(new ICP_creat_by_CT_TIME());
             returnData.Data = creats;
             returnData.Code = 200;
+            returnData.Server = Server;
+            returnData.DbName = DbName;
+
             returnData.Result = $"成功! {myTimer.ToString()}";
             return returnData;
         }

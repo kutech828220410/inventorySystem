@@ -128,11 +128,14 @@ namespace 智能藥庫系統
         }
         private void PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(MouseEventArgs mevent)
         {
-            string json = Basic.Net.WEBApiGet($"{dBConfigClass.Inventory_ApiURL}/new_IC_SN");
+            returnData returnData = new returnData();
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/new_IC_SN", returnData.JsonSerializationt());
             Console.WriteLine(json);
             this.Invoke(new Action(delegate
             {
-                returnData returnData = json.JsonDeserializet<returnData>();
+                returnData = json.JsonDeserializet<returnData>();
                 if (returnData == null) return;
                 if (returnData.Code != 200) return;
                 this.rJ_TextBox_盤點作業_新增盤點_盤點單號.Texts = $"{returnData.Value}";
@@ -199,6 +202,8 @@ namespace 智能藥庫系統
                 creat.Contents.Add(content);
             }
             returnData.Data = creat;
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_add", json_in);
             Console.WriteLine(json);
@@ -209,25 +214,17 @@ namespace 智能藥庫系統
         private void PlC_RJ_Button_盤點作業_新增盤點_建立測試單_MouseDownEvent(MouseEventArgs mevent)
         {
             this.PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(null);
-            List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.SQL_GetAllRows(false);
             string 盤點單號 = this.rJ_TextBox_盤點作業_新增盤點_盤點單號.Texts;
             returnData returnData = new returnData();
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表人 = 登入者名稱;
             creat.盤點單號 = 盤點單號;
-            for (int i = 0; i < list_value.Count; i++)
-            {
-                inventoryClass.content content = new inventoryClass.content();
-                content.盤點單號 = creat.盤點單號;
-                content.藥品碼 = list_value[i][(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
-                content.料號 = list_value[i][(int)enum_藥庫_藥品資料.料號].ObjectToString();
-                content.理論值 = (i + 1).ToString();
-                content.藥品條碼1 = list_value[i][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
-                content.藥品條碼2 = list_value[i][(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
-                creat.Contents.Add(content);
-            }
+         
             returnData.Data = creat;
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_add", returnData.JsonSerializationt());
+            returnData.Server = dBConfigClass.Server;
+            returnData.DbName = dBConfigClass.DbName;
+            returnData.TableName = "firstclass_device_jsonstring";
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_auto_add", returnData.JsonSerializationt());
             Console.WriteLine(json);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog($"{returnData.Result}");
