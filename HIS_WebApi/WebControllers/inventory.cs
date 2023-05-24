@@ -464,7 +464,47 @@ namespace HIS_WebApi
             returnData.Result = $"已刪除盤點內容共<{list_GUID.Count}>筆資料!";
             return returnData.JsonSerializationt();
         }
+        [Route("content_get_by_content_GUID")]
+        [HttpPost]
+        public string POST_content_get_by_content_GUID([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+            inventoryClass.content content = inventoryClass.content.ObjToClass(returnData.Data);
+            //if (returnData.Value.StringIsEmpty())
+            //{
+            //    returnData.Code = -5;
+            //    returnData.Result = "輸入資料不得空白!";
+            //    return returnData.JsonSerializationt();
+            //}
 
+            string GUID = content.GUID;
+            returnData.Data = null;
+            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
+            List<object[]> list_inventory_content_buf = new List<object[]>();
+            list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.GUID, GUID);
+            if(list_inventory_content_buf.Count == 0)
+            {
+                returnData.Code = -1;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"查無盤點內容!";
+                return returnData.JsonSerializationt();
+            }
+            else
+            {
+                content = inventoryClass.content.SQLToClass(list_inventory_content_buf[0]);
+                returnData.Data = content;
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"取得盤點內容成功!";
+                return returnData.JsonSerializationt();
+            }
+            
+        }
 
 
         [Route("sub_content_get_by_content_GUID")]
