@@ -529,7 +529,7 @@ namespace HIS_WebApi
                 value[(int)enum_盤點明細.料號] = list_inventory_content_buf[0][(int)enum_盤點內容.料號];
                 value[(int)enum_盤點明細.盤點單號] = list_inventory_content_buf[0][(int)enum_盤點內容.盤點單號];
                 value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼1];
-                value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼2];
+                value[(int)enum_盤點明細.藥品條碼2] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼2];
 
                 value[(int)enum_盤點明細.Master_GUID] = Master_GUID;
                 value[(int)enum_盤點明細.效期] = DateTime.MaxValue.ToDateString();
@@ -539,13 +539,24 @@ namespace HIS_WebApi
                 value[(int)enum_盤點明細.操作時間] = DateTime.Now.ToDateTimeString();
                 value[(int)enum_盤點明細.狀態] = "未鎖定";
 
+                sub_content.藥品碼 = value[(int)enum_盤點明細.藥品碼].ObjectToString();
+                sub_content.料號 = value[(int)enum_盤點明細.料號].ObjectToString();
+                sub_content.盤點單號 = value[(int)enum_盤點明細.盤點單號].ObjectToString();
+                sub_content.藥品條碼1 = value[(int)enum_盤點明細.藥品條碼1].ObjectToString();
+                sub_content.藥品條碼2 = value[(int)enum_盤點明細.藥品條碼1].ObjectToString();
+                sub_content.Master_GUID = value[(int)enum_盤點明細.Master_GUID].ObjectToString();
+                sub_content.效期 = value[(int)enum_盤點明細.效期].ObjectToString();
+                sub_content.操作人 = value[(int)enum_盤點明細.操作人].ObjectToString();
+                sub_content.操作時間 = value[(int)enum_盤點明細.操作時間].ObjectToString();
+                sub_content.狀態 = value[(int)enum_盤點明細.狀態].ObjectToString();
+
                 list_add.Add(value);
             }
             sQLControl_inventory_sub_content.AddRows(null, list_add);
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"新增批效成功!";
-            returnData.Data = null;
+            returnData.Data = sub_content;
             return returnData.JsonSerializationt();
         }
         //盤點明細新增
