@@ -12,7 +12,7 @@ using Basic;
 using H_Pannel_lib;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
-
+using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
     public enum ContextMenuStrip_藥品資料_藥檔資料
@@ -33,26 +33,7 @@ namespace 調劑台管理系統
         藥品群組設定,
     }
 
-    public enum enum_藥品資料_藥檔資料
-    {
-        GUID,
-        藥品碼,
-        料號,
-        藥品中文名稱,
-        藥品名稱,
-        藥品學名,
-        藥品群組,
-        健保碼,
-        藥品條碼,
-        藥品條碼1,
-        藥品條碼2,
-        包裝單位,
-        庫存,
-        安全庫存,
-        圖片網址,
-        警訊藥品,
-        管制級別,
-    }
+   
     public enum enum_藥品資料_藥檔資料_匯入
     {
         藥品碼,

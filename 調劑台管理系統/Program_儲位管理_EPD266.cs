@@ -14,6 +14,8 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using H_Pannel_lib;
 using MyOffice;
+using HIS_DB_Lib;
+
 namespace 調劑台管理系統
 {
     public partial class Form1 : Form

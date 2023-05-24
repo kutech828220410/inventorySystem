@@ -11,6 +11,7 @@ using MyUI;
 using Basic;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
+using HIS_DB_Lib;
 
 namespace 調劑台管理系統
 {

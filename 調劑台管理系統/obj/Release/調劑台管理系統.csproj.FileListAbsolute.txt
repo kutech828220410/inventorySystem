@@ -1910,3 +1910,4 @@ C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑�
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.pdb
+C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\HIS_DB_Lib.dll

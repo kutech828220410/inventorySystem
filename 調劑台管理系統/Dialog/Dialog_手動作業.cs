@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using SQLUI;
 using MyUI;
 using Basic;
+using HIS_DB_Lib;
+
 namespace 調劑台管理系統
 {
     public enum enum_選擇藥品

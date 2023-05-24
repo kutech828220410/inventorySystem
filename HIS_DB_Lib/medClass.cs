@@ -8,7 +8,7 @@ using Basic;
 
 namespace HIS_DB_Lib
 {
-    public enum enum_調劑台_藥品資料
+    public enum enum_藥品資料_藥檔資料
     {
         GUID,
         藥品碼,
@@ -28,7 +28,6 @@ namespace HIS_DB_Lib
         警訊藥品,
         管制級別,
     }
-
     public class medClass
     {
         [JsonPropertyName("GUID")]
@@ -78,19 +77,19 @@ namespace HIS_DB_Lib
         static public object[] ClassToSQL(medClass _class)
         {
             object[] value = new object[new enum_盤點單號().GetLength()];
-            value[(int)enum_調劑台_藥品資料.GUID] = _class.GUID;
-            value[(int)enum_調劑台_藥品資料.藥品碼] = _class.藥品碼;
-            value[(int)enum_調劑台_藥品資料.料號] = _class.料號;
-            value[(int)enum_調劑台_藥品資料.藥品中文名稱] = _class.中文名稱;
-            value[(int)enum_調劑台_藥品資料.藥品名稱] = _class.藥品名稱;
-            value[(int)enum_調劑台_藥品資料.藥品學名] = _class.藥品學名;
-            value[(int)enum_調劑台_藥品資料.健保碼] = _class.健保碼;
-            value[(int)enum_調劑台_藥品資料.包裝單位] = _class.包裝單位;
-            value[(int)enum_調劑台_藥品資料.藥品條碼1] = _class.藥品條碼1;
-            value[(int)enum_調劑台_藥品資料.藥品條碼2] = _class.藥品條碼2;
-            value[(int)enum_調劑台_藥品資料.警訊藥品] = _class.警訊藥品;
-            value[(int)enum_調劑台_藥品資料.管制級別] = _class.管制級別;
-            value[(int)enum_調劑台_藥品資料.庫存] = _class.總庫存;
+            value[(int)enum_藥品資料_藥檔資料.GUID] = _class.GUID;
+            value[(int)enum_藥品資料_藥檔資料.藥品碼] = _class.藥品碼;
+            value[(int)enum_藥品資料_藥檔資料.料號] = _class.料號;
+            value[(int)enum_藥品資料_藥檔資料.藥品中文名稱] = _class.中文名稱;
+            value[(int)enum_藥品資料_藥檔資料.藥品名稱] = _class.藥品名稱;
+            value[(int)enum_藥品資料_藥檔資料.藥品學名] = _class.藥品學名;
+            value[(int)enum_藥品資料_藥檔資料.健保碼] = _class.健保碼;
+            value[(int)enum_藥品資料_藥檔資料.包裝單位] = _class.包裝單位;
+            value[(int)enum_藥品資料_藥檔資料.藥品條碼1] = _class.藥品條碼1;
+            value[(int)enum_藥品資料_藥檔資料.藥品條碼2] = _class.藥品條碼2;
+            value[(int)enum_藥品資料_藥檔資料.警訊藥品] = _class.警訊藥品;
+            value[(int)enum_藥品資料_藥檔資料.管制級別] = _class.管制級別;
+            value[(int)enum_藥品資料_藥檔資料.庫存] = _class.總庫存;
 
 
             return value;
@@ -99,18 +98,18 @@ namespace HIS_DB_Lib
         static public medClass SQLToClass(object[] value)
         {
             medClass _class = new medClass();
-            _class.GUID = value[(int)enum_調劑台_藥品資料.GUID].ObjectToString();
-            _class.藥品碼 = value[(int)enum_調劑台_藥品資料.藥品碼].ObjectToString();
-            _class.料號 = value[(int)enum_調劑台_藥品資料.料號].ObjectToString();
-            _class.中文名稱 = value[(int)enum_調劑台_藥品資料.藥品中文名稱].ToDateTimeString();
-            _class.藥品名稱 = value[(int)enum_調劑台_藥品資料.藥品名稱].ToDateTimeString();
-            _class.藥品學名 = value[(int)enum_調劑台_藥品資料.藥品學名].ToDateTimeString();
-            _class.健保碼 = value[(int)enum_調劑台_藥品資料.健保碼].ObjectToString();
-            _class.包裝單位 = value[(int)enum_調劑台_藥品資料.包裝單位].ObjectToString();
-            _class.藥品條碼1 = value[(int)enum_調劑台_藥品資料.藥品條碼1].ToDateTimeString();
-            _class.藥品條碼2 = value[(int)enum_調劑台_藥品資料.藥品條碼2].ObjectToString();
-            _class.警訊藥品 = value[(int)enum_調劑台_藥品資料.警訊藥品].ObjectToString();
-            _class.管制級別 = value[(int)enum_調劑台_藥品資料.管制級別].ObjectToString();
+            _class.GUID = value[(int)enum_藥品資料_藥檔資料.GUID].ObjectToString();
+            _class.藥品碼 = value[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
+            _class.料號 = value[(int)enum_藥品資料_藥檔資料.料號].ObjectToString();
+            _class.中文名稱 = value[(int)enum_藥品資料_藥檔資料.藥品中文名稱].ToDateTimeString();
+            _class.藥品名稱 = value[(int)enum_藥品資料_藥檔資料.藥品名稱].ToDateTimeString();
+            _class.藥品學名 = value[(int)enum_藥品資料_藥檔資料.藥品學名].ToDateTimeString();
+            _class.健保碼 = value[(int)enum_藥品資料_藥檔資料.健保碼].ObjectToString();
+            _class.包裝單位 = value[(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
+            _class.藥品條碼1 = value[(int)enum_藥品資料_藥檔資料.藥品條碼1].ToDateTimeString();
+            _class.藥品條碼2 = value[(int)enum_藥品資料_藥檔資料.藥品條碼2].ObjectToString();
+            _class.警訊藥品 = value[(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString();
+            _class.管制級別 = value[(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
             return _class;
         }
         static public medClass ObjToClass(object data)

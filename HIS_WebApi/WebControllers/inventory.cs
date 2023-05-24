@@ -270,12 +270,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
-            if (returnData.TableName.StringIsEmpty())
-            {
-                returnData.Code = -5;
-                returnData.Value = "請輸入TableName!";
-                return returnData.JsonSerializationt();
-            }
+ 
 
             deviceController deviceController = new deviceController();
             returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
@@ -302,6 +297,12 @@ namespace HIS_WebApi
                     content.理論值 = deviceBasics[i].Inventory;
                     creat.Contents.Add(content);
                 }
+            }
+            if (creat.Contents.Count == 0)
+            {
+                returnData.Code = -6;
+                returnData.Value = "無盤點資料可新增!";
+                return returnData.JsonSerializationt();
             }
             returnData.Data = creat;
             return POST_creat_add(returnData);
@@ -499,6 +500,52 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"取得盤點明細成功!";
+            return returnData.JsonSerializationt();
+        }
+        //盤點明細新增
+        [Route("sub_content_add_single")]
+        public string POST_sub_content_add_single([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.Server, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_MED_cloud = new SQLControl(MDC_IP, MDC_DataBaseName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
+            List<object[]> list_inventory_content_buf = new List<object[]>();
+            List<object[]> list_add = new List<object[]>();
+            inventoryClass.sub_content sub_content = inventoryClass.sub_content.ObjToClass(returnData.Data);
+            string Master_GUID = sub_content.Master_GUID;
+
+            sQLControl_inventory_sub_content.DeleteByDefult(null, enum_盤點明細.Master_GUID.GetEnumName(), Master_GUID);
+
+            list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.GUID, Master_GUID);
+            if (list_inventory_content_buf.Count > 0)
+            {
+                object[] value = new object[new enum_盤點明細().GetLength()];
+                value[(int)enum_盤點明細.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_盤點明細.藥品碼] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品碼];
+                value[(int)enum_盤點明細.料號] = list_inventory_content_buf[0][(int)enum_盤點內容.料號];
+                value[(int)enum_盤點明細.盤點單號] = list_inventory_content_buf[0][(int)enum_盤點內容.盤點單號];
+                value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼1];
+                value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼2];
+
+                value[(int)enum_盤點明細.Master_GUID] = Master_GUID;
+                value[(int)enum_盤點明細.效期] = DateTime.MaxValue.ToDateString();
+                value[(int)enum_盤點明細.批號] = "";
+                value[(int)enum_盤點明細.盤點量] = sub_content.盤點量;
+                value[(int)enum_盤點明細.操作人] = sub_content.操作人;
+                value[(int)enum_盤點明細.操作時間] = DateTime.Now.ToDateTimeString();
+                value[(int)enum_盤點明細.狀態] = "未鎖定";
+
+                list_add.Add(value);
+            }
+            sQLControl_inventory_sub_content.AddRows(null, list_add);
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Result = $"新增批效成功!";
+            returnData.Data = null;
             return returnData.JsonSerializationt();
         }
         //盤點明細新增

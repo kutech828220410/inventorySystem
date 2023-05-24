@@ -37,5 +37,9 @@
   },
   "OrderApiURL": "http://192.168.24.61/dbvm/BBAR?barcode=",
   "MedApiURL": "",
-  "Med_Update_ApiURL": ""
+  "Med_Update_ApiURL": "",
+  "Inspection_ApiURL": "",
+  "Inventory_ApiURL": "http://127.0.0.1:4433/api/inventory",
+  "Server": "127.0.0.1",
+  "DbName": "dps01"
 }

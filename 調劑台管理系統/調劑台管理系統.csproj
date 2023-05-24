@@ -66,6 +66,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\HCGUI.dll</HintPath>
     </Reference>
+    <Reference Include="HIS_DB_Lib">
+      <HintPath>..\0.DLL\HIS_DB_Lib.dll</HintPath>
+    </Reference>
     <Reference Include="H_Pannel_lib">
       <HintPath>..\0.DLL\H_Pannel_lib.dll</HintPath>
     </Reference>
@@ -273,6 +276,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_交班對點.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_盤點作業_資料庫.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_盤點狀態_單號查詢.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_盤點狀態_新增盤點.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_管制抽屜.cs">

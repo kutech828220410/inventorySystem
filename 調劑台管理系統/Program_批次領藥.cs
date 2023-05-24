@@ -14,6 +14,7 @@ using System.Reflection;//記得取用 Assembly繼承
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
+using HIS_DB_Lib;
 
 namespace 調劑台管理系統
 {

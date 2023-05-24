@@ -52,7 +52,10 @@ namespace 調劑台管理系統
             private string orderApiURL = "";
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
-
+            private string inventory_ApiURL = "";
+            private string inspection_ApiURL = "";
+            private string server = "";
+            private string dbName = "";
 
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
@@ -61,6 +64,10 @@ namespace 調劑台管理系統
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
             public string MedApiURL { get => medApiURL; set => medApiURL = value; }
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
+            public string Inspection_ApiURL { get => inspection_ApiURL; set => inspection_ApiURL = value; }
+            public string Inventory_ApiURL { get => inventory_ApiURL; set => inventory_ApiURL = value; }
+            public string Server { get => server; set => server = value; }
+            public string DbName { get => dbName; set => dbName = value; }
         }
         private void LoadDBConfig()
         {
@@ -423,6 +430,7 @@ namespace 調劑台管理系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統_Pannel設定, this.plC_ScreenPage_系統_Pannel設定);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_儲位管理, this.plC_ScreenPage_儲位管理);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_人員資料, this.plC_ScreenPage_人員資料);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_盤點作業, this.plC_ScreenPage_盤點作業);
 
             this.pannel_Locker_Design.Init(dBConfigClass.DB_Basic);
 
@@ -462,8 +470,10 @@ namespace 調劑台管理系統
             this.Program_管制抽屜_Init();
             this.Program_設備資料_Init();
             this.Program_交班對點_Init();
+            this.sub_Program_盤點作業_新增盤點_Init();
+            this.sub_Program_盤點作業_單號查詢_Init();
+            this.sub_Program_盤點作業_資料庫_Init();
 
-            
             this.plC_UI_Init.Add_Method(this.sub_Program_Scanner_RS232);
 
             this.LoadConfig工程模式();
