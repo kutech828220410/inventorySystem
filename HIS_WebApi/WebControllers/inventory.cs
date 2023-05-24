@@ -698,6 +698,10 @@ namespace HIS_WebApi
             for (int i = 0; i < creat.Contents.Count; i++)
             {
                 int 差異量 = 0;
+                if (creat.Contents[i].盤點量.StringToInt32() <= 0)
+                {
+                    continue;
+                }
                 sheetClass.AddNewCell_Webapi(NumOfRow + 3, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                 sheetClass.AddNewCell_Webapi(NumOfRow + 3, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                 sheetClass.AddNewCell_Webapi(NumOfRow + 3, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);

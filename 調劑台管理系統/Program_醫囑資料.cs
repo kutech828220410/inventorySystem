@@ -326,6 +326,7 @@ namespace 調劑台管理系統
         private List<OrderClass> Function_醫囑資料_API呼叫(string url, string barcode, int num)
         {
             barcode = barcode.Replace("\r\n", "");
+            barcode = Uri.EscapeDataString(barcode);
             List<OrderClass> orderClasses = new List<OrderClass>();
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -359,6 +360,7 @@ namespace 調劑台管理系統
         private List<OrderClass> Function_醫囑資料_API呼叫(string url, string barcode)
         {
             barcode = barcode.Replace("\r\n", "");
+            barcode = Uri.EscapeDataString(barcode);
             List<OrderClass> orderClasses = new List<OrderClass>();
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
