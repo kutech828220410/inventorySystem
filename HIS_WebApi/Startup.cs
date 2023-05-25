@@ -43,7 +43,10 @@ namespace HIS_WebApi
                 options.AddPolicy("CorsPolicy", policy =>
                 {
                     policy.WithOrigins("http://103.1.221.188:4433")
-                        .WithExposedHeaders("Content-Disposition");
+                        //.WithExposedHeaders("Content-Disposition")
+                        .AllowAnyHeader()
+                        .WithMethods("GET", "POST")
+                        .AllowCredentials();
                 });
             });
        
