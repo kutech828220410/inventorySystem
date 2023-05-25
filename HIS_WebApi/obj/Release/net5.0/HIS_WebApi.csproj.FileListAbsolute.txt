@@ -550,3 +550,6 @@ C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\Microsoft.Ex
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\System.IO.Pipelines.dll
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\libman.json
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\lib\aspnet\signalr\package.json
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
