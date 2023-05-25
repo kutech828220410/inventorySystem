@@ -34,7 +34,9 @@ namespace HIS_WebApi
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.AllowAnyOrigin()
+                    builder
+                        .SetIsOriginAllowed(origin => true)
+                        .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
@@ -56,14 +58,13 @@ namespace HIS_WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseCors(); // 啟用CORS
-
             app.UseAuthorization();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseWebSockets();
 
             app.UseEndpoints(endpoints =>
             {
@@ -71,6 +72,7 @@ namespace HIS_WebApi
 
                 endpoints.MapHub<MessageHub>("/messagehub");
             });
+          
         }
     }
 }
