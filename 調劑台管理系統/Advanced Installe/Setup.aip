@@ -18,10 +18,10 @@
     <ROW Property="AiSkipExitDlg" Value="1"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="力翔精密機械有限公司"/>
-    <ROW Property="ProductCode" Value="1028:{2B1D0B18-D605-4006-B709-29CC3B223769} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{88715E2D-F157-4BEF-BBEF-4A57332BFDE3} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1028"/>
     <ROW Property="ProductName" Value="智慧調劑台管理系統"/>
-    <ROW Property="ProductVersion" Value="1.0.51.0" Type="32" TargetFile="_.exe"/>
+    <ROW Property="ProductVersion" Value="1.0.52.0" Type="32" TargetFile="_.exe"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{9E8E570F-0E09-4BCD-A3D4-0EE2FFDFC180}"/>
@@ -129,8 +129,9 @@
     <ROW File="CallBackUI.dll" Component_="CallBackUI.dll" FileName="CALLBA~1.DLL|CallBackUI.dll" Attributes="0" SourcePath="..\bin\Release\CallBackUI.dll" SelfReg="false" NextFile="DrawingClass.dll"/>
     <ROW File="DrawingClass.dll" Component_="DrawingClass.dll" FileName="DRAWIN~1.DLL|DrawingClass.dll" Attributes="0" SourcePath="..\bin\Release\DrawingClass.dll" SelfReg="false" NextFile="FontAwesome.Sharp.dll"/>
     <ROW File="FontAwesome.Sharp.dll" Component_="FontAwesome.Sharp.dll" FileName="FONTAW~1.DLL|FontAwesome.Sharp.dll" Attributes="0" SourcePath="..\bin\Release\FontAwesome.Sharp.dll" SelfReg="false" NextFile="H_Pannel_lib.dll"/>
+    <ROW File="FtpConfig.txt" Component_="program.bak.stp" FileName="FTPCON~1.TXT|FtpConfig.txt" Attributes="0" SourcePath="..\bin\Release\FtpConfig.txt" SelfReg="false"/>
     <ROW File="HCGUI.dll" Component_="HCGUI.dll" FileName="HCGUI.dll" Attributes="0" SourcePath="..\bin\Release\HCGUI.dll" SelfReg="false" NextFile="Interop.SpeechLib.dll"/>
-    <ROW File="HIS_DB_Lib.dll" Component_="HIS_DB_Lib.dll" FileName="HIS_DB~1.DLL|HIS_DB_Lib.dll" Attributes="0" SourcePath="..\bin\Release\HIS_DB_Lib.dll" SelfReg="false"/>
+    <ROW File="HIS_DB_Lib.dll" Component_="HIS_DB_Lib.dll" FileName="HIS_DB~1.DLL|HIS_DB_Lib.dll" Attributes="0" SourcePath="..\bin\Release\HIS_DB_Lib.dll" SelfReg="false" NextFile="FtpConfig.txt"/>
     <ROW File="H_Pannel_lib.dll" Component_="H_Pannel_lib.dll" FileName="H_PANN~1.DLL|H_Pannel_lib.dll" Attributes="0" SourcePath="..\bin\Release\H_Pannel_lib.dll" SelfReg="false" NextFile="HCGUI.dll"/>
     <ROW File="IOC0640.dll" Component_="IOC0640.dll" FileName="IOC0640.dll" Attributes="0" SourcePath="..\bin\Release\IOC1280\x64\IOC0640.dll" SelfReg="false" NextFile="IOC0640.dll_1"/>
     <ROW File="IOC0640.dll_1" Component_="IOC0640.dll_1" FileName="IOC0640.dll" Attributes="0" SourcePath="..\bin\Release\IOC1280\x86\IOC0640.dll" SelfReg="false" NextFile="IOC1280001.pro"/>
