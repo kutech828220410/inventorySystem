@@ -44,7 +44,7 @@ namespace HIS_WebApi
                         .WithExposedHeaders("Content-Disposition");
                 });
             });
-
+       
             services.AddControllers();
             services.AddSignalR();
         }
@@ -68,6 +68,7 @@ namespace HIS_WebApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
                 endpoints.MapHub<MessageHub>("/messagehub");
             });
         }

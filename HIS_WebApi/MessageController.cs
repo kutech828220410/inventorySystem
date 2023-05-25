@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-
+using Microsoft.AspNetCore.Cors;
 namespace HIS_WebApi
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors]
     public class MessageController : ControllerBase
     {
         private readonly IHubContext<MessageHub> _hubContext;
