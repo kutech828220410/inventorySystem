@@ -103,7 +103,7 @@ namespace 智能藥庫系統
 
         private void Program_藥庫_儲位設定_EPD266()
         {
-            if (this.plC_ScreenPage_Main.PageText == "儲位管理" && this.plC_ScreenPage_藥庫.PageText == "儲位管理" && this.plC_ScreenPage_藥庫_儲位管理.PageText == "EPD266")
+            if (this.plC_ScreenPage_Main.PageText == "藥庫" && this.plC_ScreenPage_藥庫.PageText == "儲位管理" && this.plC_ScreenPage_藥庫_儲位管理.PageText == "EPD266")
             {
                 if (flag_Program_藥庫_儲位設定_EPD266_Init == false)
                 {
@@ -182,7 +182,10 @@ namespace 智能藥庫系統
                 string BarCode = "";
                 string 包裝單位 = "";
                 string 警訊藥品 = "";
-
+                string 料號 = "";
+                string BarCode1 = "";
+                string BarCode2 = "";
+                string 中文名稱 = "";
 
                 string 藥品碼_buf = "";
                 string 藥品名稱_buf = "";
@@ -190,6 +193,11 @@ namespace 智能藥庫系統
                 string BarCode_buf = "";
                 string 包裝單位_buf = "";
                 string 警訊藥品_buf = "";
+                string 料號_buf = "";
+                string BarCode1_buf = "";
+                string BarCode2_buf = "";
+                string 中文名稱_buf = "";
+
 
                 string IP = value.IP;
                 Storage storage = value;
@@ -210,6 +218,13 @@ namespace 智能藥庫系統
                     BarCode_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
                     包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.包裝單位].ObjectToString();
                     警訊藥品_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.警訊藥品].ObjectToString().ToUpper();
+                    料號_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.料號].ObjectToString();
+                    BarCode1_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
+                    BarCode2_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
+                    中文名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.中文名稱].ObjectToString();
+
+
+
                     if (警訊藥品_buf.StringIsEmpty()) 警訊藥品_buf = false.ToString().ToUpper();
                     藥品碼 = storage.GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
                     藥品名稱 = storage.GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
@@ -217,6 +232,10 @@ namespace 智能藥庫系統
                     BarCode = storage.GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
                     包裝單位 = storage.GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
                     警訊藥品 = storage.IsWarning ? "TRUE" : "FALSE";
+                    料號 = storage.SKDIACODE;
+                    BarCode1 = storage.BarCode1;
+                    BarCode2 = storage.BarCode2;
+                    中文名稱 = storage.ChineseName;
 
                     if (藥品碼 != 藥品碼_buf) Is_Replace = true;
                     if (藥品名稱 != 藥品名稱_buf) Is_Replace = true;
@@ -224,12 +243,22 @@ namespace 智能藥庫系統
                     if (BarCode != BarCode_buf) Is_Replace = true;
                     if (包裝單位 != 包裝單位_buf) Is_Replace = true;
                     if (警訊藥品 != 警訊藥品_buf) Is_Replace = true;
+                    if (料號 != 料號_buf) Is_Replace = true;
+                    if (BarCode1 != BarCode1_buf) Is_Replace = true;
+                    if (BarCode2 != BarCode2_buf) Is_Replace = true;
+                    if (中文名稱 != 中文名稱_buf) Is_Replace = true;
 
                     storage.SetValue(Device.ValueName.藥品碼, Device.ValueType.Value, 藥品碼_buf);
                     storage.SetValue(Device.ValueName.藥品名稱, Device.ValueType.Value, 藥品名稱_buf);
                     storage.SetValue(Device.ValueName.藥品學名, Device.ValueType.Value, 藥品學名_buf);
                     storage.SetValue(Device.ValueName.BarCode, Device.ValueType.Value, BarCode_buf);
                     storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Value, 包裝單位_buf);
+                    storage.SKDIACODE = 料號_buf;
+                    storage.BarCode1 = BarCode1_buf;
+                    storage.BarCode2 = BarCode2_buf;
+                    storage.ChineseName = 中文名稱_buf;
+
+
                     storage.IsWarning = (警訊藥品_buf == "TRUE");
 
                 }
@@ -242,7 +271,7 @@ namespace 智能藥庫系統
 
 
             this.storageUI_EPD_266.SQL_ReplaceStorage(list_replaceValue);
-            Console.Write($"儲位管理EPD266:更新藥檔完成 ,耗時 :{MyTimer_TickTime.GetTickTime().ToString("0.000")}\n");
+            Console.Write($"儲位管理EPD266:更新藥檔完成 ,共{list_replaceValue.Count}筆 ,耗時 :{MyTimer_TickTime.GetTickTime().ToString("0.000")}\n");
             cnt++;
         }
         void cnt_Program_藥庫_儲位設定_EPD266_資料更新_更新面板資料(ref int cnt)

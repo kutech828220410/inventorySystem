@@ -279,13 +279,13 @@ namespace HIS_WebApi
                 if (list_MED_cloud_buf.Count > 0)
                 {
                     inventoryClass.content content = new inventoryClass.content();
-                    content.藥品碼 = list_MED_cloud_buf[0][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
-                    content.藥品名稱 = list_MED_cloud_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                    content.中文名稱 = list_MED_cloud_buf[0][(int)enum_藥品資料_藥檔資料.藥品中文名稱].ObjectToString();
-                    content.料號 = list_MED_cloud_buf[0][(int)enum_藥品資料_藥檔資料.料號].ObjectToString();
-                    content.藥品條碼1 = list_MED_cloud_buf[0][(int)enum_藥品資料_藥檔資料.藥品條碼1].ObjectToString();
-                    content.藥品條碼2 = list_MED_cloud_buf[0][(int)enum_藥品資料_藥檔資料.藥品條碼2].ObjectToString();
-                    content.包裝單位 = list_MED_cloud_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
+                    content.藥品碼 = deviceBasics[i].Code;
+                    content.藥品名稱 = deviceBasics[i].Name;
+                    content.中文名稱 = deviceBasics[i].ChineseName;
+                    content.料號 = deviceBasics[i].SKDIACODE;
+                    content.藥品條碼1 = deviceBasics[i].BarCode1;
+                    content.藥品條碼2 = deviceBasics[i].BarCode2;
+                    content.包裝單位 = deviceBasics[i].Package;
                     content.理論值 = deviceBasics[i].Inventory;
                     creat.Contents.Add(content);
                 }
@@ -729,7 +729,6 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_creat = new SQLControl(Server, DbName, "inventory_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DbName, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_MED = new SQLControl(Server, DbName, "medicine_page_cloud", UserName, Password, Port, SSLMode);
             returnData returnData = new returnData();
             List<object[]> list_inventory_creat_buf = new List<object[]>();
             List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
@@ -739,8 +738,6 @@ namespace HIS_WebApi
             List<object[]> list_sub_inventory = sQLControl_inventory_sub_content.GetAllRows(null);
             List<object[]> list_sub_inventory_buf = new List<object[]>();
 
-            List<object[]> list_MED = sQLControl_MED.GetAllRows(null);
-            List<object[]> list_MED_buf = new List<object[]>();
             string 藥品碼 = "";
             string 藥品名稱 = "";
             string 中文名稱 = "";
@@ -755,29 +752,14 @@ namespace HIS_WebApi
                     for (int k = 0; k < list_inventory_content_buf.Count; k++)
                     {
                         inventoryClass.content content = inventoryClass.content.SQLToClass(list_inventory_content_buf[k]);
-                        藥品碼 = content.藥品碼;
-                        藥品名稱 = "";
-                        中文名稱 = "";
-                        包裝單位 = "";
-                        list_MED_buf = list_MED.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
-                        if (list_MED_buf.Count > 0)
-                        {
-                            藥品名稱 = list_MED_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                            中文名稱 = list_MED_buf[0][(int)enum_藥品資料_藥檔資料.藥品中文名稱].ObjectToString();
-                            包裝單位 = list_MED_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
-                        }
-                        content.藥品名稱 = 藥品名稱;
-                        content.中文名稱 = 中文名稱;
-                        content.包裝單位 = 包裝單位;
+             
 
                         int 盤點量 = 0;
                         list_inventory_sub_content_buf = list_inventory_sub_content.GetRows((int)enum_盤點明細.Master_GUID, content.GUID);
                         for (int m = 0; m < list_inventory_sub_content_buf.Count; m++)
                         {
                             inventoryClass.sub_content sub_Content = inventoryClass.sub_content.SQLToClass(list_inventory_sub_content_buf[m]);
-                            sub_Content.藥品名稱 = 藥品名稱;
-                            sub_Content.中文名稱 = 中文名稱;
-                            sub_Content.包裝單位 = 包裝單位;
+                   
                             if (sub_Content.盤點量.StringIsInt32())
                             {
                                 盤點量 += sub_Content.盤點量.StringToInt32();

@@ -150,14 +150,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="707584">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="708096">
       <assemblyIdentity name="H_Pannel_lib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hAUUaHFanE0xAkpfsItCRNcbMyKObRrJuU4JlrPQyus=</dsig:DigestValue>
+        <dsig:DigestValue>/stGMNhfycTHLdGRd3y2wmiHXt2QU7+DY17fWDNq8Wo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -637,17 +637,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>NKNdnNWbACFCI04I8Lngtkqf3B/OpfuPSJAHBA0zLhg=</dsig:DigestValue>
+        <dsig:DigestValue>0uqbWwp00arR9uAHKuFVs8jBZ56lrurYzJKmJ8LIkRw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="智能藥庫系統(VM Server).exe.config" size="792">
+  <file name="智能藥庫系統(VM Server).exe.config" size="775">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3uX7hW4mhebEKihgzd+vbAZ+SA1gb7hriK9xr9vNdug=</dsig:DigestValue>
+      <dsig:DigestValue>/rxWPG48whC/Za65ZnHn5JuXXG4ISBPSKZddsphfx94=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
