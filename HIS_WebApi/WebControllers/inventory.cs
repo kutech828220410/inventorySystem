@@ -264,37 +264,26 @@ namespace HIS_WebApi
         [HttpPost]
         public string GET_creat_add([FromBody] returnData returnData)
         {
-            SQLControl sQLControl_inventory_creat = new SQLControl(returnData.DbName, returnData.DbName, "inventory_creat", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inventory_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_content", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inventory_sub_content = new SQLControl(returnData.Server, returnData.DbName, "inventory_sub_content", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_MED_cloud = new SQLControl(returnData.Server, returnData.DbName, "medicine_page", UserName, Password, Port, SSLMode);
-
-
+     
             deviceController deviceController = new deviceController();
             returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
             string str_IC_SN = returnData_GET_new_IC_SN.Value;
             List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName);
-            List<object[]> list_MED_cloud = sQLControl_MED_cloud.GetAllRows(null);
-            List<object[]> list_MED_cloud_buf = new List<object[]>();
 
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.盤點單號 = str_IC_SN;
             for (int i = 0; i < deviceBasics.Count; i++)
             {
-                list_MED_cloud_buf = list_MED_cloud.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, deviceBasics[i].Code);
-                if (list_MED_cloud_buf.Count > 0)
-                {
-                    inventoryClass.content content = new inventoryClass.content();
-                    content.藥品碼 = deviceBasics[i].Code;
-                    content.藥品名稱 = deviceBasics[i].Name;
-                    content.中文名稱 = deviceBasics[i].ChineseName;
-                    content.料號 = deviceBasics[i].SKDIACODE;
-                    content.藥品條碼1 = deviceBasics[i].BarCode1;
-                    content.藥品條碼2 = deviceBasics[i].BarCode2;
-                    content.包裝單位 = deviceBasics[i].Package;
-                    content.理論值 = deviceBasics[i].Inventory;
-                    creat.Contents.Add(content);
-                }
+                inventoryClass.content content = new inventoryClass.content();
+                content.藥品碼 = deviceBasics[i].Code;
+                content.藥品名稱 = deviceBasics[i].Name;
+                content.中文名稱 = deviceBasics[i].ChineseName;
+                content.料號 = deviceBasics[i].SKDIACODE;
+                content.藥品條碼1 = deviceBasics[i].BarCode1;
+                content.藥品條碼2 = deviceBasics[i].BarCode2;
+                content.包裝單位 = deviceBasics[i].Package;
+                content.理論值 = deviceBasics[i].Inventory;
+                creat.Contents.Add(content);
             }
             if (creat.Contents.Count == 0)
             {
