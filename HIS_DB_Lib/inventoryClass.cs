@@ -153,7 +153,7 @@ namespace HIS_DB_Lib
             {
                 content _class = new content();
                 _class.GUID = value[(int)enum_盤點單號.GUID].ObjectToString();
-                _class.Master_GUID = value[(int)enum_盤點內容.盤點單號].ObjectToString();
+                _class.Master_GUID = value[(int)enum_盤點內容.Master_GUID].ObjectToString();
                 _class.盤點單號 = value[(int)enum_盤點內容.盤點單號].ObjectToString();
                 _class.藥品碼 = value[(int)enum_盤點內容.藥品碼].ObjectToString();
                 _class.料號 = value[(int)enum_盤點內容.料號].ObjectToString();

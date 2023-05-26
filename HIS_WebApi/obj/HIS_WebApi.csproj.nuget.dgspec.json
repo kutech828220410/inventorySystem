@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\HIS_WebApi.csproj": {}
+    "C:\\Users\\Administrator\\source\\repos\\inventorySystem20230517\\HIS_WebApi\\HIS_WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\HIS_WebApi.csproj": {
+    "C:\\Users\\Administrator\\source\\repos\\inventorySystem20230517\\HIS_WebApi\\HIS_WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\HIS_WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\inventorySystem20230517\\HIS_WebApi\\HIS_WebApi.csproj",
         "projectName": "HIS_WebApi",
-        "projectPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\HIS_WebApi.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\obj\\",
+        "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem20230517\\HIS_WebApi\\HIS_WebApi.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem20230517\\HIS_WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,10 +43,6 @@
             "IBM.Data.DB2.Core": {
               "target": "Package",
               "version": "[3.1.0.600, )"
-            },
-            "Microsoft.AspNetCore.SignalR.Common": {
-              "target": "Package",
-              "version": "[6.0.0, )"
             },
             "MySql.Data": {
               "target": "Package",

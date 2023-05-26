@@ -15,6 +15,7 @@ namespace HIS_DB_Lib
         private string _tableName = "";
         private string _result = "";
         private string _value = "";
+        private string _method = "";
         private string _timeTaken = "";
 
         public object Data { get => _data; set => _data = value; }
@@ -25,5 +26,6 @@ namespace HIS_DB_Lib
         public string Server { get => _server; set => _server = value; }
         public string DbName { get => _dbName; set => _dbName = value; }
         public string TableName { get => _tableName; set => _tableName = value; }
+        public string Method { get => _method; set => _method = value; }
     }
 }

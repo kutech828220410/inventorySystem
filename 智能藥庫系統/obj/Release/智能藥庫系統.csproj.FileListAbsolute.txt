@@ -311,3 +311,4 @@ C:\Users\Administrator\source\repos\inventorySystem20230517\智能藥庫系統\o
 C:\Users\Administrator\source\repos\inventorySystem20230517\智能藥庫系統\obj\Release\智能藥庫系統.exe
 C:\Users\Administrator\source\repos\inventorySystem20230517\智能藥庫系統\obj\Release\智能藥庫系統.pdb
 C:\Users\User\Desktop\Pharmacy-master\智能藥庫系統\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\source\repos\inventorySystem20230517\智能藥庫系統\bin\Release\ICSharpCode.SharpZipLib.dll

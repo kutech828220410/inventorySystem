@@ -15,6 +15,8 @@ using System.Configuration;
 using IBM.Data.DB2.Core;
 using MyOffice;
 using NPOI;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -24,10 +26,11 @@ namespace HIS_WebApi
         [HttpGet]
         public string Get()
         {
-            string str = System.Environment.CurrentDirectory;
-            //string jsonstring = MyFileStream.LoadFileAllText(@"C:\Users\HS\Documents\HIS_WebApi\HIS_WebApi\bin\Release\net5.0\test.txt", "utf-8");
-            string jsonstring = MyFileStream.LoadFileAllText(@$"{str}\test.txt", "utf-8");
-            return "Api test sucess!";
+            var localIpAddress = HttpContext.Connection.LocalIpAddress?.ToString();
+            var localPort = HttpContext.Connection.LocalPort;
+            var protocol = HttpContext.Request.IsHttps ? "https" : "http";
+
+            return $"Api test sucess!{protocol}://{localIpAddress}:{localPort}";
         }
         [Route("price")]
         [HttpGet]

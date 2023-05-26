@@ -6,18 +6,12 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace HIS_WebApi
 {
-    public class MessageHub : Hub
+    public class ChatHub : Hub
     {
-        public async Task SendMessageAsync(string message)
+        public async Task SendMessage(string user, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", message);
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
-        public void SendMessage(string message)
-        {
-            Task.Run(async () =>
-            {
-                await Clients.All.SendAsync("ReceiveMessage", message);
-            }).GetAwaiter().GetResult();
-        }
+   
     }
 }

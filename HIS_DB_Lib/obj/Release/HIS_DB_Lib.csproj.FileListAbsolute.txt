@@ -89,3 +89,4 @@ C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_DB_Lib\obj\Relea
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_DB_Lib\obj\Release\HIS_DB_Lib.dll
 C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
 C:\Users\User\Desktop\Pharmacy-master\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache

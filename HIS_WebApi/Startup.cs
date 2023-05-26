@@ -12,9 +12,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Configuration;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Hosting;
+
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Configuration;
 
 namespace HIS_WebApi
 {
@@ -40,14 +44,7 @@ namespace HIS_WebApi
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
-                options.AddPolicy("CorsPolicy", policy =>
-                {
-                    policy.WithOrigins("http://103.1.221.188:4433")
-                        //.WithExposedHeaders("Content-Disposition")
-                        .AllowAnyHeader()
-                        .WithMethods("GET", "POST")
-                        .AllowCredentials();
-                });
+           
             });
        
             services.AddControllers();
@@ -61,6 +58,10 @@ namespace HIS_WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => 
+            {
+                builder.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(_ => true).AllowCredentials();
+            });
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors(); // 啟用CORS
@@ -73,7 +74,7 @@ namespace HIS_WebApi
             {
                 endpoints.MapControllers();
 
-                endpoints.MapHub<MessageHub>("/messagehub");
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
           
         }
