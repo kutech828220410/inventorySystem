@@ -68,6 +68,7 @@ namespace HIS_WebApi
             returnData.Value = 盤點單號;
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "new_IC_SN";
             returnData.Result = $"成功! {myTimer.ToString()}";
             return returnData.JsonSerializationt(true);
         }
@@ -106,6 +107,7 @@ namespace HIS_WebApi
             returnData = Function_Get_inventory_creat(returnData.Server, returnData.DbName, list_inventory_creat, false);
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "creat_get_by_CT_TIME_ST_END";
             returnData.Result = $"取得盤點資料成功!";
 
             return returnData.JsonSerializationt(true);
@@ -142,6 +144,7 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"取得盤點資料成功!";
+            returnData.Method = "creat_get_by_CT_TIME";
 
             return returnData.JsonSerializationt(true);
         }
@@ -171,6 +174,7 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"取得盤點資料成功!";
+            returnData.Method = "creat_get_by_IC_SN";
 
             return returnData.JsonSerializationt();
         }
@@ -251,6 +255,8 @@ namespace HIS_WebApi
             returnData.Data = creat;
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "creat_add";
+
             returnData.Result = $"成功加入新盤點單! 共{list_inventory_content_add.Count}筆資料";
             return returnData.JsonSerializationt(true);
         }
@@ -297,6 +303,8 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
             returnData.Data = creat;
+            returnData.Method = "creat_auto_add";
+
             return POST_creat_add(returnData);
         }
         //盤點單鎖定
@@ -337,7 +345,7 @@ namespace HIS_WebApi
             returnData.Value = "盤點單鎖定成功!";
             returnData.Data = creat;
             returnData.TimeTaken = myTimer.ToString();
-
+            returnData.Method = "creat_lock_by_IC_SN";
             return returnData.JsonSerializationt(true);
         }
         //盤點單解鎖
@@ -378,6 +386,7 @@ namespace HIS_WebApi
             returnData.Value = "盤點單解鎖成功!";
             returnData.Data = creat;
             returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "creat_unlock_by_IC_SN";
 
             return returnData.JsonSerializationt(true);
         }
@@ -416,6 +425,8 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"已將[{ creat.盤點單號}]刪除!";
+            returnData.Method = "creat_delete_by_IC_SN";
+
             return returnData.JsonSerializationt();
 
 
@@ -450,6 +461,8 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"已刪除盤點內容共<{list_GUID.Count}>筆資料!";
+            returnData.Method = "contents_delete_by_GUID";
+
             return returnData.JsonSerializationt();
         }
         [Route("content_get_by_content_GUID")]
@@ -479,6 +492,8 @@ namespace HIS_WebApi
                 returnData.Code = -1;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Result = $"查無盤點內容!";
+                returnData.Method = "content_get_by_content_GUID";
+
                 return returnData.JsonSerializationt();
             }
             else
@@ -488,6 +503,8 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Result = $"取得盤點內容成功!";
+                returnData.Method = "content_get_by_content_GUID";
+
                 return returnData.JsonSerializationt();
             }
 
@@ -526,6 +543,8 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"取得盤點明細成功!";
+            returnData.Method = "sub_content_get_by_content_GUID";
+
             return returnData.JsonSerializationt();
         }
         //盤點明細新增
@@ -582,6 +601,8 @@ namespace HIS_WebApi
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"新增批效成功!";
             returnData.Data = sub_content;
+            returnData.Method = "sub_content_add_single";
+
             return returnData.JsonSerializationt();
         }
         //盤點明細新增
@@ -623,6 +644,8 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"新增批效成功!";
+            returnData.Method = "sub_content_add";
+
             returnData.Data = null;
             return returnData.JsonSerializationt();
         }
@@ -647,6 +670,8 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"已刪除盤點明細共<{list_GUID.Count}>筆資料!";
+            returnData.Method = "sub_contents_delete_by_GUID";
+
             return returnData.JsonSerializationt();
         }
 
