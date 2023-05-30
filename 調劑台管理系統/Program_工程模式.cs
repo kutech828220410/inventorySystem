@@ -12,12 +12,12 @@ using Basic;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using H_Pannel_lib;
+using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
 
-        MyThread MyThread_檢查Pannel35_主畫面;
         private void Program_工程模式_Init()
         {
             this.button_工程模式_門未關閉警報語音內容_下載.Click += Button_工程模式_門未關閉警報語音內容_下載_Click;

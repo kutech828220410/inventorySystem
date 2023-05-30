@@ -1,3 +1,4 @@
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_emg_tradding.txt
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_inventory.txt
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.exe
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\app.config

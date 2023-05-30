@@ -75,6 +75,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="excel_emg_tradding.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="excel_inventory.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

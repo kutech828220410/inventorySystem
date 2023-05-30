@@ -13,54 +13,12 @@ using MyUI;
 using Basic;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
-
+using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
-        private enum enum_交易記錄查詢動作
-        {
-            掃碼領藥,
-            手輸領藥,
-            批次領藥,
-            系統領藥,
-            掃碼退藥,
-            手輸退藥,
-            重複領藥,
-            自動過帳,
-            人臉識別登入,
-            RFID登入,
-            一維碼登入,
-            密碼登入,
-            登出,
-            操作工程模式,
-            效期庫存異動,
-            入庫作業,
-            管制抽屜開啟,
-            管制抽屜關閉,
-            交班對點,
-            None,
-        }
-        private enum enum_交易記錄查詢資料
-        {
-            GUID,
-            動作,
-            藥品碼,
-            藥品名稱,
-            藥袋序號,
-            類別,
-            庫存量,
-            交易量,
-            結存量,
-            盤點量,
-            操作人,
-            病人姓名,
-            床號,
-            病歷號,
-            操作時間,
-            開方時間,
-            備註,
-        }
+       
         private void Program_交易記錄查詢_Init()
         {
             this.sqL_DataGridView_交易記錄查詢.Init();
