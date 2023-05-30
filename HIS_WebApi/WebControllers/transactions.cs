@@ -58,7 +58,7 @@ namespace HIS_WebApi
                 List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
                 List<medClass> medClasses_buf = new List<medClass>();
                 medClasses_buf = (from value in medClasses
-                                  where value.藥品碼 == 藥品碼
+                                  where value.藥品碼.ToUpper() == 藥品碼.ToUpper()
                                   select value).ToList();
                 if(medClasses_buf.Count == 0)
                 {
@@ -186,7 +186,7 @@ namespace HIS_WebApi
                 List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
                 List<medClass> medClasses_buf = new List<medClass>();
                 medClasses_buf = (from value in medClasses
-                                  where value.藥品碼 == 藥品碼
+                                  where value.藥品碼.ToUpper() == 藥品碼.ToUpper()
                                   select value).ToList();
                 if (medClasses_buf.Count == 0)
                 {
