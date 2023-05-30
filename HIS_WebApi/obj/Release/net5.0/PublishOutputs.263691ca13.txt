@@ -3,6 +3,8 @@ C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\H
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\app.config
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\appsettings.json
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\libman.json
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\lib\aspnet\signalr\package.json
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\clidriver\bin\db2app64.dll
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\clidriver\bin\db2cli.exe
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\clidriver\bin\db2cli64.dll

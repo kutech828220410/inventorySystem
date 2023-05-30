@@ -255,6 +255,13 @@ namespace 智能藥庫系統
             Parallel.ForEach(list_藥品資料, value =>
             {
                 string 藥品碼 = value[(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
+                string 藥品名稱 = value[(int)enum_藥庫_藥品資料.藥品名稱].ObjectToString();
+                string 藥品學名 = value[(int)enum_藥庫_藥品資料.藥品學名].ObjectToString();
+                string 中文名稱 = value[(int)enum_藥庫_藥品資料.中文名稱].ObjectToString();
+                string 包裝單位 = value[(int)enum_藥庫_藥品資料.包裝單位].ObjectToString();
+                string 藥品條碼1 = value[(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
+                string 藥品條碼2 = value[(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
+                string 料號 = value[(int)enum_藥庫_藥品資料.料號].ObjectToString();
                 List<DeviceBasic> devices_buf = (from Value in this.List_藥庫_DeviceBasic
                                                  where Value.Code == 藥品碼
                                                  select Value).ToList();
@@ -262,7 +269,17 @@ namespace 智能藥庫系統
                 {
                     DeviceBasic device = new DeviceBasic();
                     device.Code = 藥品碼;
+                    device.SKDIACODE = 料號;
+                    device.Name = 藥品名稱;
+                    device.ChineseName = 中文名稱;
+                    device.Package = 包裝單位;
+                    device.BarCode1 = 藥品條碼1;
+                    device.BarCode2 = 藥品條碼2;
                     devices_Add.LockAdd(device);
+                }
+                else
+                {
+
                 }
             });
 

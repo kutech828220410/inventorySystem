@@ -39,7 +39,5 @@
   "MedApiURL": "",
   "Med_Update_ApiURL": "",
   "Inspection_ApiURL": "",
-  "Inventory_ApiURL": "http://127.0.0.1:4433/api/inventory",
-  "Server": "127.0.0.1",
-  "DbName": "dps01"
+  "Inventory_ApiURL": "http://127.0.0.1:4433/api/inventory"
 }

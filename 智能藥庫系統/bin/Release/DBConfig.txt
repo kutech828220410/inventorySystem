@@ -1,7 +1,7 @@
 {
   "DB_Basic": {
     "DataBaseName": "ds01",
-    "IP": "103.1.221.188",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -10,7 +10,7 @@
   },
   "DB_person_page": {
     "DataBaseName": "ds01_vm",
-    "IP": "103.1.221.188",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -19,7 +19,7 @@
   },
   "DB_Medicine_Cloud": {
     "DataBaseName": "dbvm",
-    "IP": "103.1.221.188",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -28,7 +28,7 @@
   },
   "DB_posting_server": {
     "DataBaseName": "ds01_vm",
-    "IP": "103.1.221.188",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -46,7 +46,7 @@
   },
   "Emg_apply_ApiURL": "https://127.0.0.1:4433/api/excel/emg_apply/",
   "MedPrice_ApiURL": "https://127.0.0.1:4433/api/MedPrice",
-  "Inspection_ApiURL": "http://103.1.221.188:4433/api/inspection",
+  "Inspection_ApiURL": "http://127.0.0.1:4433/api/inspection",
   "Inventory_ApiURL": "http://127.0.0.1:4433/api/inventory",
   "Server": "127.0.0.1",
   "DbName": "ds01"

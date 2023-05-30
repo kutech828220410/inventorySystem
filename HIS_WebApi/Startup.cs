@@ -76,7 +76,7 @@ namespace HIS_WebApi
 
                 endpoints.MapHub<ChatHub>("/chatHub");
             });
-          
+
         }
     }
 }

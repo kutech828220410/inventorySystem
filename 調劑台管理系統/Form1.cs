@@ -18,8 +18,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyVersion("1.0.52.0")]
-[assembly: AssemblyFileVersion("1.0.52.0")]
+[assembly: AssemblyVersion("1.0.53.0")]
+[assembly: AssemblyFileVersion("1.0.53.0")]
 namespace 調劑台管理系統
 {
 
@@ -54,8 +54,7 @@ namespace 調劑台管理系統
             private string med_Update_ApiURL = "";
             private string inventory_ApiURL = "";
             private string inspection_ApiURL = "";
-            private string server = "";
-            private string dbName = "";
+
 
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
@@ -66,8 +65,7 @@ namespace 調劑台管理系統
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
             public string Inspection_ApiURL { get => inspection_ApiURL; set => inspection_ApiURL = value; }
             public string Inventory_ApiURL { get => inventory_ApiURL; set => inventory_ApiURL = value; }
-            public string Server { get => server; set => server = value; }
-            public string DbName { get => dbName; set => dbName = value; }
+
         }
         private void LoadDBConfig()
         {

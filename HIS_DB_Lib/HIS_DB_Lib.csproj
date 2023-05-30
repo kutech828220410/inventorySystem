@@ -87,6 +87,7 @@
     <Compile Include="medCouldClass.cs" />
     <Compile Include="medDrugstoreClass.cs" />
     <Compile Include="medPharmacyClass.cs" />
+    <Compile Include="medSMDSClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

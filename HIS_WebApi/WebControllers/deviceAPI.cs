@@ -25,20 +25,37 @@ namespace HIS_WebApi
     [ApiController]
     public class deviceController : Controller
     {
+        static private string device_Server = ConfigurationManager.AppSettings["device_Server"];
+        static private string device_DB = ConfigurationManager.AppSettings["device_DB"];
+        static private string device_TableName = ConfigurationManager.AppSettings["device_TableName"];
+
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("getall")]
+        [HttpGet]
+        public string GET_device_get()
+        {
+            returnData returnData = new returnData();
+            List<DeviceBasic> deviceBasics = Function_Get_device(device_Server, device_DB, device_TableName);
+            returnData.Code = 200;
+            returnData.Value = $"Device取得成功!TableName : {device_TableName}";
+            returnData.Data = deviceBasics;
+            return returnData.JsonSerializationt(true);
+        }
+        [Route("getall")]
         [HttpPost]
         public string POST_device_get(returnData returnData)
         {
             try
             {
+
+
                 List<DeviceBasic> deviceBasics = Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName);
                 returnData.Code = 200;
-                returnData.Value = $"Device取得成功!TableName : {returnData.TableName}";
+                returnData.Value = $"Device取得成功!TableName : {device_TableName}";
                 returnData.Data = deviceBasics;
                 return returnData.JsonSerializationt();
             }
@@ -51,7 +68,14 @@ namespace HIS_WebApi
 
 
         }
-
+        public List<DeviceBasic> Function_Get_device()
+        {
+            return Function_Get_device(device_Server, device_DB, device_TableName);
+        }
+        public List<DeviceBasic> Function_Get_device(returnData returnData)
+        {
+            return Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName);
+        }
         public List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName)
         {
             SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);

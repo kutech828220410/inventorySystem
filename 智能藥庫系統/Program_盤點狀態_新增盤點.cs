@@ -129,8 +129,6 @@ namespace 智能藥庫系統
         private void PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(MouseEventArgs mevent)
         {
             returnData returnData = new returnData();
-            returnData.Server = dBConfigClass.Server;
-            returnData.DbName = dBConfigClass.DbName;
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/new_IC_SN", returnData.JsonSerializationt());
             Console.WriteLine(json);
             this.Invoke(new Action(delegate
@@ -202,8 +200,6 @@ namespace 智能藥庫系統
                 creat.Contents.Add(content);
             }
             returnData.Data = creat;
-            returnData.Server = dBConfigClass.Server;
-            returnData.DbName = dBConfigClass.DbName;
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_add", json_in);
             Console.WriteLine(json);
@@ -221,10 +217,9 @@ namespace 智能藥庫系統
             creat.盤點單號 = 盤點單號;
          
             returnData.Data = creat;
-            returnData.Server = dBConfigClass.Server;
-            returnData.DbName = dBConfigClass.DbName;
-            returnData.TableName = "firstclass_device_jsonstring";
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_auto_add", returnData.JsonSerializationt());
+
+            string jsonin = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_auto_add", jsonin);
             Console.WriteLine(json);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog($"{returnData.Result}");

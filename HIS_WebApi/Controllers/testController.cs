@@ -17,6 +17,7 @@ using MyOffice;
 using NPOI;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using HIS_DB_Lib;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -29,8 +30,10 @@ namespace HIS_WebApi
             var localIpAddress = HttpContext.Connection.LocalIpAddress?.ToString();
             var localPort = HttpContext.Connection.LocalPort;
             var protocol = HttpContext.Request.IsHttps ? "https" : "http";
-
-            return $"Api test sucess!{protocol}://{localIpAddress}:{localPort}";
+            returnData returnData = new returnData();
+            returnData.Code = 200;
+            returnData.Result = $"Api test sucess!{protocol}://{localIpAddress}:{localPort}";
+            return returnData.JsonSerializationt(true);
         }
         [Route("price")]
         [HttpGet]
