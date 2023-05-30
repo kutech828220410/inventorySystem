@@ -49,6 +49,7 @@ namespace 調劑台管理系統
         private void Program_領藥_Init()
         {
             this.sqL_DataGridView_領藥台_01_領藥內容.Init();
+            this.sqL_DataGridView_領藥台_01_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_領藥台_01_領藥內容.DataGridRefreshEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridRefreshEvent;
 
             this.textBox_領藥台_01_密碼.PassWordChar = true;
@@ -67,6 +68,7 @@ namespace 調劑台管理系統
 
             this.sqL_DataGridView_領藥台_02_領藥內容.Init();
             this.sqL_DataGridView_領藥台_02_領藥內容.DataGridRefreshEvent += SqL_DataGridView_領藥台_02_領藥內容_DataGridRefreshEvent;
+            this.sqL_DataGridView_領藥台_02_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_02_領藥內容_DataGridRowsChangeRefEvent;
 
             this.textBox_領藥台_02_密碼.PassWordChar = true;
             this.textBox_領藥台_02_帳號.KeyPress += TextBox_領藥台_02_帳號_KeyPress;
@@ -110,6 +112,8 @@ namespace 調劑台管理系統
             this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(10);
             this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
         }
+
+   
 
         private void sub_Program_領藥台_01()
         {
@@ -1423,6 +1427,10 @@ namespace 調劑台管理系統
         #endregion
 
         #region Event
+        private void SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
+        {
+            RowsList = Function_領藥內容_重新排序(RowsList);
+        }
         private void PlC_RJ_Button_領藥台_01_強制入帳_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
@@ -2767,6 +2775,10 @@ namespace 調劑台管理系統
 
 
         #region Event
+        private void SqL_DataGridView_領藥台_02_領藥內容_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
+        {
+            RowsList = Function_領藥內容_重新排序(RowsList);
+        }
         private void PlC_RJ_Button_領藥台_02_強制入帳_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
@@ -3197,5 +3209,20 @@ namespace 調劑台管理系統
 
 
         #endregion
+
+        private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
+        {
+            List<object[]> list_value_buf = new List<object[]>();
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.等待作業.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.作業完成.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.等待入帳.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.新增效期.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.輸入新效期.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()));
+            if(!plC_CheckBox_領藥無儲位不顯示.Checked)list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
+            return list_value_buf;
+        }
     }
 }
