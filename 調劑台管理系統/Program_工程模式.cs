@@ -20,7 +20,6 @@ namespace 調劑台管理系統
 
         private void Program_工程模式_Init()
         {
-            this.button_工程模式_門未關閉警報語音內容_下載.Click += Button_工程模式_門未關閉警報語音內容_下載_Click;
             this.plC_Button_工程模式_全部開鎖.btnClick += PlC_Button_工程模式_全部開鎖_btnClick;
             this.plC_UI_Init.Add_Method(this.sub_Program_工程模式);
         }
@@ -197,11 +196,7 @@ namespace 調劑台管理系統
 
         #endregion
         #region Event
-        private void Button_工程模式_門未關閉警報語音內容_下載_Click(object sender, EventArgs e)
-        {
-            Voice.GoogleSpeaker(this.textBox_工程模式_門未關閉警報語音內容.Text, @".//alarm.mp3");
-            MyMessageBox.ShowDialog("下載完成!");
-        }
+
         private void button_工程模式_調劑台名稱儲存_Click(object sender, EventArgs e)
         {
             this.SaveConfig工程模式();
@@ -260,7 +255,6 @@ namespace 調劑台管理系統
 
             saveConfig.領藥台_01_Color = this.panel_工程模式_領藥台_01_顏色.BackColor;
             saveConfig.領藥台_02_Color = this.panel_工程模式_領藥台_02_顏色.BackColor;
-            saveConfig.門未關閉警報語音內容 = this.textBox_工程模式_門未關閉警報語音內容.Text;
             Basic.FileIO.SaveProperties(saveConfig, StreamName);
         }
         public void LoadConfig工程模式()
@@ -283,7 +277,6 @@ namespace 調劑台管理系統
 
                     this.rJ_GroupBox_領藥台_02.PannelBorderColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
                     this.rJ_GroupBox_領藥台_02.TitleBackColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
-                    this.textBox_工程模式_門未關閉警報語音內容.Text = ((SaveConfig工程模式Class)temp).門未關閉警報語音內容;
 
                 }));
             }

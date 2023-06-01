@@ -106,7 +106,6 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料_藥檔資料.MouseDown += SqL_DataGridView_藥品資料_藥檔資料_MouseDown;
             this.sqL_DataGridView_藥品資料_藥檔資料.DataGridRefreshEvent += sqL_DataGridView_藥品資料_藥檔資料_DataGridRefreshEvent;
             this.sqL_DataGridView_藥品資料_藥檔資料.DataGridRowsChangeEvent += SqL_DataGridView_藥品資料_藥檔資料_DataGridRowsChangeEvent;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.SelectedIndex = 0;
             this.comboBox_藥品資料_藥檔資料_管制級別.SelectedIndex = 0;
 
             this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.MouseDownEvent += PlC_RJ_Button_藥品資料_藥檔資料_資料查詢_MouseDownEvent;
@@ -362,7 +361,7 @@ namespace 調劑台管理系統
             value[(int)enum_藥品資料_藥檔資料.包裝單位] = this.textBox_藥品資料_藥檔資料_包裝單位.Text;
             value[(int)enum_藥品資料_藥檔資料.庫存] = this.textBox_藥品資料_藥檔資料_庫存.Text;
             value[(int)enum_藥品資料_藥檔資料.安全庫存] = this.textBox_藥品資料_藥檔資料_安全庫存.Text;
-            value[(int)enum_藥品資料_藥檔資料.警訊藥品] = this.comboBox_藥品資料_藥檔資料_警訊藥品.Texts;
+            value[(int)enum_藥品資料_藥檔資料.警訊藥品] = this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked.ToString();
             value[(int)enum_藥品資料_藥檔資料.管制級別] = this.comboBox_藥品資料_藥檔資料_管制級別.Texts;
             if (this.Function_藥品資料_藥檔資料_確認欄位正確(value, true))
             {
@@ -396,7 +395,7 @@ namespace 調劑台管理系統
                 this.textBox_藥品資料_藥檔資料_安全庫存.Text = "";
                 this.textBox_藥品資料_藥檔資料_包裝單位.Text = "";
                 this.textBox_藥品資料_藥檔資料_藥品條碼.Text = "";
-                this.comboBox_藥品資料_藥檔資料_警訊藥品.SelectedIndex = 0;
+                this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = false;
             }));
             
         }
@@ -690,7 +689,7 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_安全庫存.Text = RowValue[(int)enum_藥品資料_藥檔資料.安全庫存].ObjectToString();
             this.textBox_藥品資料_藥檔資料_包裝單位.Text = RowValue[(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品條碼.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString();
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Texts = RowValue[(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString();
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (RowValue[(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString());
             this.comboBox_藥品資料_藥檔資料_管制級別.Texts = RowValue[(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
         }
         private void SqL_DataGridView_藥品資料_藥檔資料_DataGridRowsChangeEvent(List<object[]> RowsList)
@@ -844,14 +843,17 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (MyMessageBox.ShowDialog("是否更新勾選的藥品資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-            List<object[]> list_本地藥檔 = this.sqL_DataGridView_藥品資料_藥檔資料.Get_All_Checked_RowsValues();
+            //if (MyMessageBox.ShowDialog("是否更新勾選的藥品資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            //List<object[]> list_本地藥檔 = this.sqL_DataGridView_藥品資料_藥檔資料.Get_All_Checked_RowsValues();
+            //List<object[]> list_本地藥檔_replace = new List<object[]>();
+            //if (list_本地藥檔.Count == 0)
+            //{
+            //    MyMessageBox.ShowDialog("未勾選藥品,請勾選要更新藥品!");
+            //    return;
+            //}
+
+            List<object[]> list_本地藥檔 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
             List<object[]> list_本地藥檔_replace = new List<object[]>();
-            if (list_本地藥檔.Count == 0)
-            {
-                MyMessageBox.ShowDialog("未勾選藥品,請勾選要更新藥品!");
-                return;
-            }
             string url = dBConfigClass.MedApiURL;
             if (!url.StringIsEmpty())
             {
@@ -920,7 +922,7 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_藥品條碼.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1].ObjectToString();
             this.textBox_藥品資料_藥檔資料_健保碼.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.健保碼].ObjectToString();
             this.textBox_藥品資料_藥檔資料_包裝單位.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Text = (list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString().ToLower() == "true") ? "True" : "False";
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString().ToLower() == "true");
             this.comboBox_藥品資料_藥檔資料_管制級別.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.管制級別].ObjectToString();
         }
         private void PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent(MouseEventArgs mevent)

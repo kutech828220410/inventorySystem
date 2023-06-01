@@ -318,14 +318,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyOffice.dll" size="45056">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyOffice.dll" size="45568">
       <assemblyIdentity name="MyOffice" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>04MTGJdF9sGbTyODiIFaU1EesBLoPkoswTRpJQJxl4g=</dsig:DigestValue>
+        <dsig:DigestValue>AQ9yx0IPE1fLAwc049tPzKvuuDzimQ1F8zWU3V9YYVw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -342,14 +342,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MySQL_Login.dll" size="82432">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MySQL_Login.dll" size="83456">
       <assemblyIdentity name="MySQL_Login" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Eb/eUt7NbQtQVPzDCpJounpdKgoHvZGfzN6ICWPtcfc=</dsig:DigestValue>
+        <dsig:DigestValue>oGwNsirSSXEMV/cZbxxoY2xTcW4t+GcO86oOc0MhbhE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -637,17 +637,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xybWbiIdQpfutDEJ/lNqcMoLo8GMu7N/L3GDzPiDuA4=</dsig:DigestValue>
+        <dsig:DigestValue>0uqbWwp00arR9uAHKuFVs8jBZ56lrurYzJKmJ8LIkRw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="智能藥庫系統(VM Server).exe.config" size="792">
+  <file name="智能藥庫系統(VM Server).exe.config" size="775">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3uX7hW4mhebEKihgzd+vbAZ+SA1gb7hriK9xr9vNdug=</dsig:DigestValue>
+      <dsig:DigestValue>/rxWPG48whC/Za65ZnHn5JuXXG4ISBPSKZddsphfx94=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

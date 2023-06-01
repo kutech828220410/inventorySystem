@@ -40,8 +40,9 @@ namespace 調劑台管理系統
         private int 交易量_buf = 0;
         private List<string> list_效期_buf = new List<string>();
         private List<string> list_批號_buf = new List<string>();
+        private List<string> list_數量_buf = new List<string>();
 
-        public Dialog_選擇效期(string 藥品碼, string 藥品名稱, int 交易量, List<string> list_效期, List<string> list_批號)
+        public Dialog_選擇效期(string 藥品碼, string 藥品名稱, int 交易量, List<string> list_效期, List<string> list_批號, List<string> list_數量)
         {
             InitializeComponent();
             藥品碼_buf = 藥品碼;
@@ -49,6 +50,7 @@ namespace 調劑台管理系統
             交易量_buf = 交易量;
             list_效期_buf = list_效期;
             list_批號_buf = list_批號;
+            list_數量_buf = list_數量;
         }
 
         private void Dialog_選擇效期_Load(object sender, EventArgs e)
@@ -111,9 +113,9 @@ namespace 調劑台管理系統
                 pLC_RJ_Button.Size = new System.Drawing.Size(709, 89);
                 pLC_RJ_Button.State = false;
                 pLC_RJ_Button.TabIndex = 1;
-                pLC_RJ_Button.Text = $"{list_效期[i]} [{list_批號[i]}]";
+                pLC_RJ_Button.Text = $"{list_效期[i]} [{list_批號[i]}] ({list_數量_buf[i]})";
                 pLC_RJ_Button.TextColor = System.Drawing.Color.White;
-                pLC_RJ_Button.Texts = $"{list_效期[i]} [{list_批號[i]}]";
+                pLC_RJ_Button.Texts = $"{list_效期[i]} [{list_批號[i]}] ({list_數量_buf[i]})";
                 pLC_RJ_Button.UseVisualStyleBackColor = false;
                 pLC_RJ_Button.字型鎖住 = false;
                 pLC_RJ_Button.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
@@ -156,6 +158,12 @@ namespace 調劑台管理系統
                 {
                     if (pLC_RJ_Buttons[i].Bool)
                     {
+                        int 數量 = list_數量_buf[i].StringToInt32();
+                        if (數量 < 交易量_buf * -1)
+                        {
+                            MyMessageBox.ShowDialog("此效期數量不足!");
+                            return;
+                        }
                         this.Value = pLC_RJ_Buttons[i].Name;
                         isSelected = true;
                         break;

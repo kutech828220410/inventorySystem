@@ -225,14 +225,11 @@
             this.plC_RJ_Button_藥品資料_刪除 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_藥品資料_更新藥櫃資料 = new MyUI.PLC_RJ_Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品 = new MyUI.PLC_CheckBox();
             this.panel75 = new System.Windows.Forms.Panel();
             this.comboBox_藥品資料_藥檔資料_管制級別 = new MyUI.RJ_ComboBox();
             this.panel76 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel71 = new System.Windows.Forms.Panel();
-            this.comboBox_藥品資料_藥檔資料_警訊藥品 = new MyUI.RJ_ComboBox();
-            this.panel72 = new System.Windows.Forms.Panel();
-            this.label25 = new System.Windows.Forms.Label();
             this.panel69 = new System.Windows.Forms.Panel();
             this.textBox_藥品資料_藥檔資料_安全庫存 = new MyUI.RJ_TextBox();
             this.panel70 = new System.Windows.Forms.Panel();
@@ -275,6 +272,14 @@
             this.label21 = new System.Windows.Forms.Label();
             this.plC_RJ_Button_藥品資料_登錄 = new MyUI.PLC_RJ_Button();
             this.sqL_DataGridView_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
+            this.管藥設定 = new System.Windows.Forms.TabPage();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤 = new MyUI.PLC_RJ_ChechBox();
+            this.rJ_Lable121 = new MyUI.RJ_Lable();
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理 = new MyUI.PLC_RJ_ChechBox();
+            this.rJ_Lable120 = new MyUI.RJ_Lable();
+            this.comboBox_藥品資料_管藥設定_類型 = new System.Windows.Forms.ComboBox();
+            this.rJ_Lable99 = new MyUI.RJ_Lable();
             this.儲位總庫存表 = new System.Windows.Forms.TabPage();
             this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋 = new MyUI.PLC_RJ_Button();
@@ -304,6 +309,7 @@
             this.panel_藥品資料 = new System.Windows.Forms.Panel();
             this.plC_RJ_ScreenButton_儲位效期表 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_儲位總庫存表 = new MyUI.PLC_RJ_ScreenButton();
+            this.plC_RJ_ScreenButton14 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton11 = new MyUI.PLC_RJ_ScreenButton();
             this.效期管理 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox11 = new MyUI.RJ_GroupBox();
@@ -824,9 +830,6 @@
             this.rJ_Lable76 = new MyUI.RJ_Lable();
             this.工程模式 = new System.Windows.Forms.TabPage();
             this.panel66 = new System.Windows.Forms.Panel();
-            this.button_工程模式_門未關閉警報語音內容_下載 = new System.Windows.Forms.Button();
-            this.textBox_工程模式_門未關閉警報語音內容 = new System.Windows.Forms.TextBox();
-            this.rJ_Lable99 = new MyUI.RJ_Lable();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
             this.panel_工程模式_領藥台_02_顏色 = new System.Windows.Forms.Panel();
             this.rJ_Lable47 = new MyUI.RJ_Lable();
@@ -853,6 +856,7 @@
             this.plC_NumBox2 = new MyUI.PLC_NumBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.plC_CheckBox_領藥無儲位不顯示 = new MyUI.PLC_CheckBox();
             this.plC_Button_工程模式_全部開鎖 = new MyUI.PLC_Button();
             this.plC_CheckBox_QRcode_Mode = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_自動過帳 = new MyUI.PLC_CheckBox();
@@ -865,21 +869,21 @@
             this.plC_NumBox7 = new MyUI.PLC_NumBox();
             this.plC_Button1 = new MyUI.PLC_Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.plC_Button_手輸數量 = new MyUI.PLC_Button();
-            this.plC_Button_無庫存自動補足 = new MyUI.PLC_Button();
-            this.plC_Button_同藥碼全亮 = new MyUI.PLC_Button();
-            this.plC_Button_多醫囑模式 = new MyUI.PLC_Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.plC_NumBox_完成滅燈時間 = new MyUI.PLC_NumBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.label118 = new System.Windows.Forms.Label();
             this.plC_NumBox6 = new MyUI.PLC_NumBox();
-            this.plC_Button_合併同藥品 = new MyUI.PLC_Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.plC_Button_手輸數量 = new MyUI.PLC_Button();
             this.plC_CheckBox_退藥檢查是否掃碼領藥過 = new MyUI.PLC_CheckBox();
+            this.plC_Button_無庫存自動補足 = new MyUI.PLC_Button();
             this.plC_CheckBox_已過帳取藥 = new MyUI.PLC_CheckBox();
+            this.plC_Button_多醫囑模式 = new MyUI.PLC_Button();
+            this.plC_Button_同藥碼全亮 = new MyUI.PLC_Button();
             this.plC_ComboBox_醫囑檢查範圍 = new MyUI.PLC_ComboBox();
+            this.plC_Button_合併同藥品 = new MyUI.PLC_Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.鎖控列表01 = new System.Windows.Forms.TabPage();
             this.pannel_Locker_Y00 = new 調劑台管理系統.Pannel_Locker();
@@ -996,8 +1000,6 @@
             this.pannel_Locker_Y101 = new 調劑台管理系統.Pannel_Locker();
             this.pannel_Locker_Y100 = new 調劑台管理系統.Pannel_Locker();
             this.plC_CheckBox3 = new MyUI.PLC_CheckBox();
-            this.plC_CheckBox2 = new MyUI.PLC_CheckBox();
-            this.plC_CheckBox4 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox1 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox8 = new MyUI.PLC_CheckBox();
             this.系統 = new System.Windows.Forms.TabPage();
@@ -1032,6 +1034,10 @@
             this.sqL_DataGridView_管制抽屜權限資料 = new SQLUI.SQL_DataGridView();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_設備資料 = new SQLUI.SQL_DataGridView();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.sqL_DataGridView_藥品管制方式設定 = new SQLUI.SQL_DataGridView();
+            this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.sqL_DataGridView_藥品設定表 = new SQLUI.SQL_DataGridView();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox28 = new MyUI.RJ_GroupBox();
             this.sqL_DataGridView_特殊輸出表 = new SQLUI.SQL_DataGridView();
@@ -1188,7 +1194,6 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
-            this.plC_CheckBox_領藥無儲位不顯示 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.領藥.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -1249,7 +1254,6 @@
             this.rJ_GroupBox12.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel75.SuspendLayout();
-            this.panel71.SuspendLayout();
             this.panel69.SuspendLayout();
             this.panel64.SuspendLayout();
             this.panel67.SuspendLayout();
@@ -1260,6 +1264,8 @@
             this.panel52.SuspendLayout();
             this.panel50.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.管藥設定.SuspendLayout();
+            this.groupBox17.SuspendLayout();
             this.儲位總庫存表.SuspendLayout();
             this.儲位效期表.SuspendLayout();
             this.panel_藥品資料.SuspendLayout();
@@ -1455,6 +1461,8 @@
             this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
+            this.tabPage14.SuspendLayout();
+            this.tabPage15.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.rJ_GroupBox28.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox28.SuspendLayout();
@@ -5516,6 +5524,7 @@
             this.plC_ScreenPage_藥品資料.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.plC_ScreenPage_藥品資料.BackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_藥品資料.Controls.Add(this.藥檔資料);
+            this.plC_ScreenPage_藥品資料.Controls.Add(this.管藥設定);
             this.plC_ScreenPage_藥品資料.Controls.Add(this.儲位總庫存表);
             this.plC_ScreenPage_藥品資料.Controls.Add(this.儲位效期表);
             this.plC_ScreenPage_藥品資料.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -5564,16 +5573,16 @@
             this.plC_RJ_GroupBox2.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox2.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox2.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_GroupBox2.ContentsPanel.Size = new System.Drawing.Size(669, 389);
+            this.plC_RJ_GroupBox2.ContentsPanel.Size = new System.Drawing.Size(669, 412);
             this.plC_RJ_GroupBox2.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_RJ_GroupBox2.Location = new System.Drawing.Point(979, 500);
+            this.plC_RJ_GroupBox2.Location = new System.Drawing.Point(979, 477);
             this.plC_RJ_GroupBox2.Name = "plC_RJ_GroupBox2";
             this.plC_RJ_GroupBox2.PannelBackColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox2.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox2.PannelBorderRadius = 2;
             this.plC_RJ_GroupBox2.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox2.Size = new System.Drawing.Size(669, 426);
+            this.plC_RJ_GroupBox2.Size = new System.Drawing.Size(669, 449);
             this.plC_RJ_GroupBox2.TabIndex = 128;
             this.plC_RJ_GroupBox2.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox2.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -5850,7 +5859,7 @@
             this.sqL_DataGridView_藥品群組.RowsHeight = 40;
             this.sqL_DataGridView_藥品群組.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_藥品群組.Server = "127.0.0.0";
-            this.sqL_DataGridView_藥品群組.Size = new System.Drawing.Size(308, 379);
+            this.sqL_DataGridView_藥品群組.Size = new System.Drawing.Size(308, 402);
             this.sqL_DataGridView_藥品群組.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品群組.TabIndex = 129;
             this.sqL_DataGridView_藥品群組.TableName = "medicine_group";
@@ -5890,16 +5899,16 @@
             this.rJ_GroupBox13.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox13.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox13.ContentsPanel.Name = "ContentsPanel";
-            this.rJ_GroupBox13.ContentsPanel.Size = new System.Drawing.Size(401, 389);
+            this.rJ_GroupBox13.ContentsPanel.Size = new System.Drawing.Size(401, 412);
             this.rJ_GroupBox13.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox13.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_GroupBox13.Location = new System.Drawing.Point(578, 500);
+            this.rJ_GroupBox13.Location = new System.Drawing.Point(578, 477);
             this.rJ_GroupBox13.Name = "rJ_GroupBox13";
             this.rJ_GroupBox13.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox13.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox13.PannelBorderRadius = 2;
             this.rJ_GroupBox13.PannelBorderSize = 2;
-            this.rJ_GroupBox13.Size = new System.Drawing.Size(401, 426);
+            this.rJ_GroupBox13.Size = new System.Drawing.Size(401, 449);
             this.rJ_GroupBox13.TabIndex = 116;
             this.rJ_GroupBox13.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox13.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -5969,7 +5978,7 @@
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Location = new System.Drawing.Point(168, 315);
+            this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Location = new System.Drawing.Point(168, 340);
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Name = "plC_RJ_Button_藥品資料_顯示有儲位藥品";
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.OFF_文字內容 = "顯示\n[有儲位藥品]";
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -6012,7 +6021,7 @@
             this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.Location = new System.Drawing.Point(311, 315);
+            this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.Location = new System.Drawing.Point(311, 340);
             this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.Name = "plC_RJ_Button_藥品資料_藥檔資料_資料查詢";
             this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.OFF_文字內容 = "搜尋";
             this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -6054,7 +6063,7 @@
             this.plC_RJ_Button_藥品資料_匯出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_匯出.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_匯出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_匯出.Location = new System.Drawing.Point(6, 315);
+            this.plC_RJ_Button_藥品資料_匯出.Location = new System.Drawing.Point(6, 340);
             this.plC_RJ_Button_藥品資料_匯出.Name = "plC_RJ_Button_藥品資料_匯出";
             this.plC_RJ_Button_藥品資料_匯出.OFF_文字內容 = "匯出";
             this.plC_RJ_Button_藥品資料_匯出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -6097,7 +6106,7 @@
             this.plC_RJ_Button_藥品資料_匯入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_匯入.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_匯入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_匯入.Location = new System.Drawing.Point(87, 315);
+            this.plC_RJ_Button_藥品資料_匯入.Location = new System.Drawing.Point(87, 340);
             this.plC_RJ_Button_藥品資料_匯入.Name = "plC_RJ_Button_藥品資料_匯入";
             this.plC_RJ_Button_藥品資料_匯入.OFF_文字內容 = "匯入";
             this.plC_RJ_Button_藥品資料_匯入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -6389,16 +6398,16 @@
             this.rJ_GroupBox12.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox12.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox12.ContentsPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.rJ_GroupBox12.ContentsPanel.Size = new System.Drawing.Size(578, 389);
+            this.rJ_GroupBox12.ContentsPanel.Size = new System.Drawing.Size(578, 412);
             this.rJ_GroupBox12.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox12.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_GroupBox12.Location = new System.Drawing.Point(0, 500);
+            this.rJ_GroupBox12.Location = new System.Drawing.Point(0, 477);
             this.rJ_GroupBox12.Name = "rJ_GroupBox12";
             this.rJ_GroupBox12.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox12.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox12.PannelBorderRadius = 2;
             this.rJ_GroupBox12.PannelBorderSize = 2;
-            this.rJ_GroupBox12.Size = new System.Drawing.Size(578, 426);
+            this.rJ_GroupBox12.Size = new System.Drawing.Size(578, 449);
             this.rJ_GroupBox12.TabIndex = 115;
             this.rJ_GroupBox12.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox12.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -6424,7 +6433,7 @@
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.Location = new System.Drawing.Point(388, 330);
+            this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.Location = new System.Drawing.Point(388, 355);
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.Name = "plC_RJ_Button_藥品資料_HIS下載全部藥檔";
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.OFF_文字內容 = "HIS下載全部藥檔";
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -6467,7 +6476,7 @@
             this.plC_RJ_Button_藥品資料_HIS填入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_HIS填入.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_藥品資料_HIS填入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_HIS填入.Location = new System.Drawing.Point(9, 330);
+            this.plC_RJ_Button_藥品資料_HIS填入.Location = new System.Drawing.Point(9, 355);
             this.plC_RJ_Button_藥品資料_HIS填入.Name = "plC_RJ_Button_藥品資料_HIS填入";
             this.plC_RJ_Button_藥品資料_HIS填入.OFF_文字內容 = "HIS資料填入";
             this.plC_RJ_Button_藥品資料_HIS填入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -6509,7 +6518,7 @@
             this.plC_RJ_Button_藥品資料_刪除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_刪除.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_刪除.Location = new System.Drawing.Point(497, 330);
+            this.plC_RJ_Button_藥品資料_刪除.Location = new System.Drawing.Point(497, 355);
             this.plC_RJ_Button_藥品資料_刪除.Name = "plC_RJ_Button_藥品資料_刪除";
             this.plC_RJ_Button_藥品資料_刪除.OFF_文字內容 = "刪除";
             this.plC_RJ_Button_藥品資料_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -6552,7 +6561,7 @@
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_更新藥櫃資料.Location = new System.Drawing.Point(147, 330);
+            this.plC_RJ_Button_藥品資料_更新藥櫃資料.Location = new System.Drawing.Point(147, 355);
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.Name = "plC_RJ_Button_藥品資料_更新藥櫃資料";
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.OFF_文字內容 = "更新藥櫃資料";
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -6582,8 +6591,8 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品);
             this.panel6.Controls.Add(this.panel75);
-            this.panel6.Controls.Add(this.panel71);
             this.panel6.Controls.Add(this.panel69);
             this.panel6.Controls.Add(this.panel64);
             this.panel6.Controls.Add(this.panel67);
@@ -6597,17 +6606,35 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(572, 321);
+            this.panel6.Size = new System.Drawing.Size(572, 346);
             this.panel6.TabIndex = 129;
+            // 
+            // plC_CheckBox_藥品資料_藥檔資料_警訊藥品
+            // 
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.AutoSize = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Bool = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Location = new System.Drawing.Point(6, 280);
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Name = "plC_CheckBox_藥品資料_藥檔資料_警訊藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Size = new System.Drawing.Size(93, 25);
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.TabIndex = 12;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Text = "警訊藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字內容 = "警訊藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.音效 = true;
             // 
             // panel75
             // 
             this.panel75.Controls.Add(this.comboBox_藥品資料_藥檔資料_管制級別);
             this.panel75.Controls.Add(this.panel76);
             this.panel75.Controls.Add(this.label1);
-            this.panel75.Location = new System.Drawing.Point(272, 4);
+            this.panel75.Location = new System.Drawing.Point(396, 238);
             this.panel75.Name = "panel75";
-            this.panel75.Size = new System.Drawing.Size(237, 36);
+            this.panel75.Size = new System.Drawing.Size(173, 36);
             this.panel75.TabIndex = 11;
             // 
             // comboBox_藥品資料_藥檔資料_管制級別
@@ -6628,18 +6655,18 @@
             "1"});
             this.comboBox_藥品資料_藥檔資料_管制級別.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.comboBox_藥品資料_藥檔資料_管制級別.ListTextColor = System.Drawing.Color.DimGray;
-            this.comboBox_藥品資料_藥檔資料_管制級別.Location = new System.Drawing.Point(122, 0);
+            this.comboBox_藥品資料_藥檔資料_管制級別.Location = new System.Drawing.Point(91, 0);
             this.comboBox_藥品資料_藥檔資料_管制級別.MinimumSize = new System.Drawing.Size(50, 30);
             this.comboBox_藥品資料_藥檔資料_管制級別.Name = "comboBox_藥品資料_藥檔資料_管制級別";
             this.comboBox_藥品資料_藥檔資料_管制級別.Padding = new System.Windows.Forms.Padding(1);
-            this.comboBox_藥品資料_藥檔資料_管制級別.Size = new System.Drawing.Size(115, 36);
+            this.comboBox_藥品資料_藥檔資料_管制級別.Size = new System.Drawing.Size(82, 36);
             this.comboBox_藥品資料_藥檔資料_管制級別.TabIndex = 109;
             this.comboBox_藥品資料_藥檔資料_管制級別.Texts = "";
             // 
             // panel76
             // 
             this.panel76.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel76.Location = new System.Drawing.Point(112, 0);
+            this.panel76.Location = new System.Drawing.Point(81, 0);
             this.panel76.Name = "panel76";
             this.panel76.Size = new System.Drawing.Size(10, 36);
             this.panel76.TabIndex = 1;
@@ -6652,73 +6679,19 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 36);
+            this.label1.Size = new System.Drawing.Size(81, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "管制級別";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel71
-            // 
-            this.panel71.Controls.Add(this.comboBox_藥品資料_藥檔資料_警訊藥品);
-            this.panel71.Controls.Add(this.panel72);
-            this.panel71.Controls.Add(this.label25);
-            this.panel71.Location = new System.Drawing.Point(246, 277);
-            this.panel71.Name = "panel71";
-            this.panel71.Size = new System.Drawing.Size(237, 36);
-            this.panel71.TabIndex = 10;
-            // 
-            // comboBox_藥品資料_藥檔資料_警訊藥品
-            // 
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.BorderSize = 1;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.IconColor = System.Drawing.Color.RoyalBlue;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Items.AddRange(new object[] {
-            "True",
-            "False"});
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.ListTextColor = System.Drawing.Color.DimGray;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Location = new System.Drawing.Point(122, 0);
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.MinimumSize = new System.Drawing.Size(50, 30);
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Name = "comboBox_藥品資料_藥檔資料_警訊藥品";
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Padding = new System.Windows.Forms.Padding(1);
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Size = new System.Drawing.Size(115, 36);
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.TabIndex = 109;
-            this.comboBox_藥品資料_藥檔資料_警訊藥品.Texts = "";
-            // 
-            // panel72
-            // 
-            this.panel72.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel72.Location = new System.Drawing.Point(112, 0);
-            this.panel72.Name = "panel72";
-            this.panel72.Size = new System.Drawing.Size(10, 36);
-            this.panel72.TabIndex = 1;
-            // 
-            // label25
-            // 
-            this.label25.BackColor = System.Drawing.Color.LightCyan;
-            this.label25.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label25.Font = new System.Drawing.Font("新細明體", 12F);
-            this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(0, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(112, 36);
-            this.label25.TabIndex = 0;
-            this.label25.Text = "警訊藥品";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel69
             // 
             this.panel69.Controls.Add(this.textBox_藥品資料_藥檔資料_安全庫存);
             this.panel69.Controls.Add(this.panel70);
             this.panel69.Controls.Add(this.label24);
-            this.panel69.Location = new System.Drawing.Point(3, 277);
+            this.panel69.Location = new System.Drawing.Point(199, 238);
             this.panel69.Name = "panel69";
-            this.panel69.Size = new System.Drawing.Size(237, 36);
+            this.panel69.Size = new System.Drawing.Size(191, 36);
             this.panel69.TabIndex = 9;
             // 
             // textBox_藥品資料_藥檔資料_安全庫存
@@ -6731,7 +6704,7 @@
             this.textBox_藥品資料_藥檔資料_安全庫存.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox_藥品資料_藥檔資料_安全庫存.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_藥品資料_藥檔資料_安全庫存.ForeColor = System.Drawing.Color.Black;
-            this.textBox_藥品資料_藥檔資料_安全庫存.Location = new System.Drawing.Point(122, 0);
+            this.textBox_藥品資料_藥檔資料_安全庫存.Location = new System.Drawing.Point(91, 0);
             this.textBox_藥品資料_藥檔資料_安全庫存.Multiline = false;
             this.textBox_藥品資料_藥檔資料_安全庫存.Name = "textBox_藥品資料_藥檔資料_安全庫存";
             this.textBox_藥品資料_藥檔資料_安全庫存.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -6739,7 +6712,7 @@
             this.textBox_藥品資料_藥檔資料_安全庫存.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_藥品資料_藥檔資料_安全庫存.PlaceholderText = "";
             this.textBox_藥品資料_藥檔資料_安全庫存.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_安全庫存.Size = new System.Drawing.Size(115, 34);
+            this.textBox_藥品資料_藥檔資料_安全庫存.Size = new System.Drawing.Size(100, 34);
             this.textBox_藥品資料_藥檔資料_安全庫存.TabIndex = 115;
             this.textBox_藥品資料_藥檔資料_安全庫存.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_藥品資料_藥檔資料_安全庫存.Texts = "";
@@ -6748,7 +6721,7 @@
             // panel70
             // 
             this.panel70.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel70.Location = new System.Drawing.Point(112, 0);
+            this.panel70.Location = new System.Drawing.Point(81, 0);
             this.panel70.Name = "panel70";
             this.panel70.Size = new System.Drawing.Size(10, 36);
             this.panel70.TabIndex = 1;
@@ -6761,7 +6734,7 @@
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(0, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(112, 36);
+            this.label24.Size = new System.Drawing.Size(81, 36);
             this.label24.TabIndex = 0;
             this.label24.Text = "安全庫存";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -6771,9 +6744,9 @@
             this.panel64.Controls.Add(this.textBox_藥品資料_藥檔資料_庫存);
             this.panel64.Controls.Add(this.panel65);
             this.panel64.Controls.Add(this.label22);
-            this.panel64.Location = new System.Drawing.Point(246, 238);
+            this.panel64.Location = new System.Drawing.Point(3, 238);
             this.panel64.Name = "panel64";
-            this.panel64.Size = new System.Drawing.Size(237, 36);
+            this.panel64.Size = new System.Drawing.Size(190, 36);
             this.panel64.TabIndex = 8;
             // 
             // textBox_藥品資料_藥檔資料_庫存
@@ -6787,7 +6760,7 @@
             this.textBox_藥品資料_藥檔資料_庫存.Enabled = false;
             this.textBox_藥品資料_藥檔資料_庫存.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_藥品資料_藥檔資料_庫存.ForeColor = System.Drawing.Color.Black;
-            this.textBox_藥品資料_藥檔資料_庫存.Location = new System.Drawing.Point(122, 0);
+            this.textBox_藥品資料_藥檔資料_庫存.Location = new System.Drawing.Point(91, 0);
             this.textBox_藥品資料_藥檔資料_庫存.Multiline = false;
             this.textBox_藥品資料_藥檔資料_庫存.Name = "textBox_藥品資料_藥檔資料_庫存";
             this.textBox_藥品資料_藥檔資料_庫存.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -6795,7 +6768,7 @@
             this.textBox_藥品資料_藥檔資料_庫存.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_藥品資料_藥檔資料_庫存.PlaceholderText = "";
             this.textBox_藥品資料_藥檔資料_庫存.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_庫存.Size = new System.Drawing.Size(115, 34);
+            this.textBox_藥品資料_藥檔資料_庫存.Size = new System.Drawing.Size(99, 34);
             this.textBox_藥品資料_藥檔資料_庫存.TabIndex = 114;
             this.textBox_藥品資料_藥檔資料_庫存.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_藥品資料_藥檔資料_庫存.Texts = "";
@@ -6804,7 +6777,7 @@
             // panel65
             // 
             this.panel65.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel65.Location = new System.Drawing.Point(112, 0);
+            this.panel65.Location = new System.Drawing.Point(81, 0);
             this.panel65.Name = "panel65";
             this.panel65.Size = new System.Drawing.Size(10, 36);
             this.panel65.TabIndex = 1;
@@ -6817,7 +6790,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(0, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(112, 36);
+            this.label22.Size = new System.Drawing.Size(81, 36);
             this.label22.TabIndex = 0;
             this.label22.Text = "庫存";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -6827,9 +6800,9 @@
             this.panel67.Controls.Add(this.textBox_藥品資料_藥檔資料_包裝單位);
             this.panel67.Controls.Add(this.panel68);
             this.panel67.Controls.Add(this.label23);
-            this.panel67.Location = new System.Drawing.Point(3, 238);
+            this.panel67.Location = new System.Drawing.Point(304, 160);
             this.panel67.Name = "panel67";
-            this.panel67.Size = new System.Drawing.Size(237, 36);
+            this.panel67.Size = new System.Drawing.Size(265, 36);
             this.panel67.TabIndex = 7;
             // 
             // textBox_藥品資料_藥檔資料_包裝單位
@@ -6850,7 +6823,7 @@
             this.textBox_藥品資料_藥檔資料_包裝單位.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_藥品資料_藥檔資料_包裝單位.PlaceholderText = "";
             this.textBox_藥品資料_藥檔資料_包裝單位.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_包裝單位.Size = new System.Drawing.Size(115, 34);
+            this.textBox_藥品資料_藥檔資料_包裝單位.Size = new System.Drawing.Size(143, 34);
             this.textBox_藥品資料_藥檔資料_包裝單位.TabIndex = 113;
             this.textBox_藥品資料_藥檔資料_包裝單位.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_藥品資料_藥檔資料_包裝單位.Texts = "";
@@ -6882,9 +6855,9 @@
             this.panel60.Controls.Add(this.textBox_藥品資料_藥檔資料_藥品條碼);
             this.panel60.Controls.Add(this.panel63);
             this.panel60.Controls.Add(this.label17);
-            this.panel60.Location = new System.Drawing.Point(246, 199);
+            this.panel60.Location = new System.Drawing.Point(304, 199);
             this.panel60.Name = "panel60";
-            this.panel60.Size = new System.Drawing.Size(237, 36);
+            this.panel60.Size = new System.Drawing.Size(265, 36);
             this.panel60.TabIndex = 6;
             // 
             // textBox_藥品資料_藥檔資料_藥品條碼
@@ -6905,7 +6878,7 @@
             this.textBox_藥品資料_藥檔資料_藥品條碼.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_藥品資料_藥檔資料_藥品條碼.PlaceholderText = "";
             this.textBox_藥品資料_藥檔資料_藥品條碼.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_藥品條碼.Size = new System.Drawing.Size(115, 34);
+            this.textBox_藥品資料_藥檔資料_藥品條碼.Size = new System.Drawing.Size(143, 34);
             this.textBox_藥品資料_藥檔資料_藥品條碼.TabIndex = 112;
             this.textBox_藥品資料_藥檔資料_藥品條碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_藥品資料_藥檔資料_藥品條碼.Texts = "";
@@ -6939,7 +6912,7 @@
             this.panel58.Controls.Add(this.label16);
             this.panel58.Location = new System.Drawing.Point(3, 199);
             this.panel58.Name = "panel58";
-            this.panel58.Size = new System.Drawing.Size(237, 36);
+            this.panel58.Size = new System.Drawing.Size(295, 36);
             this.panel58.TabIndex = 5;
             // 
             // textBox_藥品資料_藥檔資料_健保碼
@@ -6960,7 +6933,7 @@
             this.textBox_藥品資料_藥檔資料_健保碼.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_藥品資料_藥檔資料_健保碼.PlaceholderText = "";
             this.textBox_藥品資料_藥檔資料_健保碼.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_健保碼.Size = new System.Drawing.Size(115, 34);
+            this.textBox_藥品資料_藥檔資料_健保碼.Size = new System.Drawing.Size(173, 34);
             this.textBox_藥品資料_藥檔資料_健保碼.TabIndex = 111;
             this.textBox_藥品資料_藥檔資料_健保碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_藥品資料_藥檔資料_健保碼.Texts = "";
@@ -6994,7 +6967,7 @@
             this.panel56.Controls.Add(this.label14);
             this.panel56.Location = new System.Drawing.Point(3, 160);
             this.panel56.Name = "panel56";
-            this.panel56.Size = new System.Drawing.Size(480, 36);
+            this.panel56.Size = new System.Drawing.Size(295, 36);
             this.panel56.TabIndex = 4;
             // 
             // rJ_ComboBox_藥品資料_藥檔資料_藥品群組
@@ -7013,7 +6986,7 @@
             this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.MinimumSize = new System.Drawing.Size(50, 30);
             this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Name = "rJ_ComboBox_藥品資料_藥檔資料_藥品群組";
             this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Padding = new System.Windows.Forms.Padding(1);
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Size = new System.Drawing.Size(358, 36);
+            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Size = new System.Drawing.Size(173, 36);
             this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.TabIndex = 116;
             this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Texts = "";
             // 
@@ -7045,7 +7018,7 @@
             this.panel54.Controls.Add(this.label12);
             this.panel54.Location = new System.Drawing.Point(3, 121);
             this.panel54.Name = "panel54";
-            this.panel54.Size = new System.Drawing.Size(480, 36);
+            this.panel54.Size = new System.Drawing.Size(566, 36);
             this.panel54.TabIndex = 3;
             // 
             // textBox_藥品資料_藥檔資料_藥品中文名稱
@@ -7066,7 +7039,7 @@
             this.textBox_藥品資料_藥檔資料_藥品中文名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_藥品資料_藥檔資料_藥品中文名稱.PlaceholderText = "";
             this.textBox_藥品資料_藥檔資料_藥品中文名稱.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Size = new System.Drawing.Size(358, 34);
+            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Size = new System.Drawing.Size(444, 34);
             this.textBox_藥品資料_藥檔資料_藥品中文名稱.TabIndex = 21;
             this.textBox_藥品資料_藥檔資料_藥品中文名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_藥品資料_藥檔資料_藥品中文名稱.Texts = "";
@@ -7100,7 +7073,7 @@
             this.panel52.Controls.Add(this.label10);
             this.panel52.Location = new System.Drawing.Point(3, 82);
             this.panel52.Name = "panel52";
-            this.panel52.Size = new System.Drawing.Size(480, 36);
+            this.panel52.Size = new System.Drawing.Size(566, 36);
             this.panel52.TabIndex = 2;
             // 
             // textBox_藥品資料_藥檔資料_藥品學名
@@ -7121,7 +7094,7 @@
             this.textBox_藥品資料_藥檔資料_藥品學名.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_藥品資料_藥檔資料_藥品學名.PlaceholderText = "";
             this.textBox_藥品資料_藥檔資料_藥品學名.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_藥品學名.Size = new System.Drawing.Size(358, 34);
+            this.textBox_藥品資料_藥檔資料_藥品學名.Size = new System.Drawing.Size(444, 34);
             this.textBox_藥品資料_藥檔資料_藥品學名.TabIndex = 20;
             this.textBox_藥品資料_藥檔資料_藥品學名.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_藥品資料_藥檔資料_藥品學名.Texts = "";
@@ -7155,7 +7128,7 @@
             this.panel50.Controls.Add(this.label9);
             this.panel50.Location = new System.Drawing.Point(3, 43);
             this.panel50.Name = "panel50";
-            this.panel50.Size = new System.Drawing.Size(480, 36);
+            this.panel50.Size = new System.Drawing.Size(566, 36);
             this.panel50.TabIndex = 1;
             // 
             // textBox_藥品資料_藥檔資料_藥品名稱
@@ -7176,7 +7149,7 @@
             this.textBox_藥品資料_藥檔資料_藥品名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.textBox_藥品資料_藥檔資料_藥品名稱.PlaceholderText = "";
             this.textBox_藥品資料_藥檔資料_藥品名稱.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_藥品名稱.Size = new System.Drawing.Size(358, 34);
+            this.textBox_藥品資料_藥檔資料_藥品名稱.Size = new System.Drawing.Size(444, 34);
             this.textBox_藥品資料_藥檔資料_藥品名稱.TabIndex = 19;
             this.textBox_藥品資料_藥檔資料_藥品名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_藥品資料_藥檔資料_藥品名稱.Texts = "";
@@ -7272,7 +7245,7 @@
             this.plC_RJ_Button_藥品資料_登錄.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_藥品資料_登錄.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_登錄.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_登錄.Location = new System.Drawing.Point(307, 330);
+            this.plC_RJ_Button_藥品資料_登錄.Location = new System.Drawing.Point(307, 355);
             this.plC_RJ_Button_藥品資料_登錄.Name = "plC_RJ_Button_藥品資料_登錄";
             this.plC_RJ_Button_藥品資料_登錄.OFF_文字內容 = "登錄";
             this.plC_RJ_Button_藥品資料_登錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -7350,7 +7323,7 @@
             this.sqL_DataGridView_藥品資料_藥檔資料.RowsHeight = 50;
             this.sqL_DataGridView_藥品資料_藥檔資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_藥品資料_藥檔資料.Server = "localhost";
-            this.sqL_DataGridView_藥品資料_藥檔資料.Size = new System.Drawing.Size(1648, 500);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Size = new System.Drawing.Size(1648, 477);
             this.sqL_DataGridView_藥品資料_藥檔資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品資料_藥檔資料.TabIndex = 114;
             this.sqL_DataGridView_藥品資料_藥檔資料.TableName = "medicine_page";
@@ -7366,6 +7339,145 @@
             this.sqL_DataGridView_藥品資料_藥檔資料.顯示首行 = true;
             this.sqL_DataGridView_藥品資料_藥檔資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品資料_藥檔資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
+            // 管藥設定
+            // 
+            this.管藥設定.BackColor = System.Drawing.Color.White;
+            this.管藥設定.Controls.Add(this.groupBox17);
+            this.管藥設定.Location = new System.Drawing.Point(4, 25);
+            this.管藥設定.Name = "管藥設定";
+            this.管藥設定.Size = new System.Drawing.Size(1648, 926);
+            this.管藥設定.TabIndex = 3;
+            this.管藥設定.Text = "管制藥品設定";
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤);
+            this.groupBox17.Controls.Add(this.rJ_Lable121);
+            this.groupBox17.Controls.Add(this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理);
+            this.groupBox17.Controls.Add(this.rJ_Lable120);
+            this.groupBox17.Controls.Add(this.comboBox_藥品資料_管藥設定_類型);
+            this.groupBox17.Controls.Add(this.rJ_Lable99);
+            this.groupBox17.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox17.Location = new System.Drawing.Point(15, 12);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(283, 222);
+            this.groupBox17.TabIndex = 0;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "管制藥取藥設定";
+            // 
+            // plC_RJ_ChechBox_藥品資料_管藥設定_複盤
+            // 
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Bool = false;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Location = new System.Drawing.Point(130, 165);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.MinimumSize = new System.Drawing.Size(45, 22);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Name = "plC_RJ_ChechBox_藥品資料_管藥設定_複盤";
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.OffBackColor = System.Drawing.Color.Gray;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Size = new System.Drawing.Size(62, 29);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.SolidStyle = true;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.TabIndex = 19;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.UseVisualStyleBackColor = true;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.讀寫鎖住 = false;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.音效 = true;
+            // 
+            // rJ_Lable121
+            // 
+            this.rJ_Lable121.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable121.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable121.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable121.BorderRadius = 12;
+            this.rJ_Lable121.BorderSize = 0;
+            this.rJ_Lable121.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable121.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable121.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable121.Location = new System.Drawing.Point(18, 155);
+            this.rJ_Lable121.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.rJ_Lable121.Name = "rJ_Lable121";
+            this.rJ_Lable121.Size = new System.Drawing.Size(94, 45);
+            this.rJ_Lable121.TabIndex = 18;
+            this.rJ_Lable121.Text = "複盤";
+            this.rJ_Lable121.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable121.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_ChechBox_藥品資料_管藥設定_效期管理
+            // 
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Bool = false;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Location = new System.Drawing.Point(130, 113);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.MinimumSize = new System.Drawing.Size(45, 22);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Name = "plC_RJ_ChechBox_藥品資料_管藥設定_效期管理";
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.OffBackColor = System.Drawing.Color.Gray;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Size = new System.Drawing.Size(62, 29);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.SolidStyle = true;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.TabIndex = 17;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.UseVisualStyleBackColor = true;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.讀寫鎖住 = false;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.音效 = true;
+            // 
+            // rJ_Lable120
+            // 
+            this.rJ_Lable120.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable120.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable120.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable120.BorderRadius = 12;
+            this.rJ_Lable120.BorderSize = 0;
+            this.rJ_Lable120.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable120.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable120.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable120.Location = new System.Drawing.Point(18, 103);
+            this.rJ_Lable120.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.rJ_Lable120.Name = "rJ_Lable120";
+            this.rJ_Lable120.Size = new System.Drawing.Size(94, 45);
+            this.rJ_Lable120.TabIndex = 2;
+            this.rJ_Lable120.Text = "效期管理";
+            this.rJ_Lable120.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable120.TextColor = System.Drawing.Color.White;
+            // 
+            // comboBox_藥品資料_管藥設定_類型
+            // 
+            this.comboBox_藥品資料_管藥設定_類型.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_藥品資料_管藥設定_類型.FormattingEnabled = true;
+            this.comboBox_藥品資料_管藥設定_類型.Items.AddRange(new object[] {
+            "管1",
+            "管2",
+            "管3",
+            "管4",
+            "警訊"});
+            this.comboBox_藥品資料_管藥設定_類型.Location = new System.Drawing.Point(118, 54);
+            this.comboBox_藥品資料_管藥設定_類型.Name = "comboBox_藥品資料_管藥設定_類型";
+            this.comboBox_藥品資料_管藥設定_類型.Size = new System.Drawing.Size(129, 32);
+            this.comboBox_藥品資料_管藥設定_類型.TabIndex = 1;
+            // 
+            // rJ_Lable99
+            // 
+            this.rJ_Lable99.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable99.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable99.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable99.BorderRadius = 12;
+            this.rJ_Lable99.BorderSize = 0;
+            this.rJ_Lable99.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable99.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable99.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable99.Location = new System.Drawing.Point(18, 48);
+            this.rJ_Lable99.Name = "rJ_Lable99";
+            this.rJ_Lable99.Size = new System.Drawing.Size(94, 45);
+            this.rJ_Lable99.TabIndex = 0;
+            this.rJ_Lable99.Text = "類型";
+            this.rJ_Lable99.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable99.TextColor = System.Drawing.Color.White;
             // 
             // 儲位總庫存表
             // 
@@ -8184,6 +8296,7 @@
             // 
             this.panel_藥品資料.Controls.Add(this.plC_RJ_ScreenButton_儲位效期表);
             this.panel_藥品資料.Controls.Add(this.plC_RJ_ScreenButton_儲位總庫存表);
+            this.panel_藥品資料.Controls.Add(this.plC_RJ_ScreenButton14);
             this.panel_藥品資料.Controls.Add(this.plC_RJ_ScreenButton11);
             this.panel_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_藥品資料.Location = new System.Drawing.Point(0, 0);
@@ -8197,7 +8310,7 @@
             this.plC_RJ_ScreenButton_儲位效期表.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_ScreenButton_儲位效期表.IconChar = FontAwesome.Sharp.IconChar.None;
             this.plC_RJ_ScreenButton_儲位效期表.IconSize = 32;
-            this.plC_RJ_ScreenButton_儲位效期表.Location = new System.Drawing.Point(344, 0);
+            this.plC_RJ_ScreenButton_儲位效期表.Location = new System.Drawing.Point(516, 0);
             this.plC_RJ_ScreenButton_儲位效期表.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_儲位效期表.Name = "plC_RJ_ScreenButton_儲位效期表";
             this.plC_RJ_ScreenButton_儲位效期表.OffBackColor = System.Drawing.Color.DarkCyan;
@@ -8212,7 +8325,7 @@
             this.plC_RJ_ScreenButton_儲位效期表.OnText = "儲位效期表";
             this.plC_RJ_ScreenButton_儲位效期表.ShowIcon = false;
             this.plC_RJ_ScreenButton_儲位效期表.Size = new System.Drawing.Size(172, 51);
-            this.plC_RJ_ScreenButton_儲位效期表.TabIndex = 9;
+            this.plC_RJ_ScreenButton_儲位效期表.TabIndex = 12;
             this.plC_RJ_ScreenButton_儲位效期表.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
             this.plC_RJ_ScreenButton_儲位效期表.寫入位置註解 = "";
             this.plC_RJ_ScreenButton_儲位效期表.寫入元件位置 = "";
@@ -8236,7 +8349,7 @@
             this.plC_RJ_ScreenButton_儲位總庫存表.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_ScreenButton_儲位總庫存表.IconChar = FontAwesome.Sharp.IconChar.None;
             this.plC_RJ_ScreenButton_儲位總庫存表.IconSize = 32;
-            this.plC_RJ_ScreenButton_儲位總庫存表.Location = new System.Drawing.Point(172, 0);
+            this.plC_RJ_ScreenButton_儲位總庫存表.Location = new System.Drawing.Point(344, 0);
             this.plC_RJ_ScreenButton_儲位總庫存表.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_儲位總庫存表.Name = "plC_RJ_ScreenButton_儲位總庫存表";
             this.plC_RJ_ScreenButton_儲位總庫存表.OffBackColor = System.Drawing.Color.DarkCyan;
@@ -8251,7 +8364,7 @@
             this.plC_RJ_ScreenButton_儲位總庫存表.OnText = "儲位總庫存表";
             this.plC_RJ_ScreenButton_儲位總庫存表.ShowIcon = false;
             this.plC_RJ_ScreenButton_儲位總庫存表.Size = new System.Drawing.Size(172, 51);
-            this.plC_RJ_ScreenButton_儲位總庫存表.TabIndex = 8;
+            this.plC_RJ_ScreenButton_儲位總庫存表.TabIndex = 11;
             this.plC_RJ_ScreenButton_儲位總庫存表.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
             this.plC_RJ_ScreenButton_儲位總庫存表.寫入位置註解 = "";
             this.plC_RJ_ScreenButton_儲位總庫存表.寫入元件位置 = "";
@@ -8268,6 +8381,45 @@
             this.plC_RJ_ScreenButton_儲位總庫存表.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
             this.plC_RJ_ScreenButton_儲位總庫存表.顯示狀態 = false;
             this.plC_RJ_ScreenButton_儲位總庫存表.顯示讀取位置 = "";
+            // 
+            // plC_RJ_ScreenButton14
+            // 
+            this.plC_RJ_ScreenButton14.but_press = false;
+            this.plC_RJ_ScreenButton14.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButton14.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.plC_RJ_ScreenButton14.IconSize = 32;
+            this.plC_RJ_ScreenButton14.Location = new System.Drawing.Point(172, 0);
+            this.plC_RJ_ScreenButton14.Margin = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_ScreenButton14.Name = "plC_RJ_ScreenButton14";
+            this.plC_RJ_ScreenButton14.OffBackColor = System.Drawing.Color.DarkCyan;
+            this.plC_RJ_ScreenButton14.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton14.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton14.OffIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton14.OffText = "管制藥品設定";
+            this.plC_RJ_ScreenButton14.OnBackColor = System.Drawing.Color.LightSeaGreen;
+            this.plC_RJ_ScreenButton14.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton14.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton14.OnIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton14.OnText = "管制藥品設定";
+            this.plC_RJ_ScreenButton14.ShowIcon = false;
+            this.plC_RJ_ScreenButton14.Size = new System.Drawing.Size(172, 51);
+            this.plC_RJ_ScreenButton14.TabIndex = 10;
+            this.plC_RJ_ScreenButton14.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButton14.寫入位置註解 = "";
+            this.plC_RJ_ScreenButton14.寫入元件位置 = "";
+            this.plC_RJ_ScreenButton14.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
+            this.plC_RJ_ScreenButton14.控制位址 = "D0";
+            this.plC_RJ_ScreenButton14.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButton14.致能讀取位置 = "";
+            this.plC_RJ_ScreenButton14.讀取位元反向 = false;
+            this.plC_RJ_ScreenButton14.讀取位置註解 = "";
+            this.plC_RJ_ScreenButton14.讀取元件位置 = "";
+            this.plC_RJ_ScreenButton14.音效 = true;
+            this.plC_RJ_ScreenButton14.頁面名稱 = "管制藥品設定";
+            this.plC_RJ_ScreenButton14.頁面編號 = 0;
+            this.plC_RJ_ScreenButton14.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButton14.顯示狀態 = false;
+            this.plC_RJ_ScreenButton14.顯示讀取位置 = "";
             // 
             // plC_RJ_ScreenButton11
             // 
@@ -21631,9 +21783,6 @@
             // panel66
             // 
             this.panel66.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel66.Controls.Add(this.button_工程模式_門未關閉警報語音內容_下載);
-            this.panel66.Controls.Add(this.textBox_工程模式_門未關閉警報語音內容);
-            this.panel66.Controls.Add(this.rJ_Lable99);
             this.panel66.Controls.Add(this.groupBox23);
             this.panel66.Controls.Add(this.groupBox22);
             this.panel66.Controls.Add(this.groupBox58);
@@ -21647,39 +21796,6 @@
             this.panel66.Name = "panel66";
             this.panel66.Size = new System.Drawing.Size(1656, 118);
             this.panel66.TabIndex = 26;
-            // 
-            // button_工程模式_門未關閉警報語音內容_下載
-            // 
-            this.button_工程模式_門未關閉警報語音內容_下載.Location = new System.Drawing.Point(887, 81);
-            this.button_工程模式_門未關閉警報語音內容_下載.Name = "button_工程模式_門未關閉警報語音內容_下載";
-            this.button_工程模式_門未關閉警報語音內容_下載.Size = new System.Drawing.Size(75, 31);
-            this.button_工程模式_門未關閉警報語音內容_下載.TabIndex = 48;
-            this.button_工程模式_門未關閉警報語音內容_下載.Text = "儲存";
-            this.button_工程模式_門未關閉警報語音內容_下載.UseVisualStyleBackColor = true;
-            // 
-            // textBox_工程模式_門未關閉警報語音內容
-            // 
-            this.textBox_工程模式_門未關閉警報語音內容.Location = new System.Drawing.Point(607, 85);
-            this.textBox_工程模式_門未關閉警報語音內容.Name = "textBox_工程模式_門未關閉警報語音內容";
-            this.textBox_工程模式_門未關閉警報語音內容.Size = new System.Drawing.Size(274, 22);
-            this.textBox_工程模式_門未關閉警報語音內容.TabIndex = 46;
-            // 
-            // rJ_Lable99
-            // 
-            this.rJ_Lable99.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rJ_Lable99.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.rJ_Lable99.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable99.BorderRadius = 8;
-            this.rJ_Lable99.BorderSize = 0;
-            this.rJ_Lable99.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable99.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable99.Location = new System.Drawing.Point(446, 78);
-            this.rJ_Lable99.Name = "rJ_Lable99";
-            this.rJ_Lable99.Size = new System.Drawing.Size(155, 36);
-            this.rJ_Lable99.TabIndex = 47;
-            this.rJ_Lable99.Text = "門未關閉警報語音內容";
-            this.rJ_Lable99.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable99.TextColor = System.Drawing.Color.White;
             // 
             // groupBox23
             // 
@@ -21855,7 +21971,7 @@
             this.plC_CheckBox10.Bool = false;
             this.plC_CheckBox10.Font = new System.Drawing.Font("新細明體", 9F);
             this.plC_CheckBox10.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox10.Location = new System.Drawing.Point(1064, 19);
+            this.plC_CheckBox10.Location = new System.Drawing.Point(1232, 19);
             this.plC_CheckBox10.Name = "plC_CheckBox10";
             this.plC_CheckBox10.Size = new System.Drawing.Size(84, 16);
             this.plC_CheckBox10.TabIndex = 41;
@@ -22029,8 +22145,6 @@
             this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.tabControl2);
             this.tabPage1.Controls.Add(this.plC_CheckBox3);
-            this.tabPage1.Controls.Add(this.plC_CheckBox2);
-            this.tabPage1.Controls.Add(this.plC_CheckBox4);
             this.tabPage1.Controls.Add(this.plC_CheckBox1);
             this.tabPage1.Controls.Add(this.plC_CheckBox8);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -22039,6 +22153,27 @@
             this.tabPage1.Size = new System.Drawing.Size(1648, 862);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "鎖控設定";
+            // 
+            // plC_CheckBox_領藥無儲位不顯示
+            // 
+            this.plC_CheckBox_領藥無儲位不顯示.AutoSize = true;
+            this.plC_CheckBox_領藥無儲位不顯示.Bool = false;
+            this.plC_CheckBox_領藥無儲位不顯示.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_領藥無儲位不顯示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_領藥無儲位不顯示.Location = new System.Drawing.Point(3, 786);
+            this.plC_CheckBox_領藥無儲位不顯示.Name = "plC_CheckBox_領藥無儲位不顯示";
+            this.plC_CheckBox_領藥無儲位不顯示.Size = new System.Drawing.Size(120, 16);
+            this.plC_CheckBox_領藥無儲位不顯示.TabIndex = 127;
+            this.plC_CheckBox_領藥無儲位不顯示.Text = "領藥無儲位不顯示";
+            this.plC_CheckBox_領藥無儲位不顯示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_領藥無儲位不顯示.寫入元件位置 = "S5021";
+            this.plC_CheckBox_領藥無儲位不顯示.文字內容 = "領藥無儲位不顯示";
+            this.plC_CheckBox_領藥無儲位不顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_領藥無儲位不顯示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_領藥無儲位不顯示.致能讀取位置 = "S4077";
+            this.plC_CheckBox_領藥無儲位不顯示.讀取元件位置 = "S5021";
+            this.plC_CheckBox_領藥無儲位不顯示.讀寫鎖住 = false;
+            this.plC_CheckBox_領藥無儲位不顯示.音效 = false;
             // 
             // plC_Button_工程模式_全部開鎖
             // 
@@ -22079,7 +22214,7 @@
             this.plC_CheckBox_QRcode_Mode.Bool = false;
             this.plC_CheckBox_QRcode_Mode.Font = new System.Drawing.Font("新細明體", 9F);
             this.plC_CheckBox_QRcode_Mode.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_QRcode_Mode.Location = new System.Drawing.Point(3, 786);
+            this.plC_CheckBox_QRcode_Mode.Location = new System.Drawing.Point(3, 764);
             this.plC_CheckBox_QRcode_Mode.Name = "plC_CheckBox_QRcode_Mode";
             this.plC_CheckBox_QRcode_Mode.Size = new System.Drawing.Size(95, 16);
             this.plC_CheckBox_QRcode_Mode.TabIndex = 125;
@@ -22100,7 +22235,7 @@
             this.plC_CheckBox_自動過帳.Bool = false;
             this.plC_CheckBox_自動過帳.Font = new System.Drawing.Font("新細明體", 9F);
             this.plC_CheckBox_自動過帳.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_自動過帳.Location = new System.Drawing.Point(3, 764);
+            this.plC_CheckBox_自動過帳.Location = new System.Drawing.Point(3, 742);
             this.plC_CheckBox_自動過帳.Name = "plC_CheckBox_自動過帳";
             this.plC_CheckBox_自動過帳.Size = new System.Drawing.Size(72, 16);
             this.plC_CheckBox_自動過帳.TabIndex = 124;
@@ -22120,7 +22255,7 @@
             this.groupBox9.Controls.Add(this.groupBox1);
             this.groupBox9.Controls.Add(this.groupBox2);
             this.groupBox9.Controls.Add(this.plC_Button1);
-            this.groupBox9.Location = new System.Drawing.Point(876, 654);
+            this.groupBox9.Location = new System.Drawing.Point(1230, 650);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(200, 202);
             this.groupBox9.TabIndex = 123;
@@ -22244,160 +22379,15 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.plC_Button_手輸數量);
-            this.groupBox8.Controls.Add(this.plC_Button_無庫存自動補足);
-            this.groupBox8.Controls.Add(this.plC_Button_同藥碼全亮);
-            this.groupBox8.Controls.Add(this.plC_Button_多醫囑模式);
             this.groupBox8.Controls.Add(this.groupBox6);
             this.groupBox8.Controls.Add(this.groupBox19);
-            this.groupBox8.Controls.Add(this.plC_Button_合併同藥品);
             this.groupBox8.Controls.Add(this.groupBox7);
             this.groupBox8.Location = new System.Drawing.Point(129, 654);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(741, 205);
+            this.groupBox8.Size = new System.Drawing.Size(731, 205);
             this.groupBox8.TabIndex = 122;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "使用者設定";
-            // 
-            // plC_Button_手輸數量
-            // 
-            this.plC_Button_手輸數量.Bool = false;
-            this.plC_Button_手輸數量.but_press = false;
-            this.plC_Button_手輸數量.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_手輸數量.Location = new System.Drawing.Point(318, 79);
-            this.plC_Button_手輸數量.Margin = new System.Windows.Forms.Padding(4);
-            this.plC_Button_手輸數量.Name = "plC_Button_手輸數量";
-            this.plC_Button_手輸數量.OFF_文字內容 = "手輸數量";
-            this.plC_Button_手輸數量.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_Button_手輸數量.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_手輸數量.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_手輸數量.ON_文字內容 = "手輸數量";
-            this.plC_Button_手輸數量.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_Button_手輸數量.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_手輸數量.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_手輸數量.Size = new System.Drawing.Size(146, 49);
-            this.plC_Button_手輸數量.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_Button_手輸數量.TabIndex = 125;
-            this.plC_Button_手輸數量.事件驅動 = false;
-            this.plC_Button_手輸數量.字型鎖住 = false;
-            this.plC_Button_手輸數量.寫入元件位置 = "S4067";
-            this.plC_Button_手輸數量.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_Button_手輸數量.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_手輸數量.文字鎖住 = false;
-            this.plC_Button_手輸數量.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_手輸數量.狀態OFF圖片")));
-            this.plC_Button_手輸數量.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_手輸數量.狀態ON圖片")));
-            this.plC_Button_手輸數量.讀取位元反向 = false;
-            this.plC_Button_手輸數量.讀取元件位置 = "S4067";
-            this.plC_Button_手輸數量.讀寫鎖住 = false;
-            this.plC_Button_手輸數量.起始狀態 = false;
-            this.plC_Button_手輸數量.音效 = true;
-            this.plC_Button_手輸數量.顯示 = false;
-            this.plC_Button_手輸數量.顯示狀態 = false;
-            // 
-            // plC_Button_無庫存自動補足
-            // 
-            this.plC_Button_無庫存自動補足.Bool = false;
-            this.plC_Button_無庫存自動補足.but_press = false;
-            this.plC_Button_無庫存自動補足.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_無庫存自動補足.Location = new System.Drawing.Point(318, 22);
-            this.plC_Button_無庫存自動補足.Margin = new System.Windows.Forms.Padding(4);
-            this.plC_Button_無庫存自動補足.Name = "plC_Button_無庫存自動補足";
-            this.plC_Button_無庫存自動補足.OFF_文字內容 = "無庫存自動補足";
-            this.plC_Button_無庫存自動補足.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_Button_無庫存自動補足.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_無庫存自動補足.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_無庫存自動補足.ON_文字內容 = "無庫存自動補足";
-            this.plC_Button_無庫存自動補足.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_Button_無庫存自動補足.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_無庫存自動補足.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_無庫存自動補足.Size = new System.Drawing.Size(146, 49);
-            this.plC_Button_無庫存自動補足.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_Button_無庫存自動補足.TabIndex = 124;
-            this.plC_Button_無庫存自動補足.事件驅動 = false;
-            this.plC_Button_無庫存自動補足.字型鎖住 = false;
-            this.plC_Button_無庫存自動補足.寫入元件位置 = "S4066";
-            this.plC_Button_無庫存自動補足.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_Button_無庫存自動補足.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_無庫存自動補足.文字鎖住 = false;
-            this.plC_Button_無庫存自動補足.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_無庫存自動補足.狀態OFF圖片")));
-            this.plC_Button_無庫存自動補足.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_無庫存自動補足.狀態ON圖片")));
-            this.plC_Button_無庫存自動補足.讀取位元反向 = false;
-            this.plC_Button_無庫存自動補足.讀取元件位置 = "S4066";
-            this.plC_Button_無庫存自動補足.讀寫鎖住 = false;
-            this.plC_Button_無庫存自動補足.起始狀態 = false;
-            this.plC_Button_無庫存自動補足.音效 = true;
-            this.plC_Button_無庫存自動補足.顯示 = false;
-            this.plC_Button_無庫存自動補足.顯示狀態 = false;
-            // 
-            // plC_Button_同藥碼全亮
-            // 
-            this.plC_Button_同藥碼全亮.Bool = false;
-            this.plC_Button_同藥碼全亮.but_press = false;
-            this.plC_Button_同藥碼全亮.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_同藥碼全亮.Location = new System.Drawing.Point(164, 22);
-            this.plC_Button_同藥碼全亮.Margin = new System.Windows.Forms.Padding(4);
-            this.plC_Button_同藥碼全亮.Name = "plC_Button_同藥碼全亮";
-            this.plC_Button_同藥碼全亮.OFF_文字內容 = "同藥碼全亮";
-            this.plC_Button_同藥碼全亮.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_Button_同藥碼全亮.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_同藥碼全亮.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_同藥碼全亮.ON_文字內容 = "同藥碼全亮";
-            this.plC_Button_同藥碼全亮.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_Button_同藥碼全亮.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_同藥碼全亮.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_同藥碼全亮.Size = new System.Drawing.Size(146, 49);
-            this.plC_Button_同藥碼全亮.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_Button_同藥碼全亮.TabIndex = 123;
-            this.plC_Button_同藥碼全亮.事件驅動 = false;
-            this.plC_Button_同藥碼全亮.字型鎖住 = false;
-            this.plC_Button_同藥碼全亮.寫入元件位置 = "S4061";
-            this.plC_Button_同藥碼全亮.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_Button_同藥碼全亮.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_同藥碼全亮.文字鎖住 = false;
-            this.plC_Button_同藥碼全亮.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_同藥碼全亮.狀態OFF圖片")));
-            this.plC_Button_同藥碼全亮.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_同藥碼全亮.狀態ON圖片")));
-            this.plC_Button_同藥碼全亮.讀取位元反向 = false;
-            this.plC_Button_同藥碼全亮.讀取元件位置 = "S4061";
-            this.plC_Button_同藥碼全亮.讀寫鎖住 = false;
-            this.plC_Button_同藥碼全亮.起始狀態 = false;
-            this.plC_Button_同藥碼全亮.音效 = true;
-            this.plC_Button_同藥碼全亮.顯示 = false;
-            this.plC_Button_同藥碼全亮.顯示狀態 = false;
-            // 
-            // plC_Button_多醫囑模式
-            // 
-            this.plC_Button_多醫囑模式.Bool = false;
-            this.plC_Button_多醫囑模式.but_press = false;
-            this.plC_Button_多醫囑模式.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_多醫囑模式.Location = new System.Drawing.Point(164, 136);
-            this.plC_Button_多醫囑模式.Margin = new System.Windows.Forms.Padding(4);
-            this.plC_Button_多醫囑模式.Name = "plC_Button_多醫囑模式";
-            this.plC_Button_多醫囑模式.OFF_文字內容 = "單醫囑模式";
-            this.plC_Button_多醫囑模式.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_Button_多醫囑模式.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_多醫囑模式.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_多醫囑模式.ON_文字內容 = "多醫囑模式";
-            this.plC_Button_多醫囑模式.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_Button_多醫囑模式.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_多醫囑模式.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_多醫囑模式.Size = new System.Drawing.Size(146, 49);
-            this.plC_Button_多醫囑模式.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_Button_多醫囑模式.TabIndex = 122;
-            this.plC_Button_多醫囑模式.事件驅動 = false;
-            this.plC_Button_多醫囑模式.字型鎖住 = false;
-            this.plC_Button_多醫囑模式.寫入元件位置 = "S5013";
-            this.plC_Button_多醫囑模式.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_Button_多醫囑模式.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_多醫囑模式.文字鎖住 = false;
-            this.plC_Button_多醫囑模式.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_多醫囑模式.狀態OFF圖片")));
-            this.plC_Button_多醫囑模式.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_多醫囑模式.狀態ON圖片")));
-            this.plC_Button_多醫囑模式.讀取位元反向 = false;
-            this.plC_Button_多醫囑模式.讀取元件位置 = "S5013";
-            this.plC_Button_多醫囑模式.讀寫鎖住 = false;
-            this.plC_Button_多醫囑模式.起始狀態 = false;
-            this.plC_Button_多醫囑模式.音效 = true;
-            this.plC_Button_多醫囑模式.顯示 = false;
-            this.plC_Button_多醫囑模式.顯示狀態 = false;
             // 
             // groupBox6
             // 
@@ -22481,12 +22471,236 @@
             this.plC_NumBox6.顯示微調按鈕 = false;
             this.plC_NumBox6.顯示螢幕小鍵盤 = true;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.plC_Button_手輸數量);
+            this.groupBox7.Controls.Add(this.plC_CheckBox_退藥檢查是否掃碼領藥過);
+            this.groupBox7.Controls.Add(this.plC_Button_無庫存自動補足);
+            this.groupBox7.Controls.Add(this.plC_CheckBox_已過帳取藥);
+            this.groupBox7.Controls.Add(this.plC_Button_多醫囑模式);
+            this.groupBox7.Controls.Add(this.plC_Button_同藥碼全亮);
+            this.groupBox7.Controls.Add(this.plC_ComboBox_醫囑檢查範圍);
+            this.groupBox7.Controls.Add(this.plC_Button_合併同藥品);
+            this.groupBox7.Location = new System.Drawing.Point(168, 12);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(538, 187);
+            this.groupBox7.TabIndex = 120;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "刷藥袋設定";
+            // 
+            // plC_Button_手輸數量
+            // 
+            this.plC_Button_手輸數量.Bool = false;
+            this.plC_Button_手輸數量.but_press = false;
+            this.plC_Button_手輸數量.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_手輸數量.Location = new System.Drawing.Point(378, 76);
+            this.plC_Button_手輸數量.Margin = new System.Windows.Forms.Padding(4);
+            this.plC_Button_手輸數量.Name = "plC_Button_手輸數量";
+            this.plC_Button_手輸數量.OFF_文字內容 = "手輸數量";
+            this.plC_Button_手輸數量.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_Button_手輸數量.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_手輸數量.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_手輸數量.ON_文字內容 = "手輸數量";
+            this.plC_Button_手輸數量.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_Button_手輸數量.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_手輸數量.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_手輸數量.Size = new System.Drawing.Size(146, 49);
+            this.plC_Button_手輸數量.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button_手輸數量.TabIndex = 125;
+            this.plC_Button_手輸數量.事件驅動 = false;
+            this.plC_Button_手輸數量.字型鎖住 = false;
+            this.plC_Button_手輸數量.寫入元件位置 = "S4067";
+            this.plC_Button_手輸數量.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button_手輸數量.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_手輸數量.文字鎖住 = false;
+            this.plC_Button_手輸數量.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_手輸數量.狀態OFF圖片")));
+            this.plC_Button_手輸數量.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_手輸數量.狀態ON圖片")));
+            this.plC_Button_手輸數量.讀取位元反向 = false;
+            this.plC_Button_手輸數量.讀取元件位置 = "S4067";
+            this.plC_Button_手輸數量.讀寫鎖住 = false;
+            this.plC_Button_手輸數量.起始狀態 = false;
+            this.plC_Button_手輸數量.音效 = true;
+            this.plC_Button_手輸數量.顯示 = false;
+            this.plC_Button_手輸數量.顯示狀態 = false;
+            // 
+            // plC_CheckBox_退藥檢查是否掃碼領藥過
+            // 
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.AutoSize = true;
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Bool = false;
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Location = new System.Drawing.Point(13, 67);
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Name = "plC_CheckBox_退藥檢查是否掃碼領藥過";
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Size = new System.Drawing.Size(156, 16);
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.TabIndex = 123;
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Text = "退藥檢查是否掃碼領藥過";
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.寫入元件位置 = "S5020";
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字內容 = "退藥檢查是否掃碼領藥過";
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.讀取元件位置 = "S5020";
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.讀寫鎖住 = false;
+            this.plC_CheckBox_退藥檢查是否掃碼領藥過.音效 = false;
+            // 
+            // plC_Button_無庫存自動補足
+            // 
+            this.plC_Button_無庫存自動補足.Bool = false;
+            this.plC_Button_無庫存自動補足.but_press = false;
+            this.plC_Button_無庫存自動補足.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_無庫存自動補足.Location = new System.Drawing.Point(378, 19);
+            this.plC_Button_無庫存自動補足.Margin = new System.Windows.Forms.Padding(4);
+            this.plC_Button_無庫存自動補足.Name = "plC_Button_無庫存自動補足";
+            this.plC_Button_無庫存自動補足.OFF_文字內容 = "無庫存自動補足";
+            this.plC_Button_無庫存自動補足.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_Button_無庫存自動補足.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_無庫存自動補足.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_無庫存自動補足.ON_文字內容 = "無庫存自動補足";
+            this.plC_Button_無庫存自動補足.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_Button_無庫存自動補足.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_無庫存自動補足.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_無庫存自動補足.Size = new System.Drawing.Size(146, 49);
+            this.plC_Button_無庫存自動補足.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button_無庫存自動補足.TabIndex = 124;
+            this.plC_Button_無庫存自動補足.事件驅動 = false;
+            this.plC_Button_無庫存自動補足.字型鎖住 = false;
+            this.plC_Button_無庫存自動補足.寫入元件位置 = "S4066";
+            this.plC_Button_無庫存自動補足.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button_無庫存自動補足.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_無庫存自動補足.文字鎖住 = false;
+            this.plC_Button_無庫存自動補足.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_無庫存自動補足.狀態OFF圖片")));
+            this.plC_Button_無庫存自動補足.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_無庫存自動補足.狀態ON圖片")));
+            this.plC_Button_無庫存自動補足.讀取位元反向 = false;
+            this.plC_Button_無庫存自動補足.讀取元件位置 = "S4066";
+            this.plC_Button_無庫存自動補足.讀寫鎖住 = false;
+            this.plC_Button_無庫存自動補足.起始狀態 = false;
+            this.plC_Button_無庫存自動補足.音效 = true;
+            this.plC_Button_無庫存自動補足.顯示 = false;
+            this.plC_Button_無庫存自動補足.顯示狀態 = false;
+            // 
+            // plC_CheckBox_已過帳取藥
+            // 
+            this.plC_CheckBox_已過帳取藥.AutoSize = true;
+            this.plC_CheckBox_已過帳取藥.Bool = false;
+            this.plC_CheckBox_已過帳取藥.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_已過帳取藥.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_已過帳取藥.Location = new System.Drawing.Point(133, 31);
+            this.plC_CheckBox_已過帳取藥.Name = "plC_CheckBox_已過帳取藥";
+            this.plC_CheckBox_已過帳取藥.Size = new System.Drawing.Size(84, 16);
+            this.plC_CheckBox_已過帳取藥.TabIndex = 122;
+            this.plC_CheckBox_已過帳取藥.Text = "已過帳取藥";
+            this.plC_CheckBox_已過帳取藥.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_已過帳取藥.寫入元件位置 = "S5010";
+            this.plC_CheckBox_已過帳取藥.文字內容 = "已過帳取藥";
+            this.plC_CheckBox_已過帳取藥.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_已過帳取藥.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_已過帳取藥.讀取元件位置 = "S5010";
+            this.plC_CheckBox_已過帳取藥.讀寫鎖住 = false;
+            this.plC_CheckBox_已過帳取藥.音效 = false;
+            // 
+            // plC_Button_多醫囑模式
+            // 
+            this.plC_Button_多醫囑模式.Bool = false;
+            this.plC_Button_多醫囑模式.but_press = false;
+            this.plC_Button_多醫囑模式.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_多醫囑模式.Location = new System.Drawing.Point(224, 133);
+            this.plC_Button_多醫囑模式.Margin = new System.Windows.Forms.Padding(4);
+            this.plC_Button_多醫囑模式.Name = "plC_Button_多醫囑模式";
+            this.plC_Button_多醫囑模式.OFF_文字內容 = "單醫囑模式";
+            this.plC_Button_多醫囑模式.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_Button_多醫囑模式.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_多醫囑模式.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_多醫囑模式.ON_文字內容 = "多醫囑模式";
+            this.plC_Button_多醫囑模式.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_Button_多醫囑模式.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_多醫囑模式.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_多醫囑模式.Size = new System.Drawing.Size(146, 49);
+            this.plC_Button_多醫囑模式.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button_多醫囑模式.TabIndex = 122;
+            this.plC_Button_多醫囑模式.事件驅動 = false;
+            this.plC_Button_多醫囑模式.字型鎖住 = false;
+            this.plC_Button_多醫囑模式.寫入元件位置 = "S5013";
+            this.plC_Button_多醫囑模式.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button_多醫囑模式.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_多醫囑模式.文字鎖住 = false;
+            this.plC_Button_多醫囑模式.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_多醫囑模式.狀態OFF圖片")));
+            this.plC_Button_多醫囑模式.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_多醫囑模式.狀態ON圖片")));
+            this.plC_Button_多醫囑模式.讀取位元反向 = false;
+            this.plC_Button_多醫囑模式.讀取元件位置 = "S5013";
+            this.plC_Button_多醫囑模式.讀寫鎖住 = false;
+            this.plC_Button_多醫囑模式.起始狀態 = false;
+            this.plC_Button_多醫囑模式.音效 = true;
+            this.plC_Button_多醫囑模式.顯示 = false;
+            this.plC_Button_多醫囑模式.顯示狀態 = false;
+            // 
+            // plC_Button_同藥碼全亮
+            // 
+            this.plC_Button_同藥碼全亮.Bool = false;
+            this.plC_Button_同藥碼全亮.but_press = false;
+            this.plC_Button_同藥碼全亮.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_同藥碼全亮.Location = new System.Drawing.Point(224, 19);
+            this.plC_Button_同藥碼全亮.Margin = new System.Windows.Forms.Padding(4);
+            this.plC_Button_同藥碼全亮.Name = "plC_Button_同藥碼全亮";
+            this.plC_Button_同藥碼全亮.OFF_文字內容 = "同藥碼全亮";
+            this.plC_Button_同藥碼全亮.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_Button_同藥碼全亮.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_同藥碼全亮.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_同藥碼全亮.ON_文字內容 = "同藥碼全亮";
+            this.plC_Button_同藥碼全亮.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_Button_同藥碼全亮.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_同藥碼全亮.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_同藥碼全亮.Size = new System.Drawing.Size(146, 49);
+            this.plC_Button_同藥碼全亮.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button_同藥碼全亮.TabIndex = 123;
+            this.plC_Button_同藥碼全亮.事件驅動 = false;
+            this.plC_Button_同藥碼全亮.字型鎖住 = false;
+            this.plC_Button_同藥碼全亮.寫入元件位置 = "S4061";
+            this.plC_Button_同藥碼全亮.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button_同藥碼全亮.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_同藥碼全亮.文字鎖住 = false;
+            this.plC_Button_同藥碼全亮.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_同藥碼全亮.狀態OFF圖片")));
+            this.plC_Button_同藥碼全亮.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_同藥碼全亮.狀態ON圖片")));
+            this.plC_Button_同藥碼全亮.讀取位元反向 = false;
+            this.plC_Button_同藥碼全亮.讀取元件位置 = "S4061";
+            this.plC_Button_同藥碼全亮.讀寫鎖住 = false;
+            this.plC_Button_同藥碼全亮.起始狀態 = false;
+            this.plC_Button_同藥碼全亮.音效 = true;
+            this.plC_Button_同藥碼全亮.顯示 = false;
+            this.plC_Button_同藥碼全亮.顯示狀態 = false;
+            // 
+            // plC_ComboBox_醫囑檢查範圍
+            // 
+            this.plC_ComboBox_醫囑檢查範圍.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.plC_ComboBox_醫囑檢查範圍.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_ComboBox_醫囑檢查範圍.FormattingEnabled = true;
+            this.plC_ComboBox_醫囑檢查範圍.Items.AddRange(new object[] {
+            "當日",
+            "前1天",
+            "前2天",
+            "前3天",
+            "前4天",
+            "前5天",
+            "前6天",
+            "前8天",
+            "前9天",
+            "前10天",
+            "前20天",
+            "前30天"});
+            this.plC_ComboBox_醫囑檢查範圍.Location = new System.Drawing.Point(13, 24);
+            this.plC_ComboBox_醫囑檢查範圍.Name = "plC_ComboBox_醫囑檢查範圍";
+            this.plC_ComboBox_醫囑檢查範圍.Size = new System.Drawing.Size(105, 32);
+            this.plC_ComboBox_醫囑檢查範圍.TabIndex = 121;
+            this.plC_ComboBox_醫囑檢查範圍.寫入元件位置 = "D4020";
+            this.plC_ComboBox_醫囑檢查範圍.致能讀取位置 = "S4077";
+            this.plC_ComboBox_醫囑檢查範圍.讀取元件位置 = "D4020";
+            this.plC_ComboBox_醫囑檢查範圍.音效 = true;
+            // 
             // plC_Button_合併同藥品
             // 
             this.plC_Button_合併同藥品.Bool = false;
             this.plC_Button_合併同藥品.but_press = false;
             this.plC_Button_合併同藥品.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_合併同藥品.Location = new System.Drawing.Point(164, 79);
+            this.plC_Button_合併同藥品.Location = new System.Drawing.Point(224, 76);
             this.plC_Button_合併同藥品.Margin = new System.Windows.Forms.Padding(4);
             this.plC_Button_合併同藥品.Name = "plC_Button_合併同藥品";
             this.plC_Button_合併同藥品.OFF_文字內容 = "分離同藥品";
@@ -22515,85 +22729,6 @@
             this.plC_Button_合併同藥品.音效 = true;
             this.plC_Button_合併同藥品.顯示 = false;
             this.plC_Button_合併同藥品.顯示狀態 = false;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.plC_CheckBox_退藥檢查是否掃碼領藥過);
-            this.groupBox7.Controls.Add(this.plC_CheckBox_已過帳取藥);
-            this.groupBox7.Controls.Add(this.plC_ComboBox_醫囑檢查範圍);
-            this.groupBox7.Location = new System.Drawing.Point(509, 22);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(231, 164);
-            this.groupBox7.TabIndex = 120;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "刷藥袋設定";
-            // 
-            // plC_CheckBox_退藥檢查是否掃碼領藥過
-            // 
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.AutoSize = true;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Bool = false;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Font = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Location = new System.Drawing.Point(13, 67);
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Name = "plC_CheckBox_退藥檢查是否掃碼領藥過";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Size = new System.Drawing.Size(156, 16);
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.TabIndex = 123;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Text = "退藥檢查是否掃碼領藥過";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.寫入元件位置 = "S5020";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字內容 = "退藥檢查是否掃碼領藥過";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字字體 = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.讀取元件位置 = "S5020";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.讀寫鎖住 = false;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.音效 = false;
-            // 
-            // plC_CheckBox_已過帳取藥
-            // 
-            this.plC_CheckBox_已過帳取藥.AutoSize = true;
-            this.plC_CheckBox_已過帳取藥.Bool = false;
-            this.plC_CheckBox_已過帳取藥.Font = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox_已過帳取藥.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_已過帳取藥.Location = new System.Drawing.Point(133, 31);
-            this.plC_CheckBox_已過帳取藥.Name = "plC_CheckBox_已過帳取藥";
-            this.plC_CheckBox_已過帳取藥.Size = new System.Drawing.Size(84, 16);
-            this.plC_CheckBox_已過帳取藥.TabIndex = 122;
-            this.plC_CheckBox_已過帳取藥.Text = "已過帳取藥";
-            this.plC_CheckBox_已過帳取藥.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_已過帳取藥.寫入元件位置 = "S5010";
-            this.plC_CheckBox_已過帳取藥.文字內容 = "已過帳取藥";
-            this.plC_CheckBox_已過帳取藥.文字字體 = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox_已過帳取藥.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_已過帳取藥.讀取元件位置 = "S5010";
-            this.plC_CheckBox_已過帳取藥.讀寫鎖住 = false;
-            this.plC_CheckBox_已過帳取藥.音效 = false;
-            // 
-            // plC_ComboBox_醫囑檢查範圍
-            // 
-            this.plC_ComboBox_醫囑檢查範圍.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.plC_ComboBox_醫囑檢查範圍.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_ComboBox_醫囑檢查範圍.FormattingEnabled = true;
-            this.plC_ComboBox_醫囑檢查範圍.Items.AddRange(new object[] {
-            "當日",
-            "前1天",
-            "前2天",
-            "前3天",
-            "前4天",
-            "前5天",
-            "前6天",
-            "前8天",
-            "前9天",
-            "前10天",
-            "前20天",
-            "前30天"});
-            this.plC_ComboBox_醫囑檢查範圍.Location = new System.Drawing.Point(13, 24);
-            this.plC_ComboBox_醫囑檢查範圍.Name = "plC_ComboBox_醫囑檢查範圍";
-            this.plC_ComboBox_醫囑檢查範圍.Size = new System.Drawing.Size(105, 32);
-            this.plC_ComboBox_醫囑檢查範圍.TabIndex = 121;
-            this.plC_ComboBox_醫囑檢查範圍.寫入元件位置 = "D4020";
-            this.plC_ComboBox_醫囑檢查範圍.致能讀取位置 = "S4077";
-            this.plC_ComboBox_醫囑檢查範圍.讀取元件位置 = "D4020";
-            this.plC_ComboBox_醫囑檢查範圍.音效 = true;
             // 
             // tabControl2
             // 
@@ -24761,7 +24896,7 @@
             this.plC_CheckBox3.Bool = false;
             this.plC_CheckBox3.Font = new System.Drawing.Font("新細明體", 9F);
             this.plC_CheckBox3.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox3.Location = new System.Drawing.Point(3, 742);
+            this.plC_CheckBox3.Location = new System.Drawing.Point(3, 720);
             this.plC_CheckBox3.Name = "plC_CheckBox3";
             this.plC_CheckBox3.Size = new System.Drawing.Size(84, 16);
             this.plC_CheckBox3.TabIndex = 49;
@@ -24777,52 +24912,6 @@
             this.plC_CheckBox3.讀取元件位置 = "S1004";
             this.plC_CheckBox3.讀寫鎖住 = false;
             this.plC_CheckBox3.音效 = true;
-            // 
-            // plC_CheckBox2
-            // 
-            this.plC_CheckBox2.AutoSize = true;
-            this.plC_CheckBox2.Bool = false;
-            this.plC_CheckBox2.Font = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox2.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox2.Location = new System.Drawing.Point(3, 720);
-            this.plC_CheckBox2.Name = "plC_CheckBox2";
-            this.plC_CheckBox2.Size = new System.Drawing.Size(110, 16);
-            this.plC_CheckBox2.TabIndex = 48;
-            this.plC_CheckBox2.Text = "掃碼槍COM通訊";
-            this.plC_CheckBox2.UseVisualStyleBackColor = true;
-            this.plC_CheckBox2.寫入位置註解 = "主機扣賬模式";
-            this.plC_CheckBox2.寫入元件位置 = "S1003";
-            this.plC_CheckBox2.文字內容 = "掃碼槍COM通訊";
-            this.plC_CheckBox2.文字字體 = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox2.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox2.致能讀取位置 = "M8001";
-            this.plC_CheckBox2.讀取位置註解 = "主機扣賬模式";
-            this.plC_CheckBox2.讀取元件位置 = "S1003";
-            this.plC_CheckBox2.讀寫鎖住 = false;
-            this.plC_CheckBox2.音效 = true;
-            // 
-            // plC_CheckBox4
-            // 
-            this.plC_CheckBox4.AutoSize = true;
-            this.plC_CheckBox4.Bool = false;
-            this.plC_CheckBox4.Font = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox4.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox4.Location = new System.Drawing.Point(3, 654);
-            this.plC_CheckBox4.Name = "plC_CheckBox4";
-            this.plC_CheckBox4.Size = new System.Drawing.Size(74, 16);
-            this.plC_CheckBox4.TabIndex = 47;
-            this.plC_CheckBox4.Text = "RFID使用";
-            this.plC_CheckBox4.UseVisualStyleBackColor = true;
-            this.plC_CheckBox4.寫入位置註解 = "RFID使用";
-            this.plC_CheckBox4.寫入元件位置 = "S1000";
-            this.plC_CheckBox4.文字內容 = "RFID使用";
-            this.plC_CheckBox4.文字字體 = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox4.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox4.致能讀取位置 = "M8001";
-            this.plC_CheckBox4.讀取位置註解 = "RFID使用";
-            this.plC_CheckBox4.讀取元件位置 = "S1000";
-            this.plC_CheckBox4.讀寫鎖住 = false;
-            this.plC_CheckBox4.音效 = true;
             // 
             // plC_CheckBox1
             // 
@@ -25348,6 +25437,8 @@
             this.tabControl3.Controls.Add(this.tabPage10);
             this.tabControl3.Controls.Add(this.tabPage11);
             this.tabControl3.Controls.Add(this.tabPage12);
+            this.tabControl3.Controls.Add(this.tabPage14);
+            this.tabControl3.Controls.Add(this.tabPage15);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(0, 0);
             this.tabControl3.Name = "tabControl3";
@@ -25706,6 +25797,134 @@
             this.sqL_DataGridView_設備資料.顯示首行 = true;
             this.sqL_DataGridView_設備資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_設備資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(this.sqL_DataGridView_藥品管制方式設定);
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(475, 355);
+            this.tabPage14.TabIndex = 5;
+            this.tabPage14.Text = "藥品管制方式設定";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // sqL_DataGridView_藥品管制方式設定
+            // 
+            this.sqL_DataGridView_藥品管制方式設定.AutoSelectToDeep = false;
+            this.sqL_DataGridView_藥品管制方式設定.backColor = System.Drawing.SystemColors.Control;
+            this.sqL_DataGridView_藥品管制方式設定.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_藥品管制方式設定.BorderRadius = 10;
+            this.sqL_DataGridView_藥品管制方式設定.BorderSize = 2;
+            this.sqL_DataGridView_藥品管制方式設定.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_藥品管制方式設定.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_藥品管制方式設定.cellStyleFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_藥品管制方式設定.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_藥品管制方式設定.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_藥品管制方式設定.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_藥品管制方式設定.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥品管制方式設定.columnHeadersHeight = 21;
+            this.sqL_DataGridView_藥品管制方式設定.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns"))));
+            this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns1"))));
+            this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns2"))));
+            this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns3"))));
+            this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns4"))));
+            this.sqL_DataGridView_藥品管制方式設定.DataBaseName = "Dispensing_000";
+            this.sqL_DataGridView_藥品管制方式設定.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_藥品管制方式設定.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_藥品管制方式設定.ImageBox = false;
+            this.sqL_DataGridView_藥品管制方式設定.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_藥品管制方式設定.Name = "sqL_DataGridView_藥品管制方式設定";
+            this.sqL_DataGridView_藥品管制方式設定.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_藥品管制方式設定.Password = "user82822040";
+            this.sqL_DataGridView_藥品管制方式設定.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品管制方式設定.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_藥品管制方式設定.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥品管制方式設定.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.sqL_DataGridView_藥品管制方式設定.RowsHeight = 40;
+            this.sqL_DataGridView_藥品管制方式設定.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_藥品管制方式設定.Server = "localhost";
+            this.sqL_DataGridView_藥品管制方式設定.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_藥品管制方式設定.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_藥品管制方式設定.TabIndex = 28;
+            this.sqL_DataGridView_藥品管制方式設定.TableName = "med_controlled_config";
+            this.sqL_DataGridView_藥品管制方式設定.UserName = "root";
+            this.sqL_DataGridView_藥品管制方式設定.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_藥品管制方式設定.可選擇多列 = false;
+            this.sqL_DataGridView_藥品管制方式設定.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_藥品管制方式設定.自動換行 = true;
+            this.sqL_DataGridView_藥品管制方式設定.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_藥品管制方式設定.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_藥品管制方式設定.顯示CheckBox = false;
+            this.sqL_DataGridView_藥品管制方式設定.顯示首列 = false;
+            this.sqL_DataGridView_藥品管制方式設定.顯示首行 = true;
+            this.sqL_DataGridView_藥品管制方式設定.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥品管制方式設定.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
+            // tabPage15
+            // 
+            this.tabPage15.Controls.Add(this.sqL_DataGridView_藥品設定表);
+            this.tabPage15.Location = new System.Drawing.Point(4, 22);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Size = new System.Drawing.Size(475, 355);
+            this.tabPage15.TabIndex = 6;
+            this.tabPage15.Text = "藥品設定表";
+            this.tabPage15.UseVisualStyleBackColor = true;
+            // 
+            // sqL_DataGridView_藥品設定表
+            // 
+            this.sqL_DataGridView_藥品設定表.AutoSelectToDeep = false;
+            this.sqL_DataGridView_藥品設定表.backColor = System.Drawing.SystemColors.Control;
+            this.sqL_DataGridView_藥品設定表.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_藥品設定表.BorderRadius = 10;
+            this.sqL_DataGridView_藥品設定表.BorderSize = 2;
+            this.sqL_DataGridView_藥品設定表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_藥品設定表.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_藥品設定表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_藥品設定表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_藥品設定表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_藥品設定表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_藥品設定表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥品設定表.columnHeadersHeight = 21;
+            this.sqL_DataGridView_藥品設定表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns"))));
+            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns1"))));
+            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns2"))));
+            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns3"))));
+            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns4"))));
+            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns5"))));
+            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns6"))));
+            this.sqL_DataGridView_藥品設定表.DataBaseName = "Dispensing_000";
+            this.sqL_DataGridView_藥品設定表.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_藥品設定表.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_藥品設定表.ImageBox = false;
+            this.sqL_DataGridView_藥品設定表.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_藥品設定表.Name = "sqL_DataGridView_藥品設定表";
+            this.sqL_DataGridView_藥品設定表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_藥品設定表.Password = "user82822040";
+            this.sqL_DataGridView_藥品設定表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥品設定表.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_藥品設定表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥品設定表.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.sqL_DataGridView_藥品設定表.RowsHeight = 40;
+            this.sqL_DataGridView_藥品設定表.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_藥品設定表.Server = "localhost";
+            this.sqL_DataGridView_藥品設定表.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_藥品設定表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_藥品設定表.TabIndex = 29;
+            this.sqL_DataGridView_藥品設定表.TableName = "med_config";
+            this.sqL_DataGridView_藥品設定表.UserName = "root";
+            this.sqL_DataGridView_藥品設定表.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_藥品設定表.可選擇多列 = false;
+            this.sqL_DataGridView_藥品設定表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_藥品設定表.自動換行 = true;
+            this.sqL_DataGridView_藥品設定表.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_藥品設定表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_藥品設定表.顯示CheckBox = false;
+            this.sqL_DataGridView_藥品設定表.顯示首列 = false;
+            this.sqL_DataGridView_藥品設定表.顯示首行 = true;
+            this.sqL_DataGridView_藥品設定表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥品設定表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
             // tabPage8
             // 
@@ -30022,27 +30241,6 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
-            // plC_CheckBox_領藥無儲位不顯示
-            // 
-            this.plC_CheckBox_領藥無儲位不顯示.AutoSize = true;
-            this.plC_CheckBox_領藥無儲位不顯示.Bool = false;
-            this.plC_CheckBox_領藥無儲位不顯示.Font = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox_領藥無儲位不顯示.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_領藥無儲位不顯示.Location = new System.Drawing.Point(3, 808);
-            this.plC_CheckBox_領藥無儲位不顯示.Name = "plC_CheckBox_領藥無儲位不顯示";
-            this.plC_CheckBox_領藥無儲位不顯示.Size = new System.Drawing.Size(120, 16);
-            this.plC_CheckBox_領藥無儲位不顯示.TabIndex = 127;
-            this.plC_CheckBox_領藥無儲位不顯示.Text = "領藥無儲位不顯示";
-            this.plC_CheckBox_領藥無儲位不顯示.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_領藥無儲位不顯示.寫入元件位置 = "S5021";
-            this.plC_CheckBox_領藥無儲位不顯示.文字內容 = "領藥無儲位不顯示";
-            this.plC_CheckBox_領藥無儲位不顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox_領藥無儲位不顯示.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_領藥無儲位不顯示.致能讀取位置 = "S4077";
-            this.plC_CheckBox_領藥無儲位不顯示.讀取元件位置 = "S5021";
-            this.plC_CheckBox_領藥無儲位不顯示.讀寫鎖住 = false;
-            this.plC_CheckBox_領藥無儲位不顯示.音效 = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -30123,8 +30321,8 @@
             this.rJ_GroupBox12.ContentsPanel.ResumeLayout(false);
             this.rJ_GroupBox12.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel75.ResumeLayout(false);
-            this.panel71.ResumeLayout(false);
             this.panel69.ResumeLayout(false);
             this.panel64.ResumeLayout(false);
             this.panel67.ResumeLayout(false);
@@ -30135,6 +30333,8 @@
             this.panel52.ResumeLayout(false);
             this.panel50.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.管藥設定.ResumeLayout(false);
+            this.groupBox17.ResumeLayout(false);
             this.儲位總庫存表.ResumeLayout(false);
             this.儲位效期表.ResumeLayout(false);
             this.panel_藥品資料.ResumeLayout(false);
@@ -30366,6 +30566,8 @@
             this.tabPage10.ResumeLayout(false);
             this.tabPage11.ResumeLayout(false);
             this.tabPage12.ResumeLayout(false);
+            this.tabPage14.ResumeLayout(false);
+            this.tabPage15.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
             this.rJ_GroupBox28.ContentsPanel.ResumeLayout(false);
             this.rJ_GroupBox28.ResumeLayout(false);
@@ -30639,7 +30841,6 @@
         private SQLUI.SQL_DataGridView sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存;
         private MyUI.PLC_CheckBox plC_CheckBox1;
         private System.Windows.Forms.TabPage tabPage8;
-        private MyUI.PLC_CheckBox plC_CheckBox4;
         private SQLUI.SQL_DataGridView sqL_DataGridView_批次領藥_未領取領藥清單;
         private MyUI.RJ_GroupBox rJ_GroupBox26;
         private SQLUI.SQL_DataGridView sqL_DataGridView_批次領藥_領藥總量清單;
@@ -30838,7 +31039,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_入庫作業_入庫狀態_清除所有資料;
         private SQLUI.SQL_DataGridView sqL_DataGridView_入庫作業_入庫狀態;
         private MyUI.PLC_RJ_Button plC_RJ_Button_入庫作業_入庫狀態_清除選取資料;
-        private MyUI.PLC_CheckBox plC_CheckBox2;
         private MyUI.PLC_CheckBox plC_CheckBox3;
         private System.Windows.Forms.TabPage tabPage3;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton6;
@@ -31023,9 +31223,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label6;
         private MyUI.PLC_NumBox plC_NumBox7;
-        private System.Windows.Forms.TextBox textBox_工程模式_門未關閉警報語音內容;
-        private MyUI.RJ_Lable rJ_Lable99;
-        private System.Windows.Forms.Button button_工程模式_門未關閉警報語音內容_下載;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品資料_顯示有儲位藥品;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_一維條碼;
         private System.Windows.Forms.Label label7;
@@ -31328,8 +31525,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_雲端藥檔_取得資料;
         private SQLUI.SQL_DataGridView sqL_DataGridView_雲端藥檔;
         private MyUI.PLC_CheckBox plC_CheckBox_QRcode_Mode;
-        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton_儲位效期表;
-        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton_儲位總庫存表;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品資料_HIS下載全部藥檔;
         private MyUI.PLC_Button plC_Button_多醫囑模式;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_選取資料刪除;
@@ -31375,10 +31570,6 @@
         private MyUI.PLC_Button plC_Button_無庫存自動補足;
         private System.Windows.Forms.Panel panel6;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品資料_HIS填入;
-        private System.Windows.Forms.Panel panel71;
-        private MyUI.RJ_ComboBox comboBox_藥品資料_藥檔資料_警訊藥品;
-        private System.Windows.Forms.Panel panel72;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Panel panel69;
         private MyUI.RJ_TextBox textBox_藥品資料_藥檔資料_安全庫存;
         private System.Windows.Forms.Panel panel70;
@@ -31598,6 +31789,22 @@
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點作業_盤點藥品清單;
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容;
         private MyUI.PLC_CheckBox plC_CheckBox_領藥無儲位不顯示;
+        private System.Windows.Forms.TabPage tabPage14;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_藥品管制方式設定;
+        private System.Windows.Forms.TabPage 管藥設定;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton_儲位效期表;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton_儲位總庫存表;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton14;
+        private System.Windows.Forms.GroupBox groupBox17;
+        private MyUI.PLC_RJ_ChechBox plC_RJ_ChechBox_藥品資料_管藥設定_複盤;
+        private MyUI.RJ_Lable rJ_Lable121;
+        private MyUI.PLC_RJ_ChechBox plC_RJ_ChechBox_藥品資料_管藥設定_效期管理;
+        private MyUI.RJ_Lable rJ_Lable120;
+        private System.Windows.Forms.ComboBox comboBox_藥品資料_管藥設定_類型;
+        private MyUI.RJ_Lable rJ_Lable99;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_藥檔資料_警訊藥品;
+        private System.Windows.Forms.TabPage tabPage15;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_藥品設定表;
     }
 }
 

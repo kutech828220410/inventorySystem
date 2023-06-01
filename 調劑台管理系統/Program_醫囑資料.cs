@@ -50,29 +50,7 @@ namespace 調劑台管理系統
         public string 病人姓名 { get => _病人姓名; set => _病人姓名 = value; }
     }
 
-    public enum enum_醫囑資料_狀態
-    {
-        未過帳,
-        已過帳,
-        庫存不足,
-        無儲位,
-    }
-    public enum enum_醫囑資料
-    {
-        GUID,
-        PRI_KEY,
-        藥局代碼,
-        藥袋條碼,
-        藥品碼,
-        藥品名稱,
-        病人姓名,
-        病歷號,
-        交易量,
-        開方日期,
-        產出時間,
-        過帳時間,
-        狀態,
-    }
+   
     public partial class Form1 : Form
     {
 

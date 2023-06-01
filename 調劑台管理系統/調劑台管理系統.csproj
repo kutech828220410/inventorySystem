@@ -305,6 +305,9 @@
     <Compile Include="Program_管制抽屜.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_藥品資料_管藥設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_設備資料.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -388,6 +391,9 @@
     </Compile>
     <Compile Include="TimePannel.Designer.cs">
       <DependentUpon>TimePannel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program_藥品管制方式設定.cs">
+      <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="Dialog\Dialog_入庫作業_儲位選擇.resx">
       <DependentUpon>Dialog_入庫作業_儲位選擇.cs</DependentUpon>

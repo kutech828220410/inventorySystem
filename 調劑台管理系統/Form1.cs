@@ -453,9 +453,12 @@ namespace 調劑台管理系統
             this.Program_儲位管理_RFID_Init();
             this.Program_儲位管理_Pannel35_Init();
             this.Program_領藥_Init();
+
             this.Program_藥品資料_藥檔資料_Init();
             this.Program_藥品資料_儲位總庫存表_Init();
             this.Program_藥品資料_儲位效期表_Init();
+            this.Program_藥品資料_管藥設定_Init();
+
             this.Program_人員資料_Init();
             this.Program_工程模式_Init();
             this.Program_交易記錄查詢_Init();
@@ -468,6 +471,9 @@ namespace 調劑台管理系統
             this.Program_管制抽屜_Init();
             this.Program_設備資料_Init();
             this.Program_交班對點_Init();
+            this.Program_藥品管制方式設定_Init();
+
+
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();

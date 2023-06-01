@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Basic;
 using MyUI;
-
+using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
     public partial class Dialog_醫囑退藥 : Form

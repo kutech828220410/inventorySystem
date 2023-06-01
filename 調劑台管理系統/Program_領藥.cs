@@ -965,6 +965,7 @@ namespace 調劑台管理系統
                 List<string> list_效期 = new List<string>();
                 List<string> list_效期_buf = new List<string>();
                 List<string> list_批號 = new List<string>();
+                List<string> list_數量 = new List<string>();
 
                 List<object> list_device = Function_從SQL取得儲位到本地資料(藥品碼);
                 if(list_device.Count == 0)
@@ -987,11 +988,12 @@ namespace 調劑台管理系統
                             {
                                 list_效期.Add(device.List_Validity_period[m]);
                                 list_批號.Add(device.List_Lot_number[m]);
+                                list_數量.Add(device.List_Inventory[m]);
                             }
                         }     
                     }
                 }
-                Dialog_選擇效期 dialog = new Dialog_選擇效期(藥品碼, 藥品名稱, 交易量, list_效期, list_批號);
+                Dialog_選擇效期 dialog = new Dialog_選擇效期(藥品碼, 藥品名稱, 交易量, list_效期, list_批號, list_數量);
                 DialogResult dialogResult = DialogResult.None;
                 this.Invoke(new Action(delegate
                 {
@@ -2318,6 +2320,7 @@ namespace 調劑台管理系統
                 List<string> list_效期 = new List<string>();
                 List<string> list_效期_buf = new List<string>();
                 List<string> list_批號 = new List<string>();
+                List<string> list_數量 = new List<string>();
 
                 List<object> list_device = Function_從SQL取得儲位到本地資料(藥品碼);
                 if (list_device.Count == 0)
@@ -2340,11 +2343,12 @@ namespace 調劑台管理系統
                             {
                                 list_效期.Add(device.List_Validity_period[m]);
                                 list_批號.Add(device.List_Lot_number[m]);
+                                list_數量.Add(device.List_Inventory[m]);
                             }
                         }
                     }
                 }
-                Dialog_選擇效期 dialog = new Dialog_選擇效期(藥品碼, 藥品名稱, 交易量, list_效期, list_批號);
+                Dialog_選擇效期 dialog = new Dialog_選擇效期(藥品碼, 藥品名稱, 交易量, list_效期, list_批號, list_數量);
                 DialogResult dialogResult = DialogResult.None;
                 this.Invoke(new Action(delegate
                 {
