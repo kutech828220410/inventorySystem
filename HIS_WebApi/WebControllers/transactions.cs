@@ -37,7 +37,7 @@ namespace HIS_WebApi
 
         [Route("serch_med_information_by_code")]
         [HttpPost]
-        public string POST_serch_med_information_by_code(returnData returnData)
+        public string POST_serch_med_information_by_code([FromBody] returnData returnData)
         {
             try
             {
@@ -86,7 +86,7 @@ namespace HIS_WebApi
         }
         [Route("serch")]
         [HttpPost]
-        public string POST_serch(returnData returnData)
+        public string POST_serch([FromBody] returnData returnData)
         {
             try
             {
@@ -156,10 +156,9 @@ namespace HIS_WebApi
 
         }
 
-
-        [Route("download_excel_by_serch")]
+        [Route("get_sheet_by_serch")]
         [HttpPost]
-        public async Task<ActionResult> Post_download_excel_by_serch([FromBody] returnData returnData)
+        public string POST_get_sheet_by_serch([FromBody] returnData returnData)
         {
             try
             {
@@ -207,23 +206,32 @@ namespace HIS_WebApi
 
 
 
-                List<SheetClass> sheetClasses = new List<SheetClass>();
                 string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
                 Console.WriteLine($"取得creats {myTimer.ToString()}");
+                int row_max = 50;
+                List<SheetClass> sheetClasses = new List<SheetClass>();
                 SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
 
-                sheetClass.ReplaceCell(1, 1, $"{medClasses_buf[0].藥品碼}");
-                sheetClass.ReplaceCell(2, 1, $"{medClasses_buf[0].藥品名稱}");
-                sheetClass.ReplaceCell(1, 3, $"{medClasses_buf[0].包裝單位}");
-                sheetClass.ReplaceCell(1, 7, $"{起始時間}");
-                sheetClass.ReplaceCell(2, 7, $"{結束時間}");
 
                 int 消耗量 = 0;
-                int NumOfRow = 0;
+                int NumOfRow = -1;
                 for (int i = 0; i < transactionsClasses.Count; i++)
                 {
+                    if (NumOfRow >= row_max || NumOfRow == -1)
+                    {
+                        sheetClass = loadText.JsonDeserializet<SheetClass>();
+                        sheetClass.Name = $"{i}";
+                        sheetClass.ReplaceCell(1, 1, $"{medClasses_buf[0].藥品碼}");
+                        sheetClass.ReplaceCell(2, 1, $"{medClasses_buf[0].藥品名稱}");
+                        sheetClass.ReplaceCell(1, 3, $"{medClasses_buf[0].包裝單位}");
+                        sheetClass.ReplaceCell(1, 7, $"{起始時間}");
+                        sheetClass.ReplaceCell(2, 7, $"{結束時間}");
+                        sheetClasses.Add(sheetClass);
+                        NumOfRow = 0;
+                    }
+
                     消耗量 += transactionsClasses[i].交易量.StringToInt32();
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 4, 0, $"{i+1}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                    sheetClass.AddNewCell_Webapi(NumOfRow + 4, 0, $"{i + 1}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                     sheetClass.AddNewCell_Webapi(NumOfRow + 4, 1, $"{transactionsClasses[i].操作時間}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                     sheetClass.AddNewCell_Webapi(NumOfRow + 4, 2, $"{transactionsClasses[i].床號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                     sheetClass.AddNewCell_Webapi(NumOfRow + 4, 3, $"{transactionsClasses[i].類別}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
@@ -235,17 +243,48 @@ namespace HIS_WebApi
                     sheetClass.AddNewCell_Webapi(NumOfRow + 4, 9, $"{transactionsClasses[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                     NumOfRow++;
                 }
-                sheetClass.ReplaceCell(1, 5, $"{消耗量}");
+                for(int i = 0; i < sheetClasses.Count; i++)
+                {
+                    sheetClasses[i].ReplaceCell(1, 5, $"{消耗量}");
+                }
+ 
 
                 Console.WriteLine($"寫入Sheet {myTimer.ToString()}");
+                returnData.Code = 200;
+                returnData.Result ="Sheet取得成功!";
+                returnData.Data = sheetClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch(Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+          
+        }
+        [Route("download_excel_by_serch")]
+        [HttpPost]
+        public async Task<ActionResult> Post_download_excel_by_serch([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
 
-                // sheetClass.NewCell_Webapi_Buffer_Caculate();
-                Console.WriteLine($"NewCell_Webapi_Buffer_Caculate {myTimer.ToString()}");
+                returnData = POST_get_sheet_by_serch(returnData).JsonDeserializet<returnData>();
+                if(returnData.Code != 200)
+                {
+                    return null;
+                }
+                string jsondata = returnData.Data.JsonSerializationt();
+
+                List<SheetClass> sheetClasses = jsondata.JsonDeserializet<List<SheetClass>>();
 
                 string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 string xls_command = "application/vnd.ms-excel";
 
-                byte[] excelData = sheetClass.NPOI_GetBytes(Excel_Type.xlsx);
+                byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xlsx);
                 Stream stream = new MemoryStream(excelData);
                 return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
             }

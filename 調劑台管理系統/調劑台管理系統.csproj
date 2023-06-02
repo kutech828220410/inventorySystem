@@ -119,6 +119,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\MyOffice.dll</HintPath>
     </Reference>
+    <Reference Include="MyPrinterlib">
+      <HintPath>..\0.DLL\MyPrinterlib.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\MySql.Data.dll</HintPath>
@@ -290,7 +293,10 @@
     <Compile Include="Function.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Program_交班對點.cs">
+    <Compile Include="Program_交班作業_管制結存.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_交班作業_對點作業.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_盤點作業_資料庫.cs">
@@ -303,6 +309,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_管制抽屜.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_藥品設定表.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_藥品資料_管藥設定.cs">
@@ -531,6 +540,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\up_arrow_icon.png" />
+    <None Include="Resources\down_arrow_icon.png" />
+    <None Include="Resources\right_arrow_icon.png" />
+    <None Include="Resources\left_arrow_icon.png" />
+    <None Include="Resources\1200px-Document-print-preview.svg.png" />
     <None Include="Resources\UNLOCK.png" />
     <None Include="Resources\LOCK.png" />
   </ItemGroup>

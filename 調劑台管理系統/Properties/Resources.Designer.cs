@@ -63,6 +63,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap _1200px_Document_print_preview_svg {
+            get {
+                object obj = ResourceManager.GetObject("1200px-Document-print-preview.svg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap _568089 {
             get {
                 object obj = ResourceManager.GetObject("568089", resourceCulture);
@@ -86,6 +96,16 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap _568370 {
             get {
                 object obj = ResourceManager.GetObject("568370", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap down_arrow_icon {
+            get {
+                object obj = ResourceManager.GetObject("down_arrow_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,6 +183,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap left_arrow_icon {
+            get {
+                object obj = ResourceManager.GetObject("left_arrow_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap LOCK {
             get {
                 object obj = ResourceManager.GetObject("LOCK", resourceCulture);
@@ -203,6 +233,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap right_arrow_icon {
+            get {
+                object obj = ResourceManager.GetObject("right_arrow_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap serach_document_512 {
             get {
                 object obj = ResourceManager.GetObject("serach_document-512", resourceCulture);
@@ -236,6 +276,16 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap UNLOCK {
             get {
                 object obj = ResourceManager.GetObject("UNLOCK", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap up_arrow_icon {
+            get {
+                object obj = ResourceManager.GetObject("up_arrow_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

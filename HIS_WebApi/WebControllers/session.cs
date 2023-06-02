@@ -17,10 +17,10 @@ namespace HIS_WebApi
     [ApiController]
     public class sessionController : Controller
     {
-        static private string DataBaseName = ConfigurationManager.AppSettings["person_page_database"];
+        static private string DataBaseName = ConfigurationManager.AppSettings["VM_DB"];
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string IP = ConfigurationManager.AppSettings["IP"];
+        static private string IP = ConfigurationManager.AppSettings["VM_Server"];
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
@@ -93,6 +93,8 @@ namespace HIS_WebApi
         [HttpPost]
         public string Post([FromBody] class_input_login_session_data data)
         {
+            Check_Table();
+
             returnData returnData = new returnData();
             List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
             List<object[]> list_person_page = sQLControl_person_page.GetAllRows(null);
@@ -164,6 +166,7 @@ namespace HIS_WebApi
         [HttpPost]
         public string check_Post([FromBody]class_input_check_session_data class_Input_Check_Session_Data)
         {
+            Check_Table();
             returnData returnData = new returnData();
             List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
             list_login_session = list_login_session.GetRows((int)enum_login_session.ID, class_Input_Check_Session_Data.ID);
@@ -196,6 +199,7 @@ namespace HIS_WebApi
         [HttpPost]
         public string logout_Post([FromBody] class_input_logout_session_data class_Input_Logout_Session_Data)
         {
+            Check_Table();
             returnData returnData = new returnData();
             List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
             list_login_session = list_login_session.GetRows((int)enum_login_session.ID, class_Input_Logout_Session_Data.ID);
@@ -206,6 +210,21 @@ namespace HIS_WebApi
             returnData.Code = 200;
             returnData.Result = $"ID :{class_Input_Logout_Session_Data.ID} ,清除session成功!";
             return returnData.JsonSerializationt();
+        }
+        public void Check_Table()
+        {
+      
+            if (sQLControl_login_session.IsTableCreat() == false)
+            {
+                Table table = new Table("login_session");
+                table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+                table.AddColumnList("ID", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+                table.AddColumnList("Name", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+                table.AddColumnList("Employer", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+                table.AddColumnList("loginTime", Table.DateType.DATETIME, 50, Table.IndexType.None);
+                table.AddColumnList("verlifyTime", Table.DateType.DATETIME, 50, Table.IndexType.None);
+                sQLControl_login_session.CreatTable(table);
+            }
         }
     }
 }

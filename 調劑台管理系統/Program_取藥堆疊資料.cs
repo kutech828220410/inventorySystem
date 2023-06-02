@@ -243,24 +243,34 @@ namespace 調劑台管理系統
 
             List<object[]> list_value = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
 
+            #region 設定作業模式
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼, false);
             if (list_藥品資料.Count > 0)
             {
-                string 管制級別 = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
-                string 警訊藥品 = (list_藥品資料[0][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString()) ? "警訊" : "";
-                bool flag_複盤 = (Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定.複盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定.複盤, 警訊藥品));
-                bool flag_效期管理 = (Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定.效期管理, 管制級別) || Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定.效期管理, 警訊藥品));
-                if(flag_複盤)
+                bool flag_複盤 = false;
+                bool flag_效期管理 = false;
+                if (Function_藥品設定表_取得是否自訂義(藥品碼))
+                {
+                    flag_複盤 = Function_藥品設定表_取得管制方式(enum_藥品設定表.複盤, 藥品碼);
+                    flag_效期管理 = Function_藥品設定表_取得管制方式(enum_藥品設定表.效期管理, 藥品碼);
+                }
+                else
+                {
+                    string 管制級別 = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
+                    string 警訊藥品 = (list_藥品資料[0][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString()) ? "警訊" : "";
+                    flag_複盤 = (Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定.複盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定.複盤, 警訊藥品));
+                    flag_效期管理 = (Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定.效期管理, 管制級別) || Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定.效期管理, 警訊藥品));           
+                }
+                if (flag_複盤)
                 {
                     Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.複盤);
                 }
-                if(flag_效期管理)
+                if (flag_效期管理)
                 {
                     Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.效期管控);
                 }
-            
-           
             }
+            #endregion
             list_value = list_value.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
             list_value = list_value.GetRows((int)enum_取藥堆疊母資料.病歷號, 病歷號);
             list_value = list_value.GetRows((int)enum_取藥堆疊母資料.開方時間, 開方時間);

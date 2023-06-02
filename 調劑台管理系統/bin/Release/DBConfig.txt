@@ -39,5 +39,6 @@
   "MedApiURL": "",
   "Med_Update_ApiURL": "",
   "Inspection_ApiURL": "",
-  "Inventory_ApiURL": ""
+  "Inventory_ApiURL": "",
+  "Transactions_ApiURL": "http://127.0.0.1:4433/api/transactions"
 }

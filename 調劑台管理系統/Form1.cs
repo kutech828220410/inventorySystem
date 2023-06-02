@@ -17,14 +17,17 @@ using System.Text.Json.Serialization;
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-
-[assembly: AssemblyVersion("1.0.53.0")]
-[assembly: AssemblyFileVersion("1.0.53.0")]
+using MyPrinterlib;
+using MyOffice;
+using HIS_DB_Lib;
+[assembly: AssemblyVersion("1.0.54.0")]
+[assembly: AssemblyFileVersion("1.0.54.0")]
 namespace 調劑台管理系統
 {
 
     public partial class Form1 : Form
     {
+        private PrinterClass printerClass = new PrinterClass();
         private string FormText = "";
         private LadderConnection.LowerMachine PLC;
         MyTimer MyTimer_TickTime = new MyTimer();
@@ -54,7 +57,7 @@ namespace 調劑台管理系統
             private string med_Update_ApiURL = "";
             private string inventory_ApiURL = "";
             private string inspection_ApiURL = "";
-
+            private string transactions_ApiURL = "";
 
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
@@ -65,7 +68,7 @@ namespace 調劑台管理系統
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
             public string Inspection_ApiURL { get => inspection_ApiURL; set => inspection_ApiURL = value; }
             public string Inventory_ApiURL { get => inventory_ApiURL; set => inventory_ApiURL = value; }
-
+            public string Transactions_ApiURL { get => transactions_ApiURL; set => transactions_ApiURL = value; }
         }
         private void LoadDBConfig()
         {
@@ -386,8 +389,9 @@ namespace 調劑台管理系統
                 {
                     MyProcess[i].Kill();
                 }
+                printerClass.Init();
+                printerClass.PrintPageEvent += PrinterClass_PrintPageEvent;
 
-              
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
           
             }
@@ -423,6 +427,9 @@ namespace 調劑台管理系統
           
           
             PLC_UI_Init.Set_PLC_ScreenPage(panel_Main, this.plC_ScreenPage_Main);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_交班作業, this.plC_ScreenPage_交班作業);
+
+            
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥品資料, this.plC_ScreenPage_藥品資料);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統_Pannel設定, this.plC_ScreenPage_系統_Pannel設定);
@@ -470,9 +477,10 @@ namespace 調劑台管理系統
             this.Program_輸出入檢查_Init();
             this.Program_管制抽屜_Init();
             this.Program_設備資料_Init();
-            this.Program_交班對點_Init();
+            this.Program_交班作業_對點作業_Init();
+            this.Program_交班作業_管制結存_Init();
             this.Program_藥品管制方式設定_Init();
-
+            this.Program_藥品設定表_Init();
 
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
@@ -488,14 +496,21 @@ namespace 調劑台管理系統
             {
                 Function_從SQL取得儲位到本地資料();
             }));
-            //this.AutoSize = true;
-            //this.AutoScaleDimensions = new System.Drawing.SizeF(70F, 70F);
-            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            //AutoReSizeForm.SetFormSize(this.FindForm());
-          
-            //this.Font = new System.Drawing.Font("新細明體", 9F / 1.5F);
         }
 
+        private void Button1_Click1(object sender, EventArgs e)
+        {
+          
+        }
+        private void PrinterClass_PrintPageEvent(object sender, Graphics g, int width, int height, int page_num)
+        {
+            Rectangle rectangle = new Rectangle(0, 0, width, height);
+            using (Bitmap bitmap = printerClass.GetSheetClass(page_num).GetBitmap(width, height, 0.63, H_Alignment.Center, V_Alignment.Top, 0, 50))
+            {
+                rectangle.Height = bitmap.Height;
+                g.DrawImage(bitmap, rectangle);
+            }
+        }
         #region PLC_Method
         PLC_Device PLC_Device_Method = new PLC_Device("");
         PLC_Device PLC_Device_Method_OK = new PLC_Device("");
@@ -589,7 +604,6 @@ namespace 調劑台管理系統
         {
             this.Update();
         }
-
 
     }
 

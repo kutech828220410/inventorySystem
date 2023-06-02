@@ -28,6 +28,7 @@ namespace 調劑台管理系統
             效期管理,
             盲盤,
             複盤,
+            結存報表,
         }
 
         private void Program_藥品管制方式設定_Init()
@@ -70,6 +71,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
                 value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
                 value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
             list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "1");
@@ -81,6 +83,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
                 value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
                 value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
             list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "2");
@@ -92,6 +95,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
                 value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
                 value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
             list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "3");
@@ -114,6 +118,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
                 value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
                 value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
             list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "警訊");
@@ -125,6 +130,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
                 value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
                 value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
             this.sqL_DataGridView_藥品管制方式設定.SQL_DeleteExtra(list_value_delete, false);

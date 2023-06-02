@@ -28,8 +28,11 @@ namespace 調劑台管理系統
 
             this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.CheckedChanged += PlC_RJ_ChechBox_藥品資料_管藥設定_效期管理_CheckedChanged;
             this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.CheckedChanged += PlC_RJ_ChechBox_藥品資料_管藥設定_複盤_CheckedChanged;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.CheckedChanged += PlC_RJ_ChechBox_藥品資料_管藥設定_結存報表_CheckedChanged;
             this.plC_UI_Init.Add_Method(this.sub_Program_藥品資料_管藥設定);
         }
+
+   
 
         bool flag_藥品資料_管藥設定_頁面更新 = false;
         private void sub_Program_藥品資料_管藥設定()
@@ -116,6 +119,18 @@ namespace 調劑台管理系統
             if (list_value.Count > 0)
             {
                 list_value[0][(int)enum_藥品管制方式設定.效期管理] = this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Checked.ToString();
+            }
+            this.sqL_DataGridView_藥品管制方式設定.SQL_ReplaceExtra(list_value, false);
+        }
+        private void PlC_RJ_ChechBox_藥品資料_管藥設定_結存報表_CheckedChanged(object sender, EventArgs e)
+        {
+            string 類型 = this.comboBox_藥品資料_管藥設定_類型.Text;
+            string 代號 = this.Function_藥品資料_管藥設定_取得代號(類型);
+            List<object[]> list_value = this.sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
+            list_value = list_value.GetRows((int)enum_藥品管制方式設定.代號, 代號);
+            if (list_value.Count > 0)
+            {
+                list_value[0][(int)enum_藥品管制方式設定.結存報表] = this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked.ToString();
             }
             this.sqL_DataGridView_藥品管制方式設定.SQL_ReplaceExtra(list_value, false);
         }
