@@ -126,6 +126,7 @@
             this.rJ_Lable_交班對點_管制結存_查無資料 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示 = new SQLUI.SQL_DataGridView();
             this.panel72 = new System.Windows.Forms.Panel();
+            this.button_交班對點_管制結存_預覽列印 = new System.Windows.Forms.Button();
             this.rJ_Lable127 = new MyUI.RJ_Lable();
             this.rJ_TextBox_交班作業_管制結存_總消耗量 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_交班對點_管制結存_搜尋 = new MyUI.PLC_RJ_Button();
@@ -1139,6 +1140,8 @@
             this.rJ_TextBox_盤點作業_藥品資料_藥名搜尋 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_盤點作業_藥品資料_搜尋 = new MyUI.PLC_RJ_Button();
             this.panel175 = new System.Windows.Forms.Panel();
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱 = new MyUI.RJ_TextBox();
+            this.rJ_Lable129 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_盤點作業_新增盤點_建立測試單 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_盤點作業_新增盤點_盤點單號 = new MyUI.RJ_TextBox();
@@ -1156,6 +1159,9 @@
             this.rJ_Lable159 = new MyUI.RJ_Lable();
             this.panel181 = new System.Windows.Forms.Panel();
             this.rJ_Pannel12 = new MyUI.RJ_Pannel();
+            this.panel79 = new System.Windows.Forms.Panel();
+            this.rJ_Lable128 = new MyUI.RJ_Lable();
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button__盤點作業_單號查詢_刪除單號 = new MyUI.PLC_RJ_Button();
             this.panel182 = new System.Windows.Forms.Panel();
             this.rJ_Lable154 = new MyUI.RJ_Lable();
@@ -1225,7 +1231,6 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
-            this.button_交班對點_管制結存_預覽列印 = new System.Windows.Forms.Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.領藥.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -1542,6 +1547,7 @@
             this.rJ_Pannel10.SuspendLayout();
             this.panel181.SuspendLayout();
             this.rJ_Pannel12.SuspendLayout();
+            this.panel79.SuspendLayout();
             this.panel182.SuspendLayout();
             this.panel77.SuspendLayout();
             this.panel188.SuspendLayout();
@@ -2003,7 +2009,6 @@
             this.rJ_GroupBox9.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox9.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox9.ContentsPanel.BorderSize = 0;
-            this.rJ_GroupBox9.ContentsPanel.Controls.Add(this.plC_RJ_Button_掃碼測試);
             this.rJ_GroupBox9.ContentsPanel.Controls.Add(this.pictureBox_領藥台_02_藥品圖片);
             this.rJ_GroupBox9.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox9.ContentsPanel.ForeColor = System.Drawing.Color.White;
@@ -2044,7 +2049,7 @@
             this.plC_RJ_Button_掃碼測試.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_掃碼測試.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_掃碼測試.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_掃碼測試.Location = new System.Drawing.Point(406, 158);
+            this.plC_RJ_Button_掃碼測試.Location = new System.Drawing.Point(480, 136);
             this.plC_RJ_Button_掃碼測試.Name = "plC_RJ_Button_掃碼測試";
             this.plC_RJ_Button_掃碼測試.OFF_文字內容 = "掃碼測試";
             this.plC_RJ_Button_掃碼測試.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
@@ -2296,6 +2301,7 @@
             this.rJ_GroupBox_領藥台_01.ContentsPanel.BorderColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox_領藥台_01.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox_領藥台_01.ContentsPanel.BorderSize = 5;
+            this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_掃碼測試);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_01_強制入帳);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_01_手輸醫囑);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_01_手動作業);
@@ -3835,7 +3841,7 @@
             this.rJ_Lable76.Name = "rJ_Lable76";
             this.rJ_Lable76.Size = new System.Drawing.Size(1648, 127);
             this.rJ_Lable76.TabIndex = 115;
-            this.rJ_Lable76.Text = "交班作業_對點作業作業";
+            this.rJ_Lable76.Text = "對點作業";
             this.rJ_Lable76.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable76.TextColor = System.Drawing.Color.White;
             // 
@@ -3948,6 +3954,16 @@
             this.panel72.Name = "panel72";
             this.panel72.Size = new System.Drawing.Size(1187, 100);
             this.panel72.TabIndex = 1;
+            // 
+            // button_交班對點_管制結存_預覽列印
+            // 
+            this.button_交班對點_管制結存_預覽列印.BackgroundImage = global::調劑台管理系統.Properties.Resources._1200px_Document_print_preview_svg;
+            this.button_交班對點_管制結存_預覽列印.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_交班對點_管制結存_預覽列印.Location = new System.Drawing.Point(844, 5);
+            this.button_交班對點_管制結存_預覽列印.Name = "button_交班對點_管制結存_預覽列印";
+            this.button_交班對點_管制結存_預覽列印.Size = new System.Drawing.Size(116, 87);
+            this.button_交班對點_管制結存_預覽列印.TabIndex = 141;
+            this.button_交班對點_管制結存_預覽列印.UseVisualStyleBackColor = true;
             // 
             // rJ_Lable127
             // 
@@ -28564,6 +28580,8 @@
             // 
             // panel175
             // 
+            this.panel175.Controls.Add(this.rJ_TextBox_盤點作業_新增盤點_盤點名稱);
+            this.panel175.Controls.Add(this.rJ_Lable129);
             this.panel175.Controls.Add(this.plC_RJ_Button_盤點作業_新增盤點_建立測試單);
             this.panel175.Controls.Add(this.plC_RJ_Button_盤點作業_新增盤點_自動生成);
             this.panel175.Controls.Add(this.rJ_TextBox_盤點作業_新增盤點_盤點單號);
@@ -28573,6 +28591,47 @@
             this.panel175.Name = "panel175";
             this.panel175.Size = new System.Drawing.Size(1648, 81);
             this.panel175.TabIndex = 167;
+            // 
+            // rJ_TextBox_盤點作業_新增盤點_盤點名稱
+            // 
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.BorderRadius = 0;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.BorderSize = 2;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.Location = new System.Drawing.Point(763, 19);
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.Multiline = false;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.Name = "rJ_TextBox_盤點作業_新增盤點_盤點名稱";
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.PassWordChar = false;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.PlaceholderText = "請輸入名稱";
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.ShowTouchPannel = false;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.Size = new System.Drawing.Size(250, 40);
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.TabIndex = 241;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.Texts = "";
+            this.rJ_TextBox_盤點作業_新增盤點_盤點名稱.UnderlineStyle = false;
+            // 
+            // rJ_Lable129
+            // 
+            this.rJ_Lable129.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable129.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable129.BorderColor = System.Drawing.Color.Black;
+            this.rJ_Lable129.BorderRadius = 3;
+            this.rJ_Lable129.BorderSize = 2;
+            this.rJ_Lable129.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable129.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable129.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable129.Location = new System.Drawing.Point(593, 19);
+            this.rJ_Lable129.Name = "rJ_Lable129";
+            this.rJ_Lable129.Size = new System.Drawing.Size(164, 40);
+            this.rJ_Lable129.TabIndex = 240;
+            this.rJ_Lable129.Text = "盤點名稱";
+            this.rJ_Lable129.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable129.TextColor = System.Drawing.Color.Black;
             // 
             // plC_RJ_Button_盤點作業_新增盤點_建立測試單
             // 
@@ -28631,7 +28690,7 @@
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_盤點作業_新增盤點_自動生成.Location = new System.Drawing.Point(453, 13);
+            this.plC_RJ_Button_盤點作業_新增盤點_自動生成.Location = new System.Drawing.Point(451, 13);
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.Name = "plC_RJ_Button_盤點作業_新增盤點_自動生成";
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.OFF_文字內容 = "自動生成";
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
@@ -29053,6 +29112,7 @@
             this.rJ_Pannel12.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel12.BorderRadius = 10;
             this.rJ_Pannel12.BorderSize = 2;
+            this.rJ_Pannel12.Controls.Add(this.panel79);
             this.rJ_Pannel12.Controls.Add(this.plC_RJ_Button__盤點作業_單號查詢_刪除單號);
             this.rJ_Pannel12.Controls.Add(this.panel182);
             this.rJ_Pannel12.Controls.Add(this.panel77);
@@ -29068,6 +29128,57 @@
             this.rJ_Pannel12.Name = "rJ_Pannel12";
             this.rJ_Pannel12.Size = new System.Drawing.Size(492, 665);
             this.rJ_Pannel12.TabIndex = 4;
+            // 
+            // panel79
+            // 
+            this.panel79.Controls.Add(this.rJ_Lable128);
+            this.panel79.Controls.Add(this.rJ_TextBox_盤點作業_單號查詢_盤點名稱);
+            this.panel79.Location = new System.Drawing.Point(26, 163);
+            this.panel79.Name = "panel79";
+            this.panel79.Size = new System.Drawing.Size(430, 65);
+            this.panel79.TabIndex = 241;
+            // 
+            // rJ_Lable128
+            // 
+            this.rJ_Lable128.BackColor = System.Drawing.Color.Navy;
+            this.rJ_Lable128.BackgroundColor = System.Drawing.Color.Navy;
+            this.rJ_Lable128.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable128.BorderRadius = 12;
+            this.rJ_Lable128.BorderSize = 0;
+            this.rJ_Lable128.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable128.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable128.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable128.Location = new System.Drawing.Point(4, 5);
+            this.rJ_Lable128.Name = "rJ_Lable128";
+            this.rJ_Lable128.Size = new System.Drawing.Size(150, 53);
+            this.rJ_Lable128.TabIndex = 1;
+            this.rJ_Lable128.Text = "盤點名稱";
+            this.rJ_Lable128.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable128.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_TextBox_盤點作業_單號查詢_盤點名稱
+            // 
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.BorderRadius = 0;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.BorderSize = 2;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.Enabled = false;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.Location = new System.Drawing.Point(169, 11);
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.Multiline = false;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.Name = "rJ_TextBox_盤點作業_單號查詢_盤點名稱";
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.PassWordChar = false;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.PlaceholderText = "";
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.ShowTouchPannel = false;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.Size = new System.Drawing.Size(250, 40);
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.TabIndex = 2;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.Texts = "";
+            this.rJ_TextBox_盤點作業_單號查詢_盤點名稱.UnderlineStyle = false;
             // 
             // plC_RJ_Button__盤點作業_單號查詢_刪除單號
             // 
@@ -29694,6 +29805,7 @@
             this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns4"))));
             this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns5"))));
             this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns6"))));
+            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns7"))));
             this.sqL_DataGridView_盤點單號.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_盤點單號.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_盤點單號.ImageBox = false;
@@ -30908,16 +31020,6 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
-            // button_交班對點_管制結存_預覽列印
-            // 
-            this.button_交班對點_管制結存_預覽列印.BackgroundImage = global::調劑台管理系統.Properties.Resources._1200px_Document_print_preview_svg;
-            this.button_交班對點_管制結存_預覽列印.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_交班對點_管制結存_預覽列印.Location = new System.Drawing.Point(844, 5);
-            this.button_交班對點_管制結存_預覽列印.Name = "button_交班對點_管制結存_預覽列印";
-            this.button_交班對點_管制結存_預覽列印.Size = new System.Drawing.Size(116, 87);
-            this.button_交班對點_管制結存_預覽列印.TabIndex = 141;
-            this.button_交班對點_管制結存_預覽列印.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -31296,6 +31398,7 @@
             this.rJ_Pannel10.ResumeLayout(false);
             this.panel181.ResumeLayout(false);
             this.rJ_Pannel12.ResumeLayout(false);
+            this.panel79.ResumeLayout(false);
             this.panel182.ResumeLayout(false);
             this.panel77.ResumeLayout(false);
             this.panel188.ResumeLayout(false);
@@ -32523,6 +32626,11 @@
         private MyUI.RJ_Lable rJ_Lable127;
         internal MyUI.RJ_TextBox rJ_TextBox_交班作業_管制結存_總消耗量;
         private System.Windows.Forms.Button button_交班對點_管制結存_預覽列印;
+        private System.Windows.Forms.Panel panel79;
+        private MyUI.RJ_Lable rJ_Lable128;
+        private MyUI.RJ_TextBox rJ_TextBox_盤點作業_單號查詢_盤點名稱;
+        private MyUI.RJ_TextBox rJ_TextBox_盤點作業_新增盤點_盤點名稱;
+        private MyUI.RJ_Lable rJ_Lable129;
     }
 }
 

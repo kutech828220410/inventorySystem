@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIS_DB_Lib", "HIS_DB_Lib\HI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "調劑台管理系統", "調劑台管理系統\調劑台管理系統.csproj", "{4EC46DF5-2F3E-499E-A5A2-91FC44A5FF4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_MedUpdate", "Console_MedUpdate\Console_MedUpdate.csproj", "{BF50FF6D-4E8D-47D5-9A7C-A1978461D9D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4EC46DF5-2F3E-499E-A5A2-91FC44A5FF4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EC46DF5-2F3E-499E-A5A2-91FC44A5FF4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EC46DF5-2F3E-499E-A5A2-91FC44A5FF4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF50FF6D-4E8D-47D5-9A7C-A1978461D9D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF50FF6D-4E8D-47D5-9A7C-A1978461D9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF50FF6D-4E8D-47D5-9A7C-A1978461D9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF50FF6D-4E8D-47D5-9A7C-A1978461D9D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,6 +10,7 @@ namespace HIS_DB_Lib
     public enum enum_盤點單號
     {
         GUID,
+        盤點名稱,
         盤點單號,
         建表人,
         建表時間,
@@ -51,6 +52,8 @@ namespace HIS_DB_Lib
         {
             [JsonPropertyName("GUID")]
             public string GUID { get; set; }
+            [JsonPropertyName("IC_NAME")]
+            public string 盤點名稱 { get; set; }
             [JsonPropertyName("IC_SN")]
             public string 盤點單號 { get; set; }
             [JsonPropertyName("CT")]
@@ -72,6 +75,7 @@ namespace HIS_DB_Lib
                 object[] value = new object[new enum_盤點單號().GetLength()];
                 value[(int)enum_盤點單號.GUID] = _class.GUID;
                 value[(int)enum_盤點單號.盤點單號] = _class.盤點單號;
+                value[(int)enum_盤點單號.盤點名稱] = _class.盤點名稱;
                 value[(int)enum_盤點單號.建表人] = _class.建表人;
                 value[(int)enum_盤點單號.建表時間] = _class.建表時間;
                 value[(int)enum_盤點單號.盤點開始時間] = _class.盤點開始時間;
@@ -85,6 +89,7 @@ namespace HIS_DB_Lib
                 creat _class = new creat();
                 _class.GUID = value[(int)enum_盤點單號.GUID].ObjectToString();
                 _class.盤點單號 = value[(int)enum_盤點單號.盤點單號].ObjectToString();
+                _class.盤點名稱 = value[(int)enum_盤點單號.盤點名稱].ObjectToString();
                 _class.建表人 = value[(int)enum_盤點單號.建表人].ObjectToString();
                 _class.建表時間 = value[(int)enum_盤點單號.建表時間].ToDateTimeString();
                 _class.盤點開始時間 = value[(int)enum_盤點單號.盤點開始時間].ToDateTimeString();

@@ -35,7 +35,7 @@ namespace 調劑台管理系統
         bool flag_人交班作業_對點作業_頁面更新 = false;
         private void sub_Program_交班作業_對點作業()
         {
-            if (this.plC_ScreenPage_Main.PageText == "交班作業_對點作業")
+            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "管制結存")
             {
                 if(!flag_人交班作業_對點作業_頁面更新)
                 {
@@ -60,7 +60,7 @@ namespace 調劑台管理系統
         int cnt_Program_當班交接人_感應刷卡 = 65534;
         void sub_Program_當班交接人_感應刷卡()
         {
-            if (plC_ScreenPage_Main.PageText == "交班作業_對點作業") PLC_Device_當班交接人_感應刷卡.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "管制結存") PLC_Device_當班交接人_感應刷卡.Bool = true;
             if (cnt_Program_當班交接人_感應刷卡 == 65534)
             {
                 this.MyTimer_當班交接人_感應刷卡_結束延遲.StartTickTime(100);
@@ -127,7 +127,7 @@ namespace 調劑台管理系統
         int cnt_Program_被交接人_感應刷卡 = 65534;
         void sub_Program_被交接人_感應刷卡()
         {
-            if (plC_ScreenPage_Main.PageText == "交班作業_對點作業") PLC_Device_被交接人_感應刷卡.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "管制結存") PLC_Device_被交接人_感應刷卡.Bool = true;
             if (cnt_Program_被交接人_感應刷卡 == 65534)
             {
                 this.MyTimer_被交接人_感應刷卡_結束延遲.StartTickTime(100);
@@ -194,7 +194,7 @@ namespace 調劑台管理系統
         int cnt_Program_開始交班 = 65534;
         void sub_Program_開始交班()
         {
-            if (plC_ScreenPage_Main.PageText == "交班作業_對點作業") PLC_Device_開始交班.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "管制結存") PLC_Device_開始交班.Bool = true;
             if (cnt_Program_開始交班 == 65534)
             {
                 this.MyTimer_開始交班_結束延遲.StartTickTime(100);

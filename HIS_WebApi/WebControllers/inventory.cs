@@ -264,6 +264,7 @@ namespace HIS_WebApi
 
             value[(int)enum_盤點單號.GUID] = creat.GUID;
             value[(int)enum_盤點單號.盤點單號] = creat.盤點單號;
+            value[(int)enum_盤點單號.盤點名稱] = creat.盤點名稱;
             value[(int)enum_盤點單號.建表人] = creat.建表人;
             value[(int)enum_盤點單號.建表時間] = creat.建表時間;
             value[(int)enum_盤點單號.盤點開始時間] = creat.盤點開始時間;
@@ -321,8 +322,8 @@ namespace HIS_WebApi
 
                 deviceController deviceController = new deviceController();
                 List<DeviceBasic> deviceBasics = deviceController.Function_Get_device();
-               
-                inventoryClass.creat creat = new inventoryClass.creat();
+
+                inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
                 creat.盤點單號 = str_IC_SN;
                 for (int i = 0; i < medClasses.Count; i++)
                 {
@@ -579,6 +580,7 @@ namespace HIS_WebApi
                     content.Sub_content.Add(sub_Content);
                 }
                 content.盤點量 = 盤點量.ToString();
+                content.Sub_content.Sort(new ICP_sub_content());
                 returnData.Data = content;
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimer.ToString();
@@ -700,33 +702,63 @@ namespace HIS_WebApi
             inventoryClass.sub_content sub_content = inventoryClass.sub_content.ObjToClass(returnData.Data);
             string Master_GUID = sub_content.Master_GUID;
             list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.GUID, Master_GUID);
-            if (list_inventory_content_buf.Count > 0)
+            if (list_inventory_content_buf.Count == 0)
             {
-                object[] value = new object[new enum_盤點明細().GetLength()];
-                value[(int)enum_盤點明細.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_盤點明細.藥品碼] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品碼];
-                value[(int)enum_盤點明細.料號] = list_inventory_content_buf[0][(int)enum_盤點內容.料號];
-                value[(int)enum_盤點明細.盤點單號] = list_inventory_content_buf[0][(int)enum_盤點內容.盤點單號];
-                value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼1];
-                value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼2];
-
-                value[(int)enum_盤點明細.Master_GUID] = Master_GUID;
-                value[(int)enum_盤點明細.效期] = sub_content.效期;
-                value[(int)enum_盤點明細.批號] = sub_content.批號;
-                value[(int)enum_盤點明細.盤點量] = sub_content.盤點量;
-                value[(int)enum_盤點明細.操作人] = sub_content.操作人;
-                value[(int)enum_盤點明細.操作時間] = DateTime.Now.ToDateTimeString();
-                value[(int)enum_盤點明細.狀態] = "未鎖定";
-
-                list_add.Add(value);
+                returnData.Code = -5;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"找無資料!";
+                returnData.Method = "sub_content_add";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
             }
+
+            object[] value = new object[new enum_盤點明細().GetLength()];
+            value[(int)enum_盤點明細.GUID] = Guid.NewGuid().ToString();
+            value[(int)enum_盤點明細.藥品碼] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品碼];
+            value[(int)enum_盤點明細.料號] = list_inventory_content_buf[0][(int)enum_盤點內容.料號];
+            value[(int)enum_盤點明細.盤點單號] = list_inventory_content_buf[0][(int)enum_盤點內容.盤點單號];
+            value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼1];
+            value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼2];
+
+            value[(int)enum_盤點明細.Master_GUID] = Master_GUID;
+            value[(int)enum_盤點明細.效期] = sub_content.效期;
+            value[(int)enum_盤點明細.批號] = sub_content.批號;
+            value[(int)enum_盤點明細.盤點量] = sub_content.盤點量;
+            value[(int)enum_盤點明細.操作人] = sub_content.操作人;
+            value[(int)enum_盤點明細.操作時間] = DateTime.Now.ToDateTimeString();
+            value[(int)enum_盤點明細.狀態] = "未鎖定";
+
+            list_add.Add(value);
+
             sQLControl_inventory_sub_content.AddRows(null, list_add);
+
+            returnData = new returnData();
+            inventoryClass.content content = new inventoryClass.content();
+            content.GUID = Master_GUID;
+            returnData.Data = content;
+            string json_content = POST_content_get_by_content_GUID(returnData);
+            returnData = json_content.JsonDeserializet<returnData>();
+            if(returnData == null)
+            {
+                returnData.Code = -5;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"搜尋content資料錯誤!";
+                returnData.Method = "sub_content_add";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
+            if(returnData.Code < 0)
+            {
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "sub_content_add";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
+        
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"新增批效成功!";
             returnData.Method = "sub_content_add";
-
-            returnData.Data = null;
             return returnData.JsonSerializationt();
         }
         //以GUID刪除盤點明細
@@ -741,12 +773,46 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
             List<inventoryClass.sub_content> sub_contents = inventoryClass.sub_content.ObjToListClass(returnData.Data);
             List<object> list_GUID = new List<object>();
+            if(sub_contents.Count == 0)
+            {
+                returnData.Code = -5;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"搜尋sub_content資料錯誤!";
+                returnData.Method = "sub_contents_delete_by_GUID";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
             for (int i = 0; i < sub_contents.Count; i++)
             {
                 list_GUID.Add(sub_contents[i].GUID);
             }
+            string Master_GUID = sub_contents[0].Master_GUID;
             sQLControl_inventory_sub_content.DeleteExtra(null, enum_盤點明細.GUID.GetEnumName(), list_GUID);
+
             returnData = new returnData();
+            inventoryClass.content content = new inventoryClass.content();
+            content.GUID = Master_GUID;
+            returnData.Data = content;
+            string json_content = POST_content_get_by_content_GUID(returnData);
+            returnData = json_content.JsonDeserializet<returnData>();
+            if (returnData == null)
+            {
+                returnData.Code = -5;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"搜尋content資料錯誤!";
+                returnData.Method = "sub_contents_delete_by_GUID";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
+            if (returnData.Code < 0)
+            {
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "sub_contents_delete_by_GUID";
+                returnData.Data = null;
+                return returnData.JsonSerializationt();
+            }
+
+    
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
             returnData.Result = $"已刪除盤點明細共<{list_GUID.Count}>筆資料!";
@@ -899,7 +965,7 @@ namespace HIS_WebApi
                             content.Sub_content.Add(sub_Content);
                         }
                         content.盤點量 = 盤點量.ToString();
-
+                        content.Sub_content.Sort(new ICP_sub_content());
                         creat.Contents.Add(content);
                     }
                 }
@@ -955,6 +1021,13 @@ namespace HIS_WebApi
                     // 如果只有一个项的理論值为0，则将具有非零理論值的项排在前面
                     return y.理論值.CompareTo(x.理論值);
                 }
+            }
+        }
+        private class ICP_sub_content : IComparer<inventoryClass.sub_content>
+        {
+            public int Compare(inventoryClass.sub_content x, inventoryClass.sub_content y)
+            {
+                return x.操作時間.CompareTo(y.操作時間);
             }
         }
     }

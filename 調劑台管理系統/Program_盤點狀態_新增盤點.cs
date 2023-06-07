@@ -188,6 +188,7 @@ namespace 調劑台管理系統
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表人 = 登入者名稱;
             creat.盤點單號 = rJ_TextBox_盤點作業_新增盤點_盤點單號.Text;
+            creat.盤點名稱 =  rJ_TextBox_盤點作業_新增盤點_盤點名稱.Text;
             for (int i = 0; i < list_盤點藥品清單.Count; i++)
             {
                 inventoryClass.content content = new inventoryClass.content();
@@ -211,11 +212,13 @@ namespace 調劑台管理系統
         {
             this.PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(null);
             string 盤點單號 = this.rJ_TextBox_盤點作業_新增盤點_盤點單號.Texts;
+            string 盤點名稱 = rJ_TextBox_盤點作業_新增盤點_盤點名稱.Text;
             returnData returnData = new returnData();
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表人 = 登入者名稱;
             creat.盤點單號 = 盤點單號;
-         
+            creat.盤點名稱 = 盤點名稱;
+
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_auto_add", json_in);

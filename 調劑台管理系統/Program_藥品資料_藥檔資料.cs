@@ -910,7 +910,16 @@ namespace 調劑台管理系統
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
                 string response = Basic.Net.WEBApiGet($"{url}?Code");
-                Console.WriteLine($"HIS填入 , response:{response},耗時{myTimer.ToString()}ms");
+                if (response == "OK")
+                {
+              
+           
+                    Console.WriteLine($"HIS填入成功! , response:{response},耗時{myTimer.ToString()}ms");
+                }
+                else 
+                {
+                    Console.WriteLine($"HIS填入失敗! , response:{response},耗時{myTimer.ToString()}ms");
+                }
             }
             List<object[]> list_雲端藥檔 = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
             List<object[]> list_雲端藥檔_buf = new List<object[]>();

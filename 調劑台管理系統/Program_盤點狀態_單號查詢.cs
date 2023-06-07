@@ -85,6 +85,7 @@ namespace 調劑台管理系統
             this.Invoke(new Action(delegate
             {
                 rJ_TextBox_盤點作業_單號查詢_盤點單號.Text = "";
+                rJ_TextBox_盤點作業_單號查詢_盤點名稱.Text = "";
                 rJ_TextBox_盤點作業_單號查詢_建表人.Text = "";
                 rJ_TextBox_盤點作業_單號查詢_建表時間.Text = "";
                 rJ_TextBox_盤點作業_單號查詢_盤點開始時間.Text = "";
@@ -99,6 +100,7 @@ namespace 調劑台管理系統
             this.Invoke(new Action(delegate
             {
                 rJ_TextBox_盤點作業_單號查詢_盤點單號.Text = creat.盤點單號;
+                rJ_TextBox_盤點作業_單號查詢_盤點名稱.Text = creat.盤點名稱;
                 rJ_TextBox_盤點作業_單號查詢_建表人.Text = creat.建表人;
                 rJ_TextBox_盤點作業_單號查詢_建表時間.Text = creat.建表時間;
                 rJ_TextBox_盤點作業_單號查詢_盤點開始時間.Text = creat.盤點開始時間;
