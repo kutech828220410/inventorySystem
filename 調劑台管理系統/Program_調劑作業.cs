@@ -46,7 +46,7 @@ namespace 調劑台管理系統
             狀態,
         }
 
-        private void Program_領藥_Init()
+        private void Program_調劑作業_Init()
         {
             this.sqL_DataGridView_領藥台_01_領藥內容.Init();
             this.sqL_DataGridView_領藥台_01_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent;
@@ -117,7 +117,7 @@ namespace 調劑台管理系統
 
         private void sub_Program_領藥台_01()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
             {
                 if (PLC_Device_領藥台_01_閒置登出時間.Value != 0)
                 {
@@ -198,7 +198,7 @@ namespace 調劑台管理系統
         }
         private void sub_Program_領藥台_02()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
             {
                 this.Invoke(new Action(delegate
                 {
@@ -281,7 +281,7 @@ namespace 調劑台管理系統
         }
         private void sub_Program_領藥_RFID()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
             {
              
                 if (flag_Program_領藥_RFID_換頁)
@@ -328,7 +328,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_01_狀態顯示 = 65534;
         void sub_Program_領藥台_01_狀態顯示()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
             {
                 PLC_Device_領藥台_01_狀態顯示.Bool = true;
             }
@@ -394,7 +394,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_01_檢查登入 = 65534;
         void sub_Program_領藥台_01_檢查登入()
         {
-            if(this.plC_ScreenPage_Main.PageText == "領藥") PLC_Device_領藥台_01_檢查登入.Bool = true;
+            if(this.plC_ScreenPage_Main.PageText == "調劑作業") PLC_Device_領藥台_01_檢查登入.Bool = true;
             else PLC_Device_領藥台_01_檢查登入.Bool = false;
             if (cnt_Program_領藥台_01_檢查登入 == 65534)
             {
@@ -553,7 +553,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_01_檢查輸入資料 = 65534;
         void sub_Program_領藥台_01_檢查輸入資料()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥" && PLC_Device_領藥台_01_已登入.Bool)
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" && PLC_Device_領藥台_01_已登入.Bool)
             {
                 PLC_Device_領藥台_01_檢查輸入資料.Bool = true;
             }
@@ -687,7 +687,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_01_刷新領藥內容 = 65534;
         void sub_Program_領藥台_01_刷新領藥內容()
         {
-            if(this.plC_ScreenPage_Main.PageText == "領藥")
+            if(this.plC_ScreenPage_Main.PageText == "調劑作業")
             {
                 PLC_Device_領藥台_01_刷新領藥內容.Bool = true;
             }
@@ -695,7 +695,7 @@ namespace 調劑台管理系統
             {
                 PLC_Device_領藥台_01_刷新領藥內容.Bool = false;
             }
-            PLC_Device_領藥台_01_刷新領藥內容.Bool = (this.plC_ScreenPage_Main.PageText == "領藥");
+            PLC_Device_領藥台_01_刷新領藥內容.Bool = (this.plC_ScreenPage_Main.PageText == "調劑作業");
             if (cnt_Program_領藥台_01_刷新領藥內容 == 65534)
             {
                 PLC_Device_領藥台_01_刷新領藥內容.SetComment("PLC_領藥台_01_刷新領藥內容");
@@ -1682,7 +1682,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_02_狀態顯示 = 65534;
         void sub_Program_領藥台_02_狀態顯示()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
             {
                 PLC_Device_領藥台_02_狀態顯示.Bool = true;
             }
@@ -1748,7 +1748,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_02_檢查登入 = 65534;
         void sub_Program_領藥台_02_檢查登入()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥") PLC_Device_領藥台_02_檢查登入.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業") PLC_Device_領藥台_02_檢查登入.Bool = true;
             else PLC_Device_領藥台_02_檢查登入.Bool = false;
 
             if (cnt_Program_領藥台_02_檢查登入 == 65534)
@@ -1908,7 +1908,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_02_檢查輸入資料 = 65534;
         void sub_Program_領藥台_02_檢查輸入資料()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥" && PLC_Device_領藥台_02_已登入.Bool)
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" && PLC_Device_領藥台_02_已登入.Bool)
             {
                 PLC_Device_領藥台_02_檢查輸入資料.Bool = true;
             }
@@ -2042,7 +2042,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_02_刷新領藥內容 = 65534;
         void sub_Program_領藥台_02_刷新領藥內容()
         {
-            if (this.plC_ScreenPage_Main.PageText == "領藥")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
             {
                 PLC_Device_領藥台_02_刷新領藥內容.Bool = true;
             }
@@ -2050,7 +2050,7 @@ namespace 調劑台管理系統
             {
                 PLC_Device_領藥台_02_刷新領藥內容.Bool = false;
             }
-            PLC_Device_領藥台_02_刷新領藥內容.Bool = (this.plC_ScreenPage_Main.PageText == "領藥");
+            PLC_Device_領藥台_02_刷新領藥內容.Bool = (this.plC_ScreenPage_Main.PageText == "調劑作業");
             if (cnt_Program_領藥台_02_刷新領藥內容 == 65534)
             {
                 PLC_Device_領藥台_02_刷新領藥內容.SetComment("PLC_領藥台_02_刷新領藥內容");
@@ -3016,7 +3016,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥_RFID_檢查刷卡 = 65534;
         void sub_Program_領藥_RFID_檢查刷卡()
         {
-            if (this.plC_ScreenPage_Main.PageText != "管制抽屜" && this.plC_ScreenPage_Main.PageText != "領藥") PLC_Device_領藥_RFID_檢查刷卡.Bool = false;
+            if (this.plC_ScreenPage_Main.PageText != "管制抽屜" && this.plC_ScreenPage_Main.PageText != "調劑作業") PLC_Device_領藥_RFID_檢查刷卡.Bool = false;
             else PLC_Device_領藥_RFID_檢查刷卡.Bool = true;
             if (cnt_Program_領藥_RFID_檢查刷卡 == 65534)
             {
@@ -3128,7 +3128,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥_入出庫資料檢查 = 65534;
         void sub_Program_領藥_入出庫資料檢查()
         {
-            if (this.plC_ScreenPage_Main.PageText != "領藥") PLC_Device_領藥_入出庫資料檢查.Bool = false;
+            if (this.plC_ScreenPage_Main.PageText != "調劑作業") PLC_Device_領藥_入出庫資料檢查.Bool = false;
             else PLC_Device_領藥_入出庫資料檢查.Bool = true;
 
             if (cnt_Program_領藥_入出庫資料檢查 == 65534)

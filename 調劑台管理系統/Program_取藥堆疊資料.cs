@@ -78,6 +78,7 @@ namespace 調劑台管理系統
             效期,
             批號,
             備註,
+            收支原因,
         }
         public enum enum_取藥堆疊子資料
         {
@@ -206,6 +207,12 @@ namespace 調劑台管理系統
         }
         private void Function_取藥堆疊資料_新增母資料(string GUID, string 調劑台名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 藥品碼, string 藥品名稱, string 藥袋序號, string 單位, string 病歷號, string 病人姓名, string 開方時間, string IP, string 操作人, string 顏色, int 總異動量, string 效期, string 批號)
         {
+            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, _enum_交易記錄查詢動作, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, IP, 操作人, 顏色, 總異動量, 效期, "", "");
+
+        }
+
+        private void Function_取藥堆疊資料_新增母資料(string GUID, string 調劑台名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 藥品碼, string 藥品名稱, string 藥袋序號, string 單位, string 病歷號, string 病人姓名, string 開方時間, string IP, string 操作人, string 顏色, int 總異動量, string 效期, string 批號 ,string 收支原因)
+        {
             object[] value = new object[enum_取藥堆疊母資料.GUID.GetEnumValues().Length];
             value[(int)enum_取藥堆疊母資料.GUID] = GUID;
             value[(int)enum_取藥堆疊母資料.序號] = DateTime.Now.ToDateTimeString_6();
@@ -227,9 +234,10 @@ namespace 調劑台管理系統
             value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString_6();
             value[(int)enum_取藥堆疊母資料.顏色] = 顏色;
             value[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
+            value[(int)enum_取藥堆疊母資料.收支原因] = 收支原因;
             if (效期.Check_Date_String())
             {
-                if (_enum_交易記錄查詢動作 == enum_交易記錄查詢動作.入庫作業 || _enum_交易記錄查詢動作 == enum_交易記錄查詢動作.掃碼退藥 || _enum_交易記錄查詢動作 == enum_交易記錄查詢動作.手輸退藥)
+                if (_enum_交易記錄查詢動作 == enum_交易記錄查詢動作.入庫作業 || _enum_交易記錄查詢動作 == enum_交易記錄查詢動作.調入作業 || _enum_交易記錄查詢動作 == enum_交易記錄查詢動作.掃碼退藥 || _enum_交易記錄查詢動作 == enum_交易記錄查詢動作.手輸退藥)
                 {
                     value[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.新增效期.GetEnumName();
                 }
@@ -2238,6 +2246,7 @@ namespace 調劑台管理系統
             string 操作時間 = "";
             string 開方時間 = "";
             string 備註 = "";
+            string 收支原因 = "";
             List<string> List_效期 = new List<string>();
             List<string> List_批號 = new List<string>();
             list_可入賬母資料.Sort(new Icp_取藥堆疊母資料_index排序());
@@ -2261,6 +2270,7 @@ namespace 調劑台管理系統
                 操作時間 = DateTime.Now.ToDateTimeString_6();
                 開方時間 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
                 備註 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.備註].ObjectToString();
+                收支原因 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString();
                 庫存量 = this.Function_從入賬資料取得庫存(藥品碼);
                 結存量 = (庫存量 + 總異動量);
                 List_效期.Clear();
@@ -2316,6 +2326,9 @@ namespace 調劑台管理系統
                 }
                 value_trading[(int)enum_交易記錄查詢資料.開方時間] = 開方時間;
                 value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
+                收支原因 = $"[{動作.GetEnumName()}]{收支原因}";
+                value_trading[(int)enum_交易記錄查詢資料.收支原因] = 收支原因;
+
                 if (動作 == enum_交易記錄查詢動作.系統領藥.GetEnumName() && 總異動量 == 0) continue;
                 list_交易紀錄新增資料_AddValue.Add(value_trading);
 

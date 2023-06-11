@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="sqL_DataGridView_入庫作業_儲位資料.Columns" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="sqL_DataGridView_收支作業_儲位資料.Columns" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAADxTUUxVSSwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRy
         YWwsIFB1YmxpY0tleVRva2VuPW51bGwMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4w
@@ -141,7 +141,7 @@
         CAIAAAABAAAABfP///8VU1FMVUkuVGFibGUrT3RoZXJUeXBlAQAAAAd2YWx1ZV9fAAgCAAAAZAAAAAs=
 </value>
   </data>
-  <data name="sqL_DataGridView_入庫作業_儲位資料.Columns1" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="sqL_DataGridView_收支作業_儲位資料.Columns1" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAADxTUUxVSSwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRy
         YWwsIFB1YmxpY0tleVRva2VuPW51bGwMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4w
@@ -165,7 +165,7 @@
         AAEAAAAF8////xVTUUxVSS5UYWJsZStPdGhlclR5cGUBAAAAB3ZhbHVlX18ACAIAAABkAAAACw==
 </value>
   </data>
-  <data name="sqL_DataGridView_入庫作業_儲位資料.Columns2" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="sqL_DataGridView_收支作業_儲位資料.Columns2" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAADxTUUxVSSwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRy
         YWwsIFB1YmxpY0tleVRva2VuPW51bGwMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4w
@@ -190,7 +190,7 @@
         ZAAAAAs=
 </value>
   </data>
-  <data name="sqL_DataGridView_入庫作業_儲位資料.Columns3" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="sqL_DataGridView_收支作業_儲位資料.Columns3" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAADxTUUxVSSwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRy
         YWwsIFB1YmxpY0tleVRva2VuPW51bGwMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4w
@@ -215,7 +215,7 @@
         AAs=
 </value>
   </data>
-  <data name="sqL_DataGridView_入庫作業_儲位資料.Columns4" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="sqL_DataGridView_收支作業_儲位資料.Columns4" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAADxTUUxVSSwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRy
         YWwsIFB1YmxpY0tleVRva2VuPW51bGwMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4w
@@ -240,7 +240,7 @@
         ZAAAAAs=
 </value>
   </data>
-  <data name="sqL_DataGridView_入庫作業_儲位資料.Columns5" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="sqL_DataGridView_收支作業_儲位資料.Columns5" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAADxTUUxVSSwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRy
         YWwsIFB1YmxpY0tleVRva2VuPW51bGwMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4w
@@ -264,7 +264,7 @@
         CAIAAAABAAAABfP///8VU1FMVUkuVGFibGUrT3RoZXJUeXBlAQAAAAd2YWx1ZV9fAAgCAAAAZAAAAAs=
 </value>
   </data>
-  <data name="sqL_DataGridView_入庫作業_儲位資料.Columns6" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="sqL_DataGridView_收支作業_儲位資料.Columns6" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAADxTUUxVSSwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRy
         YWwsIFB1YmxpY0tleVRva2VuPW51bGwMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4w
@@ -288,7 +288,7 @@
         CAIAAAABAAAABfP///8VU1FMVUkuVGFibGUrT3RoZXJUeXBlAQAAAAd2YWx1ZV9fAAgCAAAAZAAAAAs=
 </value>
   </data>
-  <data name="sqL_DataGridView_入庫作業_儲位資料.Columns7" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="sqL_DataGridView_收支作業_儲位資料.Columns7" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAADxTUUxVSSwgVmVyc2lvbj0xLjAuMC4wLCBDdWx0dXJlPW5ldXRy
         YWwsIFB1YmxpY0tleVRva2VuPW51bGwMAwAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4w

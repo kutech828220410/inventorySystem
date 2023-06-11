@@ -12,7 +12,7 @@ namespace Console_MedUpdate
 {
     class Program
     {
-        private const string DBConfigFileName = "DBConfig.txt";
+        static private string DBConfigFileName = "C://Console_MedUpdate//DBConfig.txt";
   
         public class DBConfigClass
         {
@@ -29,14 +29,15 @@ namespace Console_MedUpdate
         static DBConfigClass dBConfigClass = new DBConfigClass();
         static public bool LoadDBConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{DBConfigFileName}");
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
+            Console.WriteLine($"路徑 : {DBConfigFileName} 開始讀取...." );
             if (jsonstr.StringIsEmpty())
             {
 
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     Console.WriteLine($"建立{DBConfigFileName}檔案失敗!");
                     return false;
@@ -51,7 +52,7 @@ namespace Console_MedUpdate
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     Console.WriteLine($"建立{DBConfigFileName}檔案失敗!");
                     return false;
@@ -73,6 +74,7 @@ namespace Console_MedUpdate
             }
             try
             {
+                Console.WriteLine($"{dBConfigClass.JsonSerializationt(true)}");
                 SQLControl sQLControlw_藥品資料_藥檔資料 = new SQLControl(
                dBConfigClass.DB_Basic.IP,
                dBConfigClass.DB_Basic.DataBaseName,
@@ -94,6 +96,7 @@ namespace Console_MedUpdate
                 List<object[]> list_雲端藥檔 = sQLControlw_雲端藥檔.GetAllRows(null);
                 List<object[]> list_雲端藥檔_buf = new List<object[]>();
                 List<object[]> list_本地藥檔_replace = new List<object[]>();
+        
                 string url = dBConfigClass.MedApiURL;
                 if (!url.StringIsEmpty())
                 {

@@ -586,11 +586,11 @@ namespace 調劑台管理系統
         {
             if (plC_CheckBox_不顯示設定_領_退藥作業.Checked)
             {
-                plC_RJ_ScreenButton_領退藥作業.SetVisible(false);
+                plC_RJ_ScreenButton_調劑作業.SetVisible(false);
             }
             else
             {
-                plC_RJ_ScreenButton_領退藥作業.SetVisible(true);
+                plC_RJ_ScreenButton_調劑作業.SetVisible(true);
             }
             if (plC_CheckBox_不顯示設定_管制抽屜.Checked)
             {
@@ -600,9 +600,9 @@ namespace 調劑台管理系統
             {
                 plC_RJ_ScreenButton_管制抽屜.SetVisible(true);
             }
-            if (plC_CheckBox_不顯示設定_入庫作業.Checked)
+            if (plC_CheckBox_不顯示設定_收支作業.Checked)
             {
-                plC_RJ_ScreenButton_入庫作業.SetVisible(false);
+                plC_RJ_ScreenButton_收支作業.SetVisible(false);
             }
             if (plC_CheckBox_不顯示設定_交易紀錄查詢.Checked)
             {

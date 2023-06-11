@@ -52,6 +52,10 @@ namespace 調劑台管理系統
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_order_list = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
+            private string basic_Server = "";
+            private string vM_Server = "";
+            private string api_URL = "";
+
             private string orderApiURL = "";
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
@@ -69,6 +73,10 @@ namespace 調劑台管理系統
             public string Inspection_ApiURL { get => inspection_ApiURL; set => inspection_ApiURL = value; }
             public string Inventory_ApiURL { get => inventory_ApiURL; set => inventory_ApiURL = value; }
             public string Transactions_ApiURL { get => transactions_ApiURL; set => transactions_ApiURL = value; }
+            public string Basic_Server { get => basic_Server; set => basic_Server = value; }
+            public string VM_Server { get => vM_Server; set => vM_Server = value; }
+            public string Api_URL { get => api_URL; set => api_URL = value; }
+
         }
         private void LoadDBConfig()
         {
@@ -356,6 +364,9 @@ namespace 調劑台管理系統
                 Dialog_輸入輸出設定.form = this.FindForm();
                 Dialog_新增容器設定.form = this.FindForm();
                 Dialog_選擇效期.form = this.FindForm();
+                Dialog_收支原因設定.form = this.FindForm();
+                Dialog_收支原因選擇.form = this.FindForm();
+                Dialog_DateTime.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();
@@ -459,7 +470,7 @@ namespace 調劑台管理系統
             this.Program_儲位管理_RowsLED_Init();
             this.Program_儲位管理_RFID_Init();
             this.Program_儲位管理_Pannel35_Init();
-            this.Program_領藥_Init();
+            this.Program_調劑作業_Init();
 
             this.Program_藥品資料_藥檔資料_Init();
             this.Program_藥品資料_儲位總庫存表_Init();
@@ -470,7 +481,7 @@ namespace 調劑台管理系統
             this.Program_工程模式_Init();
             this.Program_交易記錄查詢_Init();
             this.Program_效期管理_Init();       
-            this.Program_入庫作業_Init();
+            this.Program_收支作業_Init();
             this.Program_後台登入_Init();
             this.Program_批次領藥_Init();
             this.Program_取藥堆疊資料_Init();

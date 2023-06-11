@@ -54,6 +54,7 @@ namespace 調劑台管理系統
             this.button_交班作業_管制結存_上一頁.Click += Button_交班作業_管制結存_上一頁_Click;
             this.button_交班作業_管制結存_下一頁.Click += Button_交班作業_管制結存_下一頁_Click;
             this.button_交班對點_管制結存_預覽列印.Click += Button_交班對點_管制結存_預覽列印_Click;
+            this.button_交班對點_管制結存_匯出資料.Click += Button_交班對點_管制結存_匯出資料_Click;
 
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Init();
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.DataGridRefreshEvent += SqL_DataGridView_交班對點_管制結存_紀錄顯示_DataGridRefreshEvent;
@@ -61,7 +62,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_交班作業_管制結存);
         }
 
-     
+
 
         bool flag_交班作業_管制結存_頁面更新 = false;
         private void sub_Program_交班作業_管制結存()
@@ -291,10 +292,43 @@ namespace 調劑台管理系統
             returnData = json.JsonDeserializet<returnData>();
             string jsondata = returnData.Data.JsonSerializationt();
             List<SheetClass> sheetClass = jsondata.JsonDeserializet<List<SheetClass>>();
+            if(sheetClass.Count == 0)
+            {
+                MyMessageBox.ShowDialog("無資料可列印");
+                return;
+            }
             if (printerClass.ShowPreviewDialog(sheetClass, MyPrinterlib.PrinterClass.PageSize.A4) == DialogResult.OK)
             {
 
             }
+        }
+        private void Button_交班對點_管制結存_匯出資料_Click(object sender, EventArgs e)
+        {
+            if (rJ_TextBox_交班作業_管制結存_藥碼.Text.StringIsEmpty()) return;
+            DateTime dateTime_start = dateTimePicker_交班作業_管制結存_起始時間.Value;
+            dateTime_start = new DateTime(dateTime_start.Year, dateTime_start.Month, dateTime_start.Day, 00, 00, 00);
+            DateTime dateTime_end = dateTimePicker_交班作業_管制結存_結束時間.Value;
+            dateTime_end = new DateTime(dateTime_end.Year, dateTime_end.Month, dateTime_end.Day, 23, 59, 59);
+
+            returnData returnData = new returnData();
+            returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Transactions_ApiURL}/serch", json_in);
+            returnData = json.JsonDeserializet<returnData>();
+            json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Transactions_ApiURL}/get_sheet_by_serch", json_in);
+            returnData = json.JsonDeserializet<returnData>();
+            string jsondata = returnData.Data.JsonSerializationt();
+            List<SheetClass> sheetClass = jsondata.JsonDeserializet<List<SheetClass>>();
+            if (sheetClass.Count == 0)
+            {
+                MyMessageBox.ShowDialog("無資料可匯出");
+                return;
+            }
+            if(this.saveFileDialog_SaveExcel.ShowDialog() == DialogResult.OK)
+            {
+                sheetClass.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
+            }
+        
         }
         #endregion
     }

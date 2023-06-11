@@ -143,23 +143,24 @@ namespace 調劑台管理系統
             {
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.自動過帳.GetEnumName()));
             }
-            if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_領藥.Bool)
+            if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_調劑作業.Bool)
             {
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼領藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸領藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次領藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.重複領藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.系統領藥.GetEnumName()));
-            }
-            if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_退藥.Bool)
-            {
+
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼退藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸退藥.GetEnumName()));
-
             }
-            if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_入庫.Bool)
+    
+            if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_收支作業.Bool)
             {
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.入庫作業.GetEnumName()));
+                list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.出庫作業.GetEnumName()));
+                list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.調出作業.GetEnumName()));
+                list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.調入作業.GetEnumName()));
             }
             if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_效期庫存異動.Bool)
             {

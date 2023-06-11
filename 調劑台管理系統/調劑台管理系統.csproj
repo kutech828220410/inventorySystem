@@ -206,6 +206,12 @@
     <Compile Include="Dialog\Dialog_入庫作業_儲位選擇.Designer.cs">
       <DependentUpon>Dialog_入庫作業_儲位選擇.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_收支原因選擇.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_收支原因選擇.Designer.cs">
+      <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\Dialog_輸入效期.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +247,12 @@
     </Compile>
     <Compile Include="Dialog\Dialog_手輸醫囑.Designer.cs">
       <DependentUpon>Dialog_手輸醫囑.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\Dialog_收支原因設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_收支原因設定.Designer.cs">
+      <DependentUpon>Dialog_收支原因設定.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_醫囑退藥.cs">
       <SubType>Form</SubType>
@@ -336,7 +348,7 @@
     <Compile Include="UserControl\Pannel_Locker.Designer.cs">
       <DependentUpon>Pannel_Locker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Porgram_入庫作業.cs">
+    <Compile Include="Porgram_收支作業.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -391,7 +403,7 @@
     <Compile Include="Program_儲位管理_RowsLED.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Program_領藥.cs">
+    <Compile Include="Program_調劑作業.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -406,6 +418,11 @@
     </Compile>
     <EmbeddedResource Include="Dialog\Dialog_入庫作業_儲位選擇.resx">
       <DependentUpon>Dialog_入庫作業_儲位選擇.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_收支原因選擇.resx">
+      <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_設定產出時間.resx">
       <DependentUpon>Dialog_設定產出時間.cs</DependentUpon>
@@ -430,6 +447,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_手輸醫囑.resx">
       <DependentUpon>Dialog_手輸醫囑.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_收支原因設定.resx">
+      <DependentUpon>Dialog_收支原因設定.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_選擇效期.resx">
       <DependentUpon>Dialog_選擇效期.cs</DependentUpon>

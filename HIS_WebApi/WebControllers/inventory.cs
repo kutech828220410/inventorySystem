@@ -41,7 +41,7 @@ namespace HIS_WebApi
         //取得可建立今日最新盤點單
         [Route("new_IC_SN")]
         [HttpPost]
-        public string GET_new_IC_SN(returnData returnData)
+        public string GET_new_IC_SN([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
@@ -172,6 +172,65 @@ namespace HIS_WebApi
             }
 
             
+        }
+        //以建表日更新盤點單
+        [Route("creat_update_startime_by_IC_SN")]
+        [HttpPost]
+        public string POST_creat_update_startime_by_IC_SN([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+                SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+                inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+                string json_out = POST_creat_get_by_IC_SN(returnData);
+                returnData = json_out.JsonDeserializet<returnData>();
+                if (returnData.Code < 0)
+                {
+                    returnData.Method = "creat_update_startime_by_CT_TIME";
+                    return returnData.JsonSerializationt();
+                }
+                List<inventoryClass.creat> creats = inventoryClass.creat.ObjToListClass(returnData.Data);
+                if(creats.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimer.ToString();
+                    returnData.Result = $"取得盤點資料失敗!";
+                    returnData.Method = "creat_update_startime_by_CT_TIME";
+
+                    return returnData.JsonSerializationt(true);
+                }
+                creat = creats[0];
+                if(creat.盤點開始時間 == DateTime.MaxValue.ToDateTimeString())
+                {
+                    creat.盤點開始時間 = DateTime.Now.ToDateTimeString();
+                }
+         
+                creat.盤點狀態 = "盤點中";
+                object[] value = inventoryClass.creat.ClassToSQL(creat);
+                List<object[]> list_value = new List<object[]>();
+                list_value.Add(value);
+                sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_value);
+                returnData.Code = 200;
+                returnData.Data = creat;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"更新盤點開始時間成功!";
+                returnData.Method = "creat_update_startime_by_CT_TIME";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+
         }
         //以盤點單號搜尋盤點單
         [Route("creat_get_by_IC_SN")]
@@ -396,13 +455,14 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
             list_inventory_creat_buf[0][(int)enum_盤點單號.盤點狀態] = "鎖定";
+            list_inventory_creat_buf[0][(int)enum_盤點單號.盤點結束時間] = DateTime.Now.ToDateTimeString();
             sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_inventory_creat_buf);
             creat.GUID = list_inventory_creat_buf[0][(int)enum_盤點單號.GUID].ObjectToString();
             creat.盤點狀態 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點狀態].ObjectToString();
             creat.建表人 = list_inventory_creat_buf[0][(int)enum_盤點單號.建表人].ObjectToString();
             creat.建表時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.建表時間].ToDateTimeString();
             creat.盤點開始時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點開始時間].ToDateTimeString();
-            creat.盤點結束時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點結束時間].ToDateTimeString();
+            creat.盤點結束時間 = list_inventory_creat_buf[0][(int)enum_盤點單號.盤點結束時間].ObjectToString();
             returnData.Code = 200;
             returnData.Value = "盤點單鎖定成功!";
             returnData.Data = creat;

@@ -443,7 +443,7 @@ namespace 調劑台管理系統
             if (this.plC_ScreenPage_Main.PageText == "領藥") return;
             if (this.plC_ScreenPage_Main.PageText == "管制抽屜") return;
 
-            if (plC_RJ_ScreenButton_領退藥作業.Visible) this.plC_ScreenPage_Main.SelecteTabText("領藥");
+            if (plC_RJ_ScreenButton_調劑作業.Visible) this.plC_ScreenPage_Main.SelecteTabText("領藥");
             else if (plC_RJ_ScreenButton_管制抽屜.Visible) this.plC_ScreenPage_Main.SelecteTabText("管制抽屜");
             else this.plC_ScreenPage_Main.SelecteTabText("後台登入");
          

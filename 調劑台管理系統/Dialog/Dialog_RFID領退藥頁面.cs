@@ -293,7 +293,7 @@ namespace 調劑台管理系統
                     object[] value = new object[new enum_入出庫資料檢查().GetLength()];
                     value[(int)enum_入出庫資料檢查.GUID] = Guid.NewGuid().ToString();
                     value[(int)enum_入出庫資料檢查.調劑台名稱] = dependsingName;
-                    value[(int)enum_入出庫資料檢查.動作] = "入庫作業";
+                    value[(int)enum_入出庫資料檢查.動作] = "收支作業";
                     value[(int)enum_入出庫資料檢查.藥品碼] = list_value[0][(int)enum_儲位資料.藥品碼].ObjectToString();
                     value[(int)enum_入出庫資料檢查.藥袋序號] = "";
                     value[(int)enum_入出庫資料檢查.單位] = list_value[0][(int)enum_儲位資料.單位].ObjectToString();

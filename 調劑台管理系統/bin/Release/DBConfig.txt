@@ -1,7 +1,7 @@
 {
   "DB_Basic": {
     "DataBaseName": "DPS01",
-    "IP": "localhost",
+    "IP": "220.135.128.247",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -10,7 +10,7 @@
   },
   "DB_person_page": {
     "DataBaseName": "dbvm",
-    "IP": "localhost",
+    "IP": "220.135.128.247",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -19,7 +19,7 @@
   },
   "DB_order_list": {
     "DataBaseName": "dbvm",
-    "IP": "localhost",
+    "IP": "220.135.128.247",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -28,7 +28,7 @@
   },
   "DB_Medicine_Cloud": {
     "DataBaseName": "dbvm",
-    "IP": "localhost",
+    "IP": "220.135.128.247",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,
@@ -39,6 +39,9 @@
   "MedApiURL": "",
   "Med_Update_ApiURL": "",
   "Inspection_ApiURL": "",
-  "Inventory_ApiURL": "http://127.0.0.1:4433/api/inventory",
-  "Transactions_ApiURL": "http://127.0.0.1:4433/api/transactions"
+  "Inventory_ApiURL": "http://220.135.128.247:4433/api/inventory",
+  "Transactions_ApiURL": "http://220.135.128.247:4433/api/transactions",
+  "Basic_Server": "220.135.128.247",
+  "VM_Server": "220.135.128.247",
+  "Api_URL": "http://220.135.128.247:4435"
 }

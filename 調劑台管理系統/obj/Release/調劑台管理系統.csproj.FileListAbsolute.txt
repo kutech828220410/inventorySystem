@@ -1886,7 +1886,6 @@ C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\System.T
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\System.ValueTuple.xml
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.csproj.AssemblyReference.cache
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog.Dialog_入庫作業_儲位選擇.resources
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_設定產出時間.resources
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_設定開鎖權限.resources
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_輸入批號.resources
@@ -2082,3 +2081,6 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Re
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\MyPrinterlib.dll
+C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog.Dialog_收支作業_儲位選擇.resources
+C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_收支原因設定.resources
+C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_收支原因選擇.resources

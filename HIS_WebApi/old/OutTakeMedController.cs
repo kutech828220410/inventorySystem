@@ -15,55 +15,14 @@ using H_Pannel_lib;
 using System.Drawing;
 using System.Diagnostics;
 using MyUI;
+using HIS_DB_Lib;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
     public class OutTakeMedController : ControllerBase
     {
-        private enum enum_交易記錄查詢資料
-        {
-            GUID,
-            動作,
-            藥品碼,
-            藥品名稱,
-            藥袋序號,
-            類別,
-            庫存量,
-            交易量,
-            結存量,
-            盤點量,
-            操作人,
-            病人姓名,
-            床號,
-            病歷號,
-            操作時間,
-            開方時間,
-            備註,
-        }
-        private enum enum_交易記錄查詢動作
-        {
-            掃碼領藥,
-            手輸領藥,
-            批次領藥,
-            系統領藥,
-            掃碼退藥,
-            手輸退藥,
-            重複領藥,
-            自動過帳,
-            人臉識別登入,
-            RFID登入,
-            一維碼登入,
-            密碼登入,
-            登出,
-            操作工程模式,
-            效期庫存異動,
-            入庫作業,
-            管制抽屜開啟,
-            管制抽屜關閉,
-            交班對點,
-            None,
-        }
+
         public enum enum_取藥堆疊母資料
         {
             GUID,
@@ -92,6 +51,7 @@ namespace HIS_WebApi
             效期,
             批號,
             備註,
+            收支原因,
         }
         public enum enum_設備資料
         {
