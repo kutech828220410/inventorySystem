@@ -99,10 +99,12 @@
             this.plC_ScreenPage_交班作業 = new MyUI.PLC_ScreenPage();
             this.tabPage16 = new System.Windows.Forms.TabPage();
             this.panel71 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button_交班作業_對點作業_開始交班 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_交班作業_對點作業_取消作業 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Pannel2 = new MyUI.PLC_RJ_Pannel();
+            this.plC_RJ_Button_交班作業_對點作業_測試登入 = new MyUI.PLC_RJ_Button();
+            this.rJ_Lable131 = new MyUI.RJ_Lable();
+            this.rJ_TextBox_交班作業_對點作業_測試UID = new MyUI.RJ_TextBox();
+            this.plC_RJ_Pannel_被交接人 = new MyUI.PLC_RJ_Pannel();
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡 = new MyUI.PLC_Button();
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡 = new MyUI.PLC_Button();
             this.panel74 = new System.Windows.Forms.Panel();
             this.rJ_Lable78 = new MyUI.RJ_Lable();
             this.rJ_Pannel9 = new MyUI.RJ_Pannel();
@@ -112,6 +114,9 @@
             this.rJ_Lable_交班作業_對點作業_被交接人_狀態 = new MyUI.RJ_Lable();
             this.rJ_Lable123 = new MyUI.RJ_Lable();
             this.rJ_Lable124 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_交班作業_對點作業_開始交班 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_交班作業_對點作業_取消作業 = new MyUI.PLC_RJ_Button();
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡 = new MyUI.PLC_Button();
             this.panel73 = new System.Windows.Forms.Panel();
             this.rJ_Lable77 = new MyUI.RJ_Lable();
             this.rJ_Pannel8 = new MyUI.RJ_Pannel();
@@ -149,7 +154,12 @@
             this.收支作業 = new System.Windows.Forms.TabPage();
             this.plC_ScreenPage_收支作業 = new MyUI.PLC_ScreenPage();
             this.tabPage21 = new System.Windows.Forms.TabPage();
+            this.plC_RJ_GroupBox26 = new MyUI.PLC_RJ_GroupBox();
+            this.plC_RJ_Button_收支作業_入庫 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_收支作業_設定 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_收支作業_出庫 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_收支作業_調入 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_收支作業_調出 = new MyUI.PLC_RJ_Button();
             this.rJ_GroupBox8 = new MyUI.RJ_GroupBox();
             this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable98 = new MyUI.RJ_Lable();
@@ -162,10 +172,6 @@
             this.rJ_TextBox_收支作業_單品入庫_藥品碼 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_收支作業_選擇儲位 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_收支作業_調出 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_收支作業_調入 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_收支作業_出庫 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_收支作業_入庫 = new MyUI.PLC_RJ_Button();
             this.rJ_GroupBox4 = new MyUI.RJ_GroupBox();
             this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料 = new MyUI.PLC_RJ_Button();
@@ -176,6 +182,7 @@
             this.plC_RJ_ScreenButton22 = new MyUI.PLC_RJ_ScreenButton();
             this.交易記錄查詢 = new System.Windows.Forms.TabPage();
             this.panel208 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_交易記錄查詢_顯示全部 = new MyUI.PLC_RJ_Button();
             this.label_交易紀錄查詢_資料搜尋時間 = new System.Windows.Forms.Label();
@@ -892,6 +899,7 @@
             this.plC_NumBox2 = new MyUI.PLC_NumBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.plC_CheckBox_單人交班 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_領藥無儲位不顯示 = new MyUI.PLC_CheckBox();
             this.plC_Button_工程模式_全部開鎖 = new MyUI.PLC_Button();
             this.plC_CheckBox_QRcode_Mode = new MyUI.PLC_CheckBox();
@@ -1074,8 +1082,6 @@
             this.sqL_DataGridView_藥品管制方式設定 = new SQLUI.SQL_DataGridView();
             this.tabPage15 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_藥品設定表 = new SQLUI.SQL_DataGridView();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
-            this.tabPage19 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox28 = new MyUI.RJ_GroupBox();
             this.sqL_DataGridView_特殊輸出表 = new SQLUI.SQL_DataGridView();
@@ -1267,6 +1273,8 @@
             this.plC_ScreenPage_交班作業.SuspendLayout();
             this.tabPage16.SuspendLayout();
             this.panel71.SuspendLayout();
+            this.plC_RJ_Pannel2.SuspendLayout();
+            this.plC_RJ_Pannel_被交接人.SuspendLayout();
             this.panel74.SuspendLayout();
             this.rJ_Pannel9.SuspendLayout();
             this.panel73.SuspendLayout();
@@ -1278,6 +1286,8 @@
             this.收支作業.SuspendLayout();
             this.plC_ScreenPage_收支作業.SuspendLayout();
             this.tabPage21.SuspendLayout();
+            this.plC_RJ_GroupBox26.ContentsPanel.SuspendLayout();
+            this.plC_RJ_GroupBox26.SuspendLayout();
             this.rJ_GroupBox8.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox8.SuspendLayout();
             this.rJ_GroupBox4.ContentsPanel.SuspendLayout();
@@ -1588,7 +1598,7 @@
             // openFileDialog_LoadExcel
             // 
             this.openFileDialog_LoadExcel.DefaultExt = "txt";
-            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
+            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
             // plC_ScreenPage_Main
             // 
@@ -3343,11 +3353,11 @@
             // 
             // panel71
             // 
+            this.panel71.Controls.Add(this.plC_RJ_Pannel2);
+            this.panel71.Controls.Add(this.plC_RJ_Pannel_被交接人);
             this.panel71.Controls.Add(this.plC_RJ_Button_交班作業_對點作業_開始交班);
             this.panel71.Controls.Add(this.plC_RJ_Button_交班作業_對點作業_取消作業);
-            this.panel71.Controls.Add(this.plC_Button_交班作業_對點作業_被交接人_等待刷卡);
             this.panel71.Controls.Add(this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡);
-            this.panel71.Controls.Add(this.panel74);
             this.panel71.Controls.Add(this.panel73);
             this.panel71.Controls.Add(this.rJ_Lable76);
             this.panel71.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -3356,99 +3366,132 @@
             this.panel71.Size = new System.Drawing.Size(1648, 927);
             this.panel71.TabIndex = 115;
             // 
-            // plC_RJ_Button_交班作業_對點作業_開始交班
+            // plC_RJ_Pannel2
             // 
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.AutoResetState = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Bool = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.BorderColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.BorderRadius = 40;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.BorderSize = 0;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.but_press = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Enabled = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.GUID = "";
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Location = new System.Drawing.Point(611, 771);
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Name = "plC_RJ_Button_交班作業_對點作業_開始交班";
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_文字內容 = "開始交班";
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_文字顏色 = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_BorderSize = 5;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_文字內容 = "開始交班";
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_文字顏色 = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Size = new System.Drawing.Size(453, 152);
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.State = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.TabIndex = 141;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Text = "開始交班";
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.TextColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.Texts = "開始交班";
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.字型鎖住 = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.文字鎖住 = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.讀取位元反向 = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.讀寫鎖住 = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.音效 = true;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.顯示 = false;
-            this.plC_RJ_Button_交班作業_對點作業_開始交班.顯示狀態 = false;
+            this.plC_RJ_Pannel2.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel2.BorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_Pannel2.BorderRadius = 10;
+            this.plC_RJ_Pannel2.BorderSize = 2;
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_交班作業_對點作業_測試登入);
+            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable131);
+            this.plC_RJ_Pannel2.Controls.Add(this.rJ_TextBox_交班作業_對點作業_測試UID);
+            this.plC_RJ_Pannel2.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel2.IsSelected = false;
+            this.plC_RJ_Pannel2.Location = new System.Drawing.Point(12, 130);
+            this.plC_RJ_Pannel2.Name = "plC_RJ_Pannel2";
+            this.plC_RJ_Pannel2.Size = new System.Drawing.Size(566, 76);
+            this.plC_RJ_Pannel2.TabIndex = 143;
+            this.plC_RJ_Pannel2.Visible = false;
+            this.plC_RJ_Pannel2.隱藏讀取位置 = "S4077";
             // 
-            // plC_RJ_Button_交班作業_對點作業_取消作業
+            // plC_RJ_Button_交班作業_對點作業_測試登入
             // 
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.AutoResetState = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.BackgroundColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Bool = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.BorderRadius = 5;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.BorderSize = 0;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.but_press = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.GUID = "";
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Location = new System.Drawing.Point(3, 835);
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Name = "plC_RJ_Button_交班作業_對點作業_取消作業";
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_文字內容 = "取消作業";
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_BorderSize = 5;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_文字內容 = "取消作業";
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Size = new System.Drawing.Size(215, 88);
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.State = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.TabIndex = 140;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Text = "取消作業";
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.Texts = "取消作業";
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.字型鎖住 = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.文字鎖住 = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.讀取位元反向 = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.讀寫鎖住 = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.音效 = true;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.顯示 = false;
-            this.plC_RJ_Button_交班作業_對點作業_取消作業.顯示狀態 = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.AutoResetState = true;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.BackgroundColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.Bool = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.BorderRadius = 5;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.BorderSize = 0;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.but_press = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.GUID = "";
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.Location = new System.Drawing.Point(416, 6);
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.Name = "plC_RJ_Button_交班作業_對點作業_測試登入";
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.OFF_文字內容 = "測試登入";
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.ON_BorderSize = 5;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.ON_文字內容 = "測試登入";
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.Size = new System.Drawing.Size(139, 63);
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.State = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.TabIndex = 142;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.Text = "測試登入";
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.Texts = "測試登入";
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.字型鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.文字鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.讀取位元反向 = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.讀寫鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.音效 = true;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.顯示 = false;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.顯示狀態 = false;
+            // 
+            // rJ_Lable131
+            // 
+            this.rJ_Lable131.BackColor = System.Drawing.Color.MediumBlue;
+            this.rJ_Lable131.BackgroundColor = System.Drawing.Color.MediumBlue;
+            this.rJ_Lable131.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable131.BorderRadius = 8;
+            this.rJ_Lable131.BorderSize = 0;
+            this.rJ_Lable131.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable131.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable131.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable131.GUID = "";
+            this.rJ_Lable131.Location = new System.Drawing.Point(11, 10);
+            this.rJ_Lable131.Name = "rJ_Lable131";
+            this.rJ_Lable131.Size = new System.Drawing.Size(145, 60);
+            this.rJ_Lable131.TabIndex = 115;
+            this.rJ_Lable131.Text = "UID";
+            this.rJ_Lable131.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable131.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_TextBox_交班作業_對點作業_測試UID
+            // 
+            this.rJ_TextBox_交班作業_對點作業_測試UID.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.BorderRadius = 0;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.BorderSize = 2;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.Font = new System.Drawing.Font("新細明體", 20F);
+            this.rJ_TextBox_交班作業_對點作業_測試UID.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.GUID = "";
+            this.rJ_TextBox_交班作業_對點作業_測試UID.Location = new System.Drawing.Point(163, 18);
+            this.rJ_TextBox_交班作業_對點作業_測試UID.Multiline = false;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.Name = "rJ_TextBox_交班作業_對點作業_測試UID";
+            this.rJ_TextBox_交班作業_對點作業_測試UID.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_交班作業_對點作業_測試UID.PassWordChar = false;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.PlaceholderText = "";
+            this.rJ_TextBox_交班作業_對點作業_測試UID.ShowTouchPannel = false;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.Size = new System.Drawing.Size(235, 46);
+            this.rJ_TextBox_交班作業_對點作業_測試UID.TabIndex = 129;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_交班作業_對點作業_測試UID.Texts = "";
+            this.rJ_TextBox_交班作業_對點作業_測試UID.UnderlineStyle = false;
+            // 
+            // plC_RJ_Pannel_被交接人
+            // 
+            this.plC_RJ_Pannel_被交接人.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel_被交接人.BorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_Pannel_被交接人.BorderRadius = 0;
+            this.plC_RJ_Pannel_被交接人.BorderSize = 0;
+            this.plC_RJ_Pannel_被交接人.Controls.Add(this.plC_Button_交班作業_對點作業_被交接人_等待刷卡);
+            this.plC_RJ_Pannel_被交接人.Controls.Add(this.panel74);
+            this.plC_RJ_Pannel_被交接人.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel_被交接人.IsSelected = false;
+            this.plC_RJ_Pannel_被交接人.Location = new System.Drawing.Point(831, 193);
+            this.plC_RJ_Pannel_被交接人.Name = "plC_RJ_Pannel_被交接人";
+            this.plC_RJ_Pannel_被交接人.Size = new System.Drawing.Size(685, 522);
+            this.plC_RJ_Pannel_被交接人.TabIndex = 142;
+            this.plC_RJ_Pannel_被交接人.Visible = false;
             // 
             // plC_Button_交班作業_對點作業_被交接人_等待刷卡
             // 
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.Bool = false;
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.but_press = false;
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.Location = new System.Drawing.Point(1022, 212);
+            this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.Location = new System.Drawing.Point(183, 19);
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.Name = "plC_Button_交班作業_對點作業_被交接人_等待刷卡";
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.OFF_文字內容 = "點選此處開始登入";
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -3475,43 +3518,11 @@
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.顯示 = false;
             this.plC_Button_交班作業_對點作業_被交接人_等待刷卡.顯示狀態 = false;
             // 
-            // plC_Button_交班作業_對點作業_當班交接人_等待刷卡
-            // 
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.but_press = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Location = new System.Drawing.Point(267, 212);
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Name = "plC_Button_交班作業_對點作業_當班交接人_等待刷卡";
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_文字內容 = "點選此處開始登入";
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.ON_文字內容 = "等待刷卡";
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F);
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Size = new System.Drawing.Size(376, 97);
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.TabIndex = 119;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.事件驅動 = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.字型鎖住 = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.文字鎖住 = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_交班作業_對點作業_當班交接人_等待刷卡.狀態OFF圖片")));
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_交班作業_對點作業_當班交接人_等待刷卡.狀態ON圖片")));
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.讀取位元反向 = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.讀寫鎖住 = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.起始狀態 = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.音效 = true;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.顯示 = false;
-            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.顯示狀態 = false;
-            // 
             // panel74
             // 
             this.panel74.Controls.Add(this.rJ_Lable78);
             this.panel74.Controls.Add(this.rJ_Pannel9);
-            this.panel74.Location = new System.Drawing.Point(952, 315);
+            this.panel74.Location = new System.Drawing.Point(113, 122);
             this.panel74.Name = "panel74";
             this.panel74.Size = new System.Drawing.Size(517, 375);
             this.panel74.TabIndex = 118;
@@ -3694,6 +3705,125 @@
             this.rJ_Lable124.Text = "姓名";
             this.rJ_Lable124.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable124.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_交班作業_對點作業_開始交班
+            // 
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.AutoResetState = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Bool = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.BorderColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.BorderRadius = 40;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.BorderSize = 0;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.but_press = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Enabled = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.GUID = "";
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Location = new System.Drawing.Point(611, 771);
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Name = "plC_RJ_Button_交班作業_對點作業_開始交班";
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_文字內容 = "開始交班";
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_文字顏色 = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_BorderSize = 5;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_文字內容 = "開始交班";
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_文字顏色 = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Size = new System.Drawing.Size(453, 152);
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.State = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.TabIndex = 141;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Text = "開始交班";
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.TextColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.Texts = "開始交班";
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.字型鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.文字鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.讀取位元反向 = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.讀寫鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.音效 = true;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.顯示 = false;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_交班作業_對點作業_取消作業
+            // 
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.AutoResetState = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.BackgroundColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Bool = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.BorderRadius = 5;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.BorderSize = 0;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.but_press = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.GUID = "";
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Location = new System.Drawing.Point(3, 835);
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Name = "plC_RJ_Button_交班作業_對點作業_取消作業";
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_文字內容 = "取消作業";
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_BorderSize = 5;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_文字內容 = "取消作業";
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Size = new System.Drawing.Size(215, 88);
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.State = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.TabIndex = 140;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Text = "取消作業";
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.Texts = "取消作業";
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.字型鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.文字鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.讀取位元反向 = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.讀寫鎖住 = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.音效 = true;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.顯示 = false;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.顯示狀態 = false;
+            // 
+            // plC_Button_交班作業_對點作業_當班交接人_等待刷卡
+            // 
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.but_press = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Location = new System.Drawing.Point(267, 212);
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Name = "plC_Button_交班作業_對點作業_當班交接人_等待刷卡";
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_文字內容 = "點選此處開始登入";
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.ON_文字內容 = "等待刷卡";
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F);
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Size = new System.Drawing.Size(376, 97);
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.TabIndex = 119;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.事件驅動 = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.字型鎖住 = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.文字鎖住 = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_交班作業_對點作業_當班交接人_等待刷卡.狀態OFF圖片")));
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_交班作業_對點作業_當班交接人_等待刷卡.狀態ON圖片")));
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.讀取位元反向 = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.讀寫鎖住 = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.起始狀態 = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.音效 = true;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.顯示 = false;
+            this.plC_Button_交班作業_對點作業_當班交接人_等待刷卡.顯示狀態 = false;
             // 
             // panel73
             // 
@@ -4429,12 +4559,8 @@
             // tabPage21
             // 
             this.tabPage21.BackColor = System.Drawing.Color.White;
-            this.tabPage21.Controls.Add(this.plC_RJ_Button_收支作業_設定);
+            this.tabPage21.Controls.Add(this.plC_RJ_GroupBox26);
             this.tabPage21.Controls.Add(this.rJ_GroupBox8);
-            this.tabPage21.Controls.Add(this.plC_RJ_Button_收支作業_調出);
-            this.tabPage21.Controls.Add(this.plC_RJ_Button_收支作業_調入);
-            this.tabPage21.Controls.Add(this.plC_RJ_Button_收支作業_出庫);
-            this.tabPage21.Controls.Add(this.plC_RJ_Button_收支作業_入庫);
             this.tabPage21.Controls.Add(this.rJ_GroupBox4);
             this.tabPage21.Controls.Add(this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋);
             this.tabPage21.Location = new System.Drawing.Point(4, 25);
@@ -4443,13 +4569,97 @@
             this.tabPage21.TabIndex = 0;
             this.tabPage21.Text = "收支作業";
             // 
+            // plC_RJ_GroupBox26
+            // 
+            // 
+            // plC_RJ_GroupBox26.ContentsPanel
+            // 
+            this.plC_RJ_GroupBox26.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox26.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_GroupBox26.ContentsPanel.BorderRadius = 5;
+            this.plC_RJ_GroupBox26.ContentsPanel.BorderSize = 2;
+            this.plC_RJ_GroupBox26.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_入庫);
+            this.plC_RJ_GroupBox26.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_設定);
+            this.plC_RJ_GroupBox26.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_出庫);
+            this.plC_RJ_GroupBox26.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_調入);
+            this.plC_RJ_GroupBox26.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_調出);
+            this.plC_RJ_GroupBox26.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_GroupBox26.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox26.ContentsPanel.IsSelected = false;
+            this.plC_RJ_GroupBox26.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.plC_RJ_GroupBox26.ContentsPanel.Name = "ContentsPanel";
+            this.plC_RJ_GroupBox26.ContentsPanel.Size = new System.Drawing.Size(833, 171);
+            this.plC_RJ_GroupBox26.ContentsPanel.TabIndex = 2;
+            this.plC_RJ_GroupBox26.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_GroupBox26.GUID = "";
+            this.plC_RJ_GroupBox26.Location = new System.Drawing.Point(815, 0);
+            this.plC_RJ_GroupBox26.Name = "plC_RJ_GroupBox26";
+            this.plC_RJ_GroupBox26.PannelBackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox26.PannelBorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_GroupBox26.PannelBorderRadius = 5;
+            this.plC_RJ_GroupBox26.PannelBorderSize = 2;
+            this.plC_RJ_GroupBox26.Size = new System.Drawing.Size(833, 208);
+            this.plC_RJ_GroupBox26.TabIndex = 147;
+            this.plC_RJ_GroupBox26.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.plC_RJ_GroupBox26.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_GroupBox26.TitleBorderRadius = 5;
+            this.plC_RJ_GroupBox26.TitleBorderSize = 0;
+            this.plC_RJ_GroupBox26.TitleFont = new System.Drawing.Font("新細明體", 12F);
+            this.plC_RJ_GroupBox26.TitleForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox26.TitleHeight = 37;
+            this.plC_RJ_GroupBox26.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.plC_RJ_GroupBox26.TitleTexts = "作業方式選擇";
+            // 
+            // plC_RJ_Button_收支作業_入庫
+            // 
+            this.plC_RJ_Button_收支作業_入庫.AutoResetState = false;
+            this.plC_RJ_Button_收支作業_入庫.BackgroundColor = System.Drawing.Color.DarkSlateBlue;
+            this.plC_RJ_Button_收支作業_入庫.Bool = false;
+            this.plC_RJ_Button_收支作業_入庫.BorderColor = System.Drawing.Color.Turquoise;
+            this.plC_RJ_Button_收支作業_入庫.BorderRadius = 5;
+            this.plC_RJ_Button_收支作業_入庫.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_入庫.but_press = false;
+            this.plC_RJ_Button_收支作業_入庫.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_收支作業_入庫.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_入庫.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_收支作業_入庫.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_入庫.GUID = "";
+            this.plC_RJ_Button_收支作業_入庫.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_收支作業_入庫.Location = new System.Drawing.Point(88, 43);
+            this.plC_RJ_Button_收支作業_入庫.Name = "plC_RJ_Button_收支作業_入庫";
+            this.plC_RJ_Button_收支作業_入庫.OFF_文字內容 = "入庫";
+            this.plC_RJ_Button_收支作業_入庫.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_入庫.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_入庫.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_入庫.ON_BorderSize = 5;
+            this.plC_RJ_Button_收支作業_入庫.ON_文字內容 = "入庫";
+            this.plC_RJ_Button_收支作業_入庫.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_入庫.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_入庫.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_入庫.Size = new System.Drawing.Size(157, 74);
+            this.plC_RJ_Button_收支作業_入庫.State = false;
+            this.plC_RJ_Button_收支作業_入庫.TabIndex = 141;
+            this.plC_RJ_Button_收支作業_入庫.Text = "入庫";
+            this.plC_RJ_Button_收支作業_入庫.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_入庫.Texts = "入庫";
+            this.plC_RJ_Button_收支作業_入庫.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_收支作業_入庫.字型鎖住 = false;
+            this.plC_RJ_Button_收支作業_入庫.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_收支作業_入庫.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_收支作業_入庫.文字鎖住 = false;
+            this.plC_RJ_Button_收支作業_入庫.讀取位元反向 = false;
+            this.plC_RJ_Button_收支作業_入庫.讀寫鎖住 = false;
+            this.plC_RJ_Button_收支作業_入庫.音效 = true;
+            this.plC_RJ_Button_收支作業_入庫.顯示 = false;
+            this.plC_RJ_Button_收支作業_入庫.顯示狀態 = false;
+            // 
             // plC_RJ_Button_收支作業_設定
             // 
             this.plC_RJ_Button_收支作業_設定.AutoResetState = true;
             this.plC_RJ_Button_收支作業_設定.BackgroundColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_收支作業_設定.Bool = false;
             this.plC_RJ_Button_收支作業_設定.BorderColor = System.Drawing.Color.Turquoise;
-            this.plC_RJ_Button_收支作業_設定.BorderRadius = 0;
+            this.plC_RJ_Button_收支作業_設定.BorderRadius = 5;
             this.plC_RJ_Button_收支作業_設定.BorderSize = 0;
             this.plC_RJ_Button_收支作業_設定.but_press = false;
             this.plC_RJ_Button_收支作業_設定.buttonType = MyUI.RJ_Button.ButtonType.Push;
@@ -4458,7 +4668,7 @@
             this.plC_RJ_Button_收支作業_設定.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_收支作業_設定.GUID = "";
             this.plC_RJ_Button_收支作業_設定.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_收支作業_設定.Location = new System.Drawing.Point(1582, 26);
+            this.plC_RJ_Button_收支作業_設定.Location = new System.Drawing.Point(758, 8);
             this.plC_RJ_Button_收支作業_設定.Name = "plC_RJ_Button_收支作業_設定";
             this.plC_RJ_Button_收支作業_設定.OFF_文字內容 = "設定";
             this.plC_RJ_Button_收支作業_設定.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4469,7 +4679,7 @@
             this.plC_RJ_Button_收支作業_設定.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_收支作業_設定.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_收支作業_設定.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_設定.Size = new System.Drawing.Size(61, 74);
+            this.plC_RJ_Button_收支作業_設定.Size = new System.Drawing.Size(70, 74);
             this.plC_RJ_Button_收支作業_設定.State = false;
             this.plC_RJ_Button_收支作業_設定.TabIndex = 146;
             this.plC_RJ_Button_收支作業_設定.Text = "設定";
@@ -4485,6 +4695,135 @@
             this.plC_RJ_Button_收支作業_設定.音效 = true;
             this.plC_RJ_Button_收支作業_設定.顯示 = false;
             this.plC_RJ_Button_收支作業_設定.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_收支作業_出庫
+            // 
+            this.plC_RJ_Button_收支作業_出庫.AutoResetState = false;
+            this.plC_RJ_Button_收支作業_出庫.BackgroundColor = System.Drawing.Color.DarkSlateBlue;
+            this.plC_RJ_Button_收支作業_出庫.Bool = false;
+            this.plC_RJ_Button_收支作業_出庫.BorderColor = System.Drawing.Color.Turquoise;
+            this.plC_RJ_Button_收支作業_出庫.BorderRadius = 5;
+            this.plC_RJ_Button_收支作業_出庫.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_出庫.but_press = false;
+            this.plC_RJ_Button_收支作業_出庫.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_收支作業_出庫.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_出庫.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_收支作業_出庫.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_出庫.GUID = "";
+            this.plC_RJ_Button_收支作業_出庫.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_收支作業_出庫.Location = new System.Drawing.Point(251, 43);
+            this.plC_RJ_Button_收支作業_出庫.Name = "plC_RJ_Button_收支作業_出庫";
+            this.plC_RJ_Button_收支作業_出庫.OFF_文字內容 = "出庫";
+            this.plC_RJ_Button_收支作業_出庫.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_出庫.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_出庫.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_出庫.ON_BorderSize = 5;
+            this.plC_RJ_Button_收支作業_出庫.ON_文字內容 = "出庫";
+            this.plC_RJ_Button_收支作業_出庫.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_出庫.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_出庫.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_出庫.Size = new System.Drawing.Size(157, 74);
+            this.plC_RJ_Button_收支作業_出庫.State = false;
+            this.plC_RJ_Button_收支作業_出庫.TabIndex = 142;
+            this.plC_RJ_Button_收支作業_出庫.Text = "出庫";
+            this.plC_RJ_Button_收支作業_出庫.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_出庫.Texts = "出庫";
+            this.plC_RJ_Button_收支作業_出庫.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_收支作業_出庫.字型鎖住 = false;
+            this.plC_RJ_Button_收支作業_出庫.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_收支作業_出庫.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_收支作業_出庫.文字鎖住 = false;
+            this.plC_RJ_Button_收支作業_出庫.讀取位元反向 = false;
+            this.plC_RJ_Button_收支作業_出庫.讀寫鎖住 = false;
+            this.plC_RJ_Button_收支作業_出庫.音效 = true;
+            this.plC_RJ_Button_收支作業_出庫.顯示 = false;
+            this.plC_RJ_Button_收支作業_出庫.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_收支作業_調入
+            // 
+            this.plC_RJ_Button_收支作業_調入.AutoResetState = false;
+            this.plC_RJ_Button_收支作業_調入.BackgroundColor = System.Drawing.Color.DarkSlateBlue;
+            this.plC_RJ_Button_收支作業_調入.Bool = false;
+            this.plC_RJ_Button_收支作業_調入.BorderColor = System.Drawing.Color.Turquoise;
+            this.plC_RJ_Button_收支作業_調入.BorderRadius = 5;
+            this.plC_RJ_Button_收支作業_調入.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_調入.but_press = false;
+            this.plC_RJ_Button_收支作業_調入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_收支作業_調入.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_調入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_收支作業_調入.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_調入.GUID = "";
+            this.plC_RJ_Button_收支作業_調入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_收支作業_調入.Location = new System.Drawing.Point(414, 43);
+            this.plC_RJ_Button_收支作業_調入.Name = "plC_RJ_Button_收支作業_調入";
+            this.plC_RJ_Button_收支作業_調入.OFF_文字內容 = "調入";
+            this.plC_RJ_Button_收支作業_調入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_調入.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_調入.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_調入.ON_BorderSize = 5;
+            this.plC_RJ_Button_收支作業_調入.ON_文字內容 = "調入";
+            this.plC_RJ_Button_收支作業_調入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_調入.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_調入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_調入.Size = new System.Drawing.Size(157, 74);
+            this.plC_RJ_Button_收支作業_調入.State = false;
+            this.plC_RJ_Button_收支作業_調入.TabIndex = 143;
+            this.plC_RJ_Button_收支作業_調入.Text = "調入";
+            this.plC_RJ_Button_收支作業_調入.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_調入.Texts = "調入";
+            this.plC_RJ_Button_收支作業_調入.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_收支作業_調入.字型鎖住 = false;
+            this.plC_RJ_Button_收支作業_調入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_收支作業_調入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_收支作業_調入.文字鎖住 = false;
+            this.plC_RJ_Button_收支作業_調入.讀取位元反向 = false;
+            this.plC_RJ_Button_收支作業_調入.讀寫鎖住 = false;
+            this.plC_RJ_Button_收支作業_調入.音效 = true;
+            this.plC_RJ_Button_收支作業_調入.顯示 = false;
+            this.plC_RJ_Button_收支作業_調入.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_收支作業_調出
+            // 
+            this.plC_RJ_Button_收支作業_調出.AutoResetState = false;
+            this.plC_RJ_Button_收支作業_調出.BackgroundColor = System.Drawing.Color.DarkSlateBlue;
+            this.plC_RJ_Button_收支作業_調出.Bool = false;
+            this.plC_RJ_Button_收支作業_調出.BorderColor = System.Drawing.Color.Turquoise;
+            this.plC_RJ_Button_收支作業_調出.BorderRadius = 5;
+            this.plC_RJ_Button_收支作業_調出.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_調出.but_press = false;
+            this.plC_RJ_Button_收支作業_調出.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_收支作業_調出.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_調出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_收支作業_調出.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_調出.GUID = "";
+            this.plC_RJ_Button_收支作業_調出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_收支作業_調出.Location = new System.Drawing.Point(577, 43);
+            this.plC_RJ_Button_收支作業_調出.Name = "plC_RJ_Button_收支作業_調出";
+            this.plC_RJ_Button_收支作業_調出.OFF_文字內容 = "調出";
+            this.plC_RJ_Button_收支作業_調出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_調出.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_調出.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_調出.ON_BorderSize = 5;
+            this.plC_RJ_Button_收支作業_調出.ON_文字內容 = "調出";
+            this.plC_RJ_Button_收支作業_調出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_調出.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_調出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_調出.Size = new System.Drawing.Size(157, 74);
+            this.plC_RJ_Button_收支作業_調出.State = false;
+            this.plC_RJ_Button_收支作業_調出.TabIndex = 144;
+            this.plC_RJ_Button_收支作業_調出.Text = "調出";
+            this.plC_RJ_Button_收支作業_調出.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_調出.Texts = "調出";
+            this.plC_RJ_Button_收支作業_調出.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_收支作業_調出.字型鎖住 = false;
+            this.plC_RJ_Button_收支作業_調出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_收支作業_調出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_收支作業_調出.文字鎖住 = false;
+            this.plC_RJ_Button_收支作業_調出.讀取位元反向 = false;
+            this.plC_RJ_Button_收支作業_調出.讀寫鎖住 = false;
+            this.plC_RJ_Button_收支作業_調出.音效 = true;
+            this.plC_RJ_Button_收支作業_調出.顯示 = false;
+            this.plC_RJ_Button_收支作業_調出.顯示狀態 = false;
             // 
             // rJ_GroupBox8
             // 
@@ -4876,178 +5215,6 @@
             this.plC_RJ_Button_收支作業_選擇儲位.顯示 = false;
             this.plC_RJ_Button_收支作業_選擇儲位.顯示狀態 = false;
             // 
-            // plC_RJ_Button_收支作業_調出
-            // 
-            this.plC_RJ_Button_收支作業_調出.AutoResetState = false;
-            this.plC_RJ_Button_收支作業_調出.BackgroundColor = System.Drawing.Color.DarkSlateBlue;
-            this.plC_RJ_Button_收支作業_調出.Bool = false;
-            this.plC_RJ_Button_收支作業_調出.BorderColor = System.Drawing.Color.Turquoise;
-            this.plC_RJ_Button_收支作業_調出.BorderRadius = 5;
-            this.plC_RJ_Button_收支作業_調出.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_調出.but_press = false;
-            this.plC_RJ_Button_收支作業_調出.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_收支作業_調出.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_調出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_收支作業_調出.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_調出.GUID = "";
-            this.plC_RJ_Button_收支作業_調出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_收支作業_調出.Location = new System.Drawing.Point(1390, 26);
-            this.plC_RJ_Button_收支作業_調出.Name = "plC_RJ_Button_收支作業_調出";
-            this.plC_RJ_Button_收支作業_調出.OFF_文字內容 = "調出";
-            this.plC_RJ_Button_收支作業_調出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_調出.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_調出.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_調出.ON_BorderSize = 5;
-            this.plC_RJ_Button_收支作業_調出.ON_文字內容 = "調出";
-            this.plC_RJ_Button_收支作業_調出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_調出.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_調出.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_調出.Size = new System.Drawing.Size(157, 74);
-            this.plC_RJ_Button_收支作業_調出.State = false;
-            this.plC_RJ_Button_收支作業_調出.TabIndex = 144;
-            this.plC_RJ_Button_收支作業_調出.Text = "調出";
-            this.plC_RJ_Button_收支作業_調出.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_調出.Texts = "調出";
-            this.plC_RJ_Button_收支作業_調出.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_收支作業_調出.字型鎖住 = false;
-            this.plC_RJ_Button_收支作業_調出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_收支作業_調出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_收支作業_調出.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_調出.讀取位元反向 = false;
-            this.plC_RJ_Button_收支作業_調出.讀寫鎖住 = false;
-            this.plC_RJ_Button_收支作業_調出.音效 = true;
-            this.plC_RJ_Button_收支作業_調出.顯示 = false;
-            this.plC_RJ_Button_收支作業_調出.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_收支作業_調入
-            // 
-            this.plC_RJ_Button_收支作業_調入.AutoResetState = false;
-            this.plC_RJ_Button_收支作業_調入.BackgroundColor = System.Drawing.Color.DarkSlateBlue;
-            this.plC_RJ_Button_收支作業_調入.Bool = false;
-            this.plC_RJ_Button_收支作業_調入.BorderColor = System.Drawing.Color.Turquoise;
-            this.plC_RJ_Button_收支作業_調入.BorderRadius = 5;
-            this.plC_RJ_Button_收支作業_調入.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_調入.but_press = false;
-            this.plC_RJ_Button_收支作業_調入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_收支作業_調入.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_調入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_收支作業_調入.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_調入.GUID = "";
-            this.plC_RJ_Button_收支作業_調入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_收支作業_調入.Location = new System.Drawing.Point(1227, 26);
-            this.plC_RJ_Button_收支作業_調入.Name = "plC_RJ_Button_收支作業_調入";
-            this.plC_RJ_Button_收支作業_調入.OFF_文字內容 = "調入";
-            this.plC_RJ_Button_收支作業_調入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_調入.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_調入.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_調入.ON_BorderSize = 5;
-            this.plC_RJ_Button_收支作業_調入.ON_文字內容 = "調入";
-            this.plC_RJ_Button_收支作業_調入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_調入.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_調入.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_調入.Size = new System.Drawing.Size(157, 74);
-            this.plC_RJ_Button_收支作業_調入.State = false;
-            this.plC_RJ_Button_收支作業_調入.TabIndex = 143;
-            this.plC_RJ_Button_收支作業_調入.Text = "調入";
-            this.plC_RJ_Button_收支作業_調入.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_調入.Texts = "調入";
-            this.plC_RJ_Button_收支作業_調入.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_收支作業_調入.字型鎖住 = false;
-            this.plC_RJ_Button_收支作業_調入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_收支作業_調入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_收支作業_調入.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_調入.讀取位元反向 = false;
-            this.plC_RJ_Button_收支作業_調入.讀寫鎖住 = false;
-            this.plC_RJ_Button_收支作業_調入.音效 = true;
-            this.plC_RJ_Button_收支作業_調入.顯示 = false;
-            this.plC_RJ_Button_收支作業_調入.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_收支作業_出庫
-            // 
-            this.plC_RJ_Button_收支作業_出庫.AutoResetState = false;
-            this.plC_RJ_Button_收支作業_出庫.BackgroundColor = System.Drawing.Color.DarkSlateBlue;
-            this.plC_RJ_Button_收支作業_出庫.Bool = false;
-            this.plC_RJ_Button_收支作業_出庫.BorderColor = System.Drawing.Color.Turquoise;
-            this.plC_RJ_Button_收支作業_出庫.BorderRadius = 5;
-            this.plC_RJ_Button_收支作業_出庫.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_出庫.but_press = false;
-            this.plC_RJ_Button_收支作業_出庫.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_收支作業_出庫.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_出庫.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_收支作業_出庫.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_出庫.GUID = "";
-            this.plC_RJ_Button_收支作業_出庫.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_收支作業_出庫.Location = new System.Drawing.Point(1064, 26);
-            this.plC_RJ_Button_收支作業_出庫.Name = "plC_RJ_Button_收支作業_出庫";
-            this.plC_RJ_Button_收支作業_出庫.OFF_文字內容 = "出庫";
-            this.plC_RJ_Button_收支作業_出庫.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_出庫.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_出庫.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_出庫.ON_BorderSize = 5;
-            this.plC_RJ_Button_收支作業_出庫.ON_文字內容 = "出庫";
-            this.plC_RJ_Button_收支作業_出庫.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_出庫.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_出庫.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_出庫.Size = new System.Drawing.Size(157, 74);
-            this.plC_RJ_Button_收支作業_出庫.State = false;
-            this.plC_RJ_Button_收支作業_出庫.TabIndex = 142;
-            this.plC_RJ_Button_收支作業_出庫.Text = "出庫";
-            this.plC_RJ_Button_收支作業_出庫.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_出庫.Texts = "出庫";
-            this.plC_RJ_Button_收支作業_出庫.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_收支作業_出庫.字型鎖住 = false;
-            this.plC_RJ_Button_收支作業_出庫.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_收支作業_出庫.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_收支作業_出庫.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_出庫.讀取位元反向 = false;
-            this.plC_RJ_Button_收支作業_出庫.讀寫鎖住 = false;
-            this.plC_RJ_Button_收支作業_出庫.音效 = true;
-            this.plC_RJ_Button_收支作業_出庫.顯示 = false;
-            this.plC_RJ_Button_收支作業_出庫.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_收支作業_入庫
-            // 
-            this.plC_RJ_Button_收支作業_入庫.AutoResetState = false;
-            this.plC_RJ_Button_收支作業_入庫.BackgroundColor = System.Drawing.Color.DarkSlateBlue;
-            this.plC_RJ_Button_收支作業_入庫.Bool = false;
-            this.plC_RJ_Button_收支作業_入庫.BorderColor = System.Drawing.Color.Turquoise;
-            this.plC_RJ_Button_收支作業_入庫.BorderRadius = 5;
-            this.plC_RJ_Button_收支作業_入庫.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_入庫.but_press = false;
-            this.plC_RJ_Button_收支作業_入庫.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_收支作業_入庫.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_收支作業_入庫.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_收支作業_入庫.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_入庫.GUID = "";
-            this.plC_RJ_Button_收支作業_入庫.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_收支作業_入庫.Location = new System.Drawing.Point(901, 26);
-            this.plC_RJ_Button_收支作業_入庫.Name = "plC_RJ_Button_收支作業_入庫";
-            this.plC_RJ_Button_收支作業_入庫.OFF_文字內容 = "入庫";
-            this.plC_RJ_Button_收支作業_入庫.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_入庫.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_入庫.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_入庫.ON_BorderSize = 5;
-            this.plC_RJ_Button_收支作業_入庫.ON_文字內容 = "入庫";
-            this.plC_RJ_Button_收支作業_入庫.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_收支作業_入庫.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_入庫.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_收支作業_入庫.Size = new System.Drawing.Size(157, 74);
-            this.plC_RJ_Button_收支作業_入庫.State = false;
-            this.plC_RJ_Button_收支作業_入庫.TabIndex = 141;
-            this.plC_RJ_Button_收支作業_入庫.Text = "入庫";
-            this.plC_RJ_Button_收支作業_入庫.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_收支作業_入庫.Texts = "入庫";
-            this.plC_RJ_Button_收支作業_入庫.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_收支作業_入庫.字型鎖住 = false;
-            this.plC_RJ_Button_收支作業_入庫.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_收支作業_入庫.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_收支作業_入庫.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_入庫.讀取位元反向 = false;
-            this.plC_RJ_Button_收支作業_入庫.讀寫鎖住 = false;
-            this.plC_RJ_Button_收支作業_入庫.音效 = true;
-            this.plC_RJ_Button_收支作業_入庫.顯示 = false;
-            this.plC_RJ_Button_收支作業_入庫.顯示狀態 = false;
-            // 
             // rJ_GroupBox4
             // 
             // 
@@ -5233,7 +5400,7 @@
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.columnHeadersHeight = 44;
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.columnHeadersHeight = 23;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Columns"))));
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Columns1"))));
@@ -5347,6 +5514,7 @@
             // 
             // panel208
             // 
+            this.panel208.Controls.Add(this.plC_RJ_Button_交易紀錄查詢_匯出資料);
             this.panel208.Controls.Add(this.plC_RJ_Button_交易記錄查詢_選取資料刪除);
             this.panel208.Controls.Add(this.plC_RJ_Button_交易記錄查詢_顯示全部);
             this.panel208.Controls.Add(this.label_交易紀錄查詢_資料搜尋時間);
@@ -5360,6 +5528,49 @@
             this.panel208.Name = "panel208";
             this.panel208.Size = new System.Drawing.Size(1656, 1006);
             this.panel208.TabIndex = 109;
+            // 
+            // plC_RJ_Button_交易紀錄查詢_匯出資料
+            // 
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.AutoResetState = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.Bool = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.BorderRadius = 5;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.BorderSize = 0;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.but_press = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.GUID = "";
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.Location = new System.Drawing.Point(1335, 866);
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.Name = "plC_RJ_Button_交易紀錄查詢_匯出資料";
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.OFF_文字內容 = "匯出資料";
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.ON_BorderSize = 5;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.ON_文字內容 = "匯出資料";
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.Size = new System.Drawing.Size(201, 109);
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.State = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.TabIndex = 214;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.Text = "匯出資料";
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.Texts = "匯出資料";
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.字型鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.文字鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.讀取位元反向 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.音效 = true;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.顯示 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.顯示狀態 = false;
             // 
             // plC_RJ_Button_交易記錄查詢_選取資料刪除
             // 
@@ -5376,7 +5587,7 @@
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.GUID = "";
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Location = new System.Drawing.Point(1335, 866);
+            this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Location = new System.Drawing.Point(1023, 866);
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Name = "plC_RJ_Button_交易記錄查詢_選取資料刪除";
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.OFF_文字內容 = "選取資料刪除";
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -5387,7 +5598,7 @@
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Size = new System.Drawing.Size(201, 101);
+            this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Size = new System.Drawing.Size(201, 109);
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.State = false;
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.TabIndex = 213;
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Text = "選取資料刪除";
@@ -5409,7 +5620,7 @@
             // plC_RJ_Button_交易記錄查詢_顯示全部
             // 
             this.plC_RJ_Button_交易記錄查詢_顯示全部.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.BorderRadius = 5;
@@ -5418,26 +5629,26 @@
             this.plC_RJ_Button_交易記錄查詢_顯示全部.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_交易記錄查詢_顯示全部.GUID = "";
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Location = new System.Drawing.Point(1542, 695);
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Name = "plC_RJ_Button_交易記錄查詢_顯示全部";
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.OFF_文字內容 = "顯示全部";
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.OFF_文字內容 = "顯示\n全部";
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_交易記錄查詢_顯示全部.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.OFF_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_BorderSize = 5;
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_文字內容 = "顯示全部";
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_文字內容 = "顯示\n全部";
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.Size = new System.Drawing.Size(88, 280);
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.Size = new System.Drawing.Size(106, 280);
             this.plC_RJ_Button_交易記錄查詢_顯示全部.State = false;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.TabIndex = 164;
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.Text = "顯示全部";
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.Text = "顯示\n全部";
             this.plC_RJ_Button_交易記錄查詢_顯示全部.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.Texts = "顯示全部";
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.Texts = "顯示\n全部";
             this.plC_RJ_Button_交易記錄查詢_顯示全部.UseVisualStyleBackColor = false;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.字型鎖住 = false;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
@@ -23421,6 +23632,7 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.plC_CheckBox_單人交班);
             this.tabPage1.Controls.Add(this.plC_CheckBox_領藥無儲位不顯示);
             this.tabPage1.Controls.Add(this.plC_Button_工程模式_全部開鎖);
             this.tabPage1.Controls.Add(this.plC_CheckBox_QRcode_Mode);
@@ -23437,6 +23649,27 @@
             this.tabPage1.Size = new System.Drawing.Size(1648, 862);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "鎖控設定";
+            // 
+            // plC_CheckBox_單人交班
+            // 
+            this.plC_CheckBox_單人交班.AutoSize = true;
+            this.plC_CheckBox_單人交班.Bool = false;
+            this.plC_CheckBox_單人交班.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_單人交班.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_單人交班.Location = new System.Drawing.Point(3, 808);
+            this.plC_CheckBox_單人交班.Name = "plC_CheckBox_單人交班";
+            this.plC_CheckBox_單人交班.Size = new System.Drawing.Size(72, 16);
+            this.plC_CheckBox_單人交班.TabIndex = 128;
+            this.plC_CheckBox_單人交班.Text = "單人交班";
+            this.plC_CheckBox_單人交班.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_單人交班.寫入元件位置 = "S3100";
+            this.plC_CheckBox_單人交班.文字內容 = "單人交班";
+            this.plC_CheckBox_單人交班.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_單人交班.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_單人交班.致能讀取位置 = "S4077";
+            this.plC_CheckBox_單人交班.讀取元件位置 = "S3100";
+            this.plC_CheckBox_單人交班.讀寫鎖住 = false;
+            this.plC_CheckBox_單人交班.音效 = false;
             // 
             // plC_CheckBox_領藥無儲位不顯示
             // 
@@ -26723,8 +26956,6 @@
             this.tabControl3.Controls.Add(this.tabPage12);
             this.tabControl3.Controls.Add(this.tabPage14);
             this.tabControl3.Controls.Add(this.tabPage15);
-            this.tabControl3.Controls.Add(this.tabPage13);
-            this.tabControl3.Controls.Add(this.tabPage19);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(0, 0);
             this.tabControl3.Name = "tabControl3";
@@ -27213,24 +27444,6 @@
             this.sqL_DataGridView_藥品設定表.顯示首行 = true;
             this.sqL_DataGridView_藥品設定表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_藥品設定表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            // 
-            // tabPage13
-            // 
-            this.tabPage13.Location = new System.Drawing.Point(4, 22);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(475, 355);
-            this.tabPage13.TabIndex = 7;
-            this.tabPage13.Text = "收支原因";
-            this.tabPage13.UseVisualStyleBackColor = true;
-            // 
-            // tabPage19
-            // 
-            this.tabPage19.Location = new System.Drawing.Point(4, 22);
-            this.tabPage19.Name = "tabPage19";
-            this.tabPage19.Size = new System.Drawing.Size(475, 355);
-            this.tabPage19.TabIndex = 8;
-            this.tabPage19.Text = "設備列表";
-            this.tabPage19.UseVisualStyleBackColor = true;
             // 
             // tabPage8
             // 
@@ -30971,7 +31184,7 @@
             this.plC_RJ_ScreenButton_工程模式.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_工程模式.IconChar = FontAwesome.Sharp.IconChar.Wrench;
             this.plC_RJ_ScreenButton_工程模式.IconSize = 32;
-            this.plC_RJ_ScreenButton_工程模式.Location = new System.Drawing.Point(0, 550);
+            this.plC_RJ_ScreenButton_工程模式.Location = new System.Drawing.Point(0, 660);
             this.plC_RJ_ScreenButton_工程模式.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_工程模式.Name = "plC_RJ_ScreenButton_工程模式";
             this.plC_RJ_ScreenButton_工程模式.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -30985,7 +31198,7 @@
             this.plC_RJ_ScreenButton_工程模式.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_工程模式.OnText = "工程模式";
             this.plC_RJ_ScreenButton_工程模式.ShowIcon = true;
-            this.plC_RJ_ScreenButton_工程模式.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_工程模式.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_工程模式.TabIndex = 144;
             this.plC_RJ_ScreenButton_工程模式.Visible = false;
             this.plC_RJ_ScreenButton_工程模式.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31011,7 +31224,7 @@
             this.plC_RJ_ScreenButton_盤點作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_盤點作業.IconChar = FontAwesome.Sharp.IconChar.Barcode;
             this.plC_RJ_ScreenButton_盤點作業.IconSize = 32;
-            this.plC_RJ_ScreenButton_盤點作業.Location = new System.Drawing.Point(0, 500);
+            this.plC_RJ_ScreenButton_盤點作業.Location = new System.Drawing.Point(0, 600);
             this.plC_RJ_ScreenButton_盤點作業.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_盤點作業.Name = "plC_RJ_ScreenButton_盤點作業";
             this.plC_RJ_ScreenButton_盤點作業.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31025,7 +31238,7 @@
             this.plC_RJ_ScreenButton_盤點作業.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_盤點作業.OnText = "盤點作業";
             this.plC_RJ_ScreenButton_盤點作業.ShowIcon = true;
-            this.plC_RJ_ScreenButton_盤點作業.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_盤點作業.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_盤點作業.TabIndex = 143;
             this.plC_RJ_ScreenButton_盤點作業.Visible = false;
             this.plC_RJ_ScreenButton_盤點作業.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31051,7 +31264,7 @@
             this.plC_RJ_ScreenButton_儲位管理.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_儲位管理.IconChar = FontAwesome.Sharp.IconChar.SolarPanel;
             this.plC_RJ_ScreenButton_儲位管理.IconSize = 32;
-            this.plC_RJ_ScreenButton_儲位管理.Location = new System.Drawing.Point(0, 450);
+            this.plC_RJ_ScreenButton_儲位管理.Location = new System.Drawing.Point(0, 540);
             this.plC_RJ_ScreenButton_儲位管理.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_儲位管理.Name = "plC_RJ_ScreenButton_儲位管理";
             this.plC_RJ_ScreenButton_儲位管理.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31065,7 +31278,7 @@
             this.plC_RJ_ScreenButton_儲位管理.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_儲位管理.OnText = "儲位管理";
             this.plC_RJ_ScreenButton_儲位管理.ShowIcon = true;
-            this.plC_RJ_ScreenButton_儲位管理.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_儲位管理.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_儲位管理.TabIndex = 142;
             this.plC_RJ_ScreenButton_儲位管理.Visible = false;
             this.plC_RJ_ScreenButton_儲位管理.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31091,7 +31304,7 @@
             this.plC_RJ_ScreenButton_人員資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_人員資料.IconChar = FontAwesome.Sharp.IconChar.AddressCard;
             this.plC_RJ_ScreenButton_人員資料.IconSize = 32;
-            this.plC_RJ_ScreenButton_人員資料.Location = new System.Drawing.Point(0, 400);
+            this.plC_RJ_ScreenButton_人員資料.Location = new System.Drawing.Point(0, 480);
             this.plC_RJ_ScreenButton_人員資料.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_人員資料.Name = "plC_RJ_ScreenButton_人員資料";
             this.plC_RJ_ScreenButton_人員資料.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31105,7 +31318,7 @@
             this.plC_RJ_ScreenButton_人員資料.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_人員資料.OnText = "人員資料";
             this.plC_RJ_ScreenButton_人員資料.ShowIcon = true;
-            this.plC_RJ_ScreenButton_人員資料.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_人員資料.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_人員資料.TabIndex = 141;
             this.plC_RJ_ScreenButton_人員資料.Visible = false;
             this.plC_RJ_ScreenButton_人員資料.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31131,7 +31344,7 @@
             this.plC_RJ_ScreenButton_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_藥品資料.IconChar = FontAwesome.Sharp.IconChar.FileMedical;
             this.plC_RJ_ScreenButton_藥品資料.IconSize = 32;
-            this.plC_RJ_ScreenButton_藥品資料.Location = new System.Drawing.Point(0, 350);
+            this.plC_RJ_ScreenButton_藥品資料.Location = new System.Drawing.Point(0, 420);
             this.plC_RJ_ScreenButton_藥品資料.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_藥品資料.Name = "plC_RJ_ScreenButton_藥品資料";
             this.plC_RJ_ScreenButton_藥品資料.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31145,7 +31358,7 @@
             this.plC_RJ_ScreenButton_藥品資料.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_藥品資料.OnText = "藥品資料";
             this.plC_RJ_ScreenButton_藥品資料.ShowIcon = true;
-            this.plC_RJ_ScreenButton_藥品資料.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_藥品資料.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_藥品資料.TabIndex = 140;
             this.plC_RJ_ScreenButton_藥品資料.Visible = false;
             this.plC_RJ_ScreenButton_藥品資料.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31171,7 +31384,7 @@
             this.plC_RJ_ScreenButton_醫囑資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_醫囑資料.IconChar = FontAwesome.Sharp.IconChar.FileMedicalAlt;
             this.plC_RJ_ScreenButton_醫囑資料.IconSize = 32;
-            this.plC_RJ_ScreenButton_醫囑資料.Location = new System.Drawing.Point(0, 300);
+            this.plC_RJ_ScreenButton_醫囑資料.Location = new System.Drawing.Point(0, 360);
             this.plC_RJ_ScreenButton_醫囑資料.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_醫囑資料.Name = "plC_RJ_ScreenButton_醫囑資料";
             this.plC_RJ_ScreenButton_醫囑資料.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31185,7 +31398,7 @@
             this.plC_RJ_ScreenButton_醫囑資料.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_醫囑資料.OnText = "醫囑資料";
             this.plC_RJ_ScreenButton_醫囑資料.ShowIcon = true;
-            this.plC_RJ_ScreenButton_醫囑資料.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_醫囑資料.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_醫囑資料.TabIndex = 139;
             this.plC_RJ_ScreenButton_醫囑資料.Visible = false;
             this.plC_RJ_ScreenButton_醫囑資料.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31211,7 +31424,7 @@
             this.plC_RJ_ScreenButton_交易紀錄查詢.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_交易紀錄查詢.IconChar = FontAwesome.Sharp.IconChar.CalendarAlt;
             this.plC_RJ_ScreenButton_交易紀錄查詢.IconSize = 32;
-            this.plC_RJ_ScreenButton_交易紀錄查詢.Location = new System.Drawing.Point(0, 250);
+            this.plC_RJ_ScreenButton_交易紀錄查詢.Location = new System.Drawing.Point(0, 300);
             this.plC_RJ_ScreenButton_交易紀錄查詢.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_交易紀錄查詢.Name = "plC_RJ_ScreenButton_交易紀錄查詢";
             this.plC_RJ_ScreenButton_交易紀錄查詢.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31225,7 +31438,7 @@
             this.plC_RJ_ScreenButton_交易紀錄查詢.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_交易紀錄查詢.OnText = "交易記錄查詢";
             this.plC_RJ_ScreenButton_交易紀錄查詢.ShowIcon = true;
-            this.plC_RJ_ScreenButton_交易紀錄查詢.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_交易紀錄查詢.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_交易紀錄查詢.TabIndex = 138;
             this.plC_RJ_ScreenButton_交易紀錄查詢.Visible = false;
             this.plC_RJ_ScreenButton_交易紀錄查詢.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31251,7 +31464,7 @@
             this.plC_RJ_ScreenButton_收支作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_收支作業.IconChar = FontAwesome.Sharp.IconChar.Cube;
             this.plC_RJ_ScreenButton_收支作業.IconSize = 32;
-            this.plC_RJ_ScreenButton_收支作業.Location = new System.Drawing.Point(0, 200);
+            this.plC_RJ_ScreenButton_收支作業.Location = new System.Drawing.Point(0, 240);
             this.plC_RJ_ScreenButton_收支作業.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_收支作業.Name = "plC_RJ_ScreenButton_收支作業";
             this.plC_RJ_ScreenButton_收支作業.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31265,7 +31478,7 @@
             this.plC_RJ_ScreenButton_收支作業.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_收支作業.OnText = "收支作業";
             this.plC_RJ_ScreenButton_收支作業.ShowIcon = true;
-            this.plC_RJ_ScreenButton_收支作業.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_收支作業.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_收支作業.TabIndex = 137;
             this.plC_RJ_ScreenButton_收支作業.Visible = false;
             this.plC_RJ_ScreenButton_收支作業.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31291,7 +31504,7 @@
             this.plC_RJ_ScreenButton_交班作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_交班作業.IconChar = FontAwesome.Sharp.IconChar.UserFriends;
             this.plC_RJ_ScreenButton_交班作業.IconSize = 32;
-            this.plC_RJ_ScreenButton_交班作業.Location = new System.Drawing.Point(0, 150);
+            this.plC_RJ_ScreenButton_交班作業.Location = new System.Drawing.Point(0, 180);
             this.plC_RJ_ScreenButton_交班作業.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_交班作業.Name = "plC_RJ_ScreenButton_交班作業";
             this.plC_RJ_ScreenButton_交班作業.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31305,7 +31518,7 @@
             this.plC_RJ_ScreenButton_交班作業.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_交班作業.OnText = "交班作業";
             this.plC_RJ_ScreenButton_交班作業.ShowIcon = true;
-            this.plC_RJ_ScreenButton_交班作業.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_交班作業.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_交班作業.TabIndex = 136;
             this.plC_RJ_ScreenButton_交班作業.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
             this.plC_RJ_ScreenButton_交班作業.寫入位置註解 = "";
@@ -31330,7 +31543,7 @@
             this.plC_RJ_ScreenButton_後台登入.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_後台登入.IconChar = FontAwesome.Sharp.IconChar.SignInAlt;
             this.plC_RJ_ScreenButton_後台登入.IconSize = 32;
-            this.plC_RJ_ScreenButton_後台登入.Location = new System.Drawing.Point(0, 100);
+            this.plC_RJ_ScreenButton_後台登入.Location = new System.Drawing.Point(0, 120);
             this.plC_RJ_ScreenButton_後台登入.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_後台登入.Name = "plC_RJ_ScreenButton_後台登入";
             this.plC_RJ_ScreenButton_後台登入.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31344,7 +31557,7 @@
             this.plC_RJ_ScreenButton_後台登入.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_後台登入.OnText = "後台登入";
             this.plC_RJ_ScreenButton_後台登入.ShowIcon = true;
-            this.plC_RJ_ScreenButton_後台登入.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_後台登入.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_後台登入.TabIndex = 135;
             this.plC_RJ_ScreenButton_後台登入.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
             this.plC_RJ_ScreenButton_後台登入.寫入位置註解 = "";
@@ -31369,7 +31582,7 @@
             this.plC_RJ_ScreenButton_管制抽屜.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_管制抽屜.IconChar = FontAwesome.Sharp.IconChar.Lock;
             this.plC_RJ_ScreenButton_管制抽屜.IconSize = 32;
-            this.plC_RJ_ScreenButton_管制抽屜.Location = new System.Drawing.Point(0, 50);
+            this.plC_RJ_ScreenButton_管制抽屜.Location = new System.Drawing.Point(0, 60);
             this.plC_RJ_ScreenButton_管制抽屜.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_管制抽屜.Name = "plC_RJ_ScreenButton_管制抽屜";
             this.plC_RJ_ScreenButton_管制抽屜.OffBackColor = System.Drawing.Color.SkyBlue;
@@ -31383,7 +31596,7 @@
             this.plC_RJ_ScreenButton_管制抽屜.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_管制抽屜.OnText = "管制抽屜";
             this.plC_RJ_ScreenButton_管制抽屜.ShowIcon = true;
-            this.plC_RJ_ScreenButton_管制抽屜.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_管制抽屜.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_管制抽屜.TabIndex = 134;
             this.plC_RJ_ScreenButton_管制抽屜.Visible = false;
             this.plC_RJ_ScreenButton_管制抽屜.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31463,7 +31676,7 @@
             this.plC_RJ_ScreenButton_調劑作業.OnIconColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_ScreenButton_調劑作業.OnText = "調劑作業";
             this.plC_RJ_ScreenButton_調劑作業.ShowIcon = true;
-            this.plC_RJ_ScreenButton_調劑作業.Size = new System.Drawing.Size(240, 50);
+            this.plC_RJ_ScreenButton_調劑作業.Size = new System.Drawing.Size(240, 60);
             this.plC_RJ_ScreenButton_調劑作業.TabIndex = 94;
             this.plC_RJ_ScreenButton_調劑作業.Visible = false;
             this.plC_RJ_ScreenButton_調劑作業.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
@@ -31751,6 +31964,8 @@
             this.plC_ScreenPage_交班作業.ResumeLayout(false);
             this.tabPage16.ResumeLayout(false);
             this.panel71.ResumeLayout(false);
+            this.plC_RJ_Pannel2.ResumeLayout(false);
+            this.plC_RJ_Pannel_被交接人.ResumeLayout(false);
             this.panel74.ResumeLayout(false);
             this.rJ_Pannel9.ResumeLayout(false);
             this.panel73.ResumeLayout(false);
@@ -31763,6 +31978,8 @@
             this.收支作業.ResumeLayout(false);
             this.plC_ScreenPage_收支作業.ResumeLayout(false);
             this.tabPage21.ResumeLayout(false);
+            this.plC_RJ_GroupBox26.ContentsPanel.ResumeLayout(false);
+            this.plC_RJ_GroupBox26.ResumeLayout(false);
             this.rJ_GroupBox8.ContentsPanel.ResumeLayout(false);
             this.rJ_GroupBox8.ResumeLayout(false);
             this.rJ_GroupBox4.ContentsPanel.ResumeLayout(false);
@@ -33323,8 +33540,14 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_選擇儲位;
         private MyUI.RJ_Pannel ContentsPanel;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_設定;
-        private System.Windows.Forms.TabPage tabPage13;
-        private System.Windows.Forms.TabPage tabPage19;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交易紀錄查詢_匯出資料;
+        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox26;
+        private MyUI.PLC_CheckBox plC_CheckBox_單人交班;
+        private MyUI.PLC_RJ_Pannel plC_RJ_Pannel_被交接人;
+        private MyUI.PLC_RJ_Pannel plC_RJ_Pannel2;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_對點作業_測試登入;
+        private MyUI.RJ_Lable rJ_Lable131;
+        internal MyUI.RJ_TextBox rJ_TextBox_交班作業_對點作業_測試UID;
     }
 }
 

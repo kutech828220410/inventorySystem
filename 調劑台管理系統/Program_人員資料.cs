@@ -516,6 +516,7 @@ namespace 調劑台管理系統
                     string temp = pLC_CheckBox.Text.Split(' ')[0];
                     temp = temp.Replace("[", "");
                     temp = temp.Replace("]", "");
+                    if (temp.Split(':').Length < 2) continue;
                     string IP = temp.Split(':')[0];
                     IP = $"192.168.{IP}";
                     string Num = temp.Split(':')[1];

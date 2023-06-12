@@ -90,8 +90,11 @@ namespace HIS_DB_Lib
         public string 操作時間 { get; set; }
         [JsonPropertyName("RX_TIME")]
         public string 開方時間 { get; set; }
+        [JsonPropertyName("RSN")]
+        public string 收支原因 { get; set; }
         [JsonPropertyName("NOTE")]
         public string 備註 { get; set; }
+
 
         static public object[] ClassToSQL(transactionsClass _class)
         {
@@ -114,6 +117,7 @@ namespace HIS_DB_Lib
             value[(int)enum_交易記錄查詢資料.操作時間] = _class.操作時間;
             value[(int)enum_交易記錄查詢資料.開方時間] = _class.開方時間;
             value[(int)enum_交易記錄查詢資料.備註] = _class.備註;
+            value[(int)enum_交易記錄查詢資料.收支原因] = _class.收支原因;
             return value;
         }
         static public transactionsClass SQLToClass(object[] value)
@@ -136,6 +140,7 @@ namespace HIS_DB_Lib
             _class.操作時間 = value[(int)enum_交易記錄查詢資料.操作時間].ToDateTimeString();
             _class.開方時間 = value[(int)enum_交易記錄查詢資料.開方時間].ToDateTimeString();
             _class.備註 = value[(int)enum_交易記錄查詢資料.備註].ObjectToString();
+            _class.收支原因 = value[(int)enum_交易記錄查詢資料.收支原因].ObjectToString();
 
             return _class;
         }
@@ -163,6 +168,7 @@ namespace HIS_DB_Lib
                 _class.病歷號 = value[(int)enum_交易記錄查詢資料.病歷號].ObjectToString();
                 _class.操作時間 = value[(int)enum_交易記錄查詢資料.操作時間].ToDateTimeString();
                 _class.開方時間 = value[(int)enum_交易記錄查詢資料.開方時間].ToDateTimeString();
+                _class.收支原因 = value[(int)enum_交易記錄查詢資料.收支原因].ObjectToString();
                 _class.備註 = value[(int)enum_交易記錄查詢資料.備註].ObjectToString();
                 transactionsClasses.Add(_class);
             }

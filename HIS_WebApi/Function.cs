@@ -4,19 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Collections.Concurrent;
+using System.Threading;
 namespace HIS_WebApi
 {
 
-   static class Method
+    static class Method
     {
 
-        static public void  GetLocalUrl()
+
+    }
+
+    public class QueueManager
+    {
+        private static readonly ConcurrentDictionary<string, SemaphoreSlim> UrlLocks = new ConcurrentDictionary<string, SemaphoreSlim>();
+
+        public static void ProcessRequest(string url, Action action)
         {
-            //var localIpAddress = HttpContext.Connection.LocalIpAddress?.ToString();
-            //var localPort = HttpContext.Connection.LocalPort;
-            //var protocol = HttpContext.Request.IsHttps ? "https" : "http";
-            //return $"{protocol}://{localIpAddress}:{localPort}";
+            SemaphoreSlim urlLock = UrlLocks.GetOrAdd(url, _ => new SemaphoreSlim(1, 1));
+
+            urlLock.Wait(); // 请求锁定
+
+            try
+            {
+                action.Invoke();
+            }
+            finally
+            {
+                urlLock.Release(); // 释放锁定
+            }
         }
     }
 }

@@ -19,13 +19,16 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
-
+using H_Pannel_lib;
 namespace HIS_WebApi
 {
     public class Startup
     {
+        public static H_Pannel_lib.UDP_Class uDP_Class;
+
         public Startup(IConfiguration configuration)
         {
+            uDP_Class = new UDP_Class("0.0.0.0", 29500);
             Configuration = configuration;
         }
 

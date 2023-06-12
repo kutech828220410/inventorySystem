@@ -297,7 +297,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("無資料可列印");
                 return;
             }
-            if (printerClass.ShowPreviewDialog(sheetClass, MyPrinterlib.PrinterClass.PageSize.A4) == DialogResult.OK)
+            if (printerClass.ShowPreviewDialog(sheetClass, MyPrinterlib.PrinterClass.PageSize.A4_reverse) == DialogResult.OK)
             {
 
             }

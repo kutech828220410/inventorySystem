@@ -27,6 +27,8 @@ namespace 調劑台管理系統
             plC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡.MouseDownEvent += PlC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡_MouseDownEvent;
             plC_RJ_Button_交班作業_對點作業_開始交班.MouseDownEvent += PlC_RJ_Button_交班作業_對點作業_開始交班_MouseDownEvent;
             plC_RJ_Button_交班作業_對點作業_取消作業.MouseDownEvent += PlC_RJ_Button_交班作業_對點作業_取消作業_MouseDownEvent;
+            
+
             this.plC_UI_Init.Add_Method(sub_Program_交班作業_對點作業);
         }
 
@@ -35,10 +37,15 @@ namespace 調劑台管理系統
         bool flag_人交班作業_對點作業_頁面更新 = false;
         private void sub_Program_交班作業_對點作業()
         {
-            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "管制結存")
+            if (this.plC_ScreenPage_Main.PageText == "交班作業")
             {
                 if(!flag_人交班作業_對點作業_頁面更新)
                 {
+                    this.Invoke(new Action(delegate 
+                    {
+                        plC_RJ_Pannel_被交接人.Visible = !this.plC_CheckBox_單人交班.Bool;
+                    }));
+                   
                     this.PlC_RJ_Button_交班作業_對點作業_取消作業_MouseDownEvent(null);
                 }
                 flag_人交班作業_對點作業_頁面更新 = true;
@@ -60,7 +67,7 @@ namespace 調劑台管理系統
         int cnt_Program_當班交接人_感應刷卡 = 65534;
         void sub_Program_當班交接人_感應刷卡()
         {
-            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "管制結存") PLC_Device_當班交接人_感應刷卡.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "對點作業") PLC_Device_當班交接人_感應刷卡.Bool = true;
             if (cnt_Program_當班交接人_感應刷卡 == 65534)
             {
                 this.MyTimer_當班交接人_感應刷卡_結束延遲.StartTickTime(100);
@@ -127,7 +134,7 @@ namespace 調劑台管理系統
         int cnt_Program_被交接人_感應刷卡 = 65534;
         void sub_Program_被交接人_感應刷卡()
         {
-            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "管制結存") PLC_Device_被交接人_感應刷卡.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "對點作業") PLC_Device_被交接人_感應刷卡.Bool = true;
             if (cnt_Program_被交接人_感應刷卡 == 65534)
             {
                 this.MyTimer_被交接人_感應刷卡_結束延遲.StartTickTime(100);
@@ -194,7 +201,7 @@ namespace 調劑台管理系統
         int cnt_Program_開始交班 = 65534;
         void sub_Program_開始交班()
         {
-            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "管制結存") PLC_Device_開始交班.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "交班作業" && this.plC_ScreenPage_交班作業.PageText == "對點作業") PLC_Device_開始交班.Bool = true;
             if (cnt_Program_開始交班 == 65534)
             {
                 this.MyTimer_開始交班_結束延遲.StartTickTime(100);
@@ -271,6 +278,11 @@ namespace 調劑台管理系統
             if (rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text != "等待登入") return;
             string UID_01 = this.rfiD_FX600_UI.Get_RFID_UID(this.領藥台_01_RFID站號);
             string UID_02 = this.rfiD_FX600_UI.Get_RFID_UID(this.領藥台_02_RFID站號);
+            if(plC_RJ_Button_交班作業_對點作業_測試登入.Bool)
+            {
+                UID_01 = this.rJ_TextBox_交班作業_對點作業_測試UID.Text;
+                plC_RJ_Button_交班作業_對點作業_測試登入.Bool = false;
+            }
             if (!UID_01.StringIsEmpty() && UID_01.StringToInt32() != 0)
             {
                 Console.WriteLine($"成功讀取RFID  {UID_01}");
@@ -371,6 +383,7 @@ namespace 調劑台管理系統
                     rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
                     plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
                     plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
+
                 }));
             }
         }
@@ -511,7 +524,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_交班作業_對點作業_開始交班_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text == "登入成功" && rJ_Lable_交班作業_對點作業_被交接人_狀態.Text == "登入成功")
+            if (rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text == "登入成功" && (rJ_Lable_交班作業_對點作業_被交接人_狀態.Text == "登入成功" || this.plC_CheckBox_單人交班.Bool))
             {
                 this.Invoke(new Action(delegate
                 {
@@ -537,7 +550,7 @@ namespace 調劑台管理系統
             {
                 if (MyMessageBox.ShowDialog("確認交班,彈開所有抽屜?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
                 Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_當班交接人_ID.Text}],當班交接人");
-                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_被交接人_ID.Text}],被交接人");
+                if(!this.plC_CheckBox_單人交班.Bool)Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_被交接人_ID.Text}],被交接人");
                 List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
                 for (int i = 0; i < list_locker_table_value.Count; i++)
                 {

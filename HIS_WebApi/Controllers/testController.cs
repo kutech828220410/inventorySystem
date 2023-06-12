@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SQLUI;
 using Basic;
+using System.Text;
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
@@ -18,6 +19,8 @@ using NPOI;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HIS_DB_Lib;
+using H_Pannel_lib;
+using System.Drawing;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -90,6 +93,67 @@ namespace HIS_WebApi
 
             DateTime dateTime = System.IO.File.GetLastWriteTime(@"C:\itinvd0304.txt");
             return dateTime.ToDateTimeString();
+        }
+
+        [Route("udp_ON")]
+        [HttpGet]
+        public string GET_udp_ON()
+        {
+            try
+            {
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, "192.168.10.162", 0, Get_Pannel_LEDBytes(Color.Red));
+            }
+            catch(Exception e)
+            {
+                return e.Message;
+                             
+            }
+            finally
+            {
+        
+
+            }
+
+
+            return "OK";
+        }
+        [Route("udp_OFF")]
+        [HttpGet]
+        public StatusCodeResult GET_udp_OFF()
+        {
+            try
+            {
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, "192.168.10.162", 0, Get_Pannel_LEDBytes(Color.Black));
+            
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+
+            }
+
+
+            return Ok();
+        }
+
+        static public byte[] Get_Pannel_LEDBytes(Color color)
+        {
+            byte[] LED_Bytes = new byte[10 * 3];
+
+            for (int i = 0; i < 10; i++)
+            {
+                LED_Bytes[i * 3 + 0] = color.R;
+                LED_Bytes[i * 3 + 1] = color.G;
+                LED_Bytes[i * 3 + 2] = color.B;
+            }
+
+            return LED_Bytes;
         }
     }
 

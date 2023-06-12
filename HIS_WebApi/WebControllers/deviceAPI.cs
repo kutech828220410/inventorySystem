@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SQLUI;
 using Basic;
+using System.Drawing;
+using System.Text;
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
@@ -34,20 +36,51 @@ namespace HIS_WebApi
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
-        [Route("getall")]
+        [Route("test")]
         [HttpGet]
-        public string GET_device_get()
+        public string GET_test(string Code)
         {
+            if (Code.StringIsEmpty()) return null;
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+
+            List<DeviceBasic> deviceBasics = Function_Get_device(device_Server, device_DB, device_TableName);
+            List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
+            deviceBasics_buf = deviceBasics.SortByCode($"{Code}");
+            for (int i = 0; i < deviceBasics_buf.Count; i++)
+            {
+                DeviceType deviceType = deviceBasics_buf[i].DeviceType;
+                if (deviceType == DeviceType.EPD290 || deviceType == DeviceType.EPD290_lock)
+                {
+                    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                    H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, deviceBasics_buf[i].IP, 0, Get_EPD290_LEDBytes(Color.Red));
+                }
+            }
+            returnData returnData = new returnData();
+            returnData.Code = 200;
+            returnData.Result = $"Device取得成功!TableName : {device_TableName}";
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Data = deviceBasics_buf;
+            return returnData.JsonSerializationt(true);
+        }
+
+        [Route("all")]
+        [HttpGet]
+        public string GET_all()
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
             returnData returnData = new returnData();
             List<DeviceBasic> deviceBasics = Function_Get_device(device_Server, device_DB, device_TableName);
             returnData.Code = 200;
-            returnData.Value = $"Device取得成功!TableName : {device_TableName}";
+            returnData.Result = $"Device取得成功!TableName : {device_TableName}";
+            returnData.TimeTaken = myTimer.ToString();
             returnData.Data = deviceBasics;
             return returnData.JsonSerializationt(true);
         }
-        [Route("getall")]
+        [Route("all")]
         [HttpPost]
-        public string POST_device_get(returnData returnData)
+        public string POST_all(returnData returnData)
         {
             try
             {
@@ -55,7 +88,7 @@ namespace HIS_WebApi
 
                 List<DeviceBasic> deviceBasics = Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName);
                 returnData.Code = 200;
-                returnData.Value = $"Device取得成功!TableName : {device_TableName}";
+                returnData.Result = $"Device取得成功!TableName : {device_TableName}";
                 returnData.Data = deviceBasics;
                 return returnData.JsonSerializationt();
             }
@@ -68,6 +101,54 @@ namespace HIS_WebApi
 
 
         }
+
+        [Route("light")]
+        [HttpPost]
+        public string POST_light(returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "light";
+            try
+            {
+              
+                Color color = returnData.Value.ToColor();
+                string json_in = returnData.Data.JsonSerializationt();
+                List<DeviceBasic> deviceBasics = json_in.JsonDeserializet<List<DeviceBasic>>();
+                for (int i = 0; i < deviceBasics.Count; i++)
+                {
+                    DeviceType deviceType = deviceBasics[i].DeviceType;
+                    if (deviceType == DeviceType.EPD290 || deviceType == DeviceType.EPD290_lock)
+                    {
+                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                        H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, deviceBasics[i].IP, 0, Get_EPD290_LEDBytes(color));
+                    }
+                    if (deviceType == DeviceType.EPD266 || deviceType == DeviceType.EPD266_lock)
+                    {
+                        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                        H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, deviceBasics[i].IP, 0, Get_EPD266_LEDBytes(color));
+                    }
+                }
+                returnData.Code = 200;
+                returnData.Result = $"設備亮燈完成!";
+                returnData.TimeTaken = myTimer.ToString();
+                return returnData.JsonSerializationt();
+
+            }
+            catch(Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                returnData.TimeTaken = myTimer.ToString();
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+
+
         public List<DeviceBasic> Function_Get_device()
         {
             return Function_Get_device(device_Server, device_DB, device_TableName);
@@ -100,10 +181,29 @@ namespace HIS_WebApi
             SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_RowsLED_serialize = new SQLControl(IP, DBName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_RFID_Device_serialize = new SQLControl(IP, DBName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
-            List<object[]> list_EPD583 = sQLControl_EPD583_serialize.GetAllRows(null);
-            List<object[]> list_EPD266 = sQLControl_EPD266_serialize.GetAllRows(null);
-            List<object[]> list_RowsLED = sQLControl_RowsLED_serialize.GetAllRows(null);
-            List<object[]> list_RFID_Device = sQLControl_RFID_Device_serialize.GetAllRows(null);
+            List<object[]> list_EPD583 = new List<object[]>();
+            List<object[]> list_EPD266 = new List<object[]>();
+            List<object[]> list_RowsLED = new List<object[]>();
+            List<object[]> list_RFID_Device = new List<object[]>();
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task.Run(() =>
+            {
+                list_EPD583 = sQLControl_EPD583_serialize.GetAllRows(null);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+               list_EPD266 = sQLControl_EPD266_serialize.GetAllRows(null);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+               list_RowsLED = sQLControl_RowsLED_serialize.GetAllRows(null);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+               list_RFID_Device = sQLControl_RFID_Device_serialize.GetAllRows(null);
+            }));
+            Task allTask = Task.WhenAll(taskList);
+            allTask.Wait();
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
             List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
             deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD583));
@@ -115,6 +215,31 @@ namespace HIS_WebApi
                                 select value).ToList();
 
             return deviceBasics_buf;
+        }
+
+        static public byte[] Get_EPD290_LEDBytes(Color color)
+        {
+            byte[] LED_Bytes = new byte[10 * 3];
+
+            for (int i = 0; i < 10; i++)
+            {
+                LED_Bytes[i * 3 + 0] = color.R;
+                LED_Bytes[i * 3 + 1] = color.G;
+                LED_Bytes[i * 3 + 2] = color.B;
+            }
+            return LED_Bytes;
+        }
+        static public byte[] Get_EPD266_LEDBytes(Color color)
+        {
+            byte[] LED_Bytes = new byte[10 * 3];
+
+            for (int i = 0; i < 10; i++)
+            {
+                LED_Bytes[i * 3 + 0] = color.R;
+                LED_Bytes[i * 3 + 1] = color.G;
+                LED_Bytes[i * 3 + 2] = color.B;
+            }
+            return LED_Bytes;
         }
     }
 }

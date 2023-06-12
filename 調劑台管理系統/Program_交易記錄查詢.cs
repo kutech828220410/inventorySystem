@@ -18,7 +18,26 @@ namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
-       
+        public enum enum_交易記錄查詢資料_匯出
+        {
+            動作,
+            藥品碼,
+            藥品名稱,
+            藥袋序號,
+            類別,
+            庫存量,
+            交易量,
+            結存量,
+            盤點量,
+            操作人,
+            病人姓名,
+            床號,
+            病歷號,
+            操作時間,
+            開方時間,
+            收支原因,
+            備註,
+        }
         private void Program_交易記錄查詢_Init()
         {
             this.sqL_DataGridView_交易記錄查詢.Init();
@@ -35,12 +54,12 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_交易記錄查詢.DataGridRowsChangeRefEvent += SqL_DataGridView_交易記錄查詢_DataGridRowsChangeRefEvent;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_顯示全部_MouseDownEvent;
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_選取資料刪除_MouseDownEvent;
-
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_匯出資料_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(this.sub_Program_交易記錄查詢);
         }
 
- 
+    
 
         private void sub_Program_交易記錄查詢()
         {
@@ -87,6 +106,30 @@ namespace 調劑台管理系統
 
 
         #region Event
+        private void PlC_RJ_Button_交易紀錄查詢_匯出資料_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate 
+            {
+                if (this.saveFileDialog_SaveExcel.ShowDialog() == DialogResult.OK)
+                {
+                    DataTable datatable = new DataTable();
+                    datatable = sqL_DataGridView_交易記錄查詢.GetDataTable();
+                    datatable = datatable.ReorderTable(new enum_交易記錄查詢資料_匯出());
+                    string Extension = System.IO.Path.GetExtension(this.saveFileDialog_SaveExcel.FileName);
+                    if (Extension == ".txt")
+                    {
+                        CSVHelper.SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
+                    else if (Extension == ".xls")
+                    {
+                        MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName, (int)enum_交易記錄查詢資料.庫存量, (int)enum_交易記錄查詢資料.盤點量, (int)enum_交易記錄查詢資料.交易量, (int)enum_交易記錄查詢資料.結存量);
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
+                }
+            }));
+         
+        }
         private void PlC_RJ_Button_交易記錄查詢_選取資料刪除_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.Get_All_Checked_RowsValues();

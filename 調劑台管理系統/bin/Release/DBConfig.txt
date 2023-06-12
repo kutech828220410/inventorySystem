@@ -4,7 +4,7 @@
     "IP": "220.135.128.247",
     "UserName": "user",
     "Password": "66437068",
-    "Port": 3306,
+    "Port": 3308,
     "MySqlSslMode": 0,
     "TableName": ""
   },
@@ -13,7 +13,7 @@
     "IP": "220.135.128.247",
     "UserName": "user",
     "Password": "66437068",
-    "Port": 3306,
+    "Port": 3308,
     "MySqlSslMode": 0,
     "TableName": ""
   },
@@ -22,7 +22,7 @@
     "IP": "220.135.128.247",
     "UserName": "user",
     "Password": "66437068",
-    "Port": 3306,
+    "Port": 3308,
     "MySqlSslMode": 0,
     "TableName": ""
   },
@@ -31,7 +31,7 @@
     "IP": "220.135.128.247",
     "UserName": "user",
     "Password": "66437068",
-    "Port": 3306,
+    "Port": 3308,
     "MySqlSslMode": 0,
     "TableName": ""
   },
@@ -39,9 +39,9 @@
   "MedApiURL": "",
   "Med_Update_ApiURL": "",
   "Inspection_ApiURL": "",
-  "Inventory_ApiURL": "http://220.135.128.247:4433/api/inventory",
-  "Transactions_ApiURL": "http://220.135.128.247:4433/api/transactions",
+  "Inventory_ApiURL": "http://220.135.128.247:4436/api/inventory",
+  "Transactions_ApiURL": "http://220.135.128.247:4436/api/transactions",
   "Basic_Server": "220.135.128.247",
   "VM_Server": "220.135.128.247",
-  "Api_URL": "http://220.135.128.247:4435"
+  "Api_URL": "http://220.135.128.247:4436"
 }
