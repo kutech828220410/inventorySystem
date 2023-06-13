@@ -39,9 +39,9 @@
   "MedApiURL": "",
   "Med_Update_ApiURL": "",
   "Inspection_ApiURL": "",
-  "Inventory_ApiURL": "http://220.135.128.247:4436/api/inventory",
-  "Transactions_ApiURL": "http://220.135.128.247:4436/api/transactions",
+  "Inventory_ApiURL": "http://220.135.128.247:4435/api/inventory",
+  "Transactions_ApiURL": "http://220.135.128.247:4435/api/transactions",
   "Basic_Server": "220.135.128.247",
   "VM_Server": "220.135.128.247",
-  "Api_URL": "http://220.135.128.247:4436"
+  "Api_URL": "http://220.135.128.247:4435"
 }

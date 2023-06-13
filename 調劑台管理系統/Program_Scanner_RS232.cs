@@ -131,6 +131,7 @@ namespace 調劑台管理系統
 
                 if (!plC_RJ_Button_掃碼測試.Bool) text = this.MySerialPort_Scanner01.ReadString();
                 else text = "1;T221212947;0024;1974-01-24;賴姿尹;AC57779100;1       ;BID     ;PO ;0056;197159;2023-06-06;12;1117;08243;1324;\r\n";
+                text = text.Replace("\0", "");
                 Console.WriteLine($"接收資料長度 : {text.Length} ");
                 this.MySerialPort_Scanner01.ClearReadByte();
 
@@ -338,6 +339,7 @@ namespace 調劑台管理系統
 
                 if (!plC_RJ_Button_掃碼測試.Bool) text = this.MySerialPort_Scanner02.ReadString();
                 else text = "1;A123456794;4023;1960-02-12;屏榮門;AC58156212;2       ;Q12H    ;IVA;0006;567260;2022-10-12;44;1113;03348;1042;\r\n";
+                text = text.Replace("\0", "");
                 Console.WriteLine($"接收資料長度 : {text.Length} ");
                 this.MySerialPort_Scanner02.ClearReadByte();
                 plC_RJ_Button_掃碼測試.Bool = false;

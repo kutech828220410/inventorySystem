@@ -97,6 +97,39 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < 256; i++) this.List_PLC_Device_權限管理.Add(new PLC_Device($"S{39000 + i}"));
 
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_交班作業_頁面顯示, 0);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_交班作業_交班對點, 3);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_交班作業_管制結存表匯出, 8);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_交班作業_管制結存表列印, 9);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_收支作業_頁面顯示, 32);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_收支作業_收支原因維護, 37);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_收支作業_入庫功能, 33);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_收支作業_出庫功能, 34);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_收支作業_調入功能, 35);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_收支作業_調出功能, 36);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_交易紀錄查詢_頁面顯示, 1);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_交易紀錄查詢_交易紀錄匯出, 38);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_醫囑資料_頁面顯示, 22);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_頁面顯示, 2);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_資料更動, 7);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_儲位效期表顯示, 15);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_儲位總庫存表顯示, 16);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_藥品群組修改, 21);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_管制藥設定, 39);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_人員資料_頁面顯示, 4);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_人員資料_基本資料更動, 14);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_人員資料_權限內容更動, 17);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_儲位管理_頁面顯示, 5);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_儲位管理_庫存效期異動, 12);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_儲位管理_儲位刪除, 11);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_儲位管理_面板資訊更改, 13);       
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_盤點作業_頁面顯示, 26);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_盤點作業_報表下載, 27);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_盤點作業_報表鎖定, 28);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_盤點作業_報表刪除, 29);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_工程模式_頁面顯示, 6);
+
+
 
             this.plC_RJ_Button_人員資料_匯出.MouseDownEvent += PlC_RJ_Button_人員資料_匯出_MouseDownEvent;
             this.plC_RJ_Button_人員資料_匯入.MouseDownEvent += PlC_RJ_Button_人員資料_匯入_MouseDownEvent;

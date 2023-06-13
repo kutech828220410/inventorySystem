@@ -102,7 +102,7 @@ namespace HIS_WebApi
             try
             {
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, "192.168.10.162", 0, Get_Pannel_LEDBytes(Color.Red));
+                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, "192.168.10.230", 0, Get_Pannel_LEDBytes(Color.Red));
             }
             catch(Exception e)
             {
@@ -125,7 +125,7 @@ namespace HIS_WebApi
             try
             {
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, "192.168.10.162", 0, Get_Pannel_LEDBytes(Color.Black));
+                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, "192.168.10.230", 0, Get_Pannel_LEDBytes(Color.Black));
             
             }
             catch
