@@ -37,6 +37,13 @@ namespace HIS_DB_Lib
         public string verifyTime { get; set; }
         [JsonPropertyName("check_sec")]
         public string check_sec { get; set; }
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
+        [JsonPropertyName("level")]
+        public string level { get; set; }
+
+        public List<string> Permissions { get => permissions; set => permissions = value; }
+        private List<string> permissions = new List<string>();
 
 
         static public sessionClass ObjToClass(object data)

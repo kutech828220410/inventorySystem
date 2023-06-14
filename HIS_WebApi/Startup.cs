@@ -28,7 +28,7 @@ namespace HIS_WebApi
 
         public Startup(IConfiguration configuration)
         {
-            uDP_Class = new UDP_Class("0.0.0.0", 29500);
+            uDP_Class = new UDP_Class("0.0.0.0", 29000);
             Configuration = configuration;
         }
 
