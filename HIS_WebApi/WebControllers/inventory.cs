@@ -368,6 +368,7 @@ namespace HIS_WebApi
         
                 returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
 
+
                 string str_IC_SN = returnData_GET_new_IC_SN.Value;
 
                 MED_pageController mED_PageController = new MED_pageController();
