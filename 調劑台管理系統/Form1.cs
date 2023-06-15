@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.56.0")]
-[assembly: AssemblyFileVersion("1.0.56.0")]
+[assembly: AssemblyVersion("1.0.57.0")]
+[assembly: AssemblyFileVersion("1.0.57.0")]
 namespace 調劑台管理系統
 {
 
@@ -54,6 +54,7 @@ namespace 調劑台管理系統
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
             private string basic_Server = "";
             private string vM_Server = "";
+            private string web_URL = "";
             private string api_URL = "";
 
             private string orderApiURL = "";
@@ -76,7 +77,7 @@ namespace 調劑台管理系統
             public string Basic_Server { get => basic_Server; set => basic_Server = value; }
             public string VM_Server { get => vM_Server; set => vM_Server = value; }
             public string Api_URL { get => api_URL; set => api_URL = value; }
-
+            public string Web_URL { get => web_URL; set => web_URL = value; }
         }
         private void LoadDBConfig()
         {
@@ -435,8 +436,12 @@ namespace 調劑台管理系統
                 index++;
             }
 
-          
-          
+            if (dBConfigClass.Web_URL.StringIsEmpty()) plC_RJ_GroupBox_後台網址_QRCODE.Visible = false;
+            else
+            {
+                pictureBox_後台網址_QRCODE.Image = H_Pannel_lib.Communication.CreateQRCode(dBConfigClass.Web_URL, pictureBox_後台網址_QRCODE.Width, pictureBox_後台網址_QRCODE.Height);
+            }
+
             PLC_UI_Init.Set_PLC_ScreenPage(panel_Main, this.plC_ScreenPage_Main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_交班作業, this.plC_ScreenPage_交班作業);
 

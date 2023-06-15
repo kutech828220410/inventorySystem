@@ -43,5 +43,6 @@
   "Transactions_ApiURL": "http://220.135.128.247:4435/api/transactions",
   "Basic_Server": "220.135.128.247",
   "VM_Server": "220.135.128.247",
-  "Api_URL": "http://220.135.128.247:4435"
+  "Api_URL": "http://220.135.128.247:4435",
+  "Web_URL": ""
 }
