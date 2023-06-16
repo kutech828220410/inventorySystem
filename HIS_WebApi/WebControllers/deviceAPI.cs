@@ -55,6 +55,35 @@ namespace HIS_WebApi
                     Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                     H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, deviceBasics_buf[i].IP, 0, Get_EPD290_LEDBytes(Color.Red));
                 }
+                if (deviceType == DeviceType.EPD266 || deviceType == DeviceType.EPD266_lock)
+                {
+
+                    H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, deviceBasics_buf[i].IP, 0, Get_EPD266_LEDBytes(Color.Red));
+                }
+                if (deviceType == DeviceType.RowsLED)
+                {
+                    SQLControl sQLControl_RowsLED_serialize = new SQLControl(device_Server, device_DB, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
+                    RowsLED rowsLED = RowsLEDMethod.SQL_GetDevice(sQLControl_RowsLED_serialize, deviceBasics_buf[i].IP);
+                    if (rowsLED == null) continue;
+                    RowsDevice rowsDevice = rowsLED.SortByGUID(deviceBasics_buf[i].GUID);
+                    if (rowsDevice == null) continue;
+                    int maxLED = rowsLED.Maximum;
+                    byte[] LED_Bytes = new byte[maxLED];
+                    Get_Rows_LEDBytes(ref LED_Bytes, rowsDevice.StartLED, rowsDevice.EndLED, Color.Red);
+                    H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, deviceBasics_buf[i].IP, 0, LED_Bytes);
+
+                }
+                if (deviceType == DeviceType.EPD583 || deviceType == DeviceType.EPD583_lock)
+                {
+                    SQLControl sQLControl_EPD583_serialize = new SQLControl(device_Server, device_DB, "epd583_jsonstring", UserName, Password, Port, SSLMode);
+                    Drawer drawer = DrawerMethod.SQL_GetDevice(sQLControl_EPD583_serialize, deviceBasics_buf[i].IP);
+                    if (drawer == null) continue;
+                    Box box = drawer.GetBox(deviceBasics_buf[i].GUID);
+                    if (box == null) continue;
+                    WS2812_Init();
+                    Set_LED_UDP(Startup.uDP_Class, drawer, box, Color.Red);
+
+                }
             }
             returnData returnData = new returnData();
             returnData.Code = 200;
