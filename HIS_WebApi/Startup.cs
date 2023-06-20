@@ -24,11 +24,23 @@ namespace HIS_WebApi
 {
     public class Startup
     {
+        private readonly IWebHostEnvironment _environment;
         public static H_Pannel_lib.UDP_Class uDP_Class;
-
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
-            uDP_Class = new UDP_Class("0.0.0.0", 29500);
+            _environment = environment;
+
+
+            if (_environment.IsDevelopment())
+            {
+                uDP_Class = new UDP_Class("0.0.0.0", 29600);
+                Console.WriteLine("DEBUG模式");
+            }
+            else
+            {
+                uDP_Class = new UDP_Class("0.0.0.0", 29500);
+                Console.WriteLine("非DEBUG模式");
+            }
             Configuration = configuration;
         }
 
