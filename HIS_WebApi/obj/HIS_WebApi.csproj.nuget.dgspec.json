@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\HIS_WebApi.csproj": {}
+    "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\HIS_WebApi.csproj": {
+    "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\HIS_WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
         "projectName": "HIS_WebApi",
-        "projectPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\HIS_WebApi.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_WebApi\\obj\\",
+        "projectPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
+        "packagesPath": "C:\\Users\\HS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

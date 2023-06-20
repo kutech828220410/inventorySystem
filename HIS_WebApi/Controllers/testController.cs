@@ -100,12 +100,12 @@ namespace HIS_WebApi
 
         [Route("udp_ON")]
         [HttpGet]
-        public string GET_udp_ON()
+        public string GET_udp_ON(string IP)
         {
             try
             {
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, "192.168.10.230", 0, Get_Pannel_LEDBytes(Color.Red));
+                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, IP, 0, Get_Pannel_LEDBytes(Color.Red));
             }
             catch(Exception e)
             {
