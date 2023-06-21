@@ -68,6 +68,11 @@ namespace HIS_ServerAPI
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseWebSockets();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers(); 
+            });
         }
     }
 }
