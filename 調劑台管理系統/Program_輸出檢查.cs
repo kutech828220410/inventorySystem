@@ -202,7 +202,7 @@ namespace 調劑台管理系統
         List<object[]> list_locker_table_value = new List<object[]>();
         bool flag_輸出入檢查_輸出刷新_全部輸出完成 = false;
         PLC_Device PLC_Device_輸出入檢查_輸出刷新 = new PLC_Device("");
-        MyTimer MyTimer_輸出入檢查_輸出刷新 = new MyTimer("D4005");
+        MyTimer MyTimer_輸出入檢查_輸出刷新 = new MyTimer("K100");
         int cnt_Program_輸出入檢查_輸出刷新 = 65534;
         bool flag_Program_輸出入檢查_輸出刷新_Init = false;
         void sub_Program_輸出入檢查_輸出刷新()
@@ -464,7 +464,7 @@ namespace 調劑台管理系統
         #region PLC_輸出入檢查_輸入刷新
         bool flag_輸出入檢查_輸入刷新_全部輸出完成 = false;
         PLC_Device PLC_Device_輸出入檢查_輸入刷新 = new PLC_Device("");
-        MyTimer MyTimer_輸出入檢查_輸入刷新 = new MyTimer("D4005");
+        MyTimer MyTimer_輸出入檢查_輸入刷新 = new MyTimer("K100");
         int cnt_Program_輸出入檢查_輸入刷新 = 65534;
         bool flag_Program_輸出入檢查_輸入刷新_Init = false;
         void sub_Program_輸出入檢查_輸入刷新()

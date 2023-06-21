@@ -250,8 +250,6 @@ namespace 調劑台管理系統
         {
             string StreamName = @".\\" + "adminConfig" + ".pro";
             SaveConfig工程模式Class saveConfig = new SaveConfig工程模式Class();
-            saveConfig.領藥台_01_名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
-            saveConfig.領藥台_02_名稱 = this.textBox_工程模式_領藥台_02_名稱.Text;
 
             saveConfig.領藥台_01_Color = this.panel_工程模式_領藥台_01_顏色.BackColor;
             saveConfig.領藥台_02_Color = this.panel_工程模式_領藥台_02_顏色.BackColor;
@@ -266,8 +264,6 @@ namespace 調劑台管理系統
             {
                 this.Invoke(new Action(delegate 
                 {
-                    this.textBox_工程模式_領藥台_01_名稱.Text = ((SaveConfig工程模式Class)temp).領藥台_01_名稱;
-                    this.textBox_工程模式_領藥台_02_名稱.Text = ((SaveConfig工程模式Class)temp).領藥台_02_名稱;
 
                     this.panel_工程模式_領藥台_01_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_01_Color;
                     this.panel_工程模式_領藥台_02_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_02_Color;

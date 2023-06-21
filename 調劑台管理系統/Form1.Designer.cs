@@ -78,6 +78,7 @@
             this.pannel_Locker_Design = new 調劑台管理系統.Pannel_Locker_Design();
             this.後台登入 = new System.Windows.Forms.TabPage();
             this.plC_RJ_GroupBox_後台網址_QRCODE = new MyUI.PLC_RJ_GroupBox();
+            this.pictureBox_後台網址_QRCODE = new System.Windows.Forms.PictureBox();
             this.rJ_Pannel_後台登入_歡迎登入 = new MyUI.RJ_Pannel();
             this.rJ_Lable_後台登入_歡迎登入_ID = new MyUI.RJ_Lable();
             this.rJ_Lable_後台登入_歡迎登入_姓名 = new MyUI.RJ_Lable();
@@ -922,27 +923,13 @@
             this.groupBox23 = new System.Windows.Forms.GroupBox();
             this.panel_工程模式_領藥台_02_顏色 = new System.Windows.Forms.Panel();
             this.rJ_Lable47 = new MyUI.RJ_Lable();
-            this.textBox_工程模式_領藥台_02_名稱 = new System.Windows.Forms.TextBox();
-            this.rJ_Lable48 = new MyUI.RJ_Lable();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
             this.panel_工程模式_領藥台_01_顏色 = new System.Windows.Forms.Panel();
             this.rJ_Lable46 = new MyUI.RJ_Lable();
-            this.textBox_工程模式_領藥台_01_名稱 = new System.Windows.Forms.TextBox();
+            this.textBox_工程模式_領藥台_名稱 = new System.Windows.Forms.TextBox();
             this.rJ_Lable45 = new MyUI.RJ_Lable();
-            this.groupBox58 = new System.Windows.Forms.GroupBox();
-            this.label79 = new System.Windows.Forms.Label();
-            this.plC_NumBox4 = new MyUI.PLC_NumBox();
             this.plC_CheckBox10 = new MyUI.PLC_CheckBox();
-            this.groupBox48 = new System.Windows.Forms.GroupBox();
-            this.label60 = new System.Windows.Forms.Label();
-            this.plC_NumBox3 = new MyUI.PLC_NumBox();
-            this.groupBox47 = new System.Windows.Forms.GroupBox();
-            this.label55 = new System.Windows.Forms.Label();
-            this.plC_NumBox1 = new MyUI.PLC_NumBox();
             this.button_工程模式_調劑台名稱儲存 = new System.Windows.Forms.Button();
-            this.groupBox33 = new System.Windows.Forms.GroupBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.plC_NumBox2 = new MyUI.PLC_NumBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.plC_CheckBox_單人交班 = new MyUI.PLC_CheckBox();
@@ -1289,7 +1276,6 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
-            this.pictureBox_後台網址_QRCODE = new System.Windows.Forms.PictureBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -1312,6 +1298,7 @@
             this.後台登入.SuspendLayout();
             this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.SuspendLayout();
             this.plC_RJ_GroupBox_後台網址_QRCODE.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_後台網址_QRCODE)).BeginInit();
             this.rJ_Pannel_後台登入_歡迎登入.SuspendLayout();
             this.groupBox26.SuspendLayout();
             this.rJ_GroupBox7.ContentsPanel.SuspendLayout();
@@ -1553,10 +1540,6 @@
             this.panel66.SuspendLayout();
             this.groupBox23.SuspendLayout();
             this.groupBox22.SuspendLayout();
-            this.groupBox58.SuspendLayout();
-            this.groupBox48.SuspendLayout();
-            this.groupBox47.SuspendLayout();
-            this.groupBox33.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -1650,7 +1633,6 @@
             this.panel_盤點作業.SuspendLayout();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_後台網址_QRCODE)).BeginInit();
             this.SuspendLayout();
             // 
             // saveFileDialog_SaveExcel
@@ -3069,6 +3051,16 @@
             this.plC_RJ_GroupBox_後台網址_QRCODE.TitleHeight = 37;
             this.plC_RJ_GroupBox_後台網址_QRCODE.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox_後台網址_QRCODE.TitleTexts = "後台網址";
+            // 
+            // pictureBox_後台網址_QRCODE
+            // 
+            this.pictureBox_後台網址_QRCODE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_後台網址_QRCODE.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_後台網址_QRCODE.Location = new System.Drawing.Point(2, 2);
+            this.pictureBox_後台網址_QRCODE.Name = "pictureBox_後台網址_QRCODE";
+            this.pictureBox_後台網址_QRCODE.Size = new System.Drawing.Size(320, 320);
+            this.pictureBox_後台網址_QRCODE.TabIndex = 0;
+            this.pictureBox_後台網址_QRCODE.TabStop = false;
             // 
             // rJ_Pannel_後台登入_歡迎登入
             // 
@@ -24190,12 +24182,10 @@
             this.panel66.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel66.Controls.Add(this.groupBox23);
             this.panel66.Controls.Add(this.groupBox22);
-            this.panel66.Controls.Add(this.groupBox58);
+            this.panel66.Controls.Add(this.textBox_工程模式_領藥台_名稱);
+            this.panel66.Controls.Add(this.rJ_Lable45);
             this.panel66.Controls.Add(this.plC_CheckBox10);
-            this.panel66.Controls.Add(this.groupBox48);
-            this.panel66.Controls.Add(this.groupBox47);
             this.panel66.Controls.Add(this.button_工程模式_調劑台名稱儲存);
-            this.panel66.Controls.Add(this.groupBox33);
             this.panel66.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel66.Location = new System.Drawing.Point(0, 888);
             this.panel66.Name = "panel66";
@@ -24206,19 +24196,17 @@
             // 
             this.groupBox23.Controls.Add(this.panel_工程模式_領藥台_02_顏色);
             this.groupBox23.Controls.Add(this.rJ_Lable47);
-            this.groupBox23.Controls.Add(this.textBox_工程模式_領藥台_02_名稱);
-            this.groupBox23.Controls.Add(this.rJ_Lable48);
-            this.groupBox23.Location = new System.Drawing.Point(184, 18);
+            this.groupBox23.Location = new System.Drawing.Point(184, 56);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(175, 100);
+            this.groupBox23.Size = new System.Drawing.Size(175, 55);
             this.groupBox23.TabIndex = 45;
             this.groupBox23.TabStop = false;
-            this.groupBox23.Text = "領藥台_02";
+            this.groupBox23.Text = "領藥台 02";
             // 
             // panel_工程模式_領藥台_02_顏色
             // 
             this.panel_工程模式_領藥台_02_顏色.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel_工程模式_領藥台_02_顏色.Location = new System.Drawing.Point(82, 60);
+            this.panel_工程模式_領藥台_02_顏色.Location = new System.Drawing.Point(88, 19);
             this.panel_工程模式_領藥台_02_顏色.Name = "panel_工程模式_領藥台_02_顏色";
             this.panel_工程模式_領藥台_02_顏色.Size = new System.Drawing.Size(81, 24);
             this.panel_工程模式_領藥台_02_顏色.TabIndex = 2;
@@ -24226,15 +24214,16 @@
             // 
             // rJ_Lable47
             // 
-            this.rJ_Lable47.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rJ_Lable47.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.rJ_Lable47.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable47.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Lable47.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable47.BorderRadius = 8;
             this.rJ_Lable47.BorderSize = 0;
             this.rJ_Lable47.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable47.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable47.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable47.GUID = "";
-            this.rJ_Lable47.Location = new System.Drawing.Point(6, 60);
+            this.rJ_Lable47.Location = new System.Drawing.Point(12, 19);
             this.rJ_Lable47.Name = "rJ_Lable47";
             this.rJ_Lable47.Size = new System.Drawing.Size(70, 24);
             this.rJ_Lable47.TabIndex = 1;
@@ -24242,48 +24231,21 @@
             this.rJ_Lable47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable47.TextColor = System.Drawing.Color.White;
             // 
-            // textBox_工程模式_領藥台_02_名稱
-            // 
-            this.textBox_工程模式_領藥台_02_名稱.Location = new System.Drawing.Point(82, 31);
-            this.textBox_工程模式_領藥台_02_名稱.Name = "textBox_工程模式_領藥台_02_名稱";
-            this.textBox_工程模式_領藥台_02_名稱.Size = new System.Drawing.Size(81, 22);
-            this.textBox_工程模式_領藥台_02_名稱.TabIndex = 0;
-            // 
-            // rJ_Lable48
-            // 
-            this.rJ_Lable48.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rJ_Lable48.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.rJ_Lable48.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable48.BorderRadius = 8;
-            this.rJ_Lable48.BorderSize = 0;
-            this.rJ_Lable48.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable48.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable48.GUID = "";
-            this.rJ_Lable48.Location = new System.Drawing.Point(6, 29);
-            this.rJ_Lable48.Name = "rJ_Lable48";
-            this.rJ_Lable48.Size = new System.Drawing.Size(70, 24);
-            this.rJ_Lable48.TabIndex = 0;
-            this.rJ_Lable48.Text = "名稱";
-            this.rJ_Lable48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable48.TextColor = System.Drawing.Color.White;
-            // 
             // groupBox22
             // 
             this.groupBox22.Controls.Add(this.panel_工程模式_領藥台_01_顏色);
             this.groupBox22.Controls.Add(this.rJ_Lable46);
-            this.groupBox22.Controls.Add(this.textBox_工程模式_領藥台_01_名稱);
-            this.groupBox22.Controls.Add(this.rJ_Lable45);
-            this.groupBox22.Location = new System.Drawing.Point(3, 18);
+            this.groupBox22.Location = new System.Drawing.Point(3, 56);
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(175, 100);
+            this.groupBox22.Size = new System.Drawing.Size(175, 55);
             this.groupBox22.TabIndex = 44;
             this.groupBox22.TabStop = false;
-            this.groupBox22.Text = "領藥台_01";
+            this.groupBox22.Text = "領藥台 01";
             // 
             // panel_工程模式_領藥台_01_顏色
             // 
             this.panel_工程模式_領藥台_01_顏色.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel_工程模式_領藥台_01_顏色.Location = new System.Drawing.Point(82, 60);
+            this.panel_工程模式_領藥台_01_顏色.Location = new System.Drawing.Point(88, 19);
             this.panel_工程模式_領藥台_01_顏色.Name = "panel_工程模式_領藥台_01_顏色";
             this.panel_工程模式_領藥台_01_顏色.Size = new System.Drawing.Size(81, 24);
             this.panel_工程模式_領藥台_01_顏色.TabIndex = 2;
@@ -24291,15 +24253,16 @@
             // 
             // rJ_Lable46
             // 
-            this.rJ_Lable46.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rJ_Lable46.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.rJ_Lable46.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable46.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Lable46.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable46.BorderRadius = 8;
             this.rJ_Lable46.BorderSize = 0;
             this.rJ_Lable46.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable46.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable46.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable46.GUID = "";
-            this.rJ_Lable46.Location = new System.Drawing.Point(6, 60);
+            this.rJ_Lable46.Location = new System.Drawing.Point(12, 19);
             this.rJ_Lable46.Name = "rJ_Lable46";
             this.rJ_Lable46.Size = new System.Drawing.Size(70, 24);
             this.rJ_Lable46.TabIndex = 1;
@@ -24307,72 +24270,31 @@
             this.rJ_Lable46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable46.TextColor = System.Drawing.Color.White;
             // 
-            // textBox_工程模式_領藥台_01_名稱
+            // textBox_工程模式_領藥台_名稱
             // 
-            this.textBox_工程模式_領藥台_01_名稱.Location = new System.Drawing.Point(82, 31);
-            this.textBox_工程模式_領藥台_01_名稱.Name = "textBox_工程模式_領藥台_01_名稱";
-            this.textBox_工程模式_領藥台_01_名稱.Size = new System.Drawing.Size(81, 22);
-            this.textBox_工程模式_領藥台_01_名稱.TabIndex = 0;
+            this.textBox_工程模式_領藥台_名稱.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_工程模式_領藥台_名稱.Location = new System.Drawing.Point(91, 10);
+            this.textBox_工程模式_領藥台_名稱.Name = "textBox_工程模式_領藥台_名稱";
+            this.textBox_工程模式_領藥台_名稱.Size = new System.Drawing.Size(268, 33);
+            this.textBox_工程模式_領藥台_名稱.TabIndex = 0;
             // 
             // rJ_Lable45
             // 
-            this.rJ_Lable45.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.rJ_Lable45.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.rJ_Lable45.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Lable45.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Lable45.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable45.BorderRadius = 8;
             this.rJ_Lable45.BorderSize = 0;
             this.rJ_Lable45.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Lable45.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable45.GUID = "";
-            this.rJ_Lable45.Location = new System.Drawing.Point(6, 29);
+            this.rJ_Lable45.Location = new System.Drawing.Point(8, 6);
             this.rJ_Lable45.Name = "rJ_Lable45";
-            this.rJ_Lable45.Size = new System.Drawing.Size(70, 24);
+            this.rJ_Lable45.Size = new System.Drawing.Size(70, 39);
             this.rJ_Lable45.TabIndex = 0;
             this.rJ_Lable45.Text = "名稱";
             this.rJ_Lable45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable45.TextColor = System.Drawing.Color.White;
-            // 
-            // groupBox58
-            // 
-            this.groupBox58.Controls.Add(this.label79);
-            this.groupBox58.Controls.Add(this.plC_NumBox4);
-            this.groupBox58.Location = new System.Drawing.Point(903, 19);
-            this.groupBox58.Name = "groupBox58";
-            this.groupBox58.Size = new System.Drawing.Size(146, 54);
-            this.groupBox58.TabIndex = 42;
-            this.groupBox58.TabStop = false;
-            this.groupBox58.Text = "入賬檢查刷新時間";
-            // 
-            // label79
-            // 
-            this.label79.AutoSize = true;
-            this.label79.Location = new System.Drawing.Point(92, 31);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(19, 12);
-            this.label79.TabIndex = 2;
-            this.label79.Text = "sec";
-            // 
-            // plC_NumBox4
-            // 
-            this.plC_NumBox4.Location = new System.Drawing.Point(15, 21);
-            this.plC_NumBox4.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox4.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox4.Name = "plC_NumBox4";
-            this.plC_NumBox4.ReadOnly = false;
-            this.plC_NumBox4.Size = new System.Drawing.Size(71, 22);
-            this.plC_NumBox4.TabIndex = 2;
-            this.plC_NumBox4.Value = 0;
-            this.plC_NumBox4.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox4.密碼欄位 = false;
-            this.plC_NumBox4.寫入位置註解 = "入賬檢查刷新時間";
-            this.plC_NumBox4.寫入元件位置 = "D4008";
-            this.plC_NumBox4.小數點位置 = 3;
-            this.plC_NumBox4.微調數值 = 1;
-            this.plC_NumBox4.讀取位置註解 = "入賬檢查刷新時間";
-            this.plC_NumBox4.讀取元件位置 = "D4008";
-            this.plC_NumBox4.音效 = true;
-            this.plC_NumBox4.顯示微調按鈕 = false;
-            this.plC_NumBox4.顯示螢幕小鍵盤 = true;
             // 
             // plC_CheckBox10
             // 
@@ -24396,141 +24318,15 @@
             this.plC_CheckBox10.讀寫鎖住 = false;
             this.plC_CheckBox10.音效 = true;
             // 
-            // groupBox48
-            // 
-            this.groupBox48.Controls.Add(this.label60);
-            this.groupBox48.Controls.Add(this.plC_NumBox3);
-            this.groupBox48.Location = new System.Drawing.Point(751, 19);
-            this.groupBox48.Name = "groupBox48";
-            this.groupBox48.Size = new System.Drawing.Size(146, 54);
-            this.groupBox48.TabIndex = 40;
-            this.groupBox48.TabStop = false;
-            this.groupBox48.Text = "流程作業檢查刷新時間";
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(92, 31);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(19, 12);
-            this.label60.TabIndex = 2;
-            this.label60.Text = "sec";
-            // 
-            // plC_NumBox3
-            // 
-            this.plC_NumBox3.Location = new System.Drawing.Point(15, 21);
-            this.plC_NumBox3.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox3.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox3.Name = "plC_NumBox3";
-            this.plC_NumBox3.ReadOnly = false;
-            this.plC_NumBox3.Size = new System.Drawing.Size(71, 22);
-            this.plC_NumBox3.TabIndex = 2;
-            this.plC_NumBox3.Value = 0;
-            this.plC_NumBox3.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox3.密碼欄位 = false;
-            this.plC_NumBox3.寫入位置註解 = "流程作業檢查刷新時間";
-            this.plC_NumBox3.寫入元件位置 = "D4007";
-            this.plC_NumBox3.小數點位置 = 3;
-            this.plC_NumBox3.微調數值 = 1;
-            this.plC_NumBox3.讀取位置註解 = "流程作業檢查刷新時間";
-            this.plC_NumBox3.讀取元件位置 = "D4007";
-            this.plC_NumBox3.音效 = true;
-            this.plC_NumBox3.顯示微調按鈕 = false;
-            this.plC_NumBox3.顯示螢幕小鍵盤 = true;
-            // 
-            // groupBox47
-            // 
-            this.groupBox47.Controls.Add(this.label55);
-            this.groupBox47.Controls.Add(this.plC_NumBox1);
-            this.groupBox47.Location = new System.Drawing.Point(598, 18);
-            this.groupBox47.Name = "groupBox47";
-            this.groupBox47.Size = new System.Drawing.Size(146, 54);
-            this.groupBox47.TabIndex = 5;
-            this.groupBox47.TabStop = false;
-            this.groupBox47.Text = "主機取藥堆疊刷新時間";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(92, 31);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(19, 12);
-            this.label55.TabIndex = 2;
-            this.label55.Text = "sec";
-            // 
-            // plC_NumBox1
-            // 
-            this.plC_NumBox1.Location = new System.Drawing.Point(15, 21);
-            this.plC_NumBox1.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox1.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox1.Name = "plC_NumBox1";
-            this.plC_NumBox1.ReadOnly = false;
-            this.plC_NumBox1.Size = new System.Drawing.Size(71, 22);
-            this.plC_NumBox1.TabIndex = 2;
-            this.plC_NumBox1.Value = 0;
-            this.plC_NumBox1.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox1.密碼欄位 = false;
-            this.plC_NumBox1.寫入位置註解 = "主機取藥堆疊刷新時間";
-            this.plC_NumBox1.寫入元件位置 = "D4006";
-            this.plC_NumBox1.小數點位置 = 3;
-            this.plC_NumBox1.微調數值 = 1;
-            this.plC_NumBox1.讀取位置註解 = "主機取藥堆疊刷新時間";
-            this.plC_NumBox1.讀取元件位置 = "D4006";
-            this.plC_NumBox1.音效 = true;
-            this.plC_NumBox1.顯示微調按鈕 = false;
-            this.plC_NumBox1.顯示螢幕小鍵盤 = true;
-            // 
             // button_工程模式_調劑台名稱儲存
             // 
-            this.button_工程模式_調劑台名稱儲存.Location = new System.Drawing.Point(365, 18);
+            this.button_工程模式_調劑台名稱儲存.Location = new System.Drawing.Point(365, 4);
             this.button_工程模式_調劑台名稱儲存.Name = "button_工程模式_調劑台名稱儲存";
-            this.button_工程模式_調劑台名稱儲存.Size = new System.Drawing.Size(75, 100);
+            this.button_工程模式_調劑台名稱儲存.Size = new System.Drawing.Size(75, 107);
             this.button_工程模式_調劑台名稱儲存.TabIndex = 4;
             this.button_工程模式_調劑台名稱儲存.Text = "儲存";
             this.button_工程模式_調劑台名稱儲存.UseVisualStyleBackColor = true;
             this.button_工程模式_調劑台名稱儲存.Click += new System.EventHandler(this.button_工程模式_調劑台名稱儲存_Click);
-            // 
-            // groupBox33
-            // 
-            this.groupBox33.Controls.Add(this.label33);
-            this.groupBox33.Controls.Add(this.plC_NumBox2);
-            this.groupBox33.Location = new System.Drawing.Point(446, 18);
-            this.groupBox33.Name = "groupBox33";
-            this.groupBox33.Size = new System.Drawing.Size(146, 54);
-            this.groupBox33.TabIndex = 1;
-            this.groupBox33.TabStop = false;
-            this.groupBox33.Text = "主機輸出刷新時間";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(92, 31);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(19, 12);
-            this.label33.TabIndex = 2;
-            this.label33.Text = "sec";
-            // 
-            // plC_NumBox2
-            // 
-            this.plC_NumBox2.Location = new System.Drawing.Point(15, 21);
-            this.plC_NumBox2.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox2.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox2.Name = "plC_NumBox2";
-            this.plC_NumBox2.ReadOnly = false;
-            this.plC_NumBox2.Size = new System.Drawing.Size(71, 22);
-            this.plC_NumBox2.TabIndex = 2;
-            this.plC_NumBox2.Value = 0;
-            this.plC_NumBox2.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox2.密碼欄位 = false;
-            this.plC_NumBox2.寫入位置註解 = "主機輸出刷新時間";
-            this.plC_NumBox2.寫入元件位置 = "D4005";
-            this.plC_NumBox2.小數點位置 = 3;
-            this.plC_NumBox2.微調數值 = 1;
-            this.plC_NumBox2.讀取位置註解 = "主機輸出刷新時間";
-            this.plC_NumBox2.讀取元件位置 = "D4005";
-            this.plC_NumBox2.音效 = true;
-            this.plC_NumBox2.顯示微調按鈕 = false;
-            this.plC_NumBox2.顯示螢幕小鍵盤 = true;
             // 
             // tabControl1
             // 
@@ -32836,16 +32632,6 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
-            // pictureBox_後台網址_QRCODE
-            // 
-            this.pictureBox_後台網址_QRCODE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox_後台網址_QRCODE.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox_後台網址_QRCODE.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox_後台網址_QRCODE.Name = "pictureBox_後台網址_QRCODE";
-            this.pictureBox_後台網址_QRCODE.Size = new System.Drawing.Size(320, 320);
-            this.pictureBox_後台網址_QRCODE.TabIndex = 0;
-            this.pictureBox_後台網址_QRCODE.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -32882,6 +32668,7 @@
             this.後台登入.ResumeLayout(false);
             this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.ResumeLayout(false);
             this.plC_RJ_GroupBox_後台網址_QRCODE.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_後台網址_QRCODE)).EndInit();
             this.rJ_Pannel_後台登入_歡迎登入.ResumeLayout(false);
             this.groupBox26.ResumeLayout(false);
             this.rJ_GroupBox7.ContentsPanel.ResumeLayout(false);
@@ -33165,17 +32952,7 @@
             this.panel66.ResumeLayout(false);
             this.panel66.PerformLayout();
             this.groupBox23.ResumeLayout(false);
-            this.groupBox23.PerformLayout();
             this.groupBox22.ResumeLayout(false);
-            this.groupBox22.PerformLayout();
-            this.groupBox58.ResumeLayout(false);
-            this.groupBox58.PerformLayout();
-            this.groupBox48.ResumeLayout(false);
-            this.groupBox48.PerformLayout();
-            this.groupBox47.ResumeLayout(false);
-            this.groupBox47.PerformLayout();
-            this.groupBox33.ResumeLayout(false);
-            this.groupBox33.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -33277,7 +33054,6 @@
             this.panel_盤點作業.ResumeLayout(false);
             this.panel_Main.ResumeLayout(false);
             this.panel232.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_後台網址_QRCODE)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -33315,9 +33091,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel panel66;
         private MyUI.PLC_CheckBox plC_CheckBox8;
-        private System.Windows.Forms.GroupBox groupBox33;
-        private System.Windows.Forms.Label label33;
-        private MyUI.PLC_NumBox plC_NumBox2;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Panel panel149;
         private System.Windows.Forms.Panel panel150;
@@ -33325,17 +33098,8 @@
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.TextBox textBox_人員資料_顏色;
         private System.Windows.Forms.Button button_工程模式_調劑台名稱儲存;
-        private System.Windows.Forms.TextBox textBox_工程模式_領藥台_01_名稱;
-        private System.Windows.Forms.GroupBox groupBox47;
-        private System.Windows.Forms.Label label55;
-        private MyUI.PLC_NumBox plC_NumBox1;
-        private System.Windows.Forms.GroupBox groupBox48;
-        private System.Windows.Forms.Label label60;
-        private MyUI.PLC_NumBox plC_NumBox3;
+        private System.Windows.Forms.TextBox textBox_工程模式_領藥台_名稱;
         private MyUI.PLC_CheckBox plC_CheckBox10;
-        private System.Windows.Forms.GroupBox groupBox58;
-        private System.Windows.Forms.Label label79;
-        private MyUI.PLC_NumBox plC_NumBox4;
         private System.Windows.Forms.TabPage 後台登入;
         private System.Windows.Forms.Panel panel183;
         private System.Windows.Forms.Panel panel184;
@@ -33424,8 +33188,6 @@
         private System.Windows.Forms.GroupBox groupBox23;
         private System.Windows.Forms.Panel panel_工程模式_領藥台_02_顏色;
         private MyUI.RJ_Lable rJ_Lable47;
-        private System.Windows.Forms.TextBox textBox_工程模式_領藥台_02_名稱;
-        private MyUI.RJ_Lable rJ_Lable48;
         private System.Windows.Forms.GroupBox groupBox22;
         private System.Windows.Forms.Panel panel_工程模式_領藥台_01_顏色;
         private MyUI.RJ_Lable rJ_Lable46;

@@ -737,7 +737,7 @@ namespace 調劑台管理系統
         void cnt_Program_領藥台_01_刷新領藥內容_取得資料(ref int cnt)
         {
             List<object[]> list_value = new List<object[]>();
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
             List<object[]> list_取藥堆疊資料_replace = new List<object[]>();
             string GUID = "";
             string 序號 = "";
@@ -887,8 +887,8 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_刷新領藥內容_檢查作業完成(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
-            List<object[]> list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
+            List<object[]> list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(this.領藥台_01名稱);
             List<object[]> list_取藥堆疊子資料_buf = new List<object[]>();
             List<object[]> list_取藥堆疊子資料_replace = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
@@ -923,7 +923,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_刷新領藥內容_檢查是否需輸入效期(ref int cnt)
         {
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
             list_取藥堆疊資料 = list_取藥堆疊資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.輸入新效期.GetEnumName());
         
             string GIUD = "";
@@ -953,7 +953,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_刷新領藥內容_檢查是否需選擇效期(ref int cnt)
         {
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
             list_取藥堆疊資料 = list_取藥堆疊資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName());
 
             string GIUD = "";
@@ -1019,7 +1019,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_刷新領藥內容_檢查自動登出(ref int cnt)
         {
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
             List<object[]> list_取藥堆疊資料_buf = new List<object[]>();
             list_取藥堆疊資料_buf = (from value in list_取藥堆疊資料
                                where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()
@@ -1127,14 +1127,14 @@ namespace 調劑台管理系統
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
             List<object[]> list_藥品資料_buf = new List<object[]>();
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             
             for (int i = 0; i < list_醫囑資料.Count; i++)
             {
 
                 string GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
-                string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+                string 調劑台名稱 = this.領藥台_01名稱;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
                 string 藥品碼 = list_醫囑資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
 
@@ -1190,11 +1190,11 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+                if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
-                string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+                string 調劑台名稱 = this.領藥台_01名稱;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼退藥;
                 藥品碼 = value[(int)enum_醫囑資料.藥品碼].ObjectToString();
 
@@ -1259,11 +1259,11 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+                if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
-                string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+                string 調劑台名稱 = this.領藥台_01名稱;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼退藥;
                 藥品碼 = value[(int)enum_醫囑資料.藥品碼].ObjectToString();
 
@@ -1302,9 +1302,9 @@ namespace 調劑台管理系統
 
 
             string GUID = Guid.NewGuid().ToString();
-            string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+            string 調劑台名稱 = this.領藥台_01名稱;
             enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
-            string 藥袋序號 = this.textBox_工程模式_領藥台_01_名稱.Text;
+            string 藥袋序號 = this.領藥台_01名稱;
             string 病人姓名 = "";
             string ID = this.領藥台_01_ID;
             string 操作人 = this.領藥台_01_登入者姓名;
@@ -1351,7 +1351,7 @@ namespace 調劑台管理系統
 
 
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
             this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
@@ -1372,9 +1372,9 @@ namespace 調劑台管理系統
 
 
             string GUID = Guid.NewGuid().ToString();
-            string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+            string 調劑台名稱 = this.領藥台_01名稱;
             enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
-            string 藥袋序號 = this.textBox_工程模式_領藥台_01_名稱.Text;
+            string 藥袋序號 = this.領藥台_01名稱;
             string 病人姓名 = "";
             string ID = this.領藥台_01_ID;
             string 操作人 = this.領藥台_01_登入者姓名;
@@ -1418,7 +1418,7 @@ namespace 調劑台管理系統
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             總異動量 = dialog_NumPannel.Value;
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
             this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
@@ -1435,7 +1435,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_領藥台_01_強制入帳_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            List<object[]> list_value = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
             for (int i = 0; i < list_value.Count; i++)
             {
                 list_value[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待入帳.GetEnumName();
@@ -1465,7 +1465,7 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     string GUID = Guid.NewGuid().ToString();
-                    string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+                    string 調劑台名稱 = this.領藥台_01名稱;
                
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
@@ -1519,7 +1519,7 @@ namespace 調劑台管理系統
             {
                 this.pictureBox_領藥台_01_藥品圖片.Image = null;
             }));
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.ClearGrid();
         }
         private void PlC_RJ_Button_領藥台_01_登入_MouseDownEvent(MouseEventArgs mevent)
@@ -1584,7 +1584,7 @@ namespace 調劑台管理系統
             {
                 this.pictureBox_領藥台_01_藥品圖片.Image = null;
             }));
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.ClearGrid();
 
             Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, this.領藥台_01_登入者姓名, "01.號使用者");
@@ -2092,7 +2092,7 @@ namespace 調劑台管理系統
         void cnt_Program_領藥台_02_刷新領藥內容_取得資料(ref int cnt)
         {
             List<object[]> list_value = new List<object[]>();
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_02名稱);
             List<object[]> list_取藥堆疊資料_replace = new List<object[]>();
             string GUID = "";
             string 序號 = "";
@@ -2242,8 +2242,8 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_02_刷新領藥內容_檢查作業完成(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
-            List<object[]> list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_02名稱);
+            List<object[]> list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(this.領藥台_02名稱);
             List<object[]> list_取藥堆疊子資料_buf = new List<object[]>();
             List<object[]> list_取藥堆疊子資料_replace = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
@@ -2278,7 +2278,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_02_刷新領藥內容_檢查是否需輸入效期(ref int cnt)
         {
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_02名稱);
             list_取藥堆疊資料 = list_取藥堆疊資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.輸入新效期.GetEnumName());
 
             string GIUD = "";
@@ -2308,7 +2308,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_02_刷新領藥內容_檢查是否需選擇效期(ref int cnt)
         {
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_02名稱);
             list_取藥堆疊資料 = list_取藥堆疊資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName());
 
             string GIUD = "";
@@ -2374,7 +2374,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_02_刷新領藥內容_檢查自動登出(ref int cnt)
         {
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_02名稱);
             List<object[]> list_取藥堆疊資料_buf = new List<object[]>();
             list_取藥堆疊資料_buf = (from value in list_取藥堆疊資料
                                where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()
@@ -2479,13 +2479,13 @@ namespace 調劑台管理系統
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
             List<object[]> list_藥品資料_buf = new List<object[]>();
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             for (int i = 0; i < list_醫囑資料.Count; i++)
             {
 
                 string GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
-                string 調劑台名稱 = this.textBox_工程模式_領藥台_02_名稱.Text;
+                string 調劑台名稱 = this.領藥台_02名稱;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
                 string 藥品碼 = list_醫囑資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
 
@@ -2541,11 +2541,11 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+                if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
-                string 調劑台名稱 = this.textBox_工程模式_領藥台_02_名稱.Text;
+                string 調劑台名稱 = this.領藥台_02名稱;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼退藥;
                 藥品碼 = value[(int)enum_醫囑資料.藥品碼].ObjectToString();
 
@@ -2610,11 +2610,11 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+                if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
-                string 調劑台名稱 = this.textBox_工程模式_領藥台_02_名稱.Text;
+                string 調劑台名稱 = this.領藥台_02名稱;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼退藥;
                 藥品碼 = value[(int)enum_醫囑資料.藥品碼].ObjectToString();
 
@@ -2653,9 +2653,9 @@ namespace 調劑台管理系統
 
 
             string GUID = Guid.NewGuid().ToString();
-            string 調劑台名稱 = this.textBox_工程模式_領藥台_02_名稱.Text;
+            string 調劑台名稱 = this.領藥台_02名稱;
             enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
-            string 藥袋序號 = this.textBox_工程模式_領藥台_02_名稱.Text;
+            string 藥袋序號 = this.領藥台_02名稱;
             string 病人姓名 = "";
             string ID = this.領藥台_02_ID;
             string 操作人 = this.領藥台_02_登入者姓名;
@@ -2702,7 +2702,7 @@ namespace 調劑台管理系統
 
 
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
             this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
@@ -2723,9 +2723,9 @@ namespace 調劑台管理系統
 
 
             string GUID = Guid.NewGuid().ToString();
-            string 調劑台名稱 = this.textBox_工程模式_領藥台_02_名稱.Text;
+            string 調劑台名稱 = this.領藥台_02名稱;
             enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
-            string 藥袋序號 = this.textBox_工程模式_領藥台_02_名稱.Text;
+            string 藥袋序號 = this.領藥台_02名稱;
             string 病人姓名 = "";
             string ID = this.領藥台_02_ID;
             string 操作人 = this.領藥台_02_登入者姓名;
@@ -2768,7 +2768,7 @@ namespace 調劑台管理系統
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             總異動量 = dialog_NumPannel.Value;
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
             this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
@@ -2785,7 +2785,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_領藥台_02_強制入帳_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            List<object[]> list_value = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_02名稱);
             for (int i = 0; i < list_value.Count; i++)
             {
                 list_value[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待入帳.GetEnumName();
@@ -2815,7 +2815,7 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     string GUID = Guid.NewGuid().ToString();
-                    string 調劑台名稱 = this.textBox_工程模式_領藥台_02_名稱.Text;
+                    string 調劑台名稱 = this.領藥台_02名稱;
 
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
@@ -2869,7 +2869,7 @@ namespace 調劑台管理系統
             {
                 this.pictureBox_領藥台_02_藥品圖片.Image = null;
             }));
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             this.sqL_DataGridView_領藥台_02_領藥內容.ClearGrid();
         }
         private void PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(MouseEventArgs mevent)
@@ -2932,7 +2932,7 @@ namespace 調劑台管理系統
             {
                 this.pictureBox_領藥台_02_藥品圖片.Image = null;
             }));
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             this.sqL_DataGridView_領藥台_02_領藥內容.ClearGrid();
 
             Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, this.領藥台_02_登入者姓名, "01.號使用者");
@@ -3101,7 +3101,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥_RFID_檢查刷卡_顯示RFID領退藥頁面(ref int cnt)
         {
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             for (int i = 0; i < this.class_領藥_RFID_檢查刷卡.devices.Count; i++)
             {
                 this.class_領藥_RFID_檢查刷卡.devices[i] = this.rfiD_UI.SQL_GetDevice((RFIDDevice)this.class_領藥_RFID_檢查刷卡.devices[i]);
@@ -3109,10 +3109,10 @@ namespace 調劑台管理系統
 
             this.Invoke(new Action(delegate
             {
-                Dialog_RFID領退藥頁面 dialog_RFID領退藥頁面 = new Dialog_RFID領退藥頁面(領藥_RFID_檢查刷卡_登入者ID, 領藥_RFID_檢查刷卡_登入者姓名, this.class_領藥_RFID_檢查刷卡.Name, this.class_領藥_RFID_檢查刷卡.devices, this.textBox_工程模式_領藥台_02_名稱.Text, List_領藥_入出庫資料檢查);
+                Dialog_RFID領退藥頁面 dialog_RFID領退藥頁面 = new Dialog_RFID領退藥頁面(領藥_RFID_檢查刷卡_登入者ID, 領藥_RFID_檢查刷卡_登入者姓名, this.class_領藥_RFID_檢查刷卡.Name, this.class_領藥_RFID_檢查刷卡.devices, this.領藥台_02名稱, List_領藥_入出庫資料檢查);
                 if (dialog_RFID領退藥頁面.ShowDialog() == DialogResult.Yes)
                 {
-                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
                 }
             }));
 

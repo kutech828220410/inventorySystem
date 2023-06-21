@@ -12,11 +12,11 @@ using HIS_DB_Lib;
 
 namespace HIS_DB_Lib
 {
-    public enum enum_ServerSettingClass
+    public enum enum_ServerSetting
     {
         GUID,
         單位,
-        名稱,
+        設備名稱,
         類別,
         程式類別,
         內容,
@@ -27,16 +27,20 @@ namespace HIS_DB_Lib
         User,
         Password,
     }
-    public enum enum_ServerSettingClass_Type
+    public enum enum_ServerSetting_Type
     {
         調劑台,
         藥庫,
     }
-    public enum enum_ServerSettingClass_ProgramType
+    public enum enum_ServerSetting_ProgramType
     {
         SQLServer,
         API,
         WEB,
+    }
+    public enum enum_ServerSetting_調劑台
+    {
+        
     }
     public class ServerSettingClass
     {
@@ -69,12 +73,12 @@ namespace HIS_DB_Lib
         {
 
         }
-        public ServerSettingClass(string 名稱, enum_ServerSettingClass_Type enum_ServerSettingClass_Type , enum_ServerSettingClass_ProgramType enum_ServerSettingClass_ProgramType,string 內容
+        public ServerSettingClass(string 名稱, enum_ServerSetting_Type enum_ServerSetting_Type , enum_ServerSetting_ProgramType enum_ServerSetting_ProgramType,string 內容
             , string Server, string Port, string DBName, string TableName, string User, string Password)
         {
             this.名稱 = 名稱;
-            this.類別 = enum_ServerSettingClass_Type.GetEnumName();
-            this.程式類別 = enum_ServerSettingClass_ProgramType.GetEnumName();
+            this.類別 = enum_ServerSetting_Type.GetEnumName();
+            this.程式類別 = enum_ServerSetting_ProgramType.GetEnumName();
             this.內容 = 內容;
             this.Server = Server;
             this.Port = Port;
@@ -85,19 +89,19 @@ namespace HIS_DB_Lib
         }
         static public object[] ClassToSQL(ServerSettingClass _class)
         {
-            object[] value = new object[new enum_ServerSettingClass().GetLength()];
-            value[(int)enum_ServerSettingClass.GUID] = _class.GUID;
-            value[(int)enum_ServerSettingClass.單位] = _class.單位;
-            value[(int)enum_ServerSettingClass.名稱] = _class.名稱;
-            value[(int)enum_ServerSettingClass.類別] = _class.類別;
-            value[(int)enum_ServerSettingClass.程式類別] = _class.程式類別;
-            value[(int)enum_ServerSettingClass.內容] = _class.內容;
-            value[(int)enum_ServerSettingClass.Server] = _class.Server;
-            value[(int)enum_ServerSettingClass.Port] = _class.Port;
-            value[(int)enum_ServerSettingClass.DBName] = _class.DBName;
-            value[(int)enum_ServerSettingClass.TableName] = _class.TableName;
-            value[(int)enum_ServerSettingClass.User] = _class.User;
-            value[(int)enum_ServerSettingClass.Password] = _class.Password;
+            object[] value = new object[new enum_ServerSetting().GetLength()];
+            value[(int)enum_ServerSetting.GUID] = _class.GUID;
+            value[(int)enum_ServerSetting.單位] = _class.單位;
+            value[(int)enum_ServerSetting.設備名稱] = _class.名稱;
+            value[(int)enum_ServerSetting.類別] = _class.類別;
+            value[(int)enum_ServerSetting.程式類別] = _class.程式類別;
+            value[(int)enum_ServerSetting.內容] = _class.內容;
+            value[(int)enum_ServerSetting.Server] = _class.Server;
+            value[(int)enum_ServerSetting.Port] = _class.Port;
+            value[(int)enum_ServerSetting.DBName] = _class.DBName;
+            value[(int)enum_ServerSetting.TableName] = _class.TableName;
+            value[(int)enum_ServerSetting.User] = _class.User;
+            value[(int)enum_ServerSetting.Password] = _class.Password;
 
 
             return value;
@@ -131,17 +135,17 @@ namespace HIS_DB_Lib
             {
                 object[] value = values[i];
                 ServerSettingClass _class = new ServerSettingClass();
-                _class.GUID = value[(int)enum_ServerSettingClass.GUID].ObjectToString();
-                _class.單位 = value[(int)enum_ServerSettingClass.單位].ObjectToString();
-                _class.名稱 = value[(int)enum_ServerSettingClass.名稱].ObjectToString();
-                _class.類別 = value[(int)enum_ServerSettingClass.類別].ObjectToString();
-                _class.程式類別 = value[(int)enum_ServerSettingClass.程式類別].ObjectToString();
-                _class.內容 = value[(int)enum_ServerSettingClass.內容].ObjectToString();
-                _class.Server = value[(int)enum_ServerSettingClass.Server].ObjectToString();
-                _class.Port = value[(int)enum_ServerSettingClass.Port].ObjectToString();
-                _class.DBName = value[(int)enum_ServerSettingClass.DBName].ObjectToString();
-                _class.User = value[(int)enum_ServerSettingClass.User].ObjectToString();
-                _class.Password = value[(int)enum_ServerSettingClass.Password].ObjectToString();
+                _class.GUID = value[(int)enum_ServerSetting.GUID].ObjectToString();
+                _class.單位 = value[(int)enum_ServerSetting.單位].ObjectToString();
+                _class.名稱 = value[(int)enum_ServerSetting.設備名稱].ObjectToString();
+                _class.類別 = value[(int)enum_ServerSetting.類別].ObjectToString();
+                _class.程式類別 = value[(int)enum_ServerSetting.程式類別].ObjectToString();
+                _class.內容 = value[(int)enum_ServerSetting.內容].ObjectToString();
+                _class.Server = value[(int)enum_ServerSetting.Server].ObjectToString();
+                _class.Port = value[(int)enum_ServerSetting.Port].ObjectToString();
+                _class.DBName = value[(int)enum_ServerSetting.DBName].ObjectToString();
+                _class.User = value[(int)enum_ServerSetting.User].ObjectToString();
+                _class.Password = value[(int)enum_ServerSetting.Password].ObjectToString();
 
                 list_values.Add(_class);
             }

@@ -20,7 +20,7 @@ namespace HIS_WebApi
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
         static private string Server = ConfigurationManager.AppSettings["Server"];
-        static private string DB = ConfigurationManager.AppSettings["DB"];
+        static private string DB = "DBVM";
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
@@ -42,14 +42,14 @@ namespace HIS_WebApi
         [HttpGet]
         public string GET_type()
         {
-            return new enum_ServerSettingClass_Type().GetEnumNames().JsonSerializationt();
+            return new enum_ServerSetting_Type().GetEnumNames().JsonSerializationt();
         }
 
         [Route("program")]
         [HttpGet]
         public string GET_program()
         {
-            return new enum_ServerSettingClass_ProgramType().GetEnumNames().JsonSerializationt();
+            return new enum_ServerSetting_ProgramType().GetEnumNames().JsonSerializationt();
         }
 
         [HttpGet]
@@ -82,25 +82,25 @@ namespace HIS_WebApi
             list_value_returnData = ServerSettingClass.ClassToListSQL(serverSettingClasses);
             for (int i = 0; i < list_value_returnData.Count; i++)
             {
-                string 名稱 = list_value_returnData[i][(int)enum_ServerSettingClass.名稱].ObjectToString();
-                string 類別 = list_value_returnData[i][(int)enum_ServerSettingClass.類別].ObjectToString();
-                string 程式類別 = list_value_returnData[i][(int)enum_ServerSettingClass.程式類別].ObjectToString();
-                string 內容 = list_value_returnData[i][(int)enum_ServerSettingClass.內容].ObjectToString();
+                string 名稱 = list_value_returnData[i][(int)enum_ServerSetting.設備名稱].ObjectToString();
+                string 類別 = list_value_returnData[i][(int)enum_ServerSetting.類別].ObjectToString();
+                string 程式類別 = list_value_returnData[i][(int)enum_ServerSetting.程式類別].ObjectToString();
+                string 內容 = list_value_returnData[i][(int)enum_ServerSetting.內容].ObjectToString();
 
-                list_value_buf = list_value.GetRows((int)enum_ServerSettingClass.名稱, 名稱);
-                list_value_buf = list_value_buf.GetRows((int)enum_ServerSettingClass.類別, 類別);
-                list_value_buf = list_value_buf.GetRows((int)enum_ServerSettingClass.程式類別, 程式類別);
-                list_value_buf = list_value_buf.GetRows((int)enum_ServerSettingClass.內容, 內容);
+                list_value_buf = list_value.GetRows((int)enum_ServerSetting.設備名稱, 名稱);
+                list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.類別, 類別);
+                list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.程式類別, 程式類別);
+                list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.內容, 內容);
                 if (list_value_buf.Count == 0)
                 {
                     object[] value = list_value_returnData[i];
-                    value[(int)enum_ServerSettingClass.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_ServerSetting.GUID] = Guid.NewGuid().ToString();
                     list_value_add.Add(value);
                 }
                 else
                 {
                     object[] value = list_value_returnData[i];
-                    value[(int)enum_ServerSettingClass.GUID] = list_value_buf[0][(int)enum_ServerSettingClass.GUID].ObjectToString();
+                    value[(int)enum_ServerSetting.GUID] = list_value_buf[0][(int)enum_ServerSetting.GUID].ObjectToString();
                     list_value_replace.Add(value);
                 }
             }
@@ -140,7 +140,7 @@ namespace HIS_WebApi
             Table table = new Table("ServerSetting");
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
             table.AddColumnList("單位", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table.AddColumnList("設備名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table.AddColumnList("類別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("程式類別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("內容", Table.StringType.VARCHAR, 50, Table.IndexType.None);

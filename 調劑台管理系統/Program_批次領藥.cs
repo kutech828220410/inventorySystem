@@ -39,8 +39,8 @@ namespace 調劑台管理系統
             {
                 if (!this.flag_批次領藥_頁面更新)
                 {
-                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
-                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+                    //this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+                    //this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
                     this.sqL_DataGridView_批次領藥_領藥總量清單.ClearGrid();
             
 
@@ -116,8 +116,8 @@ namespace 調劑台管理系統
         }
         void cnt_Program_批次領藥_開始批次領藥_初始化(ref int cnt)
         {
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_01名稱);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_02名稱);
             cnt++;
         }
         void cnt_Program_批次領藥_開始批次領藥_清除表單(ref int cnt)
@@ -185,7 +185,7 @@ namespace 調劑台管理系統
             {
                 bool flag_批次已領取過 = false;
                 string GUID = Guid.NewGuid().ToString();
-                string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+                string 調劑台名稱 = this.textBox_工程模式_領藥台_名稱.Text;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.批次領藥;
                 string 藥品碼 = list_value[i][(int)enum_批次領藥資料.藥品碼].ObjectToString();
                 string 藥品名稱 = list_value[i][(int)enum_批次領藥資料.藥品名稱].ObjectToString();
@@ -356,7 +356,7 @@ namespace 調劑台管理系統
         void cnt_Program_批次領藥_刷新領藥內容_取得資料(ref int cnt)
         {
             List<object[]> list_value = new List<object[]>();
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
             string GUID = "";
             string 序號 = "";
             string 動作 = "";
@@ -605,7 +605,7 @@ namespace 調劑台管理系統
             for (int i = 0; i < list_value.Count; i++)
             {
                 string GUID = list_value[i][(int)enum_領藥內容.GUID].ObjectToString();
-                string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+                string 調劑台名稱 = this.textBox_工程模式_領藥台_名稱.Text;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.批次領藥;
                 string 藥品碼 = list_value[i][(int)enum_領藥內容.藥品碼].ObjectToString();
                 string 藥品名稱 = list_value[i][(int)enum_領藥內容.藥品名稱].ObjectToString();

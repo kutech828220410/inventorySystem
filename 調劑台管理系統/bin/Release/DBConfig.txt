@@ -44,5 +44,7 @@
   "Basic_Server": "220.135.128.247",
   "VM_Server": "220.135.128.247",
   "Api_URL": "http://220.135.128.247:4435",
-  "Web_URL": ""
+  "Web_URL": "",
+  "Api_Server": "http://www.ketech.tw:4433",
+  "Name": "TEST"
 }

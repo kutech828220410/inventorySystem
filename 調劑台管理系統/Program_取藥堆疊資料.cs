@@ -937,7 +937,7 @@ namespace 調劑台管理系統
         #region PLC_取藥堆疊資料_檢查資料
         PLC_Device PLC_Device_取藥堆疊資料_檢查資料 = new PLC_Device("");
         PLC_Device PLC_Device_取藥堆疊資料_檢查資料_更新儲位資料 = new PLC_Device("");
-        MyTimer MyTimer_取藥堆疊資料_刷新時間 = new MyTimer("D4006");
+        MyTimer MyTimer_取藥堆疊資料_刷新時間 = new MyTimer("K100");
         MyTimer MyTimer_取藥堆疊資料_自動過帳時間 = new MyTimer();
         MyTimer MyTimer_取藥堆疊資料_資料更新時間 = new MyTimer();
         int cnt_Program_取藥堆疊資料_檢查資料 = 65534;
@@ -1842,7 +1842,7 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_取藥堆疊資料_流程作業檢查 = new PLC_Device("");
         PLC_Device PLC_Device_取藥堆疊資料_流程作業檢查_不檢測 = new PLC_Device("S5246");
         public int 取藥堆疊資料_流程作業檢查_感測設定值 = 80;
-        MyTimer MyTimer_取藥堆疊資料_流程作業檢查 = new MyTimer("D4007");
+        MyTimer MyTimer_取藥堆疊資料_流程作業檢查 = new MyTimer("K100");
         MyTimer MyTimer_取藥堆疊資料_流程作業檢查時間 = new MyTimer();
         int cnt_Program_取藥堆疊資料_流程作業檢查 = 65534;
         void sub_Program_取藥堆疊資料_流程作業檢查()

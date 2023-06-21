@@ -20,13 +20,27 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.57.0")]
-[assembly: AssemblyFileVersion("1.0.57.0")]
+[assembly: AssemblyVersion("1.0.58.0")]
+[assembly: AssemblyFileVersion("1.0.58.0")]
 namespace 調劑台管理系統
 {
 
     public partial class Form1 : Form
     {
+        public string 領藥台_01名稱
+        {
+            get
+            {
+                return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
+            }
+        }
+        public string 領藥台_02名稱
+        {
+            get
+            {
+                return $"{this.textBox_工程模式_領藥台_名稱.Text}_02";
+            }
+        }
         private PrinterClass printerClass = new PrinterClass();
         private string FormText = "";
         private LadderConnection.LowerMachine PLC;
@@ -56,6 +70,8 @@ namespace 調劑台管理系統
             private string vM_Server = "";
             private string web_URL = "";
             private string api_URL = "";
+            private string name = "";
+            private string api_Server = "";
 
             private string orderApiURL = "";
             private string medApiURL = "";
@@ -78,13 +94,15 @@ namespace 調劑台管理系統
             public string VM_Server { get => vM_Server; set => vM_Server = value; }
             public string Api_URL { get => api_URL; set => api_URL = value; }
             public string Web_URL { get => web_URL; set => web_URL = value; }
+            public string Api_Server { get => api_Server; set => api_Server = value; }
+            public string Name { get => name; set => name = value; }
         }
         private void LoadDBConfig()
         {
             string jsonstr = MyFileStream.LoadFileAllText($".//{DBConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
-        
+
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
@@ -117,7 +135,7 @@ namespace 調劑台管理系統
         public MyConfigClass myConfigClass = new MyConfigClass();
         public class MyConfigClass
         {
-     
+
             private bool _主機扣帳模式 = false;
             private bool _主機輸出模式 = false;
             private bool _RFID使用 = true;
@@ -136,7 +154,7 @@ namespace 調劑台管理系統
             private string scanner01_COMPort = "COM2";
             private string scanner02_COMPort = "COM3";
             private string _藥物辨識網址 = "";
-
+    
 
             public bool 主機扣帳模式 { get => _主機扣帳模式; set => _主機扣帳模式 = value; }
             public bool 主機輸出模式 { get => _主機輸出模式; set => _主機輸出模式 = value; }
@@ -228,7 +246,7 @@ namespace 調劑台管理系統
                 }
 
             }
-            if(myConfigClass.線上更新)
+            if (myConfigClass.線上更新)
             {
                 this.ftp_DounloadUI.FTP_Server = ftpConfigClass.FTP_Server;
                 this.ftp_DounloadUI.Username = ftpConfigClass.FTP_username;
@@ -242,7 +260,7 @@ namespace 調劑台管理系統
                     }
                 }
             }
-            
+
         }
         #endregion
         public Form1()
@@ -347,12 +365,62 @@ namespace 調劑台管理系統
             this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue12);
             #endregion
         }
+        private void ApiServerSetting()
+        {
+            this.textBox_工程模式_領藥台_名稱.Text = dBConfigClass.Name;
+            string json_result = Basic.Net.WEBApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
+            if (json_result.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("API Server 連結失敗!");
+                return;
+            }
+            Console.WriteLine(json_result);
+            returnData returnData = json_result.JsonDeserializet<returnData>();
+            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
+            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
+                                                                            where value.類別 == enum_ServerSetting_Type.調劑台.GetEnumName()
+                                                                            where value.名稱 == dBConfigClass.Name
+                                                                            where value.內容 == "本地端"
+                                                                            select value).ToList();
+            if(serverSettingClasses_buf.Count > 0)
+            {
+                dBConfigClass.DB_Basic.IP = serverSettingClasses_buf[0].Server;
+                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClasses_buf[0].Port.StringToInt32());
+                dBConfigClass.DB_Basic.DataBaseName = serverSettingClasses_buf[0].DBName;
+                dBConfigClass.DB_Basic.UserName = serverSettingClasses_buf[0].User;
+                dBConfigClass.DB_Basic.Password = serverSettingClasses_buf[0].Password;
+            }
+            serverSettingClasses_buf = (from value in serverSettingClasses
+                                        where value.類別 == enum_ServerSetting_Type.調劑台.GetEnumName()
+                                        where value.名稱 == dBConfigClass.Name
+                                        where value.內容 == "VM端"
+                                        select value).ToList();
+            if (serverSettingClasses_buf.Count > 0)
+            {
+                dBConfigClass.DB_person_page.IP = serverSettingClasses_buf[0].Server;
+                dBConfigClass.DB_person_page.Port = (uint)(serverSettingClasses_buf[0].Port.StringToInt32());
+                dBConfigClass.DB_person_page.DataBaseName = serverSettingClasses_buf[0].DBName;
+                dBConfigClass.DB_person_page.UserName = serverSettingClasses_buf[0].User;
+                dBConfigClass.DB_person_page.Password = serverSettingClasses_buf[0].Password;
 
+                dBConfigClass.DB_order_list.IP = serverSettingClasses_buf[0].Server;
+                dBConfigClass.DB_order_list.Port = (uint)(serverSettingClasses_buf[0].Port.StringToInt32());
+                dBConfigClass.DB_order_list.DataBaseName = serverSettingClasses_buf[0].DBName;
+                dBConfigClass.DB_order_list.UserName = serverSettingClasses_buf[0].User;
+                dBConfigClass.DB_order_list.Password = serverSettingClasses_buf[0].Password;
+
+                dBConfigClass.DB_Medicine_Cloud.IP = serverSettingClasses_buf[0].Server;
+                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(serverSettingClasses_buf[0].Port.StringToInt32());
+                dBConfigClass.DB_Medicine_Cloud.DataBaseName = serverSettingClasses_buf[0].DBName;
+                dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClasses_buf[0].User;
+                dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClasses_buf[0].Password;
+            }
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             if (this.DesignMode == false)
-            {          
+            {
                 MyMessageBox.form = this.FindForm();
                 Dialog_NumPannel.form = this.FindForm();
                 Dialog_輸入批號.form = this.FindForm();
@@ -372,27 +440,18 @@ namespace 調劑台管理系統
                 LoadDBConfig();
                 LoadMyConfig();
                 LoadFtpConfig();
+                ApiServerSetting();
 
-                //dBConfigClass.DB_Basic.DataBaseName = "test01";
-                //dBConfigClass.DB_Basic.IP = "localhost";
-                //dBConfigClass.DB_Basic.UserName = "root";
-                //dBConfigClass.DB_Basic.Password = "user82822040";
-                //dBConfigClass.DB_Basic.Port = 3306;
-
-                //dBConfigClass.DB_person_page = dBConfigClass.DB_Basic;
-                //dBConfigClass.DB_Medicine_Cloud = dBConfigClass.DB_Basic;
-                //dBConfigClass.DB_order_list = dBConfigClass.DB_Basic;
-
-                this.stopwatch.Start();            
+                this.stopwatch.Start();
                 this.Text += "Ver" + this.ProductVersion;
                 this.FormText = this.Text;
                 this.WindowState = FormWindowState.Maximized;
-               
+
                 this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
                 this.plC_UI_Init.音效 = false;
                 this.plC_UI_Init.全螢幕顯示 = false;
 
-                
+
 
                 Basic.MyMessageBox.音效 = false;
                 string ProcessName = "WINWORD";//換成想要結束的進程名字
@@ -405,16 +464,14 @@ namespace 調劑台管理系統
                 printerClass.PrintPageEvent += PrinterClass_PrintPageEvent;
 
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
-          
+
             }
 
         }
-
-        private void Button1_Click(object sender, EventArgs e)
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Function_儲位亮燈("ITAP2", Color.Red);
+            System.Environment.Exit(0);
         }
-
         private void PlC_UI_Init_UI_Finished_Event()
         {
             this.PLC = this.lowerMachine_Panel.GetlowerMachine();
@@ -445,7 +502,6 @@ namespace 調劑台管理系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_Main, this.plC_ScreenPage_Main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_交班作業, this.plC_ScreenPage_交班作業);
 
-            
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥品資料, this.plC_ScreenPage_藥品資料);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統_Pannel設定, this.plC_ScreenPage_系統_Pannel設定);
@@ -485,7 +541,7 @@ namespace 調劑台管理系統
             this.Program_人員資料_Init();
             this.Program_工程模式_Init();
             this.Program_交易記錄查詢_Init();
-            this.Program_效期管理_Init();       
+            this.Program_效期管理_Init();
             this.Program_收支作業_Init();
             this.Program_後台登入_Init();
             this.Program_批次領藥_Init();
@@ -505,18 +561,13 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_Scanner_RS232);
 
             this.LoadConfig工程模式();
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_02_名稱.Text);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_01名稱);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_02名稱);
 
             Task task = Task.Run(new Action(delegate
             {
                 Function_從SQL取得儲位到本地資料();
             }));
-        }
-
-        private void Button1_Click1(object sender, EventArgs e)
-        {
-          
         }
         private void PrinterClass_PrintPageEvent(object sender, Graphics g, int width, int height, int page_num)
         {
@@ -594,10 +645,7 @@ namespace 調劑台管理系統
 
         #endregion
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            System.Environment.Exit(0);
-        }
+
         private void Update()
         {
             if (this.ftp_DounloadUI.DownloadFile())
@@ -624,46 +672,4 @@ namespace 調劑台管理系統
     }
 
 
-    public class AutoReSizeForm
-  
-      {
-          static float SH
-         {
-              get
-              {
-                  return (float)System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 1000F;
-             }
-          }
-          static float SW
-          {
-              get
-              {
-                  return (float)System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 1920F;
-              }
-          }
- 
-          public static void SetFormSize(Control fm)
-          {
-              fm.Location = new Point((int)(fm.Location.X * SW), (int)(fm.Location.Y * SH));
-              fm.Size = new Size((int)(fm.Size.Width * SW), (int)(fm.Size.Height * SH));
-              fm.Font = new Font(fm.Font.Name, fm.Font.Size * SH,fm.Font.Style,fm.Font.Unit,fm.Font.GdiCharSet,fm.Font.GdiVerticalFont);
-              if (fm.Controls.Count!=0)
-              {
-                  SetControlSize(fm);
-              }
-          }
-          private static void SetControlSize(Control InitC)
-          {
-              foreach (Control c in InitC.Controls)
-              {
-                  c.Location = new Point((int)(c.Location.X * SW), (int)(c.Location.Y * SH));
-                  c.Size = new Size((int)(c.Size.Width * SW), (int)(c.Size.Height * SH));
-                  c.Font = new Font(c.Font.Name, c.Font.Size * SH, c.Font.Style, c.Font.Unit, c.Font.GdiCharSet, c.Font.GdiVerticalFont);
-                  if (c.Controls.Count != 0)
-                  {
-                    
-                  }
-              }
-          }
-      }
 }

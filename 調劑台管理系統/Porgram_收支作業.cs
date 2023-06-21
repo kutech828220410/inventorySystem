@@ -90,7 +90,7 @@ namespace 調劑台管理系統
                 {
                     Function_從SQL取得儲位到本地資料();
                     Function_從SQL取得儲位到雲端資料();
-                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
                     flag_Program_收支作業_換頁 = false;
                 }
             }
@@ -154,7 +154,7 @@ namespace 調劑台管理系統
                 List<object[]> list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得子資料();
                 List<object[]> list_取藥堆疊子資料_buf = new List<object[]>();
                 List<object[]> list_取藥堆疊子資料_replace = new List<object[]>();
-                list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, this.textBox_工程模式_領藥台_01_名稱.Text);
+                list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, this.textBox_工程模式_領藥台_名稱.Text);
                 string GUID = "";
                 for(int i = 0; i < list_取藥堆疊母資料.Count; i++)
                 {
@@ -387,7 +387,7 @@ namespace 調劑台管理系統
             Color color = 登入者顏色.ToColor();
             if (color == Color.Black) 登入者顏色 = Color.White.ToColorString();
             string GUID = Guid.NewGuid().ToString();
-            string 調劑台名稱 = this.textBox_工程模式_領藥台_01_名稱.Text;
+            string 調劑台名稱 = this.textBox_工程模式_領藥台_名稱.Text;
             enum_交易記錄查詢動作 動作 = new enum_交易記錄查詢動作();
             if (plC_RJ_Button_收支作業_入庫.Bool) 動作 = enum_交易記錄查詢動作.入庫作業;
             if (plC_RJ_Button_收支作業_出庫.Bool) 動作 = enum_交易記錄查詢動作.出庫作業;
@@ -451,7 +451,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_收支作業_入庫狀態_清除所有資料_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_01_名稱.Text);
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
         }
         private void PlC_RJ_Button_收支作業_調入_MouseDownEvent(MouseEventArgs mevent)
         {
