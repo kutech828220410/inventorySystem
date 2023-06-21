@@ -133,7 +133,7 @@ namespace 調劑台管理系統
 
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_get_by_CT_TIME", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_get_by_CT_TIME", json_in);
             returnData = json.JsonDeserializet<returnData>();
             List<inventoryClass.creat> creats = inventoryClass.creat.ObjToListClass(returnData.Data);
             for (int i = 0; i < creats.Count; i++)
@@ -161,7 +161,7 @@ namespace 調劑台管理系統
 
             returnData.Data = content;
             string json_in = returnData.JsonSerializationt(true);
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_content_get_by_content_GUID", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_content_get_by_content_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
             List<inventoryClass.sub_content> sub_contents = inventoryClass.sub_content.ObjToListClass(returnData.Data);
             List<object[]> list_盤點藥品明細 = new List<object[]>();
@@ -200,7 +200,7 @@ namespace 調劑台管理系統
 
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_delete_by_IC_SN", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_delete_by_IC_SN", json_in);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog(returnData.Result);
             Function_盤點作業_單號查詢_清除顯示UI();
@@ -213,7 +213,7 @@ namespace 調劑台管理系統
 
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_get_by_IC_SN", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_get_by_IC_SN", json_in);
             returnData = json.JsonDeserializet<returnData>();
             List<inventoryClass.creat> creats = inventoryClass.creat.ObjToListClass(returnData.Data);
             if (returnData.Code < 0 || creats.Count == 0)
@@ -269,7 +269,7 @@ namespace 調劑台管理系統
             }
             returnData.Data = contents;
             string json_in = returnData.JsonSerializationt(true);
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/contents_delete_by_GUID", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/contents_delete_by_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog(returnData.Result);
 
@@ -322,7 +322,7 @@ namespace 調劑台管理系統
             returnData.Data = sub_Content;
 
             string json_in = returnData.JsonSerializationt(true);
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_content_add", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_content_add", json_in);
             returnData = json.JsonDeserializet<returnData>();
             if(returnData.Code < 0) MyMessageBox.ShowDialog(returnData.Result);
             Function_盤點作業_單號查詢_選擇盤點單號(rJ_TextBox_盤點作業_單號查詢_盤點單號.Text);
@@ -350,7 +350,7 @@ namespace 調劑台管理系統
             }
             returnData.Data = sub_contents;
             string json_in = returnData.JsonSerializationt(true);
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_contents_delete_by_GUID", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_contents_delete_by_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog(returnData.Result);
             Function_盤點作業_單號查詢_選擇盤點單號(rJ_TextBox_盤點作業_單號查詢_盤點單號.Text);
@@ -368,7 +368,7 @@ namespace 調劑台管理系統
             string json_in = returnData.JsonSerializationt(true);
             try
             {
-                byte[] excelData = Net.WEBApiPostJsonBytes($"{dBConfigClass.Inventory_ApiURL}/download_excel_by_IC_SN", json_in);
+                byte[] excelData = Net.WEBApiPostJsonBytes($"{dBConfigClass.Api_URL}/api/inventory/download_excel_by_IC_SN", json_in);
 
                 this.Invoke(new Action(delegate
                 {

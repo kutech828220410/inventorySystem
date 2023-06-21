@@ -75,8 +75,6 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_收支作業);
         }
 
-     
-
         private bool flag_Program_收支作業_換頁 = false;
         private void sub_Program_收支作業()
         {

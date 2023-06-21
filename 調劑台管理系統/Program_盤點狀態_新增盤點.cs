@@ -129,7 +129,7 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(MouseEventArgs mevent)
         {
             returnData returnData = new returnData();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/new_IC_SN", returnData.JsonSerializationt());
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/new_IC_SN", returnData.JsonSerializationt());
             Console.WriteLine(json);
             this.Invoke(new Action(delegate
             {
@@ -202,7 +202,7 @@ namespace 調劑台管理系統
             }
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_add", json_in);
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_add", json_in);
             Console.WriteLine(json);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog($"{returnData.Result}");
@@ -221,7 +221,7 @@ namespace 調劑台管理系統
 
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_auto_add", json_in);
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_auto_add", json_in);
             Console.WriteLine(json);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog($"{returnData.Result}");

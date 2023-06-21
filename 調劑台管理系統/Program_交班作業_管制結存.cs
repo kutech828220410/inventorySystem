@@ -240,7 +240,7 @@ namespace 調劑台管理系統
             returnData returnData = new returnData();
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Transactions_ApiURL}/serch", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/transactions/serch", json_in);
             returnData = json.JsonDeserializet<returnData>();
             string jsondata = returnData.Data.JsonSerializationt();
             List<transactionsClass> transactionsClasses = jsondata.JsonDeserializet<List<transactionsClass>>();
@@ -286,9 +286,9 @@ namespace 調劑台管理系統
             returnData returnData = new returnData();
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Transactions_ApiURL}/serch", json_in);
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/transactions/serch", json_in);
             returnData = json.JsonDeserializet<returnData>();
-            json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Transactions_ApiURL}/get_sheet_by_serch", json_in);
+            json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/transactions/get_sheet_by_serch", json_in);
             returnData = json.JsonDeserializet<returnData>();
             string jsondata = returnData.Data.JsonSerializationt();
             List<SheetClass> sheetClass = jsondata.JsonDeserializet<List<SheetClass>>();
@@ -313,9 +313,9 @@ namespace 調劑台管理系統
             returnData returnData = new returnData();
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Transactions_ApiURL}/serch", json_in);
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/transactions/serch", json_in);
             returnData = json.JsonDeserializet<returnData>();
-            json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Transactions_ApiURL}/get_sheet_by_serch", json_in);
+            json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/transactions/get_sheet_by_serch", json_in);
             returnData = json.JsonDeserializet<returnData>();
             string jsondata = returnData.Data.JsonSerializationt();
             List<SheetClass> sheetClass = jsondata.JsonDeserializet<List<SheetClass>>();

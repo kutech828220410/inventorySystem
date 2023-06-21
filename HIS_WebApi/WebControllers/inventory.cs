@@ -35,9 +35,6 @@ namespace HIS_WebApi
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
-
-
-
         //取得可建立今日最新盤點單
         [Route("new_IC_SN")]
         [HttpPost]

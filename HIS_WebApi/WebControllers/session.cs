@@ -210,7 +210,6 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt();
         }
 
-
         [Route("get_permissions")]
         public string POST_get_permissions([FromBody] returnData returnData)
         {
