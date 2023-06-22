@@ -11,23 +11,10 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using System.Configuration;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+using HIS_DB_Lib;
 namespace HIS_WebApi
 {
-    public enum enum_person_page
-    {
-        GUID,
-        ID,
-        姓名,
-        性別,
-        密碼,
-        單位,
-        權限等級,
-        顏色,
-        卡號,
-        一維條碼,
-        識別圖案,
-    }
+ 
     [Route("api/[controller]")]
     [ApiController]
     public class person_pageController : ControllerBase
@@ -68,20 +55,20 @@ namespace HIS_WebApi
 
             if (!ID.StringIsEmpty())
             {
-                list_value = list_value.Where(a => a[(int)enum_person_page.ID].ObjectToString() == ID).ToList();
+                list_value = list_value.Where(a => a[(int)enum_人員資料.ID].ObjectToString() == ID).ToList();
             }
             if (name != null)
             {
                 if (!name.StringIsEmpty())
                 {
-                    list_value = list_value.Where(a => a[(int)enum_person_page.姓名].ObjectToString() == name).ToList();
+                    list_value = list_value.Where(a => a[(int)enum_人員資料.姓名].ObjectToString() == name).ToList();
                 }
             }
             if (UID != null)
             {
                 if (!UID.StringIsEmpty())
                 {
-                    list_value = list_value.Where(a => a[(int)enum_person_page.卡號].ObjectToString() == UID).ToList();
+                    list_value = list_value.Where(a => a[(int)enum_人員資料.卡號].ObjectToString() == UID).ToList();
                 }
             }
 
@@ -89,14 +76,14 @@ namespace HIS_WebApi
             for (int i = 0; i < list_value.Count; i++)
             {
                 class_person_page_data class_Person_Page_Data = new class_person_page_data();
-                class_Person_Page_Data.ID = list_value[i][(int)enum_person_page.ID].ObjectToString();
-                class_Person_Page_Data.姓名 = list_value[i][(int)enum_person_page.姓名].ObjectToString();
-                class_Person_Page_Data.性別 = list_value[i][(int)enum_person_page.性別].ObjectToString();
-                class_Person_Page_Data.密碼 = list_value[i][(int)enum_person_page.密碼].ObjectToString();
-                class_Person_Page_Data.單位 = list_value[i][(int)enum_person_page.單位].ObjectToString();
-                class_Person_Page_Data.權限等級 = list_value[i][(int)enum_person_page.權限等級].ObjectToString();
-                class_Person_Page_Data.顏色 = list_value[i][(int)enum_person_page.顏色].ObjectToString();
-                class_Person_Page_Data.卡號 = list_value[i][(int)enum_person_page.卡號].ObjectToString();
+                class_Person_Page_Data.ID = list_value[i][(int)enum_人員資料.ID].ObjectToString();
+                class_Person_Page_Data.姓名 = list_value[i][(int)enum_人員資料.姓名].ObjectToString();
+                class_Person_Page_Data.性別 = list_value[i][(int)enum_人員資料.性別].ObjectToString();
+                class_Person_Page_Data.密碼 = list_value[i][(int)enum_人員資料.密碼].ObjectToString();
+                class_Person_Page_Data.單位 = list_value[i][(int)enum_人員資料.單位].ObjectToString();
+                class_Person_Page_Data.權限等級 = list_value[i][(int)enum_人員資料.權限等級].ObjectToString();
+                class_Person_Page_Data.顏色 = list_value[i][(int)enum_人員資料.顏色].ObjectToString();
+                class_Person_Page_Data.卡號 = list_value[i][(int)enum_人員資料.卡號].ObjectToString();
 
                 list_out_value.Add(class_Person_Page_Data);
             }
@@ -129,18 +116,18 @@ namespace HIS_WebApi
                 return "-1";
             }
 
-            list_value = list_value.GetRows((int)enum_person_page.ID, data.ID);
+            list_value = list_value.GetRows((int)enum_人員資料.ID, data.ID);
             if (list_value.Count > 0) return "-2";
-            object[] value = new object[new enum_person_page().GetLength()];
-            value[(int)enum_person_page.GUID] = Guid.NewGuid().ToString();
-            value[(int)enum_person_page.ID] = data.ID;
-            value[(int)enum_person_page.姓名] = data.姓名;
-            value[(int)enum_person_page.性別] = data.性別;
-            value[(int)enum_person_page.密碼] = data.密碼;
-            value[(int)enum_person_page.單位] = data.單位;
-            value[(int)enum_person_page.權限等級] = data.權限等級;
-            value[(int)enum_person_page.顏色] = data.顏色;
-            value[(int)enum_person_page.卡號] = data.卡號;
+            object[] value = new object[new enum_人員資料().GetLength()];
+            value[(int)enum_人員資料.GUID] = Guid.NewGuid().ToString();
+            value[(int)enum_人員資料.ID] = data.ID;
+            value[(int)enum_人員資料.姓名] = data.姓名;
+            value[(int)enum_人員資料.性別] = data.性別;
+            value[(int)enum_人員資料.密碼] = data.密碼;
+            value[(int)enum_人員資料.單位] = data.單位;
+            value[(int)enum_人員資料.權限等級] = data.權限等級;
+            value[(int)enum_人員資料.顏色] = data.顏色;
+            value[(int)enum_人員資料.卡號] = data.卡號;
             sQLControl_person_page.AddRow(null, value);
             return "200";
         }
@@ -164,26 +151,26 @@ namespace HIS_WebApi
             {
                 return "-1";
             }
-            list_value = list_value.GetRows((int)enum_person_page.ID, data.ID);
+            list_value = list_value.GetRows((int)enum_人員資料.ID, data.ID);
             if (list_value.Count == 0)
             {
                 return "-2";
             }
             else
             {
-                object[] value = new object[new enum_person_page().GetLength()];
-                value[(int)enum_person_page.GUID] = list_value[0][(int)enum_person_page.GUID].ObjectToString();
-                value[(int)enum_person_page.ID] = data.ID;
-                value[(int)enum_person_page.姓名] = data.姓名;
-                value[(int)enum_person_page.性別] = data.性別;
-                value[(int)enum_person_page.密碼] = data.密碼;
-                value[(int)enum_person_page.單位] = data.單位;
-                value[(int)enum_person_page.權限等級] = data.權限等級;
-                value[(int)enum_person_page.顏色] = data.顏色;
-                value[(int)enum_person_page.卡號] = data.卡號;
-                value[(int)enum_person_page.一維條碼] = list_value[0][(int)enum_person_page.一維條碼].ObjectToString();
-                value[(int)enum_person_page.識別圖案] = list_value[0][(int)enum_person_page.識別圖案].ObjectToString();
-                sQLControl_person_page.UpdateByDefult(null, enum_person_page.ID.GetEnumName(), data.ID, value);
+                object[] value = new object[new enum_人員資料().GetLength()];
+                value[(int)enum_人員資料.GUID] = list_value[0][(int)enum_人員資料.GUID].ObjectToString();
+                value[(int)enum_人員資料.ID] = data.ID;
+                value[(int)enum_人員資料.姓名] = data.姓名;
+                value[(int)enum_人員資料.性別] = data.性別;
+                value[(int)enum_人員資料.密碼] = data.密碼;
+                value[(int)enum_人員資料.單位] = data.單位;
+                value[(int)enum_人員資料.權限等級] = data.權限等級;
+                value[(int)enum_人員資料.顏色] = data.顏色;
+                value[(int)enum_人員資料.卡號] = data.卡號;
+                value[(int)enum_人員資料.一維條碼] = list_value[0][(int)enum_人員資料.一維條碼].ObjectToString();
+                value[(int)enum_人員資料.識別圖案] = list_value[0][(int)enum_人員資料.識別圖案].ObjectToString();
+                sQLControl_person_page.UpdateByDefult(null, enum_人員資料.ID.GetEnumName(), data.ID, value);
 
                 return "200";
             }
@@ -208,13 +195,13 @@ namespace HIS_WebApi
             {
                 return "-1";
             }
-            if (!(sQLControl_person_page.GetRowsByDefult(null, enum_person_page.ID.GetEnumName(), data.ID).Count > 0))
+            if (!(sQLControl_person_page.GetRowsByDefult(null, enum_人員資料.ID.GetEnumName(), data.ID).Count > 0))
             {
                 return "-2";
             }
             else
             {
-                sQLControl_person_page.DeleteByDefult(null, enum_person_page.ID.GetEnumName(), data.ID);
+                sQLControl_person_page.DeleteByDefult(null, enum_人員資料.ID.GetEnumName(), data.ID);
                 return "200";
             }
         }

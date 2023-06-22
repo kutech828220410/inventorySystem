@@ -23,36 +23,7 @@ namespace HIS_WebApi
     public class OutTakeMedController : ControllerBase
     {
 
-        public enum enum_取藥堆疊母資料
-        {
-            GUID,
-            序號,
-            調劑台名稱,
-            IP,
-            操作人,
-            動作,
-            作業模式,
-            藥袋序號,
-            類別,
-            藥品碼,
-            藥品名稱,
-            單位,
-            病歷號,
-            病人姓名,
-            床號,
-            開方時間,
-            操作時間,
-            顏色,
-            狀態,
-            庫存量,
-            總異動量,
-            結存量,
-            盤點量,
-            效期,
-            批號,
-            備註,
-            收支原因,
-        }
+
         public enum enum_設備資料
         {
             GUID,

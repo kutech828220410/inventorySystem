@@ -29,77 +29,7 @@ namespace 調劑台管理系統
         private MyThread MyThread_取藥堆疊資料_流程作業檢查;
    
 
-        public enum enum_取藥堆疊母資料_狀態
-        {
-            庫存不足,
-            無儲位,
-            輸入新效期,
-            選擇效期,
-            新增效期,
-            等待刷新,
-            等待作業,
-            作業完成,
-            等待入帳,
-            入賬完成,
-            取消作業,
-        }
-        public enum enum_取藥堆疊母資料_作業模式
-        {
-            效期管控,
-            複盤,
-            盲盤,
-            庫存不足語音提示,
-        }
-        public enum enum_取藥堆疊母資料
-        {
-            GUID,
-            序號,
-            調劑台名稱,
-            IP,
-            操作人,
-            動作,
-            作業模式,
-            藥袋序號,
-            類別,
-            藥品碼,
-            藥品名稱,
-            單位,     
-            病歷號,
-            病人姓名,
-            床號,
-            開方時間,
-            操作時間,
-            顏色,
-            狀態,
-            庫存量,
-            總異動量,
-            結存量,
-            盤點量,
-            效期,
-            批號,
-            備註,
-            收支原因,
-        }
-        public enum enum_取藥堆疊子資料
-        {
-            GUID,
-            Master_GUID,
-            Device_GUID,
-            序號,
-            調劑台名稱,
-            藥品碼,
-            IP,
-            Num,
-            TYPE,
-            效期,
-            批號,
-            異動量,
-            致能,
-            流程作業完成,
-            配藥完成,
-            調劑結束,
-            已入帳,
-        }
+      
         #region Function
         public class Icp_取藥堆疊母資料_index排序 : IComparer<object[]>
         {
@@ -201,17 +131,17 @@ namespace 調劑台管理系統
             return this.sqL_DataGridView_取藥堆疊子資料.SQL_GetAllRows(false);
         }
 
-        private void Function_取藥堆疊資料_新增母資料(string GUID, string 調劑台名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 藥品碼, string 藥品名稱, string 藥袋序號, string 單位, string 病歷號, string 病人姓名, string 開方時間, string IP, string 操作人, string 顏色, int 總異動量, string 效期)
+        private void Function_取藥堆疊資料_新增母資料(string GUID, string 調劑台名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 診別, string 藥品碼, string 藥品名稱, string 藥袋序號, string 單位, string 病歷號, string 病人姓名, string 開方時間, string IP, string 操作人, string 顏色, int 總異動量, string 效期)
         {
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, _enum_交易記錄查詢動作, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, IP, 操作人, 顏色, 總異動量, 效期, "");
+            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, _enum_交易記錄查詢動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, IP, 操作人, 顏色, 總異動量, 效期, "");
         }
-        private void Function_取藥堆疊資料_新增母資料(string GUID, string 調劑台名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 藥品碼, string 藥品名稱, string 藥袋序號, string 單位, string 病歷號, string 病人姓名, string 開方時間, string IP, string 操作人, string 顏色, int 總異動量, string 效期, string 批號)
+        private void Function_取藥堆疊資料_新增母資料(string GUID, string 調劑台名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 診別, string 藥品碼, string 藥品名稱, string 藥袋序號, string 單位, string 病歷號, string 病人姓名, string 開方時間, string IP, string 操作人, string 顏色, int 總異動量, string 效期, string 批號)
         {
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, _enum_交易記錄查詢動作, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, IP, 操作人, 顏色, 總異動量, 效期, "", "");
+            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, _enum_交易記錄查詢動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, IP, 操作人, 顏色, 總異動量, 效期, "", "");
 
         }
 
-        private void Function_取藥堆疊資料_新增母資料(string GUID, string 調劑台名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 藥品碼, string 藥品名稱, string 藥袋序號, string 單位, string 病歷號, string 病人姓名, string 開方時間, string IP, string 操作人, string 顏色, int 總異動量, string 效期, string 批號 ,string 收支原因)
+        private void Function_取藥堆疊資料_新增母資料(string GUID, string 調劑台名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 診別, string 藥品碼, string 藥品名稱, string 藥袋序號, string 單位, string 病歷號, string 病人姓名, string 開方時間, string IP, string 操作人, string 顏色, int 總異動量, string 效期, string 批號 ,string 收支原因)
         {
             object[] value = new object[enum_取藥堆疊母資料.GUID.GetEnumValues().Length];
             value[(int)enum_取藥堆疊母資料.GUID] = GUID;
@@ -223,7 +153,9 @@ namespace 調劑台管理系統
             {
                 value[(int)enum_取藥堆疊母資料.IP] = IP;
             }
+            診別 = "OPD1";
             value[(int)enum_取藥堆疊母資料.動作] = _enum_交易記錄查詢動作.GetEnumName();
+            value[(int)enum_取藥堆疊母資料.診別] = 診別;
             value[(int)enum_取藥堆疊母資料.藥袋序號] = 藥袋序號;
             value[(int)enum_取藥堆疊母資料.藥品碼] = 藥品碼;
             value[(int)enum_取藥堆疊母資料.藥品名稱] = 藥品名稱;
@@ -2247,6 +2179,7 @@ namespace 調劑台管理系統
             string 開方時間 = "";
             string 備註 = "";
             string 收支原因 = "";
+            string 診別 = "";
             List<string> List_效期 = new List<string>();
             List<string> List_批號 = new List<string>();
             list_可入賬母資料.Sort(new Icp_取藥堆疊母資料_index排序());
@@ -2255,6 +2188,7 @@ namespace 調劑台管理系統
  
                 Master_GUID = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
                 動作 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString();
+                診別 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.診別].ObjectToString();
                 藥品碼 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 this.Function_從SQL取得儲位到入賬資料(藥品碼);
                 藥品名稱 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
@@ -2306,6 +2240,7 @@ namespace 調劑台管理系統
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = Guid.NewGuid().ToString();
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
+                value_trading[(int)enum_交易記錄查詢資料.診別] = 診別;
                 value_trading[(int)enum_交易記錄查詢資料.藥品碼] = 藥品碼;
                 value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
                 value_trading[(int)enum_交易記錄查詢資料.藥袋序號] = 藥袋序號;

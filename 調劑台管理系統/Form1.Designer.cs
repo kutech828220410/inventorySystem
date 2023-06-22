@@ -6715,6 +6715,7 @@
             this.sqL_DataGridView_交易記錄查詢.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交易記錄查詢.Columns15"))));
             this.sqL_DataGridView_交易記錄查詢.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交易記錄查詢.Columns16"))));
             this.sqL_DataGridView_交易記錄查詢.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交易記錄查詢.Columns17"))));
+            this.sqL_DataGridView_交易記錄查詢.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交易記錄查詢.Columns18"))));
             this.sqL_DataGridView_交易記錄查詢.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_交易記錄查詢.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_交易記錄查詢.ImageBox = false;
@@ -27727,6 +27728,7 @@
             this.sqL_DataGridView_取藥堆疊母資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_取藥堆疊母資料.Columns24"))));
             this.sqL_DataGridView_取藥堆疊母資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_取藥堆疊母資料.Columns25"))));
             this.sqL_DataGridView_取藥堆疊母資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_取藥堆疊母資料.Columns26"))));
+            this.sqL_DataGridView_取藥堆疊母資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_取藥堆疊母資料.Columns27"))));
             this.sqL_DataGridView_取藥堆疊母資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_取藥堆疊母資料.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_取藥堆疊母資料.Font = new System.Drawing.Font("新細明體", 9F);

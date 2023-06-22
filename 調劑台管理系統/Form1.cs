@@ -66,8 +66,7 @@ namespace 調劑台管理系統
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_order_list = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
-            private string basic_Server = "";
-            private string vM_Server = "";
+
             private string web_URL = "";
             private string api_URL = "";
             private string name = "";
@@ -76,9 +75,7 @@ namespace 調劑台管理系統
             private string orderApiURL = "";
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
-            private string inventory_ApiURL = "";
-            private string inspection_ApiURL = "";
-            private string transactions_ApiURL = "";
+
 
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }

@@ -63,6 +63,13 @@ namespace 智能藥庫系統
             public string Inventory_ApiURL { get => inventory_ApiURL; set => inventory_ApiURL = value; }
             public string Server { get => server; set => server = value; }
             public string DbName { get => dbName; set => dbName = value; }
+
+
+            private string name = "";
+            private string api_Server = "";
+
+            public string Name { get => name; set => name = value; }
+            public string Api_Server { get => api_Server; set => api_Server = value; }
         }
         public class MyConfigClass
         {

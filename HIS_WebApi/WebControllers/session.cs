@@ -43,14 +43,14 @@ namespace HIS_WebApi
             List<object[]> list_login_session_add = new List<object[]>();
             List<object[]> list_login_session_replace = new List<object[]>();
 
-            list_person_page = list_person_page.GetRows((int)enum_person_page.ID, data.ID);
+            list_person_page = list_person_page.GetRows((int)enum_人員資料.ID, data.ID);
             if (list_person_page.Count == 0)
             {
                 returnData.Code = -1;
                 returnData.Result = "找無此帳號!";
                 return returnData.JsonSerializationt();
             }
-            if (list_person_page[0][(int)enum_person_page.密碼].ObjectToString() != data.Password)
+            if (list_person_page[0][(int)enum_人員資料.密碼].ObjectToString() != data.Password)
             {
                 returnData.Code = -2;
                 returnData.Result = "密碼錯誤!";
@@ -63,9 +63,9 @@ namespace HIS_WebApi
             {
                 value = new object[new enum_login_session().GetLength()];
                 value[(int)enum_login_session.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_login_session.ID] = list_person_page[0][(int)enum_person_page.ID].ObjectToString();
-                value[(int)enum_login_session.Name] = list_person_page[0][(int)enum_person_page.姓名].ObjectToString();
-                value[(int)enum_login_session.Employer] = list_person_page[0][(int)enum_person_page.單位].ObjectToString();
+                value[(int)enum_login_session.ID] = list_person_page[0][(int)enum_人員資料.ID].ObjectToString();
+                value[(int)enum_login_session.Name] = list_person_page[0][(int)enum_人員資料.姓名].ObjectToString();
+                value[(int)enum_login_session.Employer] = list_person_page[0][(int)enum_人員資料.單位].ObjectToString();
                 value[(int)enum_login_session.verifyTime] = DateTime.Now.ToDateTimeString();
                 value[(int)enum_login_session.loginTime] = DateTime.Now.ToDateTimeString();
                 list_login_session_add.Add(value);
@@ -74,9 +74,9 @@ namespace HIS_WebApi
             {
                 value = list_login_session[0];
                 value[(int)enum_login_session.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_login_session.ID] = list_person_page[0][(int)enum_person_page.ID].ObjectToString();
-                value[(int)enum_login_session.Name] = list_person_page[0][(int)enum_person_page.姓名].ObjectToString();
-                value[(int)enum_login_session.Employer] = list_person_page[0][(int)enum_person_page.單位].ObjectToString();
+                value[(int)enum_login_session.ID] = list_person_page[0][(int)enum_人員資料.ID].ObjectToString();
+                value[(int)enum_login_session.Name] = list_person_page[0][(int)enum_人員資料.姓名].ObjectToString();
+                value[(int)enum_login_session.Employer] = list_person_page[0][(int)enum_人員資料.單位].ObjectToString();
                 value[(int)enum_login_session.verifyTime] = DateTime.Now.ToDateTimeString();
                 value[(int)enum_login_session.loginTime] = DateTime.Now.ToDateTimeString();
                 list_login_session_replace.Add(value);
@@ -86,14 +86,14 @@ namespace HIS_WebApi
 
             sessionClass sessionClass = new sessionClass();
             sessionClass.GUID = value[(int)enum_login_session.GUID].ObjectToString();
-            sessionClass.ID = list_person_page[0][(int)enum_person_page.ID].ObjectToString();
-            sessionClass.Password = list_person_page[0][(int)enum_person_page.密碼].ObjectToString();
-            sessionClass.Name = list_person_page[0][(int)enum_person_page.姓名].ObjectToString();
-            sessionClass.Employer = list_person_page[0][(int)enum_person_page.單位].ObjectToString();
+            sessionClass.ID = list_person_page[0][(int)enum_人員資料.ID].ObjectToString();
+            sessionClass.Password = list_person_page[0][(int)enum_人員資料.密碼].ObjectToString();
+            sessionClass.Name = list_person_page[0][(int)enum_人員資料.姓名].ObjectToString();
+            sessionClass.Employer = list_person_page[0][(int)enum_人員資料.單位].ObjectToString();
             sessionClass.verifyTime = value[(int)enum_login_session.verifyTime].ObjectToString();
             sessionClass.loginTime = value[(int)enum_login_session.loginTime].ObjectToString();
-            sessionClass.level = list_person_page[0][(int)enum_person_page.權限等級].ObjectToString();
-            sessionClass.Color = list_person_page[0][(int)enum_person_page.顏色].ObjectToString();
+            sessionClass.level = list_person_page[0][(int)enum_人員資料.權限等級].ObjectToString();
+            sessionClass.Color = list_person_page[0][(int)enum_人員資料.顏色].ObjectToString();
             sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32());
 
 
@@ -222,26 +222,26 @@ namespace HIS_WebApi
             List<object[]> list_login_session_add = new List<object[]>();
             List<object[]> list_login_session_replace = new List<object[]>();
 
-            list_person_page = list_person_page.GetRows((int)enum_person_page.ID, data.ID);
+            list_person_page = list_person_page.GetRows((int)enum_人員資料.ID, data.ID);
             if (list_person_page.Count == 0)
             {
                 returnData.Code = -1;
                 returnData.Result = "找無此帳號!";
                 return returnData.JsonSerializationt();
             }
-            if (list_person_page[0][(int)enum_person_page.密碼].ObjectToString() != data.Password)
+            if (list_person_page[0][(int)enum_人員資料.密碼].ObjectToString() != data.Password)
             {
                 returnData.Code = -2;
                 returnData.Result = "密碼錯誤!";
                 return returnData.JsonSerializationt();
             }
             sessionClass sessionClass = new sessionClass();
-            sessionClass.ID = list_person_page[0][(int)enum_person_page.ID].ObjectToString();
-            sessionClass.Password = list_person_page[0][(int)enum_person_page.密碼].ObjectToString();
-            sessionClass.Name = list_person_page[0][(int)enum_person_page.姓名].ObjectToString();
-            sessionClass.Employer = list_person_page[0][(int)enum_person_page.單位].ObjectToString();
-            sessionClass.level = list_person_page[0][(int)enum_person_page.權限等級].ObjectToString();
-            sessionClass.Color = list_person_page[0][(int)enum_person_page.顏色].ObjectToString();
+            sessionClass.ID = list_person_page[0][(int)enum_人員資料.ID].ObjectToString();
+            sessionClass.Password = list_person_page[0][(int)enum_人員資料.密碼].ObjectToString();
+            sessionClass.Name = list_person_page[0][(int)enum_人員資料.姓名].ObjectToString();
+            sessionClass.Employer = list_person_page[0][(int)enum_人員資料.單位].ObjectToString();
+            sessionClass.level = list_person_page[0][(int)enum_人員資料.權限等級].ObjectToString();
+            sessionClass.Color = list_person_page[0][(int)enum_人員資料.顏色].ObjectToString();
             sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32());
 
 

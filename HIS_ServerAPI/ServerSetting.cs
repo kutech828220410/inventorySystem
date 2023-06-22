@@ -17,11 +17,11 @@ namespace HIS_ServerAPI
     [ApiController]
     public class ServerSettingController : Controller
     {
+        static private string Server = ConfigurationManager.AppSettings["server"]; 
+        static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string Server = ConfigurationManager.AppSettings["Server"];
-        static private string DB = "DBVM";
-        static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
+        static private string DB = ConfigurationManager.AppSettings["database"];
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("init")]

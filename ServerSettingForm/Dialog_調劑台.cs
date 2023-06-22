@@ -343,7 +343,7 @@ namespace ServerSettingForm
             SaveConfig();
             returnData returnData = json_result.JsonDeserializet<returnData>();
             List<ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
-
+            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.調劑台);
             comboBox_名稱.Items.Clear();
 
             for (int i = 0; i < serverSettingClasses.Count; i++)

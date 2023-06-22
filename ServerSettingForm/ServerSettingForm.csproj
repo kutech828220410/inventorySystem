@@ -52,8 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="MyUI">
-      <HintPath>..\..\H_Pannel\DLL\MyUI.dll</HintPath>
+    <Reference Include="MyUI, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\0.DLL\MyUI.dll</HintPath>
     </Reference>
     <Reference Include="SQLUI">
       <HintPath>..\0.DLL\SQLUI.dll</HintPath>
@@ -102,6 +103,18 @@
     <Compile Include="Dialog_新增.Designer.cs">
       <DependentUpon>Dialog_新增.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_網頁.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_網頁.Designer.cs">
+      <DependentUpon>Dialog_網頁.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_藥庫.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_藥庫.Designer.cs">
+      <DependentUpon>Dialog_藥庫.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_調劑台.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +137,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialog_新增.resx">
       <DependentUpon>Dialog_新增.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_網頁.resx">
+      <DependentUpon>Dialog_網頁.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_藥庫.resx">
+      <DependentUpon>Dialog_藥庫.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_調劑台.resx">
       <DependentUpon>Dialog_調劑台.cs</DependentUpon>

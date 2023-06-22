@@ -1,7 +1,6 @@
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\ServerSettingForm.exe.config
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\ServerSettingForm.exe
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\ServerSettingForm.pdb
-C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.csproj.AssemblyReference.cache
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.Form1.resources
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.Properties.Resources.resources
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.csproj.GenerateResource.cache
@@ -30,11 +29,6 @@ C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\System.Buffe
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\TCP.dll
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\CallBackUI.dll
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\DrawingClass.dll
-C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\AxOvkBase.dll
-C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\AxAltairUDrvAsm4.5.dll
-C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\AxOvkBaseAsm4.5.dll
-C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\AxOvkMsr.dll
-C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\AxAltairUDrv.dll
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\MVSDK.dll
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
@@ -55,3 +49,7 @@ C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\System.Value
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\HIS_DB_Lib.dll
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_新增.resources
 C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.Form_Buffer.resources
+C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_網頁.resources
+C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\bin\Release\MeasureSystemFunction.dll
+C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Pharmacy-master\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_藥庫.resources

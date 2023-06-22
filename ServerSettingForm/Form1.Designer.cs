@@ -31,12 +31,13 @@ namespace ServerSettingForm
         {
             this.button_調劑台 = new System.Windows.Forms.Button();
             this.button_藥庫 = new System.Windows.Forms.Button();
+            this.button_網頁 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_調劑台
             // 
             this.button_調劑台.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_調劑台.Location = new System.Drawing.Point(79, 33);
+            this.button_調劑台.Location = new System.Drawing.Point(84, 119);
             this.button_調劑台.Name = "button_調劑台";
             this.button_調劑台.Size = new System.Drawing.Size(284, 86);
             this.button_調劑台.TabIndex = 0;
@@ -46,20 +47,32 @@ namespace ServerSettingForm
             // button_藥庫
             // 
             this.button_藥庫.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_藥庫.Location = new System.Drawing.Point(79, 125);
+            this.button_藥庫.Location = new System.Drawing.Point(84, 211);
             this.button_藥庫.Name = "button_藥庫";
             this.button_藥庫.Size = new System.Drawing.Size(284, 86);
             this.button_藥庫.TabIndex = 1;
             this.button_藥庫.Text = "藥庫";
             this.button_藥庫.UseVisualStyleBackColor = true;
             // 
+            // button_網頁
+            // 
+            this.button_網頁.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_網頁.Location = new System.Drawing.Point(84, 27);
+            this.button_網頁.Name = "button_網頁";
+            this.button_網頁.Size = new System.Drawing.Size(284, 86);
+            this.button_網頁.TabIndex = 2;
+            this.button_網頁.Text = "網頁";
+            this.button_網頁.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 248);
+            this.ClientSize = new System.Drawing.Size(454, 323);
+            this.Controls.Add(this.button_網頁);
             this.Controls.Add(this.button_藥庫);
             this.Controls.Add(this.button_調劑台);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Form1";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -73,6 +86,7 @@ namespace ServerSettingForm
 
         private System.Windows.Forms.Button button_調劑台;
         private System.Windows.Forms.Button button_藥庫;
+        private System.Windows.Forms.Button button_網頁;
     }
 }
 

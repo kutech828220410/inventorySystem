@@ -373,7 +373,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Uw7Hf/GczhCf34DyBB/j3KPaf7vskxUZ9xJrSfwqXZk=</dsig:DigestValue>
+        <dsig:DigestValue>Z9Uu9+tcqJVD3sChNJ1mfmO9NtSrWWMCXaNv1GvsFVE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -637,17 +637,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hiJdmvzUe85q1MlIOhVNBvsqKa1fy2q6EORUgtjZejg=</dsig:DigestValue>
+        <dsig:DigestValue>0uqbWwp00arR9uAHKuFVs8jBZ56lrurYzJKmJ8LIkRw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="智能藥庫系統(VM Server).exe.config" size="792">
+  <file name="智能藥庫系統(VM Server).exe.config" size="775">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>3uX7hW4mhebEKihgzd+vbAZ+SA1gb7hriK9xr9vNdug=</dsig:DigestValue>
+      <dsig:DigestValue>/rxWPG48whC/Za65ZnHn5JuXXG4ISBPSKZddsphfx94=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
