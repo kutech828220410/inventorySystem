@@ -27,6 +27,8 @@ namespace HIS_WebApi
     [ApiController]
     public class deviceController : Controller
     {
+        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
+
         static private string device_Server = ConfigurationManager.AppSettings["device_Server"];
         static private string device_DB = ConfigurationManager.AppSettings["device_DB"];
         static private string device_TableName = ConfigurationManager.AppSettings["device_TableName"];
@@ -113,9 +115,17 @@ namespace HIS_WebApi
         {
             try
             {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
 
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
 
-                List<DeviceBasic> deviceBasics = Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName);
+                List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClasses[0]);
                 returnData.Code = 200;
                 returnData.Result = $"Device取得成功!TableName : {device_TableName}";
                 returnData.Data = deviceBasics;
@@ -209,8 +219,18 @@ namespace HIS_WebApi
         {
             return Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName);
         }
-        public List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName)
+        public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass)
         {
+            string IP = serverSettingClass.Server;
+            string DBName = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            string TableName = "";
+            if (serverSettingClass.類別 == "藥庫")
+            {
+                TableName = "firstclass_device_jsonstring";
+            }
             SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
             if (TableName.StringIsEmpty() == false)
@@ -224,8 +244,22 @@ namespace HIS_WebApi
        
             return deviceBasics;
         }
+        public List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName)
+        {
+            SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);
+            List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+            if (TableName.StringIsEmpty() == false)
+            {
+                deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceBasic(sQLControl_device);
+            }
+            else
+            {
+                deviceBasics = Function_讀取儲位(IP, DBName);
+            }
 
-       
+            return deviceBasics;
+        }
+
         private List<DeviceBasic> Function_讀取儲位(string IP, string DBName)
         {
     
@@ -233,10 +267,14 @@ namespace HIS_WebApi
             SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_RowsLED_serialize = new SQLControl(IP, DBName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_RFID_Device_serialize = new SQLControl(IP, DBName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_WT32_serialize = new SQLControl(IP, DBName, "WT32_Jsonstring", UserName, Password, Port, SSLMode);
+
+            
             List<object[]> list_EPD583 = new List<object[]>();
             List<object[]> list_EPD266 = new List<object[]>();
             List<object[]> list_RowsLED = new List<object[]>();
             List<object[]> list_RFID_Device = new List<object[]>();
+            List<object[]> list_WT32 = new List<object[]>();
             List<Task> taskList = new List<Task>();
             taskList.Add(Task.Run(() =>
             {
@@ -254,6 +292,10 @@ namespace HIS_WebApi
             {
                list_RFID_Device = sQLControl_RFID_Device_serialize.GetAllRows(null);
             }));
+            taskList.Add(Task.Run(() =>
+            {
+                list_WT32 = sQLControl_WT32_serialize.GetAllRows(null);
+            }));
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
@@ -262,6 +304,8 @@ namespace HIS_WebApi
             deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_EPD266));
             deviceBasics.LockAdd(RowsLEDMethod.GetAllDeviceBasic(list_RowsLED));
             deviceBasics.LockAdd(RFIDMethod.GetAllDeviceBasic(list_RFID_Device));
+            deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_WT32));
+
             deviceBasics_buf = (from value in deviceBasics
                                 where value.Code.StringIsEmpty() == false
                                 select value).ToList();

@@ -12,9 +12,13 @@ using System.Reflection;
 using MyUI;
 using Basic;
 using MySql.Data.MySqlClient;
+using System.Text.Json;
+using System.Text.Encodings.Web;
+using System.Text.Json.Serialization;
 using SQLUI;
 using H_Pannel_lib;
 using System.Net.Http;
+using HIS_DB_Lib;
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
@@ -36,33 +40,37 @@ namespace 智能藥庫系統
         private PLC_Device PLC_Device_滑鼠左鍵按下 = new PLC_Device("S4600");
         private PLC_Device PLC_Device_M8013 = new PLC_Device("M8013");
         private PLC_Device PLC_Device_主頁面頁碼 = new PLC_Device("D0");
-        
+        #region DBConfig
         public class DBConfigClass
         {
             private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_posting_server = new SQL_DataGridView.ConnentionClass();
-            private SQL_DataGridView.ConnentionClass dB_order_server = new SQL_DataGridView.ConnentionClass();
-
+            private string web_URL = "";
+            private string api_URL = "";
             private string emg_apply_ApiURL = "";
             private string medPrice_ApiURL = "";
             private string inventory_ApiURL = "";        
             private string inspection_ApiURL = "";
-            private string server = "";
-            private string dbName = "";
 
+            [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
+            [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
+            [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }
+            [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_posting_server { get => dB_posting_server; set => dB_posting_server = value; }
-            public SQL_DataGridView.ConnentionClass DB_order_server { get => dB_order_server; set => dB_order_server = value; }
+            [JsonIgnore]
             public string Emg_apply_ApiURL { get => emg_apply_ApiURL; set => emg_apply_ApiURL = value; }
+            [JsonIgnore]
             public string MedPrice_ApiURL { get => medPrice_ApiURL; set => medPrice_ApiURL = value; }
+            [JsonIgnore]
             public string Inspection_ApiURL { get => inspection_ApiURL; set => inspection_ApiURL = value; }
+            [JsonIgnore]
             public string Inventory_ApiURL { get => inventory_ApiURL; set => inventory_ApiURL = value; }
-            public string Server { get => server; set => server = value; }
-            public string DbName { get => dbName; set => dbName = value; }
+          
 
 
             private string name = "";
@@ -70,35 +78,17 @@ namespace 智能藥庫系統
 
             public string Name { get => name; set => name = value; }
             public string Api_Server { get => api_Server; set => api_Server = value; }
-        }
-        public class MyConfigClass
-        {
-            private string fTP_Server = "";
-            private string fTP_username = "";
-            private string fTP_password = "";
-            private int _貨架數量 = 8;
-            private bool _主機模式 = false;
-            private bool _線上更新 = true;
-
-            public string FTP_Server { get => fTP_Server; set => fTP_Server = value; }
-            public int 貨架數量 { get => _貨架數量; set => _貨架數量 = value; }
-            public bool 主機模式 { get => _主機模式; set => _主機模式 = value; }
-            public string FTP_username { get => fTP_username; set => fTP_username = value; }
-            public string FTP_password { get => fTP_password; set => fTP_password = value; }
-            public bool 線上更新 { get => _線上更新; set => _線上更新 = value; }
-        }
- 
-     
-        public Form1()
-        {
-            InitializeComponent();
+            [JsonIgnore]
+            public string Web_URL { get => web_URL; set => web_URL = value; }
+            [JsonIgnore]
+            public string Api_URL { get => api_URL; set => api_URL = value; }
         }
         private void LoadDBConfig()
         {
             string jsonstr = MyFileStream.LoadFileAllText($".//{DBConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
-                jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass() ,true);
+                jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
                 if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
@@ -121,6 +111,24 @@ namespace 智能藥庫系統
                 }
 
             }
+        }
+        #endregion
+        #region MyConfig
+        public class MyConfigClass
+        {
+            private string fTP_Server = "";
+            private string fTP_username = "";
+            private string fTP_password = "";
+            private int _貨架數量 = 8;
+            private bool _主機模式 = false;
+            private bool _線上更新 = true;
+
+            public string FTP_Server { get => fTP_Server; set => fTP_Server = value; }
+            public int 貨架數量 { get => _貨架數量; set => _貨架數量 = value; }
+            public bool 主機模式 { get => _主機模式; set => _主機模式 = value; }
+            public string FTP_username { get => fTP_username; set => fTP_username = value; }
+            public string FTP_password { get => fTP_password; set => fTP_password = value; }
+            public bool 線上更新 { get => _線上更新; set => _線上更新 = value; }
         }
         private void LoadMyConfig()
         {
@@ -153,6 +161,63 @@ namespace 智能藥庫系統
 
             //this.ftp_DounloadUI1.FTP_Server = myConfigClass.FTP_Server;
         }
+        #endregion
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        private void ApiServerSetting()
+        {
+            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
+            if (serverSettingClasses.Count == 0)
+            {
+                MyMessageBox.ShowDialog("API Server 連結失敗!");
+                return;
+            }
+            HIS_DB_Lib.ServerSettingClass serverSettingClass;
+
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_調劑台.一般資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_Basic.IP = serverSettingClass.Server;
+                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_Basic.UserName = serverSettingClass.User;
+                dBConfigClass.DB_Basic.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_調劑台.人員資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_person_page.IP = serverSettingClass.Server;
+                dBConfigClass.DB_person_page.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_person_page.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
+                dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_調劑台.藥檔資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_Medicine_Cloud.IP = serverSettingClass.Server;
+                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Medicine_Cloud.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
+                dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.批次過帳資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_posting_server.IP = serverSettingClass.Server;
+                dBConfigClass.DB_posting_server.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_posting_server.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_posting_server.UserName = serverSettingClass.User;
+                dBConfigClass.DB_posting_server.Password = serverSettingClass.Password;
+            }
+
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API01);
+            if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
+        }
+  
+     
         private void Form1_Load(object sender, EventArgs e)
         {
          
@@ -160,6 +225,15 @@ namespace 智能藥庫系統
             if (this.DesignMode == false)
             {
                 MyMessageBox.form = this.FindForm();
+                MyMessageBox.音效 = false;
+                MyMessageBox.form = this.FindForm();
+                Dialog_Prcessbar.form = this.FindForm();
+                Dialog_輸入批號.form = this.FindForm();
+                Dialog_輸入效期.form = this.FindForm();
+                Dialog_輸入備註.form = this.FindForm();
+                Dialog_寫入藥品碼.form = this.FindForm();
+                Dialog_更換密碼.form = this.FindForm();
+
                 this.LoadMyConfig();
                 this.LoadDBConfig();
                 this.ftp_DounloadUI.FTP_Server = myConfigClass.FTP_Server;
@@ -178,13 +252,7 @@ namespace 智能藥庫系統
                 this.FormText = this.Text;
                 this.WindowState = FormWindowState.Maximized;
                 this.plC_RJ_Button_測試.MouseDownEvent += PlC_RJ_Button_測試_MouseDownEvent;
-                MyMessageBox.音效 = false;
-                Dialog_Prcessbar.form = this.FindForm();
-                Dialog_輸入批號.form = this.FindForm();
-                Dialog_輸入效期.form = this.FindForm();
-                Dialog_輸入備註.form = this.FindForm();
-                Dialog_寫入藥品碼.form = this.FindForm();
-                Dialog_更換密碼.form = this.FindForm();
+        
 
                 this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel1);
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
@@ -193,6 +261,10 @@ namespace 智能藥庫系統
     
         private void PlC_UI_Init_UI_Finished_Event()
         {
+
+
+     
+            ApiServerSetting();
 
             PLC_UI_Init.Set_PLC_ScreenPage(panel_Main, this.plC_ScreenPage_Main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫, this.plC_ScreenPage_藥庫);
@@ -219,7 +291,6 @@ namespace 智能藥庫系統
 
             //this.PLC_Device_主機模式.Bool = myConfigClass.主機模式;
 
-            this.sub_Program_藥品補給系統_Init();
 
             this.sub_Program_系統_Init();
             this.sub_Program_人員資料_Init();
@@ -238,8 +309,7 @@ namespace 智能藥庫系統
             this.sub_Program_藥庫_儲位管理_Pannel35_Init();
             this.sub_Program_藥庫_儲位設定_EPD266_Init();
             this.sub_Program_藥庫_入庫_Init();
-            this.sub_Program_藥庫_每日訂單_下訂單_Init();
-            this.sub_Program_藥庫_每日訂單_訂單查詢_Init();
+  
 
             this.sub_Program_藥庫_撥補_藥局_自動撥補_Init();
             this.sub_Program_藥庫_撥補_藥局_緊急申領_Init();
@@ -248,10 +318,6 @@ namespace 智能藥庫系統
             this.sub_Program_藥庫_驗收入庫_資料庫_Init();
             this.sub_Program_藥庫_驗收入庫_新增驗收_Init();
             this.sub_Program_藥庫_驗收入庫_單號查詢_Init();
-
-            this.sub_Program_藥庫_緊急訂單_下訂單_Init();
-            this.sub_Program_藥庫_緊急訂單_信箱設定_Init();
-            this.sub_Program_藥庫_緊急訂單_訂單列表_Init();
 
             this.sub_Program_批次過帳_門診_Init();
             this.sub_Program_批次過帳_急診_Init();

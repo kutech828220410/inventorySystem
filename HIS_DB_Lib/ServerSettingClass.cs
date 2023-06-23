@@ -47,6 +47,7 @@ namespace HIS_DB_Lib
         API_Session,
         Website,
     }
+
     public enum enum_ServerSetting_調劑台
     {
         一般資料,
@@ -69,7 +70,7 @@ namespace HIS_DB_Lib
         一般資料,
         人員資料,
         藥檔資料,
-        醫囑資料,
+        批次過帳資料,
         API_本地端,
         API_VM端,
         API_藥檔資料,
@@ -81,6 +82,26 @@ namespace HIS_DB_Lib
     }
     public static class ServerSettingClassMethod
     {
+        public static List<ServerSettingClass> MyFind(this List<ServerSettingClass> serverSettingClasses, string Name, string Type, string Content)
+        {
+            if (serverSettingClasses == null) return null;
+            List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
+                                                                 where value.類別 == Type
+                                                                 where value.名稱 == Name
+                                                                 where value.內容 == Content
+                                                                 select value).ToList();
+            return serverSettingClasses_buf;
+        }
+        public static List<ServerSettingClass> MyFind(this List<ServerSettingClass> serverSettingClasses, string Name, string Type)
+        {
+            if (serverSettingClasses == null) return null;
+            List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
+                                                                 where value.類別 == Type
+                                                                 where value.名稱 == Name
+                                                                 select value).ToList();
+            return serverSettingClasses_buf;
+        }
+
         public static ServerSettingClass MyFind(this List<ServerSettingClass> serverSettingClasses, string Name, enum_ServerSetting_Type _enum_ServerSetting_Type, enum_ServerSetting_網頁 enum_ServerSetting_網頁)
         {
             if (serverSettingClasses == null) return null;

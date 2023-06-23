@@ -132,6 +132,9 @@ namespace 調劑台管理系統
 
 
             returnData.Data = creat;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_get_by_CT_TIME", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -160,6 +163,9 @@ namespace 調劑台管理系統
             content.GUID = Content_GUID;
 
             returnData.Data = content;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_content_get_by_content_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -199,6 +205,9 @@ namespace 調劑台管理系統
             creat.盤點單號 = IC_SN;
 
             returnData.Data = creat;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_delete_by_IC_SN", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -212,6 +221,9 @@ namespace 調劑台管理系統
             creat.盤點單號 = IC_SN;
 
             returnData.Data = creat;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_get_by_IC_SN", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -268,6 +280,9 @@ namespace 調劑台管理系統
                 contents.Add(content);
             }
             returnData.Data = contents;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/contents_delete_by_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -320,7 +335,9 @@ namespace 調劑台管理系統
             sub_Content.盤點量 = 數量;
             sub_Content.操作人 = 登入者名稱;
             returnData.Data = sub_Content;
-
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_content_add", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -349,6 +366,9 @@ namespace 調劑台管理系統
                 Master_GUID = list_value[i][(int)enum_盤點作業_單號查詢_盤點藥品明細.Master_GUID].ObjectToString();
             }
             returnData.Data = sub_contents;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_contents_delete_by_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
@@ -359,6 +379,9 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_盤點作業_單號查詢_下載_MouseClickEvent(MouseEventArgs mevent)
         {
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             inventoryClass.creat creat = new inventoryClass.creat();
             this.Invoke(new Action(delegate
             {

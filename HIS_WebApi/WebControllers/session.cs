@@ -17,11 +17,8 @@ namespace HIS_WebApi
     [ApiController]
     public class sessionController : Controller
     {
-        static private string IP = ConfigurationManager.AppSettings["VM_Server"];
-        static private string DataBaseName = ConfigurationManager.AppSettings["VM_DB"];
-        static private string UserName = ConfigurationManager.AppSettings["user"];
-        static private string Password = ConfigurationManager.AppSettings["password"];  
-        static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
+        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
+
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [HttpGet]
@@ -33,6 +30,20 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_login([FromBody] returnData returnData)
         {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = "找無資料庫參數!";
+                return returnData.JsonSerializationt();
+            }
+            string IP = serverSettingClasses[0].Server;
+            string DataBaseName = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
@@ -57,7 +68,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
             list_login_session = list_login_session.GetRows((int)enum_login_session.ID, data.ID);
-           
+
             object[] value = new object[new enum_login_session().GetLength()];
             if (list_login_session.Count == 0)
             {
@@ -107,8 +118,8 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
 
-    
-         
+
+
             returnData.Code = 200;
             returnData.Result = "登入成功!";
             return returnData.JsonSerializationt();
@@ -118,6 +129,20 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_logout([FromBody] returnData returnData)
         {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = "找無資料庫參數!";
+                return returnData.JsonSerializationt();
+            }
+            string IP = serverSettingClasses[0].Server;
+            string DataBaseName = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
@@ -142,6 +167,20 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_check([FromBody] returnData returnData)
         {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = "找無資料庫參數!";
+                return returnData.JsonSerializationt();
+            }
+            string IP = serverSettingClasses[0].Server;
+            string DataBaseName = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
@@ -158,10 +197,10 @@ namespace HIS_WebApi
             }
             else
             {
-              
+
             }
             DateTime loginTime = sessionClass.loginTime.StringToDateTime().StringToDateTime();
-            if(sessionClass.loginTime.StringToDateTime().ToDateTimeString() != list_login_session[0][(int)enum_login_session.loginTime].StringToDateTime().ToDateTimeString())
+            if (sessionClass.loginTime.StringToDateTime().ToDateTimeString() != list_login_session[0][(int)enum_login_session.loginTime].StringToDateTime().ToDateTimeString())
             {
                 returnData.Result = "其他裝置登入,即將登出!";
                 returnData.Code = -2;
@@ -190,6 +229,20 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_update_session([FromBody] returnData returnData)
         {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = "找無資料庫參數!";
+                return returnData.JsonSerializationt();
+            }
+            string IP = serverSettingClasses[0].Server;
+            string DataBaseName = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
@@ -213,6 +266,20 @@ namespace HIS_WebApi
         [Route("get_permissions")]
         public string POST_get_permissions([FromBody] returnData returnData)
         {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = "找無資料庫參數!";
+                return returnData.JsonSerializationt();
+            }
+            string IP = serverSettingClasses[0].Server;
+            string DataBaseName = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
             Check_Table();
@@ -255,6 +322,18 @@ namespace HIS_WebApi
 
         public List<string> GetPermissions(int level)
         {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
+            if (serverSettingClasses.Count == 0)
+            {
+                return new List<string>();
+            }
+            string IP = serverSettingClasses[0].Server;
+            string DataBaseName = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
             List<string> result = new List<string>();
             SQLControl sQLControl_login_data_index = new SQLControl(IP, DataBaseName, "login_data_index", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_login_data = new SQLControl(IP, DataBaseName, "login_data", UserName, Password, Port, SSLMode);
@@ -269,7 +348,7 @@ namespace HIS_WebApi
                 if (list_class_login_data.Count == 0) return new List<string>();
                 for (int i = 0; i < list_class_login_data[0].data.Count; i++)
                 {
-                    if(list_class_login_data[0].data[i])
+                    if (list_class_login_data[0].data[i])
                     {
                         login_data_index_buf = login_data_index.GetRows((int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.索引, i.ToString("00"));
                         if (login_data_index_buf.Count > 0)
@@ -277,13 +356,25 @@ namespace HIS_WebApi
                             result.Add(login_data_index_buf[0][(int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.Name].ObjectToString());
                         }
                     }
-                   
+
                 }
             }
             return result;
         }
         public void Check_Table()
         {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
+            if (serverSettingClasses.Count == 0)
+            {
+                return;
+            }
+            string IP = serverSettingClasses[0].Server;
+            string DataBaseName = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 

@@ -53,7 +53,7 @@ namespace 智能藥庫系統
             this.plC_UI_Init.Add_Method(sub_Program_盤點作業_新增盤點);
         }
 
-  
+
 
         private bool flag_Program_盤點作業_新增盤點_Init = false;
         private void sub_Program_盤點作業_新增盤點()
@@ -104,7 +104,7 @@ namespace 智能藥庫系統
         }
         private void SqL_DataGridView_盤點作業_藥品資料_RowDoubleClickEvent(object[] RowValue)
         {
-            
+
             string 藥品碼 = RowValue[(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
             string 料號 = RowValue[(int)enum_藥庫_藥品資料.料號].ObjectToString();
             string 藥品名稱 = RowValue[(int)enum_藥庫_藥品資料.藥品名稱].ObjectToString();
@@ -129,11 +129,16 @@ namespace 智能藥庫系統
         private void PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(MouseEventArgs mevent)
         {
             returnData returnData = new returnData();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/new_IC_SN", returnData.JsonSerializationt());
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/new_IC_SN", returnData.JsonSerializationt());
             Console.WriteLine(json);
             this.Invoke(new Action(delegate
             {
                 returnData = json.JsonDeserializet<returnData>();
+                returnData.ServerName = dBConfigClass.Name;
+                returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
                 if (returnData == null) return;
                 if (returnData.Code != 200) return;
                 this.rJ_TextBox_盤點作業_新增盤點_盤點單號.Texts = $"{returnData.Value}";
@@ -185,9 +190,14 @@ namespace 智能藥庫系統
                 return;
             }
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表人 = 登入者名稱;
             creat.盤點單號 = rJ_TextBox_盤點作業_新增盤點_盤點單號.Text;
+            creat.盤點名稱 = rJ_TextBox_盤點作業_新增盤點_盤點名稱.Text;
             for (int i = 0; i < list_盤點藥品清單.Count; i++)
             {
                 inventoryClass.content content = new inventoryClass.content();
@@ -201,7 +211,7 @@ namespace 智能藥庫系統
             }
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_add", json_in);
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_add", json_in);
             Console.WriteLine(json);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog($"{returnData.Result}");
@@ -211,15 +221,21 @@ namespace 智能藥庫系統
         {
             this.PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(null);
             string 盤點單號 = this.rJ_TextBox_盤點作業_新增盤點_盤點單號.Texts;
+            string 盤點名稱 = rJ_TextBox_盤點作業_新增盤點_盤點名稱.Text;
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表人 = 登入者名稱;
             creat.盤點單號 = 盤點單號;
-         
-            returnData.Data = creat;
+            creat.盤點名稱 = 盤點名稱;
 
-            string jsonin = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_auto_add", jsonin);
+            returnData.Data = creat;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_auto_add", json_in);
             Console.WriteLine(json);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog($"{returnData.Result}");

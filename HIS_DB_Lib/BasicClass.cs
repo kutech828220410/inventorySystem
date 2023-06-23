@@ -15,8 +15,16 @@ namespace HIS_DB_Lib
         private string _method = "";
         private string _timeTaken = "";
         private string _server = "";
+        private uint _port = 3306;
+        private string _userName = "";
+        private string _password = "";
+
         private string _dbName = "";
         private string _tableName = "";
+        private string _serverName = "";
+        private string _serverType = "";
+        private string _serverContent = "";
+
 
         public object Data { get => _data; set => _data = value; }
         public int Code { get => _code; set => _code = value; }
@@ -27,5 +35,11 @@ namespace HIS_DB_Lib
         public string Server { get => _server; set => _server = value; }
         public string DbName { get => _dbName; set => _dbName = value; }
         public string TableName { get => _tableName; set => _tableName = value; }
+        public string ServerType { get => _serverType; set => _serverType = value; }
+        public string ServerName { get => _serverName; set => _serverName = value; }
+        public string ServerContent { get => _serverContent; set => _serverContent = value; }
+        public uint Port { get => _port; set => _port = value; }
+        public string UserName { get => _userName; set => _userName = value; }
+        public string Password { get => _password; set => _password = value; }
     }
 }

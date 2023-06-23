@@ -105,7 +105,7 @@ namespace ServerSettingForm
             button_一般資料_測試.Click += Button_一般資料_測試_Click;
             button_人員資料_測試.Click += Button_人員資料_測試_Click;
             button_藥檔資料_測試.Click += Button_藥檔資料_測試_Click;
-            button_醫囑資料_測試.Click += Button_醫囑資料_測試_Click;
+            button_批次過帳資料_測試.Click += Button_批次過帳資料_測試_Click;
             button_API_本地端_測試.Click += Button_本地端_測試_Click;
             button_API_VM端_測試.Click += Button_VM端_測試_Click;
 
@@ -182,19 +182,19 @@ namespace ServerSettingForm
                 rJ_TextBox_藥檔資料_Server.Text, rJ_TextBox_藥檔資料_Port.Text, rJ_TextBox_藥檔資料_DBName.Text, "", rJ_TextBox_藥檔資料_UserName.Text, rJ_TextBox_藥檔資料_Password.Text));
             }
 
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.醫囑資料);
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.批次過帳資料);
             if (serverSettingClass != null)
             {
-                serverSettingClass.Server = rJ_TextBox_醫囑資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_醫囑資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_醫囑資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_醫囑資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_醫囑資料_Password.Text;
+                serverSettingClass.Server = rJ_TextBox_批次過帳資料_Server.Text;
+                serverSettingClass.Port = rJ_TextBox_批次過帳資料_Port.Text;
+                serverSettingClass.DBName = rJ_TextBox_批次過帳資料_DBName.Text;
+                serverSettingClass.User = rJ_TextBox_批次過帳資料_UserName.Text;
+                serverSettingClass.Password = rJ_TextBox_批次過帳資料_Password.Text;
             }
             else
             {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.醫囑資料,
-                rJ_TextBox_醫囑資料_Server.Text, rJ_TextBox_醫囑資料_Port.Text, rJ_TextBox_醫囑資料_DBName.Text, "", rJ_TextBox_醫囑資料_UserName.Text, rJ_TextBox_醫囑資料_Password.Text));
+                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.批次過帳資料,
+                rJ_TextBox_批次過帳資料_Server.Text, rJ_TextBox_批次過帳資料_Port.Text, rJ_TextBox_批次過帳資料_DBName.Text, "", rJ_TextBox_批次過帳資料_UserName.Text, rJ_TextBox_批次過帳資料_Password.Text));
             }
 
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_VM端);
@@ -377,14 +377,14 @@ namespace ServerSettingForm
                 rJ_TextBox_藥檔資料_UserName.Texts = serverSettingClass.User;
                 rJ_TextBox_藥檔資料_Password.Texts = serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.醫囑資料);
+            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.批次過帳資料);
             if (serverSettingClass != null)
             {
-                rJ_TextBox_醫囑資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_醫囑資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_醫囑資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_醫囑資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_醫囑資料_Password.Texts = serverSettingClass.Password;
+                rJ_TextBox_批次過帳資料_Server.Texts = serverSettingClass.Server;
+                rJ_TextBox_批次過帳資料_Port.Texts = serverSettingClass.Port;
+                rJ_TextBox_批次過帳資料_DBName.Texts = serverSettingClass.DBName;
+                rJ_TextBox_批次過帳資料_UserName.Texts = serverSettingClass.User;
+                rJ_TextBox_批次過帳資料_Password.Texts = serverSettingClass.Password;
             }
             serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_本地端);
             if (serverSettingClass != null)
@@ -509,22 +509,22 @@ namespace ServerSettingForm
                 MyMessageBox.ShowDialog("一般資料連線測試失敗!");
             }
         }
-        private void Button_醫囑資料_測試_Click(object sender, EventArgs e)
+        private void Button_批次過帳資料_測試_Click(object sender, EventArgs e)
         {
-            string server = rJ_TextBox_醫囑資料_Server.Text;
-            string port = rJ_TextBox_醫囑資料_Port.Text;
-            string dbname = rJ_TextBox_醫囑資料_DBName.Text;
-            string username = rJ_TextBox_醫囑資料_UserName.Text;
-            string password = rJ_TextBox_醫囑資料_Password.Text;
+            string server = rJ_TextBox_批次過帳資料_Server.Text;
+            string port = rJ_TextBox_批次過帳資料_Port.Text;
+            string dbname = rJ_TextBox_批次過帳資料_DBName.Text;
+            string username = rJ_TextBox_批次過帳資料_UserName.Text;
+            string password = rJ_TextBox_批次過帳資料_Password.Text;
             SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
 
             if (sQLControl.TestConnection())
             {
-                MyMessageBox.ShowDialog("醫囑資料連線測試成功!");
+                MyMessageBox.ShowDialog("批次過帳資料連線測試成功!");
             }
             else
             {
-                MyMessageBox.ShowDialog("醫囑資料連線測試失敗!");
+                MyMessageBox.ShowDialog("批次過帳資料連線測試失敗!");
             }
         }
         private void Button_藥檔資料_測試_Click(object sender, EventArgs e)

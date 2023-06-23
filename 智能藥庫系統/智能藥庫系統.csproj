@@ -285,13 +285,7 @@
     <Compile Include="Program_盤點狀態_新增盤點.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Program_藥品補給系統.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Program_藥品過消耗帳.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥庫_每日訂單_下訂單.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_藥庫_儲位設定.cs">
@@ -308,18 +302,6 @@
     </Compile>
     <Compile Include="Program_藥庫_撥補_藥局_緊急申領.cs" />
     <Compile Include="Program_藥庫_撥補_藥局_自動撥補.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥庫_每日訂單_訂單查詢.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥庫_緊急訂單_下訂單.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥庫_緊急訂單_信箱維護.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥庫_緊急訂單_訂單列表.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_藥庫_藥品資料.cs">

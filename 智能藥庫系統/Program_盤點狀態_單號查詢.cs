@@ -15,7 +15,7 @@ using H_Pannel_lib;
 using HIS_DB_Lib;
 using System.Net;
 using System.Net.Http;
-
+using HIS_DB_Lib;
 namespace 智能藥庫系統
 {
 
@@ -85,6 +85,7 @@ namespace 智能藥庫系統
             this.Invoke(new Action(delegate
             {
                 rJ_TextBox_盤點作業_單號查詢_盤點單號.Text = "";
+                rJ_TextBox_盤點作業_單號查詢_盤點名稱.Text = "";
                 rJ_TextBox_盤點作業_單號查詢_建表人.Text = "";
                 rJ_TextBox_盤點作業_單號查詢_建表時間.Text = "";
                 rJ_TextBox_盤點作業_單號查詢_盤點開始時間.Text = "";
@@ -99,6 +100,7 @@ namespace 智能藥庫系統
             this.Invoke(new Action(delegate
             {
                 rJ_TextBox_盤點作業_單號查詢_盤點單號.Text = creat.盤點單號;
+                rJ_TextBox_盤點作業_單號查詢_盤點名稱.Text = creat.盤點名稱;
                 rJ_TextBox_盤點作業_單號查詢_建表人.Text = creat.建表人;
                 rJ_TextBox_盤點作業_單號查詢_建表時間.Text = creat.建表時間;
                 rJ_TextBox_盤點作業_單號查詢_盤點開始時間.Text = creat.盤點開始時間;
@@ -125,12 +127,17 @@ namespace 智能藥庫系統
         {
             List<string> str_ary = new List<string>();
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表時間 = date;
-     
+
+
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_get_by_CT_TIME", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_get_by_CT_TIME", json_in);
             returnData = json.JsonDeserializet<returnData>();
             List<inventoryClass.creat> creats = inventoryClass.creat.ObjToListClass(returnData.Data);
             for (int i = 0; i < creats.Count; i++)
@@ -153,11 +160,16 @@ namespace 智能藥庫系統
         {
             if (Content_GUID.StringIsEmpty()) return;
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+
             inventoryClass.content content = new inventoryClass.content();
             content.GUID = Content_GUID;
+
             returnData.Data = content;
             string json_in = returnData.JsonSerializationt(true);
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_content_get_by_content_GUID", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_content_get_by_content_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
             List<inventoryClass.sub_content> sub_contents = inventoryClass.sub_content.ObjToListClass(returnData.Data);
             List<object[]> list_盤點藥品明細 = new List<object[]>();
@@ -175,7 +187,7 @@ namespace 智能藥庫系統
                     value[(int)enum_盤點作業_單號查詢_盤點藥品明細.效期] = "無";
                 }
                 value[(int)enum_盤點作業_單號查詢_盤點藥品明細.批號] = sub_Content.批號;
-                if(sub_Content.批號.StringIsEmpty())
+                if (sub_Content.批號.StringIsEmpty())
                 {
                     value[(int)enum_盤點作業_單號查詢_盤點藥品明細.批號] = "無";
                 }
@@ -191,11 +203,14 @@ namespace 智能藥庫系統
         {
             List<string> str_ary = new List<string>();
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.盤點單號 = IC_SN;
+
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_delete_by_IC_SN", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_delete_by_IC_SN", json_in);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog(returnData.Result);
             Function_盤點作業_單號查詢_清除顯示UI();
@@ -203,11 +218,16 @@ namespace 智能藥庫系統
         private void Function_盤點作業_單號查詢_選擇盤點單號(string IC_SN)
         {
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.盤點單號 = IC_SN;
+
             returnData.Data = creat;
             string json_in = returnData.JsonSerializationt();
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/creat_get_by_IC_SN", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_get_by_IC_SN", json_in);
             returnData = json.JsonDeserializet<returnData>();
             List<inventoryClass.creat> creats = inventoryClass.creat.ObjToListClass(returnData.Data);
             if (returnData.Code < 0 || creats.Count == 0)
@@ -262,8 +282,12 @@ namespace 智能藥庫系統
                 contents.Add(content);
             }
             returnData.Data = contents;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+
             string json_in = returnData.JsonSerializationt(true);
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/contents_delete_by_GUID", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/contents_delete_by_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog(returnData.Result);
 
@@ -282,7 +306,7 @@ namespace 智能藥庫系統
             string 效期 = "";
             string 批號 = "";
             string 數量 = "";
-            if(checkBox_盤點作業_單號查詢_盤點藥品明細_輸入效期批號.Checked)
+            if (checkBox_盤點作業_單號查詢_盤點藥品明細_輸入效期批號.Checked)
             {
                 Dialog_輸入效期 dialog_輸入效期 = new Dialog_輸入效期();
                 if (dialog_輸入效期.ShowDialog() != DialogResult.Yes) return;
@@ -303,10 +327,14 @@ namespace 智能藥庫系統
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("輸入盤點量");
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
 
-           
+
 
             數量 = dialog_NumPannel.Value.ToString();
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+
             inventoryClass.sub_content sub_Content = new inventoryClass.sub_content();
             sub_Content.Master_GUID = Master_GUID;
             sub_Content.效期 = 效期;
@@ -314,10 +342,11 @@ namespace 智能藥庫系統
             sub_Content.盤點量 = 數量;
             sub_Content.操作人 = 登入者名稱;
             returnData.Data = sub_Content;
+
             string json_in = returnData.JsonSerializationt(true);
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_content_add", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_content_add", json_in);
             returnData = json.JsonDeserializet<returnData>();
-            if(returnData.Code < 0) MyMessageBox.ShowDialog(returnData.Result);
+            if (returnData.Code < 0) MyMessageBox.ShowDialog(returnData.Result);
             Function_盤點作業_單號查詢_選擇盤點單號(rJ_TextBox_盤點作業_單號查詢_盤點單號.Text);
             Function_盤點作業_單號查詢_取得盤點明細(Master_GUID);
 
@@ -332,6 +361,10 @@ namespace 智能藥庫系統
             }
             if (MyMessageBox.ShowDialog($"是否刪除選取<{list_value.Count}>筆資料?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+
             List<inventoryClass.sub_content> sub_contents = new List<inventoryClass.sub_content>();
             string Master_GUID = "";
             for (int i = 0; i < list_value.Count; i++)
@@ -343,7 +376,7 @@ namespace 智能藥庫系統
             }
             returnData.Data = sub_contents;
             string json_in = returnData.JsonSerializationt(true);
-            string json = Net.WEBApiPostJson($"{dBConfigClass.Inventory_ApiURL}/sub_contents_delete_by_GUID", json_in);
+            string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/sub_contents_delete_by_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
             MyMessageBox.ShowDialog(returnData.Result);
             Function_盤點作業_單號查詢_選擇盤點單號(rJ_TextBox_盤點作業_單號查詢_盤點單號.Text);
@@ -352,6 +385,10 @@ namespace 智能藥庫系統
         private void PlC_RJ_Button_盤點作業_單號查詢_下載_MouseClickEvent(MouseEventArgs mevent)
         {
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.TableName = "medicine_page_firstclass";
+
             inventoryClass.creat creat = new inventoryClass.creat();
             this.Invoke(new Action(delegate
             {
@@ -361,7 +398,7 @@ namespace 智能藥庫系統
             string json_in = returnData.JsonSerializationt(true);
             try
             {
-                byte[] excelData = Net.WEBApiPostJsonBytes($"{dBConfigClass.Inventory_ApiURL}/download_excel_by_IC_SN", json_in);
+                byte[] excelData = Net.WEBApiPostJsonBytes($"{dBConfigClass.Api_URL}/api/inventory/download_excel_by_IC_SN", json_in);
 
                 this.Invoke(new Action(delegate
                 {
@@ -377,10 +414,10 @@ namespace 智能藥庫系統
             {
                 MyMessageBox.ShowDialog("Excel 文件下载失敗！");
             }
-          
+
         }
         #endregion
-      
-        
+
+
     }
 }

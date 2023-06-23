@@ -69,14 +69,6 @@ namespace ServerSettingForm
             this.rJ_TextBox_藥檔資料_DBName = new MyUI.RJ_TextBox();
             this.rJ_TextBox_藥檔資料_Port = new MyUI.RJ_TextBox();
             this.rJ_TextBox_藥檔資料_Server = new MyUI.RJ_TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button_醫囑資料_測試 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.rJ_TextBox_醫囑資料_Password = new MyUI.RJ_TextBox();
-            this.rJ_TextBox_醫囑資料_UserName = new MyUI.RJ_TextBox();
-            this.rJ_TextBox_醫囑資料_DBName = new MyUI.RJ_TextBox();
-            this.rJ_TextBox_醫囑資料_Port = new MyUI.RJ_TextBox();
-            this.rJ_TextBox_醫囑資料_Server = new MyUI.RJ_TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -120,15 +112,23 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_交易紀錄資料_Port = new MyUI.RJ_TextBox();
             this.rJ_TextBox_API_交易紀錄資料_Server = new MyUI.RJ_TextBox();
             this.label_名稱 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button_批次過帳資料_測試 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.rJ_TextBox_批次過帳資料_Password = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_批次過帳資料_UserName = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_批次過帳資料_DBName = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_批次過帳資料_Port = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_批次過帳資料_Server = new MyUI.RJ_TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -819,163 +819,6 @@ namespace ServerSettingForm
             this.rJ_TextBox_藥檔資料_Server.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_藥檔資料_Server.Texts = "";
             this.rJ_TextBox_藥檔資料_Server.UnderlineStyle = false;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.button_醫囑資料_測試);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.rJ_TextBox_醫囑資料_Password);
-            this.groupBox4.Controls.Add(this.rJ_TextBox_醫囑資料_UserName);
-            this.groupBox4.Controls.Add(this.rJ_TextBox_醫囑資料_DBName);
-            this.groupBox4.Controls.Add(this.rJ_TextBox_醫囑資料_Port);
-            this.groupBox4.Controls.Add(this.rJ_TextBox_醫囑資料_Server);
-            this.groupBox4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox4.Location = new System.Drawing.Point(806, 126);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(250, 367);
-            this.groupBox4.TabIndex = 30;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "醫囑資料";
-            // 
-            // button_醫囑資料_測試
-            // 
-            this.button_醫囑資料_測試.Location = new System.Drawing.Point(133, 315);
-            this.button_醫囑資料_測試.Name = "button_醫囑資料_測試";
-            this.button_醫囑資料_測試.Size = new System.Drawing.Size(72, 41);
-            this.button_醫囑資料_測試.TabIndex = 15;
-            this.button_醫囑資料_測試.Text = "測試";
-            this.button_醫囑資料_測試.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.Color.Black;
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(41, 38);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(164, 40);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "SQL Server";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // rJ_TextBox_醫囑資料_Password
-            // 
-            this.rJ_TextBox_醫囑資料_Password.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_醫囑資料_Password.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_醫囑資料_Password.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_醫囑資料_Password.BorderRadius = 0;
-            this.rJ_TextBox_醫囑資料_Password.BorderSize = 2;
-            this.rJ_TextBox_醫囑資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_醫囑資料_Password.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_醫囑資料_Password.GUID = "";
-            this.rJ_TextBox_醫囑資料_Password.Location = new System.Drawing.Point(41, 269);
-            this.rJ_TextBox_醫囑資料_Password.Multiline = false;
-            this.rJ_TextBox_醫囑資料_Password.Name = "rJ_TextBox_醫囑資料_Password";
-            this.rJ_TextBox_醫囑資料_Password.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_醫囑資料_Password.PassWordChar = false;
-            this.rJ_TextBox_醫囑資料_Password.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_醫囑資料_Password.PlaceholderText = "Password";
-            this.rJ_TextBox_醫囑資料_Password.ShowTouchPannel = false;
-            this.rJ_TextBox_醫囑資料_Password.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_醫囑資料_Password.TabIndex = 12;
-            this.rJ_TextBox_醫囑資料_Password.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_醫囑資料_Password.Texts = "";
-            this.rJ_TextBox_醫囑資料_Password.UnderlineStyle = false;
-            // 
-            // rJ_TextBox_醫囑資料_UserName
-            // 
-            this.rJ_TextBox_醫囑資料_UserName.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_醫囑資料_UserName.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_醫囑資料_UserName.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_醫囑資料_UserName.BorderRadius = 0;
-            this.rJ_TextBox_醫囑資料_UserName.BorderSize = 2;
-            this.rJ_TextBox_醫囑資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_醫囑資料_UserName.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_醫囑資料_UserName.GUID = "";
-            this.rJ_TextBox_醫囑資料_UserName.Location = new System.Drawing.Point(41, 223);
-            this.rJ_TextBox_醫囑資料_UserName.Multiline = false;
-            this.rJ_TextBox_醫囑資料_UserName.Name = "rJ_TextBox_醫囑資料_UserName";
-            this.rJ_TextBox_醫囑資料_UserName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_醫囑資料_UserName.PassWordChar = false;
-            this.rJ_TextBox_醫囑資料_UserName.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_醫囑資料_UserName.PlaceholderText = "UserName";
-            this.rJ_TextBox_醫囑資料_UserName.ShowTouchPannel = false;
-            this.rJ_TextBox_醫囑資料_UserName.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_醫囑資料_UserName.TabIndex = 10;
-            this.rJ_TextBox_醫囑資料_UserName.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_醫囑資料_UserName.Texts = "";
-            this.rJ_TextBox_醫囑資料_UserName.UnderlineStyle = false;
-            // 
-            // rJ_TextBox_醫囑資料_DBName
-            // 
-            this.rJ_TextBox_醫囑資料_DBName.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_醫囑資料_DBName.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_醫囑資料_DBName.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_醫囑資料_DBName.BorderRadius = 0;
-            this.rJ_TextBox_醫囑資料_DBName.BorderSize = 2;
-            this.rJ_TextBox_醫囑資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_醫囑資料_DBName.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_醫囑資料_DBName.GUID = "";
-            this.rJ_TextBox_醫囑資料_DBName.Location = new System.Drawing.Point(41, 177);
-            this.rJ_TextBox_醫囑資料_DBName.Multiline = false;
-            this.rJ_TextBox_醫囑資料_DBName.Name = "rJ_TextBox_醫囑資料_DBName";
-            this.rJ_TextBox_醫囑資料_DBName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_醫囑資料_DBName.PassWordChar = false;
-            this.rJ_TextBox_醫囑資料_DBName.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_醫囑資料_DBName.PlaceholderText = "DBName";
-            this.rJ_TextBox_醫囑資料_DBName.ShowTouchPannel = false;
-            this.rJ_TextBox_醫囑資料_DBName.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_醫囑資料_DBName.TabIndex = 8;
-            this.rJ_TextBox_醫囑資料_DBName.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_醫囑資料_DBName.Texts = "";
-            this.rJ_TextBox_醫囑資料_DBName.UnderlineStyle = false;
-            // 
-            // rJ_TextBox_醫囑資料_Port
-            // 
-            this.rJ_TextBox_醫囑資料_Port.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_醫囑資料_Port.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_醫囑資料_Port.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_醫囑資料_Port.BorderRadius = 0;
-            this.rJ_TextBox_醫囑資料_Port.BorderSize = 2;
-            this.rJ_TextBox_醫囑資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_醫囑資料_Port.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_醫囑資料_Port.GUID = "";
-            this.rJ_TextBox_醫囑資料_Port.Location = new System.Drawing.Point(41, 131);
-            this.rJ_TextBox_醫囑資料_Port.Multiline = false;
-            this.rJ_TextBox_醫囑資料_Port.Name = "rJ_TextBox_醫囑資料_Port";
-            this.rJ_TextBox_醫囑資料_Port.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_醫囑資料_Port.PassWordChar = false;
-            this.rJ_TextBox_醫囑資料_Port.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_醫囑資料_Port.PlaceholderText = "Port";
-            this.rJ_TextBox_醫囑資料_Port.ShowTouchPannel = false;
-            this.rJ_TextBox_醫囑資料_Port.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_醫囑資料_Port.TabIndex = 6;
-            this.rJ_TextBox_醫囑資料_Port.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_醫囑資料_Port.Texts = "";
-            this.rJ_TextBox_醫囑資料_Port.UnderlineStyle = false;
-            // 
-            // rJ_TextBox_醫囑資料_Server
-            // 
-            this.rJ_TextBox_醫囑資料_Server.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_醫囑資料_Server.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_醫囑資料_Server.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_醫囑資料_Server.BorderRadius = 0;
-            this.rJ_TextBox_醫囑資料_Server.BorderSize = 2;
-            this.rJ_TextBox_醫囑資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_醫囑資料_Server.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_醫囑資料_Server.GUID = "";
-            this.rJ_TextBox_醫囑資料_Server.Location = new System.Drawing.Point(41, 85);
-            this.rJ_TextBox_醫囑資料_Server.Multiline = false;
-            this.rJ_TextBox_醫囑資料_Server.Name = "rJ_TextBox_醫囑資料_Server";
-            this.rJ_TextBox_醫囑資料_Server.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_醫囑資料_Server.PassWordChar = false;
-            this.rJ_TextBox_醫囑資料_Server.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_醫囑資料_Server.PlaceholderText = "Server";
-            this.rJ_TextBox_醫囑資料_Server.ShowTouchPannel = false;
-            this.rJ_TextBox_醫囑資料_Server.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_醫囑資料_Server.TabIndex = 4;
-            this.rJ_TextBox_醫囑資料_Server.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_醫囑資料_Server.Texts = "";
-            this.rJ_TextBox_醫囑資料_Server.UnderlineStyle = false;
             // 
             // label12
             // 
@@ -1796,12 +1639,170 @@ namespace ServerSettingForm
             this.label_名稱.TabIndex = 52;
             this.label_名稱.Text = "DS01";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button_批次過帳資料_測試);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.rJ_TextBox_批次過帳資料_Password);
+            this.groupBox4.Controls.Add(this.rJ_TextBox_批次過帳資料_UserName);
+            this.groupBox4.Controls.Add(this.rJ_TextBox_批次過帳資料_DBName);
+            this.groupBox4.Controls.Add(this.rJ_TextBox_批次過帳資料_Port);
+            this.groupBox4.Controls.Add(this.rJ_TextBox_批次過帳資料_Server);
+            this.groupBox4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox4.Location = new System.Drawing.Point(806, 130);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(250, 367);
+            this.groupBox4.TabIndex = 53;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "批次過帳資料";
+            // 
+            // button_批次過帳資料_測試
+            // 
+            this.button_批次過帳資料_測試.Location = new System.Drawing.Point(133, 315);
+            this.button_批次過帳資料_測試.Name = "button_批次過帳資料_測試";
+            this.button_批次過帳資料_測試.Size = new System.Drawing.Size(72, 41);
+            this.button_批次過帳資料_測試.TabIndex = 15;
+            this.button_批次過帳資料_測試.Text = "測試";
+            this.button_批次過帳資料_測試.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.Black;
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(41, 38);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(164, 40);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "SQL Server";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // rJ_TextBox_批次過帳資料_Password
+            // 
+            this.rJ_TextBox_批次過帳資料_Password.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_批次過帳資料_Password.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_批次過帳資料_Password.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_批次過帳資料_Password.BorderRadius = 0;
+            this.rJ_TextBox_批次過帳資料_Password.BorderSize = 2;
+            this.rJ_TextBox_批次過帳資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_批次過帳資料_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_批次過帳資料_Password.GUID = "";
+            this.rJ_TextBox_批次過帳資料_Password.Location = new System.Drawing.Point(41, 269);
+            this.rJ_TextBox_批次過帳資料_Password.Multiline = false;
+            this.rJ_TextBox_批次過帳資料_Password.Name = "rJ_TextBox_批次過帳資料_Password";
+            this.rJ_TextBox_批次過帳資料_Password.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_批次過帳資料_Password.PassWordChar = false;
+            this.rJ_TextBox_批次過帳資料_Password.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_批次過帳資料_Password.PlaceholderText = "Password";
+            this.rJ_TextBox_批次過帳資料_Password.ShowTouchPannel = false;
+            this.rJ_TextBox_批次過帳資料_Password.Size = new System.Drawing.Size(164, 40);
+            this.rJ_TextBox_批次過帳資料_Password.TabIndex = 12;
+            this.rJ_TextBox_批次過帳資料_Password.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_批次過帳資料_Password.Texts = "";
+            this.rJ_TextBox_批次過帳資料_Password.UnderlineStyle = false;
+            // 
+            // rJ_TextBox_批次過帳資料_UserName
+            // 
+            this.rJ_TextBox_批次過帳資料_UserName.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_批次過帳資料_UserName.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_批次過帳資料_UserName.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_批次過帳資料_UserName.BorderRadius = 0;
+            this.rJ_TextBox_批次過帳資料_UserName.BorderSize = 2;
+            this.rJ_TextBox_批次過帳資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_批次過帳資料_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_批次過帳資料_UserName.GUID = "";
+            this.rJ_TextBox_批次過帳資料_UserName.Location = new System.Drawing.Point(41, 223);
+            this.rJ_TextBox_批次過帳資料_UserName.Multiline = false;
+            this.rJ_TextBox_批次過帳資料_UserName.Name = "rJ_TextBox_批次過帳資料_UserName";
+            this.rJ_TextBox_批次過帳資料_UserName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_批次過帳資料_UserName.PassWordChar = false;
+            this.rJ_TextBox_批次過帳資料_UserName.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_批次過帳資料_UserName.PlaceholderText = "UserName";
+            this.rJ_TextBox_批次過帳資料_UserName.ShowTouchPannel = false;
+            this.rJ_TextBox_批次過帳資料_UserName.Size = new System.Drawing.Size(164, 40);
+            this.rJ_TextBox_批次過帳資料_UserName.TabIndex = 10;
+            this.rJ_TextBox_批次過帳資料_UserName.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_批次過帳資料_UserName.Texts = "";
+            this.rJ_TextBox_批次過帳資料_UserName.UnderlineStyle = false;
+            // 
+            // rJ_TextBox_批次過帳資料_DBName
+            // 
+            this.rJ_TextBox_批次過帳資料_DBName.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_批次過帳資料_DBName.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_批次過帳資料_DBName.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_批次過帳資料_DBName.BorderRadius = 0;
+            this.rJ_TextBox_批次過帳資料_DBName.BorderSize = 2;
+            this.rJ_TextBox_批次過帳資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_批次過帳資料_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_批次過帳資料_DBName.GUID = "";
+            this.rJ_TextBox_批次過帳資料_DBName.Location = new System.Drawing.Point(41, 177);
+            this.rJ_TextBox_批次過帳資料_DBName.Multiline = false;
+            this.rJ_TextBox_批次過帳資料_DBName.Name = "rJ_TextBox_批次過帳資料_DBName";
+            this.rJ_TextBox_批次過帳資料_DBName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_批次過帳資料_DBName.PassWordChar = false;
+            this.rJ_TextBox_批次過帳資料_DBName.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_批次過帳資料_DBName.PlaceholderText = "DBName";
+            this.rJ_TextBox_批次過帳資料_DBName.ShowTouchPannel = false;
+            this.rJ_TextBox_批次過帳資料_DBName.Size = new System.Drawing.Size(164, 40);
+            this.rJ_TextBox_批次過帳資料_DBName.TabIndex = 8;
+            this.rJ_TextBox_批次過帳資料_DBName.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_批次過帳資料_DBName.Texts = "";
+            this.rJ_TextBox_批次過帳資料_DBName.UnderlineStyle = false;
+            // 
+            // rJ_TextBox_批次過帳資料_Port
+            // 
+            this.rJ_TextBox_批次過帳資料_Port.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_批次過帳資料_Port.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_批次過帳資料_Port.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_批次過帳資料_Port.BorderRadius = 0;
+            this.rJ_TextBox_批次過帳資料_Port.BorderSize = 2;
+            this.rJ_TextBox_批次過帳資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_批次過帳資料_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_批次過帳資料_Port.GUID = "";
+            this.rJ_TextBox_批次過帳資料_Port.Location = new System.Drawing.Point(41, 131);
+            this.rJ_TextBox_批次過帳資料_Port.Multiline = false;
+            this.rJ_TextBox_批次過帳資料_Port.Name = "rJ_TextBox_批次過帳資料_Port";
+            this.rJ_TextBox_批次過帳資料_Port.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_批次過帳資料_Port.PassWordChar = false;
+            this.rJ_TextBox_批次過帳資料_Port.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_批次過帳資料_Port.PlaceholderText = "Port";
+            this.rJ_TextBox_批次過帳資料_Port.ShowTouchPannel = false;
+            this.rJ_TextBox_批次過帳資料_Port.Size = new System.Drawing.Size(164, 40);
+            this.rJ_TextBox_批次過帳資料_Port.TabIndex = 6;
+            this.rJ_TextBox_批次過帳資料_Port.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_批次過帳資料_Port.Texts = "";
+            this.rJ_TextBox_批次過帳資料_Port.UnderlineStyle = false;
+            // 
+            // rJ_TextBox_批次過帳資料_Server
+            // 
+            this.rJ_TextBox_批次過帳資料_Server.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_批次過帳資料_Server.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_批次過帳資料_Server.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_批次過帳資料_Server.BorderRadius = 0;
+            this.rJ_TextBox_批次過帳資料_Server.BorderSize = 2;
+            this.rJ_TextBox_批次過帳資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_批次過帳資料_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_批次過帳資料_Server.GUID = "";
+            this.rJ_TextBox_批次過帳資料_Server.Location = new System.Drawing.Point(41, 85);
+            this.rJ_TextBox_批次過帳資料_Server.Multiline = false;
+            this.rJ_TextBox_批次過帳資料_Server.Name = "rJ_TextBox_批次過帳資料_Server";
+            this.rJ_TextBox_批次過帳資料_Server.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_批次過帳資料_Server.PassWordChar = false;
+            this.rJ_TextBox_批次過帳資料_Server.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_批次過帳資料_Server.PlaceholderText = "Server";
+            this.rJ_TextBox_批次過帳資料_Server.ShowTouchPannel = false;
+            this.rJ_TextBox_批次過帳資料_Server.Size = new System.Drawing.Size(164, 40);
+            this.rJ_TextBox_批次過帳資料_Server.TabIndex = 4;
+            this.rJ_TextBox_批次過帳資料_Server.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_批次過帳資料_Server.Texts = "";
+            this.rJ_TextBox_批次過帳資料_Server.UnderlineStyle = false;
+            // 
             // Dialog_藥庫
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label_名稱);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
@@ -1810,7 +1811,6 @@ namespace ServerSettingForm
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button_Website_開啟);
             this.Controls.Add(this.button_API02_測試);
@@ -1840,12 +1840,12 @@ namespace ServerSettingForm
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1887,20 +1887,12 @@ namespace ServerSettingForm
         private MyUI.RJ_TextBox rJ_TextBox_藥檔資料_DBName;
         private MyUI.RJ_TextBox rJ_TextBox_藥檔資料_Port;
         private MyUI.RJ_TextBox rJ_TextBox_藥檔資料_Server;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button_醫囑資料_測試;
-        private System.Windows.Forms.Label label9;
-        private MyUI.RJ_TextBox rJ_TextBox_醫囑資料_DBName;
-        private MyUI.RJ_TextBox rJ_TextBox_醫囑資料_Port;
-        private MyUI.RJ_TextBox rJ_TextBox_醫囑資料_Server;
         private MyUI.RJ_TextBox rJ_TextBox_一般資料_Password;
         private MyUI.RJ_TextBox rJ_TextBox_一般資料_UserName;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_Password;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_UserName;
         private MyUI.RJ_TextBox rJ_TextBox_藥檔資料_Password;
         private MyUI.RJ_TextBox rJ_TextBox_藥檔資料_UserName;
-        private MyUI.RJ_TextBox rJ_TextBox_醫囑資料_Password;
-        private MyUI.RJ_TextBox rJ_TextBox_醫囑資料_UserName;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -1944,5 +1936,13 @@ namespace ServerSettingForm
         private MyUI.RJ_TextBox rJ_TextBox_API_交易紀錄資料_Port;
         private MyUI.RJ_TextBox rJ_TextBox_API_交易紀錄資料_Server;
         private System.Windows.Forms.Label label_名稱;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button_批次過帳資料_測試;
+        private System.Windows.Forms.Label label9;
+        private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_Password;
+        private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_UserName;
+        private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_DBName;
+        private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_Port;
+        private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_Server;
     }
 }

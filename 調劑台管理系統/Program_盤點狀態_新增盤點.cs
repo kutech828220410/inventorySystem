@@ -129,7 +129,11 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_盤點作業_新增盤點_自動生成_MouseDownEvent(MouseEventArgs mevent)
         {
             returnData returnData = new returnData();
-            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/new_IC_SN", returnData.JsonSerializationt());
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/new_IC_SN", json_in);
             Console.WriteLine(json);
             this.Invoke(new Action(delegate
             {
@@ -185,6 +189,9 @@ namespace 調劑台管理系統
                 return;
             }
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             inventoryClass.creat creat = new inventoryClass.creat();
             creat.建表人 = 登入者名稱;
             creat.盤點單號 = rJ_TextBox_盤點作業_新增盤點_盤點單號.Text;
@@ -220,6 +227,9 @@ namespace 調劑台管理系統
             creat.盤點名稱 = 盤點名稱;
 
             returnData.Data = creat;
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inventory/creat_auto_add", json_in);
             Console.WriteLine(json);

@@ -19,9 +19,7 @@ namespace HIS_WebApi
     [ApiController]
     public class MED_pageController : Controller
     {
-        static private string UserName = ConfigurationManager.AppSettings["user"];
-        static private string Password = ConfigurationManager.AppSettings["password"];
-        static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
+
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [HttpPost]
@@ -31,6 +29,9 @@ namespace HIS_WebApi
             string Server = returnData.Server;
             string DbName = returnData.DbName;
             string TableName = returnData.TableName;
+            string UserName = returnData.UserName;
+            string Password = returnData.Password;
+            uint Port = returnData.Port;
             SQLControl sQLControl_med = new SQLControl(Server, DbName, TableName, UserName, Password, Port, SSLMode);
             string[] colName = sQLControl_med.GetAllColumn_Name(TableName);
             List<object[]> list_med = sQLControl_med.GetAllRows(null);
