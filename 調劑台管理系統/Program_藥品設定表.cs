@@ -19,16 +19,7 @@ using HIS_DB_Lib;
 
 namespace 調劑台管理系統
 {
-    public enum enum_藥品設定表
-    {
-        GUID,
-        藥品碼,
-        效期管理,
-        盲盤,
-        複盤,
-        結存報表,
-        自定義,
-    }
+  
     public partial class Form1 : Form
     {
         private void Program_藥品設定表_Init()

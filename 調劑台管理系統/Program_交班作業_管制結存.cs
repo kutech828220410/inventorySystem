@@ -238,6 +238,12 @@ namespace 調劑台管理系統
             dateTime_end = new DateTime(dateTime_end.Year, dateTime_end.Month, dateTime_end.Day, 23, 59, 59);
 
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/transactions/serch", json_in);
@@ -284,6 +290,9 @@ namespace 調劑台管理系統
             dateTime_end = new DateTime(dateTime_end.Year, dateTime_end.Month, dateTime_end.Day, 23, 59, 59);
 
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/transactions/serch", json_in);
@@ -311,6 +320,9 @@ namespace 調劑台管理系統
             dateTime_end = new DateTime(dateTime_end.Year, dateTime_end.Month, dateTime_end.Day, 23, 59, 59);
 
             returnData returnData = new returnData();
+            returnData.ServerName = dBConfigClass.Name;
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.TableName = "medicine_page";
             returnData.Value = $"{rJ_TextBox_交班作業_管制結存_藥碼.Text},{dateTime_start.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/transactions/serch", json_in);
@@ -328,7 +340,7 @@ namespace 調劑台管理系統
             {
                 sheetClass.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
             }
-        
+            MyMessageBox.ShowDialog("完成");
         }
         #endregion
     }

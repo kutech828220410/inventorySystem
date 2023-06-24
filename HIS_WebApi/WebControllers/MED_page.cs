@@ -19,7 +19,7 @@ namespace HIS_WebApi
     [ApiController]
     public class MED_pageController : Controller
     {
-
+        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [HttpPost]

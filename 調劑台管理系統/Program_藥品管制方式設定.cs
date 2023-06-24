@@ -21,15 +21,7 @@ namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
-        public enum enum_藥品管制方式設定
-        {
-            GUID,
-            代號,
-            效期管理,
-            盲盤,
-            複盤,
-            結存報表,
-        }
+   
 
         private void Program_藥品管制方式設定_Init()
         {

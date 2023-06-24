@@ -24,15 +24,9 @@ namespace HIS_WebApi
     [ApiController]
     public class transactionsController : Controller
     {
-        static private string Server = ConfigurationManager.AppSettings["Server"];
-        static private string DB = ConfigurationManager.AppSettings["DB"];
-        static private string MED_TableName = ConfigurationManager.AppSettings["MED_TableName"];
+       
 
-        static private string transactions_Server = ConfigurationManager.AppSettings["transactions_Server"];
-        static private string transactions_DB = ConfigurationManager.AppSettings["transactions_DB"];
-        static private string UserName = ConfigurationManager.AppSettings["user"];
-        static private string Password = ConfigurationManager.AppSettings["password"];
-        static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
+        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("serch_med_information_by_code")]
@@ -41,7 +35,21 @@ namespace HIS_WebApi
         {
             try
             {
-                if(returnData.Value .StringIsEmpty())
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                if (returnData.Value .StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = "輸入資訊不得為空白!";
@@ -52,7 +60,10 @@ namespace HIS_WebApi
                 returnData returnData_med = new returnData();
                 returnData_med.Server = Server;
                 returnData_med.DbName = DB;
-                returnData_med.TableName = MED_TableName;
+                returnData_med.TableName = returnData.TableName;
+                returnData_med.UserName = UserName;
+                returnData_med.Password = Password;
+                returnData_med.Port = Port;
 
                 returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
@@ -90,8 +101,22 @@ namespace HIS_WebApi
         {
             try
             {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
                 string TableName = "trading";
-                SQLControl sQLControl_trading = new SQLControl(transactions_Server, transactions_DB, TableName, UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
 
                 string[] input_value = returnData.Value.Split(",");
                 if(input_value.Length == 0)
@@ -156,6 +181,9 @@ namespace HIS_WebApi
 
         }
 
+
+        
+
         [Route("get_sheet_by_serch")]
         [HttpPost]
         public string POST_get_sheet_by_serch([FromBody] returnData returnData)
@@ -164,6 +192,19 @@ namespace HIS_WebApi
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
                 string[] input_value = returnData.Value.Split(",");
                 string 藥品碼 = input_value[0];
@@ -179,7 +220,10 @@ namespace HIS_WebApi
                 returnData returnData_med = new returnData();
                 returnData_med.Server = Server;
                 returnData_med.DbName = DB;
-                returnData_med.TableName = MED_TableName;
+                returnData_med.TableName = returnData.TableName;
+                returnData_med.UserName = UserName;
+                returnData_med.Password = Password;
+                returnData_med.Port = Port;
 
                 returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
@@ -288,7 +332,7 @@ namespace HIS_WebApi
 
                 byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xlsx);
                 Stream stream = new MemoryStream(excelData);
-                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_管制結存表.xlsx"));
             }
             catch
             {
@@ -296,5 +340,6 @@ namespace HIS_WebApi
             }
           
         }
+
     }
 }

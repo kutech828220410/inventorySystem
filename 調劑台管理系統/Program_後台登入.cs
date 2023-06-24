@@ -87,6 +87,7 @@ namespace 調劑台管理系統
         {
             plC_RJ_Button_後台登入_登入.MouseDownEvent += PlC_RJ_Button_後台登入_登入_MouseDownEvent;
             plC_RJ_Button_後台登入_登出.MouseDownEvent += PlC_RJ_Button_後台登入_登出_MouseDownEvent;
+            button_後台網址_開啟.Click += Button_後台網址_開啟_Click;
             textBox_後台登入_帳號.KeyPress += TextBox_後台登入_帳號_KeyPress;
             textBox_後台登入_密碼.KeyPress += TextBox_後台登入_密碼_KeyPress;
 
@@ -96,6 +97,9 @@ namespace 調劑台管理系統
             
 
         }
+
+   
+
         private void sub_Program_後台登入()
         {
             if (this.plC_ScreenPage_Main.PageText == "後台登入")
@@ -451,6 +455,18 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Event
+        private void Button_後台網址_開啟_Click(object sender, EventArgs e)
+        {
+            string url = $"{dBConfigClass.Web_URL}";
+            try
+            {
+                Process.Start(url);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("無法開啟網頁: " + ex.Message);
+            }
+        }
         private void TextBox_後台登入_帳號_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)

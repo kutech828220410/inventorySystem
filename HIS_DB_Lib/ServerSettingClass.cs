@@ -26,6 +26,7 @@ namespace HIS_DB_Lib
         TableName,
         User,
         Password,
+        Value,
     }
     public enum enum_ServerSetting_Type
     {
@@ -228,6 +229,8 @@ namespace HIS_DB_Lib
         public string User { get; set; }
         [JsonPropertyName("password")]
         public string Password { get; set; }
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
 
         public ServerSettingClass()
         {
@@ -290,6 +293,7 @@ namespace HIS_DB_Lib
             value[(int)enum_ServerSetting.TableName] = _class.TableName;
             value[(int)enum_ServerSetting.User] = _class.User;
             value[(int)enum_ServerSetting.Password] = _class.Password;
+            value[(int)enum_ServerSetting.Value] = _class.Value;
 
 
             return value;
@@ -334,6 +338,7 @@ namespace HIS_DB_Lib
                 _class.DBName = value[(int)enum_ServerSetting.DBName].ObjectToString();
                 _class.User = value[(int)enum_ServerSetting.User].ObjectToString();
                 _class.Password = value[(int)enum_ServerSetting.Password].ObjectToString();
+                _class.Value = value[(int)enum_ServerSetting.Value].ObjectToString();
 
                 list_values.Add(_class);
             }

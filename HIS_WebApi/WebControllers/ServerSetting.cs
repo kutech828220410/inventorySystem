@@ -17,11 +17,11 @@ namespace HIS_WebApi
     [ApiController]
     public class ServerSettingController : Controller
     {
+        static private string Server = ConfigurationManager.AppSettings["server"];
+        static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string Server = ConfigurationManager.AppSettings["Server"];
-        static private string DB = "DBVM";
-        static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
+        static private string DB = ConfigurationManager.AppSettings["database"];
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("init")]
@@ -126,7 +126,7 @@ namespace HIS_WebApi
             returnData.Method = "add";
             List<ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
             list_value_returnData = ServerSettingClass.ClassToListSQL(serverSettingClasses);
-            
+
             sQLControl.DeleteExtra(null, list_value_returnData);
 
             returnData.Code = 200;
@@ -150,6 +150,9 @@ namespace HIS_WebApi
             table.AddColumnList("TableName", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("User", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("Password", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("Value", Table.StringType.TEXT, 65535, Table.IndexType.None);
+
+
             if (!sQLControl.IsTableCreat())
             {
                 sQLControl.CreatTable(table);

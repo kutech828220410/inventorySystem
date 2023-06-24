@@ -4,6 +4,21 @@
     "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {}
   },
   "projects": {
+    "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj",
+        "projectName": "HIS_DB_Lib",
+        "projectPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj",
+        "frameworks": {
+          "net461": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net461": {}
+      }
+    },
     "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +42,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

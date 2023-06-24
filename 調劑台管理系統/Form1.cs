@@ -457,7 +457,8 @@ namespace 調劑台管理系統
                 ApiServerSetting();
 
                 this.stopwatch.Start();
-                this.Text += "Ver" + this.ProductVersion;
+                
+                this.Text += $"Ver{this.ProductVersion} [{this.textBox_工程模式_領藥台_名稱.Text}]";
                 this.FormText = this.Text;
                 this.WindowState = FormWindowState.Maximized;
 
@@ -522,7 +523,8 @@ namespace 調劑台管理系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_儲位管理, this.plC_ScreenPage_儲位管理);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_人員資料, this.plC_ScreenPage_人員資料);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_盤點作業, this.plC_ScreenPage_盤點作業);
-
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_交易紀錄查詢, this.plC_ScreenPage_交易紀錄查詢);
+            
             this.pannel_Locker_Design.Init(dBConfigClass.DB_Basic);
 
             this.plC_RJ_ScreenButton_EPD583.Visible = myConfigClass.EPD583_Enable;

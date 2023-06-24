@@ -150,6 +150,9 @@ namespace HIS_ServerAPI
             table.AddColumnList("TableName", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("User", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("Password", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("Value", Table.StringType.TEXT, 65535, Table.IndexType.None);
+
+            
             if (!sQLControl.IsTableCreat())
             {
                 sQLControl.CreatTable(table);

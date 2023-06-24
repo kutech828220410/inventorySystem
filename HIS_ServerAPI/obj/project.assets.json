@@ -305,6 +305,15 @@
             "rid": "win"
           }
         }
+      },
+      "HIS_DB_Lib/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/HIS_DB_Lib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HIS_DB_Lib.dll": {}
+        }
       }
     }
   },
@@ -953,10 +962,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "HIS_DB_Lib/1.0.0": {
+      "type": "project",
+      "path": "../HIS_DB_Lib/HIS_DB_Lib.csproj",
+      "msbuildProject": "../HIS_DB_Lib/HIS_DB_Lib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "HIS_DB_Lib >= 1.0.0",
       "MySql.Data >= 8.0.29",
       "System.Text.Json >= 6.0.0"
     ]
@@ -987,7 +1002,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

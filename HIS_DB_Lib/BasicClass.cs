@@ -15,7 +15,7 @@ namespace HIS_DB_Lib
         private string _method = "";
         private string _timeTaken = "";
         private string _server = "";
-        private uint _port = 3306;
+        private uint _port = 0;
         private string _userName = "";
         private string _password = "";
 

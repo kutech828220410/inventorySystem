@@ -57,6 +57,8 @@ namespace HIS_DB_Lib
         備註,
     }
 
+
+
     public class transactionsClass
     {
         [JsonPropertyName("GUID")]
@@ -101,7 +103,7 @@ namespace HIS_DB_Lib
 
         static public object[] ClassToSQL(transactionsClass _class)
         {
-            object[] value = new object[new enum_盤點單號().GetLength()];
+            object[] value = new object[new enum_交易記錄查詢資料().GetLength()];
             value[(int)enum_交易記錄查詢資料.GUID] = _class.GUID;
             value[(int)enum_交易記錄查詢資料.動作] = _class.動作;
             value[(int)enum_交易記錄查詢資料.診別] = _class.診別;
@@ -123,6 +125,17 @@ namespace HIS_DB_Lib
             value[(int)enum_交易記錄查詢資料.備註] = _class.備註;
             value[(int)enum_交易記錄查詢資料.收支原因] = _class.收支原因;
             return value;
+        }
+        static public List<object[]> ClassToSQL(List<transactionsClass> _classes)
+        {
+            List<object[]> list_value = new List<object[]>();
+            for(int i = 0; i < _classes.Count; i++)
+            {
+                object[] value = ClassToSQL(_classes[i]);
+                list_value.Add(value);
+            }
+          
+            return list_value;
         }
         static public transactionsClass SQLToClass(object[] value)
         {
@@ -149,7 +162,6 @@ namespace HIS_DB_Lib
 
             return _class;
         }
-
         static public List<transactionsClass> SQLToClass(List<object[]> values)
         {
             List<transactionsClass> transactionsClasses = new List<transactionsClass>();
@@ -180,7 +192,6 @@ namespace HIS_DB_Lib
 
             return transactionsClasses;
         }
-
         static public transactionsClass ObjToClass(object data)
         {
             string jsondata = data.JsonSerializationt();
