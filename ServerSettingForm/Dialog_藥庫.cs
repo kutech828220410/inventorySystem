@@ -304,6 +304,30 @@ namespace ServerSettingForm
                rJ_TextBox_Website.Text, "", "", "", "", ""));
             }
 
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
+            if (serverSettingClass != null)
+            {
+                List<string> list_value = new List<string>();
+                if (checkBox_驗收.Checked) list_value.Add("驗收");
+                if (checkBox_盤點.Checked) list_value.Add("盤點");
+                if (checkBox_揀貨.Checked) list_value.Add("揀貨");
+                if (checkBox_條碼建置.Checked) list_value.Add("條碼建置");
+                serverSettingClass.Value = list_value.JsonSerializationt();
+            }
+            else
+            {
+                ServerSettingClass serverSettingClass_temp = new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.WEB, enum_ServerSetting_藥庫.功能,
+                rJ_TextBox_Website.Text, "", "", "", "", "");
+                List<string> list_value = new List<string>();
+                if (checkBox_驗收.Checked) list_value.Add("驗收");
+                if (checkBox_盤點.Checked) list_value.Add("盤點");
+                if (checkBox_揀貨.Checked) list_value.Add("揀貨");
+                if (checkBox_條碼建置.Checked) list_value.Add("條碼建置");
+                serverSettingClass.Value = list_value.JsonSerializationt();
+                serverSettingClasses.Add(serverSettingClass_temp);
+            }
+
+
             returnData.Data = serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
@@ -446,6 +470,23 @@ namespace ServerSettingForm
             if (serverSettingClass != null)
             {
                 rJ_TextBox_Website.Texts  = serverSettingClass.Server;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
+            if (serverSettingClass != null)
+            {
+                List<string> list_value = serverSettingClass.Value.JsonDeserializet<List<string>>();
+                if (list_value == null) return;
+                checkBox_驗收.Checked = false;
+                checkBox_盤點.Checked = false;
+                checkBox_揀貨.Checked = false;
+                checkBox_條碼建置.Checked = false;
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    if (list_value[i] == "驗收") checkBox_驗收.Checked = true;
+                    if (list_value[i] == "盤點") checkBox_盤點.Checked = true;
+                    if (list_value[i] == "揀貨") checkBox_揀貨.Checked = true;
+                    if (list_value[i] == "條碼建置") checkBox_條碼建置.Checked = true;
+                }
             }
 
         }

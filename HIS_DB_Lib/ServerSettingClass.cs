@@ -64,7 +64,8 @@ namespace HIS_DB_Lib
         API02,
         Order_API,
         Med_API,
-        Website
+        Website,
+        功能,
     }
     public enum enum_ServerSetting_藥庫
     {
@@ -79,7 +80,8 @@ namespace HIS_DB_Lib
         API_交易紀錄資料,
         API01,
         API02,
-        Website
+        Website,
+        功能,
     }
     public static class ServerSettingClassMethod
     {

@@ -120,6 +120,12 @@ namespace ServerSettingForm
             this.rJ_TextBox_批次過帳資料_DBName = new MyUI.RJ_TextBox();
             this.rJ_TextBox_批次過帳資料_Port = new MyUI.RJ_TextBox();
             this.rJ_TextBox_批次過帳資料_Server = new MyUI.RJ_TextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.checkBox_驗收 = new System.Windows.Forms.CheckBox();
+            this.checkBox_盤點 = new System.Windows.Forms.CheckBox();
+            this.checkBox_揀貨 = new System.Windows.Forms.CheckBox();
+            this.checkBox_條碼建置 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -129,6 +135,7 @@ namespace ServerSettingForm
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1796,12 +1803,67 @@ namespace ServerSettingForm
             this.rJ_TextBox_批次過帳資料_Server.Texts = "";
             this.rJ_TextBox_批次過帳資料_Server.UnderlineStyle = false;
             // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.checkBox_條碼建置);
+            this.groupBox10.Controls.Add(this.checkBox_揀貨);
+            this.groupBox10.Controls.Add(this.checkBox_盤點);
+            this.groupBox10.Controls.Add(this.checkBox_驗收);
+            this.groupBox10.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox10.Location = new System.Drawing.Point(1579, 518);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(210, 426);
+            this.groupBox10.TabIndex = 54;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "功能開啟";
+            // 
+            // checkBox_驗收
+            // 
+            this.checkBox_驗收.AutoSize = true;
+            this.checkBox_驗收.Location = new System.Drawing.Point(38, 43);
+            this.checkBox_驗收.Name = "checkBox_驗收";
+            this.checkBox_驗收.Size = new System.Drawing.Size(68, 23);
+            this.checkBox_驗收.TabIndex = 0;
+            this.checkBox_驗收.Text = "驗收";
+            this.checkBox_驗收.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_盤點
+            // 
+            this.checkBox_盤點.AutoSize = true;
+            this.checkBox_盤點.Location = new System.Drawing.Point(38, 72);
+            this.checkBox_盤點.Name = "checkBox_盤點";
+            this.checkBox_盤點.Size = new System.Drawing.Size(68, 23);
+            this.checkBox_盤點.TabIndex = 1;
+            this.checkBox_盤點.Text = "盤點";
+            this.checkBox_盤點.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_揀貨
+            // 
+            this.checkBox_揀貨.AutoSize = true;
+            this.checkBox_揀貨.Location = new System.Drawing.Point(38, 101);
+            this.checkBox_揀貨.Name = "checkBox_揀貨";
+            this.checkBox_揀貨.Size = new System.Drawing.Size(68, 23);
+            this.checkBox_揀貨.TabIndex = 2;
+            this.checkBox_揀貨.Text = "揀貨";
+            this.checkBox_揀貨.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_條碼建置
+            // 
+            this.checkBox_條碼建置.AutoSize = true;
+            this.checkBox_條碼建置.Location = new System.Drawing.Point(38, 130);
+            this.checkBox_條碼建置.Name = "checkBox_條碼建置";
+            this.checkBox_條碼建置.Size = new System.Drawing.Size(108, 23);
+            this.checkBox_條碼建置.TabIndex = 3;
+            this.checkBox_條碼建置.Text = "條碼建置";
+            this.checkBox_條碼建置.UseVisualStyleBackColor = true;
+            // 
             // Dialog_藥庫
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label_名稱);
             this.Controls.Add(this.groupBox9);
@@ -1846,6 +1908,8 @@ namespace ServerSettingForm
             this.groupBox8.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1944,5 +2008,11 @@ namespace ServerSettingForm
         private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_DBName;
         private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_Port;
         private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_Server;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.CheckBox checkBox_條碼建置;
+        private System.Windows.Forms.CheckBox checkBox_揀貨;
+        private System.Windows.Forms.CheckBox checkBox_盤點;
+        private System.Windows.Forms.CheckBox checkBox_驗收;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
