@@ -16,51 +16,6 @@ using H_Pannel_lib;
 
 namespace HIS_WebApi
 {
-    public class class_medicine_page_firstclass_data
-    {
-        [JsonPropertyName("code")]
-        public string 藥品碼 { get; set; }
-        [JsonPropertyName("chinese_name")]
-        public string 藥品中文名稱 { get; set; }
-        [JsonPropertyName("name")]
-        public string 藥品名稱 { get; set; }
-        [JsonPropertyName("scientific_name")]
-        public string 藥品學名 { get; set; }
-        [JsonPropertyName("group")]
-        public string 藥品群組 { get; set; }
-        [JsonPropertyName("health_insurance_code")]
-        public string 健保碼 { get; set; }
-        [JsonPropertyName("barcode")]
-        public string 藥品條碼 { get; set; }
-        [JsonPropertyName("package")]
-        public string 包裝單位 { get; set; }
-        [JsonPropertyName("inventory")]
-        public string 庫存 { get; set; }
-        [JsonPropertyName("safe_inventory")]
-        public string 安全庫存 { get; set; }
-        [JsonPropertyName("isWarnning")]
-        public string 警訊藥品 { get; set; }
-    }
-    public enum enum_medicine_page_firstclass
-    {
-        GUID,
-        藥品碼,
-        中文名稱,
-        藥品名稱,
-        藥品學名,
-        藥品群組,
-        健保碼,
-        包裝單位,
-        包裝數量,
-        最小包裝單位,
-        最小包裝數量,
-        庫存,
-        基準量,
-        安全庫存,
-        藥品條碼1,
-        藥品條碼2,
-        狀態,
-    }
     [Route("api/[controller]")]
     [ApiController]
     public class medicine_pageController : ControllerBase
@@ -68,15 +23,12 @@ namespace HIS_WebApi
 
         static private string DataBaseName = ConfigurationManager.AppSettings["database"];
         static private string UserName = ConfigurationManager.AppSettings["user"];
-        static private string Password =  ConfigurationManager.AppSettings["password"];
+        static private string Password = ConfigurationManager.AppSettings["password"];
         static private string IP = ConfigurationManager.AppSettings["IP"];
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
-        private SQLControl sQLControl_WT32_serialize = new SQLControl(IP, DataBaseName, "wt32_jsonstring", UserName, Password, Port, SSLMode);
-        private SQLControl sQLControl_sd0_serialize = new SQLControl(IP, DataBaseName, "sd0_device_jsonstring", UserName, Password, Port, SSLMode);
-
-        private SQLControl sQLControl_medicine_page_firstclass = new SQLControl(IP, DataBaseName, "medicine_page_firstclass", UserName,Password, Port, SSLMode);
+        private SQLControl sQLControl_medicine_page = new SQLControl(IP, DataBaseName, "medicine_page", UserName, Password, Port, SSLMode);
         private SQLControl sQLControl_medicine_group = new SQLControl(IP, DataBaseName, "medicine_group", UserName, Password, Port, SSLMode);
 
 
@@ -138,22 +90,19 @@ namespace HIS_WebApi
             string jsonString = "";
             this.Function_讀取儲位();
             List<object[]> list_藥品資料_儲位總庫存表_value = new List<object[]>();
-            List<object[]> list_藥品資料 = this.sQLControl_medicine_page_firstclass.GetAllRows(null);
-            List<object[]> list_藥品資料_buf = new List<object[]>();
+
+
             for (int i = 0; i < devices.Count; i++)
             {
                 object[] value = new object[new enum_儲位總庫存表().GetLength()];
 
                 value[(int)enum_儲位總庫存表.儲位名稱] = devices[i].StorageName;
                 value[(int)enum_儲位總庫存表.藥品碼] = devices[i].Code;
+                value[(int)enum_儲位總庫存表.藥品名稱] = devices[i].Name;
+                value[(int)enum_儲位總庫存表.單位] = devices[i].Package;
                 value[(int)enum_儲位總庫存表.庫存] = devices[i].Inventory;
                 value[(int)enum_儲位總庫存表.儲位型式] = devices[i].DeviceType.GetEnumName();
                 value[(int)enum_儲位總庫存表.IP] = devices[i].IP;
-                list_藥品資料_buf = list_藥品資料.GetRows((int)enum_medicine_page_firstclass.藥品碼, devices[i].Code);
-                if (list_藥品資料_buf.Count == 0) continue;
-                value[(int)enum_儲位總庫存表.藥品名稱] = list_藥品資料_buf[0][(int)enum_medicine_page_firstclass.藥品名稱].ObjectToString();
-                value[(int)enum_儲位總庫存表.單位] = list_藥品資料_buf[0][(int)enum_medicine_page_firstclass.包裝單位].ObjectToString();
-     
                 list_藥品資料_儲位總庫存表_value.Add(value);
             }
 
@@ -224,38 +173,31 @@ namespace HIS_WebApi
             儲位型式,
             IP,
         }
-       
+
         [Route("storage_validity_date_list")]
         [HttpGet()]
         public string Get_storage_validity_date_list(string? code, string? name)
         {
- 
+
             string jsonString = "";
             this.Function_讀取儲位();
             List<object[]> list_藥品資料_儲位效期表_value = new List<object[]>();
-            List<object[]> list_藥品資料 = this.sQLControl_medicine_page_firstclass.GetAllRows(null);
-            List<object[]> list_藥品資料_buf = new List<object[]>();
 
             for (int i = 0; i < devices.Count; i++)
             {
-                list_藥品資料_buf = list_藥品資料.GetRows((int)enum_medicine_page_firstclass.藥品碼, devices[i].Code);
-                if (list_藥品資料_buf.Count == 0) continue;
-
                 for (int k = 0; k < devices[i].List_Validity_period.Count; k++)
                 {
                     object[] value = new object[new enum_儲位效期表().GetLength()];
 
                     value[(int)enum_儲位效期表.儲位名稱] = devices[i].StorageName;
                     value[(int)enum_儲位效期表.藥品碼] = devices[i].Code;
-                    value[(int)enum_儲位效期表.庫存] = devices[i].Inventory;
-                    value[(int)enum_儲位效期表.儲位型式] = devices[i].DeviceType.GetEnumName();
+                    value[(int)enum_儲位效期表.藥品名稱] = devices[i].Name;
+                    value[(int)enum_儲位效期表.單位] = devices[i].Package;
                     value[(int)enum_儲位效期表.IP] = devices[i].IP;
+
                     value[(int)enum_儲位效期表.庫存] = devices[i].List_Inventory[k].ToString();
                     value[(int)enum_儲位效期表.效期] = devices[i].List_Validity_period[k];
-                    value[(int)enum_儲位效期表.藥品名稱] = list_藥品資料_buf[0][(int)enum_medicine_page_firstclass.藥品名稱].ObjectToString();
-                    value[(int)enum_儲位效期表.單位] = list_藥品資料_buf[0][(int)enum_medicine_page_firstclass.包裝單位].ObjectToString();
-
-           
+                    value[(int)enum_儲位效期表.儲位型式] = devices[i].DeviceType.GetEnumName();
                     list_藥品資料_儲位效期表_value.Add(value);
                 }
             }
@@ -345,8 +287,6 @@ namespace HIS_WebApi
                 WriteIndented = true,
                 Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
             };
-            list_out_value.Sort(new Icp_medicine_group());
-            
             string jsonString = JsonSerializer.Serialize<List<Class_medicine_group>>(list_out_value, options);
             return jsonString;
         }
@@ -381,64 +321,111 @@ namespace HIS_WebApi
 
         }
 
-        public class Icp_medicine_group : IComparer<Class_medicine_group>
-        {
-            public int Compare(Class_medicine_group x, Class_medicine_group y)
-            {
-                return x.群組序號.CompareTo(y.群組序號);
-            }
-        }
-        #endregion
 
-        // GET: api/<medicine_page_firstclassController>
-        [HttpGet]
-        public string Get(string code, string? package, string? type)
+        #endregion
+        public class class_medicine_page_data
         {
-            List<object[]> list_value = sQLControl_medicine_page_firstclass.GetAllRows(null);
+            [JsonPropertyName("code")]
+            public string 藥品碼 { get; set; }
+            [JsonPropertyName("chinese_name")]
+            public string 藥品中文名稱 { get; set; }
+            [JsonPropertyName("name")]
+            public string 藥品名稱 { get; set; }
+            [JsonPropertyName("scientific_name")]
+            public string 藥品學名 { get; set; }
+            [JsonPropertyName("group")]
+            public string 藥品群組 { get; set; }
+            [JsonPropertyName("health_insurance_code")]
+            public string 健保碼 { get; set; }
+            [JsonPropertyName("barcode")]
+            public string 藥品條碼 { get; set; }
+            [JsonPropertyName("package")]
+            public string 包裝單位 { get; set; }
+            [JsonPropertyName("inventory")]
+            public string 庫存 { get; set; }
+            [JsonPropertyName("safe_inventory")]
+            public string 安全庫存 { get; set; }
+            [JsonPropertyName("isWarnning")]
+            public string 警訊藥品 { get; set; }
+            [JsonPropertyName("DRUGKIND")]
+            public string 管制級別 { get; set; }
+        }
+        public enum enum_medicine_page
+        {
+            GUID,
+            藥品碼,
+            料號,
+            藥品中文名稱,
+            藥品名稱,
+            藥品學名,
+            藥品群組,
+            健保碼,
+            藥品條碼,
+            藥品條碼1,
+            藥品條碼2,
+            包裝單位,
+            庫存,
+            安全庫存,
+            圖片網址,
+            警訊藥品,
+            管制級別,
+        }
+        // GET: api/<medicine_pageController>
+        [HttpGet]
+        public string Get(string code, string? package, string? type, bool? isWarnning)
+        {
+            List<object[]> list_value = sQLControl_medicine_page.GetAllRows(null);
             List<object[]> list_group = sQLControl_medicine_group.GetAllRows(null);
             List<object[]> list_group_buf = new List<object[]>();
-            List<class_medicine_page_firstclass_data> list_out_value = new List<class_medicine_page_firstclass_data>();
- 
+            List<class_medicine_page_data> list_out_value = new List<class_medicine_page_data>();
+
 
             if (list_value.Count > 0)
-            {             
+            {
                 this.Function_讀取儲位();
 
                 if (!code.StringIsEmpty())
                 {
-                    list_value = list_value.GetRows((int)enum_medicine_page_firstclass.藥品碼, code);
+                    list_value = list_value.GetRows((int)enum_medicine_page.藥品碼, code);
                 }
                 if (!package.StringIsEmpty())
                 {
-                    list_value = list_value.GetRows((int)enum_medicine_page_firstclass.包裝單位, package);
+                    list_value = list_value.GetRows((int)enum_medicine_page.包裝單位, package);
                 }
                 if (!type.StringIsEmpty())
                 {
-                    list_value = list_value.GetRows((int)enum_medicine_page_firstclass.藥品群組, type);
+                    list_value = list_value.GetRows((int)enum_medicine_page.藥品群組, type);
                 }
-          
+                if (isWarnning != null)
+                {
+                    list_value = (from value in list_value
+                                  where value[(int)enum_medicine_page.警訊藥品].ObjectToString().ToUpper() == isWarnning.ToString().ToUpper()
+                                  select value).ToList();
+                }
                 for (int i = 0; i < list_value.Count; i++)
                 {
-                    class_medicine_page_firstclass_data class_medicine_page_firstclass_Data = new class_medicine_page_firstclass_data();
-                    class_medicine_page_firstclass_Data.藥品碼 = list_value[i][(int)enum_medicine_page_firstclass.藥品碼].ObjectToString();
-                    class_medicine_page_firstclass_Data.藥品中文名稱 = list_value[i][(int)enum_medicine_page_firstclass.中文名稱].ObjectToString();
-                    class_medicine_page_firstclass_Data.藥品名稱 = list_value[i][(int)enum_medicine_page_firstclass.藥品名稱].ObjectToString();
-                    class_medicine_page_firstclass_Data.藥品學名 = list_value[i][(int)enum_medicine_page_firstclass.藥品學名].ObjectToString();
-                    class_medicine_page_firstclass_Data.健保碼 = list_value[i][(int)enum_medicine_page_firstclass.健保碼].ObjectToString();
-                    class_medicine_page_firstclass_Data.藥品條碼 = list_value[i][(int)enum_medicine_page_firstclass.藥品條碼1].ObjectToString();
-                    class_medicine_page_firstclass_Data.包裝單位 = list_value[i][(int)enum_medicine_page_firstclass.包裝單位].ObjectToString();
-                    class_medicine_page_firstclass_Data.庫存 = list_value[i][(int)enum_medicine_page_firstclass.庫存].ObjectToString();
-                    class_medicine_page_firstclass_Data.安全庫存 = list_value[i][(int)enum_medicine_page_firstclass.安全庫存].ObjectToString();
-                    class_medicine_page_firstclass_Data.警訊藥品 = false.ToString();
+                    class_medicine_page_data class_Medicine_Page_Data = new class_medicine_page_data();
+                    class_Medicine_Page_Data.藥品碼 = list_value[i][(int)enum_medicine_page.藥品碼].ObjectToString();
+                    class_Medicine_Page_Data.藥品中文名稱 = list_value[i][(int)enum_medicine_page.藥品中文名稱].ObjectToString();
+                    class_Medicine_Page_Data.藥品名稱 = list_value[i][(int)enum_medicine_page.藥品名稱].ObjectToString();
+                    class_Medicine_Page_Data.藥品學名 = list_value[i][(int)enum_medicine_page.藥品學名].ObjectToString();
+                    class_Medicine_Page_Data.藥品群組 = list_value[i][(int)enum_medicine_page.藥品群組].ObjectToString();
+                    class_Medicine_Page_Data.健保碼 = list_value[i][(int)enum_medicine_page.健保碼].ObjectToString();
+                    class_Medicine_Page_Data.藥品條碼 = list_value[i][(int)enum_medicine_page.藥品條碼].ObjectToString();
+                    class_Medicine_Page_Data.包裝單位 = list_value[i][(int)enum_medicine_page.包裝單位].ObjectToString();
+                    class_Medicine_Page_Data.庫存 = list_value[i][(int)enum_medicine_page.庫存].ObjectToString();
+                    class_Medicine_Page_Data.安全庫存 = list_value[i][(int)enum_medicine_page.安全庫存].ObjectToString();
+                    class_Medicine_Page_Data.警訊藥品 = list_value[i][(int)enum_medicine_page.警訊藥品].ObjectToString();
+                    class_Medicine_Page_Data.管制級別 = list_value[i][(int)enum_medicine_page.管制級別].ObjectToString();
 
-                    string 藥品群組Index = list_value[i][(int)enum_medicine_page_firstclass.藥品群組].ObjectToString();
+                    string 藥品群組Index = list_value[i][(int)enum_medicine_page.藥品群組].ObjectToString();
                     list_group_buf = list_group.GetRows((int)enum_medicine_group.群組序號, 藥品群組Index);
-                    if(list_group_buf.Count > 0)
+                    if (list_group_buf.Count > 0)
                     {
-                        class_medicine_page_firstclass_Data.藥品群組 = list_group_buf[0][(int)enum_medicine_group.群組名稱].ObjectToString();
-                    }                   
-                    class_medicine_page_firstclass_Data.庫存 = this.Function_取得儲位庫存(class_medicine_page_firstclass_Data.藥品碼).ToString();
-                    list_out_value.Add(class_medicine_page_firstclass_Data);
+                        class_Medicine_Page_Data.藥品群組 = list_group_buf[0][(int)enum_medicine_group.群組名稱].ObjectToString();
+                    }
+                    class_Medicine_Page_Data.庫存 = this.Function_取得儲位庫存(class_Medicine_Page_Data.藥品碼).ToString();
+                    list_out_value.Add(class_Medicine_Page_Data);
                 }
 
                 var options = new JsonSerializerOptions
@@ -446,16 +433,16 @@ namespace HIS_WebApi
                     WriteIndented = true,
                     Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                 };
-                string jsonString = JsonSerializer.Serialize<List<class_medicine_page_firstclass_data>>(list_out_value, options);
+                string jsonString = JsonSerializer.Serialize<List<class_medicine_page_data>>(list_out_value, options);
 
 
                 return jsonString;
             }
             return null;
         }
-        // POST api/<medicine_page_firstclassController>
+        // POST api/<medicine_pageController>
         [HttpPost]
-        public string Post([FromBody] class_medicine_page_firstclass_data data)
+        public string Post([FromBody] class_medicine_page_data data)
         {
             try
             {
@@ -464,14 +451,14 @@ namespace HIS_WebApi
                     WriteIndented = true,
                     Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                 };
-                string jsonString = JsonSerializer.Serialize<class_medicine_page_firstclass_data>(data, options);
+                string jsonString = JsonSerializer.Serialize<class_medicine_page_data>(data, options);
             }
             catch
             {
                 return "-1";
             }
 
-            if (sQLControl_medicine_page_firstclass.GetRowsByDefult(null, enum_medicine_page_firstclass.藥品碼.GetEnumName(), data.藥品碼).Count > 0)
+            if (sQLControl_medicine_page.GetRowsByDefult(null, enum_medicine_page.藥品碼.GetEnumName(), data.藥品碼).Count > 0)
             {
                 return "-2";
             }
@@ -486,29 +473,31 @@ namespace HIS_WebApi
                 else
                 {
                     data.藥品群組 = "";
-                }    
+                }
 
-                object[] value = new object[new enum_medicine_page_firstclass().GetLength()];
-                value[(int)enum_medicine_page_firstclass.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_medicine_page_firstclass.藥品碼] = data.藥品碼;
-                value[(int)enum_medicine_page_firstclass.中文名稱] = data.藥品中文名稱;
-                value[(int)enum_medicine_page_firstclass.藥品名稱] = data.藥品名稱;
-                value[(int)enum_medicine_page_firstclass.藥品學名] = data.藥品學名;
-                value[(int)enum_medicine_page_firstclass.藥品群組] = data.藥品群組;
-                value[(int)enum_medicine_page_firstclass.健保碼] = data.健保碼;
-                value[(int)enum_medicine_page_firstclass.包裝單位] = data.包裝單位;
-                value[(int)enum_medicine_page_firstclass.藥品條碼1] = data.藥品條碼;
-                value[(int)enum_medicine_page_firstclass.庫存] = data.庫存;
-                value[(int)enum_medicine_page_firstclass.安全庫存] = data.安全庫存;
+                object[] value = new object[new enum_medicine_page().GetLength()];
+                value[(int)enum_medicine_page.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medicine_page.藥品碼] = data.藥品碼;
+                value[(int)enum_medicine_page.藥品中文名稱] = data.藥品中文名稱;
+                value[(int)enum_medicine_page.藥品名稱] = data.藥品名稱;
+                value[(int)enum_medicine_page.藥品學名] = data.藥品學名;
+                value[(int)enum_medicine_page.藥品群組] = data.藥品群組;
+                value[(int)enum_medicine_page.健保碼] = data.健保碼;
+                value[(int)enum_medicine_page.包裝單位] = data.包裝單位;
+                value[(int)enum_medicine_page.藥品條碼] = data.藥品條碼;
+                value[(int)enum_medicine_page.庫存] = data.庫存;
+                value[(int)enum_medicine_page.安全庫存] = data.安全庫存;
+                value[(int)enum_medicine_page.圖片網址] = "";
+                value[(int)enum_medicine_page.警訊藥品] = data.警訊藥品;
 
-                sQLControl_medicine_page_firstclass.AddRow(null, value);
+                sQLControl_medicine_page.AddRow(null, value);
                 return "200";
             }
 
         }
-        // PUT api/<medicine_page_firstclassController>/5
+        // PUT api/<medicine_pageController>/5
         [HttpPut]
-        public string Put([FromBody] class_medicine_page_firstclass_data data)
+        public string Put([FromBody] class_medicine_page_data data)
         {
 
             try
@@ -518,14 +507,14 @@ namespace HIS_WebApi
                     WriteIndented = true,
                     Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                 };
-                string jsonString = JsonSerializer.Serialize<class_medicine_page_firstclass_data>(data, options);
+                string jsonString = JsonSerializer.Serialize<class_medicine_page_data>(data, options);
             }
             catch
             {
                 return "-1";
             }
 
-            List<object[]> list_value = sQLControl_medicine_page_firstclass.GetRowsByDefult(null, enum_medicine_page_firstclass.藥品碼.GetEnumName(), data.藥品碼);
+            List<object[]> list_value = sQLControl_medicine_page.GetRowsByDefult(null, enum_medicine_page.藥品碼.GetEnumName(), data.藥品碼);
             if (!(list_value.Count > 0))
             {
                 return "-3";
@@ -545,27 +534,29 @@ namespace HIS_WebApi
                     data.藥品群組 = "";
                 }
 
-                value[(int)enum_medicine_page_firstclass.藥品碼] = data.藥品碼;
-                value[(int)enum_medicine_page_firstclass.中文名稱] = data.藥品中文名稱;
-                value[(int)enum_medicine_page_firstclass.藥品名稱] = data.藥品名稱;
-                value[(int)enum_medicine_page_firstclass.藥品學名] = data.藥品學名;
-                value[(int)enum_medicine_page_firstclass.藥品群組] = data.藥品群組;
-                value[(int)enum_medicine_page_firstclass.健保碼] = data.健保碼;
-                value[(int)enum_medicine_page_firstclass.包裝單位] = data.包裝單位;
-                value[(int)enum_medicine_page_firstclass.藥品條碼1] = data.藥品條碼;
-                value[(int)enum_medicine_page_firstclass.庫存] = data.庫存;
-                value[(int)enum_medicine_page_firstclass.安全庫存] = data.安全庫存;
+                value[(int)enum_medicine_page.藥品碼] = data.藥品碼;
+                value[(int)enum_medicine_page.藥品中文名稱] = data.藥品中文名稱;
+                value[(int)enum_medicine_page.藥品名稱] = data.藥品名稱;
+                value[(int)enum_medicine_page.藥品學名] = data.藥品學名;
+                value[(int)enum_medicine_page.藥品群組] = data.藥品群組;
+                value[(int)enum_medicine_page.健保碼] = data.健保碼;
+                value[(int)enum_medicine_page.包裝單位] = data.包裝單位;
+                value[(int)enum_medicine_page.藥品條碼] = data.藥品條碼;
+                value[(int)enum_medicine_page.庫存] = data.庫存;
+                value[(int)enum_medicine_page.安全庫存] = data.安全庫存;
+                value[(int)enum_medicine_page.圖片網址] = "";
+                value[(int)enum_medicine_page.警訊藥品] = data.警訊藥品;
 
-                sQLControl_medicine_page_firstclass.UpdateByDefult(null, enum_medicine_page_firstclass.藥品碼.GetEnumName(), data.藥品碼, value);
+                sQLControl_medicine_page.UpdateByDefult(null, enum_medicine_page.藥品碼.GetEnumName(), data.藥品碼, value);
 
                 return "200";
             }
 
 
         }
-        // DELETE api/<medicine_page_firstclassController>/5
+        // DELETE api/<medicine_pageController>/5
         [HttpDelete]
-        public string Delete([FromBody] class_medicine_page_firstclass_data data)
+        public string Delete([FromBody] class_medicine_page_data data)
         {
 
             try
@@ -575,19 +566,19 @@ namespace HIS_WebApi
                     WriteIndented = true,
                     Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
                 };
-                string jsonString = JsonSerializer.Serialize<class_medicine_page_firstclass_data>(data, options);
+                string jsonString = JsonSerializer.Serialize<class_medicine_page_data>(data, options);
             }
             catch
             {
                 return "-1";
             }
-            if (!(sQLControl_medicine_page_firstclass.GetRowsByDefult(null, enum_medicine_page_firstclass.藥品碼.GetEnumName(), data.藥品碼).Count > 0))
+            if (!(sQLControl_medicine_page.GetRowsByDefult(null, enum_medicine_page.藥品碼.GetEnumName(), data.藥品碼).Count > 0))
             {
                 return "-2";
             }
             else
             {
-                sQLControl_medicine_page_firstclass.DeleteByDefult(null, enum_medicine_page_firstclass.藥品碼.GetEnumName(), data.藥品碼);
+                sQLControl_medicine_page.DeleteByDefult(null, enum_medicine_page.藥品碼.GetEnumName(), data.藥品碼);
                 return "200";
             }
         }
@@ -595,42 +586,37 @@ namespace HIS_WebApi
 
         #region Function
         List<DeviceBasic> devices = new List<DeviceBasic>();
-
+        private SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DataBaseName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
+        private SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DataBaseName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
+        private SQLControl sQLControl_RowsLED_serialize = new SQLControl(IP, DataBaseName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
+        private SQLControl sQLControl_RFID_Device_serialize = new SQLControl(IP, DataBaseName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
         private void Function_讀取儲位()
         {
-
- 
-            List<DeviceBasic> deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceBasic(sQLControl_sd0_serialize);
-            List<Storage> pannel35s = StorageMethod.SQL_GetAllStorage(sQLControl_WT32_serialize);
-  
-
-            List<DeviceBasic> devices_pannel35s = pannel35s.GetAllDeviceBasic();
-
-
-            for (int i = 0; i < devices_pannel35s.Count; i++)
-            {
-                if (devices_pannel35s[i].Code.StringIsEmpty() != true)
-                {
-                    this.devices.Add(devices_pannel35s[i]);
-                }
-            }
-            for (int i = 0; i < deviceBasics.Count; i++)
-            {
-                if (deviceBasics[i].Code.StringIsEmpty() != true)
-                {
-                    this.devices.Add(deviceBasics[i]);
-                }
-            }   
+            List<object[]> list_EPD583 = sQLControl_EPD583_serialize.GetAllRows(null);
+            List<object[]> list_EPD266 = sQLControl_EPD266_serialize.GetAllRows(null);
+            List<object[]> list_RowsLED = sQLControl_RowsLED_serialize.GetAllRows(null);
+            List<object[]> list_RFID_Device = sQLControl_RFID_Device_serialize.GetAllRows(null);
+            List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+            List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
+            deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD583));
+            deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_EPD266));
+            deviceBasics.LockAdd(RowsLEDMethod.GetAllDeviceBasic(list_RowsLED));
+            deviceBasics.LockAdd(RFIDMethod.GetAllDeviceBasic(list_RFID_Device));
+            deviceBasics_buf = (from value in deviceBasics
+                                where value.Code.StringIsEmpty() == false
+                                select value).ToList();
+            this.devices = deviceBasics_buf;
         }
         private int Function_取得儲位庫存(string 藥品碼)
         {
             int 庫存 = 0;
-            List<DeviceBasic> deviceBasics = (from value in devices
-                                              where value.Code == 藥品碼
-                                              select value).ToList();
-            for (int k = 0; k < deviceBasics.Count; k++)
+            for (int k = 0; k < devices.Count; k++)
             {
-                庫存 += deviceBasics[k].Inventory.StringToInt32();
+                if (devices[k] is DeviceBasic)
+                {
+                    DeviceBasic device = devices[k] as DeviceBasic;
+                    庫存 += device.Inventory.StringToInt32();
+                }
             }
             return 庫存;
         }

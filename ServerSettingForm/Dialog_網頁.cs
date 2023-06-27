@@ -170,8 +170,18 @@ namespace ServerSettingForm
             }
             else
             {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API_Session,
-                rJ_TextBox_API02.Text, "", "", "", "", ""));
+                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API_Login,
+                rJ_TextBox_API_Login.Text, "", "", "", "", ""));
+            }
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
+            if (serverSettingClass != null)
+            {
+                serverSettingClass.Server = rJ_TextBox_API_Login.Texts;
+            }
+            else
+            {
+                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API_Login,
+                rJ_TextBox_API_Login.Text, "", "", "", "", ""));
             }
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.Website);
             if (serverSettingClass != null)
@@ -256,6 +266,11 @@ namespace ServerSettingForm
             if (serverSettingClass != null)
             {
                 rJ_TextBox_API_Session.Texts = serverSettingClass.Server;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
+            if (serverSettingClass != null)
+            {
+                rJ_TextBox_API_Login.Texts = serverSettingClass.Server;
             }
             serverSettingClass = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.Website);
             if (serverSettingClass != null)

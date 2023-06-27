@@ -161,8 +161,7 @@ namespace HIS_WebApi
         #region Function
         private string single_med_take(List<class_OutTakeMed_data> data)
         {
-            MyTimer myTimer0 = new MyTimer(50000);
-            myTimer0.StartTickTime();
+
 
             
             if (!data[0].交易量.StringIsInt32())
@@ -500,7 +499,6 @@ namespace HIS_WebApi
     
         private List<DeviceBasic> Function_讀取儲位()
         {
-            myTimer.StartTickTime();
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
             ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);

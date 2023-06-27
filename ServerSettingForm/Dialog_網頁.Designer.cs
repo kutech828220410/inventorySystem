@@ -57,6 +57,8 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_Session = new MyUI.RJ_TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.rJ_TextBox_API_Login = new MyUI.RJ_TextBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -491,12 +493,50 @@ namespace ServerSettingForm
             this.label4.TabIndex = 53;
             this.label4.Text = "名稱 :";
             // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.Black;
+            this.label8.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(491, 169);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(380, 40);
+            this.label8.TabIndex = 56;
+            this.label8.Text = "API Login";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // rJ_TextBox_API_Login
+            // 
+            this.rJ_TextBox_API_Login.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_API_Login.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_API_Login.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_API_Login.BorderRadius = 0;
+            this.rJ_TextBox_API_Login.BorderSize = 2;
+            this.rJ_TextBox_API_Login.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_API_Login.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_Login.GUID = "";
+            this.rJ_TextBox_API_Login.Location = new System.Drawing.Point(491, 216);
+            this.rJ_TextBox_API_Login.Multiline = false;
+            this.rJ_TextBox_API_Login.Name = "rJ_TextBox_API_Login";
+            this.rJ_TextBox_API_Login.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_API_Login.PassWordChar = false;
+            this.rJ_TextBox_API_Login.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_API_Login.PlaceholderText = "http://XXX.XXX.XXX.XXX:4433";
+            this.rJ_TextBox_API_Login.ShowTouchPannel = false;
+            this.rJ_TextBox_API_Login.Size = new System.Drawing.Size(380, 40);
+            this.rJ_TextBox_API_Login.TabIndex = 55;
+            this.rJ_TextBox_API_Login.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_API_Login.Texts = "";
+            this.rJ_TextBox_API_Login.UnderlineStyle = false;
+            // 
             // Dialog_網頁
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1431, 659);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.rJ_TextBox_API_Login);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button_API_Session);
@@ -561,5 +601,7 @@ namespace ServerSettingForm
         private MyUI.RJ_TextBox rJ_TextBox_API_Session;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label8;
+        private MyUI.RJ_TextBox rJ_TextBox_API_Login;
     }
 }

@@ -1,5 +1,5 @@
 {
-  "Name": "TEST",
-  "Api_Server": "http://www.ketech.tw:443",
-  "Med_Update_ApiURL": ""
+  "Name": "B1UD",
+  "Api_Server": "http://10.13.66.58:4433",
+  "Med_Update_ApiURL": "https://10.13.66.58:443/dbvm/FirmDrug/B1UD"
 }

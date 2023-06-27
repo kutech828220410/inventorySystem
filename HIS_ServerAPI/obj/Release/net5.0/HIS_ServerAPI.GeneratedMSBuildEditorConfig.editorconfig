@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = HIS_ServerAPI
-build_property.ProjectDir = C:\Users\User\Desktop\Pharmacy-master\HIS_ServerAPI\
+build_property.ProjectDir = C:\Users\HS\Source\Repos\inventorySystem\HIS_ServerAPI\

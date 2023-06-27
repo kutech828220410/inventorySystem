@@ -46,6 +46,7 @@ namespace HIS_DB_Lib
         API01,
         API02,
         API_Session,
+        API_Login,
         Website,
     }
 
