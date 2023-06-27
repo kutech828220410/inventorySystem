@@ -46,7 +46,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<DeviceBasic> deviceBasics = Function_Get_device(device_Server, device_DB, device_TableName);
+            List<DeviceBasic> deviceBasics = Function_Get_device(device_Server, device_DB, device_TableName, UserName, Password, Port);
             List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
             deviceBasics_buf = deviceBasics.SortByCode($"{Code}");
             for (int i = 0; i < deviceBasics_buf.Count; i++)
@@ -102,7 +102,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             returnData returnData = new returnData();
-            List<DeviceBasic> deviceBasics = Function_Get_device(device_Server, device_DB, device_TableName);
+            List<DeviceBasic> deviceBasics = Function_Get_device(device_Server, device_DB, device_TableName, UserName, Password, Port);
             returnData.Code = 200;
             returnData.Result = $"Device取得成功!TableName : {device_TableName}";
             returnData.TimeTaken = myTimer.ToString();
@@ -116,7 +116,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
                 if (serverSettingClasses.Count == 0)
                 {
@@ -213,11 +213,11 @@ namespace HIS_WebApi
 
         public List<DeviceBasic> Function_Get_device()
         {
-            return Function_Get_device(device_Server, device_DB, device_TableName);
+            return Function_Get_device(device_Server, device_DB, device_TableName, UserName, Password, Port);
         }
         public List<DeviceBasic> Function_Get_device(returnData returnData)
         {
-            return Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName);
+            return Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName, returnData.UserName, returnData.Password, returnData.Port);
         }
         public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass)
         {
@@ -239,12 +239,12 @@ namespace HIS_WebApi
             }
             else
             {
-                deviceBasics = Function_讀取儲位(IP, DBName);
+                deviceBasics = Function_讀取儲位(IP, DBName, UserName, Password, Port);
             }
        
             return deviceBasics;
         }
-        public List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName)
+        public List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName, string UserName, string Password, uint Port)
         {
             SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
@@ -254,13 +254,13 @@ namespace HIS_WebApi
             }
             else
             {
-                deviceBasics = Function_讀取儲位(IP, DBName);
+                deviceBasics = Function_讀取儲位(IP, DBName, UserName, Password, Port);
             }
 
             return deviceBasics;
         }
 
-        private List<DeviceBasic> Function_讀取儲位(string IP, string DBName)
+        private List<DeviceBasic> Function_讀取儲位(string IP, string DBName, string UserName, string Password, uint Port)
         {
     
             SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);

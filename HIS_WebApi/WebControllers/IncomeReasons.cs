@@ -26,20 +26,31 @@ namespace HIS_WebApi
     [ApiController]
     public class IncomeReasonsController : Controller
     {
-        static private string UserName = ConfigurationManager.AppSettings["user"];
-        static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string Server = ConfigurationManager.AppSettings["VM_Server"];
-        static private string DB = ConfigurationManager.AppSettings["VM_DB"];
-        static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
+        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
+
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("init")]
         [HttpGet]
-        public string GET_init()
+        public string GET_init(returnData returnData)
         {
             try
             {
-                return CheckCreatTable();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                return CheckCreatTable(serverSettingClasses[0]);
             }
             catch(Exception e)
             {
@@ -56,7 +67,21 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
             try
             {
-                CheckCreatTable();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returndata.ServerName, returndata.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returndata.Code = -200;
+                    returndata.Result = $"找無Server資料!";
+                    return returndata.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                CheckCreatTable(serverSettingClasses[0]);
                 SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl.GetAllRows(null);
                 List<IncomeReasonsClass> list_IncomeReasonsClass = IncomeReasonsClass.SQLToListClass(list_value);
@@ -81,8 +106,22 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             try
-            {  
-                CheckCreatTable();
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returndata.ServerName, returndata.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returndata.Code = -200;
+                    returndata.Result = $"找無Server資料!";
+                    return returndata.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                CheckCreatTable(serverSettingClasses[0]);
                 SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = IncomeReasonsClass.ObjToListSQL(returndata.Data);
                 for (int i = 0; i < list_value.Count; i++)
@@ -117,7 +156,21 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
             try
             {
-                CheckCreatTable();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returndata.ServerName, returndata.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returndata.Code = -200;
+                    returndata.Result = $"找無Server資料!";
+                    return returndata.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                CheckCreatTable(serverSettingClasses[0]);
                 SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = IncomeReasonsClass.ObjToListSQL(returndata.Data);
                 sQLControl.UpdateByDefulteExtra(null, list_value);
@@ -146,8 +199,20 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
             try
             {
-         
-                CheckCreatTable();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returndata.ServerName, returndata.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returndata.Code = -200;
+                    returndata.Result = $"找無Server資料!";
+                    return returndata.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                CheckCreatTable(serverSettingClasses[0]);
                 SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = IncomeReasonsClass.ObjToListSQL(returndata.Data);
                 sQLControl.DeleteExtra(null, list_value);
@@ -170,8 +235,14 @@ namespace HIS_WebApi
         }
 
 
-        public string CheckCreatTable()
+        public string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
             SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
             Table table = new Table("IncomeReasons");
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
