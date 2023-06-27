@@ -71,9 +71,13 @@ namespace 調劑台管理系統
         }
         public enum ContextMenuStrip_Locker_Index_Table
         {
+            [Description("M8000")]
             匯出,
+            [Description("M8000")]
             匯入,
+            [Description("M8000")]
             刷新,
+            [Description("M8000")]
             刪除選取資料,
         }
         #endregion
@@ -103,9 +107,13 @@ namespace 調劑台管理系統
         }
         public enum ContextMenuStrip_特殊輸出表
         {
+            [Description("M8000")]
             匯出,
+            [Description("M8000")]
             匯入,
+            [Description("M8000")]
             刷新,
+            [Description("M8000")]
             刪除選取資料,
         }
         #endregion
