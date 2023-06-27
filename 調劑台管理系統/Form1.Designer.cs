@@ -78,8 +78,8 @@
             this.pannel_Locker_Design = new 調劑台管理系統.Pannel_Locker_Design();
             this.後台登入 = new System.Windows.Forms.TabPage();
             this.plC_RJ_GroupBox_後台網址_QRCODE = new MyUI.PLC_RJ_GroupBox();
-            this.button_後台網址_開啟 = new System.Windows.Forms.Button();
             this.pictureBox_後台網址_QRCODE = new System.Windows.Forms.PictureBox();
+            this.button_後台網址_開啟 = new System.Windows.Forms.Button();
             this.rJ_Pannel_後台登入_歡迎登入 = new MyUI.RJ_Pannel();
             this.rJ_Lable_後台登入_歡迎登入_ID = new MyUI.RJ_Lable();
             this.rJ_Lable_後台登入_歡迎登入_姓名 = new MyUI.RJ_Lable();
@@ -3071,6 +3071,16 @@
             this.plC_RJ_GroupBox_後台網址_QRCODE.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox_後台網址_QRCODE.TitleTexts = "後台網址";
             // 
+            // pictureBox_後台網址_QRCODE
+            // 
+            this.pictureBox_後台網址_QRCODE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_後台網址_QRCODE.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_後台網址_QRCODE.Location = new System.Drawing.Point(2, 2);
+            this.pictureBox_後台網址_QRCODE.Name = "pictureBox_後台網址_QRCODE";
+            this.pictureBox_後台網址_QRCODE.Size = new System.Drawing.Size(320, 320);
+            this.pictureBox_後台網址_QRCODE.TabIndex = 0;
+            this.pictureBox_後台網址_QRCODE.TabStop = false;
+            // 
             // button_後台網址_開啟
             // 
             this.button_後台網址_開啟.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -3082,16 +3092,6 @@
             this.button_後台網址_開啟.TabIndex = 1;
             this.button_後台網址_開啟.Text = "開啟";
             this.button_後台網址_開啟.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox_後台網址_QRCODE
-            // 
-            this.pictureBox_後台網址_QRCODE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox_後台網址_QRCODE.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox_後台網址_QRCODE.Location = new System.Drawing.Point(2, 2);
-            this.pictureBox_後台網址_QRCODE.Name = "pictureBox_後台網址_QRCODE";
-            this.pictureBox_後台網址_QRCODE.Size = new System.Drawing.Size(320, 320);
-            this.pictureBox_後台網址_QRCODE.TabIndex = 0;
-            this.pictureBox_後台網址_QRCODE.TabStop = false;
             // 
             // rJ_Pannel_後台登入_歡迎登入
             // 
@@ -31726,7 +31726,7 @@
             this.plC_RJ_GroupBox25.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox25.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox25.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_GroupBox25.ContentsPanel.Size = new System.Drawing.Size(1634, 680);
+            this.plC_RJ_GroupBox25.ContentsPanel.Size = new System.Drawing.Size(1634, 691);
             this.plC_RJ_GroupBox25.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox25.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_GroupBox25.GUID = "";
@@ -31736,7 +31736,7 @@
             this.plC_RJ_GroupBox25.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox25.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox25.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox25.Size = new System.Drawing.Size(1634, 717);
+            this.plC_RJ_GroupBox25.Size = new System.Drawing.Size(1634, 728);
             this.plC_RJ_GroupBox25.TabIndex = 1;
             this.plC_RJ_GroupBox25.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox25.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -31762,16 +31762,8 @@
             this.sqL_DataGridView_盤點單號.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點單號.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點單號.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點單號.columnHeadersHeight = 44;
+            this.sqL_DataGridView_盤點單號.columnHeadersHeight = 18;
             this.sqL_DataGridView_盤點單號.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns"))));
-            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns1"))));
-            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns2"))));
-            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns3"))));
-            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns4"))));
-            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns5"))));
-            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns6"))));
-            this.sqL_DataGridView_盤點單號.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點單號.Columns7"))));
             this.sqL_DataGridView_盤點單號.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_盤點單號.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_盤點單號.ImageBox = false;
@@ -31787,7 +31779,7 @@
             this.sqL_DataGridView_盤點單號.RowsHeight = 60;
             this.sqL_DataGridView_盤點單號.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_盤點單號.Server = "127.0.0.0";
-            this.sqL_DataGridView_盤點單號.Size = new System.Drawing.Size(1624, 670);
+            this.sqL_DataGridView_盤點單號.Size = new System.Drawing.Size(1624, 681);
             this.sqL_DataGridView_盤點單號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_盤點單號.TabIndex = 136;
             this.sqL_DataGridView_盤點單號.TableName = "inventory_creat";
@@ -31831,7 +31823,7 @@
             this.plC_RJ_GroupBox28.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox28.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox28.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_GroupBox28.ContentsPanel.Size = new System.Drawing.Size(1634, 615);
+            this.plC_RJ_GroupBox28.ContentsPanel.Size = new System.Drawing.Size(1634, 616);
             this.plC_RJ_GroupBox28.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox28.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_GroupBox28.GUID = "";
@@ -31841,7 +31833,7 @@
             this.plC_RJ_GroupBox28.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox28.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox28.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox28.Size = new System.Drawing.Size(1634, 652);
+            this.plC_RJ_GroupBox28.Size = new System.Drawing.Size(1634, 653);
             this.plC_RJ_GroupBox28.TabIndex = 2;
             this.plC_RJ_GroupBox28.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox28.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -31869,15 +31861,6 @@
             this.sqL_DataGridView_盤點內容.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點內容.columnHeadersHeight = 23;
             this.sqL_DataGridView_盤點內容.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns"))));
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns1"))));
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns2"))));
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns3"))));
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns4"))));
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns5"))));
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns6"))));
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns7"))));
-            this.sqL_DataGridView_盤點內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點內容.Columns8"))));
             this.sqL_DataGridView_盤點內容.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_盤點內容.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_盤點內容.ImageBox = false;
@@ -31893,7 +31876,7 @@
             this.sqL_DataGridView_盤點內容.RowsHeight = 60;
             this.sqL_DataGridView_盤點內容.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_盤點內容.Server = "127.0.0.0";
-            this.sqL_DataGridView_盤點內容.Size = new System.Drawing.Size(1624, 605);
+            this.sqL_DataGridView_盤點內容.Size = new System.Drawing.Size(1624, 606);
             this.sqL_DataGridView_盤點內容.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_盤點內容.TabIndex = 136;
             this.sqL_DataGridView_盤點內容.TableName = "inventory_content";
@@ -31974,19 +31957,6 @@
             this.sqL_DataGridView_盤點明細.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_盤點明細.columnHeadersHeight = 23;
             this.sqL_DataGridView_盤點明細.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns1"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns2"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns3"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns4"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns5"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns6"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns7"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns8"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns9"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns10"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns11"))));
-            this.sqL_DataGridView_盤點明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點明細.Columns12"))));
             this.sqL_DataGridView_盤點明細.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_盤點明細.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_盤點明細.ImageBox = false;
@@ -34490,16 +34460,6 @@
         private MyUI.RJ_DatePicker rJ_DatePicker_盤點作業_單號查詢_建表日期;
         private MyUI.RJ_Lable rJ_Lable152;
         private System.Windows.Forms.TabPage tabPage42;
-        private System.Windows.Forms.TabControl tabControl4;
-        private System.Windows.Forms.TabPage tabPage43;
-        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox25;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_盤點單號;
-        private System.Windows.Forms.TabPage tabPage48;
-        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox28;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_盤點內容;
-        private System.Windows.Forms.TabPage tabPage49;
-        private MyUI.RJ_GroupBox rJ_GroupBox2;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_盤點明細;
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點作業_盤點藥品清單;
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點作業_單號查詢_盤點藥品內容;
         private MyUI.PLC_CheckBox plC_CheckBox_領藥無儲位不顯示;
@@ -34618,7 +34578,6 @@
         internal MyUI.RJ_TextBox rJ_TextBox_收支作業_單品入庫_藥品碼;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_單品入庫_顯示所有儲位;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_選擇儲位;
-        private MyUI.RJ_Pannel ContentsPanel;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_設定;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交易紀錄查詢_匯出資料;
         private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox26;
@@ -34691,6 +34650,18 @@
         private MyUI.RJ_DatePicker rJ_DatePicker_交易紀錄_結存量_操作時間_開始時間;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交易紀錄_結存量_匯出資料;
         private System.Windows.Forms.Button button_後台網址_開啟;
+        private MyUI.RJ_Pannel rJ_Pannel;
+        private MyUI.RJ_Pannel ContentsPanel;
+        private System.Windows.Forms.TabPage tabPage49;
+        private MyUI.RJ_GroupBox rJ_GroupBox2;
+        private System.Windows.Forms.TabControl tabControl4;
+        private System.Windows.Forms.TabPage tabPage43;
+        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox25;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_盤點單號;
+        private System.Windows.Forms.TabPage tabPage48;
+        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox28;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_盤點內容;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_盤點明細;
     }
 }
 

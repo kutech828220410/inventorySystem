@@ -300,12 +300,12 @@ namespace ServerSettingForm
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
             if (serverSettingClass != null)
             {
-                serverSettingClass.Server = rJ_TextBox_Order_API.Texts;
+                serverSettingClass.Server = rJ_TextBox_Med_API.Texts;
             }
             else
             {
                 serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.API, enum_ServerSetting_調劑台.Med_API,
-               rJ_TextBox_Order_API.Text, "", "", "", "", ""));
+               rJ_TextBox_Med_API.Text, "", "", "", "", ""));
             }
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Website);
             if (serverSettingClass != null)

@@ -21,7 +21,7 @@ namespace HIS_WebApi
         static private uint Port = (uint)ConfigurationManager.AppSettings["port"].StringToInt32();
         static private string UserName = ConfigurationManager.AppSettings["user"];
         static private string Password = ConfigurationManager.AppSettings["password"];
-        static private string DB = ConfigurationManager.AppSettings["database"];
+        static private string DB = "dbvm";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("init")]
@@ -34,7 +34,15 @@ namespace HIS_WebApi
             }
             catch (Exception e)
             {
-                return e.Message;
+                string msg = "";
+                msg += $"Message: {e.Message}\n";
+                msg += $"Server: {Server}\n";
+                msg += $"Port: {Port}\n";
+                msg += $"UserName: {UserName}\n";
+                msg += $"Password: {Password}\n";
+                msg += $"DB: {DB}\n";
+
+                return msg;
             }
 
         }

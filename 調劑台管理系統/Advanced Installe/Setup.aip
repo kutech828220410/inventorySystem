@@ -18,10 +18,10 @@
     <ROW Property="AiSkipExitDlg" Value="1"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="力翔精密機械有限公司"/>
-    <ROW Property="ProductCode" Value="1028:{CDCFA449-B4CB-4A1A-94F0-43901B4612B6} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{0A0E32C9-A76E-40E4-8416-A0678DC2DEAD} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1028"/>
     <ROW Property="ProductName" Value="智慧調劑台管理系統"/>
-    <ROW Property="ProductVersion" Value="1.0.57.0" Type="32" TargetFile="_.exe"/>
+    <ROW Property="ProductVersion" Value="1.0.59.0" Type="32" TargetFile="_.exe"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{9E8E570F-0E09-4BCD-A3D4-0EE2FFDFC180}"/>
@@ -44,15 +44,10 @@
     <ROW Directory="x86_Dir" Directory_Parent="IOC1280_Dir" DefaultDir="x86"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AxAltairUDrv.dll" ComponentId="{6C6206D2-7273-4798-9C7C-BB9411615649}" Directory_="APPDIR" Attributes="0" KeyPath="AxAltairUDrv.dll"/>
-    <ROW Component="AxAltairUDrvAsm4.5.dll" ComponentId="{48438220-0DC6-4EDD-AE9E-2AC20A11EFEF}" Directory_="APPDIR" Attributes="0" KeyPath="AxAltairUDrvAsm4.5.dll"/>
-    <ROW Component="AxOvkBase.dll" ComponentId="{036AE8ED-C042-49AD-B7FE-37BA7080DEA2}" Directory_="APPDIR" Attributes="0" KeyPath="AxOvkBase.dll"/>
-    <ROW Component="AxOvkBaseAsm4.5.dll" ComponentId="{DEBB473F-9DEA-4EBB-AC77-061E389B881D}" Directory_="APPDIR" Attributes="0" KeyPath="AxOvkBaseAsm4.5.dll"/>
     <ROW Component="AxOvkBlob.dll" ComponentId="{19CB927E-EA66-4E9E-AAA2-65721A2E987E}" Directory_="APPDIR" Attributes="0" KeyPath="AxOvkBlob.dll"/>
     <ROW Component="AxOvkBlobAsm4.5.dll" ComponentId="{E8E2093E-A299-4A06-A447-D4A0A17A1BA4}" Directory_="APPDIR" Attributes="0" KeyPath="AxOvkBlobAsm4.5.dll"/>
     <ROW Component="AxOvkImage.dll" ComponentId="{175683D8-5409-4A2B-835C-87F8B75D34B1}" Directory_="APPDIR" Attributes="0" KeyPath="AxOvkImage.dll"/>
     <ROW Component="AxOvkImageAsm4.5.dll" ComponentId="{1066FCFB-993A-431B-9AAC-8A14507B6646}" Directory_="APPDIR" Attributes="0" KeyPath="AxOvkImageAsm4.5.dll"/>
-    <ROW Component="AxOvkMsr.dll" ComponentId="{FB8A3A9E-3CF1-4E74-90DF-AB3FC9BB7D7D}" Directory_="APPDIR" Attributes="0" KeyPath="AxOvkMsr.dll"/>
     <ROW Component="AxOvkMsrAsm4.5.dll" ComponentId="{72518BEC-83B4-4D4E-A6EA-0ED500619E2E}" Directory_="APPDIR" Attributes="0" KeyPath="AxOvkMsrAsm4.5.dll"/>
     <ROW Component="Basic.pdb" ComponentId="{666348D4-676A-487F-9DE8-8FBB8C9B0602}" Directory_="APPDIR" Attributes="0" KeyPath="Basic.dll"/>
     <ROW Component="CallBackUI.dll" ComponentId="{2E1AA543-980A-4138-B7FF-DA4524A85A15}" Directory_="APPDIR" Attributes="0" KeyPath="CallBackUI.dll"/>
@@ -111,19 +106,14 @@
     <ROW Component="zxing.dll" ComponentId="{9D9046C3-7C6C-4C71-8CF1-F2EE61A906E8}" Directory_="APPDIR" Attributes="0" KeyPath="zxing.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AxAltairUDrv.dll AxAltairUDrvAsm4.5.dll AxOvkBase.dll AxOvkBaseAsm4.5.dll AxOvkBlob.dll AxOvkBlobAsm4.5.dll AxOvkImage.dll AxOvkImageAsm4.5.dll AxOvkMsr.dll AxOvkMsrAsm4.5.dll Basic.pdb CallBackUI.dll DrawingClass.dll FontAwesome.Sharp.dll HCGUI.dll HIS_DB_Lib.dll H_Pannel_lib.dll IOC0640.dll IOC0640.dll_1 IOC1280001.pro Interop.SpeechLib.dll LadderUI.dll LeadShineUI.dll LicenseLib.dll LightControlUI.dll MVSDK.dll MVSDKUI.dll MeasureSystemFunction.dll MeasureSystemUI.dll Microsoft.Bcl.AsyncInterfaces.dll Microsoft.Office.Interop.Excel.dll MyFtpUI.dll MyOffice.dll MyPrinterlib.dll MySQL_Login.dll MySql.Data.dll MySqlBackup.dll MyUI.dll NPOI.OOXML.dll NPOI.OpenXml4Net.dll NPOI.OpenXmlFormats.dll NPOI.dll Newtonsoft.Json.dll PortControlUI.dll ProductInformation RFID_FX600lib.dll SHORTCUTDIR SLDUI.dll SQLUI.dll System.Buffers.dll System.Memory.dll System.Numerics.Vectors.dll System.Runtime.CompilerServices.Unsafe.dll System.Text.Encodings.Web.dll System.Text.Json.dll System.Threading.Tasks.Extensions.dll System.ValueTuple.dll System.dll TCP.dll ZealTechUI.dll _.exe office.dll program.bak.stp stdole.dll zxing.dll"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AxOvkBlob.dll AxOvkBlobAsm4.5.dll AxOvkImage.dll AxOvkImageAsm4.5.dll AxOvkMsrAsm4.5.dll Basic.pdb CallBackUI.dll DrawingClass.dll FontAwesome.Sharp.dll HCGUI.dll HIS_DB_Lib.dll H_Pannel_lib.dll IOC0640.dll IOC0640.dll_1 IOC1280001.pro Interop.SpeechLib.dll LadderUI.dll LeadShineUI.dll LicenseLib.dll LightControlUI.dll MVSDK.dll MVSDKUI.dll MeasureSystemFunction.dll MeasureSystemUI.dll Microsoft.Bcl.AsyncInterfaces.dll Microsoft.Office.Interop.Excel.dll MyFtpUI.dll MyOffice.dll MyPrinterlib.dll MySQL_Login.dll MySql.Data.dll MySqlBackup.dll MyUI.dll NPOI.OOXML.dll NPOI.OpenXml4Net.dll NPOI.OpenXmlFormats.dll NPOI.dll Newtonsoft.Json.dll PortControlUI.dll ProductInformation RFID_FX600lib.dll SHORTCUTDIR SLDUI.dll SQLUI.dll System.Buffers.dll System.Memory.dll System.Numerics.Vectors.dll System.Runtime.CompilerServices.Unsafe.dll System.Text.Encodings.Web.dll System.Text.Json.dll System.Threading.Tasks.Extensions.dll System.ValueTuple.dll System.dll TCP.dll ZealTechUI.dll _.exe office.dll program.bak.stp stdole.dll zxing.dll"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="AxAltairUDrv.dll" Component_="AxAltairUDrv.dll" FileName="AXALTA~1.DLL|AxAltairUDrv.dll" Attributes="0" SourcePath="..\bin\Release\AxAltairUDrv.dll" SelfReg="false" NextFile="AxAltairUDrvAsm4.5.dll"/>
-    <ROW File="AxAltairUDrvAsm4.5.dll" Component_="AxAltairUDrvAsm4.5.dll" FileName="AXALTA~2.DLL|AxAltairUDrvAsm4.5.dll" Attributes="0" SourcePath="..\bin\Release\AxAltairUDrvAsm4.5.dll" SelfReg="false" NextFile="AxOvkBase.dll"/>
-    <ROW File="AxOvkBase.dll" Component_="AxOvkBase.dll" FileName="AXOVKB~1.DLL|AxOvkBase.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkBase.dll" SelfReg="false" NextFile="AxOvkBaseAsm4.5.dll"/>
-    <ROW File="AxOvkBaseAsm4.5.dll" Component_="AxOvkBaseAsm4.5.dll" FileName="AXOVKB~2.DLL|AxOvkBaseAsm4.5.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkBaseAsm4.5.dll" SelfReg="false" NextFile="AxOvkBlob.dll"/>
     <ROW File="AxOvkBlob.dll" Component_="AxOvkBlob.dll" FileName="AXOVKB~3.DLL|AxOvkBlob.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkBlob.dll" SelfReg="false" NextFile="AxOvkBlobAsm4.5.dll"/>
     <ROW File="AxOvkBlobAsm4.5.dll" Component_="AxOvkBlobAsm4.5.dll" FileName="AXOVKB~4.DLL|AxOvkBlobAsm4.5.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkBlobAsm4.5.dll" SelfReg="false" NextFile="AxOvkImage.dll"/>
     <ROW File="AxOvkImage.dll" Component_="AxOvkImage.dll" FileName="AXOVKI~1.DLL|AxOvkImage.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkImage.dll" SelfReg="false" NextFile="AxOvkImageAsm4.5.dll"/>
-    <ROW File="AxOvkImageAsm4.5.dll" Component_="AxOvkImageAsm4.5.dll" FileName="AXOVKI~2.DLL|AxOvkImageAsm4.5.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkImageAsm4.5.dll" SelfReg="false" NextFile="AxOvkMsr.dll"/>
-    <ROW File="AxOvkMsr.dll" Component_="AxOvkMsr.dll" FileName="AxOvkMsr.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkMsr.dll" SelfReg="false" NextFile="AxOvkMsrAsm4.5.dll"/>
+    <ROW File="AxOvkImageAsm4.5.dll" Component_="AxOvkImageAsm4.5.dll" FileName="AXOVKI~2.DLL|AxOvkImageAsm4.5.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkImageAsm4.5.dll" SelfReg="false" NextFile="AxOvkMsrAsm4.5.dll"/>
     <ROW File="AxOvkMsrAsm4.5.dll" Component_="AxOvkMsrAsm4.5.dll" FileName="AXOVKM~1.DLL|AxOvkMsrAsm4.5.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkMsrAsm4.5.dll" SelfReg="false" NextFile="Basic.dll"/>
     <ROW File="Basic.dll" Component_="Basic.pdb" FileName="Basic.dll" Attributes="0" SourcePath="..\bin\Release\Basic.dll" SelfReg="false" NextFile="CallBackUI.dll"/>
     <ROW File="Basic.pdb" Component_="Basic.pdb" FileName="Basic.pdb" Attributes="0" SourcePath="..\bin\Release\Basic.pdb" SelfReg="false" NextFile="MeasureSystemUI.pdb"/>
@@ -180,7 +170,7 @@
     <ROW File="TCP.dll" Component_="TCP.dll" FileName="TCP.dll" Attributes="0" SourcePath="..\bin\Release\TCP.dll" SelfReg="false" NextFile="ZealTechUI.dll"/>
     <ROW File="ZealTechUI.dll" Component_="ZealTechUI.dll" FileName="ZEALTE~1.DLL|ZealTechUI.dll" Attributes="0" SourcePath="..\bin\Release\ZealTechUI.dll" SelfReg="false" NextFile="zxing.dll"/>
     <ROW File="_.exe" Component_="_.exe" FileName="調劑台管理系統.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\調劑台管理系統.exe" SelfReg="false" NextFile="Basic.pdb" DigSign="true"/>
-    <ROW File="exe.config" Component_="program.bak.stp" FileName="調劑台管理系~1.CON|調劑台管理系統.exe.config" Attributes="0" SourcePath="..\bin\Release\調劑台管理系統.exe.config" SelfReg="false" NextFile="AxAltairUDrv.dll"/>
+    <ROW File="exe.config" Component_="program.bak.stp" FileName="調劑台管理系~1.CON|調劑台管理系統.exe.config" Attributes="0" SourcePath="..\bin\Release\調劑台管理系統.exe.config" SelfReg="false" NextFile="AxOvkBlob.dll"/>
     <ROW File="office.dll" Component_="office.dll" FileName="office.dll" Attributes="0" SourcePath="..\bin\Release\office.dll" SelfReg="false" NextFile="PortControlUI.dll"/>
     <ROW File="pdb" Component_="_.exe" FileName="調劑台管理系統.pdb" Attributes="0" SourcePath="..\bin\Release\調劑台管理系統.pdb" SelfReg="false" NextFile="program.bak.stp"/>
     <ROW File="program.bak.stp" Component_="program.bak.stp" FileName="PROGRA~1.STP|program.bak.stp" Attributes="0" SourcePath="..\bin\Release\program.bak.stp" SelfReg="false" NextFile="program.stp"/>

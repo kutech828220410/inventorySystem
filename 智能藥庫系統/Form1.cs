@@ -272,7 +272,7 @@ namespace 智能藥庫系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_撥補, this.plC_ScreenPage_藥庫_撥補);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_撥補_藥局, this.plC_ScreenPage_藥庫_撥補_藥局);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_緊急訂單, this.plC_ScreenPage_藥庫_緊急訂單);
-            PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_驗收入庫, this.plC_ScreenPage_藥庫_驗收入庫);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_驗收作業, this.plC_ScreenPage_驗收作業);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥庫_每日訂單, this.plC_ScreenPage_藥庫_每日訂單);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_藥品資料, this.plC_ScreenPage_藥品資料);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
@@ -314,10 +314,10 @@ namespace 智能藥庫系統
             this.sub_Program_藥庫_撥補_藥局_自動撥補_Init();
             this.sub_Program_藥庫_撥補_藥局_緊急申領_Init();
 
-            this.sub_Program_藥庫_驗收入庫_過帳明細_Init();
-            this.sub_Program_藥庫_驗收入庫_資料庫_Init();
-            this.sub_Program_藥庫_驗收入庫_新增驗收_Init();
-            this.sub_Program_藥庫_驗收入庫_單號查詢_Init();
+            this.sub_Program_驗收作業_過帳明細_Init();
+            this.sub_Program_驗收作業_資料庫_Init();
+            this.sub_Program_驗收作業_新增驗收_Init();
+            this.sub_Program_驗收作業_單號查詢_Init();
 
             this.sub_Program_批次過帳_門診_Init();
             this.sub_Program_批次過帳_急診_Init();
@@ -517,7 +517,7 @@ namespace 智能藥庫系統
 
         }
 
-        private void sqL_DataGridView_驗收入庫效期批號_MouseDown(object sender, MouseEventArgs e)
+        private void sqL_DataGridView_驗收作業效期批號_MouseDown(object sender, MouseEventArgs e)
         {
             this.sqL_DataGridView_驗收內容.SQL_GetAllRows(true);
         }

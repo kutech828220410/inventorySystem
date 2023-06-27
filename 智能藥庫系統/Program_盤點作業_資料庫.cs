@@ -12,6 +12,7 @@ using SQLUI;
 using MyUI;
 using Basic;
 using H_Pannel_lib;
+using HIS_DB_Lib;
 namespace 智能藥庫系統
 {
 
@@ -19,32 +20,32 @@ namespace 智能藥庫系統
     {
         private void sub_Program_盤點作業_資料庫_Init()
         {
-            this.sqL_DataGridView_盤點單號.Init();
-            if (this.sqL_DataGridView_盤點單號.SQL_IsTableCreat() == false)
+            string url = $"{dBConfigClass.Api_URL}/api/inventory/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
+            if(tables == null)
             {
-                this.sqL_DataGridView_盤點單號.SQL_CreateTable();
+                MyMessageBox.ShowDialog("盤點作業表單建立失敗!!");
+                return;
             }
-            else
+            for (int i = 0; i < tables.Count; i++)
             {
-                this.sqL_DataGridView_盤點單號.SQL_CheckAllColumnName(true);
-            }
-            this.sqL_DataGridView_盤點內容.Init();
-            if (this.sqL_DataGridView_盤點內容.SQL_IsTableCreat() == false)
-            {
-                this.sqL_DataGridView_盤點內容.SQL_CreateTable();
-            }
-            else
-            {
-                this.sqL_DataGridView_盤點內容.SQL_CheckAllColumnName(true);
-            }
-            this.sqL_DataGridView_盤點明細.Init();
-            if (this.sqL_DataGridView_盤點明細.SQL_IsTableCreat() == false)
-            {
-                this.sqL_DataGridView_盤點明細.SQL_CreateTable();
-            }
-            else
-            {
-                this.sqL_DataGridView_盤點明細.SQL_CheckAllColumnName(true);
+                if (tables[i].TableName == this.sqL_DataGridView_盤點單號.TableName)
+                {
+                    this.sqL_DataGridView_盤點單號.Init(tables[i]);
+                }
+                if (tables[i].TableName == this.sqL_DataGridView_盤點內容.TableName)
+                {
+                    this.sqL_DataGridView_盤點內容.Init(tables[i]);
+                }
+                if (tables[i].TableName == this.sqL_DataGridView_盤點明細.TableName)
+                {
+                    this.sqL_DataGridView_盤點明細.Init(tables[i]);
+                }
             }
 
             this.sqL_DataGridView_盤點單號.MouseDown += SqL_DataGridView_盤點單號_MouseDown;

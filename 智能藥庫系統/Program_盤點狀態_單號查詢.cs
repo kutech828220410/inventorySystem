@@ -60,8 +60,6 @@ namespace 智能藥庫系統
             this.plC_UI_Init.Add_Method(sub_Program_盤點作業_單號查詢);
         }
 
-
-
         private bool flag_Program_盤點作業_單號查詢_Init = false;
         private void sub_Program_盤點作業_單號查詢()
         {

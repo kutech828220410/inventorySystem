@@ -927,3 +927,5 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_W
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
 C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\excle_consumption.txt
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\web.config
+C:\Users\User\Desktop\Pharmacy-master\HIS_WebApi\bin\Release\net5.0\excel_inspection.txt

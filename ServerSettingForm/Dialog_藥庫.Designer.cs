@@ -121,11 +121,11 @@ namespace ServerSettingForm
             this.rJ_TextBox_批次過帳資料_Port = new MyUI.RJ_TextBox();
             this.rJ_TextBox_批次過帳資料_Server = new MyUI.RJ_TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.checkBox_驗收 = new System.Windows.Forms.CheckBox();
-            this.checkBox_盤點 = new System.Windows.Forms.CheckBox();
+            this.checkBox_條碼管理 = new System.Windows.Forms.CheckBox();
             this.checkBox_揀貨 = new System.Windows.Forms.CheckBox();
-            this.checkBox_條碼建置 = new System.Windows.Forms.CheckBox();
+            this.checkBox_盤點 = new System.Windows.Forms.CheckBox();
+            this.checkBox_驗收 = new System.Windows.Forms.CheckBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1805,7 +1805,7 @@ namespace ServerSettingForm
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.checkBox_條碼建置);
+            this.groupBox10.Controls.Add(this.checkBox_條碼管理);
             this.groupBox10.Controls.Add(this.checkBox_揀貨);
             this.groupBox10.Controls.Add(this.checkBox_盤點);
             this.groupBox10.Controls.Add(this.checkBox_驗收);
@@ -1817,25 +1817,15 @@ namespace ServerSettingForm
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "功能開啟";
             // 
-            // checkBox_驗收
+            // checkBox_條碼管理
             // 
-            this.checkBox_驗收.AutoSize = true;
-            this.checkBox_驗收.Location = new System.Drawing.Point(38, 43);
-            this.checkBox_驗收.Name = "checkBox_驗收";
-            this.checkBox_驗收.Size = new System.Drawing.Size(68, 23);
-            this.checkBox_驗收.TabIndex = 0;
-            this.checkBox_驗收.Text = "驗收";
-            this.checkBox_驗收.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_盤點
-            // 
-            this.checkBox_盤點.AutoSize = true;
-            this.checkBox_盤點.Location = new System.Drawing.Point(38, 72);
-            this.checkBox_盤點.Name = "checkBox_盤點";
-            this.checkBox_盤點.Size = new System.Drawing.Size(68, 23);
-            this.checkBox_盤點.TabIndex = 1;
-            this.checkBox_盤點.Text = "盤點";
-            this.checkBox_盤點.UseVisualStyleBackColor = true;
+            this.checkBox_條碼管理.AutoSize = true;
+            this.checkBox_條碼管理.Location = new System.Drawing.Point(38, 130);
+            this.checkBox_條碼管理.Name = "checkBox_條碼管理";
+            this.checkBox_條碼管理.Size = new System.Drawing.Size(108, 23);
+            this.checkBox_條碼管理.TabIndex = 3;
+            this.checkBox_條碼管理.Text = "條碼管理";
+            this.checkBox_條碼管理.UseVisualStyleBackColor = true;
             // 
             // checkBox_揀貨
             // 
@@ -1847,15 +1837,25 @@ namespace ServerSettingForm
             this.checkBox_揀貨.Text = "揀貨";
             this.checkBox_揀貨.UseVisualStyleBackColor = true;
             // 
-            // checkBox_條碼建置
+            // checkBox_盤點
             // 
-            this.checkBox_條碼建置.AutoSize = true;
-            this.checkBox_條碼建置.Location = new System.Drawing.Point(38, 130);
-            this.checkBox_條碼建置.Name = "checkBox_條碼建置";
-            this.checkBox_條碼建置.Size = new System.Drawing.Size(108, 23);
-            this.checkBox_條碼建置.TabIndex = 3;
-            this.checkBox_條碼建置.Text = "條碼建置";
-            this.checkBox_條碼建置.UseVisualStyleBackColor = true;
+            this.checkBox_盤點.AutoSize = true;
+            this.checkBox_盤點.Location = new System.Drawing.Point(38, 72);
+            this.checkBox_盤點.Name = "checkBox_盤點";
+            this.checkBox_盤點.Size = new System.Drawing.Size(68, 23);
+            this.checkBox_盤點.TabIndex = 1;
+            this.checkBox_盤點.Text = "盤點";
+            this.checkBox_盤點.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_驗收
+            // 
+            this.checkBox_驗收.AutoSize = true;
+            this.checkBox_驗收.Location = new System.Drawing.Point(38, 43);
+            this.checkBox_驗收.Name = "checkBox_驗收";
+            this.checkBox_驗收.Size = new System.Drawing.Size(68, 23);
+            this.checkBox_驗收.TabIndex = 0;
+            this.checkBox_驗收.Text = "驗收";
+            this.checkBox_驗收.UseVisualStyleBackColor = true;
             // 
             // Dialog_藥庫
             // 
@@ -2009,7 +2009,7 @@ namespace ServerSettingForm
         private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_Port;
         private MyUI.RJ_TextBox rJ_TextBox_批次過帳資料_Server;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.CheckBox checkBox_條碼建置;
+        private System.Windows.Forms.CheckBox checkBox_條碼管理;
         private System.Windows.Forms.CheckBox checkBox_揀貨;
         private System.Windows.Forms.CheckBox checkBox_盤點;
         private System.Windows.Forms.CheckBox checkBox_驗收;

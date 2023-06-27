@@ -1,4 +1,5 @@
 {
   "Name": "TEST",
-  "Api_Server": "http://www.ketech.tw:4433"
+  "Api_Server": "http://www.ketech.tw:443",
+  "Med_Update_ApiURL": ""
 }

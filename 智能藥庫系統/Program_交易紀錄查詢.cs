@@ -21,7 +21,7 @@ namespace 智能藥庫系統
     enum enum_交易記錄查詢動作
     {
         批次過帳,
-        驗收入庫,
+        驗收作業,
         自動撥補,
         緊急申領,
         入庫作業,
@@ -200,9 +200,9 @@ namespace 智能藥庫系統
             {
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.緊急申領.GetEnumName()));
             }
-            if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_驗收入庫.Bool)
+            if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_驗收作業.Bool)
             {
-                list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.驗收入庫.GetEnumName()));
+                list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.驗收作業.GetEnumName()));
             }
 
             

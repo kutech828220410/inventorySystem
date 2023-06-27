@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.58.0")]
-[assembly: AssemblyFileVersion("1.0.58.0")]
+[assembly: AssemblyVersion("1.0.59.0")]
+[assembly: AssemblyFileVersion("1.0.59.0")]
 namespace 調劑台管理系統
 {
 
@@ -96,7 +96,6 @@ namespace 調劑台管理系統
             public string Api_URL { get => api_URL; set => api_URL = value; }
             [JsonIgnore]
             public string Web_URL { get => web_URL; set => web_URL = value; }
-            [JsonIgnore]
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
          
      

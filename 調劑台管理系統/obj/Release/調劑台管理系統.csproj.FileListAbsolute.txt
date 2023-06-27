@@ -1868,12 +1868,7 @@ C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\SLDUI.dl
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\PortControlUI.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\ZealTechUI.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\office.dll
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\AxOvkBase.dll
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\AxAltairUDrvAsm4.5.dll
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\AxOvkBaseAsm4.5.dll
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\AxOvkMsr.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\MeasureSystemFunction.dll
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\AxAltairUDrv.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\MVSDK.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\stdole.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml

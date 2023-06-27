@@ -157,7 +157,7 @@ namespace HIS_WebApi
 
                 string loadText = Basic.MyFileStream.LoadFileAllText(@"./excle_consumption.txt", "utf-8");
                 Console.WriteLine($"取得creats {myTimer.ToString()}");
-                int row_max = 100;
+                int row_max = 5000;
                 List<SheetClass> sheetClasses = new List<SheetClass>();
                 SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
 

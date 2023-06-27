@@ -16,7 +16,8 @@ namespace HIS_DB_Lib
         建表時間,
         盤點開始時間,
         盤點結束時間,
-        盤點狀態
+        盤點狀態,
+        備註,
     }
     public enum enum_盤點內容
     {
@@ -29,6 +30,7 @@ namespace HIS_DB_Lib
         藥品條碼2,
         理論值,
         新增時間,
+        備註,
     }
     public enum enum_盤點明細
     {
@@ -66,6 +68,8 @@ namespace HIS_DB_Lib
             public string 盤點結束時間 { get; set; }
             [JsonPropertyName("STATE")]
             public string 盤點狀態 { get; set; }
+            [JsonPropertyName("NOTE")]
+            public string 備註 { get; set; }
 
             private List<content> _contents = new List<content>();
             public List<content> Contents { get => _contents; set => _contents = value; }
@@ -81,6 +85,7 @@ namespace HIS_DB_Lib
                 value[(int)enum_盤點單號.盤點開始時間] = _class.盤點開始時間;
                 value[(int)enum_盤點單號.盤點結束時間] = _class.盤點結束時間;
                 value[(int)enum_盤點單號.盤點狀態] = _class.盤點狀態;
+                value[(int)enum_盤點單號.備註] = _class.備註;
 
                 return value;
             }
@@ -95,6 +100,7 @@ namespace HIS_DB_Lib
                 _class.盤點開始時間 = value[(int)enum_盤點單號.盤點開始時間].ToDateTimeString();
                 _class.盤點結束時間 = value[(int)enum_盤點單號.盤點結束時間].ToDateTimeString();
                 _class.盤點狀態 = value[(int)enum_盤點單號.盤點狀態].ObjectToString();
+                _class.備註 = value[(int)enum_盤點單號.備註].ObjectToString();
                 return _class;
             }
             static public creat ObjToClass(object data)
@@ -118,6 +124,8 @@ namespace HIS_DB_Lib
             public string 盤點單號 { get; set; }
             [JsonPropertyName("CODE")]
             public string 藥品碼 { get; set; }
+            [JsonPropertyName("BRD")]
+            public string 廠牌 { get; set; }
             [JsonPropertyName("SKDIACODE")]
             public string 料號 { get; set; }
             [JsonPropertyName("CHT_NAME")]
@@ -136,6 +144,8 @@ namespace HIS_DB_Lib
             public string 盤點量 { get; set; }
             [JsonPropertyName("ADD_TIME")]
             public string 新增時間 { get; set; }
+            [JsonPropertyName("NOTE")]
+            public string 備註 { get; set; }
 
             private List<sub_content> _sub_content = new List<sub_content>();
             public List<sub_content> Sub_content { get => _sub_content; set => _sub_content = value; }
@@ -152,6 +162,7 @@ namespace HIS_DB_Lib
                 value[(int)enum_盤點內容.藥品條碼2] = _class.藥品條碼2;
                 value[(int)enum_盤點內容.理論值] = _class.理論值;
                 value[(int)enum_盤點內容.新增時間] = _class.新增時間;
+                value[(int)enum_盤點內容.備註] = _class.備註;
                 return value;
             }
             static public content SQLToClass(object[] value)
@@ -166,6 +177,7 @@ namespace HIS_DB_Lib
                 _class.藥品條碼2 = value[(int)enum_盤點內容.藥品條碼2].ObjectToString();
                 _class.理論值 = value[(int)enum_盤點內容.理論值].ObjectToString();
                 _class.新增時間 = value[(int)enum_盤點內容.新增時間].ToDateTimeString();
+                _class.備註 = value[(int)enum_盤點內容.備註].ToDateTimeString();
                 return _class;
             }
             static public content ObjToClass(object data)
@@ -213,6 +225,8 @@ namespace HIS_DB_Lib
             public string 操作時間 { get; set; }
             [JsonPropertyName("STATE")]
             public string 狀態 { get; set; }
+            [JsonPropertyName("NOTE")]
+            public string 備註 { get; set; }
 
             static public object[] ClassToSQL(sub_content _class)
             {

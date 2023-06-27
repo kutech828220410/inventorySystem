@@ -28,6 +28,30 @@ namespace HIS_WebApi
         static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
+
+        [Route("init")]
+        [HttpPost]
+        public string GET_init([FromBody] returnData returnData)
+        {
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                return CheckCreatTable(serverSettingClasses[0]);
+            }
+            catch (Exception e)
+            {
+                string msg = "";
+                return msg;
+            }
+
+        }
         //取得可建立今日最新盤點單
         [Route("new_IC_SN")]
         [HttpPost]
@@ -364,7 +388,6 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
             inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
-            sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
 
             List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             List<object[]> list_inventory_creat_buf = new List<object[]>();
@@ -406,6 +429,8 @@ namespace HIS_WebApi
             value[(int)enum_盤點單號.盤點開始時間] = creat.盤點開始時間;
             value[(int)enum_盤點單號.盤點結束時間] = creat.盤點結束時間;
             value[(int)enum_盤點單號.盤點狀態] = "等待盤點";
+            value[(int)enum_盤點單號.備註] = creat.備註;
+
             list_inventory_creat_add.Add(value);
 
             for (int i = 0; i < creat.Contents.Count; i++)
@@ -424,6 +449,7 @@ namespace HIS_WebApi
                 value[(int)enum_盤點內容.盤點單號] = creat.Contents[i].盤點單號;
                 value[(int)enum_盤點內容.理論值] = creat.Contents[i].理論值;
                 value[(int)enum_盤點內容.新增時間] = creat.Contents[i].新增時間;
+                value[(int)enum_盤點內容.備註] = creat.Contents[i].備註;
                 list_inventory_content_add.Add(value);
             }
             sQLControl_inventory_creat.AddRows(null, list_inventory_creat_add);
@@ -1130,8 +1156,7 @@ namespace HIS_WebApi
             string dbName = DB;
             string json = POST_creat_get_by_IC_SN(returnData);
             returnData = json.JsonDeserializet<returnData>();
-            Server = server;
-            DB = dbName;
+      
             if (returnData.Code != 200)
             {
                 return null;
@@ -1290,7 +1315,7 @@ namespace HIS_WebApi
             return returnData;
         }
 
-        private void CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
 
             string Server = serverSettingClass.Server;
@@ -1303,20 +1328,58 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
 
+            List<Table> tables = new List<Table>();
+            Table table_inventory_creat;
+            table_inventory_creat = new Table("inventory_creat");
+            table_inventory_creat.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table_inventory_creat.AddColumnList("盤點名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("建表人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("建表時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("盤點開始時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("盤點結束時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("盤點狀態", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            if (!sQLControl_inventory_creat.IsTableCreat()) sQLControl_inventory_creat.CreatTable(table_inventory_creat);
+            else sQLControl_inventory_creat.CheckAllColumnName(table_inventory_creat, true);
+            tables.Add(table_inventory_creat);
 
-            Table table;
-            table = new Table("inventory_creat");
-            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("盤點名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table.AddColumnList("建表人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table.AddColumnList("建表時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table.AddColumnList("盤點開始時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table.AddColumnList("盤點結束時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table.AddColumnList("盤點狀態", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            if (!sQLControl_inventory_creat.IsTableCreat()) sQLControl_inventory_creat.CreatTable(table);
-            else sQLControl_inventory_creat.CheckAllColumnName(table, true);
+            Table table_inventory_content;
+            table_inventory_content = new Table("inventory_content");
+            table_inventory_content.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table_inventory_content.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
+            table_inventory_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+            table_inventory_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+            table_inventory_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inventory_content.AddColumnList("藥品條碼2", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inventory_content.AddColumnList("理論值", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_inventory_content.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
+            table_inventory_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            if (!sQLControl_inventory_content.IsTableCreat()) sQLControl_inventory_content.CreatTable(table_inventory_content);
+            else sQLControl_inventory_content.CheckAllColumnName(table_inventory_content, true);
+            tables.Add(table_inventory_content);
 
+            Table table_inventory_sub_content;
+            table_inventory_sub_content = new Table("inventory_sub_content");
+            table_inventory_sub_content.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table_inventory_sub_content.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("藥品條碼2", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_inventory_sub_content.AddColumnList("效期", Table.DateType.DATETIME, 30, Table.IndexType.None);
+            table_inventory_sub_content.AddColumnList("批號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table_inventory_sub_content.AddColumnList("操作時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
+            table_inventory_sub_content.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_sub_content.AddColumnList("狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            if (!sQLControl_inventory_sub_content.IsTableCreat()) sQLControl_inventory_sub_content.CreatTable(table_inventory_sub_content);
+            else sQLControl_inventory_sub_content.CheckAllColumnName(table_inventory_sub_content, true);
+            tables.Add(table_inventory_sub_content);
+
+            return tables.JsonSerializationt(true);
         }
 
         private class ICP_creat_by_CT_TIME : IComparer<inventoryClass.creat>

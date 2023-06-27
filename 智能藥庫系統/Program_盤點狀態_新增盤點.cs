@@ -52,9 +52,6 @@ namespace 智能藥庫系統
 
             this.plC_UI_Init.Add_Method(sub_Program_盤點作業_新增盤點);
         }
-
-
-
         private bool flag_Program_盤點作業_新增盤點_Init = false;
         private void sub_Program_盤點作業_新增盤點()
         {
