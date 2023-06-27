@@ -39,6 +39,7 @@ namespace HIS_DB_Lib
         GUID,
         動作,
         診別,
+        庫別,
         藥品碼,
         藥品名稱,
         藥袋序號,
@@ -67,6 +68,8 @@ namespace HIS_DB_Lib
         public string 動作 { get; set; }
         [JsonPropertyName("MEDKND")]
         public string 診別 { get; set; }
+        [JsonPropertyName("STTREHOUSE")]
+        public string 庫別 { get; set; }
         [JsonPropertyName("CODE")]
         public string 藥品碼 { get; set; }
         [JsonPropertyName("NAME")]
@@ -107,6 +110,7 @@ namespace HIS_DB_Lib
             value[(int)enum_交易記錄查詢資料.GUID] = _class.GUID;
             value[(int)enum_交易記錄查詢資料.動作] = _class.動作;
             value[(int)enum_交易記錄查詢資料.診別] = _class.診別;
+            value[(int)enum_交易記錄查詢資料.庫別] = _class.庫別;
             value[(int)enum_交易記錄查詢資料.藥品碼] = _class.藥品碼;
             value[(int)enum_交易記錄查詢資料.藥品名稱] = _class.藥品名稱;
             value[(int)enum_交易記錄查詢資料.藥品碼] = _class.藥品碼;
@@ -143,6 +147,7 @@ namespace HIS_DB_Lib
             _class.GUID = value[(int)enum_交易記錄查詢資料.GUID].ObjectToString();
             _class.動作 = value[(int)enum_交易記錄查詢資料.動作].ObjectToString();
             _class.診別 = value[(int)enum_交易記錄查詢資料.診別].ObjectToString();
+            _class.庫別 = value[(int)enum_交易記錄查詢資料.庫別].ObjectToString();
             _class.藥品碼 = value[(int)enum_交易記錄查詢資料.藥品碼].ObjectToString();
             _class.藥品名稱 = value[(int)enum_交易記錄查詢資料.藥品名稱].ObjectToString();
             _class.藥袋序號 = value[(int)enum_交易記錄查詢資料.藥袋序號].ObjectToString();

@@ -306,7 +306,7 @@ namespace 智能藥庫系統
                     value_out[(int)enum_交易記錄查詢資料.交易量] = 輸出異動量;
                     value_out[(int)enum_交易記錄查詢資料.結存量] = 輸出結存量;
                     value_out[(int)enum_交易記錄查詢資料.備註] = 輸出備註;
-                    value_out[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.屏榮藥局.GetEnumName();
+                    value_out[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.藥局.GetEnumName();
                     value_out[(int)enum_交易記錄查詢資料.操作人] = this.登入者名稱;
                     value_out[(int)enum_交易記錄查詢資料.操作時間] = DateTime.Now.ToDateTimeString_6();
 

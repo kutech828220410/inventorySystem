@@ -347,3 +347,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/HIS_WebApi/obj/Release/net5.0/PublishOutputs.f9a955d17f.txt

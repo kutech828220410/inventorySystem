@@ -14,7 +14,15 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <dsig:DigestValue>MTmRHA0EgMJuR+hD3PgvXp4L+OneKonx6JJY05fx87Y=</dsig:DigestValue>
+=======
         <dsig:DigestValue>l9itPFx/C4jWELMuvFvnpR/VAhL77pwM2rxDxFCdv/w=</dsig:DigestValue>
+>>>>>>> feb63f9 (20230628)
+=======
+        <dsig:DigestValue>l9itPFx/C4jWELMuvFvnpR/VAhL77pwM2rxDxFCdv/w=</dsig:DigestValue>
+>>>>>>> feb63f9 (20230628)
       </hash>
     </dependentAssembly>
   </dependency>

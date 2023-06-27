@@ -6776,6 +6776,7 @@
             this.sqL_DataGridView_交易記錄查詢.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交易記錄查詢.Columns16"))));
             this.sqL_DataGridView_交易記錄查詢.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交易記錄查詢.Columns17"))));
             this.sqL_DataGridView_交易記錄查詢.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交易記錄查詢.Columns18"))));
+            this.sqL_DataGridView_交易記錄查詢.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交易記錄查詢.Columns19"))));
             this.sqL_DataGridView_交易記錄查詢.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_交易記錄查詢.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_交易記錄查詢.ImageBox = false;
@@ -28127,7 +28128,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1640, 900);
+            this.tabPage4.Size = new System.Drawing.Size(475, 355);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "取藥堆疊子資料";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -28180,7 +28181,7 @@
             this.sqL_DataGridView_取藥堆疊子資料.RowsHeight = 20;
             this.sqL_DataGridView_取藥堆疊子資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_取藥堆疊子資料.Server = "localhost";
-            this.sqL_DataGridView_取藥堆疊子資料.Size = new System.Drawing.Size(1634, 894);
+            this.sqL_DataGridView_取藥堆疊子資料.Size = new System.Drawing.Size(469, 349);
             this.sqL_DataGridView_取藥堆疊子資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_取藥堆疊子資料.TabIndex = 26;
             this.sqL_DataGridView_取藥堆疊子資料.TableName = "take_medicine_substack_new";

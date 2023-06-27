@@ -293,23 +293,23 @@ namespace HIS_WebApi
             List<Task> taskList = new List<Task>();
             taskList.Add(Task.Run(() =>
             {
-                list_EPD583 = sQLControl_EPD583_serialize.GetAllRows(null);
+                if(sQLControl_EPD583_serialize.IsTableCreat()) list_EPD583 = sQLControl_EPD583_serialize.GetAllRows(null);
             }));
             taskList.Add(Task.Run(() =>
             {
-               list_EPD266 = sQLControl_EPD266_serialize.GetAllRows(null);
+                if (sQLControl_EPD266_serialize.IsTableCreat()) list_EPD266 = sQLControl_EPD266_serialize.GetAllRows(null);
             }));
             taskList.Add(Task.Run(() =>
             {
-               list_RowsLED = sQLControl_RowsLED_serialize.GetAllRows(null);
+                if (sQLControl_RowsLED_serialize.IsTableCreat()) list_RowsLED = sQLControl_RowsLED_serialize.GetAllRows(null);
             }));
             taskList.Add(Task.Run(() =>
             {
-               list_RFID_Device = sQLControl_RFID_Device_serialize.GetAllRows(null);
+                if (sQLControl_RFID_Device_serialize.IsTableCreat()) list_RFID_Device = sQLControl_RFID_Device_serialize.GetAllRows(null);
             }));
             taskList.Add(Task.Run(() =>
             {
-                list_WT32 = sQLControl_WT32_serialize.GetAllRows(null);
+                if (sQLControl_WT32_serialize.IsTableCreat()) list_WT32 = sQLControl_WT32_serialize.GetAllRows(null);
             }));
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();

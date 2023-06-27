@@ -114,7 +114,7 @@ namespace 智能藥庫系統
             {
                 object[] value = new object[new enum_藥局_緊急申領().GetLength()];
                 value[(int)enum_藥局_緊急申領.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥局_緊急申領.藥局代碼] = enum_庫別.屏榮藥局.GetEnumName();
+                value[(int)enum_藥局_緊急申領.藥局代碼] = enum_庫別.藥局.GetEnumName();
                 value[(int)enum_藥局_緊急申領.藥品碼] = 藥品碼;
                 value[(int)enum_藥局_緊急申領.藥品名稱] = 藥品名稱;
                 value[(int)enum_藥局_緊急申領.庫存] = 0;
@@ -130,7 +130,7 @@ namespace 智能藥庫系統
             {
                 object[] value = new object[new enum_藥局_緊急申領().GetLength()];
                 value[(int)enum_藥局_緊急申領.GUID] = list_緊急申領資料_buf[0][(int)enum_藥局_緊急申領.GUID].ObjectToString();
-                value[(int)enum_藥局_緊急申領.藥局代碼] = enum_庫別.屏榮藥局.GetEnumName();
+                value[(int)enum_藥局_緊急申領.藥局代碼] = enum_庫別.藥局.GetEnumName();
                 value[(int)enum_藥局_緊急申領.藥品碼] = 藥品碼;
                 value[(int)enum_藥局_緊急申領.藥品名稱] = 藥品名稱;
                 value[(int)enum_藥局_緊急申領.庫存] = 0;
@@ -247,7 +247,7 @@ namespace 智能藥庫系統
             //}
             //object[] value = new object[new enum_藥局_緊急申領().GetLength()];
             //value[(int)enum_藥局_緊急申領.GUID] = Guid.NewGuid().ToString();
-            //value[(int)enum_藥局_緊急申領.藥局代碼] = enum_庫別.屏榮藥局.GetEnumName();
+            //value[(int)enum_藥局_緊急申領.藥局代碼] = enum_庫別.藥局.GetEnumName();
             //value[(int)enum_藥局_緊急申領.藥品碼] = list_藥品資料[0][(int)enum_藥局_藥品資料.藥品碼].ObjectToString();
             //value[(int)enum_藥局_緊急申領.藥品名稱] = list_藥品資料[0][(int)enum_藥局_藥品資料.藥品名稱].ObjectToString();
             //value[(int)enum_藥局_緊急申領.庫存] = 0;

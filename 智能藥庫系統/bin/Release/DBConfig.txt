@@ -1,4 +1,4 @@
 {
   "Name": "DS01",
-  "Api_Server": "http://www.ketech.tw:443"
+  "Api_Server": "http://www.ketech.tw:4433"
 }

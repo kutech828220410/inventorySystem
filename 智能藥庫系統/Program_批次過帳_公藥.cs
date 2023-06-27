@@ -12,6 +12,7 @@ using SQLUI;
 using MyUI;
 using Basic;
 using H_Pannel_lib;
+using HIS_DB_Lib;
 namespace 智能藥庫系統
 {
     public partial class Form1 : Form
@@ -216,7 +217,7 @@ namespace 智能藥庫系統
                             value_trading[(int)enum_交易記錄查詢資料.交易量] = 異動量;
                             value_trading[(int)enum_交易記錄查詢資料.結存量] = 結存量;
                             value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
-                            value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.屏榮藥局.GetEnumName();
+                            value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.藥局.GetEnumName();
                             value_trading[(int)enum_交易記錄查詢資料.操作人] = this.登入者名稱;
                             value_trading[(int)enum_交易記錄查詢資料.操作時間] = DateTime.Now.ToDateTimeString_6();
                             list_trading_value.Add(value_trading);

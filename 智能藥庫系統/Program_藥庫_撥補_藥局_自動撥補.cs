@@ -220,7 +220,7 @@ namespace 智能藥庫系統
                 value_out[(int)enum_交易記錄查詢資料.交易量] = 輸出異動量;
                 value_out[(int)enum_交易記錄查詢資料.結存量] = 輸出結存量;
                 value_out[(int)enum_交易記錄查詢資料.備註] = 輸出備註;
-                value_out[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.屏榮藥局.GetEnumName();
+                value_out[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.藥局.GetEnumName();
                 value_out[(int)enum_交易記錄查詢資料.操作人] = this.登入者名稱;
                 value_out[(int)enum_交易記錄查詢資料.操作時間] = DateTime.Now.ToDateTimeString_6();
 
@@ -341,7 +341,7 @@ namespace 智能藥庫系統
                 {
                     object[] value = new object[new enum_藥庫_撥補_藥局_自動撥補().GetLength()];
                     value[(int)enum_藥庫_撥補_藥局_自動撥補.GUID] = Guid.NewGuid().ToString();
-                    value[(int)enum_藥庫_撥補_藥局_自動撥補.藥局代碼] = enum_庫別.屏榮藥局.GetEnumName();
+                    value[(int)enum_藥庫_撥補_藥局_自動撥補.藥局代碼] = enum_庫別.藥局.GetEnumName();
                     value[(int)enum_藥庫_撥補_藥局_自動撥補.藥品碼] = 藥品碼;
                     value[(int)enum_藥庫_撥補_藥局_自動撥補.藥品名稱] = 藥品名稱;
                     value[(int)enum_藥庫_撥補_藥局_自動撥補.庫存] = 庫存量;
@@ -358,7 +358,7 @@ namespace 智能藥庫系統
                     if (list_自動撥補_buf[0][(int)enum_藥庫_撥補_藥局_自動撥補.狀態].ObjectToString() == enum_藥庫_撥補_藥局_自動撥補_狀態.過帳完成.GetEnumName()) continue;
                     object[] value = new object[new enum_藥庫_撥補_藥局_自動撥補().GetLength()];
                     value[(int)enum_藥庫_撥補_藥局_自動撥補.GUID] = list_自動撥補_buf[0][(int)enum_藥庫_撥補_藥局_自動撥補.GUID];
-                    value[(int)enum_藥庫_撥補_藥局_自動撥補.藥局代碼] = enum_庫別.屏榮藥局.GetEnumName();
+                    value[(int)enum_藥庫_撥補_藥局_自動撥補.藥局代碼] = enum_庫別.藥局.GetEnumName();
                     value[(int)enum_藥庫_撥補_藥局_自動撥補.藥品碼] = 藥品碼;
                     value[(int)enum_藥庫_撥補_藥局_自動撥補.藥品名稱] = 藥品名稱;
                     value[(int)enum_藥庫_撥補_藥局_自動撥補.庫存] = 庫存量;

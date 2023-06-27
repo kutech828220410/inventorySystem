@@ -294,9 +294,11 @@ namespace 智能藥庫系統
 
             this.sub_Program_系統_Init();
             this.sub_Program_人員資料_Init();
+
+            this.sub_Program_盤點作業_資料庫_Init();
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
-            this.sub_Program_盤點作業_資料庫_Init();
+   
 
 
             this.sub_Program_登入畫面_Init();
@@ -314,8 +316,8 @@ namespace 智能藥庫系統
             this.sub_Program_藥庫_撥補_藥局_自動撥補_Init();
             this.sub_Program_藥庫_撥補_藥局_緊急申領_Init();
 
-            this.sub_Program_驗收作業_過帳明細_Init();
             this.sub_Program_驗收作業_資料庫_Init();
+            this.sub_Program_驗收作業_過帳明細_Init();  
             this.sub_Program_驗收作業_新增驗收_Init();
             this.sub_Program_驗收作業_單號查詢_Init();
 

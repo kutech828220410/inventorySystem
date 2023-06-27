@@ -11,12 +11,13 @@ using System.Diagnostics;
 using MyUI;
 using Basic;
 using H_Pannel_lib;
+using HIS_DB_Lib;
 namespace 智能藥庫系統
 {
     enum enum_庫別
     {
         藥庫,
-        屏榮藥局,
+        藥局,
     }
     enum enum_交易記錄查詢動作
     {
@@ -36,20 +37,7 @@ namespace 智能藥庫系統
         修正批號,
         None,
     }
-    enum enum_交易記錄查詢資料
-    {
-        GUID,
-        動作,
-        庫別,
-        藥品碼,
-        藥品名稱,     
-        庫存量,
-        交易量,
-        結存量,
-        操作人,
-        操作時間,
-        備註,
-    }
+
     public partial class Form1 : Form
     {
 
@@ -178,7 +166,7 @@ namespace 智能藥庫系統
 
             if(rJ_RatioButton_交易記錄查詢_庫別_藥局.Checked)
             {
-                list_value = list_value.GetRows((int)enum_交易記錄查詢資料.庫別, enum_庫別.屏榮藥局.GetEnumName());
+                list_value = list_value.GetRows((int)enum_交易記錄查詢資料.庫別, enum_庫別.藥局.GetEnumName());
             }
             if (rJ_RatioButton_交易記錄查詢_庫別_藥庫.Checked)
             {

@@ -13,6 +13,7 @@ using MyUI;
 using Basic;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+
 namespace 智能藥庫系統
 {
     public partial class Form1 : Form
@@ -446,7 +447,7 @@ namespace 智能藥庫系統
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
-                value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.屏榮藥局.GetEnumName();
+                value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.藥局.GetEnumName();
                 value_trading[(int)enum_交易記錄查詢資料.藥品碼] = 藥品碼;
                 value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
                 value_trading[(int)enum_交易記錄查詢資料.庫存量] = 庫存量;
@@ -538,7 +539,7 @@ namespace 智能藥庫系統
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
-                value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.屏榮藥局.GetEnumName();
+                value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.藥局.GetEnumName();
                 value_trading[(int)enum_交易記錄查詢資料.藥品碼] = 藥品碼;
                 value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
                 value_trading[(int)enum_交易記錄查詢資料.庫存量] = 0.ToString();
@@ -630,7 +631,7 @@ namespace 智能藥庫系統
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
-                value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.屏榮藥局.GetEnumName();
+                value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.藥局.GetEnumName();
                 value_trading[(int)enum_交易記錄查詢資料.藥品碼] = 藥品碼;
                 value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
                 value_trading[(int)enum_交易記錄查詢資料.庫存量] = 庫存量;
