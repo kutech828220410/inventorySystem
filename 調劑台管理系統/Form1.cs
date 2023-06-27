@@ -420,7 +420,7 @@ namespace 調劑台管理系統
                 dBConfigClass.DB_order_list.UserName = serverSettingClass.User;
                 dBConfigClass.DB_order_list.Password = serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API01);
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API02);
             if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Order_API);
             if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
