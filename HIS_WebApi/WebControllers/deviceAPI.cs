@@ -116,7 +116,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
 
                 if (serverSettingClasses.Count == 0)
                 {
@@ -140,7 +140,22 @@ namespace HIS_WebApi
 
 
         }
+        [Route("light_web")]
+        [HttpPost]
+        public string POST_light_web(returnData returnData)
+        {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API02");
 
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無Server資料!";
+                return returnData.JsonSerializationt();
+            }
+            string url = $"{serverSettingClasses[0].Server}/api/device/light";
+            return Basic.Net.WEBApiPostJson(url, returnData.JsonSerializationt());
+        }
         [Route("light")]
         [HttpPost]
         public string POST_light(returnData returnData)

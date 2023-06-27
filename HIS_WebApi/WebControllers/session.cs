@@ -30,6 +30,8 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_login([FromBody] returnData returnData)
         {
+
+
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
             serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
             if (serverSettingClasses.Count == 0)

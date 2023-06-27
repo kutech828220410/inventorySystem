@@ -469,18 +469,18 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string Server = serverSettingClasses_buf[0].Server;
+                string DB = serverSettingClasses_buf[0].DBName;
+                string UserName = serverSettingClasses_buf[0].User;
+                string Password = serverSettingClasses_buf[0].Password;
+                uint Port = (uint)serverSettingClasses_buf[0].Port.StringToInt32();
 
                 returnData returnData_GET_new_IC_SN = this.GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
                 string str_IC_SN = returnData_GET_new_IC_SN.Value;
@@ -498,7 +498,9 @@ namespace HIS_WebApi
                 List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
 
                 deviceController deviceController = new deviceController();
-                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device();
+                serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
+
+                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0]);
 
                 inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
                 creat.盤點單號 = str_IC_SN;
