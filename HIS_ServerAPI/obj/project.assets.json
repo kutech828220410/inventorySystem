@@ -977,19 +977,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HS\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
       "projectName": "HIS_ServerAPI",
-      "projectPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
-      "packagesPath": "C:\\Users\\HS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_ServerAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1003,8 +1003,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj": {
-              "projectPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj"
+            "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj": {
+              "projectPath": "C:\\Users\\User\\Desktop\\Pharmacy-master\\HIS_DB_Lib\\HIS_DB_Lib.csproj"
             }
           }
         }
@@ -1046,7 +1046,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
       }
     }
   }

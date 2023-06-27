@@ -170,8 +170,8 @@ namespace ServerSettingForm
             }
             else
             {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API_Login,
-                rJ_TextBox_API_Login.Text, "", "", "", "", ""));
+                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API_Session,
+                rJ_TextBox_API_Session.Text, "", "", "", "", ""));
             }
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
             if (serverSettingClass != null)
