@@ -30,7 +30,17 @@ namespace HIS_DB_Lib
     }
     public class medSMDSClass : medClass
     {
-        static public object[] ClassToSQL(medSMDSClass _class)
+        static public List<object[]> ClassToSQL(List<medClass> _class)
+        {
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < _class.Count; i++)
+            {
+                object[] value = ClassToSQL(_class[i]);
+                list_value.Add(value);
+            }
+            return list_value;
+        }
+        static public object[] ClassToSQL(medClass _class)
         {
             object[] value = new object[new enum_藥品資料_藥檔資料().GetLength()];
             value[(int)enum_藥品資料_藥檔資料.GUID] = _class.GUID;

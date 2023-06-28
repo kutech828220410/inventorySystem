@@ -36,8 +36,17 @@ namespace HIS_DB_Lib
 
     public class medDrugstoreClass : medClass
     {
-       
 
+        static public List<object[]> ClassToSQL(List<medClass> _class)
+        {
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < _class.Count; i++)
+            {
+                object[] value = ClassToSQL(_class[i]);
+                list_value.Add(value);
+            }
+            return list_value;
+        }
         static public object[] ClassToSQL(medClass _class)
         {
             object[] value = new object[new enum_藥庫_藥品資料().GetLength()];
