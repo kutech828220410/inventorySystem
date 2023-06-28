@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
+using SQLUI;
 using MyUI;
 using Basic;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
@@ -613,6 +614,15 @@ namespace 智能藥庫系統
 
         private void sun_Program_堆疊資料_Init()
         {
+            SQL_DataGridView.ConnentionClass dB_local = new SQL_DataGridView.ConnentionClass();
+            dB_local.IP = "127.0.0.1";
+            dB_local.DataBaseName = "ds01";
+            dB_local.Port = 3306;
+            dB_local.UserName = "user";
+            dB_local.Password = "66437068";
+            dB_local.MySqlSslMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_堆疊母資料, dB_local);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_堆疊子資料, dB_local);
 
             this.sqL_DataGridView_堆疊母資料.Init();
             if (!this.sqL_DataGridView_堆疊母資料.SQL_IsTableCreat())
