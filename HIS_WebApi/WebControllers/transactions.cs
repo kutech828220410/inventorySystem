@@ -24,11 +24,32 @@ namespace HIS_WebApi
     [ApiController]
     public class transactionsController : Controller
     {
-       
-
         static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
+        [Route("init")]
+        [HttpPost]
+        public string GET_init([FromBody] returnData returnData)
+        {
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_交易紀錄資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                return CheckCreatTable(serverSettingClasses[0]);
+            }
+            catch (Exception e)
+            {
+                string msg = "";
+                return msg;
+            }
+
+        }
         [Route("serch_med_information_by_code")]
         [HttpPost]
         public string POST_serch_med_information_by_code([FromBody] returnData returnData)
@@ -36,7 +57,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -102,7 +123,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -179,11 +200,7 @@ namespace HIS_WebApi
             }
  
 
-        }
-
-
-        
-
+        }    
         [Route("get_sheet_by_serch")]
         [HttpPost]
         public string POST_get_sheet_by_serch([FromBody] returnData returnData)
@@ -193,7 +210,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -340,6 +357,45 @@ namespace HIS_WebApi
             }
           
         }
+
+        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        {
+
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+            SQLControl sQLControl = new SQLControl(Server, DB, "trading", UserName, Password, Port, SSLMode);
+
+
+            Table table = new Table("trading");
+            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table.AddColumnList("動作", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("庫別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("診別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 15, Table.IndexType.INDEX);
+            table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 200, Table.IndexType.INDEX);
+            table.AddColumnList("藥袋序號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("類別", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("庫存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("交易量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("結存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("操作人", Table.StringType.VARCHAR, 15, Table.IndexType.INDEX);
+            table.AddColumnList("病人姓名", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+            table.AddColumnList("床號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("病歷號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("操作時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
+            table.AddColumnList("開方時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
+            table.AddColumnList("收支原因", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
+            else sQLControl.CheckAllColumnName(table, true);
+            return table.JsonSerializationt(true);
+        }
+
 
     }
 }

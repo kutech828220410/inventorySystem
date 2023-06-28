@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using MyUI;
 using Basic;
+using SQLUI;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using HIS_DB_Lib;
@@ -44,6 +45,20 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_交易紀錄_結存量.Init();
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.MouseDownEvent += PlC_RJ_Button_交易紀錄_結存量_顯示全部_MouseDownEvent;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.MouseDownEvent += PlC_RJ_Button_交易紀錄_結存量_匯出資料_MouseDownEvent;
+
+
+            string url = $"{dBConfigClass.Api_URL}/api/transactions/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table tables = json.JsonDeserializet<Table>();
+            if (tables == null)
+            {
+                MyMessageBox.ShowDialog($"交易紀錄表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
+            }
 
             this.sqL_DataGridView_交易記錄查詢.Init();
             if (!this.sqL_DataGridView_交易記錄查詢.SQL_IsTableCreat())
