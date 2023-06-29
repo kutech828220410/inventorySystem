@@ -132,7 +132,40 @@ namespace HIS_WebApi
 
             return jsonString;
         }
-     
+
+        [Route("new")]
+        [HttpPost]
+        public string Post([FromBody] returnData returnData)
+        {
+            try
+            {
+                string json = returnData.Data.JsonSerializationt();
+                List<class_OutTakeMed_data> data = json.JsonDeserializet<List<class_OutTakeMed_data>>();
+
+                if (data == null)
+                {
+                    return "-1";
+                }
+                if (data.Count == 0)
+                {
+                    return "-1";
+                }
+                if (data.Count == 1)
+                {
+                    return single_med_take(returnData.ServerName, data);
+                }
+                else
+                {
+                    return mul_med_take(returnData.ServerName, data);
+                }
+            }
+            catch(Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
         [HttpPost]
         public string Post([FromBody] List<class_OutTakeMed_data> data)
         {
@@ -148,18 +181,18 @@ namespace HIS_WebApi
             }
             if (data.Count == 1)
             {
-                return single_med_take(data);
+                return single_med_take(name ,data);
             }
             else
             {
-                return mul_med_take(data);
+                return mul_med_take(name , data);
             }
         
         }
 
 
         #region Function
-        private string single_med_take(List<class_OutTakeMed_data> data)
+        private string single_med_take(string name ,List<class_OutTakeMed_data> data)
         {
 
 
@@ -330,7 +363,7 @@ namespace HIS_WebApi
                 return $"-3";
             }
         }
-        private string mul_med_take(List<class_OutTakeMed_data> data)
+        private string mul_med_take(string name, List<class_OutTakeMed_data> data)
         {
             for (int i = 0; i < data.Count; i++)
             {
