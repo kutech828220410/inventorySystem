@@ -45,8 +45,9 @@ namespace HIS_WebApi
             }
             catch (Exception e)
             {
-                string msg = "";
-                return msg;
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
             }
 
         }

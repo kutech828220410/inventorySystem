@@ -1,5 +1,5 @@
 {
-  "Name": "B2UD",
-  "Api_Server": "http://10.13.66.58:4433",
-  "Med_Update_ApiURL": "https://10.13.66.58:443/dbvm/FirmDrug/B2UD"
+  "Name": "A5",
+  "Api_Server": "http://220.135.128.247:4433",
+  "Med_Update_ApiURL": ""
 }

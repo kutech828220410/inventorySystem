@@ -126,7 +126,7 @@ namespace 智能藥庫系統
             {
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥局_藥品資料.藥品碼, value[(int)enum_藥局_藥品資料.藥品碼].ObjectToString());
-                object[] src_value = LINQ.CopyRow(value, new enum_藥品資料_資料維護_雲端藥檔(), new enum_藥局_藥品資料());
+                object[] src_value = LINQ.CopyRow(value, new enum_雲端藥檔(), new enum_藥局_藥品資料());
                 if (list_藥品資料_buf.Count > 0)
                 {
                     object[] dst_value = LINQ.CopyRow(list_藥品資料_buf[0], new enum_藥局_藥品資料(), new enum_藥局_藥品資料());
@@ -182,7 +182,7 @@ namespace 智能藥庫系統
 
             Parallel.ForEach(list_藥品資料, value =>
             {
-                List<object[]> list_雲端藥檔_buf = list_雲端藥檔.GetRows((int)enum_藥品資料_資料維護_雲端藥檔.藥品碼, value[(int)enum_藥局_藥品資料.藥品碼].ObjectToString());
+                List<object[]> list_雲端藥檔_buf = list_雲端藥檔.GetRows((int)enum_雲端藥檔.藥品碼, value[(int)enum_藥局_藥品資料.藥品碼].ObjectToString());
                 if (list_雲端藥檔_buf.Count == 0)
                 {
                     list_Delete_SerchValue.LockAdd(value[(int)enum_藥局_藥品資料.GUID]);

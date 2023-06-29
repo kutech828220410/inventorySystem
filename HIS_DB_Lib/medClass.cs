@@ -79,7 +79,15 @@ namespace HIS_DB_Lib
             {
                 List<string> temp = 藥品條碼2.JsonDeserializet<List<string>>();
                 if (temp == null) return new List<string>();
-                return temp;
+                List<string> temp_buf = new List<string>();
+                for(int i = 0; i < temp.Count; i++)
+                {
+                    if(temp[i].StringIsEmpty()==false)
+                    {
+                        temp_buf.Add(temp[i]);
+                    }
+                }
+                return temp_buf;
             }
             set
             {

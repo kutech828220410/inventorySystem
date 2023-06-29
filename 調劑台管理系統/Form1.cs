@@ -539,7 +539,6 @@ namespace 調劑台管理系統
 
             this.Program_Scanner_RS232_Init();
             this.Program_系統_Init();
-            this.Program_取藥堆疊資料_Init();
             this.Program_醫囑資料_Init();
 
             this.Program_儲位管理_EPD583_Init();
@@ -547,6 +546,8 @@ namespace 調劑台管理系統
             this.Program_儲位管理_RowsLED_Init();
             this.Program_儲位管理_RFID_Init();
             this.Program_儲位管理_Pannel35_Init();
+            this.Program_取藥堆疊資料_Init();
+
             this.Program_調劑作業_Init();
 
             this.Program_藥品資料_藥檔資料_Init();

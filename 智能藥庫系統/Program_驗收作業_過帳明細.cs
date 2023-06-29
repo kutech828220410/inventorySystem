@@ -273,11 +273,11 @@ namespace 智能藥庫系統
             string 實收數量 = "";
             if (藥品碼.StringIsEmpty()) return;
             List<object[]> list_藥檔資料 = this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_GetAllRows(false);
-            list_藥檔資料 = list_藥檔資料.GetRows((int)enum_藥品資料_資料維護_雲端藥檔.藥品碼, 藥品碼);
+            list_藥檔資料 = list_藥檔資料.GetRows((int)enum_雲端藥檔.藥品碼, 藥品碼);
             if (list_藥檔資料.Count == 0) return;
-            料號 = list_藥檔資料[0][(int)enum_藥品資料_資料維護_雲端藥檔.料號].ObjectToString();
-            包裝單位 = list_藥檔資料[0][(int)enum_藥品資料_資料維護_雲端藥檔.包裝單位].ObjectToString();
-            藥品名稱 = list_藥檔資料[0][(int)enum_藥品資料_資料維護_雲端藥檔.藥品名稱].ObjectToString();
+            料號 = list_藥檔資料[0][(int)enum_雲端藥檔.料號].ObjectToString();
+            包裝單位 = list_藥檔資料[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
+            藥品名稱 = list_藥檔資料[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
 
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
