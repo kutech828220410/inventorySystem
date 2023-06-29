@@ -348,7 +348,7 @@
     <Compile Include="UserControl\Pannel_Locker.Designer.cs">
       <DependentUpon>Pannel_Locker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Porgram_收支作業.cs">
+    <Compile Include="Program_收支作業.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />

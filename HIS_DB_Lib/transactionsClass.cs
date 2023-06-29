@@ -39,7 +39,7 @@ namespace HIS_DB_Lib
         GUID,
         動作,
         診別,
-        //庫別,
+        庫別,
         藥品碼,
         藥品名稱,
         藥袋序號,

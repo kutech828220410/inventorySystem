@@ -149,7 +149,23 @@ namespace HIS_WebApi
             uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
             SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
             List<object[]> list_med = sQLControl_med.GetAllRows(null);
-            List<medClass> medClasses = medClass.ObjToListClass(returnData.Data);
+            List<medClass> medClasses = new List<medClass>();
+            medClasses = medClass.ObjToListClass(returnData.Data);
+            if (medClasses == null)
+            {
+                medClass medClass = medClass.ObjToClass(returnData.Data);
+                if(medClass != null)
+                {
+                    medClasses = new List<medClass>();
+                    medClasses.Add(medClass);
+                }
+            }
+            if(medClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = "反序列化失敗!";
+                return returnData.JsonSerializationt();
+            }
             if (TableName == "medicine_page_cloud")
             {
                 List<object[]> list_replace = medCouldClass.ClassToSQL(medClasses);

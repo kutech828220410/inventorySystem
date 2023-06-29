@@ -31,8 +31,8 @@ namespace HIS_WebApi
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("init")]
-        [HttpGet]
-        public string GET_init(returnData returnData)
+        [HttpPost]
+        public string POST_init(returnData returnData)
         {
             try
             {
@@ -59,21 +59,20 @@ namespace HIS_WebApi
         
         }
         [Route("data")]
-        [HttpGet]
-        public string GET_data()
+        [HttpPost]
+        public string POST_data(returnData returnData)
         {
-            returnData returndata = new returnData();
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returndata.ServerName, returndata.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
-                    returndata.Code = -200;
-                    returndata.Result = $"找無Server資料!";
-                    return returndata.JsonSerializationt();
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
                 }
                 string Server = serverSettingClasses[0].Server;
                 string DB = serverSettingClasses[0].DBName;
@@ -86,18 +85,18 @@ namespace HIS_WebApi
                 List<object[]> list_value = sQLControl.GetAllRows(null);
                 List<IncomeReasonsClass> list_IncomeReasonsClass = IncomeReasonsClass.SQLToListClass(list_value);
                 list_IncomeReasonsClass.Sort(new ICP_by_CT_TIME());
-                returndata.Code = 200;
-                returndata.Data = list_IncomeReasonsClass;
-                returndata.TimeTaken = myTimer.ToString();
-                returndata.Result = "取得收支原因成功!";
+                returnData.Code = 200;
+                returnData.Data = list_IncomeReasonsClass;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = "取得收支原因成功!";
             }
             catch (Exception e)
             {
-                returndata.Code = -200;
-                returndata.TimeTaken = myTimer.ToString();
-                returndata.Result = e.Message;
+                returnData.Code = -200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = e.Message;
             }
-            return returndata.JsonSerializationt(true);
+            return returnData.JsonSerializationt(true);
         }
         [Route("add")]
         [HttpPost]

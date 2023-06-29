@@ -36,15 +36,16 @@ namespace 調劑台管理系統
         public string Value = "";
         private MyThread MyThread_program;
         private List<RJ_Pannel> rJ_Pannels = new List<RJ_Pannel>();
-
+        private string ServerName;
         private string ApiURL = "";
 
 
 
-        public Dialog_收支原因設定(string ApiURL)
+        public Dialog_收支原因設定(string ApiURL , string ServerName)
         {
             InitializeComponent();
             this.ApiURL = ApiURL;
+            this.ServerName = ServerName;
         }
 
         private void Dialog_收支原因設定_Load(object sender, EventArgs e)
@@ -75,6 +76,8 @@ namespace 調劑台管理系統
             list_IncomeReasonsClass.Add(incomeReasonsClass);
             returnData returnData = new returnData();
             returnData.Data = list_IncomeReasonsClass;
+            returnData.ServerName = ServerName;
+            returnData.ServerType = "調劑台";
             string json_in = returnData.JsonSerializationt();
             string json_result = Net.WEBApiPostJson($"{ApiURL}/add", json_in);
 
@@ -82,8 +85,12 @@ namespace 調劑台管理系統
         }
         private void RJ_Button_刷新_MouseDownEvent(MouseEventArgs mevent)
         {
-            string json_result = Net.WEBApiGet($"{ApiURL}/data");
-            returnData returnData = json_result.JsonDeserializet<returnData>();
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = "調劑台";
+            string json_in = returnData.JsonSerializationt();
+            string json_result = Net.WEBApiPostJson($"{ApiURL}/data", json_in);
+            returnData = json_result.JsonDeserializet<returnData>();
             if (returnData.Code != 200)
             {
                 MyMessageBox.ShowDialog(returnData.Result);
@@ -181,6 +188,8 @@ namespace 調劑台管理系統
                         list_IncomeReasonsClass.Add(incomeReasonsClass);
                         returnData returnData = new returnData();
                         returnData.Data = list_IncomeReasonsClass;
+                        returnData.ServerName = ServerName;
+                        returnData.ServerType = "調劑台";
                         string json_in = returnData.JsonSerializationt();
                         string json_result = Net.WEBApiPostJson($"{ApiURL}/delete", json_in);
                         break;

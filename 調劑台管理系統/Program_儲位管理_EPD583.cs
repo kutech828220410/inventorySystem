@@ -313,14 +313,15 @@ namespace 調劑台管理系統
 
             rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts = IP;
             rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Texts = 儲位名稱;
-  
             Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-            if(drawer != null)
+            if (drawer != null)
             {
                 this.epD_583_Pannel.CurrentDrawer = drawer;
                 plC_CheckBox_儲位管理_EPD583_隔板亮燈.Checked = drawer.IsAllLight;
                 if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked) this.epD_583_Pannel.DrawToPictureBox(this.epD_583_Pannel.CurrentDrawer);
                 else this.epD_583_Pannel.DrawBarCodeToPictureBox(this.epD_583_Pannel.CurrentDrawer);
+                PlC_RJ_Button_儲位管理_EPD583_更新_MouseDownEvent(null);
+
             }
         }
         private void EpD_583_Pannel_MouseDownEvent(List<Box> Boxes)

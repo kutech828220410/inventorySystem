@@ -116,7 +116,6 @@
     <ROW File="AxOvkImageAsm4.5.dll" Component_="AxOvkImageAsm4.5.dll" FileName="AXOVKI~2.DLL|AxOvkImageAsm4.5.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkImageAsm4.5.dll" SelfReg="false" NextFile="AxOvkMsrAsm4.5.dll"/>
     <ROW File="AxOvkMsrAsm4.5.dll" Component_="AxOvkMsrAsm4.5.dll" FileName="AXOVKM~1.DLL|AxOvkMsrAsm4.5.dll" Attributes="0" SourcePath="..\bin\Release\AxOvkMsrAsm4.5.dll" SelfReg="false" NextFile="Basic.dll"/>
     <ROW File="Basic.dll" Component_="Basic.pdb" FileName="Basic.dll" Attributes="0" SourcePath="..\bin\Release\Basic.dll" SelfReg="false" NextFile="CallBackUI.dll"/>
-    <ROW File="Basic.pdb" Component_="Basic.pdb" FileName="Basic.pdb" Attributes="0" SourcePath="..\bin\Release\Basic.pdb" SelfReg="false" NextFile="MeasureSystemUI.pdb"/>
     <ROW File="CallBackUI.dll" Component_="CallBackUI.dll" FileName="CALLBA~1.DLL|CallBackUI.dll" Attributes="0" SourcePath="..\bin\Release\CallBackUI.dll" SelfReg="false" NextFile="DrawingClass.dll"/>
     <ROW File="DrawingClass.dll" Component_="DrawingClass.dll" FileName="DRAWIN~1.DLL|DrawingClass.dll" Attributes="0" SourcePath="..\bin\Release\DrawingClass.dll" SelfReg="false" NextFile="FontAwesome.Sharp.dll"/>
     <ROW File="FontAwesome.Sharp.dll" Component_="FontAwesome.Sharp.dll" FileName="FONTAW~1.DLL|FontAwesome.Sharp.dll" Attributes="0" SourcePath="..\bin\Release\FontAwesome.Sharp.dll" SelfReg="false" NextFile="H_Pannel_lib.dll"/>
@@ -136,7 +135,6 @@
     <ROW File="MVSDKUI.dll" Component_="MVSDKUI.dll" FileName="MVSDKUI.dll" Attributes="0" SourcePath="..\bin\Release\MVSDKUI.dll" SelfReg="false" NextFile="MyFtpUI.dll"/>
     <ROW File="MeasureSystemFunction.dll" Component_="MeasureSystemFunction.dll" FileName="MEASUR~1.DLL|MeasureSystemFunction.dll" Attributes="0" SourcePath="..\bin\Release\MeasureSystemFunction.dll" SelfReg="false" NextFile="MeasureSystemUI.dll"/>
     <ROW File="MeasureSystemUI.dll" Component_="MeasureSystemUI.dll" FileName="MEASUR~2.DLL|MeasureSystemUI.dll" Attributes="0" SourcePath="..\bin\Release\MeasureSystemUI.dll" SelfReg="false" NextFile="Microsoft.Bcl.AsyncInterfaces.dll"/>
-    <ROW File="MeasureSystemUI.pdb" Component_="Basic.pdb" FileName="MEASUR~1.PDB|MeasureSystemUI.pdb" Attributes="0" SourcePath="..\bin\Release\MeasureSystemUI.pdb" SelfReg="false" NextFile="MyUI.pdb"/>
     <ROW File="Microsoft.Bcl.AsyncInterfaces.dll" Component_="Microsoft.Bcl.AsyncInterfaces.dll" FileName="MICROS~1.DLL|Microsoft.Bcl.AsyncInterfaces.dll" Attributes="0" SourcePath="..\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll" SelfReg="false" NextFile="Microsoft.Office.Interop.Excel.dll"/>
     <ROW File="Microsoft.Office.Interop.Excel.dll" Component_="Microsoft.Office.Interop.Excel.dll" FileName="MICROS~2.DLL|Microsoft.Office.Interop.Excel.dll" Attributes="0" SourcePath="..\bin\Release\Microsoft.Office.Interop.Excel.dll" SelfReg="false" NextFile="MVSDK.dll"/>
     <ROW File="MyFtpUI.dll" Component_="MyFtpUI.dll" FileName="MyFtpUI.dll" Attributes="0" SourcePath="..\bin\Release\MyFtpUI.dll" SelfReg="false" NextFile="MyOffice.dll"/>
@@ -146,7 +144,6 @@
     <ROW File="MySql.Data.dll" Component_="MySql.Data.dll" FileName="MYSQLD~1.DLL|MySql.Data.dll" Attributes="0" SourcePath="..\bin\Release\MySql.Data.dll" SelfReg="false" NextFile="MySQL_Login.dll"/>
     <ROW File="MySqlBackup.dll" Component_="MySqlBackup.dll" FileName="MYSQLB~1.DLL|MySqlBackup.dll" Attributes="0" SourcePath="..\bin\Release\MySqlBackup.dll" SelfReg="false" NextFile="MyUI.dll"/>
     <ROW File="MyUI.dll" Component_="MyUI.dll" FileName="MyUI.dll" Attributes="0" SourcePath="..\bin\Release\MyUI.dll" SelfReg="false" NextFile="Newtonsoft.Json.dll"/>
-    <ROW File="MyUI.pdb" Component_="Basic.pdb" FileName="MyUI.pdb" Attributes="0" SourcePath="..\bin\Release\MyUI.pdb" SelfReg="false" NextFile="RFID_FX600lib.pdb"/>
     <ROW File="NPOI.OOXML.dll" Component_="NPOI.OOXML.dll" FileName="NPOIOO~1.DLL|NPOI.OOXML.dll" Attributes="0" SourcePath="..\bin\Release\NPOI.OOXML.dll" SelfReg="false" NextFile="NPOI.OpenXml4Net.dll"/>
     <ROW File="NPOI.OpenXml4Net.dll" Component_="NPOI.OpenXml4Net.dll" FileName="NPOIOP~1.DLL|NPOI.OpenXml4Net.dll" Attributes="0" SourcePath="..\bin\Release\NPOI.OpenXml4Net.dll" SelfReg="false" NextFile="NPOI.OpenXmlFormats.dll"/>
     <ROW File="NPOI.OpenXmlFormats.dll" Component_="NPOI.OpenXmlFormats.dll" FileName="NPOIOP~2.DLL|NPOI.OpenXmlFormats.dll" Attributes="0" SourcePath="..\bin\Release\NPOI.OpenXmlFormats.dll" SelfReg="false" NextFile="office.dll"/>
@@ -154,10 +151,8 @@
     <ROW File="Newtonsoft.Json.dll" Component_="Newtonsoft.Json.dll" FileName="NEWTON~1.DLL|Newtonsoft.Json.dll" Attributes="0" SourcePath="..\bin\Release\Newtonsoft.Json.dll" SelfReg="false" NextFile="NPOI.dll"/>
     <ROW File="PortControlUI.dll" Component_="PortControlUI.dll" FileName="PORTCO~1.DLL|PortControlUI.dll" Attributes="0" SourcePath="..\bin\Release\PortControlUI.dll" SelfReg="false" NextFile="RFID_FX600lib.dll"/>
     <ROW File="RFID_FX600lib.dll" Component_="RFID_FX600lib.dll" FileName="RFID_F~1.DLL|RFID_FX600lib.dll" Attributes="0" SourcePath="..\bin\Release\RFID_FX600lib.dll" SelfReg="false" NextFile="SLDUI.dll"/>
-    <ROW File="RFID_FX600lib.pdb" Component_="Basic.pdb" FileName="RFID_F~1.PDB|RFID_FX600lib.pdb" Attributes="0" SourcePath="..\bin\Release\RFID_FX600lib.pdb" SelfReg="false" NextFile="SQLUI.pdb"/>
     <ROW File="SLDUI.dll" Component_="SLDUI.dll" FileName="SLDUI.dll" Attributes="0" SourcePath="..\bin\Release\SLDUI.dll" SelfReg="false" NextFile="SQLUI.dll"/>
     <ROW File="SQLUI.dll" Component_="SQLUI.dll" FileName="SQLUI.dll" Attributes="0" SourcePath="..\bin\Release\SQLUI.dll" SelfReg="false" NextFile="stdole.dll"/>
-    <ROW File="SQLUI.pdb" Component_="Basic.pdb" FileName="SQLUI.pdb" Attributes="0" SourcePath="..\bin\Release\SQLUI.pdb" SelfReg="false" NextFile="pdb"/>
     <ROW File="System.Buffers.dll" Component_="System.Buffers.dll" FileName="SYSTEM~1.DLL|System.Buffers.dll" Attributes="0" SourcePath="..\bin\Release\System.Buffers.dll" SelfReg="false" NextFile="System.dll"/>
     <ROW File="System.Memory.dll" Component_="System.Memory.dll" FileName="SYSTEM~2.DLL|System.Memory.dll" Attributes="0" SourcePath="..\bin\Release\System.Memory.dll" SelfReg="false" NextFile="System.Numerics.Vectors.dll"/>
     <ROW File="System.Numerics.Vectors.dll" Component_="System.Numerics.Vectors.dll" FileName="SYSTEM~3.DLL|System.Numerics.Vectors.dll" Attributes="0" SourcePath="..\bin\Release\System.Numerics.Vectors.dll" SelfReg="false" NextFile="System.Runtime.CompilerServices.Unsafe.dll"/>
@@ -169,7 +164,7 @@
     <ROW File="System.dll" Component_="System.dll" FileName="System.dll" Attributes="0" SourcePath="..\bin\Release\System.dll" SelfReg="false" NextFile="System.Memory.dll"/>
     <ROW File="TCP.dll" Component_="TCP.dll" FileName="TCP.dll" Attributes="0" SourcePath="..\bin\Release\TCP.dll" SelfReg="false" NextFile="ZealTechUI.dll"/>
     <ROW File="ZealTechUI.dll" Component_="ZealTechUI.dll" FileName="ZEALTE~1.DLL|ZealTechUI.dll" Attributes="0" SourcePath="..\bin\Release\ZealTechUI.dll" SelfReg="false" NextFile="zxing.dll"/>
-    <ROW File="_.exe" Component_="_.exe" FileName="調劑台管理系統.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\調劑台管理系統.exe" SelfReg="false" NextFile="Basic.pdb" DigSign="true"/>
+    <ROW File="_.exe" Component_="_.exe" FileName="調劑台管理系統.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\調劑台管理系統.exe" SelfReg="false" NextFile="pdb" DigSign="true"/>
     <ROW File="exe.config" Component_="program.bak.stp" FileName="調劑台管理系~1.CON|調劑台管理系統.exe.config" Attributes="0" SourcePath="..\bin\Release\調劑台管理系統.exe.config" SelfReg="false" NextFile="AxOvkBlob.dll"/>
     <ROW File="office.dll" Component_="office.dll" FileName="office.dll" Attributes="0" SourcePath="..\bin\Release\office.dll" SelfReg="false" NextFile="PortControlUI.dll"/>
     <ROW File="pdb" Component_="_.exe" FileName="調劑台管理系統.pdb" Attributes="0" SourcePath="..\bin\Release\調劑台管理系統.pdb" SelfReg="false" NextFile="program.bak.stp"/>

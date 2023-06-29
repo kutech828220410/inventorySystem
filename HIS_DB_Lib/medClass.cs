@@ -72,6 +72,22 @@ namespace HIS_DB_Lib
         [JsonPropertyName("SAFE_QTY")]
         public string 安全庫存 { get; set; }
 
+        [JsonPropertyName("BARCODE")]
+        public List<string> Barcode
+        {
+            get
+            {
+                List<string> temp = 藥品條碼2.JsonDeserializet<List<string>>();
+                if (temp == null) return new List<string>();
+                return temp;
+            }
+            set
+            {
+                藥品條碼2 = value.JsonSerializationt();
+            }
+        }
+
+        private List<string> barcode = new List<string>();
 
         static public medClass ObjToClass(object data)
         {
