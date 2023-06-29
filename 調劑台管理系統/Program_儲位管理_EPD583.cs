@@ -337,6 +337,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD583_全部解鎖_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (MyMessageBox.ShowDialog("是否全部解鎖?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.GetAllRows();
             if (list_value.Count == 0) return;
 
@@ -360,6 +361,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD583_全部上鎖_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (MyMessageBox.ShowDialog("是否全部上鎖?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.GetAllRows();
             if (list_value.Count == 0) return;
 

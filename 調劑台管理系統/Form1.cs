@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.61.0")]
-[assembly: AssemblyFileVersion("1.0.61.0")]
+[assembly: AssemblyVersion("1.0.62.0")]
+[assembly: AssemblyFileVersion("1.0.62.0")]
 namespace 調劑台管理系統
 {
 
@@ -546,7 +546,7 @@ namespace 調劑台管理系統
             this.Program_儲位管理_RowsLED_Init();
             this.Program_儲位管理_RFID_Init();
             this.Program_儲位管理_Pannel35_Init();
-            this.Program_取藥堆疊資料_Init();
+           
 
             this.Program_調劑作業_Init();
 
@@ -574,7 +574,7 @@ namespace 調劑台管理系統
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();
-
+            this.Program_取藥堆疊資料_Init();
             this.plC_UI_Init.Add_Method(this.sub_Program_Scanner_RS232);
 
             this.LoadConfig工程模式();
