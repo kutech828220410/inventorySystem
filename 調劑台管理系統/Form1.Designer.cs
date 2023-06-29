@@ -1290,6 +1290,8 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -14147,6 +14149,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_全部解鎖);
+            this.groupBox3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_全部上鎖);
             this.groupBox3.Controls.Add(this.plC_CheckBox_儲位管理_EPD583_顯示為條碼);
             this.groupBox3.Controls.Add(this.plC_RJ_Pannel1);
             this.groupBox3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_貼上格式);
@@ -14318,11 +14322,11 @@
             this.plC_CheckBox_儲位管理_EPD583_輸出方向.ForeColor = System.Drawing.Color.Black;
             this.plC_CheckBox_儲位管理_EPD583_輸出方向.Location = new System.Drawing.Point(176, 42);
             this.plC_CheckBox_儲位管理_EPD583_輸出方向.Name = "plC_CheckBox_儲位管理_EPD583_輸出方向";
-            this.plC_CheckBox_儲位管理_EPD583_輸出方向.Size = new System.Drawing.Size(75, 20);
+            this.plC_CheckBox_儲位管理_EPD583_輸出方向.Size = new System.Drawing.Size(59, 20);
             this.plC_CheckBox_儲位管理_EPD583_輸出方向.TabIndex = 146;
-            this.plC_CheckBox_儲位管理_EPD583_輸出方向.Text = "不上鎖";
+            this.plC_CheckBox_儲位管理_EPD583_輸出方向.Text = "上鎖";
             this.plC_CheckBox_儲位管理_EPD583_輸出方向.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_儲位管理_EPD583_輸出方向.文字內容 = "不上鎖";
+            this.plC_CheckBox_儲位管理_EPD583_輸出方向.文字內容 = "上鎖";
             this.plC_CheckBox_儲位管理_EPD583_輸出方向.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_CheckBox_儲位管理_EPD583_輸出方向.文字顏色 = System.Drawing.Color.Black;
             this.plC_CheckBox_儲位管理_EPD583_輸出方向.致能讀取位置 = "S39013";
@@ -32943,6 +32947,90 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // plC_RJ_Button_儲位管理_EPD583_全部上鎖
+            // 
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.AutoResetState = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.Bool = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.BorderRadius = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.but_press = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.GUID = "";
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.Location = new System.Drawing.Point(607, 581);
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.Name = "plC_RJ_Button_儲位管理_EPD583_全部上鎖";
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.OFF_文字內容 = "全部上鎖";
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ON_BorderSize = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ON_文字內容 = "全部上鎖";
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.Size = new System.Drawing.Size(97, 66);
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.State = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.TabIndex = 151;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.Text = "全部上鎖";
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.字型鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.文字鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.音效 = true;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.顯示 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_儲位管理_EPD583_全部解鎖
+            // 
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.AutoResetState = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.Bool = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.BorderRadius = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.but_press = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.GUID = "";
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.Location = new System.Drawing.Point(710, 581);
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.Name = "plC_RJ_Button_儲位管理_EPD583_全部解鎖";
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.OFF_文字內容 = "全部解鎖";
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ON_BorderSize = 5;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ON_文字內容 = "全部解鎖";
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.Size = new System.Drawing.Size(97, 66);
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.State = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.TabIndex = 152;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.Text = "單格亮燈";
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.字型鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.文字鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.音效 = true;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.顯示 = false;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.顯示狀態 = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -34641,6 +34729,8 @@
         private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox28;
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點內容;
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點明細;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_全部解鎖;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_全部上鎖;
     }
 }
 

@@ -269,7 +269,7 @@ namespace HIS_WebApi
                 list_devicelist_buf.Add(value);
             }
 
-            List<DeviceBasic> devices = this.Function_讀取儲位();
+            List<DeviceBasic> devices = this.Function_讀取儲位(name);
             List<DeviceBasic> list_device = devices.SortByCode(data[0].藥品碼);
             if (list_device.Count == 0)
             {
@@ -428,7 +428,7 @@ namespace HIS_WebApi
                 sQLControl_devicelist.AddRow(null, value);
                 list_devicelist_buf.Add(value);
             }
-            List<DeviceBasic> devices = this.Function_讀取儲位();
+            List<DeviceBasic> devices = this.Function_讀取儲位(name);
          
             if (data[0].功能類型 == "1")
             {
@@ -530,7 +530,7 @@ namespace HIS_WebApi
             }
         }
     
-        private List<DeviceBasic> Function_讀取儲位()
+        private List<DeviceBasic> Function_讀取儲位(string name)
         {
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");

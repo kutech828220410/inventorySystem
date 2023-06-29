@@ -80,6 +80,9 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號_MouseDownEvent;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_全部上鎖_MouseDownEvent;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_全部解鎖_MouseDownEvent;
+
             this.plC_RJ_Button_儲位管理_EPD583_單格亮燈.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_單格亮燈_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼_搜尋_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD583_開鎖.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_開鎖_MouseDownEvent;
@@ -320,9 +323,63 @@ namespace 調劑台管理系統
                 plC_CheckBox_儲位管理_EPD583_隔板亮燈.Checked = drawer.IsAllLight;
                 if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked) this.epD_583_Pannel.DrawToPictureBox(this.epD_583_Pannel.CurrentDrawer);
                 else this.epD_583_Pannel.DrawBarCodeToPictureBox(this.epD_583_Pannel.CurrentDrawer);
-                PlC_RJ_Button_儲位管理_EPD583_更新_MouseDownEvent(null);
+
+                List<Task> taskList = new List<Task>();
+                taskList.Add(Task.Run(() =>
+                {
+
+                    PlC_RJ_Button_儲位管理_EPD583_更新_MouseDownEvent(null);
+                }));
+
+               
 
             }
+        }
+        private void PlC_RJ_Button_儲位管理_EPD583_全部解鎖_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.GetAllRows();
+            if (list_value.Count == 0) return;
+
+            List<Task> taskList = new List<Task>();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                string IP = list_value[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
+                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+                taskList.Add(Task.Run(() =>
+                {
+
+                    if (drawer != null)
+                    {
+                        this.drawerUI_EPD_583.SetOutput_dir(drawer, false);
+                    }
+                }));
+            }
+            Task allTask = Task.WhenAll(taskList);
+            allTask.Wait();
+            MyMessageBox.ShowDialog("解鎖完成!");
+        }
+        private void PlC_RJ_Button_儲位管理_EPD583_全部上鎖_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.GetAllRows();
+            if (list_value.Count == 0) return;
+
+            List<Task> taskList = new List<Task>();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                string IP = list_value[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
+                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+                taskList.Add(Task.Run(() =>
+                {
+
+                    if (drawer != null)
+                    {
+                        this.drawerUI_EPD_583.SetOutput_dir(drawer, true);
+                    }
+                }));
+            }
+            Task allTask = Task.WhenAll(taskList);
+            allTask.Wait();
+            MyMessageBox.ShowDialog("上鎖完成!");
         }
         private void EpD_583_Pannel_MouseDownEvent(List<Box> Boxes)
         {
