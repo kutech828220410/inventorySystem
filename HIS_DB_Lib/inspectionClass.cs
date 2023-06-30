@@ -79,47 +79,6 @@ namespace HIS_DB_Lib
             private List<content> _contents = new List<content>();
             public List<content> Contents { get => _contents; set => _contents = value; }
 
-            static public object[] ClassToSQL(creat _class)
-            {
-                object[] value = new object[new enum_驗收單號().GetLength()];
-                value[(int)enum_驗收單號.GUID] = _class.GUID;
-                value[(int)enum_驗收單號.請購單號] = _class.請購單號;
-                value[(int)enum_驗收單號.驗收單號] = _class.驗收單號;
-                value[(int)enum_驗收單號.驗收名稱] = _class.驗收名稱;
-                value[(int)enum_驗收單號.建表人] = _class.建表人;
-                value[(int)enum_驗收單號.建表時間] = _class.建表時間;
-                value[(int)enum_驗收單號.驗收開始時間] = _class.驗收開始時間;
-                value[(int)enum_驗收單號.驗收結束時間] = _class.驗收結束時間;
-                value[(int)enum_驗收單號.驗收狀態] = _class.驗收狀態;
-                value[(int)enum_驗收單號.備註] = _class.備註;
-
-                return value;
-            }
-            static public creat SQLToClass(object[] value)
-            {
-                creat _class = new creat();
-                _class.GUID = value[(int)enum_驗收單號.GUID].ObjectToString();
-                _class.請購單號 = value[(int)enum_驗收單號.請購單號].ObjectToString();
-                _class.驗收單號 = value[(int)enum_驗收單號.驗收單號].ObjectToString();
-                _class.驗收名稱 = value[(int)enum_驗收單號.驗收名稱].ObjectToString();
-                _class.建表人 = value[(int)enum_驗收單號.建表人].ObjectToString();
-                _class.建表時間 = value[(int)enum_驗收單號.建表時間].ToDateTimeString();
-                _class.驗收開始時間 = value[(int)enum_驗收單號.驗收開始時間].ToDateTimeString();
-                _class.驗收結束時間 = value[(int)enum_驗收單號.驗收結束時間].ToDateTimeString();
-                _class.驗收狀態 = value[(int)enum_驗收單號.驗收狀態].ObjectToString();
-                _class.備註 = value[(int)enum_驗收單號.備註].ObjectToString();
-                return _class;
-            }
-            static public creat ObjToClass(object data)
-            {
-                string jsondata = data.JsonSerializationt();
-                return jsondata.JsonDeserializet<creat>();
-            }
-            static public List<creat> ObjToListClass(object data)
-            {
-                string jsondata = data.JsonSerializationt();
-                return jsondata.JsonDeserializet<List<creat>>();
-            }
         }
         public class content
         {
@@ -157,48 +116,7 @@ namespace HIS_DB_Lib
             private List<sub_content> _sub_content = new List<sub_content>();
             public List<sub_content> Sub_content { get => _sub_content; set => _sub_content = value; }
 
-            static public object[] ClassToSQL(content _class)
-            {
-                object[] value = new object[new enum_驗收內容().GetLength()];
-                value[(int)enum_驗收內容.GUID] = _class.GUID;
-                value[(int)enum_驗收內容.Master_GUID] = _class.Master_GUID;
-                value[(int)enum_驗收內容.請購單號] = _class.請購單號;
-                value[(int)enum_驗收內容.驗收單號] = _class.驗收單號;
-                value[(int)enum_驗收內容.藥品碼] = _class.藥品碼;
-                value[(int)enum_驗收內容.料號] = _class.料號;
-                value[(int)enum_驗收內容.藥品條碼1] = _class.藥品條碼1;
-                value[(int)enum_驗收內容.藥品條碼2] = _class.藥品條碼2;
-                value[(int)enum_驗收內容.應收數量] = _class.應收數量;
-                value[(int)enum_驗收內容.新增時間] = _class.新增時間;
-                value[(int)enum_驗收內容.備註] = _class.備註;
-                return value;
-            }
-            static public content SQLToClass(object[] value)
-            {
-                content _class = new content();
-                _class.GUID = value[(int)enum_驗收單號.GUID].ObjectToString();
-                _class.Master_GUID = value[(int)enum_驗收內容.Master_GUID].ObjectToString();
-                _class.請購單號 = value[(int)enum_驗收內容.請購單號].ObjectToString();
-                _class.驗收單號 = value[(int)enum_驗收內容.驗收單號].ObjectToString();
-                _class.藥品碼 = value[(int)enum_驗收內容.藥品碼].ObjectToString();
-                _class.料號 = value[(int)enum_驗收內容.料號].ObjectToString();
-                _class.藥品條碼1 = value[(int)enum_驗收內容.藥品條碼1].ObjectToString();
-                _class.藥品條碼2 = value[(int)enum_驗收內容.藥品條碼2].ObjectToString();
-                _class.應收數量 = value[(int)enum_驗收內容.應收數量].ObjectToString();
-                _class.新增時間 = value[(int)enum_驗收內容.新增時間].ToDateTimeString();
-                _class.備註 = value[(int)enum_驗收內容.備註].ToDateTimeString();
-                return _class;
-            }
-            static public content ObjToClass(object data)
-            {
-                string jsondata = data.JsonSerializationt();
-                return jsondata.JsonDeserializet<content>();
-            }
-            static public List<content> ObjToListClass(object data)
-            {
-                string jsondata = data.JsonSerializationt();
-                return jsondata.JsonDeserializet<List<content>>();
-            }
+          
         }
         public class sub_content
         {
@@ -237,54 +155,7 @@ namespace HIS_DB_Lib
             [JsonPropertyName("NOTE")]
             public string 備註 { get; set; }
 
-            static public object[] ClassToSQL(sub_content _class)
-            {
-                object[] value = new object[new enum_驗收單號().GetLength()];
-                value[(int)enum_驗收明細.GUID] = _class.GUID;
-                value[(int)enum_驗收明細.Master_GUID] = _class.Master_GUID;
-                value[(int)enum_驗收明細.驗收單號] = _class.驗收單號;
-                value[(int)enum_驗收明細.藥品碼] = _class.藥品碼;
-                value[(int)enum_驗收明細.料號] = _class.料號;
-                value[(int)enum_驗收明細.藥品條碼1] = _class.藥品條碼1;
-                value[(int)enum_驗收明細.藥品條碼2] = _class.藥品條碼2;
-                value[(int)enum_驗收明細.實收數量] = _class.實收數量;
-                value[(int)enum_驗收明細.操作時間] = _class.操作時間;
-                value[(int)enum_驗收明細.操作人] = _class.操作人;
-                value[(int)enum_驗收明細.效期] = _class.效期;
-                value[(int)enum_驗收明細.批號] = _class.批號;
-                value[(int)enum_驗收明細.狀態] = _class.狀態;
-
-                return value;
-            }
-            static public sub_content SQLToClass(object[] value)
-            {
-                sub_content _class = new sub_content();
-                _class.GUID = value[(int)enum_驗收明細.GUID].ObjectToString();
-                _class.Master_GUID = value[(int)enum_驗收明細.Master_GUID].ObjectToString();
-                _class.驗收單號 = value[(int)enum_驗收明細.驗收單號].ObjectToString();
-                _class.藥品碼 = value[(int)enum_驗收明細.藥品碼].ObjectToString();
-                _class.料號 = value[(int)enum_驗收明細.料號].ObjectToString();
-                _class.藥品條碼1 = value[(int)enum_驗收明細.藥品條碼1].ObjectToString();
-                _class.藥品條碼2 = value[(int)enum_驗收明細.藥品條碼2].ObjectToString();
-                _class.實收數量 = value[(int)enum_驗收明細.實收數量].ObjectToString();
-                _class.操作人 = value[(int)enum_驗收明細.操作人].ObjectToString();
-                _class.操作時間 = value[(int)enum_驗收明細.操作時間].ToDateTimeString();
-                _class.效期 = value[(int)enum_驗收明細.效期].ToDateString();
-                _class.批號 = value[(int)enum_驗收明細.批號].ObjectToString();
-                _class.狀態 = value[(int)enum_驗收明細.狀態].ObjectToString();
-
-                return _class;
-            }
-            static public sub_content ObjToClass(object data)
-            {
-                string jsondata = data.JsonSerializationt();
-                return jsondata.JsonDeserializet<sub_content>();
-            }
-            static public List<sub_content> ObjToListClass(object data)
-            {
-                string jsondata = data.JsonSerializationt();
-                return jsondata.JsonDeserializet<List<sub_content>>();
-            }
+         
         }
     }
 }

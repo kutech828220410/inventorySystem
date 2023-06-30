@@ -197,7 +197,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-                inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+                inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
                 if (creat.建表時間.Check_Date_String() == false)
                 {
                     returnData.Code = -5;
@@ -259,7 +259,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-                inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+                inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
                 string json_out = POST_creat_get_by_IC_SN(returnData);
                 returnData = json_out.JsonDeserializet<returnData>();
                 if (returnData.Code < 0)
@@ -267,7 +267,7 @@ namespace HIS_WebApi
                     returnData.Method = "creat_update_startime_by_CT_TIME";
                     return returnData.JsonSerializationt();
                 }
-                List<inventoryClass.creat> creats = inventoryClass.creat.ObjToListClass(returnData.Data);
+                List<inventoryClass.creat> creats = returnData.Data.ObjToListClass<inventoryClass.creat>();
                 if(creats.Count == 0)
                 {
                     returnData.Code = -200;
@@ -284,7 +284,7 @@ namespace HIS_WebApi
                 }
          
                 creat.盤點狀態 = "盤點中";
-                object[] value = inventoryClass.creat.ClassToSQL(creat);
+                object[] value = creat.ClassToSQL<inventoryClass.creat, enum_盤點單號>();
                 List<object[]> list_value = new List<object[]>();
                 list_value.Add(value);
                 sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_value);
@@ -332,7 +332,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-                inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+                inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
 
                 sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
 
@@ -387,7 +387,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-            inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+            inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
 
             List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
             List<object[]> list_inventory_creat_buf = new List<object[]>();
@@ -495,14 +495,14 @@ namespace HIS_WebApi
                 returnData_med.Password = Password;
 
                 returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
-                List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
+                List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
                 deviceController deviceController = new deviceController();
                 serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
 
                 List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0]);
 
-                inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+                inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
                 creat.盤點單號 = str_IC_SN;
                 for (int i = 0; i < medClasses.Count; i++)
                 {
@@ -573,7 +573,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-            inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+            inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
             if (creat == null)
             {
                 returnData.Code = -5;
@@ -630,7 +630,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-            inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+            inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
             if (creat == null)
             {
                 returnData.Code = -5;
@@ -693,7 +693,7 @@ namespace HIS_WebApi
             List<object[]> list_inventory_content_buf = new List<object[]>();
             List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetAllRows(null);
             List<object[]> list_inventory_sub_content_buf = new List<object[]>();
-            inventoryClass.creat creat = inventoryClass.creat.ObjToClass(returnData.Data);
+            inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
 
             //if(returnData.Value.StringIsEmpty())
             //{
@@ -749,7 +749,7 @@ namespace HIS_WebApi
                 returnData.Result = $"Data資料長度錯誤!";
                 return returnData.JsonSerializationt();
             }
-            List<inventoryClass.content> contents = inventoryClass.content.ObjToListClass(returnData.Data);
+            List<inventoryClass.content> contents = returnData.Data.ObjToListClass<inventoryClass.content>();
             List<object> list_GUID = new List<object>();
             for (int i = 0; i < contents.Count; i++)
             {
@@ -790,7 +790,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
 
-            inventoryClass.content content = inventoryClass.content.ObjToClass(returnData.Data);
+            inventoryClass.content content = returnData.Data.ObjToClass<inventoryClass.content>();
             //if (returnData.Value.StringIsEmpty())
             //{
             //    returnData.Code = -5;
@@ -818,12 +818,12 @@ namespace HIS_WebApi
             {
           
 
-                content = inventoryClass.content.SQLToClass(list_inventory_content_buf[0]);
+                content = list_inventory_content_buf[0].SQLToClass<inventoryClass.content, enum_盤點內容>(); 
                 int 盤點量 = 0;
                 list_inventory_sub_content_buf = list_inventory_sub_content.GetRows((int)enum_盤點明細.Master_GUID, content.GUID);
                 for (int m = 0; m < list_inventory_sub_content_buf.Count; m++)
                 {
-                    inventoryClass.sub_content sub_Content = inventoryClass.sub_content.SQLToClass(list_inventory_sub_content_buf[m]);
+                    inventoryClass.sub_content sub_Content = list_inventory_sub_content_buf[m].SQLToClass<inventoryClass.sub_content, enum_盤點明細>(); 
           
                     if (sub_Content.盤點量.StringIsInt32())
                     {
@@ -870,7 +870,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-            inventoryClass.content content = inventoryClass.content.ObjToClass(returnData.Data);
+            inventoryClass.content content = returnData.Data.ObjToClass<inventoryClass.content>();
             //if (returnData.Value.StringIsEmpty())
             //{
             //    returnData.Code = -5;
@@ -886,7 +886,7 @@ namespace HIS_WebApi
             List<inventoryClass.sub_content> sub_Contents = new List<inventoryClass.sub_content>();
             for (int i = 0; i < list_inventory_sub_content_buf.Count; i++)
             {
-                inventoryClass.sub_content sub_Content = inventoryClass.sub_content.SQLToClass(list_inventory_sub_content_buf[i]);
+                inventoryClass.sub_content sub_Content = list_inventory_sub_content_buf[i].SQLToClass<inventoryClass.sub_content, enum_盤點明細>();
                 sub_Contents.Add(sub_Content);
             }
             returnData.Data = sub_Contents;
@@ -924,7 +924,7 @@ namespace HIS_WebApi
             List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
             List<object[]> list_inventory_content_buf = new List<object[]>();
             List<object[]> list_add = new List<object[]>();
-            inventoryClass.sub_content sub_content = inventoryClass.sub_content.ObjToClass(returnData.Data);
+            inventoryClass.sub_content sub_content = returnData.Data.ObjToClass<inventoryClass.sub_content>();
             string Master_GUID = sub_content.Master_GUID;
 
             sQLControl_inventory_sub_content.DeleteByDefult(null, enum_盤點明細.Master_GUID.GetEnumName(), Master_GUID);
@@ -997,7 +997,7 @@ namespace HIS_WebApi
             List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
             List<object[]> list_inventory_content_buf = new List<object[]>();
             List<object[]> list_add = new List<object[]>();
-            inventoryClass.sub_content sub_content = inventoryClass.sub_content.ObjToClass(returnData.Data);
+            inventoryClass.sub_content sub_content = returnData.Data.ObjToClass<inventoryClass.sub_content>();
             string Master_GUID = sub_content.Master_GUID;
             list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.GUID, Master_GUID);
             if (list_inventory_content_buf.Count == 0)
@@ -1083,7 +1083,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-            List<inventoryClass.sub_content> sub_contents = inventoryClass.sub_content.ObjToListClass(returnData.Data);
+            List<inventoryClass.sub_content> sub_contents = returnData.Data.ObjToListClass<inventoryClass.sub_content>();
             List<object> list_GUID = new List<object>();
             if(sub_contents.Count == 0)
             {
@@ -1163,7 +1163,7 @@ namespace HIS_WebApi
             {
                 return null;
             }
-            List<inventoryClass.creat> creats = inventoryClass.creat.ObjToListClass(returnData.Data);
+            List<inventoryClass.creat> creats = returnData.Data.ObjToListClass<inventoryClass.creat>();
             inventoryClass.creat creat = creats[0];
             List<SheetClass> sheetClasses = new List<SheetClass>();
             string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_inventory.txt", "utf-8");
@@ -1240,7 +1240,7 @@ namespace HIS_WebApi
             returnData_med.Password = Password;
             returnData_med.Port = Port;
             returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
-            List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
+            List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
             List<medClass> medClasses_buf = new List<medClass>();
 
             returnData returnData = new returnData();
@@ -1258,13 +1258,13 @@ namespace HIS_WebApi
             List<inventoryClass.creat> creats = new List<inventoryClass.creat>();
             for (int i = 0; i < list_inventory_creat.Count; i++)
             {
-                inventoryClass.creat creat = inventoryClass.creat.SQLToClass(list_inventory_creat[i]);
+                inventoryClass.creat creat = list_inventory_creat[i].SQLToClass<inventoryClass.creat, enum_盤點單號>();
                 if (allData)
                 {
                     list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.Master_GUID, creat.GUID);
                     for (int k = 0; k < list_inventory_content_buf.Count; k++)
                     {
-                        inventoryClass.content content = inventoryClass.content.SQLToClass(list_inventory_content_buf[k]);
+                        inventoryClass.content content = list_inventory_content_buf[k].SQLToClass<inventoryClass.content, enum_盤點內容>();
                         藥品碼 = content.藥品碼;
                         if (medClasses != null)
                         {
@@ -1286,7 +1286,7 @@ namespace HIS_WebApi
                         list_inventory_sub_content_buf = list_inventory_sub_content.GetRows((int)enum_盤點明細.Master_GUID, content.GUID);
                         for (int m = 0; m < list_inventory_sub_content_buf.Count; m++)
                         {
-                            inventoryClass.sub_content sub_Content = inventoryClass.sub_content.SQLToClass(list_inventory_sub_content_buf[m]);
+                            inventoryClass.sub_content sub_Content = list_inventory_sub_content_buf[m].SQLToClass<inventoryClass.sub_content, enum_盤點明細>();
                             sub_Content.藥品名稱 = 藥品名稱;
                             sub_Content.中文名稱 = 中文名稱;
                             sub_Content.包裝單位 = 包裝單位;

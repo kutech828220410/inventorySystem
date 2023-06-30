@@ -135,11 +135,10 @@ namespace 智能藥庫系統
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inspection/creat_get_by_CT_TIME", json_in);
             returnData = json.JsonDeserializet<returnData>();
-            List<inspectionClass.creat> creats = inspectionClass.creat.ObjToListClass(returnData.Data);
+            List<inspectionClass.creat> creats = returnData.Data.ObjToListClass<inspectionClass.creat>();
             for (int i = 0; i < creats.Count; i++)
             {
-                creat = inspectionClass.creat.ObjToClass(creats[i]);
-                str_ary.Add(creat.驗收單號);
+                str_ary.Add(creats[i].驗收單號);
             }
             this.Invoke(new Action(delegate
             {
@@ -167,7 +166,7 @@ namespace 智能藥庫系統
             string json_in = returnData.JsonSerializationt(true);
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inspection/sub_content_get_by_content_GUID", json_in);
             returnData = json.JsonDeserializet<returnData>();
-            List<inspectionClass.sub_content> sub_contents = inspectionClass.sub_content.ObjToListClass(returnData.Data);
+            List<inspectionClass.sub_content> sub_contents = returnData.Data.ObjToListClass<inspectionClass.sub_content>();
             List<object[]> list_驗收藥品明細 = new List<object[]>();
             for (int i = 0; i < sub_contents.Count; i++)
             {
@@ -225,7 +224,7 @@ namespace 智能藥庫系統
             string json_in = returnData.JsonSerializationt();
             string json = Net.WEBApiPostJson($"{dBConfigClass.Api_URL}/api/inspection/creat_get_by_IC_SN", json_in);
             returnData = json.JsonDeserializet<returnData>();
-            List<inspectionClass.creat> creats = inspectionClass.creat.ObjToListClass(returnData.Data);
+            List<inspectionClass.creat> creats = returnData.Data.ObjToListClass<inspectionClass.creat>();
             if (returnData.Code < 0 || creats.Count == 0)
             {
                 MyMessageBox.ShowDialog(returnData.Result);

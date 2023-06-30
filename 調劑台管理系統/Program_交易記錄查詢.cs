@@ -292,8 +292,8 @@ namespace 調劑台管理系統
             Console.WriteLine(json);
             returnData = json.JsonDeserializet<returnData>();
 
-            List<consumptionClass>  consumptionClasses = consumptionClass.ObjToListClass(returnData.Data);
-            List<object[]> list_consumption = consumptionClass.ClassToSQL(consumptionClasses);
+            List<consumptionClass> consumptionClasses = returnData.Data.ObjToListClass<consumptionClass>();
+            List<object[]> list_consumption = consumptionClasses.ClassToSQL<consumptionClass, enum_consumption>();
       
             this.sqL_DataGridView_交易紀錄_結存量.RefreshGrid(list_consumption);
 

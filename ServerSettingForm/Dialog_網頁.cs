@@ -286,7 +286,7 @@ namespace ServerSettingForm
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
             serverSettingClasses = (from value in serverSettingClasses
                                     where value.類別 == enum_ServerSetting_Type.網頁.GetEnumName()
-                                    where value.名稱 == WEB_Name
+                                    where value.設備名稱 == WEB_Name
                                     select value).ToList();
             returnData returnData = new returnData();
             returnData.Data = serverSettingClasses;

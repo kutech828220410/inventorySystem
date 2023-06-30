@@ -39,28 +39,28 @@ namespace HIS_WebApi
 
                 if (sQLControl_med.ColumnName_Enum_IsEqual(new enum_雲端藥檔()))
                 {
-                    returnData.Data = medCouldClass.SQLToClass(list_med);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_雲端藥檔>();
                     returnData.Code = 200;
                     returnData.Result = "雲端藥檔取得成功!";
                     return returnData.JsonSerializationt(true);
                 }
                 if (sQLControl_med.ColumnName_Enum_IsEqual(new enum_藥庫_藥品資料()))
                 {
-                    returnData.Data = medDrugstoreClass.SQLToClass(list_med);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥庫_藥品資料>();
                     returnData.Code = 200;
                     returnData.Result = "藥庫藥檔取得成功!";
                     return returnData.JsonSerializationt(true);
                 }
                 if (sQLControl_med.ColumnName_Enum_IsEqual(new enum_藥局_藥品資料()))
                 {
-                    returnData.Data = medPharmacyClass.SQLToClass(list_med);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥局_藥品資料>();
                     returnData.Code = 200;
                     returnData.Result = "藥局藥檔取得成功!";
                     return returnData.JsonSerializationt(true);
                 }
                 if (sQLControl_med.ColumnName_Enum_IsEqual(new enum_藥品資料_藥檔資料()))
                 {
-                    returnData.Data = medSMDSClass.SQLToClass(list_med);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
                     returnData.Code = 200;
                     returnData.Result = "調劑台藥檔取得成功!";
                     return returnData.JsonSerializationt(true);
@@ -107,7 +107,7 @@ namespace HIS_WebApi
                 {
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
-                    returnData.Data = medCouldClass.SQLToClass(list_med);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_雲端藥檔>();
                     returnData.Code = 200;
                     returnData.Result = "雲端藥檔取得成功!";
                     return returnData.JsonSerializationt(true);
@@ -116,7 +116,7 @@ namespace HIS_WebApi
                 {
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
-                    returnData.Data = medDrugstoreClass.SQLToClass(list_med);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥庫_藥品資料>();
                     returnData.Code = 200;
                     returnData.Result = "藥庫藥檔取得成功!";
                     return returnData.JsonSerializationt(true);
@@ -125,7 +125,7 @@ namespace HIS_WebApi
                 {
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
-                    returnData.Data = medPharmacyClass.SQLToClass(list_med);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥局_藥品資料>();
                     returnData.Code = 200;
                     returnData.Result = "藥局藥檔取得成功!";
                     return returnData.JsonSerializationt(true);
@@ -136,7 +136,7 @@ namespace HIS_WebApi
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
 
-                    returnData.Data = medSMDSClass.SQLToClass(list_med);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
                     returnData.Code = 200;
                     returnData.Result = "調劑台藥檔取得成功!";
                     return returnData.JsonSerializationt(true);
@@ -174,10 +174,10 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_med = sQLControl_med.GetAllRows(null);
                 List<medClass> medClasses = new List<medClass>();
-                medClasses = medClass.ObjToListClass(returnData.Data);
+                medClasses = returnData.Data.ObjToListClass<medClass>();
                 if (medClasses == null)
                 {
-                    medClass medClass = medClass.ObjToClass(returnData.Data);
+                    medClass medClass = returnData.Data.ObjToClass<medClass>();
                     if (medClass != null)
                     {
                         medClasses = new List<medClass>();
@@ -192,7 +192,7 @@ namespace HIS_WebApi
                 }
                 if (TableName == "medicine_page_cloud")
                 {
-                    List<object[]> list_replace = medCouldClass.ClassToSQL(medClasses);
+                    List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
                     returnData.Code = 200;
                     returnData.Result = "雲端藥檔取得成功!";
@@ -200,7 +200,7 @@ namespace HIS_WebApi
                 }
                 if (TableName == "medicine_page_firstclass")
                 {
-                    List<object[]> list_replace = medDrugstoreClass.ClassToSQL(medClasses);
+                    List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥庫_藥品資料>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
                     returnData.Code = 200;
                     returnData.Result = "藥庫藥檔取得成功!";
@@ -208,7 +208,7 @@ namespace HIS_WebApi
                 }
                 if (TableName == "medicine_page_phar")
                 {
-                    List<object[]> list_replace = medPharmacyClass.ClassToSQL(medClasses);
+                    List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥局_藥品資料>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
                     returnData.Code = 200;
                     returnData.Result = "藥局藥檔取得成功!";
@@ -216,7 +216,7 @@ namespace HIS_WebApi
                 }
                 if (TableName == "medicine_page")
                 {
-                    List<object[]> list_replace = medSMDSClass.ClassToSQL(medClasses);
+                    List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
                     returnData.Code = 200;
                     returnData.Result = "調劑台藥檔取得成功!";
@@ -251,7 +251,7 @@ namespace HIS_WebApi
                     returnData.Result = "BarCode空白!";
                     return returnData.JsonSerializationt();
                 }
-                List<medClass> medClasses = medClass.ObjToListClass(returnData.Data);
+                List<medClass> medClasses = returnData.Data.ObjToListClass<medClass>();
                 List<medClass> medClasses_buf = new List<medClass>();
 
                 for(int i = 0; i < medClasses.Count; i++)

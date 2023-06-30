@@ -46,15 +46,5 @@ namespace HIS_DB_Lib
         private List<string> permissions = new List<string>();
 
 
-        static public sessionClass ObjToClass(object data)
-        {
-            string jsondata = data.JsonSerializationt();
-            return jsondata.JsonDeserializet<sessionClass>();
-        }
-        static public List<sessionClass> ObjToListClass(object data)
-        {
-            string jsondata = data.JsonSerializationt();
-            return jsondata.JsonDeserializet<List<sessionClass>>();
-        }
     }
 }

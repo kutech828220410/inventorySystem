@@ -96,7 +96,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog(returnData.Result);
                 return;
             }
-            List<IncomeReasonsClass> list_IncomeReasonsClass = IncomeReasonsClass.ObjToListClass(returnData.Data);
+            List<IncomeReasonsClass> list_IncomeReasonsClass = returnData.Data.ObjToListClass<IncomeReasonsClass>();
             this.Invoke(new Action(delegate
             {
                 this.panel_收支原因.SuspendLayout();

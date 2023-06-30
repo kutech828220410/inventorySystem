@@ -559,7 +559,6 @@ namespace ServerSettingForm
             this.Controls.Add(this.rJ_TextBox_API_Server);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Dialog_網頁";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

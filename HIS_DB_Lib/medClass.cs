@@ -97,15 +97,5 @@ namespace HIS_DB_Lib
 
         private List<string> barcode = new List<string>();
 
-        static public medClass ObjToClass(object data)
-        {
-            string jsondata = data.JsonSerializationt();
-            return jsondata.JsonDeserializet<medClass>();
-        }
-        static public List<medClass> ObjToListClass(object data)
-        {
-            string jsondata = data.JsonSerializationt();
-            return jsondata.JsonDeserializet<List<medClass>>();
-        }
     }
 }

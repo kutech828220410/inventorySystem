@@ -22,7 +22,7 @@ namespace ServerSettingForm
             }
         }
         #region MyConfigClass
-        private const string MyConfigFileName = "DPSConfig.txt";
+        private const string MyConfigFileName = "WebConfig.txt";
         public MyConfigClass myConfigClass = new MyConfigClass();
         public class MyConfigClass
         {
@@ -133,7 +133,7 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
+            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
             List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
             serverSettingClasses = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫);
             ServerSettingClass serverSettingClass;
@@ -227,20 +227,7 @@ namespace ServerSettingForm
                 rJ_TextBox_API_本地端_Server.Text, rJ_TextBox_API_本地端_Port.Text, rJ_TextBox_API_本地端_DBName.Text, "", rJ_TextBox_API_本地端_UserName.Text, rJ_TextBox_API_本地端_Password.Text));
             }
 
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_藥檔資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_藥檔資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_藥檔資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_藥檔資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_藥檔資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_藥檔資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.API_藥檔資料,
-                rJ_TextBox_API_藥檔資料_Server.Text, rJ_TextBox_API_藥檔資料_Port.Text, rJ_TextBox_API_藥檔資料_DBName.Text, "", rJ_TextBox_API_藥檔資料_UserName.Text, rJ_TextBox_API_藥檔資料_Password.Text));
-            }
+      
 
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_儲位資料);
             if (serverSettingClass != null)
@@ -352,7 +339,7 @@ namespace ServerSettingForm
             Console.WriteLine($"{json_result}");
             SaveConfig();
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
+            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
             serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.藥庫);
 
             if (returnData.Code == 200)
@@ -369,7 +356,7 @@ namespace ServerSettingForm
                 return;
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
+            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
             List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
             serverSettingClasses = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫);
 
@@ -428,15 +415,7 @@ namespace ServerSettingForm
                 rJ_TextBox_API_VM端_UserName.Texts = serverSettingClass.User;
                 rJ_TextBox_API_VM端_Password.Texts = serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_藥檔資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_藥檔資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_藥檔資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_藥檔資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_藥檔資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_藥檔資料_Password.Texts = serverSettingClass.Password;
-            }
+          
             serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_儲位資料);
             if (serverSettingClass != null)
             {
@@ -496,10 +475,10 @@ namespace ServerSettingForm
 
             string json_result = Basic.Net.WEBApiGet($"{myConfigClass.Api_server}/api/serversetting");
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
+            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
             serverSettingClasses = (from value in serverSettingClasses
                                     where value.類別 == enum_ServerSetting_Type.藥庫.GetEnumName()
-                                    where value.名稱 == DataName
+                                    where value.設備名稱 == DataName
                                     select value).ToList();
             returnData.Data = serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);

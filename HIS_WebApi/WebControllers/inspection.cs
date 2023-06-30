@@ -191,7 +191,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-                inspectionClass.creat creat = inspectionClass.creat.ObjToClass(returnData.Data);
+                inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
                 if (creat.建表時間.Check_Date_String() == false)
                 {
                     returnData.Code = -5;
@@ -253,7 +253,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-                inspectionClass.creat creat = inspectionClass.creat.ObjToClass(returnData.Data);
+                inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
                 string json_out = POST_creat_get_by_IC_SN(returnData);
                 returnData = json_out.JsonDeserializet<returnData>();
                 if (returnData.Code < 0)
@@ -261,7 +261,7 @@ namespace HIS_WebApi
                     returnData.Method = "creat_update_startime_by_CT_TIME";
                     return returnData.JsonSerializationt();
                 }
-                List<inspectionClass.creat> creats = inspectionClass.creat.ObjToListClass(returnData.Data);
+                List<inspectionClass.creat> creats = returnData.Data.ObjToListClass<inspectionClass.creat>();
                 if (creats.Count == 0)
                 {
                     returnData.Code = -200;
@@ -278,7 +278,7 @@ namespace HIS_WebApi
                 }
 
                 creat.驗收狀態 = "驗收中";
-                object[] value = inspectionClass.creat.ClassToSQL(creat);
+                object[] value = creat.ClassToSQL<inspectionClass.creat, enum_驗收單號>();
                 List<object[]> list_value = new List<object[]>();
                 list_value.Add(value);
                 sQLControl_inspection_creat.UpdateByDefulteExtra(null, list_value);
@@ -326,7 +326,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-                inspectionClass.creat creat = inspectionClass.creat.ObjToClass(returnData.Data);
+                inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
 
                 sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
 
@@ -381,7 +381,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-            inspectionClass.creat creat = inspectionClass.creat.ObjToClass(returnData.Data);
+            inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
 
             List<object[]> list_inspection_creat = sQLControl_inspection_creat.GetAllRows(null);
             List<object[]> list_inspection_creat_buf = new List<object[]>();
@@ -489,13 +489,13 @@ namespace HIS_WebApi
                 returnData_med.Password = Password;
 
                 returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
-                List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
+                List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
                 deviceController deviceController = new deviceController();
                 serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
                 List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0]);
 
-                inspectionClass.creat creat = inspectionClass.creat.ObjToClass(returnData.Data);
+                inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
                 creat.驗收單號 = str_IC_SN;
                 for (int i = 0; i < medClasses.Count; i++)
                 {
@@ -566,7 +566,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-            inspectionClass.creat creat = inspectionClass.creat.ObjToClass(returnData.Data);
+            inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
             if (creat == null)
             {
                 returnData.Code = -5;
@@ -623,7 +623,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-            inspectionClass.creat creat = inspectionClass.creat.ObjToClass(returnData.Data);
+            inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
             if (creat == null)
             {
                 returnData.Code = -5;
@@ -686,7 +686,7 @@ namespace HIS_WebApi
             List<object[]> list_inspection_content_buf = new List<object[]>();
             List<object[]> list_inspection_sub_content = sQLControl_inspection_sub_content.GetAllRows(null);
             List<object[]> list_inspection_sub_content_buf = new List<object[]>();
-            inspectionClass.creat creat = inspectionClass.creat.ObjToClass(returnData.Data);
+            inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
 
             //if(returnData.Value.StringIsEmpty())
             //{
@@ -742,7 +742,7 @@ namespace HIS_WebApi
                 returnData.Result = $"Data資料長度錯誤!";
                 return returnData.JsonSerializationt();
             }
-            List<inspectionClass.content> contents = inspectionClass.content.ObjToListClass(returnData.Data);
+            List<inspectionClass.content> contents = returnData.Data.ObjToListClass<inspectionClass.content>();
             List<object> list_GUID = new List<object>();
             for (int i = 0; i < contents.Count; i++)
             {
@@ -783,7 +783,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
 
-            inspectionClass.content content = inspectionClass.content.ObjToClass(returnData.Data);
+            inspectionClass.content content = returnData.Data.ObjToClass<inspectionClass.content>();;
             //if (returnData.Value.StringIsEmpty())
             //{
             //    returnData.Code = -5;
@@ -811,12 +811,12 @@ namespace HIS_WebApi
             {
 
 
-                content = inspectionClass.content.SQLToClass(list_inspection_content_buf[0]);
+                content = list_inspection_content_buf[0].SQLToClass<inspectionClass.content, enum_驗收內容>();
                 int 實收數量 = 0;
                 list_inspection_sub_content_buf = list_inspection_sub_content.GetRows((int)enum_驗收明細.Master_GUID, content.GUID);
                 for (int m = 0; m < list_inspection_sub_content_buf.Count; m++)
                 {
-                    inspectionClass.sub_content sub_Content = inspectionClass.sub_content.SQLToClass(list_inspection_sub_content_buf[m]);
+                    inspectionClass.sub_content sub_Content = list_inspection_sub_content_buf[m].SQLToClass<inspectionClass.sub_content, enum_驗收明細>(); 
 
                     if (sub_Content.實收數量.StringIsInt32())
                     {
@@ -863,7 +863,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-            inspectionClass.content content = inspectionClass.content.ObjToClass(returnData.Data);
+            inspectionClass.content content = returnData.Data.ObjToClass<inspectionClass.content>();;
             //if (returnData.Value.StringIsEmpty())
             //{
             //    returnData.Code = -5;
@@ -879,7 +879,7 @@ namespace HIS_WebApi
             List<inspectionClass.sub_content> sub_Contents = new List<inspectionClass.sub_content>();
             for (int i = 0; i < list_inspection_sub_content_buf.Count; i++)
             {
-                inspectionClass.sub_content sub_Content = inspectionClass.sub_content.SQLToClass(list_inspection_sub_content_buf[i]);
+                inspectionClass.sub_content sub_Content = list_inspection_sub_content_buf[i].SQLToClass< inspectionClass.sub_content , enum_驗收明細>();
                 sub_Contents.Add(sub_Content);
             }
             returnData.Data = sub_Contents;
@@ -917,7 +917,7 @@ namespace HIS_WebApi
             List<object[]> list_inspection_content = sQLControl_inspection_content.GetAllRows(null);
             List<object[]> list_inspection_content_buf = new List<object[]>();
             List<object[]> list_add = new List<object[]>();
-            inspectionClass.sub_content sub_content = inspectionClass.sub_content.ObjToClass(returnData.Data);
+            inspectionClass.sub_content sub_content = returnData.Data.ObjToClass<inspectionClass.sub_content>();
             string Master_GUID = sub_content.Master_GUID;
 
             sQLControl_inspection_sub_content.DeleteByDefult(null, enum_驗收明細.Master_GUID.GetEnumName(), Master_GUID);
@@ -990,7 +990,7 @@ namespace HIS_WebApi
             List<object[]> list_inspection_content = sQLControl_inspection_content.GetAllRows(null);
             List<object[]> list_inspection_content_buf = new List<object[]>();
             List<object[]> list_add = new List<object[]>();
-            inspectionClass.sub_content sub_content = inspectionClass.sub_content.ObjToClass(returnData.Data);
+            inspectionClass.sub_content sub_content = returnData.Data.ObjToClass<inspectionClass.sub_content>();
             string Master_GUID = sub_content.Master_GUID;
             list_inspection_content_buf = list_inspection_content.GetRows((int)enum_驗收內容.GUID, Master_GUID);
             if (list_inspection_content_buf.Count == 0)
@@ -1076,7 +1076,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-            List<inspectionClass.sub_content> sub_contents = inspectionClass.sub_content.ObjToListClass(returnData.Data);
+            List<inspectionClass.sub_content> sub_contents = returnData.Data.ObjToListClass<inspectionClass.sub_content>();
             List<object> list_GUID = new List<object>();
             if (sub_contents.Count == 0)
             {
@@ -1157,7 +1157,7 @@ namespace HIS_WebApi
             {
                 return null;
             }
-            List<inspectionClass.creat> creats = inspectionClass.creat.ObjToListClass(returnData.Data);
+            List<inspectionClass.creat> creats = returnData.Data.ObjToListClass<inspectionClass.creat>();
             inspectionClass.creat creat = creats[0];
             List<SheetClass> sheetClasses = new List<SheetClass>();
             string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_inspection.txt", "utf-8");
@@ -1235,7 +1235,7 @@ namespace HIS_WebApi
             returnData_med.Password = Password;
             returnData_med.Port = Port;
             returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
-            List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
+            List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
             List<medClass> medClasses_buf = new List<medClass>();
 
             returnData returnData = new returnData();
@@ -1253,13 +1253,13 @@ namespace HIS_WebApi
             List<inspectionClass.creat> creats = new List<inspectionClass.creat>();
             for (int i = 0; i < list_inspection_creat.Count; i++)
             {
-                inspectionClass.creat creat = inspectionClass.creat.SQLToClass(list_inspection_creat[i]);
+                inspectionClass.creat creat = list_inspection_creat[i].SQLToClass<inspectionClass.creat, enum_驗收單號>();
                 if (allData)
                 {
                     list_inspection_content_buf = list_inspection_content.GetRows((int)enum_驗收內容.Master_GUID, creat.GUID);
                     for (int k = 0; k < list_inspection_content_buf.Count; k++)
                     {
-                        inspectionClass.content content = inspectionClass.content.SQLToClass(list_inspection_content_buf[k]);
+                        inspectionClass.content content = list_inspection_content_buf[k].SQLToClass<inspectionClass.content, enum_驗收內容>();
                         藥品碼 = content.藥品碼;
                         if (medClasses != null)
                         {
@@ -1281,7 +1281,7 @@ namespace HIS_WebApi
                         list_inspection_sub_content_buf = list_inspection_sub_content.GetRows((int)enum_驗收明細.Master_GUID, content.GUID);
                         for (int m = 0; m < list_inspection_sub_content_buf.Count; m++)
                         {
-                            inspectionClass.sub_content sub_Content = inspectionClass.sub_content.SQLToClass(list_inspection_sub_content_buf[m]);
+                            inspectionClass.sub_content sub_Content = list_inspection_sub_content_buf[m].SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
                             sub_Content.藥品名稱 = 藥品名稱;
                             sub_Content.中文名稱 = 中文名稱;
                             sub_Content.包裝單位 = 包裝單位;

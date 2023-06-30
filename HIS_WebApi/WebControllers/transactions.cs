@@ -88,7 +88,7 @@ namespace HIS_WebApi
                 returnData_med.Port = Port;
 
                 returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
-                List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
+                List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
                 List<medClass> medClasses_buf = new List<medClass>();
                 medClasses_buf = (from value in medClasses
                                   where value.藥品碼.ToUpper() == 藥品碼.ToUpper()
@@ -153,7 +153,7 @@ namespace HIS_WebApi
                     string 藥品碼 = input_value[0];
                     List<object[]> list_value = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥品碼, 藥品碼);
                     list_value.Sort(new transactionsClass.ICP_By_OP_Time());
-                    List<transactionsClass> transactionsClasses = transactionsClass.SQLToClass(list_value);
+                    List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                     returnData.Code = 200;
                     returnData.Result = $"交易紀錄搜尋成功共<{transactionsClasses.Count}>筆";
                     returnData.Data = transactionsClasses;
@@ -184,7 +184,7 @@ namespace HIS_WebApi
                     List<object[]> list_value = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥品碼, 藥品碼);
                     list_value = list_value.GetRowsInDateEx((int)enum_交易記錄查詢資料.操作時間, start_time, end_time);
                     list_value.Sort(new transactionsClass.ICP_By_OP_Time());
-                    List<transactionsClass> transactionsClasses = transactionsClass.SQLToClass(list_value);
+                    List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                     returnData.Code = 200;
                     returnData.Result = $"交易紀錄搜尋成功共<{transactionsClasses.Count}>筆";
                     returnData.Data = transactionsClasses;
@@ -244,7 +244,7 @@ namespace HIS_WebApi
                 returnData_med.Port = Port;
 
                 returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
-                List<medClass> medClasses = medClass.ObjToListClass(returnData_med.Data);
+                List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
                 List<medClass> medClasses_buf = new List<medClass>();
                 medClasses_buf = (from value in medClasses
                                   where value.藥品碼.ToUpper() == 藥品碼.ToUpper()
@@ -264,7 +264,7 @@ namespace HIS_WebApi
                 {
                     return null;
                 }
-                List<transactionsClass> transactionsClasses = transactionsClass.ObjToListClass(returnData.Data);
+                List<transactionsClass> transactionsClasses = returnData.Data.ObjToListClass<transactionsClass>();
 
 
 

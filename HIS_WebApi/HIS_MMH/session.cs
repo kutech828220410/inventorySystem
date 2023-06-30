@@ -45,7 +45,7 @@ namespace HIS_WebApi
         public string POST_UD1F_login([FromBody] returnData returnData)
         {
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, _Password, Port, SSLMode);
-            sessionClass data = HIS_DB_Lib.sessionClass.ObjToClass(returnData.Data);
+            sessionClass data = returnData.Data.ObjToClass<sessionClass>();
             List<object[]> list_person_page = sQLControl_person_page.GetAllRows(null);
             List<object[]> list_person_page_buf = new List<object[]>();
             string ID = data.ID;

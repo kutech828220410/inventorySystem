@@ -381,7 +381,7 @@ namespace 調劑台管理系統
             }
             Console.WriteLine(json_result);
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
+            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
             HIS_DB_Lib.ServerSettingClass serverSettingClass;
 
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);

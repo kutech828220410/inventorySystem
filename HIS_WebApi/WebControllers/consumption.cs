@@ -104,7 +104,8 @@ namespace HIS_WebApi
                         list_consumption.Add(value);
                     }
                 }
-                List<consumptionClass> consumptionClasses = consumptionClass.SQLToClass(list_consumption);
+
+                List<consumptionClass> consumptionClasses = list_consumption.SQLToClass<consumptionClass , enum_consumption>();
                 returnData.Code = 200;
                 returnData.Result = "取得交易量成功!";
                 returnData.Data = consumptionClasses;
@@ -151,7 +152,7 @@ namespace HIS_WebApi
                 {
                     return null;
                 }
-                List<consumptionClass> consumptionClasses = consumptionClass.ObjToListClass(returnData.Data);
+                List<consumptionClass> consumptionClasses = returnData.Data.ObjToListClass<consumptionClass>();
 
 
 

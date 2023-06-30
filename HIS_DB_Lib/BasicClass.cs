@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Basic;
 namespace HIS_DB_Lib
 {
     public class returnData
@@ -41,5 +41,105 @@ namespace HIS_DB_Lib
         public uint Port { get => _port; set => _port = value; }
         public string UserName { get => _userName; set => _userName = value; }
         public string Password { get => _password; set => _password = value; }
+    }
+
+    public static class BasicClassMethod
+    {
+        static public object[] ClassToSQL<T, E>(this T _class) where E : Enum
+        {
+            object[] value = new object[Enum.GetNames(typeof(E)).Length];
+            Type enumType = typeof(E);
+            E _enum = Activator.CreateInstance<E>();
+            foreach (var field in enumType.GetFields())
+            {
+                if (field.FieldType.IsEnum)
+                {
+                    string enumName = field.Name;
+                    int enumIndex = (int)field.GetValue(_enum);
+
+                    // 使用 enumIndex 來填入對應的屬性值
+                    value[enumIndex] = typeof(T).GetProperty(enumName)?.GetValue(_class);
+                }
+            }
+
+            return value;
+        }
+        static public T SQLToClass<T, E>(this object[] values)
+        {
+            T obj = Activator.CreateInstance<T>();
+            E _enum = Activator.CreateInstance<E>();
+            Type enumType = typeof(E);
+          
+            foreach (var field in enumType.GetFields())
+            {
+                string enumName = field.Name;
+                if (field.FieldType.IsEnum)
+                {
+                 
+                    int enumIndex = (int)field.GetValue(_enum);
+
+                    // 使用 enumIndex 來取得對應的屬性值
+                    object value = values[enumIndex];
+
+                    // 使用 enumName 來取得對應的屬性
+                    var property = typeof(T).GetProperty(enumName);
+                    if(value is DateTime)
+                    {
+                        property?.SetValue(obj, value.ToDateTimeString());
+                    }
+                    else
+                    {
+                        // 將值填入對應的屬性
+                        property?.SetValue(obj, value.ObjectToString());
+                    }
+          
+                }
+            }
+
+            return obj;
+        }
+
+        static public List<object[]> ClassToSQL<T, E>(this List<T> _classes) where E : Enum, new()
+        {
+            List<object[]> list_value = new List<object[]>();
+            E _enum = Activator.CreateInstance<E>();
+            for (int i = 0; i < _classes.Count; i++)
+            {
+                object[] value = _classes[i].ClassToSQL<T, E>();
+                list_value.Add(value);
+            }
+            return list_value;
+        }
+        static public List<T> SQLToClass<T, E>(this List<object[]> values) where E : Enum, new()
+        {
+            List<T> list_value = new List<T>();
+            E _enum = Activator.CreateInstance<E>();
+
+            for (int i = 0; i < values.Count; i++)
+            {
+                object[] value = values[i];
+                T _class = values[i].SQLToClass<T, E>();
+                list_value.Add(_class);
+            }
+            return list_value;
+        }
+
+        static public T ObjToClass<T>(this object data)
+        {
+            string jsondata = data.JsonSerializationt();
+            return jsondata.JsonDeserializet<T>();
+        }
+        static public List<T> ObjToListClass<T>(this object data)
+        {
+            string jsondata = data.JsonSerializationt();
+            return jsondata.JsonDeserializet<List<T>>();
+        }
+
+        static public List<object[]> ObjToListSQL<T , E>(this object data) where E : Enum, new()
+        {
+            List<T> list_T = data.ObjToListClass<T>();
+
+            return list_T.ClassToSQL<T, E>();
+        }
     }
 }

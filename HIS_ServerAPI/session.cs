@@ -48,7 +48,7 @@ namespace HIS_ServerAPI
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
             Check_Table();
-            sessionClass data = HIS_DB_Lib.sessionClass.ObjToClass(returnData.Data);
+            sessionClass data = returnData.Data.ObjToClass<sessionClass>();
             List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
             List<object[]> list_person_page = sQLControl_person_page.GetAllRows(null);
             List<object[]> list_login_session_add = new List<object[]>();
@@ -147,7 +147,7 @@ namespace HIS_ServerAPI
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
             Check_Table();
-            sessionClass sessionClass = HIS_DB_Lib.sessionClass.ObjToClass(returnData.Data);
+            sessionClass sessionClass = returnData.Data.ObjToClass<sessionClass>();
             List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
             list_login_session = list_login_session.GetRows((int)enum_login_session.ID, sessionClass.ID);
             if (list_login_session.Count > 0)
@@ -186,7 +186,7 @@ namespace HIS_ServerAPI
 
             Check_Table();
 
-            sessionClass sessionClass = HIS_DB_Lib.sessionClass.ObjToClass(returnData.Data);
+            sessionClass sessionClass = returnData.Data.ObjToClass<sessionClass>();
             List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
             list_login_session = list_login_session.GetRows((int)enum_login_session.ID, sessionClass.ID);
             if (list_login_session.Count == 0)
@@ -248,7 +248,7 @@ namespace HIS_ServerAPI
 
             Check_Table();
 
-            sessionClass sessionClass = HIS_DB_Lib.sessionClass.ObjToClass(returnData.Data);
+            sessionClass sessionClass = returnData.Data.ObjToClass<sessionClass>();
             List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
             list_login_session = list_login_session.GetRows((int)enum_login_session.ID, sessionClass.ID);
             if (list_login_session.Count == 0)
@@ -283,7 +283,7 @@ namespace HIS_ServerAPI
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
             Check_Table();
-            sessionClass data = HIS_DB_Lib.sessionClass.ObjToClass(returnData.Data);
+            sessionClass data = returnData.Data.ObjToClass<sessionClass>();
             List<object[]> list_login_session = sQLControl_login_session.GetAllRows(null);
             List<object[]> list_person_page = sQLControl_person_page.GetAllRows(null);
             List<object[]> list_login_session_add = new List<object[]>();

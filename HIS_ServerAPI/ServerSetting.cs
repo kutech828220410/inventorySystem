@@ -67,7 +67,7 @@ namespace HIS_ServerAPI
             SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
             List<object[]> list_value = sQLControl.GetAllRows(null);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.SQLToClass(list_value);
+            List<ServerSettingClass> serverSettingClasses = list_value.SQLToClass<ServerSettingClass, enum_ServerSetting>();
             returnData returnData = new returnData();
             returnData.Code = 200;
             returnData.Data = serverSettingClasses;
@@ -86,8 +86,8 @@ namespace HIS_ServerAPI
             List<object[]> list_value_replace = new List<object[]>();
             List<object[]> list_value_buf = new List<object[]>();
             returnData.Method = "add";
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
-            list_value_returnData = ServerSettingClass.ClassToListSQL(serverSettingClasses);
+            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+            list_value_returnData = serverSettingClasses.ClassToSQL<ServerSettingClass, enum_ServerSetting>();
             for (int i = 0; i < list_value_returnData.Count; i++)
             {
                 string 名稱 = list_value_returnData[i][(int)enum_ServerSetting.設備名稱].ObjectToString();
@@ -132,8 +132,8 @@ namespace HIS_ServerAPI
             List<object[]> list_value_replace = new List<object[]>();
             List<object[]> list_value_buf = new List<object[]>();
             returnData.Method = "add";
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClass.ObjToListClass(returnData.Data);
-            list_value_returnData = ServerSettingClass.ClassToListSQL(serverSettingClasses);
+            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+            list_value_returnData = serverSettingClasses.ClassToSQL<ServerSettingClass , enum_ServerSetting>();
             
             sQLControl.DeleteExtra(null, list_value_returnData);
 

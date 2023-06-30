@@ -83,7 +83,7 @@ namespace HIS_WebApi
                 CheckCreatTable(serverSettingClasses[0]);
                 SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl.GetAllRows(null);
-                List<IncomeReasonsClass> list_IncomeReasonsClass = IncomeReasonsClass.SQLToListClass(list_value);
+                List<IncomeReasonsClass> list_IncomeReasonsClass = list_value.SQLToClass<IncomeReasonsClass, enum_收支原因>();
                 list_IncomeReasonsClass.Sort(new ICP_by_CT_TIME());
                 returnData.Code = 200;
                 returnData.Data = list_IncomeReasonsClass;
@@ -122,7 +122,7 @@ namespace HIS_WebApi
 
                 CheckCreatTable(serverSettingClasses[0]);
                 SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
-                List<object[]> list_value = IncomeReasonsClass.ObjToListSQL(returndata.Data);
+                List<object[]> list_value = returndata.Data.ObjToListSQL<IncomeReasonsClass, enum_收支原因>();
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     list_value[i][(int)enum_收支原因.GUID] = Guid.NewGuid().ToString();
@@ -171,7 +171,7 @@ namespace HIS_WebApi
 
                 CheckCreatTable(serverSettingClasses[0]);
                 SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
-                List<object[]> list_value = IncomeReasonsClass.ObjToListSQL(returndata.Data);
+                List<object[]> list_value = returndata.Data.ObjToListSQL<IncomeReasonsClass, enum_收支原因>();
                 sQLControl.UpdateByDefulteExtra(null, list_value);
                 returndata.Code = 200;
                 returndata.TimeTaken = myTimer.ToString();
@@ -213,7 +213,7 @@ namespace HIS_WebApi
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 CheckCreatTable(serverSettingClasses[0]);
                 SQLControl sQLControl = new SQLControl(Server, DB, "IncomeReasons", UserName, Password, Port, SSLMode);
-                List<object[]> list_value = IncomeReasonsClass.ObjToListSQL(returndata.Data);
+                List<object[]> list_value = returndata.Data.ObjToListSQL<IncomeReasonsClass, enum_收支原因>();
                 sQLControl.DeleteExtra(null, list_value);
                 returndata.Code = 200;
                 returndata.TimeTaken = myTimer.ToString();

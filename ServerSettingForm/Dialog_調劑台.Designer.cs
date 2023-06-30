@@ -86,7 +86,6 @@ namespace ServerSettingForm
             this.label11 = new System.Windows.Forms.Label();
             this.rJ_TextBox_Med_API = new MyUI.RJ_TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button_API_本地端_測試 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
@@ -103,14 +102,6 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_VM端_DBName = new MyUI.RJ_TextBox();
             this.rJ_TextBox_API_VM端_Port = new MyUI.RJ_TextBox();
             this.rJ_TextBox_API_VM端_Server = new MyUI.RJ_TextBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button_API_藥檔資料_測試 = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.rJ_TextBox_API_藥檔資料_Password = new MyUI.RJ_TextBox();
-            this.rJ_TextBox_API_藥檔資料_UserName = new MyUI.RJ_TextBox();
-            this.rJ_TextBox_API_藥檔資料_DBName = new MyUI.RJ_TextBox();
-            this.rJ_TextBox_API_藥檔資料_Port = new MyUI.RJ_TextBox();
-            this.rJ_TextBox_API_藥檔資料_Server = new MyUI.RJ_TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.button_API_儲位資料_測試 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -133,7 +124,6 @@ namespace ServerSettingForm
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.SuspendLayout();
@@ -157,6 +147,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_Server.BorderSize = 2;
             this.rJ_TextBox_API_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_Server.GUID = "";
             this.rJ_TextBox_API_Server.Location = new System.Drawing.Point(135, 13);
             this.rJ_TextBox_API_Server.Multiline = false;
             this.rJ_TextBox_API_Server.Name = "rJ_TextBox_API_Server";
@@ -226,6 +217,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_一般資料_Password.BorderSize = 2;
             this.rJ_TextBox_一般資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_一般資料_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_一般資料_Password.GUID = "";
             this.rJ_TextBox_一般資料_Password.Location = new System.Drawing.Point(41, 269);
             this.rJ_TextBox_一般資料_Password.Multiline = false;
             this.rJ_TextBox_一般資料_Password.Name = "rJ_TextBox_一般資料_Password";
@@ -249,6 +241,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_一般資料_UserName.BorderSize = 2;
             this.rJ_TextBox_一般資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_一般資料_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_一般資料_UserName.GUID = "";
             this.rJ_TextBox_一般資料_UserName.Location = new System.Drawing.Point(41, 223);
             this.rJ_TextBox_一般資料_UserName.Multiline = false;
             this.rJ_TextBox_一般資料_UserName.Name = "rJ_TextBox_一般資料_UserName";
@@ -272,6 +265,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_一般資料_DBName.BorderSize = 2;
             this.rJ_TextBox_一般資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_一般資料_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_一般資料_DBName.GUID = "";
             this.rJ_TextBox_一般資料_DBName.Location = new System.Drawing.Point(41, 177);
             this.rJ_TextBox_一般資料_DBName.Multiline = false;
             this.rJ_TextBox_一般資料_DBName.Name = "rJ_TextBox_一般資料_DBName";
@@ -295,6 +289,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_一般資料_Port.BorderSize = 2;
             this.rJ_TextBox_一般資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_一般資料_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_一般資料_Port.GUID = "";
             this.rJ_TextBox_一般資料_Port.Location = new System.Drawing.Point(41, 131);
             this.rJ_TextBox_一般資料_Port.Multiline = false;
             this.rJ_TextBox_一般資料_Port.Name = "rJ_TextBox_一般資料_Port";
@@ -318,6 +313,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_一般資料_Server.BorderSize = 2;
             this.rJ_TextBox_一般資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_一般資料_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_一般資料_Server.GUID = "";
             this.rJ_TextBox_一般資料_Server.Location = new System.Drawing.Point(41, 85);
             this.rJ_TextBox_一般資料_Server.Multiline = false;
             this.rJ_TextBox_一般資料_Server.Name = "rJ_TextBox_一般資料_Server";
@@ -378,6 +374,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_人員資料_Password.BorderSize = 2;
             this.rJ_TextBox_人員資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_Password.GUID = "";
             this.rJ_TextBox_人員資料_Password.Location = new System.Drawing.Point(41, 269);
             this.rJ_TextBox_人員資料_Password.Multiline = false;
             this.rJ_TextBox_人員資料_Password.Name = "rJ_TextBox_人員資料_Password";
@@ -401,6 +398,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_人員資料_UserName.BorderSize = 2;
             this.rJ_TextBox_人員資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_UserName.GUID = "";
             this.rJ_TextBox_人員資料_UserName.Location = new System.Drawing.Point(41, 223);
             this.rJ_TextBox_人員資料_UserName.Multiline = false;
             this.rJ_TextBox_人員資料_UserName.Name = "rJ_TextBox_人員資料_UserName";
@@ -424,6 +422,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_人員資料_DBName.BorderSize = 2;
             this.rJ_TextBox_人員資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_DBName.GUID = "";
             this.rJ_TextBox_人員資料_DBName.Location = new System.Drawing.Point(41, 177);
             this.rJ_TextBox_人員資料_DBName.Multiline = false;
             this.rJ_TextBox_人員資料_DBName.Name = "rJ_TextBox_人員資料_DBName";
@@ -447,6 +446,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_人員資料_Port.BorderSize = 2;
             this.rJ_TextBox_人員資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_Port.GUID = "";
             this.rJ_TextBox_人員資料_Port.Location = new System.Drawing.Point(41, 131);
             this.rJ_TextBox_人員資料_Port.Multiline = false;
             this.rJ_TextBox_人員資料_Port.Name = "rJ_TextBox_人員資料_Port";
@@ -470,6 +470,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_人員資料_Server.BorderSize = 2;
             this.rJ_TextBox_人員資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_Server.GUID = "";
             this.rJ_TextBox_人員資料_Server.Location = new System.Drawing.Point(41, 85);
             this.rJ_TextBox_人員資料_Server.Multiline = false;
             this.rJ_TextBox_人員資料_Server.Name = "rJ_TextBox_人員資料_Server";
@@ -543,6 +544,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API01.BorderSize = 2;
             this.rJ_TextBox_API01.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API01.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API01.GUID = "";
             this.rJ_TextBox_API01.Location = new System.Drawing.Point(1333, 130);
             this.rJ_TextBox_API01.Multiline = false;
             this.rJ_TextBox_API01.Name = "rJ_TextBox_API01";
@@ -578,6 +580,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API02.BorderSize = 2;
             this.rJ_TextBox_API02.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API02.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API02.GUID = "";
             this.rJ_TextBox_API02.Location = new System.Drawing.Point(1333, 220);
             this.rJ_TextBox_API02.Multiline = false;
             this.rJ_TextBox_API02.Name = "rJ_TextBox_API02";
@@ -613,6 +616,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_Website.BorderSize = 2;
             this.rJ_TextBox_Website.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_Website.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_Website.GUID = "";
             this.rJ_TextBox_Website.Location = new System.Drawing.Point(1333, 310);
             this.rJ_TextBox_Website.Multiline = false;
             this.rJ_TextBox_Website.Name = "rJ_TextBox_Website";
@@ -721,6 +725,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_藥檔資料_Password.BorderSize = 2;
             this.rJ_TextBox_藥檔資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_藥檔資料_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_藥檔資料_Password.GUID = "";
             this.rJ_TextBox_藥檔資料_Password.Location = new System.Drawing.Point(41, 269);
             this.rJ_TextBox_藥檔資料_Password.Multiline = false;
             this.rJ_TextBox_藥檔資料_Password.Name = "rJ_TextBox_藥檔資料_Password";
@@ -744,6 +749,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_藥檔資料_UserName.BorderSize = 2;
             this.rJ_TextBox_藥檔資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_藥檔資料_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_藥檔資料_UserName.GUID = "";
             this.rJ_TextBox_藥檔資料_UserName.Location = new System.Drawing.Point(41, 223);
             this.rJ_TextBox_藥檔資料_UserName.Multiline = false;
             this.rJ_TextBox_藥檔資料_UserName.Name = "rJ_TextBox_藥檔資料_UserName";
@@ -767,6 +773,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_藥檔資料_DBName.BorderSize = 2;
             this.rJ_TextBox_藥檔資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_藥檔資料_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_藥檔資料_DBName.GUID = "";
             this.rJ_TextBox_藥檔資料_DBName.Location = new System.Drawing.Point(41, 177);
             this.rJ_TextBox_藥檔資料_DBName.Multiline = false;
             this.rJ_TextBox_藥檔資料_DBName.Name = "rJ_TextBox_藥檔資料_DBName";
@@ -790,6 +797,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_藥檔資料_Port.BorderSize = 2;
             this.rJ_TextBox_藥檔資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_藥檔資料_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_藥檔資料_Port.GUID = "";
             this.rJ_TextBox_藥檔資料_Port.Location = new System.Drawing.Point(41, 131);
             this.rJ_TextBox_藥檔資料_Port.Multiline = false;
             this.rJ_TextBox_藥檔資料_Port.Name = "rJ_TextBox_藥檔資料_Port";
@@ -813,6 +821,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_藥檔資料_Server.BorderSize = 2;
             this.rJ_TextBox_藥檔資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_藥檔資料_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_藥檔資料_Server.GUID = "";
             this.rJ_TextBox_藥檔資料_Server.Location = new System.Drawing.Point(41, 85);
             this.rJ_TextBox_藥檔資料_Server.Multiline = false;
             this.rJ_TextBox_藥檔資料_Server.Name = "rJ_TextBox_藥檔資料_Server";
@@ -873,6 +882,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_醫囑資料_Password.BorderSize = 2;
             this.rJ_TextBox_醫囑資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_醫囑資料_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_醫囑資料_Password.GUID = "";
             this.rJ_TextBox_醫囑資料_Password.Location = new System.Drawing.Point(41, 269);
             this.rJ_TextBox_醫囑資料_Password.Multiline = false;
             this.rJ_TextBox_醫囑資料_Password.Name = "rJ_TextBox_醫囑資料_Password";
@@ -896,6 +906,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_醫囑資料_UserName.BorderSize = 2;
             this.rJ_TextBox_醫囑資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_醫囑資料_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_醫囑資料_UserName.GUID = "";
             this.rJ_TextBox_醫囑資料_UserName.Location = new System.Drawing.Point(41, 223);
             this.rJ_TextBox_醫囑資料_UserName.Multiline = false;
             this.rJ_TextBox_醫囑資料_UserName.Name = "rJ_TextBox_醫囑資料_UserName";
@@ -919,6 +930,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_醫囑資料_DBName.BorderSize = 2;
             this.rJ_TextBox_醫囑資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_醫囑資料_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_醫囑資料_DBName.GUID = "";
             this.rJ_TextBox_醫囑資料_DBName.Location = new System.Drawing.Point(41, 177);
             this.rJ_TextBox_醫囑資料_DBName.Multiline = false;
             this.rJ_TextBox_醫囑資料_DBName.Name = "rJ_TextBox_醫囑資料_DBName";
@@ -942,6 +954,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_醫囑資料_Port.BorderSize = 2;
             this.rJ_TextBox_醫囑資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_醫囑資料_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_醫囑資料_Port.GUID = "";
             this.rJ_TextBox_醫囑資料_Port.Location = new System.Drawing.Point(41, 131);
             this.rJ_TextBox_醫囑資料_Port.Multiline = false;
             this.rJ_TextBox_醫囑資料_Port.Name = "rJ_TextBox_醫囑資料_Port";
@@ -965,6 +978,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_醫囑資料_Server.BorderSize = 2;
             this.rJ_TextBox_醫囑資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_醫囑資料_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_醫囑資料_Server.GUID = "";
             this.rJ_TextBox_醫囑資料_Server.Location = new System.Drawing.Point(41, 85);
             this.rJ_TextBox_醫囑資料_Server.Multiline = false;
             this.rJ_TextBox_醫囑資料_Server.Name = "rJ_TextBox_醫囑資料_Server";
@@ -1010,6 +1024,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_Order_API.BorderSize = 2;
             this.rJ_TextBox_Order_API.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_Order_API.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_Order_API.GUID = "";
             this.rJ_TextBox_Order_API.Location = new System.Drawing.Point(1333, 400);
             this.rJ_TextBox_Order_API.Multiline = false;
             this.rJ_TextBox_Order_API.Name = "rJ_TextBox_Order_API";
@@ -1055,6 +1070,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_Med_API.BorderSize = 2;
             this.rJ_TextBox_Med_API.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_Med_API.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_Med_API.GUID = "";
             this.rJ_TextBox_Med_API.Location = new System.Drawing.Point(1333, 490);
             this.rJ_TextBox_Med_API.Multiline = false;
             this.rJ_TextBox_Med_API.Name = "rJ_TextBox_Med_API";
@@ -1081,18 +1097,6 @@ namespace ServerSettingForm
             this.label12.Text = "WinForm";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label13
-            // 
-            this.label13.BackColor = System.Drawing.Color.DimGray;
-            this.label13.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(34, 518);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(1280, 56);
-            this.label13.TabIndex = 38;
-            this.label13.Text = "API";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.button_API_本地端_測試);
@@ -1103,7 +1107,7 @@ namespace ServerSettingForm
             this.groupBox5.Controls.Add(this.rJ_TextBox_API_本地端_Port);
             this.groupBox5.Controls.Add(this.rJ_TextBox_API_本地端_Server);
             this.groupBox5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox5.Location = new System.Drawing.Point(38, 577);
+            this.groupBox5.Location = new System.Drawing.Point(806, 499);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(250, 367);
             this.groupBox5.TabIndex = 46;
@@ -1139,6 +1143,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_本地端_Password.BorderSize = 2;
             this.rJ_TextBox_API_本地端_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_本地端_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_本地端_Password.GUID = "";
             this.rJ_TextBox_API_本地端_Password.Location = new System.Drawing.Point(41, 269);
             this.rJ_TextBox_API_本地端_Password.Multiline = false;
             this.rJ_TextBox_API_本地端_Password.Name = "rJ_TextBox_API_本地端_Password";
@@ -1162,6 +1167,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_本地端_UserName.BorderSize = 2;
             this.rJ_TextBox_API_本地端_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_本地端_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_本地端_UserName.GUID = "";
             this.rJ_TextBox_API_本地端_UserName.Location = new System.Drawing.Point(41, 223);
             this.rJ_TextBox_API_本地端_UserName.Multiline = false;
             this.rJ_TextBox_API_本地端_UserName.Name = "rJ_TextBox_API_本地端_UserName";
@@ -1185,6 +1191,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_本地端_DBName.BorderSize = 2;
             this.rJ_TextBox_API_本地端_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_本地端_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_本地端_DBName.GUID = "";
             this.rJ_TextBox_API_本地端_DBName.Location = new System.Drawing.Point(41, 177);
             this.rJ_TextBox_API_本地端_DBName.Multiline = false;
             this.rJ_TextBox_API_本地端_DBName.Name = "rJ_TextBox_API_本地端_DBName";
@@ -1208,6 +1215,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_本地端_Port.BorderSize = 2;
             this.rJ_TextBox_API_本地端_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_本地端_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_本地端_Port.GUID = "";
             this.rJ_TextBox_API_本地端_Port.Location = new System.Drawing.Point(41, 131);
             this.rJ_TextBox_API_本地端_Port.Multiline = false;
             this.rJ_TextBox_API_本地端_Port.Name = "rJ_TextBox_API_本地端_Port";
@@ -1231,6 +1239,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_本地端_Server.BorderSize = 2;
             this.rJ_TextBox_API_本地端_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_本地端_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_本地端_Server.GUID = "";
             this.rJ_TextBox_API_本地端_Server.Location = new System.Drawing.Point(41, 85);
             this.rJ_TextBox_API_本地端_Server.Multiline = false;
             this.rJ_TextBox_API_本地端_Server.Name = "rJ_TextBox_API_本地端_Server";
@@ -1255,7 +1264,7 @@ namespace ServerSettingForm
             this.groupBox6.Controls.Add(this.rJ_TextBox_API_VM端_Port);
             this.groupBox6.Controls.Add(this.rJ_TextBox_API_VM端_Server);
             this.groupBox6.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox6.Location = new System.Drawing.Point(294, 577);
+            this.groupBox6.Location = new System.Drawing.Point(1062, 499);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(250, 367);
             this.groupBox6.TabIndex = 47;
@@ -1291,6 +1300,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_VM端_Password.BorderSize = 2;
             this.rJ_TextBox_API_VM端_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_VM端_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_VM端_Password.GUID = "";
             this.rJ_TextBox_API_VM端_Password.Location = new System.Drawing.Point(41, 269);
             this.rJ_TextBox_API_VM端_Password.Multiline = false;
             this.rJ_TextBox_API_VM端_Password.Name = "rJ_TextBox_API_VM端_Password";
@@ -1314,6 +1324,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_VM端_UserName.BorderSize = 2;
             this.rJ_TextBox_API_VM端_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_VM端_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_VM端_UserName.GUID = "";
             this.rJ_TextBox_API_VM端_UserName.Location = new System.Drawing.Point(41, 223);
             this.rJ_TextBox_API_VM端_UserName.Multiline = false;
             this.rJ_TextBox_API_VM端_UserName.Name = "rJ_TextBox_API_VM端_UserName";
@@ -1337,6 +1348,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_VM端_DBName.BorderSize = 2;
             this.rJ_TextBox_API_VM端_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_VM端_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_VM端_DBName.GUID = "";
             this.rJ_TextBox_API_VM端_DBName.Location = new System.Drawing.Point(41, 177);
             this.rJ_TextBox_API_VM端_DBName.Multiline = false;
             this.rJ_TextBox_API_VM端_DBName.Name = "rJ_TextBox_API_VM端_DBName";
@@ -1360,6 +1372,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_VM端_Port.BorderSize = 2;
             this.rJ_TextBox_API_VM端_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_VM端_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_VM端_Port.GUID = "";
             this.rJ_TextBox_API_VM端_Port.Location = new System.Drawing.Point(41, 131);
             this.rJ_TextBox_API_VM端_Port.Multiline = false;
             this.rJ_TextBox_API_VM端_Port.Name = "rJ_TextBox_API_VM端_Port";
@@ -1383,6 +1396,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_VM端_Server.BorderSize = 2;
             this.rJ_TextBox_API_VM端_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_VM端_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_VM端_Server.GUID = "";
             this.rJ_TextBox_API_VM端_Server.Location = new System.Drawing.Point(41, 85);
             this.rJ_TextBox_API_VM端_Server.Multiline = false;
             this.rJ_TextBox_API_VM端_Server.Name = "rJ_TextBox_API_VM端_Server";
@@ -1397,158 +1411,6 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_VM端_Server.Texts = "";
             this.rJ_TextBox_API_VM端_Server.UnderlineStyle = false;
             // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.button_API_藥檔資料_測試);
-            this.groupBox7.Controls.Add(this.label16);
-            this.groupBox7.Controls.Add(this.rJ_TextBox_API_藥檔資料_Password);
-            this.groupBox7.Controls.Add(this.rJ_TextBox_API_藥檔資料_UserName);
-            this.groupBox7.Controls.Add(this.rJ_TextBox_API_藥檔資料_DBName);
-            this.groupBox7.Controls.Add(this.rJ_TextBox_API_藥檔資料_Port);
-            this.groupBox7.Controls.Add(this.rJ_TextBox_API_藥檔資料_Server);
-            this.groupBox7.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox7.Location = new System.Drawing.Point(550, 577);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(250, 367);
-            this.groupBox7.TabIndex = 49;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "藥檔資料";
-            // 
-            // button_API_藥檔資料_測試
-            // 
-            this.button_API_藥檔資料_測試.Location = new System.Drawing.Point(133, 315);
-            this.button_API_藥檔資料_測試.Name = "button_API_藥檔資料_測試";
-            this.button_API_藥檔資料_測試.Size = new System.Drawing.Size(72, 41);
-            this.button_API_藥檔資料_測試.TabIndex = 14;
-            this.button_API_藥檔資料_測試.Text = "測試";
-            this.button_API_藥檔資料_測試.UseVisualStyleBackColor = true;
-            // 
-            // label16
-            // 
-            this.label16.BackColor = System.Drawing.Color.Black;
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(41, 38);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(164, 40);
-            this.label16.TabIndex = 13;
-            this.label16.Text = "SQL Server";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // rJ_TextBox_API_藥檔資料_Password
-            // 
-            this.rJ_TextBox_API_藥檔資料_Password.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_API_藥檔資料_Password.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_API_藥檔資料_Password.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_API_藥檔資料_Password.BorderRadius = 0;
-            this.rJ_TextBox_API_藥檔資料_Password.BorderSize = 2;
-            this.rJ_TextBox_API_藥檔資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_API_藥檔資料_Password.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_API_藥檔資料_Password.Location = new System.Drawing.Point(41, 269);
-            this.rJ_TextBox_API_藥檔資料_Password.Multiline = false;
-            this.rJ_TextBox_API_藥檔資料_Password.Name = "rJ_TextBox_API_藥檔資料_Password";
-            this.rJ_TextBox_API_藥檔資料_Password.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_API_藥檔資料_Password.PassWordChar = false;
-            this.rJ_TextBox_API_藥檔資料_Password.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_API_藥檔資料_Password.PlaceholderText = "Password";
-            this.rJ_TextBox_API_藥檔資料_Password.ShowTouchPannel = false;
-            this.rJ_TextBox_API_藥檔資料_Password.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_API_藥檔資料_Password.TabIndex = 12;
-            this.rJ_TextBox_API_藥檔資料_Password.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_API_藥檔資料_Password.Texts = "";
-            this.rJ_TextBox_API_藥檔資料_Password.UnderlineStyle = false;
-            // 
-            // rJ_TextBox_API_藥檔資料_UserName
-            // 
-            this.rJ_TextBox_API_藥檔資料_UserName.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_API_藥檔資料_UserName.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_API_藥檔資料_UserName.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_API_藥檔資料_UserName.BorderRadius = 0;
-            this.rJ_TextBox_API_藥檔資料_UserName.BorderSize = 2;
-            this.rJ_TextBox_API_藥檔資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_API_藥檔資料_UserName.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_API_藥檔資料_UserName.Location = new System.Drawing.Point(41, 223);
-            this.rJ_TextBox_API_藥檔資料_UserName.Multiline = false;
-            this.rJ_TextBox_API_藥檔資料_UserName.Name = "rJ_TextBox_API_藥檔資料_UserName";
-            this.rJ_TextBox_API_藥檔資料_UserName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_API_藥檔資料_UserName.PassWordChar = false;
-            this.rJ_TextBox_API_藥檔資料_UserName.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_API_藥檔資料_UserName.PlaceholderText = "UserName";
-            this.rJ_TextBox_API_藥檔資料_UserName.ShowTouchPannel = false;
-            this.rJ_TextBox_API_藥檔資料_UserName.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_API_藥檔資料_UserName.TabIndex = 10;
-            this.rJ_TextBox_API_藥檔資料_UserName.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_API_藥檔資料_UserName.Texts = "";
-            this.rJ_TextBox_API_藥檔資料_UserName.UnderlineStyle = false;
-            // 
-            // rJ_TextBox_API_藥檔資料_DBName
-            // 
-            this.rJ_TextBox_API_藥檔資料_DBName.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_API_藥檔資料_DBName.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_API_藥檔資料_DBName.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_API_藥檔資料_DBName.BorderRadius = 0;
-            this.rJ_TextBox_API_藥檔資料_DBName.BorderSize = 2;
-            this.rJ_TextBox_API_藥檔資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_API_藥檔資料_DBName.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_API_藥檔資料_DBName.Location = new System.Drawing.Point(41, 177);
-            this.rJ_TextBox_API_藥檔資料_DBName.Multiline = false;
-            this.rJ_TextBox_API_藥檔資料_DBName.Name = "rJ_TextBox_API_藥檔資料_DBName";
-            this.rJ_TextBox_API_藥檔資料_DBName.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_API_藥檔資料_DBName.PassWordChar = false;
-            this.rJ_TextBox_API_藥檔資料_DBName.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_API_藥檔資料_DBName.PlaceholderText = "DBName";
-            this.rJ_TextBox_API_藥檔資料_DBName.ShowTouchPannel = false;
-            this.rJ_TextBox_API_藥檔資料_DBName.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_API_藥檔資料_DBName.TabIndex = 8;
-            this.rJ_TextBox_API_藥檔資料_DBName.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_API_藥檔資料_DBName.Texts = "";
-            this.rJ_TextBox_API_藥檔資料_DBName.UnderlineStyle = false;
-            // 
-            // rJ_TextBox_API_藥檔資料_Port
-            // 
-            this.rJ_TextBox_API_藥檔資料_Port.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_API_藥檔資料_Port.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_API_藥檔資料_Port.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_API_藥檔資料_Port.BorderRadius = 0;
-            this.rJ_TextBox_API_藥檔資料_Port.BorderSize = 2;
-            this.rJ_TextBox_API_藥檔資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_API_藥檔資料_Port.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_API_藥檔資料_Port.Location = new System.Drawing.Point(41, 131);
-            this.rJ_TextBox_API_藥檔資料_Port.Multiline = false;
-            this.rJ_TextBox_API_藥檔資料_Port.Name = "rJ_TextBox_API_藥檔資料_Port";
-            this.rJ_TextBox_API_藥檔資料_Port.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_API_藥檔資料_Port.PassWordChar = false;
-            this.rJ_TextBox_API_藥檔資料_Port.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_API_藥檔資料_Port.PlaceholderText = "Port";
-            this.rJ_TextBox_API_藥檔資料_Port.ShowTouchPannel = false;
-            this.rJ_TextBox_API_藥檔資料_Port.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_API_藥檔資料_Port.TabIndex = 6;
-            this.rJ_TextBox_API_藥檔資料_Port.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_API_藥檔資料_Port.Texts = "";
-            this.rJ_TextBox_API_藥檔資料_Port.UnderlineStyle = false;
-            // 
-            // rJ_TextBox_API_藥檔資料_Server
-            // 
-            this.rJ_TextBox_API_藥檔資料_Server.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_API_藥檔資料_Server.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_API_藥檔資料_Server.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_API_藥檔資料_Server.BorderRadius = 0;
-            this.rJ_TextBox_API_藥檔資料_Server.BorderSize = 2;
-            this.rJ_TextBox_API_藥檔資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_API_藥檔資料_Server.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_API_藥檔資料_Server.Location = new System.Drawing.Point(41, 85);
-            this.rJ_TextBox_API_藥檔資料_Server.Multiline = false;
-            this.rJ_TextBox_API_藥檔資料_Server.Name = "rJ_TextBox_API_藥檔資料_Server";
-            this.rJ_TextBox_API_藥檔資料_Server.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_API_藥檔資料_Server.PassWordChar = false;
-            this.rJ_TextBox_API_藥檔資料_Server.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_API_藥檔資料_Server.PlaceholderText = "Server";
-            this.rJ_TextBox_API_藥檔資料_Server.ShowTouchPannel = false;
-            this.rJ_TextBox_API_藥檔資料_Server.Size = new System.Drawing.Size(164, 40);
-            this.rJ_TextBox_API_藥檔資料_Server.TabIndex = 4;
-            this.rJ_TextBox_API_藥檔資料_Server.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_API_藥檔資料_Server.Texts = "";
-            this.rJ_TextBox_API_藥檔資料_Server.UnderlineStyle = false;
-            // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.button_API_儲位資料_測試);
@@ -1559,7 +1421,7 @@ namespace ServerSettingForm
             this.groupBox8.Controls.Add(this.rJ_TextBox_API_儲位資料_Port);
             this.groupBox8.Controls.Add(this.rJ_TextBox_API_儲位資料_Server);
             this.groupBox8.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox8.Location = new System.Drawing.Point(806, 577);
+            this.groupBox8.Location = new System.Drawing.Point(1064, 130);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(250, 367);
             this.groupBox8.TabIndex = 50;
@@ -1595,6 +1457,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_儲位資料_Password.BorderSize = 2;
             this.rJ_TextBox_API_儲位資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_儲位資料_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_儲位資料_Password.GUID = "";
             this.rJ_TextBox_API_儲位資料_Password.Location = new System.Drawing.Point(41, 269);
             this.rJ_TextBox_API_儲位資料_Password.Multiline = false;
             this.rJ_TextBox_API_儲位資料_Password.Name = "rJ_TextBox_API_儲位資料_Password";
@@ -1618,6 +1481,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_儲位資料_UserName.BorderSize = 2;
             this.rJ_TextBox_API_儲位資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_儲位資料_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_儲位資料_UserName.GUID = "";
             this.rJ_TextBox_API_儲位資料_UserName.Location = new System.Drawing.Point(41, 223);
             this.rJ_TextBox_API_儲位資料_UserName.Multiline = false;
             this.rJ_TextBox_API_儲位資料_UserName.Name = "rJ_TextBox_API_儲位資料_UserName";
@@ -1641,6 +1505,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_儲位資料_DBName.BorderSize = 2;
             this.rJ_TextBox_API_儲位資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_儲位資料_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_儲位資料_DBName.GUID = "";
             this.rJ_TextBox_API_儲位資料_DBName.Location = new System.Drawing.Point(41, 177);
             this.rJ_TextBox_API_儲位資料_DBName.Multiline = false;
             this.rJ_TextBox_API_儲位資料_DBName.Name = "rJ_TextBox_API_儲位資料_DBName";
@@ -1664,6 +1529,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_儲位資料_Port.BorderSize = 2;
             this.rJ_TextBox_API_儲位資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_儲位資料_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_儲位資料_Port.GUID = "";
             this.rJ_TextBox_API_儲位資料_Port.Location = new System.Drawing.Point(41, 131);
             this.rJ_TextBox_API_儲位資料_Port.Multiline = false;
             this.rJ_TextBox_API_儲位資料_Port.Name = "rJ_TextBox_API_儲位資料_Port";
@@ -1687,6 +1553,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_儲位資料_Server.BorderSize = 2;
             this.rJ_TextBox_API_儲位資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_儲位資料_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_儲位資料_Server.GUID = "";
             this.rJ_TextBox_API_儲位資料_Server.Location = new System.Drawing.Point(41, 85);
             this.rJ_TextBox_API_儲位資料_Server.Multiline = false;
             this.rJ_TextBox_API_儲位資料_Server.Name = "rJ_TextBox_API_儲位資料_Server";
@@ -1711,7 +1578,7 @@ namespace ServerSettingForm
             this.groupBox9.Controls.Add(this.rJ_TextBox_API_交易紀錄資料_Port);
             this.groupBox9.Controls.Add(this.rJ_TextBox_API_交易紀錄資料_Server);
             this.groupBox9.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox9.Location = new System.Drawing.Point(1064, 577);
+            this.groupBox9.Location = new System.Drawing.Point(38, 499);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(250, 367);
             this.groupBox9.TabIndex = 51;
@@ -1747,6 +1614,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_交易紀錄資料_Password.BorderSize = 2;
             this.rJ_TextBox_API_交易紀錄資料_Password.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_交易紀錄資料_Password.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_交易紀錄資料_Password.GUID = "";
             this.rJ_TextBox_API_交易紀錄資料_Password.Location = new System.Drawing.Point(41, 269);
             this.rJ_TextBox_API_交易紀錄資料_Password.Multiline = false;
             this.rJ_TextBox_API_交易紀錄資料_Password.Name = "rJ_TextBox_API_交易紀錄資料_Password";
@@ -1770,6 +1638,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_交易紀錄資料_UserName.BorderSize = 2;
             this.rJ_TextBox_API_交易紀錄資料_UserName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_交易紀錄資料_UserName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_交易紀錄資料_UserName.GUID = "";
             this.rJ_TextBox_API_交易紀錄資料_UserName.Location = new System.Drawing.Point(41, 223);
             this.rJ_TextBox_API_交易紀錄資料_UserName.Multiline = false;
             this.rJ_TextBox_API_交易紀錄資料_UserName.Name = "rJ_TextBox_API_交易紀錄資料_UserName";
@@ -1793,6 +1662,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_交易紀錄資料_DBName.BorderSize = 2;
             this.rJ_TextBox_API_交易紀錄資料_DBName.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_交易紀錄資料_DBName.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_交易紀錄資料_DBName.GUID = "";
             this.rJ_TextBox_API_交易紀錄資料_DBName.Location = new System.Drawing.Point(41, 177);
             this.rJ_TextBox_API_交易紀錄資料_DBName.Multiline = false;
             this.rJ_TextBox_API_交易紀錄資料_DBName.Name = "rJ_TextBox_API_交易紀錄資料_DBName";
@@ -1816,6 +1686,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_交易紀錄資料_Port.BorderSize = 2;
             this.rJ_TextBox_API_交易紀錄資料_Port.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_交易紀錄資料_Port.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_交易紀錄資料_Port.GUID = "";
             this.rJ_TextBox_API_交易紀錄資料_Port.Location = new System.Drawing.Point(41, 131);
             this.rJ_TextBox_API_交易紀錄資料_Port.Multiline = false;
             this.rJ_TextBox_API_交易紀錄資料_Port.Name = "rJ_TextBox_API_交易紀錄資料_Port";
@@ -1839,6 +1710,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_交易紀錄資料_Server.BorderSize = 2;
             this.rJ_TextBox_API_交易紀錄資料_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_交易紀錄資料_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_交易紀錄資料_Server.GUID = "";
             this.rJ_TextBox_API_交易紀錄資料_Server.Location = new System.Drawing.Point(41, 85);
             this.rJ_TextBox_API_交易紀錄資料_Server.Multiline = false;
             this.rJ_TextBox_API_交易紀錄資料_Server.Name = "rJ_TextBox_API_交易紀錄資料_Server";
@@ -1861,10 +1733,8 @@ namespace ServerSettingForm
             this.ClientSize = new System.Drawing.Size(1801, 970);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
-            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button_Med_API_測試);
             this.Controls.Add(this.label11);
@@ -1895,7 +1765,6 @@ namespace ServerSettingForm
             this.Controls.Add(this.rJ_TextBox_API_Server);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Dialog_調劑台";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -1907,7 +1776,6 @@ namespace ServerSettingForm
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1974,7 +1842,6 @@ namespace ServerSettingForm
         private MyUI.RJ_TextBox rJ_TextBox_醫囑資料_Password;
         private MyUI.RJ_TextBox rJ_TextBox_醫囑資料_UserName;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button_API_本地端_測試;
         private System.Windows.Forms.Label label14;
@@ -1991,14 +1858,6 @@ namespace ServerSettingForm
         private MyUI.RJ_TextBox rJ_TextBox_API_VM端_DBName;
         private MyUI.RJ_TextBox rJ_TextBox_API_VM端_Port;
         private MyUI.RJ_TextBox rJ_TextBox_API_VM端_Server;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button button_API_藥檔資料_測試;
-        private System.Windows.Forms.Label label16;
-        private MyUI.RJ_TextBox rJ_TextBox_API_藥檔資料_Password;
-        private MyUI.RJ_TextBox rJ_TextBox_API_藥檔資料_UserName;
-        private MyUI.RJ_TextBox rJ_TextBox_API_藥檔資料_DBName;
-        private MyUI.RJ_TextBox rJ_TextBox_API_藥檔資料_Port;
-        private MyUI.RJ_TextBox rJ_TextBox_API_藥檔資料_Server;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Button button_API_儲位資料_測試;
         private System.Windows.Forms.Label label17;
