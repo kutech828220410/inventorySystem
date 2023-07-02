@@ -37,6 +37,7 @@ namespace 調劑台管理系統
             藥品碼,
             藥品名稱,
             病歷號,
+            床號,
             操作時間,
             開方時間,
             儲位總量,
@@ -753,7 +754,7 @@ namespace 調劑台管理系統
             string 結存量 = "";
             string 單位 = "";
             string 狀態 = "";
-
+            string 床號 = "";
             list_取藥堆疊資料.Sort(new Icp_取藥堆疊母資料_index排序());
 
             for (int i = 0; i < list_取藥堆疊資料.Count; i++)
@@ -779,6 +780,7 @@ namespace 調劑台管理系統
                 結存量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
                 單位 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.單位].ObjectToString();
                 狀態 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
+                床號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
 
 
                 object[] value = new object[new enum_領藥內容().GetLength()];
@@ -796,6 +798,7 @@ namespace 調劑台管理系統
                 value[(int)enum_領藥內容.結存量] = 結存量;
                 value[(int)enum_領藥內容.單位] = 單位;
                 value[(int)enum_領藥內容.狀態] = 狀態;
+                value[(int)enum_領藥內容.床號] = 床號;
 
                 list_value.Add(value);
 
@@ -828,6 +831,7 @@ namespace 調劑台管理系統
                     value_領藥內容[(int)enum_領藥內容.異動量] = "";
                     value_領藥內容[(int)enum_領藥內容.結存量] = "";
                     value_領藥內容[(int)enum_領藥內容.單位] = list_value_buf[0][(int)enum_領藥內容.單位];
+                    value_領藥內容[(int)enum_領藥內容.床號] = list_value_buf[0][(int)enum_領藥內容.床號];
                     int 異動量_temp = 0;
                     bool flag_入賬完成 = true;
                     bool flag_無儲位 = false;
@@ -1146,6 +1150,7 @@ namespace 調劑台管理系統
                 string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                 string 病歷號 = list_醫囑資料[i][(int)enum_醫囑資料.病歷號].ObjectToString();
                 string 病人姓名 = list_醫囑資料[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
+                string 床號 = "";
                 string 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = this.領藥台_01_ID;
                 string 操作人 = this.領藥台_01_登入者姓名;
@@ -1153,7 +1158,7 @@ namespace 調劑台管理系統
                 int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別 ,藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別 ,藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
 
             }
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
@@ -1206,6 +1211,7 @@ namespace 調劑台管理系統
                 string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                 string 病歷號 = value[(int)enum_醫囑資料.病歷號].ObjectToString();
                 string 診別 = value[(int)enum_醫囑資料.藥局代碼].ObjectToString();
+                string 床號 = "";
                 string 病人姓名 = value[(int)enum_醫囑資料.病人姓名].ObjectToString();
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = this.領藥台_01_ID;
@@ -1214,7 +1220,7 @@ namespace 調劑台管理系統
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -1276,6 +1282,7 @@ namespace 調劑台管理系統
                 string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                 string 病歷號 = value[(int)enum_醫囑資料.病歷號].ObjectToString();
                 string 診別 = value[(int)enum_醫囑資料.藥局代碼].ObjectToString();
+                string 床號 = "";
                 string 病人姓名 = value[(int)enum_醫囑資料.病人姓名].ObjectToString();
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = this.領藥台_01_ID;
@@ -1284,7 +1291,7 @@ namespace 調劑台管理系統
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -1312,6 +1319,7 @@ namespace 調劑台管理系統
             string ID = this.領藥台_01_ID;
             string 操作人 = this.領藥台_01_登入者姓名;
             string 顏色 = this.領藥台_01_顏色;
+            string 床號 = "";
             int 總異動量 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
             string 效期 = "";
 
@@ -1357,7 +1365,7 @@ namespace 調劑台管理系統
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作 ,"" , 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作 ,"" , 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名,床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -1384,7 +1392,7 @@ namespace 調劑台管理系統
             string 顏色 = this.領藥台_01_顏色;
             int 總異動量 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
             string 效期 = "";
-
+            string 床號 = "";
             string 藥品碼 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
             string 藥品名稱 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品名稱].ObjectToString();
             string 病歷號 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.病歷號].ObjectToString();
@@ -1424,7 +1432,7 @@ namespace 調劑台管理系統
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -1469,8 +1477,9 @@ namespace 調劑台管理系統
                 {
                     string GUID = Guid.NewGuid().ToString();
                     string 調劑台名稱 = this.領藥台_01名稱;
-               
+
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
+                    string 床號 = list_value[i][(int)enum_選擇藥品.病房號].ObjectToString();
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
                     if (list_藥品資料_buf.Count == 0) continue;
                     string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
@@ -1494,7 +1503,7 @@ namespace 調劑台管理系統
                     }
                     string 效期 = "";
 
-                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
 
                 }
 
@@ -2111,7 +2120,7 @@ namespace 調劑台管理系統
             string 結存量 = "";
             string 單位 = "";
             string 狀態 = "";
-
+            string 床號 = "";
             list_取藥堆疊資料.Sort(new Icp_取藥堆疊母資料_index排序());
 
             for (int i = 0; i < list_取藥堆疊資料.Count; i++)
@@ -2137,6 +2146,7 @@ namespace 調劑台管理系統
                 結存量 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
                 單位 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.單位].ObjectToString();
                 狀態 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
+                床號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
 
 
                 object[] value = new object[new enum_領藥內容().GetLength()];
@@ -2154,6 +2164,7 @@ namespace 調劑台管理系統
                 value[(int)enum_領藥內容.結存量] = 結存量;
                 value[(int)enum_領藥內容.單位] = 單位;
                 value[(int)enum_領藥內容.狀態] = 狀態;
+                value[(int)enum_領藥內容.床號] = 床號;
 
                 list_value.Add(value);
 
@@ -2186,6 +2197,7 @@ namespace 調劑台管理系統
                     value_領藥內容[(int)enum_領藥內容.異動量] = "";
                     value_領藥內容[(int)enum_領藥內容.結存量] = "";
                     value_領藥內容[(int)enum_領藥內容.單位] = list_value_buf[0][(int)enum_領藥內容.單位];
+                    value_領藥內容[(int)enum_領藥內容.床號] = list_value_buf[0][(int)enum_領藥內容.床號];
                     int 異動量_temp = 0;
                     bool flag_入賬完成 = true;
                     bool flag_無儲位 = false;
@@ -2491,7 +2503,7 @@ namespace 調劑台管理系統
                 string 調劑台名稱 = this.領藥台_02名稱;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
                 string 藥品碼 = list_醫囑資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-
+                string 床號 = "";
                 list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
                 if (list_藥品資料_buf.Count == 0) continue;
                 string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
@@ -2507,7 +2519,7 @@ namespace 調劑台管理系統
                 int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
 
             }
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
@@ -2560,6 +2572,7 @@ namespace 調劑台管理系統
                 string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                 string 病歷號 = value[(int)enum_醫囑資料.病歷號].ObjectToString();
                 string 診別 = value[(int)enum_醫囑資料.藥局代碼].ObjectToString();
+                string 床號 = "";
                 string 病人姓名 = value[(int)enum_醫囑資料.病人姓名].ObjectToString();
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = this.領藥台_02_ID;
@@ -2568,7 +2581,7 @@ namespace 調劑台管理系統
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -2629,6 +2642,7 @@ namespace 調劑台管理系統
                 string 藥袋序號 = "";
                 string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                 string 病歷號 = value[(int)enum_醫囑資料.病歷號].ObjectToString();
+                string 床號 = "";
                 string 診別 = value[(int)enum_醫囑資料.藥局代碼].ObjectToString();
                 string 病人姓名 = value[(int)enum_醫囑資料.病人姓名].ObjectToString();
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
@@ -2638,7 +2652,7 @@ namespace 調劑台管理系統
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -2668,7 +2682,7 @@ namespace 調劑台管理系統
             string 顏色 = this.領藥台_02_顏色;
             int 總異動量 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
             string 效期 = "";
-
+            string 床號 = "";
             string 藥品碼 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
             string 藥品名稱 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品名稱].ObjectToString();
             string 病歷號 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.病歷號].ObjectToString();
@@ -2711,7 +2725,7 @@ namespace 調劑台管理系統
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -2738,7 +2752,7 @@ namespace 調劑台管理系統
             string 顏色 = this.領藥台_02_顏色;
             int 總異動量 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.使用數量].ObjectToString().StringToInt32();
             string 效期 = "";
-
+            string 床號 = "";
             string 藥品碼 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品碼].ObjectToString();
             string 藥品名稱 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥品名稱].ObjectToString();
             string 病歷號 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.病歷號].ObjectToString();
@@ -2777,7 +2791,7 @@ namespace 調劑台管理系統
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -2824,6 +2838,7 @@ namespace 調劑台管理系統
                     string 調劑台名稱 = this.領藥台_02名稱;
 
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
+                    string 床號 = list_value[i][(int)enum_選擇藥品.病房號].ObjectToString();
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
                     if (list_藥品資料_buf.Count == 0) continue;
                     string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
@@ -2847,7 +2862,7 @@ namespace 調劑台管理系統
                     }
                     string 效期 = "";
 
-                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
 
                 }
 
@@ -3182,6 +3197,7 @@ namespace 調劑台管理系統
             string 顏色 = "";
             int 總異動量 = 0;
             string 效期 = "";
+            string 床號 = "";
             for (int i = 0; i < List_領藥_入出庫資料檢查.Count; i++)
             {
                 GUID = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.GUID].ObjectToString();
@@ -3207,7 +3223,7 @@ namespace 調劑台管理系統
                 {
                     動作 = enum_交易記錄查詢動作.入庫作業;
                 }
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
                 List_領藥_入出庫資料檢查.RemoveAt(i);
                 this.voice.SpeakOnTask("成功");
                 break;

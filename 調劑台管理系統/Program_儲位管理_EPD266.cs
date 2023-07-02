@@ -64,6 +64,7 @@ namespace 調劑台管理系統
             this.rJ_TextBox_儲位管理_EPD266_藥品搜尋_藥品名稱.KeyPress += RJ_TextBox_儲位管理_EPD266_藥品搜尋_藥品名稱_KeyPress;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.KeyPress += RJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱_KeyPress;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.KeyPress += RJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼_KeyPress;
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音.KeyPress += RJ_TextBox_儲位管理_EPD266_儲位內容_語音_KeyPress;
 
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋_MouseDownEvent;
@@ -103,7 +104,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD266);
         }
 
-  
+   
 
         private void Program_儲位管理_EPD266()
         {
@@ -314,6 +315,7 @@ namespace 調劑台管理系統
             storage.IsWarning = (警訊藥品 == "True");
             if (storage != null)
             {
+                rJ_TextBox_儲位管理_EPD266_儲位內容_語音.Texts = storage.Speaker;
                 this.epD_266_Pannel.DrawToPictureBox(storage);
             }
             this.Invoke(new Action(delegate
@@ -369,9 +371,21 @@ namespace 調劑台管理系統
                 storage.SetValue(Device.ValueName.儲位名稱, Device.ValueType.Value, this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Text);
                 this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                 this.List_EPD266_本地資料.Add_NewStorage(storage);
+                this.Function_設定雲端資料更新();
             }
         }
-
+        private void RJ_TextBox_儲位管理_EPD266_儲位內容_語音_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (this.epD_266_Pannel.CurrentStorage == null) return;
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Storage storage = this.epD_266_Pannel.CurrentStorage;
+                storage.Speaker = this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音.Text;
+                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                this.List_EPD266_本地資料.Add_NewStorage(storage);
+                this.Function_設定雲端資料更新();
+            }
+        }
         private void PlC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             if (rJ_TextBox_儲位管理_EPD266_藥品搜尋_藥品名稱.Text.Length < 3)

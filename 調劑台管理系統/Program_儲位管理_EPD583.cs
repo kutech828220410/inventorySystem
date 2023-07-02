@@ -57,6 +57,8 @@ namespace 調劑台管理系統
             this.rJ_TextBox_儲位管理_EPD583_藥品搜尋_藥品名稱.KeyPress += RJ_TextBox_儲位管理_EPD583_藥品搜尋_藥品名稱_KeyPress;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.KeyPress += RJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱_KeyPress;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.KeyPress += RJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_KeyPress;
+            this.rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.KeyPress += RJ_TextBox_儲位管理_EPD583_抽屜列表_語音_KeyPress;
+
             this.plC_RJ_Button_儲位管理_EPD583_面板亮燈.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_面板亮燈_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD583_寫入.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_寫入_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD583_清除燈號.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_清除燈號_MouseDownEvent;
@@ -109,7 +111,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD583);
         }
 
-  
+     
 
         private void Program_儲位管理_EPD583()
         {
@@ -317,6 +319,7 @@ namespace 調劑台管理系統
             rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts = IP;
             rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Texts = 儲位名稱;
             Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+            rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Texts = drawer.Speaker;
             if (drawer != null)
             {
                 this.epD_583_Pannel.CurrentDrawer = drawer;
@@ -491,6 +494,20 @@ namespace 調劑台管理系統
                 PlC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼_搜尋_MouseDownEvent(null);
             }
         }
+        private void RJ_TextBox_儲位管理_EPD583_抽屜列表_語音_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
+            Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+            if (drawer != null)
+            {
+                drawer.Speaker = rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Text;
+                this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                sqL_DataGridView_儲位管理_EPD583_抽屜列表.Replace(new object[] { drawer.IP, drawer.Name }, true);
+                sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
+                this.Function_設定雲端資料更新();
+            }
+        }
         private void PlC_RJ_Button_儲位管理_EPD583_面板亮燈_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
@@ -603,10 +620,12 @@ namespace 調劑台管理系統
             if (drawer != null)
             {
                 drawer.Name = rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Text;
+                drawer.Speaker = rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Text;
                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
                 this.List_EPD583_本地資料.Add_NewDrawer(drawer);
                 sqL_DataGridView_儲位管理_EPD583_抽屜列表.Replace(new object[] { drawer.IP, drawer.Name }, true);
                 sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
+                this.Function_設定雲端資料更新();
             }
         }
         private void PlC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)

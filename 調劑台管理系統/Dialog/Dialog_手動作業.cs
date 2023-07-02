@@ -20,6 +20,7 @@ namespace 調劑台管理系統
         藥品碼,
         藥品名稱,
         交易量,
+        病房號,
     }
     public partial class Dialog_手動作業 : Form
     {
@@ -43,6 +44,7 @@ namespace 調劑台管理系統
         private void Dialog_手動作業_Load(object sender, EventArgs e)
         {
             this.sqL_DataGridView_選擇藥品.Init();
+            this.sqL_DataGridView_選擇藥品.RowEndEditEvent += SqL_DataGridView_選擇藥品_RowEndEditEvent;
 
             this.sqL_DataGridView_藥品資料.Init(this.sQL_DataGridView_藥品資料_buf);
             this.sqL_DataGridView_藥品資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
@@ -78,9 +80,15 @@ namespace 調劑台管理系統
 
         }
 
-  
+
+
+
 
         #region Event
+        private void SqL_DataGridView_選擇藥品_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
+        {
+            this.sqL_DataGridView_選擇藥品.ReplaceExtra(RowValue , true);
+        }
         private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             this.form1_buf.Function_從SQL取得儲位到本地資料();
@@ -136,6 +144,7 @@ namespace 調劑台管理系統
             value[(int)enum_選擇藥品.藥品碼] = 藥品碼;
             value[(int)enum_選擇藥品.藥品名稱] = 藥品名稱;
             value[(int)enum_選擇藥品.交易量] = 交易量;
+            value[(int)enum_選擇藥品.病房號] = rJ_TextBox_病房號.Text;
             this.sqL_DataGridView_選擇藥品.AddRow(value, true);
         }
         private void RJ_TextBox_藥品資料_藥品名稱_KeyPress(object sender, KeyPressEventArgs e)
@@ -163,7 +172,7 @@ namespace 調劑台管理系統
             myTimer.StartTickTime(50000);
             List<object[]> list_value = this.sqL_DataGridView_藥品資料.SQL_GetAllRows(false);
             Console.Write($"從SQL取得藥品資料,耗時{myTimer.ToString()}ms\n");
-            list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品名稱, this.rJ_TextBox_藥品資料_藥品名稱.Texts);
+            list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品名稱, this.rJ_TextBox_藥品資料_藥品名稱.Texts , true);
             Console.Write($"搜尋藥品資料,耗時{myTimer.ToString()}ms\n");
             this.sqL_DataGridView_藥品資料.RefreshGrid(list_value);
             Console.Write($"更新藥品資料,耗時{myTimer.ToString()}ms\n");

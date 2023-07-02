@@ -203,6 +203,7 @@ namespace 調劑台管理系統
                 string 病人姓名 = list_value[i][(int)enum_批次領藥資料.病人姓名].ObjectToString(); ;
                 string 開方時間 = list_value[i][(int)enum_批次領藥資料.日期].StringToDateTime().ToDateString();
                 string ID = this.登入者ID;
+                string 床號 = "";
                 string 操作人 = this.登入者名稱;
                 string 顏色 = this.登入者顏色;
                 int 總異動量 = list_value[i][(int)enum_批次領藥資料.交易量].ObjectToString().StringToInt32();
@@ -239,7 +240,7 @@ namespace 調劑台管理系統
                 if (!flag_批次已領取過)
                 {
                     list_批次未領取過領藥資料.Add(value);
-                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
+                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
                 }
                 else
                 {
@@ -612,6 +613,7 @@ namespace 調劑台管理系統
                 string 單位 = list_value[i][(int)enum_領藥內容.單位].ObjectToString();
                 string 藥袋序號 = list_value[i][(int)enum_領藥內容.藥袋序號].ObjectToString(); ;
                 string 病歷號 = list_value[i][(int)enum_領藥內容.病歷號].ObjectToString(); ;
+                string 床號 = list_value[i][(int)enum_領藥內容.床號].ObjectToString(); ;
                 string 病人姓名 = "" ;
                 string 開方時間 = list_value[i][(int)enum_領藥內容.開方時間].StringToDateTime().ToDateString();
                 string ID = this.登入者ID;
@@ -620,7 +622,7 @@ namespace 調劑台管理系統
                 int 總異動量 = list_value[i][(int)enum_領藥內容.異動量].ObjectToString().StringToInt32();
                 string 效期 = "";
                 string 狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
             }
             for (int i = 0; i < list_value.Count; i++)
             {

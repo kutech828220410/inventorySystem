@@ -18,7 +18,6 @@ namespace HIS_WebApi
     public class sessionController : Controller
     {
         static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
-
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [HttpGet]
