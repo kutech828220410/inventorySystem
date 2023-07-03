@@ -113,10 +113,6 @@ namespace ServerSettingForm
             Button_讀取_Click(null, null);
         }
 
-      
-
-
-
         #region Function
         private void Function_Add(string Name)
         {

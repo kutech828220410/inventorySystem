@@ -82,7 +82,8 @@ namespace 調劑台管理系統
                 this.rJ_TextBox_登入者顏色.Text = color.ToColorString();
             }
         }
-             
+        private List<string> 登入者權限 = new List<string>();
+        
         private void Program_後台登入_Init()
         {
             plC_RJ_Button_後台登入_登入.MouseDownEvent += PlC_RJ_Button_後台登入_登入_MouseDownEvent;
@@ -366,65 +367,117 @@ namespace 調劑台管理系統
         #region Function
         private bool Function_登入()
         {
-            bool flag = false;
-
-            this.Invoke(new Action(delegate
+            bool flag = true;
+            string json_in = "";
+            string json_result = "";
+            returnData returnData = new returnData();
+            sessionClass _sessionClass = new sessionClass();
+            _sessionClass.ID = this.textBox_後台登入_帳號.Text.ToUpper();
+            _sessionClass.Password = this.textBox_後台登入_密碼.Text.ToUpper();
+            returnData.Data = _sessionClass;
+            json_in = returnData.JsonSerializationt();
+            json_result = Net.WEBApiPostJson(dBConfigClass.Login_URL, json_in);
+            returnData = json_result.JsonDeserializet<returnData>();
+            _sessionClass = returnData.Data.ObjToClass<sessionClass>();
+            if(returnData.Code == 200)
             {
-                if (this.textBox_後台登入_帳號.Text.ToUpper() == Admin_ID.ToUpper())
+                this.Invoke(new Action(delegate 
                 {
-                    if (this.textBox_後台登入_密碼.Text.ToUpper() == Admoin_Password.ToUpper())
-                    {
-                        this.登入者名稱 = "最高管理權限";
-                        this.登入者ID = "admin";
-                        this.登入者顏色 = "";
-                        this.textBox_後台登入_帳號.Text = "";
-                        this.textBox_後台登入_密碼.Text = "";
-                        this.Function_登入權限資料_最高權限();
-                        this.PLC_Device_已登入.Bool = true;
-                        this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
-                        this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
-                        flag = true;
-                        return;
-                    }
-                }
-                if(!PLC_Device_後台登入_RFID登入.Bool)
-                {
-                    if (!myConfigClass.帳密登入_Enable)
-                    {
-                        MyMessageBox.ShowDialog("禁止帳密登入!");
-                        flag = false;
-                        return;
-                    }
-                }
-           
-                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
-                List<object[]> list_人員資料_buf = new List<object[]>();
-                string ID = this.textBox_後台登入_帳號.Text;
-                string password = textBox_後台登入_密碼.Text;
-                list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.ID, ID);
-                if (list_人員資料_buf.Count > 0)
-                {
-                    if (password != list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString())
-                    {
-                        MyMessageBox.ShowDialog("密碼錯誤!");
-                        flag = false;
-                        return;
-                    }
-                    this.登入者名稱 = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
-                    this.登入者ID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
-                    this.登入者顏色 = list_人員資料_buf[0][(int)enum_人員資料.顏色].ObjectToString();
-                    int level = list_人員資料_buf[0][(int)enum_人員資料.權限等級].StringToInt32();
-                    this.Function_登入權限資料_取得權限(level);
+                    this.登入者名稱 = _sessionClass.Name;
+                    this.登入者ID = _sessionClass.ID;
+                    this.登入者顏色 = _sessionClass.Color;
                     this.textBox_後台登入_帳號.Text = "";
                     this.textBox_後台登入_密碼.Text = "";
-                    this.PLC_Device_已登入.Bool = true;
-                    this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
-                    this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
-                    flag = true;
-                    return;
-                }
-                flag = false;
-            }));
+                    this.登入者權限 = _sessionClass.Permissions;
+                    if (this.登入者名稱 == "最高管理權限")
+                    {
+                        Function_登入權限資料_取得權限(this.登入者權限);
+                        this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
+                        this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
+                        this.PLC_Device_已登入.Bool = true;
+                    }
+                    else
+                    {
+                        if (!PLC_Device_後台登入_RFID登入.Bool)
+                        {
+                            if (!myConfigClass.帳密登入_Enable)
+                            {
+                                MyMessageBox.ShowDialog("禁止帳密登入!");
+                                flag = false;
+                                return;
+                            }
+                        }
+                        Function_登入權限資料_取得權限(this.登入者權限);
+                        this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
+                        this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
+                        this.PLC_Device_已登入.Bool = true;
+                    }
+              
+               
+                }));
+            }
+            else
+            {
+                MyMessageBox.ShowDialog($"{returnData.Result}");
+                return false;
+            }
+            //this.Invoke(new Action(delegate
+            //{
+            //    if (this.textBox_後台登入_帳號.Text.ToUpper() == Admin_ID.ToUpper())
+            //    {
+            //        if (this.textBox_後台登入_密碼.Text.ToUpper() == Admoin_Password.ToUpper())
+            //        {
+            //            this.登入者名稱 = "最高管理權限";
+            //            this.登入者ID = "admin";
+            //            this.登入者顏色 = "";
+            //            this.textBox_後台登入_帳號.Text = "";
+            //            this.textBox_後台登入_密碼.Text = "";
+            //            this.Function_登入權限資料_最高權限();
+            //            this.PLC_Device_已登入.Bool = true;
+            //            this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
+            //            this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
+            //            flag = true;
+            //            return;
+            //        }
+            //    }
+            //    if(!PLC_Device_後台登入_RFID登入.Bool)
+            //    {
+            //        if (!myConfigClass.帳密登入_Enable)
+            //        {
+            //            MyMessageBox.ShowDialog("禁止帳密登入!");
+            //            flag = false;
+            //            return;
+            //        }
+            //    }
+           
+            //    List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+            //    List<object[]> list_人員資料_buf = new List<object[]>();
+            //    string ID = this.textBox_後台登入_帳號.Text;
+            //    string password = textBox_後台登入_密碼.Text;
+            //    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.ID, ID);
+            //    if (list_人員資料_buf.Count > 0)
+            //    {
+            //        if (password != list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString())
+            //        {
+            //            MyMessageBox.ShowDialog("密碼錯誤!");
+            //            flag = false;
+            //            return;
+            //        }
+            //        this.登入者名稱 = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
+            //        this.登入者ID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
+            //        this.登入者顏色 = list_人員資料_buf[0][(int)enum_人員資料.顏色].ObjectToString();
+            //        int level = list_人員資料_buf[0][(int)enum_人員資料.權限等級].StringToInt32();
+            //        this.Function_登入權限資料_取得權限(level);
+            //        this.textBox_後台登入_帳號.Text = "";
+            //        this.textBox_後台登入_密碼.Text = "";
+            //        this.PLC_Device_已登入.Bool = true;
+            //        this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
+            //        this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
+            //        flag = true;
+            //        return;
+            //    }
+            //    flag = false;
+            //}));
             return flag;
         }
         private void Function_登出()

@@ -33,12 +33,12 @@ namespace HIS_WebApi
 
             if (_environment.IsDevelopment())
             {
-                uDP_Class = new UDP_Class("0.0.0.0", 29600);
+                uDP_Class = new UDP_Class("0.0.0.0", 29500);
                 Console.WriteLine("DEBUG模式");
             }
             else
             {
-                uDP_Class = new UDP_Class("0.0.0.0", 29500);
+                uDP_Class = new UDP_Class("0.0.0.0", 29600);
                 Console.WriteLine("非DEBUG模式");
             }
             Configuration = configuration;

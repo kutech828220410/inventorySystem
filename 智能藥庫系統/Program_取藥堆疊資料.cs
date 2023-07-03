@@ -624,15 +624,29 @@ namespace 智能藥庫系統
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_堆疊母資料, dB_local);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_堆疊子資料, dB_local);
 
-            this.sqL_DataGridView_堆疊母資料.Init();
-            if (!this.sqL_DataGridView_堆疊母資料.SQL_IsTableCreat())
+            string url = $"{dBConfigClass.Api_URL}/api/OutTakeMed/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
+            if (tables == null)
             {
-                this.sqL_DataGridView_堆疊母資料.SQL_CreateTable();
+                MyMessageBox.ShowDialog($"取藥堆疊表單建立失敗!! Api_URL:{url}");
+                return;
             }
-            this.sqL_DataGridView_堆疊子資料.Init();
-            if (!this.sqL_DataGridView_堆疊子資料.SQL_IsTableCreat())
+
+            for (int i = 0; i < tables.Count; i++)
             {
-                this.sqL_DataGridView_堆疊子資料.SQL_CreateTable();
+                if (tables[i].TableName == this.sqL_DataGridView_堆疊母資料.TableName)
+                {
+                    this.sqL_DataGridView_堆疊母資料.Init(tables[i]);
+                }
+                if (tables[i].TableName == this.sqL_DataGridView_堆疊子資料.TableName)
+                {
+                    this.sqL_DataGridView_堆疊子資料.Init(tables[i]);
+                }
             }
 
             this.MyThread_堆疊資料_檢查資料 = new MyThread();
@@ -654,9 +668,9 @@ namespace 智能藥庫系統
         }
 
         #region PLC_堆疊資料_檢查資料
-        PLC_Device PLC_Device_堆疊資料_檢查資料 = new PLC_Device("S4200");
-        PLC_Device PLC_Device_堆疊資料_檢查資料_更新儲位資料 = new PLC_Device("S4201");
-        MyTimer MyTimer_堆疊資料_刷新時間 = new MyTimer("D4006");
+        PLC_Device PLC_Device_堆疊資料_檢查資料 = new PLC_Device("");
+        PLC_Device PLC_Device_堆疊資料_檢查資料_更新儲位資料 = new PLC_Device("");
+        MyTimer MyTimer_堆疊資料_刷新時間 = new MyTimer("K100");
         MyTimer MyTimer_堆疊資料_資料更新時間 = new MyTimer();
         int cnt_Program_堆疊資料_檢查資料 = 65534;
         void sub_Program_堆疊資料_檢查資料()
@@ -705,16 +719,17 @@ namespace 智能藥庫系統
         }
         void cnt_Program_堆疊資料_檢查資料_堆疊資料整理(ref int cnt)
         {
-            string GUID = "";
+        
             this.list_堆疊母資料 = this.Function_堆疊資料_取得母資料();
             this.list_堆疊子資料 = this.Function_堆疊資料_取得子資料();
             List<object[]> list_堆疊子資料_DeleteValue = new List<object[]>();
             List<object[]> list_堆疊母資料_資料更新 = new List<object[]>();
 
+            //檢查是否需更新資料
             list_堆疊母資料_資料更新 = list_堆疊母資料.GetRows((int)enum_堆疊母資料.調劑台名稱, "更新資料");
             for (int i = 0; i < list_堆疊母資料_資料更新.Count; i++)
             {
-                GUID = list_堆疊母資料_資料更新[i][(int)enum_堆疊母資料.GUID].ObjectToString();
+                string GUID = list_堆疊母資料_資料更新[i][(int)enum_堆疊母資料.GUID].ObjectToString();
                 this.list_堆疊母資料.Remove(list_堆疊母資料_資料更新[i]);
                 this.Function_堆疊資料_刪除母資料(GUID);
                 PLC_Device_堆疊資料_檢查資料_更新儲位資料.Bool = true;
@@ -724,15 +739,38 @@ namespace 智能藥庫系統
                 this.Function_從SQL取得儲位到雲端資料();
                 PLC_Device_堆疊資料_檢查資料_更新儲位資料.Bool = false;
             }
+            //檢查刷新面板
+            list_堆疊母資料_資料更新 = list_堆疊母資料.GetRows((int)enum_堆疊母資料.調劑台名稱, "更新面板");
+            for (int i = 0; i < list_堆疊母資料_資料更新.Count; i++)
+            {
+                string GUID = list_堆疊母資料_資料更新[i][(int)enum_堆疊母資料.GUID].ObjectToString();
+                string IP = list_堆疊母資料_資料更新[i][(int)enum_堆疊母資料.IP].ObjectToString();
+                Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
+                List<Task> taskList = new List<Task>();
+                taskList.Add(Task.Run(() =>
+                {
+                    if (storage != null)
+                    {
+                        if (!this.storageUI_EPD_266.DrawToEpd_UDP(storage))
+                        {
+                            Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板上傳失敗!");
+                            return;
+                        }
+                        Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板上傳成功!");
+                    }
+                }));
+        
+            }
+            if(list_堆疊母資料_資料更新.Count > 0 )this.sqL_DataGridView_堆疊母資料.SQL_DeleteExtra(list_堆疊母資料_資料更新, false);
 
+            this.list_堆疊母資料 = this.Function_堆疊資料_取得母資料();
             for (int i = 0; i < this.list_堆疊子資料.Count; i++)
             {
-                GUID = this.list_堆疊子資料[i][(int)enum_堆疊子資料.Master_GUID].ObjectToString();
+                string GUID = this.list_堆疊子資料[i][(int)enum_堆疊子資料.Master_GUID].ObjectToString();
                 if (list_堆疊母資料.GetRows((int)enum_堆疊母資料.GUID, GUID).Count == 0)
                 {
                     list_堆疊子資料_DeleteValue.Add(this.list_堆疊子資料[i]);
                 }
-
             }
             for (int i = 0; i < list_堆疊子資料_DeleteValue.Count; i++)
             {
@@ -1027,8 +1065,8 @@ namespace 智能藥庫系統
         }
         #endregion
         #region PLC_堆疊資料_狀態更新
-        PLC_Device PLC_Device_堆疊資料_狀態更新 = new PLC_Device("S4210");
-        PLC_Device PLC_Device_堆疊資料_狀態更新_OK = new PLC_Device("S4211");
+        PLC_Device PLC_Device_堆疊資料_狀態更新 = new PLC_Device("");
+        PLC_Device PLC_Device_堆疊資料_狀態更新_OK = new PLC_Device("");
         int cnt_Program_堆疊資料_狀態更新 = 65534;
         void sub_Program_堆疊資料_狀態更新()
         {
@@ -1182,10 +1220,10 @@ namespace 智能藥庫系統
 
         #endregion
         #region PLC_堆疊資料_狀態檢查
-        PLC_Device PLC_Device_堆疊資料_狀態檢查 = new PLC_Device("S4220");
-        PLC_Device PLC_Device_堆疊資料_狀態檢查_不檢測 = new PLC_Device("S5246");
+        PLC_Device PLC_Device_堆疊資料_狀態檢查 = new PLC_Device("");
+        PLC_Device PLC_Device_堆疊資料_狀態檢查_不檢測 = new PLC_Device("");
         public int 堆疊資料_狀態檢查_感測設定值 = 80;
-        MyTimer MyTimer_堆疊資料_狀態檢查 = new MyTimer("D4007");
+        MyTimer MyTimer_堆疊資料_狀態檢查 = new MyTimer("K100");
         MyTimer MyTimer_堆疊資料_狀態檢查時間 = new MyTimer();
         int cnt_Program_堆疊資料_狀態檢查 = 65534;
         void sub_Program_堆疊資料_狀態檢查()
@@ -1382,8 +1420,8 @@ namespace 智能藥庫系統
         }
         #endregion      
         #region PLC_堆疊資料_入賬檢查
-        PLC_Device PLC_Device_堆疊資料_入賬檢查 = new PLC_Device("S4230");
-        MyTimer MyTimer_堆疊資料_入賬檢查刷新延遲 = new MyTimer();
+        PLC_Device PLC_Device_堆疊資料_入賬檢查 = new PLC_Device("");
+        MyTimer MyTimer_堆疊資料_入賬檢查刷新延遲 = new MyTimer("K100");
         int cnt_Program_堆疊資料_入賬檢查 = 65534;
         void sub_Program_堆疊資料_入賬檢查()
         {

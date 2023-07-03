@@ -416,9 +416,7 @@ C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Relea
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MeasureSystemFunction.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\AxAltairUDrv.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.dll
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OOXML.dll
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\office.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OpenXmlFormats.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\stdole.dll

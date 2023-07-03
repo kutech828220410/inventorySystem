@@ -53,11 +53,11 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_藥庫_儲位設定_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
             this.sqL_DataGridView_藥庫_儲位設定_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥庫_藥品資料().GetEnumNames());
             this.sqL_DataGridView_藥庫_儲位設定_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥庫_藥品資料.藥品碼, enum_藥庫_藥品資料.藥品名稱, enum_藥庫_藥品資料.中文名稱, enum_藥庫_藥品資料.包裝單位);
+            this.sqL_DataGridView_藥庫_儲位設定_EPD266_藥品資料_藥檔資料.RowDoubleClickEvent += SqL_DataGridView_藥庫_儲位設定_EPD266_藥品資料_藥檔資料_RowDoubleClickEvent;
 
             this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.Init();
             this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.RowEnterEvent += SqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料_RowEnterEvent;
 
-            this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.Init();
 
             this.rJ_TextBox_藥庫_儲位設定_EPD266_藥品搜尋_藥品碼.KeyPress += RJ_TextBox_藥庫_儲位設定_EPD266_藥品搜尋_藥品碼_KeyPress;
             this.rJ_TextBox_藥庫_儲位設定_EPD266_藥品搜尋_藥品名稱.KeyPress += RJ_TextBox_藥庫_儲位設定_EPD266_藥品搜尋_藥品名稱_KeyPress;
@@ -76,9 +76,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_儲位名稱字體更動.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_儲位名稱字體更動_MouseDownEvent;
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_總庫存字體更動.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_總庫存字體更動_MouseDownEvent;
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期字體更動.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期字體更動_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_新增效期.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_新增效期_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_修正庫存.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_修正庫存_MouseDownEvent;
-            this.plC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_修正批號.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_修正批號_MouseDownEvent;
+
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_面板亮燈.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_面板亮燈_MouseDownEvent;
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_清除燈號.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_清除燈號_MouseDownEvent;
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_上傳至面板.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_上傳至面板_MouseDownEvent;
@@ -93,7 +91,6 @@ namespace 智能藥庫系統
             this.plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_效期顯示.CheckStateChanged += PlC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_效期顯示_CheckStateChanged;
             this.plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_Barcode顯示.CheckStateChanged += PlC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_Barcode顯示_CheckStateChanged;
             this.plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_顯示空白儲位.CheckStateChanged += PlC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_顯示空白儲位_CheckStateChanged;
-            this.plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_手勢感測.CheckStateChanged += PlC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_手勢感測_CheckStateChanged;
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_匯出.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_匯出_MouseDownEvent;
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_匯入.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_匯入_MouseDownEvent;
             this.plC_RJ_Button_藥庫_儲位設定_EPD266_自動填入儲位名稱.MouseDownEvent += PlC_RJ_Button_藥庫_儲位設定_EPD266_自動填入儲位名稱_MouseDownEvent;
@@ -101,12 +98,15 @@ namespace 智能藥庫系統
             this.plC_UI_Init.Add_Method(this.Program_藥庫_儲位設定_EPD266);
         }
 
+    
+
         private void Program_藥庫_儲位設定_EPD266()
         {
             if (this.plC_ScreenPage_Main.PageText == "藥庫" && this.plC_ScreenPage_藥庫.PageText == "儲位管理" && this.plC_ScreenPage_藥庫_儲位管理.PageText == "EPD266")
             {
                 if (flag_Program_藥庫_儲位設定_EPD266_Init == false)
                 {
+                    this.List_藥庫_DeviceBasic = DeviceBasicClass_藥庫.SQL_GetAllDeviceBasic();
                     PLC_Device_藥庫_儲位設定_EPD266_資料更新.Bool = true;
                     flag_Program_藥庫_儲位設定_EPD266_Init = true;
                 }
@@ -261,6 +261,8 @@ namespace 智能藥庫系統
 
                     storage.IsWarning = (警訊藥品_buf == "TRUE");
 
+
+                    storage = Function_藥庫_儲位設定_EPD266_儲位資料_更新效期批號(storage);
                 }
                 if (Is_Replace)
                 {
@@ -307,7 +309,44 @@ namespace 智能藥庫系統
         }
 
         #endregion
+
+
+        #region Function
+        private Storage Function_藥庫_儲位設定_EPD266_儲位資料_更新效期批號(Storage storage)
+        {
+            lock(storage)
+            {
+                List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+                deviceBasics = (from temp in List_藥庫_DeviceBasic
+                                where temp.Code == storage.Code
+                                select temp).ToList();
+                if (deviceBasics.Count > 0)
+                {
+                    lock (deviceBasics[0])
+                    {
+                        storage.List_Validity_period.Clear();
+                        storage.List_Lot_number.Clear();
+                        storage.List_Inventory.Clear();
+
+                        for (int i = 0; i < deviceBasics[0].List_Inventory.Count; i++)
+                        {
+                            string Validity_period = deviceBasics[0].List_Validity_period[i];
+                            string Lot_number = deviceBasics[0].List_Lot_number[i];
+                            string Inventory = deviceBasics[0].List_Inventory[i];
+                            storage.新增效期(Validity_period, Lot_number, Inventory);
+                        }
+                    }             
+                }
+            }
+          
+            return storage;
+        }
+        #endregion
         #region Event
+        private void SqL_DataGridView_藥庫_儲位設定_EPD266_藥品資料_藥檔資料_RowDoubleClickEvent(object[] RowValue)
+        {
+            PlC_RJ_Button_藥庫_儲位設定_EPD266_藥品搜尋_填入資料_MouseDownEvent(null);
+        }
         private void SqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料_RowEnterEvent(object[] RowValue)
         {
             string IP = RowValue[(int)enum_藥庫_儲位設定_EPD266_儲位資料.IP].ObjectToString();
@@ -347,20 +386,9 @@ namespace 智能藥庫系統
                 this.plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_中文名稱顯示.Checked = (bool)storage.GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Visable);
                 this.plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_效期顯示.Checked = (bool)storage.GetValue(Device.ValueName.效期, Device.ValueType.Visable);
                 this.plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_Barcode顯示.Checked = (bool)storage.GetValue(Device.ValueName.BarCode, Device.ValueType.Visable);
-                this.plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_手勢感測.Checked = storage.TOFON;
             }));
-            sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.ClearGrid();
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < storage.List_Validity_period.Count; i++)
-            {
-                object[] value = new object[new enum_藥庫_儲位設定_EPD266_效期及庫存().GetLength()];
-                value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.效期] = storage.List_Validity_period[i];
-                value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.批號] = storage.List_Lot_number[i];
-                value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.庫存] = storage.List_Inventory[i];
-                list_value.Add(value);
-            }
 
-            sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.RefreshGrid(list_value);
+
         }
         private void RJ_TextBox_藥庫_儲位設定_EPD266_藥品搜尋_藥品名稱_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -457,6 +485,8 @@ namespace 智能藥庫系統
             value[(int)enum_藥庫_儲位設定_EPD266_儲位資料.藥品條碼] = storage.GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
             value[(int)enum_藥庫_儲位設定_EPD266_儲位資料.庫存] = storage.GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
             value[(int)enum_藥庫_儲位設定_EPD266_儲位資料.警訊藥品] = storage.IsWarning.ToString();
+            storage = Function_藥庫_儲位設定_EPD266_儲位資料_更新效期批號(storage);
+
             this.List_EPD266_本地資料.Add_NewStorage(storage);
             this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
             this.epD_266_Pannel.DrawToPictureBox(storage);
@@ -601,263 +631,7 @@ namespace 智能藥庫系統
                 }
             }));
         }
-        private void PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_修正庫存_MouseDownEvent(MouseEventArgs mevent)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.epD_266_Pannel.CurrentStorage;
-                if (storage == null)
-                {
-                    MyMessageBox.ShowDialog("未選擇儲位!");
-                    return;
-                }
-                object[] value = sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.GetRowValues();
-                if (value == null)
-                {
-                    MyMessageBox.ShowDialog("未選擇效期!");
-                    return;
-                }
-                string 效期 = value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.效期].ObjectToString();
-                string 批號 = value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.批號].ObjectToString();
-                string 數量 = "";
-                Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
-                if (dialog_NumPannel.ShowDialog() == DialogResult.Yes)
-                {
-                    數量 = dialog_NumPannel.Value.ToString();
-                }
-                else
-                {
-                    return;
-                }
 
-
-                int 原有庫存 = storage.取得庫存();
-                string 藥品碼 = storage.Code;
-                藥品碼 = Function_藥品碼檢查(藥品碼);
-                string 庫存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
-                storage.效期庫存覆蓋(效期, 數量);
-                int 修正庫存 = storage.取得庫存();
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-                this.List_EPD266_本地資料.Add_NewStorage(storage);
-
-
-                string GUID = Guid.NewGuid().ToString();
-                string 動作 = enum_交易記錄查詢動作.修正庫存.GetEnumName();
-                string 藥品名稱 = storage.Name;
-                string 交易量 = (修正庫存 - 原有庫存).ToString();
-                string 結存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
-                string 操作人 = this.登入者名稱;
-                string 操作時間 = DateTime.Now.ToDateTimeString_6();
-                string 開方時間 = DateTime.Now.ToDateTimeString_6();
-                string 備註 = $"效期[{效期}],批號[{批號}]";
-                object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
-                value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
-                value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
-                value_trading[(int)enum_交易記錄查詢資料.藥品碼] = 藥品碼;
-                value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
-                value_trading[(int)enum_交易記錄查詢資料.庫存量] = 庫存量;
-                value_trading[(int)enum_交易記錄查詢資料.交易量] = 交易量;
-                value_trading[(int)enum_交易記錄查詢資料.結存量] = 結存量;
-                value_trading[(int)enum_交易記錄查詢資料.操作人] = 操作人;
-                value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
-                value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
-
-                this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
-
-                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.GetRows((int)enum_藥庫_儲位設定_EPD266_儲位資料.IP, storage.IP, false);
-                if (list_value.Count == 0) return;
-                list_value[0][(int)enum_藥庫_儲位設定_EPD266_儲位資料.庫存] = storage.取得庫存();
-                this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.Replace((int)enum_藥庫_儲位設定_EPD266_儲位資料.IP, storage.IP, list_value[0], true);
-
-                sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.ClearGrid();
-                list_value = new List<object[]>();
-                for (int i = 0; i < storage.List_Validity_period.Count; i++)
-                {
-                    value = new object[new enum_藥庫_儲位設定_EPD266_效期及庫存().GetLength()];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.效期] = storage.List_Validity_period[i];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.批號] = storage.List_Lot_number[i];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.庫存] = storage.List_Inventory[i];
-                    list_value.Add(value);
-                }
-
-                sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.RefreshGrid(list_value);
-                this.Function_設定雲端資料更新();
-            }));
-
-        }
-        private void PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_新增效期_MouseDownEvent(MouseEventArgs mevent)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.epD_266_Pannel.CurrentStorage;
-                if (storage == null)
-                {
-                    MyMessageBox.ShowDialog("未選擇儲位!");
-                    return;
-                }
-                string 效期 = "";
-                string 批號 = "";
-                string 數量 = "";
-                Dialog_DateTime dialog_DateTime = new Dialog_DateTime();
-                if (dialog_DateTime.ShowDialog() == DialogResult.Yes)
-                {
-                    效期 = dialog_DateTime.Value.ToDateString();
-                }
-                else
-                {
-                    return;
-                }
-                Dialog_輸入批號 dialog_輸入批號 = new Dialog_輸入批號();
-                if (dialog_輸入批號.ShowDialog() == DialogResult.Yes)
-                {
-                    批號 = dialog_輸入批號.Value;
-                }
-                else
-                {
-                    return;
-                }
-                Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
-                if (dialog_NumPannel.ShowDialog() == DialogResult.Yes)
-                {
-                    數量 = dialog_NumPannel.Value.ToString();
-                }
-                else
-                {
-                    return;
-                }
-
-                int 原有庫存 = storage.取得庫存();
-                string 藥品碼 = storage.Code;
-                藥品碼 = Function_藥品碼檢查(藥品碼);
-                string 庫存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
-                storage.效期庫存覆蓋(效期, 批號, 數量);
-                int 修正庫存 = storage.取得庫存();
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-
-                string GUID = Guid.NewGuid().ToString();
-                string 動作 = enum_交易記錄查詢動作.新增效期.GetEnumName();
-                string 藥品名稱 = storage.Name;
-                string 交易量 = (修正庫存 - 原有庫存).ToString();
-                string 結存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
-                string 操作人 = this.登入者名稱;
-                string 操作時間 = DateTime.Now.ToDateTimeString_6();
-                string 開方時間 = DateTime.Now.ToDateTimeString_6();
-                string 備註 = $"效期[{效期}],批號[{批號}]";
-
-                object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
-                value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
-                value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
-                value_trading[(int)enum_交易記錄查詢資料.庫別] = enum_庫別.藥庫;
-                value_trading[(int)enum_交易記錄查詢資料.藥品碼] = 藥品碼;
-                value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
-                value_trading[(int)enum_交易記錄查詢資料.庫存量] = 庫存量;
-                value_trading[(int)enum_交易記錄查詢資料.交易量] = 交易量;
-                value_trading[(int)enum_交易記錄查詢資料.結存量] = 結存量;
-                value_trading[(int)enum_交易記錄查詢資料.操作人] = 操作人;
-                value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
-                value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
-
-                this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
-
-                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.GetRows((int)enum_藥庫_儲位設定_EPD266_儲位資料.IP, storage.IP, false);
-                if (list_value.Count == 0) return;
-                list_value[0][(int)enum_藥庫_儲位設定_EPD266_儲位資料.庫存] = storage.取得庫存();
-                this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.Replace((int)enum_藥庫_儲位設定_EPD266_儲位資料.IP, storage.IP, list_value[0], true);
-
-                sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.ClearGrid();
-                list_value = new List<object[]>();
-                for (int i = 0; i < storage.List_Validity_period.Count; i++)
-                {
-                    object[] value = new object[new enum_藥庫_儲位設定_EPD266_效期及庫存().GetLength()];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.效期] = storage.List_Validity_period[i];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.批號] = storage.List_Lot_number[i];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.庫存] = storage.List_Inventory[i];
-                    list_value.Add(value);
-                }
-                sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.RefreshGrid(list_value);
-                this.Function_設定雲端資料更新();
-            }));
-
-        }
-        private void PlC_RJ_Button_藥庫_儲位設定_EPD266_儲位內容_效期管理_修正批號_MouseDownEvent(MouseEventArgs mevent)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.epD_266_Pannel.CurrentStorage;
-                if (storage == null)
-                {
-                    MyMessageBox.ShowDialog("未選擇儲位!");
-                    return;
-                }
-                object[] value = sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.GetRowValues();
-                if (value == null)
-                {
-                    MyMessageBox.ShowDialog("未選擇效期!");
-                    return;
-                }
-                string 效期 = value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.效期].ObjectToString();
-                string 舊批號 = value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.批號].ObjectToString();
-                string 新批號 = "";
-
-                Dialog_輸入批號 dialog_輸入批號 = new Dialog_輸入批號();
-                if (dialog_輸入批號.ShowDialog() == DialogResult.Yes)
-                {
-                    新批號 = dialog_輸入批號.Value;
-                }
-                else
-                {
-                    return;
-                }
-
-
-                storage.修正批號(效期, 新批號);
-                this.List_EPD266_本地資料.Add_NewStorage(storage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-
-
-                string GUID = Guid.NewGuid().ToString();
-                string 動作 = enum_交易記錄查詢動作.修正批號.GetEnumName();
-                string 藥品名稱 = storage.Name;
-                string 交易量 = (0).ToString();
-                string 結存量 = 0.ToString();
-                string 操作人 = this.登入者名稱;
-                string 操作時間 = DateTime.Now.ToDateTimeString_6();
-                string 開方時間 = DateTime.Now.ToDateTimeString_6();
-                string 備註 = $"效期[{效期}]新批號[{新批號}]";
-
-                object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
-                value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
-                value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
-                value_trading[(int)enum_交易記錄查詢資料.藥品碼] = "";
-                value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
-                value_trading[(int)enum_交易記錄查詢資料.庫存量] = 0.ToString();
-                value_trading[(int)enum_交易記錄查詢資料.交易量] = 交易量;
-                value_trading[(int)enum_交易記錄查詢資料.結存量] = 結存量;
-                value_trading[(int)enum_交易記錄查詢資料.操作人] = 操作人;
-                value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
-                value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
-
-                this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
-
-                List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.GetRows((int)enum_藥庫_儲位設定_EPD266_儲位資料.IP, storage.IP, false);
-                if (list_value.Count == 0) return;
-                list_value[0][(int)enum_藥庫_儲位設定_EPD266_儲位資料.庫存] = storage.取得庫存();
-                this.sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.Replace((int)enum_藥庫_儲位設定_EPD266_儲位資料.IP, storage.IP, list_value[0], true);
-
-                sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.ClearGrid();
-                list_value = new List<object[]>();
-                for (int i = 0; i < storage.List_Validity_period.Count; i++)
-                {
-                    value = new object[new enum_藥庫_儲位設定_EPD266_效期及庫存().GetLength()];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.效期] = storage.List_Validity_period[i];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.批號] = storage.List_Lot_number[i];
-                    value[(int)enum_藥庫_儲位設定_EPD266_效期及庫存.庫存] = storage.List_Inventory[i];
-                    list_value.Add(value);
-                }
-                sqL_DataGridView_藥庫_儲位設定_EPD266_儲位內容_效期及庫存.RefreshGrid(list_value);
-                this.Function_設定雲端資料更新();
-            }));
-        }
         private void PlC_RJ_Button_藥庫_儲位設定_EPD266_面板亮燈_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = sqL_DataGridView_藥庫_儲位設定_EPD266_儲位資料.Get_All_Select_RowsValues();
@@ -1190,18 +964,7 @@ namespace 智能藥庫系統
         {
             PLC_Device_藥庫_儲位設定_EPD266_資料更新.Bool = true;
         }
-        private void PlC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_手勢感測_CheckStateChanged(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                Storage storage = this.epD_266_Pannel.CurrentStorage;
-                if (storage == null) return;
-                storage.TOFON = plC_CheckBox_藥庫_儲位設定_EPD266_儲位內容_手勢感測.Checked;
-                this.epD_266_Pannel.DrawToPictureBox(this.epD_266_Pannel.CurrentStorage);
-                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
-                this.Function_設定雲端資料更新();
-            }));
-        }
+     
         private void PlC_RJ_Button_藥庫_儲位設定_EPD266_自動填入儲位名稱_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("確認自動填入儲位名稱?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;

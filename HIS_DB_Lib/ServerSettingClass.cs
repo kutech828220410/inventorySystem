@@ -79,7 +79,7 @@ namespace HIS_DB_Lib
         API_交易紀錄資料,
         API_本地端,
         API_VM端,
-    
+        API_inspection_excel,
         API01,
         API02,
         Website,

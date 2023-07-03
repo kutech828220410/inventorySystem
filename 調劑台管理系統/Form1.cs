@@ -69,12 +69,14 @@ namespace 調劑台管理系統
 
             private string web_URL = "";
             private string api_URL = "";
+            private string login_URL = "";
             private string name = "";
             private string api_Server = "";
 
             private string orderApiURL = "";
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
+
 
 
             [JsonIgnore]
@@ -95,12 +97,12 @@ namespace 調劑台管理系統
             [JsonIgnore]
             public string Api_URL { get => api_URL; set => api_URL = value; }
             [JsonIgnore]
-            public string Web_URL { get => web_URL; set => web_URL = value; }
+            public string Web_URL { get => web_URL; set => web_URL = value; } 
+            [JsonIgnore]
+            public string Login_URL { get => login_URL; set => login_URL = value; }
+
+
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
-         
-     
-   
-          
         }
         private void LoadDBConfig()
         {
@@ -428,6 +430,9 @@ namespace 調劑台管理系統
             if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Website);
             if (serverSettingClass != null) dBConfigClass.Web_URL = serverSettingClass.Server;
+
+            serverSettingClass = serverSettingClasses.MyFind("Main", enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
+            if (serverSettingClass != null) dBConfigClass.Login_URL = serverSettingClass.Server;
         }
 
         private void Form1_Load(object sender, EventArgs e)

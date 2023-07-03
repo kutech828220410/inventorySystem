@@ -41,6 +41,10 @@ namespace HIS_DB_Lib
         public string Color { get; set; }
         [JsonPropertyName("level")]
         public string level { get; set; }
+        [JsonPropertyName("UID")]
+        public string UID { get; set; }
+        [JsonPropertyName("BARCODE")]
+        public string BARCODE { get; set; }
 
         public List<string> Permissions { get => permissions; set => permissions = value; }
         private List<string> permissions = new List<string>();

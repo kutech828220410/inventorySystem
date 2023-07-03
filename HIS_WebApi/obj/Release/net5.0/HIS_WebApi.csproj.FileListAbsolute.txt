@@ -1122,3 +1122,4 @@ C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_Web
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.Drawing.Common.dll

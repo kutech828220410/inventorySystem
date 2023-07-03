@@ -434,9 +434,7 @@ C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\ZealTech
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Interop.SpeechLib.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\zxing.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\MeasureSystemFunction.dll
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OOXML.dll
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OpenXmlFormats.dll
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\stdole.dll

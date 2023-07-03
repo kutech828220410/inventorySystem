@@ -469,30 +469,6 @@ namespace 調劑台管理系統
                 cnt++;
                 return;
             }
-            //if (list_RFID_Devices.Count > 0)
-            //{
-            //    Console.WriteLine($"已讀取到RFID資料<{list_RFID_Devices.Count}筆>...");
-            //    for (int i = 0; i < list_RFID_Devices.Count; i++)
-            //    {
-            //        if (list_RFID_Devices[i].station == this.領藥台_01_RFID站號)
-            //        {
-            //            Console.WriteLine($"成功讀取RFID");
-            //            this.領藥台_01_卡號 = list_RFID_Devices[i].UID;
-            //            List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), this.領藥台_01_卡號, false);
-            //            if (list_人員資料.Count == 0) return;
-            //            Console.WriteLine($"取得人員資料完成!");
-            //            this.Invoke(new Action(delegate
-            //            {
-            //                textBox_領藥台_01_帳號.Texts = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
-            //                textBox_領藥台_01_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
-            //                this.PlC_RJ_Button_領藥台_01_登入_MouseDownEvent(null);
-            //            }));
-            //            Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, this.領藥台_01_登入者姓名, "01.號使用者");
-            //            cnt++;
-            //            return;
-            //        }
-            //    }
-            //}
             else if (MySerialPort_Scanner01.ReadByte() != null && !PLC_Device_領藥台_01_已登入.Bool)
             {
                 string text = this.MySerialPort_Scanner01.ReadString();

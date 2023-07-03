@@ -626,7 +626,22 @@ namespace 調劑台管理系統
             }
             return false;
         }
+        private void Function_登入權限資料_取得權限(List<string> Permissions)
+        {
+            for(int i = 0; i < Permissions.Count; i++)
+            {
+                string Name = Permissions[i];
+                if(Name != "None")
+                {
+                    this.List_PLC_Device_權限管理[i].Bool = true;
+                }
+                else
+                {
+                    this.List_PLC_Device_權限管理[i].Bool = false;
+                }
 
+            }
+        }
         private void Function_登入權限資料_取得權限(int level)
         {
             LoginDataWebAPI.Class_login_data class_Login_Data = this.loginUI.Get_login_data(level);

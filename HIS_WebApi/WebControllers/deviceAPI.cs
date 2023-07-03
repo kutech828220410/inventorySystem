@@ -20,6 +20,10 @@ using System.IO;
 using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+using DrawingClass;
+
 
 namespace HIS_WebApi
 {
@@ -127,7 +131,7 @@ namespace HIS_WebApi
 
                 List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClasses[0]);
                 returnData.Code = 200;
-                returnData.Result = $"Device取得成功!TableName : {device_TableName}";
+                returnData.Result = $"Device取得成功!TableName : {serverSettingClasses[0].TableName}";
                 returnData.Data = deviceBasics;
                 return returnData.JsonSerializationt();
             }
@@ -165,6 +169,17 @@ namespace HIS_WebApi
             returnData.Method = "light";
             try
             {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string device_Server = serverSettingClasses[0].Server;
+                string device_DB = serverSettingClasses[0].DBName;
+
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 Color color = returnData.Value.ToColor();
                 string json_in = returnData.Data.JsonSerializationt();
@@ -225,7 +240,62 @@ namespace HIS_WebApi
             }
         }
 
+        [Route("refresh_canvas")]
+        [HttpPost]
+        public string POST_refresh_canvas(returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "refresh_canvas";
+            try
+            {
+                List<object[]> list_add = new List<object[]>();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string device_Server = serverSettingClasses[0].Server;
+                string device_DB = serverSettingClasses[0].DBName;
 
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                Color color = returnData.Value.ToColor();
+                string json_in = returnData.Data.JsonSerializationt();
+                List<DeviceBasic> deviceBasics = json_in.JsonDeserializet<List<DeviceBasic>>();
+                for (int i = 0; i < deviceBasics.Count; i++)
+                {
+                    string IP = deviceBasics[i].IP;
+                    object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
+                    value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_取藥堆疊母資料.IP] = IP;
+                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "更新面板";
+                    list_add.Add(value);
+                }
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+                sQLControl_take_medicine_stack_new.AddRows(null, list_add);
+
+                returnData.Code = 200;
+                returnData.Result = $"設備刷新上傳完成!";
+                returnData.TimeTaken = myTimer.ToString();
+                return returnData.JsonSerializationt();
+
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Data = null;
+                return returnData.JsonSerializationt(true);
+            }
+            finally
+            {
+
+            }
+        }
         public List<DeviceBasic> Function_Get_device()
         {
             return Function_Get_device(device_Server, device_DB, device_TableName, UserName, Password, Port);
@@ -728,5 +798,7 @@ namespace HIS_WebApi
         }
         #endregion
         #endregion
+
+
     }
 }

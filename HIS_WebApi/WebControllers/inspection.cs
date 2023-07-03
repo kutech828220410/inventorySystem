@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +8,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SQLUI;
 using Basic;
+using System.Text; 
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
@@ -24,6 +27,12 @@ namespace HIS_WebApi
     [ApiController]
     public class inspectionController : Controller
     {
+        private IHostingEnvironment _environment;
+        public inspectionController(IHostingEnvironment env)
+        {
+            _environment = env;
+
+        }
         static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
@@ -409,22 +418,13 @@ namespace HIS_WebApi
             creat.建表時間 = DateTime.Now.ToDateTimeString();
             creat.驗收開始時間 = DateTime.MaxValue.ToDateTimeString();
             creat.驗收結束時間 = DateTime.MaxValue.ToDateTimeString();
-
+            creat.驗收狀態 = "等待驗收";
             List<object[]> list_inspection_creat_add = new List<object[]>();
             List<object[]> list_inspection_content_add = new List<object[]>();
             object[] value;
             value = new object[new enum_驗收單號().GetLength()];
 
-            value[(int)enum_驗收單號.GUID] = creat.GUID;
-            value[(int)enum_驗收單號.驗收單號] = creat.驗收單號;
-            value[(int)enum_驗收單號.驗收名稱] = creat.驗收名稱;
-            value[(int)enum_驗收單號.建表人] = creat.建表人;
-            value[(int)enum_驗收單號.建表時間] = creat.建表時間;
-            value[(int)enum_驗收單號.驗收開始時間] = creat.驗收開始時間;
-            value[(int)enum_驗收單號.驗收結束時間] = creat.驗收結束時間;
-            value[(int)enum_驗收單號.驗收狀態] = "等待驗收";
-            value[(int)enum_驗收單號.備註] = creat.備註;
-
+            value = creat.ClassToSQL<inspectionClass.creat, enum_驗收單號>();
             list_inspection_creat_add.Add(value);
 
             for (int i = 0; i < creat.Contents.Count; i++)
@@ -434,16 +434,8 @@ namespace HIS_WebApi
                 creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
                 creat.Contents[i].Master_GUID = creat.GUID;
                 creat.Contents[i].驗收單號 = creat.驗收單號;
-                value[(int)enum_驗收內容.GUID] = creat.Contents[i].GUID;
-                value[(int)enum_驗收內容.Master_GUID] = creat.Contents[i].Master_GUID;
-                value[(int)enum_驗收內容.藥品碼] = creat.Contents[i].藥品碼;
-                value[(int)enum_驗收內容.料號] = creat.Contents[i].料號;
-                value[(int)enum_驗收內容.藥品條碼1] = creat.Contents[i].藥品條碼1;
-                value[(int)enum_驗收內容.藥品條碼2] = creat.Contents[i].藥品條碼2;
-                value[(int)enum_驗收內容.驗收單號] = creat.Contents[i].驗收單號;
-                value[(int)enum_驗收內容.應收數量] = creat.Contents[i].應收數量;
-                value[(int)enum_驗收內容.新增時間] = creat.Contents[i].新增時間;
-                value[(int)enum_驗收內容.備註] = creat.Contents[i].備註;
+
+                value = creat.Contents[i].ClassToSQL<inspectionClass.content, enum_驗收內容>();
                 list_inspection_content_add.Add(value);
             }
             sQLControl_inspection_creat.AddRows(null, list_inspection_creat_add);
@@ -1208,6 +1200,31 @@ namespace HIS_WebApi
             return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_驗收表.xlsx"));
         }
 
+
+        [HttpPost]
+        [Consumes("application/json", "multipart/form-data")]
+        public async Task<string> PostExcel([FromForm] IFormFile file)
+        {
+            var formFile = Request.Form.Files.FirstOrDefault();
+
+            if (formFile == null)
+            {
+                throw new Exception("文件不能為空");
+            }
+            string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            System.Data.DataTable dataTable;
+            string json = "";
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                await formFile.CopyToAsync(memoryStream);
+                json = ExcelClass.NPOI_LoadSheetToJson(memoryStream.ToArray(), extension);
+                // 在这里可以对 memoryStream 进行操作，例如读取或写入数据
+            }
+
+            return json;
+        }
+
         private returnData Function_Get_inspection_creat(ServerSettingClass serverSettingClass, string MED_TableName, List<object[]> list_inspection_creat)
         {
             return Function_Get_inspection_creat(serverSettingClass, MED_TableName, list_inspection_creat, true);
@@ -1311,6 +1328,8 @@ namespace HIS_WebApi
             returnData.Result = $"成功! {myTimer.ToString()}";
             return returnData;
         }
+      
+
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {

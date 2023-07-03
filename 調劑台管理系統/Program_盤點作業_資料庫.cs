@@ -29,7 +29,7 @@ namespace 調劑台管理系統
             List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
             if (tables == null)
             {
-                MyMessageBox.ShowDialog("盤點作業表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                MyMessageBox.ShowDialog($"盤點作業表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
                 return;
             }
 

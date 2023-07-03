@@ -29,7 +29,7 @@ namespace 智能藥庫系統
             List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
             if(tables == null)
             {
-                MyMessageBox.ShowDialog("盤點作業表單建立失敗!!");
+                MyMessageBox.ShowDialog($"盤點作業表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
                 return;
             }
             for (int i = 0; i < tables.Count; i++)

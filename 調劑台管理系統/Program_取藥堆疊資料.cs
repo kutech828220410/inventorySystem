@@ -888,24 +888,31 @@ namespace 調劑台管理系統
         private void Program_取藥堆疊資料_Init()
         {
 
-            this.sqL_DataGridView_取藥堆疊母資料.Init();
-            if (!this.sqL_DataGridView_取藥堆疊母資料.SQL_IsTableCreat())
+            string url = $"{dBConfigClass.Api_URL}/api/OutTakeMed/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
+            if (tables == null)
             {
-                this.sqL_DataGridView_取藥堆疊母資料.SQL_CreateTable();
+                MyMessageBox.ShowDialog($"取藥堆疊表單建立失敗!! Api_URL:{url}");
+                return;
             }
-            else
+
+            for (int i = 0; i < tables.Count; i++)
             {
-                this.sqL_DataGridView_取藥堆疊母資料.SQL_CheckAllColumnName(true);
+                if (tables[i].TableName == this.sqL_DataGridView_取藥堆疊母資料.TableName)
+                {
+                    this.sqL_DataGridView_取藥堆疊母資料.Init(tables[i]);
+                }
+                if (tables[i].TableName == this.sqL_DataGridView_取藥堆疊子資料.TableName)
+                {
+                    this.sqL_DataGridView_取藥堆疊子資料.Init(tables[i]);
+                }
             }
-            this.sqL_DataGridView_取藥堆疊子資料.Init();
-            if (!this.sqL_DataGridView_取藥堆疊子資料.SQL_IsTableCreat())
-            {
-                this.sqL_DataGridView_取藥堆疊子資料.SQL_CreateTable();
-            }
-            else
-            {
-                this.sqL_DataGridView_取藥堆疊子資料.SQL_CheckAllColumnName(true);
-            }
+
             this.MyThread_取藥堆疊資料_檢查資料 = new MyThread();
             this.MyThread_取藥堆疊資料_檢查資料.AutoRun(true);
             this.MyThread_取藥堆疊資料_檢查資料.AutoStop(true);

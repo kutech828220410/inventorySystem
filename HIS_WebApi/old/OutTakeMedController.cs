@@ -68,6 +68,32 @@ namespace HIS_WebApi
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         MyTimer myTimer = new MyTimer(50000);
 
+
+        [Route("init")]
+        [HttpPost]
+        public string GET_init([FromBody] returnData returnData)
+        {
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                return CheckCreatTable(serverSettingClasses[0]);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+
         [Route("statu")]
         [HttpGet()]
         public string Get_statu()
@@ -692,5 +718,72 @@ namespace HIS_WebApi
             else return Color.Red;
         }
         #endregion
+        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        {
+
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            List<Table> tables = new List<Table>();
+            SQLControl sQLControl_take_medicine_stack_new = new SQLControl(Server, DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+            Table table = new Table("take_medicine_stack_new");
+            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table.AddColumnList("序號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table.AddColumnList("調劑台名稱", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("IP", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("操作人", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("動作", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table.AddColumnList("作業模式", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("藥袋序號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("類別", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table.AddColumnList("單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("病歷號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("病人姓名", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("床號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("操作時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
+            table.AddColumnList("開方時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
+            table.AddColumnList("顏色", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("狀態", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("庫存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("總異動量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("結存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("效期", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("批號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table.AddColumnList("收支原因", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table.AddColumnList("診別", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            if (!sQLControl_take_medicine_stack_new.IsTableCreat()) sQLControl_take_medicine_stack_new.CreatTable(table);
+            else sQLControl_take_medicine_stack_new.CheckAllColumnName(table, true);
+            tables.Add(table);
+            SQLControl sQLControl_take_medicine_substack_new = new SQLControl(Server, DB, "take_medicine_substack_new", UserName, Password, Port, SSLMode);
+            table = new Table("take_medicine_substack_new");
+            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table.AddColumnList("Device_GUID", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table.AddColumnList("序號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table.AddColumnList("調劑台名稱", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("IP", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("Num", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("TYPE", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("效期", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("批號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("異動量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("致能", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("流程作業完成", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table.AddColumnList("配藥完成", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("調劑結束", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("已入帳", Table.StringType.VARCHAR, 10, Table.IndexType.None);        
+            if (!sQLControl_take_medicine_substack_new.IsTableCreat()) sQLControl_take_medicine_substack_new.CreatTable(table);
+            else sQLControl_take_medicine_substack_new.CheckAllColumnName(table, true);
+            tables.Add(table);
+
+            return tables.JsonSerializationt(true);
+        }
     }
 }
