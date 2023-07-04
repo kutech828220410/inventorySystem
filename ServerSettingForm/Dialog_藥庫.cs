@@ -291,7 +291,7 @@ namespace ServerSettingForm
                rJ_TextBox_Website.Text, "", "", "", "", ""));
             }
 
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.Website);
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_inspection_excel);
             if (serverSettingClass != null)
             {
                 serverSettingClass.Server = rJ_TextBox_inspection_excel.Texts;

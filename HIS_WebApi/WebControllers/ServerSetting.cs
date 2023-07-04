@@ -152,7 +152,7 @@ namespace HIS_WebApi
             table.AddColumnList("類別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("程式類別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("內容", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("Server", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("Server", Table.StringType.VARCHAR, 300, Table.IndexType.None);
             table.AddColumnList("Port", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("DBName", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("TableName", Table.StringType.VARCHAR, 50, Table.IndexType.None);

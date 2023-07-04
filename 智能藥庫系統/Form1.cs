@@ -309,7 +309,7 @@ namespace 智能藥庫系統
             this.sub_Program_藥庫_儲位管理_Init();
             this.sub_Program_藥庫_儲位管理_區域儲位_Init();
             this.sub_Program_藥庫_儲位管理_Pannel35_Init();
-            this.sub_Program_藥庫_儲位設定_EPD266_Init();
+            this.sub_Program_藥庫_儲位管理_EPD266_Init();
             this.sub_Program_藥庫_入庫_Init();
   
 
