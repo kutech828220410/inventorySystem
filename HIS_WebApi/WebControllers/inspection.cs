@@ -14,9 +14,6 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using System.Configuration;
 using MyOffice;
-using NPOI;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.IO;
 using MyUI;
 using H_Pannel_lib;
@@ -414,6 +411,13 @@ namespace HIS_WebApi
                 returnData.Result += $"驗收單號: {creat.驗收單號} 已存在,請刪除後再建立! \n";
                 return returnData.JsonSerializationt();
             }
+            if(creat.驗收單號.StringIsEmpty())
+            {
+                string IC_SN_json = GET_new_IC_SN(returnData);
+                returnData returnData_IC_SN = IC_SN_json.JsonDeserializet<returnData>();
+                creat.驗收單號 = returnData_IC_SN.Value;
+            }
+            
             creat.GUID = Guid.NewGuid().ToString();
             creat.建表時間 = DateTime.Now.ToDateTimeString();
             creat.驗收開始時間 = DateTime.MaxValue.ToDateTimeString();
@@ -427,14 +431,47 @@ namespace HIS_WebApi
             value = creat.ClassToSQL<inspectionClass.creat, enum_驗收單號>();
             list_inspection_creat_add.Add(value);
 
+
+            MED_pageController mED_PageController = new MED_pageController();
+            returnData returnData_med = new returnData();
+            returnData_med.Server = Server;
+            returnData_med.DbName = DB;
+            returnData_med.TableName = returnData.TableName;
+            returnData_med.Port = Port;
+            returnData_med.UserName = UserName;
+            returnData_med.Password = Password;
+
+            returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
+            List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
+            List<medClass> medClasses_buf = new List<medClass>();
             for (int i = 0; i < creat.Contents.Count; i++)
             {
-                value = new object[new enum_驗收內容().GetLength()];
+                string 藥品碼 = creat.Contents[i].藥品碼;
+                string 料號 = creat.Contents[i].料號;
+                if (藥品碼.StringIsEmpty() == false)
+                {
+                    medClasses_buf = (from temp in medClasses
+                                      where temp.藥品碼 == 藥品碼
+                                      select temp).ToList();
+                }
+                else if (料號.StringIsEmpty() == false)
+                {
+                    medClasses_buf = (from temp in medClasses
+                                      where temp.料號 == 料號
+                                      select temp).ToList();
+                }
                 creat.Contents[i].GUID = Guid.NewGuid().ToString();
                 creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
                 creat.Contents[i].Master_GUID = creat.GUID;
                 creat.Contents[i].驗收單號 = creat.驗收單號;
-
+                if(medClasses_buf.Count > 0)
+                {
+                    creat.Contents[i].藥品碼 = medClasses_buf[0].藥品碼;
+                    creat.Contents[i].料號 = medClasses_buf[0].料號;
+                    creat.Contents[i].藥品名稱 = medClasses_buf[0].藥品名稱;
+                    creat.Contents[i].中文名稱 = medClasses_buf[0].中文名稱;
+                }
+                value = new object[new enum_驗收內容().GetLength()];
                 value = creat.Contents[i].ClassToSQL<inspectionClass.content, enum_驗收內容>();
                 list_inspection_content_add.Add(value);
             }
@@ -485,7 +522,6 @@ namespace HIS_WebApi
 
                 deviceController deviceController = new deviceController();
                 serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
-                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0]);
 
                 inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
                 creat.驗收單號 = str_IC_SN;
@@ -500,15 +536,7 @@ namespace HIS_WebApi
                     content.藥品條碼2 = medClasses[i].藥品條碼2;
                     content.包裝單位 = medClasses[i].包裝單位;
                     content.應收數量 = "0";
-                    List<DeviceBasic> deviceBasic_buf = deviceBasics.SortByCode(content.藥品碼);
-                    if (deviceBasic_buf.Count > 0)
-                    {
-                        content.應收數量 = deviceBasic_buf[0].Inventory;
-                        if (deviceBasic_buf[0].Inventory.StringToInt32() > 0)
-                        {
-
-                        }
-                    }
+       
 
 
 

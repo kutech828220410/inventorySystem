@@ -92,6 +92,8 @@ namespace HIS_DB_Lib
             public string 驗收單號 { get; set; }
             [JsonPropertyName("CODE")]
             public string 藥品碼 { get; set; }
+            [JsonPropertyName("BRD")]
+            public string 廠牌 { get; set; }
             [JsonPropertyName("SKDIACODE")]
             public string 料號 { get; set; }
             [JsonPropertyName("CHT_NAME")]

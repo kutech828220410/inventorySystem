@@ -291,6 +291,17 @@ namespace ServerSettingForm
                rJ_TextBox_Website.Text, "", "", "", "", ""));
             }
 
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.Website);
+            if (serverSettingClass != null)
+            {
+                serverSettingClass.Server = rJ_TextBox_inspection_excel.Texts;
+            }
+            else
+            {
+                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.API, enum_ServerSetting_藥庫.API_inspection_excel,
+               rJ_TextBox_inspection_excel.Text, "", "", "", "", ""));
+            }
+            
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
             if (serverSettingClass != null)
             {
@@ -299,6 +310,7 @@ namespace ServerSettingForm
                 if (checkBox_盤點.Checked) list_value.Add("盤點");
                 if (checkBox_揀貨.Checked) list_value.Add("揀貨");
                 if (checkBox_條碼管理.Checked) list_value.Add("條碼管理");
+                if (checkBox_儲位管理.Checked) list_value.Add("儲位管理");
                 serverSettingClass.Value = list_value.JsonSerializationt();
             }
             else
@@ -310,6 +322,7 @@ namespace ServerSettingForm
                 if (checkBox_盤點.Checked) list_value.Add("盤點");
                 if (checkBox_揀貨.Checked) list_value.Add("揀貨");
                 if (checkBox_條碼管理.Checked) list_value.Add("條碼管理");
+                if (checkBox_儲位管理.Checked) list_value.Add("儲位管理");
                 serverSettingClass_temp.Value = list_value.JsonSerializationt();
                 serverSettingClasses.Add(serverSettingClass_temp);
             }
@@ -439,12 +452,17 @@ namespace ServerSettingForm
             {
                 rJ_TextBox_API01.Texts = serverSettingClass.Server;
             }
+
             serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API02);
             if (serverSettingClass != null)
             {
                 rJ_TextBox_API02.Texts = serverSettingClass.Server;
             }
-        
+            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_inspection_excel);
+            if (serverSettingClass != null)
+            {
+                rJ_TextBox_inspection_excel.Texts = serverSettingClass.Server;
+            }
             serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.Website);
             if (serverSettingClass != null)
             {
@@ -459,12 +477,14 @@ namespace ServerSettingForm
                 checkBox_盤點.Checked = false;
                 checkBox_揀貨.Checked = false;
                 checkBox_條碼管理.Checked = false;
+                checkBox_儲位管理.Checked = false;
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     if (list_value[i] == "驗收") checkBox_驗收.Checked = true;
                     if (list_value[i] == "盤點") checkBox_盤點.Checked = true;
                     if (list_value[i] == "揀貨") checkBox_揀貨.Checked = true;
                     if (list_value[i] == "條碼管理") checkBox_條碼管理.Checked = true;
+                    if (list_value[i] == "儲位管理") checkBox_儲位管理.Checked = true;
                 }
             }
 

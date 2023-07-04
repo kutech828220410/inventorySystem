@@ -31347,10 +31347,10 @@
             this.panel172.Controls.Add(this.rJ_Pannel8);
             this.panel172.Controls.Add(this.rJ_Pannel6);
             this.panel172.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel172.Location = new System.Drawing.Point(492, 81);
+            this.panel172.Location = new System.Drawing.Point(446, 81);
             this.panel172.Name = "panel172";
             this.panel172.Padding = new System.Windows.Forms.Padding(5);
-            this.panel172.Size = new System.Drawing.Size(1138, 857);
+            this.panel172.Size = new System.Drawing.Size(1184, 857);
             this.panel172.TabIndex = 5;
             // 
             // rJ_Pannel8
@@ -31368,7 +31368,7 @@
             this.rJ_Pannel8.IsSelected = false;
             this.rJ_Pannel8.Location = new System.Drawing.Point(5, 432);
             this.rJ_Pannel8.Name = "rJ_Pannel8";
-            this.rJ_Pannel8.Size = new System.Drawing.Size(1128, 420);
+            this.rJ_Pannel8.Size = new System.Drawing.Size(1174, 420);
             this.rJ_Pannel8.TabIndex = 4;
             // 
             // plC_RJ_Button__驗收作業_單號查詢_新增藥品驗收明細
@@ -31495,7 +31495,7 @@
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品明細.RowsHeight = 40;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品明細.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品明細.Server = "localhost";
-            this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品明細.Size = new System.Drawing.Size(1128, 195);
+            this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品明細.Size = new System.Drawing.Size(1174, 195);
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品明細.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品明細.TabIndex = 140;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品明細.TableName = "inspection_content";
@@ -31526,7 +31526,7 @@
             this.rJ_Lable146.GUID = "";
             this.rJ_Lable146.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable146.Name = "rJ_Lable146";
-            this.rJ_Lable146.Size = new System.Drawing.Size(1128, 58);
+            this.rJ_Lable146.Size = new System.Drawing.Size(1174, 58);
             this.rJ_Lable146.TabIndex = 0;
             this.rJ_Lable146.Text = "驗收藥品明細";
             this.rJ_Lable146.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -31547,7 +31547,7 @@
             this.rJ_Pannel6.Location = new System.Drawing.Point(5, 5);
             this.rJ_Pannel6.Name = "rJ_Pannel6";
             this.rJ_Pannel6.Padding = new System.Windows.Forms.Padding(5);
-            this.rJ_Pannel6.Size = new System.Drawing.Size(1128, 427);
+            this.rJ_Pannel6.Size = new System.Drawing.Size(1174, 427);
             this.rJ_Pannel6.TabIndex = 3;
             // 
             // plC_RJ_Button__驗收作業_單號查詢_刪除驗收藥品內容
@@ -31607,7 +31607,7 @@
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.columnHeadersHeight = 23;
+            this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.columnHeadersHeight = 44;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns"))));
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns1"))));
@@ -31617,6 +31617,7 @@
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns5"))));
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns6"))));
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns7"))));
+            this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Columns8"))));
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.ImageBox = false;
@@ -31632,7 +31633,7 @@
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.RowsHeight = 40;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Server = "localhost";
-            this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Size = new System.Drawing.Size(1118, 278);
+            this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.Size = new System.Drawing.Size(1164, 278);
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.TabIndex = 139;
             this.sqL_DataGridView_驗收作業_單號查詢_驗收藥品內容.TableName = "inspection_content";
@@ -31663,7 +31664,7 @@
             this.rJ_Lable153.GUID = "";
             this.rJ_Lable153.Location = new System.Drawing.Point(5, 5);
             this.rJ_Lable153.Name = "rJ_Lable153";
-            this.rJ_Lable153.Size = new System.Drawing.Size(1118, 58);
+            this.rJ_Lable153.Size = new System.Drawing.Size(1164, 58);
             this.rJ_Lable153.TabIndex = 0;
             this.rJ_Lable153.Text = "驗收藥品內容";
             this.rJ_Lable153.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -31676,7 +31677,7 @@
             this.panel173.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel173.Location = new System.Drawing.Point(0, 81);
             this.panel173.Name = "panel173";
-            this.panel173.Size = new System.Drawing.Size(492, 857);
+            this.panel173.Size = new System.Drawing.Size(446, 857);
             this.panel173.TabIndex = 4;
             // 
             // rJ_Pannel5
@@ -31700,14 +31701,14 @@
             this.rJ_Pannel5.IsSelected = false;
             this.rJ_Pannel5.Location = new System.Drawing.Point(0, 47);
             this.rJ_Pannel5.Name = "rJ_Pannel5";
-            this.rJ_Pannel5.Size = new System.Drawing.Size(492, 810);
+            this.rJ_Pannel5.Size = new System.Drawing.Size(446, 810);
             this.rJ_Pannel5.TabIndex = 2;
             // 
             // panel194
             // 
             this.panel194.Controls.Add(this.rJ_Lable165);
             this.panel194.Controls.Add(this.rJ_TextBox_驗收作業_單號查詢_驗收名稱);
-            this.panel194.Location = new System.Drawing.Point(26, 163);
+            this.panel194.Location = new System.Drawing.Point(10, 166);
             this.panel194.Name = "panel194";
             this.panel194.Size = new System.Drawing.Size(430, 65);
             this.panel194.TabIndex = 241;
@@ -31771,7 +31772,7 @@
             this.plC_RJ_Button__驗收作業_單號查詢_刪除單號.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.plC_RJ_Button__驗收作業_單號查詢_刪除單號.GUID = "";
             this.plC_RJ_Button__驗收作業_單號查詢_刪除單號.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button__驗收作業_單號查詢_刪除單號.Location = new System.Drawing.Point(330, 660);
+            this.plC_RJ_Button__驗收作業_單號查詢_刪除單號.Location = new System.Drawing.Point(314, 663);
             this.plC_RJ_Button__驗收作業_單號查詢_刪除單號.Name = "plC_RJ_Button__驗收作業_單號查詢_刪除單號";
             this.plC_RJ_Button__驗收作業_單號查詢_刪除單號.OFF_文字內容 = "刪除";
             this.plC_RJ_Button__驗收作業_單號查詢_刪除單號.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
@@ -31803,7 +31804,7 @@
             // 
             this.panel171.Controls.Add(this.rJ_Lable145);
             this.panel171.Controls.Add(this.rJ_TextBox_驗收作業_單號查詢_驗收狀態);
-            this.panel171.Location = new System.Drawing.Point(26, 589);
+            this.panel171.Location = new System.Drawing.Point(10, 592);
             this.panel171.Name = "panel171";
             this.panel171.Size = new System.Drawing.Size(430, 65);
             this.panel171.TabIndex = 9;
@@ -31856,7 +31857,7 @@
             // 
             this.panel170.Controls.Add(this.rJ_Lable144);
             this.panel170.Controls.Add(this.rJ_TextBox_驗收作業_單號查詢_驗收結束時間);
-            this.panel170.Location = new System.Drawing.Point(26, 518);
+            this.panel170.Location = new System.Drawing.Point(10, 521);
             this.panel170.Name = "panel170";
             this.panel170.Size = new System.Drawing.Size(430, 65);
             this.panel170.TabIndex = 8;
@@ -31909,7 +31910,7 @@
             // 
             this.panel169.Controls.Add(this.rJ_Lable143);
             this.panel169.Controls.Add(this.rJ_TextBox_驗收作業_單號查詢_驗收開始時間);
-            this.panel169.Location = new System.Drawing.Point(26, 447);
+            this.panel169.Location = new System.Drawing.Point(10, 450);
             this.panel169.Name = "panel169";
             this.panel169.Size = new System.Drawing.Size(430, 65);
             this.panel169.TabIndex = 7;
@@ -31962,7 +31963,7 @@
             // 
             this.panel168.Controls.Add(this.rJ_Lable142);
             this.panel168.Controls.Add(this.rJ_TextBox_驗收作業_單號查詢_建表時間);
-            this.panel168.Location = new System.Drawing.Point(26, 376);
+            this.panel168.Location = new System.Drawing.Point(10, 379);
             this.panel168.Name = "panel168";
             this.panel168.Size = new System.Drawing.Size(430, 65);
             this.panel168.TabIndex = 6;
@@ -32015,7 +32016,7 @@
             // 
             this.panel167.Controls.Add(this.rJ_Lable141);
             this.panel167.Controls.Add(this.rJ_TextBox_驗收作業_單號查詢_建表人);
-            this.panel167.Location = new System.Drawing.Point(26, 305);
+            this.panel167.Location = new System.Drawing.Point(10, 308);
             this.panel167.Name = "panel167";
             this.panel167.Size = new System.Drawing.Size(430, 65);
             this.panel167.TabIndex = 5;
@@ -32068,7 +32069,7 @@
             // 
             this.panel166.Controls.Add(this.rJ_Lable140);
             this.panel166.Controls.Add(this.rJ_TextBox_驗收作業_單號查詢_請購單號);
-            this.panel166.Location = new System.Drawing.Point(26, 234);
+            this.panel166.Location = new System.Drawing.Point(10, 237);
             this.panel166.Name = "panel166";
             this.panel166.Size = new System.Drawing.Size(430, 65);
             this.panel166.TabIndex = 4;
@@ -32121,7 +32122,7 @@
             // 
             this.panel165.Controls.Add(this.rJ_Lable139);
             this.panel165.Controls.Add(this.rJ_TextBox_驗收作業_單號查詢_驗收單號);
-            this.panel165.Location = new System.Drawing.Point(26, 92);
+            this.panel165.Location = new System.Drawing.Point(10, 95);
             this.panel165.Name = "panel165";
             this.panel165.Size = new System.Drawing.Size(430, 65);
             this.panel165.TabIndex = 3;
@@ -32184,7 +32185,7 @@
             this.rJ_Lable138.GUID = "";
             this.rJ_Lable138.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable138.Name = "rJ_Lable138";
-            this.rJ_Lable138.Size = new System.Drawing.Size(492, 73);
+            this.rJ_Lable138.Size = new System.Drawing.Size(446, 73);
             this.rJ_Lable138.TabIndex = 0;
             this.rJ_Lable138.Text = "單號內容";
             this.rJ_Lable138.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -32195,7 +32196,7 @@
             this.panel174.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel174.Location = new System.Drawing.Point(0, 0);
             this.panel174.Name = "panel174";
-            this.panel174.Size = new System.Drawing.Size(492, 47);
+            this.panel174.Size = new System.Drawing.Size(446, 47);
             this.panel174.TabIndex = 3;
             // 
             // panel164

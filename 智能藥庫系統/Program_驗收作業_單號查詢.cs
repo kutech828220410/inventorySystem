@@ -23,6 +23,7 @@ namespace 智能藥庫系統
             GUID,
             Master_GUID,
             藥品碼,
+            料號,
             藥品名稱,
             中文名稱,
             單位,
@@ -110,6 +111,7 @@ namespace 智能藥庫系統
                 value[(int)enum_驗收作業_單號查詢_驗收藥品內容.GUID] = creat.Contents[i].GUID;
                 value[(int)enum_驗收作業_單號查詢_驗收藥品內容.Master_GUID] = creat.Contents[i].Master_GUID;
                 value[(int)enum_驗收作業_單號查詢_驗收藥品內容.藥品碼] = creat.Contents[i].藥品碼;
+                value[(int)enum_驗收作業_單號查詢_驗收藥品內容.料號] = creat.Contents[i].料號;
                 value[(int)enum_驗收作業_單號查詢_驗收藥品內容.藥品名稱] = creat.Contents[i].藥品名稱;
                 value[(int)enum_驗收作業_單號查詢_驗收藥品內容.中文名稱] = creat.Contents[i].中文名稱;
                 value[(int)enum_驗收作業_單號查詢_驗收藥品內容.單位] = creat.Contents[i].包裝單位;

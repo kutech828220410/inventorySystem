@@ -1,3 +1,8 @@
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\0.DLL\ICSharpCode.SharpZipLib.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\0.DLL\NPOI.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\0.DLL\NPOI.OOXML.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\0.DLL\NPOI.OpenXml4Net.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\0.DLL\NPOI.OpenXmlFormats.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_emg_tradding.txt
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_inspection.txt
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_inventory.txt

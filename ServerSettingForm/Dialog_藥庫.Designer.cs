@@ -117,6 +117,9 @@ namespace ServerSettingForm
             this.checkBox_盤點 = new System.Windows.Forms.CheckBox();
             this.checkBox_驗收 = new System.Windows.Forms.CheckBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label10 = new System.Windows.Forms.Label();
+            this.rJ_TextBox_inspection_excel = new MyUI.RJ_TextBox();
+            this.checkBox_儲位管理 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1626,6 +1629,7 @@ namespace ServerSettingForm
             // 
             // groupBox10
             // 
+            this.groupBox10.Controls.Add(this.checkBox_儲位管理);
             this.groupBox10.Controls.Add(this.checkBox_條碼管理);
             this.groupBox10.Controls.Add(this.checkBox_揀貨);
             this.groupBox10.Controls.Add(this.checkBox_盤點);
@@ -1678,12 +1682,60 @@ namespace ServerSettingForm
             this.checkBox_驗收.Text = "驗收";
             this.checkBox_驗收.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.Black;
+            this.label10.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(1333, 353);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(380, 40);
+            this.label10.TabIndex = 60;
+            this.label10.Text = "API inspection excel";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // rJ_TextBox_inspection_excel
+            // 
+            this.rJ_TextBox_inspection_excel.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_inspection_excel.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_inspection_excel.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_inspection_excel.BorderRadius = 0;
+            this.rJ_TextBox_inspection_excel.BorderSize = 2;
+            this.rJ_TextBox_inspection_excel.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_inspection_excel.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_inspection_excel.GUID = "";
+            this.rJ_TextBox_inspection_excel.Location = new System.Drawing.Point(1333, 400);
+            this.rJ_TextBox_inspection_excel.Multiline = false;
+            this.rJ_TextBox_inspection_excel.Name = "rJ_TextBox_inspection_excel";
+            this.rJ_TextBox_inspection_excel.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_inspection_excel.PassWordChar = false;
+            this.rJ_TextBox_inspection_excel.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_inspection_excel.PlaceholderText = "http://XXX.XXX.XXX.XXX:4433";
+            this.rJ_TextBox_inspection_excel.ShowTouchPannel = false;
+            this.rJ_TextBox_inspection_excel.Size = new System.Drawing.Size(380, 40);
+            this.rJ_TextBox_inspection_excel.TabIndex = 59;
+            this.rJ_TextBox_inspection_excel.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_inspection_excel.Texts = "";
+            this.rJ_TextBox_inspection_excel.UnderlineStyle = false;
+            // 
+            // checkBox_儲位管理
+            // 
+            this.checkBox_儲位管理.AutoSize = true;
+            this.checkBox_儲位管理.Location = new System.Drawing.Point(38, 159);
+            this.checkBox_儲位管理.Name = "checkBox_儲位管理";
+            this.checkBox_儲位管理.Size = new System.Drawing.Size(108, 23);
+            this.checkBox_儲位管理.TabIndex = 4;
+            this.checkBox_儲位管理.Text = "儲位管理";
+            this.checkBox_儲位管理.UseVisualStyleBackColor = true;
+            // 
             // Dialog_藥庫
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.rJ_TextBox_inspection_excel);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label_名稱);
@@ -1822,5 +1874,8 @@ namespace ServerSettingForm
         private System.Windows.Forms.CheckBox checkBox_盤點;
         private System.Windows.Forms.CheckBox checkBox_驗收;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label10;
+        private MyUI.RJ_TextBox rJ_TextBox_inspection_excel;
+        private System.Windows.Forms.CheckBox checkBox_儲位管理;
     }
 }
