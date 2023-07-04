@@ -37,6 +37,78 @@ namespace 智能藥庫系統
         private List<DeviceBasic> List_藥局_DeviceBasic = new List<DeviceBasic>();
         private List<DeviceBasic> List_藥庫_DeviceBasic = new List<DeviceBasic>();
 
+        public void Function_儲位亮燈(string 藥品碼, Color color)
+        {
+            List<string> list_lock_IP = new List<string>();
+            this.Function_儲位亮燈(藥品碼, color, ref list_lock_IP);
+        }
+        public void Function_儲位亮燈(string 藥品碼, Color color, ref List<string> list_lock_IP)
+        {
+            List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
+            List<Task> taskList = new List<Task>();
+            List<string> list_IP = new List<string>();
+            List<string> list_IP_buf = new List<string>();
+            for (int i = 0; i < list_Device.Count; i++)
+            {
+                Device device = list_Device[i] as Device;
+                string IP = device.IP;
+
+                list_IP_buf = (from value in list_IP
+                               where value == IP
+                               select value).ToList();
+                if (list_IP_buf.Count > 0) continue;
+
+                if (device != null)
+                {
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock)
+                    {
+                        Storage storage = list_Device[i] as Storage;
+                        if (storage != null)
+                        {
+                            taskList.Add(Task.Run(() =>
+                            {
+                                this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                            }));
+                            list_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.EPD266_lock) list_lock_IP.Add(IP);
+                        }
+                    }
+                    else if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock)
+                    {
+                        Storage storage = list_Device[i] as Storage;
+                        if (storage != null)
+                        {
+                            taskList.Add(Task.Run(() =>
+                            {
+                                this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                            }));
+                            list_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.EPD266_lock) list_lock_IP.Add(IP);
+                        }
+                    }
+                    else if (device.DeviceType == DeviceType.Pannel35)
+                    {
+                        Storage storage = list_Device[i] as Storage;
+                        if (storage != null)
+                        {
+                            taskList.Add(Task.Run(() =>
+                            {
+                                this.storageUI_WT32.Set_Stroage_LED_UDP(storage, color);
+                            }));
+                            list_IP.Add(IP);
+                        }
+                    }
+                
+                }
+            }
+
+
+
+
+            //Task allTask = Task.WhenAll(taskList);
+            //allTask.Wait();
+        }
+
         private void Function_設定雲端資料更新()
         {
             this.Function_堆疊資料_新增母資料(Guid.NewGuid().ToString(), "更新資料", enum_交易記錄查詢動作.None, "", "", "", "", "", "", "", "", "", "", 0, "");
@@ -296,7 +368,13 @@ namespace 智能藥庫系統
                 myTimer1.StartTickTime(50000);
                 List_Pannel35_本地資料 = this.storageUI_WT32.SQL_GetAllStorage();
                 Console.WriteLine($"讀取Pannel35資料! 耗時 :{myTimer1.GetTickTime().ToString("0.000")} ");
-
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+                MyTimer myTimer1 = new MyTimer();
+                myTimer1.StartTickTime(50000);
+                List_EPD266_本地資料 = this.storageUI_EPD_266.SQL_GetAllStorage();
+                Console.WriteLine($"讀取EPD266資料! 耗時 :{myTimer1.GetTickTime().ToString("0.000")} ");
             }));
             taskList.Add(Task.Run(() =>
             {
@@ -320,17 +398,15 @@ namespace 智能藥庫系統
         private List<object> Function_從本地資料取得儲位(string 藥品碼)
         {
             List<object> list_value = new List<object>();
-            List<Storage> storages = List_Pannel35_本地資料.SortByCode(藥品碼);
-            List<DeviceBasic> deviceBasics = this.List_藥庫_DeviceBasic.SortByCode(藥品碼);
-
-
-            for (int i = 0; i < storages.Count; i++)
+            List<Storage> pannel35 = List_Pannel35_本地資料.SortByCode(藥品碼);
+            List<Storage> epd266s = List_EPD266_本地資料.SortByCode(藥品碼);
+            for (int i = 0; i < pannel35.Count; i++)
             {
-                list_value.Add(storages[i]);
+                list_value.Add(pannel35[i]);
             }
-            for (int i = 0; i < deviceBasics.Count; i++)
+            for (int i = 0; i < epd266s.Count; i++)
             {
-                list_value.Add(deviceBasics[i]);
+                list_value.Add(epd266s[i]);
             }
             return list_value;
         }

@@ -23,7 +23,7 @@
     "platform": "",
     "allowUnsafe": false,
     "warningsAsErrors": false,
-    "optimize": true,
+    "optimize": false,
     "keyFile": "",
     "emitEntryPoint": true,
     "xmlDoc": false,
@@ -33,12 +33,17 @@
     ".NETCoreApp,Version=v5.0": {
       "HIS_ServerAPI/1.0.0": {
         "dependencies": {
-          "HIS_DB_Lib": "1.0.0",
           "MySql.Data": "8.0.29",
           "System.Text.Json": "6.0.0",
           "Basic": "1.0.0.0",
-          "HIS_DB_Lib.Reference": "1.0.0.0",
+          "HIS_DB_Lib": "1.0.0.0",
+          "ICSharpCode.SharpZipLib": "1.0.6053.22017",
+          "MyOffice": "1.0.0.0",
           "MySQL_Login": "1.0.0.0",
+          "NPOI": "2.4.1.0",
+          "NPOI.OOXML": "2.4.1.0",
+          "NPOI.OpenXml4Net": "2.4.1.0",
+          "NPOI.OpenXmlFormats": "2.4.1.0",
           "SQLUI": "1.0.0.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -542,7 +547,7 @@
           "Basic.dll": {}
         }
       },
-      "HIS_DB_Lib.Reference/1.0.0.0": {
+      "HIS_DB_Lib/1.0.0.0": {
         "runtime": {
           "HIS_DB_Lib.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -551,6 +556,28 @@
         },
         "compile": {
           "HIS_DB_Lib.dll": {}
+        }
+      },
+      "ICSharpCode.SharpZipLib/1.0.6053.22017": {
+        "runtime": {
+          "ICSharpCode.SharpZipLib.dll": {
+            "assemblyVersion": "1.0.6053.22017",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "ICSharpCode.SharpZipLib.dll": {}
+        }
+      },
+      "MyOffice/1.0.0.0": {
+        "runtime": {
+          "MyOffice.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "MyOffice.dll": {}
         }
       },
       "MySQL_Login/1.0.0.0": {
@@ -562,6 +589,50 @@
         },
         "compile": {
           "MySQL_Login.dll": {}
+        }
+      },
+      "NPOI/2.4.1.0": {
+        "runtime": {
+          "NPOI.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        },
+        "compile": {
+          "NPOI.dll": {}
+        }
+      },
+      "NPOI.OOXML/2.4.1.0": {
+        "runtime": {
+          "NPOI.OOXML.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        },
+        "compile": {
+          "NPOI.OOXML.dll": {}
+        }
+      },
+      "NPOI.OpenXml4Net/2.4.1.0": {
+        "runtime": {
+          "NPOI.OpenXml4Net.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        },
+        "compile": {
+          "NPOI.OpenXml4Net.dll": {}
+        }
+      },
+      "NPOI.OpenXmlFormats/2.4.1.0": {
+        "runtime": {
+          "NPOI.OpenXmlFormats.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        },
+        "compile": {
+          "NPOI.OpenXmlFormats.dll": {}
         }
       },
       "SQLUI/1.0.0.0": {
@@ -2390,9 +2461,6 @@
           "WindowsBase.dll": {}
         },
         "compileOnly": true
-      },
-      "HIS_DB_Lib/1.0.0": {
-        "compileOnly": true
       }
     }
   },
@@ -2554,12 +2622,42 @@
       "serviceable": false,
       "sha512": ""
     },
-    "HIS_DB_Lib.Reference/1.0.0.0": {
+    "HIS_DB_Lib/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ICSharpCode.SharpZipLib/1.0.6053.22017": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MyOffice/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "MySQL_Login/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NPOI/2.4.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NPOI.OOXML/2.4.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NPOI.OpenXml4Net/2.4.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NPOI.OpenXmlFormats/2.4.1.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -4051,11 +4149,6 @@
     },
     "WindowsBase/4.0.0.0": {
       "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "HIS_DB_Lib/1.0.0": {
-      "type": "project",
       "serviceable": false,
       "sha512": ""
     }

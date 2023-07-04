@@ -371,9 +371,10 @@ namespace 智能藥庫系統
                 rJ_TextBox_藥庫_儲位設定_EPD266_儲位內容_儲位名稱.Texts = 儲位名稱;
                 rJ_TextBox_藥庫_儲位設定_EPD266_儲位內容_總庫存.Texts = 庫存;
             }));
-
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(5500000);
             Storage storage = this.storageUI_EPD_266.SQL_GetStorage(IP);
-
+            Console.WriteLine($"{myTimer.ToString()}"); 
             storage.IsWarning = (警訊藥品 == "True");
             if (storage != null)
             {

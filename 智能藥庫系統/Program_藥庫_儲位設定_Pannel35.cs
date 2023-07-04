@@ -45,7 +45,6 @@ namespace 智能藥庫系統
             this.storageUI_WT32.Init(dBConfigClass.DB_Basic);
             this.pannel35_Pannel.Init(this.storageUI_WT32.List_UDP_Local);
             this.pannel35_Pannel.EditFinishedEvent += Pannel35_Pannel_EditFinishedEvent;
-            this.Function_從SQL取得儲位到本地資料();
 
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.Init();
 

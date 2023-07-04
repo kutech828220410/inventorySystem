@@ -20,8 +20,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.63.0")]
-[assembly: AssemblyFileVersion("1.0.63.0")]
+[assembly: AssemblyVersion("1.0.67.0")]
+[assembly: AssemblyFileVersion("1.0.67.0")]
 namespace 調劑台管理系統
 {
 
@@ -270,6 +270,7 @@ namespace 調劑台管理系統
 
         }
         #endregion
+
         public Form1()
         {
             InitializeComponent();
@@ -666,7 +667,6 @@ namespace 調劑台管理系統
 
 
         #endregion
-
 
         private void Update()
         {

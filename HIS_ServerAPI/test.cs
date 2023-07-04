@@ -69,7 +69,13 @@ namespace HIS_ServerAPI
                     creat.Contents.Add(content);
                 }
             }
-            return creat.JsonSerializationt(true);
+            returnData returnData = new returnData();
+            returnData.ServerName = "DS01";
+            returnData.ServerType = "藥庫";
+            returnData.TableName = "medicine_page_firstclass";
+            returnData.Data = creat;
+
+            return Basic.Net.WEBApiPostJson("http://220.135.128.247:4433/api/inspection/creat_add", returnData.JsonSerializationt());
         }
     }
 }

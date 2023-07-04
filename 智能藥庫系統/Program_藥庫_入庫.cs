@@ -37,14 +37,14 @@ namespace 智能藥庫系統
         {
 
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.Init(this.sqL_DataGridView_堆疊母資料);
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnVisible(false, new enum_堆疊母資料().GetEnumNames());
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnVisible(true, enum_堆疊母資料.藥品碼, enum_堆疊母資料.藥品名稱, enum_堆疊母資料.庫存量, enum_堆疊母資料.總異動量, enum_堆疊母資料.結存量, enum_堆疊母資料.效期, enum_堆疊母資料.狀態);
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(80, enum_堆疊母資料.藥品碼);
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(200, enum_堆疊母資料.藥品名稱);
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(60, enum_堆疊母資料.總異動量);
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(60, enum_堆疊母資料.結存量);
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(100, enum_堆疊母資料.效期);
-            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(100, enum_堆疊母資料.狀態);
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnVisible(true, enum_取藥堆疊母資料.藥品碼, enum_取藥堆疊母資料.藥品名稱, enum_取藥堆疊母資料.庫存量, enum_取藥堆疊母資料.總異動量, enum_取藥堆疊母資料.結存量, enum_取藥堆疊母資料.效期, enum_取藥堆疊母資料.狀態);
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(80, enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(200, enum_取藥堆疊母資料.藥品名稱);
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(60, enum_取藥堆疊母資料.總異動量);
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(60, enum_取藥堆疊母資料.結存量);
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(100, enum_取藥堆疊母資料.效期);
+            this.sqL_DataGridView_藥庫_入庫_入庫狀態.Set_ColumnWidth(100, enum_取藥堆疊母資料.狀態);
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.DataGridRefreshEvent += SqL_DataGridView_藥庫_入庫_入庫狀態_DataGridRefreshEvent;
             this.sqL_DataGridView_藥庫_入庫_入庫狀態.DataGridRowsChangeRefEvent += SqL_DataGridView_藥庫_入庫_入庫狀態_DataGridRowsChangeRefEvent;
 
@@ -180,18 +180,18 @@ namespace 智能藥庫系統
             String 狀態 = "";
             for (int i = 0; i < this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows.Count; i++)
             {
-                狀態 = this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows[i].Cells[(int)enum_堆疊母資料.狀態].Value.ToString();
-                if (狀態 == enum_堆疊母資料_狀態.等待作業.GetEnumName())
+                狀態 = this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows[i].Cells[(int)enum_取藥堆疊母資料.狀態].Value.ToString();
+                if (狀態 == enum_取藥堆疊母資料_狀態.等待作業.GetEnumName())
                 {
                     this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                     this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
-                else if (狀態 == enum_堆疊母資料_狀態.入賬完成.GetEnumName())
+                else if (狀態 == enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName())
                 {
                     this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
                     this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
-                else if (狀態 == enum_堆疊母資料_狀態.庫存不足.GetEnumName())
+                else if (狀態 == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName())
                 {
                     this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     this.sqL_DataGridView_藥庫_入庫_入庫狀態.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
@@ -292,7 +292,7 @@ namespace 智能藥庫系統
             }
             for (int i = 0; i < list_value.Count; i++)
             {
-                string GUID = list_value[i][(int)enum_堆疊母資料.GUID].ObjectToString();
+                string GUID = list_value[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
                 this.Function_堆疊資料_刪除母資料(GUID);
             }
         }

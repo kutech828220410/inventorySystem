@@ -98,66 +98,7 @@ namespace HIS_WebApi
             return dateTime.ToDateTimeString();
         }
 
-        [Route("udp_ON")]
-        [HttpGet]
-        public string GET_udp_ON(string IP)
-        {
-            try
-            {
-                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, IP, 0, Get_Pannel_LEDBytes(Color.Red));
-            }
-            catch(Exception e)
-            {
-                return e.Message;
-                             
-            }
-            finally
-            {
-        
-
-            }
-
-
-            return "OK";
-        }
-        [Route("udp_OFF")]
-        [HttpGet]
-        public StatusCodeResult GET_udp_OFF()
-        {
-            try
-            {
-                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                H_Pannel_lib.Communication.Set_WS2812_Buffer(Startup.uDP_Class, "192.168.10.230", 0, Get_Pannel_LEDBytes(Color.Black));
-            
-            }
-            catch
-            {
-
-            }
-            finally
-            {
-
-
-            }
-
-
-            return Ok();
-        }
-
-        static public byte[] Get_Pannel_LEDBytes(Color color)
-        {
-            byte[] LED_Bytes = new byte[10 * 3];
-
-            for (int i = 0; i < 10; i++)
-            {
-                LED_Bytes[i * 3 + 0] = color.R;
-                LED_Bytes[i * 3 + 1] = color.G;
-                LED_Bytes[i * 3 + 2] = color.B;
-            }
-
-            return LED_Bytes;
-        }
+   
     }
 
  

@@ -4828,12 +4828,12 @@
             this.plC_RJ_Button_收支作業_入庫.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
             this.plC_RJ_Button_收支作業_入庫.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_收支作業_入庫.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_入庫.致能讀取位置 = "S39033";
             this.plC_RJ_Button_收支作業_入庫.讀取位元反向 = false;
             this.plC_RJ_Button_收支作業_入庫.讀寫鎖住 = false;
             this.plC_RJ_Button_收支作業_入庫.音效 = true;
             this.plC_RJ_Button_收支作業_入庫.顯示 = false;
             this.plC_RJ_Button_收支作業_入庫.顯示狀態 = false;
+            this.plC_RJ_Button_收支作業_入庫.顯示讀取位置 = "S39033";
             // 
             // plC_RJ_Button_收支作業_設定
             // 
@@ -4872,12 +4872,12 @@
             this.plC_RJ_Button_收支作業_設定.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
             this.plC_RJ_Button_收支作業_設定.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_收支作業_設定.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_設定.致能讀取位置 = "S39037";
             this.plC_RJ_Button_收支作業_設定.讀取位元反向 = false;
             this.plC_RJ_Button_收支作業_設定.讀寫鎖住 = false;
             this.plC_RJ_Button_收支作業_設定.音效 = true;
             this.plC_RJ_Button_收支作業_設定.顯示 = false;
             this.plC_RJ_Button_收支作業_設定.顯示狀態 = false;
+            this.plC_RJ_Button_收支作業_設定.顯示讀取位置 = "S39037";
             // 
             // plC_RJ_Button_收支作業_出庫
             // 
@@ -4916,12 +4916,12 @@
             this.plC_RJ_Button_收支作業_出庫.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
             this.plC_RJ_Button_收支作業_出庫.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_收支作業_出庫.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_出庫.致能讀取位置 = "S39034";
             this.plC_RJ_Button_收支作業_出庫.讀取位元反向 = false;
             this.plC_RJ_Button_收支作業_出庫.讀寫鎖住 = false;
             this.plC_RJ_Button_收支作業_出庫.音效 = true;
             this.plC_RJ_Button_收支作業_出庫.顯示 = false;
             this.plC_RJ_Button_收支作業_出庫.顯示狀態 = false;
+            this.plC_RJ_Button_收支作業_出庫.顯示讀取位置 = "S39034";
             // 
             // plC_RJ_Button_收支作業_調入
             // 
@@ -4960,12 +4960,12 @@
             this.plC_RJ_Button_收支作業_調入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
             this.plC_RJ_Button_收支作業_調入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_收支作業_調入.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_調入.致能讀取位置 = "S39035";
             this.plC_RJ_Button_收支作業_調入.讀取位元反向 = false;
             this.plC_RJ_Button_收支作業_調入.讀寫鎖住 = false;
             this.plC_RJ_Button_收支作業_調入.音效 = true;
             this.plC_RJ_Button_收支作業_調入.顯示 = false;
             this.plC_RJ_Button_收支作業_調入.顯示狀態 = false;
+            this.plC_RJ_Button_收支作業_調入.顯示讀取位置 = "S39035";
             // 
             // plC_RJ_Button_收支作業_調出
             // 
@@ -5004,12 +5004,12 @@
             this.plC_RJ_Button_收支作業_調出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
             this.plC_RJ_Button_收支作業_調出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_收支作業_調出.文字鎖住 = false;
-            this.plC_RJ_Button_收支作業_調出.致能讀取位置 = "S39036";
             this.plC_RJ_Button_收支作業_調出.讀取位元反向 = false;
             this.plC_RJ_Button_收支作業_調出.讀寫鎖住 = false;
             this.plC_RJ_Button_收支作業_調出.音效 = true;
             this.plC_RJ_Button_收支作業_調出.顯示 = false;
             this.plC_RJ_Button_收支作業_調出.顯示狀態 = false;
+            this.plC_RJ_Button_收支作業_調出.顯示讀取位置 = "S39036";
             // 
             // rJ_GroupBox8
             // 
@@ -28220,7 +28220,7 @@
             this.sqL_DataGridView_取藥堆疊母資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_取藥堆疊母資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_取藥堆疊母資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_取藥堆疊母資料.columnHeadersHeight = 21;
+            this.sqL_DataGridView_取藥堆疊母資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_取藥堆疊母資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_取藥堆疊母資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_取藥堆疊母資料.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -28260,7 +28260,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1640, 900);
+            this.tabPage4.Size = new System.Drawing.Size(475, 355);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "取藥堆疊子資料";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -28279,7 +28279,7 @@
             this.sqL_DataGridView_取藥堆疊子資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_取藥堆疊子資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_取藥堆疊子資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_取藥堆疊子資料.columnHeadersHeight = 21;
+            this.sqL_DataGridView_取藥堆疊子資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_取藥堆疊子資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_取藥堆疊子資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_取藥堆疊子資料.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -28296,7 +28296,7 @@
             this.sqL_DataGridView_取藥堆疊子資料.RowsHeight = 20;
             this.sqL_DataGridView_取藥堆疊子資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_取藥堆疊子資料.Server = "localhost";
-            this.sqL_DataGridView_取藥堆疊子資料.Size = new System.Drawing.Size(1634, 894);
+            this.sqL_DataGridView_取藥堆疊子資料.Size = new System.Drawing.Size(469, 349);
             this.sqL_DataGridView_取藥堆疊子資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_取藥堆疊子資料.TabIndex = 26;
             this.sqL_DataGridView_取藥堆疊子資料.TableName = "take_medicine_substack_new";

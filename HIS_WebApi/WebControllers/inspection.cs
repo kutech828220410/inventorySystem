@@ -1207,7 +1207,7 @@ namespace HIS_WebApi
                     {
                         row_end = NumOfRow + 6;
                         sheetClass.AddNewCell_Webapi(row_start + k, row_end + k, 6, 6, $"{creat.Contents[i].Sub_content[k].實收數量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Center, NPOI.SS.UserModel.BorderStyle.Thin);
-                        sheetClass.AddNewCell_Webapi(row_start + k, row_end + k, 7, 7, $"{creat.Contents[i].Sub_content[k].效期}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Center, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(row_start + k, row_end + k, 7, 7, $"{creat.Contents[i].Sub_content[k].效期.StringToDateTime().ToDateString()}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Center, NPOI.SS.UserModel.BorderStyle.Thin);
                         sheetClass.AddNewCell_Webapi(row_start + k, row_end + k, 8, 8, $"{creat.Contents[i].Sub_content[k].批號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Center, NPOI.SS.UserModel.BorderStyle.Thin);
 
                     }
@@ -1321,15 +1321,15 @@ namespace HIS_WebApi
                         content.藥品名稱 = 藥品名稱;
                         content.中文名稱 = 中文名稱;
                         content.包裝單位 = 包裝單位;
-
+    
                         int 實收數量 = 0;
                         list_inspection_sub_content_buf = list_inspection_sub_content.GetRows((int)enum_驗收明細.Master_GUID, content.GUID);
                         for (int m = 0; m < list_inspection_sub_content_buf.Count; m++)
                         {
                             inspectionClass.sub_content sub_Content = list_inspection_sub_content_buf[m].SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
-                            sub_Content.藥品名稱 = 藥品名稱;
-                            sub_Content.中文名稱 = 中文名稱;
-                            sub_Content.包裝單位 = 包裝單位;
+                            sub_Content.藥品名稱 = content.藥品名稱;
+                            sub_Content.中文名稱 = content.中文名稱;
+                            sub_Content.包裝單位 = content.包裝單位;
                             if (sub_Content.實收數量.StringIsInt32())
                             {
 
@@ -1422,6 +1422,8 @@ namespace HIS_WebApi
             table_inspection_sub_content.AddColumnList("操作時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inspection_sub_content.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inspection_sub_content.AddColumnList("狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table_inspection_sub_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+
             if (!sQLControl_inspection_sub_content.IsTableCreat()) sQLControl_inspection_sub_content.CreatTable(table_inspection_sub_content);
             else sQLControl_inspection_sub_content.CheckAllColumnName(table_inspection_sub_content, true);
             tables.Add(table_inspection_sub_content);

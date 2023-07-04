@@ -342,6 +342,12 @@ namespace 智能藥庫系統
 
 
             this.Function_堆疊資料_刪除指定調劑台名稱母資料("藥庫");
+
+            Task task = Task.Run(new Action(delegate
+            {
+                Function_從SQL取得儲位到本地資料();
+            }));
+
             this.WindowState = FormWindowState.Maximized;
             Basic.Keyboard.Hook.KeyDown += Hook_KeyDown;
             Basic.Keyboard.Hook.MouseDown += Hook_MouseDown;

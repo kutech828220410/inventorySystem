@@ -148,17 +148,71 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_light_web(returnData returnData)
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API02");
+            //List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            //serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API02");
 
-            if (serverSettingClasses.Count == 0)
+            //if (serverSettingClasses.Count == 0)
+            //{
+            //    returnData.Code = -200;
+            //    returnData.Result = $"找無Server資料!";
+            //    return returnData.JsonSerializationt();
+            //}
+            //string url = $"{serverSettingClasses[0].Server}/api/device/light";
+            //return Basic.Net.WEBApiPostJson(url, returnData.JsonSerializationt());
+
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "light_web";
+            try
+            {
+                List<object[]> list_add = new List<object[]>();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string device_Server = serverSettingClasses[0].Server;
+                string device_DB = serverSettingClasses[0].DBName;
+
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                Color color = returnData.Value.ToColor();
+                string json_in = returnData.Data.JsonSerializationt();
+                List<DeviceBasic> deviceBasics = json_in.JsonDeserializet<List<DeviceBasic>>();
+                for (int i = 0; i < deviceBasics.Count; i++)
+                {
+                    string IP = deviceBasics[i].IP;
+                    object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
+                    value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_取藥堆疊母資料.顏色] = color.ToColorString();
+                    value[(int)enum_取藥堆疊母資料.IP] = IP;
+                    value[(int)enum_取藥堆疊母資料.藥品碼] = deviceBasics[i].Code;
+                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "更新亮燈";
+                    list_add.Add(value);
+                }
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(device_Server, device_DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+                sQLControl_take_medicine_stack_new.AddRows(null, list_add);
+
+                returnData.Code = 200;
+                returnData.Result = $"設備更新亮燈完成!";
+                returnData.TimeTaken = myTimer.ToString();
+                return returnData.JsonSerializationt();
+
+            }
+            catch (Exception e)
             {
                 returnData.Code = -200;
-                returnData.Result = $"找無Server資料!";
-                return returnData.JsonSerializationt();
+                returnData.Result = $"{e.Message}";
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Data = null;
+                return returnData.JsonSerializationt(true);
             }
-            string url = $"{serverSettingClasses[0].Server}/api/device/light";
-            return Basic.Net.WEBApiPostJson(url, returnData.JsonSerializationt());
+            finally
+            {
+
+            }
         }
         [Route("light")]
         [HttpPost]
