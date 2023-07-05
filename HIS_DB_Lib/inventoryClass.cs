@@ -47,6 +47,7 @@ namespace HIS_DB_Lib
         操作時間,
         操作人,
         狀態,
+        備註,
     }
     public class inventoryClass
     {

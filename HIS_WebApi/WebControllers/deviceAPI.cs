@@ -129,9 +129,9 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
 
-                List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClasses[0]);
+                List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClasses[0], returnData.TableName);
                 returnData.Code = 200;
-                returnData.Result = $"Device取得成功!TableName : {serverSettingClasses[0].TableName}";
+                returnData.Result = $"Device取得成功!TableName : {returnData.TableName}";
                 returnData.Data = deviceBasics;
                 return returnData.JsonSerializationt();
             }
@@ -167,7 +167,7 @@ namespace HIS_WebApi
             {
                 List<object[]> list_add = new List<object[]>();
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -305,7 +305,7 @@ namespace HIS_WebApi
             {
                 List<object[]> list_add = new List<object[]>();
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -325,6 +325,7 @@ namespace HIS_WebApi
                     object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
                     value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
                     value[(int)enum_取藥堆疊母資料.IP] = IP;
+                    value[(int)enum_取藥堆疊母資料.藥品碼] = deviceBasics[i].Code;
                     value[(int)enum_取藥堆疊母資料.調劑台名稱] = "更新面板";
                     list_add.Add(value);
                 }
@@ -350,6 +351,72 @@ namespace HIS_WebApi
 
             }
         }
+
+        [Route("sort_by_ip")]
+        [HttpPost]
+        public string POST_sort_by_ip(returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "sort_by_ip";
+            try
+            {
+                List<object[]> list_add = new List<object[]>();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Storage_IP = "";
+                Storage_IP = $"192.168.{returnData.Value}";
+                if($"192.168.{returnData.Value}".Check_IP_Adress() == true)
+                {
+                    Storage_IP = $"192.168.{returnData.Value}";
+                }
+                if ($"{returnData.Value}".Check_IP_Adress() == true)
+                {
+                    Storage_IP = $"{returnData.Value}";
+                }
+                if(Storage_IP.StringIsEmpty() == true)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"IP 值無效! {returnData.Value}";
+                    return returnData.JsonSerializationt();
+                }
+             
+
+                string device_Server = serverSettingClasses[0].Server;
+                string device_DB = serverSettingClasses[0].DBName;
+
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                Color color = returnData.Value.ToColor();
+                string json_in = returnData.Data.JsonSerializationt();
+                List<DeviceBasic> deviceBasics = Function_Get_device_by_ip(serverSettingClasses[0], Storage_IP);
+                returnData.Data = deviceBasics;
+
+                returnData.Code = 200;
+                returnData.Result = $"搜尋儲位IP完成,共<{deviceBasics.Count}>筆!";
+                returnData.TimeTaken = myTimer.ToString();
+                return returnData.JsonSerializationt();
+
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Data = null;
+                return returnData.JsonSerializationt(true);
+            }
+            finally
+            {
+
+            }
+        }
+
         public List<DeviceBasic> Function_Get_device()
         {
             return Function_Get_device(device_Server, device_DB, device_TableName, UserName, Password, Port);
@@ -360,25 +427,26 @@ namespace HIS_WebApi
         }
         public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass)
         {
-            string IP = serverSettingClass.Server;
+            return Function_Get_device(serverSettingClass, "");
+        }
+        public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass , string TableName)
+        {
+            string Server = serverSettingClass.Server;
             string DBName = serverSettingClass.DBName;
             string UserName = serverSettingClass.User;
             string Password = serverSettingClass.Password;
             uint Port = (uint)serverSettingClass.Port.StringToInt32();
-            string TableName = "";
-            if (serverSettingClass.類別 == "藥庫")
+            List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+            if (serverSettingClass.類別 == "藥庫" && TableName.StringIsEmpty())
             {
                 TableName = "firstclass_device_jsonstring";
-            }
-            SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);
-            List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
-            if (TableName.StringIsEmpty() == false)
-            {
+                SQLControl sQLControl_device = new SQLControl(Server, DBName, TableName, UserName, Password, Port, SSLMode);
                 deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceBasic(sQLControl_device);
+
             }
             else
             {
-                deviceBasics = Function_讀取儲位(IP, DBName, UserName, Password, Port);
+                deviceBasics = Function_讀取儲位(Server, DBName, UserName, Password, Port);
             }
        
             return deviceBasics;
@@ -398,7 +466,71 @@ namespace HIS_WebApi
 
             return deviceBasics;
         }
+        public List<DeviceBasic> Function_Get_device_by_ip(ServerSettingClass serverSettingClass, string storageIP)
+        {
+            string IP = serverSettingClass.Server;
+            string DBName = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
 
+            List<DeviceBasic> deviceBasics = Function_讀取儲位_by_ip(IP, DBName, UserName, Password, Port, storageIP);
+
+            return deviceBasics;
+        }
+
+        private List<DeviceBasic> Function_讀取儲位_by_ip(string IP, string DBName, string UserName, string Password, uint Port, string storageIP)
+        {
+            SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_RowsLED_serialize = new SQLControl(IP, DBName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_RFID_Device_serialize = new SQLControl(IP, DBName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_WT32_serialize = new SQLControl(IP, DBName, "WT32_Jsonstring", UserName, Password, Port, SSLMode);
+
+
+            List<object[]> list_EPD583 = new List<object[]>();
+            List<object[]> list_EPD266 = new List<object[]>();
+            List<object[]> list_RowsLED = new List<object[]>();
+            List<object[]> list_RFID_Device = new List<object[]>();
+            List<object[]> list_WT32 = new List<object[]>();
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task.Run(() =>
+            {
+              
+                if (sQLControl_EPD583_serialize.IsTableCreat()) list_EPD583 = sQLControl_EPD583_serialize.GetRowsByDefult(null,(int)H_Pannel_lib.enum_DeviceTable.IP, storageIP);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+                if (sQLControl_EPD266_serialize.IsTableCreat()) list_EPD266 = sQLControl_EPD266_serialize.GetRowsByDefult(null, (int)H_Pannel_lib.enum_DeviceTable.IP, storageIP);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+                if (sQLControl_RowsLED_serialize.IsTableCreat()) list_RowsLED = sQLControl_RowsLED_serialize.GetRowsByDefult(null, (int)H_Pannel_lib.enum_DeviceTable.IP, storageIP);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+                if (sQLControl_RFID_Device_serialize.IsTableCreat()) list_RFID_Device = sQLControl_RFID_Device_serialize.GetRowsByDefult(null, (int)H_Pannel_lib.enum_DeviceTable.IP, storageIP);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+                if (sQLControl_WT32_serialize.IsTableCreat()) list_WT32 = sQLControl_WT32_serialize.GetRowsByDefult(null, (int)H_Pannel_lib.enum_DeviceTable.IP, storageIP);
+            }));
+            Task allTask = Task.WhenAll(taskList);
+            allTask.Wait();
+            List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+            List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
+            deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD583));
+            deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_EPD266));
+            deviceBasics.LockAdd(RowsLEDMethod.GetAllDeviceBasic(list_RowsLED));
+            deviceBasics.LockAdd(RFIDMethod.GetAllDeviceBasic(list_RFID_Device));
+            deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_WT32));
+            deviceBasics_buf = deviceBasics;
+            //deviceBasics_buf = (from value in deviceBasics
+            //                    where value.Code.StringIsEmpty() == false
+            //                    select value).ToList();
+
+            return deviceBasics_buf;
+        }
         private List<DeviceBasic> Function_讀取儲位(string IP, string DBName, string UserName, string Password, uint Port)
         {
     
@@ -445,9 +577,10 @@ namespace HIS_WebApi
             deviceBasics.LockAdd(RFIDMethod.GetAllDeviceBasic(list_RFID_Device));
             deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_WT32));
 
-            deviceBasics_buf = (from value in deviceBasics
-                                where value.Code.StringIsEmpty() == false
-                                select value).ToList();
+            deviceBasics_buf = deviceBasics;
+            //deviceBasics_buf = (from value in deviceBasics
+            //                    where value.Code.StringIsEmpty() == false
+            //                    select value).ToList();
 
             return deviceBasics_buf;
         }

@@ -42,7 +42,7 @@ namespace 智能藥庫系統
         }
         private void sub_Program_藥庫_儲位管理_Pannel35_Init()
         {
-            this.storageUI_WT32.Init(dBConfigClass.DB_Basic);
+            this.storageUI_WT32.Init(dBConfigClass.DB_stroage);
             this.pannel35_Pannel.Init(this.storageUI_WT32.List_UDP_Local);
             this.pannel35_Pannel.EditFinishedEvent += Pannel35_Pannel_EditFinishedEvent;
 

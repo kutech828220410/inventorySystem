@@ -52,14 +52,12 @@ namespace HIS_WebApi
         {
             return new enum_ServerSetting_Type().GetEnumNames().JsonSerializationt();
         }
-
         [Route("program")]
         [HttpGet]
         public string GET_program()
         {
             return new enum_ServerSetting_ProgramType().GetEnumNames().JsonSerializationt();
         }
-
         [HttpGet]
         public string GET()
         {

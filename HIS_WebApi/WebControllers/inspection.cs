@@ -61,6 +61,7 @@ namespace HIS_WebApi
         [HttpPost]
         public string GET_new_IC_SN([FromBody] returnData returnData)
         {
+            GET_init(returnData);
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
@@ -113,6 +114,7 @@ namespace HIS_WebApi
         {
             try
             {
+                GET_init(returnData);
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
@@ -177,6 +179,7 @@ namespace HIS_WebApi
         {
             try
             {
+                GET_init(returnData);
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
@@ -312,6 +315,7 @@ namespace HIS_WebApi
         {
             try
             {
+                GET_init(returnData);
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 

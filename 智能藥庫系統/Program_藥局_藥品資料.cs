@@ -51,6 +51,8 @@ namespace 智能藥庫系統
         }
         private void sub_Program_藥局_藥品資料_Init()
         {
+            this.DeviceBasicClass_藥局.Init(dBConfigClass.DB_stroage, "phar_device_jsonstring");
+
             this.sqL_DataGridView_藥局_藥品資料_效期及庫存.Init();
             this.sqL_DataGridView_藥局_藥品資料.Init();
             if (!this.sqL_DataGridView_藥局_藥品資料.SQL_IsTableCreat()) this.sqL_DataGridView_藥局_藥品資料.SQL_CreateTable();
@@ -63,7 +65,7 @@ namespace 智能藥庫系統
                         
             this.sqL_DataGridView_藥局_藥品資料.DataGridRowsChangeRefEvent += SqL_DataGridView_藥局_藥品資料_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_藥局_藥品資料.RowEnterEvent += SqL_DataGridView_藥局_藥品資料_RowEnterEvent;
-            this.DeviceBasicClass_藥局.Init(dBConfigClass.DB_Basic, "phar_device_jsonstring");
+ 
 
 
             this.plC_RJ_ComboBox_藥局_藥品資料_藥品群組.Enter += PlC_RJ_ComboBox_藥局_藥品資料_藥品群組_Enter;

@@ -47,6 +47,7 @@ namespace 智能藥庫系統
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_posting_server = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_stroage = new SQL_DataGridView.ConnentionClass();
             private string web_URL = "";
             private string api_URL = "";
             private string emg_apply_ApiURL = "";
@@ -63,6 +64,8 @@ namespace 智能藥庫系統
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_posting_server { get => dB_posting_server; set => dB_posting_server = value; }
             [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_stroage { get => dB_stroage; set => dB_stroage = value; }
+            [JsonIgnore]
             public string Emg_apply_ApiURL { get => emg_apply_ApiURL; set => emg_apply_ApiURL = value; }
             [JsonIgnore]
             public string MedPrice_ApiURL { get => medPrice_ApiURL; set => medPrice_ApiURL = value; }
@@ -70,8 +73,7 @@ namespace 智能藥庫系統
             public string Inspection_ApiURL { get => inspection_ApiURL; set => inspection_ApiURL = value; }
             [JsonIgnore]
             public string Inventory_ApiURL { get => inventory_ApiURL; set => inventory_ApiURL = value; }
-          
-
+      
 
             private string name = "";
             private string api_Server = "";
@@ -82,6 +84,7 @@ namespace 智能藥庫系統
             public string Web_URL { get => web_URL; set => web_URL = value; }
             [JsonIgnore]
             public string Api_URL { get => api_URL; set => api_URL = value; }
+       
         }
         private void LoadDBConfig()
         {
@@ -211,6 +214,15 @@ namespace 智能藥庫系統
                 dBConfigClass.DB_posting_server.DataBaseName = serverSettingClass.DBName;
                 dBConfigClass.DB_posting_server.UserName = serverSettingClass.User;
                 dBConfigClass.DB_posting_server.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_儲位資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_stroage.IP = serverSettingClass.Server;
+                dBConfigClass.DB_stroage.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_stroage.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_stroage.UserName = serverSettingClass.User;
+                dBConfigClass.DB_stroage.Password = serverSettingClass.Password;
             }
 
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API01);

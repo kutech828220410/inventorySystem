@@ -586,10 +586,10 @@ namespace 智能藥庫系統
                         Font font_hs_CHT_name = new Font("微軟正黑體", 26, FontStyle.Bold);
                         Font font_hs_EN_name = new Font("微軟正黑體", 16, FontStyle.Bold);
 
-                        string str_hs_CHT_name = "屏東榮民總醫院";
+                        string str_hs_CHT_name = "衛福部立台北醫院";
                         Size size_hs_CHT_name = TextRenderer.MeasureText(str_hs_CHT_name, font_hs_CHT_name);
 
-                        string str_hs_EN_name = "Pingtung Veterans General Hospital";
+                        string str_hs_EN_name = "Taipei Hospital";
                         Size size_hs_EN_name = TextRenderer.MeasureText(str_hs_EN_name, font_hs_EN_name);
 
                         int x_hs_CHT_name = (this.panel_戰情白板_醫院名稱.Width - size_hs_EN_name.Width) / 2;

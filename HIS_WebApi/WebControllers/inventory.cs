@@ -57,6 +57,7 @@ namespace HIS_WebApi
         [HttpPost]
         public string GET_new_IC_SN([FromBody] returnData returnData)
         {
+            GET_init(returnData);
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
@@ -110,7 +111,7 @@ namespace HIS_WebApi
             try
             {
 
-
+                GET_init(returnData);
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
@@ -177,6 +178,7 @@ namespace HIS_WebApi
         {
             try
             {
+                GET_init(returnData);
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
@@ -312,6 +314,7 @@ namespace HIS_WebApi
         {
             try
             {
+                GET_init(returnData);
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
@@ -1377,6 +1380,7 @@ namespace HIS_WebApi
             table_inventory_sub_content.AddColumnList("操作時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table_inventory_sub_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             if (!sQLControl_inventory_sub_content.IsTableCreat()) sQLControl_inventory_sub_content.CreatTable(table_inventory_sub_content);
             else sQLControl_inventory_sub_content.CheckAllColumnName(table_inventory_sub_content, true);
             tables.Add(table_inventory_sub_content);
