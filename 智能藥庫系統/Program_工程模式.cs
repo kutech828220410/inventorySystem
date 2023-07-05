@@ -246,6 +246,8 @@ namespace 智能藥庫系統
         #region PLC_檢查區域亮燈
         PLC_Device PLC_Device_檢查區域亮燈 = new PLC_Device("");
         PLC_Device PLC_Device_檢查區域亮燈_OK = new PLC_Device("");
+        bool flag_檢查區域亮燈_init = true;
+        bool flag_檢查區域亮燈_debug = false;
         int cnt_Program_檢查_區域亮燈 = 65534;
         void sub_Program_檢查_區域亮燈()
         {
@@ -279,50 +281,39 @@ namespace 智能藥庫系統
         }
         void cnt_Program_檢查_區域亮燈_初始化(ref int cnt)
         {
-            List<StorageUI_WT32.UDP_READ> uDP_READs_WT32 = this.storageUI_WT32.GerAllUDP_READ();
+            MyTimer myTimer = new MyTimer(50000);
+            List<Storage> storages_EPD266 = this.List_EPD266_本地資料;
+            List<Storage> storages_EPD266_buf = new List<Storage>();
             List<StorageUI_EPD_266.UDP_READ> uDP_READs_EPD266 = this.storageUI_EPD_266.GerAllUDP_READ();
+            List<StorageUI_EPD_266.UDP_READ> uDP_READs_EPD266_buf = new List<StorageUI_EPD_266.UDP_READ>();
+   
             List<object[]> list_貨架區域儲位列表 = this.sqL_DataGridView_貨架區域儲位列表.SQL_GetAllRows(false);
+            List<object[]> list_貨架區域儲位列表_replace = new List<object[]>();
+
+            if (flag_檢查區域亮燈_debug) Console.WriteLine($"區域亮燈:取得貨架區域儲位列表 {myTimer.ToString()} {DateTime.Now.ToDateTimeString()}");
             List<object[]> list_貨架區域儲位列表_buf = new List<object[]>();
             List<string> list_master_guid_on = new List<string>();
             List<string> list_master_guid_on_buf = new List<string>();
             List<string> list_master_guid_off = new List<string>();
             List<string> list_master_guid_off_buf = new List<string>();
 
-            List<Storage> storages_WT32 = this.List_Pannel35_本地資料;
-            for (int i = 0; i < uDP_READs_WT32.Count; i++)
+            uDP_READs_EPD266_buf = (from temp in uDP_READs_EPD266
+                                    where temp.WS2812_State == true
+                                    select temp).ToList();
+            for (int i = 0; i < list_貨架區域儲位列表.Count; i++)
             {
-                if (uDP_READs_WT32[i].WS2812_State)
-                {
-                    Storage storage = storages_WT32.SortByIP(uDP_READs_WT32[i].IP);
-                    if (storage == null) continue;
-                    string master_guid = storage.Master_GUID;
-                    list_master_guid_on_buf = (from value in list_master_guid_on
-                                            where value == master_guid
-                                            select value).ToList();
-                    if(list_master_guid_on_buf.Count == 0)
-                    {
-                        list_master_guid_on.LockAdd(master_guid);
-                    }
-                }
-            }
-            List<Storage> storages_EPD266 = this.List_EPD266_本地資料;
-            for (int i = 0; i < uDP_READs_EPD266.Count; i++)
-            {
-                if (uDP_READs_EPD266[i].WS2812_State)
-                {
-                    Storage storage = storages_EPD266.SortByIP(uDP_READs_EPD266[i].IP);
-                    if (storage == null) continue;
-                    string master_guid = storage.Master_GUID;
-                    list_master_guid_on_buf = (from value in list_master_guid_on
-                                               where value == master_guid
-                                               select value).ToList();
-                    if (list_master_guid_on_buf.Count == 0)
-                    {
-                        list_master_guid_on.LockAdd(master_guid);
-                    }
-                }
-            }
+                string Master_GUID = list_貨架區域儲位列表[i][(int)enum_藥庫_儲位管理_區域儲位.GUID].ObjectToString();
+                storages_EPD266_buf = (from temp in storages_EPD266
+                                       where temp.Master_GUID == Master_GUID
+                                       select temp).ToList();
 
+                List<string> List_IP = storages_EPD266_buf.Select(p => p.IP).Intersect(uDP_READs_EPD266_buf.Select(e => e.IP)).ToList();
+                if (List_IP.Count > 0)
+                {
+                    list_master_guid_on.LockAdd(Master_GUID);
+                }
+            }
+            if (flag_檢查區域亮燈_debug) Console.WriteLine($"區域亮燈:搜尋亮燈儲位完成 共<{uDP_READs_EPD266_buf.Count}>個 {myTimer.ToString()} {DateTime.Now.ToDateTimeString()}");
 
             for (int i = 0; i < list_貨架區域儲位列表.Count; i++)
             {
@@ -330,16 +321,15 @@ namespace 智能藥庫系統
                 list_master_guid_on_buf = (from value in list_master_guid_on
                                            where value == guid
                                            select value).ToList();
-                if(list_master_guid_on_buf.Count == 0)
+                if (list_master_guid_on_buf.Count == 0)
                 {
                     list_master_guid_off.LockAdd(guid);
                 }
 
             }
-   
+
             try
             {
-                List<Task> taskList_on = new List<Task>();
                 for (int i = 0; i < list_master_guid_on.Count; i++)
                 {
                     list_貨架區域儲位列表_buf = list_貨架區域儲位列表.GetRows((int)enum_藥庫_儲位管理_區域儲位.GUID, list_master_guid_on[i]);
@@ -348,23 +338,24 @@ namespace 智能藥庫系統
                         string IP = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.IP].ObjectToString();
                         int Port = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Port].ObjectToString().StringToInt32();
                         int Num = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Num].ObjectToString().StringToInt32();
-                        if (!this.rfiD_UI.Get_IO_Output(IP, Port, Num))
+                        if (list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.狀態].ObjectToString()!= true.ToString() || flag_檢查區域亮燈_init)
                         {
                             this.rfiD_UI.Set_OutputPIN(IP, Port, Num, true);
+                            list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.狀態] = true.ToString();
+                            list_貨架區域儲位列表_replace.Add(list_貨架區域儲位列表_buf[0]);
                         }
                     }
 
-                }           
-                Task.WhenAll(taskList_on).Wait();
+                }
+                if (flag_檢查區域亮燈_debug) Console.WriteLine($"區域亮燈:亮燈呼叫完成 {myTimer.ToString()} {DateTime.Now.ToDateTimeString()}");
             }
             catch
             {
 
             }
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(20);
             try
             {
-                List<Task> taskList_off = new List<Task>();
                 for (int i = 0; i < list_master_guid_off.Count; i++)
                 {
                     list_貨架區域儲位列表_buf = list_貨架區域儲位列表.GetRows((int)enum_藥庫_儲位管理_區域儲位.GUID, list_master_guid_off[i]);
@@ -374,26 +365,23 @@ namespace 智能藥庫系統
                         int Port = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Port].ObjectToString().StringToInt32();
                         int Num = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Num].ObjectToString().StringToInt32();
                         if (IP.StringIsEmpty()) continue;
-                        taskList_off.Add(Task.Run(() =>
+                        if (list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.狀態].ObjectToString() != false.ToString() || flag_檢查區域亮燈_init)
                         {
-                            if (this.rfiD_UI.Get_IO_Output(IP, Port, Num))
-                            {
-                                this.rfiD_UI.Set_OutputPIN(IP, Port, Num, false);
-                            }
-
-                        }));
+                            this.rfiD_UI.Set_OutputPIN(IP, Port, Num, false);
+                            list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.狀態] = false.ToString();
+                            list_貨架區域儲位列表_replace.Add(list_貨架區域儲位列表_buf[0]);
+                        }
                     }
 
                 }
-                Task.WhenAll(taskList_off).Wait();
-
+                if (flag_檢查區域亮燈_debug) Console.WriteLine($"區域亮燈:滅燈呼叫完成 {myTimer.ToString()} {DateTime.Now.ToDateTimeString()}");
             }
             catch
             {
 
             }
-
-           
+            flag_檢查區域亮燈_init = false;
+            if (list_貨架區域儲位列表_replace.Count > 0) this.sqL_DataGridView_貨架區域儲位列表.SQL_ReplaceExtra(list_貨架區域儲位列表_replace, false);
             cnt++;
         }
 
