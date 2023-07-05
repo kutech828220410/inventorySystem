@@ -3498,7 +3498,6 @@
             this.plC_RJ_Pannel3.Name = "plC_RJ_Pannel3";
             this.plC_RJ_Pannel3.Size = new System.Drawing.Size(1648, 927);
             this.plC_RJ_Pannel3.TabIndex = 116;
-            this.plC_RJ_Pannel3.致能讀取位置 = "S39003";
             // 
             // panel71
             // 
