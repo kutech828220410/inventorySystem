@@ -413,7 +413,9 @@ namespace 調劑台管理系統
             int 總異動量 = 輸入數量.StringToInt32();
             string 效期 = 輸入效期;
             string 批號 = 輸入批號;
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, IP, 操作人, 顏色, 總異動量, 效期, 批號, 收支原因);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            this.Function_取藥堆疊資料_新增母資料(list_藥品資料 , list_藥品設定表 ,GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, IP, 操作人, 顏色, 總異動量, 效期, 批號, 收支原因);
             //this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.ClearGrid();
            
           

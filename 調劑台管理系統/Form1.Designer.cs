@@ -32688,7 +32688,7 @@
             this.plC_RJ_ScreenButton_交班作業.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
             this.plC_RJ_ScreenButton_交班作業.控制位址 = "D0";
             this.plC_RJ_ScreenButton_交班作業.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButton_交班作業.致能讀取位置 = "S39000";
+            this.plC_RJ_ScreenButton_交班作業.致能讀取位置 = "";
             this.plC_RJ_ScreenButton_交班作業.讀取位元反向 = false;
             this.plC_RJ_ScreenButton_交班作業.讀取位置註解 = "";
             this.plC_RJ_ScreenButton_交班作業.讀取元件位置 = "";

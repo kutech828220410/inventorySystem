@@ -1109,7 +1109,7 @@ namespace 調劑台管理系統
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
-            
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
             for (int i = 0; i < list_醫囑資料.Count; i++)
             {
 
@@ -1134,7 +1134,7 @@ namespace 調劑台管理系統
                 int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別 ,藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別 ,藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
 
             }
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
@@ -1195,8 +1195,8 @@ namespace 調劑台管理系統
                 string 顏色 = this.領藥台_01_顏色;
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
-
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -1266,8 +1266,8 @@ namespace 調劑台管理系統
                 string 顏色 = this.領藥台_01_顏色;
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
-
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -1341,7 +1341,10 @@ namespace 調劑台管理系統
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作 ,"" , 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名,床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+
+            this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作 ,"" , 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名,床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -1407,8 +1410,9 @@ namespace 調劑台管理系統
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
-
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -1448,6 +1452,7 @@ namespace 調劑台管理系統
                 List<object[]> list_value = dialog_手動作業.Value;
                 if (list_value.Count == 0) return;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 for (int i = 0; i < list_value.Count; i++)
                 {
@@ -1479,7 +1484,7 @@ namespace 調劑台管理系統
                     }
                     string 效期 = "";
 
-                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                    this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
 
                 }
 
@@ -2468,6 +2473,7 @@ namespace 調劑台管理系統
                 return;
             }
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
             List<object[]> list_藥品資料_buf = new List<object[]>();
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
@@ -2495,7 +2501,7 @@ namespace 調劑台管理系統
                 int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
 
             }
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
@@ -2531,6 +2537,7 @@ namespace 調劑台管理系統
 
                 object[] value = list_醫囑資料[0];
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
                 if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
@@ -2557,7 +2564,7 @@ namespace 調劑台管理系統
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -2602,6 +2609,7 @@ namespace 調劑台管理系統
                 if (dialog_醫囑退藥.ShowDialog() != DialogResult.Yes) return;
                 object[] value = dialog_醫囑退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
                 if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
@@ -2628,7 +2636,7 @@ namespace 調劑台管理系統
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -2701,7 +2709,9 @@ namespace 調劑台管理系統
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -2766,8 +2776,9 @@ namespace 調劑台管理系統
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
-
-            this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -2807,6 +2818,7 @@ namespace 調劑台管理系統
                 List<object[]> list_value = dialog_手動作業.Value;
                 if (list_value.Count == 0) return;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 for (int i = 0; i < list_value.Count; i++)
                 {
@@ -2838,7 +2850,7 @@ namespace 調劑台管理系統
                     }
                     string 效期 = "";
 
-                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                    this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
 
                 }
 
@@ -3174,6 +3186,8 @@ namespace 調劑台管理系統
             int 總異動量 = 0;
             string 效期 = "";
             string 床號 = "";
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
             for (int i = 0; i < List_領藥_入出庫資料檢查.Count; i++)
             {
                 GUID = List_領藥_入出庫資料檢查[i][(int)Dialog_RFID領退藥頁面.enum_入出庫資料檢查.GUID].ObjectToString();
@@ -3199,7 +3213,7 @@ namespace 調劑台管理系統
                 {
                     動作 = enum_交易記錄查詢動作.入庫作業;
                 }
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
                 List_領藥_入出庫資料檢查.RemoveAt(i);
                 this.voice.SpeakOnTask("成功");
                 break;

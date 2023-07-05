@@ -178,6 +178,8 @@ namespace 調劑台管理系統
 
             List<object[]> list_交易記錄查詢資料 = this.sqL_DataGridView_交易記錄查詢.SQL_GetAllRows(false);
             List<object[]> list_交易記錄查詢資料_buf = new List<object[]>();
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
             list_交易記錄查詢資料 = (from value in list_交易記錄查詢資料
                              where value[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.批次領藥.GetEnumName()
                              select value).ToList();
@@ -240,7 +242,7 @@ namespace 調劑台管理系統
                 if (!flag_批次已領取過)
                 {
                     list_批次未領取過領藥資料.Add(value);
-                    this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
+                    this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
                 }
                 else
                 {
@@ -602,7 +604,9 @@ namespace 調劑台管理系統
         private void plC_RJ_Button_批次領藥_重領已領取藥品_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_批次領藥_已領取領藥清單.Get_All_Select_RowsValues();
-            List<object[]> list_藥品資料_藥檔資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+
             for (int i = 0; i < list_value.Count; i++)
             {
                 string GUID = list_value[i][(int)enum_領藥內容.GUID].ObjectToString();
@@ -622,7 +626,7 @@ namespace 調劑台管理系統
                 int 總異動量 = list_value[i][(int)enum_領藥內容.異動量].ObjectToString().StringToInt32();
                 string 效期 = "";
                 string 狀態 = enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName();
-                this.Function_取藥堆疊資料_新增母資料(GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
+                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
             }
             for (int i = 0; i < list_value.Count; i++)
             {

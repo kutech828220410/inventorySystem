@@ -39,18 +39,20 @@ namespace 調劑台管理系統
 
         #region Function
         
-        private bool Function_藥品設定表_取得是否自訂義(string 藥品碼)
+        private bool Function_藥品設定表_取得是否自訂義(List<object[]> list_value ,string 藥品碼)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥品設定表.SQL_GetRows((int)enum_藥品設定表.藥品碼, 藥品碼, false);
-            if (list_value.Count == 0) return false;
-            return list_value[0][(int)enum_藥品設定表.自定義].StringToBool();
+       
+            List<object[]> list_value_buf = list_value.GetRows((int)enum_藥品設定表.藥品碼, 藥品碼);
+            if (list_value_buf.Count == 0) return false;
+            return list_value_buf[0][(int)enum_藥品設定表.自定義].StringToBool();
         }
-        private bool Function_藥品設定表_取得管制方式(enum_藥品設定表 _enum_藥品設定表, string 藥品碼)
+        private bool Function_藥品設定表_取得管制方式(List<object[]> list_value, enum_藥品設定表 _enum_藥品設定表, string 藥品碼)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥品設定表.SQL_GetRows((int)enum_藥品設定表.藥品碼, 藥品碼, false);
-            if (list_value.Count == 0) return false;
-            if (list_value[0][(int)enum_藥品設定表.自定義].StringToBool() == false) return false;
-            return list_value[0][(int)_enum_藥品設定表].StringToBool();
+       
+            List<object[]> list_value_buf = list_value.GetRows((int)enum_藥品設定表.藥品碼, 藥品碼);
+            if (list_value_buf.Count == 0) return false;
+            if (list_value_buf[0][(int)enum_藥品設定表.自定義].StringToBool() == false) return false;
+            return list_value_buf[0][(int)_enum_藥品設定表].StringToBool();
         }
         #endregion
     }
