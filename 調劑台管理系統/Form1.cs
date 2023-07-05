@@ -565,7 +565,7 @@ namespace 調劑台管理系統
             this.Program_工程模式_Init();
             this.Program_交易記錄查詢_Init();
             this.Program_效期管理_Init();
-            this.Program_收支作業_Init();
+      
             this.Program_後台登入_Init();
             this.Program_批次領藥_Init();
            
@@ -581,6 +581,7 @@ namespace 調劑台管理系統
             this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();
             this.Program_取藥堆疊資料_Init();
+            this.Program_收支作業_Init();
             this.plC_UI_Init.Add_Method(this.sub_Program_Scanner_RS232);
 
             this.LoadConfig工程模式();

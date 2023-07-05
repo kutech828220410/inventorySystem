@@ -215,6 +215,9 @@ namespace 智能藥庫系統
 
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API01);
             if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
+
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.Website);
+            if (serverSettingClass != null) dBConfigClass.Web_URL = serverSettingClass.Server;
         }
   
      
@@ -291,6 +294,11 @@ namespace 智能藥庫系統
 
             //this.PLC_Device_主機模式.Bool = myConfigClass.主機模式;
 
+            if (dBConfigClass.Web_URL.StringIsEmpty()) plC_RJ_GroupBox_後台網址_QRCODE.Visible = false;
+            else
+            {
+                pictureBox_後台網址_QRCODE.Image = H_Pannel_lib.Communication.CreateQRCode(dBConfigClass.Web_URL, pictureBox_後台網址_QRCODE.Width, pictureBox_後台網址_QRCODE.Height);
+            }
 
             this.sub_Program_系統_Init();
             this.sub_Program_人員資料_Init();

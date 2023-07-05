@@ -1,0 +1,49 @@
+{
+  "DB_Basic": {
+    "DataBaseName": "ds01",
+    "IP": "192.168.24.61",
+    "UserName": "user",
+    "Password": "66437068",
+    "Port": 3306,
+    "MySqlSslMode": 0,
+    "TableName": ""
+  },
+  "DB_person_page": {
+    "DataBaseName": "ds01_vm",
+    "IP": "192.168.24.61",
+    "UserName": "user",
+    "Password": "66437068",
+    "Port": 3306,
+    "MySqlSslMode": 0,
+    "TableName": ""
+  },
+  "DB_Medicine_Cloud": {
+    "DataBaseName": "dbvm",
+    "IP": "192.168.24.61",
+    "UserName": "user",
+    "Password": "66437068",
+    "Port": 3306,
+    "MySqlSslMode": 0,
+    "TableName": "medicine_page_cloud"
+  },
+  "DB_posting_server": {
+    "DataBaseName": "ds01_vm",
+    "IP": "192.168.24.61",
+    "UserName": "user",
+    "Password": "66437068",
+    "Port": 3306,
+    "MySqlSslMode": 0,
+    "TableName": ""
+  },
+  "DB_order_server": {
+    "DataBaseName": "OD_VM",
+    "IP": "192.168.24.61",
+    "UserName": "user",
+    "Password": "66437068",
+    "Port": 3306,
+    "MySqlSslMode": 0,
+    "TableName": ""
+  },
+  "Emg_apply_ApiURL": "https://192.168.24.61:4433/api/excel/emg_apply/",
+  "MedPrice_ApiURL": "https://192.168.24.61:4433/api/MedPrice"
+}

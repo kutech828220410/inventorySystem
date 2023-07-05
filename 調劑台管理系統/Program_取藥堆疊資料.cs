@@ -16,6 +16,7 @@ using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using SQLUI;
 
 namespace 調劑台管理系統
 {
@@ -895,6 +896,17 @@ namespace 調劑台管理系統
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
+
+            SQL_DataGridView.ConnentionClass dB_local = new SQL_DataGridView.ConnentionClass();
+            dB_local.IP = "127.0.0.1";
+            dB_local.DataBaseName = dBConfigClass.DB_Basic.DataBaseName;
+            dB_local.Port = 3306;
+            dB_local.UserName = "user";
+            dB_local.Password = "66437068";
+            dB_local.MySqlSslMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_取藥堆疊母資料, dB_local);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_取藥堆疊子資料, dB_local);
+
             if (tables == null)
             {
                 MyMessageBox.ShowDialog($"取藥堆疊表單建立失敗!! Api_URL:{url}");

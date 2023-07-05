@@ -65,7 +65,7 @@ namespace 智能藥庫系統
             plC_RJ_Button_登入畫面_登入.MouseDownEvent += PlC_RJ_Button_登入畫面_登入_MouseDownEvent;
             plC_RJ_Button_登入畫面_登出.MouseDownEvent += PlC_RJ_Button_登入畫面_登出_MouseDownEvent;
             plC_RJ_Button_登入畫面_更換密碼.MouseDownEvent += PlC_RJ_Button_登入畫面_更換密碼_MouseDownEvent;
-
+            button_後台網址_開啟.Click += Button_後台網址_開啟_Click;
             textBox_登入畫面_帳號.KeyPress += TextBox_登入畫面_帳號_KeyPress;
             textBox_登入畫面_密碼.KeyPress += TextBox_登入畫面_密碼_KeyPress;
 
@@ -346,6 +346,18 @@ namespace 智能藥庫系統
 
             this.Function_登出();
 
+        }
+        private void Button_後台網址_開啟_Click(object sender, EventArgs e)
+        {
+            string url = $"{dBConfigClass.Web_URL}";
+            try
+            {
+                Process.Start(url);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("無法開啟網頁: " + ex.Message);
+            }
         }
         #endregion
     }

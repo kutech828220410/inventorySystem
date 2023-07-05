@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MyUI;
 using Basic;
+using SQLUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
 namespace 智能藥庫系統
@@ -44,8 +45,19 @@ namespace 智能藥庫系統
 
         private void sub_Program_交易紀錄查詢_Init()
         {
-            this.sqL_DataGridView_交易記錄查詢.Init();
-            if (!this.sqL_DataGridView_交易記錄查詢.SQL_IsTableCreat()) this.sqL_DataGridView_交易記錄查詢.SQL_CreateTable();
+            string url = $"{dBConfigClass.Api_URL}/api/transactions/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table table = json.JsonDeserializet<Table>();
+            if (table == null)
+            {
+                MyMessageBox.ShowDialog($"交易紀錄表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
+            }
+            this.sqL_DataGridView_交易記錄查詢.Init(table);
 
             this.sqL_DataGridView_交易記錄查詢.DataGridRefreshEvent += SqL_DataGridView_交易記錄查詢_DataGridRefreshEvent;
             this.sqL_DataGridView_交易記錄查詢.DataGridRowsChangeRefEvent += SqL_DataGridView_交易記錄查詢_DataGridRowsChangeRefEvent;

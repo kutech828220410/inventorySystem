@@ -167,22 +167,19 @@ namespace 智能藥庫系統
         }
         private void PlC_RJ_Button_藥庫_儲位管理_區域儲位_滅燈_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_貨架區域儲位列表.SQL_GetAllRows(false);
-
-
-            List<Task> taskList = new List<Task>();
-            for (int i = 0; i < list_value.Count; i++)
+            List<object[]> list_value = this.sqL_DataGridView_貨架區域儲位列表.Get_All_Select_RowsValues();
+            if (list_value.Count == 0)
             {
-                string IP = list_value[i][(int)enum_藥庫_儲位管理_區域儲位.IP].ObjectToString();
-                int Port = list_value[i][(int)enum_藥庫_儲位管理_區域儲位.Port].ObjectToString().StringToInt32();
-                int Num = list_value[i][(int)enum_藥庫_儲位管理_區域儲位.Num].ObjectToString().StringToInt32();
-
-                taskList.Add(Task.Run(() =>
-                {
-                    this.rfiD_UI.Set_OutputPIN(IP, Port, Num, false);
-                }));
+                MyMessageBox.ShowDialog("未選取資料!");
+                return;
             }
-            Task.WhenAll(taskList);
+
+            string IP = list_value[0][(int)enum_藥庫_儲位管理_區域儲位.IP].ObjectToString();
+            int Port = list_value[0][(int)enum_藥庫_儲位管理_區域儲位.Port].ObjectToString().StringToInt32();
+            int Num = list_value[0][(int)enum_藥庫_儲位管理_區域儲位.Num].ObjectToString().StringToInt32();
+
+            this.rfiD_UI.Set_OutputPIN(IP, Port, Num, false);
+
         }
         #endregion
 

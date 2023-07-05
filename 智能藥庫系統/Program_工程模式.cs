@@ -54,7 +54,7 @@ namespace 智能藥庫系統
             this.MyThread_檢查區域亮燈 = new MyThread();
             this.MyThread_檢查區域亮燈.AutoStop(true);
             this.MyThread_檢查區域亮燈.AutoRun(true);
-            this.MyThread_檢查區域亮燈.SetSleepTime(500);
+            this.MyThread_檢查區域亮燈.SetSleepTime(100);
             this.MyThread_檢查區域亮燈.Add_Method(sub_Program_檢查_區域亮燈);
             this.MyThread_檢查區域亮燈.Trigger();
 
@@ -306,7 +306,7 @@ namespace 智能藥庫系統
                 }
             }
             List<Storage> storages_EPD266 = this.List_EPD266_本地資料;
-            for (int i = 0; i < uDP_READs_WT32.Count; i++)
+            for (int i = 0; i < uDP_READs_EPD266.Count; i++)
             {
                 if (uDP_READs_EPD266[i].WS2812_State)
                 {
@@ -348,14 +348,10 @@ namespace 智能藥庫系統
                         string IP = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.IP].ObjectToString();
                         int Port = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Port].ObjectToString().StringToInt32();
                         int Num = list_貨架區域儲位列表_buf[0][(int)enum_藥庫_儲位管理_區域儲位.Num].ObjectToString().StringToInt32();
-                        taskList_on.Add(Task.Run(() =>
+                        if (!this.rfiD_UI.Get_IO_Output(IP, Port, Num))
                         {
-                            if(!this.rfiD_UI.Get_IO_Output(IP, Port, Num))
-                            {
-                                this.rfiD_UI.Set_OutputPIN(IP, Port, Num, true);
-                            }
-
-                        }));
+                            this.rfiD_UI.Set_OutputPIN(IP, Port, Num, true);
+                        }
                     }
 
                 }           

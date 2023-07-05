@@ -1368,6 +1368,9 @@
             this.ContentsPanel = new MyUI.RJ_Pannel();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.plC_RJ_GroupBox_後台網址_QRCODE = new MyUI.PLC_RJ_GroupBox();
+            this.pictureBox_後台網址_QRCODE = new System.Windows.Forms.PictureBox();
+            this.button_後台網址_開啟 = new System.Windows.Forms.Button();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
@@ -1793,6 +1796,9 @@
             this.groupBox2.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel_系統.SuspendLayout();
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.SuspendLayout();
+            this.plC_RJ_GroupBox_後台網址_QRCODE.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_後台網址_QRCODE)).BeginInit();
             this.SuspendLayout();
             // 
             // timer_init
@@ -2564,6 +2570,7 @@
             // 登入畫面
             // 
             this.登入畫面.BackColor = System.Drawing.SystemColors.Window;
+            this.登入畫面.Controls.Add(this.plC_RJ_GroupBox_後台網址_QRCODE);
             this.登入畫面.Controls.Add(this.plC_RJ_Pannel4);
             this.登入畫面.Controls.Add(this.plC_RJ_GroupBox14);
             this.登入畫面.Controls.Add(this.rJ_Lable5);
@@ -35326,6 +35333,67 @@
             this.ContentsPanel.Size = new System.Drawing.Size(840, 474);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // plC_RJ_GroupBox_後台網址_QRCODE
+            // 
+            this.plC_RJ_GroupBox_後台網址_QRCODE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            // 
+            // plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel
+            // 
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.BorderRadius = 5;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.BorderSize = 2;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.Controls.Add(this.pictureBox_後台網址_QRCODE);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.Controls.Add(this.button_後台網址_開啟);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.IsSelected = false;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.Name = "ContentsPanel";
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.Padding = new System.Windows.Forms.Padding(2);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.Size = new System.Drawing.Size(324, 374);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.TabIndex = 2;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.GUID = "";
+            this.plC_RJ_GroupBox_後台網址_QRCODE.Location = new System.Drawing.Point(1259, 544);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.Name = "plC_RJ_GroupBox_後台網址_QRCODE";
+            this.plC_RJ_GroupBox_後台網址_QRCODE.PannelBackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.PannelBorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.PannelBorderRadius = 5;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.PannelBorderSize = 2;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.Size = new System.Drawing.Size(324, 411);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TabIndex = 114;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleBorderRadius = 5;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleBorderSize = 0;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleFont = new System.Drawing.Font("新細明體", 12F);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleHeight = 37;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.plC_RJ_GroupBox_後台網址_QRCODE.TitleTexts = "後台網址";
+            // 
+            // pictureBox_後台網址_QRCODE
+            // 
+            this.pictureBox_後台網址_QRCODE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_後台網址_QRCODE.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_後台網址_QRCODE.Location = new System.Drawing.Point(2, 2);
+            this.pictureBox_後台網址_QRCODE.Name = "pictureBox_後台網址_QRCODE";
+            this.pictureBox_後台網址_QRCODE.Size = new System.Drawing.Size(320, 320);
+            this.pictureBox_後台網址_QRCODE.TabIndex = 0;
+            this.pictureBox_後台網址_QRCODE.TabStop = false;
+            // 
+            // button_後台網址_開啟
+            // 
+            this.button_後台網址_開啟.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button_後台網址_開啟.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_後台網址_開啟.ForeColor = System.Drawing.Color.Black;
+            this.button_後台網址_開啟.Location = new System.Drawing.Point(2, 322);
+            this.button_後台網址_開啟.Name = "button_後台網址_開啟";
+            this.button_後台網址_開啟.Size = new System.Drawing.Size(320, 50);
+            this.button_後台網址_開啟.TabIndex = 1;
+            this.button_後台網址_開啟.Text = "開啟";
+            this.button_後台網址_開啟.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -35803,6 +35871,9 @@
             this.groupBox2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.panel_系統.ResumeLayout(false);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ContentsPanel.ResumeLayout(false);
+            this.plC_RJ_GroupBox_後台網址_QRCODE.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_後台網址_QRCODE)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -37147,6 +37218,9 @@
         private System.Windows.Forms.TabPage 驗收作業;
         private MyUI.PLC_RJ_Button plC_RJ_Button_驗收作業_單號查詢_下載;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥庫_儲位管理_EPD266_儲位內容_區域儲位管理;
+        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox_後台網址_QRCODE;
+        private System.Windows.Forms.PictureBox pictureBox_後台網址_QRCODE;
+        private System.Windows.Forms.Button button_後台網址_開啟;
     }
 }
 
