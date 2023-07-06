@@ -1128,3 +1128,9 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPO
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OpenXml4Net.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OpenXmlFormats.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\ICSharpCode.SharpZipLib.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\ICSharpCode.SharpZipLib.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OOXML.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OpenXml4Net.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OpenXmlFormats.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.Drawing.Common.dll
