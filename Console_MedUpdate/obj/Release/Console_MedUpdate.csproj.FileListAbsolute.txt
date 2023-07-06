@@ -144,3 +144,4 @@ C:\Users\kwok\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console
 C:\Users\kwok\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.csproj.CopyComplete
 C:\Users\kwok\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.exe
 C:\Users\kwok\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.pdb
+C:\Users\kwok\source\repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.csproj.AssemblyReference.cache

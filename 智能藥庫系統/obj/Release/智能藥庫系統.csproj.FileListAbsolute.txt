@@ -509,12 +509,9 @@ C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\ZealTe
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Interop.SpeechLib.dll
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\zxing.dll
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\MeasureSystemFunction.dll
-C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OOXML.dll
-C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OpenXmlFormats.dll
-C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\stdole.dll
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.Buffers.xml
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.Memory.xml

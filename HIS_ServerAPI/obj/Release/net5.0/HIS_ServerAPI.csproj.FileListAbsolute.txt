@@ -235,3 +235,9 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.O
 C:\Users\HS\Source\Repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.OpenXml4Net.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.OpenXmlFormats.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\ICSharpCode.SharpZipLib.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\ICSharpCode.SharpZipLib.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\MyOffice.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.OOXML.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.OpenXml4Net.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.OpenXmlFormats.dll

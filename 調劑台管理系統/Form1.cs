@@ -31,14 +31,17 @@ namespace 調劑台管理系統
         {
             get
             {
-                return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
+                if(this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
+                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_03";
+
             }
         }
         public string 領藥台_02名稱
         {
             get
             {
-                return $"{this.textBox_工程模式_領藥台_名稱.Text}_02";
+                if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_02";
+                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_04";
             }
         }
         private PrinterClass printerClass = new PrinterClass();
