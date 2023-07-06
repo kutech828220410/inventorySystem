@@ -169,6 +169,7 @@ namespace 調劑台管理系統
                 }
                 takeMedicineStackClasses[i].序號 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClasses[i].操作時間 = DateTime.Now.ToDateTimeString_6();
+                takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新;
                 if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業) takeMedicineStackClasses[i].IP = "";
                 if (takeMedicineStackClasses[i].效期.Check_Date_String())
                 {
