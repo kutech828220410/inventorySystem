@@ -343,7 +343,7 @@ namespace 智能藥庫系統
             {
 
             }
-            System.Threading.Thread.Sleep(20);
+            System.Threading.Thread.Sleep(300);
             try
             {
                 for (int i = 0; i < list_master_guid_off.Count; i++)
