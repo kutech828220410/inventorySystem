@@ -909,7 +909,7 @@ namespace 調劑台管理系統
             SQL_DataGridView.ConnentionClass dB_local = new SQL_DataGridView.ConnentionClass();
             dB_local.IP = dBConfigClass.DB_Basic.IP;
             dB_local.DataBaseName = dBConfigClass.DB_Basic.DataBaseName;
-            dB_local.Port = 3306;
+            dB_local.Port = dBConfigClass.DB_Basic.Port;
             dB_local.UserName = "user";
             dB_local.Password = "66437068";
             dB_local.MySqlSslMode = MySql.Data.MySqlClient.MySqlSslMode.None;
