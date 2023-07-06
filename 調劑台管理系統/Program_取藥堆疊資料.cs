@@ -278,6 +278,7 @@ namespace 調劑台管理系統
                 if (plC_Button_同藥碼全亮.Bool)
                 {
                     this.Function_儲位亮燈(藥品碼, Color.Black);
+                    this.Function_儲位刷新(藥品碼);
                     return;
                 }
 
