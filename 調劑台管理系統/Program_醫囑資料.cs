@@ -170,6 +170,7 @@ namespace 調劑台管理系統
             if (flag_醫囑資料_檢查刷條碼_01)
             {
                 string text = this.MySerialPort_Scanner01.ReadString();
+                if (text == null) return;
                 text = text.Replace("\0", "");
                 if (text.StringIsEmpty()) return;
                 this.MySerialPort_Scanner01.ClearReadByte();
@@ -183,6 +184,7 @@ namespace 調劑台管理系統
 
                 string text = this.MySerialPort_Scanner02.ReadString();
                 text = text.Replace("\0", "");
+                if (text == null) return;
                 if (text.StringIsEmpty()) return;
                 this.MySerialPort_Scanner02.ClearReadByte();
                 if (text.Length <= 2 || text.Length > 200) return;

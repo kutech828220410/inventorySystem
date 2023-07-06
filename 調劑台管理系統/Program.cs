@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
+using Basic;
 namespace 調劑台管理系統
 {
     static class Program
@@ -19,7 +20,32 @@ namespace 調劑台管理系統
             mutex = new System.Threading.Mutex(true, "OnlyRun");
             if (mutex.WaitOne(0, false))
             {
-                Application.Run(new Form1());
+                try
+                {
+                    Application.Run(new Form1());
+                }
+                catch(Exception e)
+                {
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    string filePath = $@"{desktopPath}\log.txt";
+                    if (!File.Exists(filePath))
+                    {
+                        using (StreamWriter writer = new StreamWriter(filePath, false))
+                        {
+                            string text = $"{e.Message} {DateTime.Now.ToDateTimeString()}";
+                            writer.WriteLine(text);
+                        }
+                    }
+                    else
+                    {
+                        using (StreamWriter writer = new StreamWriter(filePath, true))
+                        {
+                            string text = $"{e.Message} {DateTime.Now.ToDateTimeString()}";
+                            writer.WriteLine(text);
+                        }
+                    }
+                   
+                }             
             }
             else
             {

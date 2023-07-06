@@ -130,9 +130,9 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Event
-        private bool Function_藥品管制方式設定_取得管制方式(enum_藥品管制方式設定 _enum_藥品管制方式設定, string 代號)
+        private bool Function_藥品管制方式設定_取得管制方式(List<object[]> list_藥品管制方式設定, enum_藥品管制方式設定 _enum_藥品管制方式設定, string 代號)
         {
-            List<object[]> list_value = this.sqL_DataGridView_藥品管制方式設定.SQL_GetRows((int)enum_藥品管制方式設定.代號, 代號, false);
+            List<object[]> list_value = list_藥品管制方式設定.GetRows((int)enum_藥品管制方式設定.代號, 代號);
             if (list_value.Count == 0) return false;
             string 管制方式 = list_value[0][(int)_enum_藥品管制方式設定].ObjectToString();
             return (管制方式 == true.ToString());

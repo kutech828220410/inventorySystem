@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+using Basic;
+
 
 namespace HIS_DB_Lib
 {
@@ -80,5 +83,33 @@ namespace HIS_DB_Lib
     }
     public class takeMedicineStackClass
     {
+        public string GUID { get; set; }
+        public string 序號 { get; set; }
+        public string 調劑台名稱 { get; set; }
+        public string IP { get; set; }
+        public string 操作人 { get; set; }
+        public enum_交易記錄查詢動作 動作 { get; set; }
+        public string 作業模式 { get; set; }
+        public string 藥袋序號 { get; set; }
+        public string 類別 { get; set; }
+        public string 藥品碼 { get; set; }
+        public string 藥品名稱 { get; set; }
+        public string 單位 { get; set; }
+        public string 病歷號 { get; set; }
+        public string 病人姓名 { get; set; }
+        public string 床號 { get; set; }
+        public string 開方時間 { get; set; }
+        public string 操作時間 { get; set; }
+        public string 顏色 { get; set; }
+        public enum_取藥堆疊母資料_狀態 狀態 { get; set; }
+        public string 庫存量 { get; set; }
+        public string 總異動量 { get; set; }
+        public string 結存量 { get; set; }
+        public string 盤點量 { get; set; }
+        public string 效期 { get; set; }
+        public string 批號 { get; set; }
+        public string 備註 { get; set; }
+        public string 收支原因 { get; set; }
+        public string 診別 { get; set; }
     }
 }

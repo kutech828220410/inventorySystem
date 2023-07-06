@@ -1109,7 +1109,7 @@ namespace 調劑台管理系統
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
-            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             for (int i = 0; i < list_醫囑資料.Count; i++)
             {
 
@@ -1134,9 +1134,26 @@ namespace 調劑台管理系統
                 int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別 ,藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.GUID = GUID;
+                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.診別 = 診別;
+                takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                takeMedicineStackClass.病歷號 = 病歷號;
+                takeMedicineStackClass.病人姓名 = 病人姓名;
+                takeMedicineStackClass.床號 = 床號;
+                takeMedicineStackClass.開方時間 = 開方時間;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClasses.Add(takeMedicineStackClass);
 
             }
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -1195,8 +1212,27 @@ namespace 調劑台管理系統
                 string 顏色 = this.領藥台_01_顏色;
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
-                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
-                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.GUID = GUID;
+                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                takeMedicineStackClass.動作 = 動作;
+
+                takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                takeMedicineStackClass.單位 = 單位;
+                takeMedicineStackClass.病歷號 = 病歷號;
+                takeMedicineStackClass.診別 = 診別;
+                takeMedicineStackClass.床號 = 床號;
+                takeMedicineStackClass.病人姓名 = 病人姓名;
+                takeMedicineStackClass.開方時間 = 開方時間;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.顏色 = 顏色;
+                takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                takeMedicineStackClass.效期 = 效期;
+
+
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -1266,8 +1302,26 @@ namespace 調劑台管理系統
                 string 顏色 = this.領藥台_01_顏色;
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
-                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
-                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.GUID = GUID;
+                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                takeMedicineStackClass.單位 = 單位;
+                takeMedicineStackClass.病歷號 = 病歷號;
+                takeMedicineStackClass.診別 = 診別;
+                takeMedicineStackClass.床號 = 床號;
+                takeMedicineStackClass.病人姓名 = 病人姓名;
+                takeMedicineStackClass.開方時間 = 開方時間;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.顏色 = 顏色;
+                takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                takeMedicineStackClass.效期 = 效期;
+
+
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -1341,10 +1395,24 @@ namespace 調劑台管理系統
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
-            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+            takeMedicineStackClass.GUID = GUID;
+            takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.藥品碼 = 藥品碼;
+            takeMedicineStackClass.藥品名稱 = 藥品名稱;
+            takeMedicineStackClass.藥袋序號 = 藥袋序號;
+            takeMedicineStackClass.單位 = 包裝單位;
+            takeMedicineStackClass.病歷號 = 病歷號;
+            takeMedicineStackClass.床號 = 床號;
+            takeMedicineStackClass.病人姓名 = 病人姓名;
+            takeMedicineStackClass.開方時間 = 開方時間;
+            takeMedicineStackClass.操作人 = 操作人;
+            takeMedicineStackClass.顏色 = 顏色;
+            takeMedicineStackClass.總異動量 = 總異動量.ToString();
+            takeMedicineStackClass.效期 = 效期;
 
-            this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作 ,"" , 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名,床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -1410,9 +1478,24 @@ namespace 調劑台管理系統
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
-            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
-            this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+            takeMedicineStackClass.GUID = GUID;
+            takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+            takeMedicineStackClass.動作 = 動作;
+
+            takeMedicineStackClass.藥品碼 = 藥品碼;
+            takeMedicineStackClass.藥品名稱 = 藥品名稱;
+            takeMedicineStackClass.藥袋序號 = 藥袋序號;
+            takeMedicineStackClass.單位 = 包裝單位;
+            takeMedicineStackClass.病歷號 = 病歷號;
+            takeMedicineStackClass.床號 = 床號;
+            takeMedicineStackClass.病人姓名 = 病人姓名;
+            takeMedicineStackClass.開方時間 = 開方時間;
+            takeMedicineStackClass.操作人 = 操作人;
+            takeMedicineStackClass.顏色 = 顏色;
+            takeMedicineStackClass.總異動量 = 總異動量.ToString();
+            takeMedicineStackClass.效期 = 效期;
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -1454,6 +1537,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
+                List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     string GUID = Guid.NewGuid().ToString();
@@ -1483,10 +1567,27 @@ namespace 調劑台管理系統
                         動作 = enum_交易記錄查詢動作.手輸退藥;
                     }
                     string 效期 = "";
+                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                    takeMedicineStackClass.GUID = GUID;
+                    takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                    takeMedicineStackClass.動作 = 動作;
+                    takeMedicineStackClass.藥品碼 = 藥品碼;
+                    takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                    takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                    takeMedicineStackClass.單位 = 單位;
+                    takeMedicineStackClass.病歷號 = 病歷號;
+                    takeMedicineStackClass.床號 = 床號;
+                    takeMedicineStackClass.病人姓名 = 病人姓名;
+                    takeMedicineStackClass.開方時間 = 開方時間;
+                    takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.顏色 = 顏色;
+                    takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                    takeMedicineStackClass.效期 = 效期;
 
-                    this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作,"", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                    takeMedicineStackClasses.Add(takeMedicineStackClass);
 
                 }
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             }));
             //this.plC_RJ_Button_領藥台_01_手動作業.ResetState();
@@ -2473,11 +2574,11 @@ namespace 調劑台管理系統
                 return;
             }
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
-            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
             List<object[]> list_藥品資料_buf = new List<object[]>();
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
+            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             for (int i = 0; i < list_醫囑資料.Count; i++)
             {
 
@@ -2485,15 +2586,16 @@ namespace 調劑台管理系統
                 string 調劑台名稱 = this.領藥台_02名稱;
                 enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
                 string 藥品碼 = list_醫囑資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                string 床號 = "";
+                string 診別 = list_醫囑資料[i][(int)enum_醫囑資料.藥局代碼].ObjectToString();
+
                 list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
                 if (list_藥品資料_buf.Count == 0) continue;
                 string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
                 string 藥袋序號 = list_醫囑資料[i][(int)enum_醫囑資料.PRI_KEY].ObjectToString();
                 string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                 string 病歷號 = list_醫囑資料[i][(int)enum_醫囑資料.病歷號].ObjectToString();
-                string 診別 = list_醫囑資料[i][(int)enum_醫囑資料.藥局代碼].ObjectToString();
                 string 病人姓名 = list_醫囑資料[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
+                string 床號 = "";
                 string 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = this.領藥台_02_ID;
                 string 操作人 = this.領藥台_02_登入者姓名;
@@ -2501,9 +2603,25 @@ namespace 調劑台管理系統
                 int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.GUID = GUID;
+                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.診別 = 診別;
+                takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                takeMedicineStackClass.病歷號 = 病歷號;
+                takeMedicineStackClass.病人姓名 = 病人姓名;
+                takeMedicineStackClass.床號 = 床號;
+                takeMedicineStackClass.開方時間 = 開方時間;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClasses.Add(takeMedicineStackClass);
 
             }
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -2564,7 +2682,26 @@ namespace 調劑台管理系統
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.GUID = GUID;
+                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                takeMedicineStackClass.動作 = 動作;
+
+                takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                takeMedicineStackClass.單位 = 單位;
+                takeMedicineStackClass.病歷號 = 病歷號;
+                takeMedicineStackClass.診別 = 診別;
+                takeMedicineStackClass.床號 = 床號;
+                takeMedicineStackClass.病人姓名 = 病人姓名;
+                takeMedicineStackClass.開方時間 = 開方時間;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.顏色 = 顏色;
+                takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                takeMedicineStackClass.效期 = 效期;
+
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -2636,7 +2773,27 @@ namespace 調劑台管理系統
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
 
-                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, 診別, 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.GUID = GUID;
+                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                takeMedicineStackClass.動作 = 動作;
+
+                takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                takeMedicineStackClass.單位 = 單位;
+                takeMedicineStackClass.病歷號 = 病歷號;
+                takeMedicineStackClass.診別 = 診別;
+                takeMedicineStackClass.床號 = 床號;
+                takeMedicineStackClass.病人姓名 = 病人姓名;
+                takeMedicineStackClass.開方時間 = 開方時間;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.顏色 = 顏色;
+                takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                takeMedicineStackClass.效期 = 效期;
+
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
                 this.voice.SpeakOnTask("掃碼成功");
             }
@@ -2709,9 +2866,23 @@ namespace 調劑台管理系統
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
-            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
-            this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+            takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+            takeMedicineStackClass.GUID = GUID;
+            takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+            takeMedicineStackClass.動作 = 動作;
+            takeMedicineStackClass.藥品碼 = 藥品碼;
+            takeMedicineStackClass.藥品名稱 = 藥品名稱;
+            takeMedicineStackClass.藥袋序號 = 藥袋序號;
+            takeMedicineStackClass.單位 = 包裝單位;
+            takeMedicineStackClass.病歷號 = 病歷號;
+            takeMedicineStackClass.病人姓名 = 病人姓名;
+            takeMedicineStackClass.開方時間 = 開方時間;
+            takeMedicineStackClass.操作人 = 操作人;
+            takeMedicineStackClass.顏色 = 顏色;
+            takeMedicineStackClass.總異動量 = 總異動量.ToString();
+            takeMedicineStackClass.效期 = 效期;
+
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -2776,9 +2947,25 @@ namespace 調劑台管理系統
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
             if (!plC_Button_多醫囑模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
-            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
-            this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 包裝單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+
+            takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+            takeMedicineStackClass.GUID = GUID;
+            takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+            takeMedicineStackClass.動作 = 動作;
+
+            takeMedicineStackClass.藥品碼 = 藥品碼;
+            takeMedicineStackClass.藥品名稱 = 藥品名稱;
+            takeMedicineStackClass.藥袋序號 = 藥袋序號;
+            takeMedicineStackClass.單位 = 包裝單位;
+            takeMedicineStackClass.病歷號 = 病歷號;
+            takeMedicineStackClass.床號 = 床號;
+            takeMedicineStackClass.病人姓名 = 病人姓名;
+            takeMedicineStackClass.開方時間 = 開方時間;
+            takeMedicineStackClass.操作人 = 操作人;
+            takeMedicineStackClass.顏色 = 顏色;
+            takeMedicineStackClass.總異動量 = 總異動量.ToString();
+            takeMedicineStackClass.效期 = 效期;
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             this.voice.SpeakOnTask("掃碼成功");
         }
@@ -2820,6 +3007,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
+                List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     string GUID = Guid.NewGuid().ToString();
@@ -2850,7 +3038,25 @@ namespace 調劑台管理系統
                     }
                     string 效期 = "";
 
-                    this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 顏色, 總異動量, 效期);
+                    takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                    takeMedicineStackClass.GUID = GUID;
+                    takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                    takeMedicineStackClass.動作 = 動作;
+
+                    takeMedicineStackClass.藥品碼 = 藥品碼;
+                    takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                    takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                    takeMedicineStackClass.單位 = 單位;
+                    takeMedicineStackClass.病歷號 = 病歷號;
+                    takeMedicineStackClass.床號 = 床號;
+                    takeMedicineStackClass.病人姓名 = 病人姓名;
+                    takeMedicineStackClass.開方時間 = 開方時間;
+                    takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.顏色 = 顏色;
+                    takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                    takeMedicineStackClass.效期 = 效期;
+                    takeMedicineStackClasses.Add(takeMedicineStackClass);
+                    this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
                 }
 
@@ -3213,7 +3419,25 @@ namespace 調劑台管理系統
                 {
                     動作 = enum_交易記錄查詢動作.入庫作業;
                 }
-                this.Function_取藥堆疊資料_新增母資料(list_藥品資料, list_藥品設定表, GUID, 調劑台名稱, 動作, "", 藥品碼, 藥品名稱, 藥袋序號, 單位, 病歷號, 病人姓名, 床號, 開方時間, ID, 操作人, 顏色, 總異動量, 效期);
+
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.GUID = GUID;
+                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                takeMedicineStackClass.單位 = 單位;
+                takeMedicineStackClass.病歷號 = 病歷號;
+                takeMedicineStackClass.床號 = 床號;
+                takeMedicineStackClass.病人姓名 = 病人姓名;
+                takeMedicineStackClass.開方時間 = 開方時間;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.顏色 = 顏色;
+                takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                takeMedicineStackClass.效期 = 效期;
+
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 List_領藥_入出庫資料檢查.RemoveAt(i);
                 this.voice.SpeakOnTask("成功");
                 break;

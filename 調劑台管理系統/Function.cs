@@ -129,7 +129,10 @@ namespace 調劑台管理系統
 
         public void Function_設定雲端資料更新()
         {
-            this.Function_取藥堆疊資料_新增母資料(new List<object[]>(), new List<object[]>(), Guid.NewGuid().ToString(), "更新資料", enum_交易記錄查詢動作.None,"", "", "","", "", "", "", "", "", "", "", "", 0, "");
+            takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+            takeMedicineStackClass.調劑台名稱 = "更新資料";
+            takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None;
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
         }
         public void Function_從SQL取得儲位到雲端資料()
         {
