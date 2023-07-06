@@ -1031,19 +1031,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\kwok\\.nuget\\packages\\": {}
+    "C:\\Users\\HS\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kwok\\source\\repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
       "projectName": "HIS_WebApi",
-      "projectPath": "C:\\Users\\kwok\\source\\repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
-      "packagesPath": "C:\\Users\\kwok\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kwok\\source\\repos\\inventorySystem\\HIS_WebApi\\obj\\",
+      "projectPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
+      "packagesPath": "C:\\Users\\HS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\kwok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1108,7 +1112,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
       }
     }
   }

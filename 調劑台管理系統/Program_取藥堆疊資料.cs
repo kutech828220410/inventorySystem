@@ -281,7 +281,7 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                if (device_Type == DeviceType.EPD266.GetEnumName() || device_Type == DeviceType.EPD266_lock.GetEnumName())
+                if (device_Type == DeviceType.EPD266.GetEnumName() || device_Type == DeviceType.EPD266_lock.GetEnumName() || device_Type == DeviceType.EPD290.GetEnumName() || device_Type == DeviceType.EPD290_lock.GetEnumName())
                 {
                     Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
                     if (storage != null)
@@ -289,6 +289,7 @@ namespace 調劑台管理系統
                         Task.Run(() =>
                         {
                             this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                            
                             this.storageUI_EPD_266.DrawToEpd_UDP(storage);
                         });
               
@@ -905,7 +906,7 @@ namespace 調劑台管理系統
             List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
 
             SQL_DataGridView.ConnentionClass dB_local = new SQL_DataGridView.ConnentionClass();
-            dB_local.IP = "127.0.0.1";
+            dB_local.IP = dBConfigClass.DB_Basic.IP;
             dB_local.DataBaseName = dBConfigClass.DB_Basic.DataBaseName;
             dB_local.Port = 3306;
             dB_local.UserName = "user";
