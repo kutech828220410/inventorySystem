@@ -120,7 +120,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
                 if (serverSettingClasses.Count == 0)
                 {
@@ -167,7 +167,7 @@ namespace HIS_WebApi
             {
                 List<object[]> list_add = new List<object[]>();
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -224,7 +224,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -305,7 +305,7 @@ namespace HIS_WebApi
             {
                 List<object[]> list_add = new List<object[]>();
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -363,7 +363,7 @@ namespace HIS_WebApi
             {
                 List<object[]> list_add = new List<object[]>();
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API_儲位資料");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;

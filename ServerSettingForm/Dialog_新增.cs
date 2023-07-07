@@ -38,9 +38,10 @@ namespace ServerSettingForm
             return this.DialogResult;
         }
 
-        public Dialog_新增()
+        public Dialog_新增(string title)
         {
             InitializeComponent();
+            this.Text = title;
         }
 
         private void Dialog_新增_Load(object sender, EventArgs e)

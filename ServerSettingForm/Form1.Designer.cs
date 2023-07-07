@@ -32,6 +32,7 @@ namespace ServerSettingForm
             this.button_調劑台 = new System.Windows.Forms.Button();
             this.button_藥庫 = new System.Windows.Forms.Button();
             this.button_網頁 = new System.Windows.Forms.Button();
+            this.button_更新資訊 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_調劑台
@@ -64,11 +65,22 @@ namespace ServerSettingForm
             this.button_網頁.Text = "網頁";
             this.button_網頁.UseVisualStyleBackColor = true;
             // 
+            // button_更新資訊
+            // 
+            this.button_更新資訊.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_更新資訊.Location = new System.Drawing.Point(84, 332);
+            this.button_更新資訊.Name = "button_更新資訊";
+            this.button_更新資訊.Size = new System.Drawing.Size(284, 86);
+            this.button_更新資訊.TabIndex = 3;
+            this.button_更新資訊.Text = "更新資訊";
+            this.button_更新資訊.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 323);
+            this.ClientSize = new System.Drawing.Size(454, 430);
+            this.Controls.Add(this.button_更新資訊);
             this.Controls.Add(this.button_網頁);
             this.Controls.Add(this.button_藥庫);
             this.Controls.Add(this.button_調劑台);
@@ -87,6 +99,7 @@ namespace ServerSettingForm
         private System.Windows.Forms.Button button_調劑台;
         private System.Windows.Forms.Button button_藥庫;
         private System.Windows.Forms.Button button_網頁;
+        private System.Windows.Forms.Button button_更新資訊;
     }
 }
 

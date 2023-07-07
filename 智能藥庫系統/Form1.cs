@@ -215,15 +215,7 @@ namespace 智能藥庫系統
                 dBConfigClass.DB_posting_server.UserName = serverSettingClass.User;
                 dBConfigClass.DB_posting_server.Password = serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_儲位資料);
-            if (serverSettingClass != null)
-            {
-                dBConfigClass.DB_stroage.IP = serverSettingClass.Server;
-                dBConfigClass.DB_stroage.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_stroage.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_stroage.UserName = serverSettingClass.User;
-                dBConfigClass.DB_stroage.Password = serverSettingClass.Password;
-            }
+
 
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API01);
             if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;

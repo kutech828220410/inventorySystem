@@ -109,6 +109,12 @@
     <Compile Include="Dialog_網頁.Designer.cs">
       <DependentUpon>Dialog_網頁.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_更新資訊.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_更新資訊.Designer.cs">
+      <DependentUpon>Dialog_更新資訊.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_藥庫.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,24 @@
     <Compile Include="Form_Buffer.Designer.cs">
       <DependentUpon>Form_Buffer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panel_API_URL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_API_URL.Designer.cs">
+      <DependentUpon>Panel_API_URL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel_SQLContent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_SQLContent.Designer.cs">
+      <DependentUpon>Panel_SQLContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panel_UpdateVersion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel_UpdateVersion.Designer.cs">
+      <DependentUpon>Panel_UpdateVersion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialog_新增.resx">
@@ -140,6 +164,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_網頁.resx">
       <DependentUpon>Dialog_網頁.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_更新資訊.resx">
+      <DependentUpon>Dialog_更新資訊.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_藥庫.resx">
       <DependentUpon>Dialog_藥庫.cs</DependentUpon>
@@ -152,6 +180,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Buffer.resx">
       <DependentUpon>Form_Buffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_API_URL.resx">
+      <DependentUpon>Panel_API_URL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_SQLContent.resx">
+      <DependentUpon>Panel_SQLContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel_UpdateVersion.resx">
+      <DependentUpon>Panel_UpdateVersion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

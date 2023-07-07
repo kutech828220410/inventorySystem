@@ -96,21 +96,8 @@ namespace ServerSettingForm
             button_刪除.Click += Button_刪除_Click;
             button_讀取.Click += Button_讀取_Click;
 
-            button_一般資料_測試.Click += Button_一般資料_測試_Click;
-            button_人員資料_測試.Click += Button_人員資料_測試_Click;
-            button_藥檔資料_測試.Click += Button_藥檔資料_測試_Click;
-            button_醫囑資料_測試.Click += Button_醫囑資料_測試_Click;
-            button_API_本地端_測試.Click += Button_本地端_測試_Click;
-            button_API_VM端_測試.Click += Button_VM端_測試_Click;
-
-            button_API01_測試.Click += Button_API01_測試_Click;
-            button_API02_測試.Click += Button_API02_測試_Click;
-            button_Order_API_測試.Click += Button_Order_API_測試_Click;
-            button_Med_API_測試.Click += Button_Med_API_測試_Click;
-            button_Website_開啟.Click += Button_Website_開啟_Click;
-
             this.LoadMyConfig();
-          
+            
             if (myConfigClass != null)
             {
                 rJ_TextBox_API_Server.Texts = myConfigClass.Api_server;
@@ -129,181 +116,11 @@ namespace ServerSettingForm
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
             List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
             serverSettingClasses = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台);
-            ServerSettingClass serverSettingClass;
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_一般資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_一般資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_一般資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_一般資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_一般資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.一般資料,
-                rJ_TextBox_一般資料_Server.Text, rJ_TextBox_一般資料_Port.Text, rJ_TextBox_一般資料_DBName.Text, "", rJ_TextBox_一般資料_UserName.Text, rJ_TextBox_一般資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.人員資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_人員資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_人員資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_人員資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_人員資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_人員資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.人員資料,
-                rJ_TextBox_人員資料_Server.Text, rJ_TextBox_人員資料_Port.Text, rJ_TextBox_人員資料_DBName.Text, "", rJ_TextBox_人員資料_UserName.Text, rJ_TextBox_人員資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.藥檔資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_藥檔資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_藥檔資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_藥檔資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_藥檔資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_藥檔資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.藥檔資料,
-                rJ_TextBox_藥檔資料_Server.Text, rJ_TextBox_藥檔資料_Port.Text, rJ_TextBox_藥檔資料_DBName.Text, "", rJ_TextBox_藥檔資料_UserName.Text, rJ_TextBox_藥檔資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.醫囑資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_醫囑資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_醫囑資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_醫囑資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_醫囑資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_醫囑資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.醫囑資料,
-                rJ_TextBox_醫囑資料_Server.Text, rJ_TextBox_醫囑資料_Port.Text, rJ_TextBox_醫囑資料_DBName.Text, "", rJ_TextBox_醫囑資料_UserName.Text, rJ_TextBox_醫囑資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API_VM端);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_VM端_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_VM端_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_VM端_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_VM端_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_VM端_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.API_VM端,
-                rJ_TextBox_API_VM端_Server.Text, rJ_TextBox_API_VM端_Port.Text, rJ_TextBox_API_VM端_DBName.Text, "", rJ_TextBox_API_VM端_UserName.Text, rJ_TextBox_API_VM端_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API_本地端);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_本地端_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_本地端_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_本地端_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_本地端_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_本地端_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.API_本地端,
-                rJ_TextBox_API_本地端_Server.Text, rJ_TextBox_API_本地端_Port.Text, rJ_TextBox_API_本地端_DBName.Text, "", rJ_TextBox_API_本地端_UserName.Text, rJ_TextBox_API_本地端_Password.Text));
-            }
-
-         
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API_儲位資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_儲位資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_儲位資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_儲位資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_儲位資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_儲位資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.API_儲位資料,
-                rJ_TextBox_API_儲位資料_Server.Text, rJ_TextBox_API_儲位資料_Port.Text, rJ_TextBox_API_儲位資料_DBName.Text, "", rJ_TextBox_API_儲位資料_UserName.Text, rJ_TextBox_API_儲位資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API_交易紀錄資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_交易紀錄資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_交易紀錄資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_交易紀錄資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_交易紀錄資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_交易紀錄資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.API_交易紀錄資料,
-                rJ_TextBox_API_交易紀錄資料_Server.Text, rJ_TextBox_API_交易紀錄資料_Port.Text, rJ_TextBox_API_交易紀錄資料_DBName.Text, "", rJ_TextBox_API_交易紀錄資料_UserName.Text, rJ_TextBox_API_交易紀錄資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API01);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API01.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.API, enum_ServerSetting_調劑台.API01,
-                rJ_TextBox_API01.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API02);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API02.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.API, enum_ServerSetting_調劑台.API02,
-                rJ_TextBox_API02.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Order_API);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_Order_API.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.API, enum_ServerSetting_調劑台.Order_API,
-               rJ_TextBox_Order_API.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_Med_API.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.API, enum_ServerSetting_調劑台.Med_API,
-               rJ_TextBox_Med_API.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Website);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_Website.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.WEB, enum_ServerSetting_調劑台.Website,
-               rJ_TextBox_Website.Text, "", "", "", "", ""));
-            }
+            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.調劑台);
+            Panel_SQLContent.SaveAll(this.FindForm(),ref serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.調劑台);
+            Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
 
             returnData.Data = serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
@@ -337,7 +154,7 @@ namespace ServerSettingForm
             {
                if(! comboBox_名稱.Items.Contains(serverSettingClasses[i].設備名稱))
                 {
-                    comboBox_名稱.Items.Add(serverSettingClasses[i].設備名稱);
+                    if (!serverSettingClasses[i].設備名稱.StringIsEmpty()) comboBox_名稱.Items.Add(serverSettingClasses[i].設備名稱);
                 }
             }
             if (comboBox_名稱.Items.Count > 0) comboBox_名稱.SelectedIndex = 0;
@@ -357,109 +174,13 @@ namespace ServerSettingForm
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
             List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-            serverSettingClasses = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台);
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.調劑台);
+            Panel_SQLContent.SetValue(this.FindForm(), comboBox_名稱.Text, enum_ServerSetting_Type.調劑台);
+            Panel_SQLContent.LoadAll(this.FindForm(), serverSettingClasses);
 
-            ServerSettingClass serverSettingClass;
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_一般資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_一般資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_一般資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_一般資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_一般資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.人員資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_人員資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_人員資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_人員資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_人員資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_人員資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.藥檔資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_藥檔資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_藥檔資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_藥檔資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_藥檔資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_藥檔資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.醫囑資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_醫囑資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_醫囑資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_醫囑資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_醫囑資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_醫囑資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API_本地端);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_本地端_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_本地端_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_本地端_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_本地端_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_本地端_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API_VM端);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_VM端_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_VM端_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_VM端_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_VM端_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_VM端_Password.Texts = serverSettingClass.Password;
-            }
-      
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API_儲位資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_儲位資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_儲位資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_儲位資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_儲位資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_儲位資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API_交易紀錄資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_交易紀錄資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_交易紀錄資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_交易紀錄資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_交易紀錄資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_交易紀錄資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API01);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API01.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API02);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API02.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Order_API);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_Order_API.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_Med_API.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Website);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_Website.Texts  = serverSettingClass.Server;
-            }
-
+            Panel_API_URL.SetValue(this.FindForm(), comboBox_名稱.Text, enum_ServerSetting_Type.調劑台);
+            Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
+           
         }
         private void Button_刪除_Click(object sender, EventArgs e)
         {
@@ -482,43 +203,13 @@ namespace ServerSettingForm
         }
         private void Button_新增_Click(object sender, EventArgs e)
         {
-            Dialog_新增 dialog_新增 = new Dialog_新增();
+            Dialog_新增 dialog_新增 = new Dialog_新增("請輸入調劑台名稱...");
             dialog_新增.ShowDialog();
             if (dialog_新增.DialogResult != DialogResult.Yes) return;
-            List<ServerSettingClass> list_value = new List<ServerSettingClass>();
-            list_value.Add(new ServerSettingClass(dialog_新增.Value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.一般資料,
-            rJ_TextBox_一般資料_Server.Text, rJ_TextBox_一般資料_Port.Text, rJ_TextBox_一般資料_DBName.Text, "", rJ_TextBox_一般資料_UserName.Text, rJ_TextBox_一般資料_Password.Text));
+            Function_Add(dialog_新增.Value);
 
-            list_value.Add(new ServerSettingClass(dialog_新增.Value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.人員資料,
-            rJ_TextBox_人員資料_Server.Text, rJ_TextBox_人員資料_Port.Text, rJ_TextBox_人員資料_DBName.Text, "", rJ_TextBox_人員資料_UserName.Text, rJ_TextBox_人員資料_Password.Text));
-
-            list_value.Add(new ServerSettingClass(dialog_新增.Value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.藥檔資料,
-            rJ_TextBox_藥檔資料_Server.Text, rJ_TextBox_藥檔資料_Port.Text, rJ_TextBox_藥檔資料_DBName.Text, "", rJ_TextBox_藥檔資料_UserName.Text, rJ_TextBox_藥檔資料_Password.Text));
-
-            list_value.Add(new ServerSettingClass(dialog_新增.Value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_調劑台.醫囑資料,
-            rJ_TextBox_醫囑資料_Server.Text, rJ_TextBox_醫囑資料_Port.Text, rJ_TextBox_醫囑資料_DBName.Text, "", rJ_TextBox_醫囑資料_UserName.Text, rJ_TextBox_醫囑資料_Password.Text));
-
-            list_value.Add(new ServerSettingClass(dialog_新增.Value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.API, enum_ServerSetting_調劑台.API01,
-            rJ_TextBox_API01.Text, "", "", "", "", ""));
-            
-            list_value.Add(new ServerSettingClass(dialog_新增.Value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.API, enum_ServerSetting_調劑台.API02,
-            rJ_TextBox_API01.Text, "", "", "", "", ""));
-
-            list_value.Add(new ServerSettingClass(dialog_新增.Value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_ProgramType.WEB, enum_ServerSetting_調劑台.Website,
-            rJ_TextBox_Website.Text, "", "", "", "", ""));
-
-            returnData returnData = new returnData();
-            returnData.Data = list_value;
-            string json_in = returnData.JsonSerializationt(true);
-            Console.WriteLine(json_in);
-            string json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/add", json_in);
-            Console.WriteLine(json_result);
-
-            returnData returnData_result = new returnData();
-            returnData_result = json_result.JsonDeserializet<returnData>();
-
-            json_result = Basic.Net.WEBApiGet($"{myConfigClass.Api_server}/api/serversetting");
-            returnData = json_result.JsonDeserializet<returnData>();
+            string json_result = Basic.Net.WEBApiGet($"{myConfigClass.Api_server}/api/serversetting");
+            returnData returnData = json_result.JsonDeserializet<returnData>();
             List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
 
             serverSettingClasses = (from value in serverSettingClasses
@@ -540,166 +231,7 @@ namespace ServerSettingForm
             Function_Add(comboBox_名稱.Text);
             MyMessageBox.ShowDialog("完成!");
         }
-        private void Button_人員資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_人員資料_Server.Text;
-            string port = rJ_TextBox_人員資料_Port.Text;
-            string dbname = rJ_TextBox_人員資料_DBName.Text;
-            string username = rJ_TextBox_人員資料_UserName.Text;
-            string password = rJ_TextBox_人員資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
 
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("人員資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("人員資料連線測試失敗!");
-            }
-        }
-        private void Button_一般資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_一般資料_Server.Text;
-            string port = rJ_TextBox_一般資料_Port.Text;
-            string dbname = rJ_TextBox_一般資料_DBName.Text;
-            string username = rJ_TextBox_一般資料_UserName.Text;
-            string password = rJ_TextBox_一般資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("一般資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("一般資料連線測試失敗!");
-            }
-        }
-        private void Button_醫囑資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_醫囑資料_Server.Text;
-            string port = rJ_TextBox_醫囑資料_Port.Text;
-            string dbname = rJ_TextBox_醫囑資料_DBName.Text;
-            string username = rJ_TextBox_醫囑資料_UserName.Text;
-            string password = rJ_TextBox_醫囑資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("醫囑資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("醫囑資料連線測試失敗!");
-            }
-        }
-        private void Button_藥檔資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_藥檔資料_Server.Text;
-            string port = rJ_TextBox_藥檔資料_Port.Text;
-            string dbname = rJ_TextBox_藥檔資料_DBName.Text;
-            string username = rJ_TextBox_藥檔資料_UserName.Text;
-            string password = rJ_TextBox_藥檔資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("藥檔資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("藥檔資料連線測試失敗!");
-            }
-        }
-        private void Button_VM端_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_API_VM端_Server.Text;
-            string port = rJ_TextBox_API_VM端_Port.Text;
-            string dbname = rJ_TextBox_API_VM端_DBName.Text;
-            string username = rJ_TextBox_API_VM端_UserName.Text;
-            string password = rJ_TextBox_API_VM端_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("VM端連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("VM端連線測試失敗!");
-            }
-        }
-        private void Button_本地端_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_API_本地端_Server.Text;
-            string port = rJ_TextBox_API_本地端_Port.Text;
-            string dbname = rJ_TextBox_API_本地端_DBName.Text;
-            string username = rJ_TextBox_API_本地端_UserName.Text;
-            string password = rJ_TextBox_API_本地端_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("本地端連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("本地端連線測試失敗!");
-            }
-        }
-        private void Button_API01_測試_Click(object sender, EventArgs e)
-        {
-            string json_result = Basic.Net.WEBApiGet($"{rJ_TextBox_API01.Text}/api/test");
-            if (json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog($"測試失敗!");
-                return;
-            }
-            MyMessageBox.ShowDialog($"{json_result}");
-        }
-        private void Button_API02_測試_Click(object sender, EventArgs e)
-        {
-            string json_result = Basic.Net.WEBApiGet($"{rJ_TextBox_API02.Text}/api/test");
-            if(json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog($"測試失敗!");
-                return;
-            }
-            MyMessageBox.ShowDialog($"{json_result}");
-        }
-        private void Button_Med_API_測試_Click(object sender, EventArgs e)
-        {
-            string json_result = Basic.Net.WEBApiGet($"{rJ_TextBox_Order_API.Text}");
-            if (json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog($"測試失敗!");
-                return;
-            }
-            MyMessageBox.ShowDialog($"{json_result}");
-        }
-        private void Button_Order_API_測試_Click(object sender, EventArgs e)
-        {
-            string json_result = Basic.Net.WEBApiGet($"{rJ_TextBox_Med_API.Text}");
-            if (json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog($"測試失敗!");
-                return;
-            }
-            MyMessageBox.ShowDialog($"{json_result}");
-        }
-        private void Button_Website_開啟_Click(object sender, EventArgs e)
-        {
-            string url = $"{rJ_TextBox_Website.Text}";
-            try
-            {
-                Process.Start(url);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("無法開啟網頁: " + ex.Message);
-            }
-        }
         #endregion
     }
 }

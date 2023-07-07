@@ -33,6 +33,7 @@ namespace HIS_DB_Lib
         網頁,
         調劑台,
         藥庫,
+        更新資訊,
     }
     public enum enum_ServerSetting_ProgramType
     {
@@ -56,17 +57,16 @@ namespace HIS_DB_Lib
         人員資料,
         藥檔資料,
         醫囑資料,
-        API_儲位資料,
-        API_交易紀錄資料,
-
-        API_本地端,
-        API_VM端,
-
+        儲位資料,
+        交易紀錄資料,
+        本地端,
+        VM端,
         API01,
         API02,
         Order_API,
         Med_API,
         Website,
+        update,
         功能,
     }
     public enum enum_ServerSetting_藥庫
@@ -75,14 +75,15 @@ namespace HIS_DB_Lib
         人員資料,
         藥檔資料,
         批次過帳資料,
-        API_儲位資料,
-        API_交易紀錄資料,
-        API_本地端,
-        API_VM端,
+        儲位資料,
+        交易紀錄資料,
+        本地端,
+        VM端,
         API_inspection_excel,
         API01,
         API02,
         Website,
+        update,
         功能,
     }
     public static class ServerSettingClassMethod
@@ -124,7 +125,6 @@ namespace HIS_DB_Lib
                 return null;
             }
         }
-
         public static ServerSettingClass MyFind(this List<ServerSettingClass> serverSettingClasses, string Name, enum_ServerSetting_Type _enum_ServerSetting_Type, enum_ServerSetting_調劑台 _enum_ServerSetting_調劑台)
         {
             if (serverSettingClasses == null) return null;
@@ -149,6 +149,23 @@ namespace HIS_DB_Lib
                                                                  where value.類別 == _enum_ServerSetting_Type.GetEnumName()
                                                                  where value.設備名稱 == Name
                                                                  where value.內容 == _enum_ServerSetting_藥庫.GetEnumName()
+                                                                 select value).ToList();
+            if (serverSettingClasses_buf.Count > 0)
+            {
+                return serverSettingClasses_buf[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static ServerSettingClass MyFind(this List<ServerSettingClass> serverSettingClasses, string Name, enum_ServerSetting_Type _enum_ServerSetting_Type, string Content)
+        {
+            if (serverSettingClasses == null) return null;
+            List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
+                                                                 where value.類別 == _enum_ServerSetting_Type.GetEnumName()
+                                                                 where value.設備名稱 == Name
+                                                                 where value.內容 == Content
                                                                  select value).ToList();
             if (serverSettingClasses_buf.Count > 0)
             {
@@ -194,6 +211,18 @@ namespace HIS_DB_Lib
                                                                  where value.類別 == _enum_ServerSetting_Type.GetEnumName()
                                                                  select value).ToList();
             return serverSettingClasses_buf;
+        }
+
+        public static List<ServerSettingClass> SetValue(this List<ServerSettingClass> serverSettingClasses, ServerSettingClass serverSettingClass)
+        {
+            for(int i = 0; i < serverSettingClasses.Count; i ++)
+            {
+                if (serverSettingClasses[i].類別 != serverSettingClass.類別) continue;
+                if (serverSettingClasses[i].設備名稱 != serverSettingClass.設備名稱) continue;
+                if (serverSettingClasses[i].內容 != serverSettingClass.內容) continue;
+                serverSettingClasses[i] = serverSettingClass;
+            }
+            return serverSettingClasses;
         }
         public static List<ServerSettingClass> WebApiGet(string url)
         {

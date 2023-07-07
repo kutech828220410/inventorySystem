@@ -95,7 +95,6 @@ C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\System.Te
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\System.Text.Json.xml
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\System.ValueTuple.xml
-C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.AssemblyReference.cache
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_新增.resources
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_網頁.resources
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_藥庫.resources
@@ -163,3 +162,8 @@ C:\Users\kwok\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerS
 C:\Users\kwok\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\Users\kwok\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\kwok\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
+C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_SQLContent.resources
+C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_API_URL.resources
+C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_更新資訊.resources
+C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.AssemblyReference.cache
+C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_UpdateVersion.resources

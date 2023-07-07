@@ -447,7 +447,6 @@ C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.T
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.Text.Json.xml
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.ValueTuple.xml
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.AssemblyReference.cache
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe.config
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.Dialog_列印及匯出.resources
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.Dialog_輸入備註.resources
@@ -538,3 +537,4 @@ C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.CopyComplete
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe
 C:\Users\kwok\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
+C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.AssemblyReference.cache

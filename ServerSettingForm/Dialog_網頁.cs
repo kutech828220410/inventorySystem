@@ -44,7 +44,7 @@ namespace ServerSettingForm
                 jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring , "windows-1252"))
                 {
                     MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
                 }
@@ -96,13 +96,6 @@ namespace ServerSettingForm
             button_讀取.Click += Button_讀取_Click;
             button_重置.Click += Button_重置_Click;
 
-            button_人員資料_測試.Click += Button_人員資料_測試_Click;
-
-            button_API01_測試.Click += Button_API01_測試_Click;
-            button_API02_測試.Click += Button_API02_測試_Click;
-            button_API_Session.Click += Button_API_Session_Click;
-            button_Website_開啟.Click += Button_Website_開啟_Click;
-
             this.LoadMyConfig();
           
             if (myConfigClass != null)
@@ -118,77 +111,11 @@ namespace ServerSettingForm
         {
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
-            List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
             serverSettingClasses = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁);
-            ServerSettingClass serverSettingClass;
-   
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_人員資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_人員資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_人員資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_人員資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_人員資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_網頁.人員資料,
-                rJ_TextBox_人員資料_Server.Text, rJ_TextBox_人員資料_Port.Text, rJ_TextBox_人員資料_DBName.Text, "", rJ_TextBox_人員資料_UserName.Text, rJ_TextBox_人員資料_Password.Text));
-            }
-
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API01);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API01.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API01,
-                rJ_TextBox_API01.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API02);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API02.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API02,
-                rJ_TextBox_API02.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Session);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_Session.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API_Session,
-                rJ_TextBox_API_Session.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_Login.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.API, enum_ServerSetting_網頁.API_Login,
-                rJ_TextBox_API_Login.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.Website);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_Website.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_ProgramType.WEB, enum_ServerSetting_網頁.Website,
-               rJ_TextBox_Website.Text, "", "", "", "", ""));
-            }
+            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.網頁);
+            Panel_SQLContent.SaveAll(this.FindForm(), ref serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.網頁);
+            Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
 
             returnData returnData = new returnData();
             returnData.Data = serverSettingClasses;
@@ -231,48 +158,14 @@ namespace ServerSettingForm
         {
     
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
-            List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-            serverSettingClasses = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁);
+            serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁);
+            Panel_SQLContent.SetValue(this.FindForm(), WEB_Name, enum_ServerSetting_Type.網頁);
+            Panel_SQLContent.LoadAll(this.FindForm(), serverSettingClasses);
 
-            ServerSettingClass serverSettingClass;
-          
-            serverSettingClass = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_人員資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_人員資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_人員資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_人員資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_人員資料_Password.Texts = serverSettingClass.Password;
-            }
-          
-           
-         
-            serverSettingClass = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API01);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API01.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API02);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API02.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Session);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_Session.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_Login.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.Website);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_Website.Texts  = serverSettingClass.Server;
-            }
+            Panel_API_URL.SetValue(this.FindForm(), WEB_Name, enum_ServerSetting_Type.網頁);
+            Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
+
+
 
         }
         private void Button_刪除_Click(object sender, EventArgs e)
@@ -298,62 +191,7 @@ namespace ServerSettingForm
             Function_Add(WEB_Name);
             MyMessageBox.ShowDialog("完成!");
         }
-        private void Button_人員資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_人員資料_Server.Text;
-            string port = rJ_TextBox_人員資料_Port.Text;
-            string dbname = rJ_TextBox_人員資料_DBName.Text;
-            string username = rJ_TextBox_人員資料_UserName.Text;
-            string password = rJ_TextBox_人員資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
 
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("人員資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("人員資料連線測試失敗!");
-            }
-        }
-
-        private void Button_API01_測試_Click(object sender, EventArgs e)
-        {
-            string json_result = Basic.Net.WEBApiGet($"{rJ_TextBox_API01.Text}/api/test");
-            if (json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog($"測試失敗!");
-                return;
-            }
-            MyMessageBox.ShowDialog($"{json_result}");
-        }
-        private void Button_API02_測試_Click(object sender, EventArgs e)
-        {
-            string json_result = Basic.Net.WEBApiGet($"{rJ_TextBox_API02.Text}/api/test");
-            if(json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog($"測試失敗!");
-                return;
-            }
-            MyMessageBox.ShowDialog($"{json_result}");
-        }
-
-        private void Button_Website_開啟_Click(object sender, EventArgs e)
-        {
-            string url = $"{rJ_TextBox_Website.Text}";
-            try
-            {
-                Process.Start(url);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("無法開啟網頁: " + ex.Message);
-            }
-        }
-        private void Button_API_Session_Click(object sender, EventArgs e)
-        {
-           
-        }
         #endregion
     }
 }

@@ -102,18 +102,6 @@ namespace ServerSettingForm
             button_刪除.Click += Button_刪除_Click;
             button_讀取.Click += Button_讀取_Click;
 
-            button_一般資料_測試.Click += Button_一般資料_測試_Click;
-            button_人員資料_測試.Click += Button_人員資料_測試_Click;
-            button_藥檔資料_測試.Click += Button_藥檔資料_測試_Click;
-            button_批次過帳資料_測試.Click += Button_批次過帳資料_測試_Click;
-            button_API_本地端_測試.Click += Button_本地端_測試_Click;
-            button_API_VM端_測試.Click += Button_VM端_測試_Click;
-
-            button_API01_測試.Click += Button_API01_測試_Click;
-            button_API02_測試.Click += Button_API02_測試_Click;
-    
-            button_Website_開啟.Click += Button_Website_開啟_Click;
-
             this.LoadMyConfig();
           
             if (myConfigClass != null)
@@ -134,175 +122,14 @@ namespace ServerSettingForm
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
             List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-            serverSettingClasses = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫);
-            ServerSettingClass serverSettingClass;
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.一般資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_一般資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_一般資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_一般資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_一般資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_一般資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.一般資料,
-                rJ_TextBox_一般資料_Server.Text, rJ_TextBox_一般資料_Port.Text, rJ_TextBox_一般資料_DBName.Text, "", rJ_TextBox_一般資料_UserName.Text, rJ_TextBox_一般資料_Password.Text));
-            }
+            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.藥庫);
+            Panel_SQLContent.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.藥庫);
+            Panel_SQLContent.SaveAll(this.FindForm(), ref serverSettingClasses);
+            Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.藥庫);
+            Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
 
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.人員資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_人員資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_人員資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_人員資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_人員資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_人員資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.人員資料,
-                rJ_TextBox_人員資料_Server.Text, rJ_TextBox_人員資料_Port.Text, rJ_TextBox_人員資料_DBName.Text, "", rJ_TextBox_人員資料_UserName.Text, rJ_TextBox_人員資料_Password.Text));
-            }
 
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.藥檔資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_藥檔資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_藥檔資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_藥檔資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_藥檔資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_藥檔資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.藥檔資料,
-                rJ_TextBox_藥檔資料_Server.Text, rJ_TextBox_藥檔資料_Port.Text, rJ_TextBox_藥檔資料_DBName.Text, "", rJ_TextBox_藥檔資料_UserName.Text, rJ_TextBox_藥檔資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.批次過帳資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_批次過帳資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_批次過帳資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_批次過帳資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_批次過帳資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_批次過帳資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.批次過帳資料,
-                rJ_TextBox_批次過帳資料_Server.Text, rJ_TextBox_批次過帳資料_Port.Text, rJ_TextBox_批次過帳資料_DBName.Text, "", rJ_TextBox_批次過帳資料_UserName.Text, rJ_TextBox_批次過帳資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_VM端);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_VM端_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_VM端_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_VM端_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_VM端_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_VM端_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.API_VM端,
-                rJ_TextBox_API_VM端_Server.Text, rJ_TextBox_API_VM端_Port.Text, rJ_TextBox_API_VM端_DBName.Text, "", rJ_TextBox_API_VM端_UserName.Text, rJ_TextBox_API_VM端_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_本地端);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_本地端_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_本地端_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_本地端_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_本地端_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_本地端_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.API_本地端,
-                rJ_TextBox_API_本地端_Server.Text, rJ_TextBox_API_本地端_Port.Text, rJ_TextBox_API_本地端_DBName.Text, "", rJ_TextBox_API_本地端_UserName.Text, rJ_TextBox_API_本地端_Password.Text));
-            }
-
-      
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_儲位資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_儲位資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_儲位資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_儲位資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_儲位資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_儲位資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.API_儲位資料,
-                rJ_TextBox_API_儲位資料_Server.Text, rJ_TextBox_API_儲位資料_Port.Text, rJ_TextBox_API_儲位資料_DBName.Text, "", rJ_TextBox_API_儲位資料_UserName.Text, rJ_TextBox_API_儲位資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_交易紀錄資料);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API_交易紀錄資料_Server.Text;
-                serverSettingClass.Port = rJ_TextBox_API_交易紀錄資料_Port.Text;
-                serverSettingClass.DBName = rJ_TextBox_API_交易紀錄資料_DBName.Text;
-                serverSettingClass.User = rJ_TextBox_API_交易紀錄資料_UserName.Text;
-                serverSettingClass.Password = rJ_TextBox_API_交易紀錄資料_Password.Text;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.SQLServer, enum_ServerSetting_藥庫.API_交易紀錄資料,
-                rJ_TextBox_API_交易紀錄資料_Server.Text, rJ_TextBox_API_交易紀錄資料_Port.Text, rJ_TextBox_API_交易紀錄資料_DBName.Text, "", rJ_TextBox_API_交易紀錄資料_UserName.Text, rJ_TextBox_API_交易紀錄資料_Password.Text));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API01);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API01.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.API, enum_ServerSetting_藥庫.API01,
-                rJ_TextBox_API01.Text, "", "", "", "", ""));
-            }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API02);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_API02.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.API, enum_ServerSetting_藥庫.API02,
-                rJ_TextBox_API02.Text, "", "", "", "", ""));
-            }
-           
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.Website);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_Website.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.WEB, enum_ServerSetting_藥庫.Website,
-               rJ_TextBox_Website.Text, "", "", "", "", ""));
-            }
-
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_inspection_excel);
-            if (serverSettingClass != null)
-            {
-                serverSettingClass.Server = rJ_TextBox_inspection_excel.Texts;
-            }
-            else
-            {
-                serverSettingClasses.Add(new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.API, enum_ServerSetting_藥庫.API_inspection_excel,
-               rJ_TextBox_inspection_excel.Text, "", "", "", "", ""));
-            }
-            
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
+            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
             if (serverSettingClass != null)
             {
                 List<string> list_value = new List<string>();
@@ -316,7 +143,7 @@ namespace ServerSettingForm
             else
             {
                 ServerSettingClass serverSettingClass_temp = new ServerSettingClass(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_ProgramType.WEB, enum_ServerSetting_藥庫.功能,
-                rJ_TextBox_Website.Text, "", "", "", "", "");
+                "", "", "", "", "", "");
                 List<string> list_value = new List<string>();
                 if (checkBox_驗收.Checked) list_value.Add("驗收");
                 if (checkBox_盤點.Checked) list_value.Add("盤點");
@@ -326,8 +153,6 @@ namespace ServerSettingForm
                 serverSettingClass_temp.Value = list_value.JsonSerializationt();
                 serverSettingClasses.Add(serverSettingClass_temp);
             }
-
-
             returnData.Data = serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
@@ -352,9 +177,7 @@ namespace ServerSettingForm
             Console.WriteLine($"{json_result}");
             SaveConfig();
             returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.藥庫);
-
+    
             if (returnData.Code == 200)
             {
                 if (sender != null) MyMessageBox.ShowDialog("測試成功!");
@@ -370,105 +193,14 @@ namespace ServerSettingForm
             }
             returnData returnData = json_result.JsonDeserializet<returnData>();
             List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
-            serverSettingClasses = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫);
+            serverSettingClasses = ServerSettingClassMethod.MyFind(serverSettingClasses, enum_ServerSetting_Type.藥庫);
+            Panel_SQLContent.SetValue(this.FindForm(), DataName, enum_ServerSetting_Type.藥庫);
+            Panel_SQLContent.LoadAll(this.FindForm(), serverSettingClasses);
 
-            ServerSettingClass serverSettingClass;
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.一般資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_一般資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_一般資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_一般資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_一般資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_一般資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.人員資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_人員資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_人員資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_人員資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_人員資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_人員資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.藥檔資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_藥檔資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_藥檔資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_藥檔資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_藥檔資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_藥檔資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.批次過帳資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_批次過帳資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_批次過帳資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_批次過帳資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_批次過帳資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_批次過帳資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_本地端);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_本地端_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_本地端_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_本地端_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_本地端_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_本地端_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_VM端);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_VM端_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_VM端_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_VM端_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_VM端_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_VM端_Password.Texts = serverSettingClass.Password;
-            }
-          
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_儲位資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_儲位資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_儲位資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_儲位資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_儲位資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_儲位資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_交易紀錄資料);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API_交易紀錄資料_Server.Texts = serverSettingClass.Server;
-                rJ_TextBox_API_交易紀錄資料_Port.Texts = serverSettingClass.Port;
-                rJ_TextBox_API_交易紀錄資料_DBName.Texts = serverSettingClass.DBName;
-                rJ_TextBox_API_交易紀錄資料_UserName.Texts = serverSettingClass.User;
-                rJ_TextBox_API_交易紀錄資料_Password.Texts = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API01);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API01.Texts = serverSettingClass.Server;
-            }
+            Panel_API_URL.SetValue(this.FindForm(), DataName, enum_ServerSetting_Type.藥庫);
+            Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
 
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API02);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_API02.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.API_inspection_excel);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_inspection_excel.Texts = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.Website);
-            if (serverSettingClass != null)
-            {
-                rJ_TextBox_Website.Texts  = serverSettingClass.Server;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
+            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
             if (serverSettingClass != null)
             {
                 List<string> list_value = serverSettingClass.Value.JsonDeserializet<List<string>>();
@@ -513,147 +245,7 @@ namespace ServerSettingForm
             Function_Add(DataName);
             MyMessageBox.ShowDialog("完成!");
         }
-        private void Button_人員資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_人員資料_Server.Text;
-            string port = rJ_TextBox_人員資料_Port.Text;
-            string dbname = rJ_TextBox_人員資料_DBName.Text;
-            string username = rJ_TextBox_人員資料_UserName.Text;
-            string password = rJ_TextBox_人員資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
 
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("人員資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("人員資料連線測試失敗!");
-            }
-        }
-        private void Button_一般資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_一般資料_Server.Text;
-            string port = rJ_TextBox_一般資料_Port.Text;
-            string dbname = rJ_TextBox_一般資料_DBName.Text;
-            string username = rJ_TextBox_一般資料_UserName.Text;
-            string password = rJ_TextBox_一般資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("一般資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("一般資料連線測試失敗!");
-            }
-        }
-        private void Button_批次過帳資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_批次過帳資料_Server.Text;
-            string port = rJ_TextBox_批次過帳資料_Port.Text;
-            string dbname = rJ_TextBox_批次過帳資料_DBName.Text;
-            string username = rJ_TextBox_批次過帳資料_UserName.Text;
-            string password = rJ_TextBox_批次過帳資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("批次過帳資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("批次過帳資料連線測試失敗!");
-            }
-        }
-        private void Button_藥檔資料_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_藥檔資料_Server.Text;
-            string port = rJ_TextBox_藥檔資料_Port.Text;
-            string dbname = rJ_TextBox_藥檔資料_DBName.Text;
-            string username = rJ_TextBox_藥檔資料_UserName.Text;
-            string password = rJ_TextBox_藥檔資料_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("藥檔資料連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("藥檔資料連線測試失敗!");
-            }
-        }
-        private void Button_VM端_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_API_VM端_Server.Text;
-            string port = rJ_TextBox_API_VM端_Port.Text;
-            string dbname = rJ_TextBox_API_VM端_DBName.Text;
-            string username = rJ_TextBox_API_VM端_UserName.Text;
-            string password = rJ_TextBox_API_VM端_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("VM端連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("VM端連線測試失敗!");
-            }
-        }
-        private void Button_本地端_測試_Click(object sender, EventArgs e)
-        {
-            string server = rJ_TextBox_API_本地端_Server.Text;
-            string port = rJ_TextBox_API_本地端_Port.Text;
-            string dbname = rJ_TextBox_API_本地端_DBName.Text;
-            string username = rJ_TextBox_API_本地端_UserName.Text;
-            string password = rJ_TextBox_API_本地端_Password.Text;
-            SQLUI.SQLControl sQLControl = new SQLUI.SQLControl(server, dbname, username, password, (uint)port.StringToInt32());
-
-            if (sQLControl.TestConnection())
-            {
-                MyMessageBox.ShowDialog("本地端連線測試成功!");
-            }
-            else
-            {
-                MyMessageBox.ShowDialog("本地端連線測試失敗!");
-            }
-        }
-        private void Button_API01_測試_Click(object sender, EventArgs e)
-        {
-            string json_result = Basic.Net.WEBApiGet($"{rJ_TextBox_API01.Text}/api/test");
-            if (json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog($"測試失敗!");
-                return;
-            }
-            MyMessageBox.ShowDialog($"{json_result}");
-        }
-        private void Button_API02_測試_Click(object sender, EventArgs e)
-        {
-            string json_result = Basic.Net.WEBApiGet($"{rJ_TextBox_API02.Text}/api/test");
-            if(json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog($"測試失敗!");
-                return;
-            }
-            MyMessageBox.ShowDialog($"{json_result}");
-        }
-      
-        private void Button_Website_開啟_Click(object sender, EventArgs e)
-        {
-            string url = $"{rJ_TextBox_Website.Text}";
-            try
-            {
-                Process.Start(url);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("無法開啟網頁: " + ex.Message);
-            }
-        }
         #endregion
     }
 }

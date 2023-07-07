@@ -26,7 +26,10 @@ namespace ServerSettingForm
             this.button_網頁.Click += Button_網頁_Click;
             this.button_調劑台.Click += Button_調劑台_Click;
             this.button_藥庫.Click += Button_藥庫_Click;
+            this.button_更新資訊.Click += Button_更新資訊_Click;
         }
+
+   
 
         private void Button_網頁_Click(object sender, EventArgs e)
         {
@@ -43,6 +46,12 @@ namespace ServerSettingForm
         {
             Dialog_調劑台 dialog_調劑台 = new Dialog_調劑台();
             dialog_調劑台.ShowDialog();
+        }
+
+        private void Button_更新資訊_Click(object sender, EventArgs e)
+        {
+            Dialog_更新資訊 dialog_更新資訊 = new Dialog_更新資訊();
+            dialog_更新資訊.ShowDialog();
         }
     }
 }

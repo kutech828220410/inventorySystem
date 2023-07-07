@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,6 +28,7 @@ namespace 調劑台管理系統
 
     public partial class Form1 : Form
     {
+        static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string 領藥台_01名稱
         {
             get
@@ -61,7 +63,7 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_藥物辨識圖片顯示 = new PLC_Device("S1005");
 
         #region DBConfigClass
-        private const string DBConfigFileName = "DBConfig.txt";
+        private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         public DBConfigClass dBConfigClass = new DBConfigClass();
         public class DBConfigClass
         {
@@ -109,14 +111,14 @@ namespace 調劑台管理系統
         }
         private void LoadDBConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{DBConfigFileName}");
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
 
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
                 }
@@ -130,18 +132,16 @@ namespace 調劑台管理系統
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
                 }
 
             }
-
-
         }
         #endregion
         #region MyConfigClass
-        private const string MyConfigFileName = "MyConfig.txt";
+        private static string MyConfigFileName = $@"{currentDirectory}\MyConfig.txt";
         public MyConfigClass myConfigClass = new MyConfigClass();
         public class MyConfigClass
         {
@@ -186,13 +186,13 @@ namespace 調劑台管理系統
         }
         private void LoadMyConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{MyConfigFileName}");
+            string jsonstr = MyFileStream.LoadFileAllText($"{MyConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
                 jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
                 }
@@ -206,7 +206,7 @@ namespace 調劑台管理系統
                 jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
                 }
@@ -216,7 +216,7 @@ namespace 調劑台管理系統
         }
         #endregion
         #region FtpConfigClass
-        private const string FtpConfigFileName = "FtpConfig.txt";
+        private static string FtpConfigFileName = $@"{currentDirectory}\FtpConfig.txt";
         public FtpConfigClass ftpConfigClass = new FtpConfigClass();
         public class FtpConfigClass
         {
@@ -230,13 +230,13 @@ namespace 調劑台管理系統
         }
         private void LoadFtpConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{FtpConfigFileName}");
+            string jsonstr = MyFileStream.LoadFileAllText($"{FtpConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
                 jsonstr = Basic.Net.JsonSerializationt<FtpConfigClass>(new FtpConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{FtpConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{FtpConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{FtpConfigFileName}檔案失敗!");
                 }
@@ -250,7 +250,7 @@ namespace 調劑台管理系統
                 jsonstr = Basic.Net.JsonSerializationt<FtpConfigClass>(ftpConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{FtpConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{FtpConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{FtpConfigFileName}檔案失敗!");
                 }
