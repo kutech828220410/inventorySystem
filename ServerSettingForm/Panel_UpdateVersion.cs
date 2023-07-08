@@ -87,7 +87,7 @@ namespace ServerSettingForm
         {
             string url = $"{ApiURL}/api/update/download/{program_name}";
             string extension = Basic.Net.WEBApiGet($"{ApiURL}/api/update/extension/{program_name}");
-            this.saveFileDialog.Filter = $"預設檔案|{extension}";
+            this.saveFileDialog.Filter = $"預設檔案|.zip";
             if (extension.StringIsEmpty())
             {
                 MyMessageBox.ShowDialog($"URL:{url} , 取得失敗!");
@@ -132,6 +132,8 @@ namespace ServerSettingForm
                                                 select temp).ToList();
                     if(updateVersionClasses_buf.Count > 0)
                     {
+                        string version = Basic.Net.WEBApiGet($"{ApiURL}/api/update/version/{updateVersionClasses_buf[0].program_name}");
+                        updateVersionClasses_buf[0].version = version;
                         panel_UpdateVersion.UpdateVersionClass = updateVersionClasses_buf[0];
                     }
                 }

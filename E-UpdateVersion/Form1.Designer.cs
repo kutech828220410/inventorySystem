@@ -29,11 +29,15 @@ namespace E_UpdateVersion
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.rJ_Button_離開 = new MyUI.RJ_Button();
             this.rJ_Button_智慧調劑台系統 = new MyUI.RJ_Button();
             this.rJ_Button_智能藥庫系統 = new MyUI.RJ_Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label_version = new System.Windows.Forms.Label();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.後台設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // rJ_Button_離開
@@ -50,7 +54,7 @@ namespace E_UpdateVersion
             this.rJ_Button_離開.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_離開.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_離開.GUID = "";
-            this.rJ_Button_離開.Location = new System.Drawing.Point(593, 260);
+            this.rJ_Button_離開.Location = new System.Drawing.Point(423, 255);
             this.rJ_Button_離開.Name = "rJ_Button_離開";
             this.rJ_Button_離開.Size = new System.Drawing.Size(131, 62);
             this.rJ_Button_離開.State = false;
@@ -73,9 +77,9 @@ namespace E_UpdateVersion
             this.rJ_Button_智慧調劑台系統.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_智慧調劑台系統.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_智慧調劑台系統.GUID = "";
-            this.rJ_Button_智慧調劑台系統.Location = new System.Drawing.Point(58, 160);
+            this.rJ_Button_智慧調劑台系統.Location = new System.Drawing.Point(53, 159);
             this.rJ_Button_智慧調劑台系統.Name = "rJ_Button_智慧調劑台系統";
-            this.rJ_Button_智慧調劑台系統.Size = new System.Drawing.Size(619, 73);
+            this.rJ_Button_智慧調劑台系統.Size = new System.Drawing.Size(448, 73);
             this.rJ_Button_智慧調劑台系統.State = false;
             this.rJ_Button_智慧調劑台系統.TabIndex = 2;
             this.rJ_Button_智慧調劑台系統.Text = "智慧調劑台系統";
@@ -96,9 +100,9 @@ namespace E_UpdateVersion
             this.rJ_Button_智能藥庫系統.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_智能藥庫系統.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_智能藥庫系統.GUID = "";
-            this.rJ_Button_智能藥庫系統.Location = new System.Drawing.Point(58, 81);
+            this.rJ_Button_智能藥庫系統.Location = new System.Drawing.Point(53, 80);
             this.rJ_Button_智能藥庫系統.Name = "rJ_Button_智能藥庫系統";
-            this.rJ_Button_智能藥庫系統.Size = new System.Drawing.Size(619, 73);
+            this.rJ_Button_智能藥庫系統.Size = new System.Drawing.Size(448, 73);
             this.rJ_Button_智能藥庫系統.State = false;
             this.rJ_Button_智能藥庫系統.TabIndex = 3;
             this.rJ_Button_智能藥庫系統.Text = "智能藥庫系統";
@@ -108,13 +112,14 @@ namespace E_UpdateVersion
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.label1.ContextMenuStrip = this.contextMenuStrip;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(732, 60);
+            this.label1.Size = new System.Drawing.Size(559, 60);
             this.label1.TabIndex = 4;
-            this.label1.Text = "E世代智慧藥局平台";
+            this.label1.Text = "次世代智慧藥局整合平台";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_version
@@ -127,12 +132,26 @@ namespace E_UpdateVersion
             this.label_version.TabIndex = 5;
             this.label_version.Text = "Ver 0.0.0.0";
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.後台設定ToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(181, 48);
+            // 
+            // 後台設定ToolStripMenuItem
+            // 
+            this.後台設定ToolStripMenuItem.Name = "後台設定ToolStripMenuItem";
+            this.後台設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.後台設定ToolStripMenuItem.Text = "後台設定";
+            this.後台設定ToolStripMenuItem.Click += new System.EventHandler(this.後台設定ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(732, 330);
+            this.ClientSize = new System.Drawing.Size(559, 322);
             this.ControlBox = false;
             this.Controls.Add(this.label_version);
             this.Controls.Add(this.label1);
@@ -145,8 +164,8 @@ namespace E_UpdateVersion
             this.Name = "Form1";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,6 +178,8 @@ namespace E_UpdateVersion
         private MyUI.RJ_Button rJ_Button_智能藥庫系統;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_version;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem 後台設定ToolStripMenuItem;
     }
 }
 

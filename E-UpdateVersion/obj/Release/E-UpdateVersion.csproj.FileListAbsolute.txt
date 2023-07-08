@@ -159,3 +159,6 @@ C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\System.Text
 C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\System.Text.Json.xml
 C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\System.ValueTuple.xml
+C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\Interop.IWshRuntimeLibrary.dll
+C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.csproj.ResolveComReference.cache
+C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E_UpdateVersion.Dialog_login.resources

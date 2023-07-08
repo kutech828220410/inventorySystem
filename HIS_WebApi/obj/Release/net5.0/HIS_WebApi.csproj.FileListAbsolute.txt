@@ -1134,3 +1134,4 @@ C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\N
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OpenXml4Net.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OpenXmlFormats.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.Drawing.Common.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\DotNetZip.dll

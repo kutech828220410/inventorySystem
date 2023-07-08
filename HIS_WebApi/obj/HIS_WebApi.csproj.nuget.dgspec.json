@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "DotNetZip": {
+              "target": "Package",
+              "version": "[1.16.0, )"
+            },
             "IBM.Data.DB2.Core": {
               "target": "Package",
               "version": "[3.1.0.600, )"

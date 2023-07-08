@@ -132,6 +132,7 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Ou
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.dll.config
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.pdb
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\BouncyCastle.Crypto.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\DotNetZip.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Google.Protobuf.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\IBM.Data.DB2.Core.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\K4os.Compression.LZ4.dll

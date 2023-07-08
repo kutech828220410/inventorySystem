@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "HIS_WebApi/1.0.0": {
         "dependencies": {
+          "DotNetZip": "1.16.0",
           "IBM.Data.DB2.Core": "3.1.0.600",
           "MySql.Data": "8.0.29",
           "System.Drawing.Common": "7.0.0",
@@ -345,6 +346,21 @@
         },
         "compile": {
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
+        }
+      },
+      "DotNetZip/1.16.0": {
+        "dependencies": {
+          "System.Security.Permissions": "4.7.0",
+          "System.Text.Encoding.CodePages": "7.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DotNetZip.dll": {
+            "assemblyVersion": "1.16.0.0",
+            "fileVersion": "1.16.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/DotNetZip.dll": {}
         }
       },
       "Google.Protobuf/3.19.4": {
@@ -2505,6 +2521,13 @@
       "sha512": "sha512-6uxsQw2UXrt82VQAWC2td3oBSJjUZ3P4u4DliagB8wf67KsU53V8sW9xwdF+IwZOOZFR0TCZuv/YKZ2BlrfAag==",
       "path": "bouncycastle.netcore/1.8.5",
       "hashPath": "bouncycastle.netcore.1.8.5.nupkg.sha512"
+    },
+    "DotNetZip/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CS9sjjXF23FLIbwlLT5k/jXBYxVnLMn01lyAvN/hxFM+UDvSicjTPB9ZMA+Wp/QlvBPbD2pzkAXUp1O50gP/Lw==",
+      "path": "dotnetzip/1.16.0",
+      "hashPath": "dotnetzip.1.16.0.nupkg.sha512"
     },
     "Google.Protobuf/3.19.4": {
       "type": "package",

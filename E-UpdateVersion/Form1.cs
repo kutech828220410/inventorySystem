@@ -18,6 +18,7 @@ using System.Runtime.InteropServices;
 using Ionic.Zip;
 using System.Text.Json.Serialization;
 using Basic;
+using IWshRuntimeLibrary;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 namespace E_UpdateVersion
@@ -32,8 +33,7 @@ namespace E_UpdateVersion
             }
         }
         static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        static string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-        static string DPS_filename = $@"{currentDirectory}\智慧調劑台系統.zip";
+
         #region MyConfigClass
         private const string MyConfigFileName = @"config.txt";
         public MyConfigClass myConfigClass = new MyConfigClass();
@@ -94,7 +94,7 @@ namespace E_UpdateVersion
         private void Form1_Load(object sender, EventArgs e)
         {
             MyMessageBox.form = this.FindForm();
-           
+            MyMessageBox.音效 = false;
             this.label_version.Text = $"Ver {this.ProductVersion}";
             this.LoadMyConfig();
             this.rJ_Button_離開.MouseDownEvent += RJ_Button_離開_MouseDownEvent;
@@ -103,56 +103,12 @@ namespace E_UpdateVersion
 
         private void RJ_Button_智慧調劑台系統_MouseDownEvent(MouseEventArgs mevent)
         {
-            if(Download("調劑台" , "調劑台管理系統") == false)
+            string arguments = $"{ApiServer} 門診(A5)";
+            if (Download("調劑台" , "調劑台管理系統" , arguments) == false)
             {
                 MyMessageBox.ShowDialog("取得更新資訊失敗!");
             }
-        }
-        private bool Download(string program_name , string startupName)
-        {
-        
-            try
-            {
-                string SaveFileName = $@"{currentDirectory}\download.zip";
-                string extension = Basic.Net.WEBApiGet($"{ApiServer}/api/update/extension/{program_name}");
-                if(extension == "")
-                {
-                    return false;
-                }
-
-                bool flag = Basic.Net.DownloadFile($"{ApiServer}/api/update/download/{program_name}", $@"{SaveFileName}");
-                if(flag)
-                {
-                    string folderPath = Path.GetDirectoryName(SaveFileName);
-                    folderPath = $@"{folderPath}\{startupName}";
-                    if (!Directory.Exists(folderPath))
-                    {
-                        Directory.CreateDirectory(folderPath);
-                        Console.WriteLine("文件夹已创建");
-                    }
-
-                    var options = new ReadOptions
-                    {
-                        StatusMessageWriter = System.Console.Out,
-                        Encoding = Encoding.GetEncoding("big5"),
-                    };
-                    using (ZipFile zip = ZipFile.Read(SaveFileName, options))
-                    {
-                        zip.ExtractAll(folderPath, ExtractExistingFileAction.OverwriteSilently);
-                    }
-                    File.Delete(SaveFileName);
-                    Process.Start(string.Format($@"{folderPath}\{startupName}.exe"));
-                    Application.Exit();
-
-                }
-            }
-            catch(Exception e)
-            {
-                MyMessageBox.ShowDialog(e.Message);
-            }
-           
-            return true;
-        }
+        }    
         private void RJ_Button_離開_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate 
@@ -161,6 +117,138 @@ namespace E_UpdateVersion
             }));
         }
 
+        private bool Download(string program_name, string startupName, string arguments)
+        {
+            Dialog_Prcessbar dialog_Prcessbar = null;
+            string SaveFileName = $@"{currentDirectory}\download.zip";
+            string local_folderPath = Path.GetDirectoryName(SaveFileName);
+            local_folderPath = $@"{local_folderPath}\{startupName}";
+            string local_fileName = Path.Combine(local_folderPath, $"{startupName}.exe");
+            try
+            {
+                bool flag = false;
+
+                string version = Basic.Net.WEBApiGet($"{ApiServer}/api/update/version/{program_name}");
+                string local_version = "None";
+                try
+                {
+                    Assembly assembly = Assembly.LoadFrom(local_fileName);
+                    local_version = assembly.GetName().Version.ToString();
+                }
+                catch
+                {
+
+                }
+                if (version == local_version)
+                {
+                    return true;
+                }
+                string extension = Basic.Net.WEBApiGet($"{ApiServer}/api/update/extension/{program_name}");
+                if (extension == "")
+                {
+                    return false;
+                }
+                dialog_Prcessbar = new Dialog_Prcessbar(100);
+                dialog_Prcessbar.ShowMaximun = true;
+                dialog_Prcessbar.State = $"Ver{version} 下載中...";
+                flag = Basic.Net.DownloadFile($"{ApiServer}/api/update/download/{program_name}", $@"{SaveFileName}");
+                dialog_Prcessbar.State = $"Ver{version} 下載完成";
+                if (flag)
+                {
+
+                    if (!Directory.Exists(local_folderPath))
+                    {
+                        Directory.CreateDirectory(local_folderPath);
+                    }
+
+                    var options = new ReadOptions
+                    {
+                        StatusMessageWriter = System.Console.Out,
+                        Encoding = Encoding.GetEncoding("big5"),
+                    };
+                    dialog_Prcessbar.State = $"Ver{version} 解壓縮...";
+                    using (ZipFile zip = ZipFile.Read(SaveFileName, options))
+                    {
+                        int totalCount = zip.Entries.Count; // 总文件数
+                        int currentCount = 0; // 当前解压缩的文件数
+                        dialog_Prcessbar.MaxValue = totalCount + 1;
+                        zip.ExtractProgress += (sender, e) =>
+                        {
+                            if (e.EventType == ZipProgressEventType.Extracting_EntryBytesWritten)
+                            {
+                                dialog_Prcessbar.Value = currentCount;
+                                currentCount++;
+
+                            }
+                        };
+                        try
+                        {
+                            zip.ExtractAll(local_folderPath, ExtractExistingFileAction.OverwriteSilently);
+                        }
+                        catch
+                        {
+
+                        }
+           
+                    }
+                    dialog_Prcessbar.State = $"Ver{version} 解壓縮完成!";
+                    System.IO.File.Delete(SaveFileName);
+
+            
+                   
+                   
+              
+                }
+            }
+            catch (Exception e)
+            {
+                MyMessageBox.ShowDialog($"{e.Message}/n{e.StackTrace}");
+            }
+            finally
+            {
+                if (dialog_Prcessbar != null)
+                {
+                    dialog_Prcessbar.Close();
+                    dialog_Prcessbar.Dispose();
+                }
+
+                try
+                {
+                  
+                    CreateShortcutToDesktop(local_fileName, $"{startupName}.exe" , arguments);
+                  
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        FileName = local_fileName,
+                        Arguments = arguments
+                    };
+                    Process.Start(startInfo);
+                    Application.Exit();
+                }
+                catch(Exception e)
+                {
+                    MyMessageBox.ShowDialog($"{e.Message}/n{e.StackTrace}");
+                }
+              
+         
+             
+
+            }
+
+            return true;
+        }
+        public static void CreateShortcutToDesktop(string targetExePath, string shortcutName, string arguments)
+        {
+            string desktopFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            string shortcutPath = Path.Combine(desktopFolderPath, $"{shortcutName}.lnk");
+
+            WshShell shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutPath);
+            shortcut.TargetPath = targetExePath;
+            shortcut.WorkingDirectory = Path.GetDirectoryName(targetExePath);
+            shortcut.Arguments = arguments;
+            shortcut.Save();
+        }
         private void RequireAdministrator()
         {
             WindowsIdentity identity = WindowsIdentity.GetCurrent();
@@ -190,6 +278,12 @@ namespace E_UpdateVersion
                 // 退出当前应用程序
                 Environment.Exit(0);
             }
+        }
+
+        private void 後台設定ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialog_login dialog_Login = new Dialog_login();
+            dialog_Login.ShowDialog();
         }
     }
 }

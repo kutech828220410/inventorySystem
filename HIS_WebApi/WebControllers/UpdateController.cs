@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using NPOI;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
+using Ionic.Zip;
 using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
@@ -154,6 +156,7 @@ namespace HIS_WebApi
         [HttpGet]
         public async Task<ActionResult> GET_download(string value)
         {
+            MemoryStream outputStream = new MemoryStream();
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
@@ -165,15 +168,53 @@ namespace HIS_WebApi
                                         select temp).ToList();
                 if (updateVersionClasses.Count == 0) return null;
                 string filepath = updateVersionClasses[0].filepath;
-                Stream stream = new FileStream(filepath , FileMode.Open);
-                return await Task.FromResult(File(stream, "application/zip", $"{Path.GetFileName(filepath)}"));
 
+                using (ZipFile zip = new ZipFile(System.Text.Encoding.GetEncoding("big5")))
+                {
+                    string folderPath = Path.GetDirectoryName(filepath);
+                    zip.AddDirectory(folderPath);
+                    zip.Save(outputStream);
+                }
+                outputStream.Seek(0, SeekOrigin.Begin); // 将内存流的位置重置为开头
+
+                return File(outputStream, "application/zip", "download.zip");
             }
             catch
             {
                 return null;
             }
+            finally
+            {
+                //outputStream.Dispose(); // 释放 outputStream 资源
+            }
         }
+        [Route("version/{value}")]
+        [HttpGet]
+        public string GET_version(string value)
+        {
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0) return null;
+                List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
+                updateVersionClasses = (from temp in updateVersionClasses
+                                        where temp.program_name == value
+                                        select temp).ToList();
+                if (updateVersionClasses.Count == 0) return "";
+                string filepath = updateVersionClasses[0].filepath;
+                Assembly assembly = Assembly.LoadFrom(filepath);
+                string version = assembly.GetName().Version.ToString();
+
+                return version;
+            }
+            catch
+            {
+                return "";
+            }
+
+        }
+
         [Route("extension/{value}")]
         [HttpGet]
         public string GET_extension(string value)
@@ -231,6 +272,18 @@ namespace HIS_WebApi
             List<object[]> list_value = sQLControl.GetAllRows(null);
             List<updateVersionClass> updateVersionClasses = list_value.SQLToClass<updateVersionClass, enum_updateVersion>();
             return updateVersionClasses;
+        }
+
+        private void GetZip(string folderPath)
+        {
+            using (MemoryStream outputStream = new MemoryStream())
+            {
+                using (ZipFile zip = new ZipFile())
+                {
+                    zip.AddDirectory(folderPath, Path.GetFileName(folderPath));
+                    zip.Save(outputStream);
+                }
+            }
         }
     }
 }

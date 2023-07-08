@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.72.0")]
-[assembly: AssemblyFileVersion("1.0.72.0")]
+[assembly: AssemblyVersion("1.0.73.0")]
+[assembly: AssemblyFileVersion("1.0.73.0")]
 namespace 調劑台管理系統
 {
 
@@ -67,6 +67,10 @@ namespace 調劑台管理系統
         public DBConfigClass dBConfigClass = new DBConfigClass();
         public class DBConfigClass
         {
+
+            public string Name { get => name; set => name = value; }
+            public string Api_Server { get => api_Server; set => api_Server = value; }
+
             private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_order_list = new SQL_DataGridView.ConnentionClass();
@@ -91,10 +95,7 @@ namespace 調劑台管理系統
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_order_list { get => dB_order_list; set => dB_order_list = value; }
             [JsonIgnore]
-            public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }
-
-            public string Name { get => name; set => name = value; }
-            public string Api_Server { get => api_Server; set => api_Server = value; }
+            public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }  
             [JsonIgnore]
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
             [JsonIgnore]
@@ -112,6 +113,22 @@ namespace 調劑台管理系統
         private void LoadDBConfig()
         {
             string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
+
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            if(commandLineArgs.Length >= 3)
+            {
+                dBConfigClass.Api_Server = commandLineArgs[1];
+                dBConfigClass.Name = commandLineArgs[2];
+                jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
+                }
+                return;
+            }
+    
             if (jsonstr.StringIsEmpty())
             {
 
