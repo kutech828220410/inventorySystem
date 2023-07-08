@@ -25,8 +25,6 @@ namespace HIS_DB_Lib
         [JsonPropertyName("TXN_QTY")]
         public string 交易量 { get; set; }
         [JsonPropertyName("EBQ_QTY")]
-        public string 結存量 { get; set; }
-
-       
+        public string 結存量 { get; set; }   
     }
 }

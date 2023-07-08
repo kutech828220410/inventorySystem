@@ -31,6 +31,8 @@ namespace ServerSettingForm
         {
             HIS_DB_Lib.ServerSettingClass serverSettingClass1 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass1 = new HIS_DB_Lib.updateVersionClass();
+            HIS_DB_Lib.updateVersionClass updateVersionClass2 = new HIS_DB_Lib.updateVersionClass();
+            HIS_DB_Lib.updateVersionClass updateVersionClass3 = new HIS_DB_Lib.updateVersionClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -42,6 +44,8 @@ namespace ServerSettingForm
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
             this.panel_UpdateVersion1 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion2 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion3 = new ServerSettingForm.Panel_UpdateVersion();
             this.SuspendLayout();
             // 
             // label1
@@ -174,12 +178,46 @@ namespace ServerSettingForm
             updateVersionClass1.version = "";
             this.panel_UpdateVersion1.UpdateVersionClass = updateVersionClass1;
             // 
+            // panel_UpdateVersion2
+            // 
+            this.panel_UpdateVersion2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion2.Location = new System.Drawing.Point(213, 186);
+            this.panel_UpdateVersion2.Name = "panel_UpdateVersion2";
+            this.panel_UpdateVersion2.Program_name = "藥庫";
+            this.panel_UpdateVersion2.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion2.TabIndex = 69;
+            updateVersionClass2.enable = "False";
+            updateVersionClass2.filepath = "";
+            updateVersionClass2.GUID = null;
+            updateVersionClass2.program_name = "藥庫";
+            updateVersionClass2.update_time = "0000/00/00 00:00:00";
+            updateVersionClass2.version = "";
+            this.panel_UpdateVersion2.UpdateVersionClass = updateVersionClass2;
+            // 
+            // panel_UpdateVersion3
+            // 
+            this.panel_UpdateVersion3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion3.Location = new System.Drawing.Point(213, 298);
+            this.panel_UpdateVersion3.Name = "panel_UpdateVersion3";
+            this.panel_UpdateVersion3.Program_name = "中心叫號系統";
+            this.panel_UpdateVersion3.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion3.TabIndex = 70;
+            updateVersionClass3.enable = "False";
+            updateVersionClass3.filepath = "";
+            updateVersionClass3.GUID = null;
+            updateVersionClass3.program_name = "中心叫號系統";
+            updateVersionClass3.update_time = "0000/00/00 00:00:00";
+            updateVersionClass3.version = "";
+            this.panel_UpdateVersion3.UpdateVersionClass = updateVersionClass3;
+            // 
             // Dialog_更新資訊
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_UpdateVersion3);
+            this.Controls.Add(this.panel_UpdateVersion2);
             this.Controls.Add(this.panel_UpdateVersion1);
             this.Controls.Add(this.panel_SQLContent1);
             this.Controls.Add(this.label_名稱);
@@ -214,5 +252,7 @@ namespace ServerSettingForm
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Panel_SQLContent panel_SQLContent1;
         private Panel_UpdateVersion panel_UpdateVersion1;
+        private Panel_UpdateVersion panel_UpdateVersion2;
+        private Panel_UpdateVersion panel_UpdateVersion3;
     }
 }

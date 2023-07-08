@@ -1,5 +1,0 @@
-{
-  "Name": "",
-  "Api_Server": "",
-  "Med_Update_ApiURL": ""
-}

@@ -256,8 +256,8 @@ namespace HIS_WebApi
                 else return "NG";
             }
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
-            ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.人員資料);
+            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
+            ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.VM端);
             if (serverSettingClass == null)
             {
                 return "serverSettingClass[一般資料] is null!";
@@ -417,8 +417,8 @@ namespace HIS_WebApi
             }
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
-            ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.人員資料);
+            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
+            ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.VM端);
             if (serverSettingClass == null)
             {
                 return "serverSettingClass[一般資料] is null!";

@@ -19,13 +19,16 @@ using Ionic.Zip;
 using System.Text.Json.Serialization;
 using Basic;
 using IWshRuntimeLibrary;
+using HIS_DB_Lib;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 namespace E_UpdateVersion
 {
     public partial class Form1 : Form
     {
-        private string ApiServer
+        public computerConfigClass computerConfigClass = new computerConfigClass();
+        public static string DeviceName = "";
+        public static string ApiServer
         {
             get
             {
@@ -33,41 +36,33 @@ namespace E_UpdateVersion
             }
         }
         static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
+        
         #region MyConfigClass
         private const string MyConfigFileName = @"config.txt";
-        public MyConfigClass myConfigClass = new MyConfigClass();
+        static public MyConfigClass myConfigClass = new MyConfigClass();
         public class MyConfigClass
         {
             private string api_server = "";
-
             public string Api_server { get => api_server; set => api_server = value; }
         }
         private void LoadMyConfig()
         {
             string jsonstr = MyFileStream.LoadFileAllText($".//{MyConfigFileName}");
-            if (jsonstr.StringIsEmpty())
+            myConfigClass = Basic.Net.JsonDeserializet<MyConfigClass>(jsonstr);
+            if(myConfigClass == null)
             {
-                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
-                List<string> list_jsonstring = new List<string>();
-                list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
-                {
-                    MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
-                }
+                myConfigClass = new MyConfigClass();
             }
-            else
+            string json = Net.WEBApiGet($"{ApiServer}/api/test");
+            if (json.StringIsEmpty() == true)
             {
-                myConfigClass = Basic.Net.JsonDeserializet<MyConfigClass>(jsonstr);
-
-                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
-                List<string> list_jsonstring = new List<string>();
-                list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+                Dialog_SetApiServer dialog_SetApiServer = new Dialog_SetApiServer();
+                if(dialog_SetApiServer.ShowDialog() != DialogResult.Yes)
                 {
-                    MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
+                    Application.Exit();
                 }
-
+                myConfigClass.Api_server = dialog_SetApiServer.Value;
+                MyFileStream.SaveFile($"{MyConfigFileName}", myConfigClass.JsonSerializationt(true));
             }
 
 
@@ -95,28 +90,95 @@ namespace E_UpdateVersion
         {
             MyMessageBox.form = this.FindForm();
             MyMessageBox.音效 = false;
+            Dialog_login.form = this.FindForm();
+            Dialog_SetApiServer.form = this.FindForm();
+            Dialog_ConfigSetting.form = this.FindForm();
+
             this.label_version.Text = $"Ver {this.ProductVersion}";
+            this.label_info.Text = Basic.LicenseLib.GetComputerInfo();
+            DeviceName = this.label_info.Text;
             this.LoadMyConfig();
+            computerConfigClass = computerConfigClass.DownloadConfig(ApiServer, DeviceName);
+            if(computerConfigClass.Parameters.Count == 0)
+            {
+                Dialog_ConfigSetting dialog_ConfigSetting = new Dialog_ConfigSetting(ApiServer, DeviceName);
+                dialog_ConfigSetting.ShowDialog();
+            }
+            this.SetUI();
             this.rJ_Button_離開.MouseDownEvent += RJ_Button_離開_MouseDownEvent;
             this.rJ_Button_智慧調劑台系統.MouseDownEvent += RJ_Button_智慧調劑台系統_MouseDownEvent;
         }
-
+        #region Event
+        private void 後台設定ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dialog_login dialog_Login = new Dialog_login();
+            if (dialog_Login.ShowDialog() != DialogResult.Yes) return;
+            Dialog_ConfigSetting dialog_ConfigSetting = new Dialog_ConfigSetting(ApiServer, DeviceName);
+            dialog_ConfigSetting.ShowDialog();
+            computerConfigClass = computerConfigClass.DownloadConfig(ApiServer, DeviceName);
+            this.SetUI();
+        }
         private void RJ_Button_智慧調劑台系統_MouseDownEvent(MouseEventArgs mevent)
         {
-            string arguments = $"{ApiServer} 門診(A5)";
-            if (Download("調劑台" , "調劑台管理系統" , arguments) == false)
+            string 調劑台名稱 = computerConfigClass.GetValue("調劑台管理系統", "系統名稱");
+            if (調劑台名稱.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("指定調劑台名稱空白,請聯繫管理員至後台設定!");
+            }
+            string arguments = $"{ApiServer} {調劑台名稱}";
+            if (Download("調劑台", "調劑台管理系統", arguments) == false)
             {
                 MyMessageBox.ShowDialog("取得更新資訊失敗!");
             }
-        }    
+        }
         private void RJ_Button_離開_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.Invoke(new Action(delegate 
+            this.Invoke(new Action(delegate
             {
                 this.Close();
             }));
         }
-
+        #endregion
+        #region Function
+        private void SetUI()
+        {
+            if ((computerConfigClass.GetValue("調劑台管理系統", "程式致能") == true.ToString()))
+            {
+                rJ_Button_智慧調劑台系統.Enabled = true;
+                rJ_Button_智慧調劑台系統.BackColor = Color.RoyalBlue;
+                rJ_Button_智慧調劑台系統.ForeColor = Color.White;
+            }
+            else
+            {
+                rJ_Button_智慧調劑台系統.Enabled = false;
+                rJ_Button_智慧調劑台系統.ForeColor = Color.White;
+                rJ_Button_智慧調劑台系統.BackColor = Color.LightGray;          
+            }
+            if ((computerConfigClass.GetValue("智能藥庫系統", "程式致能") == true.ToString()))
+            {
+                rJ_Button_智能藥庫系統.Enabled = true;
+                rJ_Button_智能藥庫系統.BackColor = Color.RoyalBlue;
+                rJ_Button_智能藥庫系統.ForeColor = Color.White;
+            }
+            else
+            {
+                rJ_Button_智能藥庫系統.Enabled = false;
+                rJ_Button_智能藥庫系統.ForeColor = Color.White;
+                rJ_Button_智能藥庫系統.BackColor = Color.LightGray;
+            }
+            if ((computerConfigClass.GetValue("中心叫號系統", "程式致能") == true.ToString()))
+            {
+                rJ_Button_中心叫號系統.Enabled = true;
+                rJ_Button_中心叫號系統.BackColor = Color.RoyalBlue;
+                rJ_Button_中心叫號系統.ForeColor = Color.White;
+            }
+            else
+            {
+                rJ_Button_中心叫號系統.Enabled = false;
+                rJ_Button_中心叫號系統.ForeColor = Color.White;
+                rJ_Button_中心叫號系統.BackColor = Color.LightGray;
+            }
+        }
         private bool Download(string program_name, string startupName, string arguments)
         {
             Dialog_Prcessbar dialog_Prcessbar = null;
@@ -189,15 +251,15 @@ namespace E_UpdateVersion
                         {
 
                         }
-           
+
                     }
                     dialog_Prcessbar.State = $"Ver{version} 解壓縮完成!";
                     System.IO.File.Delete(SaveFileName);
 
-            
-                   
-                   
-              
+
+
+
+
                 }
             }
             catch (Exception e)
@@ -214,9 +276,9 @@ namespace E_UpdateVersion
 
                 try
                 {
-                  
-                    CreateShortcutToDesktop(local_fileName, $"{startupName}.exe" , arguments);
-                  
+
+                    CreateShortcutToDesktop(local_fileName, $"{startupName}.exe", arguments);
+
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
                         FileName = local_fileName,
@@ -225,13 +287,13 @@ namespace E_UpdateVersion
                     Process.Start(startInfo);
                     Application.Exit();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MyMessageBox.ShowDialog($"{e.Message}/n{e.StackTrace}");
                 }
-              
-         
-             
+
+
+
 
             }
 
@@ -270,7 +332,7 @@ namespace E_UpdateVersion
                 }
                 catch (System.ComponentModel.Win32Exception)
                 {
-                    
+
                     // 用户取消了提升权限提示或其他错误
                     // 处理异常情况
                 }
@@ -279,11 +341,6 @@ namespace E_UpdateVersion
                 Environment.Exit(0);
             }
         }
-
-        private void 後台設定ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Dialog_login dialog_Login = new Dialog_login();
-            dialog_Login.ShowDialog();
-        }
+        #endregion
     }
 }

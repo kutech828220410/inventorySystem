@@ -140,7 +140,7 @@ namespace HIS_WebApi
                 if (list_value_replace.Count > 0) sQLControl.UpdateByDefulteExtra(null, list_value_replace);
                 returnData.Code = 200;
                 returnData.Data = updateVersionClasses_input;
-                returnData.Method = "all";
+                returnData.Method = "add";
                 returnData.Result = $"新增 update version 資訊成功! 新增<{list_value_add.Count}>筆,修改<{list_value_replace.Count}>筆";
                 return returnData.JsonSerializationt(true);
             }

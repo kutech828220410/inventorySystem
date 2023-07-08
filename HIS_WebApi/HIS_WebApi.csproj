@@ -53,6 +53,9 @@
     <Reference Include="SQLUI">
       <HintPath>0.DLL\SQLUI.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management">
+      <HintPath>0.DLL\System.Management.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -108,7 +111,7 @@
     <None Update="excel_inventory.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="excle_consumption.txt">
+    <None Update="excel_consumption.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
