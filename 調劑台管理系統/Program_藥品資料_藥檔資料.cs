@@ -31,6 +31,8 @@ namespace 調劑台管理系統
         設定安全庫存,
         [Description("S39021")]
         藥品群組設定,
+        [Description("M8000")]
+        回傳至雲端,
     }
 
    
@@ -726,6 +728,32 @@ namespace 調劑台管理系統
                             this.SqL_DataGridView_藥品資料_藥檔資料_MouseDown(sender, e);
                         }
                         
+                    }
+                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.回傳至雲端.GetEnumName())
+                    {
+                        List<object[]> list_value = sqL_DataGridView_藥品資料_藥檔資料.Get_All_Select_RowsValues();
+                        List<object[]> list_value_upload = new List<object[]>();
+                        if (list_value.Count == 0)
+                        {
+                            MyMessageBox.ShowDialog("未選取資料!");
+                            return;
+                        }
+                        List<medClass> medClasses = list_value.SQLToClass<medClass , enum_藥品資料_藥檔資料>();
+                        list_value_upload = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
+                        string Code = list_value_upload[0][(int)enum_雲端藥檔.藥品碼].ObjectToString();
+                        List<object[]> list_雲端藥檔 = sqL_DataGridView_雲端藥檔.SQL_GetRows((int)enum_雲端藥檔.藥品碼, Code, false);
+                        if(list_雲端藥檔.Count == 0)
+                        {
+                            list_value_upload[0][(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
+                            sqL_DataGridView_雲端藥檔.SQL_AddRows(list_value_upload, false);
+                            MyMessageBox.ShowDialog("新增完成!");
+                        }
+                        else
+                        {
+                            list_value_upload[0][(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
+                            sqL_DataGridView_雲端藥檔.SQL_ReplaceExtra(list_value_upload[0], false);
+                            MyMessageBox.ShowDialog("修改完成!");
+                        }
                     }
                 }
             }
