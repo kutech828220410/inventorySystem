@@ -2133,7 +2133,6 @@ C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\Syste
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\System.Text.Json.xml
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\System.ValueTuple.xml
-C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.AssemblyReference.cache
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog.Dialog_收支作業_儲位選擇.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_收支原因選擇.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_設定產出時間.resources
@@ -2242,3 +2241,4 @@ C:\Users\kwok\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調
 C:\Users\kwok\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_條碼管理.resources
 C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_條碼管理.resources
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.AssemblyReference.cache

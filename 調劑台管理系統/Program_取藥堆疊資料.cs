@@ -140,7 +140,6 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
         }
-
         private void Function_取藥堆疊資料_新增母資料(List<takeMedicineStackClass> takeMedicineStackClasses)
         {
             List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
@@ -169,7 +168,8 @@ namespace 調劑台管理系統
                 }
                 takeMedicineStackClasses[i].序號 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClasses[i].操作時間 = DateTime.Now.ToDateTimeString_6();
-                takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新;
+                if(takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.刪除資料) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新;
+
                 if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業) takeMedicineStackClasses[i].IP = "";
                 if (takeMedicineStackClasses[i].效期.Check_Date_String())
                 {
@@ -275,6 +275,7 @@ namespace 調劑台管理系統
                 string 藥品碼 = list_value[0][(int)enum_取藥堆疊子資料.藥品碼].ObjectToString();
                 string device_GUID = list_value[0][(int)enum_取藥堆疊子資料.Device_GUID].ObjectToString();
                 this.sqL_DataGridView_取藥堆疊子資料.SQL_Delete(enum_取藥堆疊子資料.GUID.GetEnumName(), GUID, false);
+                if (藥品碼.StringIsEmpty()) return;
                 if (plC_Button_同藥碼全亮.Bool)
                 {
                     this.Function_儲位亮燈(藥品碼, Color.Black);
@@ -401,30 +402,12 @@ namespace 調劑台管理系統
 
         private void Function_取藥堆疊資料_刪除指定調劑台名稱母資料(string 調劑台名稱)
         {
-            while (true)
+            while(true)
             {
-                bool flag_ok = true;
-                try
-                {
-                    this.sqL_DataGridView_取藥堆疊母資料.SQL_Delete(enum_取藥堆疊母資料.調劑台名稱.GetEnumName(), 調劑台名稱, false);
-                    this.sqL_DataGridView_取藥堆疊母資料.SQL_Delete(enum_取藥堆疊母資料.調劑台名稱.GetEnumName(), "", false);
-                }
-                catch
-                {
-
-                }
-                if (this.sqL_DataGridView_取藥堆疊母資料.SQL_GetRows(enum_取藥堆疊母資料.調劑台名稱.GetEnumName(), 調劑台名稱, false).Count > 0)
-                {
-                    flag_ok = false;
-                }
-                if (this.sqL_DataGridView_取藥堆疊母資料.SQL_GetRows(enum_取藥堆疊母資料.調劑台名稱.GetEnumName(), "", false).Count > 0)
-                {
-                    flag_ok = false;
-                }
-                if (flag_ok) break;
+                List<object[]> list_value = sqL_DataGridView_取藥堆疊母資料.SQL_GetRows((int)enum_取藥堆疊母資料.調劑台名稱, 調劑台名稱 ,false);
+                if (list_value.Count == 0) break;
+                sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value, false);
             }
-
-            return;
 
         }
         private List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱)
@@ -1105,6 +1088,7 @@ namespace 調劑台管理系統
                 this.Function_從SQL取得儲位到雲端資料();
                 PLC_Device_取藥堆疊資料_檢查資料_更新儲位資料.Bool = false;
             }
+      
             //檢查取消作業-刪除母資料
             list_取藥堆疊母資料_取消作業 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.取消作業.GetEnumName());
             for (int i = 0; i < list_取藥堆疊母資料_取消作業.Count; i++)
@@ -2349,6 +2333,7 @@ namespace 調劑台管理系統
                 string GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
                 List<object[]> list_value = this.sqL_DataGridView_醫囑資料.SQL_GetRows((int)enum_醫囑資料.GUID, GUID, false);
                 if (list_value.Count == 0) continue;
+                if (list_value[0][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
                 list_value[0][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
                 list_value[0][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
                 list_醫囑資料_ReplaceValue.Add(list_value[0]);

@@ -22,6 +22,8 @@ namespace HIS_DB_Lib
         等待入帳,
         入賬完成,
         取消作業,
+        刪除資料,
+
     }
     public enum enum_取藥堆疊母資料_作業模式
     {
