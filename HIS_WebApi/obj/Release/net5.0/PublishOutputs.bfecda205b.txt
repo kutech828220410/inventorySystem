@@ -3,10 +3,10 @@ C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\0.DLL\NPOI.OOXML.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\0.DLL\NPOI.OpenXml4Net.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\0.DLL\NPOI.OpenXmlFormats.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_consumption.txt
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_emg_tradding.txt
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_inspection.txt
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_inventory.txt
-C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excle_consumption.txt
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.exe
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\app.config
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\web.config
@@ -132,6 +132,7 @@ C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.dll.config
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.pdb
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\BouncyCastle.Crypto.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\DotNetZip.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Google.Protobuf.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\IBM.Data.DB2.Core.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\K4os.Compression.LZ4.dll
@@ -159,6 +160,7 @@ C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\MyUI.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\SQLUI.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\System.Management.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OOXML.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\LadderUI.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\FontAwesome.Sharp.dll

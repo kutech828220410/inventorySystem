@@ -1052,7 +1052,6 @@ C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\web.con
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_emg_tradding.txt
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_inspection.txt
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_inventory.txt
-C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excle_consumption.txt
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.dll.config
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.deps.json
 C:\Users\kwok\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.runtimeconfig.json
@@ -1136,3 +1135,6 @@ C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\DotNetZip.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.Management.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_consumption.txt
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_consumption.txt
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\DotNetZip.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.Management.dll

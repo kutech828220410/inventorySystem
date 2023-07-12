@@ -167,3 +167,7 @@ C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSet
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_更新資訊.resources
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.AssemblyReference.cache
 C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_UpdateVersion.resources
+C:\Users\kwok\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_更新資訊.resources
+C:\Users\kwok\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_API_URL.resources
+C:\Users\kwok\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_SQLContent.resources
+C:\Users\kwok\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_UpdateVersion.resources

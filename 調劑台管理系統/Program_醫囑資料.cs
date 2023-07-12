@@ -14,42 +14,7 @@ using System.Reflection;//記得取用 Assembly繼承
 using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
-    [Serializable]
-    public class OrderClass
-    {
-        private string _藥局代碼 = "";
-        private string _藥品碼 = "";
-        private string _藥品名稱 = "";
-        private string _包裝單位 = "";
-        private string _交易量 = "";
-        private string _病歷號 = "";
-        private string _開方時間 = "";
-        private string pRI_KEY = "";
-        private string _藥袋條碼 = "";
-        private string _劑量 = "";
-        private string _頻次 = "";
-        private string _途徑 = "";
-        private string _天數 = "";
-        private string _處方序號 = "";
-        private string _病人姓名 = "";
-
-        public string 藥局代碼 { get => _藥局代碼; set => _藥局代碼 = value; }
-        public string 藥品碼 { get => _藥品碼; set => _藥品碼 = value; }
-        public string 藥品名稱 { get => _藥品名稱; set => _藥品名稱 = value; }
-        public string 包裝單位 { get => _包裝單位; set => _包裝單位 = value; }
-        public string 交易量 { get => _交易量; set => _交易量 = value; }
-        public string 病歷號 { get => _病歷號; set => _病歷號 = value; }
-        public string 開方時間 { get => _開方時間; set => _開方時間 = value; }
-        public string PRI_KEY { get => pRI_KEY; set => pRI_KEY = value; }
-        public string 藥袋條碼 { get => _藥袋條碼; set => _藥袋條碼 = value; }
-        public string 劑量 { get => _劑量; set => _劑量 = value; }
-        public string 頻次 { get => _頻次; set => _頻次 = value; }
-        public string 途徑 { get => _途徑; set => _途徑 = value; }
-        public string 天數 { get => _天數; set => _天數 = value; }
-        public string 處方序號 { get => _處方序號; set => _處方序號 = value; }
-        public string 病人姓名 { get => _病人姓名; set => _病人姓名 = value; }
-    }
-
+   
    
     public partial class Form1 : Form
     {
@@ -325,17 +290,13 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
                 return orderClasses;
             }
-
-            orderClasses = jsonString.JsonDeserializet<List<OrderClass>>();
+            returnData returnData = jsonString.JsonDeserializet<returnData>();
+            orderClasses = returnData.Data.ObjToListClass<OrderClass>();
             if (orderClasses == null)
             {
                 Console.WriteLine($"串接資料傳回格式錯誤!");
                 this.voice.SpeakOnTask("資料錯誤");
                 orderClasses = new List<OrderClass>();
-
-            }
-            if (orderClasses.Count == 0)
-            {
 
             }
 
@@ -359,17 +320,19 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
                 return orderClasses;
             }
-
-            orderClasses = jsonString.JsonDeserializet<List<OrderClass>>();
+            returnData returnData = jsonString.JsonDeserializet<returnData>();
+            if(returnData.Code != 200)
+            {
+                MyMessageBox.ShowDialog($"{returnData.Result}");
+                return new List<OrderClass>();
+                
+            }
+            orderClasses = returnData.Data.ObjToListClass<OrderClass>();
             if (orderClasses == null)
             {
                 Console.WriteLine($"串接資料傳回格式錯誤!");
                 this.voice.SpeakOnTask("資料錯誤");
                 orderClasses = new List<OrderClass>();
-
-            }
-            if (orderClasses.Count == 0)
-            {
 
             }
 
