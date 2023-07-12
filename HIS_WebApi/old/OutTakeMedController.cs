@@ -62,7 +62,7 @@ namespace HIS_WebApi
             [JsonPropertyName("OP_type")]
             public string 功能類型 { get; set; }
         }
-        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
+        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private string name = ConfigurationManager.AppSettings["name"];
 
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
@@ -730,7 +730,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_take_medicine_stack_new = new SQLControl(Server, DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
             Table table = new Table("take_medicine_stack_new");
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("序號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table.AddColumnList("序號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("調劑台名稱", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("IP", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("操作人", Table.StringType.VARCHAR, 20, Table.IndexType.None);

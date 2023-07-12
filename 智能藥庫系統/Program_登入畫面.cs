@@ -97,10 +97,10 @@ namespace 智能藥庫系統
             {
                 this.flag_登入畫面_頁面更新 = false;
             }
-            if(!PLC_Device_已登入.Bool)
+            if(!PLC_Device_已登入.Bool )
             {
                 this.myTimer_登出計時.TickStop();
-                this.myTimer_登出計時.StartTickTime(600000);
+                this.myTimer_登出計時.StartTickTime(1200000);
             }
             else
             {
@@ -109,7 +109,7 @@ namespace 智能藥庫系統
                     Function_登出();
                 }
             }
-            rJ_ProgressBar_閒置登出時間.Maximum = 600000;
+            rJ_ProgressBar_閒置登出時間.Maximum = 1200000;
             if ((int)this.myTimer_登出計時.GetTickTime() < rJ_ProgressBar_閒置登出時間.Maximum)
             {
                 rJ_ProgressBar_閒置登出時間.Value = (int)this.myTimer_登出計時.GetTickTime();

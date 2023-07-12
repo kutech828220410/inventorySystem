@@ -471,11 +471,11 @@ namespace 調劑台管理系統
             }
             else if (MySerialPort_Scanner01.ReadByte() != null && !PLC_Device_領藥台_01_已登入.Bool)
             {
-                string text = this.MySerialPort_Scanner01.ReadString();
+                string text = MySerialPort_Scanner01.ReadString();
                 if (text == null) return;
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                this.MySerialPort_Scanner01.ClearReadByte();
+                MySerialPort_Scanner01.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 this.領藥台_01_一維碼 = text;
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), this.領藥台_01_一維碼, false);
@@ -1948,11 +1948,11 @@ namespace 調劑台管理系統
             //}
             else if (MySerialPort_Scanner02.ReadByte() != null && !PLC_Device_領藥台_02_已登入.Bool)
             {
-                string text = this.MySerialPort_Scanner02.ReadString();
+                string text = MySerialPort_Scanner02.ReadString();
                 if (text == null) return;
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                this.MySerialPort_Scanner02.ClearReadByte();
+                MySerialPort_Scanner02.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 this.領藥台_02_一維碼 = text;
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), this.領藥台_02_一維碼, false);

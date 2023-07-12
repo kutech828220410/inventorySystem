@@ -94,8 +94,18 @@ namespace HIS_DB_Lib
                 藥品條碼2 = value.JsonSerializationt();
             }
         }
-
-        private List<string> barcode = new List<string>();
+        public void Add_BarCode(string barcode)
+        {
+            List<string> barcodes = 藥品條碼2.JsonDeserializet<List<string>>();
+            barcodes.Add(barcode);
+            Barcode = barcodes;
+        }
+        public void Delete_BarCode(string barcode)
+        {
+            List<string> barcodes = 藥品條碼2.JsonDeserializet<List<string>>();
+            barcodes.Remove(barcode);
+            Barcode = barcodes;
+        }
 
     }
 }

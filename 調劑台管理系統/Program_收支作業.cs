@@ -46,7 +46,7 @@ namespace 調劑台管理系統
             SQLUI.Table tables = json.JsonDeserializet<SQLUI.Table>();
 
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Init();
-   
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RowDoubleClickEvent += SqL_DataGridView_收支作業_單品入庫_儲位搜尋_RowDoubleClickEvent;
 
             this.sqL_DataGridView_收支作業_入庫狀態.Init(this.sqL_DataGridView_取藥堆疊母資料);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
@@ -63,11 +63,13 @@ namespace 調劑台管理系統
             this.rJ_TextBox_收支作業_單品入庫_藥品碼.KeyPress += RJ_TextBox_收支作業_單品入庫_藥品碼_KeyPress;
             this.rJ_TextBox_收支作業_單品入庫_藥品名稱.KeyPress += RJ_TextBox_收支作業_單品入庫_藥品名稱_KeyPress;
             this.rJ_TextBox_收支作業_單品入庫_中文名稱.KeyPress += RJ_TextBox_收支作業_單品入庫_中文名稱_KeyPress;
+            this.rJ_TextBox_收支作業_單品入庫_藥品條碼.KeyPress += RJ_TextBox_收支作業_單品入庫_藥品條碼_KeyPress;
 
             this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.MouseDownEvent += PlC_RJ_Button_收支作業_單品入庫_顯示所有儲位_MouseDownEvent;
             this.plC_RJ_Button_收支作業_單品入庫_藥品碼搜尋.MouseDownEvent += PlC_RJ_Button_收支作業_單品入庫_藥品碼搜尋_MouseDownEvent;
             this.plC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋.MouseDownEvent += PlC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋_MouseDownEvent;
             this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋.MouseDownEvent += PlC_RJ_Button_收支作業_單品入庫_中文名稱搜尋_MouseDownEvent;
+            this.plC_RJ_Button_收支作業_單品入庫_藥品條碼輸入.MouseDownEvent += PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent;
 
             this.plC_RJ_Button_收支作業_選擇儲位.MouseDownEvent += PlC_RJ_Button_收支作業_選擇儲位_MouseDownEvent;
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.MouseDownEvent += PlC_RJ_Button_收支作業_入庫狀態_清除所有資料_MouseDownEvent;
@@ -83,11 +85,33 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_收支作業);
         }
 
+    
+
         private bool flag_Program_收支作業_換頁 = false;
         private void sub_Program_收支作業()
         {
             if (this.plC_ScreenPage_Main.PageText == "收支作業")
             {
+                string bacode01 = Function_ReadBacodeScanner01();
+                string bacode02 = Function_ReadBacodeScanner02();
+                if (bacode01.StringIsEmpty() == false)
+                {
+                    this.Invoke(new Action(delegate 
+                    {
+                        this.rJ_TextBox_收支作業_單品入庫_藥品條碼.Texts = bacode01;
+                        PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent(null);
+                    }));
+                 
+                }
+                else if (bacode02.StringIsEmpty() == false)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        this.rJ_TextBox_收支作業_單品入庫_藥品條碼.Texts = bacode02;
+                        PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent(null);
+                    }));
+                }
+
                 if (this.plC_RJ_Button_收支作業_入庫.Bool)
                 {
                     this.plC_RJ_Button_收支作業_入庫.BorderSize = 5;
@@ -217,6 +241,58 @@ namespace 調劑台管理系統
             if (e.KeyChar == (char)Keys.Enter)
             {
                 PlC_RJ_Button_收支作業_單品入庫_藥品碼搜尋_MouseDownEvent(null);
+            }
+        }
+        private void RJ_TextBox_收支作業_單品入庫_藥品條碼_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent(null);
+            }
+        }
+        private void SqL_DataGridView_收支作業_單品入庫_儲位搜尋_RowDoubleClickEvent(object[] RowValue)
+        {
+            PlC_RJ_Button_收支作業_選擇儲位_MouseDownEvent(null);
+        }
+        private void PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string BarCode = this.rJ_TextBox_收支作業_單品入庫_藥品條碼.Texts;
+            List<medClass> medClasses = this.Function_搜尋Barcode(BarCode);
+            if(medClasses.Count == 0)
+            {
+                MyMessageBox.ShowDialog("找無此國際條碼!");
+            }
+            List<object> list_儲位資訊 = this.Function_從SQL取得儲位到本地資料(medClasses[0].藥品碼);
+            if (list_儲位資訊.Count == 0)
+            {
+                MyMessageBox.ShowDialog($"藥碼 : {medClasses[0].藥品碼}\n藥名 : {medClasses[0].藥品名稱}\n找無此儲位資訊!");
+            }
+            List<Device> devices = new List<Device>();
+            for(int i = 0; i < list_儲位資訊.Count; i++)
+            {
+                devices.Add((Device)list_儲位資訊[i]);
+            }
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < devices.Count; i++)
+            {
+                if (devices[i].Code.StringIsEmpty()) continue;
+                object[] value = new object[new enum_收支作業_單品入庫_儲位搜尋().GetLength()];
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.GUID] = devices[i].GUID;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.IP] = devices[i].IP;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品碼] = devices[i].Code;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.藥品名稱] = devices[i].Name;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.中文名稱] = devices[i].ChineseName;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.儲位名稱] = devices[i].StorageName;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.儲位型式] = devices[i].DeviceType.GetEnumName();
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.庫存] = devices[i].Inventory;
+                value[(int)enum_收支作業_單品入庫_儲位搜尋.Value] = devices[i];
+                list_value.Add(value);
+            }
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RefreshGrid(list_value);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.SetSelectRow(list_value[0]);
+            if(list_value.Count == 1)
+            {
+                PlC_RJ_Button_收支作業_選擇儲位_MouseDownEvent(null);
             }
         }
         private void PlC_RJ_Button_收支作業_單品入庫_顯示所有儲位_MouseDownEvent(MouseEventArgs mevent)

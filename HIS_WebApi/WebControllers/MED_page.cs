@@ -19,14 +19,35 @@ namespace HIS_WebApi
     [ApiController]
     public class MED_pageController : Controller
     {
-        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
+        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
-
+        [Route("init")]
+        [HttpPost]
+        public string POST_init([FromBody] returnData returnData)
+        {
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
+                returnData.Method = "get_inti";
+                string TableName = returnData.TableName;
+                if (serverSettingClasses.Count == 0)
+                {
+                    return $"找無Server資料!";
+                }
+                return CheckCreatTable(serverSettingClasses[0] , TableName);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
         [HttpPost]
         public string Get(returnData returnData)
         {
             try
             {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
                 string Server = returnData.Server;
                 string DbName = returnData.DbName;
                 string TableName = returnData.TableName;
@@ -85,66 +106,109 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
-
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                string TableName = returnData.TableName;
                 returnData.Method = "get_by_apiserver";
 
-                string Server = serverSettingClasses[0].Server;
-                string DB = returnData.DbName;
-                string TableName = returnData.TableName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-
-                if (serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
                 if (TableName == "medicine_page_cloud")
                 {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");             
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+
+                    CheckCreatTable(serverSettingClasses[0], TableName);
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
                     returnData.Data = list_med.SQLToClass<medClass, enum_雲端藥檔>();
                     returnData.Code = 200;
                     returnData.Result = "雲端藥檔取得成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }
                 if (TableName == "medicine_page_firstclass")
                 {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
                     returnData.Data = list_med.SQLToClass<medClass, enum_藥庫_藥品資料>();
                     returnData.Code = 200;
                     returnData.Result = "藥庫藥檔取得成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }
                 if (TableName == "medicine_page_phar")
                 {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
                     returnData.Data = list_med.SQLToClass<medClass, enum_藥局_藥品資料>();
                     returnData.Code = 200;
                     returnData.Result = "藥局藥檔取得成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }
 
                 if (TableName == "medicine_page")
                 {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
 
                     returnData.Data = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
                     returnData.Code = 200;
                     returnData.Result = "調劑台藥檔取得成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }
 
                 returnData.Code = -200;
                 returnData.Result = "藥檔取得失敗!";
-
                 return returnData.JsonSerializationt();
             }
             catch(Exception e)
@@ -156,23 +220,141 @@ namespace HIS_WebApi
           
         }
 
+        [Route("get_by_code")]
+        [HttpPost]
+        public string POST_get_by_code(returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                string TableName = returnData.TableName;
+                returnData.Method = "get_by_code";
+                string Code = returnData.Value;
+                if(Code.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "Code空白!";
+                    return returnData.JsonSerializationt();
+                }
+                if (TableName == "medicine_page_cloud")
+                {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+
+                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                    List<object[]> list_med = sQLControl_med.GetRowsByDefult(null, (int)enum_雲端藥檔.藥品碼, Code);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_雲端藥檔>();
+                    returnData.Code = 200;
+                    returnData.Result = "雲端藥檔取得成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    return returnData.JsonSerializationt(true);
+                }
+                if (TableName == "medicine_page_firstclass")
+                {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                    List<object[]> list_med = sQLControl_med.GetRowsByDefult(null, (int)enum_藥庫_藥品資料.藥品碼, Code);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥庫_藥品資料>();
+                    returnData.Code = 200;
+                    returnData.Result = "藥庫藥檔取得成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    return returnData.JsonSerializationt(true);
+                }
+                if (TableName == "medicine_page_phar")
+                {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                    List<object[]> list_med = sQLControl_med.GetRowsByDefult(null, (int)enum_藥局_藥品資料.藥品碼, Code);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥局_藥品資料>();
+                    returnData.Code = 200;
+                    returnData.Result = "藥局藥檔取得成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    return returnData.JsonSerializationt(true);
+                }
+
+                if (TableName == "medicine_page")
+                {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                    List<object[]> list_med = sQLControl_med.GetRowsByDefult(null, (int)enum_藥品資料_藥檔資料.藥品碼, Code);
+                    returnData.Data = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                    returnData.Code = 200;
+                    returnData.Result = "調劑台藥檔取得成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
+                    return returnData.JsonSerializationt(true);
+                }
+
+                returnData.Code = -200;
+                returnData.Result = "藥檔取得失敗!";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+
         [Route("upadte_by_guid")]
         public string POST_upadte_by_guid(returnData returnData)
         {
             try
             {
-                returnData.Method = "upadte_by_guid";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
-                returnData.Method = "upadte_by_guid";
-                string Server = serverSettingClasses[0].Server;
-                string DB = returnData.DbName;
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
                 string TableName = returnData.TableName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                List<object[]> list_med = sQLControl_med.GetAllRows(null);
+                returnData.Method = "upadte_by_guid";
+     
+      
                 List<medClass> medClasses = new List<medClass>();
                 medClasses = returnData.Data.ObjToListClass<medClass>();
                 if (medClasses == null)
@@ -192,34 +374,105 @@ namespace HIS_WebApi
                 }
                 if (TableName == "medicine_page_cloud")
                 {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+
+                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
                     returnData.Code = 200;
-                    returnData.Result = "雲端藥檔取得成功!";
+                    returnData.Result = "雲端藥檔更新成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }
                 if (TableName == "medicine_page_firstclass")
                 {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+
+                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
                     List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥庫_藥品資料>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
                     returnData.Code = 200;
-                    returnData.Result = "藥庫藥檔取得成功!";
+                    returnData.Result = "藥庫藥檔更新成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }
                 if (TableName == "medicine_page_phar")
                 {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+
+                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
                     List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥局_藥品資料>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
                     returnData.Code = 200;
-                    returnData.Result = "藥局藥檔取得成功!";
+                    returnData.Result = "藥局藥檔更新成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }
                 if (TableName == "medicine_page")
                 {
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
+                    string Server = serverSettingClasses[0].Server;
+                    string DB = serverSettingClasses[0].DBName;
+                    string UserName = serverSettingClasses[0].User;
+                    string Password = serverSettingClasses[0].Password;
+                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+
+                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
                     List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
                     returnData.Code = 200;
-                    returnData.Result = "調劑台藥檔取得成功!";
+                    returnData.Result = "調劑台藥檔更新成功!";
+                    returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }
                 returnData.Code = -200;
@@ -241,6 +494,7 @@ namespace HIS_WebApi
         {
             try
             {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
                 string json_result = POST_get_by_apiserver(returnData);
                 returnData = json_result.JsonDeserializet<returnData>();
                 returnData.Method = "serch_by_BarCode";
@@ -278,6 +532,7 @@ namespace HIS_WebApi
                 returnData.Data = medClasses_buf;
                 returnData.Code = 200;
                 returnData.Result = "搜尋BARCODE完成!";
+                returnData.TimeTaken = myTimerBasic.ToString();
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -287,6 +542,58 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
 
+        }
+
+
+        private string CheckCreatTable(ServerSettingClass serverSettingClass , string TableName)
+        {
+
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+            Table table = new Table(TableName);
+            if (TableName == "medicine_page_cloud")
+            {
+                table = new Table("medicine_page_cloud");
+                table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+                table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+                table.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+                table.AddColumnList("中文名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品學名", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("健保碼", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+                table.AddColumnList("包裝單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("包裝數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("最小包裝單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("最小包裝數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+                table.AddColumnList("藥品條碼2", Table.StringType.TEXT, 200, Table.IndexType.None);
+                table.AddColumnList("警訊藥品", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("管制級別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("類別", Table.StringType.VARCHAR, 500, Table.IndexType.None);
+
+                if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
+                else sQLControl.CheckAllColumnName(table, true);
+            }
+            if (TableName == "medicine_page_firstclass")
+            {
+                
+            }
+            if (TableName == "medicine_page_phar")
+            {
+                
+            }
+
+            if (TableName == "medicine_page")
+            {
+                
+            }
+
+
+            return table.JsonSerializationt(true);
         }
     }
 }

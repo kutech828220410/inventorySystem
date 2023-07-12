@@ -12,10 +12,10 @@
     <ROW Property="AiSkipExitDlg" Value="1"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="鴻森整合機電有限公司"/>
-    <ROW Property="ProductCode" Value="1028:{78EF8BDB-5B7D-4E16-B09F-C2869DDCC6A7} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{613EB2A0-C0B5-4CFC-AB96-9FEB2366CB36} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1028"/>
-    <ROW Property="ProductName" Value="E-UpdateVersion"/>
-    <ROW Property="ProductVersion" Value="1.0.0.0" Type="32" TargetFile="exe"/>
+    <ROW Property="ProductName" Value="次世代智慧藥局整合平台"/>
+    <ROW Property="ProductVersion" Value="1.0.1.0" Type="32" TargetFile="exe"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{DD530B82-8A1C-4702-89C3-1D317BE8BDF9}"/>
@@ -460,8 +460,8 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="_" Directory_="SHORTCUTDIR" Name="智能藥庫系統" Component_="exe" Target="[#exe]" Description="藥品補給系統" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="__1" Directory_="DesktopFolder" Name="智能藥庫系統" Component_="exe" Target="[#exe]" Description="藥品補給系統" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="_" Directory_="SHORTCUTDIR" Name="次世代智慧藥~1|次世代智慧藥局整合平台" Component_="exe" Target="[#exe]" Description="藥品補給系統" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="__1" Directory_="DesktopFolder" Name="次世代智慧藥~1|次世代智慧藥局整合平台" Component_="exe" Target="[#exe]" Description="藥品補給系統" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

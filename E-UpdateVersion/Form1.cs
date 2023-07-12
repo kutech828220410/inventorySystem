@@ -20,8 +20,8 @@ using System.Text.Json.Serialization;
 using Basic;
 using IWshRuntimeLibrary;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.1.0")]
+[assembly: AssemblyFileVersion("1.0.1.0")]
 namespace E_UpdateVersion
 {
     public partial class Form1 : Form

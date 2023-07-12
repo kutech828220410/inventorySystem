@@ -2240,3 +2240,4 @@ C:\Users\kwok\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調
 C:\Users\kwok\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\Users\kwok\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\kwok\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_條碼管理.resources

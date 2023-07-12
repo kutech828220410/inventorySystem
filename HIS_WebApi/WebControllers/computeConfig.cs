@@ -18,12 +18,12 @@ namespace HIS_WebApi
     public class computeConfigController : ControllerBase
     {
 
-        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
+        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("init")]
-        [HttpGet]
-        public string GET_init([FromBody] returnData returnData)
+        [HttpPost]
+        public string POST_init([FromBody] returnData returnData)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace HIS_WebApi
         {
             try
             {
-                GET_init(returnData);
+                POST_init(returnData);
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
@@ -96,7 +96,7 @@ namespace HIS_WebApi
         {
             try
             {
-                GET_init(returnData);
+                POST_init(returnData);
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)

@@ -169,26 +169,28 @@ namespace 調劑台管理系統
 
             if (flag_醫囑資料_檢查刷條碼_01)
             {
-                string text = this.MySerialPort_Scanner01.ReadString();
+                string text = MySerialPort_Scanner01.ReadString();
                 if (text == null) return;
                 text = text.Replace("\0", "");
                 if (text.StringIsEmpty()) return;
-                this.MySerialPort_Scanner01.ClearReadByte();
+
                 if (text.Length <= 2 || text.Length > 200) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+                MySerialPort_Scanner01.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 一維碼 = text;
             }
             if (flag_醫囑資料_檢查刷條碼_02)
             {
 
-                string text = this.MySerialPort_Scanner02.ReadString();
+                string text = MySerialPort_Scanner02.ReadString();
                 text = text.Replace("\0", "");
                 if (text == null) return;
                 if (text.StringIsEmpty()) return;
-                this.MySerialPort_Scanner02.ClearReadByte();
+     
                 if (text.Length <= 2 || text.Length > 200) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+                MySerialPort_Scanner02.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 一維碼 = text;
             }

@@ -259,8 +259,8 @@ namespace 調劑台管理系統
             }
             if (MySerialPort_Scanner01.ReadByte() != null)
             {
-                string text = this.MySerialPort_Scanner01.ReadString();
-                this.MySerialPort_Scanner01.ClearReadByte();
+                string text = MySerialPort_Scanner01.ReadString();
+                MySerialPort_Scanner01.ClearReadByte();
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 text = text.Replace("\r\n", "");
@@ -271,8 +271,8 @@ namespace 調劑台管理系統
             }
             if (MySerialPort_Scanner02.ReadByte() != null)
             {
-                string text = this.MySerialPort_Scanner02.ReadString();
-                this.MySerialPort_Scanner02.ClearReadByte();
+                string text = MySerialPort_Scanner02.ReadString();
+                MySerialPort_Scanner02.ClearReadByte();
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 text = text.Replace("\r\n", "");

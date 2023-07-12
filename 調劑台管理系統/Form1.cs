@@ -28,7 +28,10 @@ namespace 調劑台管理系統
 
     public partial class Form1 : Form
     {
-        static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static string ServerName = "";
+        public static string ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+        public static string API_Server = "";
+        public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string 領藥台_01名稱
         {
             get
@@ -393,68 +396,7 @@ namespace 調劑台管理系統
             this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue12);
             #endregion
         }
-        private void ApiServerSetting()
-        {
-            this.textBox_工程模式_領藥台_名稱.Text = dBConfigClass.Name;
-            string json_result = Basic.Net.WEBApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
-            if (json_result.StringIsEmpty())
-            {
-                MyMessageBox.ShowDialog("API Server 連結失敗!");
-                return;
-            }
-            Console.WriteLine(json_result);
-            returnData returnData = json_result.JsonDeserializet<returnData>();
-            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            HIS_DB_Lib.ServerSettingClass serverSettingClass;
-
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
-            if (serverSettingClass != null)
-            {
-                dBConfigClass.DB_Basic.IP = serverSettingClass.Server;
-                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_Basic.UserName = serverSettingClass.User;
-                dBConfigClass.DB_Basic.Password = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.人員資料);
-            if (serverSettingClass != null)
-            {
-                dBConfigClass.DB_person_page.IP = serverSettingClass.Server;
-                dBConfigClass.DB_person_page.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_person_page.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
-                dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.藥檔資料);
-            if (serverSettingClass != null)
-            {
-                dBConfigClass.DB_Medicine_Cloud.IP = serverSettingClass.Server;
-                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_Medicine_Cloud.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
-                dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.醫囑資料);
-            if (serverSettingClass != null)
-            {
-                dBConfigClass.DB_order_list.IP = serverSettingClass.Server;
-                dBConfigClass.DB_order_list.Port = (uint)(serverSettingClass.Port.StringToInt32());
-                dBConfigClass.DB_order_list.DataBaseName = serverSettingClass.DBName;
-                dBConfigClass.DB_order_list.UserName = serverSettingClass.User;
-                dBConfigClass.DB_order_list.Password = serverSettingClass.Password;
-            }
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API02);
-            if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Order_API);
-            if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
-            if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Website);
-            if (serverSettingClass != null) dBConfigClass.Web_URL = serverSettingClass.Server;
-
-            serverSettingClass = serverSettingClasses.MyFind("Main", enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
-            if (serverSettingClass != null) dBConfigClass.Login_URL = serverSettingClass.Server;
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -475,6 +417,7 @@ namespace 調劑台管理系統
                 Dialog_收支原因設定.form = this.FindForm();
                 Dialog_收支原因選擇.form = this.FindForm();
                 Dialog_DateTime.form = this.FindForm();
+                Dialog_條碼管理.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();
@@ -491,7 +434,9 @@ namespace 調劑台管理系統
                 this.plC_UI_Init.音效 = false;
                 this.plC_UI_Init.全螢幕顯示 = false;
 
-
+                Basic.Keyboard.Hook.KeyDown += Hook_KeyDown;
+                Basic.Keyboard.Hook.MouseDown += Hook_MouseDown;
+                Basic.Keyboard.Hook.MouseUp += Hook_MouseUp;
 
                 Basic.MyMessageBox.音效 = false;
                 string ProcessName = "WINWORD";//換成想要結束的進程名字
@@ -565,6 +510,7 @@ namespace 調劑台管理系統
 
             this.Program_Scanner_RS232_Init();
             this.Program_系統_Init();
+          
             this.Program_醫囑資料_Init();
 
             this.Program_儲位管理_EPD583_Init();
@@ -581,6 +527,7 @@ namespace 調劑台管理系統
             this.Program_藥品資料_儲位效期表_Init();
             this.Program_藥品資料_管藥設定_Init();
 
+            this.Program_雲端藥檔_Init();
             this.Program_人員資料_Init();
             this.Program_工程模式_Init();
             this.Program_交易記錄查詢_Init();
@@ -612,6 +559,7 @@ namespace 調劑台管理系統
             {
                 Function_從SQL取得儲位到本地資料();
             }));
+            this.plC_ScreenPage_Main.SelecteTabText("調劑作業");
         }
         private void PrinterClass_PrintPageEvent(object sender, Graphics g, int width, int height, int page_num)
         {
@@ -621,6 +569,26 @@ namespace 調劑台管理系統
                 rectangle.Height = bitmap.Height;
                 g.DrawImage(bitmap, rectangle);
             }
+        }
+        private void Hook_MouseDown(int nCode, int mouse_x, int mouse_y)
+        {
+            if (this.CanFocus)
+            {
+                this.myTimer_登出計時.TickStop();
+                this.myTimer_登出計時.StartTickTime(1200000);
+            }
+        }
+        private void Hook_KeyDown(int nCode, IntPtr wParam, Keys Keys)
+        {
+            if (this.CanFocus)
+            {
+                this.myTimer_登出計時.TickStop();
+                this.myTimer_登出計時.StartTickTime(1200000);
+            }
+        }
+        private void Hook_MouseUp(int nCode, int mouse_x, int mouse_y)
+        {
+
         }
         #region PLC_Method
         PLC_Device PLC_Device_Method = new PLC_Device("");
@@ -711,7 +679,72 @@ namespace 調劑台管理系統
         {
             this.Update();
         }
+        private void ApiServerSetting()
+        {
+            this.textBox_工程模式_領藥台_名稱.Text = dBConfigClass.Name;
+            string json_result = Basic.Net.WEBApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
+            if (json_result.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("API Server 連結失敗!");
+                return;
+            }
+            Console.WriteLine(json_result);
+            returnData returnData = json_result.JsonDeserializet<returnData>();
+            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass;
+            ServerName = dBConfigClass.Name;
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_Basic.IP = serverSettingClass.Server;
+                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_Basic.UserName = serverSettingClass.User;
+                dBConfigClass.DB_Basic.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.人員資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_person_page.IP = serverSettingClass.Server;
+                dBConfigClass.DB_person_page.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_person_page.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
+                dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.藥檔資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_Medicine_Cloud.IP = serverSettingClass.Server;
+                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Medicine_Cloud.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
+                dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.醫囑資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_order_list.IP = serverSettingClass.Server;
+                dBConfigClass.DB_order_list.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_order_list.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_order_list.UserName = serverSettingClass.User;
+                dBConfigClass.DB_order_list.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API02);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.Api_URL = serverSettingClass.Server;
+                API_Server = serverSettingClass.Server;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Order_API);
+            if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
+            if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Website);
+            if (serverSettingClass != null) dBConfigClass.Web_URL = serverSettingClass.Server;
 
+            serverSettingClass = serverSettingClasses.MyFind("Main", enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
+            if (serverSettingClass != null) dBConfigClass.Login_URL = serverSettingClass.Server;
+        }
     }
 
 

@@ -60,7 +60,6 @@ namespace 調劑台管理系統
                 return;
             }
             this.sqL_DataGridView_交易記錄查詢.Init(table);
-
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnVisible(false, new enum_交易記錄查詢資料().GetEnumNames());
         
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.動作);

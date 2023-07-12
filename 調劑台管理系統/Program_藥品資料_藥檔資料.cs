@@ -110,6 +110,7 @@ namespace 調劑台管理系統
 
             this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.MouseDownEvent += PlC_RJ_Button_藥品資料_藥檔資料_資料查詢_MouseDownEvent;
 
+            this.plC_RJ_Button_藥品資料_條碼管理.MouseDownEvent += PlC_RJ_Button_藥品資料_條碼管理_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_匯入.MouseDownEvent += PlC_RJ_Button_藥品資料_匯入_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_匯出.MouseDownEvent += PlC_RJ_Button_藥品資料_匯出_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_登錄.MouseDownEvent += PlC_RJ_Button_藥品資料_登錄_MouseDownEvent;
@@ -129,11 +130,27 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_藥品資料_藥檔資料);
         }
 
+ 
+
         bool flag_藥品資料_藥檔資料_頁面更新 = false;
         private void sub_Program_藥品資料_藥檔資料()
         {
             if (this.plC_ScreenPage_Main.PageText == "藥品資料" && this.plC_ScreenPage_藥品資料.PageText == "藥檔資料")
             {
+                if(Dialog_條碼管理.IsShown == false)
+                {
+                    string bacode01 = Function_ReadBacodeScanner01();
+                    string bacode02 = Function_ReadBacodeScanner02();
+                    if (bacode01.StringIsEmpty() == false)
+                    {
+                        Function_藥品資料_藥檔資料_搜尋BarCode(bacode01);
+                    }
+                    else if (bacode02.StringIsEmpty() == false)
+                    {
+                        Function_藥品資料_藥檔資料_搜尋BarCode(bacode02);
+                    }
+                }
+            
                 if (this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked)
                 {
                     if(groupBox_藥品資料_藥檔資料_設定.Enabled != true)
@@ -352,8 +369,7 @@ namespace 調劑台管理系統
                 if (IsMyMessageBoxShow) MyMessageBox.ShowDialog(str_error_msg);
             }
             return flag_OK;
-        }
-    
+        }   
         private string Function_藥品資料_藥檔資料_檢查內容(object[] value)
         {
             string str_error = "";
@@ -565,6 +581,31 @@ namespace 調劑台管理系統
             }
             return dialogResult;
         }
+        private void Function_藥品資料_藥檔資料_搜尋BarCode(string BarCode)
+        {
+            List<medClass> medClasses = Function_搜尋Barcode(BarCode);
+            List<object[]> list_藥檔資料 = new List<object[]>();
+            for (int i = 0; i < medClasses.Count; i++)
+            {
+                List<object[]> list_藥檔資料_buf = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetRows((int)enum_藥品資料_藥檔資料.藥品碼, medClasses[i].藥品碼, false);
+                if (list_藥檔資料_buf.Count > 0) list_藥檔資料.Add(list_藥檔資料_buf[0]);
+            }
+            this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_藥檔資料);
+            if (list_藥檔資料.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無此條碼資訊!");
+                return;
+            }
+            else
+            {
+                this.Invoke(new Action(delegate 
+                {
+                    this.sqL_DataGridView_藥品資料_藥檔資料.SetSelectRow(list_藥檔資料[0]);
+                    this.sqL_DataGridView_藥品資料_藥檔資料.On_RowDoubleClick();
+                }));
+             
+            }
+        }
         #endregion
         #region Event
         #region 藥品群組
@@ -607,6 +648,13 @@ namespace 調劑台管理系統
             RowsList.Sort(new Icp_藥品群組());
         }
         #endregion
+        private void PlC_RJ_Button_藥品資料_條碼管理_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string 藥品碼 = this.textBox_藥品資料_藥檔資料_藥品碼.Text;
+            if (藥品碼.StringIsEmpty()) return;
+            Dialog_條碼管理 dialog_條碼管理 = new Dialog_條碼管理(藥品碼);
+            dialog_條碼管理.ShowDialog();
+        }
         private void SqL_DataGridView_藥品資料_藥檔資料_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -784,7 +832,7 @@ namespace 調劑台管理系統
             {
                 if (textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text != "")
                 {
-                    this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetRows(enum_藥品資料_藥檔資料.藥品條碼.GetEnumName(), textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text, true);
+                    Function_藥品資料_藥檔資料_搜尋BarCode(textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text);
                 }
             }
         }
@@ -809,7 +857,7 @@ namespace 調劑台管理系統
                 }
          
             }
-            if (!textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text.StringIsEmpty()) list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品條碼, textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text);
+            //if (!textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text.StringIsEmpty()) list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品條碼, textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text);
             if (plC_RJ_ChechBox_藥品資料_藥檔資料_資料查詢_藥品群組.Checked)
             {
                 int index = rJ_ComboBox_藥品資料_藥檔資料_資料查詢_藥品群組.SelectedIndex;

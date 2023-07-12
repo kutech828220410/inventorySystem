@@ -329,11 +329,11 @@ namespace 調劑台管理系統
             }
             else if (MySerialPort_Scanner01.ReadByte() != null)
             {
-                string text = this.MySerialPort_Scanner01.ReadString();
+                string text = MySerialPort_Scanner01.ReadString();
                 if (text == null) return;
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                this.MySerialPort_Scanner01.ClearReadByte();
+                MySerialPort_Scanner01.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
                 if (list_人員資料.Count == 0)
@@ -358,11 +358,11 @@ namespace 調劑台管理系統
             }
             else if (MySerialPort_Scanner02.ReadByte() != null)
             {
-                string text = this.MySerialPort_Scanner02.ReadString();
+                string text = MySerialPort_Scanner02.ReadString();
                 if (text == null) return;
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                this.MySerialPort_Scanner02.ClearReadByte();
+                MySerialPort_Scanner02.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
                 if (list_人員資料.Count == 0)
@@ -439,11 +439,11 @@ namespace 調劑台管理系統
             }
             else if (MySerialPort_Scanner01.ReadByte() != null)
             {
-                string text = this.MySerialPort_Scanner01.ReadString();
+                string text = MySerialPort_Scanner01.ReadString();
                 if (text == null) return;
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                this.MySerialPort_Scanner01.ClearReadByte();
+                MySerialPort_Scanner01.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
                 if (list_人員資料.Count == 0)
@@ -468,11 +468,11 @@ namespace 調劑台管理系統
             }
             else if (MySerialPort_Scanner02.ReadByte() != null)
             {
-                string text = this.MySerialPort_Scanner02.ReadString();
+                string text = MySerialPort_Scanner02.ReadString();
                 if (text == null) return;
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                this.MySerialPort_Scanner02.ClearReadByte();
+                MySerialPort_Scanner02.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
                 if (list_人員資料.Count == 0)

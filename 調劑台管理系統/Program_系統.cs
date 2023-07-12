@@ -19,25 +19,7 @@ using HIS_DB_Lib;
 
 namespace 調劑台管理系統
 {
-    public enum enum_雲端藥檔
-    {
-        GUID,
-        藥品碼,
-        料號,
-        中文名稱,
-        藥品名稱,
-        藥品學名,
-        健保碼,
-        包裝單位,
-        包裝數量,
-        最小包裝單位,
-        最小包裝數量,
-        藥品條碼1,
-        藥品條碼2,
-        警訊藥品,
-        管制級別,
-        類別,
-    }
+ 
     public partial class Form1 : Form
     {
     
@@ -123,16 +105,7 @@ namespace 調劑台管理系統
         private void Program_系統_Init()
         {
 
-            SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
-            this.sqL_DataGridView_雲端藥檔.Init();
-            if(!sqL_DataGridView_雲端藥檔.SQL_IsTableCreat())
-            {
-                sqL_DataGridView_雲端藥檔.SQL_CreateTable();
-            }
-            else 
-            {
-                sqL_DataGridView_雲端藥檔.SQL_CheckAllColumnName(true);
-            }
+           
          
 
             this.sqL_DataGridView_Locker_Index_Table.Init();
@@ -151,7 +124,6 @@ namespace 調劑台管理系統
 
             MyTimer_rfiD_FX600_UI_Init.StartTickTime(5000);
 
-            this.plC_RJ_Button_雲端藥檔_取得資料.MouseDownEvent += PlC_RJ_Button_雲端藥檔_取得資料_MouseDownEvent;
             this.plC_RJ_Button_檢查頁面不顯示.MouseDownEvent += PlC_RJ_Button_檢查頁面不顯示_MouseDownEvent;
             this.plC_UI_Init.Add_Method(this.sub_Program_系統);
         }
@@ -328,7 +300,7 @@ namespace 調劑台管理系統
             PLC_Device_檢查頁面不顯示.Bool = true;
             if (cnt_Program_檢查頁面不顯示 == 65534)
             {
-                this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(1000);
+                this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(10000);
                 PLC_Device_檢查頁面不顯示.SetComment("PLC_檢查頁面不顯示");
                 PLC_Device_檢查頁面不顯示_OK.SetComment("PLC_檢查頁面不顯示_OK");
                 PLC_Device_檢查頁面不顯示.Bool = false;
@@ -343,7 +315,7 @@ namespace 調劑台管理系統
             if (cnt_Program_檢查頁面不顯示 == 65500)
             {
                 this.MyTimer_檢查頁面不顯示_結束延遲.TickStop();
-                this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(1000);
+                this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(10000);
                 PLC_Device_檢查頁面不顯示.Bool = false;
                 PLC_Device_檢查頁面不顯示_OK.Bool = false;
                 cnt_Program_檢查頁面不顯示 = 65535;
@@ -580,16 +552,7 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(true);
             }
         }
-        private void PlC_RJ_Button_雲端藥檔_取得資料_MouseDownEvent(MouseEventArgs mevent)
-        {
-            MyTimer myTimer = new MyTimer();
-            myTimer.StartTickTime(50000);
-
-            List<object[]> list_value = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
-            Console.WriteLine($"取得雲端藥檔資料,耗時{myTimer.ToString()}ms");
-            this.sqL_DataGridView_雲端藥檔.RefreshGrid(list_value);
-            Console.WriteLine($"更新雲端藥檔至Datagridview,耗時{myTimer.ToString()}ms");
-        }
+   
         private void PlC_RJ_Button_檢查頁面不顯示_MouseDownEvent(MouseEventArgs mevent)
         {
             if (plC_CheckBox_不顯示設定_領_退藥作業.Checked)

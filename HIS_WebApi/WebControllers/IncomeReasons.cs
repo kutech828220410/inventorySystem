@@ -26,7 +26,7 @@ namespace HIS_WebApi
     [ApiController]
     public class IncomeReasonsController : Controller
     {
-        static private string API_Server = ConfigurationManager.AppSettings["API_Server"];
+        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
 
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 

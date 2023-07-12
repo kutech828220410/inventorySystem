@@ -19,7 +19,7 @@ namespace 調劑台管理系統
         readonly private string Admin_ID = "admin";
         readonly private string Admoin_Password = "66437068";
         private bool flag_後台登入_頁面更新 = false;
-
+        private MyTimer myTimer_登出計時 = new MyTimer();
         private PLC_Device PLC_Device_已登入 = new PLC_Device("S4000");
 
         private PLC_Device pLC_Device_最高權限 = new PLC_Device("S4077");
@@ -119,8 +119,29 @@ namespace 調劑台管理系統
             {
                 this.flag_後台登入_頁面更新 = false;
             }
+
+            if (!PLC_Device_已登入.Bool || !plC_CheckBox_後台閒置要自動登出.Bool)
+            {
+                this.myTimer_登出計時.TickStop();
+                this.myTimer_登出計時.StartTickTime(600000);
+            }
+            else
+            {
+                if (this.myTimer_登出計時.IsTimeOut())
+                {
+                    Function_登出();
+                }
+            }
+            rJ_ProgressBar_閒置登出時間.Maximum = 600000;
+            if ((int)this.myTimer_登出計時.GetTickTime() < rJ_ProgressBar_閒置登出時間.Maximum)
+            {
+                rJ_ProgressBar_閒置登出時間.Value = (int)this.myTimer_登出計時.GetTickTime();
+            }
+
             this.sub_Program_後台登入_RFID登入();
             this.sub_Program_後台登入_一維碼登入();
+
+
         }
         #region PLC_後台登入_RFID登入
         PLC_Device PLC_Device_後台登入_RFID登入 = new PLC_Device("");
@@ -313,8 +334,8 @@ namespace 調劑台管理系統
             string 一維碼 = "";
             if (MySerialPort_Scanner01.ReadByte() != null)
             {
-                string text = this.MySerialPort_Scanner01.ReadString();
-                this.MySerialPort_Scanner01.ClearReadByte();
+                string text = MySerialPort_Scanner01.ReadString();
+                MySerialPort_Scanner01.ClearReadByte();
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 text = text.Replace("\r\n", "");
@@ -322,8 +343,8 @@ namespace 調劑台管理系統
             }
             if (MySerialPort_Scanner02.ReadByte() != null)
             {
-                string text = this.MySerialPort_Scanner02.ReadString();
-                this.MySerialPort_Scanner02.ClearReadByte();
+                string text = MySerialPort_Scanner02.ReadString();
+                MySerialPort_Scanner02.ClearReadByte();
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 text = text.Replace("\r\n", "");
@@ -378,6 +399,11 @@ namespace 調劑台管理系統
             json_in = returnData.JsonSerializationt();
             json_result = Net.WEBApiPostJson(dBConfigClass.Login_URL, json_in);
             returnData = json_result.JsonDeserializet<returnData>();
+            if(returnData == null)
+            {
+                MyMessageBox.ShowDialog("登入API呼叫異常,請檢查網路連結及設定!");
+                return false;
+            }
             _sessionClass = returnData.Data.ObjToClass<sessionClass>();
             if(returnData.Code == 200)
             {
@@ -422,63 +448,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"{returnData.Result}");
                 return false;
             }
-            //this.Invoke(new Action(delegate
-            //{
-            //    if (this.textBox_後台登入_帳號.Text.ToUpper() == Admin_ID.ToUpper())
-            //    {
-            //        if (this.textBox_後台登入_密碼.Text.ToUpper() == Admoin_Password.ToUpper())
-            //        {
-            //            this.登入者名稱 = "最高管理權限";
-            //            this.登入者ID = "admin";
-            //            this.登入者顏色 = "";
-            //            this.textBox_後台登入_帳號.Text = "";
-            //            this.textBox_後台登入_密碼.Text = "";
-            //            this.Function_登入權限資料_最高權限();
-            //            this.PLC_Device_已登入.Bool = true;
-            //            this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
-            //            this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
-            //            flag = true;
-            //            return;
-            //        }
-            //    }
-            //    if(!PLC_Device_後台登入_RFID登入.Bool)
-            //    {
-            //        if (!myConfigClass.帳密登入_Enable)
-            //        {
-            //            MyMessageBox.ShowDialog("禁止帳密登入!");
-            //            flag = false;
-            //            return;
-            //        }
-            //    }
            
-            //    List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
-            //    List<object[]> list_人員資料_buf = new List<object[]>();
-            //    string ID = this.textBox_後台登入_帳號.Text;
-            //    string password = textBox_後台登入_密碼.Text;
-            //    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.ID, ID);
-            //    if (list_人員資料_buf.Count > 0)
-            //    {
-            //        if (password != list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString())
-            //        {
-            //            MyMessageBox.ShowDialog("密碼錯誤!");
-            //            flag = false;
-            //            return;
-            //        }
-            //        this.登入者名稱 = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
-            //        this.登入者ID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
-            //        this.登入者顏色 = list_人員資料_buf[0][(int)enum_人員資料.顏色].ObjectToString();
-            //        int level = list_人員資料_buf[0][(int)enum_人員資料.權限等級].StringToInt32();
-            //        this.Function_登入權限資料_取得權限(level);
-            //        this.textBox_後台登入_帳號.Text = "";
-            //        this.textBox_後台登入_密碼.Text = "";
-            //        this.PLC_Device_已登入.Bool = true;
-            //        this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
-            //        this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
-            //        flag = true;
-            //        return;
-            //    }
-            //    flag = false;
-            //}));
             return flag;
         }
         private void Function_登出()
