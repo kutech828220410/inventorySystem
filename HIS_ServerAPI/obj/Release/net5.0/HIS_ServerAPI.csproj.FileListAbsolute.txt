@@ -242,3 +242,4 @@ C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI
 C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.OpenXml4Net.dll
 C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\NPOI.OpenXmlFormats.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\System.Management.dll
+C:\Users\kwok\source\repos\inventorySystem\HIS_ServerAPI\bin\Release\net5.0\System.Management.dll

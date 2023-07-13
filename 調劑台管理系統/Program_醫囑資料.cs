@@ -339,7 +339,6 @@ namespace 調劑台管理系統
             return orderClasses;
         }
         #endregion
-
         #region Event
         private void SqL_DataGridView_醫囑資料_DataGridRefreshEvent()
         {
@@ -556,7 +555,6 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫囑資料.DeleteExtra(list_value, true);
         }
         #endregion
-
 
         private class ICP_醫囑資料 : IComparer<object[]>
         {

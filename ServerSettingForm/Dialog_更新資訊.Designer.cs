@@ -34,6 +34,8 @@ namespace ServerSettingForm
             HIS_DB_Lib.updateVersionClass updateVersionClass2 = new HIS_DB_Lib.updateVersionClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass3 = new HIS_DB_Lib.updateVersionClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass4 = new HIS_DB_Lib.updateVersionClass();
+            HIS_DB_Lib.updateVersionClass updateVersionClass5 = new HIS_DB_Lib.updateVersionClass();
+            HIS_DB_Lib.updateVersionClass updateVersionClass6 = new HIS_DB_Lib.updateVersionClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -48,6 +50,8 @@ namespace ServerSettingForm
             this.panel_UpdateVersion2 = new ServerSettingForm.Panel_UpdateVersion();
             this.panel_UpdateVersion3 = new ServerSettingForm.Panel_UpdateVersion();
             this.panel_UpdateVersion4 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion5 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion6 = new ServerSettingForm.Panel_UpdateVersion();
             this.SuspendLayout();
             // 
             // label1
@@ -228,12 +232,46 @@ namespace ServerSettingForm
             updateVersionClass4.version = "";
             this.panel_UpdateVersion4.UpdateVersionClass = updateVersionClass4;
             // 
+            // panel_UpdateVersion5
+            // 
+            this.panel_UpdateVersion5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion5.Location = new System.Drawing.Point(210, 708);
+            this.panel_UpdateVersion5.Name = "panel_UpdateVersion5";
+            this.panel_UpdateVersion5.Program_name = "temp0";
+            this.panel_UpdateVersion5.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion5.TabIndex = 72;
+            updateVersionClass5.enable = "False";
+            updateVersionClass5.filepath = "";
+            updateVersionClass5.GUID = null;
+            updateVersionClass5.program_name = "temp0";
+            updateVersionClass5.update_time = "0000/00/00 00:00:00";
+            updateVersionClass5.version = "";
+            this.panel_UpdateVersion5.UpdateVersionClass = updateVersionClass5;
+            // 
+            // panel_UpdateVersion6
+            // 
+            this.panel_UpdateVersion6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion6.Location = new System.Drawing.Point(210, 820);
+            this.panel_UpdateVersion6.Name = "panel_UpdateVersion6";
+            this.panel_UpdateVersion6.Program_name = "temp1";
+            this.panel_UpdateVersion6.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion6.TabIndex = 73;
+            updateVersionClass6.enable = "False";
+            updateVersionClass6.filepath = "";
+            updateVersionClass6.GUID = null;
+            updateVersionClass6.program_name = "temp1";
+            updateVersionClass6.update_time = "0000/00/00 00:00:00";
+            updateVersionClass6.version = "";
+            this.panel_UpdateVersion6.UpdateVersionClass = updateVersionClass6;
+            // 
             // Dialog_更新資訊
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_UpdateVersion6);
+            this.Controls.Add(this.panel_UpdateVersion5);
             this.Controls.Add(this.panel_UpdateVersion4);
             this.Controls.Add(this.panel_UpdateVersion3);
             this.Controls.Add(this.panel_UpdateVersion2);
@@ -274,5 +312,7 @@ namespace ServerSettingForm
         private Panel_UpdateVersion panel_UpdateVersion2;
         private Panel_UpdateVersion panel_UpdateVersion3;
         private Panel_UpdateVersion panel_UpdateVersion4;
+        private Panel_UpdateVersion panel_UpdateVersion5;
+        private Panel_UpdateVersion panel_UpdateVersion6;
     }
 }
