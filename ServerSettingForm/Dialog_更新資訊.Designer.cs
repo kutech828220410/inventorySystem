@@ -33,6 +33,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.updateVersionClass updateVersionClass1 = new HIS_DB_Lib.updateVersionClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass2 = new HIS_DB_Lib.updateVersionClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass3 = new HIS_DB_Lib.updateVersionClass();
+            HIS_DB_Lib.updateVersionClass updateVersionClass4 = new HIS_DB_Lib.updateVersionClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@ namespace ServerSettingForm
             this.panel_UpdateVersion1 = new ServerSettingForm.Panel_UpdateVersion();
             this.panel_UpdateVersion2 = new ServerSettingForm.Panel_UpdateVersion();
             this.panel_UpdateVersion3 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion4 = new ServerSettingForm.Panel_UpdateVersion();
             this.SuspendLayout();
             // 
             // label1
@@ -165,7 +167,7 @@ namespace ServerSettingForm
             // panel_UpdateVersion1
             // 
             this.panel_UpdateVersion1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion1.Location = new System.Drawing.Point(213, 74);
+            this.panel_UpdateVersion1.Location = new System.Drawing.Point(210, 243);
             this.panel_UpdateVersion1.Name = "panel_UpdateVersion1";
             this.panel_UpdateVersion1.Program_name = "調劑台";
             this.panel_UpdateVersion1.Size = new System.Drawing.Size(984, 106);
@@ -181,7 +183,7 @@ namespace ServerSettingForm
             // panel_UpdateVersion2
             // 
             this.panel_UpdateVersion2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion2.Location = new System.Drawing.Point(213, 186);
+            this.panel_UpdateVersion2.Location = new System.Drawing.Point(210, 355);
             this.panel_UpdateVersion2.Name = "panel_UpdateVersion2";
             this.panel_UpdateVersion2.Program_name = "藥庫";
             this.panel_UpdateVersion2.Size = new System.Drawing.Size(984, 106);
@@ -197,7 +199,7 @@ namespace ServerSettingForm
             // panel_UpdateVersion3
             // 
             this.panel_UpdateVersion3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion3.Location = new System.Drawing.Point(213, 298);
+            this.panel_UpdateVersion3.Location = new System.Drawing.Point(210, 467);
             this.panel_UpdateVersion3.Name = "panel_UpdateVersion3";
             this.panel_UpdateVersion3.Program_name = "中心叫號系統";
             this.panel_UpdateVersion3.Size = new System.Drawing.Size(984, 106);
@@ -210,12 +212,29 @@ namespace ServerSettingForm
             updateVersionClass3.version = "";
             this.panel_UpdateVersion3.UpdateVersionClass = updateVersionClass3;
             // 
+            // panel_UpdateVersion4
+            // 
+            this.panel_UpdateVersion4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion4.Location = new System.Drawing.Point(210, 74);
+            this.panel_UpdateVersion4.Name = "panel_UpdateVersion4";
+            this.panel_UpdateVersion4.Program_name = "update";
+            this.panel_UpdateVersion4.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion4.TabIndex = 71;
+            updateVersionClass4.enable = "False";
+            updateVersionClass4.filepath = "";
+            updateVersionClass4.GUID = null;
+            updateVersionClass4.program_name = "update";
+            updateVersionClass4.update_time = "0000/00/00 00:00:00";
+            updateVersionClass4.version = "";
+            this.panel_UpdateVersion4.UpdateVersionClass = updateVersionClass4;
+            // 
             // Dialog_更新資訊
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_UpdateVersion4);
             this.Controls.Add(this.panel_UpdateVersion3);
             this.Controls.Add(this.panel_UpdateVersion2);
             this.Controls.Add(this.panel_UpdateVersion1);
@@ -254,5 +273,6 @@ namespace ServerSettingForm
         private Panel_UpdateVersion panel_UpdateVersion1;
         private Panel_UpdateVersion panel_UpdateVersion2;
         private Panel_UpdateVersion panel_UpdateVersion3;
+        private Panel_UpdateVersion panel_UpdateVersion4;
     }
 }

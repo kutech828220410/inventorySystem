@@ -12,10 +12,10 @@
     <ROW Property="AiSkipExitDlg" Value="1"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="鴻森整合機電有限公司"/>
-    <ROW Property="ProductCode" Value="1028:{58B2FAE6-9B81-4B96-9D0C-2BDF60E95FF9} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{0BFB47B6-88FE-4896-AB6D-3DD05EB7E80F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1028"/>
     <ROW Property="ProductName" Value="次世代智慧藥局整合平台"/>
-    <ROW Property="ProductVersion" Value="1.0.2.0" Type="32" TargetFile="exe"/>
+    <ROW Property="ProductVersion" Value="1.0.5.0" Type="32" TargetFile="exe"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{DD530B82-8A1C-4702-89C3-1D317BE8BDF9}"/>
@@ -37,7 +37,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="Basic.dll" ComponentId="{3224182A-1014-47FB-B899-E140D6196A91}" Directory_="APPDIR" Attributes="0" KeyPath="Basic.dll"/>
     <ROW Component="CallBackUI.dll" ComponentId="{8B9B5494-9AB6-4779-9B76-044485A39A29}" Directory_="APPDIR" Attributes="0" KeyPath="CallBackUI.dll"/>
-    <ROW Component="Device.val" ComponentId="{EF70A23C-EB7A-47EC-BB0B-9D20EE00955D}" Directory_="APPDIR" Attributes="0" KeyPath="Device.val" Type="0"/>
+    <ROW Component="Device.val" ComponentId="{EF70A23C-EB7A-47EC-BB0B-9D20EE00955D}" Directory_="APPDIR" Attributes="0" KeyPath="DotNetZip.xml" Type="0"/>
     <ROW Component="DotNetZip.dll" ComponentId="{76D3139B-508E-429A-8061-C8E8B35C6462}" Directory_="APPDIR" Attributes="0" KeyPath="DotNetZip.dll"/>
     <ROW Component="DrawingClass.dll" ComponentId="{E33E6CD8-18A7-47E1-BDFA-38AB79D7D190}" Directory_="APPDIR" Attributes="0" KeyPath="DrawingClass.dll"/>
     <ROW Component="FontAwesome.Sharp.dll" ComponentId="{26061EEA-7E06-4DC8-A967-66BD576ED8B3}" Directory_="APPDIR" Attributes="0" KeyPath="FontAwesome.Sharp.dll"/>
@@ -185,7 +185,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="Basic.dll" Component_="Basic.dll" FileName="Basic.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\Basic.dll" SelfReg="false" NextFile="CallBackUI.dll"/>
     <ROW File="CallBackUI.dll" Component_="CallBackUI.dll" FileName="CALLBA~1.DLL|CallBackUI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\CallBackUI.dll" SelfReg="false" NextFile="cjwdev.windowsapi.dll"/>
-    <ROW File="Device.val" Component_="Device.val" FileName="Device.val" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\Device.val" SelfReg="false" NextFile="DotNetZip.dll"/>
     <ROW File="DotNetZip.dll" Component_="DotNetZip.dll" FileName="DOTNET~1.DLL|DotNetZip.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\DotNetZip.dll" SelfReg="false" NextFile="DotNetZip.pdb"/>
     <ROW File="DotNetZip.pdb" Component_="DotNetZip.dll" FileName="DOTNET~1.PDB|DotNetZip.pdb" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\DotNetZip.pdb" SelfReg="false" NextFile="DotNetZip.xml"/>
     <ROW File="DotNetZip.xml" Component_="Device.val" FileName="DOTNET~1.XML|DotNetZip.xml" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\DotNetZip.xml" SelfReg="false" NextFile="DrawingClass.dll"/>
@@ -217,7 +216,7 @@
     <ROW File="NPOI.OpenXml4Net.dll" Component_="NPOI.OpenXml4Net.dll" FileName="NPOIOP~1.DLL|NPOI.OpenXml4Net.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\NPOI.OpenXml4Net.dll" SelfReg="false" NextFile="NPOI.OpenXmlFormats.dll"/>
     <ROW File="NPOI.OpenXmlFormats.dll" Component_="NPOI.OpenXmlFormats.dll" FileName="NPOIOP~2.DLL|NPOI.OpenXmlFormats.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\NPOI.OpenXmlFormats.dll" SelfReg="false" NextFile="PortControlUI.dll"/>
     <ROW File="NPOI.dll" Component_="NPOI.dll" FileName="NPOI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\NPOI.dll" SelfReg="false" NextFile="NPOI.OOXML.dll"/>
-    <ROW File="PortControlUI.dll" Component_="PortControlUI.dll" FileName="PORTCO~1.DLL|PortControlUI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\PortControlUI.dll" SelfReg="false" NextFile="program.stp"/>
+    <ROW File="PortControlUI.dll" Component_="PortControlUI.dll" FileName="PORTCO~1.DLL|PortControlUI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\PortControlUI.dll" SelfReg="false" NextFile="SLDUI.dll"/>
     <ROW File="SLDUI.dll" Component_="SLDUI.dll" FileName="SLDUI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\SLDUI.dll" SelfReg="false" NextFile="SQLUI.dll"/>
     <ROW File="SQLUI.dll" Component_="SQLUI.dll" FileName="SQLUI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\SQLUI.dll" SelfReg="false" NextFile="stdole.dll"/>
     <ROW File="System.AppContext.dll" Component_="System.AppContext.dll" FileName="SYSTEM~1.DLL|System.AppContext.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\System.AppContext.dll" SelfReg="false" NextFile="System.Buffers.dll"/>
@@ -331,11 +330,9 @@
     <ROW File="System.Xml.XmlSerializer.dll" Component_="System.Xml.XmlSerializer.dll" FileName="SYSTE~99.DLL|System.Xml.XmlSerializer.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\System.Xml.XmlSerializer.dll" SelfReg="false" NextFile="System.Xml.XPath.dll"/>
     <ROW File="TCP.dll" Component_="TCP.dll" FileName="TCP.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\TCP.dll" SelfReg="false" NextFile="ZealTechUI.dll"/>
     <ROW File="ZealTechUI.dll" Component_="ZealTechUI.dll" FileName="ZEALTE~1.DLL|ZealTechUI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\ZealTechUI.dll" SelfReg="false" NextFile="zxing.dll"/>
-    <ROW File="cjwdev.windowsapi.dll" Component_="cjwdev.windowsapi.dll" FileName="CJWDEV~1.DLL|cjwdev.windowsapi.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\cjwdev.windowsapi.dll" SelfReg="false" NextFile="Device.val"/>
+    <ROW File="cjwdev.windowsapi.dll" Component_="cjwdev.windowsapi.dll" FileName="CJWDEV~1.DLL|cjwdev.windowsapi.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\cjwdev.windowsapi.dll" SelfReg="false" NextFile="DotNetZip.dll"/>
     <ROW File="exe" Component_="exe" FileName="E-UPDA~1.EXE|E-UpdateVersion.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\E-UpdateVersion.exe" SelfReg="false" NextFile="Basic.dll" DigSign="true"/>
     <ROW File="netstandard.dll" Component_="netstandard.dll" FileName="NETSTA~1.DLL|netstandard.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\netstandard.dll" SelfReg="false" NextFile="NPOI.dll"/>
-    <ROW File="program.stp" Component_="Device.val" FileName="program.stp" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\program.stp" SelfReg="false" NextFile="rfiD_FX600_UI.pro"/>
-    <ROW File="rfiD_FX600_UI.pro" Component_="Device.val" FileName="RFID_F~1.PRO|rfiD_FX600_UI.pro" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\rfiD_FX600_UI.pro" SelfReg="false" NextFile="SLDUI.dll"/>
     <ROW File="stdole.dll" Component_="stdole.dll" FileName="stdole.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\stdole.dll" SelfReg="false" NextFile="System.AppContext.dll"/>
     <ROW File="zxing.dll" Component_="zxing.dll" FileName="zxing.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\zxing.dll" SelfReg="false"/>
   </COMPONENT>

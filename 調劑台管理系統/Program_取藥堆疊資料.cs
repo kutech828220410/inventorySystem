@@ -2342,7 +2342,7 @@ namespace 調劑台管理系統
             if (list_取藥堆疊子資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(list_取藥堆疊子資料_ReplaceValue, false);
             if (list_取藥堆疊母資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_ReplaceValue, false);
             //if (list_醫囑資料_ReplaceValue.Count > 0) this.sqL_DataGridView_醫囑資料.SQL_ReplaceExtra(list_醫囑資料_ReplaceValue, false);
-             cnt++;
+            cnt++;
         }
         void cnt_Program_取藥堆疊資料_入賬檢查_等待延遲(ref int cnt)
         {

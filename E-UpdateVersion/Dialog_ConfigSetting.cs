@@ -48,6 +48,7 @@ namespace E_UpdateVersion
             computerConfigClass = computerConfigClass.DownloadConfig(aPIServer, deviceName);
             DB_TextBox.LoadAll(this.FindForm(), computerConfigClass);
             DB_CheckBox.LoadAll(this.FindForm(), computerConfigClass);
+            this.comboBox_預設程式.Text = Form1.myConfigClass.Default_program;
         }
         private void Button_讀取_Click(object sender, EventArgs e)
         {
@@ -65,6 +66,8 @@ namespace E_UpdateVersion
         {
             DB_TextBox.SaveAll(this.FindForm(), ref computerConfigClass);
             DB_CheckBox.SaveAll(this.FindForm(), ref computerConfigClass);
+            Form1.myConfigClass.Default_program = this.comboBox_預設程式.Text;
+            Form1.SaveConfig();
             if (computerConfigClass.UploadConfig(aPIServer, computerConfigClass) == false)
             {
                 MyMessageBox.ShowDialog("上傳失敗!");

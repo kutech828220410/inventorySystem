@@ -20,8 +20,8 @@ using System.Text.Json.Serialization;
 using Basic;
 using IWshRuntimeLibrary;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.2.0")]
-[assembly: AssemblyFileVersion("1.0.2.0")]
+[assembly: AssemblyVersion("1.0.5.0")]
+[assembly: AssemblyFileVersion("1.0.5.0")]
 namespace E_UpdateVersion
 {
     public partial class Form1 : Form
@@ -39,13 +39,17 @@ namespace E_UpdateVersion
         
         #region MyConfigClass
         private const string MyConfigFileName = @"config.txt";
-        static public MyConfigClass myConfigClass = new MyConfigClass();
+        public static  MyConfigClass myConfigClass = new MyConfigClass();
         public class MyConfigClass
         {
+            private string default_program = "";
+            public string Default_program { get => default_program; set => default_program = value; }
+
             private string api_server = "";
             public string Api_server { get => api_server; set => api_server = value; }
+  
         }
-        private void LoadMyConfig()
+        public static void LoadMyConfig()
         {
             string jsonstr = MyFileStream.LoadFileAllText($".//{MyConfigFileName}");
             myConfigClass = Basic.Net.JsonDeserializet<MyConfigClass>(jsonstr);
@@ -67,7 +71,7 @@ namespace E_UpdateVersion
 
 
         }
-        private void SaveConfig()
+        public static void SaveConfig()
         {
             string jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
             List<string> list_jsonstring = new List<string>();
@@ -93,11 +97,21 @@ namespace E_UpdateVersion
             Dialog_login.form = this.FindForm();
             Dialog_SetApiServer.form = this.FindForm();
             Dialog_ConfigSetting.form = this.FindForm();
+            LoadMyConfig();
+            string update_version = GetVersion("update");
+            if (update_version.StringIsEmpty() == false && update_version != this.ProductVersion)
+            {
+                Download("update", "update", "", false);
+                MyFileStream.RunFile($@"{currentDirectory}", $@"{currentDirectory}\update", $@"{currentDirectory}\temp", @"E-UpdateVersion.exe", SearchOption.TopDirectoryOnly, "config.txt");
+                this.Close();
+                return;
+            }
+        
 
             this.label_version.Text = $"Ver {this.ProductVersion}";
             this.label_info.Text = Basic.LicenseLib.GetComputerInfo();
             DeviceName = this.label_info.Text;
-            this.LoadMyConfig();
+         
             computerConfigClass = computerConfigClass.DownloadConfig(ApiServer, DeviceName);
             if(computerConfigClass.Parameters.Count == 0)
             {
@@ -147,6 +161,10 @@ namespace E_UpdateVersion
                 rJ_Button_智慧調劑台系統.Enabled = true;
                 rJ_Button_智慧調劑台系統.BackColor = Color.RoyalBlue;
                 rJ_Button_智慧調劑台系統.ForeColor = Color.White;
+                if (myConfigClass.Default_program == "調劑台管理系統")
+                {
+                    RJ_Button_智慧調劑台系統_MouseDownEvent(null);
+                }
             }
             else
             {
@@ -179,7 +197,11 @@ namespace E_UpdateVersion
                 rJ_Button_中心叫號系統.BackColor = Color.LightGray;
             }
         }
-        private bool Download(string program_name, string startupName, string arguments)
+        private string GetVersion(string program_name)
+        {
+            return Basic.Net.WEBApiGet($"{ApiServer}/api/update/version/{program_name}");
+        }
+        private bool Download(string program_name, string startupName, string arguments, bool autoStart = true)
         {
             Dialog_Prcessbar dialog_Prcessbar = null;
             string SaveFileName = $@"{currentDirectory}\download.zip";
@@ -190,7 +212,7 @@ namespace E_UpdateVersion
             {
                 bool flag = false;
 
-                string version = Basic.Net.WEBApiGet($"{ApiServer}/api/update/version/{program_name}");
+                string version = this.GetVersion(program_name);
                 string local_version = "None";
                 try
                 {
@@ -276,16 +298,18 @@ namespace E_UpdateVersion
 
                 try
                 {
-
-                   // CreateShortcutToDesktop(local_fileName, $"{startupName}.exe", arguments);
-
-                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    // CreateShortcutToDesktop(local_fileName, $"{startupName}.exe", arguments);
+                    if (autoStart)
                     {
-                        FileName = local_fileName,
-                        Arguments = arguments
-                    };
-                    Process.Start(startInfo);
-                    Application.Exit();
+                        ProcessStartInfo startInfo = new ProcessStartInfo
+                        {
+                            FileName = local_fileName,
+                            Arguments = arguments
+                        };
+                        Process.Start(startInfo);
+                        Application.Exit();
+                    }
+
                 }
                 catch (Exception e)
                 {
@@ -342,5 +366,8 @@ namespace E_UpdateVersion
             }
         }
         #endregion
+
+
+
     }
 }

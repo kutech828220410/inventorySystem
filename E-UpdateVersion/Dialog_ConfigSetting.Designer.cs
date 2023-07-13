@@ -36,13 +36,15 @@ namespace E_UpdateVersion
             this.button_讀取 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dB_CheckBox3 = new E_UpdateVersion.DB_CheckBox();
+            this.dB_TextBox3 = new E_UpdateVersion.DB_TextBox();
             this.dB_CheckBox2 = new E_UpdateVersion.DB_CheckBox();
             this.dB_TextBox2 = new E_UpdateVersion.DB_TextBox();
             this.dB_CheckBox1 = new E_UpdateVersion.DB_CheckBox();
             this.dB_TextBox1 = new E_UpdateVersion.DB_TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dB_CheckBox3 = new E_UpdateVersion.DB_CheckBox();
-            this.dB_TextBox3 = new E_UpdateVersion.DB_TextBox();
+            this.comboBox_預設程式 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -51,6 +53,8 @@ namespace E_UpdateVersion
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.comboBox_預設程式);
             this.panel1.Controls.Add(this.label_API_URL);
             this.panel1.Controls.Add(this.label_DeviceName);
             this.panel1.Controls.Add(this.button_上傳);
@@ -126,6 +130,45 @@ namespace E_UpdateVersion
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "智能藥庫系統";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dB_CheckBox3);
+            this.groupBox3.Controls.Add(this.dB_TextBox3);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox3.Location = new System.Drawing.Point(0, 477);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1123, 222);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "中心叫號系統";
+            // 
+            // dB_CheckBox3
+            // 
+            this.dB_CheckBox3.AutoSize = true;
+            this.dB_CheckBox3.ConfigName = "程式致能";
+            this.dB_CheckBox3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dB_CheckBox3.Location = new System.Drawing.Point(25, 34);
+            this.dB_CheckBox3.Name = "dB_CheckBox3";
+            this.dB_CheckBox3.Size = new System.Drawing.Size(93, 25);
+            this.dB_CheckBox3.TabIndex = 10;
+            this.dB_CheckBox3.Text = "程式致能";
+            this.dB_CheckBox3.TitleWidth = 100;
+            this.dB_CheckBox3.Type = "中心叫號系統";
+            this.dB_CheckBox3.UseVisualStyleBackColor = true;
+            this.dB_CheckBox3.Value = "False";
+            // 
+            // dB_TextBox3
+            // 
+            this.dB_TextBox3.BackColor = System.Drawing.Color.White;
+            this.dB_TextBox3.ConfigName = "系統名稱";
+            this.dB_TextBox3.Location = new System.Drawing.Point(25, 68);
+            this.dB_TextBox3.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.dB_TextBox3.Name = "dB_TextBox3";
+            this.dB_TextBox3.Size = new System.Drawing.Size(314, 30);
+            this.dB_TextBox3.TabIndex = 9;
+            this.dB_TextBox3.TitleWidth = 150;
+            this.dB_TextBox3.Type = "中心叫號系統";
+            // 
             // dB_CheckBox2
             // 
             this.dB_CheckBox2.AutoSize = true;
@@ -180,44 +223,29 @@ namespace E_UpdateVersion
             this.dB_TextBox1.TitleWidth = 150;
             this.dB_TextBox1.Type = "調劑台管理系統";
             // 
-            // groupBox3
+            // comboBox_預設程式
             // 
-            this.groupBox3.Controls.Add(this.dB_CheckBox3);
-            this.groupBox3.Controls.Add(this.dB_TextBox3);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox3.Location = new System.Drawing.Point(0, 477);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1123, 222);
-            this.groupBox3.TabIndex = 13;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "中心叫號系統";
+            this.comboBox_預設程式.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_預設程式.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_預設程式.FormattingEnabled = true;
+            this.comboBox_預設程式.Items.AddRange(new object[] {
+            "調劑台管理系統",
+            "智能藥庫系統",
+            "中心叫號系統"});
+            this.comboBox_預設程式.Location = new System.Drawing.Point(732, 11);
+            this.comboBox_預設程式.Name = "comboBox_預設程式";
+            this.comboBox_預設程式.Size = new System.Drawing.Size(166, 32);
+            this.comboBox_預設程式.TabIndex = 6;
             // 
-            // dB_CheckBox3
+            // label1
             // 
-            this.dB_CheckBox3.AutoSize = true;
-            this.dB_CheckBox3.ConfigName = "程式致能";
-            this.dB_CheckBox3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dB_CheckBox3.Location = new System.Drawing.Point(25, 34);
-            this.dB_CheckBox3.Name = "dB_CheckBox3";
-            this.dB_CheckBox3.Size = new System.Drawing.Size(93, 25);
-            this.dB_CheckBox3.TabIndex = 10;
-            this.dB_CheckBox3.Text = "程式致能";
-            this.dB_CheckBox3.TitleWidth = 100;
-            this.dB_CheckBox3.Type = "中心叫號系統";
-            this.dB_CheckBox3.UseVisualStyleBackColor = true;
-            this.dB_CheckBox3.Value = "False";
-            // 
-            // dB_TextBox3
-            // 
-            this.dB_TextBox3.BackColor = System.Drawing.Color.White;
-            this.dB_TextBox3.ConfigName = "系統名稱";
-            this.dB_TextBox3.Location = new System.Drawing.Point(25, 68);
-            this.dB_TextBox3.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
-            this.dB_TextBox3.Name = "dB_TextBox3";
-            this.dB_TextBox3.Size = new System.Drawing.Size(314, 30);
-            this.dB_TextBox3.TabIndex = 9;
-            this.dB_TextBox3.TitleWidth = 150;
-            this.dB_TextBox3.Type = "中心叫號系統";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(657, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 19);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "預設程式";
             // 
             // Dialog_ConfigSetting
             // 
@@ -264,5 +292,7 @@ namespace E_UpdateVersion
         private System.Windows.Forms.GroupBox groupBox3;
         private DB_CheckBox dB_CheckBox3;
         private DB_TextBox dB_TextBox3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox_預設程式;
     }
 }
