@@ -693,7 +693,7 @@ namespace 調劑台管理系統
             List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
             HIS_DB_Lib.ServerSettingClass serverSettingClass;
             ServerName = dBConfigClass.Name;
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.調劑台, "一般資料(LAN)");
             if (serverSettingClass != null)
             {
                 dBConfigClass.DB_Basic.IP = serverSettingClass.Server;

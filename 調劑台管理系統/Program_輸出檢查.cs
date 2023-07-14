@@ -76,6 +76,7 @@ namespace 調劑台管理系統
         }
         private void Loker_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string Master_GUID)
         {
+            //Master_GUID 為取藥堆疊母資料
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
             if (list_locker_table_value.Count == 0) return;
@@ -130,7 +131,7 @@ namespace 調劑台管理系統
         #region Function
         private void Function_輸出入檢查_搜尋輸出(string IP, int Num, string InputAdress, string OutputAdress, string Master_GUID)
         {
-         
+            //Master_GUID 為取藥堆疊母資料
             foreach (Pannel_Locker loker in this.List_Locker)
             {
                 if (loker.Get_OutputAdress() == OutputAdress)

@@ -983,9 +983,9 @@
             this.plC_CheckBox_領藥無儲位不顯示 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_單人交班 = new MyUI.PLC_CheckBox();
             this.plC_Button_手輸數量 = new MyUI.PLC_Button();
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過 = new MyUI.PLC_CheckBox();
             this.plC_Button_無庫存自動補足 = new MyUI.PLC_Button();
-            this.plC_CheckBox_已過帳取藥 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過 = new MyUI.PLC_CheckBox();
             this.plC_Button_多醫囑模式 = new MyUI.PLC_Button();
             this.plC_Button_同藥碼全亮 = new MyUI.PLC_Button();
             this.plC_ComboBox_醫囑檢查範圍 = new MyUI.PLC_ComboBox();
@@ -24847,7 +24847,6 @@
             this.panel66.Controls.Add(this.groupBox22);
             this.panel66.Controls.Add(this.textBox_工程模式_領藥台_名稱);
             this.panel66.Controls.Add(this.rJ_Lable45);
-            this.panel66.Controls.Add(this.plC_CheckBox10);
             this.panel66.Controls.Add(this.button_工程模式_調劑台名稱儲存);
             this.panel66.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel66.Location = new System.Drawing.Point(0, 888);
@@ -24965,7 +24964,7 @@
             this.plC_CheckBox10.Bool = false;
             this.plC_CheckBox10.Font = new System.Drawing.Font("新細明體", 9F);
             this.plC_CheckBox10.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox10.Location = new System.Drawing.Point(1232, 19);
+            this.plC_CheckBox10.Location = new System.Drawing.Point(493, 162);
             this.plC_CheckBox10.Name = "plC_CheckBox10";
             this.plC_CheckBox10.Size = new System.Drawing.Size(84, 16);
             this.plC_CheckBox10.TabIndex = 41;
@@ -25422,16 +25421,17 @@
             this.groupBox7.Controls.Add(this.plC_CheckBox_領藥無儲位不顯示);
             this.groupBox7.Controls.Add(this.plC_CheckBox_單人交班);
             this.groupBox7.Controls.Add(this.plC_Button_手輸數量);
-            this.groupBox7.Controls.Add(this.plC_CheckBox_退藥檢查是否掃碼領藥過);
+            this.groupBox7.Controls.Add(this.plC_CheckBox_退藥不檢查是否掃碼領藥過);
+            this.groupBox7.Controls.Add(this.plC_CheckBox10);
             this.groupBox7.Controls.Add(this.plC_Button_無庫存自動補足);
-            this.groupBox7.Controls.Add(this.plC_CheckBox_已過帳取藥);
+            this.groupBox7.Controls.Add(this.plC_CheckBox_領藥不檢查是否掃碼領藥過);
             this.groupBox7.Controls.Add(this.plC_Button_多醫囑模式);
             this.groupBox7.Controls.Add(this.plC_Button_同藥碼全亮);
             this.groupBox7.Controls.Add(this.plC_ComboBox_醫囑檢查範圍);
             this.groupBox7.Controls.Add(this.plC_Button_合併同藥品);
             this.groupBox7.Location = new System.Drawing.Point(219, 11);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(562, 187);
+            this.groupBox7.Size = new System.Drawing.Size(583, 187);
             this.groupBox7.TabIndex = 120;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "刷藥袋設定";
@@ -25481,7 +25481,7 @@
             this.plC_Button_手輸數量.Bool = false;
             this.plC_Button_手輸數量.but_press = false;
             this.plC_Button_手輸數量.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_手輸數量.Location = new System.Drawing.Point(387, 74);
+            this.plC_Button_手輸數量.Location = new System.Drawing.Point(408, 74);
             this.plC_Button_手輸數量.Margin = new System.Windows.Forms.Padding(4);
             this.plC_Button_手輸數量.Name = "plC_Button_手輸數量";
             this.plC_Button_手輸數量.OFF_文字內容 = "手輸數量";
@@ -25511,32 +25511,32 @@
             this.plC_Button_手輸數量.顯示 = false;
             this.plC_Button_手輸數量.顯示狀態 = false;
             // 
-            // plC_CheckBox_退藥檢查是否掃碼領藥過
+            // plC_CheckBox_退藥不檢查是否掃碼領藥過
             // 
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.AutoSize = true;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Bool = false;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Location = new System.Drawing.Point(13, 94);
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Name = "plC_CheckBox_退藥檢查是否掃碼領藥過";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Size = new System.Drawing.Size(213, 20);
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.TabIndex = 123;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.Text = "[退藥]檢查是否掃碼領藥過";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.寫入元件位置 = "S5020";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字內容 = "[退藥]檢查是否掃碼領藥過";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.讀取元件位置 = "S5020";
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.讀寫鎖住 = false;
-            this.plC_CheckBox_退藥檢查是否掃碼領藥過.音效 = false;
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.AutoSize = true;
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.Bool = false;
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.Location = new System.Drawing.Point(13, 94);
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.Name = "plC_CheckBox_退藥不檢查是否掃碼領藥過";
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.Size = new System.Drawing.Size(229, 20);
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.TabIndex = 123;
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.Text = "[退藥]不檢查是否掃碼領藥過";
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.寫入元件位置 = "S5020";
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.文字內容 = "[退藥]不檢查是否掃碼領藥過";
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.讀取元件位置 = "S5020";
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.讀寫鎖住 = false;
+            this.plC_CheckBox_退藥不檢查是否掃碼領藥過.音效 = false;
             // 
             // plC_Button_無庫存自動補足
             // 
             this.plC_Button_無庫存自動補足.Bool = false;
             this.plC_Button_無庫存自動補足.but_press = false;
             this.plC_Button_無庫存自動補足.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_無庫存自動補足.Location = new System.Drawing.Point(387, 17);
+            this.plC_Button_無庫存自動補足.Location = new System.Drawing.Point(408, 17);
             this.plC_Button_無庫存自動補足.Margin = new System.Windows.Forms.Padding(4);
             this.plC_Button_無庫存自動補足.Name = "plC_Button_無庫存自動補足";
             this.plC_Button_無庫存自動補足.OFF_文字內容 = "無庫存自動補足";
@@ -25566,32 +25566,32 @@
             this.plC_Button_無庫存自動補足.顯示 = false;
             this.plC_Button_無庫存自動補足.顯示狀態 = false;
             // 
-            // plC_CheckBox_已過帳取藥
+            // plC_CheckBox_領藥不檢查是否掃碼領藥過
             // 
-            this.plC_CheckBox_已過帳取藥.AutoSize = true;
-            this.plC_CheckBox_已過帳取藥.Bool = false;
-            this.plC_CheckBox_已過帳取藥.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_已過帳取藥.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_已過帳取藥.Location = new System.Drawing.Point(13, 68);
-            this.plC_CheckBox_已過帳取藥.Name = "plC_CheckBox_已過帳取藥";
-            this.plC_CheckBox_已過帳取藥.Size = new System.Drawing.Size(213, 20);
-            this.plC_CheckBox_已過帳取藥.TabIndex = 122;
-            this.plC_CheckBox_已過帳取藥.Text = "[領藥]檢查是否掃碼領藥過";
-            this.plC_CheckBox_已過帳取藥.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_已過帳取藥.寫入元件位置 = "S5010";
-            this.plC_CheckBox_已過帳取藥.文字內容 = "[領藥]檢查是否掃碼領藥過";
-            this.plC_CheckBox_已過帳取藥.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_已過帳取藥.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_已過帳取藥.讀取元件位置 = "S5010";
-            this.plC_CheckBox_已過帳取藥.讀寫鎖住 = false;
-            this.plC_CheckBox_已過帳取藥.音效 = false;
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.AutoSize = true;
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.Bool = false;
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.Location = new System.Drawing.Point(13, 68);
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.Name = "plC_CheckBox_領藥不檢查是否掃碼領藥過";
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.Size = new System.Drawing.Size(229, 20);
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.TabIndex = 122;
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.Text = "[領藥]不檢查是否掃碼領藥過";
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.寫入元件位置 = "S5010";
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.文字內容 = "[領藥]不檢查是否掃碼領藥過";
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置 = "S5010";
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.讀寫鎖住 = false;
+            this.plC_CheckBox_領藥不檢查是否掃碼領藥過.音效 = false;
             // 
             // plC_Button_多醫囑模式
             // 
             this.plC_Button_多醫囑模式.Bool = false;
             this.plC_Button_多醫囑模式.but_press = false;
             this.plC_Button_多醫囑模式.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_多醫囑模式.Location = new System.Drawing.Point(233, 131);
+            this.plC_Button_多醫囑模式.Location = new System.Drawing.Point(254, 131);
             this.plC_Button_多醫囑模式.Margin = new System.Windows.Forms.Padding(4);
             this.plC_Button_多醫囑模式.Name = "plC_Button_多醫囑模式";
             this.plC_Button_多醫囑模式.OFF_文字內容 = "單醫囑模式";
@@ -25626,7 +25626,7 @@
             this.plC_Button_同藥碼全亮.Bool = false;
             this.plC_Button_同藥碼全亮.but_press = false;
             this.plC_Button_同藥碼全亮.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_同藥碼全亮.Location = new System.Drawing.Point(233, 17);
+            this.plC_Button_同藥碼全亮.Location = new System.Drawing.Point(254, 17);
             this.plC_Button_同藥碼全亮.Margin = new System.Windows.Forms.Padding(4);
             this.plC_Button_同藥碼全亮.Name = "plC_Button_同藥碼全亮";
             this.plC_Button_同藥碼全亮.OFF_文字內容 = "同藥碼全亮";
@@ -25687,7 +25687,7 @@
             this.plC_Button_合併同藥品.Bool = false;
             this.plC_Button_合併同藥品.but_press = false;
             this.plC_Button_合併同藥品.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_合併同藥品.Location = new System.Drawing.Point(233, 74);
+            this.plC_Button_合併同藥品.Location = new System.Drawing.Point(254, 74);
             this.plC_Button_合併同藥品.Margin = new System.Windows.Forms.Padding(4);
             this.plC_Button_合併同藥品.Name = "plC_Button_合併同藥品";
             this.plC_Button_合併同藥品.OFF_文字內容 = "分離同藥品";
@@ -28966,6 +28966,7 @@
             this.sqL_DataGridView_Locker_Index_Table.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_Locker_Index_Table.Columns7"))));
             this.sqL_DataGridView_Locker_Index_Table.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_Locker_Index_Table.Columns8"))));
             this.sqL_DataGridView_Locker_Index_Table.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_Locker_Index_Table.Columns9"))));
+            this.sqL_DataGridView_Locker_Index_Table.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_Locker_Index_Table.Columns10"))));
             this.sqL_DataGridView_Locker_Index_Table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_Locker_Index_Table.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_Locker_Index_Table.ImageBox = false;
@@ -34501,7 +34502,7 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_領藥台_01_強制入帳;
         private System.Windows.Forms.GroupBox groupBox7;
         private MyUI.PLC_ComboBox plC_ComboBox_醫囑檢查範圍;
-        private MyUI.PLC_CheckBox plC_CheckBox_已過帳取藥;
+        private MyUI.PLC_CheckBox plC_CheckBox_領藥不檢查是否掃碼領藥過;
         private MyUI.PLC_RJ_Button plC_RJ_Button_領藥台_02_強制入帳;
         private MyUI.PLC_RJ_Button plC_RJ_Button_領藥台_02_手輸醫囑;
         private MyUI.PLC_RJ_Button plC_RJ_Button_醫囑資料_搜尋條件_藥袋條碼_搜尋;
@@ -34535,7 +34536,7 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品資料_HIS下載全部藥檔;
         private MyUI.PLC_Button plC_Button_多醫囑模式;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_選取資料刪除;
-        private MyUI.PLC_CheckBox plC_CheckBox_退藥檢查是否掃碼領藥過;
+        private MyUI.PLC_CheckBox plC_CheckBox_退藥不檢查是否掃碼領藥過;
         private MyUI.RJ_CheckBox rJ_CheckBox_儲位管理_RFID_刷卡直接開鎖;
         private MyUI.RJ_Lable rJ_Lable55;
         private System.Windows.Forms.GroupBox groupBox10;

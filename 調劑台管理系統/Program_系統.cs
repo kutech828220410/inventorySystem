@@ -33,6 +33,7 @@ namespace 調劑台管理系統
             輸入狀態,
             輸出位置,
             輸出狀態,
+            同步輸出,
             Master_GUID,
             Slave_GUID,
             Device_GUID,
@@ -43,6 +44,7 @@ namespace 調劑台管理系統
             Num,
             輸入位置,
             輸出位置,
+            同步輸出,
         }
         enum enum_Locker_Index_Table_匯入
         {
@@ -50,6 +52,7 @@ namespace 調劑台管理系統
             Num,
             輸入位置,
             輸出位置,
+            同步輸出,
         }
         public enum ContextMenuStrip_Locker_Index_Table
         {
@@ -109,11 +112,9 @@ namespace 調劑台管理系統
          
 
             this.sqL_DataGridView_Locker_Index_Table.Init();
-            if (!this.sqL_DataGridView_Locker_Index_Table.SQL_IsTableCreat())
-            {
-                this.sqL_DataGridView_Locker_Index_Table.SQL_CreateTable();
-            }
-           
+            if (!this.sqL_DataGridView_Locker_Index_Table.SQL_IsTableCreat()) this.sqL_DataGridView_Locker_Index_Table.SQL_CreateTable();
+            else this.sqL_DataGridView_Locker_Index_Table.SQL_CheckAllColumnName(true);
+
             this.sqL_DataGridView_Locker_Index_Table.MouseDown += SqL_DataGridView_Locker_Index_Table_MouseDown;
             this.sqL_DataGridView_Locker_Index_Table.DataGridRowsChangeEvent += SqL_DataGridView_Locker_Index_Table_DataGridRowsChangeEvent;
 

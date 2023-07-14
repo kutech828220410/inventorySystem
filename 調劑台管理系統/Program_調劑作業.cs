@@ -1079,7 +1079,7 @@ namespace 調劑台管理系統
                 return;
             }
             List<object[]> list_醫囑資料_remove = new List<object[]>();
-            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_已過帳取藥.讀取元件位置);
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             if (pLC_Device.Bool == false) list_醫囑資料 = list_醫囑資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.未過帳.GetEnumName());
             if (list_醫囑資料.Count == 0)
             {
@@ -1249,7 +1249,7 @@ namespace 調劑台管理系統
                     return;
                 }
                 List<object[]> list_醫囑資料_remove = new List<object[]>();
-                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_已過帳取藥.讀取元件位置);
+                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
                 if (pLC_Device.Bool == false) list_醫囑資料 = list_醫囑資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫囑資料.Count == 0)
                 {
@@ -1339,7 +1339,7 @@ namespace 調劑台管理系統
             if (daynum == 11) daynum = 20;
             if (daynum == 12) daynum = 30;
             daynum *= -1;
-            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_已過帳取藥.讀取元件位置);
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
 
@@ -1428,7 +1428,7 @@ namespace 調劑台管理系統
             if (daynum == 11) daynum = 20;
             if (daynum == 12) daynum = 30;
             daynum *= -1;
-            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_已過帳取藥.讀取元件位置);
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
 
@@ -1457,7 +1457,7 @@ namespace 調劑台管理系統
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
             // list_交易記錄 = list_交易記錄.GetRowsInDate((int)enum_交易記錄查詢資料.開方時間, dateTime_start, dateTime_end);
             Console.Write($"取得交易記錄資料 , 耗時{myTimer.ToString()}\n");
-            if(plC_CheckBox_退藥檢查是否掃碼領藥過.Checked)
+            if(plC_CheckBox_退藥不檢查是否掃碼領藥過.Checked)
             {
                 if (list_交易記錄.Count == 0)
                 {
@@ -2553,7 +2553,7 @@ namespace 調劑台管理系統
                 return;
             }
             List<object[]> list_醫囑資料_remove = new List<object[]>();
-            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_已過帳取藥.讀取元件位置);
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             if (pLC_Device.Bool == false) list_醫囑資料 = list_醫囑資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.未過帳.GetEnumName());
             if (list_醫囑資料.Count == 0)
             {
@@ -2723,7 +2723,7 @@ namespace 調劑台管理系統
                     return;
                 }
                 List<object[]> list_醫囑資料_remove = new List<object[]>();
-                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_已過帳取藥.讀取元件位置);
+                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
                 if (pLC_Device.Bool == false) list_醫囑資料 = list_醫囑資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫囑資料.Count == 0)
                 {
@@ -2815,7 +2815,7 @@ namespace 調劑台管理系統
             if (daynum == 11) daynum = 20;
             if (daynum == 12) daynum = 30;
             daynum *= -1;
-            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_已過帳取藥.讀取元件位置);
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
 
@@ -2902,7 +2902,7 @@ namespace 調劑台管理系統
             if (daynum == 11) daynum = 20;
             if (daynum == 12) daynum = 30;
             daynum *= -1;
-            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_已過帳取藥.讀取元件位置);
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
 
@@ -2931,7 +2931,7 @@ namespace 調劑台管理系統
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
             // list_交易記錄 = list_交易記錄.GetRowsInDate((int)enum_交易記錄查詢資料.開方時間, dateTime_start, dateTime_end);
             Console.Write($"取得交易記錄資料 , 耗時{myTimer.ToString()}\n");
-            if (plC_CheckBox_退藥檢查是否掃碼領藥過.Checked)
+            if (plC_CheckBox_退藥不檢查是否掃碼領藥過.Checked)
             {
                 if (list_交易記錄.Count == 0)
                 {

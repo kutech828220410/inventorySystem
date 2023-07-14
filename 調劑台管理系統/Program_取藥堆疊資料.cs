@@ -1606,6 +1606,25 @@ namespace 調劑台管理系統
                             list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
                             list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
                             list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
+
+                            //檢查是否需同步輸出
+                            string 同步輸出 = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.同步輸出].ObjectToString();
+                            if (同步輸出.StringIsEmpty()) continue;
+                            List<object[]> list_locker_table_value_同步輸出 = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, 同步輸出);
+                            if (list_locker_table_value_同步輸出.Count > 0)
+                            {
+                                string GUID = list_locker_table_value_同步輸出[0][(int)enum_Locker_Index_Table.GUID].ObjectToString();
+                                List<object[]> list_locker_table_value_ReplaceValue_buf = list_locker_table_value_ReplaceValue.GetRows((int)enum_Locker_Index_Table.GUID, GUID);
+                                if(list_locker_table_value_ReplaceValue_buf.Count == 0)
+                                {
+                                    list_locker_table_value_同步輸出[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                                    list_locker_table_value_ReplaceValue.Add(list_locker_table_value_同步輸出[0]);
+                                }
+                                else
+                                {
+                                    list_locker_table_value_ReplaceValue_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                                }
+                            }
                         }
                     }
                     

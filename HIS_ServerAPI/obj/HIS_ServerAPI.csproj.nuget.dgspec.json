@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kwok\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {}
+    "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kwok\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {
+    "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kwok\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
+        "projectUniqueName": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
         "projectName": "HIS_ServerAPI",
-        "projectPath": "C:\\Users\\kwok\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
-        "packagesPath": "C:\\Users\\kwok\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kwok\\source\\repos\\inventorySystem\\HIS_ServerAPI\\obj\\",
+        "projectPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
+        "packagesPath": "C:\\Users\\HS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kwok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
         }
       }
     }
