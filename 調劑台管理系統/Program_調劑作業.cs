@@ -1074,10 +1074,15 @@ namespace 調劑台管理系統
             {
                 list_醫囑資料 = this.Function_醫囑資料_API呼叫(BarCode);
             }
-            list_醫囑資料 = list_醫囑資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
             if (list_醫囑資料.Count == 0)
             {
                 this.voice.SpeakOnTask("此藥單碼無資料");
+                return;
+            }
+            list_醫囑資料 = list_醫囑資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
+            if (list_醫囑資料.Count == 0)
+            {
+                this.voice.SpeakOnTask("此藥單已過期");
                 return;
             }
             List<object[]> list_醫囑資料_remove = new List<object[]>();
@@ -1184,10 +1189,15 @@ namespace 調劑台管理系統
                 if (dialogResult != DialogResult.Yes) return;
                 手輸數量 = dialog_NumPannel.Value * 1;
                 list_醫囑資料 = this.Function_醫囑資料_API呼叫(BarCode, 手輸數量);
-                list_醫囑資料 = list_醫囑資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫囑資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單碼無資料");
+                    return;
+                }
+                list_醫囑資料 = list_醫囑資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
+                if (list_醫囑資料.Count == 0)
+                {
+                    this.voice.SpeakOnTask("此藥單碼已過期");
                     return;
                 }
 
@@ -2556,10 +2566,15 @@ namespace 調劑台管理系統
             {
                 list_醫囑資料 = this.Function_醫囑資料_API呼叫(BarCode);
             }
-            list_醫囑資料 = list_醫囑資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
             if (list_醫囑資料.Count == 0)
             {
                 this.voice.SpeakOnTask("此藥單碼無資料");
+                return;
+            }
+            list_醫囑資料 = list_醫囑資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
+            if (list_醫囑資料.Count == 0)
+            {
+                this.voice.SpeakOnTask("此藥單碼已過期");
                 return;
             }
             List<object[]> list_醫囑資料_remove = new List<object[]>();
@@ -2727,11 +2742,15 @@ namespace 調劑台管理系統
             else
             {
                 list_醫囑資料 = this.Function_醫囑資料_API呼叫(BarCode);
-
-                list_醫囑資料 = list_醫囑資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫囑資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單碼無資料");
+                    return;
+                }
+                list_醫囑資料 = list_醫囑資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
+                if (list_醫囑資料.Count == 0)
+                {
+                    this.voice.SpeakOnTask("此藥單碼已過期");
                     return;
                 }
                 List<object[]> list_醫囑資料_remove = new List<object[]>();

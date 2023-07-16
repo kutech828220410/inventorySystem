@@ -287,15 +287,22 @@ namespace 調劑台管理系統
             Console.Write($"耗時 {myTimer.ToString()}ms\n");
             if (jsonString.StringIsEmpty())
             {
+                this.voice.SpeakOnTask("網路異常");
                 MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
                 return orderClasses;
             }
             returnData returnData = jsonString.JsonDeserializet<returnData>();
+            if (returnData == null)
+            {
+                this.voice.SpeakOnTask("藥單條碼錯誤");
+                MyMessageBox.ShowDialog(jsonString);
+                return new List<OrderClass>();
+            }
             orderClasses = returnData.Data.ObjToListClass<OrderClass>();
             if (orderClasses == null)
             {
                 Console.WriteLine($"串接資料傳回格式錯誤!");
-                this.voice.SpeakOnTask("資料錯誤");
+                this.voice.SpeakOnTask("回傳資料錯誤");
                 orderClasses = new List<OrderClass>();
 
             }
@@ -317,10 +324,17 @@ namespace 調劑台管理系統
             Console.Write($"耗時 {myTimer.ToString()}ms\n");
             if (jsonString.StringIsEmpty())
             {
+                this.voice.SpeakOnTask("網路異常");
                 MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
                 return orderClasses;
             }
             returnData returnData = jsonString.JsonDeserializet<returnData>();
+            if(returnData == null)
+            {
+                this.voice.SpeakOnTask("藥單條碼錯誤");
+                MyMessageBox.ShowDialog(jsonString);
+                return new List<OrderClass>();
+            }
             if(returnData.Code != 200)
             {
                 MyMessageBox.ShowDialog($"{returnData.Result}");

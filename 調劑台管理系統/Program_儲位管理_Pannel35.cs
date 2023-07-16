@@ -521,7 +521,6 @@ namespace 調劑台管理系統
                                               select value).ToList();
                 if (storages_buf.Count > 0)
                 {
-                    H_Pannel_lib.Communication.UDP_TimeOut = 50000;
                     taskList.Add(Task.Run(() =>
                     {
                         this.storageUI_WT32.Set_DrawPannelJEPG(storages_buf[0]);
