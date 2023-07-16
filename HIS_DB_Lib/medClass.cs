@@ -59,6 +59,8 @@ namespace HIS_DB_Lib
         public string 藥品條碼2 { get; set; }
         [JsonPropertyName("IS_WARRING")]
         public string 警訊藥品 { get; set; }
+        [JsonPropertyName("IS_H_COST")]
+        public string 高價藥品 { get; set; }
         [JsonPropertyName("DRUG_QTY")]
         public string 藥局庫存 { get; set; }
         [JsonPropertyName("PHAR_QTY")]

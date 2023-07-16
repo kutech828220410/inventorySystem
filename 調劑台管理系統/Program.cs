@@ -20,32 +20,7 @@ namespace 調劑台管理系統
             mutex = new System.Threading.Mutex(true, "OnlyRun");
             if (mutex.WaitOne(0, false))
             {
-                try
-                {
-                    Application.Run(new Form1());
-                }
-                catch(Exception e)
-                {
-                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    string filePath = $@"{desktopPath}\log.txt";
-                    if (!File.Exists(filePath))
-                    {
-                        using (StreamWriter writer = new StreamWriter(filePath, false))
-                        {
-                            string text = $"{e.Message} {DateTime.Now.ToDateTimeString()}";
-                            writer.WriteLine(text);
-                        }
-                    }
-                    else
-                    {
-                        using (StreamWriter writer = new StreamWriter(filePath, true))
-                        {
-                            string text = $"{e.Message} {DateTime.Now.ToDateTimeString()}";
-                            writer.WriteLine(text);
-                        }
-                    }
-                   
-                }             
+                Application.Run(new Form1());
             }
             else
             {

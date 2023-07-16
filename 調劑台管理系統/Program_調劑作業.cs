@@ -1051,8 +1051,10 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫囑檢查範圍.GetValue();
-            if (daynum == 11) daynum = 20;
-            if (daynum == 12) daynum = 30;
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
             daynum *= -1;
 
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
@@ -1164,8 +1166,10 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫囑檢查範圍.GetValue();
-            if (daynum == 11) daynum = 20;
-            if (daynum == 12) daynum = 30;
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
             daynum *= -1;
             string 藥品碼 = "";
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
@@ -1336,8 +1340,10 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫囑檢查範圍.GetValue();
-            if (daynum == 11) daynum = 20;
-            if (daynum == 12) daynum = 30;
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
             daynum *= -1;
             PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
@@ -1425,8 +1431,10 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫囑檢查範圍.GetValue();
-            if (daynum == 11) daynum = 20;
-            if (daynum == 12) daynum = 30;
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
             daynum *= -1;
             PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
@@ -2528,8 +2536,10 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫囑檢查範圍.GetValue();
-            if (daynum == 11) daynum = 20;
-            if (daynum == 12) daynum = 30;
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
             daynum *= -1;
 
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
@@ -2637,8 +2647,10 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫囑檢查範圍.GetValue();
-            if (daynum == 11) daynum = 20;
-            if (daynum == 12) daynum = 30;
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
             daynum *= -1;
             string 藥品碼 = "";
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
@@ -2812,8 +2824,10 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫囑檢查範圍.GetValue();
-            if (daynum == 11) daynum = 20;
-            if (daynum == 12) daynum = 30;
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
             daynum *= -1;
             PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
@@ -2899,8 +2913,10 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(5000);
             int daynum = plC_ComboBox_醫囑檢查範圍.GetValue();
-            if (daynum == 11) daynum = 20;
-            if (daynum == 12) daynum = 30;
+            if (daynum == 7) daynum = 7;
+            if (daynum == 8) daynum = 14;
+            if (daynum == 9) daynum = 21;
+            if (daynum == 10) daynum = 28;
             daynum *= -1;
             PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
