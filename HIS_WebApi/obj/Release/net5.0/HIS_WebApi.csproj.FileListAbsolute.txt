@@ -1337,3 +1337,16 @@ C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\sc
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.RazorTargetAssemblyInfo.cache
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CopyComplete
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\web.config
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OOXML.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\0.DLL\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_consumption.txt
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_emg_tradding.txt
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_inspection.txt
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\DotNetZip.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.Drawing.Common.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.Text.Encoding.CodePages.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\System.Management.dll

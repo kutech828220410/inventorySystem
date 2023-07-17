@@ -349,7 +349,7 @@ namespace 調劑台管理系統
                     }
                     AlarmEnable = true;
                 }
-                if (!flag_Program_輸出入檢查_輸出刷新_Init)
+                if (!flag_Program_輸出入檢查_輸出刷新_Init || true)
                 {
                     lockers_buf = (from value in List_Locker
                                    where value.Get_InputAdress() == Input
@@ -441,11 +441,11 @@ namespace 調劑台管理系統
                     if (輸出狀態 == true.ToString())
                     {
                         this.flag_輸出入檢查_輸出刷新_全部輸出完成 = false;
-                        list_locker_table_value_同步輸出_buf = list_locker_table_value_buf.GetRows((int)enum_Locker_Index_Table.同步輸出, 同步輸出);
+                        list_locker_table_value_同步輸出_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, 同步輸出);
                         if (輸出位置 != "") this.Function_輸出入檢查_搜尋輸出(IP, Num, 輸入位置, 輸出位置, Master_GUID);//實體輸出
                         if (list_locker_table_value_同步輸出_buf.Count > 0)
                         {
-                            if (同步輸出.StringIsEmpty() == false) this.Function_輸出入檢查_搜尋輸出(list_locker_table_value_同步輸出_buf[0]);//實體輸出
+                            this.Function_輸出入檢查_搜尋輸出(list_locker_table_value_同步輸出_buf[0]);//實體輸出
                         }
 
                         list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出狀態] = false.ToString();

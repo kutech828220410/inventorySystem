@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\useradmin\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {}
+    "C:\\Users\\Administrator\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\useradmin\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {
+    "C:\\Users\\Administrator\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\useradmin\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
         "projectName": "HIS_ServerAPI",
-        "projectPath": "C:\\Users\\useradmin\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
-        "packagesPath": "C:\\Users\\useradmin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\useradmin\\source\\repos\\inventorySystem\\HIS_ServerAPI\\obj\\",
+        "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\useradmin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
