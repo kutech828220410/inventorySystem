@@ -103,7 +103,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_EPD583_匯出.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_匯出_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD583_匯入.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_匯入_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱_MouseDownEvent;
-
+            this.plC_CheckBox_儲位管理_EPD583_警報.CheckStateChanged += PlC_CheckBox_儲位管理_EPD583_警報_CheckStateChanged;
 
             this.epD_583_Pannel.Init(this.drawerUI_EPD_583.List_UDP_Local);
             this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
@@ -111,7 +111,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD583);
         }
 
-     
+   
 
         private void Program_儲位管理_EPD583()
         {
@@ -324,6 +324,7 @@ namespace 調劑台管理系統
             {
                 this.epD_583_Pannel.CurrentDrawer = drawer;
                 plC_CheckBox_儲位管理_EPD583_隔板亮燈.Checked = drawer.IsAllLight;
+                plC_CheckBox_儲位管理_EPD583_警報.Checked = drawer.AlarmEnable;
                 if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked) this.epD_583_Pannel.DrawToPictureBox(this.epD_583_Pannel.CurrentDrawer);
                 else this.epD_583_Pannel.DrawBarCodeToPictureBox(this.epD_583_Pannel.CurrentDrawer);
 
@@ -441,6 +442,23 @@ namespace 調劑台管理系統
                     this.List_EPD583_本地資料.Add_NewDrawer(drawer);
                     this.epD_583_Pannel.CurrentDrawer = drawer;
                     this.Function_設定雲端資料更新();
+                }
+            }));
+        }
+        private void PlC_CheckBox_儲位管理_EPD583_警報_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                string IP = rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts;
+                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+                if (drawer != null)
+                {
+                    drawer.AlarmEnable = plC_CheckBox_儲位管理_EPD583_警報.Checked;
+                    this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                    this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                    this.epD_583_Pannel.CurrentDrawer = drawer;
+                    this.Function_設定雲端資料更新();
+                    flag_Program_輸出入檢查_輸出刷新_Init = false;
                 }
             }));
         }

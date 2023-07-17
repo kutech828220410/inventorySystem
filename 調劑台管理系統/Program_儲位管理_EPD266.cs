@@ -97,6 +97,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示_CheckStateChanged;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位_CheckStateChanged;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.CheckStateChanged += PlC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測_CheckStateChanged;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.CheckStateChanged += PlC_RJ_Button_儲位管理_EPD266_警報_CheckStateChanged;
             this.plC_RJ_Button_儲位管理_EPD266_匯出.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_匯出_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_匯入.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_匯入_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱_MouseDownEvent;
@@ -326,6 +327,7 @@ namespace 調劑台管理系統
                 this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Checked = (bool)storage.GetValue(Device.ValueName.效期, Device.ValueType.Visable);
                 this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Checked = (bool)storage.GetValue(Device.ValueName.BarCode, Device.ValueType.Visable);
                 this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Checked = storage.TOFON;
+                this.plC_RJ_Button_儲位管理_EPD266_警報.Checked = storage.AlarmEnable;
             }));
             sqL_DataGridView_儲位管理_EPD266_儲位內容_效期及庫存.ClearGrid();
             List<object[]> list_value = new List<object[]>();
@@ -1261,6 +1263,19 @@ namespace 調劑台管理系統
                 //this.storageUI_EPD_266.Set_TOF(storage.IP, storage.Port, storage.TOFON);
                 this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                 this.Function_設定雲端資料更新();
+            }));
+        }
+        private void PlC_RJ_Button_儲位管理_EPD266_警報_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_266_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.AlarmEnable = plC_RJ_Button_儲位管理_EPD266_警報.Checked;
+                this.List_EPD266_本地資料.Add_NewStorage(storage);
+                this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                this.Function_設定雲端資料更新();
+                flag_Program_輸出入檢查_輸出刷新_Init = false;
             }));
         }
         private void PlC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱_MouseDownEvent(MouseEventArgs mevent)

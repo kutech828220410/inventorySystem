@@ -370,6 +370,7 @@
             this.sqL_DataGridView_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
             this.管藥設定 = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤 = new MyUI.PLC_RJ_ChechBox();
             this.rJ_Lable134 = new MyUI.RJ_Lable();
             this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表 = new MyUI.PLC_RJ_ChechBox();
@@ -532,6 +533,7 @@
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
             this.plC_RJ_GroupBox1 = new MyUI.PLC_RJ_GroupBox();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_儲位管理_EPD583_警報 = new MyUI.PLC_CheckBox();
             this.rJ_TextBox_儲位管理_EPD583_抽屜列表_語音 = new MyUI.RJ_TextBox();
             this.rJ_Lable130 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱 = new MyUI.PLC_RJ_Button();
@@ -642,6 +644,7 @@
             this.rJ_Lable53 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_儲位管理_EPD266_警報 = new MyUI.PLC_CheckBox();
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_匯入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_匯出 = new MyUI.PLC_RJ_Button();
@@ -898,6 +901,7 @@
             this.radioButton_儲位管理_Pannel35_面板亮燈_綠 = new MyUI.RJ_RatioButton();
             this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_GroupBox20 = new MyUI.PLC_RJ_GroupBox();
+            this.plC_RJ_Button_儲位管理_Pannel35_警報 = new MyUI.PLC_CheckBox();
             this.plC_RJ_GroupBox21 = new MyUI.PLC_RJ_GroupBox();
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存 = new SQLUI.SQL_DataGridView();
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號 = new MyUI.PLC_RJ_Button();
@@ -1307,7 +1311,6 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -9913,6 +9916,49 @@
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "管制藥取藥設定";
             // 
+            // plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳
+            // 
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.AutoResetState = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Bool = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.BorderRadius = 5;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.BorderSize = 0;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.but_press = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.GUID = "";
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Location = new System.Drawing.Point(309, 251);
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Name = "plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳";
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.OFF_文字內容 = "上傳";
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_BorderSize = 5;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_文字內容 = "上傳";
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Size = new System.Drawing.Size(84, 67);
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.State = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.TabIndex = 129;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Text = "上傳";
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Texts = "上傳";
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.字型鎖住 = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.文字鎖住 = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.讀取位元反向 = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.讀寫鎖住 = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.音效 = true;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.顯示 = false;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.顯示狀態 = false;
+            // 
             // plC_RJ_ChechBox_藥品資料_管藥設定_盲盤
             // 
             this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Bool = false;
@@ -13768,6 +13814,7 @@
             // 
             // panel12
             // 
+            this.panel12.Controls.Add(this.plC_CheckBox_儲位管理_EPD583_警報);
             this.panel12.Controls.Add(this.rJ_TextBox_儲位管理_EPD583_抽屜列表_語音);
             this.panel12.Controls.Add(this.rJ_Lable130);
             this.panel12.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱);
@@ -13789,6 +13836,24 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(339, 353);
             this.panel12.TabIndex = 44;
+            // 
+            // plC_CheckBox_儲位管理_EPD583_警報
+            // 
+            this.plC_CheckBox_儲位管理_EPD583_警報.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD583_警報.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD583_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_儲位管理_EPD583_警報.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD583_警報.Location = new System.Drawing.Point(17, 115);
+            this.plC_CheckBox_儲位管理_EPD583_警報.Name = "plC_CheckBox_儲位管理_EPD583_警報";
+            this.plC_CheckBox_儲位管理_EPD583_警報.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_儲位管理_EPD583_警報.TabIndex = 153;
+            this.plC_CheckBox_儲位管理_EPD583_警報.Text = "警報";
+            this.plC_CheckBox_儲位管理_EPD583_警報.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD583_警報.文字內容 = "警報";
+            this.plC_CheckBox_儲位管理_EPD583_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_儲位管理_EPD583_警報.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD583_警報.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD583_警報.音效 = true;
             // 
             // rJ_TextBox_儲位管理_EPD583_抽屜列表_語音
             // 
@@ -14548,7 +14613,7 @@
             this.plC_CheckBox_儲位管理_EPD583_顯示為條碼.Bool = false;
             this.plC_CheckBox_儲位管理_EPD583_顯示為條碼.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_CheckBox_儲位管理_EPD583_顯示為條碼.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_儲位管理_EPD583_顯示為條碼.Location = new System.Drawing.Point(854, 509);
+            this.plC_CheckBox_儲位管理_EPD583_顯示為條碼.Location = new System.Drawing.Point(1007, 509);
             this.plC_CheckBox_儲位管理_EPD583_顯示為條碼.Name = "plC_CheckBox_儲位管理_EPD583_顯示為條碼";
             this.plC_CheckBox_儲位管理_EPD583_顯示為條碼.Size = new System.Drawing.Size(107, 20);
             this.plC_CheckBox_儲位管理_EPD583_顯示為條碼.TabIndex = 150;
@@ -16804,6 +16869,7 @@
             // 
             // panel11
             // 
+            this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_警報);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯入);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯出);
@@ -16827,6 +16893,24 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(916, 504);
             this.panel11.TabIndex = 130;
+            // 
+            // plC_RJ_Button_儲位管理_EPD266_警報
+            // 
+            this.plC_RJ_Button_儲位管理_EPD266_警報.AutoSize = true;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Bool = false;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位管理_EPD266_警報.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Location = new System.Drawing.Point(29, 445);
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Name = "plC_RJ_Button_儲位管理_EPD266_警報";
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Size = new System.Drawing.Size(59, 20);
+            this.plC_RJ_Button_儲位管理_EPD266_警報.TabIndex = 154;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Text = "警報";
+            this.plC_RJ_Button_儲位管理_EPD266_警報.UseVisualStyleBackColor = true;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.文字內容 = "警報";
+            this.plC_RJ_Button_儲位管理_EPD266_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位管理_EPD266_警報.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.音效 = true;
             // 
             // plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱
             // 
@@ -23583,6 +23667,7 @@
             this.plC_RJ_GroupBox20.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox20.ContentsPanel.BorderRadius = 5;
             this.plC_RJ_GroupBox20.ContentsPanel.BorderSize = 2;
+            this.plC_RJ_GroupBox20.ContentsPanel.Controls.Add(this.plC_RJ_Button_儲位管理_Pannel35_警報);
             this.plC_RJ_GroupBox20.ContentsPanel.Controls.Add(this.plC_RJ_GroupBox21);
             this.plC_RJ_GroupBox20.ContentsPanel.Controls.Add(this.panel36);
             this.plC_RJ_GroupBox20.ContentsPanel.Controls.Add(this.panel38);
@@ -23618,6 +23703,24 @@
             this.plC_RJ_GroupBox20.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox20.TitleTexts = "儲位內容";
             this.plC_RJ_GroupBox20.致能讀取位置 = "S39013";
+            // 
+            // plC_RJ_Button_儲位管理_Pannel35_警報
+            // 
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.AutoSize = true;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Bool = false;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Location = new System.Drawing.Point(15, 438);
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Name = "plC_RJ_Button_儲位管理_Pannel35_警報";
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Size = new System.Drawing.Size(59, 20);
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.TabIndex = 155;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Text = "警報";
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.UseVisualStyleBackColor = true;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字內容 = "警報";
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.音效 = true;
             // 
             // plC_RJ_GroupBox21
             // 
@@ -33342,49 +33445,6 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
-            // plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳
-            // 
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Bool = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.BorderRadius = 5;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.BorderSize = 0;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.but_press = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Font = new System.Drawing.Font("微軟正黑體", 14F);
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.GUID = "";
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Location = new System.Drawing.Point(309, 251);
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Name = "plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳";
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.OFF_文字內容 = "上傳";
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_BorderSize = 5;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_文字內容 = "上傳";
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Size = new System.Drawing.Size(84, 67);
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.State = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.TabIndex = 129;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Text = "上傳";
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Texts = "上傳";
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.字型鎖住 = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.文字鎖住 = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.讀取位元反向 = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.讀寫鎖住 = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.音效 = true;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.顯示 = false;
-            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.顯示狀態 = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -33569,6 +33629,7 @@
             this.plC_RJ_GroupBox1.ContentsPanel.ResumeLayout(false);
             this.plC_RJ_GroupBox1.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.rJ_Pannel1.ResumeLayout(false);
             this.rJ_Pannel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -33690,6 +33751,7 @@
             this.rJ_Pannel17.ResumeLayout(false);
             this.rJ_Pannel17.PerformLayout();
             this.plC_RJ_GroupBox20.ContentsPanel.ResumeLayout(false);
+            this.plC_RJ_GroupBox20.ContentsPanel.PerformLayout();
             this.plC_RJ_GroupBox20.ResumeLayout(false);
             this.plC_RJ_GroupBox21.ContentsPanel.ResumeLayout(false);
             this.plC_RJ_GroupBox21.ResumeLayout(false);
@@ -35103,6 +35165,9 @@
         private MyUI.PLC_RJ_ChechBox plC_RJ_ChechBox_藥品資料_管藥設定_盲盤;
         private MyUI.RJ_Lable rJ_Lable134;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD583_警報;
+        private MyUI.PLC_CheckBox plC_RJ_Button_儲位管理_EPD266_警報;
+        private MyUI.PLC_CheckBox plC_RJ_Button_儲位管理_Pannel35_警報;
     }
 }
 

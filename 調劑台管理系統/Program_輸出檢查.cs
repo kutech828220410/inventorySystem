@@ -47,8 +47,8 @@ namespace 調劑台管理系統
                 loker.MouseDownEvent += Loker_MouseDownEvent;
                 loker.LockOpeningEvent += Loker_LockOpeningEvent;
             }
-     
-            this.MyThread_輸出入檢查.Add_Method(this.sub_Program_輸出入檢查);  
+
+            this.MyThread_輸出入檢查.Add_Method(this.sub_Program_輸出入檢查);
             this.MyThread_輸出入檢查.SetSleepTime(1);
             this.MyThread_輸出入檢查.AutoRun(true);
             this.MyThread_輸出入檢查.AutoStop(false);
@@ -62,7 +62,7 @@ namespace 調劑台管理系統
             this.輸出入檢查_蜂鳴器輸出.Trigger();
         }
 
-        private void Loker_MouseDownEvent( PLC_Device pLC_Device_Input, PLC_Device pLC_Device_Output)
+        private void Loker_MouseDownEvent(PLC_Device pLC_Device_Input, PLC_Device pLC_Device_Output)
         {
             string OutputAdress = pLC_Device_Output.GetAdress();
             if (OutputAdress.StringIsEmpty()) return;
@@ -91,8 +91,8 @@ namespace 調劑台管理系統
                 if (value_device is Storage)
                 {
                     Storage storage = value_device as Storage;
-                    if(storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock)
-                    {                      
+                    if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock)
+                    {
                         if (!plC_Button_同藥碼全亮.Bool)
                         {
                             this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
@@ -110,7 +110,7 @@ namespace 調劑台管理系統
                     Drawer drawer = value_device as Drawer;
                     this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
                     if (!plC_Button_同藥碼全亮.Bool)
-                    {                      
+                    {
                         this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                     }
                 }
@@ -136,7 +136,7 @@ namespace 調劑台管理系統
             {
                 if (loker.Get_OutputAdress() == OutputAdress)
                 {
-                    if(loker.Input || true)
+                    if (loker.Input || true)
                     {
                         Task.Run(() =>
                         {
@@ -173,7 +173,7 @@ namespace 調劑台管理系統
                         });
                         loker.Master_GUID = Master_GUID;
                         loker.Open();
-                    }                 
+                    }
                 }
             }
         }
@@ -282,6 +282,7 @@ namespace 調劑台管理系統
                 string OutPut = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出位置].ObjectToString();
                 bool Input_state = (list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態].ObjectToString().ToUpper() == "TRUE");
                 int Num = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.Num].ObjectToString().StringToInt32();
+                bool AlarmEnable = false;
                 if (Input.StringIsEmpty()) continue;
                 Drawer drawer = this.List_EPD583_雲端資料.SortByIP(IP);
                 if (drawer != null)
@@ -293,6 +294,7 @@ namespace 調劑台管理系統
                         list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態] = flag.ToString();
                         list_locker_table_value_replace.Add(list_locker_table_value_buf[i]);
                     }
+                    AlarmEnable = drawer.AlarmEnable;
                 }
                 Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
                 if (storage != null)
@@ -304,6 +306,8 @@ namespace 調劑台管理系統
                         list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態] = flag.ToString();
                         list_locker_table_value_replace.Add(list_locker_table_value_buf[i]);
                     }
+                    AlarmEnable = storage.AlarmEnable;
+                    if (storage.DeviceType != DeviceType.EPD266_lock) AlarmEnable = false;
                 }
                 Storage pannel35 = this.List_Pannel35_雲端資料.SortByIP(IP);
                 if (pannel35 != null)
@@ -315,6 +319,8 @@ namespace 調劑台管理系統
                         list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態] = flag.ToString();
                         list_locker_table_value_replace.Add(list_locker_table_value_buf[i]);
                     }
+                    AlarmEnable = pannel35.AlarmEnable;
+                    if (pannel35.DeviceType != DeviceType.Pannel35_lock) AlarmEnable = false;
                 }
                 RFIDClass rFIDClass = this.List_RFID_雲端資料.SortByIP(IP);
                 if (rFIDClass != null)
@@ -328,7 +334,9 @@ namespace 調劑台管理系統
                             list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態] = flag.ToString();
                             list_locker_table_value_replace.Add(list_locker_table_value_buf[i]);
                         }
+                        
                     }
+                    AlarmEnable = true;
                 }
                 if (!flag_Program_輸出入檢查_輸出刷新_Init)
                 {
@@ -337,9 +345,9 @@ namespace 調劑台管理系統
                                    select value).ToList();
                     for (int k = 0; k < lockers_buf.Count; k++)
                     {
-                        lockers_buf[k].AlarmEnable = true;
+                        lockers_buf[k].AlarmEnable = AlarmEnable;
                     }
-                }                 
+                }
             }
             if (list_locker_table_value_replace.Count > 0) this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
             flag_Program_輸出入檢查_輸出刷新_Init = true;
@@ -355,9 +363,9 @@ namespace 調劑台管理系統
                     list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, List_RFID_雲端資料[i].IP);
                     list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.Num, k.ToString());
                     if (List_RFID_雲端資料[i].DeviceClasses[k].UnlockTimeEnable)
-                    {                  
+                    {
                         if (Basic.TypeConvert.IsInDate(new DateTime(1900, 1, 1, DateTime.Now.Hour, DateTime.Now.Minute, 0), List_RFID_雲端資料[i].DeviceClasses[k].Unlock_start_dateTime, List_RFID_雲端資料[i].DeviceClasses[k].Unlock_end_dateTime))
-                        {                                   
+                        {
                             if (list_locker_table_value_buf.Count > 0)
                             {
                                 string Input = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸入位置].ObjectToString();
@@ -423,17 +431,17 @@ namespace 調劑台管理系統
                         if (輸出位置 != "") this.Function_輸出入檢查_搜尋輸出(IP, Num, 輸入位置, 輸出位置, Master_GUID);//實體輸出
 
                         list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出狀態] = false.ToString();
-                        this.Function_取藥堆疊子資料_設定流程作業完成ByIP("None", IP, Num.ToString()) ;
+                        this.Function_取藥堆疊子資料_設定流程作業完成ByIP("None", IP, Num.ToString());
                         list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[i]);
 
 
-                        if(Num != -1)
+                        if (Num != -1)
                         {
                             RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(IP);
                             if (rFIDClass != null)
                             {
                                 RFIDClass.DeviceClass deviceClass = rFIDClass.DeviceClasses[Num];
-                                if(deviceClass.UnlockTimeEnable)
+                                if (deviceClass.UnlockTimeEnable)
                                 {
                                     if (Basic.TypeConvert.IsInDate(new DateTime(1900, 1, 1, DateTime.Now.Hour, DateTime.Now.Minute, 0), deviceClass.Unlock_start_dateTime, deviceClass.Unlock_end_dateTime))
                                     {
@@ -442,10 +450,10 @@ namespace 調劑台管理系統
                                 }
                             }
                         }
-                      
+
                         break;
                     }
-                }         
+                }
             }
             if (list_locker_table_value_ReplaceValue.Count > 0) this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_ReplaceValue, false);
             this.MyTimer_輸出入檢查_輸出刷新.TickStop();
@@ -526,7 +534,7 @@ namespace 調劑台管理系統
                 bool Input_state = (list_locker_table_value[i][(int)enum_Locker_Index_Table.輸入狀態].ObjectToString().ToUpper() == "TRUE");
                 if (Input.StringIsEmpty()) continue;
                 this.PLC.properties.device_system.Set_Device(Input, Input_state);
-             
+
             }
             cnt++;
         }
@@ -548,6 +556,7 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用 = new PLC_Device("S4060");
         List<object[]> list_輸出入檢查_蜂鳴器輸出_特殊輸出表 = new List<object[]>();
         MyTimer MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間 = new MyTimer();
+        MyTimer MyTimer_輸出入檢查_蜂鳴器輸出_語音時間 = new MyTimer();
         string PLC_輸出入檢查_蜂鳴器輸出_IP = "";
         string PLC_輸出入檢查_蜂鳴器輸出_PINNum = "";
         object PLC_輸出入檢查_蜂鳴器輸出_輸出裝置;
@@ -564,7 +573,7 @@ namespace 調劑台管理系統
             {
                 PLC_Device_輸出入檢查_蜂鳴器輸出.Bool = true;
             }
-        
+
             if (cnt_Program_輸出入檢查_蜂鳴器輸出 == 65534)
             {
                 list_輸出入檢查_蜂鳴器輸出_特殊輸出表 = this.sqL_DataGridView_特殊輸出表.SQL_GetAllRows(false);
@@ -598,8 +607,59 @@ namespace 調劑台管理系統
         }
         void cnt_Program_輸出入檢查_蜂鳴器輸出_初始化(ref int cnt)
         {
-            List<object[]> list_value = this.list_輸出入檢查_蜂鳴器輸出_特殊輸出表;
+        
             Pannel_Locker.AlarmTimeOut = PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴開始時間.Value;
+
+      
+
+            cnt++;
+        }
+        void cnt_Program_輸出入檢查_蜂鳴器輸出_尋找輸出位置(ref int cnt)
+        {
+       
+            cnt++;
+        }
+        void cnt_Program_輸出入檢查_蜂鳴器輸出_檢查抽屜異常(ref int cnt)
+        {
+            bool flag_Alarm = true;
+
+            for (int i = 0; i < List_Locker.Count; i++)
+            {
+                if (List_Locker[i].AlarmEnable)
+                {
+                    if (List_Locker[i].Alarm)
+                    {
+                        flag_Alarm = false;
+                        break;
+                    }
+                }
+            }
+
+            if (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
+            {
+                MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.TickStop();
+                MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.StartTickTime(1000);
+            }
+            if (flag_Alarm && !PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
+            {
+                if (MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.IsTimeOut() == false || PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value == 0)
+                {
+                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer(".//alarm.wav"))
+                    {
+                        sp.Stop();
+                        sp.Play();
+                        sp.PlaySync();
+                    }
+                }
+            }
+            else
+            {
+                MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.TickStop();
+                MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.StartTickTime(PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value);
+            }
+
+
+            List<object[]> list_value = this.list_輸出入檢查_蜂鳴器輸出_特殊輸出表;
             if (list_value.Count == 0)
             {
                 cnt = 65500;
@@ -608,37 +668,20 @@ namespace 調劑台管理系統
             this.PLC_輸出入檢查_蜂鳴器輸出_IP = list_value[0][(int)enum_特殊輸出表.IP].ObjectToString();
             this.PLC_輸出入檢查_蜂鳴器輸出_PINNum = list_value[0][(int)enum_特殊輸出表.Num].ObjectToString();
 
-            cnt++;
-        }
-        void cnt_Program_輸出入檢查_蜂鳴器輸出_尋找輸出位置(ref int cnt)
-        {
             PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 = List_RFID_本地資料.SortByIP(PLC_輸出入檢查_蜂鳴器輸出_IP);
-            if(PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 == null)
+            if (PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 == null)
             {
                 cnt = 65500;
                 return;
             }
-            cnt++;
-        }
-        void cnt_Program_輸出入檢查_蜂鳴器輸出_檢查抽屜異常(ref int cnt)
-        {
-            bool flag_OK = true;
+
+            if (PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 == null)
+            {
+                cnt = 65500;
+                return;
+            }
             string IP = this.PLC_輸出入檢查_蜂鳴器輸出_IP;
             int PINNum = this.PLC_輸出入檢查_蜂鳴器輸出_PINNum.StringToInt32();
-            for (int i = 0; i < List_Locker.Count; i++) 
-            {
-                if(List_Locker[i].AlarmEnable)
-                {
-                    if (List_Locker[i].Alarm)
-                    {
-                        flag_OK = false;
-                        break;
-                    }
-                }
-            }
-            //this.Invoke(new Action(delegate { Voice.PlayMP3(@".//alarm.mp3"); }));
-         
-
             if (PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 is RFIDClass)
             {
                 RFIDClass rFIDClass = PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 as RFIDClass;
@@ -652,21 +695,15 @@ namespace 調劑台管理系統
                 {
                     MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.TickStop();
                     MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.StartTickTime(PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value);
-                    if (flag_輸出入檢查_蜂鳴器輸出)
-                    {
-                        this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, false);
-                    }
+                    if (flag_輸出入檢查_蜂鳴器輸出) this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, false);
                     cnt++;
                     return;
                 }
-                if (!flag_OK)
+                if (!flag_Alarm)
                 {
                     if (!MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.IsTimeOut() || (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value == 0))
                     {
-                        if (!flag_輸出入檢查_蜂鳴器輸出)
-                        {
-                            this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, true);
-                        }
+                        if (!flag_輸出入檢查_蜂鳴器輸出) this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, true);
                     }
                     else
                     {
@@ -677,10 +714,7 @@ namespace 調劑台管理系統
                 {
                     MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.TickStop();
                     MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.StartTickTime(PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value);
-                    if (flag_輸出入檢查_蜂鳴器輸出)
-                    {
-                        this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, false);
-                    }
+                    if (flag_輸出入檢查_蜂鳴器輸出) this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, false);
                 }
 
             }

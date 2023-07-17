@@ -75,13 +75,14 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_Pannel35_開鎖.MouseDownEvent += PlC_RJ_Button_儲位管理_Pannel35_開鎖_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期.MouseDownEvent += PlC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存.MouseDownEvent += PlC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存_MouseDownEvent;
-            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.MouseDownEvent += PlC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號_MouseDownEvent;
-
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.MouseDownEvent += PlC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號_MouseDownEvent;          
             this.plC_RJ_Button_儲位管理_Pannel35_儲位初始化.MouseDownEvent += PlC_RJ_Button_儲位管理_Pannel35_儲位初始化_MouseDownEvent;
+
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.CheckStateChanged += PlC_RJ_Button_儲位管理_Pannel35_警報_CheckStateChanged;
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_Pannel35);
         }
 
-    
+   
 
         private void Program_儲位管理_Pannel35()
         {
@@ -282,7 +283,7 @@ namespace 調劑台管理系統
             string 包裝單位 = RowValue[(int)enum_儲位管理_Pannel35_儲位資料.包裝單位].ObjectToString();
             string 藥品條碼 = RowValue[(int)enum_儲位管理_Pannel35_儲位資料.藥品條碼].ObjectToString();
             string 庫存 = RowValue[(int)enum_儲位管理_Pannel35_儲位資料.庫存].ObjectToString();
-
+            Storage storage = this.storageUI_WT32.SQL_GetStorage(IP);
             this.Invoke(new Action(delegate
             {
                 rJ_TextBox_儲位管理_Pannel35_儲位內容_藥品名稱.Texts = 藥品名稱;
@@ -293,11 +294,12 @@ namespace 調劑台管理系統
                 rJ_TextBox_儲位管理_Pannel35_儲位內容_藥品條碼.Texts = 藥品條碼;
                 rJ_TextBox_儲位管理_Pannel35_儲位內容_儲位名稱.Texts = 儲位名稱;
                 rJ_TextBox_儲位管理_Pannel35_儲位內容_總庫存.Texts = 庫存;
+                plC_RJ_Button_儲位管理_Pannel35_警報.Checked = storage.AlarmEnable;
             }));
 
 
 
-            Storage storage = this.storageUI_WT32.SQL_GetStorage(IP);
+         
             if (storage != null)
             {
                 this.pannel35_Pannel.DrawToPictureBox(storage);
@@ -321,7 +323,19 @@ namespace 調劑台管理系統
             this.List_Pannel35_本地資料.Add_NewStorage(storage);
             this.storageUI_WT32.SQL_ReplaceStorage(storage);
         }
-
+        private void PlC_RJ_Button_儲位管理_Pannel35_警報_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.pannel35_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.AlarmEnable = plC_RJ_Button_儲位管理_Pannel35_警報.Checked;
+                this.List_Pannel35_本地資料.Add_NewStorage(storage);
+                this.storageUI_WT32.SQL_ReplaceStorage(storage);
+                this.Function_設定雲端資料更新();
+                flag_Program_輸出入檢查_輸出刷新_Init = false;
+            }));
+        }
         private void PlC_RJ_Button_儲位管理_Pannel35_藥品搜尋_填入資料_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_藥品資料 = this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.Get_All_Select_RowsValues();
