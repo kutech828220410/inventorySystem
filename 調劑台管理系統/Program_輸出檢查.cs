@@ -640,16 +640,17 @@ namespace 調劑台管理系統
                 MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.TickStop();
                 MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.StartTickTime(1000);
             }
-            if (flag_Alarm && !PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
+            if (!flag_Alarm && !PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
             {
                 if (MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.IsTimeOut() == false || PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value == 0)
                 {
-                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer(".//alarm.wav"))
+                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\alarm.wav"))
                     {
                         sp.Stop();
                         sp.Play();
                         sp.PlaySync();
                     }
+
                 }
             }
             else

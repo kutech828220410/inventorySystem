@@ -777,20 +777,32 @@ namespace 調劑台管理系統
                         }
                         List<medClass> medClasses = list_value.SQLToClass<medClass , enum_藥品資料_藥檔資料>();
                         list_value_upload = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
-                        string Code = list_value_upload[0][(int)enum_雲端藥檔.藥品碼].ObjectToString();
-                        List<object[]> list_雲端藥檔 = sqL_DataGridView_雲端藥檔.SQL_GetRows((int)enum_雲端藥檔.藥品碼, Code, false);
-                        if(list_雲端藥檔.Count == 0)
+
+                        List<object[]> list_雲端藥檔 = sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
+                        List<object[]> list_雲端藥檔_buf = new List<object[]>();
+                        List<object[]> list_雲端藥檔_Add = new List<object[]>();
+                        List<object[]> list_雲端藥檔_Replaced = new List<object[]>();
+                        for (int i = 0; i < list_value_upload.Count; i++)
                         {
-                            list_value_upload[0][(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
-                            sqL_DataGridView_雲端藥檔.SQL_AddRows(list_value_upload, false);
-                            MyMessageBox.ShowDialog("新增完成!");
+                            string 藥品碼 = list_value_upload[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
+                            list_雲端藥檔_buf = list_雲端藥檔.GetRows((int)enum_雲端藥檔.藥品碼, 藥品碼);
+                          
+                            if (list_雲端藥檔_buf.Count == 0)
+                            {
+                                list_value_upload[i][(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
+                                list_雲端藥檔_Add.Add(list_value_upload[i]);
+
+                            }
+                            else
+                            {
+                                list_value_upload[i][(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
+                                list_雲端藥檔_Replaced.Add(list_value_upload[i]);
+                            }
                         }
-                        else
-                        {
-                            list_value_upload[0][(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
-                            sqL_DataGridView_雲端藥檔.SQL_ReplaceExtra(list_value_upload[0], false);
-                            MyMessageBox.ShowDialog("修改完成!");
-                        }
+                        sqL_DataGridView_雲端藥檔.SQL_AddRows(list_雲端藥檔_Add, false);
+                        sqL_DataGridView_雲端藥檔.SQL_ReplaceExtra(list_雲端藥檔_Replaced, false);
+                        MyMessageBox.ShowDialog($"新增<{list_雲端藥檔_Add.Count}>筆資料,修改<{list_雲端藥檔_Replaced.Count}>筆資料!");
+
                     }
                 }
             }

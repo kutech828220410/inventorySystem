@@ -572,6 +572,7 @@ namespace HIS_WebApi
                 table.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 200, Table.IndexType.None);
                 table.AddColumnList("藥品條碼2", Table.StringType.TEXT, 200, Table.IndexType.None);
                 table.AddColumnList("警訊藥品", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("高價藥品", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("管制級別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("類別", Table.StringType.VARCHAR, 500, Table.IndexType.None);
 
