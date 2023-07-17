@@ -125,7 +125,7 @@ namespace Console_MedUpdate
                         }
                         bool replace = false;
                         if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString()) replace = true;
-                        if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品中文名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString()) replace = true;
+                        if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString()) replace = true;
                         if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString()) replace = true;
                         if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1].ObjectToString()) replace = true;
                         if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString()) replace = true;
@@ -133,7 +133,7 @@ namespace Console_MedUpdate
 
                         list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱];
                         list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品學名] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品學名];
-                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品中文名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱];
+                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.中文名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱];
                         list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.包裝單位] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝單位];
                         list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品條碼] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1];
                         list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.警訊藥品] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品];

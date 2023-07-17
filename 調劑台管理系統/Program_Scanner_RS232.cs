@@ -250,7 +250,7 @@ namespace 調劑台管理系統
                     return;
                 }
                 array[(int)enum_Scanner_陣列內容.藥品名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                array[(int)enum_Scanner_陣列內容.中文名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.藥品中文名稱].ObjectToString();
+                array[(int)enum_Scanner_陣列內容.中文名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
                 array[(int)enum_Scanner_陣列內容.包裝單位] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
 
                 for (int i = 0; i < array.Length; i++)
@@ -424,7 +424,7 @@ namespace 調劑台管理系統
                     return;
                 }
                 array[(int)enum_Scanner_陣列內容.藥品名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-                array[(int)enum_Scanner_陣列內容.中文名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.藥品中文名稱].ObjectToString();
+                array[(int)enum_Scanner_陣列內容.中文名稱] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
                 array[(int)enum_Scanner_陣列內容.包裝單位] = list_藥品資料[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
 
                 for (int i = 0; i < array.Length; i++)

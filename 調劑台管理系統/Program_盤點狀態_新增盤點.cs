@@ -40,7 +40,7 @@ namespace 調劑台管理系統
 
             this.sqL_DataGridView_盤點作業_藥品資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
             this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
-            this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.料號, enum_藥品資料_藥檔資料.藥品中文名稱, enum_藥品資料_藥檔資料.包裝單位, enum_藥品資料_藥檔資料.庫存);
+            this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.料號, enum_藥品資料_藥檔資料.中文名稱, enum_藥品資料_藥檔資料.包裝單位, enum_藥品資料_藥檔資料.庫存);
             this.sqL_DataGridView_盤點作業_藥品資料.RowDoubleClickEvent += SqL_DataGridView_盤點作業_藥品資料_RowDoubleClickEvent;
             this.sqL_DataGridView_盤點作業_藥品資料.DataGridRowsChangeRefEvent += SqL_DataGridView_盤點作業_藥品資料_DataGridRowsChangeRefEvent;
 

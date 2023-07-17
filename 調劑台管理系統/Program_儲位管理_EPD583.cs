@@ -49,7 +49,7 @@ namespace 調劑台管理系統
 
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
-            this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.藥品學名, enum_藥品資料_藥檔資料.藥品中文名稱, enum_藥品資料_藥檔資料.包裝單位);
+            this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.藥品學名, enum_藥品資料_藥檔資料.中文名稱, enum_藥品資料_藥檔資料.包裝單位);
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.RowDoubleClickEvent += SqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料_RowDoubleClickEvent; 
 
             this.rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.KeyPress += RJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱_KeyPress;
@@ -687,7 +687,7 @@ namespace 調劑台管理系統
             boxes[0].SetValue(Device.ValueName.藥品碼, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品碼]);
             boxes[0].SetValue(Device.ValueName.藥品名稱, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品名稱]);
             boxes[0].SetValue(Device.ValueName.藥品學名, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品學名]);
-            boxes[0].SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品中文名稱]);
+            boxes[0].SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.中文名稱]);
             boxes[0].SetValue(Device.ValueName.包裝單位, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.包裝單位]);
             boxes[0].SetValue(Device.ValueName.BarCode, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品條碼]);
 

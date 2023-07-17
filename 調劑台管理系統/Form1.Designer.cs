@@ -351,7 +351,7 @@
             this.panel57 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.panel54 = new System.Windows.Forms.Panel();
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱 = new MyUI.RJ_TextBox();
+            this.textBox_藥品資料_藥檔資料_中文名稱 = new MyUI.RJ_TextBox();
             this.panel55 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.panel52 = new System.Windows.Forms.Panel();
@@ -9552,7 +9552,7 @@
             // 
             // panel54
             // 
-            this.panel54.Controls.Add(this.textBox_藥品資料_藥檔資料_藥品中文名稱);
+            this.panel54.Controls.Add(this.textBox_藥品資料_藥檔資料_中文名稱);
             this.panel54.Controls.Add(this.panel55);
             this.panel54.Controls.Add(this.label12);
             this.panel54.Location = new System.Drawing.Point(3, 121);
@@ -9560,30 +9560,30 @@
             this.panel54.Size = new System.Drawing.Size(566, 36);
             this.panel54.TabIndex = 3;
             // 
-            // textBox_藥品資料_藥檔資料_藥品中文名稱
+            // textBox_藥品資料_藥檔資料_中文名稱
             // 
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.BorderRadius = 2;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.BorderSize = 1;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.ForeColor = System.Drawing.Color.Black;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.GUID = "";
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Location = new System.Drawing.Point(122, 0);
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Multiline = false;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Name = "textBox_藥品資料_藥檔資料_藥品中文名稱";
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.PassWordChar = false;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.PlaceholderText = "";
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.ShowTouchPannel = false;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Size = new System.Drawing.Size(444, 34);
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.TabIndex = 21;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Texts = "";
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.UnderlineStyle = false;
+            this.textBox_藥品資料_藥檔資料_中文名稱.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_藥品資料_藥檔資料_中文名稱.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.textBox_藥品資料_藥檔資料_中文名稱.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_藥品資料_藥檔資料_中文名稱.BorderRadius = 2;
+            this.textBox_藥品資料_藥檔資料_中文名稱.BorderSize = 1;
+            this.textBox_藥品資料_藥檔資料_中文名稱.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_藥品資料_藥檔資料_中文名稱.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_藥品資料_藥檔資料_中文名稱.ForeColor = System.Drawing.Color.Black;
+            this.textBox_藥品資料_藥檔資料_中文名稱.GUID = "";
+            this.textBox_藥品資料_藥檔資料_中文名稱.Location = new System.Drawing.Point(122, 0);
+            this.textBox_藥品資料_藥檔資料_中文名稱.Multiline = false;
+            this.textBox_藥品資料_藥檔資料_中文名稱.Name = "textBox_藥品資料_藥檔資料_中文名稱";
+            this.textBox_藥品資料_藥檔資料_中文名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_藥品資料_藥檔資料_中文名稱.PassWordChar = false;
+            this.textBox_藥品資料_藥檔資料_中文名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.textBox_藥品資料_藥檔資料_中文名稱.PlaceholderText = "";
+            this.textBox_藥品資料_藥檔資料_中文名稱.ShowTouchPannel = false;
+            this.textBox_藥品資料_藥檔資料_中文名稱.Size = new System.Drawing.Size(444, 34);
+            this.textBox_藥品資料_藥檔資料_中文名稱.TabIndex = 21;
+            this.textBox_藥品資料_藥檔資料_中文名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_藥品資料_藥檔資料_中文名稱.Texts = "";
+            this.textBox_藥品資料_藥檔資料_中文名稱.UnderlineStyle = false;
             // 
             // panel55
             // 
@@ -34793,7 +34793,7 @@
         private System.Windows.Forms.Panel panel57;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel54;
-        private MyUI.RJ_TextBox textBox_藥品資料_藥檔資料_藥品中文名稱;
+        private MyUI.RJ_TextBox textBox_藥品資料_藥檔資料_中文名稱;
         private System.Windows.Forms.Panel panel55;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel52;

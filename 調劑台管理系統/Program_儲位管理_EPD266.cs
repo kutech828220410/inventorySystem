@@ -37,7 +37,7 @@ namespace 調劑台管理系統
             藥品碼,
             藥品名稱,
             藥品學名,
-            藥品中文名稱,
+            中文名稱,
             包裝單位,
             藥品條碼,
             庫存,
@@ -53,7 +53,7 @@ namespace 調劑台管理系統
 
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
-            this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.藥品中文名稱, enum_藥品資料_藥檔資料.包裝單位);
+            this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.中文名稱, enum_藥品資料_藥檔資料.包裝單位);
 
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Init();
             this.sqL_DataGridView_儲位管理_EPD266_儲位資料.RowEnterEvent += SqL_DataGridView_儲位管理_EPD266_儲位資料_RowEnterEvent;
@@ -270,7 +270,7 @@ namespace 調劑台管理系統
                 value[(int)enum_儲位管理_EPD266_儲位資料.藥品碼] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.藥品名稱] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.藥品學名] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位管理_EPD266_儲位資料.藥品中文名稱] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString();
+                value[(int)enum_儲位管理_EPD266_儲位資料.中文名稱] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.包裝單位] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.藥品條碼] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.庫存] = List_EPD266_本地資料[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
@@ -293,7 +293,7 @@ namespace 調劑台管理系統
             string 藥品碼 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品碼].ObjectToString();
             string 藥品名稱 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品名稱].ObjectToString();
             string 藥品學名 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品學名].ObjectToString();
-            string 藥品中文名稱 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品中文名稱].ObjectToString();
+            string 中文名稱 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.中文名稱].ObjectToString();
             string 包裝單位 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.包裝單位].ObjectToString();
             string 藥品條碼 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.藥品條碼].ObjectToString();
             string 庫存 = RowValue[(int)enum_儲位管理_EPD266_儲位資料.庫存].ObjectToString();
@@ -304,7 +304,7 @@ namespace 調劑台管理系統
                 rJ_TextBox_儲位管理_EPD266_儲位內容_藥品名稱.Texts = 藥品名稱;
                 rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Texts = 藥品碼;
                 rJ_TextBox_儲位管理_EPD266_儲位內容_藥品學名.Texts = 藥品學名;
-                rJ_TextBox_儲位管理_EPD266_儲位內容_中文名稱.Texts = 藥品中文名稱;
+                rJ_TextBox_儲位管理_EPD266_儲位內容_中文名稱.Texts = 中文名稱;
                 rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Texts = 包裝單位;
                 rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Texts = 藥品條碼;
                 rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Texts = 儲位名稱;
@@ -424,7 +424,7 @@ namespace 調劑台管理系統
             storage.SetValue(Device.ValueName.藥品碼, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品碼]);
             storage.SetValue(Device.ValueName.藥品名稱, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品名稱]);
             storage.SetValue(Device.ValueName.藥品學名, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品學名]);
-            storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品中文名稱]);
+            storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.中文名稱]);
             storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.包裝單位]);
             storage.SetValue(Device.ValueName.BarCode, Device.ValueType.Value, value[(int)enum_藥品資料_藥檔資料.藥品條碼]);
             if(value[(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString().ToUpper() == true.ToString().ToUpper())
@@ -444,7 +444,7 @@ namespace 調劑台管理系統
             value[(int)enum_儲位管理_EPD266_儲位資料.藥品碼] = storage.GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.藥品名稱] = storage.GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.藥品學名] = storage.GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString();
-            value[(int)enum_儲位管理_EPD266_儲位資料.藥品中文名稱] = storage.GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString();
+            value[(int)enum_儲位管理_EPD266_儲位資料.中文名稱] = storage.GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.包裝單位] = storage.GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.藥品條碼] = storage.GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.庫存] = storage.GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();

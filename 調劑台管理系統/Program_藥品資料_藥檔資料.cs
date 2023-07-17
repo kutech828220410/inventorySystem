@@ -39,7 +39,7 @@ namespace 調劑台管理系統
     public enum enum_藥品資料_藥檔資料_匯入
     {
         藥品碼,
-        藥品中文名稱,
+        中文名稱,
         藥品名稱,
         藥品學名,
         藥品群組,
@@ -55,7 +55,7 @@ namespace 調劑台管理系統
     public enum enum_藥品資料_藥檔資料_匯出
     {
         藥品碼,
-        藥品中文名稱,
+        中文名稱,
         藥品名稱,
         藥品學名,
         藥品群組,
@@ -397,7 +397,7 @@ namespace 調劑台管理系統
             value[(int)enum_藥品資料_藥檔資料.藥品碼] = 藥品碼;
             value[(int)enum_藥品資料_藥檔資料.藥品名稱] = this.textBox_藥品資料_藥檔資料_藥品名稱.Text;
             value[(int)enum_藥品資料_藥檔資料.藥品學名] = this.textBox_藥品資料_藥檔資料_藥品學名.Text;
-            value[(int)enum_藥品資料_藥檔資料.藥品中文名稱] = this.textBox_藥品資料_藥檔資料_藥品中文名稱.Text;
+            value[(int)enum_藥品資料_藥檔資料.中文名稱] = this.textBox_藥品資料_藥檔資料_中文名稱.Text;
             value[(int)enum_藥品資料_藥檔資料.藥品群組] = this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.SelectedIndex.ToString("00");
             value[(int)enum_藥品資料_藥檔資料.健保碼] = this.textBox_藥品資料_藥檔資料_健保碼.Text;
             value[(int)enum_藥品資料_藥檔資料.藥品條碼] = this.textBox_藥品資料_藥檔資料_藥品條碼.Text;
@@ -442,7 +442,7 @@ namespace 調劑台管理系統
                 this.textBox_藥品資料_藥檔資料_藥品碼.Text = "";
                 this.textBox_藥品資料_藥檔資料_藥品名稱.Text = "";
                 this.textBox_藥品資料_藥檔資料_藥品學名.Text = "";
-                this.textBox_藥品資料_藥檔資料_藥品中文名稱.Text = "";
+                this.textBox_藥品資料_藥檔資料_中文名稱.Text = "";
                 this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.SelectedIndex = 0;
                 this.textBox_藥品資料_藥檔資料_健保碼.Text = "";
                 this.textBox_藥品資料_藥檔資料_庫存.Text = "";
@@ -821,7 +821,7 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_藥品碼.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品名稱.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品學名.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品學名].ObjectToString();
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品中文名稱].ObjectToString();
+            this.textBox_藥品資料_藥檔資料_中文名稱.Text = RowValue[(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
             if (index >= 0) this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.SelectedIndex = index;
             this.textBox_藥品資料_藥檔資料_健保碼.Text = RowValue[(int)enum_藥品資料_藥檔資料.健保碼].ObjectToString();
             this.textBox_藥品資料_藥檔資料_庫存.Text = RowValue[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString();
@@ -1030,7 +1030,7 @@ namespace 調劑台管理系統
                 {
                     bool replace = false;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString()) replace = true;
-                    if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品中文名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString()) replace = true;
+                    if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString()) replace = true;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝數量].ObjectToString()) replace = true;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1].ObjectToString()) replace = true;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString()) replace = true;
@@ -1038,7 +1038,7 @@ namespace 調劑台管理系統
 
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱];
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品學名] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品學名];
-                    list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品中文名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱];
+                    list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.中文名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱];
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.包裝單位] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝單位];
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品條碼] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1];
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.警訊藥品] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品];
@@ -1075,7 +1075,7 @@ namespace 調劑台管理系統
             }
             this.textBox_藥品資料_藥檔資料_藥品名稱.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品學名.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品學名].ObjectToString();
-            this.textBox_藥品資料_藥檔資料_藥品中文名稱.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString();
+            this.textBox_藥品資料_藥檔資料_中文名稱.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品條碼.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1].ObjectToString();
             this.textBox_藥品資料_藥檔資料_健保碼.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.健保碼].ObjectToString();
             this.textBox_藥品資料_藥檔資料_包裝單位.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
@@ -1117,7 +1117,7 @@ namespace 調劑台管理系統
                     value[(int)enum_藥品資料_藥檔資料.藥品碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品學名] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品學名].ObjectToString();
-                    value[(int)enum_藥品資料_藥檔資料.藥品中文名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.中文名稱].ObjectToString();
+                    value[(int)enum_藥品資料_藥檔資料.中文名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.中文名稱].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品條碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品條碼1].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.健保碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.健保碼].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.包裝單位] = list_雲端藥檔[i][(int)enum_雲端藥檔.包裝單位].ObjectToString();
@@ -1133,7 +1133,7 @@ namespace 調劑台管理系統
                     value[(int)enum_藥品資料_藥檔資料.藥品碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品學名] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品學名].ObjectToString();
-                    value[(int)enum_藥品資料_藥檔資料.藥品中文名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.中文名稱].ObjectToString();
+                    value[(int)enum_藥品資料_藥檔資料.中文名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.中文名稱].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品條碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品條碼1].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.健保碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.健保碼].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.包裝單位] = list_雲端藥檔[i][(int)enum_雲端藥檔.包裝單位].ObjectToString();
