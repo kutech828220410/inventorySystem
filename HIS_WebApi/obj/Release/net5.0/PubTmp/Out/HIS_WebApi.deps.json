@@ -717,86 +717,6 @@
           }
         }
       },
-      "LadderUI/1.0.0.0": {
-        "runtime": {
-          "LadderUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "FontAwesome.Sharp/5.15.4.0": {
-        "runtime": {
-          "FontAwesome.Sharp.dll": {
-            "assemblyVersion": "5.15.4.0",
-            "fileVersion": "5.15.4.0"
-          }
-        }
-      },
-      "MeasureSystemUI/1.0.0.0": {
-        "runtime": {
-          "MeasureSystemUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "MVSDKUI/1.0.0.0": {
-        "runtime": {
-          "MVSDKUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "SLDUI/1.0.0.0": {
-        "runtime": {
-          "SLDUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "LeadShineUI/1.0.0.0": {
-        "runtime": {
-          "LeadShineUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "PortControlUI/1.0.0.0": {
-        "runtime": {
-          "PortControlUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "LightControlUI/1.0.0.0": {
-        "runtime": {
-          "LightControlUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "ZealTechUI/1.0.0.0": {
-        "runtime": {
-          "ZealTechUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "HCGUI/1.0.0.0": {
-        "runtime": {
-          "HCGUI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "NPOI.OpenXml4Net/2.4.1.0": {
         "runtime": {
           "NPOI.OpenXml4Net.dll": {
@@ -810,38 +730,6 @@
           "NPOI.OpenXmlFormats.dll": {
             "assemblyVersion": "2.4.1.0",
             "fileVersion": "2.4.1.0"
-          }
-        }
-      },
-      "TCP/1.0.0.0": {
-        "runtime": {
-          "TCP.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "CallBackUI/1.0.0.1": {
-        "runtime": {
-          "CallBackUI.dll": {
-            "assemblyVersion": "1.0.0.1",
-            "fileVersion": "1.0.0.1"
-          }
-        }
-      },
-      "MeasureSystemFunction/1.0.0.0": {
-        "runtime": {
-          "MeasureSystemFunction.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "MVSDK/1.0.0.0": {
-        "runtime": {
-          "MVSDK.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -2746,82 +2634,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "LadderUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "FontAwesome.Sharp/5.15.4.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MeasureSystemUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MVSDKUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "SLDUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LeadShineUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "PortControlUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LightControlUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "ZealTechUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "HCGUI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "NPOI.OpenXml4Net/2.4.1.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "NPOI.OpenXmlFormats/2.4.1.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "TCP/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "CallBackUI/1.0.0.1": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MeasureSystemFunction/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MVSDK/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

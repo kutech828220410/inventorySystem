@@ -232,7 +232,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_cloud")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -257,7 +257,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_firstclass")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -280,7 +280,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_phar")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -304,7 +304,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -368,7 +368,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_cloud")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -393,7 +393,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_firstclass")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -419,7 +419,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_phar")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -445,7 +445,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -545,7 +545,7 @@ namespace HIS_WebApi
             if (TableName == "medicine_page_cloud")
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                 returnData.Method = "get_init";
                 
                 if (serverSettingClasses.Count == 0)
