@@ -58,9 +58,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("BARCODE2")]
         public string 藥品條碼2 { get; set; }
         [JsonPropertyName("IS_WARRING")]
-        public string 警訊藥品 { get; set; }
+        public string 警訊藥品 { get; set; }   
         [JsonPropertyName("IS_H_COST")]
         public string 高價藥品 { get; set; }
+        [JsonPropertyName("IS_BIO")]
+        public string 生物製劑 { get; set; }
         [JsonPropertyName("DRUG_QTY")]
         public string 藥局庫存 { get; set; }
         [JsonPropertyName("PHAR_QTY")]
@@ -73,6 +75,8 @@ namespace HIS_DB_Lib
         public string 基準量 { get; set; }
         [JsonPropertyName("SAFE_QTY")]
         public string 安全庫存 { get; set; }
+        [JsonPropertyName("FILE_STATUS")]
+        public string 開檔狀態 { get; set; }
 
         [JsonPropertyName("BARCODE")]
         public List<string> Barcode

@@ -134,6 +134,16 @@ namespace ServerSettingForm
         {
             if (MyMessageBox.ShowDialog("確認重置Web表單?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             Function_Add(WEB_Name);
+
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{myConfigClass.Api_server}/api/serversetting");
+            serverSettingClasses = serverSettingClasses.MyFind(WEB_Name, enum_ServerSetting_Type.網頁);
+
+            returnData returnData = new returnData();
+            returnData.Data = serverSettingClasses;
+            string json_in = returnData.JsonSerializationt(true);
+            Console.WriteLine(json_in);
+            string json_result = Basic.Net.WEBApiPostJson($"{myConfigClass.Api_server}/api/serversetting/delete", json_in);
+            Console.WriteLine(json_result);
         }
         private void Button_測試_Click(object sender, EventArgs e)
         {

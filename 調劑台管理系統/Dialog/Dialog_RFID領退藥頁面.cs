@@ -332,7 +332,7 @@ namespace 調劑台管理系統
             {
                 this.Invoke(new Action(delegate
                 {
-                    MyMessageBox.ShowDialog("無法刪除已入帳資料!");                  
+                    MyMessageBox.ShowDialog("無法刪除已入賬資料!");                  
                 }));
                 return;
             }

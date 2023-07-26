@@ -7,29 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SQLUI;
 using MyUI;
 using Basic;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using MySQL_Login;
+using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
-        public enum enum_人員資料
-        {
-            GUID,
-            ID,
-            姓名,
-            性別,
-            密碼,
-            單位,
-            權限等級,
-            顏色,
-            卡號,
-            一維條碼,
-            識別圖案,
-        }
+  
         public enum enum_人員資料_匯出
         {
             ID,
@@ -68,7 +57,10 @@ namespace 調劑台管理系統
 
         private List<PLC_Device> List_PLC_Device_權限管理 = new List<PLC_Device>();
         private List<LoginDataWebAPI.Class_login_data> List_class_Login_Data = new List<LoginDataWebAPI.Class_login_data>();
-        private List<LoginDataWebAPI.Class_login_data_index> List_class_Login_Data_index = new List<LoginDataWebAPI.Class_login_data_index>();    
+        private List<LoginDataWebAPI.Class_login_data_index> List_class_Login_Data_index = new List<LoginDataWebAPI.Class_login_data_index>();
+        public static string 人員資料_UID = "";
+        public static string 人員資料_BarCode = "";
+
 
         private void Program_人員資料_Init()
         {
@@ -79,13 +71,37 @@ namespace 調劑台管理系統
             this.loginUI.Set_login_data_index_DB(dBConfigClass.DB_person_page);
             this.loginUI.Init();
 
-            this.sqL_DataGridView_人員資料.Init();
-            if (!this.sqL_DataGridView_人員資料.SQL_IsTableCreat()) this.sqL_DataGridView_人員資料.SQL_CreateTable();
+
+            string url = $"{dBConfigClass.Api_URL}/api/person_page/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table table = json.JsonDeserializet<Table>();
+            if (table == null)
+            {
+                MyMessageBox.ShowDialog($"人員資料表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.Init(table);
+            this.sqL_DataGridView_人員資料.Set_ColumnVisible(false, new enum_人員資料().GetEnumNames());
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.ID);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.姓名);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.性別);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.單位);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.權限等級);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.顏色);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.卡號);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.一維條碼);
+
+
             this.sqL_DataGridView_人員資料.DataGridRefreshEvent += SqL_DataGridView_人員資料_DataGridRefreshEvent;
             this.sqL_DataGridView_人員資料.RowEnterEvent += SqL_DataGridView_人員資料_RowEnterEvent;
             this.sqL_DataGridView_人員資料.RowDoubleClickEvent += SqL_DataGridView_人員資料_RowDoubleClickEvent;
             this.sqL_DataGridView_人員資料.MouseDown += SqL_DataGridView_人員資料_MouseDown;
-            this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
+            this.sqL_DataGridView_人員資料.RefreshGrid(Function_人員資料_取得人員資料().ClassToSQL<personPageClass, enum_人員資料>());
+
 
             this.plC_Button_權限設定_設定至Server.MouseDownEvent += PlC_Button_權限設定_設定至Server_MouseDownEvent;
             this.plC_RJ_ComboBox_權限管理_權限等級.OnSelectedIndexChanged += PlC_RJ_ComboBox_權限管理_權限等級_OnSelectedIndexChanged;
@@ -136,9 +152,22 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_人員資料_登錄.MouseDownEvent += PlC_RJ_Button_人員資料_登錄_MouseDownEvent;
             this.plC_RJ_Button_人員資料_刪除.MouseDownEvent += PlC_RJ_Button_人員資料_刪除_MouseDownEvent;
             this.plC_RJ_Button_人員資料_清除內容.MouseDownEvent += PlC_RJ_Button_人員資料_清除內容_MouseDownEvent;
+
+            this.plC_RJ_Button_人員資料_資料查詢_ID.MouseDownEvent += PlC_RJ_Button_人員資料_資料查詢_ID_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.MouseDownEvent += PlC_RJ_Button_人員資料_資料查詢_姓名_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.MouseDownEvent += PlC_RJ_Button_人員資料_資料查詢_卡號_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.MouseDownEvent += PlC_RJ_Button_人員資料_資料查詢_一維條碼_MouseDownEvent;
+
+            this.plC_RJ_Button_人員資料_顯示全部.MouseDownEvent += PlC_RJ_Button_人員資料_顯示全部_MouseDownEvent;
+
+            this.plC_Button_人員資料_RFID感應.btnClick += PlC_Button_人員資料_RFID感應_btnClick;
+            this.plC_Button_人員資料_條碼掃描.btnClick += PlC_Button_人員資料_條碼掃描_btnClick;
+            this.plC_Button_人員資料_指紋輸入.btnClick += PlC_Button_人員資料_指紋輸入_btnClick;
+
             this.plC_UI_Init.Add_Method(this.sub_Program_人員資料);
         }
-     
+
+  
 
         bool flag_人員資料_資料維護_頁面更新 = false;
         bool flag_人員資料_權限管理_頁面更新 = false;
@@ -151,10 +180,7 @@ namespace 調劑台管理系統
                     this.Function_管制抽屜_鎖控按鈕更新();
                     this.Function_人員資料_管制抽屜開鎖權限_UI更新();
                     this.plC_RJ_ComboBox_權限管理_權限等級.SetValue(0);
-                    this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
-
-
-
+                    this.sqL_DataGridView_人員資料.RefreshGrid(Function_人員資料_取得人員資料().ClassToSQL<personPageClass, enum_人員資料>());
                     this.flag_人員資料_資料維護_頁面更新 = true;
                 }
             }
@@ -233,7 +259,8 @@ namespace 調劑台管理系統
             {
                 this.Invoke(new Action(delegate 
                 {
-                    this.rJ_TextBox_人員資料_卡號.Text = list_RFID_Devices[0].UID;
+                    人員資料_UID = list_RFID_Devices[0].UID;
+                    rJ_TextBox_人員資料_資料查詢_卡號.Text = 人員資料_UID;
                 }));
              
             }
@@ -248,7 +275,8 @@ namespace 調劑台管理系統
                         {
                             this.Invoke(new Action(delegate
                             {
-                                this.rJ_TextBox_人員資料_卡號.Text = RFID;
+                                人員資料_UID = RFID;
+                                rJ_TextBox_人員資料_資料查詢_卡號.Text = 人員資料_UID;
                             }));
                             cnt++;
                             return;
@@ -259,26 +287,34 @@ namespace 調劑台管理系統
             }
             if (MySerialPort_Scanner01.ReadByte() != null)
             {
+                System.Threading.Thread.Sleep(50);
                 string text = MySerialPort_Scanner01.ReadString();
                 MySerialPort_Scanner01.ClearReadByte();
+                if (text == null) return;
+                text = text.Replace("\0", "");
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 text = text.Replace("\r\n", "");
                 this.Invoke(new Action(delegate
                 {
-                    this.rJ_TextBox_人員資料_一維條碼.Text = text;
+                    人員資料_BarCode = text;
+                    rJ_TextBox_人員資料_資料查詢_一維條碼.Text = 人員資料_BarCode;
                 }));
             }
             if (MySerialPort_Scanner02.ReadByte() != null)
             {
+                System.Threading.Thread.Sleep(50);
                 string text = MySerialPort_Scanner02.ReadString();
                 MySerialPort_Scanner02.ClearReadByte();
+                if (text == null) return;
+                text = text.Replace("\0", "");
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 text = text.Replace("\r\n", "");
                 this.Invoke(new Action(delegate
                 {
-                    this.rJ_TextBox_人員資料_一維條碼.Text = text;
+                    人員資料_BarCode = text;
+                    rJ_TextBox_人員資料_資料查詢_一維條碼.Text = 人員資料_BarCode;
                 }));
             }
             cnt++;
@@ -304,6 +340,22 @@ namespace 調劑台管理系統
         #endregion
 
         #region Function
+        private List<personPageClass> Function_人員資料_取得人員資料()
+        {
+            List<personPageClass> personPageClasses = new List<personPageClass>();
+            string url = $"{dBConfigClass.Api_URL}/api/person_page/";
+            returnData returnData = new returnData(url);
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json = returnData.ApiPostJson();
+            if(returnData.ResultData == null)
+            {
+                MyMessageBox.ShowDialog("取得人員資料失敗!");
+                return personPageClasses;
+            }
+            personPageClasses = returnData.ResultData.Data.ObjToListClass<personPageClass>();
+            return personPageClasses;
+        }
         private string Function_人員資料_檢查內容(object[] value)
         {
             string str_error = "";
@@ -358,7 +410,6 @@ namespace 調劑台管理系統
                 value[(int)enum_人員資料.權限等級] = this.comboBox_人員資料_權限等級.Text;
                 value[(int)enum_人員資料.顏色] = this.textBox_人員資料_顏色.Text;
                 value[(int)enum_人員資料.一維條碼] = this.rJ_TextBox_人員資料_一維條碼.Text;
-                value[(int)enum_人員資料.識別圖案] = this.rJ_TextBox_人員資料_識別圖案.Text;
                 string str_error = this.Function_人員資料_檢查內容(value);
                 if (!str_error.StringIsEmpty())
                 {
@@ -383,7 +434,6 @@ namespace 調劑台管理系統
                     value[(int)enum_人員資料.權限等級] = this.comboBox_人員資料_權限等級.Text;
                     value[(int)enum_人員資料.顏色] = this.textBox_人員資料_顏色.Text;
                     value[(int)enum_人員資料.一維條碼] = this.rJ_TextBox_人員資料_一維條碼.Text;
-                    value[(int)enum_人員資料.識別圖案] = this.rJ_TextBox_人員資料_識別圖案.Text;
                     string str_error = this.Function_人員資料_檢查內容(value);
                     if (!str_error.StringIsEmpty())
                     {
@@ -869,7 +919,139 @@ namespace 調劑台管理系統
         {
             this.Function_人員資料_清除內容();
         }
-     
+
+        private void PlC_RJ_Button_人員資料_資料查詢_一維條碼_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if(rJ_TextBox_人員資料_資料查詢_一維條碼.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋條件空白!");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.一維條碼, rJ_TextBox_人員資料_資料查詢_一維條碼.Text, false);
+            if(list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_人員資料_資料查詢_卡號_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (rJ_TextBox_人員資料_資料查詢_卡號.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋條件空白!");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.卡號, rJ_TextBox_人員資料_資料查詢_卡號.Text, false);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_人員資料_資料查詢_姓名_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (rJ_TextBox_人員資料_資料查詢_姓名.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋條件空白!");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRowsByLike((int)enum_人員資料.姓名, rJ_TextBox_人員資料_資料查詢_姓名.Text, false);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_人員資料_資料查詢_ID_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (rJ_TextBox_人員資料_資料查詢_ID.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋條件空白!");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRowsByLike((int)enum_人員資料.ID, rJ_TextBox_人員資料_資料查詢_ID.Text, false);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_人員資料_顯示全部_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
+        }
+        private void PlC_Button_人員資料_指紋輸入_btnClick(object sender, EventArgs e)
+        {
+           
+        }
+        private void PlC_Button_人員資料_條碼掃描_btnClick(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (rJ_TextBox_人員資料_ID.Text.StringIsEmpty())
+                {
+                    MyMessageBox.ShowDialog("未選擇人員!");
+                    return;
+                }
+                人員資料_BarCode = "";
+                Dialog_等待條碼刷入 dialog_等待條碼刷入 = new Dialog_等待條碼刷入();
+                if (dialog_等待條碼刷入.ShowDialog() != DialogResult.Yes) return;
+                string UID = dialog_等待條碼刷入.Value;
+                List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.ID, rJ_TextBox_人員資料_ID.Text, false);
+                if (list_value.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("找無人員資料!");
+                    return;
+                }
+                list_value[0][(int)enum_人員資料.一維條碼] = UID;
+                rJ_TextBox_人員資料_一維條碼.Text = UID;
+                this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(list_value[0], false);
+                this.sqL_DataGridView_人員資料.ReplaceExtra(list_value[0], true);
+                MyMessageBox.ShowDialog("完成!");
+
+            }
+            finally
+            {
+                ((PLC_Button)sender).Bool = false;
+            }
+        }
+        private void PlC_Button_人員資料_RFID感應_btnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (rJ_TextBox_人員資料_ID.Text.StringIsEmpty())
+                {
+                    MyMessageBox.ShowDialog("未選擇人員!");
+                    return;
+                }
+                人員資料_UID = "";
+                Dialog_等待RFID感應 dialog_等待RFID感應 = new Dialog_等待RFID感應();
+                if (dialog_等待RFID感應.ShowDialog() != DialogResult.Yes) return;
+                string UID = dialog_等待RFID感應.Value;
+                List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.ID, rJ_TextBox_人員資料_ID.Text, false);
+                if(list_value.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("找無人員資料!");
+                    return;
+                }
+                list_value[0][(int)enum_人員資料.卡號] = UID;
+                rJ_TextBox_人員資料_卡號.Text = UID;
+                this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(list_value[0], false);
+                this.sqL_DataGridView_人員資料.ReplaceExtra(list_value[0], true);
+                MyMessageBox.ShowDialog("完成!");
+
+            }
+            finally
+            {
+                ((PLC_Button)sender).Bool = false;
+            }
+         
+        }
         #endregion
     }
 }

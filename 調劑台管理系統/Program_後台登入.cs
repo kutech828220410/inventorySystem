@@ -334,8 +334,11 @@ namespace 調劑台管理系統
             string 一維碼 = "";
             if (MySerialPort_Scanner01.ReadByte() != null)
             {
+                System.Threading.Thread.Sleep(50);
                 string text = MySerialPort_Scanner01.ReadString();
                 MySerialPort_Scanner01.ClearReadByte();
+                if (text == null) return;
+                text = text.Replace("\0", "");
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 text = text.Replace("\r\n", "");
@@ -343,8 +346,11 @@ namespace 調劑台管理系統
             }
             if (MySerialPort_Scanner02.ReadByte() != null)
             {
+                System.Threading.Thread.Sleep(100);
                 string text = MySerialPort_Scanner02.ReadString();
                 MySerialPort_Scanner02.ClearReadByte();
+                if (text == null) return;
+                text = text.Replace("\0", "");
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 text = text.Replace("\r\n", "");
@@ -468,10 +474,10 @@ namespace 調劑台管理系統
                 this.pannel_Locker_Design.ShowControlPannel = false;
                 this.rJ_Pannel_後台登入_歡迎登入.Visible = false;
             }));
-            if (this.plC_ScreenPage_Main.PageText == "領藥") return;
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業") return;
             if (this.plC_ScreenPage_Main.PageText == "管制抽屜") return;
 
-            if (plC_RJ_ScreenButton_調劑作業.Visible) this.plC_ScreenPage_Main.SelecteTabText("領藥");
+            if (plC_RJ_ScreenButton_調劑作業.Visible) this.plC_ScreenPage_Main.SelecteTabText("調劑作業");
             else if (plC_RJ_ScreenButton_管制抽屜.Visible) this.plC_ScreenPage_Main.SelecteTabText("管制抽屜");
             else this.plC_ScreenPage_Main.SelecteTabText("後台登入");
          

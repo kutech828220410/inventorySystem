@@ -11,15 +11,20 @@ namespace HIS_DB_Lib
 {
     public enum enum_取藥堆疊母資料_狀態
     {
+        None,
         庫存不足,
         無儲位,
+        等待盲盤,
+        盲盤完成,
+        等待複盤,
+        複盤完成,
         輸入新效期,
         選擇效期,
         新增效期,
         等待刷新,
         等待作業,
         作業完成,
-        等待入帳,
+        等待入賬,
         入賬完成,
         取消作業,
         刪除資料,
@@ -81,7 +86,7 @@ namespace HIS_DB_Lib
         流程作業完成,
         配藥完成,
         調劑結束,
-        已入帳,
+        已入賬,
     }
     public class takeMedicineStackClass
     {

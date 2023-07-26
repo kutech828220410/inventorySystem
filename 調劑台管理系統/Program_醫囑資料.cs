@@ -12,6 +12,7 @@ using Basic;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using HIS_DB_Lib;
+using SQLUI;
 namespace 調劑台管理系統
 {
    
@@ -23,8 +24,42 @@ namespace 調劑台管理系統
         {
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_醫囑資料, dBConfigClass.DB_order_list);
 
-            this.sqL_DataGridView_醫囑資料.Init();
-            if (!this.sqL_DataGridView_醫囑資料.SQL_IsTableCreat()) this.sqL_DataGridView_醫囑資料.SQL_CreateTable();
+
+            string url = $"{dBConfigClass.Api_URL}/api/order/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table table = json.JsonDeserializet<Table>();
+            if (table == null)
+            {
+                MyMessageBox.ShowDialog($"醫囑資料表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
+            }
+
+            this.sqL_DataGridView_醫囑資料.Init(table);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnVisible(false, new enum_醫囑資料().GetEnumNames());
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥局代碼);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥袋類型);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品碼);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品名稱);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.批序);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.單次劑量);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.劑量單位);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.途徑);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.頻次);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.費用別);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.床號);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病人姓名);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病歷號);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_醫囑資料.交易量);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.開方日期);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.產出時間);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.過帳時間);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.狀態);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.備註);
+
             this.sqL_DataGridView_醫囑資料.DataGridRowsChangeRefEvent += SqL_DataGridView_醫囑資料_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_醫囑資料.DataGridRefreshEvent += SqL_DataGridView_醫囑資料_DataGridRefreshEvent;
             this.sqL_DataGridView_醫囑資料.DataGridRowsChangeEvent += SqL_DataGridView_醫囑資料_DataGridRowsChangeEvent;
@@ -424,7 +459,7 @@ namespace 調劑台管理系統
             Console.Write($"SQL取得儲位到雲端資料,耗時{myTimer.ToString()}ms\n");
             Dialog_Prcessbar dialog_Prcessbar = null;
             if (mevent != null) dialog_Prcessbar = new Dialog_Prcessbar(list_value.Count);
-            if (mevent != null) dialog_Prcessbar.State = "醫囑自動入帳..";
+            if (mevent != null) dialog_Prcessbar.State = "醫囑自動入賬..";
 
             string 藥品碼 = "";
             string 藥品名稱 = "";

@@ -514,9 +514,6 @@ namespace 調劑台管理系統
 
         }
 
-
-  
-
         public void Function_從SQL取得儲位到本地資料()
         {
 

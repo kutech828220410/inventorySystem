@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +26,6 @@ namespace HIS_WebApi
     public class IncomeReasonsController : Controller
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
-
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         [Route("init")]

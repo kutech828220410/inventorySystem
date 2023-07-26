@@ -13,6 +13,7 @@ using H_Pannel_lib;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using HIS_DB_Lib;
+using SQLUI;
 namespace 調劑台管理系統
 {
     public enum ContextMenuStrip_藥品資料_藥檔資料
@@ -96,15 +97,38 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.KeyPress += TextBox_藥品資料_藥檔資料_資料查詢_藥品條碼_KeyPress;
             this.textBox_藥品資料_藥檔資料_藥品碼.KeyPress += TextBox_藥品資料_藥檔資料_藥品碼_KeyPress;
 
-            this.sqL_DataGridView_藥品資料_藥檔資料.Init();
-            if (!this.sqL_DataGridView_藥品資料_藥檔資料.SQL_IsTableCreat())
+
+            string url = $"{dBConfigClass.Api_URL}/api/MED_page/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            returnData.TableName = "medicine_page";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table table = json.JsonDeserializet<Table>();
+            if (table == null)
             {
-                this.sqL_DataGridView_藥品資料_藥檔資料.SQL_CreateTable();
+                MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
             }
-            else
-            {
-                this.sqL_DataGridView_藥品資料_藥檔資料.SQL_CheckAllColumnName(true);
-            }
+            SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品資料_藥檔資料, dBConfigClass.DB_Basic);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Init(table);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品碼);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品名稱);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.中文名稱);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品學名);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品群組);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.包裝單位);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.庫存);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.安全庫存);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.基準量);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.警訊藥品);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.高價藥品);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.生物製劑);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.管制級別);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.類別);
+
             this.sqL_DataGridView_藥品資料_藥檔資料.RowEnterEvent += SqL_DataGridView_藥品資料_藥檔資料_RowEnterEvent;
             this.sqL_DataGridView_藥品資料_藥檔資料.RowDoubleClickEvent += SqL_DataGridView_藥品資料_藥檔資料_RowDoubleClickEvent;
             this.sqL_DataGridView_藥品資料_藥檔資料.MouseDown += SqL_DataGridView_藥品資料_藥檔資料_MouseDown;
@@ -134,8 +158,6 @@ namespace 調劑台管理系統
 
             this.plC_UI_Init.Add_Method(this.sub_Program_藥品資料_藥檔資料);
         }
-
-    
 
         bool flag_藥品資料_藥檔資料_頁面更新 = false;
         private void sub_Program_藥品資料_藥檔資料()
@@ -190,7 +212,6 @@ namespace 調劑台管理系統
                 this.flag_藥品資料_藥檔資料_頁面更新 = false;
             }
         }
-
         #region Function
         #region 藥品群組
        
@@ -406,6 +427,7 @@ namespace 調劑台管理系統
             value[(int)enum_藥品資料_藥檔資料.安全庫存] = this.textBox_藥品資料_藥檔資料_安全庫存.Text;
             value[(int)enum_藥品資料_藥檔資料.警訊藥品] = this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked.ToString();
             value[(int)enum_藥品資料_藥檔資料.高價藥品] = this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Checked.ToString();
+            value[(int)enum_藥品資料_藥檔資料.生物製劑] = this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Checked.ToString();
             value[(int)enum_藥品資料_藥檔資料.管制級別] = this.comboBox_藥品資料_藥檔資料_管制級別.Texts;
             if (this.Function_藥品資料_藥檔資料_確認欄位正確(value, true))
             {
@@ -830,6 +852,9 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_藥品條碼.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString();
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (RowValue[(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString());
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Checked = (RowValue[(int)enum_藥品資料_藥檔資料.高價藥品].ObjectToString() == true.ToString());
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Checked = (RowValue[(int)enum_藥品資料_藥檔資料.生物製劑].ObjectToString() == true.ToString());
+
+            
             this.comboBox_藥品資料_藥檔資料_管制級別.Texts = RowValue[(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
 
             object[] value = Function_藥品資料_藥檔資料_檢查藥品設定表(藥品碼);

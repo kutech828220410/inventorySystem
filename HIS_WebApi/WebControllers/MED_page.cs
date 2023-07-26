@@ -27,15 +27,8 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
-                returnData.Method = "get_inti";
-                string TableName = returnData.TableName;
-                if (serverSettingClasses.Count == 0)
-                {
-                    return $"找無Server資料!";
-                }
-                return CheckCreatTable(serverSettingClasses[0] , TableName);
+         
+                return CheckCreatTable(returnData);
             }
             catch (Exception e)
             {
@@ -126,7 +119,7 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt();
                     }
 
-                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    CheckCreatTable(returnData);
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
                     returnData.Data = list_med.SQLToClass<medClass, enum_雲端藥檔>();
@@ -252,7 +245,7 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt();
                     }
 
-                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    CheckCreatTable(returnData);
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetRowsByDefult(null, (int)enum_雲端藥檔.藥品碼, Code);
                     returnData.Data = list_med.SQLToClass<medClass, enum_雲端藥檔>();
@@ -388,7 +381,7 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt();
                     }
 
-                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    CheckCreatTable(returnData);
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
                     sQLControl_med.UpdateByDefulteExtra(null, list_replace);
@@ -413,7 +406,7 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt();
                     }
 
-                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    CheckCreatTable(returnData);
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
 
                     List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥庫_藥品資料>();
@@ -439,7 +432,7 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt();
                     }
 
-                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    CheckCreatTable(returnData);
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
 
                     List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥局_藥品資料>();
@@ -465,7 +458,7 @@ namespace HIS_WebApi
                         return returnData.JsonSerializationt();
                     }
 
-                    CheckCreatTable(serverSettingClasses[0], TableName);
+                    CheckCreatTable(returnData);
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
 
                     List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
@@ -545,18 +538,27 @@ namespace HIS_WebApi
         }
 
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass , string TableName)
+        private string CheckCreatTable(returnData returnData)
         {
-
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-            SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+            string TableName = returnData.TableName;
             Table table = new Table(TableName);
             if (TableName == "medicine_page_cloud")
             {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                returnData.Method = "get_init";
+                
+                if (serverSettingClasses.Count == 0)
+                {
+                    return $"找無Server資料!";
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
                 table = new Table("medicine_page_cloud");
                 table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
                 table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
@@ -564,6 +566,7 @@ namespace HIS_WebApi
                 table.AddColumnList("中文名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
                 table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
                 table.AddColumnList("藥品學名", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品群組", Table.StringType.VARCHAR, 300, Table.IndexType.None);
                 table.AddColumnList("健保碼", Table.StringType.VARCHAR, 50, Table.IndexType.None);
                 table.AddColumnList("包裝單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("包裝數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
@@ -573,8 +576,10 @@ namespace HIS_WebApi
                 table.AddColumnList("藥品條碼2", Table.StringType.TEXT, 200, Table.IndexType.None);
                 table.AddColumnList("警訊藥品", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("高價藥品", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("生物製劑", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("管制級別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("類別", Table.StringType.VARCHAR, 500, Table.IndexType.None);
+                table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 10, Table.IndexType.None);
 
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
                 else sQLControl.CheckAllColumnName(table, true);
@@ -590,7 +595,46 @@ namespace HIS_WebApi
 
             if (TableName == "medicine_page")
             {
-                
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                returnData.Method = "get_init";
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    return $"找無Server資料!";
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                table = new Table("medicine_page");
+                table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+                table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+                table.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+                table.AddColumnList("中文名稱", Table.StringType.VARCHAR, 300, Table.IndexType.INDEX);
+                table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 300, Table.IndexType.INDEX);
+                table.AddColumnList("藥品學名", Table.StringType.VARCHAR, 300, Table.IndexType.INDEX);
+                table.AddColumnList("藥品群組", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("健保碼", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+                table.AddColumnList("藥品條碼", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+                table.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+                table.AddColumnList("藥品條碼2", Table.StringType.TEXT, 200, Table.IndexType.None);
+                table.AddColumnList("包裝單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("庫存", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+                table.AddColumnList("安全庫存", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+                table.AddColumnList("基準量", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+                table.AddColumnList("圖片網址", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+                table.AddColumnList("警訊藥品", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("高價藥品", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("生物製劑", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("管制級別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("類別", Table.StringType.VARCHAR, 500, Table.IndexType.None);
+                table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+
+                if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
+                else sQLControl.CheckAllColumnName(table, true);
             }
 
 
