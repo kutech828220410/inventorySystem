@@ -36,7 +36,6 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"雲端藥檔表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
                 return;
             }
-            SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
             this.sqL_DataGridView_雲端藥檔.Init(table);
             this.sqL_DataGridView_雲端藥檔.Set_ColumnVisible(true, new enum_雲端藥檔().GetEnumNames());
           

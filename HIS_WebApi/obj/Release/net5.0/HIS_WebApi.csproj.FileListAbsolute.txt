@@ -854,7 +854,6 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\clidriver
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\clidriver\msg\en_US\db2supp.mo
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\clidriver\properties\version\ibm.com_IBM_Data_Server_Driver_for_ODBC_and_CLI-11.5.0.swidtag
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.exe
-C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\app.config
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_emg_tradding.txt
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_inventory.txt
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.dll.config

@@ -24,7 +24,6 @@ namespace 調劑台管理系統
     {
         private void Program_藥品設定表_Init()
         {
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品設定表, dBConfigClass.DB_Medicine_Cloud);
             this.sqL_DataGridView_藥品設定表.Init();
             if (this.sqL_DataGridView_藥品設定表.SQL_IsTableCreat() == false) this.sqL_DataGridView_藥品設定表.SQL_CreateTable();
             else this.sqL_DataGridView_藥品設定表.SQL_CheckAllColumnName(true);

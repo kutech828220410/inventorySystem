@@ -47,7 +47,6 @@ namespace 調劑台管理系統
 
         private void Program_儲位管理_RowsLED_Init()
         {
-            this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.rowsLED_Pannel.Init(this.rowsLEDUI.List_UDP_Local);
             this.rowsLED_Pannel.AutoWrite = true;
 

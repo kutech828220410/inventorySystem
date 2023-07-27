@@ -301,7 +301,7 @@ namespace 調劑台管理系統
             PLC_Device_檢查頁面不顯示.Bool = true;
             if (cnt_Program_檢查頁面不顯示 == 65534)
             {
-                this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(10000);
+                this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(2000);
                 PLC_Device_檢查頁面不顯示.SetComment("PLC_檢查頁面不顯示");
                 PLC_Device_檢查頁面不顯示_OK.SetComment("PLC_檢查頁面不顯示_OK");
                 PLC_Device_檢查頁面不顯示.Bool = false;
@@ -316,7 +316,7 @@ namespace 調劑台管理系統
             if (cnt_Program_檢查頁面不顯示 == 65500)
             {
                 this.MyTimer_檢查頁面不顯示_結束延遲.TickStop();
-                this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(10000);
+                this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(2000);
                 PLC_Device_檢查頁面不顯示.Bool = false;
                 PLC_Device_檢查頁面不顯示_OK.Bool = false;
                 cnt_Program_檢查頁面不顯示 = 65535;
@@ -556,7 +556,7 @@ namespace 調劑台管理系統
    
         private void PlC_RJ_Button_檢查頁面不顯示_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (plC_CheckBox_不顯示設定_領_退藥作業.Checked)
+            if (plC_CheckBox_不顯示設定_調劑作業.Checked)
             {
                 plC_RJ_ScreenButton_調劑作業.SetVisible(false);
             }

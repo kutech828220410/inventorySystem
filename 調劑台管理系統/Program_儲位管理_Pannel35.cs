@@ -48,7 +48,6 @@ namespace 調劑台管理系統
         private bool flag_Program_儲位管理_Pannel35_Init = false;
         private void Program_儲位管理_Pannel35_Init()
         {
-            this.storageUI_WT32.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.pannel35_Pannel.Init(this.storageUI_WT32.List_UDP_Local);
             this.pannel35_Pannel.EditFinishedEvent += Pannel35_Pannel_EditFinishedEvent;
 

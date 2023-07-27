@@ -30,7 +30,6 @@ namespace 調劑台管理系統
 
         private void Program_設備資料_Init()
         {
-            SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_設備資料, dBConfigClass.DB_Medicine_Cloud);
             this.sqL_DataGridView_設備資料.Init();
             if (!sqL_DataGridView_設備資料.SQL_IsTableCreat())
             {

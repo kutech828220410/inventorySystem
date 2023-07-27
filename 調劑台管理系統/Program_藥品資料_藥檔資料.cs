@@ -82,7 +82,7 @@ namespace 調劑台管理系統
 
         private void Program_藥品資料_藥檔資料_Init()
         {
-            this.DeviceBasicClass_儲位庫存.Init(dBConfigClass.DB_Basic, "devicebasic_jsonstring");
+           
             this.sqL_DataGridView_藥品群組.Init();
             if (!this.sqL_DataGridView_藥品群組.SQL_IsTableCreat()) this.sqL_DataGridView_藥品群組.SQL_CreateTable();
             Function_藥品群組_初始化表單();
@@ -111,7 +111,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
                 return;
             }
-            SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品資料_藥檔資料, dBConfigClass.DB_Basic);
+       
             this.sqL_DataGridView_藥品資料_藥檔資料.Init(table);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品碼);

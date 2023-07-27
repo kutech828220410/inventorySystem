@@ -65,7 +65,6 @@ namespace 調劑台管理系統
         private void Program_人員資料_Init()
         {
 
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_人員資料, dBConfigClass.DB_person_page);
 
             this.loginUI.Set_login_data_DB(dBConfigClass.DB_person_page);
             this.loginUI.Set_login_data_index_DB(dBConfigClass.DB_person_page);

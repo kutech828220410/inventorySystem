@@ -48,7 +48,6 @@ namespace 調劑台管理系統
         private bool flag_Program_儲位管理_EPD266_Init = false;
         private void Program_儲位管理_EPD266_Init()
         {
-            this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.epD_266_Pannel.Init(this.storageUI_EPD_266.List_UDP_Local);
 
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);

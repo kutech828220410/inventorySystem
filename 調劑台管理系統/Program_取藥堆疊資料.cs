@@ -882,15 +882,7 @@ namespace 調劑台管理系統
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
 
-            SQL_DataGridView.ConnentionClass dB_local = new SQL_DataGridView.ConnentionClass();
-            dB_local.IP = dBConfigClass.DB_Basic.IP;
-            dB_local.DataBaseName = dBConfigClass.DB_Basic.DataBaseName;
-            dB_local.Port = dBConfigClass.DB_Basic.Port;
-            dB_local.UserName = "user";
-            dB_local.Password = "66437068";
-            dB_local.MySqlSslMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_取藥堆疊母資料, dB_local);
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_取藥堆疊子資料, dB_local);
+         
 
             if (tables == null)
             {

@@ -41,7 +41,6 @@ namespace 調劑台管理系統
         private void Program_儲位管理_EPD583_Init()
         {
 
-            this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.drawerUI_EPD_583.DrawerChangeEvent += DrawerUI_EPD_583_DrawerChangeEvent;
             this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Init();
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Init();

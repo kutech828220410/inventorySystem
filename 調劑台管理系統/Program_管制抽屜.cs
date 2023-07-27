@@ -29,7 +29,6 @@ namespace 調劑台管理系統
         
         private void Program_管制抽屜_Init()
         {
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_管制抽屜權限資料, dBConfigClass.DB_Basic);
             this.sqL_DataGridView_管制抽屜權限資料.Init();
             if (!this.sqL_DataGridView_管制抽屜權限資料.SQL_IsTableCreat()) this.sqL_DataGridView_管制抽屜權限資料.SQL_CreateTable();
 

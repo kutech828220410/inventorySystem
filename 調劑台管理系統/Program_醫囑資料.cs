@@ -22,7 +22,6 @@ namespace 調劑台管理系統
 
         private void Program_醫囑資料_Init()
         {
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_醫囑資料, dBConfigClass.DB_order_list);
 
 
             string url = $"{dBConfigClass.Api_URL}/api/order/init";

@@ -46,7 +46,6 @@ namespace 調劑台管理系統
         }
         private void Program_儲位管理_RFID_Init()
         {
-            this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
 
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
