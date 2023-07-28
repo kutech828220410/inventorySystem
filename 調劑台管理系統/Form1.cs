@@ -406,6 +406,9 @@ namespace 調劑台管理系統
                 LoadDBConfig();
                 LoadMyConfig();
                 LoadFtpConfig();
+
+                ControlMode = true;
+
                 ApiServerSetting();
 
                 this.stopwatch.Start();
@@ -464,7 +467,7 @@ namespace 調劑台管理系統
             {
                 pictureBox_後台網址_QRCODE.Image = H_Pannel_lib.Communication.CreateQRCode(dBConfigClass.Web_URL, pictureBox_後台網址_QRCODE.Width, pictureBox_後台網址_QRCODE.Height);
             }
-
+      
             if (this.ControlMode)
             {
                 this.plC_RJ_GroupBox_調劑台切換.Visible = true;
@@ -642,7 +645,7 @@ namespace 調劑台管理系統
             this.pannel_Locker_Design.Init(dBConfigClass.DB_Basic);
             Dialog_RFID領退藥頁面.connentionClass = dBConfigClass.DB_Basic;
             SQLUI.SQL_DataGridView.SQL_Set_Properties(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, this.FindForm());
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(sqL_DataGridView_批次領藥資料, dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_批次領藥資料, dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品資料_藥檔資料, dBConfigClass.DB_Basic);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_人員資料, dBConfigClass.DB_person_page);
@@ -661,6 +664,15 @@ namespace 調劑台管理系統
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_取藥堆疊母資料, dB_local);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_取藥堆疊子資料, dB_local);
 
+            this.sqL_DataGridView_藥品資料_藥檔資料.SQL_Reset();
+            this.sqL_DataGridView_人員資料.SQL_Reset();
+            this.sqL_DataGridView_醫囑資料.SQL_Reset();
+            this.sqL_DataGridView_管制抽屜權限資料.SQL_Reset();
+            this.sqL_DataGridView_設備資料.SQL_Reset();
+            this.sqL_DataGridView_藥品管制方式設定.SQL_Reset();
+            this.sqL_DataGridView_藥品設定表.SQL_Reset();
+            this.sqL_DataGridView_雲端藥檔.SQL_Reset();
+
             this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
@@ -671,7 +683,15 @@ namespace 調劑台管理系統
         }
         private void ApiServerSetting()
         {
-            this.ApiServerSetting(dBConfigClass.Name, "一般資料(LAN)");
+            if(ControlMode)
+            {
+                this.ApiServerSetting(dBConfigClass.Name, "一般資料");
+            }
+            else
+            {
+                this.ApiServerSetting(dBConfigClass.Name, "一般資料(LAN)");
+            }
+       
         }
         private void ApiServerSetting(string Name, string basicName)
         {

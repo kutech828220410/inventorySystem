@@ -2406,3 +2406,5 @@ C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\obj\Release
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
+C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待RFID感應.resources
+C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待條碼刷入.resources
