@@ -1861,16 +1861,13 @@ C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\System.T
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\System.Threading.Tasks.Extensions.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\System.ValueTuple.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\TCP.dll
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\MeasureSystemUI.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\MVSDKUI.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\SLDUI.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\PortControlUI.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\ZealTechUI.dll
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\office.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\MeasureSystemFunction.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\MVSDK.dll
-C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\stdole.dll
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\System.Buffers.xml
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\bin\Release\System.Memory.xml
@@ -2408,3 +2405,6 @@ C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\obj\Release
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
 C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待RFID感應.resources
 C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待條碼刷入.resources
+C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_條碼管理.resources
+C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待RFID感應.resources
+C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待條碼刷入.resources
