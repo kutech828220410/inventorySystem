@@ -407,7 +407,6 @@ namespace 調劑台管理系統
                 LoadMyConfig();
                 LoadFtpConfig();
 
-                ControlMode = true;
 
                 ApiServerSetting();
 

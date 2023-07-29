@@ -30,6 +30,7 @@ namespace HIS_DB_Lib
         途徑,
         頻次,
         費用別,
+        病房,
         床號,
         病人姓名,
         病歷號,
@@ -69,6 +70,8 @@ namespace HIS_DB_Lib
         public string 頻次 { get; set; }
         [JsonPropertyName("CTYPE")]
         public string 費用別 { get; set; }
+        [JsonPropertyName("WARD")]
+        public string 病房 { get; set; }
         [JsonPropertyName("BEDNO")]
         public string 床號 { get; set; }
         [JsonPropertyName("PATNAME")]
@@ -79,7 +82,7 @@ namespace HIS_DB_Lib
         public string 交易量 { get; set; }
         [JsonPropertyName("ORD_START")]
         public string 開方日期 { get; set; }
-        [JsonPropertyName("END_START")]
+        [JsonPropertyName("ORD_END")]
         public string 結方日期 { get; set; }
         [JsonPropertyName("CT_TIME")]
         public string 產出時間 { get; set; }

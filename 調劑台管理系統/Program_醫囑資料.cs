@@ -49,6 +49,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.途徑);
             this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.頻次);
             this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.費用別);
+            this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病房);
             this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.床號);
             this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病人姓名);
             this.sqL_DataGridView_醫囑資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病歷號);
@@ -218,7 +219,7 @@ namespace 調劑台管理系統
             PLC_Device_醫囑資料_定期API測試.Bool = true;
             if (cnt_Program_醫囑資料_定期API測試 == 65534)
             {
-                this.MyTimer_醫囑資料_定期API測試_結束延遲.StartTickTime(10000);
+                this.MyTimer_醫囑資料_定期API測試_結束延遲.StartTickTime(3000);
                 PLC_Device_醫囑資料_定期API測試.SetComment("PLC_醫囑資料_定期API測試");
                 PLC_Device_醫囑資料_定期API測試_OK.SetComment("PLC_醫囑資料_定期API測試_OK");
                 PLC_Device_醫囑資料_定期API測試.Bool = false;
@@ -586,9 +587,9 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_醫囑資料_定期API測試_MouseDownEvent(MouseEventArgs mevent)
         {
-            //string apitext = $"{dBConfigClass.OrderApiURL}{"test"}";
+            string apitext = $"{dBConfigClass.OrderApiURL}";
 
-            //string jsonString = Basic.Net.WEBApiGet(apitext);
+            string jsonString = Basic.Net.WEBApiGet(apitext);
         }
         private void PlC_RJ_Button_醫囑資料_選取資料刪除_MouseDownEvent(MouseEventArgs mevent)
         {

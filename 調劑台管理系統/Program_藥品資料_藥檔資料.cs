@@ -115,9 +115,9 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料_藥檔資料.Init(table);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品碼);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品名稱);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.中文名稱);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品學名);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品名稱);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.中文名稱);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品學名);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品群組);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.包裝單位);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.庫存);
@@ -128,6 +128,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.生物製劑);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.管制級別);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.類別);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.開檔狀態);
 
             this.sqL_DataGridView_藥品資料_藥檔資料.RowEnterEvent += SqL_DataGridView_藥品資料_藥檔資料_RowEnterEvent;
             this.sqL_DataGridView_藥品資料_藥檔資料.RowDoubleClickEvent += SqL_DataGridView_藥品資料_藥檔資料_RowDoubleClickEvent;
@@ -1056,10 +1057,12 @@ namespace 調劑台管理系統
                     bool replace = false;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString()) replace = true;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString()) replace = true;
+                    if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品學名].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品學名].ObjectToString()) replace = true;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝數量].ObjectToString()) replace = true;
-                    if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1].ObjectToString()) replace = true;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString()) replace = true;
                     if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.管制級別].ObjectToString()) replace = true;
+                    if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.開檔狀態].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.開檔狀態].ObjectToString()) replace = true;
+                    if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.類別].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.類別].ObjectToString()) replace = true;
 
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱];
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品學名] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品學名];
@@ -1068,6 +1071,8 @@ namespace 調劑台管理系統
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品條碼] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1];
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.警訊藥品] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品];
                     list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.管制級別] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.管制級別];
+                    list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.開檔狀態] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.開檔狀態];
+                    list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.類別] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.類別];
                     if (replace)
                     {
                         list_本地藥檔_replace.Add(list_本地藥檔[i]);

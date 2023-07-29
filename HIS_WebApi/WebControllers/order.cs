@@ -69,6 +69,7 @@ namespace HIS_WebApi
             table.AddColumnList("途徑", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("頻次", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("費用別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table.AddColumnList("病房", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("床號", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("病人姓名", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table.AddColumnList("病歷號", Table.StringType.VARCHAR, 20, Table.IndexType.None);

@@ -2408,3 +2408,5 @@ C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\obj\Release\調
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_條碼管理.resources
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待RFID感應.resources
 C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待條碼刷入.resources
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待RFID感應.resources
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待條碼刷入.resources
