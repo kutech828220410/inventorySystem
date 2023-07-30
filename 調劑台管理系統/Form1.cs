@@ -402,6 +402,7 @@ namespace 調劑台管理系統
                 Dialog_收支原因選擇.form = this.FindForm();
                 Dialog_DateTime.form = this.FindForm();
                 Dialog_條碼管理.form = this.FindForm();
+                Dialog_使用者登入.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();

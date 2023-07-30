@@ -502,6 +502,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.床號 = 床號;
             takeMedicineStackClass.病人姓名 = 病人姓名;
             takeMedicineStackClass.開方時間 = 開方時間;
+            takeMedicineStackClass.收支原因 = 收支原因;
             takeMedicineStackClass.操作人 = 操作人;
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();

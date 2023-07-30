@@ -38,7 +38,18 @@ namespace 調劑台管理系統
         private string ServerName = "";
         private string ApiURL = "";
 
-
+        private string title = "";
+        public string Title
+        {
+            get
+            {
+                return this.title;
+            }
+            set
+            {
+                this.title = value;
+            }
+        }
 
         public Dialog_收支原因選擇(string ApiURL ,string ServerName)
         {
@@ -50,9 +61,23 @@ namespace 調劑台管理系統
         private void Dialog_收支原因選擇_Load(object sender, EventArgs e)
         {
             RJ_Button_刷新_MouseDownEvent(null);
-        }      
+            if (Title.StringIsEmpty() == false)
+            {
+                this.rJ_Lable_Title.Text = this.title;
+            }
+            this.rJ_Button_確認輸入左側原因.MouseDownEvent += RJ_Button_確認輸入左側原因_MouseDownEvent;
+        }
+
+
         #region Event
-    
+        private void RJ_Button_確認輸入左側原因_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Value = rJ_TextBox_原因.Texts;
+            this.Invoke(new Action(delegate
+            {
+                this.Close();
+            }));
+        }
         private void RJ_Button_刷新_MouseDownEvent(MouseEventArgs mevent)
         {
 
@@ -158,6 +183,7 @@ namespace 調劑台管理系統
                 //rJ_Button.Size = new System.Drawing.Size(68, 58);
                 rJ_Button.State = false;
                 rJ_Button.TabIndex = 99;
+                rJ_Button.TextAlign = ContentAlignment.MiddleLeft;
                 rJ_Button.TextColor = System.Drawing.Color.White;
                 rJ_Button.Text = $" {list_IncomeReasonsClass.Count + 2}. 其他";
                 rJ_Button.UseVisualStyleBackColor = false;

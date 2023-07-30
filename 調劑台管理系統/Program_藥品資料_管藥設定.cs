@@ -109,6 +109,7 @@ namespace 調劑台管理系統
                 this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked = (list_value[0][(int)enum_藥品管制方式設定.複盤].ObjectToString() == true.ToString());
                 this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked = (list_value[0][(int)enum_藥品管制方式設定.盲盤].ObjectToString() == true.ToString());
                 this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked = (list_value[0][(int)enum_藥品管制方式設定.結存報表].ObjectToString() == true.ToString());
+                this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked = (list_value[0][(int)enum_藥品管制方式設定.雙人覆核].ObjectToString() == true.ToString()); 
             }
         }
         private void PlC_RJ_ChechBox_藥品資料_管藥設定_複盤_CheckedChanged(object sender, EventArgs e)
@@ -151,6 +152,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品管制方式設定.複盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked.ToString();
                 value[(int)enum_藥品管制方式設定.盲盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked.ToString();
                 value[(int)enum_藥品管制方式設定.結存報表] = this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked.ToString();
+                value[(int)enum_藥品管制方式設定.雙人覆核] = this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked.ToString();
                 this.sqL_DataGridView_藥品管制方式設定.SQL_ReplaceExtra(value, false);
             }
             else
@@ -162,6 +164,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品管制方式設定.複盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked.ToString();
                 value[(int)enum_藥品管制方式設定.盲盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked.ToString();
                 value[(int)enum_藥品管制方式設定.結存報表] = this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked.ToString();
+                value[(int)enum_藥品管制方式設定.雙人覆核] = this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked.ToString();
                 this.sqL_DataGridView_藥品管制方式設定.SQL_AddRow(value, false);
             }
             MyMessageBox.ShowDialog("上傳完成!");

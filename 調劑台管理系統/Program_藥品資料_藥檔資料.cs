@@ -451,6 +451,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品設定表.盲盤] = plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked.ToString();
                 value[(int)enum_藥品設定表.複盤] = plC_CheckBox_藥品資料_藥檔資料_複盤.Checked.ToString();
                 value[(int)enum_藥品設定表.結存報表] = plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked.ToString();
+                value[(int)enum_藥品設定表.雙人覆核] = plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked.ToString();
                 this.sqL_DataGridView_藥品設定表.SQL_ReplaceExtra(value, false);
                 this.Function_藥品資料_藥檔資料_清除攔位();
                
@@ -659,6 +660,7 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品設定表.盲盤] = false.ToString();
                 value[(int)enum_藥品設定表.複盤] = false.ToString();
                 value[(int)enum_藥品設定表.結存報表] = false.ToString();
+                value[(int)enum_藥品設定表.雙人覆核] = false.ToString();
                 value[(int)enum_藥品設定表.自定義] = false.ToString();
                 this.sqL_DataGridView_藥品設定表.SQL_AddRow(value, false);
             }
@@ -865,6 +867,7 @@ namespace 調劑台管理系統
             this.plC_CheckBox_藥品資料_藥檔資料_複盤.Checked = value[(int)enum_藥品設定表.複盤].ObjectToString().StringToBool();
             this.plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked = value[(int)enum_藥品設定表.盲盤].ObjectToString().StringToBool();
             this.plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked = value[(int)enum_藥品設定表.結存報表].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked = value[(int)enum_藥品設定表.雙人覆核].ObjectToString().StringToBool();
         }
         private void SqL_DataGridView_藥品資料_藥檔資料_DataGridRowsChangeEvent(List<object[]> RowsList)
         {

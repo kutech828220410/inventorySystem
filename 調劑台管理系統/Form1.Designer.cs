@@ -321,6 +321,7 @@
             this.plC_RJ_Button_藥品資料_條碼管理 = new MyUI.PLC_RJ_Button();
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定 = new MyUI.PLC_CheckBox();
             this.groupBox_藥品資料_藥檔資料_設定 = new System.Windows.Forms.GroupBox();
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_藥品資料_藥檔資料_盲盤 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_藥品資料_藥檔資料_結存報表 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_藥品資料_藥檔資料_複盤 = new MyUI.PLC_CheckBox();
@@ -374,6 +375,8 @@
             this.sqL_DataGridView_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
             this.管藥設定 = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核 = new MyUI.PLC_RJ_ChechBox();
+            this.rJ_Lable139 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤 = new MyUI.PLC_RJ_ChechBox();
             this.rJ_Lable134 = new MyUI.RJ_Lable();
@@ -9155,6 +9158,7 @@
             // 
             // groupBox_藥品資料_藥檔資料_設定
             // 
+            this.groupBox_藥品資料_藥檔資料_設定.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核);
             this.groupBox_藥品資料_藥檔資料_設定.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_盲盤);
             this.groupBox_藥品資料_藥檔資料_設定.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_結存報表);
             this.groupBox_藥品資料_藥檔資料_設定.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_複盤);
@@ -9168,6 +9172,24 @@
             this.groupBox_藥品資料_藥檔資料_設定.TabIndex = 13;
             this.groupBox_藥品資料_藥檔資料_設定.TabStop = false;
             this.groupBox_藥品資料_藥檔資料_設定.Text = "設定";
+            // 
+            // plC_CheckBox_藥品資料_藥檔資料_雙人覆核
+            // 
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.AutoSize = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Bool = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Location = new System.Drawing.Point(27, 111);
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Name = "plC_CheckBox_藥品資料_藥檔資料_雙人覆核";
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Size = new System.Drawing.Size(93, 25);
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.TabIndex = 17;
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Text = "雙人覆核";
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.文字內容 = "雙人覆核";
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.音效 = true;
             // 
             // plC_CheckBox_藥品資料_藥檔資料_盲盤
             // 
@@ -9980,6 +10002,8 @@
             // 
             // groupBox17
             // 
+            this.groupBox17.Controls.Add(this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核);
+            this.groupBox17.Controls.Add(this.rJ_Lable139);
             this.groupBox17.Controls.Add(this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳);
             this.groupBox17.Controls.Add(this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤);
             this.groupBox17.Controls.Add(this.rJ_Lable134);
@@ -9998,6 +10022,48 @@
             this.groupBox17.TabIndex = 0;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "管制藥取藥設定";
+            // 
+            // plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核
+            // 
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Bool = false;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.GUID = "";
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Location = new System.Drawing.Point(130, 272);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.MinimumSize = new System.Drawing.Size(45, 22);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Name = "plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核";
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.OffBackColor = System.Drawing.Color.Gray;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Size = new System.Drawing.Size(62, 29);
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.SolidStyle = true;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.TabIndex = 131;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.UseVisualStyleBackColor = true;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.讀寫鎖住 = false;
+            this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.音效 = true;
+            // 
+            // rJ_Lable139
+            // 
+            this.rJ_Lable139.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable139.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable139.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable139.BorderRadius = 12;
+            this.rJ_Lable139.BorderSize = 0;
+            this.rJ_Lable139.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable139.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable139.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable139.GUID = "";
+            this.rJ_Lable139.Location = new System.Drawing.Point(18, 262);
+            this.rJ_Lable139.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.rJ_Lable139.Name = "rJ_Lable139";
+            this.rJ_Lable139.Size = new System.Drawing.Size(94, 45);
+            this.rJ_Lable139.TabIndex = 130;
+            this.rJ_Lable139.Text = "雙人覆核";
+            this.rJ_Lable139.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable139.TextColor = System.Drawing.Color.Black;
             // 
             // plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳
             // 
@@ -29551,7 +29617,7 @@
             this.tabPage14.Controls.Add(this.sqL_DataGridView_藥品管制方式設定);
             this.tabPage14.Location = new System.Drawing.Point(4, 22);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(475, 355);
+            this.tabPage14.Size = new System.Drawing.Size(1640, 900);
             this.tabPage14.TabIndex = 5;
             this.tabPage14.Text = "藥品管制方式設定";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -29578,6 +29644,7 @@
             this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns3"))));
             this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns4"))));
             this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns5"))));
+            this.sqL_DataGridView_藥品管制方式設定.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品管制方式設定.Columns6"))));
             this.sqL_DataGridView_藥品管制方式設定.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_藥品管制方式設定.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_藥品管制方式設定.Font = new System.Drawing.Font("新細明體", 9F);
@@ -29593,7 +29660,7 @@
             this.sqL_DataGridView_藥品管制方式設定.RowsHeight = 40;
             this.sqL_DataGridView_藥品管制方式設定.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_藥品管制方式設定.Server = "localhost";
-            this.sqL_DataGridView_藥品管制方式設定.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_藥品管制方式設定.Size = new System.Drawing.Size(1640, 900);
             this.sqL_DataGridView_藥品管制方式設定.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品管制方式設定.TabIndex = 28;
             this.sqL_DataGridView_藥品管制方式設定.TableName = "med_controlled_config";
@@ -29615,7 +29682,7 @@
             this.tabPage15.Controls.Add(this.sqL_DataGridView_藥品設定表);
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(475, 355);
+            this.tabPage15.Size = new System.Drawing.Size(1640, 900);
             this.tabPage15.TabIndex = 6;
             this.tabPage15.Text = "藥品設定表";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -29643,6 +29710,7 @@
             this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns4"))));
             this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns5"))));
             this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns6"))));
+            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns7"))));
             this.sqL_DataGridView_藥品設定表.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_藥品設定表.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_藥品設定表.Font = new System.Drawing.Font("新細明體", 9F);
@@ -29658,7 +29726,7 @@
             this.sqL_DataGridView_藥品設定表.RowsHeight = 40;
             this.sqL_DataGridView_藥品設定表.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_藥品設定表.Server = "localhost";
-            this.sqL_DataGridView_藥品設定表.Size = new System.Drawing.Size(475, 355);
+            this.sqL_DataGridView_藥品設定表.Size = new System.Drawing.Size(1640, 900);
             this.sqL_DataGridView_藥品設定表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品設定表.TabIndex = 29;
             this.sqL_DataGridView_藥品設定表.TableName = "med_config";
@@ -35882,6 +35950,9 @@
         private System.Windows.Forms.Button button_調劑台切換;
         private System.Windows.Forms.ComboBox comboBox_調劑台名稱;
         private MyUI.RJ_Pannel ContentsPanel;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_藥檔資料_雙人覆核;
+        private MyUI.PLC_RJ_ChechBox plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核;
+        private MyUI.RJ_Lable rJ_Lable139;
     }
 }
 

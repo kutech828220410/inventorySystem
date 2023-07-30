@@ -309,6 +309,12 @@
     <Compile Include="Dialog\Dialog_等待條碼刷入.Designer.cs">
       <DependentUpon>Dialog_等待條碼刷入.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_使用者登入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_使用者登入.Designer.cs">
+      <DependentUpon>Dialog_使用者登入.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -438,6 +444,9 @@
     <Compile Include="Program_藥品管制方式設定.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Dialog\Dialog_使用者登入.resx">
+      <DependentUpon>Dialog_使用者登入.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_入庫作業_儲位選擇.resx">
       <DependentUpon>Dialog_入庫作業_儲位選擇.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -16,6 +16,7 @@ namespace HIS_DB_Lib
         盲盤,
         複盤,
         結存報表,
+        雙人覆核,
     }
     public enum enum_藥品設定表
     {
@@ -25,6 +26,7 @@ namespace HIS_DB_Lib
         盲盤,
         複盤,
         結存報表,
+        雙人覆核,
         自定義,
     }
     public class medClass

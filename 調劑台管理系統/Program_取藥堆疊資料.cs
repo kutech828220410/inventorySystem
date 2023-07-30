@@ -1846,10 +1846,10 @@ namespace 調劑台管理系統
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 65535) cnt_Program_取藥堆疊資料_流程作業檢查 = 1;
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 1) cnt_Program_取藥堆疊資料_流程作業檢查_檢查按下(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 2) cnt_Program_取藥堆疊資料_流程作業檢查_初始化(ref cnt_Program_取藥堆疊資料_流程作業檢查);
-            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 3) cnt_Program_取藥堆疊資料_流程作業檢查_檢查盲盤複盤(ref cnt_Program_取藥堆疊資料_流程作業檢查);
-            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 4) cnt_Program_取藥堆疊資料_流程作業檢查_檢查同藥碼全亮(ref cnt_Program_取藥堆疊資料_流程作業檢查);
-            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 5) cnt_Program_取藥堆疊資料_流程作業檢查_檢查層架及手勢感測(ref cnt_Program_取藥堆疊資料_流程作業檢查);
-            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 6) cnt_Program_取藥堆疊資料_流程作業檢查 = 65500;
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 4) cnt_Program_取藥堆疊資料_流程作業檢查_檢查盲盤複盤(ref cnt_Program_取藥堆疊資料_流程作業檢查);
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 5) cnt_Program_取藥堆疊資料_流程作業檢查_檢查同藥碼全亮(ref cnt_Program_取藥堆疊資料_流程作業檢查);
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 6) cnt_Program_取藥堆疊資料_流程作業檢查_檢查層架及手勢感測(ref cnt_Program_取藥堆疊資料_流程作業檢查);
+            if (cnt_Program_取藥堆疊資料_流程作業檢查 == 7) cnt_Program_取藥堆疊資料_流程作業檢查 = 65500;
             if (cnt_Program_取藥堆疊資料_流程作業檢查 > 1) cnt_Program_取藥堆疊資料_流程作業檢查_檢查放開(ref cnt_Program_取藥堆疊資料_流程作業檢查);
             if (cnt_Program_取藥堆疊資料_流程作業檢查 == 65500)
             {
@@ -1882,6 +1882,7 @@ namespace 調劑台管理系統
     
             cnt++;
         }
+      
         void cnt_Program_取藥堆疊資料_流程作業檢查_檢查盲盤複盤(ref int cnt)
         {
             string IP = "";

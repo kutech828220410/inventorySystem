@@ -40,9 +40,9 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥名 = new MyUI.RJ_Lable();
             this.panel_Content = new System.Windows.Forms.Panel();
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button2 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable3 = new MyUI.RJ_Lable();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -64,7 +64,7 @@ namespace 調劑台管理系統
             this.rJ_Lable_Title.GUID = "";
             this.rJ_Lable_Title.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable_Title.Name = "rJ_Lable_Title";
-            this.rJ_Lable_Title.Size = new System.Drawing.Size(637, 67);
+            this.rJ_Lable_Title.Size = new System.Drawing.Size(787, 67);
             this.rJ_Lable_Title.TabIndex = 2;
             this.rJ_Lable_Title.Text = "條碼管理";
             this.rJ_Lable_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -87,7 +87,7 @@ namespace 調劑台管理系統
             this.rJ_Button_確認.GUID = "";
             this.rJ_Button_確認.Location = new System.Drawing.Point(0, 687);
             this.rJ_Button_確認.Name = "rJ_Button_確認";
-            this.rJ_Button_確認.Size = new System.Drawing.Size(637, 86);
+            this.rJ_Button_確認.Size = new System.Drawing.Size(787, 86);
             this.rJ_Button_確認.State = false;
             this.rJ_Button_確認.TabIndex = 32;
             this.rJ_Button_確認.Text = "確認";
@@ -102,7 +102,7 @@ namespace 調劑台管理系統
             this.panel1.Location = new System.Drawing.Point(0, 618);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(637, 69);
+            this.panel1.Size = new System.Drawing.Size(787, 69);
             this.panel1.TabIndex = 33;
             // 
             // rJ_Button_輸入
@@ -120,7 +120,7 @@ namespace 調劑台管理系統
             this.rJ_Button_輸入.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_輸入.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_輸入.GUID = "";
-            this.rJ_Button_輸入.Location = new System.Drawing.Point(514, 5);
+            this.rJ_Button_輸入.Location = new System.Drawing.Point(664, 5);
             this.rJ_Button_輸入.Name = "rJ_Button_輸入";
             this.rJ_Button_輸入.Size = new System.Drawing.Size(118, 59);
             this.rJ_Button_輸入.State = false;
@@ -159,7 +159,7 @@ namespace 調劑台管理系統
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 67);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(637, 48);
+            this.panel2.Size = new System.Drawing.Size(787, 48);
             this.panel2.TabIndex = 34;
             // 
             // rJ_Lable_藥碼
@@ -176,7 +176,7 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥碼.GUID = "";
             this.rJ_Lable_藥碼.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable_藥碼.Name = "rJ_Lable_藥碼";
-            this.rJ_Lable_藥碼.Size = new System.Drawing.Size(637, 48);
+            this.rJ_Lable_藥碼.Size = new System.Drawing.Size(787, 48);
             this.rJ_Lable_藥碼.TabIndex = 3;
             this.rJ_Lable_藥碼.Text = "藥碼:XXXX";
             this.rJ_Lable_藥碼.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -188,7 +188,7 @@ namespace 調劑台管理系統
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 115);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(637, 48);
+            this.panel3.Size = new System.Drawing.Size(787, 48);
             this.panel3.TabIndex = 35;
             // 
             // rJ_Lable_藥名
@@ -200,12 +200,12 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥名.BorderSize = 0;
             this.rJ_Lable_藥名.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Lable_藥名.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_藥名.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_藥名.Font = new System.Drawing.Font("微軟正黑體", 16F);
             this.rJ_Lable_藥名.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable_藥名.GUID = "";
             this.rJ_Lable_藥名.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable_藥名.Name = "rJ_Lable_藥名";
-            this.rJ_Lable_藥名.Size = new System.Drawing.Size(637, 48);
+            this.rJ_Lable_藥名.Size = new System.Drawing.Size(787, 48);
             this.rJ_Lable_藥名.TabIndex = 3;
             this.rJ_Lable_藥名.Text = "藥名:XXXXXXX";
             this.rJ_Lable_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -219,7 +219,7 @@ namespace 調劑台管理系統
             this.panel_Content.Location = new System.Drawing.Point(0, 163);
             this.panel_Content.Name = "panel_Content";
             this.panel_Content.Padding = new System.Windows.Forms.Padding(1);
-            this.panel_Content.Size = new System.Drawing.Size(637, 455);
+            this.panel_Content.Size = new System.Drawing.Size(787, 455);
             this.panel_Content.TabIndex = 38;
             // 
             // rJ_Pannel1
@@ -237,16 +237,8 @@ namespace 調劑台管理系統
             this.rJ_Pannel1.Location = new System.Drawing.Point(1, 1);
             this.rJ_Pannel1.Name = "rJ_Pannel1";
             this.rJ_Pannel1.Padding = new System.Windows.Forms.Padding(1);
-            this.rJ_Pannel1.Size = new System.Drawing.Size(633, 60);
+            this.rJ_Pannel1.Size = new System.Drawing.Size(783, 60);
             this.rJ_Pannel1.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(1, 1);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(14, 58);
-            this.panel4.TabIndex = 0;
             // 
             // plC_RJ_Button2
             // 
@@ -275,7 +267,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button2.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button2.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button2.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button2.Size = new System.Drawing.Size(97, 58);
+            this.plC_RJ_Button2.Size = new System.Drawing.Size(247, 58);
             this.plC_RJ_Button2.State = false;
             this.plC_RJ_Button2.TabIndex = 4;
             this.plC_RJ_Button2.Text = "刪除";
@@ -312,12 +304,20 @@ namespace 調劑台管理系統
             this.rJ_Lable3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable3.TextColor = System.Drawing.Color.White;
             // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(1, 1);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(14, 58);
+            this.panel4.TabIndex = 0;
+            // 
             // Dialog_條碼管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(637, 773);
+            this.ClientSize = new System.Drawing.Size(787, 773);
             this.ControlBox = false;
             this.Controls.Add(this.panel_Content);
             this.Controls.Add(this.panel3);
