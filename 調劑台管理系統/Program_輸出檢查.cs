@@ -443,10 +443,7 @@ namespace 調劑台管理系統
                         this.flag_輸出入檢查_輸出刷新_全部輸出完成 = false;
                         list_locker_table_value_同步輸出_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, 同步輸出);
                         if (輸出位置 != "") this.Function_輸出入檢查_搜尋輸出(IP, Num, 輸入位置, 輸出位置, Master_GUID);//實體輸出
-                        if (list_locker_table_value_同步輸出_buf.Count > 0)
-                        {
-                            this.Function_輸出入檢查_搜尋輸出(list_locker_table_value_同步輸出_buf[0]);//實體輸出
-                        }
+                        if (list_locker_table_value_同步輸出_buf.Count > 0) this.Function_輸出入檢查_搜尋輸出(list_locker_table_value_同步輸出_buf[0]);//實體輸出
 
                         list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸出狀態] = false.ToString();
                         this.Function_取藥堆疊子資料_設定流程作業完成ByIP("None", IP, Num.ToString());
