@@ -2411,3 +2411,4 @@ C:\Users\User\Desktop\Pharmacy-master\調劑台管理系統\obj\Release\調劑�
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待RFID感應.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待條碼刷入.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_使用者登入.resources
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_盤點數量錯誤.resources

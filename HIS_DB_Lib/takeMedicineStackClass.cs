@@ -12,6 +12,8 @@ namespace HIS_DB_Lib
     public enum enum_取藥堆疊母資料_狀態
     {
         None,
+        雙人覆核,
+        覆核完成,
         庫存不足,
         無儲位,
         等待盲盤,
@@ -35,6 +37,8 @@ namespace HIS_DB_Lib
         效期管控,
         複盤,
         盲盤,
+        雙人覆核,
+        獨立作業,
         庫存不足語音提示,
     }
     public enum enum_取藥堆疊母資料

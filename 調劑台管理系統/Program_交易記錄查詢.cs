@@ -188,6 +188,7 @@ namespace 調劑台管理系統
                     || 動作 == enum_交易記錄查詢動作.登出.GetEnumName()
                     || 動作 == enum_交易記錄查詢動作.效期庫存異動.GetEnumName()
                     || 動作 == enum_交易記錄查詢動作.操作工程模式.GetEnumName()
+                    || 動作 == enum_交易記錄查詢動作.取消作業.GetEnumName()
                     )
                 {
                     this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
@@ -225,8 +226,9 @@ namespace 調劑台管理系統
 
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼退藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸退藥.GetEnumName()));
+                list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.取消作業.GetEnumName()));
             }
-    
+
             if (plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_收支作業.Bool)
             {
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.入庫作業.GetEnumName()));

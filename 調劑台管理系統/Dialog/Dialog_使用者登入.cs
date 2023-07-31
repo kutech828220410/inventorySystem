@@ -38,10 +38,25 @@ namespace 調劑台管理系統
         public static bool IsShown = false;
         private bool _flag_已登入 = false;
         private SQL_DataGridView sQL_DataGridView_人員資料;
+        private RFID_FX600lib.RFID_FX600_UI rFID_FX600_UI;
         private string 藥名;
         public string UserName = "";
         public string UserID = "";
-        public Dialog_使用者登入(string _藥名,SQL_DataGridView _sQL_DataGridView_人員資料)
+        private Point location = new Point(0, 0);
+        public new Point Location
+        {
+            get
+            {
+                return this.location;
+            }
+            set
+            {
+           
+                this.location = value;
+            }
+        }
+
+        public Dialog_使用者登入(string _藥名,SQL_DataGridView _sQL_DataGridView_人員資料, RFID_FX600lib.RFID_FX600_UI _rFID_FX600_UI)
         {
             InitializeComponent();
             this.Load += Dialog_使用者登入_Load;
@@ -54,7 +69,7 @@ namespace 調劑台管理系統
             plC_RJ_Button_取消.音效 = false;
             this.sQL_DataGridView_人員資料 = _sQL_DataGridView_人員資料;
             this.藥名 = _藥名;
-
+            this.rFID_FX600_UI = _rFID_FX600_UI;
 
         }
         private void sub_program()
@@ -64,10 +79,11 @@ namespace 調劑台管理系統
                 this.Invoke(new Action(delegate
                 {
                     Console.WriteLine($"接收到領藥台01[一維碼] {Form1.領藥台_01_一維碼}");
-                    Form1.領藥台_01_一維碼 = "";
+      
                     List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
                     List<object[]> list_人員資料_buf = new List<object[]>();
                     list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.一維條碼, Form1.領藥台_01_一維碼);
+                    Form1.領藥台_01_一維碼 = "";
                     if (list_人員資料_buf.Count == 0) return;
                     string id = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
                     string pwd = list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString();
@@ -75,25 +91,40 @@ namespace 調劑台管理系統
                 }));
 
             }
-            if (Form1.領藥台_01_卡號.StringIsEmpty() == false && this.IsHandleCreated)
+            string UID_01 = this.rFID_FX600_UI.Get_RFID_UID(1);
+            if (!UID_01.StringIsEmpty() && UID_01.StringToInt32() != 0  && this.IsHandleCreated)
+            {
+                this.Invoke(new Action(delegate
+                {               
+                    Console.WriteLine($"接收到領藥台01[RFID] {UID_01}");
+                
+                    List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
+                    List<object[]> list_人員資料_buf = new List<object[]>();
+                    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.卡號, UID_01);
+                    if (list_人員資料_buf.Count == 0) return;
+                    string id = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
+                    string pwd = list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString();
+                    Function_登入(id, pwd);
+                }));
+            }
+            string UID_02 = this.rFID_FX600_UI.Get_RFID_UID(2);
+            if (!UID_02.StringIsEmpty() && UID_02.StringToInt32() != 0 && this.IsHandleCreated)
             {
                 this.Invoke(new Action(delegate
                 {
-                    Console.WriteLine($"接收到領藥台01[RFID] {Form1.領藥台_01_卡號}");
-                    Form1.領藥台_01_卡號 = "";
+                    Console.WriteLine($"接收到領藥台02[RFID] {UID_02}");
+                
                     List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
                     List<object[]> list_人員資料_buf = new List<object[]>();
-                    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.卡號, Form1.領藥台_01_卡號);
+                    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.卡號, UID_02);
+                    UID_02 = "";
                     if (list_人員資料_buf.Count == 0) return;
                     string id = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
                     string pwd = list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString();
                     Function_登入(id, pwd);
                 }));
-
             }
         }
-
-
         private void Function_登入(string ID , string PWD)
         {
             this.Invoke(new Action(delegate
@@ -164,7 +195,13 @@ namespace 調劑台管理系統
             {
                 this.rJ_Lable_藥名.Text = $" 藥名 : { this.藥名}";
             }));
-
+            if (this.location.X != 0 && this.location.Y != 0)
+            {
+                this.StartPosition = FormStartPosition.WindowsDefaultLocation;
+                base.Location = this.location;
+            }
+            this.textBox_密碼.KeyPress += TextBox_密碼_KeyPress;
+            Form1.領藥台_01_卡號 = "";
             MyThread_program = new MyThread();
             MyThread_program.Add_Method(sub_program);
             MyThread_program.AutoRun(true);
@@ -173,6 +210,14 @@ namespace 調劑台管理系統
 
             IsShown = true;
 
+        }
+
+        private void TextBox_密碼_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                PlC_RJ_Button_登入_MouseDownEventEx(null, null);
+            }
         }
         private void Dialog_使用者登入_FormClosed(object sender, FormClosedEventArgs e)
         {

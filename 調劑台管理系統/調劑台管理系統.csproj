@@ -315,6 +315,12 @@
     <Compile Include="Dialog\Dialog_使用者登入.Designer.cs">
       <DependentUpon>Dialog_使用者登入.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_盤點數量錯誤.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_盤點數量錯誤.Designer.cs">
+      <DependentUpon>Dialog_盤點數量錯誤.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -457,6 +463,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_條碼管理.resx">
       <DependentUpon>Dialog_條碼管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_盤點數量錯誤.resx">
+      <DependentUpon>Dialog_盤點數量錯誤.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_等待RFID感應.resx">
       <DependentUpon>Dialog_等待RFID感應.cs</DependentUpon>
