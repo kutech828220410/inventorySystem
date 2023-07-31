@@ -221,6 +221,11 @@ namespace 調劑台管理系統
         }
         private void Dialog_使用者登入_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if (MyThread_program != null)
+            {
+                MyThread_program.Abort();
+                MyThread_program = null;
+            }
             IsShown = false;
         }
         #endregion
