@@ -133,7 +133,7 @@ namespace 調劑台管理系統
 
         
         #region PLC_收支作業_單品入庫_狀態更新
-        PLC_Device PLC_Device_收支作業_單品入庫_狀態更新 = new PLC_Device("S105");
+        PLC_Device PLC_Device_收支作業_單品入庫_狀態更新 = new PLC_Device("");
         PLC_Device PLC_Device_收支作業_單品入庫_狀態更新_OK = new PLC_Device("");
         MyTimer MyTimer_收支作業_單品入庫_狀態更新_刷新時間 = new MyTimer();
         int cnt_Program_收支作業_單品入庫_狀態更新 = 65534;
@@ -157,9 +157,10 @@ namespace 調劑台管理系統
             if (cnt_Program_收支作業_單品入庫_狀態更新 == 65535) cnt_Program_收支作業_單品入庫_狀態更新 = 1;
             if (cnt_Program_收支作業_單品入庫_狀態更新 == 1) cnt_Program_收支作業_單品入庫_狀態更新_檢查按下(ref cnt_Program_收支作業_單品入庫_狀態更新);
             if (cnt_Program_收支作業_單品入庫_狀態更新 == 2) cnt_Program_收支作業_單品入庫_狀態更新_初始化(ref cnt_Program_收支作業_單品入庫_狀態更新);
-            if (cnt_Program_收支作業_單品入庫_狀態更新 == 3) cnt_Program_收支作業_單品入庫_狀態更新_檢查盲盤作業(ref cnt_Program_收支作業_單品入庫_狀態更新);
-            if (cnt_Program_收支作業_單品入庫_狀態更新 == 4) cnt_Program_收支作業_單品入庫_狀態更新_檢查複盤作業(ref cnt_Program_收支作業_單品入庫_狀態更新);
-            if (cnt_Program_收支作業_單品入庫_狀態更新 == 5) cnt_Program_收支作業_單品入庫_狀態更新 = 65500;
+            if (cnt_Program_收支作業_單品入庫_狀態更新 == 3) cnt_Program_收支作業_單品入庫_狀態更新_檢查雙人覆核(ref cnt_Program_收支作業_單品入庫_狀態更新);
+            if (cnt_Program_收支作業_單品入庫_狀態更新 == 4) cnt_Program_收支作業_單品入庫_狀態更新_檢查盲盤作業(ref cnt_Program_收支作業_單品入庫_狀態更新);
+            if (cnt_Program_收支作業_單品入庫_狀態更新 == 5) cnt_Program_收支作業_單品入庫_狀態更新_檢查複盤作業(ref cnt_Program_收支作業_單品入庫_狀態更新);
+            if (cnt_Program_收支作業_單品入庫_狀態更新 == 6) cnt_Program_收支作業_單品入庫_狀態更新 = 65500;
             if (cnt_Program_收支作業_單品入庫_狀態更新 > 1) cnt_Program_收支作業_單品入庫_狀態更新_檢查放開(ref cnt_Program_收支作業_單品入庫_狀態更新);
 
             if (cnt_Program_收支作業_單品入庫_狀態更新 == 65500)
@@ -207,6 +208,46 @@ namespace 調劑台管理系統
  
 
             cnt++;
+        }
+        void cnt_Program_收支作業_單品入庫_狀態更新_檢查雙人覆核(ref int cnt)
+        {
+            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
+            List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
+            List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
+
+            list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName());
+            for (int i = 0; i < list_取藥堆疊母資料.Count; i++)
+            {
+                string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+                Application.DoEvents();
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
+    
+
+                if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
+                {
+                    list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
+                    this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                    continue;
+                }
+                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
+                Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核, false);
+                list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
+                list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
+            }
+            if (list_取藥堆疊母資料_replace.Count > 0)
+            {
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_replace, false);
+                cnt = 1;
+            }
+            if (list_取藥堆疊母資料_delete.Count > 0)
+            {
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                cnt = 1;
+            }
+            if (cnt == 1) return;
+            cnt++;
+
         }
         void cnt_Program_收支作業_單品入庫_狀態更新_檢查盲盤作業(ref int cnt)
         {
