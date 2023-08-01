@@ -957,9 +957,9 @@ namespace 調劑台管理系統
             if (cnt_Program_取藥堆疊資料_檢查資料 == 1) cnt_Program_取藥堆疊資料_檢查資料_檢查按下(ref cnt_Program_取藥堆疊資料_檢查資料);
             if (cnt_Program_取藥堆疊資料_檢查資料 == 2) cnt_Program_取藥堆疊資料_檢查資料_初始化(ref cnt_Program_取藥堆疊資料_檢查資料);
             if (cnt_Program_取藥堆疊資料_檢查資料 == 3) cnt_Program_取藥堆疊資料_檢查資料_檢查系統領藥(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 4) cnt_Program_取藥堆疊資料_檢查資料_堆疊資料整理(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 5) cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref cnt_Program_取藥堆疊資料_檢查資料);
-            if (cnt_Program_取藥堆疊資料_檢查資料 == 6) cnt_Program_取藥堆疊資料_檢查資料_刷新新增效期(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 4) cnt_Program_取藥堆疊資料_檢查資料_刷新新增效期(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 5) cnt_Program_取藥堆疊資料_檢查資料_堆疊資料整理(ref cnt_Program_取藥堆疊資料_檢查資料);
+            if (cnt_Program_取藥堆疊資料_檢查資料 == 6) cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref cnt_Program_取藥堆疊資料_檢查資料);
             if (cnt_Program_取藥堆疊資料_檢查資料 == 7) cnt_Program_取藥堆疊資料_檢查資料_刷新無庫存(ref cnt_Program_取藥堆疊資料_檢查資料);
             if (cnt_Program_取藥堆疊資料_檢查資料 == 8) cnt_Program_取藥堆疊資料_檢查資料_刷新資料(ref cnt_Program_取藥堆疊資料_檢查資料);
             if (cnt_Program_取藥堆疊資料_檢查資料 == 9) cnt_Program_取藥堆疊資料_檢查資料_設定致能(ref cnt_Program_取藥堆疊資料_檢查資料);
@@ -1110,88 +1110,10 @@ namespace 調劑台管理系統
             this.list_取藥堆疊母資料.Sort(new Icp_取藥堆疊母資料_index排序());
             cnt++;
         }
-        void cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref int cnt)
-        {
-            if (this.list_取藥堆疊母資料.Count > 0)
-            {           
-                var Code_LINQ = (from value in list_取藥堆疊母資料
-                                 select value[(int)enum_取藥堆疊母資料.藥品碼]).ToList().Distinct();
-                List<object> list_code = Code_LINQ.ToList();
-                for (int i = 0; i < list_code.Count; i++)
-                {
-                    this.Function_從SQL取得儲位到雲端資料(list_code[i].ObjectToString());
-                }
-
-                List<object[]> list_取藥堆疊母資料_buf = new List<object[]>();
-                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
-                List<object[]> list_藥品管制方式設定 = this.sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
-                bool flag_獨立作業 = false;
-                bool flag_雙人覆核 = false;
-                string 藥品碼 = "";
-                int 總異動量 = 0;
-                int 庫存量 = 0;
-                int 結存量 = 0;
-
-                for (int i = 0; i < list_取藥堆疊母資料.Count; i++)
-                {
-                    藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    總異動量 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
-                    庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
-                    結存量 = (庫存量 + 總異動量);
-                    flag_獨立作業 = this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.獨立作業);
-                    flag_雙人覆核 = this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核);
-                    if (庫存量 == -999)
-                    {
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()) continue;
-                        this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.無儲位.GetEnumName();
-                        this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
-                        return;
-                    }
-                    if (結存量 < 0)
-                    {
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()) continue;
-                        this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName();
-                        this.Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
-                        this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
-                        return;
-                    }
-                    if (flag_獨立作業)
-                    {
-                        if (flag_雙人覆核)
-                        {
-                            if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName())
-                            {
-                                this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName();
-                                this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
-                                return;
-                            }
-                        }
-                        bool flag_單循環取藥 = false;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName()) flag_單循環取藥 = true;                     
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待作業.GetEnumName()) flag_單循環取藥 = true;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待入賬.GetEnumName()) flag_單循環取藥 = true;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName()) flag_單循環取藥 = true;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待複盤.GetEnumName()) flag_單循環取藥 = true;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.盲盤完成.GetEnumName()) flag_單循環取藥 = true;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.複盤完成.GetEnumName()) flag_單循環取藥 = true;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.作業完成.GetEnumName()) flag_單循環取藥 = true;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()) flag_單循環取藥 = true;
-                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.輸入新效期.GetEnumName()) flag_單循環取藥 = true;
-                        if (flag_單循環取藥)
-                        {
-                            list_取藥堆疊母資料_buf.Add(list_取藥堆疊母資料[i]);
-                            this.list_取藥堆疊母資料 = list_取藥堆疊母資料_buf;
-                            cnt++;
-                            return;
-                        }
-                    }
-                }
-            }
-            cnt++;
-        }
         void cnt_Program_取藥堆疊資料_檢查資料_刷新新增效期(ref int cnt)
         {
-            if (this.list_取藥堆疊母資料.Count > 0)
+            List<object[]> _list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
+            if (_list_取藥堆疊母資料.Count > 0)
             {
                 List<object[]> list_取藥堆疊母資料_ReplaceValue = new List<object[]>();
                 List<object[]> list_取藥堆疊母資料_buf = new List<object[]>();
@@ -1202,7 +1124,7 @@ namespace 調劑台管理系統
                 string 效期 = "";
                 string 批號 = "";
                 string IP = "";
-                list_取藥堆疊母資料_buf = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.新增效期.GetEnumName());
+                list_取藥堆疊母資料_buf = _list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.新增效期.GetEnumName());
                 for (int i = 0; i < list_取藥堆疊母資料_buf.Count; i++)
                 {
                     藥品碼 = list_取藥堆疊母資料_buf[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
@@ -1310,6 +1232,86 @@ namespace 調劑台管理系統
             cnt++;
 
         }
+        void cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref int cnt)
+        {
+            if (this.list_取藥堆疊母資料.Count > 0)
+            {           
+                var Code_LINQ = (from value in list_取藥堆疊母資料
+                                 select value[(int)enum_取藥堆疊母資料.藥品碼]).ToList().Distinct();
+                List<object> list_code = Code_LINQ.ToList();
+                for (int i = 0; i < list_code.Count; i++)
+                {
+                    this.Function_從SQL取得儲位到雲端資料(list_code[i].ObjectToString());
+                }
+
+                List<object[]> list_取藥堆疊母資料_buf = new List<object[]>();
+                List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+                List<object[]> list_藥品管制方式設定 = this.sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
+                bool flag_獨立作業 = false;
+                bool flag_雙人覆核 = false;
+                string 藥品碼 = "";
+                int 總異動量 = 0;
+                int 庫存量 = 0;
+                int 結存量 = 0;
+
+                for (int i = 0; i < list_取藥堆疊母資料.Count; i++)
+                {
+                    藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                    總異動量 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
+                    庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
+                    結存量 = (庫存量 + 總異動量);
+                    flag_獨立作業 = this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.獨立作業);
+                    flag_雙人覆核 = this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核);
+                    if (庫存量 == -999)
+                    {
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()) continue;
+                        this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.無儲位.GetEnumName();
+                        this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
+                        return;
+                    }
+                    if (結存量 < 0)
+                    {
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()) continue;
+                        this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName();
+                        this.Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
+                        this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
+                        return;
+                    }
+                    if (flag_獨立作業)
+                    {
+                        if (flag_雙人覆核)
+                        {
+                            if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待刷新.GetEnumName())
+                            {
+                                this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName();
+                                this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);
+                                return;
+                            }
+                        }
+                        bool flag_單循環取藥 = false;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName()) flag_單循環取藥 = true;                     
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待作業.GetEnumName()) flag_單循環取藥 = true;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待入賬.GetEnumName()) flag_單循環取藥 = true;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName()) flag_單循環取藥 = true;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.等待複盤.GetEnumName()) flag_單循環取藥 = true;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.盲盤完成.GetEnumName()) flag_單循環取藥 = true;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.複盤完成.GetEnumName()) flag_單循環取藥 = true;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.作業完成.GetEnumName()) flag_單循環取藥 = true;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()) flag_單循環取藥 = true;
+                        if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.輸入新效期.GetEnumName()) flag_單循環取藥 = true;
+                        if (flag_單循環取藥)
+                        {
+                            list_取藥堆疊母資料_buf.Add(list_取藥堆疊母資料[i]);
+                            this.list_取藥堆疊母資料 = list_取藥堆疊母資料_buf;
+                            cnt++;
+                            return;
+                        }
+                    }
+                }
+            }
+            cnt++;
+        }
+   
         void cnt_Program_取藥堆疊資料_檢查資料_刷新無庫存(ref int cnt)
         {
             if (this.list_取藥堆疊母資料.Count > 0)
@@ -1483,7 +1485,7 @@ namespace 調劑台管理系統
                     else if (結存量 < 0 )
                     {
                         this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName();
-                        this.Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
+                       // this.Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
                         flag_取藥堆疊母資料_Update = true;
                     }
                     //更新取藥子堆疊資料
