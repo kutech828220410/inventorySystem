@@ -138,14 +138,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LadderUI.dll" size="588800">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LadderUI.dll" size="589312">
       <assemblyIdentity name="LadderUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UC0QN6Byf3dA7HLp949o2HBivTMSwOFEziGylgFL6Gc=</dsig:DigestValue>
+        <dsig:DigestValue>G99HfuWLrK6UFnjMEHF91ZCjGwBhapdEA3ydfs7iZ7Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

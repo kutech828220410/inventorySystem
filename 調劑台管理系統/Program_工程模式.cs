@@ -248,7 +248,8 @@ namespace 調劑台管理系統
         }
         public void SaveConfig工程模式()
         {
-            string StreamName = @".\\" + "adminConfig" + ".pro";
+            
+            string StreamName = $@"{currentDirectory}\adminConfig.pro";
             SaveConfig工程模式Class saveConfig = new SaveConfig工程模式Class();
 
             saveConfig.領藥台_01_Color = this.panel_工程模式_領藥台_01_顏色.BackColor;
@@ -257,7 +258,7 @@ namespace 調劑台管理系統
         }
         public void LoadConfig工程模式()
         {
-            string StreamName = @".\\" + "adminConfig" + ".pro";
+            string StreamName = $@"{currentDirectory}\adminConfig.pro";
             object temp = new object();
             Basic.FileIO.LoadProperties(ref temp, StreamName);
             if(temp is SaveConfig工程模式Class)
