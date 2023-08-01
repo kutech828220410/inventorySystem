@@ -261,11 +261,13 @@ namespace 調劑台管理系統
             if(medClasses.Count == 0)
             {
                 MyMessageBox.ShowDialog("找無此國際條碼!");
+                return;
             }
             List<object> list_儲位資訊 = this.Function_從SQL取得儲位到本地資料(medClasses[0].藥品碼);
             if (list_儲位資訊.Count == 0)
             {
                 MyMessageBox.ShowDialog($"藥碼 : {medClasses[0].藥品碼}\n藥名 : {medClasses[0].藥品名稱}\n找無此儲位資訊!");
+                return;
             }
             List<Device> devices = new List<Device>();
             for(int i = 0; i < list_儲位資訊.Count; i++)
