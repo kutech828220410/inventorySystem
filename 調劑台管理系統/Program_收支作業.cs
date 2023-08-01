@@ -211,7 +211,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_收支作業_單品入庫_狀態更新_檢查雙人覆核(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
+            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
 
