@@ -627,3 +627,5 @@ C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).exe
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).pdb
+C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\office.dll

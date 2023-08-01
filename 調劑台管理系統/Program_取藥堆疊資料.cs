@@ -224,7 +224,11 @@ namespace 調劑台管理系統
                 Console.WriteLine($" (開方時間){開方時間} ");
                 Console.WriteLine($" (狀態){takeMedicineStackClasses[i].狀態.GetEnumName()} ");
                 Console.WriteLine($" (總異動量){takeMedicineStackClasses[i].總異動量} ");
+                Console.WriteLine($" (顏色){takeMedicineStackClasses[i].顏色} ");
                 Console.WriteLine($" (複盤){flag_複盤} ");
+                Console.WriteLine($" (盲盤){flag_盲盤} ");
+                Console.WriteLine($" (效期管理){flag_效期管理} ");
+                Console.WriteLine($" (雙人覆核){flag_雙人覆核} ");
                 Console.WriteLine($" (效期管理){flag_效期管理} ");
                 Console.WriteLine($" (耗時){myTimer.ToString()} ");
                 Console.WriteLine($"----------------------------------------------");

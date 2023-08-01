@@ -2412,3 +2412,5 @@ C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Releas
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待條碼刷入.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_使用者登入.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_盤點數量錯誤.resources
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\office.dll

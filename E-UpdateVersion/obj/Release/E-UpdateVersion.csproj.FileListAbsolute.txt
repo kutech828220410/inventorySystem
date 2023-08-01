@@ -831,3 +831,5 @@ C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-Upd
 C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.exe
 C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.pdb
+C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
