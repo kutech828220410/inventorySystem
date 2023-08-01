@@ -152,6 +152,57 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        [Route("delete")]
+        [HttpPost]
+        public string POST_delete([FromBody] returnData returnData)
+        {
+            try
+            {
+                GET_init();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Method = "delete";
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
+                updateVersionClasses = (from temp in updateVersionClasses
+                                        where temp.program_name == returnData.Value
+                                        select temp).ToList();
+
+                if (returnData.Value.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Method = "delete";
+                    returnData.Result = $"傳入資料資訊錯誤!";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<object[]> list_value = updateVersionClasses.ClassToSQL<updateVersionClass, enum_updateVersion>();
+            
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                SQLControl sQLControl = new SQLControl(Server, DB, "update_version", UserName, Password, Port, SSLMode);
+                if (list_value.Count > 0) sQLControl.DeleteExtra(null, list_value);
+                returnData.Code = 200;
+                returnData.Data = "";
+                returnData.Method = "delete";
+                returnData.Result = $"刪除 update version 資訊成功! 刪除<{list_value.Count}>筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Method = "delete";
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
         [Route("download/{value}")]
         [HttpGet]
         public async Task<ActionResult> GET_download(string value)
@@ -179,7 +230,7 @@ namespace HIS_WebApi
 
                 return File(outputStream, "application/zip", "download.zip");
             }
-            catch
+            catch(Exception e)
             {
                 return null;
             }
@@ -208,9 +259,9 @@ namespace HIS_WebApi
 
                 return version;
             }
-            catch
+            catch(Exception e)
             {
-                return "";
+                return e.Message;
             }
 
         }

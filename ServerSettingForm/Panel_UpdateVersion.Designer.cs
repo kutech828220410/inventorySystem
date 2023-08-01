@@ -38,17 +38,18 @@ namespace ServerSettingForm
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_version = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label_標題 = new System.Windows.Forms.Label();
             this.label_更新時間 = new System.Windows.Forms.Label();
+            this.label_標題 = new System.Windows.Forms.Label();
             this.button_下載檔案 = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.button_刪除 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBox_致能
             // 
             this.checkBox_致能.AutoSize = true;
-            this.checkBox_致能.Location = new System.Drawing.Point(932, 66);
+            this.checkBox_致能.Location = new System.Drawing.Point(1010, 65);
             this.checkBox_致能.Name = "checkBox_致能";
             this.checkBox_致能.Size = new System.Drawing.Size(48, 16);
             this.checkBox_致能.TabIndex = 11;
@@ -116,8 +117,20 @@ namespace ServerSettingForm
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(983, 37);
+            this.panel1.Size = new System.Drawing.Size(1065, 37);
             this.panel1.TabIndex = 15;
+            // 
+            // label_更新時間
+            // 
+            this.label_更新時間.BackColor = System.Drawing.SystemColors.Window;
+            this.label_更新時間.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label_更新時間.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_更新時間.Location = new System.Drawing.Point(707, 0);
+            this.label_更新時間.Name = "label_更新時間";
+            this.label_更新時間.Size = new System.Drawing.Size(358, 37);
+            this.label_更新時間.TabIndex = 14;
+            this.label_更新時間.Text = "0000/00/00 00:00:00";
+            this.label_更新時間.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label_標題
             // 
@@ -132,18 +145,6 @@ namespace ServerSettingForm
             this.label_標題.Text = "標題";
             this.label_標題.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label_更新時間
-            // 
-            this.label_更新時間.BackColor = System.Drawing.SystemColors.Window;
-            this.label_更新時間.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_更新時間.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_更新時間.Location = new System.Drawing.Point(707, 0);
-            this.label_更新時間.Name = "label_更新時間";
-            this.label_更新時間.Size = new System.Drawing.Size(276, 37);
-            this.label_更新時間.TabIndex = 14;
-            this.label_更新時間.Text = "0000/00/00 00:00:00";
-            this.label_更新時間.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // button_下載檔案
             // 
             this.button_下載檔案.Location = new System.Drawing.Point(854, 54);
@@ -153,11 +154,21 @@ namespace ServerSettingForm
             this.button_下載檔案.Text = "下載檔案";
             this.button_下載檔案.UseVisualStyleBackColor = true;
             // 
+            // button_刪除
+            // 
+            this.button_刪除.Location = new System.Drawing.Point(932, 54);
+            this.button_刪除.Name = "button_刪除";
+            this.button_刪除.Size = new System.Drawing.Size(72, 41);
+            this.button_刪除.TabIndex = 17;
+            this.button_刪除.Text = "刪除";
+            this.button_刪除.UseVisualStyleBackColor = true;
+            // 
             // Panel_UpdateVersion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.button_刪除);
             this.Controls.Add(this.button_下載檔案);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox_version);
@@ -168,7 +179,7 @@ namespace ServerSettingForm
             this.Controls.Add(this.textBox_filepath);
             this.Controls.Add(this.label2);
             this.Name = "Panel_UpdateVersion";
-            this.Size = new System.Drawing.Size(983, 106);
+            this.Size = new System.Drawing.Size(1065, 106);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -190,5 +201,6 @@ namespace ServerSettingForm
         private System.Windows.Forms.Label label_標題;
         private System.Windows.Forms.Button button_下載檔案;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.Button button_刪除;
     }
 }

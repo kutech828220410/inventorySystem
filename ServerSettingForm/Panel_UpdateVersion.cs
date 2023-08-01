@@ -57,10 +57,24 @@ namespace ServerSettingForm
             this.button_瀏覽.Click += Button_瀏覽_Click;
             this.button_上傳.Click += Button_上傳_Click;
             this.button_下載檔案.Click += Button_下載檔案_Click;
+            this.button_刪除.Click += Button_刪除_Click;
         }
 
-   
 
+        private void Button_刪除_Click(object sender, EventArgs e)
+        {
+            if (ApiURL.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("update version api url is empty!");
+                return;
+            }
+            returnData returnData = new returnData();
+
+            returnData.Value = UpdateVersionClass.program_name;
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{ApiURL}/api/update/delete", json_in);
+            MyMessageBox.ShowDialog(json);
+        }
         private void Button_上傳_Click(object sender, EventArgs e)
         {
             if (ApiURL.StringIsEmpty())

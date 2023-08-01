@@ -372,6 +372,7 @@ namespace 調劑台管理系統
                 storage.SetValue(Device.ValueName.儲位名稱, Device.ValueType.Value, this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Text);
                 this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                 this.List_EPD266_本地資料.Add_NewStorage(storage);
+                PLC_Device_儲位管理_EPD266_資料更新.Bool = true;
                 this.Function_設定雲端資料更新();
             }
         }

@@ -174,7 +174,7 @@ namespace ServerSettingForm
             this.panel_UpdateVersion1.Location = new System.Drawing.Point(210, 243);
             this.panel_UpdateVersion1.Name = "panel_UpdateVersion1";
             this.panel_UpdateVersion1.Program_name = "調劑台";
-            this.panel_UpdateVersion1.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion1.Size = new System.Drawing.Size(1072, 106);
             this.panel_UpdateVersion1.TabIndex = 68;
             updateVersionClass1.enable = "False";
             updateVersionClass1.filepath = "";
@@ -190,7 +190,7 @@ namespace ServerSettingForm
             this.panel_UpdateVersion2.Location = new System.Drawing.Point(210, 355);
             this.panel_UpdateVersion2.Name = "panel_UpdateVersion2";
             this.panel_UpdateVersion2.Program_name = "藥庫";
-            this.panel_UpdateVersion2.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion2.Size = new System.Drawing.Size(1072, 106);
             this.panel_UpdateVersion2.TabIndex = 69;
             updateVersionClass2.enable = "False";
             updateVersionClass2.filepath = "";
@@ -206,7 +206,7 @@ namespace ServerSettingForm
             this.panel_UpdateVersion3.Location = new System.Drawing.Point(210, 467);
             this.panel_UpdateVersion3.Name = "panel_UpdateVersion3";
             this.panel_UpdateVersion3.Program_name = "中心叫號系統";
-            this.panel_UpdateVersion3.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion3.Size = new System.Drawing.Size(1072, 106);
             this.panel_UpdateVersion3.TabIndex = 70;
             updateVersionClass3.enable = "False";
             updateVersionClass3.filepath = "";
@@ -222,7 +222,7 @@ namespace ServerSettingForm
             this.panel_UpdateVersion4.Location = new System.Drawing.Point(210, 74);
             this.panel_UpdateVersion4.Name = "panel_UpdateVersion4";
             this.panel_UpdateVersion4.Program_name = "update";
-            this.panel_UpdateVersion4.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion4.Size = new System.Drawing.Size(1072, 106);
             this.panel_UpdateVersion4.TabIndex = 71;
             updateVersionClass4.enable = "False";
             updateVersionClass4.filepath = "";
@@ -238,7 +238,7 @@ namespace ServerSettingForm
             this.panel_UpdateVersion5.Location = new System.Drawing.Point(210, 708);
             this.panel_UpdateVersion5.Name = "panel_UpdateVersion5";
             this.panel_UpdateVersion5.Program_name = "temp0";
-            this.panel_UpdateVersion5.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion5.Size = new System.Drawing.Size(1072, 106);
             this.panel_UpdateVersion5.TabIndex = 72;
             updateVersionClass5.enable = "False";
             updateVersionClass5.filepath = "";
@@ -254,7 +254,7 @@ namespace ServerSettingForm
             this.panel_UpdateVersion6.Location = new System.Drawing.Point(210, 820);
             this.panel_UpdateVersion6.Name = "panel_UpdateVersion6";
             this.panel_UpdateVersion6.Program_name = "temp1";
-            this.panel_UpdateVersion6.Size = new System.Drawing.Size(984, 106);
+            this.panel_UpdateVersion6.Size = new System.Drawing.Size(1072, 106);
             this.panel_UpdateVersion6.TabIndex = 73;
             updateVersionClass6.enable = "False";
             updateVersionClass6.filepath = "";

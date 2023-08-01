@@ -289,9 +289,10 @@ namespace 調劑台管理系統
                 list_value.Add(value);
             }
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RefreshGrid(list_value);
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.SetSelectRow(list_value[0]);
+         
             if(list_value.Count == 1)
             {
+                this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.SetSelectRow(list_value[0]);
                 PlC_RJ_Button_收支作業_選擇儲位_MouseDownEvent(null);
             }
         }
