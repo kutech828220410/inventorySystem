@@ -20,8 +20,8 @@ using System.Text.Json.Serialization;
 using Basic;
 using IWshRuntimeLibrary;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.6.0")]
-[assembly: AssemblyFileVersion("1.0.6.0")]
+[assembly: AssemblyVersion("1.0.7.0")]
+[assembly: AssemblyFileVersion("1.0.7.0")]
 namespace E_UpdateVersion
 {
     public partial class Form1 : Form
@@ -121,7 +121,10 @@ namespace E_UpdateVersion
             this.SetUI();
             this.rJ_Button_離開.MouseDownEvent += RJ_Button_離開_MouseDownEvent;
             this.rJ_Button_智慧調劑台系統.MouseDownEvent += RJ_Button_智慧調劑台系統_MouseDownEvent;
+            this.rJ_Button_智能藥庫系統.MouseDownEvent += RJ_Button_智能藥庫系統_MouseDownEvent;
         }
+
+     
         #region Event
         private void 後台設定ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -142,6 +145,20 @@ namespace E_UpdateVersion
             }
             string arguments = $"{ApiServer} {調劑台名稱} {控制中心}";
             if (Download("調劑台", "調劑台管理系統", arguments) == false)
+            {
+                MyMessageBox.ShowDialog("取得更新資訊失敗!");
+            }
+        }
+        private void RJ_Button_智能藥庫系統_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string 調劑台名稱 = computerConfigClass.GetValue("智能藥庫系統", "系統名稱");
+            string 控制中心 = computerConfigClass.GetValue("智能藥庫系統", "控制中心");
+            if (調劑台名稱.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("指定藥庫名稱空白,請聯繫管理員至後台設定!");
+            }
+            string arguments = $"{ApiServer} {調劑台名稱} {控制中心}";
+            if (Download("藥庫", "智能藥庫系統", arguments) == false)
             {
                 MyMessageBox.ShowDialog("取得更新資訊失敗!");
             }

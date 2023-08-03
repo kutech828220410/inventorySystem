@@ -192,8 +192,9 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        [Route("{value}")]
         [HttpPost]
-        public string Post([FromBody] List<class_OutTakeMed_data> data)
+        public string Post([FromBody] List<class_OutTakeMed_data> data , string value)
         {
 
           
@@ -207,11 +208,11 @@ namespace HIS_WebApi
             }
             if (data.Count == 1)
             {
-                return single_med_take(name ,data);
+                return single_med_take(value, data);
             }
             else
             {
-                return mul_med_take(name , data);
+                return mul_med_take(value, data);
             }
         
         }

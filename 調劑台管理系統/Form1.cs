@@ -155,6 +155,7 @@ namespace 調劑台管理系統
 
             private bool _主機扣帳模式 = false;
             private bool _主機輸出模式 = false;
+            private bool _系統取藥模式 = false;
             private bool _RFID使用 = true;
             private bool _掃碼槍COM通訊 = true;
             private bool _藥物辨識圖片顯示 = true;
@@ -188,6 +189,7 @@ namespace 調劑台管理系統
             public bool 帳密登入_Enable { get => _帳密登入_Enable; set => _帳密登入_Enable = value; }
             public string 藥物辨識網址 { get => _藥物辨識網址; set => _藥物辨識網址 = value; }
             public bool 外部輸出 { get => _外部輸出; set => _外部輸出 = value; }
+            public bool 系統取藥模式 { get => _系統取藥模式; set => _系統取藥模式 = value; }
         }
         private void LoadMyConfig()
         {

@@ -735,7 +735,9 @@ namespace 調劑台管理系統
         void cnt_Program_領藥台_01_刷新領藥內容_取得資料(ref int cnt)
         {
             List<object[]> list_value = new List<object[]>();
-            List<object[]> list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
+            List<object[]> list_取藥堆疊資料 = new List<object[]>();
+            if (myConfigClass.系統取藥模式) list_取藥堆疊資料 = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+            else list_取藥堆疊資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.領藥台_01名稱);
             List<object[]> list_取藥堆疊資料_replace = new List<object[]>();
             string GUID = "";
             string 序號 = "";
