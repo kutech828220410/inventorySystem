@@ -1687,7 +1687,7 @@ namespace 調劑台管理系統
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
             // list_交易記錄 = list_交易記錄.GetRowsInDate((int)enum_交易記錄查詢資料.開方時間, dateTime_start, dateTime_end);
             Console.Write($"取得交易記錄資料 , 耗時{myTimer.ToString()}\n");
-            if(plC_CheckBox_退藥不檢查是否掃碼領藥過.Checked)
+            if(!plC_CheckBox_退藥不檢查是否掃碼領藥過.Checked)
             {
                 if (list_交易記錄.Count == 0)
                 {
@@ -3398,7 +3398,7 @@ namespace 調劑台管理系統
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
             // list_交易記錄 = list_交易記錄.GetRowsInDate((int)enum_交易記錄查詢資料.開方時間, dateTime_start, dateTime_end);
             Console.Write($"取得交易記錄資料 , 耗時{myTimer.ToString()}\n");
-            if (plC_CheckBox_退藥不檢查是否掃碼領藥過.Checked)
+            if (!plC_CheckBox_退藥不檢查是否掃碼領藥過.Checked)
             {
                 if (list_交易記錄.Count == 0)
                 {
