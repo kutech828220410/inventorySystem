@@ -361,7 +361,7 @@ namespace 調劑台管理系統
             string 藥品碼 = 取藥堆疊子資料[(int)enum_取藥堆疊子資料.藥品碼].ObjectToString();
             string device_GUID = 取藥堆疊子資料[(int)enum_取藥堆疊子資料.Device_GUID].ObjectToString();
 
-            if (device_Type == DeviceType.EPD266.GetEnumName() || device_Type == DeviceType.EPD266_lock.GetEnumName())
+            if (device_Type == DeviceType.EPD266.GetEnumName() || device_Type == DeviceType.EPD266_lock.GetEnumName() || device_Type == DeviceType.EPD290.GetEnumName() || device_Type == DeviceType.EPD290_lock.GetEnumName())
             {
                 Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
                 if (storage != null && storage.Speaker.StringIsEmpty() == false)
@@ -679,7 +679,7 @@ namespace 調劑台管理系統
                     }
                 }
             }
-            else if (str_TYPE == DeviceType.EPD266.GetEnumName() || str_TYPE == DeviceType.EPD266_lock.GetEnumName())
+            else if (str_TYPE == DeviceType.EPD266.GetEnumName() || str_TYPE == DeviceType.EPD266_lock.GetEnumName()|| str_TYPE == DeviceType.EPD290.GetEnumName() || str_TYPE == DeviceType.EPD290_lock.GetEnumName())
             {
                 Storage storage = this.List_EPD266_入賬資料.SortByIP(IP);
                 storage = this.storageUI_EPD_266.SQL_GetStorage(storage);
@@ -790,6 +790,20 @@ namespace 調劑台管理系統
                     }
                 }
                 else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266_lock.GetEnumName())
+                {
+                    if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
+                    {
+                        flag_可致能資料 = false;
+                    }
+                }
+                else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290.GetEnumName())
+                {
+                    if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
+                    {
+                        flag_可致能資料 = false;
+                    }
+                }
+                else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290_lock.GetEnumName())
                 {
                     if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
                     {
@@ -1134,7 +1148,7 @@ namespace 調劑台管理系統
                     this.Function_從雲端資料取得儲位(藥品碼, ref TYPE, ref values);
                     for (int k = 0; k < values.Count; k++)
                     {
-                        if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName())
+                        if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName()|| TYPE[k] == DeviceType.EPD290_lock.GetEnumName() || TYPE[k] == DeviceType.EPD290.GetEnumName())
                         {
 
                             Storage storage = (Storage)values[k];
@@ -1340,7 +1354,7 @@ namespace 調劑台管理系統
                     this.Function_從雲端資料取得儲位(藥品碼, ref TYPE, ref values);
                     for (int k = 0; k < values.Count; k++)
                     {
-                        if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName())
+                        if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName()|| TYPE[k] == DeviceType.EPD290_lock.GetEnumName() || TYPE[k] == DeviceType.EPD290.GetEnumName())
                         {
 
                             Storage storage = (Storage)values[k];
@@ -1686,7 +1700,7 @@ namespace 調劑台管理系統
                         this.drawerUI_EPD_583.Set_LED_UDP(drawer);
                         list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
                     }
-                    if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266_lock.GetEnumName())
+                    if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266_lock.GetEnumName()|| 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290_lock.GetEnumName())
                     {
                         Storage storage = List_EPD266_雲端資料.SortByIP(IP);
                         this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
@@ -2102,13 +2116,13 @@ namespace 調劑台管理系統
                                          where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()
                                          where value[(int)enum_取藥堆疊子資料.流程作業完成].ObjectToString() == false.ToString()
                                          where value[(int)enum_取藥堆疊子資料.配藥完成].ObjectToString() == false.ToString()
-                                         where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266.GetEnumName()
+                                         where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290.GetEnumName()
                                          select value).ToList();
             list_取藥子堆疊資料_2_66層架_作業已完成 = (from value in list_取藥子堆疊資料
                                          where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()
                                          where value[(int)enum_取藥堆疊子資料.流程作業完成].ObjectToString() == true.ToString()
                                          where value[(int)enum_取藥堆疊子資料.配藥完成].ObjectToString() == false.ToString()
-                                         where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266.GetEnumName()
+                                         where value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266.GetEnumName() || value[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290.GetEnumName()
                                          select value).ToList();
             list_取藥子堆疊資料_LED層架_作業未完成 = (from value in list_取藥子堆疊資料
                                         where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()
@@ -2194,7 +2208,7 @@ namespace 調劑台管理系統
                                 Console.WriteLine($"IP: {storage.IP} ,雷射數值 :{Dis_value}");
                                 if (Dis_value <= this.取藥堆疊資料_流程作業檢查_感測設定值 || this.PLC_Device_取藥堆疊資料_流程作業檢查_不檢測.Bool || !storage.TOFON)
                                 {
-                                    if (!this.PLC_Device_取藥堆疊資料_流程作業檢查_不檢測.Bool || !storage.TOFON) this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                                    //if (!this.PLC_Device_取藥堆疊資料_流程作業檢查_不檢測.Bool || !storage.TOFON) this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                                     list_需更新資料.Add(new string[] { 調劑台名稱, IP });
                                 }
                             }));

@@ -274,7 +274,7 @@ namespace 調劑台管理系統
                 value[(int)enum_儲位管理_EPD266_儲位資料.藥品條碼] =  List_EPD266_本地資料[i].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.庫存] = List_EPD266_本地資料[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
                 value[(int)enum_儲位管理_EPD266_儲位資料.警訊藥品] = List_EPD266_本地資料[i].IsWarning.ToString();
-                value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (List_EPD266_本地資料[i].DeviceType == DeviceType.EPD266_lock) ? true.ToString() : false.ToString();
+                value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (List_EPD266_本地資料[i].DeviceType == DeviceType.EPD266_lock || List_EPD266_本地資料[i].DeviceType == DeviceType.EPD290_lock) ? true.ToString() : false.ToString();
                 list_value.Add(value);
             }
             list_value.Sort(new ICP_儲位管理_EPD266_抽屜列表());
@@ -448,7 +448,7 @@ namespace 調劑台管理系統
             value[(int)enum_儲位管理_EPD266_儲位資料.包裝單位] = storage.GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.藥品條碼] = storage.GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.庫存] = storage.GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
-            value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock) ? true.ToString() : false.ToString();
+            value[(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock) ? true.ToString() : false.ToString();
             value[(int)enum_儲位管理_EPD266_儲位資料.警訊藥品] = storage.IsWarning.ToString();
             this.List_EPD266_本地資料.Add_NewStorage(storage);
             this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
@@ -988,7 +988,7 @@ namespace 調劑台管理系統
                     list_value_buf[0] = new object[new enum_儲位管理_EPD266_儲位資料().GetLength()];
                     list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.IP] = storage.IP;
                     list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.警訊藥品] = false.ToString();
-                    list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock) ? true.ToString() : false.ToString();
+                    list_value_buf[0][(int)enum_儲位管理_EPD266_儲位資料.鎖控] = (storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock) ? true.ToString() : false.ToString();
 
                     this.sqL_DataGridView_儲位管理_EPD266_儲位資料.Replace((int)enum_儲位管理_EPD266_儲位資料.IP, storage.IP, list_value_buf[0], true);
            

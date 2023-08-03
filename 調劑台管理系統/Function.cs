@@ -429,7 +429,7 @@ namespace 調劑台管理系統
             string TYPE = 儲位資訊[(int)enum_儲位資訊.TYPE].ObjectToString();
             if (Value is Storage)
             {
-                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName())
+                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName()|| TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName())
                 {
                     Storage storage = (Storage)Value;
                     storage = this.List_EPD266_雲端資料.SortByIP(storage.IP);
@@ -730,7 +730,7 @@ namespace 調劑台管理系統
 
                 if (device != null)
                 {
-                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock)
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock|| device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock)
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)
@@ -740,7 +740,7 @@ namespace 調劑台管理系統
                                 this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
                             }));
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.EPD266_lock) list_lock_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.EPD266_lock|| device.DeviceType == DeviceType.EPD290_lock) list_lock_IP.Add(IP);
                         }
                     }
                     else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
@@ -828,7 +828,7 @@ namespace 調劑台管理系統
 
                 if (device != null)
                 {
-                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock)
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock|| device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD290_lock)
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)
@@ -838,7 +838,7 @@ namespace 調劑台管理系統
                                 this.storageUI_EPD_266.DrawToEpd_UDP(storage);
                             }));
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.EPD266_lock) list_lock_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.EPD266_lock|| device.DeviceType == DeviceType.EPD290_lock) list_lock_IP.Add(IP);
                         }
                     }
                     else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)

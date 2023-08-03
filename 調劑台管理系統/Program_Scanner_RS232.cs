@@ -30,7 +30,9 @@ namespace 調劑台管理系統
             開方時間 = 13,
             藥品名稱 = 0,
             中文名稱 = 1,
+            頻次 = 7,
             包裝單位 = 8,
+      
         }
         void Program_Scanner_RS232_Init()
         {
@@ -168,6 +170,7 @@ namespace 調劑台管理系統
                 string 病歷號 = "";
                 string 開方日期 = "";
                 string 開方時間 = "";
+                string 頻次 = "";
                 string[] array = new string[20];
 
                 string[] array_buf;
@@ -181,6 +184,7 @@ namespace 調劑台管理系統
                     病歷號 = array_buf[(int)enum_Scanner_陣列內容.病歷號];
                     開方日期 = array_buf[(int)enum_Scanner_陣列內容.開方日期];
                     開方時間 = array_buf[(int)enum_Scanner_陣列內容.開方時間];
+                    頻次 = array_buf[(int)enum_Scanner_陣列內容.頻次];
                     已解析 = true;
                 }
                 array_buf = myConvert.分解分隔號字串(text, "~");
@@ -207,6 +211,7 @@ namespace 調劑台管理系統
                 array[(int)enum_Scanner_陣列內容.病歷號] = 病歷號.Trim();
                 array[(int)enum_Scanner_陣列內容.開方日期] = 開方日期.Trim();
                 array[(int)enum_Scanner_陣列內容.開方時間] = 開方時間.Trim();
+                array[(int)enum_Scanner_陣列內容.頻次] = 頻次.Trim();
 
 
                 string[] 開方日期_array = myConvert.分解分隔號字串(開方日期, "-");
@@ -223,6 +228,14 @@ namespace 調劑台管理系統
                 {
                     string Hour = 開方時間.Substring(0, 2);
                     string Min = 開方時間.Substring(2, 2);
+                    int temp = Min.StringToInt32();
+                    while (true)
+                    {
+                        if (temp < 0) temp = 0;
+                        if (temp >= 0 && temp < 60) break;
+                        temp--;
+                    }
+                    Min = temp.ToString();
                     array[(int)enum_Scanner_陣列內容.開方時間] = $"{ array[(int)enum_Scanner_陣列內容.開方日期]} {Hour}:{Min}";
                 }
                 else if (開方時間.Length == 8)
@@ -338,21 +351,23 @@ namespace 調劑台管理系統
                 string text = "";
 
                 if (!plC_RJ_Button_掃碼測試.Bool) text = MySerialPort_Scanner02.ReadString();
-                else text = "1;A123456794;4023;1960-02-12;屏榮門;AC58156212;2       ;Q12H    ;IVA;0006;567260;2022-10-12;44;1113;03348;1042;\r\n";
+                else text = "1;T221212947;0024;1974-01-24;賴姿尹;AC57779100;1       ;BID     ;PO ;0056;197159;2023-06-06;12;1117;08243;1324;\r\n";
                 text = text.Replace("\0", "");
                 Console.WriteLine($"接收資料長度 : {text.Length} ");
                 MySerialPort_Scanner02.ClearReadByte();
-                plC_RJ_Button_掃碼測試.Bool = false;
 
                 if (!plC_CheckBox_QRcode_Mode.Bool)
                 {
-                    this.領藥台_02_醫囑條碼 = text;
+                    this.領藥台_01_醫囑條碼 = text;
 
                     Console.WriteLine($"接收資料內容 : {text} ");
                     cnt++;
                     return;
                 }
-           
+
+                plC_RJ_Button_掃碼測試.Bool = false;
+
+
                 if (text.Length <= 2 || text.Length > 300)
                 {
                     Console.WriteLine($"接收資料長度異常");
@@ -367,19 +382,56 @@ namespace 調劑台管理系統
                 }
                 text = text.Replace("\r\n", "");
                 Console.WriteLine($"接收結尾碼!");
-                string[] array = myConvert.分解分隔號字串(text, ";");
-                if (array.Length <= 15)
+
+                string 病人姓名 = "";
+                string 藥品代碼 = "";
+                string 使用數量 = "";
+                string 病歷號 = "";
+                string 開方日期 = "";
+                string 開方時間 = "";
+                string 頻次 = "";
+                string[] array = new string[20];
+
+                string[] array_buf;
+                bool 已解析 = false;
+                array_buf = myConvert.分解分隔號字串(text, ";");
+                if (array_buf.Length > 15 && !已解析)
                 {
-                    Console.WriteLine($"接收資料長度分析內容異常");
+                    病人姓名 = array_buf[(int)enum_Scanner_陣列內容.病人姓名];
+                    藥品代碼 = array_buf[(int)enum_Scanner_陣列內容.藥品碼];
+                    使用數量 = array_buf[(int)enum_Scanner_陣列內容.使用數量];
+                    病歷號 = array_buf[(int)enum_Scanner_陣列內容.病歷號];
+                    開方日期 = array_buf[(int)enum_Scanner_陣列內容.開方日期];
+                    開方時間 = array_buf[(int)enum_Scanner_陣列內容.開方時間];
+                    頻次 = array_buf[(int)enum_Scanner_陣列內容.頻次];
+                    已解析 = true;
+                }
+                array_buf = myConvert.分解分隔號字串(text, "~");
+                if (array_buf.Length > 10 && !已解析)
+                {
+                    病人姓名 = "";
+                    藥品代碼 = array_buf[8];
+                    使用數量 = array_buf[4];
+                    病歷號 = array_buf[7];
+                    開方日期 = array_buf[9];
+                    開方時間 = array_buf[10];
+                    已解析 = true;
+                }
+
+                if (藥品代碼.StringIsEmpty())
+                {
+                    Console.WriteLine($"解析資料錯誤!");
                     cnt = 65500;
                     return;
                 }
-                string 病人姓名 = array[(int)enum_Scanner_陣列內容.病人姓名];
-                string 藥品代碼 = array[(int)enum_Scanner_陣列內容.藥品碼];
-                string 使用數量 = array[(int)enum_Scanner_陣列內容.使用數量];
-                string 病歷號 = array[(int)enum_Scanner_陣列內容.病歷號];
-                string 開方日期 = array[(int)enum_Scanner_陣列內容.開方日期];
-                string 開方時間 = array[(int)enum_Scanner_陣列內容.開方時間];
+                array[(int)enum_Scanner_陣列內容.病人姓名] = 病人姓名.Trim();
+                array[(int)enum_Scanner_陣列內容.藥品碼] = 藥品代碼.Trim();
+                array[(int)enum_Scanner_陣列內容.使用數量] = 使用數量.Trim();
+                array[(int)enum_Scanner_陣列內容.病歷號] = 病歷號.Trim();
+                array[(int)enum_Scanner_陣列內容.開方日期] = 開方日期.Trim();
+                array[(int)enum_Scanner_陣列內容.開方時間] = 開方時間.Trim();
+                array[(int)enum_Scanner_陣列內容.頻次] = 頻次.Trim();
+
 
                 string[] 開方日期_array = myConvert.分解分隔號字串(開方日期, "-");
                 if (開方日期_array.Length == 2)
@@ -390,12 +442,19 @@ namespace 調劑台管理系統
                 {
                     array[(int)enum_Scanner_陣列內容.開方日期] = $"{開方日期_array[0]}";
                 }
-
                 開方時間 = 開方時間.Trim();
                 if (開方時間.Length == 4)
                 {
                     string Hour = 開方時間.Substring(0, 2);
                     string Min = 開方時間.Substring(2, 2);
+                    int temp = Min.StringToInt32();
+                    while (true)
+                    {
+                        if (temp < 0) temp = 0;
+                        if (temp >= 0 && temp < 60) break;
+                        temp--;
+                    }
+                    Min = temp.ToString();
                     array[(int)enum_Scanner_陣列內容.開方時間] = $"{ array[(int)enum_Scanner_陣列內容.開方日期]} {Hour}:{Min}";
                 }
                 else if (開方時間.Length == 8)
@@ -406,7 +465,6 @@ namespace 調劑台管理系統
                 {
                     array[(int)enum_Scanner_陣列內容.開方時間] = $"{array[(int)enum_Scanner_陣列內容.開方日期]} {"00:00:00"}";
                 }
-
                 DateTime dateTime = new DateTime();
                 if (!DateTime.TryParse(array[(int)enum_Scanner_陣列內容.開方時間], out dateTime))
                 {

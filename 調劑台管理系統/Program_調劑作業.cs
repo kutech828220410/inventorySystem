@@ -1583,10 +1583,12 @@ namespace 調劑台管理系統
             string 病歷號 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.病歷號].ObjectToString();
             string 開方時間 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.開方時間].ObjectToString();
             string 包裝單位 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.包裝單位].ObjectToString();
+            string 頻次 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.頻次].ObjectToString();
 
 
-            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName() };
-            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間 };
+            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName() };
+            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次 };
+
             bool flag_重複領藥 = false;
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
             list_交易記錄 = (from value in list_交易記錄
@@ -3289,10 +3291,11 @@ namespace 調劑台管理系統
             string 病歷號 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.病歷號].ObjectToString();
             string 開方時間 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.開方時間].ObjectToString();
             string 包裝單位 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.包裝單位].ObjectToString();
+            string 頻次 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.頻次].ObjectToString();
 
 
-            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName() };
-            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間 };
+            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName() };
+            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次 };
             bool flag_重複領藥 = false;
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
             list_交易記錄 = (from value in list_交易記錄

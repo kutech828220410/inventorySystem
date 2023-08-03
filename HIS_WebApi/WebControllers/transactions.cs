@@ -386,6 +386,7 @@ namespace HIS_WebApi
             table.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("操作人", Table.StringType.VARCHAR, 15, Table.IndexType.INDEX);
             table.AddColumnList("病人姓名", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+            table.AddColumnList("頻次", Table.StringType.VARCHAR, 15, Table.IndexType.None);
             table.AddColumnList("床號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("病歷號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("操作時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
