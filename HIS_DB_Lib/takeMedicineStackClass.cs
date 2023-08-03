@@ -58,6 +58,7 @@ namespace HIS_DB_Lib
         病歷號,
         病人姓名,
         床號,
+        頻次,
         開方時間,
         操作時間,
         顏色,
@@ -109,6 +110,7 @@ namespace HIS_DB_Lib
         public string 病歷號 { get; set; }
         public string 病人姓名 { get; set; }
         public string 床號 { get; set; }
+        public string 頻次 { get; set; }
         public string 開方時間 { get; set; }
         public string 操作時間 { get; set; }
         public string 顏色 { get; set; }

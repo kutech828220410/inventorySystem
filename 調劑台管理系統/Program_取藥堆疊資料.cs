@@ -2390,6 +2390,7 @@ namespace 調劑台管理系統
             string 操作人 = "";
             string 病人姓名 = "";
             string 床號 = "";
+            string 頻次 = "";
             string 病歷號 = "";
             string 操作時間 = "";
             string 開方時間 = "";
@@ -2416,6 +2417,7 @@ namespace 調劑台管理系統
                 盤點量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.盤點量].ObjectToString();
                 病人姓名 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.病人姓名].ObjectToString();
                 床號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
+                頻次 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.頻次].ObjectToString();
                 病歷號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
                 操作時間 = DateTime.Now.ToDateTimeString_6();
                 開方時間 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
@@ -2470,6 +2472,7 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.操作人] = 操作人;
                 value_trading[(int)enum_交易記錄查詢資料.病人姓名] = 病人姓名;
                 value_trading[(int)enum_交易記錄查詢資料.床號] = 床號;
+                value_trading[(int)enum_交易記錄查詢資料.頻次] = 頻次;
                 value_trading[(int)enum_交易記錄查詢資料.病歷號] = 病歷號;
                 value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
                 if(開方時間.StringIsEmpty())
