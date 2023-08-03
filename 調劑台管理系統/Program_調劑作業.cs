@@ -1586,11 +1586,11 @@ namespace 調劑台管理系統
             string 頻次 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.頻次].ObjectToString();
 
 
-            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName() };
-            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次 };
+            string[] _serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName() };
+            string[] _serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次 };
 
             bool flag_重複領藥 = false;
-            List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
+            List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(_serchnames, _serchvalues, false);
             list_交易記錄 = (from value in list_交易記錄
                          where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToInt32() < 0
                          select value).ToList();
@@ -1606,6 +1606,9 @@ namespace 調劑台管理系統
                 }
                 else return;
             }
+
+            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName() };
+            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間 };
             if (sqL_DataGridView_領藥台_01_領藥內容.GetRows(serchnames, serchvalues, false).Count > 0)
             {
                 this.voice.SpeakOnTask("此藥單正在領取中");
@@ -1633,6 +1636,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.單位 = 包裝單位;
             takeMedicineStackClass.病歷號 = 病歷號;
             takeMedicineStackClass.床號 = 床號;
+            takeMedicineStackClass.頻次 = 頻次;
             takeMedicineStackClass.病人姓名 = 病人姓名;
             takeMedicineStackClass.開方時間 = 開方時間;
             takeMedicineStackClass.操作人 = 操作人;
@@ -3294,10 +3298,11 @@ namespace 調劑台管理系統
             string 頻次 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.頻次].ObjectToString();
 
 
-            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName() };
-            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次 };
+            string[] _serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName() };
+            string[] _serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次 };
+
             bool flag_重複領藥 = false;
-            List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
+            List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(_serchnames, _serchvalues, false);
             list_交易記錄 = (from value in list_交易記錄
                          where value[(int)enum_交易記錄查詢資料.交易量].ObjectToString().StringToInt32() < 0
                          select value).ToList();
@@ -3313,6 +3318,8 @@ namespace 調劑台管理系統
                 }
                 else return;
             }
+            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName()};
+            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間 };
             if (sqL_DataGridView_領藥台_02_領藥內容.GetRows(serchnames, serchvalues, false).Count > 0)
             {
                 this.voice.SpeakOnTask("此藥單正在領取中");
@@ -3340,6 +3347,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.單位 = 包裝單位;
             takeMedicineStackClass.病歷號 = 病歷號;
             takeMedicineStackClass.床號 = 床號;
+            takeMedicineStackClass.頻次 = 頻次;
             takeMedicineStackClass.病人姓名 = 病人姓名;
             takeMedicineStackClass.開方時間 = 開方時間;
             takeMedicineStackClass.操作人 = 操作人;

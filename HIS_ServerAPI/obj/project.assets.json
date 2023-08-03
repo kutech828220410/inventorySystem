@@ -962,23 +962,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hsonds01\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\HS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hsonds01\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
+      "projectUniqueName": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
       "projectName": "HIS_ServerAPI",
-      "projectPath": "C:\\Users\\hsonds01\\source\\repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
-      "packagesPath": "C:\\Users\\hsonds01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hsonds01\\source\\repos\\inventorySystem\\HIS_ServerAPI\\obj\\",
+      "projectPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\HIS_ServerAPI.csproj",
+      "packagesPath": "C:\\Users\\HS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_ServerAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\hsonds01\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1031,7 +1027,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.413\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -94,6 +94,8 @@ namespace HIS_DB_Lib
         public string 病人姓名 { get; set; }
         [JsonPropertyName("BED")]
         public string 床號 { get; set; }
+        [JsonPropertyName("FREQ")]
+        public string 頻次 { get; set; }
         [JsonPropertyName("MRN")]
         public string 病歷號 { get; set; }
         [JsonPropertyName("OP_TIME")]
