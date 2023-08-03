@@ -18,7 +18,7 @@
     <ROW Property="ProductVersion" Value="1.0.7.0" Type="32" TargetFile="exe"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
-    <ROW Property="UpgradeCode" Value="{DD530B82-8A1C-4702-89C3-1D317BE8BDF9}"/>
+    <ROW Property="UpgradeCode" Value="{8FE40B3B-0F28-415F-BE7B-F12C75DCB707}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
