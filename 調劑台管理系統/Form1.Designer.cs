@@ -318,6 +318,14 @@
             this.plC_RJ_Button_藥品資料_刪除 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_藥品資料_更新藥櫃資料 = new MyUI.PLC_RJ_Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.panel85 = new System.Windows.Forms.Panel();
+            this.textBox_藥品資料_藥檔資料_許可證號 = new MyUI.RJ_TextBox();
+            this.panel86 = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
+            this.panel81 = new System.Windows.Forms.Panel();
+            this.textBox_藥品資料_藥檔資料_廠牌 = new MyUI.RJ_TextBox();
+            this.panel82 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
             this.plC_CheckBox_藥品資料_藥檔資料_生物製劑 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品 = new MyUI.PLC_CheckBox();
             this.plC_RJ_Button_藥品資料_條碼管理 = new MyUI.PLC_RJ_Button();
@@ -438,6 +446,7 @@
             this.plC_ScreenPage_人員資料 = new MyUI.PLC_ScreenPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.panel80 = new System.Windows.Forms.Panel();
+            this.rJ_TextBox_人員資料_識別圖案 = new MyUI.RJ_TextBox();
             this.plC_Button_人員資料_指紋輸入 = new MyUI.PLC_Button();
             this.plC_Button_人員資料_條碼掃描 = new MyUI.PLC_Button();
             this.plC_Button_人員資料_RFID感應 = new MyUI.PLC_Button();
@@ -469,8 +478,9 @@
             this.plC_RJ_Button_人員資料_清除內容 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_人員資料_登錄 = new MyUI.PLC_RJ_Button();
             this.rJ_GroupBox15 = new MyUI.RJ_GroupBox();
-            this.rJ_TextBox_人員資料_識別圖案 = new MyUI.RJ_TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.rJ_TextBox_人員資料_藥師證字號 = new MyUI.RJ_TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.rJ_TextBox_人員資料_一維條碼 = new MyUI.RJ_TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.rJ_TextBox_人員資料_卡號 = new MyUI.RJ_TextBox();
@@ -1452,6 +1462,8 @@
             this.rJ_GroupBox12.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox12.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel85.SuspendLayout();
+            this.panel81.SuspendLayout();
             this.groupBox_藥品資料_藥檔資料_設定.SuspendLayout();
             this.panel75.SuspendLayout();
             this.panel69.SuspendLayout();
@@ -9150,6 +9162,8 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.panel85);
+            this.panel6.Controls.Add(this.panel81);
             this.panel6.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_生物製劑);
             this.panel6.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_高價藥品);
             this.panel6.Controls.Add(this.plC_RJ_Button_藥品資料_條碼管理);
@@ -9170,8 +9184,120 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(831, 346);
+            this.panel6.Size = new System.Drawing.Size(831, 357);
             this.panel6.TabIndex = 129;
+            // 
+            // panel85
+            // 
+            this.panel85.Controls.Add(this.textBox_藥品資料_藥檔資料_許可證號);
+            this.panel85.Controls.Add(this.panel86);
+            this.panel85.Controls.Add(this.label27);
+            this.panel85.Location = new System.Drawing.Point(304, 236);
+            this.panel85.Name = "panel85";
+            this.panel85.Size = new System.Drawing.Size(265, 36);
+            this.panel85.TabIndex = 135;
+            // 
+            // textBox_藥品資料_藥檔資料_許可證號
+            // 
+            this.textBox_藥品資料_藥檔資料_許可證號.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_藥品資料_藥檔資料_許可證號.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.textBox_藥品資料_藥檔資料_許可證號.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_藥品資料_藥檔資料_許可證號.BorderRadius = 2;
+            this.textBox_藥品資料_藥檔資料_許可證號.BorderSize = 1;
+            this.textBox_藥品資料_藥檔資料_許可證號.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_藥品資料_藥檔資料_許可證號.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_藥品資料_藥檔資料_許可證號.ForeColor = System.Drawing.Color.Black;
+            this.textBox_藥品資料_藥檔資料_許可證號.GUID = "";
+            this.textBox_藥品資料_藥檔資料_許可證號.Location = new System.Drawing.Point(122, 0);
+            this.textBox_藥品資料_藥檔資料_許可證號.Multiline = false;
+            this.textBox_藥品資料_藥檔資料_許可證號.Name = "textBox_藥品資料_藥檔資料_許可證號";
+            this.textBox_藥品資料_藥檔資料_許可證號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_藥品資料_藥檔資料_許可證號.PassWordChar = false;
+            this.textBox_藥品資料_藥檔資料_許可證號.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.textBox_藥品資料_藥檔資料_許可證號.PlaceholderText = "";
+            this.textBox_藥品資料_藥檔資料_許可證號.ShowTouchPannel = false;
+            this.textBox_藥品資料_藥檔資料_許可證號.Size = new System.Drawing.Size(143, 34);
+            this.textBox_藥品資料_藥檔資料_許可證號.TabIndex = 112;
+            this.textBox_藥品資料_藥檔資料_許可證號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_藥品資料_藥檔資料_許可證號.Texts = "";
+            this.textBox_藥品資料_藥檔資料_許可證號.UnderlineStyle = false;
+            // 
+            // panel86
+            // 
+            this.panel86.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel86.Location = new System.Drawing.Point(112, 0);
+            this.panel86.Name = "panel86";
+            this.panel86.Size = new System.Drawing.Size(10, 36);
+            this.panel86.TabIndex = 1;
+            // 
+            // label27
+            // 
+            this.label27.BackColor = System.Drawing.Color.LightCyan;
+            this.label27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label27.Font = new System.Drawing.Font("新細明體", 12F);
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(0, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(112, 36);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "許可證號";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel81
+            // 
+            this.panel81.Controls.Add(this.textBox_藥品資料_藥檔資料_廠牌);
+            this.panel81.Controls.Add(this.panel82);
+            this.panel81.Controls.Add(this.label20);
+            this.panel81.Location = new System.Drawing.Point(3, 238);
+            this.panel81.Name = "panel81";
+            this.panel81.Size = new System.Drawing.Size(295, 36);
+            this.panel81.TabIndex = 134;
+            // 
+            // textBox_藥品資料_藥檔資料_廠牌
+            // 
+            this.textBox_藥品資料_藥檔資料_廠牌.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_藥品資料_藥檔資料_廠牌.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.textBox_藥品資料_藥檔資料_廠牌.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_藥品資料_藥檔資料_廠牌.BorderRadius = 2;
+            this.textBox_藥品資料_藥檔資料_廠牌.BorderSize = 1;
+            this.textBox_藥品資料_藥檔資料_廠牌.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_藥品資料_藥檔資料_廠牌.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_藥品資料_藥檔資料_廠牌.ForeColor = System.Drawing.Color.Black;
+            this.textBox_藥品資料_藥檔資料_廠牌.GUID = "";
+            this.textBox_藥品資料_藥檔資料_廠牌.Location = new System.Drawing.Point(122, 0);
+            this.textBox_藥品資料_藥檔資料_廠牌.Multiline = false;
+            this.textBox_藥品資料_藥檔資料_廠牌.Name = "textBox_藥品資料_藥檔資料_廠牌";
+            this.textBox_藥品資料_藥檔資料_廠牌.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_藥品資料_藥檔資料_廠牌.PassWordChar = false;
+            this.textBox_藥品資料_藥檔資料_廠牌.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.textBox_藥品資料_藥檔資料_廠牌.PlaceholderText = "";
+            this.textBox_藥品資料_藥檔資料_廠牌.ShowTouchPannel = false;
+            this.textBox_藥品資料_藥檔資料_廠牌.Size = new System.Drawing.Size(173, 34);
+            this.textBox_藥品資料_藥檔資料_廠牌.TabIndex = 111;
+            this.textBox_藥品資料_藥檔資料_廠牌.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_藥品資料_藥檔資料_廠牌.Texts = "";
+            this.textBox_藥品資料_藥檔資料_廠牌.UnderlineStyle = false;
+            // 
+            // panel82
+            // 
+            this.panel82.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel82.Location = new System.Drawing.Point(112, 0);
+            this.panel82.Name = "panel82";
+            this.panel82.Size = new System.Drawing.Size(10, 36);
+            this.panel82.TabIndex = 1;
+            // 
+            // label20
+            // 
+            this.label20.BackColor = System.Drawing.Color.LightCyan;
+            this.label20.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label20.Font = new System.Drawing.Font("新細明體", 12F);
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(0, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(112, 36);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "廠牌";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // plC_CheckBox_藥品資料_藥檔資料_生物製劑
             // 
@@ -9179,7 +9305,7 @@
             this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Bool = false;
             this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Location = new System.Drawing.Point(198, 289);
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Location = new System.Drawing.Point(198, 328);
             this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Name = "plC_CheckBox_藥品資料_藥檔資料_生物製劑";
             this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Size = new System.Drawing.Size(93, 25);
             this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.TabIndex = 133;
@@ -9197,7 +9323,7 @@
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Bool = false;
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Location = new System.Drawing.Point(102, 289);
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Location = new System.Drawing.Point(102, 328);
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Name = "plC_CheckBox_藥品資料_藥檔資料_高價藥品";
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Size = new System.Drawing.Size(93, 25);
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.TabIndex = 132;
@@ -9383,7 +9509,7 @@
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Bool = false;
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Location = new System.Drawing.Point(6, 289);
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Location = new System.Drawing.Point(6, 328);
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Name = "plC_CheckBox_藥品資料_藥檔資料_警訊藥品";
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Size = new System.Drawing.Size(93, 25);
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.TabIndex = 12;
@@ -9400,7 +9526,7 @@
             this.panel75.Controls.Add(this.comboBox_藥品資料_藥檔資料_管制級別);
             this.panel75.Controls.Add(this.panel76);
             this.panel75.Controls.Add(this.label1);
-            this.panel75.Location = new System.Drawing.Point(396, 238);
+            this.panel75.Location = new System.Drawing.Point(396, 277);
             this.panel75.Name = "panel75";
             this.panel75.Size = new System.Drawing.Size(173, 36);
             this.panel75.TabIndex = 11;
@@ -9458,7 +9584,7 @@
             this.panel69.Controls.Add(this.textBox_藥品資料_藥檔資料_安全庫存);
             this.panel69.Controls.Add(this.panel70);
             this.panel69.Controls.Add(this.label24);
-            this.panel69.Location = new System.Drawing.Point(199, 238);
+            this.panel69.Location = new System.Drawing.Point(199, 277);
             this.panel69.Name = "panel69";
             this.panel69.Size = new System.Drawing.Size(191, 36);
             this.panel69.TabIndex = 9;
@@ -9514,7 +9640,7 @@
             this.panel64.Controls.Add(this.textBox_藥品資料_藥檔資料_庫存);
             this.panel64.Controls.Add(this.panel65);
             this.panel64.Controls.Add(this.label22);
-            this.panel64.Location = new System.Drawing.Point(3, 238);
+            this.panel64.Location = new System.Drawing.Point(3, 277);
             this.panel64.Name = "panel64";
             this.panel64.Size = new System.Drawing.Size(190, 36);
             this.panel64.TabIndex = 8;
@@ -11798,6 +11924,7 @@
             // 
             // panel80
             // 
+            this.panel80.Controls.Add(this.rJ_TextBox_人員資料_識別圖案);
             this.panel80.Controls.Add(this.plC_Button_人員資料_指紋輸入);
             this.panel80.Controls.Add(this.plC_Button_人員資料_條碼掃描);
             this.panel80.Controls.Add(this.plC_Button_人員資料_RFID感應);
@@ -11806,6 +11933,31 @@
             this.panel80.Name = "panel80";
             this.panel80.Size = new System.Drawing.Size(170, 377);
             this.panel80.TabIndex = 141;
+            // 
+            // rJ_TextBox_人員資料_識別圖案
+            // 
+            this.rJ_TextBox_人員資料_識別圖案.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_人員資料_識別圖案.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.rJ_TextBox_人員資料_識別圖案.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_人員資料_識別圖案.BorderRadius = 0;
+            this.rJ_TextBox_人員資料_識別圖案.BorderSize = 2;
+            this.rJ_TextBox_人員資料_識別圖案.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_人員資料_識別圖案.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_識別圖案.GUID = "";
+            this.rJ_TextBox_人員資料_識別圖案.Location = new System.Drawing.Point(6, 329);
+            this.rJ_TextBox_人員資料_識別圖案.Multiline = false;
+            this.rJ_TextBox_人員資料_識別圖案.Name = "rJ_TextBox_人員資料_識別圖案";
+            this.rJ_TextBox_人員資料_識別圖案.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_人員資料_識別圖案.PassWordChar = false;
+            this.rJ_TextBox_人員資料_識別圖案.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_人員資料_識別圖案.PlaceholderText = "";
+            this.rJ_TextBox_人員資料_識別圖案.ShowTouchPannel = false;
+            this.rJ_TextBox_人員資料_識別圖案.Size = new System.Drawing.Size(421, 30);
+            this.rJ_TextBox_人員資料_識別圖案.TabIndex = 135;
+            this.rJ_TextBox_人員資料_識別圖案.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_人員資料_識別圖案.Texts = "";
+            this.rJ_TextBox_人員資料_識別圖案.UnderlineStyle = false;
+            this.rJ_TextBox_人員資料_識別圖案.Visible = false;
             // 
             // plC_Button_人員資料_指紋輸入
             // 
@@ -12707,7 +12859,6 @@
             this.rJ_GroupBox15.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox15.ContentsPanel.BorderRadius = 2;
             this.rJ_GroupBox15.ContentsPanel.BorderSize = 2;
-            this.rJ_GroupBox15.ContentsPanel.Controls.Add(this.rJ_TextBox_人員資料_識別圖案);
             this.rJ_GroupBox15.ContentsPanel.Controls.Add(this.tableLayoutPanel5);
             this.rJ_GroupBox15.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox15.ContentsPanel.ForeColor = System.Drawing.Color.White;
@@ -12738,37 +12889,14 @@
             this.rJ_GroupBox15.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_GroupBox15.TitleTexts = "資料內容";
             // 
-            // rJ_TextBox_人員資料_識別圖案
-            // 
-            this.rJ_TextBox_人員資料_識別圖案.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_人員資料_識別圖案.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_TextBox_人員資料_識別圖案.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_人員資料_識別圖案.BorderRadius = 0;
-            this.rJ_TextBox_人員資料_識別圖案.BorderSize = 2;
-            this.rJ_TextBox_人員資料_識別圖案.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_識別圖案.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_人員資料_識別圖案.GUID = "";
-            this.rJ_TextBox_人員資料_識別圖案.Location = new System.Drawing.Point(49, 334);
-            this.rJ_TextBox_人員資料_識別圖案.Multiline = false;
-            this.rJ_TextBox_人員資料_識別圖案.Name = "rJ_TextBox_人員資料_識別圖案";
-            this.rJ_TextBox_人員資料_識別圖案.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_人員資料_識別圖案.PassWordChar = false;
-            this.rJ_TextBox_人員資料_識別圖案.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_人員資料_識別圖案.PlaceholderText = "";
-            this.rJ_TextBox_人員資料_識別圖案.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_識別圖案.Size = new System.Drawing.Size(421, 30);
-            this.rJ_TextBox_人員資料_識別圖案.TabIndex = 135;
-            this.rJ_TextBox_人員資料_識別圖案.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_人員資料_識別圖案.Texts = "";
-            this.rJ_TextBox_人員資料_識別圖案.UnderlineStyle = false;
-            this.rJ_TextBox_人員資料_識別圖案.Visible = false;
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.32733F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.67268F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.42943F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.57057F));
+            this.tableLayoutPanel5.Controls.Add(this.rJ_TextBox_人員資料_藥師證字號, 1, 9);
+            this.tableLayoutPanel5.Controls.Add(this.label19, 0, 9);
             this.tableLayoutPanel5.Controls.Add(this.rJ_TextBox_人員資料_一維條碼, 1, 8);
             this.tableLayoutPanel5.Controls.Add(this.label7, 0, 8);
             this.tableLayoutPanel5.Controls.Add(this.rJ_TextBox_人員資料_卡號, 1, 7);
@@ -12805,8 +12933,44 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(334, 325);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(334, 371);
             this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // rJ_TextBox_人員資料_藥師證字號
+            // 
+            this.rJ_TextBox_人員資料_藥師證字號.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_人員資料_藥師證字號.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.rJ_TextBox_人員資料_藥師證字號.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_人員資料_藥師證字號.BorderRadius = 0;
+            this.rJ_TextBox_人員資料_藥師證字號.BorderSize = 2;
+            this.rJ_TextBox_人員資料_藥師證字號.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_人員資料_藥師證字號.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_藥師證字號.GUID = "";
+            this.rJ_TextBox_人員資料_藥師證字號.Location = new System.Drawing.Point(102, 328);
+            this.rJ_TextBox_人員資料_藥師證字號.Multiline = false;
+            this.rJ_TextBox_人員資料_藥師證字號.Name = "rJ_TextBox_人員資料_藥師證字號";
+            this.rJ_TextBox_人員資料_藥師證字號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_人員資料_藥師證字號.PassWordChar = false;
+            this.rJ_TextBox_人員資料_藥師證字號.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_人員資料_藥師證字號.PlaceholderText = "";
+            this.rJ_TextBox_人員資料_藥師證字號.ShowTouchPannel = false;
+            this.rJ_TextBox_人員資料_藥師證字號.Size = new System.Drawing.Size(228, 30);
+            this.rJ_TextBox_人員資料_藥師證字號.TabIndex = 142;
+            this.rJ_TextBox_人員資料_藥師證字號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_人員資料_藥師證字號.Texts = "";
+            this.rJ_TextBox_人員資料_藥師證字號.UnderlineStyle = false;
+            // 
+            // label19
+            // 
+            this.label19.BackColor = System.Drawing.Color.LightCyan;
+            this.label19.Font = new System.Drawing.Font("新細明體", 12F);
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(4, 325);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(91, 35);
+            this.label19.TabIndex = 141;
+            this.label19.Text = "藥師證號";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // rJ_TextBox_人員資料_一維條碼
             // 
@@ -12818,7 +12982,7 @@
             this.rJ_TextBox_人員資料_一維條碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_一維條碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_人員資料_一維條碼.GUID = "";
-            this.rJ_TextBox_人員資料_一維條碼.Location = new System.Drawing.Point(95, 292);
+            this.rJ_TextBox_人員資料_一維條碼.Location = new System.Drawing.Point(102, 292);
             this.rJ_TextBox_人員資料_一維條碼.Multiline = false;
             this.rJ_TextBox_人員資料_一維條碼.Name = "rJ_TextBox_人員資料_一維條碼";
             this.rJ_TextBox_人員資料_一維條碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -12826,7 +12990,7 @@
             this.rJ_TextBox_人員資料_一維條碼.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_人員資料_一維條碼.PlaceholderText = "";
             this.rJ_TextBox_人員資料_一維條碼.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_一維條碼.Size = new System.Drawing.Size(235, 30);
+            this.rJ_TextBox_人員資料_一維條碼.Size = new System.Drawing.Size(228, 30);
             this.rJ_TextBox_人員資料_一維條碼.TabIndex = 134;
             this.rJ_TextBox_人員資料_一維條碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_人員資料_一維條碼.Texts = "";
@@ -12839,7 +13003,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(4, 289);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 35);
+            this.label7.Size = new System.Drawing.Size(91, 35);
             this.label7.TabIndex = 134;
             this.label7.Text = "一維條碼";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -12854,7 +13018,7 @@
             this.rJ_TextBox_人員資料_卡號.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_卡號.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_人員資料_卡號.GUID = "";
-            this.rJ_TextBox_人員資料_卡號.Location = new System.Drawing.Point(95, 256);
+            this.rJ_TextBox_人員資料_卡號.Location = new System.Drawing.Point(102, 256);
             this.rJ_TextBox_人員資料_卡號.Multiline = false;
             this.rJ_TextBox_人員資料_卡號.Name = "rJ_TextBox_人員資料_卡號";
             this.rJ_TextBox_人員資料_卡號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -12862,7 +13026,7 @@
             this.rJ_TextBox_人員資料_卡號.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_人員資料_卡號.PlaceholderText = "";
             this.rJ_TextBox_人員資料_卡號.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_卡號.Size = new System.Drawing.Size(235, 30);
+            this.rJ_TextBox_人員資料_卡號.Size = new System.Drawing.Size(228, 30);
             this.rJ_TextBox_人員資料_卡號.TabIndex = 113;
             this.rJ_TextBox_人員資料_卡號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_人員資料_卡號.Texts = "";
@@ -12900,7 +13064,7 @@
             "20"});
             this.comboBox_人員資料_權限等級.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
             this.comboBox_人員資料_權限等級.ListTextColor = System.Drawing.Color.DimGray;
-            this.comboBox_人員資料_權限等級.Location = new System.Drawing.Point(95, 184);
+            this.comboBox_人員資料_權限等級.Location = new System.Drawing.Point(102, 184);
             this.comboBox_人員資料_權限等級.MinimumSize = new System.Drawing.Size(50, 30);
             this.comboBox_人員資料_權限等級.Name = "comboBox_人員資料_權限等級";
             this.comboBox_人員資料_權限等級.Padding = new System.Windows.Forms.Padding(1);
@@ -12918,7 +13082,7 @@
             this.rJ_TextBox_人員資料_單位.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_單位.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_人員資料_單位.GUID = "";
-            this.rJ_TextBox_人員資料_單位.Location = new System.Drawing.Point(95, 148);
+            this.rJ_TextBox_人員資料_單位.Location = new System.Drawing.Point(102, 148);
             this.rJ_TextBox_人員資料_單位.Multiline = false;
             this.rJ_TextBox_人員資料_單位.Name = "rJ_TextBox_人員資料_單位";
             this.rJ_TextBox_人員資料_單位.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -12926,7 +13090,7 @@
             this.rJ_TextBox_人員資料_單位.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_人員資料_單位.PlaceholderText = "";
             this.rJ_TextBox_人員資料_單位.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_單位.Size = new System.Drawing.Size(235, 30);
+            this.rJ_TextBox_人員資料_單位.Size = new System.Drawing.Size(228, 30);
             this.rJ_TextBox_人員資料_單位.TabIndex = 112;
             this.rJ_TextBox_人員資料_單位.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_人員資料_單位.Texts = "";
@@ -12942,7 +13106,7 @@
             this.rJ_TextBox_人員資料_密碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_密碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_人員資料_密碼.GUID = "";
-            this.rJ_TextBox_人員資料_密碼.Location = new System.Drawing.Point(95, 112);
+            this.rJ_TextBox_人員資料_密碼.Location = new System.Drawing.Point(102, 112);
             this.rJ_TextBox_人員資料_密碼.Multiline = false;
             this.rJ_TextBox_人員資料_密碼.Name = "rJ_TextBox_人員資料_密碼";
             this.rJ_TextBox_人員資料_密碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -12950,7 +13114,7 @@
             this.rJ_TextBox_人員資料_密碼.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_人員資料_密碼.PlaceholderText = "";
             this.rJ_TextBox_人員資料_密碼.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_密碼.Size = new System.Drawing.Size(235, 30);
+            this.rJ_TextBox_人員資料_密碼.Size = new System.Drawing.Size(228, 30);
             this.rJ_TextBox_人員資料_密碼.TabIndex = 111;
             this.rJ_TextBox_人員資料_密碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_人員資料_密碼.Texts = "";
@@ -12966,7 +13130,7 @@
             this.rJ_TextBox_人員資料_姓名.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_姓名.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_人員資料_姓名.GUID = "";
-            this.rJ_TextBox_人員資料_姓名.Location = new System.Drawing.Point(95, 40);
+            this.rJ_TextBox_人員資料_姓名.Location = new System.Drawing.Point(102, 40);
             this.rJ_TextBox_人員資料_姓名.Multiline = false;
             this.rJ_TextBox_人員資料_姓名.Name = "rJ_TextBox_人員資料_姓名";
             this.rJ_TextBox_人員資料_姓名.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -12974,7 +13138,7 @@
             this.rJ_TextBox_人員資料_姓名.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_人員資料_姓名.PlaceholderText = "";
             this.rJ_TextBox_人員資料_姓名.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_姓名.Size = new System.Drawing.Size(235, 30);
+            this.rJ_TextBox_人員資料_姓名.Size = new System.Drawing.Size(228, 30);
             this.rJ_TextBox_人員資料_姓名.TabIndex = 17;
             this.rJ_TextBox_人員資料_姓名.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_人員資料_姓名.Texts = "";
@@ -12990,7 +13154,7 @@
             this.rJ_TextBox_人員資料_ID.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_人員資料_ID.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_人員資料_ID.GUID = "";
-            this.rJ_TextBox_人員資料_ID.Location = new System.Drawing.Point(95, 4);
+            this.rJ_TextBox_人員資料_ID.Location = new System.Drawing.Point(102, 4);
             this.rJ_TextBox_人員資料_ID.Multiline = false;
             this.rJ_TextBox_人員資料_ID.Name = "rJ_TextBox_人員資料_ID";
             this.rJ_TextBox_人員資料_ID.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -12998,7 +13162,7 @@
             this.rJ_TextBox_人員資料_ID.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_人員資料_ID.PlaceholderText = "";
             this.rJ_TextBox_人員資料_ID.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_ID.Size = new System.Drawing.Size(235, 30);
+            this.rJ_TextBox_人員資料_ID.Size = new System.Drawing.Size(228, 30);
             this.rJ_TextBox_人員資料_ID.TabIndex = 2;
             this.rJ_TextBox_人員資料_ID.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_人員資料_ID.Texts = "";
@@ -13011,7 +13175,7 @@
             this.label49.ForeColor = System.Drawing.Color.Black;
             this.label49.Location = new System.Drawing.Point(4, 1);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(84, 35);
+            this.label49.Size = new System.Drawing.Size(91, 35);
             this.label49.TabIndex = 8;
             this.label49.Text = "ID";
             this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -13023,7 +13187,7 @@
             this.label144.ForeColor = System.Drawing.Color.Black;
             this.label144.Location = new System.Drawing.Point(4, 37);
             this.label144.Name = "label144";
-            this.label144.Size = new System.Drawing.Size(84, 35);
+            this.label144.Size = new System.Drawing.Size(91, 35);
             this.label144.TabIndex = 0;
             this.label144.Text = "姓名";
             this.label144.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -13035,7 +13199,7 @@
             this.label108.ForeColor = System.Drawing.Color.Black;
             this.label108.Location = new System.Drawing.Point(4, 181);
             this.label108.Name = "label108";
-            this.label108.Size = new System.Drawing.Size(84, 35);
+            this.label108.Size = new System.Drawing.Size(91, 35);
             this.label108.TabIndex = 12;
             this.label108.Text = "權限等級";
             this.label108.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -13047,7 +13211,7 @@
             this.label138.ForeColor = System.Drawing.Color.Black;
             this.label138.Location = new System.Drawing.Point(4, 145);
             this.label138.Name = "label138";
-            this.label138.Size = new System.Drawing.Size(84, 35);
+            this.label138.Size = new System.Drawing.Size(91, 35);
             this.label138.TabIndex = 6;
             this.label138.Text = "單位";
             this.label138.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -13059,7 +13223,7 @@
             this.label143.ForeColor = System.Drawing.Color.Black;
             this.label143.Location = new System.Drawing.Point(4, 73);
             this.label143.Name = "label143";
-            this.label143.Size = new System.Drawing.Size(84, 35);
+            this.label143.Size = new System.Drawing.Size(91, 35);
             this.label143.TabIndex = 2;
             this.label143.Text = "性別";
             this.label143.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -13071,7 +13235,7 @@
             this.label102.ForeColor = System.Drawing.Color.Black;
             this.label102.Location = new System.Drawing.Point(4, 109);
             this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(84, 35);
+            this.label102.Size = new System.Drawing.Size(91, 35);
             this.label102.TabIndex = 15;
             this.label102.Text = "密碼";
             this.label102.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -13083,7 +13247,7 @@
             this.label44.ForeColor = System.Drawing.Color.Black;
             this.label44.Location = new System.Drawing.Point(4, 217);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(84, 35);
+            this.label44.Size = new System.Drawing.Size(91, 35);
             this.label44.TabIndex = 14;
             this.label44.Text = "顏色";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -13095,7 +13259,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(4, 253);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(84, 35);
+            this.label13.Size = new System.Drawing.Size(91, 35);
             this.label13.TabIndex = 13;
             this.label13.Text = "卡號";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -13105,7 +13269,7 @@
             this.panel149.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel149.Controls.Add(this.panel150);
             this.panel149.Controls.Add(this.textBox_人員資料_顏色);
-            this.panel149.Location = new System.Drawing.Point(95, 220);
+            this.panel149.Location = new System.Drawing.Point(102, 220);
             this.panel149.Name = "panel149";
             this.panel149.Size = new System.Drawing.Size(216, 29);
             this.panel149.TabIndex = 16;
@@ -13144,9 +13308,9 @@
             this.flowLayoutPanel1.Controls.Add(this.rJ_RatioButton_人員資料_男);
             this.flowLayoutPanel1.Controls.Add(this.rJ_RatioButton_人員資料_女);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(95, 76);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(102, 76);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(235, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(228, 29);
             this.flowLayoutPanel1.TabIndex = 114;
             // 
             // rJ_RatioButton_人員資料_男
@@ -34785,6 +34949,8 @@
             this.rJ_GroupBox12.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.panel85.ResumeLayout(false);
+            this.panel81.ResumeLayout(false);
             this.groupBox_藥品資料_藥檔資料_設定.ResumeLayout(false);
             this.groupBox_藥品資料_藥檔資料_設定.PerformLayout();
             this.panel75.ResumeLayout(false);
@@ -36458,6 +36624,16 @@
         private MyUI.PLC_CheckBox plC_CheckBox_藥單類別_一般模式_警;
         private MyUI.PLC_CheckBox plC_CheckBox_藥單類別_一般模式_3;
         private MyUI.PLC_CheckBox plC_CheckBox_藥單類別_一般模式_4;
+        private System.Windows.Forms.Panel panel85;
+        private MyUI.RJ_TextBox textBox_藥品資料_藥檔資料_許可證號;
+        private System.Windows.Forms.Panel panel86;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Panel panel81;
+        private MyUI.RJ_TextBox textBox_藥品資料_藥檔資料_廠牌;
+        private System.Windows.Forms.Panel panel82;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private MyUI.RJ_TextBox rJ_TextBox_人員資料_藥師證字號;
     }
 }
 

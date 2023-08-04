@@ -82,6 +82,7 @@ namespace 調劑台管理系統
                 this.rJ_TextBox_登入者顏色.Text = color.ToColorString();
             }
         }
+        private string 登入者藥師證字號 = "";
         private List<string> 登入者權限 = new List<string>();
         
         private void Program_後台登入_Init()
@@ -418,6 +419,7 @@ namespace 調劑台管理系統
                     this.登入者名稱 = _sessionClass.Name;
                     this.登入者ID = _sessionClass.ID;
                     this.登入者顏色 = _sessionClass.Color;
+                    this.登入者藥師證字號 = _sessionClass.license;
                     this.textBox_後台登入_帳號.Text = "";
                     this.textBox_後台登入_密碼.Text = "";
                     this.登入者權限 = _sessionClass.Permissions;
@@ -465,6 +467,7 @@ namespace 調劑台管理系統
                 this.登入者名稱 = "";
                 this.登入者ID = "";
                 this.登入者顏色 = "";
+                this.登入者藥師證字號 = "";
                 this.textBox_後台登入_帳號.Text = "";
                 this.textBox_後台登入_密碼.Text = "";
                 this.PLC_Device_已登入.Bool = false;

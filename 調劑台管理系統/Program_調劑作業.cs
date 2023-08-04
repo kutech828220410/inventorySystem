@@ -311,6 +311,7 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_領藥台_01_狀態顯示_登入者姓名 = new PLC_Device("M4001");
 
         public static string 領藥台_01_登入者姓名 = "";
+        public static string 領藥台_01_藥師證字號 = "";
         public static string 領藥台_01_ID = "";
         public static string 領藥台_01_卡號 = "";
         public static string 領藥台_01_顏色 = "";
@@ -1333,6 +1334,7 @@ namespace 調劑台管理系統
                 string 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = 領藥台_01_ID;
                 string 操作人 = 領藥台_01_登入者姓名;
+                string 藥師證字號 = 領藥台_01_藥師證字號;
                 string 顏色 = 領藥台_01_顏色;
                 int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
@@ -1353,7 +1355,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.床號 = 床號;
                 takeMedicineStackClass.開方時間 = 開方時間;
                 takeMedicineStackClass.操作人 = 操作人;
-                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.藥師證字號 = 藥師證字號;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
                 takeMedicineStackClass.收支原因 = 收支原因;
@@ -1431,6 +1433,7 @@ namespace 調劑台管理系統
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = 領藥台_01_ID;
                 string 操作人 = 領藥台_01_登入者姓名;
+                string 藥師證字號 = 領藥台_01_藥師證字號;
                 string 顏色 = 領藥台_01_顏色;
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
@@ -1449,6 +1452,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.病人姓名 = 病人姓名;
                 takeMedicineStackClass.開方時間 = 開方時間;
                 takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.藥師證字號 = 藥師證字號;
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
@@ -1521,6 +1525,7 @@ namespace 調劑台管理系統
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = 領藥台_01_ID;
                 string 操作人 = 領藥台_01_登入者姓名;
+                string 藥師證字號 = 領藥台_01_藥師證字號;
                 string 顏色 = 領藥台_01_顏色;
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
@@ -1539,6 +1544,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.病人姓名 = 病人姓名;
                 takeMedicineStackClass.開方時間 = 開方時間;
                 takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.藥師證字號 = 藥師證字號;
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
@@ -1791,6 +1797,7 @@ namespace 調劑台管理系統
                     string 開方時間 =DateTime.Now.ToDateTimeString_6();
                     string ID = 領藥台_01_ID;
                     string 操作人 = 領藥台_01_登入者姓名;
+                    string 藥師證字號 = 領藥台_01_藥師證字號;
                     string 顏色 = 領藥台_01_顏色;
                     string 收支原因 = "";
                     int 總異動量 = list_value[i][(int)enum_選擇藥品.交易量].ObjectToString().StringToInt32();
@@ -1837,6 +1844,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.病人姓名 = 病人姓名;
                     takeMedicineStackClass.開方時間 = 開方時間;
                     takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.顏色 = 顏色;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.效期 = 效期;
@@ -1911,6 +1919,7 @@ namespace 調劑台管理系統
             領藥台_01_登入者姓名 = list_value[0][(int)enum_人員資料.姓名].ObjectToString();
             領藥台_01_ID = list_value[0][(int)enum_人員資料.ID].ObjectToString();
             領藥台_01_顏色 = list_value[0][(int)enum_人員資料.顏色].ObjectToString();
+            領藥台_01_藥師證字號 = list_value[0][(int)enum_人員資料.藥師證字號].ObjectToString();
             this.PLC_Device_領藥台_01_已登入.Bool = true;
             if (mevent != null) Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.密碼登入, 領藥台_01_登入者姓名, "領藥台_01");
             string 狀態顯示 = "";
@@ -2030,7 +2039,7 @@ namespace 調劑台管理系統
         public static string 領藥台_02_卡號 = "";
         public static string 領藥台_02_顏色 = "";
         public static string 領藥台_02_一維碼 = "";
-
+        public static string 領藥台_02_藥師證字號 = "";
 
         private string 領藥台_02_醫囑條碼 = "";
 
@@ -3046,6 +3055,7 @@ namespace 調劑台管理系統
                 string 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = 領藥台_02_ID;
                 string 操作人 = 領藥台_02_登入者姓名;
+                string 藥師證字號 = 領藥台_02_藥師證字號;
                 string 顏色 = 領藥台_02_顏色;
                 int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
@@ -3067,7 +3077,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.床號 = 床號;
                 takeMedicineStackClass.開方時間 = 開方時間;
                 takeMedicineStackClass.操作人 = 操作人;
-                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.藥師證字號 = 藥師證字號;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
                 takeMedicineStackClass.收支原因 = 收支原因;
@@ -3143,6 +3153,7 @@ namespace 調劑台管理系統
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = 領藥台_02_ID;
                 string 操作人 = 領藥台_02_登入者姓名;
+                string 藥師證字號 = 領藥台_02_藥師證字號;
                 string 顏色 = 領藥台_02_顏色;
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
@@ -3161,6 +3172,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.病人姓名 = 病人姓名;
                 takeMedicineStackClass.開方時間 = 開方時間;
                 takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.藥師證字號 = 藥師證字號;
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
@@ -3233,6 +3245,7 @@ namespace 調劑台管理系統
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 string ID = 領藥台_02_ID;
                 string 操作人 = 領藥台_02_登入者姓名;
+                string 藥師證字號 = 領藥台_02_藥師證字號;
                 string 顏色 = 領藥台_02_顏色;
                 int 總異動量 = value[(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 string 效期 = "";
@@ -3251,6 +3264,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.病人姓名 = 病人姓名;
                 takeMedicineStackClass.開方時間 = 開方時間;
                 takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.藥師證字號 = 藥師證字號;
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
@@ -3351,6 +3365,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.病人姓名 = 病人姓名;
             takeMedicineStackClass.開方時間 = 開方時間;
             takeMedicineStackClass.操作人 = 操作人;
+            //takeMedicineStackClass.藥師證字號 = 藥師證字號;
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
@@ -3502,6 +3517,7 @@ namespace 調劑台管理系統
                     string 開方時間 = DateTime.Now.ToDateTimeString_6();
                     string ID = 領藥台_02_ID;
                     string 操作人 = 領藥台_02_登入者姓名;
+                    string 藥師證字號 = 領藥台_02_藥師證字號;
                     string 顏色 = 領藥台_02_顏色;
                     string 收支原因 = "";
                     int 總異動量 = list_value[i][(int)enum_選擇藥品.交易量].ObjectToString().StringToInt32();
@@ -3531,6 +3547,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.病人姓名 = 病人姓名;
                     takeMedicineStackClass.開方時間 = 開方時間;
                     takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.顏色 = 顏色;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.效期 = 效期;
@@ -3604,6 +3621,8 @@ namespace 調劑台管理系統
             領藥台_02_登入者姓名 = list_value[0][(int)enum_人員資料.姓名].ObjectToString();
             領藥台_02_ID = list_value[0][(int)enum_人員資料.ID].ObjectToString();
             領藥台_02_顏色 = list_value[0][(int)enum_人員資料.顏色].ObjectToString();
+            領藥台_02_藥師證字號 = list_value[0][(int)enum_人員資料.藥師證字號].ObjectToString();
+
             this.PLC_Device_領藥台_02_已登入.Bool = true;
             if (mevent != null) Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.密碼登入, 領藥台_02_登入者姓名, "領藥台_02");
             string 狀態顯示 = "";

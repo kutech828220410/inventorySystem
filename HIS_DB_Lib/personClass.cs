@@ -15,6 +15,7 @@ namespace HIS_DB_Lib
         性別,
         密碼,
         單位,
+        藥師證字號,
         權限等級,
         顏色,
         卡號,
@@ -37,6 +38,8 @@ namespace HIS_DB_Lib
         public string 密碼 { get; set; }
         [JsonPropertyName("employer")]
         public string 單位 { get; set; }
+        [JsonPropertyName("license")]
+        public string 藥師證字號 { get; set; }
         [JsonPropertyName("level")]
         public string 權限等級 { get; set; }
         [JsonPropertyName("color")]

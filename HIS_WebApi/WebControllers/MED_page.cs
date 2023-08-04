@@ -579,6 +579,8 @@ namespace HIS_WebApi
                 table.AddColumnList("生物製劑", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("管制級別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("類別", Table.StringType.VARCHAR, 500, Table.IndexType.None);
+                table.AddColumnList("廠牌", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+                table.AddColumnList("藥品許可證號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
                 table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 10, Table.IndexType.None);
 
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
@@ -631,6 +633,8 @@ namespace HIS_WebApi
                 table.AddColumnList("生物製劑", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("管制級別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
                 table.AddColumnList("類別", Table.StringType.VARCHAR, 500, Table.IndexType.None);
+                table.AddColumnList("廠牌", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+                table.AddColumnList("藥品許可證號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
                 table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 10, Table.IndexType.None);
 
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);

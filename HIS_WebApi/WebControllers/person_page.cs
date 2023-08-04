@@ -210,6 +210,7 @@ namespace HIS_WebApi
             table.AddColumnList("性別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("密碼", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("單位", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("藥師證字號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("權限等級", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("顏色", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("卡號", Table.StringType.VARCHAR, 50, Table.IndexType.None);

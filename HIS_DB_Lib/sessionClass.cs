@@ -45,6 +45,8 @@ namespace HIS_DB_Lib
         public string UID { get; set; }
         [JsonPropertyName("BARCODE")]
         public string BARCODE { get; set; }
+        [JsonPropertyName("license")]
+        public string license { get; set; }
 
         public List<string> Permissions { get => permissions; set => permissions = value; }
         private List<string> permissions = new List<string>();

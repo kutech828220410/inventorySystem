@@ -28,6 +28,7 @@ namespace 調劑台管理系統
             單位,
             卡號,
             一維條碼,
+            藥師證字號,
         }
         public enum enum_人員資料_匯入
         {
@@ -38,6 +39,7 @@ namespace 調劑台管理系統
             單位,
             卡號,
             一維條碼,
+            藥師證字號,
         }
         public enum ContextMenuStrip_人員資料
         {
@@ -89,6 +91,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.姓名);
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.性別);
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.單位);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.藥師證字號);
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.權限等級);
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.顏色);
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.卡號);
@@ -387,6 +390,7 @@ namespace 調劑台管理系統
                 this.comboBox_人員資料_權限等級.Text = "";
                 this.rJ_TextBox_人員資料_一維條碼.Text = "";
                 this.rJ_TextBox_人員資料_識別圖案.Text = "";
+                this.rJ_TextBox_人員資料_藥師證字號.Text = "";
             }));
         
         }
@@ -409,6 +413,7 @@ namespace 調劑台管理系統
                 value[(int)enum_人員資料.權限等級] = this.comboBox_人員資料_權限等級.Text;
                 value[(int)enum_人員資料.顏色] = this.textBox_人員資料_顏色.Text;
                 value[(int)enum_人員資料.一維條碼] = this.rJ_TextBox_人員資料_一維條碼.Text;
+                value[(int)enum_人員資料.藥師證字號] = this.rJ_TextBox_人員資料_藥師證字號.Text;
                 string str_error = this.Function_人員資料_檢查內容(value);
                 if (!str_error.StringIsEmpty())
                 {
@@ -433,6 +438,7 @@ namespace 調劑台管理系統
                     value[(int)enum_人員資料.權限等級] = this.comboBox_人員資料_權限等級.Text;
                     value[(int)enum_人員資料.顏色] = this.textBox_人員資料_顏色.Text;
                     value[(int)enum_人員資料.一維條碼] = this.rJ_TextBox_人員資料_一維條碼.Text;
+                    value[(int)enum_人員資料.藥師證字號] = this.rJ_TextBox_人員資料_藥師證字號.Text;
                     string str_error = this.Function_人員資料_檢查內容(value);
                     if (!str_error.StringIsEmpty())
                     {
@@ -846,6 +852,7 @@ namespace 調劑台管理系統
             rJ_TextBox_人員資料_卡號.Text = RowValue[(int)enum_人員資料.卡號].ObjectToString();
             rJ_TextBox_人員資料_一維條碼.Text = RowValue[(int)enum_人員資料.一維條碼].ObjectToString();
             rJ_TextBox_人員資料_識別圖案.Text = RowValue[(int)enum_人員資料.識別圖案].ObjectToString();
+            rJ_TextBox_人員資料_藥師證字號.Text = RowValue[(int)enum_人員資料.藥師證字號].ObjectToString();
 
 
             string 性別 = RowValue[(int)enum_人員資料.性別].ObjectToString();

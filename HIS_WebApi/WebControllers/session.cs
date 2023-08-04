@@ -137,6 +137,7 @@ namespace HIS_WebApi
                     sessionClass.loginTime = value[(int)enum_login_session.loginTime].ObjectToString();
                     sessionClass.level = list_person_page[0][(int)enum_人員資料.權限等級].ObjectToString();
                     sessionClass.Color = list_person_page[0][(int)enum_人員資料.顏色].ObjectToString();
+                    sessionClass.license = list_person_page[0][(int)enum_人員資料.藥師證字號].ObjectToString();
                     sessionClass.Permissions = GetPermissions(sessionClass.level.StringToInt32());
                 }
                 else

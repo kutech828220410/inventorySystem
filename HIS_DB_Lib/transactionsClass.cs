@@ -50,6 +50,7 @@ namespace HIS_DB_Lib
         結存量,
         盤點量,
         操作人,
+        藥師證字號,
         病人姓名,
         頻次,
         床號,
@@ -90,6 +91,8 @@ namespace HIS_DB_Lib
         public string 盤點量 { get; set; }
         [JsonPropertyName("OP")]
         public string 操作人 { get; set; }
+        [JsonPropertyName("LICENSE")]
+        public string 藥師證字號 { get; set; }
         [JsonPropertyName("PAT")]
         public string 病人姓名 { get; set; }
         [JsonPropertyName("BED")]

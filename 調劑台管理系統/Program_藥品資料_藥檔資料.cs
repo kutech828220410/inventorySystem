@@ -52,6 +52,9 @@ namespace 調劑台管理系統
         警訊藥品,
         高價藥品,
         管制級別,
+        類別,
+        廠牌,
+        藥品許可證號,
     }
     public enum enum_藥品資料_藥檔資料_匯出
     {
@@ -68,6 +71,9 @@ namespace 調劑台管理系統
         警訊藥品,
         高價藥品,
         管制級別,
+        類別,
+        廠牌,
+        藥品許可證號,
     }
     public enum enum_藥品群組
     {
@@ -128,6 +134,8 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.生物製劑);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.管制級別);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.類別);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品許可證號);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.廠牌);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.開檔狀態);
 
             this.sqL_DataGridView_藥品資料_藥檔資料.RowEnterEvent += SqL_DataGridView_藥品資料_藥檔資料_RowEnterEvent;
@@ -426,6 +434,8 @@ namespace 調劑台管理系統
             value[(int)enum_藥品資料_藥檔資料.包裝單位] = this.textBox_藥品資料_藥檔資料_包裝單位.Text;
             value[(int)enum_藥品資料_藥檔資料.庫存] = this.textBox_藥品資料_藥檔資料_庫存.Text;
             value[(int)enum_藥品資料_藥檔資料.安全庫存] = this.textBox_藥品資料_藥檔資料_安全庫存.Text;
+            value[(int)enum_藥品資料_藥檔資料.廠牌] = this.textBox_藥品資料_藥檔資料_廠牌.Text;
+            value[(int)enum_藥品資料_藥檔資料.藥品許可證號] = this.textBox_藥品資料_藥檔資料_許可證號.Text;
             value[(int)enum_藥品資料_藥檔資料.警訊藥品] = this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked.ToString();
             value[(int)enum_藥品資料_藥檔資料.高價藥品] = this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Checked.ToString();
             value[(int)enum_藥品資料_藥檔資料.生物製劑] = this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Checked.ToString();
@@ -473,6 +483,9 @@ namespace 調劑台管理系統
                 this.textBox_藥品資料_藥檔資料_安全庫存.Text = "";
                 this.textBox_藥品資料_藥檔資料_包裝單位.Text = "";
                 this.textBox_藥品資料_藥檔資料_藥品條碼.Text = "";
+                this.textBox_藥品資料_藥檔資料_廠牌.Text = "";
+                this.textBox_藥品資料_藥檔資料_許可證號.Text = "";
+
                 this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = false;
                 this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked = false;
                 this.plC_CheckBox_藥品資料_藥檔資料_效期管理.Checked = false;
@@ -853,6 +866,8 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_安全庫存.Text = RowValue[(int)enum_藥品資料_藥檔資料.安全庫存].ObjectToString();
             this.textBox_藥品資料_藥檔資料_包裝單位.Text = RowValue[(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品條碼.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString();
+            this.textBox_藥品資料_藥檔資料_廠牌.Text = RowValue[(int)enum_藥品資料_藥檔資料.廠牌].ObjectToString();
+            this.textBox_藥品資料_藥檔資料_許可證號.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品許可證號].ObjectToString();
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (RowValue[(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString());
             this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Checked = (RowValue[(int)enum_藥品資料_藥檔資料.高價藥品].ObjectToString() == true.ToString());
             this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Checked = (RowValue[(int)enum_藥品資料_藥檔資料.生物製劑].ObjectToString() == true.ToString());

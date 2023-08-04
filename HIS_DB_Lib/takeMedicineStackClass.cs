@@ -48,6 +48,7 @@ namespace HIS_DB_Lib
         調劑台名稱,
         IP,
         操作人,
+        藥師證字號,
         動作,
         作業模式,
         藥袋序號,
@@ -100,6 +101,7 @@ namespace HIS_DB_Lib
         public string 調劑台名稱 { get; set; }
         public string IP { get; set; }
         public string 操作人 { get; set; }
+        public string 藥師證字號 { get; set; }
         public enum_交易記錄查詢動作 動作 { get; set; }
         public string 作業模式 { get; set; }
         public string 藥袋序號 { get; set; }
