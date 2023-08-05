@@ -15,6 +15,7 @@ namespace 調劑台管理系統
     public partial class Dialog_醫囑退藥 : Form
     {
         private List<object[]> list_醫囑資料_buf = new List<object[]>();
+        private SQLUI.SQL_DataGridView _sqL_DataGridView_醫囑資料;
 
         public static Form form;
         public DialogResult ShowDialog()
@@ -46,7 +47,7 @@ namespace 調劑台管理系統
                 this.value = value;
             }
         }
-        public Dialog_醫囑退藥(List<object[]> list_醫囑資料)
+        public Dialog_醫囑退藥(List<object[]> list_醫囑資料 , SQLUI.SQL_DataGridView _sqL_DataGridView_醫囑資料)
         {
             if (form == null)
             {
@@ -60,6 +61,7 @@ namespace 調劑台管理系統
                 }));
             }
             this.list_醫囑資料_buf = list_醫囑資料;
+            this._sqL_DataGridView_醫囑資料 = _sqL_DataGridView_醫囑資料;
             //InitializeComponent();
         }
 
@@ -67,7 +69,7 @@ namespace 調劑台管理系統
         {
             this.rJ_Button_退出.MouseDownEvent += RJ_Button_退出_MouseDownEvent;
             this.rJ_Button_刷新.MouseDownEvent += RJ_Button_刷新_MouseDownEvent;
-            this.sqL_DataGridView_醫囑資料.Init();
+            this.sqL_DataGridView_醫囑資料.Init(this._sqL_DataGridView_醫囑資料);
             this.sqL_DataGridView_醫囑資料.RowDoubleClickEvent += SqL_DataGridView_醫囑資料_RowDoubleClickEvent;
             this.sqL_DataGridView_醫囑資料.DataGridRefreshEvent += SqL_DataGridView_醫囑資料_DataGridRefreshEvent;
             this.sqL_DataGridView_醫囑資料.RefreshGrid(this.list_醫囑資料_buf);

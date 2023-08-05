@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dialog_醫囑退藥));
             this.rJ_GroupBox1 = new MyUI.RJ_GroupBox();
             this.sqL_DataGridView_醫囑資料 = new SQLUI.SQL_DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -52,27 +51,29 @@
             this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.sqL_DataGridView_醫囑資料);
             this.rJ_GroupBox1.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox1.ContentsPanel.ForeColor = System.Drawing.Color.White;
-            this.rJ_GroupBox1.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.rJ_GroupBox1.ContentsPanel.IsSelected = false;
+            this.rJ_GroupBox1.ContentsPanel.Location = new System.Drawing.Point(0, 50);
             this.rJ_GroupBox1.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox1.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.rJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(1274, 831);
+            this.rJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(1318, 818);
             this.rJ_GroupBox1.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_GroupBox1.GUID = "";
             this.rJ_GroupBox1.Location = new System.Drawing.Point(0, 0);
             this.rJ_GroupBox1.Name = "rJ_GroupBox1";
             this.rJ_GroupBox1.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox1.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox1.PannelBorderRadius = 5;
             this.rJ_GroupBox1.PannelBorderSize = 2;
-            this.rJ_GroupBox1.Size = new System.Drawing.Size(1274, 868);
+            this.rJ_GroupBox1.Size = new System.Drawing.Size(1318, 868);
             this.rJ_GroupBox1.TabIndex = 2;
             this.rJ_GroupBox1.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox1.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_GroupBox1.TitleBorderRadius = 5;
             this.rJ_GroupBox1.TitleBorderSize = 0;
-            this.rJ_GroupBox1.TitleFont = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_GroupBox1.TitleFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_GroupBox1.TitleForeColor = System.Drawing.Color.White;
-            this.rJ_GroupBox1.TitleHeight = 37;
+            this.rJ_GroupBox1.TitleHeight = 50;
             this.rJ_GroupBox1.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_GroupBox1.TitleTexts = "退藥醫囑選擇";
             // 
@@ -92,19 +93,6 @@
             this.sqL_DataGridView_醫囑資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_醫囑資料.columnHeadersHeight = 44;
             this.sqL_DataGridView_醫囑資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns1"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns2"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns3"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns4"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns5"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns6"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns7"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns8"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns9"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns10"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns11"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns12"))));
             this.sqL_DataGridView_醫囑資料.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_醫囑資料.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_醫囑資料.ImageBox = false;
@@ -120,7 +108,7 @@
             this.sqL_DataGridView_醫囑資料.RowsHeight = 80;
             this.sqL_DataGridView_醫囑資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_醫囑資料.Server = "127.0.0.0";
-            this.sqL_DataGridView_醫囑資料.Size = new System.Drawing.Size(1264, 821);
+            this.sqL_DataGridView_醫囑資料.Size = new System.Drawing.Size(1308, 808);
             this.sqL_DataGridView_醫囑資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_醫囑資料.TabIndex = 7;
             this.sqL_DataGridView_醫囑資料.TableName = "order_list";
@@ -159,7 +147,8 @@
             this.rJ_Button_退出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_退出.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_退出.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_退出.Location = new System.Drawing.Point(1109, 0);
+            this.rJ_Button_退出.GUID = "";
+            this.rJ_Button_退出.Location = new System.Drawing.Point(1153, 0);
             this.rJ_Button_退出.Name = "rJ_Button_退出";
             this.rJ_Button_退出.Size = new System.Drawing.Size(165, 86);
             this.rJ_Button_退出.State = false;
@@ -176,7 +165,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 868);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1274, 86);
+            this.panel1.Size = new System.Drawing.Size(1318, 86);
             this.panel1.TabIndex = 1;
             // 
             // rJ_Button_刷新
@@ -193,6 +182,7 @@
             this.rJ_Button_刷新.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_刷新.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_刷新.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_刷新.GUID = "";
             this.rJ_Button_刷新.Location = new System.Drawing.Point(25, 0);
             this.rJ_Button_刷新.Name = "rJ_Button_刷新";
             this.rJ_Button_刷新.Size = new System.Drawing.Size(165, 86);
@@ -207,7 +197,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1274, 954);
+            this.ClientSize = new System.Drawing.Size(1318, 954);
             this.ControlBox = false;
             this.Controls.Add(this.rJ_GroupBox1);
             this.Controls.Add(this.panel1);

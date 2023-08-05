@@ -1499,7 +1499,7 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                Dialog_醫囑退藥 dialog_醫囑退藥 = new Dialog_醫囑退藥(list_醫囑資料);
+                Dialog_醫囑退藥 dialog_醫囑退藥 = new Dialog_醫囑退藥(list_醫囑資料, this.sqL_DataGridView_醫囑資料);
                 if (dialog_醫囑退藥.ShowDialog() != DialogResult.Yes) return;
                 object[] value = dialog_醫囑退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -3219,7 +3219,7 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                Dialog_醫囑退藥 dialog_醫囑退藥 = new Dialog_醫囑退藥(list_醫囑資料);
+                Dialog_醫囑退藥 dialog_醫囑退藥 = new Dialog_醫囑退藥(list_醫囑資料, this.sqL_DataGridView_醫囑資料);
                 if (dialog_醫囑退藥.ShowDialog() != DialogResult.Yes) return;
                 object[] value = dialog_醫囑退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
