@@ -739,6 +739,8 @@ namespace 調劑台管理系統
                             {
                                 this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
                             }));
+                            Task allTask = Task.WhenAll(taskList);
+                            allTask.Wait();
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD266_lock|| device.DeviceType == DeviceType.EPD290_lock) list_lock_IP.Add(IP);
                         }
@@ -765,6 +767,8 @@ namespace 調劑台管理系統
 
                                 this.drawerUI_EPD_583.Set_LED_UDP(drawer);
                             }));
+                            Task allTask = Task.WhenAll(taskList);
+                            allTask.Wait();
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD583_lock) list_lock_IP.Add(IP);
                         }
@@ -778,6 +782,8 @@ namespace 調劑台管理系統
                             {
                                 this.storageUI_WT32.Set_Stroage_LED_UDP(storage, color);
                             }));
+                            Task allTask = Task.WhenAll(taskList);
+                            allTask.Wait();
                             list_IP.Add(IP);
                         }
                     }
@@ -792,6 +798,8 @@ namespace 調劑台管理系統
                             {
                                 this.rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
                             }));
+                            Task allTask = Task.WhenAll(taskList);
+                            allTask.Wait();
                             list_IP.Add(IP);
                         }
                     }
@@ -837,6 +845,8 @@ namespace 調劑台管理系統
                             {
                                 this.storageUI_EPD_266.DrawToEpd_UDP(storage);
                             }));
+                            Task allTask = Task.WhenAll(taskList);
+                            allTask.Wait();
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD266_lock|| device.DeviceType == DeviceType.EPD290_lock) list_lock_IP.Add(IP);
                         }
@@ -849,12 +859,11 @@ namespace 調劑台管理系統
                             taskList.Add(Task.Run(() =>
                             {
                                 Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
-                                List<Box> boxes = drawer.SortByCode(藥品碼);
-
-                              
-
+                                List<Box> boxes = drawer.SortByCode(藥品碼);                            
                                 this.drawerUI_EPD_583.Set_LED_UDP(drawer);
                             }));
+                            Task allTask = Task.WhenAll(taskList);
+                            allTask.Wait();
                             list_IP.Add(IP);
                             if (device.DeviceType == DeviceType.EPD583_lock) list_lock_IP.Add(IP);
                         }
@@ -868,6 +877,8 @@ namespace 調劑台管理系統
                             {
                                 this.storageUI_WT32.Set_DrawPannelJEPG(storage);
                             }));
+                            Task allTask = Task.WhenAll(taskList);
+                            allTask.Wait();
                             list_IP.Add(IP);
                         }
                     }

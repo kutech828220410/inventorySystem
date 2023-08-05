@@ -302,7 +302,7 @@ namespace 調劑台管理系統
                             this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                             
                             this.storageUI_EPD_266.DrawToEpd_UDP(storage);
-                        });
+                        }).Wait();
               
                     }
                 }
@@ -314,7 +314,7 @@ namespace 調劑台管理系統
                         Task.Run(() =>
                         {
                             this.storageUI_WT32.Set_Stroage_LED_UDP(storage, Color.Black);
-                        });
+                        }).Wait();
 
                     }
                 }
