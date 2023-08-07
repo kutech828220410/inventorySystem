@@ -41,6 +41,8 @@
             this.rJ_GroupBox1 = new MyUI.RJ_GroupBox();
             this.sqL_DataGridView_藥品資料 = new SQLUI.SQL_DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.rJ_TextBox_病房號 = new MyUI.RJ_TextBox();
+            this.rJ_Lable2 = new MyUI.RJ_Lable();
             this.rJ_Button_藥品資料_選擇藥品 = new MyUI.RJ_Button();
             this.rJ_TextBox_藥品資料_藥品名稱 = new MyUI.RJ_TextBox();
             this.rJ_TextBox_藥品資料_藥品碼 = new MyUI.RJ_TextBox();
@@ -48,8 +50,6 @@
             this.rJ_Button_藥品資料_藥品名稱_搜尋 = new MyUI.RJ_Button();
             this.rJ_Lable26 = new MyUI.RJ_Lable();
             this.rJ_Button_藥品資料_藥品碼_搜尋 = new MyUI.RJ_Button();
-            this.rJ_TextBox_病房號 = new MyUI.RJ_TextBox();
-            this.rJ_Lable2 = new MyUI.RJ_Lable();
             this.panel1.SuspendLayout();
             this.rJ_GroupBox2.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox2.SuspendLayout();
@@ -261,7 +261,7 @@
             this.rJ_Button1.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.rJ_Button1.ForeColor = System.Drawing.Color.White;
             this.rJ_Button1.GUID = "";
-            this.rJ_Button1.Location = new System.Drawing.Point(391, 12);
+            this.rJ_Button1.Location = new System.Drawing.Point(530, 12);
             this.rJ_Button1.Name = "rJ_Button1";
             this.rJ_Button1.Size = new System.Drawing.Size(213, 88);
             this.rJ_Button1.State = false;
@@ -372,6 +372,49 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(642, 188);
             this.panel2.TabIndex = 116;
+            // 
+            // rJ_TextBox_病房號
+            // 
+            this.rJ_TextBox_病房號.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_病房號.BorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_TextBox_病房號.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_病房號.BorderRadius = 0;
+            this.rJ_TextBox_病房號.BorderSize = 2;
+            this.rJ_TextBox_病房號.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.rJ_TextBox_病房號.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_病房號.GUID = "";
+            this.rJ_TextBox_病房號.Location = new System.Drawing.Point(135, 113);
+            this.rJ_TextBox_病房號.Multiline = false;
+            this.rJ_TextBox_病房號.Name = "rJ_TextBox_病房號";
+            this.rJ_TextBox_病房號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_病房號.PassWordChar = false;
+            this.rJ_TextBox_病房號.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_病房號.PlaceholderText = "";
+            this.rJ_TextBox_病房號.ShowTouchPannel = false;
+            this.rJ_TextBox_病房號.Size = new System.Drawing.Size(149, 36);
+            this.rJ_TextBox_病房號.TabIndex = 54;
+            this.rJ_TextBox_病房號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_病房號.Texts = "";
+            this.rJ_TextBox_病房號.UnderlineStyle = false;
+            // 
+            // rJ_Lable2
+            // 
+            this.rJ_Lable2.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable2.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable2.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable2.BorderRadius = 8;
+            this.rJ_Lable2.BorderSize = 0;
+            this.rJ_Lable2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable2.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable2.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable2.GUID = "";
+            this.rJ_Lable2.Location = new System.Drawing.Point(7, 108);
+            this.rJ_Lable2.Name = "rJ_Lable2";
+            this.rJ_Lable2.Size = new System.Drawing.Size(122, 46);
+            this.rJ_Lable2.TabIndex = 53;
+            this.rJ_Lable2.Text = "病房號";
+            this.rJ_Lable2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable2.TextColor = System.Drawing.Color.Black;
             // 
             // rJ_Button_藥品資料_選擇藥品
             // 
@@ -527,49 +570,6 @@
             this.rJ_Button_藥品資料_藥品碼_搜尋.Text = "搜尋";
             this.rJ_Button_藥品資料_藥品碼_搜尋.TextColor = System.Drawing.Color.White;
             this.rJ_Button_藥品資料_藥品碼_搜尋.UseVisualStyleBackColor = false;
-            // 
-            // rJ_TextBox_病房號
-            // 
-            this.rJ_TextBox_病房號.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_病房號.BorderColor = System.Drawing.Color.SkyBlue;
-            this.rJ_TextBox_病房號.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_病房號.BorderRadius = 0;
-            this.rJ_TextBox_病房號.BorderSize = 2;
-            this.rJ_TextBox_病房號.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.rJ_TextBox_病房號.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_病房號.GUID = "";
-            this.rJ_TextBox_病房號.Location = new System.Drawing.Point(135, 113);
-            this.rJ_TextBox_病房號.Multiline = false;
-            this.rJ_TextBox_病房號.Name = "rJ_TextBox_病房號";
-            this.rJ_TextBox_病房號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_病房號.PassWordChar = false;
-            this.rJ_TextBox_病房號.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_病房號.PlaceholderText = "";
-            this.rJ_TextBox_病房號.ShowTouchPannel = false;
-            this.rJ_TextBox_病房號.Size = new System.Drawing.Size(149, 36);
-            this.rJ_TextBox_病房號.TabIndex = 54;
-            this.rJ_TextBox_病房號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_病房號.Texts = "";
-            this.rJ_TextBox_病房號.UnderlineStyle = false;
-            // 
-            // rJ_Lable2
-            // 
-            this.rJ_Lable2.BackColor = System.Drawing.Color.SkyBlue;
-            this.rJ_Lable2.BackgroundColor = System.Drawing.Color.SkyBlue;
-            this.rJ_Lable2.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable2.BorderRadius = 8;
-            this.rJ_Lable2.BorderSize = 0;
-            this.rJ_Lable2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable2.Font = new System.Drawing.Font("新細明體", 12F);
-            this.rJ_Lable2.ForeColor = System.Drawing.Color.Black;
-            this.rJ_Lable2.GUID = "";
-            this.rJ_Lable2.Location = new System.Drawing.Point(7, 108);
-            this.rJ_Lable2.Name = "rJ_Lable2";
-            this.rJ_Lable2.Size = new System.Drawing.Size(122, 46);
-            this.rJ_Lable2.TabIndex = 53;
-            this.rJ_Lable2.Text = "病房號";
-            this.rJ_Lable2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable2.TextColor = System.Drawing.Color.Black;
             // 
             // Dialog_手動作業
             // 

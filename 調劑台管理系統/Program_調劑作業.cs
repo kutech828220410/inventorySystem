@@ -1258,7 +1258,7 @@ namespace 調劑台管理系統
             daynum *= -1;
 
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
-            DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
+            DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(14).Year, DateTime.Now.AddDays(14).Month, DateTime.Now.AddDays(14).Day, 23, 59, 59);
 
 
 
@@ -1473,7 +1473,7 @@ namespace 調劑台管理系統
                     return;
                 }
                 List<object[]> list_醫囑資料_remove = new List<object[]>();
-                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
+                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_退藥不檢查是否掃碼領藥過.讀取元件位置);
                 if (pLC_Device.Bool == false) list_醫囑資料 = list_醫囑資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫囑資料.Count == 0)
                 {
@@ -1499,7 +1499,7 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                Dialog_醫囑退藥 dialog_醫囑退藥 = new Dialog_醫囑退藥(list_醫囑資料);
+                Dialog_醫囑退藥 dialog_醫囑退藥 = new Dialog_醫囑退藥(list_醫囑資料, this.sqL_DataGridView_醫囑資料);
                 if (dialog_醫囑退藥.ShowDialog() != DialogResult.Yes) return;
                 object[] value = dialog_醫囑退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -1664,7 +1664,7 @@ namespace 調劑台管理系統
             if (daynum == 9) daynum = 21;
             if (daynum == 10) daynum = 28;
             daynum *= -1;
-            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_退藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
 
@@ -2979,7 +2979,7 @@ namespace 調劑台管理系統
             daynum *= -1;
 
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
-            DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
+            DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(14).Year, DateTime.Now.AddDays(14).Month, DateTime.Now.AddDays(14).Day, 23, 59, 59);
 
 
 
@@ -3193,7 +3193,7 @@ namespace 調劑台管理系統
                     return;
                 }
                 List<object[]> list_醫囑資料_remove = new List<object[]>();
-                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
+                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_退藥不檢查是否掃碼領藥過.讀取元件位置);
                 if (pLC_Device.Bool == false) list_醫囑資料 = list_醫囑資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫囑資料.Count == 0)
                 {
@@ -3219,7 +3219,7 @@ namespace 調劑台管理系統
                     return;
                 }
 
-                Dialog_醫囑退藥 dialog_醫囑退藥 = new Dialog_醫囑退藥(list_醫囑資料);
+                Dialog_醫囑退藥 dialog_醫囑退藥 = new Dialog_醫囑退藥(list_醫囑資料, this.sqL_DataGridView_醫囑資料);
                 if (dialog_醫囑退藥.ShowDialog() != DialogResult.Yes) return;
                 object[] value = dialog_醫囑退藥.Value;
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -3384,7 +3384,7 @@ namespace 調劑台管理系統
             if (daynum == 9) daynum = 21;
             if (daynum == 10) daynum = 28;
             daynum *= -1;
-            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_退藥不檢查是否掃碼領藥過.讀取元件位置);
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
 

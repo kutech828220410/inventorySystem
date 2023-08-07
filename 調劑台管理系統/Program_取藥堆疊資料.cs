@@ -2373,9 +2373,12 @@ namespace 調劑台管理系統
             List<object[]> list_子資料_buf;
             List<object[]> list_取藥堆疊子資料_ReplaceValue = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_ReplaceValue = new List<object[]>();
+            List<object[]> list_取藥堆疊母資料_Add = new List<object[]>();
             List<object[]> list_交易紀錄新增資料_AddValue = new List<object[]>();
             List<object[]> list_醫囑資料_ReplaceValue = new List<object[]>();
 
+            bool flag_修正盤點量 = false;
+            string GUID = "";
             string Master_GUID = "";
             int 庫存量 = 0;
             int 結存量 = 0;
@@ -2471,6 +2474,7 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.交易量] = 交易量;
                 value_trading[(int)enum_交易記錄查詢資料.結存量] = 結存量;
                 if (盤點量.StringIsEmpty()) 盤點量 = "無";
+                else flag_修正盤點量 = true;
                 value_trading[(int)enum_交易記錄查詢資料.盤點量] = 盤點量;
                 value_trading[(int)enum_交易記錄查詢資料.操作人] = 操作人;
                 value_trading[(int)enum_交易記錄查詢資料.病人姓名] = 病人姓名;
@@ -2478,10 +2482,7 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.頻次] = 頻次;
                 value_trading[(int)enum_交易記錄查詢資料.病歷號] = 病歷號;
                 value_trading[(int)enum_交易記錄查詢資料.操作時間] = 操作時間;
-                if(開方時間.StringIsEmpty())
-                {
-                    開方時間 = DateTime.Now.ToDateTimeString_6();
-                }
+                if(開方時間.StringIsEmpty()) 開方時間 = DateTime.Now.ToDateTimeString_6();
                 value_trading[(int)enum_交易記錄查詢資料.開方時間] = 開方時間;
                 value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
                 收支原因 = $"[{動作.GetEnumName()}]{收支原因}";
@@ -2490,15 +2491,40 @@ namespace 調劑台管理系統
                 if (動作 == enum_交易記錄查詢動作.系統領藥.GetEnumName() && 總異動量 == 0) continue;
                 list_交易紀錄新增資料_AddValue.Add(value_trading);
 
+                if(flag_修正盤點量 && plC_CheckBox_盤點量要修正至結存量.Checked)
+                {
+                    int 結存量_temp = 結存量.StringToInt32();
+                    int 盤點量_temp = 盤點量.StringToInt32();
+                    交易量 = (盤點量_temp - 結存量_temp).ToString();
+
+                    List<object[]> list_儲位資料 = Function_取得異動儲位資訊從入賬資料(藥品碼, 交易量.StringToInt32());
+                    for (int k = 0; k < list_儲位資料.Count; k++)
+                    {
+                        Function_庫存異動至入賬資料(list_儲位資料[k], true);
+                    }
+                    transactionsClass transactionsClass = value_trading.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
+                    transactionsClass.GUID = Guid.NewGuid().ToString();
+                    transactionsClass.動作 = enum_交易記錄查詢動作.盤點量更正.GetEnumName();
+                    transactionsClass.交易量 = 交易量;
+                    transactionsClass.盤點量 = "無";
+                    transactionsClass.結存量 = 盤點量;
+                    transactionsClass.備註 = "";
+                    transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                    transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
+                    transactionsClass.收支原因 = "";
+                    list_交易紀錄新增資料_AddValue.Add(transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>());
+                }
             }
             for (int i = 0; i < list_取藥堆疊母資料_ReplaceValue.Count; i++)
             {
-                string GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
+                GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
+                操作人 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
                 List<object[]> list_value = this.sqL_DataGridView_醫囑資料.SQL_GetRows((int)enum_醫囑資料.GUID, GUID, false);
                 if (list_value.Count == 0) continue;
                 if (list_value[0][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
                 list_value[0][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
                 list_value[0][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
+                list_value[0][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
                 list_醫囑資料_ReplaceValue.Add(list_value[0]);
             }
             if (list_交易紀錄新增資料_AddValue.Count > 0) this.sqL_DataGridView_交易記錄查詢.SQL_AddRows(list_交易紀錄新增資料_AddValue, false);

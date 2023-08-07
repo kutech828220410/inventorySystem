@@ -91,9 +91,6 @@ namespace 調劑台管理系統
 
             this.plC_UI_Init.Add_Method(this.sub_Program_交易記錄查詢);
         }
-
-      
-
         private void sub_Program_交易記錄查詢()
         {
 
@@ -155,7 +152,7 @@ namespace 調劑台管理系統
                     }
                     else if (Extension == ".xls")
                     {
-                        MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName, (int)enum_交易記錄查詢資料.庫存量, (int)enum_交易記錄查詢資料.盤點量, (int)enum_交易記錄查詢資料.交易量, (int)enum_交易記錄查詢資料.結存量);
+                        MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName, (int)enum_交易記錄查詢資料_匯出.庫存量, (int)enum_交易記錄查詢資料_匯出.盤點量, (int)enum_交易記錄查詢資料_匯出.交易量, (int)enum_交易記錄查詢資料_匯出.結存量);
                         MyMessageBox.ShowDialog("匯出完成!");
                     }
                 }
@@ -225,7 +222,7 @@ namespace 調劑台管理系統
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次領藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.重複領藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.系統領藥.GetEnumName()));
-
+                list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.盤點量更正.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼退藥.GetEnumName()));
                 list_list_value_buf.Add(list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸退藥.GetEnumName()));
             }

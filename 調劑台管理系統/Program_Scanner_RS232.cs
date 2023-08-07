@@ -358,7 +358,7 @@ namespace 調劑台管理系統
 
                 if (!plC_CheckBox_QRcode_Mode.Bool)
                 {
-                    this.領藥台_01_醫囑條碼 = text;
+                    this.領藥台_02_醫囑條碼 = text;
 
                     Console.WriteLine($"接收資料內容 : {text} ");
                     cnt++;

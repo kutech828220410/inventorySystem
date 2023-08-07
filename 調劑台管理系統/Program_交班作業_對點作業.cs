@@ -550,7 +550,7 @@ namespace 調劑台管理系統
             {
                 if (MyMessageBox.ShowDialog("確認交班,彈開所有抽屜?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
                 Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_當班交接人_ID.Text}],當班交接人");
-                if(!this.plC_CheckBox_單人交班.Bool)Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_被交接人_ID.Text}],被交接人");
+                if(!this.plC_CheckBox_單人交班.Bool)Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_被交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_被交接人_ID.Text}],被交接人");
                 List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
                 for (int i = 0; i < list_locker_table_value.Count; i++)
                 {

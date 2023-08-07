@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dialog_醫囑退藥));
             this.rJ_GroupBox1 = new MyUI.RJ_GroupBox();
             this.sqL_DataGridView_醫囑資料 = new SQLUI.SQL_DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -52,12 +51,14 @@
             this.rJ_GroupBox1.ContentsPanel.Controls.Add(this.sqL_DataGridView_醫囑資料);
             this.rJ_GroupBox1.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox1.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox1.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox1.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox1.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox1.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
             this.rJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(1274, 831);
             this.rJ_GroupBox1.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_GroupBox1.GUID = "";
             this.rJ_GroupBox1.Location = new System.Drawing.Point(0, 0);
             this.rJ_GroupBox1.Name = "rJ_GroupBox1";
             this.rJ_GroupBox1.PannelBackColor = System.Drawing.Color.White;
@@ -92,19 +93,6 @@
             this.sqL_DataGridView_醫囑資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_醫囑資料.columnHeadersHeight = 44;
             this.sqL_DataGridView_醫囑資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns1"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns2"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns3"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns4"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns5"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns6"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns7"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns8"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns9"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns10"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns11"))));
-            this.sqL_DataGridView_醫囑資料.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_醫囑資料.Columns12"))));
             this.sqL_DataGridView_醫囑資料.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_醫囑資料.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_醫囑資料.ImageBox = false;
@@ -159,6 +147,7 @@
             this.rJ_Button_退出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_退出.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_退出.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_退出.GUID = "";
             this.rJ_Button_退出.Location = new System.Drawing.Point(1109, 0);
             this.rJ_Button_退出.Name = "rJ_Button_退出";
             this.rJ_Button_退出.Size = new System.Drawing.Size(165, 86);
@@ -193,6 +182,7 @@
             this.rJ_Button_刷新.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_刷新.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_刷新.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_刷新.GUID = "";
             this.rJ_Button_刷新.Location = new System.Drawing.Point(25, 0);
             this.rJ_Button_刷新.Name = "rJ_Button_刷新";
             this.rJ_Button_刷新.Size = new System.Drawing.Size(165, 86);

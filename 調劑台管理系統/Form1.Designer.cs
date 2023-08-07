@@ -1372,6 +1372,7 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
+            this.plC_CheckBox_盤點量要修正至結存量 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -26885,6 +26886,7 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.plC_CheckBox_盤點量要修正至結存量);
             this.groupBox8.Controls.Add(this.groupBox6);
             this.groupBox8.Controls.Add(this.groupBox19);
             this.groupBox8.Controls.Add(this.groupBox7);
@@ -34835,6 +34837,26 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // plC_CheckBox_盤點量要修正至結存量
+            // 
+            this.plC_CheckBox_盤點量要修正至結存量.AutoSize = true;
+            this.plC_CheckBox_盤點量要修正至結存量.Bool = false;
+            this.plC_CheckBox_盤點量要修正至結存量.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_盤點量要修正至結存量.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_盤點量要修正至結存量.Location = new System.Drawing.Point(11, 143);
+            this.plC_CheckBox_盤點量要修正至結存量.Name = "plC_CheckBox_盤點量要修正至結存量";
+            this.plC_CheckBox_盤點量要修正至結存量.Size = new System.Drawing.Size(207, 20);
+            this.plC_CheckBox_盤點量要修正至結存量.TabIndex = 130;
+            this.plC_CheckBox_盤點量要修正至結存量.Text = "[盤點量]要修正至[結存量]";
+            this.plC_CheckBox_盤點量要修正至結存量.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_盤點量要修正至結存量.寫入元件位置 = "S3110";
+            this.plC_CheckBox_盤點量要修正至結存量.文字內容 = "[盤點量]要修正至[結存量]";
+            this.plC_CheckBox_盤點量要修正至結存量.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_盤點量要修正至結存量.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_盤點量要修正至結存量.讀取元件位置 = "S3110";
+            this.plC_CheckBox_盤點量要修正至結存量.讀寫鎖住 = false;
+            this.plC_CheckBox_盤點量要修正至結存量.音效 = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -35189,6 +35211,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox19.ResumeLayout(false);
@@ -36634,6 +36657,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_藥師證字號;
+        private MyUI.PLC_CheckBox plC_CheckBox_盤點量要修正至結存量;
     }
 }
 

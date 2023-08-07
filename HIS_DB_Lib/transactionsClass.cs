@@ -33,6 +33,7 @@ namespace HIS_DB_Lib
         管制抽屜關閉,
         交班對點,
         取消作業,
+        盤點量更正,
         None,
     }
     public enum enum_交易記錄查詢資料

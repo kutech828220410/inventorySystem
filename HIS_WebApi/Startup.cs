@@ -11,14 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Configuration;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Hosting;
-
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
 using H_Pannel_lib;
 namespace HIS_WebApi
 {
@@ -61,7 +54,8 @@ namespace HIS_WebApi
                 });
            
             });
-       
+
+
             services.AddControllers();
             services.AddSignalR();
         }

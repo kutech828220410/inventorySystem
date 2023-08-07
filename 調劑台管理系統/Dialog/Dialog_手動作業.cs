@@ -77,13 +77,8 @@ namespace 調劑台管理系統
                     this.rJ_Lable_領退藥狀態.BackColor = Color.Red;
                 }
             }));
-
+            this.sqL_DataGridView_藥品資料.SQL_GetAllRows(true);
         }
-
-
-
-
-
         #region Event
         private void SqL_DataGridView_選擇藥品_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
         {
@@ -92,13 +87,20 @@ namespace 調劑台管理系統
         private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             this.form1_buf.Function_從SQL取得儲位到本地資料();
+            List<object[]> RowsList_buf = new List<object[]>();
             Parallel.ForEach(RowsList, value =>
             {
                 string 藥品碼 = value[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
                 int 庫存 = this.form1_buf.Function_從本地資料取得庫存(藥品碼);
                 value[(int)enum_藥品資料_藥檔資料.庫存] = 庫存;
+                if (庫存 != -999)
+                {
+                    RowsList_buf.LockAdd(value);
+                }
+     
             });
-            RowsList.Sort(new ICP_藥品資料());
+            RowsList_buf.Sort(new ICP_藥品資料());
+            RowsList = RowsList_buf;
         }
         private void SqL_DataGridView_藥品資料_RowDoubleClickEvent(object[] RowValue)
         {
