@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj": {}
+    "C:\\Users\\HS\\source\\repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj": {
+    "C:\\Users\\HS\\source\\repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\HS\\source\\repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
         "projectName": "HIS_WebApi",
-        "projectPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
+        "projectPath": "C:\\Users\\HS\\source\\repos\\inventorySystem\\HIS_WebApi\\HIS_WebApi.csproj",
         "packagesPath": "C:\\Users\\HS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HS\\Source\\Repos\\inventorySystem\\HIS_WebApi\\obj\\",
+        "outputPath": "C:\\Users\\HS\\source\\repos\\inventorySystem\\HIS_WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
         }
       }
     }
