@@ -448,15 +448,18 @@ namespace HIS_WebApi
                     }
                     returnData.Data = creat;
                     returnData.Method = "creat_auto_add";
-
-                    return POST_creat_add(returnData);
+                    returnData.Value = creatSN;
+                    POST_creat_add(returnData);
+                    return returnData.JsonSerializationt();
                 }
                 else
                 {
                     inventoryClass.creat creat = new inventoryClass.creat();
                     creat.盤點單號 = creatSN;
                     returnData.Data = creat;
-                    return POST_creat_get_by_IC_SN(returnData);
+                    returnData.Value = creatSN;
+
+                    return returnData.JsonSerializationt();
                 }
     
               
