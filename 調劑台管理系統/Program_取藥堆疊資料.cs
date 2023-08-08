@@ -2496,7 +2496,7 @@ namespace 調劑台管理系統
                     int 結存量_temp = 結存量.StringToInt32();
                     int 盤點量_temp = 盤點量.StringToInt32();
                     交易量 = (盤點量_temp - 結存量_temp).ToString();
-
+                    庫存量 = this.Function_從入賬資料取得庫存(藥品碼);
                     List<object[]> list_儲位資料 = Function_取得異動儲位資訊從入賬資料(藥品碼, 交易量.StringToInt32());
                     for (int k = 0; k < list_儲位資料.Count; k++)
                     {
@@ -2505,6 +2505,7 @@ namespace 調劑台管理系統
                     transactionsClass transactionsClass = value_trading.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                     transactionsClass.GUID = Guid.NewGuid().ToString();
                     transactionsClass.動作 = enum_交易記錄查詢動作.盤點量更正.GetEnumName();
+                    transactionsClass.庫存量 = 庫存量.ToString();
                     transactionsClass.交易量 = 交易量;
                     transactionsClass.盤點量 = "無";
                     transactionsClass.結存量 = 盤點量;

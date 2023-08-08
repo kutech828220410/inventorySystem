@@ -365,6 +365,111 @@ namespace HIS_WebApi
             }
             
         }
+
+        [Route("creat_quick_add")]
+        [HttpPost]
+        public string POST_creat_quick_add([FromBody] returnData returnData)
+        {
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses_buf[0].Server;
+                string DB = serverSettingClasses_buf[0].DBName;
+                string UserName = serverSettingClasses_buf[0].User;
+                string Password = serverSettingClasses_buf[0].Password;
+                uint Port = (uint)serverSettingClasses_buf[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+
+                string creatSN = $"{DateTime.Now.ToDateTinyString()}-Q";
+                List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
+                List<object[]> list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, creatSN);
+                if(list_inventory_creat_buf.Count == 0)
+                {
+                    MED_pageController mED_PageController = new MED_pageController();
+                    returnData returnData_med = new returnData();
+                    returnData_med.Server = Server;
+                    returnData_med.DbName = DB;
+                    returnData_med.TableName = returnData.TableName;
+                    returnData_med.Port = Port;
+                    returnData_med.UserName = UserName;
+                    returnData_med.Password = Password;
+
+                    returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
+                    List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
+
+                    deviceController deviceController = new deviceController();
+                    serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                    List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0]);
+
+                    inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
+                    creat.盤點單號 = creatSN;
+                    creat.盤點名稱 = "快速盤點";
+                    for (int i = 0; i < medClasses.Count; i++)
+                    {
+                        inventoryClass.content content = new inventoryClass.content();
+                        content.藥品碼 = medClasses[i].藥品碼;
+                        content.藥品名稱 = medClasses[i].藥品名稱;
+                        content.中文名稱 = medClasses[i].中文名稱;
+                        content.料號 = medClasses[i].料號;
+                        content.藥品條碼1 = medClasses[i].藥品條碼1;
+                        content.藥品條碼2 = medClasses[i].藥品條碼2;
+                        content.包裝單位 = medClasses[i].包裝單位;
+                        content.理論值 = "0";
+                        List<DeviceBasic> deviceBasic_buf = deviceBasics.SortByCode(content.藥品碼);
+                        if (deviceBasic_buf.Count > 0)
+                        {
+                            content.理論值 = deviceBasic_buf[0].Inventory;
+                            if (deviceBasic_buf[0].Inventory.StringToInt32() > 0)
+                            {
+
+                            }
+                        }
+
+
+
+                        creat.Contents.Add(content);
+                    }
+                    if (creat.Contents.Count == 0)
+                    {
+                        returnData.Code = -6;
+                        returnData.Value = "無盤點資料可新增!";
+                        return returnData.JsonSerializationt();
+                    }
+                    returnData.Data = creat;
+                    returnData.Method = "creat_auto_add";
+
+                    return POST_creat_add(returnData);
+                }
+                else
+                {
+                    inventoryClass.creat creat = new inventoryClass.creat();
+                    creat.盤點單號 = creatSN;
+                    returnData.Data = creat;
+                    return POST_creat_get_by_IC_SN(returnData);
+                }
+    
+              
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+
         //盤點單新增
         [Route("creat_add")]
         [HttpPost]
