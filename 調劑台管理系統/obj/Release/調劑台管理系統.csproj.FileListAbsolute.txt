@@ -2418,3 +2418,8 @@ C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release\office.dll
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_使用者登入.resources
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_盤點數量錯誤.resources
+C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\bin\Release\office.dll
+C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll
+C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_使用者登入.resources
+C:\Users\kwok\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_盤點數量錯誤.resources
