@@ -488,8 +488,12 @@ namespace HIS_WebApi
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
-                //string json_result = POST_get_by_apiserver(returnData);
-                //returnData = json_result.JsonDeserializet<returnData>();
+                if(returnData.Data == null)
+                {
+                    string json_result = POST_get_by_apiserver(returnData);
+                    returnData = json_result.JsonDeserializet<returnData>();
+                }
+
                 returnData.Method = "serch_by_BarCode";
                 string BarCode = returnData.Value;
                 if(BarCode.StringIsEmpty())
