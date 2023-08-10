@@ -488,7 +488,8 @@ namespace HIS_WebApi
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
-                if(returnData.Data == null)
+                List<medClass> medClasses = returnData.Data.ObjToListClass<medClass>();
+                if (medClasses == null)
                 {
                     string json_result = POST_get_by_apiserver(returnData);
                     returnData = json_result.JsonDeserializet<returnData>();
@@ -502,7 +503,7 @@ namespace HIS_WebApi
                     returnData.Result = "BarCode空白!";
                     return returnData.JsonSerializationt();
                 }
-                List<medClass> medClasses = returnData.Data.ObjToListClass<medClass>();
+               
                 List<medClass> medClasses_buf = new List<medClass>();
 
                 for(int i = 0; i < medClasses.Count; i++)
