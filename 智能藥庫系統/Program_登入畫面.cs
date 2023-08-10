@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using MyUI;
 using Basic;
-
+using HIS_DB_Lib;
 namespace 智能藥庫系統
 {
 

@@ -12,24 +12,13 @@ using Basic;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using MySQL_Login;
+using HIS_DB_Lib;
+using SQLUI;
 namespace 智能藥庫系統
 {
     public partial class Form1 : Form
     {
-        public enum enum_人員資料
-        {
-            GUID,
-            ID,
-            姓名,
-            性別,
-            密碼,
-            單位,
-            權限等級,
-            顏色,
-            卡號,
-            一維卡號,
-            識別圖案,
-        }
+ 
         public enum enum_人員資料_匯出
         {
             ID,
@@ -77,13 +66,29 @@ namespace 智能藥庫系統
             this.loginUI.Set_login_data_index_DB(dBConfigClass.DB_person_page);
             this.loginUI.Init();
 
-            this.sqL_DataGridView_人員資料.Init();
-            if (!this.sqL_DataGridView_人員資料.SQL_IsTableCreat()) this.sqL_DataGridView_人員資料.SQL_CreateTable();
-            this.sqL_DataGridView_人員資料.DataGridRefreshEvent += SqL_DataGridView_人員資料_DataGridRefreshEvent;
-            this.sqL_DataGridView_人員資料.RowEnterEvent += SqL_DataGridView_人員資料_RowEnterEvent;
-            this.sqL_DataGridView_人員資料.RowDoubleClickEvent += SqL_DataGridView_人員資料_RowDoubleClickEvent;
-            this.sqL_DataGridView_人員資料.MouseDown += SqL_DataGridView_人員資料_MouseDown;
-            this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
+            string url = $"{dBConfigClass.Api_URL}/api/person_page/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table table = json.JsonDeserializet<Table>();
+            if (table == null)
+            {
+                MyMessageBox.ShowDialog($"人員資料表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.Init(table);
+            this.sqL_DataGridView_人員資料.Set_ColumnVisible(false, new enum_人員資料().GetEnumNames());
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.ID);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.姓名);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.性別);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.單位);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.藥師證字號);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.權限等級);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.顏色);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.卡號);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.一維條碼);
 
             this.plC_Button_權限設定_設定至Server.MouseDownEvent += PlC_Button_權限設定_設定至Server_MouseDownEvent;
             this.plC_RJ_ComboBox_權限管理_權限等級.OnSelectedIndexChanged += PlC_RJ_ComboBox_權限管理_權限等級_OnSelectedIndexChanged;
@@ -284,7 +289,7 @@ namespace 智能藥庫系統
                 value[(int)enum_人員資料.卡號] = this.rJ_TextBox_人員資料_卡號.Text;
                 value[(int)enum_人員資料.權限等級] = this.comboBox_人員資料_權限等級.Text;
                 value[(int)enum_人員資料.顏色] = this.textBox_人員資料_顏色.Text;
-                value[(int)enum_人員資料.一維卡號] = this.rJ_TextBox_人員資料_一維條碼.Text;
+                value[(int)enum_人員資料.一維條碼] = this.rJ_TextBox_人員資料_一維條碼.Text;
                 value[(int)enum_人員資料.識別圖案] = this.rJ_TextBox_人員資料_識別圖案.Text;
                 string str_error = this.Function_人員資料_檢查內容(value);
                 if (!str_error.StringIsEmpty())
@@ -307,7 +312,7 @@ namespace 智能藥庫系統
                     value[(int)enum_人員資料.卡號] = this.rJ_TextBox_人員資料_卡號.Text;
                     value[(int)enum_人員資料.權限等級] = this.comboBox_人員資料_權限等級.Text;
                     value[(int)enum_人員資料.顏色] = this.textBox_人員資料_顏色.Text;
-                    value[(int)enum_人員資料.一維卡號] = this.rJ_TextBox_人員資料_一維條碼.Text;
+                    value[(int)enum_人員資料.一維條碼] = this.rJ_TextBox_人員資料_一維條碼.Text;
                     value[(int)enum_人員資料.識別圖案] = this.rJ_TextBox_人員資料_識別圖案.Text;
                     string str_error = this.Function_人員資料_檢查內容(value);
                     if (!str_error.StringIsEmpty())
@@ -543,7 +548,7 @@ namespace 智能藥庫系統
             textBox_人員資料_顏色.Text = RowValue[(int)enum_人員資料.顏色].ObjectToString();
             textBox_人員資料_顏色.BackColor = textBox_人員資料_顏色.Text.ToColor();
             rJ_TextBox_人員資料_卡號.Text = RowValue[(int)enum_人員資料.卡號].ObjectToString();
-            rJ_TextBox_人員資料_一維條碼.Text = RowValue[(int)enum_人員資料.一維卡號].ObjectToString();
+            rJ_TextBox_人員資料_一維條碼.Text = RowValue[(int)enum_人員資料.一維條碼].ObjectToString();
             rJ_TextBox_人員資料_識別圖案.Text = RowValue[(int)enum_人員資料.識別圖案].ObjectToString();
 
 

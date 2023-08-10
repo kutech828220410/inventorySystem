@@ -62,7 +62,7 @@ namespace 智能藥庫系統
         }
         private void sub_Program_藥庫_藥品資料_Init()
         {
-            this.DeviceBasicClass_藥庫.Init(dBConfigClass.DB_stroage, "firstclass_device_jsonstring");
+            this.DeviceBasicClass_藥庫.Init(dBConfigClass.DB_Basic, "firstclass_device_jsonstring");
 
             this.sqL_DataGridView_藥庫_藥品資料.Init();
             if (!this.sqL_DataGridView_藥庫_藥品資料.SQL_IsTableCreat()) this.sqL_DataGridView_藥庫_藥品資料.SQL_CreateTable();

@@ -47,7 +47,7 @@ namespace 智能藥庫系統
         private bool flag_Program_藥庫_儲位管理_EPD266_Init = false;
         private void sub_Program_藥庫_儲位管理_EPD266_Init()
         {
-            this.storageUI_EPD_266.Init(dBConfigClass.DB_stroage);
+            this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic);
             this.epD_266_Pannel.Init(this.storageUI_EPD_266.List_UDP_Local);
 
             this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
