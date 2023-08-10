@@ -838,3 +838,5 @@ C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\bin\Release\offic
 C:\Users\kwok\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\kwok\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\kwok\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
