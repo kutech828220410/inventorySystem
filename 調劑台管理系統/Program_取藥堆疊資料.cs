@@ -287,8 +287,12 @@ namespace 調劑台管理系統
                 if (藥品碼.StringIsEmpty()) return;
                 if (plC_Button_同藥碼全亮.Bool)
                 {
-                    this.Function_儲位亮燈(藥品碼, Color.Black);
-                    this.Function_儲位刷新(藥品碼);
+                    if (!plC_CheckBox_測試模式.Checked)
+                    {
+                        this.Function_儲位亮燈(藥品碼, Color.Black);
+                        this.Function_儲位刷新(藥品碼);
+                    }
+ 
                     return;
                 }
 
@@ -297,13 +301,12 @@ namespace 調劑台管理系統
                     Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
                     if (storage != null)
                     {
-                        Task.Run(() =>
+                        if (!plC_CheckBox_測試模式.Checked)
                         {
                             this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
-                            
                             this.storageUI_EPD_266.DrawToEpd_UDP(storage);
-                        }).Wait();
-              
+                        }
+           
                     }
                 }
                 else if (device_Type == DeviceType.Pannel35.GetEnumName() || device_Type == DeviceType.Pannel35_lock.GetEnumName())
@@ -311,11 +314,10 @@ namespace 調劑台管理系統
                     Storage storage = this.List_Pannel35_雲端資料.SortByIP(IP);
                     if (storage != null)
                     {
-                        Task.Run(() =>
+                        if (!plC_CheckBox_測試模式.Checked)
                         {
                             this.storageUI_WT32.Set_Stroage_LED_UDP(storage, Color.Black);
-                        }).Wait();
-
+                        }
                     }
                 }
                 else if (device_Type == DeviceType.EPD583.GetEnumName() || device_Type == DeviceType.EPD583_lock.GetEnumName())
@@ -323,7 +325,11 @@ namespace 調劑台管理系統
                     Drawer drawer = this.List_EPD583_雲端資料.SortByIP(IP);
                     if (drawer != null)
                     {
-                        this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                        if (!plC_CheckBox_測試模式.Checked)
+                        {
+                            this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                        }
+          
                     }
                 }
                 else if (device_Type == DeviceType.RowsLED.GetEnumName())
@@ -335,7 +341,17 @@ namespace 調劑台管理系統
                         for (int i = 0; i < rowsDevices.Count; i++)
                         {
                             RowsLED rowsLED = this.List_RowsLED_雲端資料.SortByIP(rowsDevices[i].IP);
-                            this.rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED, rowsDevices[i]);
+                            if (!plC_CheckBox_測試模式.Checked)
+                            {
+                                if (rowsLED != null)
+                                {
+                                    if (!plC_CheckBox_測試模式.Checked)
+                                    {
+                                        this.rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED, rowsDevices[i]);
+                                    }
+          
+                                }
+                            }                     
                         }
 
                     }
@@ -345,7 +361,11 @@ namespace 調劑台管理系統
                         RowsDevice rowsDevice = rowsLED.SortByGUID(device_GUID);
                         if (rowsLED != null)
                         {
-                            this.rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED, rowsDevice);
+                            if (!plC_CheckBox_測試模式.Checked)
+                            {
+                                this.rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED, rowsDevice);
+                            }
+                    
                         }
                     }
                 }
@@ -709,7 +729,8 @@ namespace 調劑台管理系統
                     this.storageUI_WT32.SQL_ReplaceStorage(storage);
                     Task.Run(() =>
                     {
-                        this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+                        if(!plC_CheckBox_測試模式.Checked) this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+
                     });
                 }
             }
@@ -1696,14 +1717,21 @@ namespace 調劑台管理系統
                         {
                             drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
                         }
-                     
-                        this.drawerUI_EPD_583.Set_LED_UDP(drawer);
+                        if (!plC_CheckBox_測試模式.Checked)
+                        {
+                            this.drawerUI_EPD_583.Set_LED_UDP(drawer);
+                        }
+            
                         list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
                     }
                     if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266_lock.GetEnumName()|| 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290_lock.GetEnumName())
                     {
                         Storage storage = List_EPD266_雲端資料.SortByIP(IP);
-                        this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                        if (!plC_CheckBox_測試模式.Checked)
+                        {
+                            this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                        }
+                     
                         list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
                     }
                 }
@@ -1713,7 +1741,11 @@ namespace 調劑台管理系統
                 if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.Pannel35_lock.GetEnumName())
                 {
                     Storage storage =List_Pannel35_雲端資料.SortByIP(IP);
-                    this.storageUI_WT32.Set_Stroage_LED_UDP(storage, color);
+                    if (!plC_CheckBox_測試模式.Checked)
+                    {
+                        this.storageUI_WT32.Set_Stroage_LED_UDP(storage, color);
+                    }
+             
                     list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
                 }
                 
@@ -2165,7 +2197,10 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                                if (!plC_CheckBox_測試模式.Checked)
+                                {
+                                    this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                                }                      
                             }));
                         }
                     }
@@ -2204,13 +2239,17 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                int Dis_value = this.storageUI_EPD_266.Get_LaserDistance(storage);
-                                Console.WriteLine($"IP: {storage.IP} ,雷射數值 :{Dis_value}");
-                                if (Dis_value <= this.取藥堆疊資料_流程作業檢查_感測設定值 || this.PLC_Device_取藥堆疊資料_流程作業檢查_不檢測.Bool || !storage.TOFON)
+                                if (!plC_CheckBox_測試模式.Checked)
                                 {
-                                    //if (!this.PLC_Device_取藥堆疊資料_流程作業檢查_不檢測.Bool || !storage.TOFON) this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
-                                    list_需更新資料.Add(new string[] { 調劑台名稱, IP });
+                                    int Dis_value = this.storageUI_EPD_266.Get_LaserDistance(storage);
+                                    Console.WriteLine($"IP: {storage.IP} ,雷射數值 :{Dis_value}");
+                                    if (Dis_value <= this.取藥堆疊資料_流程作業檢查_感測設定值 || this.PLC_Device_取藥堆疊資料_流程作業檢查_不檢測.Bool || !storage.TOFON)
+                                    {
+                                        //if (!this.PLC_Device_取藥堆疊資料_流程作業檢查_不檢測.Bool || !storage.TOFON) this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                                        list_需更新資料.Add(new string[] { 調劑台名稱, IP });
+                                    }
                                 }
+                            
                             }));
                             list_手勢檢查資料.Add(new string[] { 調劑台名稱, IP });
                         }
@@ -2263,11 +2302,11 @@ namespace 調劑台管理系統
                                 RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevices[i].IP);
                                 RowsDevice rowsDevice = rowsDevices[i];
                                 rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
-                                this.rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
-                                //taskList.Add(Task.Run(() =>
-                                //{
+                                if (!plC_CheckBox_測試模式.Checked)
+                                {
+                                    this.rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                                }
 
-                                //}));
                             }
                         }
                         else
@@ -2279,9 +2318,11 @@ namespace 調劑台管理系統
                             {
                                 taskList.Add(Task.Run(() =>
                                 {
-                                    //rowsLED.LED_Bytes = RowsLEDUI.Get_Empty_LEDBytes();
-                                    rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
-                                    this.rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                                    if (!plC_CheckBox_測試模式.Checked)
+                                    {
+                                        rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
+                                        this.rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                                    }                             
                                 }));
                             }
                         }

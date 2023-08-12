@@ -299,6 +299,7 @@ namespace 調劑台管理系統
         void sub_Program_檢查頁面不顯示()
         {
             PLC_Device_檢查頁面不顯示.Bool = true;
+            if (ControlMode) return;
             if (cnt_Program_檢查頁面不顯示 == 65534)
             {
                 this.MyTimer_檢查頁面不顯示_結束延遲.StartTickTime(2000);

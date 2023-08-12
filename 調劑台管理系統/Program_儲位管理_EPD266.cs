@@ -191,6 +191,7 @@ namespace 調劑台管理系統
 
                 string 藥品碼_buf = "";
                 string 藥品名稱_buf = "";
+                string 中文名稱_buf = "";
                 string 藥品學名_buf = "";
                 string BarCode_buf = "";
                 string 包裝單位_buf = "";
@@ -211,6 +212,7 @@ namespace 調劑台管理系統
                 {
                     藥品碼_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
                     藥品名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
+                    中文名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
                     藥品學名_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品學名].ObjectToString();
                     BarCode_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString();
                     包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
@@ -232,6 +234,7 @@ namespace 調劑台管理系統
 
                     storage.SetValue(Device.ValueName.藥品碼, Device.ValueType.Value, 藥品碼_buf);
                     storage.SetValue(Device.ValueName.藥品名稱, Device.ValueType.Value, 藥品名稱_buf);
+                    storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value, 中文名稱_buf);
                     storage.SetValue(Device.ValueName.藥品學名, Device.ValueType.Value, 藥品學名_buf);
                     storage.SetValue(Device.ValueName.BarCode, Device.ValueType.Value, BarCode_buf);
                     storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Value, 包裝單位_buf);

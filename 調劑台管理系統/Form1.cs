@@ -161,6 +161,7 @@ namespace 調劑台管理系統
             private bool _藥物辨識圖片顯示 = true;
             private bool ePD583_Enable = true;
             private bool ePD266_Enable = true;
+            private bool ePD1020_Enable = true;
             private bool rowsLED_Enable = true;
             private bool rFID_Enable = true;
             private bool pannel35_Enable = true;
@@ -190,6 +191,7 @@ namespace 調劑台管理系統
             public string 藥物辨識網址 { get => _藥物辨識網址; set => _藥物辨識網址 = value; }
             public bool 外部輸出 { get => _外部輸出; set => _外部輸出 = value; }
             public bool 系統取藥模式 { get => _系統取藥模式; set => _系統取藥模式 = value; }
+            public bool EPD1020_Enable { get => ePD1020_Enable; set => ePD1020_Enable = value; }
         }
         private void LoadMyConfig()
         {
@@ -505,6 +507,7 @@ namespace 調劑台管理系統
             
             this.plC_RJ_ScreenButton_EPD583.Visible = myConfigClass.EPD583_Enable;
             this.plC_RJ_ScreenButton_EPD266.Visible = myConfigClass.EPD266_Enable;
+            this.plC_RJ_ScreenButton_EPD1020.Visible = myConfigClass.EPD1020_Enable;
             this.plC_RJ_ScreenButton_RowsLED.Visible = myConfigClass.RowsLED_Enable;
             this.plC_RJ_ScreenButton_RFID.Visible = myConfigClass.RFID_Enable;
             this.plC_RJ_ScreenButton_Pannel35.Visible = myConfigClass.Pannel35_Enable;
@@ -521,6 +524,7 @@ namespace 調劑台管理系統
 
             this.Program_儲位管理_EPD583_Init();
             this.Program_儲位管理_EPD266_Init();
+            this.Program_儲位管理_EPD1020_Init();
             this.Program_儲位管理_RowsLED_Init();
             this.Program_儲位管理_RFID_Init();
             this.Program_儲位管理_Pannel35_Init();
@@ -680,6 +684,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_交易記錄查詢.SQL_Reset();
 
             this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
@@ -687,6 +692,7 @@ namespace 調劑台管理系統
             if(flag_DBConfigInit == true)
             {
                 this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
+                this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
                 this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
                 this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
                 this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
