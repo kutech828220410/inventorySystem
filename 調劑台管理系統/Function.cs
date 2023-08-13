@@ -40,8 +40,8 @@ namespace 調劑台管理系統
             List<Box> boxes_1020 = this.List_EPD1020_本地資料.SortByCode(藥品碼);
             for (int i = 0; i < boxes_1020.Count; i++)
             {
-                Box box = this.drawerUI_EPD_1020.SQL_GetBox(boxes_1020[i]);
-                this.List_EPD1020_入賬資料.Add_NewDrawer(box);
+                Drawer drawer = this.drawerUI_EPD_1020.SQL_GetDrawer(boxes_1020[i].IP);
+                this.List_EPD1020_入賬資料.Add_NewDrawer(drawer);
             }
             for (int i = 0; i < boxes.Count; i++)
             {
@@ -373,8 +373,9 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < boxes_1020.Count; i++)
             {
-                Box box = this.drawerUI_EPD_1020.SQL_GetBox(boxes_1020[i]);
-                this.List_EPD1020_雲端資料.Add_NewDrawer(box);
+                Drawer drawer = this.drawerUI_EPD_1020.SQL_GetDrawer(boxes_1020[i].IP);
+                this.List_EPD1020_雲端資料.Add_NewDrawer(drawer);
+                Box box = drawer.GetByGUID(boxes_1020[i].GUID);
                 list_value.Add(box);
             }
             for (int i = 0; i < storages.Count; i++)
@@ -802,7 +803,7 @@ namespace 調劑台管理系統
             Drawer drawer = this.List_EPD583_本地資料.SortByIP(IP);
             if (drawer != null) return drawer;
             Drawer drawer_1020 = this.List_EPD1020_本地資料.SortByIP(IP);
-            if (drawer != null) return drawer_1020;
+            if (drawer_1020 != null) return drawer_1020;
             RowsLED rowsLED = this.List_RowsLED_本地資料.SortByIP(IP);
             if (rowsLED != null) return rowsLED;
             RFIDClass rFIDClass = this.List_RFID_本地資料.SortByIP(IP);
@@ -1003,19 +1004,9 @@ namespace 調劑台管理系統
                             {
                                 Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
-
-                                if (drawer.IsAllLight)
-                                {
-                                    drawer.LED_Bytes = DrawerUI_EPD_1020.Set_LEDBytes(drawer, boxes, color);
-                                    drawer.LED_Bytes = DrawerUI_EPD_1020.Set_Pannel_LEDBytes(drawer, color);
-                                }
-                                else
-                                {
-                                    drawer.LED_Bytes = DrawerUI_EPD_1020.Set_LEDBytes(drawer, color);
-                                }
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
-                                    this.drawerUI_EPD_1020.Set_LED_UDP(drawer);
+                                    this.drawerUI_EPD_1020.Set_Pannel_LED_UDP(drawer , color);
                                 }
 
                             }));

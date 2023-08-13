@@ -99,6 +99,9 @@ namespace 調劑台管理系統
                 if (flag_Program_儲位管理_EPD1020_Init == false)
                 {
                     PLC_Device_儲位管理_EPD1020_資料更新.Bool = true;
+                    sqL_DataGridView_儲位管理_EPD1020_抽屜列表.On_RowEnter();
+                    sqL_DataGridView_儲位管理_EPD1020_儲位資料.On_RowEnter();
+
                     flag_Program_儲位管理_EPD1020_Init = true;
                 }
             }
@@ -490,7 +493,7 @@ namespace 調劑台管理系統
                 {
                     if (drawer != null)
                     {
-                        if (!this.drawerUI_EPD_1020.DrawToEpd_BarCode_UDP(drawer))
+                        if (!this.drawerUI_EPD_1020.DrawToEpd_UDP(drawer))
                         {
                             MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
                         }

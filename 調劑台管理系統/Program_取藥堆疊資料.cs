@@ -329,7 +329,19 @@ namespace 調劑台管理系統
                         {
                             this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
                         }
-          
+
+                    }
+                }
+                else if (device_Type == DeviceType.EPD1020.GetEnumName() || device_Type == DeviceType.EPD1020_lock.GetEnumName())
+                {
+                    Drawer drawer = this.List_EPD1020_雲端資料.SortByIP(IP);
+                    if (drawer != null)
+                    {
+                        if (!plC_CheckBox_測試模式.Checked)
+                        {
+                            this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
+                        }
+
                     }
                 }
                 else if (device_Type == DeviceType.RowsLED.GetEnumName())
@@ -407,6 +419,17 @@ namespace 調劑台管理系統
             else if (device_Type == DeviceType.EPD583.GetEnumName() || device_Type == DeviceType.EPD583_lock.GetEnumName())
             {
                 Drawer drawer = this.List_EPD583_雲端資料.SortByIP(IP);
+                if (drawer != null && drawer.Speaker.StringIsEmpty() == false)
+                {
+                    Task.Run(() =>
+                    {
+                        this.voice.SpeakOnTask(drawer.Speaker);
+                    });
+                }
+            }
+            else if (device_Type == DeviceType.EPD1020.GetEnumName() || device_Type == DeviceType.EPD1020_lock.GetEnumName())
+            {
+                Drawer drawer = this.List_EPD1020_雲端資料.SortByIP(IP);
                 if (drawer != null && drawer.Speaker.StringIsEmpty() == false)
                 {
                     Task.Run(() =>
@@ -699,6 +722,24 @@ namespace 調劑台管理系統
                     }
                 }
             }
+            if (str_TYPE == DeviceType.EPD1020.GetEnumName() || str_TYPE == DeviceType.EPD1020_lock.GetEnumName())
+            {
+                List<Box> boxes = this.List_EPD1020_入賬資料.SortByCode(藥品碼);
+                for (int i = 0; i < boxes.Count; i++)
+                {
+                    if (boxes[i].IP != IP) continue;
+                    boxes[i] = this.drawerUI_EPD_1020.SQL_GetBox(boxes[i]);
+                    儲位庫存 = boxes[i].取得庫存(效期);
+                    if ((儲位庫存) >= 0)
+                    {
+                        boxes[i].效期庫存異動(效期, 異動量);
+                        批號 = boxes[i].取得批號(效期);
+                        Drawer drawer = this.List_EPD1020_入賬資料.ReplaceByGUID(boxes[i]);
+                        this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
+                        break;
+                    }
+                }
+            }
             else if (str_TYPE == DeviceType.EPD266.GetEnumName() || str_TYPE == DeviceType.EPD266_lock.GetEnumName()|| str_TYPE == DeviceType.EPD290.GetEnumName() || str_TYPE == DeviceType.EPD290_lock.GetEnumName())
             {
                 Storage storage = this.List_EPD266_入賬資料.SortByIP(IP);
@@ -859,6 +900,20 @@ namespace 調劑台管理系統
                         flag_可致能資料 = false;
                     }
                 }
+                else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD1020.GetEnumName())
+                {
+                    if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
+                    {
+                        flag_可致能資料 = false;
+                    }
+                }
+                else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD1020_lock.GetEnumName())
+                {
+                    if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
+                    {
+                        flag_可致能資料 = false;
+                    }
+                }
                 else if (list_取藥堆疊子資料[i][(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.RowsLED.GetEnumName())
                 {
                     if (致能 == true.ToString() && 流程作業完成 == true.ToString() && 配藥完成 == true.ToString())
@@ -982,6 +1037,10 @@ namespace 調劑台管理系統
             PLC_Device_取藥堆疊資料_檢查資料.Bool = PLC_Device_主機扣賬模式.Bool;
             if (cnt_Program_取藥堆疊資料_檢查資料 == 65534)
             {
+                List<object[]> list_堆疊母資料 = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+                List<object[]> list_堆疊子資料 = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetAllRows(false);
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_堆疊母資料, false);
+                this.sqL_DataGridView_取藥堆疊子資料.SQL_DeleteExtra(list_堆疊子資料, false);
                 PLC_Device_取藥堆疊資料_檢查資料_更新儲位資料.Bool = true;
                 PLC_Device_取藥堆疊資料_檢查資料_更新儲位資料.SetComment("PLC_Device_取藥堆疊資料_檢查資料_更新儲位資料");
                 PLC_Device_取藥堆疊資料_檢查資料.SetComment("PLC_取藥堆疊資料_檢查資料");
@@ -1205,7 +1264,6 @@ namespace 調劑台管理系統
                         }
                         else if (TYPE[k] == DeviceType.EPD583_lock.GetEnumName() || TYPE[k] == DeviceType.EPD583.GetEnumName())
                         {
-
                             Box box = (Box)values[k];
                             if (!IP.StringIsEmpty())
                             {
@@ -1220,8 +1278,23 @@ namespace 調劑台管理系統
                                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
                                 break;
                             }
-
-
+                        }
+                        else if (TYPE[k] == DeviceType.EPD1020_lock.GetEnumName() || TYPE[k] == DeviceType.EPD1020.GetEnumName())
+                        {
+                            Box box = (Box)values[k];
+                            if (!IP.StringIsEmpty())
+                            {
+                                if (box.IP != IP) continue;
+                            }
+                            if (box.取得庫存(效期) == -1)
+                            {
+                                box.新增效期(效期, 批號, "00");
+                                Drawer drawer = List_EPD1020_雲端資料.SortByIP(box.IP);
+                                drawer.ReplaceByGUID(box);
+                                List_EPD1020_雲端資料.Add_NewDrawer(drawer);
+                                this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
+                                break;
+                            }
                         }
                         else if (TYPE[k] == DeviceType.RowsLED.GetEnumName())
                         {
@@ -1345,8 +1418,7 @@ namespace 調劑台管理系統
                 }
             }
             cnt++;
-        }
-   
+        }  
         void cnt_Program_取藥堆疊資料_檢查資料_刷新無庫存(ref int cnt)
         {
             if (this.list_取藥堆疊母資料.Count > 0)
@@ -1416,6 +1488,22 @@ namespace 調劑台管理系統
                             drawer.ReplaceBox(box);
                             List_EPD583_雲端資料.Add_NewDrawer(drawer);
                             this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                            break;
+
+                        }
+                        else if (TYPE[k] == DeviceType.EPD1020_lock.GetEnumName() || TYPE[k] == DeviceType.EPD1020.GetEnumName())
+                        {
+
+                            Box box = (Box)values[k];
+                            if (!IP.StringIsEmpty())
+                            {
+                                if (box.IP != IP) continue;
+                            }
+                            box.新增效期(效期, 批號, "100000");
+                            Drawer drawer = List_EPD1020_雲端資料.SortByIP(box.IP);
+                            drawer.ReplaceByGUID(box);
+                            List_EPD1020_雲端資料.Add_NewDrawer(drawer);
+                            this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
                             break;
 
                         }
@@ -1722,6 +1810,17 @@ namespace 調劑台管理系統
                             this.drawerUI_EPD_583.Set_LED_UDP(drawer);
                         }
             
+                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
+                    }
+                    if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD1020_lock.GetEnumName() || 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD1020.GetEnumName())
+                    {
+                        Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
+                        List<Box> boxes = drawer.SortByCode(藥品碼);
+                        if (!plC_CheckBox_測試模式.Checked)
+                        {
+                            this.drawerUI_EPD_1020.Set_Pannel_LED_UDP(drawer, color);
+                        }
+
                         list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, IP);
                     }
                     if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD266_lock.GetEnumName()|| 取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD290_lock.GetEnumName())

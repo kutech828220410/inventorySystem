@@ -108,11 +108,23 @@ namespace 調劑台管理系統
                 else if (value_device is Drawer)
                 {
                     Drawer drawer = value_device as Drawer;
-                    this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
-                    if (!plC_Button_同藥碼全亮.Bool)
+                    List<Box> boxes = drawer.GetAllBoxes();
+                    if (boxes.Count > 0)
                     {
-                        this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                        if(boxes[0].DeviceType == DeviceType.EPD583 || boxes[0].DeviceType == DeviceType.EPD583_lock)
+                        {
+                            this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                        }
+                        if (boxes[0].DeviceType == DeviceType.EPD1020 || boxes[0].DeviceType == DeviceType.EPD1020_lock)
+                        {
+                            this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
+                        }
+                        if (!plC_Button_同藥碼全亮.Bool)
+                        {
+                            this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                        }
                     }
+                  
                 }
                 else if (value_device is RFIDClass)
                 {
@@ -155,6 +167,14 @@ namespace 調劑台管理系統
                             if (drawer != null)
                             {
                                 this.drawerUI_EPD_583.Set_LockOpen(drawer);
+                            }
+                        });
+                        Task.Run(() =>
+                        {
+                            Drawer drawer = this.List_EPD1020_雲端資料.SortByIP(IP);
+                            if (drawer != null)
+                            {
+                                this.drawerUI_EPD_1020.Set_LockOpen(drawer);
                             }
                         });
                         Task.Run(() =>
@@ -306,6 +326,18 @@ namespace 調劑台管理系統
                         list_locker_table_value_replace.Add(list_locker_table_value_buf[i]);
                     }
                     AlarmEnable = drawer.AlarmEnable;
+                }
+                Drawer drawer_1020 = this.List_EPD1020_雲端資料.SortByIP(IP);
+                if (drawer_1020 != null)
+                {
+                    bool flag = this.drawerUI_EPD_1020.GetInput(drawer_1020.IP);
+                    this.PLC.properties.device_system.Set_Device(Input, flag);
+                    if (flag != Input_state)
+                    {
+                        list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.輸入狀態] = flag.ToString();
+                        list_locker_table_value_replace.Add(list_locker_table_value_buf[i]);
+                    }
+                    AlarmEnable = drawer_1020.AlarmEnable;
                 }
                 Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
                 if (storage != null)

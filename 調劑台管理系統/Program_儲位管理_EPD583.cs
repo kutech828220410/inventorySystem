@@ -108,9 +108,7 @@ namespace 調劑台管理系統
             this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
             this.epD_583_Pannel.MouseDownEvent += EpD_583_Pannel_MouseDownEvent;
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD583);
-        }
-
-   
+        }  
 
         private void Program_儲位管理_EPD583()
         {
@@ -119,6 +117,7 @@ namespace 調劑台管理系統
                 if(flag_Program_儲位管理_EPD583_Init == false)
                 {
                     PLC_Device_儲位管理_EPD583_資料更新.Bool = true;
+                    sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
                     flag_Program_儲位管理_EPD583_Init = true;
                 }
             }
