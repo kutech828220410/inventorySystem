@@ -1873,7 +1873,7 @@
             // saveFileDialog_SaveExcel
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
-            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
+            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
             // openFileDialog_LoadExcel
             // 

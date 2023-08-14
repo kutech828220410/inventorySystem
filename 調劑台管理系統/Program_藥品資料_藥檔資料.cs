@@ -509,7 +509,7 @@ namespace 調劑台管理系統
                     CSVHelper.SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
                     MyMessageBox.ShowDialog("匯出完成!");
                 }
-                else if (Extension == ".xls")
+                else if (Extension == ".xls"|| Extension == ".xlsx")
                 {
                     MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
                     MyMessageBox.ShowDialog("匯出完成!");
@@ -530,7 +530,7 @@ namespace 調劑台管理系統
                 {
                     CSVHelper.LoadFile(this.openFileDialog_LoadExcel.FileName, 0, dataTable);
                 }
-                else if (Extension == ".xls")
+                else if (Extension == ".xls" || Extension == ".xlsx")
                 {
                     dataTable = MyOffice.ExcelClass.NPOI_LoadFile(this.openFileDialog_LoadExcel.FileName);
                 }
