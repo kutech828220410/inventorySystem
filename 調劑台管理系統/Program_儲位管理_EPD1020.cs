@@ -384,10 +384,11 @@ namespace 調劑台管理系統
                     return;
                 }
                 string box_GUID = list_儲位資料[0][(int)enum_儲位管理_EPD1020_儲位資料.GUID].ObjectToString();
-                Box box = drawer.GetBox(box_GUID);
+                Box box = drawer.GetByGUID(box_GUID);
                 if (box == null) return;
                 box.SetValue(Device.ValueName.儲位名稱, Device.ValueType.Value, rJ_TextBox_儲位管理_EPD1020_儲位內容_儲位名稱.Text);
                 this.drawerUI_EPD_1020.SQL_ReplaceDrawer(epD_1020_Pannel.CurrentDrawer);
+                this.List_EPD1020_本地資料.Add_NewDrawer(epD_1020_Pannel.CurrentDrawer);
             }
         }
         private void RJ_TextBox_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_KeyPress(object sender, KeyPressEventArgs e)

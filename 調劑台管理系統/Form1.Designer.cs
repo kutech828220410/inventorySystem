@@ -20817,7 +20817,6 @@
             this.rJ_Lable144.Text = "儲位名稱";
             this.rJ_Lable144.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable144.TextColor = System.Drawing.Color.White;
-            this.rJ_Lable144.Visible = false;
             // 
             // plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位名稱字體更動
             // 
@@ -20885,7 +20884,6 @@
             this.rJ_TextBox_儲位管理_EPD1020_儲位內容_儲位名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD1020_儲位內容_儲位名稱.Texts = "";
             this.rJ_TextBox_儲位管理_EPD1020_儲位內容_儲位名稱.UnderlineStyle = false;
-            this.rJ_TextBox_儲位管理_EPD1020_儲位內容_儲位名稱.Visible = false;
             // 
             // panel103
             // 
