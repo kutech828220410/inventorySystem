@@ -2430,4 +2430,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Re
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待RFID感應.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_等待條碼刷入.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.dll
-C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe.config
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.dll
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.pdb
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.xml
