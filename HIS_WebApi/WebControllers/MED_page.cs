@@ -106,7 +106,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_cloud")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");             
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");             
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -131,7 +131,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_firstclass")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -154,7 +154,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_phar")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -178,7 +178,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
+                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -493,6 +493,7 @@ namespace HIS_WebApi
                 {
                     string json_result = POST_get_by_apiserver(returnData);
                     returnData = json_result.JsonDeserializet<returnData>();
+                    medClasses = returnData.Data.ObjToListClass<medClass>();
                 }
 
                 returnData.Method = "serch_by_BarCode";
@@ -503,7 +504,7 @@ namespace HIS_WebApi
                     returnData.Result = "BarCode空白!";
                     return returnData.JsonSerializationt();
                 }
-               
+    
                 List<medClass> medClasses_buf = new List<medClass>();
 
                 for(int i = 0; i < medClasses.Count; i++)

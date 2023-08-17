@@ -598,14 +598,16 @@ namespace HIS_WebApi
 
                 MED_pageController mED_PageController = new MED_pageController();
                 returnData returnData_med = new returnData();
+                returnData_med.ServerName = returnData.ServerName;
+                returnData_med.ServerType = returnData.ServerType;
                 returnData_med.Server = Server;
                 returnData_med.DbName = DB;
-                returnData_med.TableName = returnData.TableName;
+                returnData_med.TableName = "medicine_page_cloud";
                 returnData_med.Port = Port;
                 returnData_med.UserName = UserName;
                 returnData_med.Password = Password;
 
-                returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
+                returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
                 deviceController deviceController = new deviceController();
@@ -1299,7 +1301,7 @@ namespace HIS_WebApi
                 sheetClass.AddNewCell_Webapi(NumOfRow + 4, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                 sheetClass.AddNewCell_Webapi(NumOfRow + 4, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                 sheetClass.AddNewCell_Webapi(NumOfRow + 4, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                if (creat.Contents[i].理論值.StringIsEmpty() && creat.Contents[i].盤點量.StringIsEmpty())
+                if (!creat.Contents[i].理論值.StringIsEmpty() && !creat.Contents[i].盤點量.StringIsEmpty())
                 {
                     差異量 = creat.Contents[i].理論值.StringToInt32() - creat.Contents[i].盤點量.StringToInt32();
                 }

@@ -2433,3 +2433,7 @@ C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSha
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.dll
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.pdb
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.xml
+C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.dll
+C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.pdb
+C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.xml

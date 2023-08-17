@@ -662,8 +662,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
             takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
-            takeMedicineStackClass.動作 = 動作;
-
+            takeMedicineStackClass.動作 = 動作;         
             takeMedicineStackClass.藥品碼 = 藥品碼;
             takeMedicineStackClass.藥品名稱 = 藥品名稱;
             takeMedicineStackClass.藥袋序號 = 藥袋序號;
@@ -678,6 +677,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
+            takeMedicineStackClass.批號 = 批號;
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             //this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.ClearGrid();
            
