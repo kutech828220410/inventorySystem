@@ -86,6 +86,7 @@
     <Compile Include="IncomeReasonsClass.cs" />
     <Compile Include="inspectionClass.cs" />
     <Compile Include="inventoryClass.cs" />
+    <Compile Include="lockerIndexClass.cs" />
     <Compile Include="medClass.cs" />
     <Compile Include="medCouldClass.cs" />
     <Compile Include="medDrugstoreClass.cs" />

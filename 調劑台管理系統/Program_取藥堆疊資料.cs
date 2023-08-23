@@ -2002,7 +2002,7 @@ namespace 調劑台管理系統
                         else if (Function_取藥堆疊資料_取得作業模式(_list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.盲盤)) 狀態_buf = enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName();
                         else 狀態_buf = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
                     }
-                    if (_list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString() == enum_交易記錄查詢動作.系統領藥.GetEnumName())
+                    if (_list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString() == enum_交易記錄查詢動作.系統領藥.GetEnumName() || _list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString() == enum_交易記錄查詢動作.系統入庫.GetEnumName())
                     {
                         if (狀態_buf == enum_取藥堆疊母資料_狀態.作業完成.GetEnumName())
                         {
@@ -2628,7 +2628,7 @@ namespace 調劑台管理系統
                 收支原因 = $"[{動作.GetEnumName()}]{收支原因}";
                 value_trading[(int)enum_交易記錄查詢資料.收支原因] = 收支原因;
 
-                if (動作 == enum_交易記錄查詢動作.系統領藥.GetEnumName() && 總異動量 == 0) continue;
+                if (動作 == enum_交易記錄查詢動作.系統領藥.GetEnumName() || 動作 == enum_交易記錄查詢動作.系統入庫.GetEnumName() && 總異動量 == 0) continue;
                 list_交易紀錄新增資料_AddValue.Add(value_trading);
 
                 if(flag_修正盤點量 && plC_CheckBox_盤點量要修正至結存量.Checked)

@@ -24,20 +24,7 @@ namespace 調劑台管理系統
     {
     
         #region Locker_Index_Table
-        enum enum_Locker_Index_Table
-        {
-            GUID,
-            IP,
-            Num,
-            輸入位置,
-            輸入狀態,
-            輸出位置,
-            輸出狀態,
-            同步輸出,
-            Master_GUID,
-            Slave_GUID,
-            Device_GUID,
-        }
+  
         enum enum_Locker_Index_Table_匯出
         {
             IP,

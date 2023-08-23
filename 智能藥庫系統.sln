@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_MedUpdate", "Consol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSettingForm", "ServerSettingForm\ServerSettingForm.csproj", "{5D719BA5-6CB1-4886-BDEC-E2DA416831D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HIS_ServerAPI", "HIS_ServerAPI\HIS_ServerAPI.csproj", "{C4810F18-5AAD-4BAC-80CF-F1A20E4D7312}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-UpdateVersion", "E-UpdateVersion\E-UpdateVersion.csproj", "{FD6FC39C-AB1D-473D-9285-AB25DB2B149D}"
 EndProject
 Global
@@ -55,10 +53,6 @@ Global
 		{5D719BA5-6CB1-4886-BDEC-E2DA416831D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D719BA5-6CB1-4886-BDEC-E2DA416831D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D719BA5-6CB1-4886-BDEC-E2DA416831D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4810F18-5AAD-4BAC-80CF-F1A20E4D7312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4810F18-5AAD-4BAC-80CF-F1A20E4D7312}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4810F18-5AAD-4BAC-80CF-F1A20E4D7312}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4810F18-5AAD-4BAC-80CF-F1A20E4D7312}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD6FC39C-AB1D-473D-9285-AB25DB2B149D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD6FC39C-AB1D-473D-9285-AB25DB2B149D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD6FC39C-AB1D-473D-9285-AB25DB2B149D}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -31,6 +31,8 @@ namespace HIS_WebApi
     [ApiController]
     public class deviceController : Controller
     {
+
+
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
 
         static private string device_Server = ConfigurationManager.AppSettings["device_Server"];
@@ -97,6 +99,42 @@ namespace HIS_WebApi
             returnData.TimeTaken = myTimer.ToString();
             returnData.Data = deviceBasics_buf;
             return returnData.JsonSerializationt(true);
+        }
+
+        [Route("list/{value}")]
+        [HttpGet]
+        public string GET_list(string value)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData returnData = new returnData();
+            returnData.Method = "GET_list";
+            try
+            {
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.儲位資料);
+                if(serverSettingClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無伺服器資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClass);
+                returnData.Data = deviceBasics;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Code = 200;
+                returnData.Result = $"取得儲位資訊成功";
+
+                return returnData.JsonSerializationt(true);
+
+            }
+            catch(Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
         }
 
         [Route("all")]

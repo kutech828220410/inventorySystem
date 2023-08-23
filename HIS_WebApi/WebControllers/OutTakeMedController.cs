@@ -61,6 +61,10 @@ namespace HIS_WebApi
             public string 開方時間 { get; set; }
             [JsonPropertyName("OP_type")]
             public string 功能類型 { get; set; }
+            [JsonPropertyName("VAL")]
+            public string 效期 { get; set; }
+            [JsonPropertyName("LOT")]
+            public string 批號 { get; set; }
         }
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private string name = ConfigurationManager.AppSettings["name"];
@@ -302,7 +306,7 @@ namespace HIS_WebApi
             {
                 return "-2";
             }
-
+            //取藥亮燈
             if (data[0].功能類型 == "1")
             {
                 string 設備名稱 = data[0].電腦名稱;
@@ -343,6 +347,7 @@ namespace HIS_WebApi
             {
                 return $"OK";
             }
+            //取藥不亮燈
             else if (data[0].功能類型 == "-1")
             {
                 string 設備名稱 = data[0].電腦名稱;
@@ -384,6 +389,64 @@ namespace HIS_WebApi
                     sQLControl_take_medicine_stack.DeleteExtra(null, list_take_medicine_stack);
                 }
                 return "OK";
+            }
+            else if (data[0].功能類型 == "5")
+            {
+                string 設備名稱 = data[0].電腦名稱;
+                List<object[]> list_take_medicine_stack = sQLControl_take_medicine_stack.GetRowsByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, 設備名稱);
+                if (list_take_medicine_stack.Count > 0)
+                {
+                    sQLControl_take_medicine_stack.DeleteExtra(null, list_take_medicine_stack);
+                }
+                if (data[0].PRI_KEY.StringIsEmpty()) data[0].PRI_KEY = Guid.NewGuid().ToString();
+     
+
+                string PRI_KEY = data[0].PRI_KEY;
+                string 藥品碼 = data[0].藥品碼;
+                int 總異動量 = data[0].交易量.StringToInt32();
+                string 藥品名稱 = list_device[0].Name;
+                string 單位 = list_device[0].Package;
+                string 病歷號 = "";
+                string 病人姓名 = "";
+                string 開方時間 = DateTime.Now.ToDateTimeString_6();
+                string 操作時間 = DateTime.Now.ToDateTimeString_6();
+                string 操作人 = data[0].操作人;
+                string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
+                string 類別 = data[0].類別;
+                string 床號 = "";
+                string 效期 = data[0].效期;
+                string 批號 = data[0].批號;
+                this.Function_取藥堆疊資料_入庫新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量, 效期, 批號);
+                return $"OK";
+            }
+            else if (data[0].功能類型 == "-5")
+            {
+                string 設備名稱 = data[0].電腦名稱;
+                List<object[]> list_take_medicine_stack = sQLControl_take_medicine_stack.GetRowsByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, 設備名稱);
+                if (list_take_medicine_stack.Count > 0)
+                {
+                    sQLControl_take_medicine_stack.DeleteExtra(null, list_take_medicine_stack);
+                }
+                if (data[0].PRI_KEY.StringIsEmpty()) data[0].PRI_KEY = Guid.NewGuid().ToString();
+
+
+                string PRI_KEY = data[0].PRI_KEY;
+                string 藥品碼 = data[0].藥品碼;
+                int 總異動量 = data[0].交易量.StringToInt32();
+                string 藥品名稱 = list_device[0].Name;
+                string 單位 = list_device[0].Package;
+                string 病歷號 = "";
+                string 病人姓名 = "";
+                string 開方時間 = DateTime.Now.ToDateTimeString_6();
+                string 操作時間 = DateTime.Now.ToDateTimeString_6();
+                string 操作人 = data[0].操作人;
+                string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
+                string 類別 = data[0].類別;
+                string 床號 = "";
+                string 效期 = data[0].效期;
+                string 批號 = data[0].批號;
+                this.Function_取藥堆疊資料_入庫新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量, 效期, 批號);
+                return $"OK";
             }
             else
             {
@@ -484,15 +547,6 @@ namespace HIS_WebApi
                     {
                         PRI_KEY = Guid.NewGuid().ToString();
                     }
-
-                    //List<object[]> list_take_medicine_stack = sQLControl_take_medicine_stack.GetRowsByDefult(null, (int)enum_取藥堆疊母資料.藥品碼, data[i].藥品碼);
-                    //if (list_take_medicine_stack.Count > 0)
-                    //{
-                    //    sQLControl_take_medicine_stack.DeleteExtra(null, list_take_medicine_stack);
-                    //}
-
-             
-
                     string 藥品名稱 = list_device[0].Name;
                     string 單位 = list_device[0].Package;
                     string 病歷號 = data[i].病歷號;
@@ -523,18 +577,16 @@ namespace HIS_WebApi
                     string 藥品碼 = data[i].藥品碼;
                     List<DeviceBasic> list_device = devices.SortByCode(data[i].藥品碼);
                     if (list_device.Count == 0) continue;
-
-                    List<object[]> list_trading = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥袋序號, data[i].PRI_KEY);
-                    if (list_trading.Count > 0) return "-4";
-
-                    //List<object[]> list_take_medicine_stack = new List<object[]>();
-                    //list_take_medicine_stack = sQLControl_take_medicine_stack.GetRowsByDefult(null, (int)enum_取藥堆疊母資料.藥品碼, data[i].藥品碼);
-                    //if (list_take_medicine_stack.Count > 0)
-                    //{
-                    //    sQLControl_take_medicine_stack.DeleteExtra(null, list_take_medicine_stack);
-                    //}
-              
-
+                    int 總異動量 = data[i].交易量.StringToInt32();
+                    if (總異動量 != 0)
+                    {
+                        List<object[]> list_trading = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥袋序號, data[i].PRI_KEY);
+                        if (list_trading.Count > 0) return "-4";
+                    }
+                    else
+                    {
+                        PRI_KEY = Guid.NewGuid().ToString();
+                    }
                     string 藥品名稱 = list_device[0].Name;
                     string 單位 = list_device[0].Package;
                     string 病歷號 = data[i].病歷號;
@@ -543,7 +595,6 @@ namespace HIS_WebApi
                     string 操作時間 = DateTime.Now.ToDateTimeString_6();
                     string 操作人 = data[i].操作人;
                     string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
-                    int 總異動量 = data[i].交易量.StringToInt32();
                     string 類別 = data[i].類別;
                     string 床號 = data[i].床號;
                     this.Function_取藥堆疊資料_取藥新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量);
@@ -622,7 +673,10 @@ namespace HIS_WebApi
         {
             return this.Function_取藥堆疊資料_新增母資料(serverSettingClass ,Guid.NewGuid().ToString(), 設備名稱, enum_交易記錄查詢動作.系統領藥, 藥品碼, 藥品名稱, 藥袋序號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 操作時間, 顏色, 總異動量, "", "");
         }
- 
+        private bool Function_取藥堆疊資料_入庫新增(ServerSettingClass serverSettingClass, string 設備名稱, string 藥品碼, string 藥品名稱, string 藥袋序號, string 類別, string 單位, string 病歷號, string 病人姓名, string 床號, string 開方時間, string 操作人, string 操作時間, string 顏色, int 總異動量, string 效期, string 批號)
+        {
+            return this.Function_取藥堆疊資料_新增母資料(serverSettingClass, Guid.NewGuid().ToString(), 設備名稱, enum_交易記錄查詢動作.系統入庫, 藥品碼, 藥品名稱, 藥袋序號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 操作時間, 顏色, 總異動量, 效期, 批號);
+        }
         private bool Function_取藥堆疊資料_新增母資料(ServerSettingClass serverSettingClass ,string GUID, string 設備名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 藥品碼, string 藥品名稱, string 藥袋序號, string 類別, string 單位, string 病歷號, string 病人姓名, string 床號, string 開方時間, string IP, string 操作人, string 操作時間, string 顏色, int 總異動量, string 效期, string 批號)
         {
             if (serverSettingClass == null)
@@ -646,10 +700,7 @@ namespace HIS_WebApi
             value[(int)enum_取藥堆疊母資料.調劑台名稱] = 設備名稱;
             value[(int)enum_取藥堆疊母資料.操作人] = 操作人;
             value[(int)enum_取藥堆疊母資料.IP] = "";
-            if (_enum_交易記錄查詢動作 == enum_交易記錄查詢動作.入庫作業)
-            {
-                value[(int)enum_取藥堆疊母資料.IP] = IP;
-            }
+          
             value[(int)enum_取藥堆疊母資料.動作] = _enum_交易記錄查詢動作.GetEnumName();
             value[(int)enum_取藥堆疊母資料.藥袋序號] = 藥袋序號;
             value[(int)enum_取藥堆疊母資料.藥品碼] = 藥品碼;
@@ -662,8 +713,9 @@ namespace HIS_WebApi
             value[(int)enum_取藥堆疊母資料.開方時間] = 開方時間;
             value[(int)enum_取藥堆疊母資料.操作時間] = 操作時間;
             value[(int)enum_取藥堆疊母資料.顏色] = 顏色;
-            value[(int)enum_取藥堆疊母資料.狀態] = "等待刷新";
-       
+         
+          
+            if (_enum_交易記錄查詢動作 == enum_交易記錄查詢動作.系統入庫) value[(int)enum_取藥堆疊母資料.狀態] = "新增效期";
             value[(int)enum_取藥堆疊母資料.庫存量] = "0";
             value[(int)enum_取藥堆疊母資料.總異動量] = 總異動量.ToString();
             value[(int)enum_取藥堆疊母資料.結存量] = "0";
