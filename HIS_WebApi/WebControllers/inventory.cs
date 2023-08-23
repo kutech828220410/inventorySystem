@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,7 @@ using System.IO;
 using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using System.Text;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
@@ -390,21 +393,23 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
 
-                string creatSN = $"{DateTime.Now.ToDateTinyString()}-Q";
+                string creatSN = $"Q{DateTime.Now.ToDateTinyString()}-{returnData.Value}";
                 List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
                 List<object[]> list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, creatSN);
                 if(list_inventory_creat_buf.Count == 0)
                 {
                     MED_pageController mED_PageController = new MED_pageController();
                     returnData returnData_med = new returnData();
+                    returnData_med.ServerName = returnData.ServerName;
+                    returnData_med.ServerType = returnData.ServerType;
                     returnData_med.Server = Server;
                     returnData_med.DbName = DB;
-                    returnData_med.TableName = returnData.TableName;
+                    returnData_med.TableName = "medicine_page_cloud";
                     returnData_med.Port = Port;
                     returnData_med.UserName = UserName;
                     returnData_med.Password = Password;
 
-                    returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
+                    returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                     List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
 
                     deviceController deviceController = new deviceController();
@@ -458,7 +463,7 @@ namespace HIS_WebApi
                     creat.盤點單號 = creatSN;
                     returnData.Data = creat;
                     returnData.Value = creatSN;
-
+                    returnData.Code = 200;
                     return returnData.JsonSerializationt();
                 }
     
@@ -1325,7 +1330,64 @@ namespace HIS_WebApi
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
         }
+        [Route("excel_upload")]
+        [HttpPost]
+        public async Task<string> POST_excel_upload([FromForm] IFormFile file)
+        {
+            returnData returnData = new returnData();
+            returnData.Method = "POST_excel_upload";
+            var formFile = Request.Form.Files.FirstOrDefault();
 
+            if (formFile == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = "文件不得為空";
+                return returnData.JsonSerializationt(true);
+            }
+            string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            inventoryClass.creat creat = new inventoryClass.creat();
+
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                await formFile.CopyToAsync(memoryStream);
+                string json = ExcelClass.NPOI_LoadSheetToJson(memoryStream.ToArray(), extension);
+
+                SheetClass sheetClass = json.JsonDeserializet<SheetClass>();
+                // 在这里可以对 memoryStream 进行操作，例如读取或写入数据
+                for (int i = 0; i < sheetClass.Rows.Count; i++)
+                {
+                    if (i == 0) continue;
+                    else if (i == 1)
+                    {
+                        creat.盤點單號 = sheetClass.Rows[i].Cell[1].Text;
+                    }
+                    else if (i == 2)
+                    {
+                        creat.盤點開始時間 = sheetClass.Rows[i].Cell[1].Text;
+                        creat.盤點結束時間 = sheetClass.Rows[i].Cell[5].Text;
+                    }
+                    else if (i == 3) continue;
+                    else
+                    {
+                        inventoryClass.content content = new inventoryClass.content();
+                        content.GUID = Guid.NewGuid().ToString();
+                        content.藥品碼 = sheetClass.Rows[i].Cell[0].Text;
+                        content.料號 = sheetClass.Rows[i].Cell[1].Text;
+                        content.藥品名稱 = sheetClass.Rows[i].Cell[2].Text;
+                        content.中文名稱 = sheetClass.Rows[i].Cell[3].Text;
+                        content.包裝單位 = sheetClass.Rows[i].Cell[4].Text;
+                        content.盤點量 = sheetClass.Rows[i].Cell[6].Text;
+                        creat.Contents.Add(content);
+                    }
+                }
+            }
+          
+            returnData.Data = creat;
+            returnData.Code = 200;
+            returnData.Result = "接收上傳文件成功";
+            return returnData.JsonSerializationt(true);
+        }
         private returnData Function_Get_inventory_creat(ServerSettingClass serverSettingClass, string MED_TableName, List<object[]> list_inventory_creat)
         {
             return Function_Get_inventory_creat(serverSettingClass, MED_TableName, list_inventory_creat, true);

@@ -121,6 +121,9 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClass);
+                deviceBasics = (from temp in deviceBasics
+                                    where temp.Code.StringIsEmpty() == false
+                                    select temp).ToList();
                 returnData.Data = deviceBasics;
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Code = 200;

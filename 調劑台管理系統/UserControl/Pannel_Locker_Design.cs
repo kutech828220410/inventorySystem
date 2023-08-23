@@ -263,7 +263,7 @@ namespace 調劑台管理系統
                     if (Type == enum_panel_lock_ui_Type.Pannel_Locker.GetEnumName())
                     {
                         Pannel_Locker pannel_Locker = Pannel_Locker.JaonstringClass.SetJaonstring(list_value[i][(int)enum_panel_lock_ui_jsonstring.Value].ObjectToString());
-                        pannel_Locker.ButtonEnable = false;
+                        //pannel_Locker.ButtonEnable = false;
                         pannel_Locker.BorderStyle = System.Windows.Forms.BorderStyle.None;
                         pannel_Locker.Padding = new System.Windows.Forms.Padding(2);
                         pannel_Locker.AllowDrop = this.checkBox_設計模式.Checked;
@@ -326,7 +326,7 @@ namespace 調劑台管理系統
                 List<Pannel_Locker> pannel_Lockers = this.GetAllPannel_Locker();
                 for (int i = 0; i < pannel_Lockers.Count; i++)
                 {
-                    pannel_Lockers[i].ButtonEnable = value;
+                    pannel_Lockers[i].ButtonEnable = true;
                     pannel_Lockers[i].AllowDrop = value;
                     pannel_Lockers[i].ShowAdress = value;
                 }
@@ -425,7 +425,7 @@ namespace 調劑台管理系統
                 Pannel_Locker pannel_Locker = new Pannel_Locker();
                 this.SuspendLayout();
                 pannel_Locker.BorderStyle = System.Windows.Forms.BorderStyle.None;
-                pannel_Locker.ButtonEnable = this.checkBox_設計模式.Checked; 
+                pannel_Locker.ButtonEnable = true; 
                 pannel_Locker.Location = new System.Drawing.Point(0, 0);
                 pannel_Locker.Padding = new System.Windows.Forms.Padding(2);
                 pannel_Locker.Size = new System.Drawing.Size(250, 65);

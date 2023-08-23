@@ -3323,7 +3323,7 @@
             this.pannel_Locker_Design.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pannel_Locker_Design.Location = new System.Drawing.Point(0, 0);
             this.pannel_Locker_Design.Name = "pannel_Locker_Design";
-            this.pannel_Locker_Design.ShowControlPannel = false;
+            this.pannel_Locker_Design.ShowControlPannel = true;
             this.pannel_Locker_Design.Size = new System.Drawing.Size(1656, 1006);
             this.pannel_Locker_Design.TabIndex = 0;
             // 

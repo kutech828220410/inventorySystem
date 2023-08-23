@@ -414,6 +414,8 @@ namespace HIS_WebApi
                 string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
                 string 類別 = data[0].類別;
                 string 床號 = "";
+                if (data[0].效期.Check_Date_String() == false) data[0].效期 = "2050/12/31";
+
                 string 效期 = data[0].效期;
                 string 批號 = data[0].批號;
                 this.Function_取藥堆疊資料_入庫新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量, 效期, 批號);
@@ -443,6 +445,7 @@ namespace HIS_WebApi
                 string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
                 string 類別 = data[0].類別;
                 string 床號 = "";
+                if (data[0].效期.Check_Date_String() == false) data[0].效期 = "2050/12/31";
                 string 效期 = data[0].效期;
                 string 批號 = data[0].批號;
                 this.Function_取藥堆疊資料_入庫新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量, 效期, 批號);

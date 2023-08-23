@@ -428,6 +428,8 @@ namespace 調劑台管理系統
                         Function_登入權限資料_取得權限(this.登入者權限);
                         pLC_Device_最高權限.Bool = true;
                         this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
+                        this.pannel_Locker_Design.ShowControlPannel = true;
+
                         this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
                         this.PLC_Device_已登入.Bool = true;
                     }
