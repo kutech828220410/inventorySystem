@@ -889,8 +889,8 @@ namespace 調劑台管理系統
             for (int i = 0; i < RowsList.Count; i++)
             {
                 RowsList[i][(int)enum_藥品資料_藥檔資料.庫存] = this.Function_從本地資料取得庫存(RowsList[i][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString()).ToString();
-
-                if(RowsList[i][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString().StringIsEmpty())
+                if (RowsList[i][(int)enum_藥品資料_藥檔資料.庫存].ObjectToString() == "-999") RowsList[i][(int)enum_藥品資料_藥檔資料.庫存] = "0";
+                if (RowsList[i][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString().StringIsEmpty())
                 {
                     RowsList[i][(int)enum_藥品資料_藥檔資料.管制級別] = "N";
                 }

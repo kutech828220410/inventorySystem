@@ -52,6 +52,8 @@ namespace 調劑台管理系統
                                  where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "3"
                                  where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "4"
                                  where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "警訊"
+                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "高價"
+                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "生物製劑"
                                  select value).ToList();
             list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "N");
             if(list_value_buf.Count == 0)
@@ -118,6 +120,30 @@ namespace 調劑台管理系統
                 object[] value = new object[new enum_藥品管制方式設定().GetLength()];
                 value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
                 value[(int)enum_藥品管制方式設定.代號] = "警訊";
+                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
+                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                list_value_add.Add(value);
+            }
+            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "高價");
+            if (list_value_buf.Count == 0)
+            {
+                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
+                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_藥品管制方式設定.代號] = "高價";
+                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
+                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
+                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                list_value_add.Add(value);
+            }
+            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "生物製劑");
+            if (list_value_buf.Count == 0)
+            {
+                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
+                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_藥品管制方式設定.代號] = "生物製劑";
                 value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
                 value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
                 value[(int)enum_藥品管制方式設定.複盤] = false.ToString();

@@ -613,7 +613,7 @@ namespace HIS_WebApi
                 deviceController deviceController = new deviceController();
                 serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0]);
+                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0], returnData.TableName);
 
                 inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
                 creat.盤點單號 = str_IC_SN;

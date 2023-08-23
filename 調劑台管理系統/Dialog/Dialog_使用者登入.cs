@@ -40,6 +40,7 @@ namespace 調劑台管理系統
         private SQL_DataGridView sQL_DataGridView_人員資料;
         private RFID_FX600lib.RFID_FX600_UI rFID_FX600_UI;
         private string 藥名;
+        private string 已登入ID;
         public string UserName = "";
         public string UserID = "";
         private Point location = new Point(0, 0);
@@ -56,7 +57,7 @@ namespace 調劑台管理系統
             }
         }
 
-        public Dialog_使用者登入(string _藥名,SQL_DataGridView _sQL_DataGridView_人員資料, RFID_FX600lib.RFID_FX600_UI _rFID_FX600_UI)
+        public Dialog_使用者登入(string _已登入ID ,string _藥名,SQL_DataGridView _sQL_DataGridView_人員資料, RFID_FX600lib.RFID_FX600_UI _rFID_FX600_UI)
         {
             InitializeComponent();
             this.Load += Dialog_使用者登入_Load;
@@ -69,6 +70,7 @@ namespace 調劑台管理系統
             plC_RJ_Button_取消.音效 = false;
             this.sQL_DataGridView_人員資料 = _sQL_DataGridView_人員資料;
             this.藥名 = _藥名;
+            this.已登入ID = _已登入ID;
             this.rFID_FX600_UI = _rFID_FX600_UI;
 
         }
@@ -129,8 +131,12 @@ namespace 調劑台管理系統
         {
             this.Invoke(new Action(delegate
             {
-    
 
+                if (ID.ToUpper() == this.已登入ID.ToUpper())
+                {
+                    MyMessageBox.ShowDialog("此ID已登入");
+                    return;
+                }
                 List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
                 List<object[]> list_人員資料_buf = new List<object[]>();
                 list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.ID, ID);

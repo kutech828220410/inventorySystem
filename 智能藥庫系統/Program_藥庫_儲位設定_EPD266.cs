@@ -218,7 +218,7 @@ namespace 智能藥庫系統
                     藥品學名_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品學名].ObjectToString();
                     BarCode_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
                     包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.包裝單位].ObjectToString();
-                    警訊藥品_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.警訊藥品].ObjectToString().ToUpper();
+                    //警訊藥品_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.警訊藥品].ObjectToString().ToUpper();
                     料號_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.料號].ObjectToString();
                     BarCode1_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
                     BarCode2_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
@@ -475,16 +475,16 @@ namespace 智能藥庫系統
             storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.中文名稱]);
             storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.包裝單位]);
             storage.SetValue(Device.ValueName.BarCode, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.藥品條碼1]);
-            if (value[(int)enum_藥庫_藥品資料.警訊藥品].ObjectToString().ToUpper() == true.ToString().ToUpper())
-            {
-                storage.BackColor = Color.Red;
-                storage.ForeColor = Color.White;
-            }
-            else
-            {
-                storage.BackColor = Color.White;
-                storage.ForeColor = Color.Black;
-            }
+            //if (value[(int)enum_藥庫_藥品資料.警訊藥品].ObjectToString().ToUpper() == true.ToString().ToUpper())
+            //{
+            //    storage.BackColor = Color.Red;
+            //    storage.ForeColor = Color.White;
+            //}
+            //else
+            //{
+            //    storage.BackColor = Color.White;
+            //    storage.ForeColor = Color.Black;
+            //}
 
             value = new object[new enum_藥庫_儲位管理_EPD266_儲位資料().GetLength()];
             value[(int)enum_藥庫_儲位管理_EPD266_儲位資料.IP] = storage.GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString();

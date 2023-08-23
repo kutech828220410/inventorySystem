@@ -437,9 +437,8 @@ namespace HIS_WebApi
             string Password = serverSettingClass.Password;
             uint Port = (uint)serverSettingClass.Port.StringToInt32();
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
-            if (serverSettingClass.類別 == "藥庫" && TableName.StringIsEmpty())
+            if (serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "medicine_page_phar"))
             {
-                TableName = "firstclass_device_jsonstring";
                 SQLControl sQLControl_device = new SQLControl(Server, DBName, TableName, UserName, Password, Port, SSLMode);
                 deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceBasic(sQLControl_device);
 

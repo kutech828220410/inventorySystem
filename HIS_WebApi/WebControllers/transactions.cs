@@ -380,8 +380,8 @@ namespace HIS_WebApi
             Table table = new Table("trading");
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
             table.AddColumnList("動作", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("庫別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("診別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("庫別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 15, Table.IndexType.INDEX);
             table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 200, Table.IndexType.INDEX);
             table.AddColumnList("藥袋序號", Table.StringType.VARCHAR, 50, Table.IndexType.None);

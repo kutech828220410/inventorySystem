@@ -587,18 +587,94 @@ namespace HIS_WebApi
                 table.AddColumnList("類別", Table.StringType.VARCHAR, 500, Table.IndexType.None);
                 table.AddColumnList("廠牌", Table.StringType.VARCHAR, 200, Table.IndexType.None);
                 table.AddColumnList("藥品許可證號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-                table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
 
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
                 else sQLControl.CheckAllColumnName(table, true);
             }
             if (TableName == "medicine_page_firstclass")
             {
-                
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                returnData.Method = "get_init";
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    return $"找無Server資料!";
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+
+                table = new Table("medicine_page_firstclass");
+                table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+                table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+                table.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+                table.AddColumnList("中文名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品學名", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品群組", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("健保碼", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+                table.AddColumnList("包裝單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("包裝數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("最小包裝單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("最小包裝數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("藥局庫存", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("藥庫庫存", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("總庫存", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("基準量", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("安全庫存", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+                table.AddColumnList("藥品條碼2", Table.StringType.TEXT, 200, Table.IndexType.None);
+                table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+
+                if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
+                else sQLControl.CheckAllColumnName(table, true);
             }
             if (TableName == "medicine_page_phar")
             {
-                
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                returnData.Method = "get_init";
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    return $"找無Server資料!";
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                table = new Table("medicine_page_phar");
+                SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+                table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+                table.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+                table.AddColumnList("中文名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品學名", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品群組", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("健保碼", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+                table.AddColumnList("包裝單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("包裝數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("最小包裝單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("最小包裝數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("藥局庫存", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("藥庫庫存", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("總庫存", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("基準量", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("安全庫存", Table.StringType.VARCHAR, 15, Table.IndexType.None);
+                table.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+                table.AddColumnList("藥品條碼2", Table.StringType.TEXT, 200, Table.IndexType.None);
+                table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+
+                if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
+                else sQLControl.CheckAllColumnName(table, true);
             }
 
             if (TableName == "medicine_page")
@@ -641,7 +717,7 @@ namespace HIS_WebApi
                 table.AddColumnList("類別", Table.StringType.VARCHAR, 500, Table.IndexType.None);
                 table.AddColumnList("廠牌", Table.StringType.VARCHAR, 200, Table.IndexType.None);
                 table.AddColumnList("藥品許可證號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-                table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+                table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
 
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
                 else sQLControl.CheckAllColumnName(table, true);
