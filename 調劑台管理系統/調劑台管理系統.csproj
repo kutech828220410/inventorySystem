@@ -327,6 +327,12 @@
     <Compile Include="Dialog\Dialog_盤點數量錯誤.Designer.cs">
       <DependentUpon>Dialog_盤點數量錯誤.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_調劑作業_病歷號輸入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_調劑作業_病歷號輸入.Designer.cs">
+      <DependentUpon>Dialog_調劑作業_病歷號輸入.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -521,6 +527,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_新增容器設定.resx">
       <DependentUpon>Dialog_新增容器設定.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_調劑作業_病歷號輸入.resx">
+      <DependentUpon>Dialog_調劑作業_病歷號輸入.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

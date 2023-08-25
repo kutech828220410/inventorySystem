@@ -995,6 +995,7 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
                 this.Invoke(new Action(delegate { EpD_583_Pannel_MouseDownEvent(boxes); }));
                 this.Function_設定雲端資料更新();
+                sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
             }));
       
         }
@@ -1067,6 +1068,7 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
                 this.Invoke(new Action(delegate { EpD_583_Pannel_MouseDownEvent(boxes); }));
                 this.Function_設定雲端資料更新();
+                sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
             }));     
         }
         private void PlC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號_MouseDownEvent(MouseEventArgs mevent)
@@ -1136,6 +1138,7 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value_trading, false);
                 this.Invoke(new Action(delegate { EpD_583_Pannel_MouseDownEvent(boxes); }));
                 this.Function_設定雲端資料更新();
+                sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
 
             }));
         }

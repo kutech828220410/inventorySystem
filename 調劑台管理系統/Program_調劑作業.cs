@@ -65,6 +65,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_領藥台_01_強制入賬.MouseDownEvent += PlC_RJ_Button_領藥台_01_強制入賬_MouseDownEvent;
             this.plC_Button_領藥台_01_領.btnClick += PlC_Button_領藥台_01_領_btnClick;
             this.plC_Button_領藥台_01_退.btnClick += PlC_Button_領藥台_01_退_btnClick;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.MouseDownEvent += PlC_RJ_Button_領藥台_01_病歷號輸入_MouseDownEvent;
 
 
             this.sqL_DataGridView_領藥台_02_領藥內容.Init();
@@ -113,6 +114,8 @@ namespace 調劑台管理系統
             this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(10);
             this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
         }
+
+    
 
         private void sub_Program_領藥台_01()
         {
@@ -1978,6 +1981,16 @@ namespace 調劑台管理系統
             領藥台_01_登入者姓名 = "None";
             this.PLC_Device_領藥台_01_已登入.Bool = false;
             this.PLC_Device_最高權限.Bool = false;
+        }
+        private void PlC_RJ_Button_領藥台_01_病歷號輸入_MouseDownEvent(MouseEventArgs mevent)
+        {
+           
+            this.Invoke(new Action(delegate
+            {
+                Dialog_調劑作業_病歷號輸入 dialog_調劑作業_病歷號輸入 = new Dialog_調劑作業_病歷號輸入();
+                if (dialog_調劑作業_病歷號輸入.ShowDialog() != DialogResult.Yes) return;
+            }));
+  
         }
         private void PlC_Button_領藥台_01_領_btnClick(object sender, EventArgs e)
         {

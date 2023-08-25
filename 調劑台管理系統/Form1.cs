@@ -408,6 +408,7 @@ namespace 調劑台管理系統
                 Dialog_條碼管理.form = this.FindForm();
                 Dialog_使用者登入.form = this.FindForm();
                 Dialog_盤點數量錯誤.form = this.FindForm();
+                Dialog_調劑作業_病歷號輸入.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();

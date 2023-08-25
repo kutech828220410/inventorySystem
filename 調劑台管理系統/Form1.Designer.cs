@@ -57,6 +57,7 @@
             this.textBox_領藥台_02_帳號 = new MyUI.RJ_TextBox();
             this.textBox_領藥台_02_密碼 = new MyUI.RJ_TextBox();
             this.rJ_GroupBox_領藥台_01 = new MyUI.RJ_GroupBox();
+            this.plC_RJ_Button_領藥台_01_病歷號輸入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台01_管藥模式 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_01_手輸醫囑 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_01_手動作業 = new MyUI.PLC_RJ_Button();
@@ -1467,6 +1468,7 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
+            this.plC_RJ_Button_領藥台_02_病歷號輸入 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -1951,6 +1953,7 @@
             this.rJ_GroupBox_領藥台_02.ContentsPanel.BorderColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox_領藥台_02.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox_領藥台_02.ContentsPanel.BorderSize = 5;
+            this.rJ_GroupBox_領藥台_02.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_02_病歷號輸入);
             this.rJ_GroupBox_領藥台_02.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台02_管藥模式);
             this.rJ_GroupBox_領藥台_02.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_02_強制入賬);
             this.rJ_GroupBox_領藥台_02.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_02_手輸醫囑);
@@ -2007,7 +2010,7 @@
             this.plC_RJ_Button_領藥台02_管藥模式.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_領藥台02_管藥模式.GUID = "";
             this.plC_RJ_Button_領藥台02_管藥模式.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_領藥台02_管藥模式.Location = new System.Drawing.Point(346, 136);
+            this.plC_RJ_Button_領藥台02_管藥模式.Location = new System.Drawing.Point(547, 136);
             this.plC_RJ_Button_領藥台02_管藥模式.Name = "plC_RJ_Button_領藥台02_管藥模式";
             this.plC_RJ_Button_領藥台02_管藥模式.OFF_文字內容 = "管藥模式";
             this.plC_RJ_Button_領藥台02_管藥模式.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -2611,6 +2614,7 @@
             this.rJ_GroupBox_領藥台_01.ContentsPanel.BorderColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox_領藥台_01.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox_領藥台_01.ContentsPanel.BorderSize = 5;
+            this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_01_病歷號輸入);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台01_管藥模式);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_01_手輸醫囑);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_01_手動作業);
@@ -2651,6 +2655,49 @@
             this.rJ_GroupBox_領藥台_01.TitleTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_GroupBox_領藥台_01.TitleTexts = "    01.號使用者";
             // 
+            // plC_RJ_Button_領藥台_01_病歷號輸入
+            // 
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.AutoResetState = true;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.Bool = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.BorderRadius = 10;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.BorderSize = 0;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.but_press = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.GUID = "";
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.Location = new System.Drawing.Point(346, 136);
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.Name = "plC_RJ_Button_領藥台_01_病歷號輸入";
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.OFF_文字內容 = "病歷號輸入";
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.ON_BorderSize = 5;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.ON_文字內容 = "病歷號輸入";
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.Size = new System.Drawing.Size(152, 69);
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.State = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.TabIndex = 122;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.Text = "病歷號輸入";
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.字型鎖住 = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.文字鎖住 = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.致能讀取位置 = "S100";
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.讀取位元反向 = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.讀寫鎖住 = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.音效 = true;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.顯示 = false;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.顯示狀態 = false;
+            // 
             // plC_RJ_Button_領藥台01_管藥模式
             // 
             this.plC_RJ_Button_領藥台01_管藥模式.AutoResetState = true;
@@ -2666,7 +2713,7 @@
             this.plC_RJ_Button_領藥台01_管藥模式.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_領藥台01_管藥模式.GUID = "";
             this.plC_RJ_Button_領藥台01_管藥模式.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_領藥台01_管藥模式.Location = new System.Drawing.Point(346, 136);
+            this.plC_RJ_Button_領藥台01_管藥模式.Location = new System.Drawing.Point(504, 136);
             this.plC_RJ_Button_領藥台01_管藥模式.Name = "plC_RJ_Button_領藥台01_管藥模式";
             this.plC_RJ_Button_領藥台01_管藥模式.OFF_文字內容 = "管藥模式";
             this.plC_RJ_Button_領藥台01_管藥模式.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -37524,6 +37571,49 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // plC_RJ_Button_領藥台_02_病歷號輸入
+            // 
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.AutoResetState = true;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.Bool = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.BorderRadius = 10;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.BorderSize = 0;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.but_press = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.GUID = "";
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.Location = new System.Drawing.Point(346, 136);
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.Name = "plC_RJ_Button_領藥台_02_病歷號輸入";
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.OFF_文字內容 = "病歷號輸入";
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.ON_BorderSize = 5;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.ON_文字內容 = "病歷號輸入";
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.Size = new System.Drawing.Size(152, 69);
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.State = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.TabIndex = 124;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.Text = "病歷號輸入";
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.字型鎖住 = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.文字鎖住 = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.致能讀取位置 = "S100";
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.讀取位元反向 = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.讀寫鎖住 = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.音效 = true;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.顯示 = false;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.顯示狀態 = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -39451,6 +39541,8 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位;
         private SQLUI.SQL_DataGridView sqL_DataGridView_儲位管理_EPD1020_儲位資料;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_領藥台_01_病歷號輸入;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_領藥台_02_病歷號輸入;
     }
 }
 
