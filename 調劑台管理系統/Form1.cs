@@ -33,6 +33,7 @@ namespace 調劑台管理系統
         public static string ServerName = "";
         public static string ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
         public static string API_Server = "";
+        public static string Order_URL = "";
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string 領藥台_01名稱
         {
@@ -787,6 +788,8 @@ namespace 調劑台管理系統
 
             serverSettingClass = serverSettingClasses.MyFind("Main", enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
             if (serverSettingClass != null) dBConfigClass.Login_URL = serverSettingClass.Server;
+
+            Order_URL = dBConfigClass.OrderApiURL;
         }
         new private void Update()
         {
