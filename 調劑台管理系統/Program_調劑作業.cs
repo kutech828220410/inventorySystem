@@ -1365,7 +1365,7 @@ namespace 調劑台管理系統
                         單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                     }
 
-                    string GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
+                    string GUID = Guid.NewGuid().ToString();
                     string 調劑台名稱 = this.領藥台_01名稱;
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
 
@@ -3211,7 +3211,7 @@ namespace 調劑台管理系統
                         單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                     }
 
-                    string GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
+                    string GUID = Guid.NewGuid().ToString();
                     string 調劑台名稱 = this.領藥台_02名稱;
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
 
