@@ -37,35 +37,58 @@ namespace 調劑台管理系統
             return this.DialogResult;
 
         }
-
-        public Dialog_調劑作業_病歷號輸入()
+        private SQLUI.SQL_DataGridView sQL_DataGridView_藥檔資料 = null;
+        public Dialog_調劑作業_病歷號輸入(SQL_DataGridView _sQL_DataGridView_藥檔資料)
         {
             InitializeComponent();
             this.Load += Dialog_調劑作業_病歷號輸入_Load;
             this.rJ_Button_輸入.MouseDownEvent += RJ_Button_輸入_MouseDownEvent;
+            this.sQL_DataGridView_藥檔資料 = _sQL_DataGridView_藥檔資料;
         }
 
         private void RJ_Button_輸入_MouseDownEvent(MouseEventArgs mevent)
         {
             string MRN = rJ_TextBox_病歷號.Text;
-            if(MRN.StringIsEmpty())
+            if (MRN.StringIsEmpty())
             {
                 MyMessageBox.ShowDialog("病歷號空白!");
                 return;
             }
             string order_url = Form1.Order_URL.ToLower().Replace("?barcode=", "");
-            if(order_url.Substring(order_url.Length - 1 , 1) == "/")
+            if (order_url.Substring(order_url.Length - 1, 1) == "/")
             {
                 order_url = order_url.Substring(0, order_url.Length - 1);
             }
-           
+
             string url = $"{order_url}?MRN={MRN}";
             string json = Net.WEBApiGet(url);
             returnData returnData = json.JsonDeserializet<returnData>();
             List<OrderClass> orderClasses = returnData.Data.ObjToListClass<OrderClass>();
             List<object[]> list_order = orderClasses.ClassToSQL<OrderClass, enum_醫囑資料>();
+            List<object[]> list_order_buf = new List<object[]>();
+            List<object[]> list_藥檔資料 = this.sQL_DataGridView_藥檔資料.SQL_GetAllRows(false);
+            List<object[]> list_藥檔資料_buf = new List<object[]>();
             list_order.Sort(new ICP_醫囑資料());
-            this.sqL_DataGridView_醫囑資料.RefreshGrid(list_order);
+
+         
+            for (int i = 0; i < list_order.Count; i++)
+            {
+                string 藥碼 = list_order[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
+                list_藥檔資料_buf = list_藥檔資料.GetRows((int)enum_雲端藥檔.藥品碼, 藥碼);
+                if (list_藥檔資料_buf.Count > 0)
+                {
+                    bool flag_add = false;
+                    string 管制級別 = list_藥檔資料_buf[0][(int)enum_雲端藥檔.管制級別].ObjectToString();
+                    string 高價藥品 = list_藥檔資料_buf[0][(int)enum_雲端藥檔.高價藥品].ObjectToString();
+                    string 警訊藥品 = list_藥檔資料_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString();
+                    if (管制級別 != "N") flag_add = true;
+                    if (高價藥品.StringToBool()) flag_add = true;
+                    if (警訊藥品.StringToBool()) flag_add = true;
+                    if (flag_add == true) list_order_buf.Add(list_order[i]);
+                }
+            }
+
+            this.sqL_DataGridView_醫囑資料.RefreshGrid(list_order_buf);
 
         }
         private void Dialog_調劑作業_病歷號輸入_Load(object sender, EventArgs e)

@@ -31,7 +31,9 @@ namespace 調劑台管理系統
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dialog_使用者登入));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rJ_Lable_Title = new MyUI.RJ_Lable();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.rJ_Lable_藥名 = new MyUI.RJ_Lable();
             this.panel185 = new System.Windows.Forms.Panel();
             this.textBox_帳號 = new System.Windows.Forms.TextBox();
             this.panel186 = new System.Windows.Forms.Panel();
@@ -43,8 +45,6 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_登入 = new MyUI.PLC_RJ_Button();
-            this.rJ_Lable_藥名 = new MyUI.RJ_Lable();
-            this.rJ_Lable_Title = new MyUI.RJ_Lable();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel185.SuspendLayout();
@@ -61,6 +61,26 @@ namespace 調劑台管理系統
             this.panel1.Size = new System.Drawing.Size(743, 83);
             this.panel1.TabIndex = 0;
             // 
+            // rJ_Lable_Title
+            // 
+            this.rJ_Lable_Title.BackColor = System.Drawing.Color.Navy;
+            this.rJ_Lable_Title.BackgroundColor = System.Drawing.Color.Navy;
+            this.rJ_Lable_Title.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_Title.BorderRadius = 12;
+            this.rJ_Lable_Title.BorderSize = 0;
+            this.rJ_Lable_Title.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_Lable_Title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_Title.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_Title.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable_Title.GUID = "";
+            this.rJ_Lable_Title.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable_Title.Name = "rJ_Lable_Title";
+            this.rJ_Lable_Title.Size = new System.Drawing.Size(743, 83);
+            this.rJ_Lable_Title.TabIndex = 2;
+            this.rJ_Lable_Title.Text = "雙人覆核";
+            this.rJ_Lable_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable_Title.TextColor = System.Drawing.Color.White;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.rJ_Lable_藥名);
@@ -69,6 +89,26 @@ namespace 調劑台管理系統
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(743, 70);
             this.panel2.TabIndex = 2;
+            // 
+            // rJ_Lable_藥名
+            // 
+            this.rJ_Lable_藥名.BackColor = System.Drawing.Color.DodgerBlue;
+            this.rJ_Lable_藥名.BackgroundColor = System.Drawing.Color.DodgerBlue;
+            this.rJ_Lable_藥名.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_藥名.BorderRadius = 12;
+            this.rJ_Lable_藥名.BorderSize = 0;
+            this.rJ_Lable_藥名.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_Lable_藥名.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_藥名.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_藥名.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable_藥名.GUID = "";
+            this.rJ_Lable_藥名.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable_藥名.Name = "rJ_Lable_藥名";
+            this.rJ_Lable_藥名.Size = new System.Drawing.Size(743, 70);
+            this.rJ_Lable_藥名.TabIndex = 2;
+            this.rJ_Lable_藥名.Text = "藥名 : XXXXXXXX";
+            this.rJ_Lable_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_藥名.TextColor = System.Drawing.Color.White;
             // 
             // panel185
             // 
@@ -286,46 +326,6 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_登入.顯示 = false;
             this.plC_RJ_Button_登入.顯示狀態 = false;
             // 
-            // rJ_Lable_藥名
-            // 
-            this.rJ_Lable_藥名.BackColor = System.Drawing.Color.DodgerBlue;
-            this.rJ_Lable_藥名.BackgroundColor = System.Drawing.Color.DodgerBlue;
-            this.rJ_Lable_藥名.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_藥名.BorderRadius = 12;
-            this.rJ_Lable_藥名.BorderSize = 0;
-            this.rJ_Lable_藥名.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_Lable_藥名.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_藥名.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable_藥名.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable_藥名.GUID = "";
-            this.rJ_Lable_藥名.Location = new System.Drawing.Point(0, 0);
-            this.rJ_Lable_藥名.Name = "rJ_Lable_藥名";
-            this.rJ_Lable_藥名.Size = new System.Drawing.Size(743, 70);
-            this.rJ_Lable_藥名.TabIndex = 2;
-            this.rJ_Lable_藥名.Text = "藥名 : XXXXXXXX";
-            this.rJ_Lable_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable_藥名.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Lable_Title
-            // 
-            this.rJ_Lable_Title.BackColor = System.Drawing.Color.Navy;
-            this.rJ_Lable_Title.BackgroundColor = System.Drawing.Color.Navy;
-            this.rJ_Lable_Title.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_Title.BorderRadius = 12;
-            this.rJ_Lable_Title.BorderSize = 0;
-            this.rJ_Lable_Title.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_Lable_Title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_Title.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable_Title.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable_Title.GUID = "";
-            this.rJ_Lable_Title.Location = new System.Drawing.Point(0, 0);
-            this.rJ_Lable_Title.Name = "rJ_Lable_Title";
-            this.rJ_Lable_Title.Size = new System.Drawing.Size(743, 83);
-            this.rJ_Lable_Title.TabIndex = 2;
-            this.rJ_Lable_Title.Text = "雙人覆核";
-            this.rJ_Lable_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable_Title.TextColor = System.Drawing.Color.White;
-            // 
             // Dialog_使用者登入
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -342,6 +342,7 @@ namespace 調劑台管理系統
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_使用者登入";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.TopMost = true;
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel185.ResumeLayout(false);

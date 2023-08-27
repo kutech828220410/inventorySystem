@@ -84,38 +84,38 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_領藥台_02_強制入賬.MouseDownEvent += PlC_RJ_Button_領藥台_02_強制入賬_MouseDownEvent;
             this.plC_Button_領藥台_02_領.btnClick += PlC_Button_領藥台_02_領_btnClick;
             this.plC_Button_領藥台_02_退.btnClick += PlC_Button_領藥台_02_退_btnClick;
-
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.MouseDownEvent += PlC_RJ_Button_領藥台_02_病歷號輸入_MouseDownEvent;
 
             this.MyThread_領藥台_01 = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥台_01.Add_Method(this.sub_Program_領藥台_01);
             this.MyThread_領藥台_01.AutoRun(true);
             this.MyThread_領藥台_01.AutoStop(false);
-            this.MyThread_領藥台_01.SetSleepTime(10);
+            this.MyThread_領藥台_01.SetSleepTime(20);
             this.MyThread_領藥台_01.Trigger();
 
             this.MyThread_領藥台_02 = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥台_02.Add_Method(this.sub_Program_領藥台_02);
             this.MyThread_領藥台_02.AutoRun(true);
             this.MyThread_領藥台_02.AutoStop(false);
-            this.MyThread_領藥台_02.SetSleepTime(10);
+            this.MyThread_領藥台_02.SetSleepTime(20);
             this.MyThread_領藥台_02.Trigger();
 
             this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
             this.MyThread_領藥_RFID.AutoRun(true);
             this.MyThread_領藥_RFID.AutoStop(false);
-            this.MyThread_領藥_RFID.SetSleepTime(10);
+            this.MyThread_領藥_RFID.SetSleepTime(100);
             this.MyThread_領藥_RFID.Trigger();
 
             this.MyThread_領藥_RFID_入出庫資料檢查 = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID_入出庫資料檢查.Add_Method(this.sub_Program_領藥_入出庫資料檢查);
             this.MyThread_領藥_RFID_入出庫資料檢查.AutoRun(true);
             this.MyThread_領藥_RFID_入出庫資料檢查.AutoStop(false);
-            this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(10);
+            this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(100);
             this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
         }
 
-    
+     
 
         private void sub_Program_領藥台_01()
         {
@@ -1989,7 +1989,7 @@ namespace 調劑台管理系統
             List<OrderClass> orderClasses = new List<OrderClass>();
             this.Invoke(new Action(delegate
             {    
-                dialog_調劑作業_病歷號輸入 = new Dialog_調劑作業_病歷號輸入();
+                dialog_調劑作業_病歷號輸入 = new Dialog_調劑作業_病歷號輸入(this.sqL_DataGridView_雲端藥檔);
                 if (dialog_調劑作業_病歷號輸入.ShowDialog() != DialogResult.Yes) return;
                 orderClasses = dialog_調劑作業_病歷號輸入.Value;
             }));
@@ -3798,7 +3798,86 @@ namespace 調劑台管理系統
             this.plC_Button_領藥台_02_領.Bool = false;
             this.plC_Button_領藥台_02_退.Bool = true;
         }
+        private void PlC_RJ_Button_領藥台_02_病歷號輸入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            MyTimer myTimer = new MyTimer();
+            Dialog_調劑作業_病歷號輸入 dialog_調劑作業_病歷號輸入;
+            List<OrderClass> orderClasses = new List<OrderClass>();
+            this.Invoke(new Action(delegate
+            {
+                dialog_調劑作業_病歷號輸入 = new Dialog_調劑作業_病歷號輸入(this.sqL_DataGridView_雲端藥檔);
+                if (dialog_調劑作業_病歷號輸入.ShowDialog() != DialogResult.Yes) return;
+                orderClasses = dialog_調劑作業_病歷號輸入.Value;
+            }));
 
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            List<object[]> list_醫囑資料 = orderClasses.ClassToSQL<OrderClass, enum_醫囑資料>();
+            bool flag_雙人覆核 = false;
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetAllRows(false);
+            List<object[]> list_藥品管制方式設定 = this.sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料_buf = new List<object[]>();
+            Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
+            this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
+            Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
+            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
+            for (int i = 0; i < list_醫囑資料.Count; i++)
+            {
+
+
+                string GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
+                string 調劑台名稱 = this.領藥台_02名稱;
+                enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
+                string 藥品碼 = list_醫囑資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
+                string 診別 = list_醫囑資料[i][(int)enum_醫囑資料.藥局代碼].ObjectToString();
+
+                list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
+                if (list_藥品資料_buf.Count == 0) continue;
+                string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
+                string 藥袋序號 = list_醫囑資料[i][(int)enum_醫囑資料.PRI_KEY].ObjectToString();
+                string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
+                string 病歷號 = list_醫囑資料[i][(int)enum_醫囑資料.病歷號].ObjectToString();
+                string 病人姓名 = list_醫囑資料[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
+                string 床號 = "";
+                string 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
+                string ID = 領藥台_02_ID;
+                string 操作人 = 領藥台_02_登入者姓名;
+                string 藥師證字號 = 領藥台_02_藥師證字號;
+                string 顏色 = 領藥台_02_顏色;
+                int 總異動量 = list_醫囑資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
+                string 效期 = "";
+                string 收支原因 = "";
+
+
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.GUID = GUID;
+                takeMedicineStackClass.動作 = 動作;
+                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.診別 = 診別;
+                takeMedicineStackClass.顏色 = 顏色;
+                takeMedicineStackClass.藥品名稱 = 藥品名稱;
+                takeMedicineStackClass.藥袋序號 = 藥袋序號;
+                takeMedicineStackClass.病歷號 = 病歷號;
+                takeMedicineStackClass.病人姓名 = 病人姓名;
+                takeMedicineStackClass.床號 = 床號;
+                takeMedicineStackClass.開方時間 = 開方時間;
+                takeMedicineStackClass.操作人 = 操作人;
+                takeMedicineStackClass.藥師證字號 = 藥師證字號;
+                takeMedicineStackClass.總異動量 = 總異動量.ToString();
+                takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.收支原因 = 收支原因;
+
+                if (flag_雙人覆核)
+                {
+                    this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
+                    continue;
+                }
+
+                takeMedicineStackClasses.Add(takeMedicineStackClass);
+
+            }
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+        }
         private void SqL_DataGridView_領藥台_02_領藥內容_DataGridRefreshEvent()
         {
             String 狀態 = "";
