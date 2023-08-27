@@ -945,7 +945,7 @@ namespace 調劑台管理系統
                         Box box = list_Device[i] as Box;
                         if (box != null)
                         {
-                            Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                            Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                             List<Box> boxes = drawer.SortByCode(藥品碼);
 
                             if (drawer.IsAllLight)
@@ -964,7 +964,7 @@ namespace 調劑台管理系統
                         RowsDevice rowsDevice = list_Device[i] as RowsDevice;
                         if (rowsDevice != null)
                         {
-                            RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
+                            RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
                             rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);                       
                         }
                     }
@@ -1007,7 +1007,7 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                                Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
 
                                 if (!plC_CheckBox_測試模式.Checked)
@@ -1029,7 +1029,7 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
+                                Drawer drawer = List_EPD1020_本地資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
@@ -1066,7 +1066,7 @@ namespace 調劑台管理系統
                         RowsDevice rowsDevice = list_Device[i] as RowsDevice;
                         if (rowsDevice != null)
                         {
-                            RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
+                            RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
                             taskList.Add(Task.Run(() =>
                             {
                                 if (!plC_CheckBox_測試模式.Checked)
