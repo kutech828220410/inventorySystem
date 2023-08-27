@@ -88,7 +88,7 @@ namespace Console_MedUpdate
                );
                 sQLControlw_藥品資料_藥檔資料.TableName = dBConfigClass.DB_Basic.TableName;
                 SQLControl sQLControlw_雲端藥檔 = new SQLControl(
-                 dBConfigClass.DB_Basic.IP,
+                 dBConfigClass.DB_Medicine_Cloud.IP,
                     dBConfigClass.DB_Medicine_Cloud.DataBaseName,
                     dBConfigClass.DB_Medicine_Cloud.UserName,
                     dBConfigClass.DB_Medicine_Cloud.Password,
