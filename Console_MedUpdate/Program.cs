@@ -8,11 +8,15 @@ using HIS_DB_Lib;
 using H_Pannel_lib;
 using Basic;
 using MyUI;
+using System.IO;
+using System.Reflection;
 namespace Console_MedUpdate
 {
     class Program
     {
-        static private string DBConfigFileName = "C://Console_MedUpdate//DBConfig.txt";
+        public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        static private string DBConfigFileName = $"{currentDirectory}//DBConfig.txt";
   
         public class DBConfigClass
         {
@@ -119,10 +123,7 @@ namespace Console_MedUpdate
                     list_雲端藥檔_buf = list_雲端藥檔.GetRows((int)enum_雲端藥檔.藥品碼, 藥品碼);
                     if (list_雲端藥檔_buf.Count > 0)
                     {
-                        if (i == 74)
-                        {
-                            
-                        }
+
                         bool replace = false;
                         if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString()) replace = true;
                         if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString()) replace = true;

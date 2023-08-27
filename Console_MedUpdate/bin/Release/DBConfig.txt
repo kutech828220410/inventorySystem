@@ -1,7 +1,7 @@
 {
   "DB_Basic": {
-    "DataBaseName": "DPS_EMG",
-    "IP": "192.168.24.61",
+    "DataBaseName": "DPS01",
+    "IP": "127.0.0.1",
     "UserName": "user",
     "Password": "66437068",
     "Port": 3306,

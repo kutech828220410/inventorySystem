@@ -1134,10 +1134,10 @@ namespace 調劑台管理系統
                             {
                                 Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
-                                if (!plC_CheckBox_測試模式.Checked)
-                                {
-                                    this.drawerUI_EPD_583.Set_LED_UDP(drawer);
-                                }
+                                //if (!plC_CheckBox_測試模式.Checked)
+                                //{
+                                //    this.drawerUI_EPD_583.Set_LED_UDP(drawer);
+                                //}
                        
                             }));
                             Task allTask = Task.WhenAll(taskList);
@@ -1155,10 +1155,10 @@ namespace 調劑台管理系統
                             {
                                 Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
-                                if (!plC_CheckBox_測試模式.Checked)
-                                {
-                                    this.drawerUI_EPD_1020.Set_LED_UDP(drawer);
-                                }
+                                //if (!plC_CheckBox_測試模式.Checked)
+                                //{
+                                //    this.drawerUI_EPD_1020.Set_LED_UDP(drawer);
+                                //}
 
                             }));
                             Task allTask = Task.WhenAll(taskList);

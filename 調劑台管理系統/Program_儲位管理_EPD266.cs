@@ -897,6 +897,7 @@ namespace 調劑台管理系統
                 color = Color.Green;
             }
             List<Task> taskList = new List<Task>();
+            string Error_msg = "";
             for (int i = 0; i < list_value.Count; i++)
             {
                 string IP = list_value[i][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
@@ -908,9 +909,8 @@ namespace 調劑台管理系統
                     {
                         if (!this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color))
                         {
-                            MyMessageBox.ShowDialog($"{storage.IP}:{storage.Port} : EPD266 面板亮燈失敗!");
+                            Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板亮燈失敗!");
                         }
-                        Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板亮燈成功!");
                     }
                 }));                        
             }
@@ -936,9 +936,9 @@ namespace 調劑台管理系統
                       
                         if (!this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black))
                         {
-                            MyMessageBox.ShowDialog($"{storage.IP}:{storage.Port} : EPD266 面板滅燈失敗!");
+                            Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板滅燈失敗!");
+
                         }
-                        Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板滅燈成功!");
                     }
                 }));
             }
@@ -962,9 +962,8 @@ namespace 調劑台管理系統
                     {
                         if (!this.storageUI_EPD_266.DrawToEpd_UDP(storage))
                         {
-                            MyMessageBox.ShowDialog($"{storage.IP}:{storage.Port} : EPD266 面板上傳失敗!");
+                            Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板上傳失敗!");
                         }
-                        Console.WriteLine($"{storage.IP}:{storage.Port} : EPD266 面板上傳成功!");
                     }
                 }));
             }

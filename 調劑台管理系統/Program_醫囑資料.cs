@@ -293,17 +293,18 @@ namespace 調劑台管理系統
             return list_value;
         }
         private List<object[]> Function_醫囑資料_API呼叫(string barcode)
-        {
-            List<OrderClass> orderClasses = this.Function_醫囑資料_API呼叫(dBConfigClass.OrderApiURL, barcode);
-            List<object[]> list_value = new List<object[]>();
+        {   
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            for (int i = 0; i < orderClasses.Count; i++)
-            {
-                string pri_key = orderClasses[i].PRI_KEY;
-                List<object[]> list_value_buf = this.sqL_DataGridView_醫囑資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, pri_key, false);
-                list_value.LockAdd(list_value_buf);
-            }
+            List<OrderClass> orderClasses = this.Function_醫囑資料_API呼叫(dBConfigClass.OrderApiURL, barcode);
+            List<object[]> list_value = orderClasses.ClassToSQL<OrderClass ,enum_醫囑資料>();
+        
+            //for (int i = 0; i < orderClasses.Count; i++)
+            //{
+            //    string pri_key = orderClasses[i].PRI_KEY;
+            //    List<object[]> list_value_buf = this.sqL_DataGridView_醫囑資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, pri_key, false);
+            //    list_value.LockAdd(list_value_buf);
+            //}
             Console.Write($"醫囑資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;
         }
