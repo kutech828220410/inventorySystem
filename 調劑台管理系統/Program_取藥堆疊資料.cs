@@ -204,10 +204,12 @@ namespace 調劑台管理系統
                     {
                         string 管制級別 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
                         string 警訊藥品 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString()) ? "警訊" : "";
-                        flag_複盤 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.複盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.複盤, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.複盤, "高價") || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.複盤, "生物製劑"));
-                        flag_盲盤 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.盲盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.盲盤, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.盲盤, "高價") || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.盲盤, "生物製劑"));
-                        flag_效期管理 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.效期管理, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.效期管理, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.效期管理, "高價") || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.效期管理, "生物製劑"));
-                        flag_雙人覆核 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, "高價") || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, "生物製劑"));
+                        string 高價藥品 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.高價藥品].ObjectToString() == true.ToString()) ? "高價" : "";
+                        string 生物製劑 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.生物製劑].ObjectToString() == true.ToString()) ? "生物製劑" : "";
+                        flag_複盤 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.複盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.複盤, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.複盤, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.複盤, 生物製劑));
+                        flag_盲盤 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.盲盤, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.盲盤, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.盲盤, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.盲盤, 生物製劑));
+                        flag_效期管理 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.效期管理, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.效期管理, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.效期管理, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.效期管理, 生物製劑));
+                        flag_雙人覆核 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, 警訊藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, 高價藥品) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, 生物製劑));
                     }
                     if (flag_複盤) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.複盤);
                     if (flag_盲盤) Function_取藥堆疊資料_設定作業模式(value, enum_取藥堆疊母資料_作業模式.盲盤);
@@ -242,6 +244,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = takeMedicineStackClasses[i];
                 Task Task_儲位亮燈 = Task.Run(() =>
                 {
+                    if (藥品碼.StringIsEmpty()) return;
                     this.Function_儲位亮燈(藥品碼, takeMedicineStackClass.顏色.ToColor());
                 });
                 taskList.Add(Task_儲位亮燈);

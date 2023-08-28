@@ -99,8 +99,10 @@ namespace Console_MedUpdate
                 List<object[]> list_本地藥檔 = sQLControlw_藥品資料_藥檔資料.GetAllRows(null);
                 List<object[]> list_雲端藥檔 = sQLControlw_雲端藥檔.GetAllRows(null);
                 List<object[]> list_雲端藥檔_buf = new List<object[]>();
+                List<object[]> list_本地藥檔_buf = new List<object[]>();
+                List<object[]> list_本地藥檔_add = new List<object[]>();
                 List<object[]> list_本地藥檔_replace = new List<object[]>();
-        
+
                 string url = dBConfigClass.MedApiURL;
                 if (!url.StringIsEmpty())
                 {
@@ -116,39 +118,31 @@ namespace Console_MedUpdate
                         Console.WriteLine($"HIS填入失敗! , response:{response},耗時{myTimer.ToString()}ms");
                     }
                 }
-                Console.WriteLine($"藥檔共<{list_本地藥檔.Count}>筆資料‧");
-                for (int i = 0; i < list_本地藥檔.Count; i++)
+                Console.WriteLine($"本地藥檔共<{list_本地藥檔.Count}>筆資料‧");
+                Console.WriteLine($"雲端藥檔共<{list_雲端藥檔.Count}>筆資料‧");
+                for (int i = 0; i < list_雲端藥檔.Count; i++)
                 {
-                    string 藥品碼 = list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
-                    list_雲端藥檔_buf = list_雲端藥檔.GetRows((int)enum_雲端藥檔.藥品碼, 藥品碼);
-                    if (list_雲端藥檔_buf.Count > 0)
+                    string 藥品碼 = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
+                    list_本地藥檔_buf = list_本地藥檔.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
+                    if (list_本地藥檔_buf.Count > 0)
                     {
-
-                        bool replace = false;
-                        if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString()) replace = true;
-                        if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString()) replace = true;
-                        if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString()) replace = true;
-                        if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品條碼].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1].ObjectToString()) replace = true;
-                        if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString()) replace = true;
-                        if (list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString() != list_雲端藥檔_buf[0][(int)enum_雲端藥檔.管制級別].ObjectToString()) replace = true;
-
-                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品名稱];
-                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品學名] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品學名];
-                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.中文名稱] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.中文名稱];
-                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.包裝單位] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝單位];
-                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.藥品條碼] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.藥品條碼1];
-                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.警訊藥品] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品];
-                        list_本地藥檔[i][(int)enum_藥品資料_藥檔資料.管制級別] = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.管制級別];
-                        if (replace)
-                        {
-                            list_本地藥檔_replace.Add(list_本地藥檔[i]);
-                        }
-
+                        medClass medClass_雲端 = list_雲端藥檔[i].SQLToClass<medClass, enum_雲端藥檔>();
+                        object[] value = medClass_雲端.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                        value[(int)enum_藥品資料_藥檔資料.GUID] = list_本地藥檔_buf[0][(int)enum_藥品資料_藥檔資料.GUID].ObjectToString();
+                        list_本地藥檔_replace.Add(value);
+                    }
+                    else
+                    {
+                        medClass medClass_雲端 = list_雲端藥檔[i].SQLToClass<medClass, enum_雲端藥檔>();
+                        object[] value = medClass_雲端.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                        list_本地藥檔_add.Add(value);
                     }
                 }
+                Console.WriteLine($"須新增<{list_本地藥檔_add.Count}>筆資料‧");
                 Console.WriteLine($"須更新<{list_本地藥檔_replace.Count}>筆資料‧");
 
                 sQLControlw_藥品資料_藥檔資料.UpdateByDefulteExtra(null, list_本地藥檔_replace);
+                sQLControlw_藥品資料_藥檔資料.AddRows(null, list_本地藥檔_add);
                 Console.WriteLine($"完成!");
                 System.Threading.Thread.Sleep(5000);
             }
