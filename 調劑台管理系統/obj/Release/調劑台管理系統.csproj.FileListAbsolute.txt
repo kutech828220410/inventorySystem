@@ -2438,3 +2438,13 @@ C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.pdb
 C:\Users\hsonds01\source\repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.xml
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_調劑作業_病歷號輸入.resources
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.dll
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\office.dll
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.pdb
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.xml
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_使用者登入.resources
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_盤點數量錯誤.resources
+C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_調劑作業_病歷號輸入.resources

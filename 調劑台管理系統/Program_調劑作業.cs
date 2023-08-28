@@ -19,6 +19,8 @@ namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
+        MyTimer myTimer_領藥台_01_Logout = new MyTimer(5000);
+        MyTimer myTimer_領藥台_02_Logout = new MyTimer(5000);
         Basic.MyThread MyThread_領藥台_01;
         Basic.MyThread MyThread_領藥台_02;
         Basic.MyThread MyThread_領藥_RFID;
@@ -130,6 +132,21 @@ namespace 調劑台管理系統
                         {
                             rJ_ProgressBar_領藥台_01_閒置登出時間條.Value = (int)MyTimer_領藥台_01_閒置登出時間.GetTickTime();
                         }
+                        if ((PLC_Device_領藥台_01_閒置登出時間.Value - (int)MyTimer_領藥台_01_閒置登出時間.GetTickTime()) <= 20000)
+                        {
+                            myTimer_領藥台_01_Logout.StartTickTime(5000);
+                            if(myTimer_領藥台_01_Logout.IsTimeOut())
+                            {
+                                myTimer_領藥台_01_Logout.TickStop();
+                                using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                {
+                                    sp.Stop();
+                                    sp.Play();
+                                    sp.PlaySync();
+                                }
+
+                            }
+                        }
                         if (MyTimer_領藥台_01_閒置登出時間.IsTimeOut())
                         {
                             this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
@@ -212,6 +229,21 @@ namespace 調劑台管理系統
                             if ((int)MyTimer_領藥台_02_閒置登出時間.GetTickTime() < rJ_ProgressBar_領藥台_02_閒置登出時間條.Maximum)
                             {
                                 rJ_ProgressBar_領藥台_02_閒置登出時間條.Value = (int)MyTimer_領藥台_02_閒置登出時間.GetTickTime();
+                            }
+                            if ((PLC_Device_領藥台_02_閒置登出時間.Value - (int)MyTimer_領藥台_02_閒置登出時間.GetTickTime()) <= 20000)
+                            {
+                                myTimer_領藥台_02_Logout.StartTickTime(5000);
+                                if (myTimer_領藥台_02_Logout.IsTimeOut())
+                                {
+                                    myTimer_領藥台_02_Logout.TickStop();
+                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                    {
+                                        sp.Stop();
+                                        sp.Play();
+                                        sp.PlaySync();
+                                    }
+
+                                }
                             }
                             if (MyTimer_領藥台_02_閒置登出時間.IsTimeOut())
                             {

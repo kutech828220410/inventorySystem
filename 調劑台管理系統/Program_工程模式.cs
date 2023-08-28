@@ -200,6 +200,7 @@ namespace 調劑台管理系統
         private void button_工程模式_調劑台名稱儲存_Click(object sender, EventArgs e)
         {
             this.SaveConfig工程模式();
+            PLC.properties.Device.Set_Device("S8", true);
             MyMessageBox.ShowDialog("儲存成功!");
         }
         private void panel_工程模式_領藥台_01_顏色_Click(object sender, EventArgs e)
