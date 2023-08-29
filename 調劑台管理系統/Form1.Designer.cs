@@ -37192,7 +37192,7 @@
             this.plC_RJ_ScreenButton_收支作業.頁面編號 = 0;
             this.plC_RJ_ScreenButton_收支作業.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
             this.plC_RJ_ScreenButton_收支作業.顯示狀態 = false;
-            this.plC_RJ_ScreenButton_收支作業.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButton_收支作業.顯示讀取位置 = "S39032";
             // 
             // plC_RJ_ScreenButton_交班作業
             // 
