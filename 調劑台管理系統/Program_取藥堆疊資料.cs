@@ -524,7 +524,7 @@ namespace 調劑台管理系統
                 List<object[]> list_value_replace = new List<object[]>();
                 if (list_value_buf.Count == 0) break;
                 sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_buf, false);
-                for (int i = 0; i < list_value.Count; i++)
+                for (int i = 0; i < list_value_buf.Count; i++)
                 {
                     string 藥品碼 = list_value[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     if (藥品碼.StringIsEmpty()) continue;
@@ -536,6 +536,7 @@ namespace 調劑台管理系統
                         takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                         takeMedicineStackClass.GUID = Guid.NewGuid().ToString();
                         takeMedicineStackClass.藥品碼 = 藥品碼;
+                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None;
                         takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.調劑台名稱 = "刷新面板";
@@ -545,6 +546,7 @@ namespace 調劑台管理系統
                     {
                         takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                         takeMedicineStackClass.GUID = list_value_buf[0][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
+                        takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None;
                         takeMedicineStackClass.藥品碼 = 藥品碼;
                         takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
@@ -1695,6 +1697,7 @@ namespace 調劑台管理系統
 
 
                 this.list_取藥堆疊母資料 = (from value in this.list_取藥堆疊母資料
+                                     where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.None.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.等待入賬.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.新增效期.GetEnumName()

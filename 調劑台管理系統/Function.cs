@@ -284,7 +284,6 @@ namespace 調劑台管理系統
             return null;
         }
 
-
         public void Function_設定雲端資料更新()
         {
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
