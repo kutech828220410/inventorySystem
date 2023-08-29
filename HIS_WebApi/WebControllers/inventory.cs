@@ -1409,8 +1409,8 @@ namespace HIS_WebApi
             MED_pageController mED_PageController = new MED_pageController();
             returnData returnData_med = new returnData();
             returnData_med.Server = Server;
-            returnData_med.DbName = DB;
-            returnData_med.TableName = MED_TableName;
+            returnData_med.DbName = "dbvm";
+            returnData_med.TableName = "medicine_page_cloud";
             returnData_med.UserName = UserName;
             returnData_med.Password = Password;
             returnData_med.Port = Port;

@@ -16,5 +16,5 @@
   "藥物辨識網址": "",
   "外部輸出": false,
   "系統取藥模式": false,
-  "EPD1020_Enable": true
+  "EPD1020_Enable": false
 }
