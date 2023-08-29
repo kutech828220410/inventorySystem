@@ -929,6 +929,7 @@ namespace 調劑台管理系統
         public void Function_儲位亮燈(string 藥品碼 ,Color color, ref List<string> list_lock_IP)
         {
             List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
+            Console.WriteLine($"儲位亮燈,藥品碼:{藥品碼},color{color.ToColorString()}");
             List<Task> taskList = new List<Task>();
             List<string> list_IP = new List<string>();
             List<string> list_IP_buf = new List<string>();

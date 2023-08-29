@@ -343,6 +343,10 @@ namespace 調劑台管理系統
                 string device_GUID = list_value[0][(int)enum_取藥堆疊子資料.Device_GUID].ObjectToString();
                 this.sqL_DataGridView_取藥堆疊子資料.SQL_Delete(enum_取藥堆疊子資料.GUID.GetEnumName(), GUID, false);
                 if (藥品碼.StringIsEmpty()) return;
+                Task.Run(new Action(delegate
+                {
+                    this.Function_儲位亮燈(藥品碼, Color.Black);
+                }));
                 //Task.Run(() =>
                 //{
                 //    if (plC_Button_同藥碼全亮.Bool)
@@ -442,7 +446,7 @@ namespace 調劑台管理系統
                 //        }
                 //    }
                 //});
-               
+
             }
 
 
@@ -528,8 +532,8 @@ namespace 調劑台管理系統
                 {
                     string 藥品碼 = list_value[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     if (藥品碼.StringIsEmpty()) continue;
-                    list_value_buf = list_value.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
-                    list_value_buf = list_value_buf.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
+                    List<object[]> list_value_buf_temp = list_value_buf.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
+                    list_value_buf_temp = list_value_buf_temp.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
                
                     if (list_value_buf.Count == 0)
                     {
@@ -541,6 +545,7 @@ namespace 調劑台管理系統
                         takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.調劑台名稱 = "刷新面板";
                         list_value_add.Add(takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>());
+                        Console.WriteLine($"{takeMedicineStackClass.JsonSerializationt(true)}");
                     }
                     else
                     {
@@ -552,13 +557,14 @@ namespace 調劑台管理系統
                         takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.調劑台名稱 = "刷新面板";
                         list_value_replace.Add(takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>());
-
+                        Console.WriteLine($"{takeMedicineStackClass.JsonSerializationt(true)}");
                     }
-                    Task.Run(() => 
+                    Task.Run(new Action(delegate 
                     {
                         this.Function_儲位亮燈(藥品碼, Color.Black);
-                    }).Wait();
-                  
+                    }));
+                 
+
                 }
                 if (list_value_add.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_value_add, false);
                 if (list_value_replace.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_value_replace, false);
