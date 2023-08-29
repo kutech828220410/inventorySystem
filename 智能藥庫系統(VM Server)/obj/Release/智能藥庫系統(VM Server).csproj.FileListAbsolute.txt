@@ -636,3 +636,4 @@ C:\Users\Administrator\Source\Repos\inventorySystem\智能藥庫系統(VM Server
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\office.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\stdole.dll
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\ICSharpCode.SharpZipLib.dll

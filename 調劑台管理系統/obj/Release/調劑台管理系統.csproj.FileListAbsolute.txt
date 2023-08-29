@@ -2441,10 +2441,7 @@ C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Releas
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_使用者登入.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_盤點數量錯誤.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_調劑作業_病歷號輸入.resources
-C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.pdb
-C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\DotNetZip.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_調劑作業_病歷號輸入.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.dll
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.pdb
@@ -2453,3 +2450,6 @@ C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Releas
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.pdb
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.xml
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe.config
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.pdb
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.xml
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe.config
