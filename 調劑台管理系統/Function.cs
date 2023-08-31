@@ -23,6 +23,7 @@ namespace 調劑台管理系統
         IP,
         TYPE,
         效期,
+        批號,
         庫存,
         異動量,
         Value,
@@ -558,6 +559,7 @@ namespace 調劑台管理系統
                         value[(int)enum_儲位資訊.IP] = device.IP;
                         value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];
                         value[(int)enum_儲位資訊.效期] = device.List_Validity_period[i];
+                        value[(int)enum_儲位資訊.批號] = device.List_Lot_number[i];
                         value[(int)enum_儲位資訊.庫存] = device.List_Inventory[i];
                         value[(int)enum_儲位資訊.異動量] = "0";
                         value[(int)enum_儲位資訊.Value] = value_device;
@@ -597,6 +599,91 @@ namespace 調劑台管理系統
         public object Function_庫存異動至雲端資料(object[] 儲位資訊)
         {
             return this.Function_庫存異動至雲端資料(儲位資訊, false);
+        }
+        public object Function_庫存異動至雲端資料(object device, string TYPE, string 效期, string 批號, string 異動量, bool upToSQL)
+        {
+            object Value = device;
+
+            if (Value is Storage)
+            {
+                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName() || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName())
+                {
+                    Storage storage = (Storage)Value;
+                    storage = this.List_EPD266_雲端資料.SortByIP(storage.IP);
+                    if (storage != null)
+                    {
+                        storage.效期庫存異動(效期, 批號, 異動量, false);
+                        this.List_EPD266_雲端資料.Add_NewStorage(storage);
+                        if (upToSQL) this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                        storage.UpToSQL = true;
+                        return storage;
+                    }
+                }
+                if (TYPE == DeviceType.Pannel35.GetEnumName() || TYPE == DeviceType.Pannel35_lock.GetEnumName())
+                {
+                    Storage storage = (Storage)Value;
+                    storage = this.List_Pannel35_雲端資料.SortByIP(storage.IP);
+                    if (storage != null)
+                    {
+                        storage.效期庫存異動(效期, 批號, 異動量, false);
+                        this.List_Pannel35_雲端資料.Add_NewStorage(storage);
+                        if (upToSQL) this.storageUI_WT32.SQL_ReplaceStorage(storage);
+                        storage.UpToSQL = true;
+                        return storage;
+                    }
+                }
+            }
+            else if (Value is Box)
+            {
+                if (TYPE == DeviceType.EPD583.GetEnumName() || TYPE == DeviceType.EPD583_lock.GetEnumName())
+                {
+                    Box box = (Box)Value;
+                    box.效期庫存異動(效期, 批號, 異動量, false);
+                    this.List_EPD583_雲端資料.ReplaceBox(box);
+                    Drawer drawer = this.List_EPD583_雲端資料.SortByIP(box.IP);
+                    if (upToSQL) this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+                    drawer.UpToSQL = true;
+                    return drawer;
+                }
+                if (TYPE == DeviceType.EPD1020.GetEnumName() || TYPE == DeviceType.EPD1020_lock.GetEnumName())
+                {
+                    Box box = (Box)Value;
+                    box.效期庫存異動(效期, 批號, 異動量, false);
+                    this.List_EPD1020_雲端資料.ReplaceByGUID(box);
+                    Drawer drawer = this.List_EPD1020_雲端資料.SortByIP(box.IP);
+                    if (upToSQL) this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
+                    drawer.UpToSQL = true;
+                    return drawer;
+                }
+            }
+            else if (Value is RowsDevice)
+            {
+                if (TYPE == DeviceType.RowsLED.GetEnumName())
+                {
+                    RowsDevice rowsDevice = Value as RowsDevice;
+                    rowsDevice.效期庫存異動(效期, 批號, 異動量, false);
+                    this.List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
+                    RowsLED rowsLED = this.List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
+                    if (upToSQL) this.rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
+                    rowsLED.UpToSQL = true;
+                    return rowsLED;
+                }
+
+            }
+            else if (Value is RFIDDevice)
+            {
+                if (TYPE == DeviceType.RFID_Device.GetEnumName())
+                {
+                    RFIDDevice rFIDDevice = Value as RFIDDevice;
+                    rFIDDevice.效期庫存異動(效期, 批號, 異動量, false);
+                    this.List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
+                    RFIDClass rFIDClass = this.List_RFID_雲端資料.SortByIP(rFIDDevice.IP);
+                    if (upToSQL) this.rfiD_UI.SQL_ReplaceRFIDClass(rFIDClass);
+                    rFIDClass.UpToSQL = true;
+                    return rFIDClass;
+                }
+            }
+            return null;
         }
         public object Function_庫存異動至雲端資料(object[] 儲位資訊 ,bool upToSQL)
         {

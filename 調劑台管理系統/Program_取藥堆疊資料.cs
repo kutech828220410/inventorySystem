@@ -2733,14 +2733,10 @@ namespace 調劑台管理系統
                 //新增交易紀錄資料
                 for (int k = 0; k < List_效期.Count; k++)
                 {
-                    備註 += $"效期[{List_效期[k]}]";
-                    if (k != List_效期.Count - 1) 備註 += ",";
+                    備註 += $"[效期]:{List_效期[k]},[批號]:{List_批號[k]}";
+                    if (k != List_效期.Count - 1) 備註 += "\n";
                 }
-                for (int k = 0; k < List_批號.Count; k++)
-                {
-                    備註 += $"批號[{List_批號[k]}]";
-                    if (k != List_批號.Count - 1) 備註 += ",";
-                }
+        
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = Guid.NewGuid().ToString();
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;

@@ -231,6 +231,8 @@
             this.rJ_Lable28 = new MyUI.RJ_Lable();
             this.rJ_Lable29 = new MyUI.RJ_Lable();
             this.rJ_GroupBox6 = new MyUI.RJ_GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧 = new MyUI.PLC_RJ_ChechBox();
             this.label4 = new System.Windows.Forms.Label();
             this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_管制抽屜 = new MyUI.PLC_RJ_ChechBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -1358,6 +1360,18 @@
             this.plC_RJ_Button17 = new MyUI.PLC_RJ_Button();
             this.盤點作業 = new System.Windows.Forms.TabPage();
             this.plC_ScreenPage_盤點作業 = new MyUI.PLC_ScreenPage();
+            this.tabPage32 = new System.Windows.Forms.TabPage();
+            this.plC_RJ_GroupBox33 = new MyUI.PLC_RJ_GroupBox();
+            this.plC_RJ_Button_盤點作業_定盤_重置作業 = new MyUI.PLC_RJ_Button();
+            this.panel159 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值 = new MyUI.PLC_RJ_Button();
+            this.label47 = new System.Windows.Forms.Label();
+            this.panel158 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果 = new MyUI.PLC_RJ_Button();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel = new MyUI.PLC_RJ_Button();
+            this.sqL_DataGridView_盤點作業_定盤 = new SQLUI.SQL_DataGridView();
             this.tabPage22 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox30 = new MyUI.RJ_GroupBox();
             this.sqL_DataGridView_盤點作業_盤點藥品清單 = new SQLUI.SQL_DataGridView();
@@ -1442,6 +1456,7 @@
             this.plC_RJ_ScreenButton40 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton26 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton21 = new MyUI.PLC_RJ_ScreenButton();
+            this.plC_RJ_ScreenButton23 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_AlarmFlow = new MyUI.PLC_AlarmFlow();
             this.plC_Button42 = new MyUI.PLC_Button();
             this.plC_Button40 = new MyUI.PLC_Button();
@@ -1833,6 +1848,11 @@
             this.rJ_GroupBox26.SuspendLayout();
             this.盤點作業.SuspendLayout();
             this.plC_ScreenPage_盤點作業.SuspendLayout();
+            this.tabPage32.SuspendLayout();
+            this.plC_RJ_GroupBox33.ContentsPanel.SuspendLayout();
+            this.plC_RJ_GroupBox33.SuspendLayout();
+            this.panel159.SuspendLayout();
+            this.panel158.SuspendLayout();
             this.tabPage22.SuspendLayout();
             this.rJ_GroupBox30.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox30.SuspendLayout();
@@ -7001,6 +7021,8 @@
             this.rJ_GroupBox6.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox6.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox6.ContentsPanel.BorderSize = 2;
+            this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.label28);
+            this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧);
             this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.label4);
             this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_管制抽屜);
             this.rJ_GroupBox6.ContentsPanel.Controls.Add(this.label3);
@@ -7040,6 +7062,41 @@
             this.rJ_GroupBox6.TitleHeight = 37;
             this.rJ_GroupBox6.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_GroupBox6.TitleTexts = "動作條件選擇";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("新細明體", 12F);
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(268, 87);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(72, 16);
+            this.label28.TabIndex = 19;
+            this.label28.Text = "盤存盈虧";
+            // 
+            // plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧
+            // 
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.Bool = false;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.GUID = "";
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.Location = new System.Drawing.Point(200, 81);
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.MinimumSize = new System.Drawing.Size(45, 22);
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.Name = "plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧";
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.OffBackColor = System.Drawing.Color.Gray;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.Size = new System.Drawing.Size(62, 29);
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.SolidStyle = true;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.TabIndex = 18;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.UseVisualStyleBackColor = true;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.寫入元件位置 = "S4117";
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.讀取元件位置 = "S4117";
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.讀寫鎖住 = false;
+            this.plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧.音效 = true;
             // 
             // label4
             // 
@@ -34632,6 +34689,7 @@
             // 
             this.plC_ScreenPage_盤點作業.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.plC_ScreenPage_盤點作業.BackColor = System.Drawing.Color.White;
+            this.plC_ScreenPage_盤點作業.Controls.Add(this.tabPage32);
             this.plC_ScreenPage_盤點作業.Controls.Add(this.tabPage22);
             this.plC_ScreenPage_盤點作業.Controls.Add(this.tabPage17);
             this.plC_ScreenPage_盤點作業.Controls.Add(this.tabPage42);
@@ -34646,6 +34704,339 @@
             this.plC_ScreenPage_盤點作業.TabIndex = 118;
             this.plC_ScreenPage_盤點作業.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
             this.plC_ScreenPage_盤點作業.顯示頁面 = 0;
+            // 
+            // tabPage32
+            // 
+            this.tabPage32.BackColor = System.Drawing.Color.White;
+            this.tabPage32.Controls.Add(this.plC_RJ_GroupBox33);
+            this.tabPage32.Location = new System.Drawing.Point(4, 25);
+            this.tabPage32.Name = "tabPage32";
+            this.tabPage32.Size = new System.Drawing.Size(1648, 925);
+            this.tabPage32.TabIndex = 3;
+            this.tabPage32.Text = "定盤";
+            // 
+            // plC_RJ_GroupBox33
+            // 
+            // 
+            // plC_RJ_GroupBox33.ContentsPanel
+            // 
+            this.plC_RJ_GroupBox33.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox33.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_GroupBox33.ContentsPanel.BorderRadius = 5;
+            this.plC_RJ_GroupBox33.ContentsPanel.BorderSize = 2;
+            this.plC_RJ_GroupBox33.ContentsPanel.Controls.Add(this.plC_RJ_Button_盤點作業_定盤_重置作業);
+            this.plC_RJ_GroupBox33.ContentsPanel.Controls.Add(this.panel159);
+            this.plC_RJ_GroupBox33.ContentsPanel.Controls.Add(this.label47);
+            this.plC_RJ_GroupBox33.ContentsPanel.Controls.Add(this.panel158);
+            this.plC_RJ_GroupBox33.ContentsPanel.Controls.Add(this.label46);
+            this.plC_RJ_GroupBox33.ContentsPanel.Controls.Add(this.label45);
+            this.plC_RJ_GroupBox33.ContentsPanel.Controls.Add(this.plC_RJ_Button_盤點作業_定盤_上傳Excel);
+            this.plC_RJ_GroupBox33.ContentsPanel.Controls.Add(this.sqL_DataGridView_盤點作業_定盤);
+            this.plC_RJ_GroupBox33.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_GroupBox33.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox33.ContentsPanel.IsSelected = false;
+            this.plC_RJ_GroupBox33.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.plC_RJ_GroupBox33.ContentsPanel.Name = "ContentsPanel";
+            this.plC_RJ_GroupBox33.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_GroupBox33.ContentsPanel.Size = new System.Drawing.Size(1648, 888);
+            this.plC_RJ_GroupBox33.ContentsPanel.TabIndex = 2;
+            this.plC_RJ_GroupBox33.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_GroupBox33.GUID = "";
+            this.plC_RJ_GroupBox33.Location = new System.Drawing.Point(0, 0);
+            this.plC_RJ_GroupBox33.Name = "plC_RJ_GroupBox33";
+            this.plC_RJ_GroupBox33.PannelBackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox33.PannelBorderColor = System.Drawing.Color.SkyBlue;
+            this.plC_RJ_GroupBox33.PannelBorderRadius = 5;
+            this.plC_RJ_GroupBox33.PannelBorderSize = 2;
+            this.plC_RJ_GroupBox33.Size = new System.Drawing.Size(1648, 925);
+            this.plC_RJ_GroupBox33.TabIndex = 1;
+            this.plC_RJ_GroupBox33.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.plC_RJ_GroupBox33.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_GroupBox33.TitleBorderRadius = 5;
+            this.plC_RJ_GroupBox33.TitleBorderSize = 0;
+            this.plC_RJ_GroupBox33.TitleFont = new System.Drawing.Font("新細明體", 12F);
+            this.plC_RJ_GroupBox33.TitleForeColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox33.TitleHeight = 37;
+            this.plC_RJ_GroupBox33.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.plC_RJ_GroupBox33.TitleTexts = "盤點明細";
+            // 
+            // plC_RJ_Button_盤點作業_定盤_重置作業
+            // 
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.AutoResetState = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.Bool = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.BorderRadius = 5;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.but_press = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.GUID = "";
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.Location = new System.Drawing.Point(1449, 810);
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.Name = "plC_RJ_Button_盤點作業_定盤_重置作業";
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.OFF_文字內容 = "重置作業";
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.ON_BorderSize = 5;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.ON_文字內容 = "重置作業";
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.Size = new System.Drawing.Size(179, 59);
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.State = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.TabIndex = 140;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.Text = "重置作業";
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.Texts = "重置作業";
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.字型鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.文字鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.讀取位元反向 = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.讀寫鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.音效 = true;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.顯示 = false;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.顯示狀態 = false;
+            // 
+            // panel159
+            // 
+            this.panel159.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel159.Controls.Add(this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值);
+            this.panel159.Location = new System.Drawing.Point(443, 806);
+            this.panel159.Name = "panel159";
+            this.panel159.Size = new System.Drawing.Size(190, 67);
+            this.panel159.TabIndex = 139;
+            // 
+            // plC_RJ_Button_盤點作業_定盤_確認更動庫存值
+            // 
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.AutoResetState = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Bool = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.BorderRadius = 5;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.but_press = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.GUID = "";
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Location = new System.Drawing.Point(3, 3);
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Name = "plC_RJ_Button_盤點作業_定盤_確認更動庫存值";
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.OFF_文字內容 = "確認更動庫存值";
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ON_BorderSize = 5;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ON_文字內容 = "確認更動庫存值";
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Size = new System.Drawing.Size(179, 59);
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.State = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.TabIndex = 135;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Text = "確認更動庫存值";
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Texts = "確認更動庫存值";
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.字型鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.文字鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.讀取位元反向 = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.讀寫鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.音效 = true;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.顯示 = false;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.顯示狀態 = false;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.BackColor = System.Drawing.Color.Black;
+            this.label47.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label47.Location = new System.Drawing.Point(439, 783);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(50, 20);
+            this.label47.TabIndex = 138;
+            this.label47.Text = "步驟3";
+            // 
+            // panel158
+            // 
+            this.panel158.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel158.Controls.Add(this.plC_RJ_Button_盤點作業_定盤_計算定盤結果);
+            this.panel158.Location = new System.Drawing.Point(215, 806);
+            this.panel158.Name = "panel158";
+            this.panel158.Size = new System.Drawing.Size(181, 67);
+            this.panel158.TabIndex = 137;
+            // 
+            // plC_RJ_Button_盤點作業_定盤_計算定盤結果
+            // 
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.AutoResetState = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Bool = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.BorderRadius = 5;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.but_press = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.GUID = "";
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Location = new System.Drawing.Point(3, 3);
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Name = "plC_RJ_Button_盤點作業_定盤_計算定盤結果";
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.OFF_文字內容 = "計算定盤結果";
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ON_BorderSize = 5;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ON_文字內容 = "計算定盤結果";
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Size = new System.Drawing.Size(163, 59);
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.State = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.TabIndex = 135;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Text = "計算定盤結果";
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Texts = "計算定盤結果";
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.字型鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.文字鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.讀取位元反向 = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.讀寫鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.音效 = true;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.顯示 = false;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.顯示狀態 = false;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.BackColor = System.Drawing.Color.Black;
+            this.label46.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label46.Location = new System.Drawing.Point(211, 783);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(50, 20);
+            this.label46.TabIndex = 136;
+            this.label46.Text = "步驟2";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.BackColor = System.Drawing.Color.Black;
+            this.label45.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label45.Location = new System.Drawing.Point(37, 783);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(50, 20);
+            this.label45.TabIndex = 134;
+            this.label45.Text = "步驟1";
+            // 
+            // plC_RJ_Button_盤點作業_定盤_上傳Excel
+            // 
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.AutoResetState = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Bool = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.BorderRadius = 5;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.but_press = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.GUID = "";
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Location = new System.Drawing.Point(32, 810);
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Name = "plC_RJ_Button_盤點作業_定盤_上傳Excel";
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.OFF_文字內容 = "上傳Excel";
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ON_BorderSize = 5;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ON_文字內容 = "上傳Excel";
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Size = new System.Drawing.Size(132, 59);
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.State = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.TabIndex = 133;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Text = "上傳Excel";
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Texts = "上傳Excel";
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.字型鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.文字鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.讀取位元反向 = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.讀寫鎖住 = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.音效 = true;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.顯示 = false;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.顯示狀態 = false;
+            // 
+            // sqL_DataGridView_盤點作業_定盤
+            // 
+            this.sqL_DataGridView_盤點作業_定盤.AutoSelectToDeep = true;
+            this.sqL_DataGridView_盤點作業_定盤.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_定盤.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_定盤.BorderRadius = 10;
+            this.sqL_DataGridView_盤點作業_定盤.BorderSize = 2;
+            this.sqL_DataGridView_盤點作業_定盤.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_盤點作業_定盤.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_定盤.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_盤點作業_定盤.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_盤點作業_定盤.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_盤點作業_定盤.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_盤點作業_定盤.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_盤點作業_定盤.columnHeadersHeight = 47;
+            this.sqL_DataGridView_盤點作業_定盤.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns"))));
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns1"))));
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns2"))));
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns3"))));
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns4"))));
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns5"))));
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns6"))));
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns7"))));
+            this.sqL_DataGridView_盤點作業_定盤.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_盤點作業_定盤.Columns8"))));
+            this.sqL_DataGridView_盤點作業_定盤.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sqL_DataGridView_盤點作業_定盤.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_盤點作業_定盤.ImageBox = false;
+            this.sqL_DataGridView_盤點作業_定盤.Location = new System.Drawing.Point(5, 5);
+            this.sqL_DataGridView_盤點作業_定盤.Name = "sqL_DataGridView_盤點作業_定盤";
+            this.sqL_DataGridView_盤點作業_定盤.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_盤點作業_定盤.Password = "user82822040";
+            this.sqL_DataGridView_盤點作業_定盤.Port = ((uint)(3306u));
+            this.sqL_DataGridView_盤點作業_定盤.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_盤點作業_定盤.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_盤點作業_定盤.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_盤點作業_定盤.RowsHeight = 50;
+            this.sqL_DataGridView_盤點作業_定盤.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_盤點作業_定盤.Server = "127.0.0.0";
+            this.sqL_DataGridView_盤點作業_定盤.Size = new System.Drawing.Size(1638, 772);
+            this.sqL_DataGridView_盤點作業_定盤.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_盤點作業_定盤.TabIndex = 0;
+            this.sqL_DataGridView_盤點作業_定盤.UserName = "root";
+            this.sqL_DataGridView_盤點作業_定盤.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_盤點作業_定盤.可選擇多列 = false;
+            this.sqL_DataGridView_盤點作業_定盤.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_盤點作業_定盤.自動換行 = true;
+            this.sqL_DataGridView_盤點作業_定盤.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_盤點作業_定盤.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_盤點作業_定盤.顯示CheckBox = false;
+            this.sqL_DataGridView_盤點作業_定盤.顯示首列 = true;
+            this.sqL_DataGridView_盤點作業_定盤.顯示首行 = true;
+            this.sqL_DataGridView_盤點作業_定盤.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_盤點作業_定盤.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
             // tabPage22
             // 
@@ -36625,6 +37016,7 @@
             this.panel_盤點作業.Controls.Add(this.plC_RJ_ScreenButton40);
             this.panel_盤點作業.Controls.Add(this.plC_RJ_ScreenButton26);
             this.panel_盤點作業.Controls.Add(this.plC_RJ_ScreenButton21);
+            this.panel_盤點作業.Controls.Add(this.plC_RJ_ScreenButton23);
             this.panel_盤點作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_盤點作業.Location = new System.Drawing.Point(0, 0);
             this.panel_盤點作業.Name = "panel_盤點作業";
@@ -36638,7 +37030,7 @@
             this.plC_RJ_ScreenButton40.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_ScreenButton40.IconChar = FontAwesome.Sharp.IconChar.None;
             this.plC_RJ_ScreenButton40.IconSize = 40;
-            this.plC_RJ_ScreenButton40.Location = new System.Drawing.Point(334, 2);
+            this.plC_RJ_ScreenButton40.Location = new System.Drawing.Point(500, 2);
             this.plC_RJ_ScreenButton40.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton40.Name = "plC_RJ_ScreenButton40";
             this.plC_RJ_ScreenButton40.OffBackColor = System.Drawing.Color.DarkCyan;
@@ -36653,7 +37045,7 @@
             this.plC_RJ_ScreenButton40.OnText = "資料庫";
             this.plC_RJ_ScreenButton40.ShowIcon = false;
             this.plC_RJ_ScreenButton40.Size = new System.Drawing.Size(166, 48);
-            this.plC_RJ_ScreenButton40.TabIndex = 78;
+            this.plC_RJ_ScreenButton40.TabIndex = 82;
             this.plC_RJ_ScreenButton40.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
             this.plC_RJ_ScreenButton40.寫入位置註解 = "";
             this.plC_RJ_ScreenButton40.寫入元件位置 = "";
@@ -36677,7 +37069,7 @@
             this.plC_RJ_ScreenButton26.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_ScreenButton26.IconChar = FontAwesome.Sharp.IconChar.None;
             this.plC_RJ_ScreenButton26.IconSize = 40;
-            this.plC_RJ_ScreenButton26.Location = new System.Drawing.Point(168, 2);
+            this.plC_RJ_ScreenButton26.Location = new System.Drawing.Point(334, 2);
             this.plC_RJ_ScreenButton26.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton26.Name = "plC_RJ_ScreenButton26";
             this.plC_RJ_ScreenButton26.OffBackColor = System.Drawing.Color.DarkCyan;
@@ -36692,7 +37084,7 @@
             this.plC_RJ_ScreenButton26.OnText = "單號查詢";
             this.plC_RJ_ScreenButton26.ShowIcon = false;
             this.plC_RJ_ScreenButton26.Size = new System.Drawing.Size(166, 48);
-            this.plC_RJ_ScreenButton26.TabIndex = 77;
+            this.plC_RJ_ScreenButton26.TabIndex = 81;
             this.plC_RJ_ScreenButton26.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
             this.plC_RJ_ScreenButton26.寫入位置註解 = "";
             this.plC_RJ_ScreenButton26.寫入元件位置 = "";
@@ -36716,7 +37108,7 @@
             this.plC_RJ_ScreenButton21.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_ScreenButton21.IconChar = FontAwesome.Sharp.IconChar.None;
             this.plC_RJ_ScreenButton21.IconSize = 40;
-            this.plC_RJ_ScreenButton21.Location = new System.Drawing.Point(2, 2);
+            this.plC_RJ_ScreenButton21.Location = new System.Drawing.Point(168, 2);
             this.plC_RJ_ScreenButton21.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton21.Name = "plC_RJ_ScreenButton21";
             this.plC_RJ_ScreenButton21.OffBackColor = System.Drawing.Color.DarkCyan;
@@ -36731,7 +37123,7 @@
             this.plC_RJ_ScreenButton21.OnText = "新增盤點";
             this.plC_RJ_ScreenButton21.ShowIcon = false;
             this.plC_RJ_ScreenButton21.Size = new System.Drawing.Size(166, 48);
-            this.plC_RJ_ScreenButton21.TabIndex = 76;
+            this.plC_RJ_ScreenButton21.TabIndex = 80;
             this.plC_RJ_ScreenButton21.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
             this.plC_RJ_ScreenButton21.寫入位置註解 = "";
             this.plC_RJ_ScreenButton21.寫入元件位置 = "";
@@ -36748,6 +37140,45 @@
             this.plC_RJ_ScreenButton21.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
             this.plC_RJ_ScreenButton21.顯示狀態 = false;
             this.plC_RJ_ScreenButton21.顯示讀取位置 = "";
+            // 
+            // plC_RJ_ScreenButton23
+            // 
+            this.plC_RJ_ScreenButton23.but_press = false;
+            this.plC_RJ_ScreenButton23.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButton23.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.plC_RJ_ScreenButton23.IconSize = 40;
+            this.plC_RJ_ScreenButton23.Location = new System.Drawing.Point(2, 2);
+            this.plC_RJ_ScreenButton23.Margin = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_ScreenButton23.Name = "plC_RJ_ScreenButton23";
+            this.plC_RJ_ScreenButton23.OffBackColor = System.Drawing.Color.DarkCyan;
+            this.plC_RJ_ScreenButton23.OffFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton23.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton23.OffIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton23.OffText = "定盤";
+            this.plC_RJ_ScreenButton23.OnBackColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton23.OnFont = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_ScreenButton23.OnForeColor = System.Drawing.Color.DarkCyan;
+            this.plC_RJ_ScreenButton23.OnIconColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_ScreenButton23.OnText = "定盤";
+            this.plC_RJ_ScreenButton23.ShowIcon = false;
+            this.plC_RJ_ScreenButton23.Size = new System.Drawing.Size(166, 48);
+            this.plC_RJ_ScreenButton23.TabIndex = 79;
+            this.plC_RJ_ScreenButton23.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButton23.寫入位置註解 = "";
+            this.plC_RJ_ScreenButton23.寫入元件位置 = "";
+            this.plC_RJ_ScreenButton23.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
+            this.plC_RJ_ScreenButton23.控制位址 = "D0";
+            this.plC_RJ_ScreenButton23.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButton23.致能讀取位置 = "";
+            this.plC_RJ_ScreenButton23.讀取位元反向 = false;
+            this.plC_RJ_ScreenButton23.讀取位置註解 = "";
+            this.plC_RJ_ScreenButton23.讀取元件位置 = "";
+            this.plC_RJ_ScreenButton23.音效 = true;
+            this.plC_RJ_ScreenButton23.頁面名稱 = "定盤";
+            this.plC_RJ_ScreenButton23.頁面編號 = 0;
+            this.plC_RJ_ScreenButton23.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButton23.顯示狀態 = false;
+            this.plC_RJ_ScreenButton23.顯示讀取位置 = "S4077";
             // 
             // plC_AlarmFlow
             // 
@@ -38055,6 +38486,12 @@
             this.rJ_GroupBox26.ResumeLayout(false);
             this.盤點作業.ResumeLayout(false);
             this.plC_ScreenPage_盤點作業.ResumeLayout(false);
+            this.tabPage32.ResumeLayout(false);
+            this.plC_RJ_GroupBox33.ContentsPanel.ResumeLayout(false);
+            this.plC_RJ_GroupBox33.ContentsPanel.PerformLayout();
+            this.plC_RJ_GroupBox33.ResumeLayout(false);
+            this.panel159.ResumeLayout(false);
+            this.panel158.ResumeLayout(false);
             this.tabPage22.ResumeLayout(false);
             this.rJ_GroupBox30.ContentsPanel.ResumeLayout(false);
             this.rJ_GroupBox30.ResumeLayout(false);
@@ -39085,9 +39522,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱;
         private System.Windows.Forms.TabPage 盤點作業;
         private System.Windows.Forms.Panel panel_盤點作業;
-        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton40;
-        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton26;
-        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton21;
         private MyUI.PLC_ScreenPage plC_ScreenPage_盤點作業;
         private System.Windows.Forms.TabPage tabPage22;
         private MyUI.RJ_GroupBox rJ_GroupBox30;
@@ -39543,6 +39977,24 @@
         private SQLUI.SQL_DataGridView sqL_DataGridView_儲位管理_EPD1020_儲位資料;
         private MyUI.PLC_RJ_Button plC_RJ_Button_領藥台_01_病歷號輸入;
         private MyUI.PLC_RJ_Button plC_RJ_Button_領藥台_02_病歷號輸入;
+        private System.Windows.Forms.Label label28;
+        private MyUI.PLC_RJ_ChechBox plC_RJ_ChechBox_交易紀錄查詢_搜尋條件_盤存盈虧;
+        private System.Windows.Forms.TabPage tabPage32;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton40;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton26;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton21;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton23;
+        private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox33;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_盤點作業_定盤_重置作業;
+        private System.Windows.Forms.Panel panel159;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_盤點作業_定盤_確認更動庫存值;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Panel panel158;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_盤點作業_定盤_計算定盤結果;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label45;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_盤點作業_定盤_上傳Excel;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_盤點作業_定盤;
     }
 }
 

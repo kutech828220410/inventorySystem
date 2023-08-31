@@ -355,13 +355,16 @@
     <Compile Include="Program_儲位管理_EPD1020.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_盤點作業_定盤.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_盤點作業_資料庫.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Program_盤點狀態_單號查詢.cs">
+    <Compile Include="Program_盤點作業_單號查詢.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Program_盤點狀態_新增盤點.cs">
+    <Compile Include="Program_盤點作業_新增盤點.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_管制抽屜.cs">

@@ -1282,6 +1282,7 @@ namespace HIS_WebApi
                 return null;
             }
             List<inventoryClass.creat> creats = returnData.Data.ObjToListClass<inventoryClass.creat>();
+            List<object[]> list_value = new List<object[]>();
             inventoryClass.creat creat = creats[0];
             List<SheetClass> sheetClasses = new List<SheetClass>();
             string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_inventory.txt", "utf-8");
@@ -1294,39 +1295,48 @@ namespace HIS_WebApi
             int NumOfRow = 0;
             for (int i = 0; i < creat.Contents.Count; i++)
             {
-                int 差異量 = 0;
                 if (creat.Contents[i].盤點量.StringToInt32() <= 0)
                 {
                     continue;
                 }
-                sheetClass.AddNewCell_Webapi(NumOfRow + 4, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 4, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 4, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 4, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 4, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 4, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                sheetClass.AddNewCell_Webapi(NumOfRow + 4, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                if (!creat.Contents[i].理論值.StringIsEmpty() && !creat.Contents[i].盤點量.StringIsEmpty())
-                {
-                    差異量 = creat.Contents[i].理論值.StringToInt32() - creat.Contents[i].盤點量.StringToInt32();
-                }
-                else
-                {
+                object[] value = new object[new enum_盤點定盤_Excel().GetLength()];
+                value[(int)enum_盤點定盤_Excel.藥碼] = creat.Contents[i].藥品碼;
+                value[(int)enum_盤點定盤_Excel.料號] = creat.Contents[i].料號;
+                value[(int)enum_盤點定盤_Excel.藥名] = creat.Contents[i].藥品名稱;
+                value[(int)enum_盤點定盤_Excel.單位] = creat.Contents[i].包裝單位;
+                value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
+                value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].盤點量;
+                list_value.Add(value);
+                //int 差異量 = 0;
+         
+                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                //if (!creat.Contents[i].理論值.StringIsEmpty() && !creat.Contents[i].盤點量.StringIsEmpty())
+                //{
+                //    差異量 = creat.Contents[i].理論值.StringToInt32() - creat.Contents[i].盤點量.StringToInt32();
+                //}
+                //else
+                //{
 
-                }
-                sheetClass.AddNewCell_Webapi(NumOfRow + 4, 7, $"{差異量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                //}
+                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 7, $"{差異量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
 
-                NumOfRow++;
+                //NumOfRow++;
             }
+            System.Data.DataTable dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
             Console.WriteLine($"寫入Sheet {myTimer.ToString()}");
 
-            // sheetClass.NewCell_Webapi_Buffer_Caculate();
             Console.WriteLine($"NewCell_Webapi_Buffer_Caculate {myTimer.ToString()}");
 
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
 
-            byte[] excelData = sheetClass.NPOI_GetBytes(Excel_Type.xlsx);
+            byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xlsx);
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
         }
@@ -1536,7 +1546,7 @@ namespace HIS_WebApi
             table_inventory_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inventory_content.AddColumnList("藥品條碼2", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inventory_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.INDEX);
             table_inventory_content.AddColumnList("理論值", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_inventory_content.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
@@ -1552,7 +1562,7 @@ namespace HIS_WebApi
             table_inventory_sub_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_sub_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inventory_sub_content.AddColumnList("藥品條碼2", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.INDEX);
             table_inventory_sub_content.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("效期", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("批號", Table.StringType.VARCHAR, 20, Table.IndexType.None);

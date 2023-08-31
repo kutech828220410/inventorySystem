@@ -7,6 +7,23 @@ using System.Text.Json.Serialization;
 using Basic;
 namespace HIS_DB_Lib
 {
+    public enum enum_盤點定盤_Excel
+    {
+        藥碼,
+        料號,
+        藥名,
+        單位,
+        單價,
+        庫存量,
+        庫存金額,
+        盤點量,
+        庫存差異量,
+        異動後結存量,
+        消耗量,
+        結存金額,
+        誤差量,
+        誤差金額
+    }
     public enum enum_盤點單號
     {
         GUID,

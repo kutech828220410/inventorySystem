@@ -991,7 +991,7 @@ namespace 調劑台管理系統
                 string 病歷號 = "";
                 string 操作時間 = DateTime.Now.ToDateTimeString_6();
                 string 開方時間 = DateTime.Now.ToDateTimeString_6();
-                string 備註 = $"效期[{效期}],批號[{批號}]";
+                string 備註 = $"[效期]:{效期},[批號]:{批號}";
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
@@ -1064,7 +1064,7 @@ namespace 調劑台管理系統
                 string 病歷號 = "";
                 string 操作時間 = DateTime.Now.ToDateTimeString_6();
                 string 開方時間 = DateTime.Now.ToDateTimeString_6();
-                string 備註 = $"效期[{效期}],批號[{批號}]";
+                string 備註 = $"[效期]:{效期},[批號]:{批號}";
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
@@ -1134,7 +1134,7 @@ namespace 調劑台管理系統
                 string 病歷號 = "";
                 string 操作時間 = DateTime.Now.ToDateTimeString_6();
                 string 開方時間 = DateTime.Now.ToDateTimeString_6();
-                string 備註 = $"效期[{效期}]新批號[{新批號}]";
+                string 備註 = $"[效期]:{效期},[批號]:{新批號}";
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = GUID;
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;

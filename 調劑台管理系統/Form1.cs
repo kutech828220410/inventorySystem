@@ -556,6 +556,7 @@ namespace 調劑台管理系統
             this.Program_藥品管制方式設定_Init();
             this.Program_藥品設定表_Init();
 
+            this.sub_Program_盤點作業_定盤_Init();
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();
