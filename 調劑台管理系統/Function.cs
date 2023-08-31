@@ -811,6 +811,22 @@ namespace 調劑台管理系統
             if (pannel35 != null) return pannel35;
             return null;
         }
+        public object Fucnction_從雲端資料取得儲位(string IP)
+        {
+            Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
+            if (storage != null) return storage;
+            Drawer drawer = this.List_EPD583_雲端資料.SortByIP(IP);
+            if (drawer != null) return drawer;
+            Drawer drawer_1020 = this.List_EPD1020_雲端資料.SortByIP(IP);
+            if (drawer_1020 != null) return drawer_1020;
+            RowsLED rowsLED = this.List_RowsLED_雲端資料.SortByIP(IP);
+            if (rowsLED != null) return rowsLED;
+            RFIDClass rFIDClass = this.List_RFID_雲端資料.SortByIP(IP);
+            if (rFIDClass != null) return rFIDClass;
+            Storage pannel35 = this.List_Pannel35_雲端資料.SortByIP(IP);
+            if (pannel35 != null) return pannel35;
+            return null;
+        }
         public List<Device> Function_從SQL取得所有儲位()
         {
             List<List<Device>> list_list_devices = new List<List<Device>>();
@@ -929,11 +945,44 @@ namespace 調劑台管理系統
         public void Function_儲位亮燈(string 藥品碼 ,Color color, ref List<string> list_lock_IP)
         {
             if (藥品碼.StringIsEmpty()) return;
-            List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
+            List<object> list_Device = this.Function_從雲端資料取得儲位(藥品碼);
             Console.WriteLine($"儲位亮燈,藥品碼:{藥品碼},color{color.ToColorString()}");
             List<Task> taskList = new List<Task>();
             List<string> list_IP = new List<string>();
             List<string> list_IP_buf = new List<string>();
+            for (int i = 0; i < list_Device.Count; i++)
+            {
+                Device device = list_Device[i] as Device;
+                string IP = device.IP;
+                list_IP_buf = (from value in list_IP
+                               where value == IP
+                               select value).ToList();
+                if (list_IP_buf.Count > 0) continue;
+                if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                {
+                    Box box = list_Device[i] as Box;
+                    if (box != null)
+                    {
+                        taskList.Add(Task.Run(() =>
+                        {
+                            Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                            if(drawer !=null)
+                            {
+                                drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
+                            }
+
+                        }));
+           
+                        list_IP.Add(IP);
+                        if (device.DeviceType == DeviceType.EPD583_lock) list_lock_IP.Add(IP);
+                    }
+                }
+            }
+            Task allTask = Task.WhenAll(taskList);
+            allTask.Wait();
+            list_IP.Clear();
+            list_IP_buf.Clear();
+
             for (int i = 0; i < list_Device.Count; i++)
             {
                 Device device = list_Device[i] as Device;
@@ -946,7 +995,7 @@ namespace 調劑台管理系統
                         Box box = list_Device[i] as Box;
                         if (box != null)
                         {
-                            Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
+                            Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                             List<Box> boxes = drawer.SortByCode(藥品碼);
 
                             if (drawer.IsAllLight)
@@ -965,7 +1014,7 @@ namespace 調劑台管理系統
                         RowsDevice rowsDevice = list_Device[i] as RowsDevice;
                         if (rowsDevice != null)
                         {
-                            RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+                            RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
                             rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);                       
                         }
                     }
@@ -1008,11 +1057,12 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
+                                Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
 
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
+                                  
                                     this.drawerUI_EPD_583.Set_LED_UDP(drawer);
                                 }
 
@@ -1030,7 +1080,7 @@ namespace 調劑台管理系統
                         {
                             taskList.Add(Task.Run(() =>
                             {
-                                Drawer drawer = List_EPD1020_本地資料.SortByIP(IP);
+                                Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
                                 List<Box> boxes = drawer.SortByCode(藥品碼);
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
@@ -1067,7 +1117,7 @@ namespace 調劑台管理系統
                         RowsDevice rowsDevice = list_Device[i] as RowsDevice;
                         if (rowsDevice != null)
                         {
-                            RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+                            RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
                             taskList.Add(Task.Run(() =>
                             {
                                 if (!plC_CheckBox_測試模式.Checked)

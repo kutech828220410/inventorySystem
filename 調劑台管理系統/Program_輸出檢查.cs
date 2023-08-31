@@ -87,7 +87,7 @@ namespace 調劑台管理系統
 
             if (IP.Check_IP_Adress() && PLC_Device_主機輸出模式.Bool)
             {
-                object value_device = this.Fucnction_從本地資料取得儲位(IP);
+                object value_device = this.Fucnction_從雲端資料取得儲位(IP);
                 if (value_device == null) return;
                 if (value_device is Storage)
                 {
@@ -114,6 +114,7 @@ namespace 調劑台管理系統
                     {
                         if(boxes[0].DeviceType == DeviceType.EPD583 || boxes[0].DeviceType == DeviceType.EPD583_lock)
                         {
+                            drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
                             this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
                         }
                         if (boxes[0].DeviceType == DeviceType.EPD1020 || boxes[0].DeviceType == DeviceType.EPD1020_lock)

@@ -377,6 +377,7 @@ namespace HIS_WebApi
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
                 if (serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
@@ -400,14 +401,13 @@ namespace HIS_WebApi
                 {
                     MED_pageController mED_PageController = new MED_pageController();
                     returnData returnData_med = new returnData();
-                    returnData_med.ServerName = returnData.ServerName;
-                    returnData_med.ServerType = returnData.ServerType;
-                    returnData_med.Server = Server;
-                    returnData_med.DbName = DB;
+                    returnData_med.Server = serverSettingClasses_med.Server;
+                    returnData_med.DbName = serverSettingClasses_med.DBName;
                     returnData_med.TableName = "medicine_page_cloud";
-                    returnData_med.Port = Port;
-                    returnData_med.UserName = UserName;
-                    returnData_med.Password = Password;
+                    returnData_med.UserName = serverSettingClasses_med.User;
+                    returnData_med.Password = serverSettingClasses_med.Password;
+                    returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
+                    returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
 
                     returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                     List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
