@@ -311,31 +311,38 @@ namespace 調劑台管理系統
         }
         private void SqL_DataGridView_儲位管理_EPD583_抽屜列表_RowEnterEvent(object[] RowValue)
         {
-            string IP = RowValue[(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
-            string 儲位名稱 = RowValue[(int)enum_儲位管理_EPD583_抽屜列表.名稱].ObjectToString();
-
-            rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts = IP;
-            rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Texts = 儲位名稱;
-            Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-            rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Texts = drawer.Speaker;
-            if (drawer != null)
+            try
             {
-                this.epD_583_Pannel.CurrentDrawer = drawer;
-                plC_CheckBox_儲位管理_EPD583_隔板亮燈.Checked = drawer.IsAllLight;
-                plC_CheckBox_儲位管理_EPD583_警報.Checked = drawer.AlarmEnable;
-                if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked) this.epD_583_Pannel.DrawToPictureBox(this.epD_583_Pannel.CurrentDrawer);
-                else this.epD_583_Pannel.DrawBarCodeToPictureBox(this.epD_583_Pannel.CurrentDrawer);
+                string IP = RowValue[(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
+                string 儲位名稱 = RowValue[(int)enum_儲位管理_EPD583_抽屜列表.名稱].ObjectToString();
 
-                List<Task> taskList = new List<Task>();
-                taskList.Add(Task.Run(() =>
+                rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts = IP;
+                rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Texts = 儲位名稱;
+                Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
+                this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Texts = drawer.Speaker;
+                if (drawer != null)
                 {
+                    this.epD_583_Pannel.CurrentDrawer = drawer;
+                    plC_CheckBox_儲位管理_EPD583_隔板亮燈.Checked = drawer.IsAllLight;
+                    plC_CheckBox_儲位管理_EPD583_警報.Checked = drawer.AlarmEnable;
+                    if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked) this.epD_583_Pannel.DrawToPictureBox(this.epD_583_Pannel.CurrentDrawer);
+                    else this.epD_583_Pannel.DrawBarCodeToPictureBox(this.epD_583_Pannel.CurrentDrawer);
 
-                    PlC_RJ_Button_儲位管理_EPD583_更新_MouseDownEvent(null);
-                }));
+                    List<Task> taskList = new List<Task>();
+                    taskList.Add(Task.Run(() =>
+                    {
 
-               
-
+                        PlC_RJ_Button_儲位管理_EPD583_更新_MouseDownEvent(null);
+                    }));
+                }
+                Console.WriteLine($"SqL_DataGridView_儲位管理_EPD583_抽屜列表_RowEnterEvent");
             }
+            catch (Exception e)
+            {
+                MyMessageBox.ShowDialog($"{e.Message}");
+            }
+          
         }
         private void PlC_RJ_Button_儲位管理_EPD583_全部解鎖_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -387,35 +394,44 @@ namespace 調劑台管理系統
         }
         private void EpD_583_Pannel_MouseDownEvent(List<Box> Boxes)
         {
-            if (Boxes.Count == 0) return;
-            this.Invoke(new Action(delegate 
+            try
             {
-                rJ_TextBox_儲位管理_EPD583_儲位內容_藥品名稱.Text = Boxes[0].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
-                rJ_TextBox_儲位管理_EPD583_儲位內容_藥品學名.Text = Boxes[0].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString();
-                rJ_TextBox_儲位管理_EPD583_儲位內容_中文名稱.Text = Boxes[0].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString();
-                rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Text = Boxes[0].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
-                rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Text = Boxes[0].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
-                rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Text = Boxes[0].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
-                rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Text = Boxes[0].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString();
-                rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Text = Boxes[0].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
-                this.plC_CheckBox_儲位管理_EPD583_儲位內容_效期顯示.Checked = (bool)Boxes[0].GetValue(Device.ValueName.效期, Device.ValueType.Visable);
+                if (Boxes.Count == 0) return;
+                this.Invoke(new Action(delegate
+                {
+                    rJ_TextBox_儲位管理_EPD583_儲位內容_藥品名稱.Text = Boxes[0].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
+                    rJ_TextBox_儲位管理_EPD583_儲位內容_藥品學名.Text = Boxes[0].GetValue(Device.ValueName.藥品學名, Device.ValueType.Value).ObjectToString();
+                    rJ_TextBox_儲位管理_EPD583_儲位內容_中文名稱.Text = Boxes[0].GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value).ObjectToString();
+                    rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Text = Boxes[0].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
+                    rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Text = Boxes[0].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
+                    rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Text = Boxes[0].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
+                    rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Text = Boxes[0].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString();
+                    rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Text = Boxes[0].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
+                    this.plC_CheckBox_儲位管理_EPD583_儲位內容_效期顯示.Checked = (bool)Boxes[0].GetValue(Device.ValueName.效期, Device.ValueType.Visable);
 
-            }));
+                }));
 
 
 
-            sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.ClearGrid();
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < Boxes[0].List_Validity_period.Count; i++)
-            {
-                object[] value = new object[new enum_儲位管理_EPD583_效期及庫存().GetLength()];
-                value[(int)enum_儲位管理_EPD583_效期及庫存.效期] = Boxes[0].List_Validity_period[i];
-                value[(int)enum_儲位管理_EPD583_效期及庫存.批號] = Boxes[0].List_Lot_number[i];
-                value[(int)enum_儲位管理_EPD583_效期及庫存.庫存] = Boxes[0].List_Inventory[i];
-                list_value.Add(value);
+                sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.ClearGrid();
+                List<object[]> list_value = new List<object[]>();
+                for (int i = 0; i < Boxes[0].List_Validity_period.Count; i++)
+                {
+                    object[] value = new object[new enum_儲位管理_EPD583_效期及庫存().GetLength()];
+                    value[(int)enum_儲位管理_EPD583_效期及庫存.效期] = Boxes[0].List_Validity_period[i];
+                    value[(int)enum_儲位管理_EPD583_效期及庫存.批號] = Boxes[0].List_Lot_number[i];
+                    value[(int)enum_儲位管理_EPD583_效期及庫存.庫存] = Boxes[0].List_Inventory[i];
+                    list_value.Add(value);
+                }
+
+                sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RefreshGrid(list_value);
+                Console.WriteLine($"EpD_583_Pannel_MouseDownEvent");
             }
-
-            sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RefreshGrid(list_value);
+            catch(Exception e)
+            {
+                MyMessageBox.ShowDialog($"{e.Message}");
+            }
+          
         }
         private void EpD_583_Pannel_DrawerChangeEvent(Drawer drawer)
         {

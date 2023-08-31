@@ -30,6 +30,7 @@ namespace HIS_DB_Lib
         入賬完成,
         取消作業,
         刪除資料,
+        已領用過,
 
     }
     public enum enum_取藥堆疊母資料_作業模式
@@ -44,6 +45,7 @@ namespace HIS_DB_Lib
     public enum enum_取藥堆疊母資料
     {
         GUID,
+        Order_GUID,
         序號,
         調劑台名稱,
         IP,
@@ -97,6 +99,7 @@ namespace HIS_DB_Lib
     public class takeMedicineStackClass
     {
         public string GUID { get; set; }
+        public string Order_GUID { get; set; }
         public string 序號 { get; set; }
         public string 調劑台名稱 { get; set; }
         public string IP { get; set; }

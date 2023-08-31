@@ -173,7 +173,7 @@ namespace 調劑台管理系統
                 }
                 takeMedicineStackClasses[i].序號 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClasses[i].操作時間 = DateTime.Now.ToDateTimeString_6();
-                if(takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.刪除資料) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新;
+                if(takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.刪除資料 && takeMedicineStackClasses[i].狀態 != enum_取藥堆疊母資料_狀態.已領用過) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新;
 
                 if (takeMedicineStackClasses[i].動作 != enum_交易記錄查詢動作.入庫作業) takeMedicineStackClasses[i].IP = "";
                 if (takeMedicineStackClasses[i].效期.Check_Date_String())
@@ -1710,6 +1710,7 @@ namespace 調劑台管理系統
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()
                                      where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.雙人覆核.GetEnumName()
+                                     where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()
                                      select value).ToList();
 
                 for (int i = 0; i < this.list_取藥堆疊母資料.Count; i++)
@@ -1932,6 +1933,7 @@ namespace 調劑台管理系統
                 {
                     if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD583_lock.GetEnumName())
                     {
+                        if (藥品碼.StringIsEmpty()) return;
                         Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                         List<Box> boxes = drawer.SortByCode(藥品碼);
                         if(drawer.IsAllLight)
@@ -2796,9 +2798,9 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < list_取藥堆疊母資料_ReplaceValue.Count; i++)
             {
-                GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
+                string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString();
                 操作人 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
-                List<object[]> list_value = this.sqL_DataGridView_醫囑資料.SQL_GetRows((int)enum_醫囑資料.GUID, GUID, false);
+                List<object[]> list_value = this.sqL_DataGridView_醫囑資料.SQL_GetRows((int)enum_醫囑資料.GUID, Order_GUID, false);
                 if (list_value.Count == 0) continue;
                 if (list_value[0][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
                 list_value[0][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();

@@ -1336,6 +1336,7 @@ namespace 調劑台管理系統
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
                 List<object[]> list_醫囑資料 = new List<object[]>();
+                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
                 if (plC_Button_手輸數量.Bool)
                 {
                     Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入領藥數量");
@@ -1359,8 +1360,8 @@ namespace 調劑台管理系統
                     return;
                 }
                 List<object[]> list_醫囑資料_remove = new List<object[]>();
-                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
-                if (pLC_Device.Bool == false) list_醫囑資料 = list_醫囑資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.未過帳.GetEnumName());
+            
+            
                 if (list_醫囑資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單無未過帳資料");
@@ -1400,6 +1401,7 @@ namespace 調劑台管理系統
                     string GUID = Guid.NewGuid().ToString();
                     string 調劑台名稱 = this.領藥台_01名稱;
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
+                    string Order_GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
 
                     string 診別 = list_醫囑資料[i][(int)enum_醫囑資料.藥局代碼].ObjectToString();
                     string 藥袋序號 = list_醫囑資料[i][(int)enum_醫囑資料.PRI_KEY].ObjectToString();
@@ -1418,6 +1420,7 @@ namespace 調劑台管理系統
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
+                    takeMedicineStackClass.Order_GUID = Order_GUID;
                     takeMedicineStackClass.動作 = 動作;
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
@@ -1435,6 +1438,14 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.收支原因 = 收支原因;
 
+                    if (pLC_Device.Bool == false)
+                    {
+                        if(list_醫囑資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
+                        {
+                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
+                        }
+                        
+                    }
                     if (flag_雙人覆核)
                     {
                         this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -3182,6 +3193,7 @@ namespace 調劑台管理系統
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
                 List<object[]> list_醫囑資料 = new List<object[]>();
+                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
                 if (plC_Button_手輸數量.Bool)
                 {
                     Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入領藥數量");
@@ -3205,8 +3217,8 @@ namespace 調劑台管理系統
                     return;
                 }
                 List<object[]> list_醫囑資料_remove = new List<object[]>();
-                PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
-                if (pLC_Device.Bool == false) list_醫囑資料 = list_醫囑資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.未過帳.GetEnumName());
+
+
                 if (list_醫囑資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單無未過帳資料");
@@ -3246,6 +3258,7 @@ namespace 調劑台管理系統
                     string GUID = Guid.NewGuid().ToString();
                     string 調劑台名稱 = this.領藥台_02名稱;
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
+                    string Order_GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
 
                     string 診別 = list_醫囑資料[i][(int)enum_醫囑資料.藥局代碼].ObjectToString();
                     string 藥袋序號 = list_醫囑資料[i][(int)enum_醫囑資料.PRI_KEY].ObjectToString();
@@ -3264,6 +3277,7 @@ namespace 調劑台管理系統
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
+                    takeMedicineStackClass.Order_GUID = Order_GUID;
                     takeMedicineStackClass.動作 = 動作;
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
@@ -3281,6 +3295,14 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.收支原因 = 收支原因;
 
+                    if (pLC_Device.Bool == false)
+                    {
+                        if (list_醫囑資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
+                        {
+                            takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
+                        }
+
+                    }
                     if (flag_雙人覆核)
                     {
                         this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -4263,7 +4285,8 @@ namespace 調劑台管理系統
             list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.新增效期.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.輸入新效期.GetEnumName()));
             list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.選擇效期.GetEnumName()));
-            if(!plC_CheckBox_領藥無儲位不顯示.Checked)list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
+            list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()));
+            if (!plC_CheckBox_領藥無儲位不顯示.Checked)list_value_buf.LockAdd(list_value.GetRows((int)enum_領藥內容.狀態, enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()));
             return list_value_buf;
         }
     }

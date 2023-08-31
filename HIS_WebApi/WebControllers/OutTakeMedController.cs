@@ -786,6 +786,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_take_medicine_stack_new = new SQLControl(Server, DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
             Table table = new Table("take_medicine_stack_new");
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table.AddColumnList("Order_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
             table.AddColumnList("序號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("調劑台名稱", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("IP", Table.StringType.VARCHAR, 20, Table.IndexType.None);
