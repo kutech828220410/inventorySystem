@@ -20,8 +20,8 @@ using System.Text.Json.Serialization;
 using Basic;
 using IWshRuntimeLibrary;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.8.0")]
-[assembly: AssemblyFileVersion("1.0.8.0")]
+[assembly: AssemblyVersion("1.0.9.0")]
+[assembly: AssemblyFileVersion("1.0.9.0")]
 namespace E_UpdateVersion
 {
     public partial class Form1 : Form
@@ -175,7 +175,7 @@ namespace E_UpdateVersion
                 MyMessageBox.ShowDialog("指定中心叫號系統名稱空白,請聯繫管理員至後台設定!");
             }
             string arguments = $"{ApiServer} {名稱} {控制中心}";
-            if (Download("中心叫號系統", "中心叫號系統", arguments) == false)
+            if (Download("中心叫號系統", "Hospital_Call_Light_System", arguments) == false)
             {
                 MyMessageBox.ShowDialog("取得更新資訊失敗!");
             }

@@ -1,4 +1,0 @@
-{
-  "Default_program": "",
-  "Api_server": "http://220.135.128.247:4433"
-}
