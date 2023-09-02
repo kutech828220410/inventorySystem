@@ -94,17 +94,21 @@ namespace 調劑台管理系統
                     Storage storage = value_device as Storage;
                     if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock)
                     {
-                        if (!plC_Button_同藥碼全亮.Bool)
-                        {
-                            this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
-                            this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
-                        }
+                        if (plC_Button_同藥碼全亮.Bool) return;
+                        this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                        storage.ActionDone = true;
+                        //this.List_EPD266_雲端資料.Add_NewStorage(storage);
+                        this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                     }
                     else if (storage.DeviceType == DeviceType.Pannel35 || storage.DeviceType == DeviceType.Pannel35_lock)
                     {
+                        if (plC_Button_同藥碼全亮.Bool) return;
                         this.storageUI_WT32.Set_Stroage_LED_UDP(storage, Color.Black);
+                        storage.ActionDone = true;
+                        //this.List_Pannel35_雲端資料.Add_NewStorage(storage);
                         this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                     }
+           
                 }
                 else if (value_device is Drawer)
                 {
@@ -114,26 +118,32 @@ namespace 調劑台管理系統
                     {
                         if(boxes[0].DeviceType == DeviceType.EPD583 || boxes[0].DeviceType == DeviceType.EPD583_lock)
                         {
+                            if (plC_Button_同藥碼全亮.Bool) return;
                             drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
+                            drawer.ActionDone = true;
                             this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                            //this.List_EPD583_雲端資料.Add_NewDrawer(drawer);
+                            this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                         }
                         if (boxes[0].DeviceType == DeviceType.EPD1020 || boxes[0].DeviceType == DeviceType.EPD1020_lock)
                         {
+                            if (plC_Button_同藥碼全亮.Bool) return;
+                            drawer.ActionDone = true;
                             this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
-                        }
-                        if (!plC_Button_同藥碼全亮.Bool)
-                        {
+                            //this.List_EPD1020_雲端資料.Add_NewDrawer(drawer);
                             this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                         }
+                             
                     }
+    
                   
                 }
                 else if (value_device is RFIDClass)
                 {
                     RFIDClass rFIDClass = value_device as RFIDClass;
-                    this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                    //this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                    this.List_RFID_雲端資料.Add_NewRFIDClass(rFIDClass);
                 }
-
 
             }
         }

@@ -117,8 +117,6 @@ namespace 調劑台管理系統
             this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
         }
 
-
-
         private void sub_Program_領藥台_01()
         {
             if (this.plC_ScreenPage_Main.PageText == "調劑作業")
@@ -138,12 +136,17 @@ namespace 調劑台管理系統
                             if (myTimer_領藥台_01_Logout.IsTimeOut())
                             {
                                 myTimer_領藥台_01_Logout.TickStop();
-                                using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                Task.Run(new Action(delegate
                                 {
-                                    sp.Stop();
-                                    sp.Play();
-                                    sp.PlaySync();
-                                }
+                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                    {
+                                        sp.Stop();
+                                        sp.Play();
+                                        sp.PlaySync();
+                                    }
+
+                                }));
+                             
 
                             }
                         }
@@ -237,12 +240,16 @@ namespace 調劑台管理系統
                                 if (myTimer_領藥台_02_Logout.IsTimeOut())
                                 {
                                     myTimer_領藥台_02_Logout.TickStop();
-                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                    Task.Run(new Action(delegate
                                     {
-                                        sp.Stop();
-                                        sp.Play();
-                                        sp.PlaySync();
-                                    }
+                                        using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                        {
+                                            sp.Stop();
+                                            sp.Play();
+                                            sp.PlaySync();
+                                        }
+
+                                    }));
 
                                 }
                             }
@@ -950,8 +957,10 @@ namespace 調劑台管理系統
                 {
                     list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
                     this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                    Fuction_領藥台_01_時間重置();
                     continue;
                 }
+                Fuction_領藥台_01_時間重置();
                 list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
                 Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核, false);
                 list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
@@ -991,10 +1000,12 @@ namespace 調劑台管理系統
                         Dialog_盤點數量錯誤 dialog_盤點數量錯誤 = new Dialog_盤點數量錯誤();
                         if (dialog_盤點數量錯誤.ShowDialog() == DialogResult.Yes)
                         {
+                            Fuction_領藥台_01_時間重置();
                             try_error = 0;
                         }
                         else
                         {
+                            Fuction_領藥台_01_時間重置();
                             try_error++;
                         }
                         continue;
@@ -1004,6 +1015,7 @@ namespace 調劑台管理系統
                         Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇($"{dBConfigClass.Api_URL}/api/IncomeReasons", dBConfigClass.Name);
                         dialog_收支原因選擇.Title = $"盲盤數量錯誤({結存量}) 選擇原因";
                         dialog_收支原因選擇.ShowDialog();
+                        Fuction_領藥台_01_時間重置();
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n盲盤錯誤原因:{dialog_收支原因選擇.Value}";
                         Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.盲盤, false);
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
@@ -1022,6 +1034,7 @@ namespace 調劑台管理系統
                     {
                         //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.取消作業.GetEnumName();
                         this.Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        Fuction_領藥台_01_時間重置();
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
@@ -1065,10 +1078,12 @@ namespace 調劑台管理系統
                         Dialog_盤點數量錯誤 dialog_盤點數量錯誤 = new Dialog_盤點數量錯誤();
                         if (dialog_盤點數量錯誤.ShowDialog() == DialogResult.Yes)
                         {
+                            Fuction_領藥台_01_時間重置();
                             try_error = 0;
                         }
                         else
                         {
+                            Fuction_領藥台_01_時間重置();
                             try_error++;
                         }
                         continue;
@@ -1078,6 +1093,7 @@ namespace 調劑台管理系統
                         Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇($"{dBConfigClass.Api_URL}/api/IncomeReasons", dBConfigClass.Name);
                         dialog_收支原因選擇.Title = $"複盤數量錯誤({結存量}) 選擇原因";
                         dialog_收支原因選擇.ShowDialog();
+                        Fuction_領藥台_01_時間重置();
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n複盤錯誤原因:{dialog_收支原因選擇.Value}";
                         Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.複盤, false);
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
@@ -1096,8 +1112,10 @@ namespace 調劑台管理系統
                     {
                         //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.取消作業.GetEnumName();
                         this.Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        Fuction_領藥台_01_時間重置();
                         break;
                     }
+                    Fuction_領藥台_01_時間重置();
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
                     if (結存量 == dialog_NumPannel.Value.ToString())
                     {
@@ -1831,6 +1849,13 @@ namespace 調劑台管理系統
             this.voice.SpeakOnTask("掃碼成功");
         }
 
+        private void Fuction_領藥台_01_時間重置()
+        {
+            MyTimer_領藥台_01_閒置登出時間.TickStop();
+            MyTimer_領藥台_01_閒置登出時間.StartTickTime();
+            MyTimer_領藥台_01_入賬完成時間.TickStop();
+            MyTimer_領藥台_01_入賬完成時間.StartTickTime();
+        }
         #endregion
 
         #region Event
@@ -2801,15 +2826,17 @@ namespace 調劑台管理系統
                 Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_02_ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
                 this.Invoke(new Action(delegate
                 {
-                    dialog_使用者登入.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X - this.rJ_GroupBox_領藥台_02.Width - 20, 1);
+                    dialog_使用者登入.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_02.Width + 20, 1);
                 }));
 
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
                 {
                     list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[i]);
                     this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                    Fuction_領藥台_02_時間重置();
                     continue;
                 }
+                Fuction_領藥台_02_時間重置();
                 list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
                 Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核, false);
                 list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n覆核:{dialog_使用者登入.UserName}";
@@ -2849,10 +2876,12 @@ namespace 調劑台管理系統
                         Dialog_盤點數量錯誤 dialog_盤點數量錯誤 = new Dialog_盤點數量錯誤();
                         if (dialog_盤點數量錯誤.ShowDialog() == DialogResult.Yes)
                         {
+                            Fuction_領藥台_02_時間重置();
                             try_error = 0;
                         }
                         else
                         {
+                            Fuction_領藥台_02_時間重置();
                             try_error++;
                         }
                         continue;
@@ -2862,6 +2891,7 @@ namespace 調劑台管理系統
                         Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇($"{dBConfigClass.Api_URL}/api/IncomeReasons", dBConfigClass.Name);
                         dialog_收支原因選擇.Title = $"盲盤數量錯誤({結存量}) 選擇原因";
                         dialog_收支原因選擇.ShowDialog();
+                        Fuction_領藥台_02_時間重置();
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n盲盤錯誤原因:{dialog_收支原因選擇.Value}";
                         Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.盲盤, false);
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
@@ -2880,6 +2910,7 @@ namespace 調劑台管理系統
                     {
                         //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.取消作業.GetEnumName();
                         this.Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        Fuction_領藥台_02_時間重置();
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
@@ -2923,10 +2954,12 @@ namespace 調劑台管理系統
                         Dialog_盤點數量錯誤 dialog_盤點數量錯誤 = new Dialog_盤點數量錯誤();
                         if (dialog_盤點數量錯誤.ShowDialog() == DialogResult.Yes)
                         {
+                            Fuction_領藥台_02_時間重置();
                             try_error = 0;
                         }
                         else
                         {
+                            Fuction_領藥台_02_時間重置();
                             try_error++;
                         }
                         continue;
@@ -2936,6 +2969,7 @@ namespace 調劑台管理系統
                         Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇($"{dBConfigClass.Api_URL}/api/IncomeReasons", dBConfigClass.Name);
                         dialog_收支原因選擇.Title = $"複盤數量錯誤({結存量}) 選擇原因";
                         dialog_收支原因選擇.ShowDialog();
+                        Fuction_領藥台_02_時間重置();
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n複盤錯誤原因:{dialog_收支原因選擇.Value}";
                         Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.複盤, false);
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
@@ -2954,8 +2988,10 @@ namespace 調劑台管理系統
                     {
                         //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.取消作業.GetEnumName();
                         this.Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        Fuction_領藥台_02_時間重置();
                         break;
                     }
+                    Fuction_領藥台_02_時間重置();
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
                     if (結存量 == dialog_NumPannel.Value.ToString())
                     {
@@ -3689,6 +3725,13 @@ namespace 調劑台管理系統
             this.voice.SpeakOnTask("掃碼成功");
         }
 
+        private void Fuction_領藥台_02_時間重置()
+        {
+            MyTimer_領藥台_02_閒置登出時間.TickStop();
+            MyTimer_領藥台_02_閒置登出時間.StartTickTime();
+            MyTimer_領藥台_02_入賬完成時間.TickStop();
+            MyTimer_領藥台_02_入賬完成時間.StartTickTime();
+        }
         #endregion
 
         #region Event

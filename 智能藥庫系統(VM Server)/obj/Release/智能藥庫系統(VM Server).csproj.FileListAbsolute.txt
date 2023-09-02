@@ -637,3 +637,4 @@ C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bi
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\office.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\ICSharpCode.SharpZipLib.dll
