@@ -87,9 +87,8 @@
     <Reference Include="H_Pannel_lib">
       <HintPath>..\0.DLL\H_Pannel_lib.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.1.9, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.1.3.1\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Interop.SpeechLib, Version=5.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -205,267 +204,147 @@
     <Reference Include="zxing, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialog\Dialog_入庫作業_儲位選擇.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_入庫作業_儲位選擇.cs" />
     <Compile Include="Dialog\Dialog_入庫作業_儲位選擇.Designer.cs">
       <DependentUpon>Dialog_入庫作業_儲位選擇.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_收支原因選擇.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_收支原因選擇.cs" />
     <Compile Include="Dialog\Dialog_收支原因選擇.Designer.cs">
       <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_條碼管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_條碼管理.cs" />
     <Compile Include="Dialog\Dialog_條碼管理.Designer.cs">
       <DependentUpon>Dialog_條碼管理.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_等待RFID感應.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_等待RFID感應.cs" />
     <Compile Include="Dialog\Dialog_等待RFID感應.Designer.cs">
       <DependentUpon>Dialog_等待RFID感應.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_輸入效期.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_輸入效期.cs" />
     <Compile Include="Dialog\Dialog_輸入效期.Designer.cs">
       <DependentUpon>Dialog_輸入效期.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_輸入藥品碼.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_輸入藥品碼.cs" />
     <Compile Include="Dialog\Dialog_輸入藥品碼.Designer.cs">
       <DependentUpon>Dialog_輸入藥品碼.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_RFID領退藥頁面.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_RFID領退藥頁面.cs" />
     <Compile Include="Dialog\Dialog_RFID領退藥頁面.Designer.cs">
       <DependentUpon>Dialog_RFID領退藥頁面.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_輸入批號.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_輸入批號.cs" />
     <Compile Include="Dialog\Dialog_輸入批號.Designer.cs">
       <DependentUpon>Dialog_輸入批號.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_手動作業.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_手動作業.cs" />
     <Compile Include="Dialog\Dialog_手動作業.Designer.cs">
       <DependentUpon>Dialog_手動作業.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_手輸醫囑.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_手輸醫囑.cs" />
     <Compile Include="Dialog\Dialog_手輸醫囑.Designer.cs">
       <DependentUpon>Dialog_手輸醫囑.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_收支原因設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_收支原因設定.cs" />
     <Compile Include="Dialog\Dialog_收支原因設定.Designer.cs">
       <DependentUpon>Dialog_收支原因設定.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_醫囑退藥.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_醫囑退藥.cs" />
     <Compile Include="Dialog\Dialog_醫囑退藥.Designer.cs">
       <DependentUpon>Dialog_醫囑退藥.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_設定產出時間.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_設定產出時間.cs" />
     <Compile Include="Dialog\Dialog_設定產出時間.Designer.cs">
       <DependentUpon>Dialog_設定產出時間.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_輸入輸出設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_輸入輸出設定.cs" />
     <Compile Include="Dialog\Dialog_輸入輸出設定.Designer.cs">
       <DependentUpon>Dialog_輸入輸出設定.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_新增容器設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_新增容器設定.cs" />
     <Compile Include="Dialog\Dialog_新增容器設定.Designer.cs">
       <DependentUpon>Dialog_新增容器設定.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_設定開鎖權限.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_設定開鎖權限.cs" />
     <Compile Include="Dialog\Dialog_設定開鎖權限.Designer.cs">
       <DependentUpon>Dialog_設定開鎖權限.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_選擇效期.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_選擇效期.cs" />
     <Compile Include="Dialog\Dialog_選擇效期.Designer.cs">
       <DependentUpon>Dialog_選擇效期.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_等待條碼刷入.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_等待條碼刷入.cs" />
     <Compile Include="Dialog\Dialog_等待條碼刷入.Designer.cs">
       <DependentUpon>Dialog_等待條碼刷入.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_使用者登入.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_使用者登入.cs" />
     <Compile Include="Dialog\Dialog_使用者登入.Designer.cs">
       <DependentUpon>Dialog_使用者登入.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_盤點數量錯誤.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_盤點數量錯誤.cs" />
     <Compile Include="Dialog\Dialog_盤點數量錯誤.Designer.cs">
       <DependentUpon>Dialog_盤點數量錯誤.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_調劑作業_病歷號輸入.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialog\Dialog_調劑作業_病歷號輸入.cs" />
     <Compile Include="Dialog\Dialog_調劑作業_病歷號輸入.Designer.cs">
       <DependentUpon>Dialog_調劑作業_病歷號輸入.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Form1.cs" />
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Buffer.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Form_Buffer.cs" />
     <Compile Include="Form_Buffer.Designer.cs">
       <DependentUpon>Form_Buffer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Function.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_交班作業_管制結存.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_交班作業_對點作業.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_儲位管理_EPD1020.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_盤點作業_定盤.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_盤點作業_資料庫.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_盤點作業_單號查詢.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_盤點作業_新增盤點.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_管制抽屜.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥品設定表.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥品資料_管藥設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_設備資料.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_雲端藥檔.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserControl\Pannel_Locker_Design.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Function.cs" />
+    <Compile Include="Program_交班作業_管制結存.cs" />
+    <Compile Include="Program_交班作業_對點作業.cs" />
+    <Compile Include="Program_儲位管理_EPD1020.cs" />
+    <Compile Include="Program_盤點作業_定盤.cs" />
+    <Compile Include="Program_盤點作業_資料庫.cs" />
+    <Compile Include="Program_盤點作業_單號查詢.cs" />
+    <Compile Include="Program_盤點作業_新增盤點.cs" />
+    <Compile Include="Program_管制抽屜.cs" />
+    <Compile Include="Program_藥品設定表.cs" />
+    <Compile Include="Program_藥品資料_管藥設定.cs" />
+    <Compile Include="Program_設備資料.cs" />
+    <Compile Include="Program_雲端藥檔.cs" />
+    <Compile Include="UserControl\Pannel_Locker_Design.cs" />
     <Compile Include="UserControl\Pannel_Locker_Design.Designer.cs">
       <DependentUpon>Pannel_Locker_Design.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program_儲位管理_Pannel35.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Program_儲位管理_Pannel35.cs" />
     <Compile Include="Program_醫囑資料.cs" />
-    <Compile Include="UserControl\Pannel_Locker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControl\Pannel_Locker.cs" />
     <Compile Include="UserControl\Pannel_Locker.Designer.cs">
       <DependentUpon>Pannel_Locker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program_收支作業.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Program_收支作業.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Program_Scanner_RS232.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_人員資料.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_取藥堆疊資料.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_工程模式.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_系統.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥品資料_儲位效期表.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥品資料_儲位總庫存表.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_輸出檢查.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_批次領藥.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_效期管理.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_後台登入.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_藥品資料_藥檔資料.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_交易記錄查詢.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_儲位管理_EPD266.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_儲位管理_EPD583.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_儲位管理_RFID.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_儲位管理_RowsLED.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_調劑作業.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Program_Scanner_RS232.cs" />
+    <Compile Include="Program_人員資料.cs" />
+    <Compile Include="Program_取藥堆疊資料.cs" />
+    <Compile Include="Program_工程模式.cs" />
+    <Compile Include="Program_系統.cs" />
+    <Compile Include="Program_藥品資料_儲位效期表.cs" />
+    <Compile Include="Program_藥品資料_儲位總庫存表.cs" />
+    <Compile Include="Program_輸出檢查.cs" />
+    <Compile Include="Program_批次領藥.cs" />
+    <Compile Include="Program_效期管理.cs" />
+    <Compile Include="Program_後台登入.cs" />
+    <Compile Include="Program_藥品資料_藥檔資料.cs" />
+    <Compile Include="Program_交易記錄查詢.cs" />
+    <Compile Include="Program_儲位管理_EPD266.cs" />
+    <Compile Include="Program_儲位管理_EPD583.cs" />
+    <Compile Include="Program_儲位管理_RFID.cs" />
+    <Compile Include="Program_儲位管理_RowsLED.cs" />
+    <Compile Include="Program_調劑作業.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimePannel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="TimePannel.cs" />
     <Compile Include="TimePannel.Designer.cs">
       <DependentUpon>TimePannel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program_藥品管制方式設定.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Program_藥品管制方式設定.cs" />
     <EmbeddedResource Include="Dialog\Dialog_使用者登入.resx">
       <DependentUpon>Dialog_使用者登入.cs</DependentUpon>
     </EmbeddedResource>
