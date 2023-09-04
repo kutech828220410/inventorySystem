@@ -246,6 +246,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass takeMedicineStackClass = takeMedicineStackClasses[i];
               
             }
+
             for (int i = 0; i < list_藥品碼.Count; i++)
             {
                 string 藥品碼 = list_藥品碼[i];
@@ -566,10 +567,10 @@ namespace 調劑台管理系統
                         list_value_replace.Add(takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>());
                         Console.WriteLine($"{takeMedicineStackClass.JsonSerializationt(true)}");
                     }
-                    Task.Run(new Action(delegate 
-                    {
-                        this.Function_儲位亮燈(藥品碼, Color.Black);
-                    }));
+                    //Task.Run(new Action(delegate 
+                    //{
+                    //    this.Function_儲位亮燈(藥品碼, Color.Black);
+                    //}));
                  
 
                 }
