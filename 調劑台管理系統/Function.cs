@@ -1052,11 +1052,11 @@ namespace 調劑台管理系統
                     {
                         taskList.Add(Task.Run(() =>
                         {
-                            Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
-                            if(drawer !=null)
-                            {
-                                drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
-                            }
+                            //Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                            //if(drawer !=null)
+                            //{
+                            //    //drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
+                            //}
 
                         }));
            
