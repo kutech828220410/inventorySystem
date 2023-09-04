@@ -33,6 +33,8 @@ namespace 調劑台管理系統
         [Description("S39021")]
         藥品群組設定,
         [Description("M8000")]
+        下載未建置條碼藥品,
+        [Description("M8000")]
         回傳至雲端,
     }
 
@@ -74,6 +76,12 @@ namespace 調劑台管理系統
         類別,
         廠牌,
         藥品許可證號,
+    }
+    public enum enum_藥品資料_藥檔資料_未建置藥品條碼_匯出
+    {
+        藥品碼,
+        料號,
+        藥品名稱,
     }
     public enum enum_藥品群組
     {
@@ -683,6 +691,39 @@ namespace 調劑台管理系統
             }
             return value;
         }
+        private void Function_藥品資料_藥檔資料_下載未建置條碼藥品()
+        {
+            List<object[]> list_value = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
+            List<object[]> list_value_buf = new List<object[]>();
+            List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
+            List<medClass> medClasses_buf = new List<medClass>();
+            for (int i = 0; i < medClasses.Count; i++)
+            {
+                if(medClasses[i].Barcode.Count == 0)
+                {
+                    medClasses_buf.Add(medClasses[i]);
+                }
+            }
+            list_value_buf = medClasses_buf.ClassToSQL<medClass, enum_藥品資料_藥檔資料_未建置藥品條碼_匯出>();
+            saveFileDialog_SaveExcel.OverwritePrompt = false;
+            if (saveFileDialog_SaveExcel.ShowDialog(this) == DialogResult.OK)
+            {
+                DataTable datatable = new DataTable();
+                datatable = list_value_buf.ToDataTable(new enum_藥品資料_藥檔資料_未建置藥品條碼_匯出());
+                string Extension = System.IO.Path.GetExtension(this.saveFileDialog_SaveExcel.FileName);
+                if (Extension == ".txt")
+                {
+                    CSVHelper.SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                    MyMessageBox.ShowDialog("匯出完成!");
+                }
+                else if (Extension == ".xls" || Extension == ".xlsx")
+                {
+                    MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                    MyMessageBox.ShowDialog("匯出完成!");
+                }
+
+            }
+        }
         #endregion
         #region Event
         #region 藥品群組
@@ -841,6 +882,11 @@ namespace 調劑台管理系統
                         sqL_DataGridView_雲端藥檔.SQL_ReplaceExtra(list_雲端藥檔_Replaced, false);
                         MyMessageBox.ShowDialog($"新增<{list_雲端藥檔_Add.Count}>筆資料,修改<{list_雲端藥檔_Replaced.Count}>筆資料!");
 
+                    }
+                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.下載未建置條碼藥品.GetEnumName())
+                    {
+
+                        this.Function_藥品資料_藥檔資料_下載未建置條碼藥品();
                     }
                 }
             }
