@@ -1034,6 +1034,7 @@ namespace 調劑台管理系統
             if (藥品碼.StringIsEmpty()) return;
             List<object> list_Device = this.Function_從雲端資料取得儲位(藥品碼);
             Console.WriteLine($"儲位亮燈,藥品碼:{藥品碼},color{color.ToColorString()}");
+            Task allTask;
             List<Task> taskList = new List<Task>();
             List<string> list_IP = new List<string>();
             List<string> list_IP_buf = new List<string>();
@@ -1052,11 +1053,11 @@ namespace 調劑台管理系統
                     {
                         taskList.Add(Task.Run(() =>
                         {
-                            //Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
-                            //if(drawer !=null)
-                            //{
-                            //    //drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
-                            //}
+                            Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                            if (drawer != null)
+                            {
+                                drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
+                            }
 
                         }));
            
@@ -1065,7 +1066,7 @@ namespace 調劑台管理系統
                     }
                 }
             }
-            Task allTask = Task.WhenAll(taskList);
+            allTask = Task.WhenAll(taskList);
             allTask.Wait();
             list_IP.Clear();
             list_IP_buf.Clear();

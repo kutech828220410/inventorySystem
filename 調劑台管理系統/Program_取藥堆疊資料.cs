@@ -150,7 +150,9 @@ namespace 調劑台管理系統
             bool flag_盲盤 = false;
             bool flag_效期管理 = false;
             bool flag_雙人覆核 = false;
-        
+            List<string> list_藥品碼 = (from temp in takeMedicineStackClasses
+                                     select temp.藥品碼).Distinct().ToList();
+            string 顏色 = "";
             for (int i = 0; i < takeMedicineStackClasses.Count; i++)
             {
                 List<object[]> list_堆疊母資料_buf = new List<object[]>();
@@ -158,9 +160,9 @@ namespace 調劑台管理系統
                 string 病歷號 = takeMedicineStackClasses[i].病歷號;
                 string 開方時間 = takeMedicineStackClasses[i].開方時間;
                 string 藥袋序號 = takeMedicineStackClasses[i].藥袋序號;
+                顏色 = takeMedicineStackClasses[i].顏色;
 
 
-        
                 list_堆疊母資料 = list_堆疊母資料_buf.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
                 list_堆疊母資料_buf = list_堆疊母資料_buf.GetRows((int)enum_取藥堆疊母資料.病歷號, takeMedicineStackClasses[i].病歷號);
                 list_堆疊母資料_buf = list_堆疊母資料_buf.GetRows((int)enum_取藥堆疊母資料.開方時間, takeMedicineStackClasses[i].開方時間);
@@ -242,14 +244,20 @@ namespace 調劑台管理系統
                 Console.WriteLine($"----------------------------------------------");
 
                 takeMedicineStackClass takeMedicineStackClass = takeMedicineStackClasses[i];
+              
+            }
+            for (int i = 0; i < list_藥品碼.Count; i++)
+            {
+                string 藥品碼 = list_藥品碼[i];
                 Task Task_儲位亮燈 = Task.Run(() =>
                 {
                     if (藥品碼.StringIsEmpty()) return;
-                    this.Function_儲位亮燈(藥品碼, takeMedicineStackClass.顏色.ToColor());
+                    this.Function_儲位亮燈(藥品碼, 顏色.ToColor());
                 });
                 taskList.Add(Task_儲位亮燈);
             }
-
+            Task allTask = Task.WhenAll(taskList);
+            allTask.Wait();
             if (list_堆疊母資料_add.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
            
             List<object[]> list_value_delete = new List<object[]>();
@@ -267,7 +275,6 @@ namespace 調劑台管理系統
                 }
             }
             if (list_value_delete.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_delete, false);
-            Task allTask = Task.WhenAll(taskList);
             Console.WriteLine($" 新增取藥資料 (耗時){myTimer_total.ToString()} "); 
 
         }
