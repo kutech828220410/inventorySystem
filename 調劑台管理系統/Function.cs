@@ -1057,6 +1057,7 @@ namespace 調劑台管理系統
                             if (drawer != null)
                             {
                                 drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
+                                if (drawer.LED_Bytes.Length < 450 * 3) drawer.LED_Bytes = new byte[450 * 3];
                             }
 
                         }));
