@@ -1484,6 +1484,7 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
+            this.plC_CheckBox_要檢查抽屜開啟異常 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -29282,6 +29283,7 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.plC_CheckBox_要檢查抽屜開啟異常);
             this.tabPage1.Controls.Add(this.plC_CheckBox_後台閒置要自動登出);
             this.tabPage1.Controls.Add(this.groupBox33);
             this.tabPage1.Controls.Add(this.plC_Button_工程模式_全部開鎖);
@@ -38045,6 +38047,26 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // plC_CheckBox_要檢查抽屜開啟異常
+            // 
+            this.plC_CheckBox_要檢查抽屜開啟異常.AutoSize = true;
+            this.plC_CheckBox_要檢查抽屜開啟異常.Bool = false;
+            this.plC_CheckBox_要檢查抽屜開啟異常.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_要檢查抽屜開啟異常.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_要檢查抽屜開啟異常.Location = new System.Drawing.Point(182, 681);
+            this.plC_CheckBox_要檢查抽屜開啟異常.Name = "plC_CheckBox_要檢查抽屜開啟異常";
+            this.plC_CheckBox_要檢查抽屜開啟異常.Size = new System.Drawing.Size(171, 20);
+            this.plC_CheckBox_要檢查抽屜開啟異常.TabIndex = 131;
+            this.plC_CheckBox_要檢查抽屜開啟異常.Text = "要檢查抽屜開啟異常";
+            this.plC_CheckBox_要檢查抽屜開啟異常.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_要檢查抽屜開啟異常.寫入元件位置 = "S3102";
+            this.plC_CheckBox_要檢查抽屜開啟異常.文字內容 = "要檢查抽屜開啟異常";
+            this.plC_CheckBox_要檢查抽屜開啟異常.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_要檢查抽屜開啟異常.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_要檢查抽屜開啟異常.讀取元件位置 = "S3102";
+            this.plC_CheckBox_要檢查抽屜開啟異常.讀寫鎖住 = false;
+            this.plC_CheckBox_要檢查抽屜開啟異常.音效 = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -39995,6 +40017,7 @@
         private System.Windows.Forms.Label label45;
         private MyUI.PLC_RJ_Button plC_RJ_Button_盤點作業_定盤_上傳Excel;
         private SQLUI.SQL_DataGridView sqL_DataGridView_盤點作業_定盤;
+        private MyUI.PLC_CheckBox plC_CheckBox_要檢查抽屜開啟異常;
     }
 }
 

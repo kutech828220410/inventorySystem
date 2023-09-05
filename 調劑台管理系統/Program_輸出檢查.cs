@@ -167,6 +167,7 @@ namespace 調劑台管理系統
         }
         private void Loker_LockAlarmEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
         {
+            if (!plC_CheckBox_要檢查抽屜開啟異常.Checked) return;
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             List<object[]> list_locker_table_value_replace = new List<object[]>();
             list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
