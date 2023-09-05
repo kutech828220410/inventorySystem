@@ -204,6 +204,12 @@
     <Reference Include="zxing, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog\Dialog_交班表_交易紀錄明細.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_交班表_交易紀錄明細.Designer.cs">
+      <DependentUpon>Dialog_交班表_交易紀錄明細.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\Dialog_入庫作業_儲位選擇.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -345,6 +351,9 @@
     <Compile Include="Function.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_交班作業_交班表.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_交班作業_管制結存.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -467,6 +476,9 @@
     <Compile Include="Program_藥品管制方式設定.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Dialog\Dialog_交班表_交易紀錄明細.resx">
+      <DependentUpon>Dialog_交班表_交易紀錄明細.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_使用者登入.resx">
       <DependentUpon>Dialog_使用者登入.cs</DependentUpon>
     </EmbeddedResource>

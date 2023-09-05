@@ -63,7 +63,6 @@ namespace 調劑台管理系統
         }
 
 
-
         bool flag_交班作業_管制結存_頁面更新 = false;
         private void sub_Program_交班作業_管制結存()
         {
@@ -94,6 +93,8 @@ namespace 調劑台管理系統
                 string 藥品碼 = list_藥品資料[i][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
                 string 藥品名稱 = list_藥品資料[i][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
                 string 管制級別 = list_藥品資料[i][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
+                string 高價藥品 = list_藥品資料[i][(int)enum_藥品資料_藥檔資料.高價藥品].ObjectToString();
+                string 生物製劑 = list_藥品資料[i][(int)enum_藥品資料_藥檔資料.生物製劑].ObjectToString();
                 bool flag_自訂義 = false;
                 bool flag_要新增 = false;
                 list_藥品設定表_buf = list_藥品設定表.GetRows((int)enum_藥品設定表.藥品碼, 藥品碼);
@@ -114,6 +115,14 @@ namespace 調劑台管理系統
                     if(list_藥品管制方式設定_buf.Count > 0)
                     {
                         if(list_藥品管制方式設定_buf[0][(int)enum_藥品管制方式設定.結存報表].StringToBool())
+                        {
+                            flag_要新增 = true;
+                        }
+                    }
+                    list_藥品管制方式設定_buf = list_藥品管制方式設定.GetRows((int)enum_藥品管制方式設定.代號, 高價藥品);
+                    if (list_藥品管制方式設定_buf.Count > 0)
+                    {
+                        if (list_藥品管制方式設定_buf[0][(int)enum_藥品管制方式設定.結存報表].StringToBool())
                         {
                             flag_要新增 = true;
                         }
@@ -160,8 +169,6 @@ namespace 調劑台管理系統
             }));
             PlC_RJ_Button_交班對點_管制結存_搜尋_MouseDownEvent(null);
         }
-
- 
 
         private void Functionn_交班對點_管制結存_顯示(int num)
         {

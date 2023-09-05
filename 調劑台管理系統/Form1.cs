@@ -392,6 +392,7 @@ namespace 調劑台管理系統
             if (this.DesignMode == false)
             {
                 MyMessageBox.form = this.FindForm();
+                Dialog_交易紀錄明細.form = this.FindForm();
                 Dialog_NumPannel.form = this.FindForm();
                 Dialog_輸入批號.form = this.FindForm();
                 Dialog_輸入效期.form = this.FindForm();
@@ -553,6 +554,7 @@ namespace 調劑台管理系統
             this.Program_設備資料_Init();
             this.Program_交班作業_對點作業_Init();
             this.Program_交班作業_管制結存_Init();
+            this.Program_交班作業_交班表_Init();
             this.Program_藥品管制方式設定_Init();
             this.Program_藥品設定表_Init();
 
