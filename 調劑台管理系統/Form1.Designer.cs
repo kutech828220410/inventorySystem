@@ -5165,12 +5165,12 @@
             this.sqL_DataGridView_交班作業_交班表_交班明細.BorderSize = 2;
             this.sqL_DataGridView_交班作業_交班表_交班明細.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.sqL_DataGridView_交班作業_交班表_交班明細.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_交班作業_交班表_交班明細.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_交班作業_交班表_交班明細.cellStylForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_交班作業_交班表_交班明細.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_交班作業_交班表_交班明細.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_交班作業_交班表_交班明細.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_交班作業_交班表_交班明細.columnHeadersHeight = 23;
+            this.sqL_DataGridView_交班作業_交班表_交班明細.columnHeadersHeight = 26;
             this.sqL_DataGridView_交班作業_交班表_交班明細.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_交班作業_交班表_交班明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交班作業_交班表_交班明細.Columns"))));
             this.sqL_DataGridView_交班作業_交班表_交班明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交班作業_交班表_交班明細.Columns1"))));
