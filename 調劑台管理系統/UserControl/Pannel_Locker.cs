@@ -536,7 +536,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_輸出入檢查_Locker_輸入_檢查第一次OFF(ref int cnt)
         {
-            if (!this.PLC_Device_Input.Bool)
+            if (this.PLC_Device_Input.Bool == false)
             {
                 this.MyTimer_輸入ON延遲.TickStop();
                 this.MyTimer_輸入ON延遲.StartTickTime(200);
@@ -548,10 +548,10 @@ namespace 調劑台管理系統
         {
             if (this.PLC_Device_Input.Bool == false)
             {
-                this.MyTimer_輸入ON延遲.TickStop();
-                this.MyTimer_輸入ON延遲.StartTickTime(200);
-                OpenCommand = false;
                 myTimer_openCommand.TickStop();
+                OpenCommand = false;
+                this.MyTimer_輸入ON延遲.TickStop();
+                this.MyTimer_輸入ON延遲.StartTickTime(200);          
             }
             if (this.MyTimer_輸入ON延遲.IsTimeOut())
             {

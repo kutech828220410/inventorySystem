@@ -1131,9 +1131,10 @@ namespace 調劑台管理系統
             this.MyThread_取藥堆疊資料_檢查資料.Add_Method(this.sub_Program_取藥堆疊資料_檢查資料);
             this.MyThread_取藥堆疊資料_檢查資料.Add_Method(this.sub_Program_取藥堆疊資料_狀態更新);
             this.MyThread_取藥堆疊資料_檢查資料.Add_Method(this.sub_Program_取藥堆疊資料_流程作業檢查);
-            this.MyThread_取藥堆疊資料_檢查資料.Add_Method(this.sub_Program_取藥堆疊資料_入賬檢查);
-            this.MyThread_取藥堆疊資料_檢查資料.Trigger();
+            this.MyThread_取藥堆疊資料_檢查資料.Add_Method(this.sub_Program_取藥堆疊資料_入賬檢查);  
 
+            this.MyThread_取藥堆疊資料_檢查資料.Trigger();
+         
 
             //this.MyThread_取藥堆疊資料_流程作業檢查 = new MyThread();
             //this.MyThread_取藥堆疊資料_流程作業檢查.AutoRun(true);
@@ -1935,7 +1936,8 @@ namespace 調劑台管理系統
                             list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
                         }
                     }
-                    
+                    Console.WriteLine($"開啟抽屜致能,藥品碼:{藥品碼} {DateTime.Now.ToDateTimeString()}");
+
                 }
                 if (!plC_Button_同藥碼全亮.Bool)
                 {
@@ -2011,6 +2013,7 @@ namespace 調劑台管理系統
                 list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Slave_GUID] = Slave_GUID;
                 list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
                 list_locker_table_value_ReplaceValue.Add(list_locker_table_value_buf[0]);
+                Console.WriteLine($"開啟抽屜致能,藥品碼:{藥品碼} {DateTime.Now.ToDateTimeString()}");
             }
 
             if (list_locker_table_value_ReplaceValue.Count > 0) this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_ReplaceValue, false);
