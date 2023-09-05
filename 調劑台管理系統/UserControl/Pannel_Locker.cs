@@ -23,7 +23,7 @@ namespace 調劑台管理系統
         public event LockClosingEventHandler LockClosingEvent;
         public delegate void LockOpeningEventHandler(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID);
         public event LockOpeningEventHandler LockOpeningEvent;
-        public delegate void LockAlarmEventHandler(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID);
+        public delegate bool LockAlarmEventHandler(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID);
         public event LockAlarmEventHandler LockAlarmEvent;
         public delegate void MouseUpEventHandler(MouseEventArgs mevent);
         public event MouseUpEventHandler MouseUpEvent;
@@ -375,7 +375,7 @@ namespace 調劑台管理系統
                 if (PLC_Device_Output.Bool) PLC_Device_Output.Bool = false;
             }
             myTimer_openCommand.TickStop();
-            myTimer_openCommand.StartTickTime(3000);
+            myTimer_openCommand.StartTickTime(10000);
             OpenCommand = true;
         }
         public string Get_OutputAdress()
@@ -395,9 +395,22 @@ namespace 調劑台管理系統
             {
                if(PLC_Device_Input.Bool == true)
                 {
-                    if (this.LockAlarmEvent != null && OpenCommand ==true) this.LockAlarmEvent(this, PLC_Device_Input, PLC_Device_Output, Master_GUID);
-                    myTimer_openCommand.TickStop();
-                    OpenCommand = false;
+                    bool flag_LockAlarm = false;
+                    if (this.LockAlarmEvent != null && OpenCommand == true)
+                    {
+                        flag_LockAlarm =  this.LockAlarmEvent(this, PLC_Device_Input, PLC_Device_Output, Master_GUID);
+                        if(flag_LockAlarm)
+                        {
+                            myTimer_openCommand.TickStop();
+                            OpenCommand = false;
+                        }
+                        else
+                        {
+                            myTimer_openCommand.TickStop();
+                            myTimer_openCommand.StartTickTime(10000);
+                        }
+                    }
+                 
                 }
             }
         }

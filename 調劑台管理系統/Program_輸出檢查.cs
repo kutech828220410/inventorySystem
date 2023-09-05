@@ -165,20 +165,26 @@ namespace 調劑台管理系統
             string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
             Console.WriteLine($"{IP},{Num},<抽屜開啟> {DateTime.Now.ToDateTimeString()}");
         }
-        private void Loker_LockAlarmEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
+        private bool Loker_LockAlarmEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
         {
-            if (!plC_CheckBox_要檢查抽屜開啟異常.Checked) return;
+            if (this.plC_ScreenPage_Main.PageText != "調劑作業" && this.plC_ScreenPage_Main.PageText != "收支作業") return true;
+            if (!plC_CheckBox_要檢查抽屜開啟異常.Checked) return true;
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
             List<object[]> list_locker_table_value_replace = new List<object[]>();
             list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
-            if (list_locker_table_value.Count == 0) return;
+            if (list_locker_table_value.Count == 0) return true;
             string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
             string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
             Console.WriteLine($"{IP},{Num},<抽屜開啟異常!!!> {DateTime.Now.ToDateTimeString()}");
+            List<object[]> list_value = sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
 
-            if (MyMessageBox.ShowDialog("抽屜開啟異常,是否強制入帳?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            list_value = list_value.GetRows((int)enum_取藥堆疊母資料.GUID, GUID);
+            if (list_value.Count == 0) return true;
+            if (list_value[0][(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.等待作業.GetEnumName()) return false;
+
+            if (MyMessageBox.ShowDialog("抽屜開啟異常,是否強制入帳?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return true;
             Loker_LockClosingEvent(sender, PLC_Device_Input, PLC_Device_Output, GUID);
-
+            return true;
             //MyMessageBox.ShowDialog("抽屜開啟異常,按下確認重新開啟一次!");    
             //list_locker_table_value[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
             //list_locker_table_value_replace.Add(list_locker_table_value[0]);
