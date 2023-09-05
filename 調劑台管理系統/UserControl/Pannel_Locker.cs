@@ -23,6 +23,8 @@ namespace 調劑台管理系統
         public event LockClosingEventHandler LockClosingEvent;
         public delegate void LockOpeningEventHandler(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID);
         public event LockOpeningEventHandler LockOpeningEvent;
+        public delegate void LockAlarmEventHandler(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID);
+        public event LockAlarmEventHandler LockAlarmEvent;
         public delegate void MouseUpEventHandler(MouseEventArgs mevent);
         public event MouseUpEventHandler MouseUpEvent;
 
@@ -66,6 +68,8 @@ namespace 調劑台管理系統
         public static int 輸出間隔 = 1500;
         public string GUID = "";
         public string Master_GUID = "";
+        public bool OpenCommand = false;
+        public MyTimer myTimer_openCommand = new MyTimer();
         [Browsable(false)]
         public bool IsBusy
         {
@@ -313,6 +317,7 @@ namespace 調劑台管理系統
         private bool statu_buf = false;
         private MyTimer MyTimer_Init = new MyTimer();
         private MyTimer MyTimer_開鎖延遲 = new MyTimer();
+        private MyTimer MyTimer_檢查OFF_ALARM = new MyTimer();
         private MyTimer MyTimer_輸入ON延遲 = new MyTimer();
         private MyTimer MyTimer_Alarm = new MyTimer();
         private MyTimer MyTimer_輸出間隔 = new MyTimer();
@@ -350,6 +355,8 @@ namespace 調劑台管理系統
 
             this.MyTimer_輸出間隔.TickStop();
             this.MyTimer_輸出間隔.StartTickTime(0);
+            myTimer_openCommand.StartTickTime(1000);
+            myTimer_openCommand.TickStop();
         }
         public void Open(string openUserName , string openUserID)
         {
@@ -367,6 +374,9 @@ namespace 調劑台管理系統
             {
                 if (PLC_Device_Output.Bool) PLC_Device_Output.Bool = false;
             }
+            myTimer_openCommand.TickStop();
+            myTimer_openCommand.StartTickTime(3000);
+            OpenCommand = true;
         }
         public string Get_OutputAdress()
         {
@@ -381,6 +391,15 @@ namespace 調劑台管理系統
             if (!MyTimer_Init.IsTimeOut()) return;
             sub_Program_輸出入檢查_Locker_輸出();
             sub_Program_輸出入檢查_Locker_輸入();
+            if(myTimer_openCommand.IsTimeOut())
+            {
+               if(PLC_Device_Input.Bool == true)
+                {
+                    if (this.LockAlarmEvent != null && OpenCommand ==true) this.LockAlarmEvent(this, PLC_Device_Input, PLC_Device_Output, Master_GUID);
+                    myTimer_openCommand.TickStop();
+                    OpenCommand = false;
+                }
+            }
         }
 
         private void SetLockPannelState(bool statu)
@@ -519,25 +538,35 @@ namespace 調劑台管理系統
         {
             if (!this.PLC_Device_Input.Bool)
             {
+                this.MyTimer_輸入ON延遲.TickStop();
+                this.MyTimer_輸入ON延遲.StartTickTime(200);
                 cnt++;
             }
+
         }
         void cnt_Program_輸出入檢查_Locker_輸入_檢查第一次ON(ref int cnt)
         {
-            if (this.PLC_Device_Input.Bool)
+            if (this.PLC_Device_Input.Bool == false)
             {
                 this.MyTimer_輸入ON延遲.TickStop();
-                this.MyTimer_輸入ON延遲.StartTickTime(500);
+                this.MyTimer_輸入ON延遲.StartTickTime(200);
+                OpenCommand = false;
+                myTimer_openCommand.TickStop();
+            }
+            if (this.MyTimer_輸入ON延遲.IsTimeOut())
+            {
                 cnt++;
             }
         }
         void cnt_Program_輸出入檢查_Locker_輸入_檢查第一次ON延遲(ref int cnt)
         {
-            if (this.MyTimer_輸入ON延遲.IsTimeOut())
+            if (this.LockClosingEvent != null)
             {
-                if (this.LockClosingEvent != null) this.LockClosingEvent(this, this.PLC_Device_Input, this.PLC_Device_Output, this.Master_GUID);
-                cnt++;
+                myTimer_openCommand.TickStop();
+                OpenCommand = false;
+                this.LockClosingEvent(this, this.PLC_Device_Input, this.PLC_Device_Output, this.Master_GUID);
             }
+            cnt++;
         }
 
         #region Event

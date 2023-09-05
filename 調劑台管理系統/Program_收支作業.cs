@@ -85,9 +85,10 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_收支作業);
         }
 
-    
+
 
         private bool flag_Program_收支作業_換頁 = false;
+        private bool flag_Program_收支作業_換頁離開 = false;
         private void sub_Program_收支作業()
         {
             if (this.plC_ScreenPage_Main.PageText == "收支作業")
@@ -126,6 +127,10 @@ namespace 調劑台管理系統
             }
             else
             {
+                if(flag_Program_收支作業_換頁 == false)
+                {
+                    this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+                }
                 flag_Program_收支作業_換頁 = true;
             }
             this.sub_Program_收支作業_單品入庫_狀態更新();

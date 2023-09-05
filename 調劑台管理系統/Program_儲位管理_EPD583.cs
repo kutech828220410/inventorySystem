@@ -336,7 +336,7 @@ namespace 調劑台管理系統
                         PlC_RJ_Button_儲位管理_EPD583_更新_MouseDownEvent(null);
                     }));
                 }
-                Console.WriteLine($"SqL_DataGridView_儲位管理_EPD583_抽屜列表_RowEnterEvent");
+                //Console.WriteLine($"SqL_DataGridView_儲位管理_EPD583_抽屜列表_RowEnterEvent");
             }
             catch (Exception e)
             {
@@ -425,7 +425,6 @@ namespace 調劑台管理系統
                 }
 
                 sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.RefreshGrid(list_value);
-                Console.WriteLine($"EpD_583_Pannel_MouseDownEvent");
             }
             catch(Exception e)
             {
@@ -573,7 +572,7 @@ namespace 調劑台管理系統
                     {
                         if (!this.drawerUI_EPD_583.Set_Pannel_LED_UDP(drawer, color))
                         {
-                            MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜面板亮燈失敗!");
+                            //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜面板亮燈失敗!");
                         }
                         Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜亮燈成功!");
                     }
@@ -600,7 +599,7 @@ namespace 調劑台管理系統
                     {
                         if (!this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer))
                         {
-                            MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜滅燈失敗!");
+                            //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜滅燈失敗!");
                         }
                         Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜成功!");
                     }
@@ -626,14 +625,14 @@ namespace 調劑台管理系統
                         {
                             if (!this.drawerUI_EPD_583.DrawToEpd_UDP(drawer))
                             {
-                                MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
+                                //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
                             }
                         }
                         else
                         {
                             if (!this.drawerUI_EPD_583.DrawToEpd_BarCode_UDP(drawer))
                             {
-                                MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
+                                //MyMessageBox.ShowDialog($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳失敗!");
                             }
                         }
                         Console.WriteLine($"{drawer.IP}:{drawer.Port} : EPD 抽屜上傳成功!");

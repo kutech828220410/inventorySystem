@@ -47,6 +47,7 @@ namespace 調劑台管理系統
                 loker.LockClosingEvent += Loker_LockClosingEvent;
                 loker.MouseDownEvent += Loker_MouseDownEvent;
                 loker.LockOpeningEvent += Loker_LockOpeningEvent;
+                loker.LockAlarmEvent += Loker_LockAlarmEvent;
             }
 
             this.MyThread_輸出入檢查.Add_Method(this.sub_Program_輸出入檢查);
@@ -62,6 +63,8 @@ namespace 調劑台管理系統
             this.輸出入檢查_蜂鳴器輸出.AutoStop(false);
             this.輸出入檢查_蜂鳴器輸出.Trigger();
         }
+
+      
 
         private void Loker_MouseDownEvent(PLC_Device pLC_Device_Input, PLC_Device pLC_Device_Output)
         {
@@ -150,12 +153,33 @@ namespace 調劑台管理系統
                 }
 
             }
+            Console.WriteLine($"{IP},{Num},<抽屜關閉> {DateTime.Now.ToDateTimeString()}");
         }
         private void Loker_LockOpeningEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
         {
+            List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
+            list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
+            if (list_locker_table_value.Count == 0) return;
+            string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
+            string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
+            Console.WriteLine($"{IP},{Num},<抽屜開啟> {DateTime.Now.ToDateTimeString()}");
+        }
+        private void Loker_LockAlarmEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
+        {
+            List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
+            List<object[]> list_locker_table_value_replace = new List<object[]>();
+            list_locker_table_value = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, PLC_Device_Output.GetAdress());
+            if (list_locker_table_value.Count == 0) return;
+            string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
+            string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
+            MyMessageBox.ShowDialog("抽屜開啟異常,按下確認重新開啟一次!");
+            Console.WriteLine($"{IP},{Num},<抽屜開啟異常!!!> {DateTime.Now.ToDateTimeString()}");
+            list_locker_table_value[0][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+            list_locker_table_value_replace.Add(list_locker_table_value[0]);
+
+            if (list_locker_table_value_replace.Count != 0) this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_replace, false);
 
         }
-
         #region Function
         private void Function_輸出入檢查_搜尋輸出(object[] value)
         {

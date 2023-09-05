@@ -1263,7 +1263,6 @@ C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Sy
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OOXML.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OpenXml4Net.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OpenXmlFormats.dll
-C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.GenerateResource.cache
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.GeneratedMSBuildEditorConfig.editorconfig
@@ -1474,3 +1473,4 @@ C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS
 C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
 C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
