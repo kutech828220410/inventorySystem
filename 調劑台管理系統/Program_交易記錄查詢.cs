@@ -209,7 +209,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_交易記錄查詢_選取資料刪除_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.Get_All_Checked_RowsValues();
+            List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.Get_All_Select_RowsValues();
             if(list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("未選取資料!");

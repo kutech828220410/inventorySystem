@@ -543,16 +543,20 @@ namespace 調劑台管理系統
                     List<object[]> list_value_buf_temp = list_value_buf.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
                     list_value_buf_temp = list_value_buf_temp.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
                
-                    if (list_value_buf.Count == 0)
+                    if (list_value_buf_temp.Count == 0)
                     {
                         takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                         takeMedicineStackClass.GUID = Guid.NewGuid().ToString();
                         takeMedicineStackClass.藥品碼 = 藥品碼;
                         takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None;
+                        takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.None;
                         takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.調劑台名稱 = "刷新面板";
-                        list_value_add.Add(takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>());
+                        object[] value = takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>();
+                        value[(int)enum_取藥堆疊母資料.動作] = enum_交易記錄查詢動作.None.GetEnumName();
+                        value[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.None.GetEnumName();
+                        list_value_add.Add(value);
                         Console.WriteLine($"{takeMedicineStackClass.JsonSerializationt(true)}");
                     }
                     else
@@ -560,11 +564,15 @@ namespace 調劑台管理系統
                         takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                         takeMedicineStackClass.GUID = list_value_buf[0][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
                         takeMedicineStackClass.動作 = enum_交易記錄查詢動作.None;
+                        takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.None;
                         takeMedicineStackClass.藥品碼 = 藥品碼;
                         takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                         takeMedicineStackClass.調劑台名稱 = "刷新面板";
-                        list_value_replace.Add(takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>());
+                        object[] value = takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>();
+                        value[(int)enum_取藥堆疊母資料.動作] = enum_交易記錄查詢動作.None.GetEnumName();
+                        value[(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.None.GetEnumName();
+                        list_value_add.Add(value);
                         Console.WriteLine($"{takeMedicineStackClass.JsonSerializationt(true)}");
                     }
                     //Task.Run(new Action(delegate 
@@ -888,7 +896,7 @@ namespace 調劑台管理系統
                     this.storageUI_WT32.SQL_ReplaceStorage(storage);
                     Task.Run(() =>
                     {
-                        if(!plC_CheckBox_測試模式.Checked) this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+                        //if(!plC_CheckBox_測試模式.Checked) this.storageUI_WT32.Set_DrawPannelJEPG(storage);
 
                     });
                 }
@@ -1230,6 +1238,7 @@ namespace 調劑台管理系統
                     string 藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                     Task.Run(() =>
                     {
+                        Function_從SQL取得儲位到本地資料(藥品碼);
                         this.Function_儲位刷新(藥品碼);
                     });
                 }

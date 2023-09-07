@@ -1347,7 +1347,7 @@ namespace 調劑台管理系統
                             if (device.DeviceType == DeviceType.EPD1020_lock) list_lock_IP.Add(IP);
                         }
                     }
-                    else if (device.DeviceType == DeviceType.Pannel35)
+                    else if (device.DeviceType == DeviceType.Pannel35|| device.DeviceType == DeviceType.Pannel35_lock)
                     {
                         Storage storage = list_Device[i] as Storage;
                         if (storage != null)

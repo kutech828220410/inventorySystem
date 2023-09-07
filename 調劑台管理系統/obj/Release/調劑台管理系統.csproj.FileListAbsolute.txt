@@ -2444,9 +2444,8 @@ C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Re
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_調劑作業_病歷號輸入.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.dll
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.xml
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.pdb
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.xml
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe.config
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.dll
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.xml
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_交易紀錄明細.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_交易紀錄明細.resources

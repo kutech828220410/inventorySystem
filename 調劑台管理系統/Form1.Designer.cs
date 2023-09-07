@@ -7804,7 +7804,7 @@
             this.sqL_DataGridView_交易記錄查詢.TableName = "trading";
             this.sqL_DataGridView_交易記錄查詢.UserName = "root";
             this.sqL_DataGridView_交易記錄查詢.可拖曳欄位寬度 = true;
-            this.sqL_DataGridView_交易記錄查詢.可選擇多列 = false;
+            this.sqL_DataGridView_交易記錄查詢.可選擇多列 = true;
             this.sqL_DataGridView_交易記錄查詢.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.sqL_DataGridView_交易記錄查詢.自動換行 = true;
             this.sqL_DataGridView_交易記錄查詢.表單字體 = new System.Drawing.Font("新細明體", 12F);
@@ -37420,7 +37420,7 @@
             this.sqL_DataGridView_盤點明細.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點明細.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點明細.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點明細.columnHeadersHeight = 15;
+            this.sqL_DataGridView_盤點明細.columnHeadersHeight = 18;
             this.sqL_DataGridView_盤點明細.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_盤點明細.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_盤點明細.Font = new System.Drawing.Font("新細明體", 12F);
