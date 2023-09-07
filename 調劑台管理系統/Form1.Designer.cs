@@ -18586,7 +18586,6 @@
             // 
             // panel11
             // 
-            this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_警報);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯入);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯出);
@@ -18617,7 +18616,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_警報.Bool = false;
             this.plC_RJ_Button_儲位管理_EPD266_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_儲位管理_EPD266_警報.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Location = new System.Drawing.Point(29, 445);
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Location = new System.Drawing.Point(419, 231);
             this.plC_RJ_Button_儲位管理_EPD266_警報.Name = "plC_RJ_Button_儲位管理_EPD266_警報";
             this.plC_RJ_Button_儲位管理_EPD266_警報.Size = new System.Drawing.Size(59, 20);
             this.plC_RJ_Button_儲位管理_EPD266_警報.TabIndex = 154;
@@ -19300,6 +19299,7 @@
             this.plC_RJ_GroupBox6.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox6.ContentsPanel.BorderRadius = 5;
             this.plC_RJ_GroupBox6.ContentsPanel.BorderSize = 2;
+            this.plC_RJ_GroupBox6.ContentsPanel.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_警報);
             this.plC_RJ_GroupBox6.ContentsPanel.Controls.Add(this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音);
             this.plC_RJ_GroupBox6.ContentsPanel.Controls.Add(this.rJ_Lable132);
             this.plC_RJ_GroupBox6.ContentsPanel.Controls.Add(this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測);
@@ -19385,16 +19385,16 @@
             // 
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.AutoSize = true;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Bool = false;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Font = new System.Drawing.Font("新細明體", 12F);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Location = new System.Drawing.Point(492, 231);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Location = new System.Drawing.Point(483, 231);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測";
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Size = new System.Drawing.Size(72, 16);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Size = new System.Drawing.Size(91, 20);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.TabIndex = 143;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Text = "手勢感測";
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.UseVisualStyleBackColor = true;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.文字內容 = "手勢感測";
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.文字字體 = new System.Drawing.Font("新細明體", 12F);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.文字顏色 = System.Drawing.Color.Black;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.讀寫鎖住 = false;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.音效 = true;
@@ -27792,7 +27792,6 @@
             this.plC_RJ_GroupBox20.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox20.ContentsPanel.BorderRadius = 5;
             this.plC_RJ_GroupBox20.ContentsPanel.BorderSize = 2;
-            this.plC_RJ_GroupBox20.ContentsPanel.Controls.Add(this.plC_RJ_Button_儲位管理_Pannel35_警報);
             this.plC_RJ_GroupBox20.ContentsPanel.Controls.Add(this.plC_RJ_GroupBox21);
             this.plC_RJ_GroupBox20.ContentsPanel.Controls.Add(this.panel36);
             this.plC_RJ_GroupBox20.ContentsPanel.Controls.Add(this.panel38);
@@ -27835,7 +27834,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_警報.Bool = false;
             this.plC_RJ_Button_儲位管理_Pannel35_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_儲位管理_Pannel35_警報.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.Location = new System.Drawing.Point(15, 438);
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Location = new System.Drawing.Point(504, 6);
             this.plC_RJ_Button_儲位管理_Pannel35_警報.Name = "plC_RJ_Button_儲位管理_Pannel35_警報";
             this.plC_RJ_Button_儲位管理_Pannel35_警報.Size = new System.Drawing.Size(59, 20);
             this.plC_RJ_Button_儲位管理_Pannel35_警報.TabIndex = 155;
@@ -28070,6 +28069,7 @@
             // 
             // panel36
             // 
+            this.panel36.Controls.Add(this.plC_RJ_Button_儲位管理_Pannel35_警報);
             this.panel36.Controls.Add(this.panel37);
             this.panel36.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel36.Location = new System.Drawing.Point(5, 190);
@@ -38853,11 +38853,11 @@
             this.rJ_Pannel17.ResumeLayout(false);
             this.rJ_Pannel17.PerformLayout();
             this.plC_RJ_GroupBox20.ContentsPanel.ResumeLayout(false);
-            this.plC_RJ_GroupBox20.ContentsPanel.PerformLayout();
             this.plC_RJ_GroupBox20.ResumeLayout(false);
             this.plC_RJ_GroupBox21.ContentsPanel.ResumeLayout(false);
             this.plC_RJ_GroupBox21.ResumeLayout(false);
             this.panel36.ResumeLayout(false);
+            this.panel36.PerformLayout();
             this.panel37.ResumeLayout(false);
             this.panel38.ResumeLayout(false);
             this.panel39.ResumeLayout(false);
