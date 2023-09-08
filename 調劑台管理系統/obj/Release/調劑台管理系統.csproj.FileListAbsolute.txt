@@ -2449,3 +2449,4 @@ C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSha
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\ICSharpCode.SharpZipLib.xml
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_交易紀錄明細.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_交易紀錄明細.resources
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_交班藥品選擇.resources

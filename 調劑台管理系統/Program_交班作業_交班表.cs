@@ -19,6 +19,11 @@ namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
+        public enum ContextMenuStrip_交班作業_交班表_設定
+        {
+            班別時間,
+            交班藥品選擇,
+        }
         public enum enum_交班作業_交班表_交班明細
         {
             藥碼,
@@ -36,6 +41,7 @@ namespace 調劑台管理系統
 
             this.plC_RJ_Button_交班作業_交班表_班別_生成明細.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_生成明細_MouseDownEvent;
             this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_處方檢視_MouseDownEvent;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_設定_MouseDownEvent;
 
             this.plC_RJ_Button_交班作業_交班表_班別_白班.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_白班_MouseDownEvent;
             this.plC_RJ_Button_交班作業_交班表_班別_小夜班.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_小夜班_MouseDownEvent;
@@ -44,7 +50,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_交班作業_交班表);
         }
 
-   
+      
 
         bool flag_交班作業_交班表_頁面更新 = false;
         private void sub_Program_交班作業_交班表()
@@ -145,6 +151,26 @@ namespace 調劑台管理系統
             plC_RJ_Button_交班作業_交班表_班別_白班.Bool = true;
             plC_RJ_Button_交班作業_交班表_班別_小夜班.Bool = false;
             plC_RJ_Button_交班作業_交班表_班別_大夜班.Bool = false;
+        }
+        private void PlC_RJ_Button_交班作業_交班表_班別_設定_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate 
+            {
+                Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(new ContextMenuStrip_交班作業_交班表_設定().GetEnumNames());
+                if (dialog_ContextMenuStrip.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (dialog_ContextMenuStrip.Value == ContextMenuStrip_交班作業_交班表_設定.交班藥品選擇.GetEnumName())
+                    {
+                        Dialog_交班藥品選擇 dialog_交班藥品選擇 = new Dialog_交班藥品選擇(dBConfigClass.DB_Basic);
+                        dialog_交班藥品選擇.ShowDialog();
+                    }
+                    if (dialog_ContextMenuStrip.Value == ContextMenuStrip_交班作業_交班表_設定.班別時間.GetEnumName())
+                    {
+
+                    }
+                }
+            }));
+        
         }
         private void PlC_RJ_Button_交班作業_交班表_班別_生成明細_MouseDownEvent(MouseEventArgs mevent)
         {

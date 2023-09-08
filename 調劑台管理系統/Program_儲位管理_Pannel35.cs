@@ -379,7 +379,10 @@ namespace 調劑台管理系統
 
             this.pannel35_Pannel.DrawToPictureBox(storage);
             this.storageUI_WT32.SQL_ReplaceStorage(storage);
-        
+            Task.Run(new Action(delegate
+            {
+                this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+            }));
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Replace(enum_儲位管理_Pannel35_儲位資料.IP.GetEnumName(), list_儲位資料[0][(int)enum_儲位管理_Pannel35_儲位資料.IP].ObjectToString(), list_儲位資料[0], true);
             this.Function_設定雲端資料更新();
         }
@@ -612,6 +615,10 @@ namespace 調劑台管理系統
 
             this.storageUI_WT32.SQL_ReplaceStorage(storages_replaceValue);
 
+            Task.Run(new Action(delegate 
+            {
+                this.storageUI_WT32.Set_DrawPannelJEPG(storages_buf[0]);
+            }));
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.On_RowEnter();
             this.Invoke(new Action(delegate
             {
@@ -797,7 +804,10 @@ namespace 調劑台管理系統
                 int 修正庫存 = storage.取得庫存();
                 this.storageUI_WT32.SQL_ReplaceStorage(storage);
                 this.List_Pannel35_本地資料.Add_NewStorage(storage);
-
+                Task.Run(new Action(delegate
+                {
+                    this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+                }));
 
                 string GUID = Guid.NewGuid().ToString();
                 string 動作 = enum_交易記錄查詢動作.效期庫存異動.GetEnumName();
@@ -897,7 +907,10 @@ namespace 調劑台管理系統
                 storage.效期庫存覆蓋(效期, 批號, 數量);
                 int 修正庫存 = storage.取得庫存();
                 this.storageUI_WT32.SQL_ReplaceStorage(storage);
-
+                Task.Run(new Action(delegate
+                {
+                    this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+                }));
                 string GUID = Guid.NewGuid().ToString();
                 string 動作 = enum_交易記錄查詢動作.效期庫存異動.GetEnumName();
                 string 藥品名稱 = storage.Name;

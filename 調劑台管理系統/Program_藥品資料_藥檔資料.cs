@@ -982,18 +982,19 @@ namespace 調劑台管理系統
             if (!textBox_藥品資料_藥檔資料_資料查詢_藥品碼.Text.StringIsEmpty()) list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品碼, textBox_藥品資料_藥檔資料_資料查詢_藥品碼.Text);
             if (!textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text.StringIsEmpty())
             {
-                if(textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text.Length < 3)
-                {
-                    MyMessageBox.ShowDialog("藥品名稱搜尋字元不得小於3個!");
-                    return;
-                }
+         
                 if(rJ_RatioButton_藥品資料_藥檔資料_前綴.Checked)
                 {
+                    if (textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text.Length < 3)
+                    {
+                        MyMessageBox.ShowDialog("藥品名稱搜尋字元不得小於3個!");
+                        return;
+                    }
                     list_value = list_value.GetRowsStartWithByLike((int)enum_藥品資料_藥檔資料.藥品名稱, textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text);
                 }
                 else if(rJ_RatioButton_藥品資料_藥檔資料_模糊.Checked)
                 {
-                    list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品名稱, textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text);
+                    list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品名稱, textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text, true);
                 }
          
             }

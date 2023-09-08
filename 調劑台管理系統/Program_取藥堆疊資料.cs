@@ -22,8 +22,6 @@ namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
-
-
         List<object[]> list_取藥堆疊母資料 = new List<object[]>();
         List<object[]> list_取藥堆疊子資料 = new List<object[]>();
         private MyThread MyThread_取藥堆疊資料_檢查資料;

@@ -165,6 +165,7 @@
             this.plC_RJ_GroupBox_交班作業_交班表_交班明細 = new MyUI.PLC_RJ_GroupBox();
             this.sqL_DataGridView_交班作業_交班表_交班明細 = new SQLUI.SQL_DataGridView();
             this.panel87 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_交班作業_交班表_班別_設定 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_交班作業_交班表_班別_處方檢視 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_交班作業_交班表_班別_大夜班 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_交班作業_交班表_班別_生成明細 = new MyUI.PLC_RJ_Button();
@@ -701,7 +702,6 @@
             this.rJ_Lable53 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button_儲位管理_EPD266_警報 = new MyUI.PLC_CheckBox();
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_匯入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_匯出 = new MyUI.PLC_RJ_Button();
@@ -724,6 +724,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈 = new MyUI.PLC_RJ_Button();
             this.epD_266_Pannel = new H_Pannel_lib.EPD_266_Pannel();
             this.plC_RJ_GroupBox6 = new MyUI.PLC_RJ_GroupBox();
+            this.plC_RJ_Button_儲位管理_EPD266_警報 = new MyUI.PLC_CheckBox();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音 = new MyUI.RJ_TextBox();
             this.rJ_Lable132 = new MyUI.RJ_Lable();
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測 = new MyUI.PLC_CheckBox();
@@ -1047,13 +1048,13 @@
             this.radioButton_儲位管理_Pannel35_面板亮燈_綠 = new MyUI.RJ_RatioButton();
             this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_GroupBox20 = new MyUI.PLC_RJ_GroupBox();
-            this.plC_RJ_Button_儲位管理_Pannel35_警報 = new MyUI.PLC_CheckBox();
             this.plC_RJ_GroupBox21 = new MyUI.PLC_RJ_GroupBox();
             this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存 = new SQLUI.SQL_DataGridView();
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期 = new MyUI.PLC_RJ_Button();
             this.panel36 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_儲位管理_Pannel35_警報 = new MyUI.PLC_CheckBox();
             this.panel37 = new System.Windows.Forms.Panel();
             this.rJ_Lable101 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_總庫存字體更動 = new MyUI.PLC_RJ_Button();
@@ -5213,6 +5214,7 @@
             // 
             // panel87
             // 
+            this.panel87.Controls.Add(this.plC_RJ_Button_交班作業_交班表_班別_設定);
             this.panel87.Controls.Add(this.plC_RJ_Button_交班作業_交班表_班別_處方檢視);
             this.panel87.Controls.Add(this.plC_RJ_Button_交班作業_交班表_班別_大夜班);
             this.panel87.Controls.Add(this.plC_RJ_Button_交班作業_交班表_班別_生成明細);
@@ -5225,6 +5227,49 @@
             this.panel87.Name = "panel87";
             this.panel87.Size = new System.Drawing.Size(1654, 100);
             this.panel87.TabIndex = 3;
+            // 
+            // plC_RJ_Button_交班作業_交班表_班別_設定
+            // 
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.AutoResetState = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.BackgroundColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.Bool = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.BorderRadius = 10;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.BorderSize = 0;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.but_press = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.GUID = "";
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.Location = new System.Drawing.Point(1513, 3);
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.Name = "plC_RJ_Button_交班作業_交班表_班別_設定";
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.OFF_文字內容 = "設定";
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.ON_BorderSize = 5;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.ON_文字內容 = "設定";
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.Size = new System.Drawing.Size(137, 95);
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.State = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.TabIndex = 130;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.Text = "設定";
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.Texts = "設定";
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.字型鎖住 = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.文字鎖住 = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.讀取位元反向 = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.讀寫鎖住 = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.音效 = true;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.顯示 = false;
+            this.plC_RJ_Button_交班作業_交班表_班別_設定.顯示狀態 = false;
             // 
             // plC_RJ_Button_交班作業_交班表_班別_處方檢視
             // 
@@ -5241,7 +5286,7 @@
             this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.GUID = "";
             this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.Location = new System.Drawing.Point(1258, 3);
+            this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.Location = new System.Drawing.Point(1121, 3);
             this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.Name = "plC_RJ_Button_交班作業_交班表_班別_處方檢視";
             this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.OFF_文字內容 = "處方檢視";
             this.plC_RJ_Button_交班作業_交班表_班別_處方檢視.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
@@ -5326,7 +5371,7 @@
             this.plC_RJ_Button_交班作業_交班表_班別_生成明細.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_交班作業_交班表_班別_生成明細.GUID = "";
             this.plC_RJ_Button_交班作業_交班表_班別_生成明細.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_交班作業_交班表_班別_生成明細.Location = new System.Drawing.Point(1454, 3);
+            this.plC_RJ_Button_交班作業_交班表_班別_生成明細.Location = new System.Drawing.Point(1317, 3);
             this.plC_RJ_Button_交班作業_交班表_班別_生成明細.Name = "plC_RJ_Button_交班作業_交班表_班別_生成明細";
             this.plC_RJ_Button_交班作業_交班表_班別_生成明細.OFF_文字內容 = "生成明細";
             this.plC_RJ_Button_交班作業_交班表_班別_生成明細.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
@@ -18610,24 +18655,6 @@
             this.panel11.Size = new System.Drawing.Size(916, 504);
             this.panel11.TabIndex = 130;
             // 
-            // plC_RJ_Button_儲位管理_EPD266_警報
-            // 
-            this.plC_RJ_Button_儲位管理_EPD266_警報.AutoSize = true;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Bool = false;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位管理_EPD266_警報.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Location = new System.Drawing.Point(419, 231);
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Name = "plC_RJ_Button_儲位管理_EPD266_警報";
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Size = new System.Drawing.Size(59, 20);
-            this.plC_RJ_Button_儲位管理_EPD266_警報.TabIndex = 154;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Text = "警報";
-            this.plC_RJ_Button_儲位管理_EPD266_警報.UseVisualStyleBackColor = true;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.文字內容 = "警報";
-            this.plC_RJ_Button_儲位管理_EPD266_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位管理_EPD266_警報.文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.音效 = true;
-            // 
             // plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱
             // 
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.AutoResetState = false;
@@ -19338,6 +19365,24 @@
             this.plC_RJ_GroupBox6.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox6.TitleTexts = "儲位內容";
             this.plC_RJ_GroupBox6.致能讀取位置 = "S39013";
+            // 
+            // plC_RJ_Button_儲位管理_EPD266_警報
+            // 
+            this.plC_RJ_Button_儲位管理_EPD266_警報.AutoSize = true;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Bool = false;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位管理_EPD266_警報.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Location = new System.Drawing.Point(419, 231);
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Name = "plC_RJ_Button_儲位管理_EPD266_警報";
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Size = new System.Drawing.Size(59, 20);
+            this.plC_RJ_Button_儲位管理_EPD266_警報.TabIndex = 154;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Text = "警報";
+            this.plC_RJ_Button_儲位管理_EPD266_警報.UseVisualStyleBackColor = true;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.文字內容 = "警報";
+            this.plC_RJ_Button_儲位管理_EPD266_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位管理_EPD266_警報.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_EPD266_警報.音效 = true;
             // 
             // rJ_TextBox_儲位管理_EPD266_儲位內容_語音
             // 
@@ -27828,24 +27873,6 @@
             this.plC_RJ_GroupBox20.TitleTexts = "儲位內容";
             this.plC_RJ_GroupBox20.致能讀取位置 = "S39013";
             // 
-            // plC_RJ_Button_儲位管理_Pannel35_警報
-            // 
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.AutoSize = true;
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.Bool = false;
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.Location = new System.Drawing.Point(504, 6);
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.Name = "plC_RJ_Button_儲位管理_Pannel35_警報";
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.Size = new System.Drawing.Size(59, 20);
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.TabIndex = 155;
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.Text = "警報";
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.UseVisualStyleBackColor = true;
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字內容 = "警報";
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位管理_Pannel35_警報.音效 = true;
-            // 
             // plC_RJ_GroupBox21
             // 
             // 
@@ -28076,6 +28103,24 @@
             this.panel36.Name = "panel36";
             this.panel36.Size = new System.Drawing.Size(574, 37);
             this.panel36.TabIndex = 137;
+            // 
+            // plC_RJ_Button_儲位管理_Pannel35_警報
+            // 
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.AutoSize = true;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Bool = false;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Location = new System.Drawing.Point(504, 6);
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Name = "plC_RJ_Button_儲位管理_Pannel35_警報";
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Size = new System.Drawing.Size(59, 20);
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.TabIndex = 155;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.Text = "警報";
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.UseVisualStyleBackColor = true;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字內容 = "警報";
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位管理_Pannel35_警報.音效 = true;
             // 
             // panel37
             // 
@@ -40468,6 +40513,7 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_交班表_班別_生成明細;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_交班表_班別_處方檢視;
         private MyUI.RJ_Pannel ContentsPanel;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_交班表_班別_設定;
     }
 }
 
