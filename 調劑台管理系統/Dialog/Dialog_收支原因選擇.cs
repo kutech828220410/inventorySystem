@@ -76,6 +76,7 @@ namespace 調劑台管理系統
             if(Value.Length > 100)
             {
                 MyMessageBox.ShowDialog("字數限制100字元,請刪減原因字數!");
+                return;
             }
             this.Invoke(new Action(delegate
             {
