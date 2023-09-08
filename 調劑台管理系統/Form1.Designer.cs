@@ -1153,7 +1153,7 @@
             this.plC_CheckBox_盤點量要修正至結存量 = new MyUI.PLC_CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.plC_NumBox_完成滅燈時間 = new MyUI.PLC_NumBox();
+            this.plC_NumBox_處方存在時間 = new MyUI.PLC_NumBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.label118 = new System.Windows.Forms.Label();
             this.plC_NumBox6 = new MyUI.PLC_NumBox();
@@ -29251,6 +29251,7 @@
             this.panel66.Controls.Add(this.panel84);
             this.panel66.Controls.Add(this.panel83);
             this.panel66.Controls.Add(this.groupBox23);
+            this.panel66.Controls.Add(this.plC_Button_工程模式_全部開鎖);
             this.panel66.Controls.Add(this.groupBox22);
             this.panel66.Controls.Add(this.textBox_工程模式_領藥台_名稱);
             this.panel66.Controls.Add(this.rJ_Lable45);
@@ -29752,7 +29753,6 @@
             this.tabPage1.Controls.Add(this.plC_CheckBox_要檢查抽屜開啟異常);
             this.tabPage1.Controls.Add(this.plC_CheckBox_後台閒置要自動登出);
             this.tabPage1.Controls.Add(this.groupBox33);
-            this.tabPage1.Controls.Add(this.plC_Button_工程模式_全部開鎖);
             this.tabPage1.Controls.Add(this.groupBox9);
             this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.tabControl2);
@@ -29953,7 +29953,7 @@
             this.plC_Button_工程模式_全部開鎖.Bool = false;
             this.plC_Button_工程模式_全部開鎖.but_press = false;
             this.plC_Button_工程模式_全部開鎖.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_工程模式_全部開鎖.Location = new System.Drawing.Point(1456, 665);
+            this.plC_Button_工程模式_全部開鎖.Location = new System.Drawing.Point(1502, 22);
             this.plC_Button_工程模式_全部開鎖.Margin = new System.Windows.Forms.Padding(4);
             this.plC_Button_工程模式_全部開鎖.Name = "plC_Button_工程模式_全部開鎖";
             this.plC_Button_工程模式_全部開鎖.OFF_文字內容 = "全部開鎖";
@@ -29986,12 +29986,12 @@
             this.groupBox9.Controls.Add(this.groupBox1);
             this.groupBox9.Controls.Add(this.groupBox2);
             this.groupBox9.Controls.Add(this.plC_Button1);
-            this.groupBox9.Location = new System.Drawing.Point(1230, 650);
+            this.groupBox9.Location = new System.Drawing.Point(1447, 650);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(200, 202);
             this.groupBox9.TabIndex = 123;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "蜂鳴設定";
+            this.groupBox9.Text = "抽屜未關警報設定";
             // 
             // groupBox1
             // 
@@ -30002,7 +30002,7 @@
             this.groupBox1.Size = new System.Drawing.Size(146, 54);
             this.groupBox1.TabIndex = 115;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "蜂鳴持續時間";
+            this.groupBox1.Text = "警報持續時間";
             // 
             // label5
             // 
@@ -30042,7 +30042,7 @@
             this.groupBox2.Size = new System.Drawing.Size(146, 54);
             this.groupBox2.TabIndex = 117;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "蜂鳴開始時間";
+            this.groupBox2.Text = "多久開始警報";
             // 
             // label6
             // 
@@ -30116,7 +30116,7 @@
             this.groupBox8.Controls.Add(this.groupBox7);
             this.groupBox8.Location = new System.Drawing.Point(363, 654);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(834, 205);
+            this.groupBox8.Size = new System.Drawing.Size(1078, 205);
             this.groupBox8.TabIndex = 122;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "調劑作業設定";
@@ -30127,7 +30127,7 @@
             this.plC_CheckBox_盤點量要修正至結存量.Bool = false;
             this.plC_CheckBox_盤點量要修正至結存量.Font = new System.Drawing.Font("新細明體", 12F);
             this.plC_CheckBox_盤點量要修正至結存量.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_盤點量要修正至結存量.Location = new System.Drawing.Point(11, 143);
+            this.plC_CheckBox_盤點量要修正至結存量.Location = new System.Drawing.Point(11, 169);
             this.plC_CheckBox_盤點量要修正至結存量.Name = "plC_CheckBox_盤點量要修正至結存量";
             this.plC_CheckBox_盤點量要修正至結存量.Size = new System.Drawing.Size(207, 20);
             this.plC_CheckBox_盤點量要修正至結存量.TabIndex = 130;
@@ -30144,13 +30144,13 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label2);
-            this.groupBox6.Controls.Add(this.plC_NumBox_完成滅燈時間);
+            this.groupBox6.Controls.Add(this.plC_NumBox_處方存在時間);
             this.groupBox6.Location = new System.Drawing.Point(11, 21);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(146, 54);
             this.groupBox6.TabIndex = 118;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "完成滅燈時間";
+            this.groupBox6.Text = "處方存在時間";
             // 
             // label2
             // 
@@ -30161,31 +30161,31 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "sec";
             // 
-            // plC_NumBox_完成滅燈時間
+            // plC_NumBox_處方存在時間
             // 
-            this.plC_NumBox_完成滅燈時間.Location = new System.Drawing.Point(15, 21);
-            this.plC_NumBox_完成滅燈時間.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_完成滅燈時間.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_完成滅燈時間.Name = "plC_NumBox_完成滅燈時間";
-            this.plC_NumBox_完成滅燈時間.ReadOnly = false;
-            this.plC_NumBox_完成滅燈時間.Size = new System.Drawing.Size(71, 22);
-            this.plC_NumBox_完成滅燈時間.TabIndex = 2;
-            this.plC_NumBox_完成滅燈時間.Value = 0;
-            this.plC_NumBox_完成滅燈時間.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_完成滅燈時間.密碼欄位 = false;
-            this.plC_NumBox_完成滅燈時間.寫入元件位置 = "D101";
-            this.plC_NumBox_完成滅燈時間.小數點位置 = 3;
-            this.plC_NumBox_完成滅燈時間.微調數值 = 1;
-            this.plC_NumBox_完成滅燈時間.讀取元件位置 = "D101";
-            this.plC_NumBox_完成滅燈時間.音效 = true;
-            this.plC_NumBox_完成滅燈時間.顯示微調按鈕 = false;
-            this.plC_NumBox_完成滅燈時間.顯示螢幕小鍵盤 = true;
+            this.plC_NumBox_處方存在時間.Location = new System.Drawing.Point(15, 21);
+            this.plC_NumBox_處方存在時間.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_處方存在時間.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_處方存在時間.Name = "plC_NumBox_處方存在時間";
+            this.plC_NumBox_處方存在時間.ReadOnly = false;
+            this.plC_NumBox_處方存在時間.Size = new System.Drawing.Size(71, 22);
+            this.plC_NumBox_處方存在時間.TabIndex = 2;
+            this.plC_NumBox_處方存在時間.Value = 0;
+            this.plC_NumBox_處方存在時間.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_處方存在時間.密碼欄位 = false;
+            this.plC_NumBox_處方存在時間.寫入元件位置 = "D101";
+            this.plC_NumBox_處方存在時間.小數點位置 = 3;
+            this.plC_NumBox_處方存在時間.微調數值 = 1;
+            this.plC_NumBox_處方存在時間.讀取元件位置 = "D101";
+            this.plC_NumBox_處方存在時間.音效 = true;
+            this.plC_NumBox_處方存在時間.顯示微調按鈕 = false;
+            this.plC_NumBox_處方存在時間.顯示螢幕小鍵盤 = true;
             // 
             // groupBox19
             // 
             this.groupBox19.Controls.Add(this.label118);
             this.groupBox19.Controls.Add(this.plC_NumBox6);
-            this.groupBox19.Location = new System.Drawing.Point(11, 83);
+            this.groupBox19.Location = new System.Drawing.Point(163, 21);
             this.groupBox19.Name = "groupBox19";
             this.groupBox19.Size = new System.Drawing.Size(146, 54);
             this.groupBox19.TabIndex = 44;
@@ -30236,7 +30236,7 @@
             this.groupBox7.Controls.Add(this.plC_Button_同藥碼全亮);
             this.groupBox7.Controls.Add(this.plC_ComboBox_醫囑檢查範圍);
             this.groupBox7.Controls.Add(this.plC_Button_合併同藥品);
-            this.groupBox7.Location = new System.Drawing.Point(219, 11);
+            this.groupBox7.Location = new System.Drawing.Point(489, 12);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(583, 187);
             this.groupBox7.TabIndex = 120;
@@ -39814,7 +39814,6 @@
         private MyUI.RJ_TextBox textBox_領藥台_02_密碼;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label2;
-        private MyUI.PLC_NumBox plC_NumBox_完成滅燈時間;
         private MyUI.RJ_ProgressBar rJ_ProgressBar_領藥台_02_入賬完成時間條;
         private MyUI.RJ_ProgressBar rJ_ProgressBar_領藥台_01_入賬完成時間條;
         private MyUI.PLC_RJ_Button plC_RJ_Button_領藥台_01_手動作業;
@@ -40514,6 +40513,7 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_交班表_班別_處方檢視;
         private MyUI.RJ_Pannel ContentsPanel;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交班作業_交班表_班別_設定;
+        private MyUI.PLC_NumBox plC_NumBox_處方存在時間;
     }
 }
 

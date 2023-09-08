@@ -1248,17 +1248,18 @@ namespace 調劑台管理系統
         void cnt_Program_取藥堆疊資料_檢查資料_檢查系統領藥(ref int cnt)
         {
             //-----------------------------------------------------------------------------------------------------------------------------------------
-            //檢查系統領藥是否資料是否到達時間
+            //檢查領藥是否資料是否到達時間
+            if (plC_NumBox_處方存在時間.Value < 20000) plC_NumBox_處方存在時間.Value = 20000;
             this.list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
             this.list_取藥堆疊母資料 = this.list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName());
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
-            int 滅燈時間 = plC_NumBox_完成滅燈時間.Value / 1000;
+            int 處方存在時間 = plC_NumBox_處方存在時間.Value / 1000;
             for (int i = 0; i < this.list_取藥堆疊母資料.Count; i++)
             {
                 DateTime dt_start = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.操作時間].ObjectToString().StringToDateTime();
                 DateTime dt_end = DateTime.Now;
                 TimeSpan ts = dt_end - dt_start;
-                if(ts.TotalSeconds >= 滅燈時間)
+                if(ts.TotalSeconds >= 處方存在時間)
                 {
                     list_取藥堆疊母資料_delete.Add(this.list_取藥堆疊母資料[i]);
                 }
@@ -2180,8 +2181,9 @@ namespace 調劑台管理系統
                 if (狀態_buf != 狀態)
                 {
                     狀態 = 狀態_buf;
-      
+
                     _list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = 狀態;
+                    _list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString_6();
                     _list_取藥堆疊母資料_ReplaceValue.Add(_list_取藥堆疊母資料[i]);
                 }
 
