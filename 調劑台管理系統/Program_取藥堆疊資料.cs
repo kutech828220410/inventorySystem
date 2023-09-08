@@ -894,7 +894,7 @@ namespace 調劑台管理系統
                     this.storageUI_WT32.SQL_ReplaceStorage(storage);
                     Task.Run(() =>
                     {
-                        //if(!plC_CheckBox_測試模式.Checked) this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+                        if (!plC_CheckBox_測試模式.Checked) this.storageUI_WT32.Set_DrawPannelJEPG(storage);
 
                     });
                 }

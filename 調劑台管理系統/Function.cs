@@ -1356,7 +1356,7 @@ namespace 調劑台管理系統
                             {
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
-                                    this.storageUI_WT32.Set_DrawPannelJEPG(storage);
+                                    //this.storageUI_WT32.Set_DrawPannelJEPG(storage);
                                 }
                      
                             }));

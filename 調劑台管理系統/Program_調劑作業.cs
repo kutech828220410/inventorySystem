@@ -130,26 +130,7 @@ namespace 調劑台管理系統
                         {
                             rJ_ProgressBar_領藥台_01_閒置登出時間條.Value = (int)MyTimer_領藥台_01_閒置登出時間.GetTickTime();
                         }
-                        if ((PLC_Device_領藥台_01_閒置登出時間.Value - (int)MyTimer_領藥台_01_閒置登出時間.GetTickTime()) <= 20000)
-                        {
-                            myTimer_領藥台_01_Logout.StartTickTime(5000);
-                            if (myTimer_領藥台_01_Logout.IsTimeOut())
-                            {
-                                myTimer_領藥台_01_Logout.TickStop();
-                                Task.Run(new Action(delegate
-                                {
-                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
-                                    {
-                                        sp.Stop();
-                                        sp.Play();
-                                        sp.PlaySync();
-                                    }
-
-                                }));
-                             
-
-                            }
-                        }
+                        
                         if (MyTimer_領藥台_01_閒置登出時間.IsTimeOut())
                         {
                             this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
@@ -991,7 +972,8 @@ namespace 調劑台管理系統
                 int try_error = 0;
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
-                string 結存量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
+                int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
+                int 結存量 = 0;
                 voice.SpeakOnTask("請輸入盲盤數量");
                 while (true)
                 {
@@ -1038,7 +1020,9 @@ namespace 調劑台管理系統
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
-                    if (結存量 == dialog_NumPannel.Value.ToString())
+                    int 庫存量 = Function_從SQL取得庫存(藥碼);
+                    結存量 = 庫存量 + 總異動量;
+                    if (結存量 == dialog_NumPannel.Value)
                     {
                         Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.盲盤, false);
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
@@ -1306,6 +1290,28 @@ namespace 調劑台管理系統
                 {
                     MyTimer_領藥台_01_閒置登出時間.StartTickTime();
                     MyTimer_領藥台_01_入賬完成時間.StartTickTime();
+                    if(PLC_Device_領藥台_01_閒置登出時間.Value != 0)
+                    {
+                        if ((PLC_Device_領藥台_01_閒置登出時間.Value - (int)MyTimer_領藥台_01_閒置登出時間.GetTickTime()) <= 20000)
+                        {
+                            myTimer_領藥台_01_Logout.StartTickTime(5000);
+                            if (myTimer_領藥台_01_Logout.IsTimeOut())
+                            {
+                                myTimer_領藥台_01_Logout.TickStop();
+                                Task.Run(new Action(delegate
+                                {
+                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                    {
+                                        sp.Stop();
+                                        sp.Play();
+                                        sp.PlaySync();
+                                    }
+
+                                }));
+                            }
+                        }
+                    }
+                    
                 }
             }
             this.MyTimer__領藥台_01_刷新領藥內容_刷新間隔.TickStop();
@@ -3182,6 +3188,28 @@ namespace 調劑台管理系統
                 {
                     MyTimer_領藥台_02_閒置登出時間.StartTickTime();
                     MyTimer_領藥台_02_入賬完成時間.StartTickTime();
+                    if(PLC_Device_領藥台_02_閒置登出時間.Value != 0)
+                    {
+                        if ((PLC_Device_領藥台_02_閒置登出時間.Value - (int)MyTimer_領藥台_02_閒置登出時間.GetTickTime()) <= 20000)
+                        {
+                            myTimer_領藥台_02_Logout.StartTickTime(5000);
+                            if (myTimer_領藥台_02_Logout.IsTimeOut())
+                            {
+                                myTimer_領藥台_02_Logout.TickStop();
+                                Task.Run(new Action(delegate
+                                {
+                                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                    {
+                                        sp.Stop();
+                                        sp.Play();
+                                        sp.PlaySync();
+                                    }
+
+                                }));
+                            }
+                        }
+                    }
+                   
                 }
             }
             this.MyTimer__領藥台_02_刷新領藥內容_刷新間隔.TickStop();

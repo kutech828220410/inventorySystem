@@ -37752,7 +37752,7 @@
             // 
             // panel_Main
             // 
-            this.panel_Main.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel_Main.BackColor = System.Drawing.Color.SkyBlue;
             this.panel_Main.Controls.Add(this.rJ_ProgressBar_閒置登出時間);
             this.panel_Main.Controls.Add(this.plC_RJ_ScreenButton_工程模式);
             this.panel_Main.Controls.Add(this.plC_RJ_ScreenButton_盤點作業);
@@ -37795,7 +37795,7 @@
             // 
             // plC_RJ_ScreenButton_工程模式
             // 
-            this.plC_RJ_ScreenButton_工程模式.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_工程模式.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_工程模式.but_press = false;
             this.plC_RJ_ScreenButton_工程模式.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_工程模式.IconChar = FontAwesome.Sharp.IconChar.Wrench;
@@ -37803,7 +37803,7 @@
             this.plC_RJ_ScreenButton_工程模式.Location = new System.Drawing.Point(0, 660);
             this.plC_RJ_ScreenButton_工程模式.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_工程模式.Name = "plC_RJ_ScreenButton_工程模式";
-            this.plC_RJ_ScreenButton_工程模式.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_工程模式.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_工程模式.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_工程模式.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_工程模式.OffIconColor = System.Drawing.Color.Black;
@@ -37836,7 +37836,7 @@
             // 
             // plC_RJ_ScreenButton_盤點作業
             // 
-            this.plC_RJ_ScreenButton_盤點作業.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_盤點作業.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_盤點作業.but_press = false;
             this.plC_RJ_ScreenButton_盤點作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_盤點作業.IconChar = FontAwesome.Sharp.IconChar.Barcode;
@@ -37844,7 +37844,7 @@
             this.plC_RJ_ScreenButton_盤點作業.Location = new System.Drawing.Point(0, 600);
             this.plC_RJ_ScreenButton_盤點作業.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_盤點作業.Name = "plC_RJ_ScreenButton_盤點作業";
-            this.plC_RJ_ScreenButton_盤點作業.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_盤點作業.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_盤點作業.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_盤點作業.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_盤點作業.OffIconColor = System.Drawing.Color.Black;
@@ -37877,7 +37877,7 @@
             // 
             // plC_RJ_ScreenButton_儲位管理
             // 
-            this.plC_RJ_ScreenButton_儲位管理.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_儲位管理.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_儲位管理.but_press = false;
             this.plC_RJ_ScreenButton_儲位管理.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_儲位管理.IconChar = FontAwesome.Sharp.IconChar.SolarPanel;
@@ -37885,7 +37885,7 @@
             this.plC_RJ_ScreenButton_儲位管理.Location = new System.Drawing.Point(0, 540);
             this.plC_RJ_ScreenButton_儲位管理.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_儲位管理.Name = "plC_RJ_ScreenButton_儲位管理";
-            this.plC_RJ_ScreenButton_儲位管理.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_儲位管理.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_儲位管理.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_儲位管理.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_儲位管理.OffIconColor = System.Drawing.Color.Black;
@@ -37918,7 +37918,7 @@
             // 
             // plC_RJ_ScreenButton_人員資料
             // 
-            this.plC_RJ_ScreenButton_人員資料.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_人員資料.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_人員資料.but_press = false;
             this.plC_RJ_ScreenButton_人員資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_人員資料.IconChar = FontAwesome.Sharp.IconChar.AddressCard;
@@ -37926,7 +37926,7 @@
             this.plC_RJ_ScreenButton_人員資料.Location = new System.Drawing.Point(0, 480);
             this.plC_RJ_ScreenButton_人員資料.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_人員資料.Name = "plC_RJ_ScreenButton_人員資料";
-            this.plC_RJ_ScreenButton_人員資料.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_人員資料.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_人員資料.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_人員資料.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_人員資料.OffIconColor = System.Drawing.Color.Black;
@@ -37959,7 +37959,7 @@
             // 
             // plC_RJ_ScreenButton_藥品資料
             // 
-            this.plC_RJ_ScreenButton_藥品資料.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_藥品資料.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_藥品資料.but_press = false;
             this.plC_RJ_ScreenButton_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_藥品資料.IconChar = FontAwesome.Sharp.IconChar.FileMedical;
@@ -37967,7 +37967,7 @@
             this.plC_RJ_ScreenButton_藥品資料.Location = new System.Drawing.Point(0, 420);
             this.plC_RJ_ScreenButton_藥品資料.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_藥品資料.Name = "plC_RJ_ScreenButton_藥品資料";
-            this.plC_RJ_ScreenButton_藥品資料.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_藥品資料.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_藥品資料.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_藥品資料.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_藥品資料.OffIconColor = System.Drawing.Color.Black;
@@ -38000,7 +38000,7 @@
             // 
             // plC_RJ_ScreenButton_醫囑資料
             // 
-            this.plC_RJ_ScreenButton_醫囑資料.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_醫囑資料.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_醫囑資料.but_press = false;
             this.plC_RJ_ScreenButton_醫囑資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_醫囑資料.IconChar = FontAwesome.Sharp.IconChar.FileMedicalAlt;
@@ -38008,7 +38008,7 @@
             this.plC_RJ_ScreenButton_醫囑資料.Location = new System.Drawing.Point(0, 360);
             this.plC_RJ_ScreenButton_醫囑資料.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_醫囑資料.Name = "plC_RJ_ScreenButton_醫囑資料";
-            this.plC_RJ_ScreenButton_醫囑資料.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_醫囑資料.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_醫囑資料.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_醫囑資料.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_醫囑資料.OffIconColor = System.Drawing.Color.Black;
@@ -38041,7 +38041,7 @@
             // 
             // plC_RJ_ScreenButton_交易紀錄查詢
             // 
-            this.plC_RJ_ScreenButton_交易紀錄查詢.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_交易紀錄查詢.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_交易紀錄查詢.but_press = false;
             this.plC_RJ_ScreenButton_交易紀錄查詢.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_交易紀錄查詢.IconChar = FontAwesome.Sharp.IconChar.CalendarAlt;
@@ -38049,7 +38049,7 @@
             this.plC_RJ_ScreenButton_交易紀錄查詢.Location = new System.Drawing.Point(0, 300);
             this.plC_RJ_ScreenButton_交易紀錄查詢.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_交易紀錄查詢.Name = "plC_RJ_ScreenButton_交易紀錄查詢";
-            this.plC_RJ_ScreenButton_交易紀錄查詢.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_交易紀錄查詢.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_交易紀錄查詢.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_交易紀錄查詢.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_交易紀錄查詢.OffIconColor = System.Drawing.Color.Black;
@@ -38082,7 +38082,7 @@
             // 
             // plC_RJ_ScreenButton_收支作業
             // 
-            this.plC_RJ_ScreenButton_收支作業.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_收支作業.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_收支作業.but_press = false;
             this.plC_RJ_ScreenButton_收支作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_收支作業.IconChar = FontAwesome.Sharp.IconChar.Cube;
@@ -38090,7 +38090,7 @@
             this.plC_RJ_ScreenButton_收支作業.Location = new System.Drawing.Point(0, 240);
             this.plC_RJ_ScreenButton_收支作業.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_收支作業.Name = "plC_RJ_ScreenButton_收支作業";
-            this.plC_RJ_ScreenButton_收支作業.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_收支作業.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_收支作業.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_收支作業.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_收支作業.OffIconColor = System.Drawing.Color.Black;
@@ -38123,7 +38123,7 @@
             // 
             // plC_RJ_ScreenButton_交班作業
             // 
-            this.plC_RJ_ScreenButton_交班作業.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_交班作業.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_交班作業.but_press = false;
             this.plC_RJ_ScreenButton_交班作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_交班作業.IconChar = FontAwesome.Sharp.IconChar.UserFriends;
@@ -38131,7 +38131,7 @@
             this.plC_RJ_ScreenButton_交班作業.Location = new System.Drawing.Point(0, 180);
             this.plC_RJ_ScreenButton_交班作業.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_交班作業.Name = "plC_RJ_ScreenButton_交班作業";
-            this.plC_RJ_ScreenButton_交班作業.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_交班作業.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_交班作業.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_交班作業.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_交班作業.OffIconColor = System.Drawing.Color.Black;
@@ -38163,7 +38163,7 @@
             // 
             // plC_RJ_ScreenButton_後台登入
             // 
-            this.plC_RJ_ScreenButton_後台登入.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_後台登入.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_後台登入.but_press = false;
             this.plC_RJ_ScreenButton_後台登入.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_後台登入.IconChar = FontAwesome.Sharp.IconChar.SignInAlt;
@@ -38171,7 +38171,7 @@
             this.plC_RJ_ScreenButton_後台登入.Location = new System.Drawing.Point(0, 120);
             this.plC_RJ_ScreenButton_後台登入.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_後台登入.Name = "plC_RJ_ScreenButton_後台登入";
-            this.plC_RJ_ScreenButton_後台登入.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_後台登入.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_後台登入.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_後台登入.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_後台登入.OffIconColor = System.Drawing.Color.Black;
@@ -38203,7 +38203,7 @@
             // 
             // plC_RJ_ScreenButton_管制抽屜
             // 
-            this.plC_RJ_ScreenButton_管制抽屜.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_管制抽屜.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_管制抽屜.but_press = false;
             this.plC_RJ_ScreenButton_管制抽屜.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_管制抽屜.IconChar = FontAwesome.Sharp.IconChar.Lock;
@@ -38211,7 +38211,7 @@
             this.plC_RJ_ScreenButton_管制抽屜.Location = new System.Drawing.Point(0, 60);
             this.plC_RJ_ScreenButton_管制抽屜.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_管制抽屜.Name = "plC_RJ_ScreenButton_管制抽屜";
-            this.plC_RJ_ScreenButton_管制抽屜.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_管制抽屜.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_管制抽屜.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_管制抽屜.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_管制抽屜.OffIconColor = System.Drawing.Color.Black;
@@ -38284,7 +38284,7 @@
             // 
             // plC_RJ_ScreenButton_調劑作業
             // 
-            this.plC_RJ_ScreenButton_調劑作業.BackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_調劑作業.BackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_調劑作業.but_press = false;
             this.plC_RJ_ScreenButton_調劑作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_ScreenButton_調劑作業.IconChar = FontAwesome.Sharp.IconChar.Allergies;
@@ -38292,7 +38292,7 @@
             this.plC_RJ_ScreenButton_調劑作業.Location = new System.Drawing.Point(0, 0);
             this.plC_RJ_ScreenButton_調劑作業.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_調劑作業.Name = "plC_RJ_ScreenButton_調劑作業";
-            this.plC_RJ_ScreenButton_調劑作業.OffBackColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_ScreenButton_調劑作業.OffBackColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_ScreenButton_調劑作業.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton_調劑作業.OffForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton_調劑作業.OffIconColor = System.Drawing.Color.Black;
