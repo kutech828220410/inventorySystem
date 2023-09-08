@@ -73,6 +73,10 @@ namespace 調劑台管理系統
         private void RJ_Button_確認輸入左側原因_MouseDownEvent(MouseEventArgs mevent)
         {
             Value = rJ_TextBox_原因.Texts;
+            if(Value.Length > 100)
+            {
+                MyMessageBox.ShowDialog("字數限制100字元,請刪減原因字數!");
+            }
             this.Invoke(new Action(delegate
             {
                 this.Close();

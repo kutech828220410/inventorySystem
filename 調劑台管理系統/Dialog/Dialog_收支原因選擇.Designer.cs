@@ -147,7 +147,7 @@ namespace 調劑台管理系統
             this.rJ_TextBox_原因.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.rJ_TextBox_原因.PassWordChar = false;
             this.rJ_TextBox_原因.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_原因.PlaceholderText = "請輸入原因...";
+            this.rJ_TextBox_原因.PlaceholderText = "請輸入原因...(100字內)";
             this.rJ_TextBox_原因.ShowTouchPannel = false;
             this.rJ_TextBox_原因.Size = new System.Drawing.Size(510, 100);
             this.rJ_TextBox_原因.TabIndex = 0;
