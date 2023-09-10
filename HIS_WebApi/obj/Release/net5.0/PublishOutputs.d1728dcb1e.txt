@@ -7,6 +7,7 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Ou
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_emg_tradding.txt
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_inspection.txt
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_inventory.txt
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\excel_MedShift.txt
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.exe
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\app.config
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\web.config

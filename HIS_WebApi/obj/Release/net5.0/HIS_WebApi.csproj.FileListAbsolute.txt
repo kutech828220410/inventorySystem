@@ -1474,3 +1474,4 @@ C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref
 C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_MedShift.txt

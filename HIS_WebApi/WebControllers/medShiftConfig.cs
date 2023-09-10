@@ -147,6 +147,62 @@ namespace HIS_WebApi
 
             }
         }
+        [Route("GET_SheetClass")]
+        [HttpPost]
+        public string GET_SheetClass([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            List<medShiftListClass> medShiftListClasses = returnData.Data.ObjToListClass<medShiftListClass>();
+            int page_num = 0;
+            int current_row = 0;      
+            int max_row = 40;
+            string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_MedShift.txt", "utf-8");
+            List<SheetClass> sheetClasses = new List<SheetClass>();
+            SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
+            sheetClass.ReplaceCell(0, 0, returnData.Value);
+            while (true)
+            {
+                if(current_row > max_row)
+                {
+                    sheetClasses.Add(sheetClass);
+                    sheetClass = loadText.JsonDeserializet<SheetClass>();
+                    sheetClass.ReplaceCell(0, 0, returnData.Value);
+                    current_row = 0;
+                    page_num++;
+                }
+                int index = page_num * max_row + current_row;
+                if (index >= medShiftListClasses.Count)
+                {
+                    sheetClasses.Add(sheetClass);
+                    break;
+                }
+                medShiftListClass medShiftListClass = medShiftListClasses[index];
+                sheetClass.AddNewCell_Webapi(current_row + 3, 0, $"{index + 1}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(current_row + 3, 1, $"{medShiftListClass.藥碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(current_row + 3, 2, $"{medShiftListClass.藥名}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(current_row + 3, 3, $"{medShiftListClass.現有庫存}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(current_row + 3, 4, $"{medShiftListClass.處方支出}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(current_row + 3, 5, $"{medShiftListClass.處方數量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                sheetClass.AddNewCell_Webapi(current_row + 3, 6, $"{medShiftListClass.實際庫存}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+
+                current_row++;
+
+            }
+
+
+
+
+
+
+
+
+            returnData.Data = sheetClasses;
+            returnData.Code = 200;
+            returnData.Result = "取得交班表SheetClass成功!";
+            return returnData.JsonSerializationt();
+        }
+
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
 
