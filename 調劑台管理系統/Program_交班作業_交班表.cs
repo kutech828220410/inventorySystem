@@ -187,7 +187,7 @@ namespace 調劑台管理系統
                 }
                 List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, dateTime_st, dateTime_end, false);
                 List<object[]> list_交易紀錄_buf = new List<object[]>();
-                List<object[]> list_交易紀錄_buf_buf = new List<object[]>();
+         
                 //if (list_交易紀錄.Count == 0)
                 //{
                 //    MyMessageBox.ShowDialog("找無任何處方資料!");
@@ -196,6 +196,7 @@ namespace 調劑台管理系統
                 List<object[]> list_value = new List<object[]>();
                 for (int i = 0; i < list_Codes.Count; i++)
                 {
+                    List<object[]> list_交易紀錄_buf_buf = new List<object[]>();
                     string 藥碼 = list_Codes[i];
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
                     if (list_藥品資料_buf.Count > 0)
