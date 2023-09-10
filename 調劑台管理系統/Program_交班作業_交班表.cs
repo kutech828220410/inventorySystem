@@ -229,7 +229,6 @@ namespace 調劑台管理系統
                         value[(int)enum_交班表_交班明細.處方支出] = 處方支出;
                         value[(int)enum_交班表_交班明細.處方數量] = 處方數量;
                         value[(int)enum_交班表_交班明細.現有庫存] = 現有庫存;
-                        value[(int)enum_交班表_交班明細.實際庫存] = "0";
                         value[(int)enum_交班表_交班明細.起始時間] = dateTime_st.ToDateTimeString();
                         value[(int)enum_交班表_交班明細.結束時間] = dateTime_end.ToDateTimeString();
                         list_value.Add(value);
