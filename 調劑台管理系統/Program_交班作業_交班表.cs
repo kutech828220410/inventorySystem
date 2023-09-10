@@ -91,6 +91,7 @@ namespace 調劑台管理系統
             List<medShiftConfigClass> medShiftConfigClasses = returnData.Data.ObjToListClass<medShiftConfigClass>();
             for (int i = 0; i < medShiftConfigClasses.Count; i++)
             {
+                if (medShiftConfigClasses[i].是否交班 != true.ToString()) continue;
                 list_codes.Add(medShiftConfigClasses[i].藥品碼);
             }
             return list_codes;
