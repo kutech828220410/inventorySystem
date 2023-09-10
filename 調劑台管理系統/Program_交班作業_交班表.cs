@@ -187,6 +187,7 @@ namespace 調劑台管理系統
                 }
                 List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, dateTime_st, dateTime_end, false);
                 List<object[]> list_交易紀錄_buf = new List<object[]>();
+                List<object[]> list_交易紀錄_buf_buf = new List<object[]>();
                 //if (list_交易紀錄.Count == 0)
                 //{
                 //    MyMessageBox.ShowDialog("找無任何處方資料!");
@@ -202,25 +203,24 @@ namespace 調劑台管理系統
                         object[] value = new object[new enum_交班表_交班明細().GetLength()];
                         string 藥名 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
                         list_交易紀錄_buf = list_交易紀錄.GetRows((int)enum_交易記錄查詢資料.藥品碼, 藥碼);
-                        list_交易紀錄_buf = (from temp in list_交易紀錄_buf
-                                         where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.手輸領藥.GetEnumName()
-                                         where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.手輸退藥.GetEnumName()
-                                         where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.掃碼領藥.GetEnumName()
-                                         where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.掃碼退藥.GetEnumName()
-                                         where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.系統領藥.GetEnumName()
-                                         where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.批次領藥.GetEnumName()
-                                         where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.批次過帳.GetEnumName()
-                                         select temp).ToList();
+                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸領藥.GetEnumName()));
+                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸退藥.GetEnumName()));
+                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼領藥.GetEnumName()));
+                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.掃碼退藥.GetEnumName()));
+                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.系統領藥.GetEnumName()));
+                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次領藥.GetEnumName()));
+                        list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.批次過帳.GetEnumName()));
+                     
                         int 處方支出 = 0;
-                        int 處方數量 = list_交易紀錄_buf.Count;
+                        int 處方數量 = list_交易紀錄_buf_buf.Count;
                         int 現有庫存 = Function_從SQL取得庫存(藥碼);
-                        if (list_交易紀錄_buf.Count > 0)
+                        if (list_交易紀錄_buf_buf.Count > 0)
                         {
 
                             if (現有庫存 == -999) 現有庫存 = 0;
-                            for (int k = 0; k < list_交易紀錄_buf.Count; k++)
+                            for (int k = 0; k < list_交易紀錄_buf_buf.Count; k++)
                             {
-                                int 交易量 = list_交易紀錄_buf[k][(int)enum_交易記錄查詢資料.交易量].StringToInt32();
+                                int 交易量 = list_交易紀錄_buf_buf[k][(int)enum_交易記錄查詢資料.交易量].StringToInt32();
                                 處方支出 += 交易量;
                             }
                         }
