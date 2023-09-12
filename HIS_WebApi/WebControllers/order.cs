@@ -57,12 +57,13 @@ namespace HIS_WebApi
             SQLControl sQLControl = new SQLControl(Server, DB, "order_list", UserName, Password, Port, SSLMode);
             Table table = new Table("order_list");
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("PRI_KEY", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
+            table.AddColumnList("PRI_KEY", Table.StringType.VARCHAR, 200, Table.IndexType.INDEX);
             table.AddColumnList("藥局代碼", Table.StringType.VARCHAR, 15, Table.IndexType.None);
             table.AddColumnList("藥袋條碼", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table.AddColumnList("藥袋類型", Table.StringType.VARCHAR, 15, Table.IndexType.None);
             table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table.AddColumnList("領藥號", Table.StringType.VARCHAR, 15, Table.IndexType.None);
             table.AddColumnList("批序", Table.StringType.VARCHAR, 15, Table.IndexType.None);
             table.AddColumnList("單次劑量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("劑量單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
@@ -76,6 +77,7 @@ namespace HIS_WebApi
             table.AddColumnList("交易量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("開方日期", Table.DateType.DATETIME, 15, Table.IndexType.None);
             table.AddColumnList("結方日期", Table.DateType.DATETIME, 15, Table.IndexType.None);
+            table.AddColumnList("展藥時間", Table.DateType.DATETIME, 15, Table.IndexType.None);
             table.AddColumnList("產出時間", Table.DateType.DATETIME, 15, Table.IndexType.None);
             table.AddColumnList("過帳時間", Table.DateType.DATETIME, 15, Table.IndexType.None);
             table.AddColumnList("狀態", Table.StringType.VARCHAR, 15, Table.IndexType.None);

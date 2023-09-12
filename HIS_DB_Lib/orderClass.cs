@@ -24,6 +24,7 @@ namespace HIS_DB_Lib
         藥袋類型,
         藥品碼,
         藥品名稱,
+        領藥號,
         批序,
         單次劑量,
         劑量單位,
@@ -37,6 +38,7 @@ namespace HIS_DB_Lib
         交易量,
         開方日期,
         結方日期,
+        展藥時間,
         產出時間,
         過帳時間,
         狀態,
@@ -58,6 +60,8 @@ namespace HIS_DB_Lib
         public string 藥品碼 { get; set; }
         [JsonPropertyName("NAME")]
         public string 藥品名稱 { get; set; }
+        [JsonPropertyName("MED_BAG_CODE")]
+        public string 領藥號 { get; set; }
         [JsonPropertyName("DOS")]
         public string 批序 { get; set; }
         [JsonPropertyName("SD")]
@@ -84,10 +88,13 @@ namespace HIS_DB_Lib
         public string 開方日期 { get; set; }
         [JsonPropertyName("ORD_END")]
         public string 結方日期 { get; set; }
+        [JsonPropertyName("EXT_TIME")]
+        public string 展藥時間 { get; set; }
         [JsonPropertyName("CT_TIME")]
         public string 產出時間 { get; set; }
         [JsonPropertyName("POST_TIME")]
         public string 過帳時間 { get; set; }
+
         [JsonPropertyName("STATE")]
         public string 狀態 { get; set; }
         [JsonPropertyName("NOTE")]
