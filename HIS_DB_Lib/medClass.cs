@@ -109,12 +109,14 @@ namespace HIS_DB_Lib
         public void Add_BarCode(string barcode)
         {
             List<string> barcodes = 藥品條碼2.JsonDeserializet<List<string>>();
+            if (barcodes == null) barcodes = new List<string>();
             barcodes.Add(barcode);
             Barcode = barcodes;
         }
         public void Delete_BarCode(string barcode)
         {
             List<string> barcodes = 藥品條碼2.JsonDeserializet<List<string>>();
+            if (barcodes == null) barcodes = new List<string>();
             barcodes.Remove(barcode);
             Barcode = barcodes;
         }

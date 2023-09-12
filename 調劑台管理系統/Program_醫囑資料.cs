@@ -175,7 +175,7 @@ namespace 調劑台管理系統
                 if (text.StringIsEmpty()) return;
 
                 if (text.Length <= 2 || text.Length > 200) return;
-                if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+                //if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 MySerialPort_Scanner01.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 一維碼 = text;
@@ -189,7 +189,7 @@ namespace 調劑台管理系統
                 if (text.StringIsEmpty()) return;
      
                 if (text.Length <= 2 || text.Length > 200) return;
-                if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+                //if (text.Substring(text.Length - 2, 2) != "\r\n") return;
                 MySerialPort_Scanner02.ClearReadByte();
                 text = text.Replace("\r\n", "");
                 一維碼 = text;
