@@ -1429,6 +1429,7 @@ namespace 調劑台管理系統
                     string Order_GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
 
                     string 診別 = list_醫囑資料[i][(int)enum_醫囑資料.藥局代碼].ObjectToString();
+                    string 領藥號 = list_醫囑資料[i][(int)enum_醫囑資料.領藥號].ObjectToString();
                     string 藥袋序號 = list_醫囑資料[i][(int)enum_醫囑資料.PRI_KEY].ObjectToString();
                     string 病歷號 = list_醫囑資料[i][(int)enum_醫囑資料.病歷號].ObjectToString();
                     string 病人姓名 = list_醫囑資料[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
@@ -1449,6 +1450,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.動作 = 動作;
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
+                    takeMedicineStackClass.領藥號 = 領藥號;
                     takeMedicineStackClass.診別 = 診別;
                     takeMedicineStackClass.顏色 = 顏色;
                     takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -1543,6 +1545,8 @@ namespace 調劑台管理系統
                 string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                 string 病歷號 = value[(int)enum_醫囑資料.病歷號].ObjectToString();
                 string 診別 = value[(int)enum_醫囑資料.藥局代碼].ObjectToString();
+                string 領藥號 = value[(int)enum_醫囑資料.領藥號].ObjectToString();
+
                 string 床號 = "";
                 string 病人姓名 = value[(int)enum_醫囑資料.病人姓名].ObjectToString();
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
@@ -1558,6 +1562,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.動作 = 動作;
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.領藥號 = 領藥號;
                 takeMedicineStackClass.藥品名稱 = 藥品名稱;
                 takeMedicineStackClass.藥袋序號 = 藥袋序號;
                 takeMedicineStackClass.單位 = 單位;
@@ -3327,6 +3332,7 @@ namespace 調劑台管理系統
                     string Order_GUID = list_醫囑資料[i][(int)enum_醫囑資料.GUID].ObjectToString();
 
                     string 診別 = list_醫囑資料[i][(int)enum_醫囑資料.藥局代碼].ObjectToString();
+                    string 領藥號 = list_醫囑資料[i][(int)enum_醫囑資料.領藥號].ObjectToString();
                     string 藥袋序號 = list_醫囑資料[i][(int)enum_醫囑資料.PRI_KEY].ObjectToString();
                     string 病歷號 = list_醫囑資料[i][(int)enum_醫囑資料.病歷號].ObjectToString();
                     string 病人姓名 = list_醫囑資料[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
@@ -3347,6 +3353,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.動作 = 動作;
                     takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
                     takeMedicineStackClass.藥品碼 = 藥品碼;
+                    takeMedicineStackClass.領藥號 = 領藥號;
                     takeMedicineStackClass.診別 = 診別;
                     takeMedicineStackClass.顏色 = 顏色;
                     takeMedicineStackClass.藥品名稱 = 藥品名稱;
@@ -3441,6 +3448,8 @@ namespace 調劑台管理系統
                 string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
                 string 病歷號 = value[(int)enum_醫囑資料.病歷號].ObjectToString();
                 string 診別 = value[(int)enum_醫囑資料.藥局代碼].ObjectToString();
+                string 領藥號 = value[(int)enum_醫囑資料.領藥號].ObjectToString();
+
                 string 床號 = "";
                 string 病人姓名 = value[(int)enum_醫囑資料.病人姓名].ObjectToString();
                 string 開方時間 = value[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
@@ -3456,6 +3465,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.動作 = 動作;
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.藥品碼 = 藥品碼;
+                takeMedicineStackClass.領藥號 = 領藥號;
                 takeMedicineStackClass.藥品名稱 = 藥品名稱;
                 takeMedicineStackClass.藥袋序號 = 藥袋序號;
                 takeMedicineStackClass.單位 = 單位;

@@ -54,6 +54,7 @@ namespace HIS_DB_Lib
         動作,
         作業模式,
         藥袋序號,
+        領藥號,
         類別,
         藥品碼,
         藥品名稱,
@@ -108,6 +109,7 @@ namespace HIS_DB_Lib
         public enum_交易記錄查詢動作 動作 { get; set; }
         public string 作業模式 { get; set; }
         public string 藥袋序號 { get; set; }
+        public string 領藥號 { get; set; }
         public string 類別 { get; set; }
         public string 藥品碼 { get; set; }
         public string 藥品名稱 { get; set; }

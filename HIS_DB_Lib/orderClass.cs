@@ -60,7 +60,7 @@ namespace HIS_DB_Lib
         public string 藥品碼 { get; set; }
         [JsonPropertyName("NAME")]
         public string 藥品名稱 { get; set; }
-        [JsonPropertyName("MED_BAG_CODE")]
+        [JsonPropertyName("MED_BAG_NUM")]
         public string 領藥號 { get; set; }
         [JsonPropertyName("DOS")]
         public string 批序 { get; set; }

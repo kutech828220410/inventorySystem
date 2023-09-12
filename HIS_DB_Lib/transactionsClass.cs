@@ -55,6 +55,7 @@ namespace HIS_DB_Lib
         藥品碼,
         藥品名稱,
         藥袋序號,
+        領藥號,
         類別,
         庫存量,
         交易量,
@@ -88,6 +89,8 @@ namespace HIS_DB_Lib
         public string 藥品碼 { get; set; }
         [JsonPropertyName("NAME")]
         public string 藥品名稱 { get; set; }
+        [JsonPropertyName("MED_BAG_NUM")]
+        public string 領藥號 { get; set; }
         [JsonPropertyName("MED_BAG_SN")]
         public string 藥袋序號 { get; set; }
         [JsonPropertyName("TYPE")]
