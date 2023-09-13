@@ -81,7 +81,7 @@ namespace HIS_WebApi
             table.AddColumnList("產出時間", Table.DateType.DATETIME, 15, Table.IndexType.None);
             table.AddColumnList("過帳時間", Table.DateType.DATETIME, 15, Table.IndexType.None);
             table.AddColumnList("狀態", Table.StringType.VARCHAR, 15, Table.IndexType.None);
-            table.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table.AddColumnList("備註", Table.StringType.VARCHAR, 500, Table.IndexType.None);
 
 
             if (!sQLControl.IsTableCreat())

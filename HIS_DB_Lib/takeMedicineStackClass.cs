@@ -97,6 +97,43 @@ namespace HIS_DB_Lib
         調劑結束,
         已入賬,
     }
+    public class class_OutTakeMed_data
+    {
+        [JsonPropertyName("PRI_KEY")]
+        public string PRI_KEY { get; set; }
+        [JsonPropertyName("MC_name")]
+        public string 電腦名稱 { get; set; }
+        [JsonPropertyName("cost_center")]
+        public string 成本中心 { get; set; }
+        [JsonPropertyName("src_storehouse")]
+        public string 來源庫別 { get; set; }
+        [JsonPropertyName("code")]
+        public string 藥品碼 { get; set; }
+        [JsonPropertyName("MED_BAG_NUM")]
+        public string 領藥號 { get; set; }
+        [JsonPropertyName("OD_type")]
+        public string 類別 { get; set; }
+        [JsonPropertyName("bed_code")]
+        public string 床號 { get; set; }
+        [JsonPropertyName("value")]
+        public string 交易量 { get; set; }
+        [JsonPropertyName("operator")]
+        public string 操作人 { get; set; }
+        [JsonPropertyName("ID")]
+        public string ID { get; set; }
+        [JsonPropertyName("patient_name")]
+        public string 病人姓名 { get; set; }
+        [JsonPropertyName("patient_code")]
+        public string 病歷號 { get; set; }
+        [JsonPropertyName("prescription_time")]
+        public string 開方時間 { get; set; }
+        [JsonPropertyName("OP_type")]
+        public string 功能類型 { get; set; }
+        [JsonPropertyName("VAL")]
+        public string 效期 { get; set; }
+        [JsonPropertyName("LOT")]
+        public string 批號 { get; set; }
+    }
     public class takeMedicineStackClass
     {
         public string GUID { get; set; }

@@ -1234,11 +1234,15 @@ namespace 調劑台管理系統
                 {
                     list_取藥堆疊母資料_delete.Add(this.list_取藥堆疊母資料[i]);
                     string 藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    Task.Run(() =>
+                    if (藥品碼.StringIsEmpty() == false)
                     {
-                        Function_從SQL取得儲位到本地資料(藥品碼);
-                        this.Function_儲位刷新(藥品碼);
-                    });
+                        Task.Run(() =>
+                        {
+                            Function_從SQL取得儲位到本地資料(藥品碼);
+                            this.Function_儲位刷新(藥品碼);
+                        });
+                    }
+                
                 }
             }
             if (list_取藥堆疊母資料_delete.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
@@ -1262,6 +1266,14 @@ namespace 調劑台管理系統
                 if(ts.TotalSeconds >= 處方存在時間)
                 {
                     list_取藥堆疊母資料_delete.Add(this.list_取藥堆疊母資料[i]);
+                    //string 藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                    //if (藥品碼.StringIsEmpty() == false)
+                    //{
+                    //    Task.Run(new Action(delegate
+                    //    {
+                    //        this.Function_儲位亮燈(藥品碼, Color.Black);
+                    //    }));
+                    //}                
                 }
             }
             if (list_取藥堆疊母資料_delete.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
@@ -1294,7 +1306,19 @@ namespace 調劑台管理系統
                     for (int k = 0; k < list_取藥堆疊母資料.Count; k++)
                     {
                         string date1 = list_取藥堆疊母資料[k][(int)enum_取藥堆疊母資料.操作時間].ObjectToString().StringToDateTime().ToDateTimeString();
-                        if(date0 == date1) list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[k]);
+                        if (date0 == date1)
+                        {
+                            string 藥品碼 = this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                            //if (藥品碼.StringIsEmpty() == false)
+                            //{
+                            //    Task.Run(new Action(delegate
+                            //    {
+                            //        this.Function_儲位亮燈(藥品碼, Color.Black);
+                            //    }));
+                            //}
+
+                            list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料[k]);
+                        }
                     }
                 }
             }
@@ -2814,16 +2838,23 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < list_取藥堆疊母資料_ReplaceValue.Count; i++)
             {
-                string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.Order_GUID].ObjectToString();
+                string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
                 操作人 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
-                List<object[]> list_value = this.sqL_DataGridView_醫囑資料.SQL_GetRows((int)enum_醫囑資料.GUID, Order_GUID, false);
+                List<object[]> list_value = this.sqL_DataGridView_醫囑資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, Order_GUID, false);
                 if (list_value.Count == 0) continue;
-                if (list_value[0][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
-                list_value[0][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
-                list_value[0][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
-                list_value[0][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
-                list_醫囑資料_ReplaceValue.Add(list_value[0]);
+                for(int m = 0; m < list_value.Count; m++)
+                {
+                    if (list_value[m][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
+                    list_value[m][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
+                    list_value[m][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
+                    list_value[m][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
+                    list_醫囑資料_ReplaceValue.Add(list_value[m]);
+                }
+                //List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫囑資料>();
+                //Console.WriteLine($"{orderClasses.JsonSerializationt()}");
             }
+
+      
             if (list_交易紀錄新增資料_AddValue.Count > 0) this.sqL_DataGridView_交易記錄查詢.SQL_AddRows(list_交易紀錄新增資料_AddValue, false);
             if (list_取藥堆疊子資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(list_取藥堆疊子資料_ReplaceValue, false);
             if (list_取藥堆疊母資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_ReplaceValue, false);

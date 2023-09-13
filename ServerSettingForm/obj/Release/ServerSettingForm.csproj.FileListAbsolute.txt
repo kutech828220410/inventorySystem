@@ -406,3 +406,4 @@ C:\Users\WPC\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSe
 C:\Users\WPC\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\Users\WPC\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\WPC\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
+C:\Users\WPC\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.AssemblyReference.cache

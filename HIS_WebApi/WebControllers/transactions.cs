@@ -385,6 +385,7 @@ namespace HIS_WebApi
             table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 15, Table.IndexType.INDEX);
             table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 200, Table.IndexType.INDEX);
             table.AddColumnList("藥袋序號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("領藥號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("類別", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("庫存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("交易量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
@@ -399,7 +400,7 @@ namespace HIS_WebApi
             table.AddColumnList("操作時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
             table.AddColumnList("開方時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
             table.AddColumnList("收支原因", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table.AddColumnList("備註", Table.StringType.VARCHAR, 500, Table.IndexType.None);
             if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
             else sQLControl.CheckAllColumnName(table, true);
             return table.JsonSerializationt(true);

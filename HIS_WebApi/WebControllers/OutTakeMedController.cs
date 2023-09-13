@@ -31,41 +31,7 @@ namespace HIS_WebApi
             顏色,
             備註,
         }
-        public class class_OutTakeMed_data
-        {
-            [JsonPropertyName("PRI_KEY")]
-            public string PRI_KEY { get; set; }
-            [JsonPropertyName("MC_name")]
-            public string 電腦名稱 { get; set; }
-            [JsonPropertyName("cost_center")]
-            public string 成本中心 { get; set; }
-            [JsonPropertyName("src_storehouse")]
-            public string 來源庫別 { get; set; }
-            [JsonPropertyName("code")]
-            public string 藥品碼 { get; set; }
-            [JsonPropertyName("OD_type")]
-            public string 類別 { get; set; }
-            [JsonPropertyName("bed_code")]
-            public string 床號 { get; set; }
-            [JsonPropertyName("value")]
-            public string 交易量 { get; set; }
-            [JsonPropertyName("operator")]
-            public string 操作人 { get; set; }
-            [JsonPropertyName("ID")]
-            public string ID { get; set; }
-            [JsonPropertyName("patient_name")]
-            public string 病人姓名 { get; set; }
-            [JsonPropertyName("patient_code")]
-            public string 病歷號 { get; set; }
-            [JsonPropertyName("prescription_time")]
-            public string 開方時間 { get; set; }
-            [JsonPropertyName("OP_type")]
-            public string 功能類型 { get; set; }
-            [JsonPropertyName("VAL")]
-            public string 效期 { get; set; }
-            [JsonPropertyName("LOT")]
-            public string 批號 { get; set; }
-        }
+       
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private string name = ConfigurationManager.AppSettings["name"];
 
@@ -340,7 +306,9 @@ namespace HIS_WebApi
                 string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
                 string 類別 = data[0].類別;
                 string 床號 = data[0].床號;
-                this.Function_取藥堆疊資料_取藥新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量);
+                string 領藥號 = data[0].領藥號;
+
+                this.Function_取藥堆疊資料_取藥新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量);
                 return $"OK";
             }
             else if (data[0].功能類型 == "0")
@@ -377,7 +345,9 @@ namespace HIS_WebApi
                 int 總異動量 = data[0].交易量.StringToInt32();
                 string 類別 = data[0].類別;
                 string 床號 = data[0].床號;
-                this.Function_取藥堆疊資料_取藥新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量);
+                string 領藥號 = data[0].領藥號;
+
+                this.Function_取藥堆疊資料_取藥新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量);
                 return $"OK";
             }
             else if (data[0].功能類型 == "-2")
@@ -418,7 +388,9 @@ namespace HIS_WebApi
 
                 string 效期 = data[0].效期;
                 string 批號 = data[0].批號;
-                this.Function_取藥堆疊資料_入庫新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量, 效期, 批號);
+                string 領藥號 = data[0].領藥號;
+                
+                this.Function_取藥堆疊資料_入庫新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量, 效期, 批號);
                 return $"OK";
             }
             else if (data[0].功能類型 == "-5")
@@ -448,7 +420,9 @@ namespace HIS_WebApi
                 if (data[0].效期.Check_Date_String() == false) data[0].效期 = "2050/12/31";
                 string 效期 = data[0].效期;
                 string 批號 = data[0].批號;
-                this.Function_取藥堆疊資料_入庫新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量, 效期, 批號);
+                string 領藥號 = data[0].領藥號;
+
+                this.Function_取藥堆疊資料_入庫新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量, 效期, 批號);
                 return $"OK";
             }
             else
@@ -560,8 +534,57 @@ namespace HIS_WebApi
                     string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
                     string 類別 = data[i].類別;
                     string 床號 = data[i].床號;
-                    this.Function_取藥堆疊資料_取藥新增(serverSettingClass ,設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量);
+                    string 領藥號 = data[i].領藥號;
+                    this.Function_取藥堆疊資料_取藥新增(serverSettingClass ,設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量);
                    
+                }
+                return $"OK";
+            }
+            else if (data[0].功能類型 == "A1")
+            {
+                string 設備名稱 = data[0].電腦名稱;
+                while(true)
+                {
+                    List<object[]> list_take_medicine_stack = sQLControl_take_medicine_stack.GetRowsByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, 設備名稱);
+                    if (list_take_medicine_stack.Count == 0) break;
+                    if (list_take_medicine_stack.Count > 0)
+                    {
+                        sQLControl_take_medicine_stack.DeleteExtra(null, list_take_medicine_stack);
+                    }
+                }
+               
+
+
+                for (int i = 0; i < data.Count; i++)
+                {
+                    if (data[i].PRI_KEY.StringIsEmpty()) data[i].PRI_KEY = Guid.NewGuid().ToString();
+                    string PRI_KEY = data[i].PRI_KEY;
+                    string 藥品碼 = data[i].藥品碼;
+                    List<DeviceBasic> list_device = devices.SortByCode(data[i].藥品碼);
+                    if (list_device.Count == 0) continue;
+                    int 總異動量 = data[i].交易量.StringToInt32();
+                    if (總異動量 != 0)
+                    {
+                        //List<object[]> list_trading = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥袋序號, data[i].PRI_KEY);
+                        //if (list_trading.Count > 0) return "-4";
+                    }
+                    else
+                    {
+                        PRI_KEY = Guid.NewGuid().ToString();
+                    }
+                    string 藥品名稱 = list_device[0].Name;
+                    string 單位 = list_device[0].Package;
+                    string 病歷號 = data[i].病歷號;
+                    string 病人姓名 = data[i].病人姓名;
+                    string 開方時間 = data[i].開方時間;
+                    string 操作時間 = DateTime.Now.ToDateTimeString_6();
+                    string 操作人 = data[i].操作人;
+                    string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
+                    string 類別 = data[i].類別;
+                    string 床號 = data[i].床號;
+                    string 領藥號 = data[i].領藥號;
+                    this.Function_取藥堆疊資料_取藥新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, 顏色, 總異動量);
+
                 }
                 return $"OK";
             }
@@ -600,7 +623,9 @@ namespace HIS_WebApi
                     string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
                     string 類別 = data[i].類別;
                     string 床號 = data[i].床號;
-                    this.Function_取藥堆疊資料_取藥新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量);
+                    string 領藥號 = data[i].領藥號;
+
+                    this.Function_取藥堆疊資料_取藥新增(serverSettingClass, 設備名稱, 藥品碼, 藥品名稱, PRI_KEY, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, 操作人, 操作時間, Color.Black.ToColorString(), 總異動量);
                 }
                
                 return $"OK";
@@ -672,15 +697,15 @@ namespace HIS_WebApi
             }
             return 庫存;
         }
-        private bool Function_取藥堆疊資料_取藥新增(ServerSettingClass serverSettingClass ,string 設備名稱, string 藥品碼, string 藥品名稱, string 藥袋序號, string 類別, string 單位, string 病歷號, string 病人姓名, string 床號, string 開方時間, string 操作人, string 操作時間, string 顏色, int 總異動量)
+        private bool Function_取藥堆疊資料_取藥新增(ServerSettingClass serverSettingClass ,string 設備名稱, string 藥品碼, string 藥品名稱, string 藥袋序號, string 領藥號, string 類別, string 單位, string 病歷號, string 病人姓名, string 床號, string 開方時間, string 操作人, string 操作時間, string 顏色, int 總異動量)
         {
-            return this.Function_取藥堆疊資料_新增母資料(serverSettingClass ,Guid.NewGuid().ToString(), 設備名稱, enum_交易記錄查詢動作.系統領藥, 藥品碼, 藥品名稱, 藥袋序號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 操作時間, 顏色, 總異動量, "", "");
+            return this.Function_取藥堆疊資料_新增母資料(serverSettingClass ,Guid.NewGuid().ToString(), 設備名稱, enum_交易記錄查詢動作.系統領藥, 藥品碼, 藥品名稱, 藥袋序號, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 操作時間, 顏色, 總異動量, "", "");
         }
-        private bool Function_取藥堆疊資料_入庫新增(ServerSettingClass serverSettingClass, string 設備名稱, string 藥品碼, string 藥品名稱, string 藥袋序號, string 類別, string 單位, string 病歷號, string 病人姓名, string 床號, string 開方時間, string 操作人, string 操作時間, string 顏色, int 總異動量, string 效期, string 批號)
+        private bool Function_取藥堆疊資料_入庫新增(ServerSettingClass serverSettingClass, string 設備名稱, string 藥品碼, string 藥品名稱, string 藥袋序號, string 領藥號, string 類別, string 單位, string 病歷號, string 病人姓名, string 床號, string 開方時間, string 操作人, string 操作時間, string 顏色, int 總異動量, string 效期, string 批號)
         {
-            return this.Function_取藥堆疊資料_新增母資料(serverSettingClass, Guid.NewGuid().ToString(), 設備名稱, enum_交易記錄查詢動作.系統入庫, 藥品碼, 藥品名稱, 藥袋序號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 操作時間, 顏色, 總異動量, 效期, 批號);
+            return this.Function_取藥堆疊資料_新增母資料(serverSettingClass, Guid.NewGuid().ToString(), 設備名稱, enum_交易記錄查詢動作.系統入庫, 藥品碼, 藥品名稱, 藥袋序號, 領藥號, 類別, 單位, 病歷號, 病人姓名, 床號, 開方時間, "", 操作人, 操作時間, 顏色, 總異動量, 效期, 批號);
         }
-        private bool Function_取藥堆疊資料_新增母資料(ServerSettingClass serverSettingClass ,string GUID, string 設備名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 藥品碼, string 藥品名稱, string 藥袋序號, string 類別, string 單位, string 病歷號, string 病人姓名, string 床號, string 開方時間, string IP, string 操作人, string 操作時間, string 顏色, int 總異動量, string 效期, string 批號)
+        private bool Function_取藥堆疊資料_新增母資料(ServerSettingClass serverSettingClass ,string GUID, string 設備名稱, enum_交易記錄查詢動作 _enum_交易記錄查詢動作, string 藥品碼, string 藥品名稱, string 藥袋序號, string 領藥號, string 類別, string 單位, string 病歷號, string 病人姓名, string 床號, string 開方時間, string IP, string 操作人, string 操作時間, string 顏色, int 總異動量, string 效期, string 批號)
         {
             if (serverSettingClass == null)
             {
@@ -708,6 +733,7 @@ namespace HIS_WebApi
             value[(int)enum_取藥堆疊母資料.藥袋序號] = 藥袋序號;
             value[(int)enum_取藥堆疊母資料.藥品碼] = 藥品碼;
             value[(int)enum_取藥堆疊母資料.藥品名稱] = 藥品名稱;
+            value[(int)enum_取藥堆疊母資料.領藥號] = 領藥號;
             value[(int)enum_取藥堆疊母資料.類別] = 類別;
             value[(int)enum_取藥堆疊母資料.單位] = 單位;
             value[(int)enum_取藥堆疊母資料.病歷號] = 病歷號;
@@ -753,7 +779,7 @@ namespace HIS_WebApi
             }
             else if (index == 2)
             {
-                return Color.Yellow;
+                return Color.Green;
             }
             else if (index == 3)
             {
