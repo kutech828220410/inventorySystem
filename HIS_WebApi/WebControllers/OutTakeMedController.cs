@@ -543,6 +543,7 @@ namespace HIS_WebApi
             else if (data[0].功能類型 == "A1")
             {
                 string 設備名稱 = data[0].電腦名稱;
+
                 while(true)
                 {
                     List<object[]> list_take_medicine_stack = sQLControl_take_medicine_stack.GetRowsByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, 設備名稱);
