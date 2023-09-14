@@ -517,6 +517,9 @@ namespace 調劑台管理系統
                 text = text.Replace("\0", "");
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+                text = text.Replace("\r", "");
+                text = text.Replace("\n", "");
+
                 領藥台_01_一維碼 = text;
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), 領藥台_01_一維碼, false);
                 if (list_人員資料.Count == 0)
@@ -2425,7 +2428,10 @@ namespace 調劑台管理系統
                 text = text.Replace("\0", "");
                 if (text.Length <= 2 || text.Length > 30) return;
                 if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+                text = text.Replace("\r", "");
+                text = text.Replace("\n", "");
                 領藥台_02_一維碼 = text;
+   
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), 領藥台_02_一維碼, false);
                 if (list_人員資料.Count == 0)
                 {
