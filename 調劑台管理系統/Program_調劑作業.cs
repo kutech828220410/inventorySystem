@@ -1474,7 +1474,6 @@ namespace 調劑台管理系統
                         {
                             takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
                         }
-
                     }
                     if (flag_雙人覆核)
                     {
@@ -2110,6 +2109,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
+            PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
             for (int i = 0; i < list_醫囑資料.Count; i++)
             {
 
@@ -2156,7 +2156,13 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
                 takeMedicineStackClass.收支原因 = 收支原因;
-
+                if (pLC_Device.Bool == false)
+                {
+                    if (list_醫囑資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
+                    {
+                        takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
+                    }
+                }
                 if (flag_雙人覆核)
                 {
                     this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);

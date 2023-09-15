@@ -573,11 +573,11 @@ namespace 調劑台管理系統
                         list_value_add.Add(value);
                         Console.WriteLine($"{takeMedicineStackClass.JsonSerializationt(true)}");
                     }
-                    //Task.Run(new Action(delegate 
-                    //{
-                    //    this.Function_儲位亮燈(藥品碼, Color.Black);
-                    //}));
-                 
+                    Task.Run(new Action(delegate
+                    {
+                        this.Function_儲位滅燈(藥品碼);
+                    }));
+
 
                 }
                 if (list_value_add.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_value_add, false);

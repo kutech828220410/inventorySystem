@@ -63,7 +63,19 @@ namespace 調劑台管理系統
             string url = $"{order_url}?MRN={MRN}";
             string json = Net.WEBApiGet(url);
             returnData returnData = json.JsonDeserializet<returnData>();
+            if (returnData == null)
+            {
+                MyMessageBox.ShowDialog("未搜尋到醫令!");
+                return;
+            }
+            if(returnData.Code != 200)
+            {
+                MyMessageBox.ShowDialog($"{returnData.Result}");
+                return;
+            }
             List<OrderClass> orderClasses = returnData.Data.ObjToListClass<OrderClass>();
+    
+      
             List<object[]> list_order = orderClasses.ClassToSQL<OrderClass, enum_醫囑資料>();
             List<object[]> list_order_buf = new List<object[]>();
             List<object[]> list_藥檔資料 = this.sQL_DataGridView_藥檔資料.SQL_GetAllRows(false);
