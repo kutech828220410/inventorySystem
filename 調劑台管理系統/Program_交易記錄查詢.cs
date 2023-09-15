@@ -26,6 +26,7 @@ namespace 調劑台管理系統
             藥品碼,
             藥品名稱,
             藥袋序號,
+            領藥號,
             類別,
             庫存量,
             交易量,
@@ -198,7 +199,7 @@ namespace 調劑台管理系統
                         CSVHelper.SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
                         MyMessageBox.ShowDialog("匯出完成!");
                     }
-                    else if (Extension == ".xls")
+                    else if (Extension == ".xlsx")
                     {
                         MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName, (int)enum_交易記錄查詢資料_匯出.庫存量, (int)enum_交易記錄查詢資料_匯出.盤點量, (int)enum_交易記錄查詢資料_匯出.交易量, (int)enum_交易記錄查詢資料_匯出.結存量);
                         MyMessageBox.ShowDialog("匯出完成!");

@@ -37,6 +37,7 @@ namespace HIS_DB_Lib
         實際庫存,
         起始時間,
         結束時間,
+        管制級別,
     }
     public class medShiftListClass
     {
@@ -58,5 +59,7 @@ namespace HIS_DB_Lib
         public string 起始時間 { get; set; }
         [JsonPropertyName("END_TIME")]
         public string 結束時間 { get; set; }
+        [JsonPropertyName("DRUGKIND")]
+        public string 管制級別 { get; set; }
     }
 }

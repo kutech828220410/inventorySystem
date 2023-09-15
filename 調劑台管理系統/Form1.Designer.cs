@@ -5185,6 +5185,7 @@
             this.sqL_DataGridView_交班作業_交班表_交班明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交班作業_交班表_交班明細.Columns6"))));
             this.sqL_DataGridView_交班作業_交班表_交班明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交班作業_交班表_交班明細.Columns7"))));
             this.sqL_DataGridView_交班作業_交班表_交班明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交班作業_交班表_交班明細.Columns8"))));
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_交班作業_交班表_交班明細.Columns9"))));
             this.sqL_DataGridView_交班作業_交班表_交班明細.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_交班作業_交班表_交班明細.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_交班作業_交班表_交班明細.ImageBox = false;

@@ -104,7 +104,7 @@ namespace 調劑台管理系統
         {
             Rectangle rectangle = new Rectangle(0, 0, width, height);
             SheetClass sheetClass = printerClass_交班表.GetSheetClass(page_num);
-            using (Bitmap bitmap = sheetClass.GetBitmap(width, height, 0.8, H_Alignment.Center, V_Alignment.Top, 0, 50))
+            using (Bitmap bitmap = sheetClass.GetBitmap(width, height, 0.7, H_Alignment.Center, V_Alignment.Top, 0, 50))
             {
                 rectangle.Height = bitmap.Height;
                 g.DrawImage(bitmap, rectangle);
@@ -203,6 +203,7 @@ namespace 調劑台管理系統
                     {
                         object[] value = new object[new enum_交班表_交班明細().GetLength()];
                         string 藥名 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
+                        string 管制級別 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
                         list_交易紀錄_buf = list_交易紀錄.GetRows((int)enum_交易記錄查詢資料.藥品碼, 藥碼);
                         list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸領藥.GetEnumName()));
                         list_交易紀錄_buf_buf.LockAdd(list_交易紀錄_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.手輸退藥.GetEnumName()));
@@ -232,9 +233,13 @@ namespace 調劑台管理系統
                         value[(int)enum_交班表_交班明細.現有庫存] = 現有庫存;
                         value[(int)enum_交班表_交班明細.起始時間] = dateTime_st.ToDateTimeString();
                         value[(int)enum_交班表_交班明細.結束時間] = dateTime_end.ToDateTimeString();
+                        value[(int)enum_交班表_交班明細.管制級別] = 管制級別;
+
                         list_value.Add(value);
                     }
                 }
+                List<object[]> list_value_buf = new List<object[]>();
+                list_value.Sort(new Icp_交班作業_交班表_交班明細());
                 this.sqL_DataGridView_交班作業_交班表_交班明細.RefreshGrid(list_value);
                 this.plC_RJ_GroupBox_交班作業_交班表_交班明細.TitleTexts = $"交班明細 [{dateTime_st.ToDateTimeString()}]-[{dateTime_end.ToDateTimeString()}]";
             }));
@@ -297,5 +302,26 @@ namespace 調劑台管理系統
             }
         }
         #endregion
+
+        public class Icp_交班作業_交班表_交班明細 : IComparer<object[]>
+        {
+            public int Compare(object[] x, object[] y)
+            {
+                string 管制級別_0 = x[(int)enum_交班表_交班明細.管制級別].ObjectToString();
+                string 管制級別_1 = y[(int)enum_交班表_交班明細.管制級別].ObjectToString();
+                int temp0 = 管制級別_0.CompareTo(管制級別_1);
+                if(temp0 == 0)
+                {
+                    string 藥品碼_0 = x[(int)enum_交班表_交班明細.藥碼].ObjectToString();
+                    string 藥品碼_1 = y[(int)enum_交班表_交班明細.藥碼].ObjectToString();
+                    return 藥品碼_0.CompareTo(藥品碼_1);
+                }
+                else
+                {
+                    return temp0;
+                }
+         
+            }
+        }
     }
 }
