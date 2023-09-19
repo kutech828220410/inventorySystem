@@ -1438,6 +1438,7 @@ namespace 調劑台管理系統
                     string 病人姓名 = list_醫囑資料[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
                     string 床號 = "";
                     string 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
+                    if(開方時間.StringIsEmpty()) 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ObjectToString();
                     string ID = 領藥台_01_ID;
                     string 操作人 = 領藥台_01_登入者姓名;
                     string 藥師證字號 = 領藥台_01_藥師證字號;
@@ -3350,6 +3351,7 @@ namespace 調劑台管理系統
                     string 病人姓名 = list_醫囑資料[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
                     string 床號 = "";
                     string 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
+                    if (開方時間.StringIsEmpty()) 開方時間 = list_醫囑資料[i][(int)enum_醫囑資料.開方日期].ObjectToString();
                     string ID = 領藥台_02_ID;
                     string 操作人 = 領藥台_02_登入者姓名;
                     string 藥師證字號 = 領藥台_02_藥師證字號;
