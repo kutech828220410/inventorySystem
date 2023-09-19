@@ -1108,16 +1108,18 @@ namespace HIS_WebApi
             string UserName = serverSettingClasses[0].User;
             string Password = serverSettingClasses[0].Password;
             uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-
+            inventoryClass.sub_content sub_content = returnData.Data.ObjToClass<inventoryClass.sub_content>();
+            string Master_GUID = sub_content.Master_GUID;
+    
             SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
+            List<object[]> list_inventory_content = sQLControl_inventory_content.GetRowsByDefult(null, (int)enum_盤點內容.GUID, Master_GUID);
             List<object[]> list_inventory_content_buf = new List<object[]>();
             List<object[]> list_add = new List<object[]>();
-            inventoryClass.sub_content sub_content = returnData.Data.ObjToClass<inventoryClass.sub_content>();
-            string Master_GUID = sub_content.Master_GUID;
-            list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.GUID, Master_GUID);
+
+
+            list_inventory_content_buf = list_inventory_content;
             if (list_inventory_content_buf.Count == 0)
             {
                 returnData.Code = -5;
