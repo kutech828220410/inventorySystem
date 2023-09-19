@@ -35,6 +35,10 @@ namespace 調劑台管理系統
         [Description("M8000")]
         下載未建置條碼藥品,
         [Description("M8000")]
+        下載已建置條碼藥品,
+        [Description("M8000")]
+        上載條碼Excel表,
+        [Description("M8000")]
         回傳至雲端,
     }
 
@@ -82,6 +86,26 @@ namespace 調劑台管理系統
         藥品碼,
         料號,
         藥品名稱,
+    }
+    public enum enum_藥品資料_藥檔資料_已建置藥品條碼_匯出
+    {
+        藥品碼,
+        料號,
+        藥品名稱,
+        條碼1,
+        條碼2,
+        條碼3,
+        條碼4,
+    }
+    public enum enum_藥品資料_藥檔資料_已建置藥品條碼_匯入
+    {
+        藥品碼,
+        料號,
+        藥品名稱,
+        條碼1,
+        條碼2,
+        條碼3,
+        條碼4,
     }
     public enum enum_藥品群組
     {
@@ -693,13 +717,14 @@ namespace 調劑台管理系統
         }
         private void Function_藥品資料_藥檔資料_下載未建置條碼藥品()
         {
+
             List<object[]> list_value = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
             List<object[]> list_value_buf = new List<object[]>();
             List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
             List<medClass> medClasses_buf = new List<medClass>();
             for (int i = 0; i < medClasses.Count; i++)
             {
-                if(medClasses[i].Barcode.Count == 0)
+                if (medClasses[i].Barcode.Count == 0)
                 {
                     medClasses_buf.Add(medClasses[i]);
                 }
@@ -723,6 +748,155 @@ namespace 調劑台管理系統
                 }
 
             }
+        }
+        private void Function_藥品資料_藥檔資料_下載已建置條碼藥品()
+        {
+            List<object[]> list_value = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
+            List<object[]> list_value_buf = new List<object[]>();
+            List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
+            List<medClass> medClasses_buf = new List<medClass>();
+            for (int i = 0; i < medClasses.Count; i++)
+            {
+                if (medClasses[i].Barcode.Count != 0)
+                {
+                    medClasses_buf.Add(medClasses[i]);
+                }
+            }
+            for (int i = 0; i < medClasses_buf.Count; i++)
+            {
+                object[] value = new object[new enum_藥品資料_藥檔資料_已建置藥品條碼_匯出().GetLength()];
+                value[(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯出.藥品碼] = medClasses_buf[i].藥品碼;
+                value[(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯出.藥品名稱] = medClasses_buf[i].藥品名稱;
+                value[(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯出.料號] = medClasses_buf[i].料號;
+                for (int k = 0; k < medClasses_buf[i].Barcode.Count; k++)
+                {
+                    if (k == 0) value[(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯出.條碼1] = medClasses_buf[i].Barcode[k];
+                    if (k == 1) value[(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯出.條碼2] = medClasses_buf[i].Barcode[k];
+                    if (k == 2) value[(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯出.條碼3] = medClasses_buf[i].Barcode[k];
+                    if (k == 3) value[(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯出.條碼4] = medClasses_buf[i].Barcode[k];
+                }
+                list_value_buf.Add(value);
+            }
+            saveFileDialog_SaveExcel.OverwritePrompt = false;
+            if (saveFileDialog_SaveExcel.ShowDialog(this) == DialogResult.OK)
+            {
+                DataTable datatable = new DataTable();
+                datatable = list_value_buf.ToDataTable(new enum_藥品資料_藥檔資料_已建置藥品條碼_匯出());
+                string Extension = System.IO.Path.GetExtension(this.saveFileDialog_SaveExcel.FileName);
+                if (Extension == ".txt")
+                {
+                    CSVHelper.SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                    MyMessageBox.ShowDialog("匯出完成!");
+                }
+                else if (Extension == ".xls" || Extension == ".xlsx")
+                {
+                    MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                    MyMessageBox.ShowDialog("匯出完成!");
+                }
+
+            }
+        }
+        private void Function_藥品資料_藥檔資料_上載條碼Excel表()
+        {
+            this.Invoke(new Action(delegate
+            {
+                if (openFileDialog_LoadExcel.ShowDialog(this) != DialogResult.OK) return;
+                DataTable dataTable = MyOffice.ExcelClass.NPOI_LoadFile(openFileDialog_LoadExcel.FileName);
+                DataTable dt_reorder = dataTable.ReorderTable(new enum_藥品資料_藥檔資料_已建置藥品條碼_匯入());
+
+                if (dt_reorder == null)
+                {
+                    MyMessageBox.ShowDialog("讀取Excel表單失敗!");
+                    return;
+                }
+                List<object[]> list_load = dt_reorder.DataTableToRowList();
+
+
+                List<object[]> list_value = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
+                List<object[]> list_value_buf = new List<object[]>();
+                List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
+                List<medClass> medClasses_buf = new List<medClass>();
+                List<medClass> medClasses_replace = new List<medClass>();
+                List<string> list_barcode = new List<string>();
+                List<string> list_barcode_buf = new List<string>();
+                for (int i = 0; i < medClasses.Count; i++)
+                {
+                    for (int k = 0; k < medClasses[i].Barcode.Count; k++)
+                    {
+                        list_barcode.Add(medClasses[i].Barcode[k]);
+                    }
+                }
+                for(int i = 0; i < list_load.Count; i++)
+                {
+                    string 藥品碼 = list_load[i][(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯入.藥品碼].ObjectToString();
+                    string 條碼1 = list_load[i][(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯入.條碼1].ObjectToString();
+                    string 條碼2 = list_load[i][(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯入.條碼2].ObjectToString();
+                    string 條碼3 = list_load[i][(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯入.條碼3].ObjectToString();
+                    string 條碼4 = list_load[i][(int)enum_藥品資料_藥檔資料_已建置藥品條碼_匯入.條碼4].ObjectToString();
+                    medClasses_buf = (from temp in medClasses
+                                      where temp.藥品碼 == 藥品碼
+                                      select temp).ToList();
+                    if(medClasses_buf.Count > 0)
+                    {
+                        bool flag_replace = false;
+                        if (條碼1.StringIsEmpty() == false)
+                        {
+                            list_barcode_buf = (from temp in list_barcode
+                                                where temp == 條碼1
+                                                select temp).ToList();
+                            if (list_barcode_buf.Count == 0)
+                            {
+                                medClasses_buf[0].Add_BarCode(條碼1);
+                                list_barcode.Add(條碼1);
+                                flag_replace = true;
+                            }
+                        }
+                        if (條碼2.StringIsEmpty() == false)
+                        {
+                            list_barcode_buf = (from temp in list_barcode
+                                                where temp == 條碼2
+                                                select temp).ToList();
+                            if (list_barcode_buf.Count == 0)
+                            {
+                                medClasses_buf[0].Add_BarCode(條碼2);
+                                list_barcode.Add(條碼2);
+                                flag_replace = true;
+                            }
+                        }
+                        if (條碼3.StringIsEmpty() == false)
+                        {
+                            list_barcode_buf = (from temp in list_barcode
+                                                where temp == 條碼3
+                                                select temp).ToList();
+                            if (list_barcode_buf.Count == 0)
+                            {
+                                medClasses_buf[0].Add_BarCode(條碼3);
+                                list_barcode.Add(條碼3);
+                                flag_replace = true;
+                            }
+                        }
+                        if (條碼4.StringIsEmpty() == false)
+                        {
+                            list_barcode_buf = (from temp in list_barcode
+                                                where temp == 條碼4
+                                                select temp).ToList();
+                            if (list_barcode_buf.Count == 0)
+                            {
+                                medClasses_buf[0].Add_BarCode(條碼4);
+                                list_barcode.Add(條碼4);
+                                flag_replace = true;
+                            }
+                        }
+                        if (flag_replace) medClasses_replace.Add(medClasses_buf[0]);
+                    }
+                }
+
+                List<object[]> list_雲端藥檔_replace = medClasses_replace.ClassToSQL<medClass, enum_雲端藥檔>();
+                this.sqL_DataGridView_雲端藥檔.SQL_ReplaceExtra(list_雲端藥檔_replace, false);
+                MyMessageBox.ShowDialog("上傳完成!"); 
+            }));
+         
+            
         }
         #endregion
         #region Event
@@ -888,6 +1062,17 @@ namespace 調劑台管理系統
 
                         this.Function_藥品資料_藥檔資料_下載未建置條碼藥品();
                     }
+                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.下載已建置條碼藥品.GetEnumName())
+                    {
+
+                        this.Function_藥品資料_藥檔資料_下載已建置條碼藥品();
+                    }
+                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.上載條碼Excel表.GetEnumName())
+                    {
+
+                        this.Function_藥品資料_藥檔資料_上載條碼Excel表();
+                    }
+                    
                 }
             }
         }

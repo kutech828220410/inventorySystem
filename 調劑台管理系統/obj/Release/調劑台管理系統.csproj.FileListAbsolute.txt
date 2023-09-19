@@ -2543,3 +2543,4 @@ C:\Users\WPC\source\repos\inventorySystem\調劑台管理系統\obj\Release\調�
 C:\Users\WPC\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\Users\WPC\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\WPC\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_交班藥品選擇.resources

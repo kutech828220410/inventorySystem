@@ -1660,3 +1660,4 @@ C:\Users\WPC\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\scopedcs
 C:\Users\WPC\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.RazorTargetAssemblyInfo.cache
 C:\Users\WPC\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CopyComplete
 C:\Users\WPC\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_MedShift.txt
