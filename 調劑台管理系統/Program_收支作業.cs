@@ -292,10 +292,15 @@ namespace 調劑台管理系統
                     }
 
                     Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel($"(盲盤)請輸入取藥後盤點數量", $"藥碼:{藥碼} \n藥名:{藥名}");
-                    dialog_NumPannel.TitleFont = new Font("微軟正黑體", 20, FontStyle.Bold);
-                    dialog_NumPannel.X_Visible = false;
-             
-                    dialog_NumPannel.ShowDialog();
+                    dialog_NumPannel.TitleFont = new Font("微軟正黑體", 16, FontStyle.Bold);
+                    dialog_NumPannel.X_Visible = true;
+
+                    if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
+                    {
+                        //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.取消作業.GetEnumName();
+                        this.Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        break;
+                    }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
                     if (結存量 == dialog_NumPannel.Value.ToString()) break;
                     voice.SpeakOnTask("盲盤數量錯誤");
@@ -354,10 +359,16 @@ namespace 調劑台管理系統
                     }
 
                     Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel($"(明盤)請輸入取藥後盤點數量", $"藥碼:{藥碼} \n藥名:{藥名}");
-                    dialog_NumPannel.TitleFont = new Font("微軟正黑體", 20, FontStyle.Bold);
-                    dialog_NumPannel.X_Visible = false;
-              
-                    dialog_NumPannel.ShowDialog();
+                    dialog_NumPannel.TitleFont = new Font("微軟正黑體", 16, FontStyle.Bold);
+
+                    dialog_NumPannel.X_Visible = true;
+
+                    if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
+                    {
+                        //list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.取消作業.GetEnumName();
+                        this.Function_取藥堆疊資料_刪除母資料(list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString());
+                        break;
+                    }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
                     if (結存量 == dialog_NumPannel.Value.ToString()) break;
                     voice.SpeakOnTask("複盤數量錯誤");

@@ -106,12 +106,17 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_cloud")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");             
-                    string Server = serverSettingClasses[0].Server;
-                    string DB = serverSettingClasses[0].DBName;
-                    string UserName = serverSettingClasses[0].User;
-                    string Password = serverSettingClasses[0].Password;
-                    uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                    List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
+                    serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");   
+                    if(serverSettingClasses_buf.Count == 0)
+                    {
+                        serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                    }
+                    string Server = serverSettingClasses_buf[0].Server;
+                    string DB = serverSettingClasses_buf[0].DBName;
+                    string UserName = serverSettingClasses_buf[0].User;
+                    string Password = serverSettingClasses_buf[0].Password;
+                    uint Port = (uint)serverSettingClasses_buf[0].Port.StringToInt32();
                     if (serverSettingClasses.Count == 0)
                     {
                         returnData.Code = -200;

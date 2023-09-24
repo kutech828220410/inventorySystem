@@ -39,7 +39,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -65,7 +65,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if(serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -106,6 +106,53 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt(true);
         }
 
+        [Route("get_all_unlock_creat")]
+        [HttpPost]
+        public string POST_get_all_unlock_creat([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+              
+                List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
+                list_inventory_creat = (from temp in list_inventory_creat
+                                        where temp[(int)enum_盤點單號.盤點狀態].ObjectToString() != enum_盤點狀態.鎖定.GetEnumName()
+                                        select temp).ToList();
+                List<inventoryClass.creat> creats = list_inventory_creat.SQLToClass<inventoryClass.creat , enum_盤點單號>();
+                returnData.Code = 200;
+                returnData.Data = creats;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "get_all_unlock_creat";
+                returnData.Result = $"取得盤點資料成功!";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
         //以建表日搜尋盤點單
         [Route("creat_get_by_CT_TIME_ST_END")]
         [HttpPost]
@@ -119,7 +166,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -186,7 +233,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -248,7 +295,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -322,7 +369,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -376,7 +423,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
                 if (serverSettingClasses_buf.Count == 0)
                 {
@@ -487,7 +534,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -585,7 +632,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
@@ -675,7 +722,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -732,7 +779,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -789,7 +836,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -845,7 +892,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -891,7 +938,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -972,7 +1019,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1023,7 +1070,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1096,7 +1143,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1187,7 +1234,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1261,7 +1308,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1528,7 +1575,7 @@ namespace HIS_WebApi
             Table table_inventory_creat;
             table_inventory_creat = new Table("inventory_creat");
             table_inventory_creat.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inventory_creat.AddColumnList("盤點名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("盤點名稱", Table.StringType.VARCHAR, 500, Table.IndexType.None);
             table_inventory_creat.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_creat.AddColumnList("建表人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_creat.AddColumnList("建表時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
@@ -1547,8 +1594,8 @@ namespace HIS_WebApi
             table_inventory_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inventory_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inventory_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.INDEX);
+            table_inventory_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("理論值", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_inventory_content.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
@@ -1563,13 +1610,13 @@ namespace HIS_WebApi
             table_inventory_sub_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
             table_inventory_sub_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_sub_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inventory_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inventory_sub_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_sub_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("效期", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("批號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table_inventory_sub_content.AddColumnList("操作時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
-            table_inventory_sub_content.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_sub_content.AddColumnList("操作時間", Table.DateType.DATETIME, 30, Table.IndexType.INDEX);
+            table_inventory_sub_content.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
             table_inventory_sub_content.AddColumnList("狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             if (!sQLControl_inventory_sub_content.IsTableCreat()) sQLControl_inventory_sub_content.CreatTable(table_inventory_sub_content);

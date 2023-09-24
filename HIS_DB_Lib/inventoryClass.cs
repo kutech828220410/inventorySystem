@@ -24,6 +24,12 @@ namespace HIS_DB_Lib
         誤差量,
         誤差金額
     }
+    public enum enum_盤點狀態
+    {
+        盤點中,
+        等待盤點,
+        鎖定,
+    }
     public enum enum_盤點單號
     {
         GUID,

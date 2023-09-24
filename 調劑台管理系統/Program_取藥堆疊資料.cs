@@ -1403,6 +1403,7 @@ namespace 調劑台管理系統
                     效期 = list_取藥堆疊母資料_buf[i][(int)enum_取藥堆疊母資料.效期].ObjectToString();
                     批號 = list_取藥堆疊母資料_buf[i][(int)enum_取藥堆疊母資料.批號].ObjectToString();
                     IP = list_取藥堆疊母資料_buf[i][(int)enum_取藥堆疊母資料.IP].ObjectToString();
+                    Function_從SQL取得儲位到雲端資料(藥品碼);
                     this.Function_從雲端資料取得儲位(藥品碼, ref TYPE, ref values);
                     for (int k = 0; k < values.Count; k++)
                     {
