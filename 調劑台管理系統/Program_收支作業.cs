@@ -53,6 +53,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnVisible(true, enum_取藥堆疊母資料.藥品碼, enum_取藥堆疊母資料.藥品名稱, enum_取藥堆疊母資料.總異動量, enum_取藥堆疊母資料.結存量, enum_取藥堆疊母資料.效期, enum_取藥堆疊母資料.狀態);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.效期);
@@ -74,6 +75,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_收支作業_選擇儲位.MouseDownEvent += PlC_RJ_Button_收支作業_選擇儲位_MouseDownEvent;
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.MouseDownEvent += PlC_RJ_Button_收支作業_入庫狀態_清除所有資料_MouseDownEvent;
             this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料.MouseDownEvent += PlC_RJ_Button_收支作業_入庫狀態_清除選取資料_MouseDownEvent;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.MouseDownEvent += PlC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬_MouseDownEvent;
+
 
             this.plC_RJ_Button_收支作業_入庫.MouseDownEvent += PlC_RJ_Button_收支作業_入庫_MouseDownEvent;
             this.plC_RJ_Button_收支作業_出庫.MouseDownEvent += PlC_RJ_Button_收支作業_出庫_MouseDownEvent;
@@ -81,11 +84,12 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_收支作業_調出.MouseDownEvent += PlC_RJ_Button_收支作業_調出_MouseDownEvent;
 
             this.plC_RJ_Button_收支作業_設定.MouseDownEvent += PlC_RJ_Button_收支作業_設定_MouseDownEvent;
+            
 
             this.plC_UI_Init.Add_Method(this.sub_Program_收支作業);
         }
 
-
+     
 
         private bool flag_Program_收支作業_換頁 = false;
         private bool flag_Program_收支作業_換頁離開 = false;
@@ -740,6 +744,18 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_收支作業_入庫狀態_清除所有資料_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+        }
+        private void PlC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_收支作業_入庫狀態.Get_All_Select_RowsValues();
+            if (list_value.Count == 0) return;
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                string 藥品碼 = list_value[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                string 調劑台名稱 = this.textBox_工程模式_領藥台_名稱.Text;
+
+                Function_取藥堆疊子資料_設定配藥完成ByCode(調劑台名稱, 藥品碼);
+            }
         }
         private void PlC_RJ_Button_收支作業_調入_MouseDownEvent(MouseEventArgs mevent)
         {

@@ -1500,6 +1500,7 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -6468,6 +6469,7 @@
             this.rJ_GroupBox4.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox4.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox4.ContentsPanel.BorderSize = 0;
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬);
             this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料);
             this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料);
             this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.sqL_DataGridView_收支作業_入庫狀態);
@@ -38578,6 +38580,49 @@
             this.ContentsPanel.Size = new System.Drawing.Size(1109, 453);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬
+            // 
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.AutoResetState = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.BackgroundColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.Bool = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.BorderRadius = 5;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.but_press = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.GUID = "";
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.Location = new System.Drawing.Point(5, 403);
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.Name = "plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬";
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.OFF_文字內容 = "選取資料強制入賬";
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ON_BorderSize = 5;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ON_文字內容 = "選取資料強制入賬";
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.Size = new System.Drawing.Size(168, 53);
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.State = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.TabIndex = 128;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.Text = "選取資料強制入賬";
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.字型鎖住 = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.文字鎖住 = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.讀取位元反向 = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.讀寫鎖住 = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.音效 = true;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.顯示 = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.顯示狀態 = false;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.顯示讀取位置 = "S4077";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -40549,6 +40594,7 @@
         private MyUI.PLC_NumBox plC_NumBox_處方存在時間;
         private MyUI.PLC_RJ_Pannel plC_RJ_Pannel6;
         private System.Windows.Forms.Button button_交班作業_交班表_預覽列印;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬;
     }
 }
 

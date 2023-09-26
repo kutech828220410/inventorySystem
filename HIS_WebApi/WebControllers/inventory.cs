@@ -461,12 +461,16 @@ namespace HIS_WebApi
 
                     deviceController deviceController = new deviceController();
                     serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-
-                    List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0]);
+                    List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+                    if (serverSettingClasses_buf.Count > 0)
+                    {
+                        deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0]);
+                    }
+                   
 
                     inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
                     creat.盤點單號 = creatSN;
-                    creat.盤點名稱 = "快速盤點";
+                    creat.盤點名稱 = $"{returnData.Value}(快)";
                     for (int i = 0; i < medClasses.Count; i++)
                     {
                         inventoryClass.content content = new inventoryClass.content();
@@ -607,6 +611,7 @@ namespace HIS_WebApi
                 value[(int)enum_盤點內容.Master_GUID] = creat.Contents[i].Master_GUID;
                 value[(int)enum_盤點內容.藥品碼] = creat.Contents[i].藥品碼;
                 value[(int)enum_盤點內容.料號] = creat.Contents[i].料號;
+
                 value[(int)enum_盤點內容.藥品條碼1] = creat.Contents[i].藥品條碼1;
                 value[(int)enum_盤點內容.藥品條碼2] = creat.Contents[i].藥品條碼2;
                 value[(int)enum_盤點內容.盤點單號] = creat.Contents[i].盤點單號;
@@ -883,6 +888,54 @@ namespace HIS_WebApi
 
 
         }
+        [Route("get_creat_Islocked_by_IC_SN")]
+        [HttpPost]
+        public string get_creat_Islocked_by_IC_SN([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無Server資料!";
+                return returnData.JsonSerializationt();
+            }
+            string Server = serverSettingClasses[0].Server;
+            string DB = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            if(returnData.Value.StringIsEmpty())
+            {
+                returnData.Code = -200;
+                returnData.Result = $"Value 空白!";
+                return returnData.JsonSerializationt();
+            }
+            SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+   
+            List<object[]> list_inventory_creat = sQLControl_inventory_creat.GetAllRows(null);
+            List<object[]> list_inventory_creat_buf = new List<object[]>();
+            list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, returnData.Value);
+            if (list_inventory_creat_buf.Count == 0)
+            {
+                returnData.Code = -5;
+                returnData.Result += $"找無此盤點單號!";
+                return returnData.JsonSerializationt();
+            }
+            inventoryClass.creat creat = list_inventory_creat_buf[0].SQLToClass<inventoryClass.creat, enum_盤點單號>();
+          
+            returnData.Code = 200;
+            returnData.Value = $"盤點單檢查鎖單成功! {creat.盤點狀態}";
+            returnData.Data = creat.盤點狀態;
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "get_creat_Islocked_by_IC_SN";
+            return returnData.JsonSerializationt(true);
+        }
 
         [Route("contents_delete_by_GUID")]
         [HttpPost]
@@ -981,7 +1034,17 @@ namespace HIS_WebApi
             }
             else
             {
-          
+
+                MED_pageController mED_PageController = new MED_pageController();
+                returnData returnData_med = new returnData();
+                returnData_med.TableName = "medicine_page_cloud";
+                returnData_med.ServerType = "網頁";
+                returnData_med.ServerName = "Main";
+                returnData_med.Value = list_inventory_content_buf[0][(int)enum_盤點內容.藥品碼].ObjectToString();
+                string json_med = mED_PageController.POST_get_by_code(returnData_med);
+                returnData_med = json_med.JsonDeserializet<returnData>();
+
+           
 
                 content = list_inventory_content_buf[0].SQLToClass<inventoryClass.content, enum_盤點內容>(); 
                 int 盤點量 = 0;
@@ -992,12 +1055,39 @@ namespace HIS_WebApi
           
                     if (sub_Content.盤點量.StringIsInt32())
                     {
-
                         盤點量 += sub_Content.盤點量.StringToInt32();
                     }
                     content.Sub_content.Add(sub_Content);
                 }
                 content.盤點量 = 盤點量.ToString();
+
+                if (returnData_med != null)
+                {
+                    if (returnData_med.Code == 200)
+                    {
+                        List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
+                        if (medClasses.Count > 0)
+                        {
+                            string 藥品名稱 = medClasses[0].藥品名稱;
+                            string 中文名稱 = medClasses[0].中文名稱;
+                            string 包裝單位 = medClasses[0].包裝單位;
+                            content.藥品名稱 = 藥品名稱;
+                            content.中文名稱 = 中文名稱;
+                            content.包裝單位 = 包裝單位;
+                            for (int i = 0; i < content.Sub_content.Count; i++)
+                            {
+                                content.Sub_content[i].藥品名稱 = 藥品名稱;
+                                content.Sub_content[i].中文名稱 = 中文名稱;
+                                content.Sub_content[i].包裝單位 = 包裝單位;
+                                content.Sub_content[i].總量 = 盤點量.ToString();
+                            }
+                        }
+
+
+                    }
+
+                }
+
                 content.Sub_content.Sort(new ICP_sub_content());
                 returnData.Data = content;
                 returnData.Code = 200;
@@ -1101,6 +1191,7 @@ namespace HIS_WebApi
                 value[(int)enum_盤點明細.GUID] = Guid.NewGuid().ToString();
                 value[(int)enum_盤點明細.藥品碼] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品碼];
                 value[(int)enum_盤點明細.料號] = list_inventory_content_buf[0][(int)enum_盤點內容.料號];
+
                 value[(int)enum_盤點明細.盤點單號] = list_inventory_content_buf[0][(int)enum_盤點內容.盤點單號];
                 value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼1];
                 value[(int)enum_盤點明細.藥品條碼2] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼2];
@@ -1115,6 +1206,7 @@ namespace HIS_WebApi
 
                 sub_content.藥品碼 = value[(int)enum_盤點明細.藥品碼].ObjectToString();
                 sub_content.料號 = value[(int)enum_盤點明細.料號].ObjectToString();
+   
                 sub_content.盤點單號 = value[(int)enum_盤點明細.盤點單號].ObjectToString();
                 sub_content.藥品條碼1 = value[(int)enum_盤點明細.藥品條碼1].ObjectToString();
                 sub_content.藥品條碼2 = value[(int)enum_盤點明細.藥品條碼1].ObjectToString();
@@ -1177,10 +1269,13 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
 
+        
+
             object[] value = new object[new enum_盤點明細().GetLength()];
             value[(int)enum_盤點明細.GUID] = Guid.NewGuid().ToString();
             value[(int)enum_盤點明細.藥品碼] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品碼];
             value[(int)enum_盤點明細.料號] = list_inventory_content_buf[0][(int)enum_盤點內容.料號];
+        
             value[(int)enum_盤點明細.盤點單號] = list_inventory_content_buf[0][(int)enum_盤點內容.盤點單號];
             //value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼1];
             //value[(int)enum_盤點明細.藥品條碼1] = list_inventory_content_buf[0][(int)enum_盤點內容.藥品條碼2];
@@ -1538,6 +1633,10 @@ namespace HIS_WebApi
                             }
                             content.Sub_content.Add(sub_Content);
                         }
+                        for (int m = 0; m < content.Sub_content.Count; m++)
+                        {
+                            content.Sub_content[m].總量 = 盤點量.ToString();
+                        }
                         content.盤點量 = 盤點量.ToString();
                         content.Sub_content.Sort(new ICP_sub_content());
                         creat.Contents.Add(content);
@@ -1594,6 +1693,7 @@ namespace HIS_WebApi
             table_inventory_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+ 
             table_inventory_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("理論值", Table.StringType.VARCHAR, 10, Table.IndexType.None);
@@ -1610,6 +1710,7 @@ namespace HIS_WebApi
             table_inventory_sub_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
             table_inventory_sub_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_sub_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+       
             table_inventory_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
             table_inventory_sub_content.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);

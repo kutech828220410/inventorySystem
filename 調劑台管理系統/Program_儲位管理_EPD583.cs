@@ -239,14 +239,29 @@ namespace 調劑台管理系統
                         BarCode = boxes[k].GetValue(Device.ValueName.BarCode, Device.ValueType.Value).ObjectToString();
                         包裝單位 = boxes[k].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
                         警訊藥品 = boxes[k].IsWarning ? "TRUE" : "FALSE";
-                  
 
-                        if (藥品碼 != 藥品碼_buf) Is_Replace = true;
-                        if (藥品名稱 != 藥品名稱_buf) Is_Replace = true;
-                        if (藥品學名 != 藥品學名_buf) Is_Replace = true;
-                        if (BarCode != BarCode_buf) Is_Replace = true;
-                        if (包裝單位 != 包裝單位_buf) Is_Replace = true;
-                        if (警訊藥品 != 警訊藥品_buf) Is_Replace = true;
+
+                        if (藥品碼 != 藥品碼_buf)
+                        {
+                            Is_Replace = true;
+                        }
+                        if (藥品名稱 != 藥品名稱_buf)
+                        {
+                            Is_Replace = true;
+                        }
+                        if (藥品學名 != 藥品學名_buf)
+                        {
+                            Is_Replace = true;
+                        }
+                    
+                        if (包裝單位 != 包裝單位_buf)
+                        {
+                            Is_Replace = true;
+                        }
+                        if (警訊藥品 != 警訊藥品_buf)
+                        {
+                            Is_Replace = true;
+                        }
 
                         boxes[k].SetValue(Device.ValueName.藥品碼, Device.ValueType.Value, 藥品碼_buf);
                         boxes[k].SetValue(Device.ValueName.藥品名稱, Device.ValueType.Value, 藥品名稱_buf);
