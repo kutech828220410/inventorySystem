@@ -53,11 +53,11 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnVisible(true, enum_取藥堆疊母資料.藥品碼, enum_取藥堆疊母資料.藥品名稱, enum_取藥堆疊母資料.總異動量, enum_取藥堆疊母資料.結存量, enum_取藥堆疊母資料.效期, enum_取藥堆疊母資料.狀態);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
-            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
-            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
-            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
+            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
+            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
+            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.效期);
-            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.狀態);
+            this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.狀態);
             this.sqL_DataGridView_收支作業_入庫狀態.DataGridRefreshEvent += SqL_DataGridView_收支作業_入庫狀態_DataGridRefreshEvent;
             this.sqL_DataGridView_收支作業_入庫狀態.DataGridRowsChangeEvent += SqL_DataGridView_收支作業_入庫狀態_DataGridRowsChangeEvent;
 
@@ -632,6 +632,10 @@ namespace 調劑台管理系統
                     {
                         return;
                     }
+                }
+                else
+                {
+                    輸入批號 = device.取得批號(輸入效期);
                 }
             }
             if (plC_RJ_Button_收支作業_調入.Bool || plC_RJ_Button_收支作業_調出.Bool)

@@ -63,7 +63,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_領藥台_01_登出.MouseDownEvent += PlC_RJ_Button_領藥台_01_登出_MouseDownEvent;
             this.plC_RJ_Button_領藥台_01_取消作業.MouseDownEvent += PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent;
             this.plC_RJ_Button_領藥台_01_手動作業.MouseDownEvent += PlC_RJ_Button_領藥台_01_手動作業_MouseDownEvent;
-            this.plC_RJ_Button_領藥台_01_手輸醫囑.MouseDownEvent += PlC_RJ_Button_領藥台_01_手輸醫囑_MouseDownEvent;
+            this.plC_RJ_Button_領藥台_01_手輸醫令.MouseDownEvent += PlC_RJ_Button_領藥台_01_手輸醫令_MouseDownEvent;
             this.plC_RJ_Button_領藥台_01_強制入賬.MouseDownEvent += PlC_RJ_Button_領藥台_01_強制入賬_MouseDownEvent;
             this.plC_Button_領藥台_01_領.btnClick += PlC_Button_領藥台_01_領_btnClick;
             this.plC_Button_領藥台_01_退.btnClick += PlC_Button_領藥台_01_退_btnClick;
@@ -82,7 +82,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_領藥台_02_登出.MouseDownEvent += PlC_RJ_Button_領藥台_02_登出_MouseDownEvent;
             this.plC_RJ_Button_領藥台_02_取消作業.MouseDownEvent += PlC_RJ_Button_領藥台_02_取消作業_MouseDownEvent;
             this.plC_RJ_Button_領藥台_02_手動作業.MouseDownEvent += PlC_RJ_Button_領藥台_02_手動作業_MouseDownEvent;
-            this.plC_RJ_Button_領藥台_02_手輸醫囑.MouseDownEvent += PlC_RJ_Button_領藥台_02_手輸醫囑_MouseDownEvent;
+            this.plC_RJ_Button_領藥台_02_手輸醫令.MouseDownEvent += PlC_RJ_Button_領藥台_02_手輸醫令_MouseDownEvent;
             this.plC_RJ_Button_領藥台_02_強制入賬.MouseDownEvent += PlC_RJ_Button_領藥台_02_強制入賬_MouseDownEvent;
             this.plC_Button_領藥台_02_領.btnClick += PlC_Button_領藥台_02_領_btnClick;
             this.plC_Button_領藥台_02_退.btnClick += PlC_Button_領藥台_02_退_btnClick;
@@ -171,11 +171,11 @@ namespace 調劑台管理系統
                     {
                         if (plC_CheckBox_QRcode_Mode.Checked)
                         {
-                            plC_RJ_Button_領藥台_01_手輸醫囑.Visible = false;
+                            plC_RJ_Button_領藥台_01_手輸醫令.Visible = false;
                         }
                         else
                         {
-                            plC_RJ_Button_領藥台_01_手輸醫囑.Visible = true;
+                            plC_RJ_Button_領藥台_01_手輸醫令.Visible = true;
                         }
                     }));
 
@@ -274,11 +274,11 @@ namespace 調劑台管理系統
                     {
                         if (plC_CheckBox_QRcode_Mode.Checked)
                         {
-                            plC_RJ_Button_領藥台_02_手輸醫囑.Visible = false;
+                            plC_RJ_Button_領藥台_02_手輸醫令.Visible = false;
                         }
                         else
                         {
-                            plC_RJ_Button_領藥台_02_手輸醫囑.Visible = true;
+                            plC_RJ_Button_領藥台_02_手輸醫令.Visible = true;
                         }
                     }));
                     this.Function_登出();
@@ -1991,11 +1991,11 @@ namespace 調劑台管理系統
             }));
             //this.plC_RJ_Button_領藥台_01_手動作業.ResetState();
         }
-        private void PlC_RJ_Button_領藥台_01_手輸醫囑_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_領藥台_01_手輸醫令_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_手輸醫囑 dialog_手輸醫囑 = new Dialog_手輸醫囑();
-            if (dialog_手輸醫囑.ShowDialog() != DialogResult.Yes) return;
-            string Barcode = dialog_手輸醫囑.Value;
+            Dialog_手輸醫令 dialog_手輸醫令 = new Dialog_手輸醫令();
+            if (dialog_手輸醫令.ShowDialog() != DialogResult.Yes) return;
+            string Barcode = dialog_手輸醫令.Value;
             if (plC_Button_領藥台_01_領.Bool)
             {
                 this.Function_領藥台_01_醫囑領藥(Barcode);
@@ -3888,11 +3888,11 @@ namespace 調劑台管理系統
             }));
             //this.plC_RJ_Button_領藥台_02_手動作業.ResetState();
         }
-        private void PlC_RJ_Button_領藥台_02_手輸醫囑_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_領藥台_02_手輸醫令_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_手輸醫囑 dialog_手輸醫囑 = new Dialog_手輸醫囑();
-            if (dialog_手輸醫囑.ShowDialog() != DialogResult.Yes) return;
-            string Barcode = dialog_手輸醫囑.Value;
+            Dialog_手輸醫令 dialog_手輸醫令 = new Dialog_手輸醫令();
+            if (dialog_手輸醫令.ShowDialog() != DialogResult.Yes) return;
+            string Barcode = dialog_手輸醫令.Value;
             if (plC_Button_領藥台_02_領.Bool)
             {
                 this.Function_領藥台_02_醫囑領藥(Barcode);

@@ -1,6 +1,6 @@
 ﻿namespace 調劑台管理系統
 {
-    partial class Dialog_手輸醫囑
+    partial class Dialog_手輸醫令
     {
         /// <summary>
         /// Required designer variable.
@@ -119,7 +119,7 @@
             this.rJ_Lable26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable26.TextColor = System.Drawing.Color.Black;
             // 
-            // Dialog_手輸醫囑
+            // Dialog_手輸醫令
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,11 +131,11 @@
             this.Controls.Add(this.rJ_Button_確認);
             this.Controls.Add(this.rJ_Button_退出);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "Dialog_手輸醫囑";
+            this.Name = "Dialog_手輸醫令";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Dialog_手輸醫囑_Load);
+            this.Load += new System.EventHandler(this.Dialog_手輸醫令_Load);
             this.ResumeLayout(false);
 
         }

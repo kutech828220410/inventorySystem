@@ -11,7 +11,7 @@ using Basic;
 
 namespace 調劑台管理系統
 {
-    public partial class Dialog_手輸醫囑 : Form
+    public partial class Dialog_手輸醫令 : Form
     {
         public static Form form;
         public DialogResult ShowDialog()
@@ -37,12 +37,12 @@ namespace 調劑台管理系統
                 return rJ_TextBox_條碼號.Text;
             }
         }
-        public Dialog_手輸醫囑()
+        public Dialog_手輸醫令()
         {
             InitializeComponent();
         }
 
-        private void Dialog_手輸醫囑_Load(object sender, EventArgs e)
+        private void Dialog_手輸醫令_Load(object sender, EventArgs e)
         {
             this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
             this.rJ_Button_退出.MouseDownEvent += RJ_Button_退出_MouseDownEvent;

@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.1.31.37")]
-[assembly: AssemblyFileVersion("1.1.31.37")]
+[assembly: AssemblyVersion("1.1.2.37")]
+[assembly: AssemblyFileVersion("1.1.2.37")]
 namespace 調劑台管理系統
 {
 
@@ -397,7 +397,7 @@ namespace 調劑台管理系統
                 Dialog_輸入批號.form = this.FindForm();
                 Dialog_輸入效期.form = this.FindForm();
                 Dialog_輸入藥品碼.form = this.FindForm();
-                Dialog_手輸醫囑.form = this.FindForm();
+                Dialog_手輸醫令.form = this.FindForm();
                 Dialog_醫囑退藥.form = this.FindForm();
                 Dialog_設定產出時間.form = this.FindForm();
                 Dialog_RFID領退藥頁面.form = this.FindForm();

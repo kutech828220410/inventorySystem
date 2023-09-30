@@ -129,7 +129,6 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品群組.SQL_GetAllRows(false);
 
             this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Enter += RJ_ComboBox_藥品資料_藥檔資料_藥品群組_Enter;
-            this.rJ_ComboBox_藥品資料_藥檔資料_資料查詢_藥品群組.Enter += RJ_ComboBox_藥品資料_藥檔資料_資料查詢_藥品群組_Enter;
             this.rJ_TextBox_藥品群組_群組名稱.KeyPress += RJ_TextBox_藥品群組_群組名稱_KeyPress;
 
             this.textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.KeyPress += TextBox_藥品資料_藥檔資料_資料查詢_藥品條碼_KeyPress;
@@ -156,18 +155,14 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品名稱);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.中文名稱);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品學名);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品群組);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.包裝單位);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.庫存);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.安全庫存);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.基準量);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.警訊藥品);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.高價藥品);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.生物製劑);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.管制級別);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.類別);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品許可證號);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.廠牌);
+            //this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品許可證號);
+            //this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.廠牌);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.開檔狀態);
 
             this.sqL_DataGridView_藥品資料_藥檔資料.RowEnterEvent += SqL_DataGridView_藥品資料_藥檔資料_RowEnterEvent;
@@ -177,7 +172,12 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品資料_藥檔資料.DataGridRowsChangeEvent += SqL_DataGridView_藥品資料_藥檔資料_DataGridRowsChangeEvent;
             this.comboBox_藥品資料_藥檔資料_管制級別.SelectedIndex = 0;
 
-            this.plC_RJ_Button_藥品資料_藥檔資料_資料查詢.MouseDownEvent += PlC_RJ_Button_藥品資料_藥檔資料_資料查詢_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_顯示全部.MouseDownEvent += PlC_RJ_Button_藥品資料_顯示全部_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_藥品碼_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_藥品名稱_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_藥品條碼_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_中文名_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_中文名_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_商品名_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_商品名_搜尋_MouseDownEvent;
 
             this.plC_RJ_Button_藥品資料_條碼管理.MouseDownEvent += PlC_RJ_Button_藥品資料_條碼管理_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_匯入.MouseDownEvent += PlC_RJ_Button_藥品資料_匯入_MouseDownEvent;
@@ -199,6 +199,8 @@ namespace 調劑台管理系統
 
             this.plC_UI_Init.Add_Method(this.sub_Program_藥品資料_藥檔資料);
         }
+
+    
 
         bool flag_藥品資料_藥檔資料_頁面更新 = false;
         private void sub_Program_藥品資料_藥檔資料()
@@ -242,9 +244,7 @@ namespace 調劑台管理系統
                 if (!this.flag_藥品資料_藥檔資料_頁面更新)
                 {
                     this.Function_從SQL取得儲位到本地資料();
-                    this.sqL_DataGridView_藥品群組.SQL_GetAllRows(true);
-                    this.RJ_ComboBox_藥品資料_藥檔資料_藥品群組_Enter(null, null);
-                    this.RJ_ComboBox_藥品資料_藥檔資料_資料查詢_藥品群組_Enter(null, null);
+         
                     this.flag_藥品資料_藥檔資料_頁面更新 = true;
                 }
             }
@@ -908,13 +908,7 @@ namespace 調劑台管理系統
                 this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.SetDataSource(this.Function_藥品群組_取得選單(true));
             }));
         }
-        private void RJ_ComboBox_藥品資料_藥檔資料_資料查詢_藥品群組_Enter(object sender, EventArgs e)
-        {
-            this.Invoke(new Action(delegate
-            {
-                this.rJ_ComboBox_藥品資料_藥檔資料_資料查詢_藥品群組.SetDataSource(this.Function_藥品群組_取得選單(false));
-            }));
-        }
+   
         private void SqL_DataGridView_藥品群組_RowEnterEvent(object[] RowValue)
         {
             int index = this.rJ_TextBox_藥品群組_群組序號.Text.StringToInt32();
@@ -1155,20 +1149,33 @@ namespace 調劑台管理系統
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                if (textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text != "")
-                {
-                    Function_藥品資料_藥檔資料_搜尋BarCode(textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text);
-                }
+                PlC_RJ_Button_藥品資料_藥品條碼_搜尋_MouseDownEvent(null);
             }
         }
-        private void PlC_RJ_Button_藥品資料_藥檔資料_資料查詢_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥品資料_顯示全部_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(true);
+        }
+        private void PlC_RJ_Button_藥品資料_藥品條碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text != "")
+            {
+                Function_藥品資料_藥檔資料_搜尋BarCode(textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text);
+            }
+        }
+        private void PlC_RJ_Button_藥品資料_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
-            if (!textBox_藥品資料_藥檔資料_資料查詢_藥品碼.Text.StringIsEmpty()) list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品碼, textBox_藥品資料_藥檔資料_資料查詢_藥品碼.Text);
+            if(textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("未輸入搜尋資料!");
+                return;
+            }
+         
             if (!textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text.StringIsEmpty())
             {
-         
-                if(rJ_RatioButton_藥品資料_藥檔資料_前綴.Checked)
+
+                if (rJ_RatioButton_藥品資料_藥檔資料_前綴.Checked)
                 {
                     if (textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text.Length < 3)
                     {
@@ -1177,27 +1184,79 @@ namespace 調劑台管理系統
                     }
                     list_value = list_value.GetRowsStartWithByLike((int)enum_藥品資料_藥檔資料.藥品名稱, textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text);
                 }
-                else if(rJ_RatioButton_藥品資料_藥檔資料_模糊.Checked)
+                else if (rJ_RatioButton_藥品資料_藥檔資料_模糊.Checked)
                 {
                     list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品名稱, textBox_藥品資料_藥檔資料_資料查詢_藥品名稱.Text, true);
                 }
-         
-            }
-            //if (!textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text.StringIsEmpty()) list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品條碼, textBox_藥品資料_藥檔資料_資料查詢_藥品條碼.Text);
-            if (plC_RJ_ChechBox_藥品資料_藥檔資料_資料查詢_藥品群組.Checked)
-            {
-                int index = rJ_ComboBox_藥品資料_藥檔資料_資料查詢_藥品群組.SelectedIndex;
-                index++;
-                if (index > 0)
+                this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_value);
+                if (list_value.Count == 0)
                 {
-                    list_value = list_value.GetRows((int)enum_藥品資料_藥檔資料.藥品群組, index.ToString("00"));
+                    MyMessageBox.ShowDialog("查無資料!");
                 }
             }
+        }
+        private void PlC_RJ_Button_藥品資料_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            if (!textBox_藥品資料_藥檔資料_資料查詢_藥品碼.Text.StringIsEmpty()) list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品碼, textBox_藥品資料_藥檔資料_資料查詢_藥品碼.Text);
             this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_value);
-            if(list_value.Count == 0)
+            if (list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料!");
-            }    
+            }
+        }
+        private void PlC_RJ_Button_藥品資料_商品名_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            if (!textBox_藥品資料_藥檔資料_資料查詢_商品名.Text.StringIsEmpty())
+            {
+
+                if (rJ_RatioButton_藥品資料_藥檔資料_前綴.Checked)
+                {
+                    if (textBox_藥品資料_藥檔資料_資料查詢_商品名.Text.Length < 3)
+                    {
+                        MyMessageBox.ShowDialog("藥品名稱搜尋字元不得小於3個!");
+                        return;
+                    }
+                    list_value = list_value.GetRowsStartWithByLike((int)enum_藥品資料_藥檔資料.藥品學名, textBox_藥品資料_藥檔資料_資料查詢_商品名.Text);
+                }
+                else if (rJ_RatioButton_藥品資料_藥檔資料_模糊.Checked)
+                {
+                    list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品學名, textBox_藥品資料_藥檔資料_資料查詢_商品名.Text, true);
+                }
+                this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_value);
+                if (list_value.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("查無資料!");
+                }
+            }
+        }
+
+        private void PlC_RJ_Button_藥品資料_中文名_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            if (!textBox_藥品資料_藥檔資料_資料查詢_中文名.Text.StringIsEmpty())
+            {
+
+                if (rJ_RatioButton_藥品資料_藥檔資料_前綴.Checked)
+                {
+                    if (textBox_藥品資料_藥檔資料_資料查詢_中文名.Text.Length < 3)
+                    {
+                        MyMessageBox.ShowDialog("藥品名稱搜尋字元不得小於3個!");
+                        return;
+                    }
+                    list_value = list_value.GetRowsStartWithByLike((int)enum_藥品資料_藥檔資料.中文名稱, textBox_藥品資料_藥檔資料_資料查詢_中文名.Text);
+                }
+                else if (rJ_RatioButton_藥品資料_藥檔資料_模糊.Checked)
+                {
+                    list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.中文名稱, textBox_藥品資料_藥檔資料_資料查詢_中文名.Text, true);
+                }
+                this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_value);
+                if (list_value.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("查無資料!");
+                }
+            }
         }
         private void PlC_RJ_Button_藥品資料_刪除_MouseDownEvent(MouseEventArgs mevent)
         {

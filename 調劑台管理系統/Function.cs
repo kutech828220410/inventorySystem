@@ -139,15 +139,21 @@ namespace 調劑台管理系統
             }
             return list_value;
         }
-        public List<object[]> Function_取得異動儲位資訊從入賬資料(string 藥品碼, int 異動量)
+        public List<object[]> Function_取得異動儲位資訊從入賬資料(string 藥品碼, string 效期, string 批號, int 異動量)
         {
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
             this.Function_從入賬資料取得儲位(this.Function_藥品碼檢查(藥品碼), ref 儲位_TYPE, ref 儲位);
             List<object[]> 儲位資訊_buf = new List<object[]>();
             List<object[]> 儲位資訊 = new List<object[]>();
-            if (儲位.Count == 0) return 儲位資訊_buf;
+            if (儲位.Count == 0)
+            {
+                if (異動量 >= 0 && !效期.StringIsEmpty())
+                {
 
+                }
+                return 儲位資訊_buf;
+            }
 
             for (int k = 0; k < 儲位.Count; k++)
             {
@@ -494,6 +500,7 @@ namespace 調劑台管理系統
                             value[(int)enum_儲位資訊.IP] = device.IP;
                             value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];
                             value[(int)enum_儲位資訊.效期] = device.List_Validity_period[i];
+                            value[(int)enum_儲位資訊.批號] = device.List_Lot_number[i];
                             value[(int)enum_儲位資訊.庫存] = device.List_Inventory[i];
                             value[(int)enum_儲位資訊.異動量] = 異動量.ToString();
                             value[(int)enum_儲位資訊.Value] = value_device;
@@ -526,6 +533,7 @@ namespace 調劑台管理系統
                             value[(int)enum_儲位資訊.IP] = device.IP;
                             value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];
                             value[(int)enum_儲位資訊.效期] = device.List_Validity_period[i];
+                            value[(int)enum_儲位資訊.批號] = device.List_Lot_number[i];
                             value[(int)enum_儲位資訊.庫存] = device.List_Inventory[i];
                             value[(int)enum_儲位資訊.異動量] = 異動量.ToString();
                             value[(int)enum_儲位資訊.Value] = value_device;
@@ -596,6 +604,140 @@ namespace 調劑台管理系統
 
             return 儲位資訊_buf;
         }
+
+        public List<object[]> Function_新增效期至雲端資料(string 藥品碼, int 異動量, string 效期, string 批號)
+        {
+            object value_device = new object();
+            List<object[]> 儲位資訊 = new List<object[]>();
+            List<string> TYPE = new List<string>();
+            List<object> values = new List<object>();
+            string IP = "";
+            this.Function_從雲端資料取得儲位(藥品碼, ref TYPE, ref values);
+            string Type_str = "";
+            for (int k = 0; k < values.Count; k++)
+            {
+                if (TYPE[k] == DeviceType.EPD266_lock.GetEnumName() || TYPE[k] == DeviceType.EPD266.GetEnumName() || TYPE[k] == DeviceType.EPD290_lock.GetEnumName() || TYPE[k] == DeviceType.EPD290.GetEnumName())
+                {
+
+                    Storage storage = (Storage)values[k];
+                    if (storage.取得庫存(效期) == -1)
+                    {
+                        if (!IP.StringIsEmpty())
+                        {
+                            if (storage.IP != IP) continue;
+                        }
+                        storage.新增效期(效期, 批號, 異動量.ToString());
+                        this.List_EPD266_雲端資料.Add_NewStorage(storage);
+                        value_device = storage;
+                        Type_str = TYPE[k];
+                        break;
+                    }
+
+                }
+                else if (TYPE[k] == DeviceType.Pannel35.GetEnumName() || TYPE[k] == DeviceType.Pannel35_lock.GetEnumName())
+                {
+
+                    Storage storage = (Storage)values[k];
+                    if (storage.取得庫存(效期) == -1)
+                    {
+                        if (!IP.StringIsEmpty())
+                        {
+                            if (storage.IP != IP) continue;
+                        }
+                        storage.新增效期(效期, 批號, 異動量.ToString());
+                        this.List_Pannel35_雲端資料.Add_NewStorage(storage);
+                        value_device = storage;
+                        Type_str = TYPE[k];
+                        break;
+                    }
+
+                }
+                else if (TYPE[k] == DeviceType.EPD583_lock.GetEnumName() || TYPE[k] == DeviceType.EPD583.GetEnumName())
+                {
+                    Box box = (Box)values[k];
+                    if (!IP.StringIsEmpty())
+                    {
+                        if (box.IP != IP) continue;
+                    }
+                    if (box.取得庫存(效期) == -1)
+                    {
+                        box.新增效期(效期, 批號, "00");
+                        Drawer drawer = List_EPD583_雲端資料.SortByIP(box.IP);
+                        drawer.ReplaceBox(box);
+                        List_EPD583_雲端資料.Add_NewDrawer(drawer);
+                        value_device = box;
+                        Type_str = TYPE[k];
+                        break;
+                    }
+                }
+                else if (TYPE[k] == DeviceType.EPD1020_lock.GetEnumName() || TYPE[k] == DeviceType.EPD1020.GetEnumName())
+                {
+                    Box box = (Box)values[k];
+                    if (!IP.StringIsEmpty())
+                    {
+                        if (box.IP != IP) continue;
+                    }
+                    if (box.取得庫存(效期) == -1)
+                    {
+                        box.新增效期(效期, 批號, "00");
+                        Drawer drawer = List_EPD1020_雲端資料.SortByIP(box.IP);
+                        drawer.ReplaceByGUID(box);
+                        List_EPD1020_雲端資料.Add_NewDrawer(drawer);
+                        value_device = box;
+                        Type_str = TYPE[k];
+                        break;
+                    }
+                }
+                else if (TYPE[k] == DeviceType.RowsLED.GetEnumName())
+                {
+                    RowsDevice rowsDevice = values[k] as RowsDevice;
+                    if (!IP.StringIsEmpty())
+                    {
+                        if (rowsDevice.IP != IP) continue;
+                    }
+                    if (rowsDevice.取得庫存(效期) == -1)
+                    {
+                        rowsDevice.新增效期(效期, 批號, 異動量.ToString());
+                        RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
+                        rowsLED.ReplaceRowsDevice(rowsDevice);
+                        List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
+                        value_device = rowsDevice;
+                        Type_str = TYPE[k];
+                        break;
+                    }
+                }
+                else if (TYPE[k] == DeviceType.RFID_Device.GetEnumName())
+                {
+                    RFIDDevice rFIDDevice = values[k] as RFIDDevice;
+                    if (!IP.StringIsEmpty())
+                    {
+                        if (rFIDDevice.IP != IP) continue;
+                    }
+                    if (rFIDDevice.取得庫存(效期) == -1)
+                    {
+                        rFIDDevice.新增效期(效期, 批號, 異動量.ToString());
+                        RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(rFIDDevice.IP);
+                        rFIDClass.ReplaceRFIDDevice(rFIDDevice);
+                        List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
+                        value_device = rFIDDevice;
+                        Type_str = TYPE[k];
+                        break;
+                    }
+                }
+            }
+            Device device = (Device)value_device;
+            object[] value = new object[new enum_儲位資訊().GetLength()];
+            value[(int)enum_儲位資訊.IP] = device.IP;
+            value[(int)enum_儲位資訊.TYPE] = Type_str;
+            value[(int)enum_儲位資訊.效期] = 效期;
+            value[(int)enum_儲位資訊.批號] = 批號;
+            value[(int)enum_儲位資訊.庫存] = device.Inventory;
+            value[(int)enum_儲位資訊.異動量] = 異動量.ToString();
+            value[(int)enum_儲位資訊.Value] = value_device;
+            儲位資訊.Add(value);
+            return 儲位資訊;
+        }
+
         public object Function_庫存異動至雲端資料(object[] 儲位資訊)
         {
             return this.Function_庫存異動至雲端資料(儲位資訊, false);
