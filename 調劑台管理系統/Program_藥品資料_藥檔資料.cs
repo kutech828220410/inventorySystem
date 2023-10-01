@@ -494,6 +494,11 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品設定表.複盤] = plC_CheckBox_藥品資料_藥檔資料_複盤.Checked.ToString();
                 value[(int)enum_藥品設定表.結存報表] = plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked.ToString();
                 value[(int)enum_藥品設定表.雙人覆核] = plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked.ToString();
+                value[(int)enum_藥品設定表.麻醉藥品] = plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked.ToString();
+                value[(int)enum_藥品設定表.形狀相似] = plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked.ToString();
+                value[(int)enum_藥品設定表.發音相似] = plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked.ToString();
+
+
                 this.sqL_DataGridView_藥品設定表.SQL_ReplaceExtra(value, false);
                 this.Function_藥品資料_藥檔資料_清除攔位();
                
@@ -524,6 +529,9 @@ namespace 調劑台管理系統
                 this.plC_CheckBox_藥品資料_藥檔資料_複盤.Checked = false;
                 this.plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked = false;
                 this.plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked = false;
+                this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked = false;
             }));
             
         }
@@ -706,6 +714,9 @@ namespace 調劑台管理系統
                 value[(int)enum_藥品設定表.複盤] = false.ToString();
                 value[(int)enum_藥品設定表.結存報表] = false.ToString();
                 value[(int)enum_藥品設定表.雙人覆核] = false.ToString();
+                value[(int)enum_藥品設定表.麻醉藥品] = false.ToString();
+                value[(int)enum_藥品設定表.形狀相似] = false.ToString();
+                value[(int)enum_藥品設定表.發音相似] = false.ToString();
                 value[(int)enum_藥品設定表.自定義] = false.ToString();
                 this.sqL_DataGridView_藥品設定表.SQL_AddRow(value, false);
             }
@@ -1108,6 +1119,9 @@ namespace 調劑台管理系統
             this.plC_CheckBox_藥品資料_藥檔資料_盲盤.Checked = value[(int)enum_藥品設定表.盲盤].ObjectToString().StringToBool();
             this.plC_CheckBox_藥品資料_藥檔資料_結存報表.Checked = value[(int)enum_藥品設定表.結存報表].ObjectToString().StringToBool();
             this.plC_CheckBox_藥品資料_藥檔資料_雙人覆核.Checked = value[(int)enum_藥品設定表.雙人覆核].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Checked = value[(int)enum_藥品設定表.麻醉藥品].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Checked = value[(int)enum_藥品設定表.形狀相似].ObjectToString().StringToBool();
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Checked = value[(int)enum_藥品設定表.發音相似].ObjectToString().StringToBool();
         }
         private void SqL_DataGridView_藥品資料_藥檔資料_DataGridRowsChangeEvent(List<object[]> RowsList)
         {

@@ -29,9 +29,32 @@ namespace E_UpdateVersion
         /// </summary>
         private void InitializeComponent()
         {
-            this.rJ_TextBox_API_URL = new MyUI.RJ_TextBox();
             this.rJ_Button_確認 = new MyUI.RJ_Button();
+            this.rJ_TextBox_API_URL = new MyUI.RJ_TextBox();
             this.SuspendLayout();
+            // 
+            // rJ_Button_確認
+            // 
+            this.rJ_Button_確認.AutoResetState = false;
+            this.rJ_Button_確認.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_確認.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_確認.BorderRadius = 5;
+            this.rJ_Button_確認.BorderSize = 0;
+            this.rJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_確認.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_確認.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_確認.GUID = "";
+            this.rJ_Button_確認.Location = new System.Drawing.Point(498, 12);
+            this.rJ_Button_確認.Name = "rJ_Button_確認";
+            this.rJ_Button_確認.Size = new System.Drawing.Size(145, 73);
+            this.rJ_Button_確認.State = false;
+            this.rJ_Button_確認.TabIndex = 26;
+            this.rJ_Button_確認.Text = "確認";
+            this.rJ_Button_確認.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_確認.UseVisualStyleBackColor = false;
             // 
             // rJ_TextBox_API_URL
             // 
@@ -58,36 +81,12 @@ namespace E_UpdateVersion
             this.rJ_TextBox_API_URL.Texts = "";
             this.rJ_TextBox_API_URL.UnderlineStyle = false;
             // 
-            // rJ_Button_確認
-            // 
-            this.rJ_Button_確認.AutoResetState = false;
-            this.rJ_Button_確認.BackColor = System.Drawing.Color.RoyalBlue;
-            this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.rJ_Button_確認.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_確認.BorderRadius = 5;
-            this.rJ_Button_確認.BorderSize = 0;
-            this.rJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_確認.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_確認.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_確認.GUID = "";
-            this.rJ_Button_確認.Location = new System.Drawing.Point(498, 12);
-            this.rJ_Button_確認.Name = "rJ_Button_確認";
-            this.rJ_Button_確認.Size = new System.Drawing.Size(145, 73);
-            this.rJ_Button_確認.State = false;
-            this.rJ_Button_確認.TabIndex = 26;
-            this.rJ_Button_確認.Text = "確認";
-            this.rJ_Button_確認.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_確認.UseVisualStyleBackColor = false;
-            // 
             // Dialog_SetApiServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(654, 102);
-            this.ControlBox = false;
             this.Controls.Add(this.rJ_Button_確認);
             this.Controls.Add(this.rJ_TextBox_API_URL);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

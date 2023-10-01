@@ -1,4 +1,4 @@
 {
-  "Default_program": "",
-  "Api_server": "htt"
+  "Default_program": "中心叫號系統",
+  "Api_server": "http://220.135.128.247:4433"
 }

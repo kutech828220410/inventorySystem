@@ -18,17 +18,7 @@ namespace HIS_DB_Lib
         結存報表,
         雙人覆核,
     }
-    public enum enum_藥品設定表
-    {
-        GUID,
-        藥品碼,
-        效期管理,
-        盲盤,
-        複盤,
-        結存報表,
-        雙人覆核,
-        自定義,
-    }
+  
     public class medClass
     {
         [JsonPropertyName("GUID")]

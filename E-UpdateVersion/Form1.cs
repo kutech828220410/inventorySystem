@@ -49,7 +49,7 @@ namespace E_UpdateVersion
             public string Api_server { get => api_server; set => api_server = value; }
   
         }
-        public static void LoadMyConfig()
+        public static bool LoadMyConfig()
         {
             string jsonstr = MyFileStream.LoadFileAllText($".//{MyConfigFileName}");
             myConfigClass = Basic.Net.JsonDeserializet<MyConfigClass>(jsonstr);
@@ -64,12 +64,16 @@ namespace E_UpdateVersion
                 if(dialog_SetApiServer.ShowDialog() != DialogResult.Yes)
                 {
                     Application.Exit();
+                    return false;
                 }
                 myConfigClass.Api_server = dialog_SetApiServer.Value;
-                MyFileStream.SaveFile($"{MyConfigFileName}", myConfigClass.JsonSerializationt(true));
+                return true;
+                //MyFileStream.SaveFile($"{MyConfigFileName}", myConfigClass.JsonSerializationt(true));
             }
-
-
+            else
+            {
+                return true;
+            }
         }
         public static void SaveConfig()
         {
@@ -84,12 +88,10 @@ namespace E_UpdateVersion
         }
         #endregion
     
-
         public Form1()
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             MyMessageBox.form = this.FindForm();
@@ -97,7 +99,11 @@ namespace E_UpdateVersion
             Dialog_login.form = this.FindForm();
             Dialog_SetApiServer.form = this.FindForm();
             Dialog_ConfigSetting.form = this.FindForm();
-            LoadMyConfig();
+            if (LoadMyConfig() == false)
+            {
+                this.Close();
+                return;
+            }
             string update_version = GetVersion("update");
             if (update_version.StringIsEmpty() == false && update_version != this.ProductVersion)
             {
@@ -107,26 +113,23 @@ namespace E_UpdateVersion
                 return;
             }
         
-
             this.label_version.Text = $"Ver {this.ProductVersion}";
             this.label_info.Text = Basic.LicenseLib.GetComputerInfo();
             DeviceName = this.label_info.Text;
-         
+            
             computerConfigClass = computerConfigClass.DownloadConfig(ApiServer, DeviceName);
             if(computerConfigClass.Parameters.Count == 0)
             {
                 Dialog_ConfigSetting dialog_ConfigSetting = new Dialog_ConfigSetting(ApiServer, DeviceName);
                 dialog_ConfigSetting.ShowDialog();
             }
+
             this.SetUI();
             this.rJ_Button_離開.MouseDownEvent += RJ_Button_離開_MouseDownEvent;
             this.rJ_Button_智慧調劑台系統.MouseDownEvent += RJ_Button_智慧調劑台系統_MouseDownEvent;
             this.rJ_Button_智能藥庫系統.MouseDownEvent += RJ_Button_智能藥庫系統_MouseDownEvent;
             this.rJ_Button_中心叫號系統.MouseDownEvent += RJ_Button_中心叫號系統_MouseDownEvent;
         }
-
-     
-
 
         #region Event
         private void 後台設定ToolStripMenuItem_Click(object sender, EventArgs e)

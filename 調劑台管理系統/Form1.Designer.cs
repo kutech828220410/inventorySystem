@@ -334,6 +334,13 @@
             this.plC_RJ_Button_藥品資料_刪除 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_藥品資料_更新藥櫃資料 = new MyUI.PLC_RJ_Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.groupBox35 = new System.Windows.Forms.GroupBox();
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑 = new MyUI.PLC_CheckBox();
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品 = new MyUI.PLC_CheckBox();
             this.panel85 = new System.Windows.Forms.Panel();
             this.textBox_藥品資料_藥檔資料_許可證號 = new MyUI.RJ_TextBox();
             this.panel86 = new System.Windows.Forms.Panel();
@@ -342,8 +349,6 @@
             this.textBox_藥品資料_藥檔資料_廠牌 = new MyUI.RJ_TextBox();
             this.panel82 = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑 = new MyUI.PLC_CheckBox();
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品 = new MyUI.PLC_CheckBox();
             this.plC_RJ_Button_藥品資料_條碼管理 = new MyUI.PLC_RJ_Button();
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定 = new MyUI.PLC_CheckBox();
             this.groupBox_藥品資料_藥檔資料_設定 = new System.Windows.Forms.GroupBox();
@@ -352,7 +357,6 @@
             this.plC_CheckBox_藥品資料_藥檔資料_結存報表 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_藥品資料_藥檔資料_複盤 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_藥品資料_藥檔資料_效期管理 = new MyUI.PLC_CheckBox();
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品 = new MyUI.PLC_CheckBox();
             this.panel75 = new System.Windows.Forms.Panel();
             this.comboBox_藥品資料_藥檔資料_管制級別 = new MyUI.RJ_ComboBox();
             this.panel76 = new System.Windows.Forms.Panel();
@@ -658,6 +662,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable60 = new MyUI.RJ_Lable();
             this.panel189 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示 = new MyUI.PLC_CheckBox();
             this.rJ_Lable31 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存 = new MyUI.RJ_TextBox();
@@ -676,6 +681,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼 = new MyUI.RJ_TextBox();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示 = new MyUI.PLC_CheckBox();
             this.rJ_Lable15 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼 = new MyUI.RJ_TextBox();
@@ -744,12 +750,11 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期 = new MyUI.PLC_RJ_Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示 = new MyUI.PLC_CheckBox();
-            this.rJ_Lable59 = new MyUI.RJ_Lable();
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示 = new MyUI.PLC_CheckBox();
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable58 = new MyUI.RJ_Lable();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示 = new MyUI.PLC_CheckBox();
             this.rJ_Lable32 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存 = new MyUI.RJ_TextBox();
@@ -759,15 +764,18 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱 = new MyUI.RJ_TextBox();
             this.panel141 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示 = new MyUI.PLC_CheckBox();
             this.rJ_Lable34 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位 = new MyUI.RJ_TextBox();
             this.panel142 = new System.Windows.Forms.Panel();
             this.panel143 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示 = new MyUI.PLC_CheckBox();
             this.rJ_Lable35 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼 = new MyUI.RJ_TextBox();
             this.panel145 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示 = new MyUI.PLC_CheckBox();
             this.rJ_Lable36 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼 = new MyUI.RJ_TextBox();
@@ -1600,6 +1608,7 @@
             this.rJ_GroupBox12.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox12.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.groupBox35.SuspendLayout();
             this.panel85.SuspendLayout();
             this.panel81.SuspendLayout();
             this.groupBox_藥品資料_藥檔資料_設定.SuspendLayout();
@@ -9908,14 +9917,12 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.groupBox35);
             this.panel6.Controls.Add(this.panel85);
             this.panel6.Controls.Add(this.panel81);
-            this.panel6.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_生物製劑);
-            this.panel6.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_高價藥品);
             this.panel6.Controls.Add(this.plC_RJ_Button_藥品資料_條碼管理);
             this.panel6.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_自定義設定);
             this.panel6.Controls.Add(this.groupBox_藥品資料_藥檔資料_設定);
-            this.panel6.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品);
             this.panel6.Controls.Add(this.panel75);
             this.panel6.Controls.Add(this.panel69);
             this.panel6.Controls.Add(this.panel64);
@@ -9932,6 +9939,130 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(831, 357);
             this.panel6.TabIndex = 129;
+            // 
+            // groupBox35
+            // 
+            this.groupBox35.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品);
+            this.groupBox35.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_發音相似);
+            this.groupBox35.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_高價藥品);
+            this.groupBox35.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_形狀相似);
+            this.groupBox35.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_生物製劑);
+            this.groupBox35.Controls.Add(this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品);
+            this.groupBox35.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.groupBox35.Location = new System.Drawing.Point(575, 207);
+            this.groupBox35.Name = "groupBox35";
+            this.groupBox35.Size = new System.Drawing.Size(253, 124);
+            this.groupBox35.TabIndex = 139;
+            this.groupBox35.TabStop = false;
+            this.groupBox35.Text = "屬性";
+            // 
+            // plC_CheckBox_藥品資料_藥檔資料_警訊藥品
+            // 
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.AutoSize = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Bool = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Location = new System.Drawing.Point(21, 24);
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Name = "plC_CheckBox_藥品資料_藥檔資料_警訊藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Size = new System.Drawing.Size(93, 25);
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.TabIndex = 12;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Text = "警訊藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字內容 = "警訊藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_藥檔資料_發音相似
+            // 
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.AutoSize = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Bool = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Location = new System.Drawing.Point(120, 86);
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Name = "plC_CheckBox_藥品資料_藥檔資料_發音相似";
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Size = new System.Drawing.Size(93, 25);
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.TabIndex = 138;
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.Text = "發音相似";
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.文字內容 = "發音相似";
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_發音相似.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_藥檔資料_高價藥品
+            // 
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.AutoSize = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Bool = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Location = new System.Drawing.Point(21, 55);
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Name = "plC_CheckBox_藥品資料_藥檔資料_高價藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Size = new System.Drawing.Size(93, 25);
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.TabIndex = 132;
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Text = "高價藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.文字內容 = "高價藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_藥檔資料_形狀相似
+            // 
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.AutoSize = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Bool = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Location = new System.Drawing.Point(120, 55);
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Name = "plC_CheckBox_藥品資料_藥檔資料_形狀相似";
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Size = new System.Drawing.Size(93, 25);
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.TabIndex = 137;
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.Text = "形狀相似";
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.文字內容 = "形狀相似";
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_形狀相似.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_藥檔資料_生物製劑
+            // 
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.AutoSize = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Bool = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Location = new System.Drawing.Point(21, 86);
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Name = "plC_CheckBox_藥品資料_藥檔資料_生物製劑";
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Size = new System.Drawing.Size(93, 25);
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.TabIndex = 133;
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Text = "生物製劑";
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.文字內容 = "生物製劑";
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.音效 = true;
+            // 
+            // plC_CheckBox_藥品資料_藥檔資料_麻醉藥品
+            // 
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.AutoSize = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Bool = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Location = new System.Drawing.Point(120, 24);
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Name = "plC_CheckBox_藥品資料_藥檔資料_麻醉藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Size = new System.Drawing.Size(93, 25);
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.TabIndex = 136;
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.Text = "麻醉藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.文字內容 = "麻醉藥品";
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.讀寫鎖住 = false;
+            this.plC_CheckBox_藥品資料_藥檔資料_麻醉藥品.音效 = true;
             // 
             // panel85
             // 
@@ -10045,42 +10176,6 @@
             this.label20.Text = "廠牌";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // plC_CheckBox_藥品資料_藥檔資料_生物製劑
-            // 
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.AutoSize = true;
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Bool = false;
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Location = new System.Drawing.Point(198, 328);
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Name = "plC_CheckBox_藥品資料_藥檔資料_生物製劑";
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Size = new System.Drawing.Size(93, 25);
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.TabIndex = 133;
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.Text = "生物製劑";
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.文字內容 = "生物製劑";
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.讀寫鎖住 = false;
-            this.plC_CheckBox_藥品資料_藥檔資料_生物製劑.音效 = true;
-            // 
-            // plC_CheckBox_藥品資料_藥檔資料_高價藥品
-            // 
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.AutoSize = true;
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Bool = false;
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Location = new System.Drawing.Point(102, 328);
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Name = "plC_CheckBox_藥品資料_藥檔資料_高價藥品";
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Size = new System.Drawing.Size(93, 25);
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.TabIndex = 132;
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.Text = "高價藥品";
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.文字內容 = "高價藥品";
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.讀寫鎖住 = false;
-            this.plC_CheckBox_藥品資料_藥檔資料_高價藥品.音效 = true;
-            // 
             // plC_RJ_Button_藥品資料_條碼管理
             // 
             this.plC_RJ_Button_藥品資料_條碼管理.AutoResetState = false;
@@ -10130,7 +10225,7 @@
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Bool = false;
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Location = new System.Drawing.Point(575, 13);
+            this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Location = new System.Drawing.Point(627, 17);
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Name = "plC_CheckBox_藥品資料_藥檔資料_自定義設定";
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Size = new System.Drawing.Size(141, 25);
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.TabIndex = 14;
@@ -10154,7 +10249,7 @@
             this.groupBox_藥品資料_藥檔資料_設定.ForeColor = System.Drawing.Color.Black;
             this.groupBox_藥品資料_藥檔資料_設定.Location = new System.Drawing.Point(575, 44);
             this.groupBox_藥品資料_藥檔資料_設定.Name = "groupBox_藥品資料_藥檔資料_設定";
-            this.groupBox_藥品資料_藥檔資料_設定.Size = new System.Drawing.Size(253, 292);
+            this.groupBox_藥品資料_藥檔資料_設定.Size = new System.Drawing.Size(253, 157);
             this.groupBox_藥品資料_藥檔資料_設定.TabIndex = 13;
             this.groupBox_藥品資料_藥檔資料_設定.TabStop = false;
             this.groupBox_藥品資料_藥檔資料_設定.Text = "設定";
@@ -10248,24 +10343,6 @@
             this.plC_CheckBox_藥品資料_藥檔資料_效期管理.文字顏色 = System.Drawing.Color.Black;
             this.plC_CheckBox_藥品資料_藥檔資料_效期管理.讀寫鎖住 = false;
             this.plC_CheckBox_藥品資料_藥檔資料_效期管理.音效 = true;
-            // 
-            // plC_CheckBox_藥品資料_藥檔資料_警訊藥品
-            // 
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.AutoSize = true;
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Bool = false;
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Location = new System.Drawing.Point(6, 328);
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Name = "plC_CheckBox_藥品資料_藥檔資料_警訊藥品";
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Size = new System.Drawing.Size(93, 25);
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.TabIndex = 12;
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Text = "警訊藥品";
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字內容 = "警訊藥品";
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.讀寫鎖住 = false;
-            this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.音效 = true;
             // 
             // panel75
             // 
@@ -17530,6 +17607,7 @@
             // 
             // panel187
             // 
+            this.panel187.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel187.Controls.Add(this.plC_CheckBox_儲位管理_EPD583_儲位內容_效期顯示);
             this.panel187.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動);
             this.panel187.Controls.Add(this.rJ_Lable60);
@@ -17620,14 +17698,34 @@
             // 
             // panel189
             // 
+            this.panel189.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel189.Controls.Add(this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示);
             this.panel189.Controls.Add(this.rJ_Lable31);
             this.panel189.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動);
             this.panel189.Controls.Add(this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存);
             this.panel189.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel189.Location = new System.Drawing.Point(0, 0);
             this.panel189.Name = "panel189";
-            this.panel189.Size = new System.Drawing.Size(289, 37);
+            this.panel189.Size = new System.Drawing.Size(289, 35);
             this.panel189.TabIndex = 134;
+            // 
+            // plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示
+            // 
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.Location = new System.Drawing.Point(233, 9);
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.Name = "plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示";
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.Size = new System.Drawing.Size(48, 16);
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.TabIndex = 141;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.Text = "顯示";
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.文字內容 = "顯示";
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示.音效 = true;
             // 
             // rJ_Lable31
             // 
@@ -17641,7 +17739,7 @@
             this.rJ_Lable31.GUID = "";
             this.rJ_Lable31.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable31.Name = "rJ_Lable31";
-            this.rJ_Lable31.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable31.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable31.TabIndex = 128;
             this.rJ_Lable31.Text = "總庫存";
             this.rJ_Lable31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -17662,7 +17760,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.Location = new System.Drawing.Point(183, 2);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -17701,7 +17799,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Location = new System.Drawing.Point(96, 3);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Name = "rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -17709,7 +17807,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_總庫存.Texts = "";
@@ -17727,6 +17825,7 @@
             // 
             // panel138
             // 
+            this.panel138.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel138.Controls.Add(this.rJ_Lable22);
             this.panel138.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動);
             this.panel138.Controls.Add(this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱);
@@ -17748,7 +17847,7 @@
             this.rJ_Lable22.GUID = "";
             this.rJ_Lable22.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable22.Name = "rJ_Lable22";
-            this.rJ_Lable22.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable22.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable22.TabIndex = 128;
             this.rJ_Lable22.Text = "儲位名稱";
             this.rJ_Lable22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -17769,7 +17868,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.Location = new System.Drawing.Point(184, 3);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -17807,7 +17906,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Location = new System.Drawing.Point(96, 3);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Name = "rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -17815,7 +17914,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位名稱.Texts = "";
@@ -17823,6 +17922,7 @@
             // 
             // panel139
             // 
+            this.panel139.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel139.Controls.Add(this.rJ_Lable24);
             this.panel139.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動);
             this.panel139.Controls.Add(this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位);
@@ -17844,7 +17944,7 @@
             this.rJ_Lable24.GUID = "";
             this.rJ_Lable24.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable24.Name = "rJ_Lable24";
-            this.rJ_Lable24.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable24.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable24.TabIndex = 128;
             this.rJ_Lable24.Text = "包裝單位";
             this.rJ_Lable24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -17865,7 +17965,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.Location = new System.Drawing.Point(184, 3);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -17904,7 +18004,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Location = new System.Drawing.Point(96, 3);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Name = "rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -17912,7 +18012,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_包裝單位.Texts = "";
@@ -17930,6 +18030,7 @@
             // 
             // panel61
             // 
+            this.panel61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel61.Controls.Add(this.rJ_Lable21);
             this.panel61.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動);
             this.panel61.Controls.Add(this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼);
@@ -17951,7 +18052,7 @@
             this.rJ_Lable21.GUID = "";
             this.rJ_Lable21.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable21.Name = "rJ_Lable21";
-            this.rJ_Lable21.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable21.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable21.TabIndex = 128;
             this.rJ_Lable21.Text = "藥品條碼";
             this.rJ_Lable21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -17972,7 +18073,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.Location = new System.Drawing.Point(184, 4);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -18011,7 +18112,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Location = new System.Drawing.Point(96, 3);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Name = "rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -18019,7 +18120,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品條碼.Texts = "";
@@ -18027,6 +18128,8 @@
             // 
             // panel15
             // 
+            this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel15.Controls.Add(this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示);
             this.panel15.Controls.Add(this.rJ_Lable15);
             this.panel15.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動);
             this.panel15.Controls.Add(this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼);
@@ -18035,6 +18138,24 @@
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(289, 37);
             this.panel15.TabIndex = 134;
+            // 
+            // plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示
+            // 
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.Location = new System.Drawing.Point(234, 11);
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.Name = "plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示";
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.Size = new System.Drawing.Size(48, 16);
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.TabIndex = 141;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.Text = "顯示";
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.文字內容 = "顯示";
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示.音效 = true;
             // 
             // rJ_Lable15
             // 
@@ -18048,7 +18169,7 @@
             this.rJ_Lable15.GUID = "";
             this.rJ_Lable15.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable15.Name = "rJ_Lable15";
-            this.rJ_Lable15.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable15.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable15.TabIndex = 128;
             this.rJ_Lable15.Text = "藥品碼";
             this.rJ_Lable15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -18069,7 +18190,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.Location = new System.Drawing.Point(184, 3);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -18107,7 +18228,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Location = new System.Drawing.Point(96, 3);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Name = "rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -18115,7 +18236,7 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_藥品碼.Texts = "";
@@ -19715,7 +19836,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_警報.Bool = false;
             this.plC_RJ_Button_儲位管理_EPD266_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_儲位管理_EPD266_警報.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位管理_EPD266_警報.Location = new System.Drawing.Point(419, 231);
+            this.plC_RJ_Button_儲位管理_EPD266_警報.Location = new System.Drawing.Point(419, 236);
             this.plC_RJ_Button_儲位管理_EPD266_警報.Name = "plC_RJ_Button_儲位管理_EPD266_警報";
             this.plC_RJ_Button_儲位管理_EPD266_警報.Size = new System.Drawing.Size(59, 20);
             this.plC_RJ_Button_儲位管理_EPD266_警報.TabIndex = 154;
@@ -19775,7 +19896,7 @@
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Bool = false;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Font = new System.Drawing.Font("新細明體", 12F);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Location = new System.Drawing.Point(483, 231);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Location = new System.Drawing.Point(483, 236);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測";
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.Size = new System.Drawing.Size(91, 20);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_手勢感測.TabIndex = 143;
@@ -20011,8 +20132,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示);
-            this.panel3.Controls.Add(this.rJ_Lable59);
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示);
             this.panel3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動);
             this.panel3.Controls.Add(this.rJ_Lable58);
@@ -20023,49 +20143,13 @@
             this.panel3.Size = new System.Drawing.Size(574, 37);
             this.panel3.TabIndex = 137;
             // 
-            // plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示
-            // 
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.AutoSize = true;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Bool = false;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Font = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Location = new System.Drawing.Point(507, 11);
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示";
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Size = new System.Drawing.Size(48, 16);
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.TabIndex = 139;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Text = "顯示";
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.文字內容 = "顯示";
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.讀寫鎖住 = false;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.音效 = true;
-            // 
-            // rJ_Lable59
-            // 
-            this.rJ_Lable59.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_Lable59.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_Lable59.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable59.BorderRadius = 12;
-            this.rJ_Lable59.BorderSize = 0;
-            this.rJ_Lable59.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable59.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable59.GUID = "";
-            this.rJ_Lable59.Location = new System.Drawing.Point(429, 3);
-            this.rJ_Lable59.Name = "rJ_Lable59";
-            this.rJ_Lable59.Size = new System.Drawing.Size(69, 30);
-            this.rJ_Lable59.TabIndex = 138;
-            this.rJ_Lable59.Text = "Barcode";
-            this.rJ_Lable59.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable59.TextColor = System.Drawing.Color.White;
-            // 
             // plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示
             // 
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.AutoSize = true;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Bool = false;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Font = new System.Drawing.Font("新細明體", 9F);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Location = new System.Drawing.Point(375, 10);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Location = new System.Drawing.Point(436, 10);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示";
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.Size = new System.Drawing.Size(48, 16);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_效期顯示.TabIndex = 137;
@@ -20092,7 +20176,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.Location = new System.Drawing.Point(324, 3);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.Location = new System.Drawing.Point(385, 3);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.Name = "plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -20129,9 +20213,9 @@
             this.rJ_Lable58.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Lable58.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable58.GUID = "";
-            this.rJ_Lable58.Location = new System.Drawing.Point(249, 3);
+            this.rJ_Lable58.Location = new System.Drawing.Point(292, 3);
             this.rJ_Lable58.Name = "rJ_Lable58";
-            this.rJ_Lable58.Size = new System.Drawing.Size(69, 30);
+            this.rJ_Lable58.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable58.TabIndex = 135;
             this.rJ_Lable58.Text = "效期";
             this.rJ_Lable58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -20139,14 +20223,34 @@
             // 
             // panel5
             // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示);
             this.panel5.Controls.Add(this.rJ_Lable32);
             this.panel5.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動);
             this.panel5.Controls.Add(this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(243, 37);
+            this.panel5.Size = new System.Drawing.Size(289, 35);
             this.panel5.TabIndex = 134;
+            // 
+            // plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示
+            // 
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.Location = new System.Drawing.Point(235, 10);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.Size = new System.Drawing.Size(48, 16);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.TabIndex = 139;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.Text = "顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.文字內容 = "顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示.音效 = true;
             // 
             // rJ_Lable32
             // 
@@ -20158,9 +20262,9 @@
             this.rJ_Lable32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Lable32.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable32.GUID = "";
-            this.rJ_Lable32.Location = new System.Drawing.Point(3, 3);
+            this.rJ_Lable32.Location = new System.Drawing.Point(3, 2);
             this.rJ_Lable32.Name = "rJ_Lable32";
-            this.rJ_Lable32.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable32.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable32.TabIndex = 128;
             this.rJ_Lable32.Text = "總庫存";
             this.rJ_Lable32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -20181,7 +20285,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.Location = new System.Drawing.Point(190, 3);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.Location = new System.Drawing.Point(184, 3);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.Name = "plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -20219,7 +20323,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Location = new System.Drawing.Point(96, 3);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Name = "rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -20227,7 +20331,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Size = new System.Drawing.Size(59, 30);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_總庫存.Texts = "";
@@ -20245,13 +20349,14 @@
             // 
             // panel140
             // 
+            this.panel140.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel140.Controls.Add(this.rJ_Lable33);
             this.panel140.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動);
             this.panel140.Controls.Add(this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱);
             this.panel140.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel140.Location = new System.Drawing.Point(289, 0);
             this.panel140.Name = "panel140";
-            this.panel140.Size = new System.Drawing.Size(289, 37);
+            this.panel140.Size = new System.Drawing.Size(285, 37);
             this.panel140.TabIndex = 135;
             // 
             // rJ_Lable33
@@ -20266,7 +20371,7 @@
             this.rJ_Lable33.GUID = "";
             this.rJ_Lable33.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable33.Name = "rJ_Lable33";
-            this.rJ_Lable33.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable33.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable33.TabIndex = 128;
             this.rJ_Lable33.Text = "儲位名稱";
             this.rJ_Lable33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -20287,7 +20392,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.Location = new System.Drawing.Point(181, 3);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.Name = "plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -20325,7 +20430,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Location = new System.Drawing.Point(93, 3);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Name = "rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -20333,7 +20438,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位名稱.Texts = "";
@@ -20341,6 +20446,8 @@
             // 
             // panel141
             // 
+            this.panel141.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel141.Controls.Add(this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示);
             this.panel141.Controls.Add(this.rJ_Lable34);
             this.panel141.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動);
             this.panel141.Controls.Add(this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位);
@@ -20349,6 +20456,24 @@
             this.panel141.Name = "panel141";
             this.panel141.Size = new System.Drawing.Size(289, 37);
             this.panel141.TabIndex = 134;
+            // 
+            // plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示
+            // 
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.Location = new System.Drawing.Point(235, 11);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.Size = new System.Drawing.Size(48, 16);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.TabIndex = 139;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.Text = "顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.文字內容 = "顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示.音效 = true;
             // 
             // rJ_Lable34
             // 
@@ -20362,7 +20487,7 @@
             this.rJ_Lable34.GUID = "";
             this.rJ_Lable34.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable34.Name = "rJ_Lable34";
-            this.rJ_Lable34.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable34.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable34.TabIndex = 128;
             this.rJ_Lable34.Text = "包裝單位";
             this.rJ_Lable34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -20383,7 +20508,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.Location = new System.Drawing.Point(184, 4);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.Name = "plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -20421,7 +20546,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Location = new System.Drawing.Point(96, 4);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Name = "rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -20429,7 +20554,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_包裝單位.Texts = "";
@@ -20447,14 +20572,34 @@
             // 
             // panel143
             // 
+            this.panel143.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel143.Controls.Add(this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示);
             this.panel143.Controls.Add(this.rJ_Lable35);
             this.panel143.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動);
             this.panel143.Controls.Add(this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼);
             this.panel143.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel143.Location = new System.Drawing.Point(289, 0);
             this.panel143.Name = "panel143";
-            this.panel143.Size = new System.Drawing.Size(289, 37);
+            this.panel143.Size = new System.Drawing.Size(285, 37);
             this.panel143.TabIndex = 135;
+            // 
+            // plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示
+            // 
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Location = new System.Drawing.Point(232, 13);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Size = new System.Drawing.Size(48, 16);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.TabIndex = 139;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.Text = "顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.文字內容 = "顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示.音效 = true;
             // 
             // rJ_Lable35
             // 
@@ -20468,7 +20613,7 @@
             this.rJ_Lable35.GUID = "";
             this.rJ_Lable35.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable35.Name = "rJ_Lable35";
-            this.rJ_Lable35.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable35.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable35.TabIndex = 128;
             this.rJ_Lable35.Text = "藥品條碼";
             this.rJ_Lable35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -20489,7 +20634,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.Location = new System.Drawing.Point(181, 4);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.Name = "plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -20528,7 +20673,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Location = new System.Drawing.Point(93, 4);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Name = "rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -20536,7 +20681,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品條碼.Texts = "";
@@ -20544,6 +20689,8 @@
             // 
             // panel145
             // 
+            this.panel145.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel145.Controls.Add(this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示);
             this.panel145.Controls.Add(this.rJ_Lable36);
             this.panel145.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動);
             this.panel145.Controls.Add(this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼);
@@ -20552,6 +20699,24 @@
             this.panel145.Name = "panel145";
             this.panel145.Size = new System.Drawing.Size(289, 37);
             this.panel145.TabIndex = 134;
+            // 
+            // plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示
+            // 
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.Font = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.Location = new System.Drawing.Point(235, 11);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.Size = new System.Drawing.Size(48, 16);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.TabIndex = 138;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.Text = "顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.文字內容 = "顯示";
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.文字字體 = new System.Drawing.Font("新細明體", 9F);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示.音效 = true;
             // 
             // rJ_Lable36
             // 
@@ -20565,7 +20730,7 @@
             this.rJ_Lable36.GUID = "";
             this.rJ_Lable36.Location = new System.Drawing.Point(3, 3);
             this.rJ_Lable36.Name = "rJ_Lable36";
-            this.rJ_Lable36.Size = new System.Drawing.Size(116, 30);
+            this.rJ_Lable36.Size = new System.Drawing.Size(87, 30);
             this.rJ_Lable36.TabIndex = 128;
             this.rJ_Lable36.Text = "藥品碼";
             this.rJ_Lable36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -20586,7 +20751,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.Location = new System.Drawing.Point(237, 3);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.Location = new System.Drawing.Point(184, 3);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.Name = "plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.OFF_文字內容 = "...";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -20624,7 +20789,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Location = new System.Drawing.Point(125, 3);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Location = new System.Drawing.Point(96, 3);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Name = "rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -20632,7 +20797,7 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.PlaceholderText = "";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Size = new System.Drawing.Size(106, 30);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Size = new System.Drawing.Size(82, 30);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.TabIndex = 129;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_藥品碼.Texts = "";
@@ -34011,16 +34176,8 @@
             this.sqL_DataGridView_藥品設定表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥品設定表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥品設定表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_藥品設定表.columnHeadersHeight = 21;
+            this.sqL_DataGridView_藥品設定表.columnHeadersHeight = 18;
             this.sqL_DataGridView_藥品設定表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns"))));
-            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns1"))));
-            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns2"))));
-            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns3"))));
-            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns4"))));
-            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns5"))));
-            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns6"))));
-            this.sqL_DataGridView_藥品設定表.Columns.Add(((SQLUI.SQL_DataGridView.ColumnElement)(resources.GetObject("sqL_DataGridView_藥品設定表.Columns7"))));
             this.sqL_DataGridView_藥品設定表.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_藥品設定表.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_藥品設定表.Font = new System.Drawing.Font("新細明體", 9F);
@@ -38567,14 +38724,13 @@
             this.plC_RJ_ScreenButton_管制抽屜.ShowIcon = true;
             this.plC_RJ_ScreenButton_管制抽屜.Size = new System.Drawing.Size(234, 60);
             this.plC_RJ_ScreenButton_管制抽屜.TabIndex = 134;
-            this.plC_RJ_ScreenButton_管制抽屜.Visible = false;
             this.plC_RJ_ScreenButton_管制抽屜.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
             this.plC_RJ_ScreenButton_管制抽屜.寫入位置註解 = "";
             this.plC_RJ_ScreenButton_管制抽屜.寫入元件位置 = "";
             this.plC_RJ_ScreenButton_管制抽屜.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
             this.plC_RJ_ScreenButton_管制抽屜.控制位址 = "D0";
             this.plC_RJ_ScreenButton_管制抽屜.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButton_管制抽屜.致能讀取位置 = "";
+            this.plC_RJ_ScreenButton_管制抽屜.致能讀取位置 = "S4000";
             this.plC_RJ_ScreenButton_管制抽屜.讀取位元反向 = false;
             this.plC_RJ_ScreenButton_管制抽屜.讀取位置註解 = "";
             this.plC_RJ_ScreenButton_管制抽屜.讀取元件位置 = "";
@@ -38583,7 +38739,7 @@
             this.plC_RJ_ScreenButton_管制抽屜.頁面編號 = 0;
             this.plC_RJ_ScreenButton_管制抽屜.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
             this.plC_RJ_ScreenButton_管制抽屜.顯示狀態 = false;
-            this.plC_RJ_ScreenButton_管制抽屜.顯示讀取位置 = "S39991";
+            this.plC_RJ_ScreenButton_管制抽屜.顯示讀取位置 = "";
             // 
             // plC_RJ_ScreenButton_系統
             // 
@@ -39005,6 +39161,8 @@
             this.rJ_GroupBox12.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.groupBox35.ResumeLayout(false);
+            this.groupBox35.PerformLayout();
             this.panel85.ResumeLayout(false);
             this.panel81.ResumeLayout(false);
             this.groupBox_藥品資料_藥檔資料_設定.ResumeLayout(false);
@@ -39106,12 +39264,14 @@
             this.panel187.ResumeLayout(false);
             this.panel187.PerformLayout();
             this.panel189.ResumeLayout(false);
+            this.panel189.PerformLayout();
             this.panel62.ResumeLayout(false);
             this.panel138.ResumeLayout(false);
             this.panel139.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             this.panel61.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             this.panel14.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
@@ -39134,12 +39294,16 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel20.ResumeLayout(false);
             this.panel140.ResumeLayout(false);
             this.panel141.ResumeLayout(false);
+            this.panel141.PerformLayout();
             this.panel142.ResumeLayout(false);
             this.panel143.ResumeLayout(false);
+            this.panel143.PerformLayout();
             this.panel145.ResumeLayout(false);
+            this.panel145.PerformLayout();
             this.panel146.ResumeLayout(false);
             this.panel146.PerformLayout();
             this.panel147.ResumeLayout(false);
@@ -40308,7 +40472,6 @@
         private MyUI.RJ_Lable rJ_Lable58;
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位;
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD266_儲位內容_Barcode顯示;
-        private MyUI.RJ_Lable rJ_Lable59;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動;
         private MyUI.RJ_Lable rJ_Lable60;
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD583_儲位內容_效期顯示;
@@ -40869,6 +41032,15 @@
         private MyUI.RJ_TextBox textBox_藥品資料_藥檔資料_資料查詢_中文名;
         private MyUI.RJ_Lable rJ_Lable19;
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品資料_顯示全部;
+        private System.Windows.Forms.GroupBox groupBox35;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_藥檔資料_發音相似;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_藥檔資料_形狀相似;
+        private MyUI.PLC_CheckBox plC_CheckBox_藥品資料_藥檔資料_麻醉藥品;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD266_儲位內容_庫存顯示;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD266_儲位內容_包裝單位顯示;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示;
     }
 }
 
