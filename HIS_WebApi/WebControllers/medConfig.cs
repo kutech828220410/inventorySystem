@@ -49,8 +49,6 @@ namespace HIS_WebApi
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
             }
-
-
         }
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)

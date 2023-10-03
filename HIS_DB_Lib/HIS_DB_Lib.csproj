@@ -91,6 +91,7 @@
     <Compile Include="medConfigClass.cs" />
     <Compile Include="medCouldClass.cs" />
     <Compile Include="medDrugstoreClass.cs" />
+    <Compile Include="medGroupClass.cs" />
     <Compile Include="medPharmacyClass.cs" />
     <Compile Include="medShiftConfigClass.cs" />
     <Compile Include="medSMDSClass.cs" />

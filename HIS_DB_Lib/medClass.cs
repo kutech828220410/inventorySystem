@@ -23,6 +23,8 @@ namespace HIS_DB_Lib
     {
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
         [JsonPropertyName("CODE")]
         public string 藥品碼 { get; set; }
         [JsonPropertyName("SKDIACODE")]
