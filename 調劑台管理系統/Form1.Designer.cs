@@ -852,6 +852,7 @@
             this.rJ_TextBox_儲位管理_EPD1020_儲位內容_藥品名稱 = new MyUI.RJ_TextBox();
             this.plC_RJ_GroupBox31 = new MyUI.PLC_RJ_GroupBox();
             this.panel110 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_儲位管理_EPD1020_警報 = new MyUI.PLC_CheckBox();
             this.plC_RJ_Button_儲位管理_EPD1020_開鎖 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD1020_抽屜列表_語音 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋 = new MyUI.PLC_RJ_Button();
@@ -22700,6 +22701,7 @@
             // 
             // panel110
             // 
+            this.panel110.Controls.Add(this.plC_CheckBox_儲位管理_EPD1020_警報);
             this.panel110.Controls.Add(this.plC_RJ_Button_儲位管理_EPD1020_開鎖);
             this.panel110.Controls.Add(this.rJ_TextBox_儲位管理_EPD1020_抽屜列表_語音);
             this.panel110.Controls.Add(this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋);
@@ -22720,6 +22722,24 @@
             this.panel110.Name = "panel110";
             this.panel110.Size = new System.Drawing.Size(339, 343);
             this.panel110.TabIndex = 44;
+            // 
+            // plC_CheckBox_儲位管理_EPD1020_警報
+            // 
+            this.plC_CheckBox_儲位管理_EPD1020_警報.AutoSize = true;
+            this.plC_CheckBox_儲位管理_EPD1020_警報.Bool = false;
+            this.plC_CheckBox_儲位管理_EPD1020_警報.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_儲位管理_EPD1020_警報.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD1020_警報.Location = new System.Drawing.Point(265, 301);
+            this.plC_CheckBox_儲位管理_EPD1020_警報.Name = "plC_CheckBox_儲位管理_EPD1020_警報";
+            this.plC_CheckBox_儲位管理_EPD1020_警報.Size = new System.Drawing.Size(59, 20);
+            this.plC_CheckBox_儲位管理_EPD1020_警報.TabIndex = 155;
+            this.plC_CheckBox_儲位管理_EPD1020_警報.Text = "警報";
+            this.plC_CheckBox_儲位管理_EPD1020_警報.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_儲位管理_EPD1020_警報.文字內容 = "警報";
+            this.plC_CheckBox_儲位管理_EPD1020_警報.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_儲位管理_EPD1020_警報.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_儲位管理_EPD1020_警報.讀寫鎖住 = false;
+            this.plC_CheckBox_儲位管理_EPD1020_警報.音效 = true;
             // 
             // plC_RJ_Button_儲位管理_EPD1020_開鎖
             // 
@@ -39336,6 +39356,7 @@
             this.plC_RJ_GroupBox31.ContentsPanel.ResumeLayout(false);
             this.plC_RJ_GroupBox31.ResumeLayout(false);
             this.panel110.ResumeLayout(false);
+            this.panel110.PerformLayout();
             this.rJ_Pannel20.ResumeLayout(false);
             this.rJ_Pannel20.PerformLayout();
             this.plC_RJ_GroupBox30.ContentsPanel.ResumeLayout(false);
@@ -41041,6 +41062,7 @@
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD266_儲位內容_藥品碼顯示;
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示;
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示;
+        private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD1020_警報;
     }
 }
 

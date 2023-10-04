@@ -85,12 +85,13 @@ namespace 調劑台管理系統
 
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位_MouseDownEvent;
+            this.plC_CheckBox_儲位管理_EPD1020_警報.CheckStateChanged += PlC_CheckBox_儲位管理_EPD1020_警報_CheckStateChanged;
 
             this.epD_1020_Pannel.Init(this.drawerUI_EPD_1020.List_UDP_Local);
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_EPD1020);
         }
 
-    
+  
 
         private void Program_儲位管理_EPD1020()
         {
@@ -926,7 +927,23 @@ namespace 調劑台管理系統
 
             }
         }
-
+        private void PlC_CheckBox_儲位管理_EPD1020_警報_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                string IP = rJ_TextBox_儲位管理_EPD1020_抽屜列表_IP.Texts;
+                Drawer drawer = this.drawerUI_EPD_1020.SQL_GetDrawer(IP);
+                if (drawer != null)
+                {
+                    drawer.AlarmEnable = plC_CheckBox_儲位管理_EPD1020_警報.Checked;
+                    this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
+                    this.List_EPD1020_本地資料.Add_NewDrawer(drawer);
+                    this.epD_1020_Pannel.CurrentDrawer = drawer;
+                    this.Function_設定雲端資料更新();
+                    flag_Program_輸出入檢查_輸出刷新_Init = false;
+                }
+            }));
+        }
         #endregion
 
         private class ICP_儲位管理_EPD1020_抽屜列表 : IComparer<object[]>
