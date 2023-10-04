@@ -878,7 +878,6 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\DrawingCl
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OOXML.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OpenXml4Net.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OpenXmlFormats.dll
-C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.GenerateResource.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.GeneratedMSBuildEditorConfig.editorconfig
@@ -1846,3 +1845,10 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Microsoft.OpenApi.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.xml
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache

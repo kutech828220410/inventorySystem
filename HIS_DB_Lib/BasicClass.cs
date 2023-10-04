@@ -35,6 +35,9 @@ namespace HIS_DB_Lib
                 _data = value;
             }
         }
+        /// <summary>
+        /// 回傳結果碼
+        /// </summary>
         public int Code { get => _code; set => _code = value; }
         public string Result
         {

@@ -46,7 +46,7 @@ namespace HIS_WebApi
 
         }
 
-        public string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
             string Server = serverSettingClass.Server;
             string DB = serverSettingClass.DBName;

@@ -1154,6 +1154,7 @@ namespace HIS_WebApi
         }
         //盤點明細新增
         [Route("sub_content_add_single")]
+        [HttpPost]
         public string POST_sub_content_add_single([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();
@@ -1229,6 +1230,7 @@ namespace HIS_WebApi
         }
         //盤點明細新增
         [Route("sub_content_add")]
+        [HttpPost]
         public string POST_sub_content_add([FromBody] returnData returnData)
         {
             MyTimer myTimer = new MyTimer();

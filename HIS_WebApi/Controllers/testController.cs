@@ -91,6 +91,7 @@ namespace HIS_WebApi
         }
 
         [Route("OrderLastWriteTime")]
+        [HttpGet]
         public string Get_OrderLastWriteTime()
         {
 

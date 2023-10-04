@@ -348,6 +348,7 @@ namespace HIS_WebApi
         }
 
         [Route("upadte_by_guid")]
+        [HttpPost]
         public string POST_upadte_by_guid(returnData returnData)
         {
             try
@@ -492,6 +493,7 @@ namespace HIS_WebApi
         }
 
         [Route("serch_by_BarCode")]
+        [HttpPost]
         public string POST_serch_by_BarCode(returnData returnData)
         {
             try

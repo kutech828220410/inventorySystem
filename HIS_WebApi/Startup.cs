@@ -6,7 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models; // 导入 OpenApiInfo 和 OpenApiContact 类
 using System;
+using System.IO;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,6 +61,29 @@ namespace HIS_WebApi
 
             services.AddControllers();
             services.AddSignalR();
+
+            services.AddSwaggerGen(c =>
+            {
+                // API 服務簡介
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Pharmacy Sysytem API",
+                    Description = "Pharmacy Sysytem API",
+                    //TermsOfService = new Uri("https://igouist.github.io/"),
+                    //Contact = new OpenApiContact
+                    //{
+                    //    Name = "Igouist",
+                    //    Email = string.Empty,
+                    //    Url = new Uri("https://igouist.github.io/about/"),
+                    //}
+                });
+
+                // 讀取 XML 檔案產生 API 說明
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,7 +111,12 @@ namespace HIS_WebApi
 
                 endpoints.MapHub<ChatHub>("/chatHub");
             });
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                //c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
         }
     }
+
 }

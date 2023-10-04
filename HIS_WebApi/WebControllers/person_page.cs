@@ -95,6 +95,7 @@ namespace HIS_WebApi
 
         }
         [Route("serch_by_id")]
+        [HttpPost]
         public string POST_serch_by_id([FromBody] returnData returnData)
         {
             try
@@ -194,7 +195,7 @@ namespace HIS_WebApi
         }
 
 
-        public string CheckCreatTable(ServerSettingClass serverSettingClass)
+        private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
             string Server = serverSettingClass.Server;
             string DB = serverSettingClass.DBName;

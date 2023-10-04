@@ -458,18 +458,22 @@ namespace HIS_WebApi
             }
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         public List<DeviceBasic> Function_Get_device()
         {
             return Function_Get_device(device_Server, device_DB, device_TableName, UserName, Password, Port);
         }
+        [ApiExplorerSettings(IgnoreApi = true)]
         public List<DeviceBasic> Function_Get_device(returnData returnData)
         {
             return Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName, returnData.UserName, returnData.Password, returnData.Port);
         }
+        [ApiExplorerSettings(IgnoreApi = true)]
         public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass)
         {
             return Function_Get_device(serverSettingClass, "");
         }
+        [ApiExplorerSettings(IgnoreApi = true)]
         public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass , string TableName)
         {
             string Server = serverSettingClass.Server;
@@ -491,7 +495,7 @@ namespace HIS_WebApi
        
             return deviceBasics;
         }
-        public List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName, string UserName, string Password, uint Port)
+        private List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName, string UserName, string Password, uint Port)
         {
             SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
@@ -506,7 +510,7 @@ namespace HIS_WebApi
 
             return deviceBasics;
         }
-        public List<DeviceBasic> Function_Get_device_by_ip(ServerSettingClass serverSettingClass, string storageIP)
+        private List<DeviceBasic> Function_Get_device_by_ip(ServerSettingClass serverSettingClass, string storageIP)
         {
             string IP = serverSettingClass.Server;
             string DBName = serverSettingClass.DBName;
@@ -625,7 +629,7 @@ namespace HIS_WebApi
             return deviceBasics_buf;
         }
 
-        static public byte[] Get_EPD290_LEDBytes(Color color)
+        static private byte[] Get_EPD290_LEDBytes(Color color)
         {
             byte[] LED_Bytes = new byte[10 * 3];
 
@@ -637,7 +641,7 @@ namespace HIS_WebApi
             }
             return LED_Bytes;
         }
-        static public byte[] Get_EPD266_LEDBytes(Color color)
+        static private byte[] Get_EPD266_LEDBytes(Color color)
         {
             byte[] LED_Bytes = new byte[10 * 3];
 
@@ -649,7 +653,7 @@ namespace HIS_WebApi
             }
             return LED_Bytes;
         }
-        static public byte[] Get_Rows_LEDBytes(ref byte[] LED_Bytes, int startNum, int EndNum, Color color)
+        static private byte[] Get_Rows_LEDBytes(ref byte[] LED_Bytes, int startNum, int EndNum, Color color)
         {
             for (int i = startNum; i < EndNum; i++)
             {
@@ -662,20 +666,20 @@ namespace HIS_WebApi
         }
 
         #region Drawer Function
-        static public int NumOfLED = 450;
+        static private int NumOfLED = 450;
         static private int Drawer_NumOf_H_Line = 4;
         static private int Drawer_NumOf_V_Line = 8;
         static private int NumOfLED_Pannel = 42;
         static private int NumOfLED_Drawer = 450 - NumOfLED_Pannel;
 
-        static public int Pannel_Width
+        static private int Pannel_Width
         {
             get
             {
                 return 648;
             }
         }
-        static public int Pannel_Height
+        static private int Pannel_Height
         {
             get
             {
@@ -683,7 +687,7 @@ namespace HIS_WebApi
             }
         }
 
-        static public bool Set_LED_UDP(UDP_Class uDP_Class, string IP, byte[] LED_Bytes)
+        static private bool Set_LED_UDP(UDP_Class uDP_Class, string IP, byte[] LED_Bytes)
         {
             if (uDP_Class != null)
             {
@@ -691,13 +695,13 @@ namespace HIS_WebApi
             }
             return false;
         }
-        static public bool Set_LED_UDP(UDP_Class uDP_Class, Drawer drawer, Box box, Color color)
+        static private bool Set_LED_UDP(UDP_Class uDP_Class, Drawer drawer, Box box, Color color)
         {
             List<Box> boxes = new List<Box>();
             boxes.Add(box);
             return Set_LED_UDP(uDP_Class, drawer, boxes, color);
         }
-        static public bool Set_LED_UDP(UDP_Class uDP_Class, Drawer drawer, List<Box> boxes, Color color)
+        static private bool Set_LED_UDP(UDP_Class uDP_Class, Drawer drawer, List<Box> boxes, Color color)
         {
             for (int i = 0; i < boxes.Count; i++)
             {
@@ -709,7 +713,7 @@ namespace HIS_WebApi
             drawer.LED_Bytes = Set_Pannel_LEDBytes(drawer, color);
             return Set_LED_UDP(uDP_Class, drawer.IP, drawer.LED_Bytes);
         }
-        static public byte[] Set_Pannel_LEDBytes(Drawer drawer, Color color)
+        static private byte[] Set_Pannel_LEDBytes(Drawer drawer, Color color)
         {
             if (drawer.IsAllLight == false)
             {
@@ -717,7 +721,7 @@ namespace HIS_WebApi
             }
             return Set_Pannel_LEDBytes(ref drawer.LED_Bytes, color);
         }
-        static public byte[] Set_Pannel_LEDBytes(ref byte[] LED_Bytes, Color color)
+        static private byte[] Set_Pannel_LEDBytes(ref byte[] LED_Bytes, Color color)
         {
             for (int i = NumOfLED_Drawer; i < NumOfLED; i++)
             {
@@ -728,7 +732,7 @@ namespace HIS_WebApi
             }
             return LED_Bytes;
         }
-        static public byte[] Set_LEDBytes(Drawer drawer, Color color)
+        static private byte[] Set_LEDBytes(Drawer drawer, Color color)
         {
             for (int i = 0; i < NumOfLED; i++)
             {
@@ -738,11 +742,11 @@ namespace HIS_WebApi
             }
             return drawer.LED_Bytes;
         }
-        static public byte[] Set_LEDBytes(Drawer drawer, Box box, Color color)
+        static private byte[] Set_LEDBytes(Drawer drawer, Box box, Color color)
         {
             return Set_LEDBytes(drawer, box.Column, box.Row, color);
         }
-        static public byte[] Set_LEDBytes(Drawer drawer, int col, int row, Color color)
+        static private byte[] Set_LEDBytes(Drawer drawer, int col, int row, Color color)
         {
             if (col >= drawer.Boxes.Count) return drawer.LED_Bytes;
             for (int i = 0; i < drawer.Boxes.Count; i++)
@@ -754,7 +758,7 @@ namespace HIS_WebApi
             int height = rect.Height / (Pannel_Height / Drawer_NumOf_V_Line);
             return Set_LEDBytes(col, row, width, height, ref drawer.LED_Bytes, color);
         }
-        static public byte[] Set_LEDBytes(int col_x, int row_y, int width, int height, ref byte[] LEDBytes, Color color)
+        static private byte[] Set_LEDBytes(int col_x, int row_y, int width, int height, ref byte[] LEDBytes, Color color)
         {
             for (int i = 0; i < width; i++)
             {
@@ -769,7 +773,7 @@ namespace HIS_WebApi
             }
             return LEDBytes;
         }
-        static public void Set_Drawer_H_Leds(int col, ref byte[] LEDBytes, Color color)
+        static private void Set_Drawer_H_Leds(int col, ref byte[] LEDBytes, Color color)
         {
             for (int i = 0; i < List_Drawer_H_Line_Leds[col].Length; i++)
             {
@@ -778,7 +782,7 @@ namespace HIS_WebApi
                 LEDBytes[List_Drawer_H_Line_Leds[col][i] * 3 + 2] = color.B;
             }
         }
-        static public void Set_Drawer_V_Leds(int row, ref byte[] LEDBytes, Color color)
+        static private void Set_Drawer_V_Leds(int row, ref byte[] LEDBytes, Color color)
         {
             for (int i = 0; i < List_Drawer_V_Line_Leds[row].Length; i++)
             {
@@ -787,13 +791,13 @@ namespace HIS_WebApi
                 LEDBytes[List_Drawer_V_Line_Leds[row][i] * 3 + 2] = color.B;
             }
         }
-        static public Rectangle Get_Box_Combine(Drawer drawer, int col, int row)
+        static private Rectangle Get_Box_Combine(Drawer drawer, int col, int row)
         {
             if (col > drawer.Boxes.Count) return new Rectangle();
             if (row > drawer.Boxes[col].Length) return new Rectangle();
             return Get_Box_Combine(drawer, drawer.Boxes[col][row]);
         }
-        static public Rectangle Get_Box_Combine(Drawer drawer, Box box)
+        static private Rectangle Get_Box_Combine(Drawer drawer, Box box)
         {
             Box _box;
             if (box.Slave)

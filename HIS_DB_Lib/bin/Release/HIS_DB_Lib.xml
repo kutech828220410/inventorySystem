@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HIS_DB_Lib</name>
+    </assembly>
+    <members>
+        <member name="P:HIS_DB_Lib.returnData.Code">
+            <summary>
+            回傳結果碼
+            </summary>
+        </member>
+    </members>
+</doc>

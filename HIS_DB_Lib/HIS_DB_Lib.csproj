@@ -31,6 +31,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>
+    </NoWarn>
+    <DocumentationFile>bin\Release\HIS_DB_Lib.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Basic">

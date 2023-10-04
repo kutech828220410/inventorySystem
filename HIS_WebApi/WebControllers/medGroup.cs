@@ -28,7 +28,12 @@ namespace HIS_WebApi
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
-
+        /// <summary>
+        /// 查詢藥品群組JSON格式範例
+        /// </summary>
+        /// <remarks>None</remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>藥品群組JSON格式</returns>
         [Route("json_sample")]
         [HttpPost]
         public string GET_json_sample([FromBody] returnData returnData)
@@ -47,6 +52,16 @@ namespace HIS_WebApi
             return jsonString;
         }
 
+        /// <summary>
+        /// 初始化藥品群組資料庫結構
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.ServerName] : 伺服器名稱<br/> 
+        ///  2.[returnData.ServerType] : 伺服器種類<br/> 
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>資料庫表單JsonString</returns>
         [Route("init")]
         [HttpPost]
         public string GET_init([FromBody] returnData returnData)
@@ -71,6 +86,14 @@ namespace HIS_WebApi
             }
         }
 
+        /// <summary>
+        /// 取得所有藥品群組內容
+        /// </summary>
+        /// <remarks>
+        /// 無
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[medGroupClasses]</returns>
         [Route("get_all_group")]
         [HttpPost]
         public string POST_get_all_group([FromBody] returnData returnData)
@@ -113,6 +136,37 @@ namespace HIS_WebApi
             }
         }
 
+        /// <summary>
+        /// 新增或修改藥品群組
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON,若Data內GUID為空值時為[新增新群組],不為空值時為[原群組修改]
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         "GUID": "ef2f3e3e-a58d-4ac0-8878-d29aa1ccebdf",
+        ///         "NAME": "TEST123",
+        ///         "MedClasses": 
+        ///          [
+        ///             {
+        ///                 "CODE": "IDIP1"
+        ///             },
+        ///             {
+        ///                 "CODE": "OOXY"
+        ///             }
+        ///          ]
+        ///     },
+        ///     "Value": "",
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("add_group")]
         [HttpPost]
         public string POST_add_group([FromBody] returnData returnData)
@@ -270,6 +324,29 @@ namespace HIS_WebApi
             }
         }
 
+        /// <summary>
+        /// 修改指定藥品群組名稱
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 藥品群組GUID<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為傳入範例資料結構
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "Value": "",
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("group_rename_by_guid")]
         [HttpPost]
         public string POST_group_rename_by_guid([FromBody] returnData returnData)
@@ -339,7 +416,29 @@ namespace HIS_WebApi
             }
         }
 
-
+        /// <summary>
+        /// 刪除指定藥品群組
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 藥品群組GUID<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為傳入範例資料結構
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     },
+        ///     "Value": "",
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("delete_group_by_guid")]
         [HttpPost]
         public string POST_delete_group_by_guid([FromBody] returnData returnData)
@@ -386,6 +485,112 @@ namespace HIS_WebApi
                 returnData.TimeTaken = myTimer.ToString();
                 returnData.Method = "group_rename_by_guid";
                 returnData.Result = $"藥品群組刪除群組成功!共刪除<{list_med_sub_group.Count}>筆藥品!";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+
+        /// <summary>
+        /// 刪除指定群組內多個藥品
+        /// </summary>
+        /// <remarks>
+        /// 以下為傳入範例資料結構
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         "GUID": "ef2f3e3e-a58d-4ac0-8878-d29aa1ccebdf",
+        ///         "NAME": "TEST123",
+        ///         "MedClasses": 
+        ///          [
+        ///             {
+        ///                 "CODE": "IDIP1"
+        ///             },
+        ///             {
+        ///                 "CODE": "OOXY"
+        ///             }
+        ///          ]
+        ///     },
+        ///     "Value": "",
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("delete_meds_in_group")]
+        [HttpPost]
+        public string POST_delete_meds_in_group([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+       
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入資料錯誤!須為[medGroupClass]";
+                    return returnData.JsonSerializationt();
+                }
+                medGroupClass medGroupClass = returnData.Data.ObjToClass<medGroupClass>();
+                if (medGroupClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入資料空白!須為[medGroupClass]";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Master_GUID = medGroupClass.GUID;
+                SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
+                List<object[]> list_medGroup = sQLControl_med_group.GetRowsByDefult(null, (int)enum_藥品群組.GUID, Master_GUID);
+                List<object[]> list_med_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_藥品群組明細.Master_GUID, Master_GUID);
+                List<object[]> list_med_sub_group_buf = new List<object[]>();
+                List<object[]> list_med_sub_group_delete = new List<object[]>();
+                if (list_medGroup.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無可異動群組!";
+                    return returnData.JsonSerializationt();
+                }
+                for(int i = 0; i < medGroupClass.MedClasses.Count; i++)
+                {
+                    string 藥品碼 = medGroupClass.MedClasses[i].藥品碼;
+                    list_med_sub_group_buf = list_med_sub_group.GetRows((int)enum_藥品群組明細.藥品碼, 藥品碼);
+                    if(list_med_sub_group_buf.Count > 0)
+                    {
+                        list_med_sub_group_delete.Add(list_med_sub_group_buf[0]);
+                    }
+                }
+                sQLControl_med_sub_group.DeleteExtra(null, list_med_sub_group_buf);
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "delete_meds_in_group";
+                returnData.Result = $"藥品資料刪除指定群組藥品成功!共刪除<{list_med_sub_group.Count}>筆藥品!";
 
                 return returnData.JsonSerializationt(true);
             }

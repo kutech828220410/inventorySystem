@@ -352,6 +352,7 @@ namespace HIS_WebApi
         }
 
         [Route("get_permissions")]
+        [HttpPost]
         public string POST_get_permissions([FromBody] returnData returnData)
         {
             try
@@ -418,7 +419,7 @@ namespace HIS_WebApi
            
         }
 
-        public List<string> GetPermissions(int level)
+        private List<string> GetPermissions(int level)
         {
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
             serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
@@ -475,7 +476,7 @@ namespace HIS_WebApi
             }
             return result;
         }
-        public void Check_Table()
+        private void Check_Table()
         {
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
             serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
