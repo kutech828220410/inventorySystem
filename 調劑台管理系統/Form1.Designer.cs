@@ -382,9 +382,6 @@
             this.panel59 = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
             this.panel56 = new System.Windows.Forms.Panel();
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組 = new MyUI.RJ_ComboBox();
-            this.panel57 = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
             this.panel54 = new System.Windows.Forms.Panel();
             this.textBox_藥品資料_藥檔資料_中文名稱 = new MyUI.RJ_TextBox();
             this.panel55 = new System.Windows.Forms.Panel();
@@ -1619,7 +1616,6 @@
             this.panel67.SuspendLayout();
             this.panel60.SuspendLayout();
             this.panel58.SuspendLayout();
-            this.panel56.SuspendLayout();
             this.panel54.SuspendLayout();
             this.panel52.SuspendLayout();
             this.panel50.SuspendLayout();
@@ -10687,55 +10683,10 @@
             // 
             // panel56
             // 
-            this.panel56.Controls.Add(this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組);
-            this.panel56.Controls.Add(this.panel57);
-            this.panel56.Controls.Add(this.label14);
             this.panel56.Location = new System.Drawing.Point(3, 160);
             this.panel56.Name = "panel56";
             this.panel56.Size = new System.Drawing.Size(295, 36);
             this.panel56.TabIndex = 4;
-            // 
-            // rJ_ComboBox_藥品資料_藥檔資料_藥品群組
-            // 
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.BorderSize = 1;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.GUID = "";
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.IconColor = System.Drawing.Color.RoyalBlue;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.ListTextColor = System.Drawing.Color.DimGray;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Location = new System.Drawing.Point(122, 0);
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.MinimumSize = new System.Drawing.Size(50, 30);
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Name = "rJ_ComboBox_藥品資料_藥檔資料_藥品群組";
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Padding = new System.Windows.Forms.Padding(1);
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Size = new System.Drawing.Size(173, 36);
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.TabIndex = 116;
-            this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.Texts = "";
-            // 
-            // panel57
-            // 
-            this.panel57.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel57.Location = new System.Drawing.Point(112, 0);
-            this.panel57.Name = "panel57";
-            this.panel57.Size = new System.Drawing.Size(10, 36);
-            this.panel57.TabIndex = 1;
-            // 
-            // label14
-            // 
-            this.label14.BackColor = System.Drawing.Color.LightCyan;
-            this.label14.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label14.Font = new System.Drawing.Font("新細明體", 12F);
-            this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(0, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(112, 36);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "藥品群組";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel54
             // 
@@ -39193,7 +39144,6 @@
             this.panel67.ResumeLayout(false);
             this.panel60.ResumeLayout(false);
             this.panel58.ResumeLayout(false);
-            this.panel56.ResumeLayout(false);
             this.panel54.ResumeLayout(false);
             this.panel52.ResumeLayout(false);
             this.panel50.ResumeLayout(false);
@@ -40460,9 +40410,6 @@
         private System.Windows.Forms.Panel panel59;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Panel panel56;
-        private MyUI.RJ_ComboBox rJ_ComboBox_藥品資料_藥檔資料_藥品群組;
-        private System.Windows.Forms.Panel panel57;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel54;
         private MyUI.RJ_TextBox textBox_藥品資料_藥檔資料_中文名稱;
         private System.Windows.Forms.Panel panel55;

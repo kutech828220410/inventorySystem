@@ -662,18 +662,21 @@ namespace HIS_WebApi
             string devicelist_database = serverSettingClass_人員資料.DBName;
 
             SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DataBaseName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_EPD1020_serialize = new SQLControl(IP, DataBaseName, "epd1020_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DataBaseName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_RowsLED_serialize = new SQLControl(IP, DataBaseName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_RFID_Device_serialize = new SQLControl(IP, DataBaseName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
 
 
             List<object[]> list_EPD583 = sQLControl_EPD583_serialize.GetAllRows(null);
+            List<object[]> list_EPD1020 = sQLControl_EPD1020_serialize.GetAllRows(null);
             List<object[]> list_EPD266 = sQLControl_EPD266_serialize.GetAllRows(null);
             List<object[]> list_RowsLED = sQLControl_RowsLED_serialize.GetAllRows(null);
             List<object[]> list_RFID_Device = sQLControl_RFID_Device_serialize.GetAllRows(null);
             Console.WriteLine($"從SQL取得所有儲位資料,耗時{myTimer.ToString()}ms");
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
             List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
+            deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD1020));
             deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD583));
             deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_EPD266));
             deviceBasics.LockAdd(RowsLEDMethod.GetAllDeviceBasic(list_RowsLED));

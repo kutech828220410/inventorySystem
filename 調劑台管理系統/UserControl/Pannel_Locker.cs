@@ -85,6 +85,10 @@ namespace 調劑台管理系統
             {
                 return this.PLC_Device_Input.Bool;
             }
+            set
+            {
+                this.PLC_Device_Input.Bool = value;
+            }
         }
         private bool alarm = false;
         [Browsable(false)]

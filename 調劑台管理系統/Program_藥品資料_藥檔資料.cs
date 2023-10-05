@@ -322,7 +322,6 @@ namespace 調劑台管理系統
             value[(int)enum_藥品資料_藥檔資料.藥品名稱] = this.textBox_藥品資料_藥檔資料_藥品名稱.Text;
             value[(int)enum_藥品資料_藥檔資料.藥品學名] = this.textBox_藥品資料_藥檔資料_藥品學名.Text;
             value[(int)enum_藥品資料_藥檔資料.中文名稱] = this.textBox_藥品資料_藥檔資料_中文名稱.Text;
-            value[(int)enum_藥品資料_藥檔資料.藥品群組] = this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.SelectedIndex.ToString("00");
             value[(int)enum_藥品資料_藥檔資料.健保碼] = this.textBox_藥品資料_藥檔資料_健保碼.Text;
             value[(int)enum_藥品資料_藥檔資料.藥品條碼] = this.textBox_藥品資料_藥檔資料_藥品條碼.Text;
             value[(int)enum_藥品資料_藥檔資料.包裝單位] = this.textBox_藥品資料_藥檔資料_包裝單位.Text;
@@ -376,7 +375,6 @@ namespace 調劑台管理系統
                 this.textBox_藥品資料_藥檔資料_藥品名稱.Text = "";
                 this.textBox_藥品資料_藥檔資料_藥品學名.Text = "";
                 this.textBox_藥品資料_藥檔資料_中文名稱.Text = "";
-                this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.SelectedIndex = 0;
                 this.textBox_藥品資料_藥檔資料_健保碼.Text = "";
                 this.textBox_藥品資料_藥檔資料_庫存.Text = "";
                 this.textBox_藥品資料_藥檔資料_安全庫存.Text = "";
@@ -869,7 +867,6 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_藥品名稱.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品學名.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品學名].ObjectToString();
             this.textBox_藥品資料_藥檔資料_中文名稱.Text = RowValue[(int)enum_藥品資料_藥檔資料.中文名稱].ObjectToString();
-            if (index >= 0) this.rJ_ComboBox_藥品資料_藥檔資料_藥品群組.SelectedIndex = index;
             this.textBox_藥品資料_藥檔資料_健保碼.Text = RowValue[(int)enum_藥品資料_藥檔資料.健保碼].ObjectToString();
             this.textBox_藥品資料_藥檔資料_庫存.Text = RowValue[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString();
             this.textBox_藥品資料_藥檔資料_安全庫存.Text = RowValue[(int)enum_藥品資料_藥檔資料.安全庫存].ObjectToString();

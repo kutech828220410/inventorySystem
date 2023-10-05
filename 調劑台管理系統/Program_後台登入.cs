@@ -480,7 +480,7 @@ namespace 調劑台管理系統
                 this.rJ_Pannel_後台登入_歡迎登入.Visible = false;
             }));
             if (this.plC_ScreenPage_Main.PageText == "調劑作業") return;
-            if (this.plC_ScreenPage_Main.PageText == "管制抽屜") return;
+            //if (this.plC_ScreenPage_Main.PageText == "管制抽屜") return;
 
             if (plC_RJ_ScreenButton_調劑作業.Visible) this.plC_ScreenPage_Main.SelecteTabText("調劑作業");
             else if (plC_RJ_ScreenButton_管制抽屜.Visible) this.plC_ScreenPage_Main.SelecteTabText("管制抽屜");

@@ -49,10 +49,10 @@ namespace 調劑台管理系統
             {
                 if (!this.flag_管制抽屜_頁面更新)
                 {
-                    if(this.PLC_Device_最高權限.Bool == false)
-                    {
-                        this.Function_登出();
-                    }
+                    //if(this.PLC_Device_最高權限.Bool == false)
+                    //{
+                    //    this.Function_登出();
+                    //}
                      
                     this.Function_管制抽屜_鎖控按鈕更新();
                     this.flag_管制抽屜_頁面更新 = true;
@@ -224,12 +224,15 @@ namespace 調劑台管理系統
             int Num = -1;
             for (int i = 0; i < pannel_Lockers.Count; i++)
             {
+                
                 OutputAdress = pannel_Lockers[i].Get_OutputAdress();
                 list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.輸出位置, OutputAdress);
+            
                 if (list_locker_table_value_buf.Count == 0)
                 {
                     continue;
                 }
+                bool inputState = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.輸入狀態].ObjectToString().ToUpper() == "TRUE";
                 IP = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
                 Num = list_locker_table_value_buf[0][(int)enum_Locker_Index_Table.Num].ObjectToString().StringToInt32();
                 object device = Fucnction_從本地資料取得儲位(IP);
@@ -242,6 +245,7 @@ namespace 調劑台管理系統
                     Drawer drawer = device as Drawer;
                     pannel_Lockers[i].IP = IP;
                     pannel_Lockers[i].Visible = true;
+                    pannel_Lockers[i].Input = inputState;
                     if (drawer.Name.StringIsEmpty()) continue;
                     pannel_Lockers[i].Name = drawer.Name;
                 }
@@ -250,6 +254,7 @@ namespace 調劑台管理系統
                     Storage storage = device as Storage;
                     pannel_Lockers[i].IP = IP;
                     pannel_Lockers[i].Visible = true;
+                    pannel_Lockers[i].Input = inputState;
                     if (storage.Name.StringIsEmpty()) continue;
                     List_Locker[i].Name = storage.Name;
                 }
@@ -258,6 +263,7 @@ namespace 調劑台管理系統
                     RowsLED rowsLED = device as RowsLED;
                     pannel_Lockers[i].IP = IP;
                     pannel_Lockers[i].Visible = true;
+                    pannel_Lockers[i].Input = inputState;
                     if (rowsLED.Name.StringIsEmpty()) continue;
                     pannel_Lockers[i].Name = rowsLED.Name;
                 }
@@ -269,6 +275,7 @@ namespace 調劑台管理系統
                     pannel_Lockers[i].IP = IP;
                     pannel_Lockers[i].Num = Num;
                     pannel_Lockers[i].Visible = true;
+                    pannel_Lockers[i].Input = inputState;
                     if (deviceClass.Name.StringIsEmpty()) continue;
                     pannel_Lockers[i].Name = deviceClass.Name;
 
@@ -307,7 +314,7 @@ namespace 調劑台管理系統
             Pannel_Locker pannel_Locker = sender as Pannel_Locker;
             if (pannel_Locker != null)
             {
-                this.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜開啟, pannel_Locker.OpenUserName, "");
+                this.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜開啟, this.登入者名稱, "");
             }
         }
         private void Pannel_Locker_Design_LockClosingEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
@@ -315,7 +322,7 @@ namespace 調劑台管理系統
             Pannel_Locker pannel_Locker = sender as Pannel_Locker;
             if (pannel_Locker != null)
             {
-                this.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜關閉, pannel_Locker.OpenUserName, "");
+                this.Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜關閉, this.登入者名稱, "");
             }
         }
         #endregion

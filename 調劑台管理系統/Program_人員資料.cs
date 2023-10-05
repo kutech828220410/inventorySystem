@@ -467,7 +467,7 @@ namespace 調劑台管理系統
                     CSVHelper.SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
                     MyMessageBox.ShowDialog("匯出完成!");
                 }
-                else if (Extension == ".xls"|| Extension == ".xls")
+                else if (Extension == ".xls"|| Extension == ".xlsx")
                 {
                     MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
                     MyMessageBox.ShowDialog("匯出完成!");
