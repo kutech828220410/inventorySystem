@@ -33,6 +33,7 @@ namespace HIS_DB_Lib
         網頁,
         調劑台,
         藥庫,
+        傳送櫃,
         更新資訊,
     }
     public enum enum_ServerSetting_ProgramType

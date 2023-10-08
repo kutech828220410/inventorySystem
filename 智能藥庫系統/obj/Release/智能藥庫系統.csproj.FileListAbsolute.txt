@@ -445,7 +445,6 @@ C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.T
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.Text.Json.xml
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\System.ValueTuple.xml
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe.config
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.Dialog_列印及匯出.resources
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.Dialog_輸入備註.resources
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.Dialog.Dialog_輸入批號.resources
@@ -928,3 +927,4 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫�
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.CopyComplete
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
+C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\ICSharpCode.SharpZipLib.xml

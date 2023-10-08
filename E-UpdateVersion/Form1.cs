@@ -129,7 +129,10 @@ namespace E_UpdateVersion
             this.rJ_Button_智慧調劑台系統.MouseDownEvent += RJ_Button_智慧調劑台系統_MouseDownEvent;
             this.rJ_Button_智能藥庫系統.MouseDownEvent += RJ_Button_智能藥庫系統_MouseDownEvent;
             this.rJ_Button_中心叫號系統.MouseDownEvent += RJ_Button_中心叫號系統_MouseDownEvent;
+            this.rJ_Button_勤務傳送系統.MouseDownEvent += RJ_Button_勤務傳送系統_MouseDownEvent;
         }
+
+  
 
         #region Event
         private void 後台設定ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -179,6 +182,20 @@ namespace E_UpdateVersion
             }
             string arguments = $"{ApiServer} {名稱} {控制中心}";
             if (Download("中心叫號系統", "Hospital_Call_Light_System", arguments) == false)
+            {
+                MyMessageBox.ShowDialog("取得更新資訊失敗!");
+            }
+        }
+        private void RJ_Button_勤務傳送系統_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string 調劑台名稱 = computerConfigClass.GetValue("勤務傳送系統", "系統名稱");
+            string 控制中心 = computerConfigClass.GetValue("勤務傳送系統", "控制中心");
+            if (調劑台名稱.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("指定藥庫名稱空白,請聯繫管理員至後台設定!");
+            }
+            string arguments = $"{ApiServer} {調劑台名稱} {控制中心}";
+            if (Download("藥庫", "勤務傳送系統", arguments) == false)
             {
                 MyMessageBox.ShowDialog("取得更新資訊失敗!");
             }

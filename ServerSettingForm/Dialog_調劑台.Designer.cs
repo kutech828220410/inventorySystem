@@ -153,7 +153,7 @@ namespace ServerSettingForm
             // 
             // button_刪除
             // 
-            this.button_刪除.Location = new System.Drawing.Point(1595, 10);
+            this.button_刪除.Location = new System.Drawing.Point(1595, 8);
             this.button_刪除.Name = "button_刪除";
             this.button_刪除.Size = new System.Drawing.Size(89, 44);
             this.button_刪除.TabIndex = 22;
@@ -162,7 +162,7 @@ namespace ServerSettingForm
             // 
             // button_讀取
             // 
-            this.button_讀取.Location = new System.Drawing.Point(1690, 12);
+            this.button_讀取.Location = new System.Drawing.Point(1690, 8);
             this.button_讀取.Name = "button_讀取";
             this.button_讀取.Size = new System.Drawing.Size(89, 44);
             this.button_讀取.TabIndex = 23;

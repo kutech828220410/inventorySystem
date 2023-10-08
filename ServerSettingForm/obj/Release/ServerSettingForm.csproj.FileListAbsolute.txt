@@ -466,3 +466,4 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\ServerSettingF
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
+C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_傳送櫃.resources

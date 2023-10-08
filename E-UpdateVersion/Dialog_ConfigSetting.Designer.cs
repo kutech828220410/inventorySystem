@@ -37,6 +37,7 @@ namespace E_UpdateVersion
             this.button_上傳 = new System.Windows.Forms.Button();
             this.button_讀取 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dB_CheckBox4 = new E_UpdateVersion.DB_CheckBox();
             this.dB_CheckBox1 = new E_UpdateVersion.DB_CheckBox();
             this.dB_TextBox1 = new E_UpdateVersion.DB_TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -45,11 +46,14 @@ namespace E_UpdateVersion
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dB_CheckBox3 = new E_UpdateVersion.DB_CheckBox();
             this.dB_TextBox3 = new E_UpdateVersion.DB_TextBox();
-            this.dB_CheckBox4 = new E_UpdateVersion.DB_CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.dB_CheckBox5 = new E_UpdateVersion.DB_CheckBox();
+            this.dB_TextBox4 = new E_UpdateVersion.DB_TextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -143,6 +147,21 @@ namespace E_UpdateVersion
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "調劑台管理系統";
+            // 
+            // dB_CheckBox4
+            // 
+            this.dB_CheckBox4.AutoSize = true;
+            this.dB_CheckBox4.ConfigName = "控制中心";
+            this.dB_CheckBox4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dB_CheckBox4.Location = new System.Drawing.Point(352, 58);
+            this.dB_CheckBox4.Name = "dB_CheckBox4";
+            this.dB_CheckBox4.Size = new System.Drawing.Size(93, 25);
+            this.dB_CheckBox4.TabIndex = 9;
+            this.dB_CheckBox4.Text = "控制中心";
+            this.dB_CheckBox4.TitleWidth = 100;
+            this.dB_CheckBox4.Type = "調劑台管理系統";
+            this.dB_CheckBox4.UseVisualStyleBackColor = true;
+            this.dB_CheckBox4.Value = "False";
             // 
             // dB_CheckBox1
             // 
@@ -249,20 +268,44 @@ namespace E_UpdateVersion
             this.dB_TextBox3.TitleWidth = 150;
             this.dB_TextBox3.Type = "中心叫號系統";
             // 
-            // dB_CheckBox4
+            // groupBox4
             // 
-            this.dB_CheckBox4.AutoSize = true;
-            this.dB_CheckBox4.ConfigName = "控制中心";
-            this.dB_CheckBox4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dB_CheckBox4.Location = new System.Drawing.Point(352, 58);
-            this.dB_CheckBox4.Name = "dB_CheckBox4";
-            this.dB_CheckBox4.Size = new System.Drawing.Size(93, 25);
-            this.dB_CheckBox4.TabIndex = 9;
-            this.dB_CheckBox4.Text = "控制中心";
-            this.dB_CheckBox4.TitleWidth = 100;
-            this.dB_CheckBox4.Type = "調劑台管理系統";
-            this.dB_CheckBox4.UseVisualStyleBackColor = true;
-            this.dB_CheckBox4.Value = "False";
+            this.groupBox4.Controls.Add(this.dB_CheckBox5);
+            this.groupBox4.Controls.Add(this.dB_TextBox4);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Location = new System.Drawing.Point(0, 412);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1123, 118);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "勤務傳送系統";
+            // 
+            // dB_CheckBox5
+            // 
+            this.dB_CheckBox5.AutoSize = true;
+            this.dB_CheckBox5.ConfigName = "程式致能";
+            this.dB_CheckBox5.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dB_CheckBox5.Location = new System.Drawing.Point(25, 21);
+            this.dB_CheckBox5.Name = "dB_CheckBox5";
+            this.dB_CheckBox5.Size = new System.Drawing.Size(93, 25);
+            this.dB_CheckBox5.TabIndex = 10;
+            this.dB_CheckBox5.Text = "程式致能";
+            this.dB_CheckBox5.TitleWidth = 100;
+            this.dB_CheckBox5.Type = "勤務傳送系統";
+            this.dB_CheckBox5.UseVisualStyleBackColor = true;
+            this.dB_CheckBox5.Value = "False";
+            // 
+            // dB_TextBox4
+            // 
+            this.dB_TextBox4.BackColor = System.Drawing.Color.White;
+            this.dB_TextBox4.ConfigName = "系統名稱";
+            this.dB_TextBox4.Location = new System.Drawing.Point(25, 55);
+            this.dB_TextBox4.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.dB_TextBox4.Name = "dB_TextBox4";
+            this.dB_TextBox4.Size = new System.Drawing.Size(314, 30);
+            this.dB_TextBox4.TabIndex = 9;
+            this.dB_TextBox4.TitleWidth = 150;
+            this.dB_TextBox4.Type = "勤務傳送系統";
             // 
             // Dialog_ConfigSetting
             // 
@@ -270,6 +313,7 @@ namespace E_UpdateVersion
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1123, 730);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -289,6 +333,8 @@ namespace E_UpdateVersion
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -312,5 +358,8 @@ namespace E_UpdateVersion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_預設程式;
         private DB_CheckBox dB_CheckBox4;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private DB_CheckBox dB_CheckBox5;
+        private DB_TextBox dB_TextBox4;
     }
 }
