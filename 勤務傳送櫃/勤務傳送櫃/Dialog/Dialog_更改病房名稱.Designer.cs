@@ -1,6 +1,6 @@
 ﻿namespace 勤務傳送櫃
 {
-    partial class sub_Form_更改病房名稱
+    partial class Dialog_更改病房名稱
     {
         /// <summary>
         /// Required designer variable.
@@ -162,7 +162,7 @@
             this.rJ_Button_取消.UseVisualStyleBackColor = false;
             this.rJ_Button_取消.Click += new System.EventHandler(this.rJ_Button_取消_Click);
             // 
-            // sub_Form_更改病房名稱
+            // Dialog_更改病房名稱
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -176,11 +176,11 @@
             this.Controls.Add(this.rJ_TextBox_原始名稱);
             this.Controls.Add(this.rJ_Lable1);
             this.MaximizeBox = false;
-            this.Name = "sub_Form_更改病房名稱";
+            this.Name = "Dialog_更改病房名稱";
             this.ShowIcon = false;
             this.Text = "更改病房名稱";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.sub_Form_更改病房名稱_FormClosed);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sub_Form_更改病房名稱_KeyPress);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Dialog_更改病房名稱_FormClosed);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Dialog_更改病房名稱_KeyPress);
             this.ResumeLayout(false);
 
         }

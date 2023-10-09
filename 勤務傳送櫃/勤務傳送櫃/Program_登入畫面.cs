@@ -59,7 +59,7 @@ namespace 勤務傳送櫃
             }
         }
 
-        private void sub_Program_登入畫面_Init()
+        private void Program_登入畫面_Init()
         {
             plC_RJ_Button_登入畫面_登入.MouseDownEvent += PlC_RJ_Button_登入畫面_登入_MouseDownEvent;
             plC_RJ_Button_登入畫面_登出.MouseDownEvent += PlC_RJ_Button_登入畫面_登出_MouseDownEvent;
@@ -68,11 +68,11 @@ namespace 勤務傳送櫃
 
             this.Function_登出();
 
-            this.plC_UI_Init.Add_Method(this.sub_Program_登入畫面);
+            this.plC_UI_Init.Add_Method(this.Program_登入畫面);
 
 
         }
-        private void sub_Program_登入畫面()
+        private void Program_登入畫面()
         {
             if (this.plC_ScreenPage_Main.PageText == "登入畫面")
             {
@@ -90,12 +90,12 @@ namespace 勤務傳送櫃
             {
                 this.flag_登入畫面_頁面更新 = false;
             }
-            this.sub_Program_登入畫面_RFID登入();
+            this.Program_登入畫面_RFID登入();
         }
         #region PLC_登入畫面_RFID登入
         PLC_Device PLC_Device_登入畫面_RFID登入 = new PLC_Device("");
         int cnt_Program_登入畫面_RFID登入 = 65534;
-        void sub_Program_登入畫面_RFID登入()
+        void Program_登入畫面_RFID登入()
         {
             if (this.plC_ScreenPage_Main.PageText == "登入畫面")
             {

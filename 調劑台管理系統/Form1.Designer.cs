@@ -9272,7 +9272,7 @@
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.GUID = "";
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Location = new System.Drawing.Point(482, 9);
+            this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Location = new System.Drawing.Point(482, 7);
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.Name = "plC_RJ_Button_藥品資料_顯示有儲位藥品";
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.OFF_文字內容 = "顯示\n[有儲位藥品]";
             this.plC_RJ_Button_藥品資料_顯示有儲位藥品.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -31105,6 +31105,7 @@
             // 
             this.pannel_Locker_Y00.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y00.ButtonEnable = true;
+            this.pannel_Locker_Y00.Input = false;
             this.pannel_Locker_Y00.InputAdress = "X0";
             this.pannel_Locker_Y00.IP = null;
             this.pannel_Locker_Y00.IsSelected = false;
@@ -31123,6 +31124,7 @@
             // 
             this.pannel_Locker_Y67.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y67.ButtonEnable = true;
+            this.pannel_Locker_Y67.Input = false;
             this.pannel_Locker_Y67.InputAdress = "X67";
             this.pannel_Locker_Y67.IP = null;
             this.pannel_Locker_Y67.IsSelected = false;
@@ -31141,6 +31143,7 @@
             // 
             this.pannel_Locker_Y01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y01.ButtonEnable = true;
+            this.pannel_Locker_Y01.Input = false;
             this.pannel_Locker_Y01.InputAdress = "X1";
             this.pannel_Locker_Y01.IP = null;
             this.pannel_Locker_Y01.IsSelected = false;
@@ -31159,6 +31162,7 @@
             // 
             this.pannel_Locker_Y66.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y66.ButtonEnable = true;
+            this.pannel_Locker_Y66.Input = false;
             this.pannel_Locker_Y66.InputAdress = "X66";
             this.pannel_Locker_Y66.IP = null;
             this.pannel_Locker_Y66.IsSelected = false;
@@ -31177,6 +31181,7 @@
             // 
             this.pannel_Locker_Y02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y02.ButtonEnable = true;
+            this.pannel_Locker_Y02.Input = false;
             this.pannel_Locker_Y02.InputAdress = "X2";
             this.pannel_Locker_Y02.IP = null;
             this.pannel_Locker_Y02.IsSelected = false;
@@ -31195,6 +31200,7 @@
             // 
             this.pannel_Locker_Y65.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y65.ButtonEnable = true;
+            this.pannel_Locker_Y65.Input = false;
             this.pannel_Locker_Y65.InputAdress = "X65";
             this.pannel_Locker_Y65.IP = null;
             this.pannel_Locker_Y65.IsSelected = false;
@@ -31213,6 +31219,7 @@
             // 
             this.pannel_Locker_Y03.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y03.ButtonEnable = true;
+            this.pannel_Locker_Y03.Input = false;
             this.pannel_Locker_Y03.InputAdress = "X3";
             this.pannel_Locker_Y03.IP = null;
             this.pannel_Locker_Y03.IsSelected = false;
@@ -31231,6 +31238,7 @@
             // 
             this.pannel_Locker_Y64.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y64.ButtonEnable = true;
+            this.pannel_Locker_Y64.Input = false;
             this.pannel_Locker_Y64.InputAdress = "X64";
             this.pannel_Locker_Y64.IP = null;
             this.pannel_Locker_Y64.IsSelected = false;
@@ -31249,6 +31257,7 @@
             // 
             this.pannel_Locker_Y04.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y04.ButtonEnable = true;
+            this.pannel_Locker_Y04.Input = false;
             this.pannel_Locker_Y04.InputAdress = "X4";
             this.pannel_Locker_Y04.IP = null;
             this.pannel_Locker_Y04.IsSelected = false;
@@ -31267,6 +31276,7 @@
             // 
             this.pannel_Locker_Y63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y63.ButtonEnable = true;
+            this.pannel_Locker_Y63.Input = false;
             this.pannel_Locker_Y63.InputAdress = "X63";
             this.pannel_Locker_Y63.IP = null;
             this.pannel_Locker_Y63.IsSelected = false;
@@ -31285,6 +31295,7 @@
             // 
             this.pannel_Locker_Y05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y05.ButtonEnable = true;
+            this.pannel_Locker_Y05.Input = false;
             this.pannel_Locker_Y05.InputAdress = "X5";
             this.pannel_Locker_Y05.IP = null;
             this.pannel_Locker_Y05.IsSelected = false;
@@ -31303,6 +31314,7 @@
             // 
             this.pannel_Locker_Y62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y62.ButtonEnable = true;
+            this.pannel_Locker_Y62.Input = false;
             this.pannel_Locker_Y62.InputAdress = "X62";
             this.pannel_Locker_Y62.IP = null;
             this.pannel_Locker_Y62.IsSelected = false;
@@ -31321,6 +31333,7 @@
             // 
             this.pannel_Locker_Y06.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y06.ButtonEnable = true;
+            this.pannel_Locker_Y06.Input = false;
             this.pannel_Locker_Y06.InputAdress = "X6";
             this.pannel_Locker_Y06.IP = null;
             this.pannel_Locker_Y06.IsSelected = false;
@@ -31339,6 +31352,7 @@
             // 
             this.pannel_Locker_Y61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y61.ButtonEnable = true;
+            this.pannel_Locker_Y61.Input = false;
             this.pannel_Locker_Y61.InputAdress = "X61";
             this.pannel_Locker_Y61.IP = null;
             this.pannel_Locker_Y61.IsSelected = false;
@@ -31357,6 +31371,7 @@
             // 
             this.pannel_Locker_Y07.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y07.ButtonEnable = true;
+            this.pannel_Locker_Y07.Input = false;
             this.pannel_Locker_Y07.InputAdress = "X7";
             this.pannel_Locker_Y07.IP = null;
             this.pannel_Locker_Y07.IsSelected = false;
@@ -31375,6 +31390,7 @@
             // 
             this.pannel_Locker_Y60.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y60.ButtonEnable = true;
+            this.pannel_Locker_Y60.Input = false;
             this.pannel_Locker_Y60.InputAdress = "X60";
             this.pannel_Locker_Y60.IP = null;
             this.pannel_Locker_Y60.IsSelected = false;
@@ -31393,6 +31409,7 @@
             // 
             this.pannel_Locker_Y10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y10.ButtonEnable = true;
+            this.pannel_Locker_Y10.Input = false;
             this.pannel_Locker_Y10.InputAdress = "X10";
             this.pannel_Locker_Y10.IP = null;
             this.pannel_Locker_Y10.IsSelected = false;
@@ -31411,6 +31428,7 @@
             // 
             this.pannel_Locker_Y57.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y57.ButtonEnable = true;
+            this.pannel_Locker_Y57.Input = false;
             this.pannel_Locker_Y57.InputAdress = "X57";
             this.pannel_Locker_Y57.IP = null;
             this.pannel_Locker_Y57.IsSelected = false;
@@ -31429,6 +31447,7 @@
             // 
             this.pannel_Locker_Y11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y11.ButtonEnable = true;
+            this.pannel_Locker_Y11.Input = false;
             this.pannel_Locker_Y11.InputAdress = "X11";
             this.pannel_Locker_Y11.IP = null;
             this.pannel_Locker_Y11.IsSelected = false;
@@ -31447,6 +31466,7 @@
             // 
             this.pannel_Locker_Y56.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y56.ButtonEnable = true;
+            this.pannel_Locker_Y56.Input = false;
             this.pannel_Locker_Y56.InputAdress = "X56";
             this.pannel_Locker_Y56.IP = null;
             this.pannel_Locker_Y56.IsSelected = false;
@@ -31465,6 +31485,7 @@
             // 
             this.pannel_Locker_Y12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y12.ButtonEnable = true;
+            this.pannel_Locker_Y12.Input = false;
             this.pannel_Locker_Y12.InputAdress = "X12";
             this.pannel_Locker_Y12.IP = null;
             this.pannel_Locker_Y12.IsSelected = false;
@@ -31483,6 +31504,7 @@
             // 
             this.pannel_Locker_Y55.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y55.ButtonEnable = true;
+            this.pannel_Locker_Y55.Input = false;
             this.pannel_Locker_Y55.InputAdress = "X55";
             this.pannel_Locker_Y55.IP = null;
             this.pannel_Locker_Y55.IsSelected = false;
@@ -31501,6 +31523,7 @@
             // 
             this.pannel_Locker_Y13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y13.ButtonEnable = true;
+            this.pannel_Locker_Y13.Input = false;
             this.pannel_Locker_Y13.InputAdress = "X13";
             this.pannel_Locker_Y13.IP = null;
             this.pannel_Locker_Y13.IsSelected = false;
@@ -31519,6 +31542,7 @@
             // 
             this.pannel_Locker_Y54.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y54.ButtonEnable = true;
+            this.pannel_Locker_Y54.Input = false;
             this.pannel_Locker_Y54.InputAdress = "X54";
             this.pannel_Locker_Y54.IP = null;
             this.pannel_Locker_Y54.IsSelected = false;
@@ -31537,6 +31561,7 @@
             // 
             this.pannel_Locker_Y14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y14.ButtonEnable = true;
+            this.pannel_Locker_Y14.Input = false;
             this.pannel_Locker_Y14.InputAdress = "X14";
             this.pannel_Locker_Y14.IP = null;
             this.pannel_Locker_Y14.IsSelected = false;
@@ -31555,6 +31580,7 @@
             // 
             this.pannel_Locker_Y53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y53.ButtonEnable = true;
+            this.pannel_Locker_Y53.Input = false;
             this.pannel_Locker_Y53.InputAdress = "X53";
             this.pannel_Locker_Y53.IP = null;
             this.pannel_Locker_Y53.IsSelected = false;
@@ -31573,6 +31599,7 @@
             // 
             this.pannel_Locker_Y15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y15.ButtonEnable = true;
+            this.pannel_Locker_Y15.Input = false;
             this.pannel_Locker_Y15.InputAdress = "X15";
             this.pannel_Locker_Y15.IP = null;
             this.pannel_Locker_Y15.IsSelected = false;
@@ -31591,6 +31618,7 @@
             // 
             this.pannel_Locker_Y52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y52.ButtonEnable = true;
+            this.pannel_Locker_Y52.Input = false;
             this.pannel_Locker_Y52.InputAdress = "X52";
             this.pannel_Locker_Y52.IP = null;
             this.pannel_Locker_Y52.IsSelected = false;
@@ -31609,6 +31637,7 @@
             // 
             this.pannel_Locker_Y16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y16.ButtonEnable = true;
+            this.pannel_Locker_Y16.Input = false;
             this.pannel_Locker_Y16.InputAdress = "X16";
             this.pannel_Locker_Y16.IP = null;
             this.pannel_Locker_Y16.IsSelected = false;
@@ -31627,6 +31656,7 @@
             // 
             this.pannel_Locker_Y51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y51.ButtonEnable = true;
+            this.pannel_Locker_Y51.Input = false;
             this.pannel_Locker_Y51.InputAdress = "X51";
             this.pannel_Locker_Y51.IP = null;
             this.pannel_Locker_Y51.IsSelected = false;
@@ -31645,6 +31675,7 @@
             // 
             this.pannel_Locker_Y17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y17.ButtonEnable = true;
+            this.pannel_Locker_Y17.Input = false;
             this.pannel_Locker_Y17.InputAdress = "X17";
             this.pannel_Locker_Y17.IP = null;
             this.pannel_Locker_Y17.IsSelected = false;
@@ -31663,6 +31694,7 @@
             // 
             this.pannel_Locker_Y50.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y50.ButtonEnable = true;
+            this.pannel_Locker_Y50.Input = false;
             this.pannel_Locker_Y50.InputAdress = "X50";
             this.pannel_Locker_Y50.IP = null;
             this.pannel_Locker_Y50.IsSelected = false;
@@ -31681,6 +31713,7 @@
             // 
             this.pannel_Locker_Y20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y20.ButtonEnable = true;
+            this.pannel_Locker_Y20.Input = false;
             this.pannel_Locker_Y20.InputAdress = "X20";
             this.pannel_Locker_Y20.IP = null;
             this.pannel_Locker_Y20.IsSelected = false;
@@ -31699,6 +31732,7 @@
             // 
             this.pannel_Locker_Y47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y47.ButtonEnable = true;
+            this.pannel_Locker_Y47.Input = false;
             this.pannel_Locker_Y47.InputAdress = "X47";
             this.pannel_Locker_Y47.IP = null;
             this.pannel_Locker_Y47.IsSelected = false;
@@ -31717,6 +31751,7 @@
             // 
             this.pannel_Locker_Y21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y21.ButtonEnable = true;
+            this.pannel_Locker_Y21.Input = false;
             this.pannel_Locker_Y21.InputAdress = "X21";
             this.pannel_Locker_Y21.IP = null;
             this.pannel_Locker_Y21.IsSelected = false;
@@ -31735,6 +31770,7 @@
             // 
             this.pannel_Locker_Y46.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y46.ButtonEnable = true;
+            this.pannel_Locker_Y46.Input = false;
             this.pannel_Locker_Y46.InputAdress = "X46";
             this.pannel_Locker_Y46.IP = null;
             this.pannel_Locker_Y46.IsSelected = false;
@@ -31753,6 +31789,7 @@
             // 
             this.pannel_Locker_Y22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y22.ButtonEnable = true;
+            this.pannel_Locker_Y22.Input = false;
             this.pannel_Locker_Y22.InputAdress = "X22";
             this.pannel_Locker_Y22.IP = null;
             this.pannel_Locker_Y22.IsSelected = false;
@@ -31771,6 +31808,7 @@
             // 
             this.pannel_Locker_Y45.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y45.ButtonEnable = true;
+            this.pannel_Locker_Y45.Input = false;
             this.pannel_Locker_Y45.InputAdress = "X45";
             this.pannel_Locker_Y45.IP = null;
             this.pannel_Locker_Y45.IsSelected = false;
@@ -31789,6 +31827,7 @@
             // 
             this.pannel_Locker_Y23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y23.ButtonEnable = true;
+            this.pannel_Locker_Y23.Input = false;
             this.pannel_Locker_Y23.InputAdress = "X23";
             this.pannel_Locker_Y23.IP = null;
             this.pannel_Locker_Y23.IsSelected = false;
@@ -31807,6 +31846,7 @@
             // 
             this.pannel_Locker_Y44.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y44.ButtonEnable = true;
+            this.pannel_Locker_Y44.Input = false;
             this.pannel_Locker_Y44.InputAdress = "X44";
             this.pannel_Locker_Y44.IP = null;
             this.pannel_Locker_Y44.IsSelected = false;
@@ -31825,6 +31865,7 @@
             // 
             this.pannel_Locker_Y24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y24.ButtonEnable = true;
+            this.pannel_Locker_Y24.Input = false;
             this.pannel_Locker_Y24.InputAdress = "X24";
             this.pannel_Locker_Y24.IP = null;
             this.pannel_Locker_Y24.IsSelected = false;
@@ -31843,6 +31884,7 @@
             // 
             this.pannel_Locker_Y43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y43.ButtonEnable = true;
+            this.pannel_Locker_Y43.Input = false;
             this.pannel_Locker_Y43.InputAdress = "X43";
             this.pannel_Locker_Y43.IP = null;
             this.pannel_Locker_Y43.IsSelected = false;
@@ -31861,6 +31903,7 @@
             // 
             this.pannel_Locker_Y25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y25.ButtonEnable = true;
+            this.pannel_Locker_Y25.Input = false;
             this.pannel_Locker_Y25.InputAdress = "X25";
             this.pannel_Locker_Y25.IP = null;
             this.pannel_Locker_Y25.IsSelected = false;
@@ -31879,6 +31922,7 @@
             // 
             this.pannel_Locker_Y42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y42.ButtonEnable = true;
+            this.pannel_Locker_Y42.Input = false;
             this.pannel_Locker_Y42.InputAdress = "X42";
             this.pannel_Locker_Y42.IP = null;
             this.pannel_Locker_Y42.IsSelected = false;
@@ -31897,6 +31941,7 @@
             // 
             this.pannel_Locker_Y26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y26.ButtonEnable = true;
+            this.pannel_Locker_Y26.Input = false;
             this.pannel_Locker_Y26.InputAdress = "X26";
             this.pannel_Locker_Y26.IP = null;
             this.pannel_Locker_Y26.IsSelected = false;
@@ -31915,6 +31960,7 @@
             // 
             this.pannel_Locker_Y41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y41.ButtonEnable = true;
+            this.pannel_Locker_Y41.Input = false;
             this.pannel_Locker_Y41.InputAdress = "X41";
             this.pannel_Locker_Y41.IP = null;
             this.pannel_Locker_Y41.IsSelected = false;
@@ -31933,6 +31979,7 @@
             // 
             this.pannel_Locker_Y27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y27.ButtonEnable = true;
+            this.pannel_Locker_Y27.Input = false;
             this.pannel_Locker_Y27.InputAdress = "X27";
             this.pannel_Locker_Y27.IP = null;
             this.pannel_Locker_Y27.IsSelected = false;
@@ -31951,6 +31998,7 @@
             // 
             this.pannel_Locker_Y40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y40.ButtonEnable = true;
+            this.pannel_Locker_Y40.Input = false;
             this.pannel_Locker_Y40.InputAdress = "X40";
             this.pannel_Locker_Y40.IP = null;
             this.pannel_Locker_Y40.IsSelected = false;
@@ -31969,6 +32017,7 @@
             // 
             this.pannel_Locker_Y30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y30.ButtonEnable = true;
+            this.pannel_Locker_Y30.Input = false;
             this.pannel_Locker_Y30.InputAdress = "X30";
             this.pannel_Locker_Y30.IP = null;
             this.pannel_Locker_Y30.IsSelected = false;
@@ -31987,6 +32036,7 @@
             // 
             this.pannel_Locker_Y37.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y37.ButtonEnable = true;
+            this.pannel_Locker_Y37.Input = false;
             this.pannel_Locker_Y37.InputAdress = "X37";
             this.pannel_Locker_Y37.IP = null;
             this.pannel_Locker_Y37.IsSelected = false;
@@ -32005,6 +32055,7 @@
             // 
             this.pannel_Locker_Y31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y31.ButtonEnable = true;
+            this.pannel_Locker_Y31.Input = false;
             this.pannel_Locker_Y31.InputAdress = "X31";
             this.pannel_Locker_Y31.IP = null;
             this.pannel_Locker_Y31.IsSelected = false;
@@ -32023,6 +32074,7 @@
             // 
             this.pannel_Locker_Y36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y36.ButtonEnable = true;
+            this.pannel_Locker_Y36.Input = false;
             this.pannel_Locker_Y36.InputAdress = "X36";
             this.pannel_Locker_Y36.IP = null;
             this.pannel_Locker_Y36.IsSelected = false;
@@ -32041,6 +32093,7 @@
             // 
             this.pannel_Locker_Y32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y32.ButtonEnable = true;
+            this.pannel_Locker_Y32.Input = false;
             this.pannel_Locker_Y32.InputAdress = "X32";
             this.pannel_Locker_Y32.IP = null;
             this.pannel_Locker_Y32.IsSelected = false;
@@ -32059,6 +32112,7 @@
             // 
             this.pannel_Locker_Y35.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y35.ButtonEnable = true;
+            this.pannel_Locker_Y35.Input = false;
             this.pannel_Locker_Y35.InputAdress = "X35";
             this.pannel_Locker_Y35.IP = null;
             this.pannel_Locker_Y35.IsSelected = false;
@@ -32077,6 +32131,7 @@
             // 
             this.pannel_Locker_Y33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y33.ButtonEnable = true;
+            this.pannel_Locker_Y33.Input = false;
             this.pannel_Locker_Y33.InputAdress = "X33";
             this.pannel_Locker_Y33.IP = null;
             this.pannel_Locker_Y33.IsSelected = false;
@@ -32095,6 +32150,7 @@
             // 
             this.pannel_Locker_Y34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y34.ButtonEnable = true;
+            this.pannel_Locker_Y34.Input = false;
             this.pannel_Locker_Y34.InputAdress = "X34";
             this.pannel_Locker_Y34.IP = null;
             this.pannel_Locker_Y34.IsSelected = false;
@@ -32180,6 +32236,7 @@
             // 
             this.pannel_Locker_Y167.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y167.ButtonEnable = true;
+            this.pannel_Locker_Y167.Input = false;
             this.pannel_Locker_Y167.InputAdress = "X167";
             this.pannel_Locker_Y167.IP = null;
             this.pannel_Locker_Y167.IsSelected = false;
@@ -32198,6 +32255,7 @@
             // 
             this.pannel_Locker_Y166.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y166.ButtonEnable = true;
+            this.pannel_Locker_Y166.Input = false;
             this.pannel_Locker_Y166.InputAdress = "X166";
             this.pannel_Locker_Y166.IP = null;
             this.pannel_Locker_Y166.IsSelected = false;
@@ -32216,6 +32274,7 @@
             // 
             this.pannel_Locker_Y165.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y165.ButtonEnable = true;
+            this.pannel_Locker_Y165.Input = false;
             this.pannel_Locker_Y165.InputAdress = "X165";
             this.pannel_Locker_Y165.IP = null;
             this.pannel_Locker_Y165.IsSelected = false;
@@ -32234,6 +32293,7 @@
             // 
             this.pannel_Locker_Y164.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y164.ButtonEnable = true;
+            this.pannel_Locker_Y164.Input = false;
             this.pannel_Locker_Y164.InputAdress = "X164";
             this.pannel_Locker_Y164.IP = null;
             this.pannel_Locker_Y164.IsSelected = false;
@@ -32252,6 +32312,7 @@
             // 
             this.pannel_Locker_Y163.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y163.ButtonEnable = true;
+            this.pannel_Locker_Y163.Input = false;
             this.pannel_Locker_Y163.InputAdress = "X163";
             this.pannel_Locker_Y163.IP = null;
             this.pannel_Locker_Y163.IsSelected = false;
@@ -32270,6 +32331,7 @@
             // 
             this.pannel_Locker_Y162.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y162.ButtonEnable = true;
+            this.pannel_Locker_Y162.Input = false;
             this.pannel_Locker_Y162.InputAdress = "X162";
             this.pannel_Locker_Y162.IP = null;
             this.pannel_Locker_Y162.IsSelected = false;
@@ -32288,6 +32350,7 @@
             // 
             this.pannel_Locker_Y161.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y161.ButtonEnable = true;
+            this.pannel_Locker_Y161.Input = false;
             this.pannel_Locker_Y161.InputAdress = "X161";
             this.pannel_Locker_Y161.IP = null;
             this.pannel_Locker_Y161.IsSelected = false;
@@ -32306,6 +32369,7 @@
             // 
             this.pannel_Locker_Y160.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y160.ButtonEnable = true;
+            this.pannel_Locker_Y160.Input = false;
             this.pannel_Locker_Y160.InputAdress = "X160";
             this.pannel_Locker_Y160.IP = null;
             this.pannel_Locker_Y160.IsSelected = false;
@@ -32324,6 +32388,7 @@
             // 
             this.pannel_Locker_Y157.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y157.ButtonEnable = true;
+            this.pannel_Locker_Y157.Input = false;
             this.pannel_Locker_Y157.InputAdress = "X157";
             this.pannel_Locker_Y157.IP = null;
             this.pannel_Locker_Y157.IsSelected = false;
@@ -32342,6 +32407,7 @@
             // 
             this.pannel_Locker_Y156.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y156.ButtonEnable = true;
+            this.pannel_Locker_Y156.Input = false;
             this.pannel_Locker_Y156.InputAdress = "X156";
             this.pannel_Locker_Y156.IP = null;
             this.pannel_Locker_Y156.IsSelected = false;
@@ -32360,6 +32426,7 @@
             // 
             this.pannel_Locker_Y155.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y155.ButtonEnable = true;
+            this.pannel_Locker_Y155.Input = false;
             this.pannel_Locker_Y155.InputAdress = "X155";
             this.pannel_Locker_Y155.IP = null;
             this.pannel_Locker_Y155.IsSelected = false;
@@ -32378,6 +32445,7 @@
             // 
             this.pannel_Locker_Y154.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y154.ButtonEnable = true;
+            this.pannel_Locker_Y154.Input = false;
             this.pannel_Locker_Y154.InputAdress = "X154";
             this.pannel_Locker_Y154.IP = null;
             this.pannel_Locker_Y154.IsSelected = false;
@@ -32396,6 +32464,7 @@
             // 
             this.pannel_Locker_Y153.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y153.ButtonEnable = true;
+            this.pannel_Locker_Y153.Input = false;
             this.pannel_Locker_Y153.InputAdress = "X153";
             this.pannel_Locker_Y153.IP = null;
             this.pannel_Locker_Y153.IsSelected = false;
@@ -32414,6 +32483,7 @@
             // 
             this.pannel_Locker_Y152.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y152.ButtonEnable = true;
+            this.pannel_Locker_Y152.Input = false;
             this.pannel_Locker_Y152.InputAdress = "X152";
             this.pannel_Locker_Y152.IP = null;
             this.pannel_Locker_Y152.IsSelected = false;
@@ -32432,6 +32502,7 @@
             // 
             this.pannel_Locker_Y151.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y151.ButtonEnable = true;
+            this.pannel_Locker_Y151.Input = false;
             this.pannel_Locker_Y151.InputAdress = "X151";
             this.pannel_Locker_Y151.IP = null;
             this.pannel_Locker_Y151.IsSelected = false;
@@ -32450,6 +32521,7 @@
             // 
             this.pannel_Locker_Y150.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y150.ButtonEnable = true;
+            this.pannel_Locker_Y150.Input = false;
             this.pannel_Locker_Y150.InputAdress = "X150";
             this.pannel_Locker_Y150.IP = null;
             this.pannel_Locker_Y150.IsSelected = false;
@@ -32468,6 +32540,7 @@
             // 
             this.pannel_Locker_Y147.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y147.ButtonEnable = true;
+            this.pannel_Locker_Y147.Input = false;
             this.pannel_Locker_Y147.InputAdress = "X147";
             this.pannel_Locker_Y147.IP = null;
             this.pannel_Locker_Y147.IsSelected = false;
@@ -32486,6 +32559,7 @@
             // 
             this.pannel_Locker_Y146.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y146.ButtonEnable = true;
+            this.pannel_Locker_Y146.Input = false;
             this.pannel_Locker_Y146.InputAdress = "X146";
             this.pannel_Locker_Y146.IP = null;
             this.pannel_Locker_Y146.IsSelected = false;
@@ -32504,6 +32578,7 @@
             // 
             this.pannel_Locker_Y145.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y145.ButtonEnable = true;
+            this.pannel_Locker_Y145.Input = false;
             this.pannel_Locker_Y145.InputAdress = "X145";
             this.pannel_Locker_Y145.IP = null;
             this.pannel_Locker_Y145.IsSelected = false;
@@ -32522,6 +32597,7 @@
             // 
             this.pannel_Locker_Y144.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y144.ButtonEnable = true;
+            this.pannel_Locker_Y144.Input = false;
             this.pannel_Locker_Y144.InputAdress = "X144";
             this.pannel_Locker_Y144.IP = null;
             this.pannel_Locker_Y144.IsSelected = false;
@@ -32540,6 +32616,7 @@
             // 
             this.pannel_Locker_Y143.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y143.ButtonEnable = true;
+            this.pannel_Locker_Y143.Input = false;
             this.pannel_Locker_Y143.InputAdress = "X143";
             this.pannel_Locker_Y143.IP = null;
             this.pannel_Locker_Y143.IsSelected = false;
@@ -32558,6 +32635,7 @@
             // 
             this.pannel_Locker_Y142.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y142.ButtonEnable = true;
+            this.pannel_Locker_Y142.Input = false;
             this.pannel_Locker_Y142.InputAdress = "X142";
             this.pannel_Locker_Y142.IP = null;
             this.pannel_Locker_Y142.IsSelected = false;
@@ -32576,6 +32654,7 @@
             // 
             this.pannel_Locker_Y141.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y141.ButtonEnable = true;
+            this.pannel_Locker_Y141.Input = false;
             this.pannel_Locker_Y141.InputAdress = "X141";
             this.pannel_Locker_Y141.IP = null;
             this.pannel_Locker_Y141.IsSelected = false;
@@ -32594,6 +32673,7 @@
             // 
             this.pannel_Locker_Y140.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y140.ButtonEnable = true;
+            this.pannel_Locker_Y140.Input = false;
             this.pannel_Locker_Y140.InputAdress = "X140";
             this.pannel_Locker_Y140.IP = null;
             this.pannel_Locker_Y140.IsSelected = false;
@@ -32612,6 +32692,7 @@
             // 
             this.pannel_Locker_Y137.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y137.ButtonEnable = true;
+            this.pannel_Locker_Y137.Input = false;
             this.pannel_Locker_Y137.InputAdress = "X137";
             this.pannel_Locker_Y137.IP = null;
             this.pannel_Locker_Y137.IsSelected = false;
@@ -32630,6 +32711,7 @@
             // 
             this.pannel_Locker_Y136.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y136.ButtonEnable = true;
+            this.pannel_Locker_Y136.Input = false;
             this.pannel_Locker_Y136.InputAdress = "X136";
             this.pannel_Locker_Y136.IP = null;
             this.pannel_Locker_Y136.IsSelected = false;
@@ -32648,6 +32730,7 @@
             // 
             this.pannel_Locker_Y135.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y135.ButtonEnable = true;
+            this.pannel_Locker_Y135.Input = false;
             this.pannel_Locker_Y135.InputAdress = "X135";
             this.pannel_Locker_Y135.IP = null;
             this.pannel_Locker_Y135.IsSelected = false;
@@ -32666,6 +32749,7 @@
             // 
             this.pannel_Locker_Y134.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y134.ButtonEnable = true;
+            this.pannel_Locker_Y134.Input = false;
             this.pannel_Locker_Y134.InputAdress = "X134";
             this.pannel_Locker_Y134.IP = null;
             this.pannel_Locker_Y134.IsSelected = false;
@@ -32684,6 +32768,7 @@
             // 
             this.pannel_Locker_Y133.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y133.ButtonEnable = true;
+            this.pannel_Locker_Y133.Input = false;
             this.pannel_Locker_Y133.InputAdress = "X133";
             this.pannel_Locker_Y133.IP = null;
             this.pannel_Locker_Y133.IsSelected = false;
@@ -32702,6 +32787,7 @@
             // 
             this.pannel_Locker_Y132.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y132.ButtonEnable = true;
+            this.pannel_Locker_Y132.Input = false;
             this.pannel_Locker_Y132.InputAdress = "X132";
             this.pannel_Locker_Y132.IP = null;
             this.pannel_Locker_Y132.IsSelected = false;
@@ -32720,6 +32806,7 @@
             // 
             this.pannel_Locker_Y131.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y131.ButtonEnable = true;
+            this.pannel_Locker_Y131.Input = false;
             this.pannel_Locker_Y131.InputAdress = "X131";
             this.pannel_Locker_Y131.IP = null;
             this.pannel_Locker_Y131.IsSelected = false;
@@ -32738,6 +32825,7 @@
             // 
             this.pannel_Locker_Y130.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y130.ButtonEnable = true;
+            this.pannel_Locker_Y130.Input = false;
             this.pannel_Locker_Y130.InputAdress = "X130";
             this.pannel_Locker_Y130.IP = null;
             this.pannel_Locker_Y130.IsSelected = false;
@@ -32756,6 +32844,7 @@
             // 
             this.pannel_Locker_Y127.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y127.ButtonEnable = true;
+            this.pannel_Locker_Y127.Input = false;
             this.pannel_Locker_Y127.InputAdress = "X127";
             this.pannel_Locker_Y127.IP = null;
             this.pannel_Locker_Y127.IsSelected = false;
@@ -32774,6 +32863,7 @@
             // 
             this.pannel_Locker_Y126.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y126.ButtonEnable = true;
+            this.pannel_Locker_Y126.Input = false;
             this.pannel_Locker_Y126.InputAdress = "X126";
             this.pannel_Locker_Y126.IP = null;
             this.pannel_Locker_Y126.IsSelected = false;
@@ -32792,6 +32882,7 @@
             // 
             this.pannel_Locker_Y125.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y125.ButtonEnable = true;
+            this.pannel_Locker_Y125.Input = false;
             this.pannel_Locker_Y125.InputAdress = "X125";
             this.pannel_Locker_Y125.IP = null;
             this.pannel_Locker_Y125.IsSelected = false;
@@ -32810,6 +32901,7 @@
             // 
             this.pannel_Locker_Y124.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y124.ButtonEnable = true;
+            this.pannel_Locker_Y124.Input = false;
             this.pannel_Locker_Y124.InputAdress = "X124";
             this.pannel_Locker_Y124.IP = null;
             this.pannel_Locker_Y124.IsSelected = false;
@@ -32828,6 +32920,7 @@
             // 
             this.pannel_Locker_Y123.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y123.ButtonEnable = true;
+            this.pannel_Locker_Y123.Input = false;
             this.pannel_Locker_Y123.InputAdress = "X123";
             this.pannel_Locker_Y123.IP = null;
             this.pannel_Locker_Y123.IsSelected = false;
@@ -32846,6 +32939,7 @@
             // 
             this.pannel_Locker_Y122.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y122.ButtonEnable = true;
+            this.pannel_Locker_Y122.Input = false;
             this.pannel_Locker_Y122.InputAdress = "X122";
             this.pannel_Locker_Y122.IP = null;
             this.pannel_Locker_Y122.IsSelected = false;
@@ -32864,6 +32958,7 @@
             // 
             this.pannel_Locker_Y121.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y121.ButtonEnable = true;
+            this.pannel_Locker_Y121.Input = false;
             this.pannel_Locker_Y121.InputAdress = "X121";
             this.pannel_Locker_Y121.IP = null;
             this.pannel_Locker_Y121.IsSelected = false;
@@ -32882,6 +32977,7 @@
             // 
             this.pannel_Locker_Y120.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y120.ButtonEnable = true;
+            this.pannel_Locker_Y120.Input = false;
             this.pannel_Locker_Y120.InputAdress = "X120";
             this.pannel_Locker_Y120.IP = null;
             this.pannel_Locker_Y120.IsSelected = false;
@@ -32900,6 +32996,7 @@
             // 
             this.pannel_Locker_Y117.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y117.ButtonEnable = true;
+            this.pannel_Locker_Y117.Input = false;
             this.pannel_Locker_Y117.InputAdress = "X117";
             this.pannel_Locker_Y117.IP = null;
             this.pannel_Locker_Y117.IsSelected = false;
@@ -32918,6 +33015,7 @@
             // 
             this.pannel_Locker_Y116.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y116.ButtonEnable = true;
+            this.pannel_Locker_Y116.Input = false;
             this.pannel_Locker_Y116.InputAdress = "X116";
             this.pannel_Locker_Y116.IP = null;
             this.pannel_Locker_Y116.IsSelected = false;
@@ -32936,6 +33034,7 @@
             // 
             this.pannel_Locker_Y115.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y115.ButtonEnable = true;
+            this.pannel_Locker_Y115.Input = false;
             this.pannel_Locker_Y115.InputAdress = "X115";
             this.pannel_Locker_Y115.IP = null;
             this.pannel_Locker_Y115.IsSelected = false;
@@ -32954,6 +33053,7 @@
             // 
             this.pannel_Locker_Y114.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y114.ButtonEnable = true;
+            this.pannel_Locker_Y114.Input = false;
             this.pannel_Locker_Y114.InputAdress = "X114";
             this.pannel_Locker_Y114.IP = null;
             this.pannel_Locker_Y114.IsSelected = false;
@@ -32972,6 +33072,7 @@
             // 
             this.pannel_Locker_Y113.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y113.ButtonEnable = true;
+            this.pannel_Locker_Y113.Input = false;
             this.pannel_Locker_Y113.InputAdress = "X113";
             this.pannel_Locker_Y113.IP = null;
             this.pannel_Locker_Y113.IsSelected = false;
@@ -32990,6 +33091,7 @@
             // 
             this.pannel_Locker_Y112.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y112.ButtonEnable = true;
+            this.pannel_Locker_Y112.Input = false;
             this.pannel_Locker_Y112.InputAdress = "X112";
             this.pannel_Locker_Y112.IP = null;
             this.pannel_Locker_Y112.IsSelected = false;
@@ -33008,6 +33110,7 @@
             // 
             this.pannel_Locker_Y111.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y111.ButtonEnable = true;
+            this.pannel_Locker_Y111.Input = false;
             this.pannel_Locker_Y111.InputAdress = "X111";
             this.pannel_Locker_Y111.IP = null;
             this.pannel_Locker_Y111.IsSelected = false;
@@ -33026,6 +33129,7 @@
             // 
             this.pannel_Locker_Y110.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y110.ButtonEnable = true;
+            this.pannel_Locker_Y110.Input = false;
             this.pannel_Locker_Y110.InputAdress = "X110";
             this.pannel_Locker_Y110.IP = null;
             this.pannel_Locker_Y110.IsSelected = false;
@@ -33044,6 +33148,7 @@
             // 
             this.pannel_Locker_Y107.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y107.ButtonEnable = true;
+            this.pannel_Locker_Y107.Input = false;
             this.pannel_Locker_Y107.InputAdress = "X107";
             this.pannel_Locker_Y107.IP = null;
             this.pannel_Locker_Y107.IsSelected = false;
@@ -33062,6 +33167,7 @@
             // 
             this.pannel_Locker_Y106.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y106.ButtonEnable = true;
+            this.pannel_Locker_Y106.Input = false;
             this.pannel_Locker_Y106.InputAdress = "X106";
             this.pannel_Locker_Y106.IP = null;
             this.pannel_Locker_Y106.IsSelected = false;
@@ -33080,6 +33186,7 @@
             // 
             this.pannel_Locker_Y105.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y105.ButtonEnable = true;
+            this.pannel_Locker_Y105.Input = false;
             this.pannel_Locker_Y105.InputAdress = "X105";
             this.pannel_Locker_Y105.IP = null;
             this.pannel_Locker_Y105.IsSelected = false;
@@ -33098,6 +33205,7 @@
             // 
             this.pannel_Locker_Y104.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y104.ButtonEnable = true;
+            this.pannel_Locker_Y104.Input = false;
             this.pannel_Locker_Y104.InputAdress = "X104";
             this.pannel_Locker_Y104.IP = null;
             this.pannel_Locker_Y104.IsSelected = false;
@@ -33116,6 +33224,7 @@
             // 
             this.pannel_Locker_Y103.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y103.ButtonEnable = true;
+            this.pannel_Locker_Y103.Input = false;
             this.pannel_Locker_Y103.InputAdress = "X103";
             this.pannel_Locker_Y103.IP = null;
             this.pannel_Locker_Y103.IsSelected = false;
@@ -33134,6 +33243,7 @@
             // 
             this.pannel_Locker_Y102.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y102.ButtonEnable = true;
+            this.pannel_Locker_Y102.Input = false;
             this.pannel_Locker_Y102.InputAdress = "X102";
             this.pannel_Locker_Y102.IP = null;
             this.pannel_Locker_Y102.IsSelected = false;
@@ -33152,6 +33262,7 @@
             // 
             this.pannel_Locker_Y101.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y101.ButtonEnable = true;
+            this.pannel_Locker_Y101.Input = false;
             this.pannel_Locker_Y101.InputAdress = "X101";
             this.pannel_Locker_Y101.IP = null;
             this.pannel_Locker_Y101.IsSelected = false;
@@ -33170,6 +33281,7 @@
             // 
             this.pannel_Locker_Y100.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pannel_Locker_Y100.ButtonEnable = true;
+            this.pannel_Locker_Y100.Input = false;
             this.pannel_Locker_Y100.InputAdress = "X100";
             this.pannel_Locker_Y100.IP = null;
             this.pannel_Locker_Y100.IsSelected = false;

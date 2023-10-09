@@ -570,7 +570,6 @@ C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Rel
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.OpenDoorPermission_UI.resources
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.Pannel_Box.resources
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.Properties.Resources.resources
-C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.sub_Form_更改病房名稱.resources
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.GenerateResource.cache
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CoreCompileInputs.cache
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.exe
@@ -737,3 +736,5 @@ C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\bin\Rel
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\bin\Release\System.ValueTuple.xml
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CopyComplete
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\bin\Release\ICSharpCode.SharpZipLib.xml
+C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_EPDPanel.resources
+C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_更改病房名稱.resources

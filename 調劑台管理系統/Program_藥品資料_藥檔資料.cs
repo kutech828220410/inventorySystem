@@ -118,16 +118,6 @@ namespace 調劑台管理系統
 
         private void Program_藥品資料_藥檔資料_Init()
         {
-           
-            //this.sqL_DataGridView_藥品群組.Init();
-            //if (!this.sqL_DataGridView_藥品群組.SQL_IsTableCreat()) this.sqL_DataGridView_藥品群組.SQL_CreateTable();
-            //Function_藥品群組_初始化表單();
-            //this.sqL_DataGridView_藥品群組.DataGridRowsChangeEvent += SqL_DataGridView_藥品群組_DataGridRowsChangeEvent;
-            //this.sqL_DataGridView_藥品群組.RowEnterEvent += SqL_DataGridView_藥品群組_RowEnterEvent;
-            //this.sqL_DataGridView_藥品群組.SQL_GetAllRows(false);
-
-
-
 
             string url = $"{dBConfigClass.Api_URL}/api/MED_page/init";
             returnData returnData = new returnData();
@@ -859,9 +849,6 @@ namespace 調劑台管理系統
         }
         private void SqL_DataGridView_藥品資料_藥檔資料_RowDoubleClickEvent(object[] RowValue)
         {
-
-            int index = RowValue[(int)enum_藥品資料_藥檔資料.藥品群組].ObjectToString().StringToInt32();
-
             string 藥品碼 = RowValue[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品碼.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
             this.textBox_藥品資料_藥檔資料_藥品名稱.Text = RowValue[(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
@@ -1014,7 +1001,6 @@ namespace 調劑台管理系統
                 }
             }
         }
-
         private void PlC_RJ_Button_藥品資料_中文名_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -1041,6 +1027,7 @@ namespace 調劑台管理系統
                 }
             }
         }
+
         private void PlC_RJ_Button_藥品資料_刪除_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
@@ -1246,6 +1233,9 @@ namespace 調劑台管理系統
                     value[(int)enum_藥品資料_藥檔資料.庫存] = "0";
                     value[(int)enum_藥品資料_藥檔資料.安全庫存] = "0";        
                     value[(int)enum_藥品資料_藥檔資料.警訊藥品] = list_雲端藥檔[i][(int)enum_雲端藥檔.警訊藥品].ObjectToString();
+                    value[(int)enum_藥品資料_藥檔資料.管制級別] = list_雲端藥檔[i][(int)enum_雲端藥檔.管制級別].ObjectToString();
+                    value[(int)enum_藥品資料_藥檔資料.類別] = list_雲端藥檔[i][(int)enum_雲端藥檔.類別].ObjectToString();
+
                     list_藥品資料_add.Add(value);
                 }
                 else
@@ -1260,6 +1250,10 @@ namespace 調劑台管理系統
                     value[(int)enum_藥品資料_藥檔資料.健保碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.健保碼].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.包裝單位] = list_雲端藥檔[i][(int)enum_雲端藥檔.包裝單位].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.警訊藥品] = list_雲端藥檔[i][(int)enum_雲端藥檔.警訊藥品].ObjectToString();
+                    value[(int)enum_藥品資料_藥檔資料.管制級別] = list_雲端藥檔[i][(int)enum_雲端藥檔.管制級別].ObjectToString();
+                    value[(int)enum_藥品資料_藥檔資料.類別] = list_雲端藥檔[i][(int)enum_雲端藥檔.類別].ObjectToString();
+
+
                     list_藥品資料_replace.Add(value);
                 }
             }

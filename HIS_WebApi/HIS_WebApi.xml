@@ -171,5 +171,18 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_by_apiserver(HIS_DB_Lib.returnData)">
+            <summary>
+            查詢藥品資料JSON格式範例
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.ServerName] : 填入記憶的伺服器名稱(medicine_page_cloud可預設為"Main")<br/> 
+             2.[returnData.ServerType] : 填入記憶的種類(medicine_page_cloud可預設為"網頁")<br/> 
+             3.[returnData.TableName] : 選擇其中一種資料表名稱:medicine_page_cloud、medicine_page_firstclass、medicine_page_phar、medicine_page<br/> 
+             --------------------------------------------<br/> 
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+        </member>
     </members>
 </doc>

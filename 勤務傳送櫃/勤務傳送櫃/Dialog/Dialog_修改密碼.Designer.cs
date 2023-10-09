@@ -1,6 +1,6 @@
 ﻿namespace 勤務傳送櫃
 {
-    partial class sub_Form_修改密碼
+    partial class Dialog_修改密碼
     {
         /// <summary>
         /// Required designer variable.
@@ -118,7 +118,7 @@
             this.button_取消.UseVisualStyleBackColor = true;
             this.button_取消.Click += new System.EventHandler(this.button_取消_Click);
             // 
-            // sub_Form_修改密碼
+            // Dialog_修改密碼
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,7 +130,7 @@
             this.Controls.Add(this.panel89);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "sub_Form_修改密碼";
+            this.Name = "Dialog_修改密碼";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

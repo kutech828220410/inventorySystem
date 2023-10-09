@@ -33,6 +33,9 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass2 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass3 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass4 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass5 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass6 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass7 = new HIS_DB_Lib.ServerSettingClass();
             this.button_讀取 = new System.Windows.Forms.Button();
             this.button_刪除 = new System.Windows.Forms.Button();
             this.button_新增 = new System.Windows.Forms.Button();
@@ -42,10 +45,13 @@ namespace ServerSettingForm
             this.button_測試 = new System.Windows.Forms.Button();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel_SQLContent8 = new ServerSettingForm.Panel_SQLContent();
-            this.panel_SQLContent7 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_API_URL5 = new ServerSettingForm.Panel_API_URL();
+            this.panel_API_URL4 = new ServerSettingForm.Panel_API_URL();
+            this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
             this.panel_API_URL2 = new ServerSettingForm.Panel_API_URL();
             this.panel_API_URL1 = new ServerSettingForm.Panel_API_URL();
+            this.panel_SQLContent8 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_SQLContent7 = new ServerSettingForm.Panel_SQLContent();
             this.SuspendLayout();
             // 
             // button_讀取
@@ -147,26 +153,142 @@ namespace ServerSettingForm
             this.label1.TabIndex = 24;
             this.label1.Text = "API Server :";
             // 
+            // panel_API_URL5
+            // 
+            this.panel_API_URL5.Content = "Med_API";
+            this.panel_API_URL5.Location = new System.Drawing.Point(14, 547);
+            this.panel_API_URL5.Name = "panel_API_URL5";
+            serverSettingClass1.DBName = null;
+            serverSettingClass1.GUID = null;
+            serverSettingClass1.Password = null;
+            serverSettingClass1.Port = null;
+            serverSettingClass1.Server = "";
+            serverSettingClass1.TableName = null;
+            serverSettingClass1.User = null;
+            serverSettingClass1.Value = null;
+            serverSettingClass1.內容 = "Med_API";
+            serverSettingClass1.單位 = null;
+            serverSettingClass1.程式類別 = null;
+            serverSettingClass1.設備名稱 = "";
+            serverSettingClass1.類別 = "傳送櫃";
+            this.panel_API_URL5.ServerSetting = serverSettingClass1;
+            this.panel_API_URL5.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_API_URL5.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL5.TabIndex = 69;
+            // 
+            // panel_API_URL4
+            // 
+            this.panel_API_URL4.Content = "Order_API";
+            this.panel_API_URL4.Location = new System.Drawing.Point(14, 505);
+            this.panel_API_URL4.Name = "panel_API_URL4";
+            serverSettingClass2.DBName = null;
+            serverSettingClass2.GUID = null;
+            serverSettingClass2.Password = null;
+            serverSettingClass2.Port = null;
+            serverSettingClass2.Server = "";
+            serverSettingClass2.TableName = null;
+            serverSettingClass2.User = null;
+            serverSettingClass2.Value = null;
+            serverSettingClass2.內容 = "Order_API";
+            serverSettingClass2.單位 = null;
+            serverSettingClass2.程式類別 = null;
+            serverSettingClass2.設備名稱 = "";
+            serverSettingClass2.類別 = "傳送櫃";
+            this.panel_API_URL4.ServerSetting = serverSettingClass2;
+            this.panel_API_URL4.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_API_URL4.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL4.TabIndex = 68;
+            // 
+            // panel_SQLContent1
+            // 
+            this.panel_SQLContent1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent1.Content = "藥檔資料";
+            this.panel_SQLContent1.Location = new System.Drawing.Point(376, 73);
+            this.panel_SQLContent1.Name = "panel_SQLContent1";
+            serverSettingClass3.DBName = "";
+            serverSettingClass3.GUID = null;
+            serverSettingClass3.Password = "";
+            serverSettingClass3.Port = "";
+            serverSettingClass3.Server = "";
+            serverSettingClass3.TableName = null;
+            serverSettingClass3.User = "";
+            serverSettingClass3.Value = null;
+            serverSettingClass3.內容 = "藥檔資料";
+            serverSettingClass3.單位 = null;
+            serverSettingClass3.程式類別 = null;
+            serverSettingClass3.設備名稱 = "";
+            serverSettingClass3.類別 = "傳送櫃";
+            this.panel_SQLContent1.ServerSetting = serverSettingClass3;
+            this.panel_SQLContent1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent1.TabIndex = 67;
+            // 
+            // panel_API_URL2
+            // 
+            this.panel_API_URL2.Content = "API02";
+            this.panel_API_URL2.Location = new System.Drawing.Point(14, 463);
+            this.panel_API_URL2.Name = "panel_API_URL2";
+            serverSettingClass4.DBName = null;
+            serverSettingClass4.GUID = null;
+            serverSettingClass4.Password = null;
+            serverSettingClass4.Port = null;
+            serverSettingClass4.Server = "";
+            serverSettingClass4.TableName = null;
+            serverSettingClass4.User = null;
+            serverSettingClass4.Value = null;
+            serverSettingClass4.內容 = "API02";
+            serverSettingClass4.單位 = null;
+            serverSettingClass4.程式類別 = null;
+            serverSettingClass4.設備名稱 = "";
+            serverSettingClass4.類別 = "傳送櫃";
+            this.panel_API_URL2.ServerSetting = serverSettingClass4;
+            this.panel_API_URL2.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_API_URL2.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL2.TabIndex = 66;
+            // 
+            // panel_API_URL1
+            // 
+            this.panel_API_URL1.Content = "API01";
+            this.panel_API_URL1.Location = new System.Drawing.Point(14, 421);
+            this.panel_API_URL1.Name = "panel_API_URL1";
+            serverSettingClass5.DBName = null;
+            serverSettingClass5.GUID = null;
+            serverSettingClass5.Password = null;
+            serverSettingClass5.Port = null;
+            serverSettingClass5.Server = "";
+            serverSettingClass5.TableName = null;
+            serverSettingClass5.User = null;
+            serverSettingClass5.Value = null;
+            serverSettingClass5.內容 = "API01";
+            serverSettingClass5.單位 = null;
+            serverSettingClass5.程式類別 = null;
+            serverSettingClass5.設備名稱 = "";
+            serverSettingClass5.類別 = "傳送櫃";
+            this.panel_API_URL1.ServerSetting = serverSettingClass5;
+            this.panel_API_URL1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_API_URL1.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL1.TabIndex = 65;
+            // 
             // panel_SQLContent8
             // 
             this.panel_SQLContent8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_SQLContent8.Content = "VM端";
             this.panel_SQLContent8.Location = new System.Drawing.Point(195, 73);
             this.panel_SQLContent8.Name = "panel_SQLContent8";
-            serverSettingClass1.DBName = "";
-            serverSettingClass1.GUID = null;
-            serverSettingClass1.Password = "";
-            serverSettingClass1.Port = "";
-            serverSettingClass1.Server = "";
-            serverSettingClass1.TableName = null;
-            serverSettingClass1.User = "";
-            serverSettingClass1.Value = null;
-            serverSettingClass1.內容 = "VM端";
-            serverSettingClass1.單位 = null;
-            serverSettingClass1.程式類別 = null;
-            serverSettingClass1.設備名稱 = "";
-            serverSettingClass1.類別 = "傳送櫃";
-            this.panel_SQLContent8.ServerSetting = serverSettingClass1;
+            serverSettingClass6.DBName = "";
+            serverSettingClass6.GUID = null;
+            serverSettingClass6.Password = "";
+            serverSettingClass6.Port = "";
+            serverSettingClass6.Server = "";
+            serverSettingClass6.TableName = null;
+            serverSettingClass6.User = "";
+            serverSettingClass6.Value = null;
+            serverSettingClass6.內容 = "VM端";
+            serverSettingClass6.單位 = null;
+            serverSettingClass6.程式類別 = null;
+            serverSettingClass6.設備名稱 = "";
+            serverSettingClass6.類別 = "傳送櫃";
+            this.panel_SQLContent8.ServerSetting = serverSettingClass6;
             this.panel_SQLContent8.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
             this.panel_SQLContent8.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent8.TabIndex = 64;
@@ -177,75 +299,32 @@ namespace ServerSettingForm
             this.panel_SQLContent7.Content = "本地端";
             this.panel_SQLContent7.Location = new System.Drawing.Point(14, 73);
             this.panel_SQLContent7.Name = "panel_SQLContent7";
-            serverSettingClass2.DBName = "";
-            serverSettingClass2.GUID = null;
-            serverSettingClass2.Password = "";
-            serverSettingClass2.Port = "";
-            serverSettingClass2.Server = "";
-            serverSettingClass2.TableName = null;
-            serverSettingClass2.User = "";
-            serverSettingClass2.Value = null;
-            serverSettingClass2.內容 = "本地端";
-            serverSettingClass2.單位 = null;
-            serverSettingClass2.程式類別 = null;
-            serverSettingClass2.設備名稱 = "";
-            serverSettingClass2.類別 = "傳送櫃";
-            this.panel_SQLContent7.ServerSetting = serverSettingClass2;
+            serverSettingClass7.DBName = "";
+            serverSettingClass7.GUID = null;
+            serverSettingClass7.Password = "";
+            serverSettingClass7.Port = "";
+            serverSettingClass7.Server = "";
+            serverSettingClass7.TableName = null;
+            serverSettingClass7.User = "";
+            serverSettingClass7.Value = null;
+            serverSettingClass7.內容 = "本地端";
+            serverSettingClass7.單位 = null;
+            serverSettingClass7.程式類別 = null;
+            serverSettingClass7.設備名稱 = "";
+            serverSettingClass7.類別 = "傳送櫃";
+            this.panel_SQLContent7.ServerSetting = serverSettingClass7;
             this.panel_SQLContent7.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
             this.panel_SQLContent7.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent7.TabIndex = 63;
-            // 
-            // panel_API_URL2
-            // 
-            this.panel_API_URL2.Content = "API02";
-            this.panel_API_URL2.Location = new System.Drawing.Point(14, 463);
-            this.panel_API_URL2.Name = "panel_API_URL2";
-            serverSettingClass3.DBName = null;
-            serverSettingClass3.GUID = null;
-            serverSettingClass3.Password = null;
-            serverSettingClass3.Port = null;
-            serverSettingClass3.Server = "";
-            serverSettingClass3.TableName = null;
-            serverSettingClass3.User = null;
-            serverSettingClass3.Value = null;
-            serverSettingClass3.內容 = "API02";
-            serverSettingClass3.單位 = null;
-            serverSettingClass3.程式類別 = null;
-            serverSettingClass3.設備名稱 = "";
-            serverSettingClass3.類別 = "傳送櫃";
-            this.panel_API_URL2.ServerSetting = serverSettingClass3;
-            this.panel_API_URL2.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
-            this.panel_API_URL2.Size = new System.Drawing.Size(864, 36);
-            this.panel_API_URL2.TabIndex = 66;
-            // 
-            // panel_API_URL1
-            // 
-            this.panel_API_URL1.Content = "API01";
-            this.panel_API_URL1.Location = new System.Drawing.Point(14, 421);
-            this.panel_API_URL1.Name = "panel_API_URL1";
-            serverSettingClass4.DBName = null;
-            serverSettingClass4.GUID = null;
-            serverSettingClass4.Password = null;
-            serverSettingClass4.Port = null;
-            serverSettingClass4.Server = "";
-            serverSettingClass4.TableName = null;
-            serverSettingClass4.User = null;
-            serverSettingClass4.Value = null;
-            serverSettingClass4.內容 = "API01";
-            serverSettingClass4.單位 = null;
-            serverSettingClass4.程式類別 = null;
-            serverSettingClass4.設備名稱 = "";
-            serverSettingClass4.類別 = "傳送櫃";
-            this.panel_API_URL1.ServerSetting = serverSettingClass4;
-            this.panel_API_URL1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
-            this.panel_API_URL1.Size = new System.Drawing.Size(864, 36);
-            this.panel_API_URL1.TabIndex = 65;
             // 
             // Dialog_傳送櫃
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_API_URL5);
+            this.Controls.Add(this.panel_API_URL4);
+            this.Controls.Add(this.panel_SQLContent1);
             this.Controls.Add(this.panel_API_URL2);
             this.Controls.Add(this.panel_API_URL1);
             this.Controls.Add(this.panel_SQLContent8);
@@ -282,5 +361,8 @@ namespace ServerSettingForm
         private Panel_SQLContent panel_SQLContent7;
         private Panel_API_URL panel_API_URL2;
         private Panel_API_URL panel_API_URL1;
+        private Panel_SQLContent panel_SQLContent1;
+        private Panel_API_URL panel_API_URL5;
+        private Panel_API_URL panel_API_URL4;
     }
 }

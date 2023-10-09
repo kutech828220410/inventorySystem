@@ -70,7 +70,7 @@ namespace 勤務傳送櫃
         private List<LoginDataWebAPI.Class_login_data> List_class_Login_Data = new List<LoginDataWebAPI.Class_login_data>();
         private List<LoginDataWebAPI.Class_login_data_index> List_class_Login_Data_index = new List<LoginDataWebAPI.Class_login_data_index>();
         private List<OpenDoorPermission_UI> openDoorPermission_UIs = new List<OpenDoorPermission_UI>();
-        private void sub_Program_人員資料_Init()
+        private void Program_人員資料_Init()
         {
 
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_人員資料, dBConfigClass.DB_person_page);
@@ -108,13 +108,13 @@ namespace 勤務傳送櫃
 
             this.Function_人員資料_開門權限_初始化();
 
-            this.plC_UI_Init.Add_Method(this.sub_Program_人員資料);
+            this.plC_UI_Init.Add_Method(this.Program_人員資料);
         }
 
  
 
         bool flag_人員資料_頁面更新 = false;
-        private void sub_Program_人員資料()
+        private void Program_人員資料()
         {
             if (this.plC_ScreenPage_Main.PageText == "人員資料")
             {
@@ -157,12 +157,12 @@ namespace 勤務傳送櫃
             {
                 this.flag_人員資料_頁面更新 = false;
             }
-            this.sub_Program_人員資料_讀取RFID();
+            this.Program_人員資料_讀取RFID();
         }
         #region PLC_人員資料_讀取RFID
         PLC_Device PLC_Device_人員資料_讀取RFID = new PLC_Device("");
         int cnt_Program_人員資料_讀取RFID = 65534;
-        void sub_Program_人員資料_讀取RFID()
+        void Program_人員資料_讀取RFID()
         {
             if (this.plC_ScreenPage_Main.PageText == "人員資料")
             {

@@ -20,6 +20,9 @@ namespace 勤務傳送櫃
 
     public partial class Pannel_Box : UserControl
     {
+        public delegate void EPDSettingEventHandler(string EPD_IP , string Name);
+        public event EPDSettingEventHandler EPDSettingEvent;
+
         public static int AlarmTime = 5000;
         public static int AlarmBeepTime = 5000;
         public static int InitDelay = 2000;
@@ -216,6 +219,20 @@ namespace 勤務傳送櫃
             set
             {
                 this.Visible = value;
+            }
+        }
+
+        private string ePD_IP = "";
+        [ReadOnly(false), Browsable(false), Category("Config"), Description(""), DefaultValue("")]
+        public string EPD_IP
+        {
+            get
+            {
+                return ePD_IP;
+            }
+            set
+            {
+                ePD_IP = value;
             }
         }
 
@@ -604,9 +621,9 @@ namespace 勤務傳送櫃
         }
         private void 更改病房名稱ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sub_Form_更改病房名稱 form = sub_Form_更改病房名稱.GetForm(this.WardName);
+            Dialog_更改病房名稱 form = Dialog_更改病房名稱.GetForm(this.WardName);
             form.ShowDialog();
-            if(form.Enum_Type == sub_Form_更改病房名稱.enum_Type.OK)
+            if(form.Enum_Type == Dialog_更改病房名稱.enum_Type.OK)
             {
                 RFIDClass rFIDClass = this.rFID_UI.SQL_GetRFIDClass(this.IP);
                 if (rFIDClass == null) return;
@@ -633,11 +650,14 @@ namespace 勤務傳送櫃
                 this.WardFont = this.fontDialog.Font;
             }
         }
-
         private void label_病房名稱_Click(object sender, EventArgs e)
         {
             bool flag = this.rFID_UI.GetOutput(this.IP, this.Led_output_num);
             this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, !flag);
+        }
+        private void 電子紙設定ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (EPDSettingEvent != null) EPDSettingEvent(EPD_IP , WardName);
         }
     }
     static class Pannel_Box_Method

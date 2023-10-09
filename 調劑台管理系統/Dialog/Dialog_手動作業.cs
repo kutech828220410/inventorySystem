@@ -29,6 +29,23 @@ namespace 調劑台管理系統
             領藥,
             退藥,
         }
+        public static Form form;
+        public DialogResult ShowDialog()
+        {
+            if (form == null)
+            {
+                base.ShowDialog();
+            }
+            else
+            {
+                form.Invoke(new Action(delegate
+                {
+                    base.ShowDialog();
+                }));
+            }
+
+            return this.DialogResult;
+        }
         public List<object[]> Value = new List<object[]>();
         private SQL_DataGridView sQL_DataGridView_藥品資料_buf;
         private Form1 form1_buf;

@@ -10,8 +10,25 @@ using System.Windows.Forms;
 using Basic;
 namespace 勤務傳送櫃
 {
-    public partial class sub_Form_修改密碼 : Form
+    public partial class Dialog_修改密碼 : Form
     {
+        public static Form form;
+        public DialogResult ShowDialog()
+        {
+            if (form == null)
+            {
+                base.ShowDialog();
+            }
+            else
+            {
+                form.Invoke(new Action(delegate
+                {
+                    base.ShowDialog();
+                }));
+            }
+
+            return this.DialogResult;
+        }
         private string _Password = "";
         public string Password
         {
@@ -30,7 +47,7 @@ namespace 勤務傳送櫃
         }
         public enum_Result Result = enum_Result.取消;
 
-        public sub_Form_修改密碼()
+        public Dialog_修改密碼()
         {
             InitializeComponent();
         }

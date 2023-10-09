@@ -31,6 +31,7 @@ namespace 勤務傳送櫃
             Lock_input_num,
             Sensor_input_num,
             Led_output_num,
+            EPD_IP,
         }
         enum enum_Box_Index_Table_匯出
         {
@@ -41,6 +42,7 @@ namespace 勤務傳送櫃
             Lock_input_num,
             Sensor_input_num,
             Led_output_num,
+            EPD_IP,
         }
         enum enum_Box_Index_Table_匯入
         {
@@ -51,16 +53,24 @@ namespace 勤務傳送櫃
             Lock_input_num,
             Sensor_input_num,
             Led_output_num,
+            EPD_IP,
         }
 
         #endregion
 
-        private void sub_Program_系統頁面_Init()
+        private void Program_系統頁面_Init()
         {
+
+            this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic);
+
             this.sqL_DataGridView_Box_Index_Table.Init();
             if (!this.sqL_DataGridView_Box_Index_Table.SQL_IsTableCreat())
             {
                 this.sqL_DataGridView_Box_Index_Table.SQL_CreateTable();
+            }
+            else
+            {
+                this.sqL_DataGridView_Box_Index_Table.SQL_CheckAllColumnName(true);
             }
             this.sqL_DataGridView_Box_Index_Table.DataGridRowsChangeEvent += SqL_DataGridView_Box_Index_Table_DataGridRowsChangeEvent;
 
@@ -68,12 +78,12 @@ namespace 勤務傳送櫃
             this.plC_RJ_Button_Box_Index_Table_匯入.MouseDownEvent += PlC_RJ_Button_Box_Index_Table_匯入_MouseDownEvent;
             this.plC_RJ_Button_Box_Index_Table_刪除.MouseDownEvent += PlC_RJ_Button_Box_Index_Table_刪除_MouseDownEvent;
             this.plC_RJ_Button_Box_Index_Table_更新.MouseDownEvent += PlC_RJ_Button_Box_Index_Table_更新_MouseDownEvent;
-            this.plC_UI_Init.Add_Method(sub_Program_系統頁面);
+            this.plC_UI_Init.Add_Method(Program_系統頁面);
         }
 
    
 
-        private void sub_Program_系統頁面()
+        private void Program_系統頁面()
         {
 
         }

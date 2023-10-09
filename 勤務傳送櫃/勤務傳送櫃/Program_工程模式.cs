@@ -14,9 +14,9 @@ namespace 勤務傳送櫃
     public partial class Form1 : Form
     {
   
-        private void sub_Program_工程模式_Init()
+        private void Program_工程模式_Init()
         {
-            this.plC_UI_Init.Add_Method(sub_Program_蜂鳴警報檢查);
+            this.plC_UI_Init.Add_Method(Program_蜂鳴警報檢查);
         }
         #region PLC_蜂鳴警報檢查
         PLC_Device PLC_Device_蜂鳴持續時間 = new PLC_Device("D3002");
@@ -24,7 +24,7 @@ namespace 勤務傳送櫃
         PLC_Device PLC_Device_蜂鳴警報檢查_OK = new PLC_Device("");
         MyTimer MyTimer_蜂鳴警報檢查_結束延遲 = new MyTimer();
         int cnt_Program_蜂鳴警報檢查 = 65534;
-        void sub_Program_蜂鳴警報檢查()
+        void Program_蜂鳴警報檢查()
         {
             PLC_Device_蜂鳴警報檢查.Bool = true;
             if (cnt_Program_蜂鳴警報檢查 == 65534)

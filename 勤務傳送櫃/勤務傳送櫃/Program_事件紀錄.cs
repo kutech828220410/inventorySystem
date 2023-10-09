@@ -55,7 +55,7 @@ namespace 勤務傳送櫃
             }
         }
         #endregion
-        private void sub_Program_事件紀錄_Init()
+        private void Program_事件紀錄_Init()
         {
             this.sqL_DataGridView_事件紀錄.Init();
             if (!this.sqL_DataGridView_事件紀錄.SQL_IsTableCreat())
@@ -64,13 +64,13 @@ namespace 勤務傳送櫃
             }
             this.plC_RJ_Button_事件紀錄_搜尋.MouseDownEvent += PlC_RJ_Button_事件紀錄_搜尋_MouseDownEvent;
 
-            this.plC_UI_Init.Add_Method(this.sub_Program_事件紀錄);
+            this.plC_UI_Init.Add_Method(this.Program_事件紀錄);
 
         }
 
   
 
-        private void sub_Program_事件紀錄() 
+        private void Program_事件紀錄() 
         {
 
         }

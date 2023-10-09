@@ -36,8 +36,9 @@
             this.更改字體ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_病房名稱 = new System.Windows.Forms.Label();
             this.label_編號 = new System.Windows.Forms.Label();
-            this.fontDialog = new System.Windows.Forms.FontDialog();
             this.label_sensor = new System.Windows.Forms.Label();
+            this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.電子紙設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_Main.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -58,31 +59,33 @@
             // 
             // contextMenuStrip
             // 
+            this.contextMenuStrip.Font = new System.Drawing.Font("Microsoft JhengHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.開門ToolStripMenuItem,
             this.更改病房名稱ToolStripMenuItem,
-            this.更改字體ToolStripMenuItem});
+            this.更改字體ToolStripMenuItem,
+            this.電子紙設定ToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(156, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(187, 122);
             // 
             // 開門ToolStripMenuItem
             // 
             this.開門ToolStripMenuItem.Name = "開門ToolStripMenuItem";
-            this.開門ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.開門ToolStripMenuItem.Size = new System.Drawing.Size(186, 24);
             this.開門ToolStripMenuItem.Text = "開門";
             this.開門ToolStripMenuItem.Click += new System.EventHandler(this.開門ToolStripMenuItem_Click);
             // 
             // 更改病房名稱ToolStripMenuItem
             // 
             this.更改病房名稱ToolStripMenuItem.Name = "更改病房名稱ToolStripMenuItem";
-            this.更改病房名稱ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.更改病房名稱ToolStripMenuItem.Size = new System.Drawing.Size(186, 24);
             this.更改病房名稱ToolStripMenuItem.Text = "更改病房名稱...";
             this.更改病房名稱ToolStripMenuItem.Click += new System.EventHandler(this.更改病房名稱ToolStripMenuItem_Click);
             // 
             // 更改字體ToolStripMenuItem
             // 
             this.更改字體ToolStripMenuItem.Name = "更改字體ToolStripMenuItem";
-            this.更改字體ToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.更改字體ToolStripMenuItem.Size = new System.Drawing.Size(186, 24);
             this.更改字體ToolStripMenuItem.Text = "更改字體...";
             this.更改字體ToolStripMenuItem.Click += new System.EventHandler(this.更改字體ToolStripMenuItem_Click);
             // 
@@ -123,6 +126,13 @@
             this.label_sensor.TabIndex = 3;
             this.label_sensor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // 電子紙設定ToolStripMenuItem
+            // 
+            this.電子紙設定ToolStripMenuItem.Name = "電子紙設定ToolStripMenuItem";
+            this.電子紙設定ToolStripMenuItem.Size = new System.Drawing.Size(186, 24);
+            this.電子紙設定ToolStripMenuItem.Text = "電子紙設定...";
+            this.電子紙設定ToolStripMenuItem.Click += new System.EventHandler(this.電子紙設定ToolStripMenuItem_Click);
+            // 
             // Pannel_Box
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -147,5 +157,6 @@
         private System.Windows.Forms.ToolStripMenuItem 更改字體ToolStripMenuItem;
         private System.Windows.Forms.FontDialog fontDialog;
         private System.Windows.Forms.Label label_sensor;
+        private System.Windows.Forms.ToolStripMenuItem 電子紙設定ToolStripMenuItem;
     }
 }

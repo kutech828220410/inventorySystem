@@ -19,6 +19,9 @@ using SQLUI;
 using H_Pannel_lib;
 using System.Net.Http;
 using HIS_DB_Lib;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+
 [assembly: AssemblyVersion("1.0.0")]
 [assembly: AssemblyFileVersion("1.0.0")]
 namespace 勤務傳送櫃
@@ -39,14 +42,18 @@ namespace 勤務傳送櫃
         {
             private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
 
             private string web_URL = "";
             private string api_URL = "";
-
+            private string orderApiURL = "";
+            private string medApiURL = "";
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }
 
             private string name = "";
             private string api_Server = "";
@@ -57,6 +64,10 @@ namespace 勤務傳送櫃
             public string Web_URL { get => web_URL; set => web_URL = value; }
             [JsonIgnore]
             public string Api_URL { get => api_URL; set => api_URL = value; }
+            [JsonIgnore]
+            public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
+            [JsonIgnore]
+            public string MedApiURL { get => medApiURL; set => medApiURL = value; }
 
         }
         private void LoadDBConfig()
@@ -151,10 +162,26 @@ namespace 勤務傳送櫃
         {
             this.新增事件紀錄(enum_事件類型.關閉門片, "", "", Index, Name, "");
         }
+        private void Pannel_Box_EPDSettingEvent(string EPD_IP ,string Name)
+        {
+            Storage storage = this.storageUI_EPD_266.SQL_GetStorage(EPD_IP);
+            if(storage == null)
+            {
+                Console.WriteLine($"找無[{EPD_IP}]內容,無法進入設定!");
+                return;
+            }
+            storage.Name = Name;
+            Dialog_EPDPanel dialog_EPDPanel = new Dialog_EPDPanel(this.storageUI_EPD_266, storage);
+            dialog_EPDPanel.ShowDialog();
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             if (this.DesignMode == false)
             {
+                Dialog_修改密碼.form = this.FindForm();
+                Dialog_更改病房名稱.form = this.FindForm();
+                Dialog_EPDPanel.form = this.FindForm();
+
                 LoadDBConfig();
                 LoadMyConfig();
                 this.stopwatch.Start();
@@ -178,8 +205,61 @@ namespace 勤務傳送櫃
                 }
 
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
+                StorageUI_EPD_266.Get_Storage_bmpChangeEvent += StorageUI_EPD_266_Get_Storage_bmpChangeEvent;
+            }
+        }
+
+        private Bitmap StorageUI_EPD_266_Get_Storage_bmpChangeEvent(Storage storage)
+        {
+            Bitmap bitmap = new Bitmap(296, 152);
+            int Pannel_Width = bitmap.Width;
+            int Pannel_Height = bitmap.Height;
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                g.SmoothingMode = SmoothingMode.HighQuality; //使繪圖質量最高，即消除鋸齒
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.CompositingQuality = CompositingQuality.HighQuality;
+                g.TextRenderingHint = TextRenderingHint.SingleBitPerPixelGridFit;
+
+                Rectangle rect = new Rectangle(0, 0, Pannel_Width, Pannel_Height);
+                int Line_Height = (Pannel_Height / 3) * 2;
+                g.FillRectangle(new SolidBrush(storage.BackColor), rect);
+
+                SizeF size_name = g.MeasureString(storage.Name, storage.Name_font, new Size(rect.Width, rect.Height), StringFormat.GenericDefault);
+                size_name = new SizeF((int)size_name.Width, (int)size_name.Height);
+                g.DrawString(storage.Name, storage.Name_font, new SolidBrush(storage.Name_ForeColor), new RectangleF((rect.Width - size_name.Width) / 2, (rect.Height - size_name.Height) / 2, Pannel_Width, Pannel_Height), StringFormat.GenericDefault);
+
+
+                string[] ip_array = storage.IP.Split('.');
+                SizeF size_IP = new SizeF();
+                if (ip_array.Length == 4)
+                {
+                    string ip = ip_array[2] + "." + ip_array[3];
+                    size_IP = TextRenderer.MeasureText(ip, new Font("微軟正黑體", 8, FontStyle.Bold));
+                    g.DrawString(ip, new Font("微軟正黑體", 8, FontStyle.Bold), new SolidBrush(storage.Name_ForeColor), (Pannel_Width - size_IP.Width), (Pannel_Height - size_IP.Height));
+                }
+            }
+            Bitmap bitmap_buf = null;
+            if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock)
+            {
+                bitmap_buf = Communication.ScaleImage(bitmap, 296, 152);
+                using (Graphics g_buf = Graphics.FromImage(bitmap_buf))
+                {
+               
+                }
 
             }
+            if (storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD290_lock)
+            {
+                bitmap_buf = Communication.ScaleImage(bitmap, 296, 128);
+                using (Graphics g_buf = Graphics.FromImage(bitmap_buf))
+                {
+                
+                }
+            }
+            bitmap.Dispose();
+            bitmap = null;
+            return bitmap_buf;
         }
 
         private void PlC_UI_Init_UI_Finished_Event()
@@ -188,24 +268,29 @@ namespace 勤務傳送櫃
             this.ApiServerSetting();
 
             SQLUI.SQL_DataGridView.SQL_Set_Properties(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, this.FindForm());
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
+
+
             this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
 
             PLC_UI_Init.Set_PLC_ScreenPage(panel_Main, this.plC_ScreenPage_Main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_人員資料_權限設定, this.plC_ScreenPage_人員資料_權限設定);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_人員資料_開門權限, this.plC_ScreenPage_人員資料_開門權限);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統頁面, this.plC_ScreenPage_系統頁面);
-            PLC_UI_Init.Set_PLC_ScreenPage(panel_主畫面_PannelBox, this.plC_ScreenPage_主畫面_PannelBox);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_櫃體狀態_PannelBox, this.plC_ScreenPage_櫃體狀態_PannelBox);
 
-            
-            this.sub_Program_系統頁面_Init();
-            this.sub_Program_事件紀錄_Init();
-            this.sub_Program_人員資料_Init();
-            this.sub_Program_登入畫面_Init();       
-            this.sub_Program_工程模式_Init();
-            this.sub_Program_主畫面_Init();
-
-            this.plC_UI_Init.Add_Method(this.sub_Program_系統更新);
             this.Pannel_Box_Init();
+            this.Program_系統頁面_Init();
+            this.Program_事件紀錄_Init();
+            this.Program_人員資料_Init();
+            this.Program_登入畫面_Init();       
+            this.Program_工程模式_Init();
+            this.Program_櫃體狀態_Init();
+            this.Program_雲端藥檔_Init();
+            this.Program_藥品資料_藥檔資料_Init();
+
+            this.plC_UI_Init.Add_Method(this.Program_系統更新);
+    
 
             if (PLC_Device_開門異常時間.Value <= 5000) PLC_Device_開門異常時間.Value = 5000;
             Pannel_Box.AlarmTime = PLC_Device_開門異常時間.Value;
@@ -241,17 +326,29 @@ namespace 勤務傳送櫃
                 dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
                 dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
             }
-         
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "藥檔資料");
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_Medicine_Cloud.IP = serverSettingClass.Server;
+                dBConfigClass.DB_Medicine_Cloud.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Medicine_Cloud.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
+                dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
+            }
 
-            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, enum_ServerSetting_藥庫.API01);
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "API01");
             if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "Order_API");
+            if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "Med_API");
+            if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
 
         }
 
         #region PLC_Method
         PLC_Device PLC_Device_Method = new PLC_Device("");
         int cnt_Program_Method = 65534;
-        void sub_Program_Method()
+        void Program_Method()
         {
             if (cnt_Program_Method == 65534)
             {
@@ -317,7 +414,7 @@ namespace 勤務傳送櫃
         #region 系統更新
         PLC_Device PLC_Device_系統更新 = new PLC_Device("");
         int cnt_Program_系統更新 = 65534;
-        void sub_Program_系統更新()
+        void Program_系統更新()
         {
             if (cnt_Program_系統更新 == 65534)
             {
@@ -389,6 +486,7 @@ namespace 勤務傳送櫃
                 this.List_Pannel_Box.Add(pannel_Box);
                 pannel_Box.AlarmEvent += Pannel_Box_AlarmEvent;
                 pannel_Box.CloseEvent += Pannel_Box_CloseEvent;
+                pannel_Box.EPDSettingEvent += Pannel_Box_EPDSettingEvent;
                 this.plC_UI_Init.Add_Method(pannel_Box.Run);
             }
             this.ResumeLayout(false);
@@ -396,6 +494,9 @@ namespace 勤務傳送櫃
          
 
         }
+
+ 
+
         new private void Update()
         {
             
@@ -406,7 +507,7 @@ namespace 勤務傳送櫃
             this.Update();
         }
 
-        private void plC_RJ_ScreenButton_主畫面_Load(object sender, EventArgs e)
+        private void plC_RJ_ScreenButton_櫃體狀態_Load(object sender, EventArgs e)
         {
 
         }
