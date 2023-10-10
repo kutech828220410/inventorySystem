@@ -46,6 +46,7 @@
             this.rJ_Lable1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Lable1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable1.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable1.GUID = "";
             this.rJ_Lable1.Location = new System.Drawing.Point(28, 22);
             this.rJ_Lable1.Name = "rJ_Lable1";
             this.rJ_Lable1.Size = new System.Drawing.Size(119, 40);
@@ -64,6 +65,7 @@
             this.rJ_TextBox_原始名稱.Enabled = false;
             this.rJ_TextBox_原始名稱.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_原始名稱.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_原始名稱.GUID = "";
             this.rJ_TextBox_原始名稱.Location = new System.Drawing.Point(162, 28);
             this.rJ_TextBox_原始名稱.Multiline = false;
             this.rJ_TextBox_原始名稱.Name = "rJ_TextBox_原始名稱";
@@ -74,6 +76,7 @@
             this.rJ_TextBox_原始名稱.ShowTouchPannel = false;
             this.rJ_TextBox_原始名稱.Size = new System.Drawing.Size(250, 36);
             this.rJ_TextBox_原始名稱.TabIndex = 1;
+            this.rJ_TextBox_原始名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_原始名稱.Texts = "";
             this.rJ_TextBox_原始名稱.UnderlineStyle = false;
             // 
@@ -87,6 +90,7 @@
             this.rJ_Lable2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Lable2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable2.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable2.GUID = "";
             this.rJ_Lable2.Location = new System.Drawing.Point(28, 75);
             this.rJ_Lable2.Name = "rJ_Lable2";
             this.rJ_Lable2.Size = new System.Drawing.Size(119, 40);
@@ -104,6 +108,7 @@
             this.rJ_TextBox_更動名稱.BorderSize = 2;
             this.rJ_TextBox_更動名稱.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_更動名稱.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_更動名稱.GUID = "";
             this.rJ_TextBox_更動名稱.Location = new System.Drawing.Point(162, 80);
             this.rJ_TextBox_更動名稱.Multiline = false;
             this.rJ_TextBox_更動名稱.Name = "rJ_TextBox_更動名稱";
@@ -114,12 +119,14 @@
             this.rJ_TextBox_更動名稱.ShowTouchPannel = false;
             this.rJ_TextBox_更動名稱.Size = new System.Drawing.Size(250, 36);
             this.rJ_TextBox_更動名稱.TabIndex = 3;
+            this.rJ_TextBox_更動名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_更動名稱.Texts = "";
             this.rJ_TextBox_更動名稱.UnderlineStyle = false;
             this.rJ_TextBox_更動名稱.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rJ_TextBox_更動名稱_KeyPress);
             // 
             // rJ_Button_確認
             // 
+            this.rJ_Button_確認.AutoResetState = false;
             this.rJ_Button_確認.BackColor = System.Drawing.Color.MediumBlue;
             this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.MediumBlue;
             this.rJ_Button_確認.BorderColor = System.Drawing.Color.PaleVioletRed;
@@ -130,6 +137,7 @@
             this.rJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_確認.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_確認.GUID = "";
             this.rJ_Button_確認.Location = new System.Drawing.Point(440, 10);
             this.rJ_Button_確認.Name = "rJ_Button_確認";
             this.rJ_Button_確認.Size = new System.Drawing.Size(120, 57);
@@ -142,6 +150,7 @@
             // 
             // rJ_Button_取消
             // 
+            this.rJ_Button_取消.AutoResetState = false;
             this.rJ_Button_取消.BackColor = System.Drawing.Color.MediumBlue;
             this.rJ_Button_取消.BackgroundColor = System.Drawing.Color.MediumBlue;
             this.rJ_Button_取消.BorderColor = System.Drawing.Color.PaleVioletRed;
@@ -152,6 +161,7 @@
             this.rJ_Button_取消.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_取消.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_取消.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_取消.GUID = "";
             this.rJ_Button_取消.Location = new System.Drawing.Point(440, 75);
             this.rJ_Button_取消.Name = "rJ_Button_取消";
             this.rJ_Button_取消.Size = new System.Drawing.Size(120, 57);

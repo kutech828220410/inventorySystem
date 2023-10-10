@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Reflection;
 using MyUI;
 using Basic;
-using System.Diagnostics;//記得取用 FileVersionInfo繼承
-using System.Reflection;//記得取用 Assembly繼承
+using MySql.Data.MySqlClient;
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
+using SQLUI;
 using H_Pannel_lib;
+using System.Net.Http;
+using HIS_DB_Lib;
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
@@ -230,7 +234,7 @@ namespace 勤務傳送櫃
                 {
                     if (!pannel_Box.IsOpen())
                     {
-                        this.新增事件紀錄(enum_事件類型.開啟門片, ID, 姓名, 藥櫃編號, 病房名稱, "");
+                        this.新增交易紀錄(enum_交易記錄查詢動作.開啟門片, 姓名,  病房名稱, "");
                         pannel_Box.Open();
                     }
                 }

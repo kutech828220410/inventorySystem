@@ -8,14 +8,14 @@ using Basic;
 
 namespace HIS_DB_Lib
 {
-    public enum enum_醫囑資料_狀態
+    public enum enum_醫令資料_狀態
     {
         未過帳,
         已過帳,
         庫存不足,
         無儲位,
     }
-    public enum enum_醫囑資料
+    public enum enum_醫令資料
     {
         GUID,
         PRI_KEY,

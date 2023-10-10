@@ -26,8 +26,8 @@ namespace 勤務傳送櫃
         public static int AlarmTime = 5000;
         public static int AlarmBeepTime = 5000;
         public static int InitDelay = 2000;
-        public delegate void AlarmEventHandler(string Name, string Number, string Time);
-        public delegate void CloseEventHandler(string Name, string Number, string Time);
+        public delegate void AlarmEventHandler(string WardName, string Number, string Time);
+        public delegate void CloseEventHandler(string WardName, string Number, string Time);
         public event AlarmEventHandler AlarmEvent;
         public event CloseEventHandler CloseEvent;
 

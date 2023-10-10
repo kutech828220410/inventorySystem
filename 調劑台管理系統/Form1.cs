@@ -79,6 +79,7 @@ namespace 調劑台管理系統
             private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_order_list = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_tradding = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
 
             private string web_URL = "";
@@ -100,7 +101,10 @@ namespace 調劑台管理系統
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_order_list { get => dB_order_list; set => dB_order_list = value; }
             [JsonIgnore]
-            public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }  
+            public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_tradding { get => dB_tradding; set => dB_tradding = value; }
+
             [JsonIgnore]
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
             [JsonIgnore]
@@ -114,6 +118,7 @@ namespace 調劑台管理系統
 
 
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
+  
         }
         private void LoadDBConfig()
         {
@@ -398,7 +403,7 @@ namespace 調劑台管理系統
                 Dialog_輸入效期.form = this.FindForm();
                 Dialog_輸入藥品碼.form = this.FindForm();
                 Dialog_手輸醫令.form = this.FindForm();
-                Dialog_醫囑退藥.form = this.FindForm();
+                Dialog_醫令退藥.form = this.FindForm();
                 Dialog_設定產出時間.form = this.FindForm();
                 Dialog_RFID領退藥頁面.form = this.FindForm();
                 Dialog_輸入輸出設定.form = this.FindForm();
@@ -488,7 +493,7 @@ namespace 調劑台管理系統
                 this.plC_RJ_ScreenButton_交班作業.顯示讀取位置 = "M8000";
                 this.plC_RJ_ScreenButton_收支作業.顯示讀取位置 = "M8001";
                 this.plC_RJ_ScreenButton_交易紀錄查詢.顯示讀取位置 = "M8000";
-                this.plC_RJ_ScreenButton_醫囑資料.顯示讀取位置 = "M8000";
+                this.plC_RJ_ScreenButton_醫令資料.顯示讀取位置 = "M8000";
                 this.plC_RJ_ScreenButton_藥品資料.顯示讀取位置 = "M8000";
                 this.plC_RJ_ScreenButton_人員資料.顯示讀取位置 = "M8000";
                 this.plC_RJ_ScreenButton_儲位管理.顯示讀取位置 = "M8000";
@@ -522,7 +527,7 @@ namespace 調劑台管理系統
             this.Program_Scanner_RS232_Init();
             this.Program_系統_Init();
           
-            this.Program_醫囑資料_Init();
+            this.Program_醫令資料_Init();
             this.Program_藥品資料_藥檔資料_Init();
 
             this.Program_儲位管理_EPD583_Init();
@@ -662,8 +667,8 @@ namespace 調劑台管理系統
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品資料_藥檔資料, dBConfigClass.DB_Basic);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_人員資料, dBConfigClass.DB_person_page);
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_醫囑資料, dBConfigClass.DB_order_list);
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_交易記錄查詢, dBConfigClass.DB_Basic);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_醫令資料, dBConfigClass.DB_order_list);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_交易記錄查詢, dBConfigClass.DB_tradding);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_管制抽屜權限資料, dBConfigClass.DB_Basic);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_設備資料, dBConfigClass.DB_Medicine_Cloud);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品管制方式設定, dBConfigClass.DB_Medicine_Cloud);
@@ -680,7 +685,7 @@ namespace 調劑台管理系統
 
             this.sqL_DataGridView_藥品資料_藥檔資料.SQL_Reset();
             this.sqL_DataGridView_人員資料.SQL_Reset();
-            this.sqL_DataGridView_醫囑資料.SQL_Reset();
+            this.sqL_DataGridView_醫令資料.SQL_Reset();
             this.sqL_DataGridView_管制抽屜權限資料.SQL_Reset();
             this.sqL_DataGridView_設備資料.SQL_Reset();
             this.sqL_DataGridView_藥品管制方式設定.SQL_Reset();
@@ -767,7 +772,7 @@ namespace 調劑台管理系統
                 dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
                 dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.醫囑資料);
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.醫令資料);
             if (serverSettingClass != null)
             {
                 dBConfigClass.DB_order_list.IP = serverSettingClass.Server;
@@ -775,6 +780,15 @@ namespace 調劑台管理系統
                 dBConfigClass.DB_order_list.DataBaseName = serverSettingClass.DBName;
                 dBConfigClass.DB_order_list.UserName = serverSettingClass.User;
                 dBConfigClass.DB_order_list.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.交易紀錄資料);
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_tradding.IP = serverSettingClass.Server;
+                dBConfigClass.DB_tradding.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_tradding.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_tradding.UserName = serverSettingClass.User;
+                dBConfigClass.DB_tradding.Password = serverSettingClass.Password;
             }
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.API02);
             if (serverSettingClass != null)

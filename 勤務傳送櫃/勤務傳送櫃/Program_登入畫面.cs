@@ -7,11 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Reflection;
 using MyUI;
 using Basic;
-using System.Diagnostics;//記得取用 FileVersionInfo繼承
-using System.Reflection;//記得取用 Assembly繼承
+using MySql.Data.MySqlClient;
+using System.Text.Json;
+using System.Text.Encodings.Web;
+using System.Text.Json.Serialization;
+using SQLUI;
 using H_Pannel_lib;
+using System.Net.Http;
+using HIS_DB_Lib;
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
@@ -190,7 +197,7 @@ namespace 勤務傳送櫃
                     this.textBox_登入畫面_帳號.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
                     this.textBox_登入畫面_密碼.Text = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                 }));
-                新增事件紀錄(enum_事件類型.RFID登入, this.登入者ID, this.登入者名稱, "登入畫面");
+                新增交易紀錄(enum_交易記錄查詢動作.RFID登入, this.登入者ID, this.登入者名稱, "登入畫面");
             }
             else
             {
@@ -267,7 +274,7 @@ namespace 勤務傳送櫃
         }
         private void Function_登出()
         {
-            新增事件紀錄(enum_事件類型.登出, this.登入者ID, this.登入者名稱, "登入畫面");
+            新增交易紀錄(enum_交易記錄查詢動作.登出, this.登入者ID, this.登入者名稱, "登入畫面");
             this.Invoke(new Action(delegate
             {
                 this.登入者名稱 = "";
@@ -301,7 +308,7 @@ namespace 勤務傳送櫃
                 }
                 else
                 {
-                    新增事件紀錄(enum_事件類型.密碼登入, this.登入者ID, this.登入者名稱, "登入畫面");
+                    新增交易紀錄(enum_交易記錄查詢動作.密碼登入, this.登入者ID, this.登入者名稱, "登入畫面");
                 }
             }
         }

@@ -36,10 +36,10 @@ namespace 調劑台管理系統
             this.rJ_TextBox_病歷號 = new MyUI.RJ_TextBox();
             this.rJ_Lable26 = new MyUI.RJ_Lable();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.sqL_DataGridView_醫囑資料 = new SQLUI.SQL_DataGridView();
+            this.sqL_DataGridView_醫令資料 = new SQLUI.SQL_DataGridView();
             this.rJ_Button_選取處方 = new MyUI.RJ_Button();
             this.plC_RJ_GroupBox1 = new MyUI.PLC_RJ_GroupBox();
-            this.sqL_DataGridView_醫囑資料_已選取處方 = new SQLUI.SQL_DataGridView();
+            this.sqL_DataGridView_醫令資料_已選取處方 = new SQLUI.SQL_DataGridView();
             this.rJ_Button_刪除 = new MyUI.RJ_Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -175,59 +175,59 @@ namespace 調劑台管理系統
             // panel2
             // 
             this.panel2.Controls.Add(this.rJ_Button_選取處方);
-            this.panel2.Controls.Add(this.sqL_DataGridView_醫囑資料);
+            this.panel2.Controls.Add(this.sqL_DataGridView_醫令資料);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 81);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(950, 903);
             this.panel2.TabIndex = 8;
             // 
-            // sqL_DataGridView_醫囑資料
+            // sqL_DataGridView_醫令資料
             // 
-            this.sqL_DataGridView_醫囑資料.AutoSelectToDeep = false;
-            this.sqL_DataGridView_醫囑資料.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_醫囑資料.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_醫囑資料.BorderRadius = 0;
-            this.sqL_DataGridView_醫囑資料.BorderSize = 2;
-            this.sqL_DataGridView_醫囑資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_醫囑資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_醫囑資料.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_醫囑資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_醫囑資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_醫囑資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料.columnHeadersHeight = 18;
-            this.sqL_DataGridView_醫囑資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_醫囑資料.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sqL_DataGridView_醫囑資料.Font = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_醫囑資料.ImageBox = false;
-            this.sqL_DataGridView_醫囑資料.Location = new System.Drawing.Point(0, 0);
-            this.sqL_DataGridView_醫囑資料.Name = "sqL_DataGridView_醫囑資料";
-            this.sqL_DataGridView_醫囑資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_醫囑資料.Password = "user82822040";
-            this.sqL_DataGridView_醫囑資料.Port = ((uint)(3306u));
-            this.sqL_DataGridView_醫囑資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
-            this.sqL_DataGridView_醫囑資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料.RowsColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_醫囑資料.RowsHeight = 50;
-            this.sqL_DataGridView_醫囑資料.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_醫囑資料.Server = "127.0.0.0";
-            this.sqL_DataGridView_醫囑資料.Size = new System.Drawing.Size(950, 796);
-            this.sqL_DataGridView_醫囑資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_醫囑資料.TabIndex = 8;
-            this.sqL_DataGridView_醫囑資料.TableName = "order_list";
-            this.sqL_DataGridView_醫囑資料.UserName = "root";
-            this.sqL_DataGridView_醫囑資料.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_醫囑資料.可選擇多列 = true;
-            this.sqL_DataGridView_醫囑資料.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料.自動換行 = true;
-            this.sqL_DataGridView_醫囑資料.表單字體 = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_醫囑資料.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_醫囑資料.顯示CheckBox = false;
-            this.sqL_DataGridView_醫囑資料.顯示首列 = true;
-            this.sqL_DataGridView_醫囑資料.顯示首行 = true;
-            this.sqL_DataGridView_醫囑資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_醫令資料.AutoSelectToDeep = false;
+            this.sqL_DataGridView_醫令資料.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_醫令資料.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_醫令資料.BorderRadius = 0;
+            this.sqL_DataGridView_醫令資料.BorderSize = 2;
+            this.sqL_DataGridView_醫令資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_醫令資料.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_醫令資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_醫令資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_醫令資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_醫令資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_醫令資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_醫令資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_醫令資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_醫令資料.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sqL_DataGridView_醫令資料.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_醫令資料.ImageBox = false;
+            this.sqL_DataGridView_醫令資料.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_醫令資料.Name = "sqL_DataGridView_醫令資料";
+            this.sqL_DataGridView_醫令資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_醫令資料.Password = "user82822040";
+            this.sqL_DataGridView_醫令資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_醫令資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_醫令資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_醫令資料.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_醫令資料.RowsHeight = 50;
+            this.sqL_DataGridView_醫令資料.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_醫令資料.Server = "127.0.0.0";
+            this.sqL_DataGridView_醫令資料.Size = new System.Drawing.Size(950, 796);
+            this.sqL_DataGridView_醫令資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_醫令資料.TabIndex = 8;
+            this.sqL_DataGridView_醫令資料.TableName = "order_list";
+            this.sqL_DataGridView_醫令資料.UserName = "root";
+            this.sqL_DataGridView_醫令資料.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_醫令資料.可選擇多列 = true;
+            this.sqL_DataGridView_醫令資料.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_醫令資料.自動換行 = true;
+            this.sqL_DataGridView_醫令資料.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_醫令資料.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_醫令資料.顯示CheckBox = false;
+            this.sqL_DataGridView_醫令資料.顯示首列 = true;
+            this.sqL_DataGridView_醫令資料.顯示首行 = true;
+            this.sqL_DataGridView_醫令資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_醫令資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
             // rJ_Button_選取處方
             // 
@@ -263,7 +263,7 @@ namespace 調劑台管理系統
             this.plC_RJ_GroupBox1.ContentsPanel.BorderRadius = 2;
             this.plC_RJ_GroupBox1.ContentsPanel.BorderSize = 2;
             this.plC_RJ_GroupBox1.ContentsPanel.Controls.Add(this.rJ_Button_刪除);
-            this.plC_RJ_GroupBox1.ContentsPanel.Controls.Add(this.sqL_DataGridView_醫囑資料_已選取處方);
+            this.plC_RJ_GroupBox1.ContentsPanel.Controls.Add(this.sqL_DataGridView_醫令資料_已選取處方);
             this.plC_RJ_GroupBox1.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_GroupBox1.ContentsPanel.ForeColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox1.ContentsPanel.IsSelected = false;
@@ -292,52 +292,52 @@ namespace 調劑台管理系統
             this.plC_RJ_GroupBox1.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox1.TitleTexts = "已選取處方";
             // 
-            // sqL_DataGridView_醫囑資料_已選取處方
+            // sqL_DataGridView_醫令資料_已選取處方
             // 
-            this.sqL_DataGridView_醫囑資料_已選取處方.AutoSelectToDeep = false;
-            this.sqL_DataGridView_醫囑資料_已選取處方.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_醫囑資料_已選取處方.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_醫囑資料_已選取處方.BorderRadius = 0;
-            this.sqL_DataGridView_醫囑資料_已選取處方.BorderSize = 2;
-            this.sqL_DataGridView_醫囑資料_已選取處方.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料_已選取處方.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_醫囑資料_已選取處方.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_醫囑資料_已選取處方.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_醫囑資料_已選取處方.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_醫囑資料_已選取處方.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_醫囑資料_已選取處方.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料_已選取處方.columnHeadersHeight = 18;
-            this.sqL_DataGridView_醫囑資料_已選取處方.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_醫囑資料_已選取處方.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sqL_DataGridView_醫囑資料_已選取處方.Font = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_醫囑資料_已選取處方.ImageBox = false;
-            this.sqL_DataGridView_醫囑資料_已選取處方.Location = new System.Drawing.Point(10, 10);
-            this.sqL_DataGridView_醫囑資料_已選取處方.Name = "sqL_DataGridView_醫囑資料_已選取處方";
-            this.sqL_DataGridView_醫囑資料_已選取處方.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_醫囑資料_已選取處方.Password = "user82822040";
-            this.sqL_DataGridView_醫囑資料_已選取處方.Port = ((uint)(3306u));
-            this.sqL_DataGridView_醫囑資料_已選取處方.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
-            this.sqL_DataGridView_醫囑資料_已選取處方.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料_已選取處方.RowsColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_醫囑資料_已選取處方.RowsHeight = 50;
-            this.sqL_DataGridView_醫囑資料_已選取處方.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_醫囑資料_已選取處方.Server = "127.0.0.0";
-            this.sqL_DataGridView_醫囑資料_已選取處方.Size = new System.Drawing.Size(714, 736);
-            this.sqL_DataGridView_醫囑資料_已選取處方.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_醫囑資料_已選取處方.TabIndex = 9;
-            this.sqL_DataGridView_醫囑資料_已選取處方.TableName = "order_list";
-            this.sqL_DataGridView_醫囑資料_已選取處方.UserName = "root";
-            this.sqL_DataGridView_醫囑資料_已選取處方.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_醫囑資料_已選取處方.可選擇多列 = true;
-            this.sqL_DataGridView_醫囑資料_已選取處方.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料_已選取處方.自動換行 = true;
-            this.sqL_DataGridView_醫囑資料_已選取處方.表單字體 = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_醫囑資料_已選取處方.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_醫囑資料_已選取處方.顯示CheckBox = false;
-            this.sqL_DataGridView_醫囑資料_已選取處方.顯示首列 = true;
-            this.sqL_DataGridView_醫囑資料_已選取處方.顯示首行 = true;
-            this.sqL_DataGridView_醫囑資料_已選取處方.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_醫囑資料_已選取處方.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_醫令資料_已選取處方.AutoSelectToDeep = false;
+            this.sqL_DataGridView_醫令資料_已選取處方.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_醫令資料_已選取處方.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_醫令資料_已選取處方.BorderRadius = 0;
+            this.sqL_DataGridView_醫令資料_已選取處方.BorderSize = 2;
+            this.sqL_DataGridView_醫令資料_已選取處方.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_醫令資料_已選取處方.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_醫令資料_已選取處方.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_醫令資料_已選取處方.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_醫令資料_已選取處方.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_醫令資料_已選取處方.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_醫令資料_已選取處方.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_醫令資料_已選取處方.columnHeadersHeight = 18;
+            this.sqL_DataGridView_醫令資料_已選取處方.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_醫令資料_已選取處方.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sqL_DataGridView_醫令資料_已選取處方.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_醫令資料_已選取處方.ImageBox = false;
+            this.sqL_DataGridView_醫令資料_已選取處方.Location = new System.Drawing.Point(10, 10);
+            this.sqL_DataGridView_醫令資料_已選取處方.Name = "sqL_DataGridView_醫令資料_已選取處方";
+            this.sqL_DataGridView_醫令資料_已選取處方.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_醫令資料_已選取處方.Password = "user82822040";
+            this.sqL_DataGridView_醫令資料_已選取處方.Port = ((uint)(3306u));
+            this.sqL_DataGridView_醫令資料_已選取處方.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_醫令資料_已選取處方.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_醫令資料_已選取處方.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_醫令資料_已選取處方.RowsHeight = 50;
+            this.sqL_DataGridView_醫令資料_已選取處方.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_醫令資料_已選取處方.Server = "127.0.0.0";
+            this.sqL_DataGridView_醫令資料_已選取處方.Size = new System.Drawing.Size(714, 736);
+            this.sqL_DataGridView_醫令資料_已選取處方.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_醫令資料_已選取處方.TabIndex = 9;
+            this.sqL_DataGridView_醫令資料_已選取處方.TableName = "order_list";
+            this.sqL_DataGridView_醫令資料_已選取處方.UserName = "root";
+            this.sqL_DataGridView_醫令資料_已選取處方.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_醫令資料_已選取處方.可選擇多列 = true;
+            this.sqL_DataGridView_醫令資料_已選取處方.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_醫令資料_已選取處方.自動換行 = true;
+            this.sqL_DataGridView_醫令資料_已選取處方.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_醫令資料_已選取處方.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_醫令資料_已選取處方.顯示CheckBox = false;
+            this.sqL_DataGridView_醫令資料_已選取處方.顯示首列 = true;
+            this.sqL_DataGridView_醫令資料_已選取處方.顯示首行 = true;
+            this.sqL_DataGridView_醫令資料_已選取處方.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_醫令資料_已選取處方.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
             // rJ_Button_刪除
             // 
@@ -392,9 +392,9 @@ namespace 調劑台管理系統
         private MyUI.RJ_Button rJ_Button_取消;
         private System.Windows.Forms.Panel panel2;
         private MyUI.RJ_Button rJ_Button_選取處方;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_醫囑資料;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_醫令資料;
         private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox1;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_醫囑資料_已選取處方;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_醫令資料_已選取處方;
         private MyUI.RJ_Button rJ_Button_刪除;
     }
 }

@@ -277,7 +277,7 @@ namespace HIS_WebApi
                     List<object[]> list_sub_group_buf = new List<object[]>();
                     List<object[]> list_sub_group_add = new List<object[]>();
                     List<object[]> list_sub_group_replace = new List<object[]>();
-
+                    sQLControl_med_sub_group.DeleteExtra(null, list_sub_group);
                     if (list_med_group.Count == 0)
                     {
                         returnData.Code = -200;
@@ -293,14 +293,9 @@ namespace HIS_WebApi
                                           select temp).ToList();
                         if (medClasses_buf.Count > 0)
                         {
-                            list_sub_group_buf = list_sub_group.GetRows((int)enum_藥品群組明細.藥品碼, 藥品碼);
-
-                            if(list_sub_group_buf.Count == 0)
-                            {
-                                list_sub_medGroup[i][(int)enum_藥品群組明細.GUID] = Guid.NewGuid().ToString();
-                                list_sub_medGroup[i][(int)enum_藥品群組明細.Master_GUID] = Master_GUID;
-                                list_sub_group_add.Add(list_sub_medGroup[i]);
-                            }                    
+                            list_sub_medGroup[i][(int)enum_藥品群組明細.GUID] = Guid.NewGuid().ToString();
+                            list_sub_medGroup[i][(int)enum_藥品群組明細.Master_GUID] = Master_GUID;
+                            list_sub_group_add.Add(list_sub_medGroup[i]);
                         }
                     }
                     sQLControl_med_sub_group.AddRows(null, list_sub_group_add);
@@ -308,7 +303,7 @@ namespace HIS_WebApi
                     returnData.Code = 200;
                     returnData.TimeTaken = myTimer.ToString();
                     returnData.Method = "add_group";
-                    returnData.Result = $"寫入藥品群組資料成功!共新增<{list_sub_group_add.Count}>筆藥品";
+                    returnData.Result = $"寫入藥品群組資料成功!共新增<{list_sub_group_add.Count}>筆藥品,共刪除<{list_sub_group.Count}>筆藥品!";
                     return returnData.JsonSerializationt(true);
                 }
               

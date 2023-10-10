@@ -127,7 +127,7 @@ namespace 調劑台管理系統
             this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_收支作業_調出功能, 36);
             this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_交易紀錄查詢_頁面顯示, 1);
             this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_交易紀錄查詢_交易紀錄匯出, 38);
-            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_醫囑資料_頁面顯示, 22);
+            this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_醫令資料_頁面顯示, 22);
             this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_頁面顯示, 2);
             this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_資料更動, 7);
             this.loginIndex_Pannel.Set_CheckBox(plC_CheckBox_藥品資料_儲位效期表顯示, 15);

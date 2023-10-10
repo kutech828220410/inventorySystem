@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,6 +29,9 @@ namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
     {
+        public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        static MySerialPort MySerialPort_Scanner01 = new MySerialPort();
+        private Voice voice = new Voice();
         private string FormText = "";
         private LadderConnection.LowerMachine PLC;
         MyTimer MyTimer_TickTime = new MyTimer();
@@ -43,6 +47,7 @@ namespace 勤務傳送櫃
             private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_tradding = new SQL_DataGridView.ConnentionClass();
 
             private string web_URL = "";
             private string api_URL = "";
@@ -54,6 +59,8 @@ namespace 勤務傳送櫃
             public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_tradding { get => dB_tradding; set => dB_tradding = value; }
 
             private string name = "";
             private string api_Server = "";
@@ -68,7 +75,6 @@ namespace 勤務傳送櫃
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
             [JsonIgnore]
             public string MedApiURL { get => medApiURL; set => medApiURL = value; }
-
         }
         private void LoadDBConfig()
         {
@@ -108,15 +114,17 @@ namespace 勤務傳送櫃
         {
 
             private string rFID_COMPort = "";
+            private string scanner01_COMPort = "COM2";
 
             public string RFID_COMPort { get => rFID_COMPort; set => rFID_COMPort = value; }
+            public string Scanner01_COMPort { get => scanner01_COMPort; set => scanner01_COMPort = value; }
         }
         private void LoadMyConfig()
         {
             string jsonstr = MyFileStream.LoadFileAllText($".//{MyConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
-                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass());
+                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
                 if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
@@ -130,7 +138,7 @@ namespace 勤務傳送櫃
             {
                 myConfigClass = Basic.Net.JsonDeserializet<MyConfigClass>(jsonstr);
 
-                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass);
+                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
                 if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
@@ -153,14 +161,14 @@ namespace 勤務傳送櫃
             InitializeComponent();
         }
 
-        private void Pannel_Box_AlarmEvent(string Name, string Index, string Time)
+        private void Pannel_Box_AlarmEvent(string WardName, string Index, string Time)
         {
-            this.新增事件紀錄(enum_事件類型.門片未關閉異常, "", "", Index, Name, "");
+            this.新增交易紀錄(enum_交易記錄查詢動作.門片未關閉異常, "", WardName, "");
             
         }
-        private void Pannel_Box_CloseEvent(string Name, string Index, string Time)
+        private void Pannel_Box_CloseEvent(string WardName, string Index, string Time)
         {
-            this.新增事件紀錄(enum_事件類型.關閉門片, "", "", Index, Name, "");
+            this.新增交易紀錄(enum_交易記錄查詢動作.關閉門片, "", WardName, "");
         }
         private void Pannel_Box_EPDSettingEvent(string EPD_IP ,string Name)
         {
@@ -208,7 +216,6 @@ namespace 勤務傳送櫃
                 StorageUI_EPD_266.Get_Storage_bmpChangeEvent += StorageUI_EPD_266_Get_Storage_bmpChangeEvent;
             }
         }
-
         private Bitmap StorageUI_EPD_266_Get_Storage_bmpChangeEvent(Storage storage)
         {
             Bitmap bitmap = new Bitmap(296, 152);
@@ -261,14 +268,23 @@ namespace 勤務傳送櫃
             bitmap = null;
             return bitmap_buf;
         }
-
         private void PlC_UI_Init_UI_Finished_Event()
         {
+            if (!myConfigClass.Scanner01_COMPort.StringIsEmpty())
+            {
+                MySerialPort_Scanner01.ConsoleWrite = true;
+                MySerialPort_Scanner01.Init(myConfigClass.Scanner01_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
+                if (!MySerialPort_Scanner01.IsConnected)
+                {
+                    MyMessageBox.ShowDialog("掃碼器[01]初始化失敗!");
+                }
+            }
 
             this.ApiServerSetting();
 
             SQLUI.SQL_DataGridView.SQL_Set_Properties(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, this.FindForm());
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_交易記錄查詢, dBConfigClass.DB_tradding);
 
 
             this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
@@ -281,15 +297,15 @@ namespace 勤務傳送櫃
 
             this.Pannel_Box_Init();
             this.Program_系統頁面_Init();
-            this.Program_事件紀錄_Init();
+            this.Program_交易紀錄_Init();
             this.Program_人員資料_Init();
             this.Program_登入畫面_Init();       
             this.Program_工程模式_Init();
             this.Program_櫃體狀態_Init();
             this.Program_雲端藥檔_Init();
             this.Program_藥品資料_藥檔資料_Init();
+            this.Program_配藥核對_Init();
 
-            this.plC_UI_Init.Add_Method(this.Program_系統更新);
     
 
             if (PLC_Device_開門異常時間.Value <= 5000) PLC_Device_開門異常時間.Value = 5000;
@@ -297,7 +313,6 @@ namespace 勤務傳送櫃
 
             this.WindowState = FormWindowState.Maximized;
         }
-
         private void ApiServerSetting()
         {
             List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
@@ -335,7 +350,15 @@ namespace 勤務傳送櫃
                 dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
                 dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
             }
-
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "交易紀錄資料");
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_tradding.IP = serverSettingClass.Server;
+                dBConfigClass.DB_tradding.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_tradding.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_tradding.UserName = serverSettingClass.User;
+                dBConfigClass.DB_tradding.Password = serverSettingClass.Password;
+            }
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "API01");
             if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "Order_API");
@@ -347,12 +370,17 @@ namespace 勤務傳送櫃
 
         #region PLC_Method
         PLC_Device PLC_Device_Method = new PLC_Device("");
+        PLC_Device PLC_Device_Method_OK = new PLC_Device("");
+        Task Task_Method;
+        MyTimer MyTimer_Method_結束延遲 = new MyTimer();
         int cnt_Program_Method = 65534;
-        void Program_Method()
+        void sub_Program_Method()
         {
             if (cnt_Program_Method == 65534)
             {
+                this.MyTimer_Method_結束延遲.StartTickTime(10000);
                 PLC_Device_Method.SetComment("PLC_Method");
+                PLC_Device_Method_OK.SetComment("PLC_Method_OK");
                 PLC_Device_Method.Bool = false;
                 cnt_Program_Method = 65535;
             }
@@ -364,7 +392,10 @@ namespace 勤務傳送櫃
 
             if (cnt_Program_Method == 65500)
             {
+                this.MyTimer_Method_結束延遲.TickStop();
+                this.MyTimer_Method_結束延遲.StartTickTime(10000);
                 PLC_Device_Method.Bool = false;
+                PLC_Device_Method_OK.Bool = false;
                 cnt_Program_Method = 65535;
             }
         }
@@ -378,81 +409,25 @@ namespace 勤務傳送櫃
         }
         void cnt_Program_Method_初始化(ref int cnt)
         {
-
-            cnt++;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        #endregion
-        #region 系統更新
-        PLC_Device PLC_Device_系統更新 = new PLC_Device("");
-        int cnt_Program_系統更新 = 65534;
-        void Program_系統更新()
-        {
-            if (cnt_Program_系統更新 == 65534)
+            if (this.MyTimer_Method_結束延遲.IsTimeOut())
             {
-                PLC_Device_系統更新.SetComment("PLC_系統更新");
-                PLC_Device_系統更新.Bool = false;
-                cnt_Program_系統更新 = 65535;
-            }
-            if (cnt_Program_系統更新 == 65535) cnt_Program_系統更新 = 1;
-            if (cnt_Program_系統更新 == 1) cnt_Program_系統更新_檢查按下(ref cnt_Program_系統更新);
-            if (cnt_Program_系統更新 == 2) cnt_Program_系統更新_初始化(ref cnt_Program_系統更新);
-            if (cnt_Program_系統更新 == 3) cnt_Program_系統更新_檢查更新(ref cnt_Program_系統更新);
-            if (cnt_Program_系統更新 == 4) cnt_Program_系統更新 = 65500;
-            if (cnt_Program_系統更新 > 1) cnt_Program_系統更新_檢查放開(ref cnt_Program_系統更新);
-
-            if (cnt_Program_系統更新 == 65500)
-            {
-                PLC_Device_系統更新.Bool = false;
-                cnt_Program_系統更新 = 65535;
+                if (Task_Method == null)
+                {
+                    Task_Method = new Task(new Action(delegate { }));
+                }
+                if (Task_Method.Status == TaskStatus.RanToCompletion)
+                {
+                    Task_Method = new Task(new Action(delegate { }));
+                }
+                if (Task_Method.Status == TaskStatus.Created)
+                {
+                    Task_Method.Start();
+                }
+                cnt++;
             }
         }
-        void cnt_Program_系統更新_檢查按下(ref int cnt)
-        {
-            if (PLC_Device_系統更新.Bool) cnt++;
-        }
-        void cnt_Program_系統更新_檢查放開(ref int cnt)
-        {
-            if (!PLC_Device_系統更新.Bool) cnt = 65500;
-        }
-        void cnt_Program_系統更新_初始化(ref int cnt)
-        {
 
-            cnt++;
-        }
-        void cnt_Program_系統更新_檢查更新(ref int cnt)
-        {
-    
-            cnt++;
-        }
+
 
 
 
@@ -492,23 +467,6 @@ namespace 勤務傳送櫃
             this.ResumeLayout(false);
 
          
-
-        }
-
- 
-
-        new private void Update()
-        {
-            
-        }
-
-        private void plC_Button_系統更新_btnClick(object sender, EventArgs e)
-        {
-            this.Update();
-        }
-
-        private void plC_RJ_ScreenButton_櫃體狀態_Load(object sender, EventArgs e)
-        {
 
         }
     }

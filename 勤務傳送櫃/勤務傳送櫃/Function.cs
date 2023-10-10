@@ -42,5 +42,58 @@ namespace 勤務傳送櫃
             List<medClass> medClasses = returnData.ResultData.Data.ObjToListClass<medClass>();
             return medClasses;
         }
+        private List<object[]> Function_醫令資料_API呼叫(string barcode)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode);
+            List<object[]> list_value = orderClasses.ClassToSQL<OrderClass, enum_醫令資料>();
+       
+            Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
+            return list_value;
+        }
+        private List<OrderClass> Function_醫令資料_API呼叫(string url, string barcode)
+        {
+            barcode = barcode.Replace("\r\n", "");
+            barcode = Uri.EscapeDataString(barcode);
+            List<OrderClass> orderClasses = new List<OrderClass>();
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            string apitext = $"{url}{barcode}";
+
+            Console.Write($"Call api : {apitext}\n");
+            string jsonString = Basic.Net.WEBApiGet(apitext);
+            Console.Write($"{jsonString}\n");
+            Console.Write($"耗時 {myTimer.ToString()}ms\n");
+            if (jsonString.StringIsEmpty())
+            {
+                this.voice.SpeakOnTask("網路異常");
+                MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
+                return orderClasses;
+            }
+            returnData returnData = jsonString.JsonDeserializet<returnData>();
+            if (returnData == null)
+            {
+                this.voice.SpeakOnTask("藥單條碼錯誤");
+                MyMessageBox.ShowDialog(jsonString);
+                return new List<OrderClass>();
+            }
+            if (returnData.Code != 200)
+            {
+                MyMessageBox.ShowDialog($"{returnData.Result}");
+                return new List<OrderClass>();
+
+            }
+            orderClasses = returnData.Data.ObjToListClass<OrderClass>();
+            if (orderClasses == null)
+            {
+                Console.WriteLine($"串接資料傳回格式錯誤!");
+                this.voice.SpeakOnTask("資料錯誤");
+                orderClasses = new List<OrderClass>();
+
+            }
+
+            return orderClasses;
+        }
     }
 }

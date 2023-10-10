@@ -2133,7 +2133,6 @@ C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調�
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_手動作業.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_收支原因設定.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_選擇效期.resources
-C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_醫囑退藥.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_輸入輸出設定.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_新增容器設定.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Form1.resources
@@ -2637,3 +2636,4 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\調劑台管�
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_手輸醫令.resources
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_醫令退藥.resources

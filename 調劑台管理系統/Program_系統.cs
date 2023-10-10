@@ -155,7 +155,7 @@ namespace 調劑台管理系統
             {
                 if (!flag_sub_Program_系統_設定06)
                 {
-                    this.sqL_DataGridView_醫囑資料.SQL_GetAllRows(true);
+                    this.sqL_DataGridView_醫令資料.SQL_GetAllRows(true);
                     flag_sub_Program_系統_設定06 = true;
                 }
             }
@@ -163,55 +163,55 @@ namespace 調劑台管理系統
             {
                 flag_sub_Program_系統_設定06 = false;
             }
-            sub_Program_醫囑資料_掃碼();
+            sub_Program_醫令資料_掃碼();
             sub_Program_檢查頁面不顯示();
 
         }
 
-        #region PLC_醫囑資料_掃碼
-        PLC_Device PLC_Device_醫囑資料_掃碼 = new PLC_Device("S300");
-        PLC_Device PLC_Device_醫囑資料_掃碼_OK = new PLC_Device("S301");
-        int cnt_Program_醫囑資料_掃碼 = 65534;
-        void sub_Program_醫囑資料_掃碼()
+        #region PLC_醫令資料_掃碼
+        PLC_Device PLC_Device_醫令資料_掃碼 = new PLC_Device("S300");
+        PLC_Device PLC_Device_醫令資料_掃碼_OK = new PLC_Device("S301");
+        int cnt_Program_醫令資料_掃碼 = 65534;
+        void sub_Program_醫令資料_掃碼()
         {
             if (plC_ScreenPage_Main.PageText == "系統" && plC_ScreenPage_系統.PageText == "設定06")
             {
-                PLC_Device_醫囑資料_掃碼.Bool = true;
+                PLC_Device_醫令資料_掃碼.Bool = true;
             }
             else
             {
-                PLC_Device_醫囑資料_掃碼.Bool = false;
+                PLC_Device_醫令資料_掃碼.Bool = false;
             }
 
-            if (cnt_Program_醫囑資料_掃碼 == 65534)
+            if (cnt_Program_醫令資料_掃碼 == 65534)
             {
-                PLC_Device_醫囑資料_掃碼.SetComment("PLC_醫囑資料_掃碼");
-                PLC_Device_醫囑資料_掃碼_OK.SetComment("PLC_醫囑資料_掃碼_OK");
-                PLC_Device_醫囑資料_掃碼.Bool = false;
-                cnt_Program_醫囑資料_掃碼 = 65535;
+                PLC_Device_醫令資料_掃碼.SetComment("PLC_醫令資料_掃碼");
+                PLC_Device_醫令資料_掃碼_OK.SetComment("PLC_醫令資料_掃碼_OK");
+                PLC_Device_醫令資料_掃碼.Bool = false;
+                cnt_Program_醫令資料_掃碼 = 65535;
             }
-            if (cnt_Program_醫囑資料_掃碼 == 65535) cnt_Program_醫囑資料_掃碼 = 1;
-            if (cnt_Program_醫囑資料_掃碼 == 1) cnt_Program_醫囑資料_掃碼_檢查按下(ref cnt_Program_醫囑資料_掃碼);
-            if (cnt_Program_醫囑資料_掃碼 == 2) cnt_Program_醫囑資料_掃碼_初始化(ref cnt_Program_醫囑資料_掃碼);
-            if (cnt_Program_醫囑資料_掃碼 == 3) cnt_Program_醫囑資料_掃碼 = 65500;
-            if (cnt_Program_醫囑資料_掃碼 > 1) cnt_Program_醫囑資料_掃碼_檢查放開(ref cnt_Program_醫囑資料_掃碼);
+            if (cnt_Program_醫令資料_掃碼 == 65535) cnt_Program_醫令資料_掃碼 = 1;
+            if (cnt_Program_醫令資料_掃碼 == 1) cnt_Program_醫令資料_掃碼_檢查按下(ref cnt_Program_醫令資料_掃碼);
+            if (cnt_Program_醫令資料_掃碼 == 2) cnt_Program_醫令資料_掃碼_初始化(ref cnt_Program_醫令資料_掃碼);
+            if (cnt_Program_醫令資料_掃碼 == 3) cnt_Program_醫令資料_掃碼 = 65500;
+            if (cnt_Program_醫令資料_掃碼 > 1) cnt_Program_醫令資料_掃碼_檢查放開(ref cnt_Program_醫令資料_掃碼);
 
-            if (cnt_Program_醫囑資料_掃碼 == 65500)
+            if (cnt_Program_醫令資料_掃碼 == 65500)
             {
-                PLC_Device_醫囑資料_掃碼.Bool = false;
-                PLC_Device_醫囑資料_掃碼_OK.Bool = false;
-                cnt_Program_醫囑資料_掃碼 = 65535;
+                PLC_Device_醫令資料_掃碼.Bool = false;
+                PLC_Device_醫令資料_掃碼_OK.Bool = false;
+                cnt_Program_醫令資料_掃碼 = 65535;
             }
         }
-        void cnt_Program_醫囑資料_掃碼_檢查按下(ref int cnt)
+        void cnt_Program_醫令資料_掃碼_檢查按下(ref int cnt)
         {
-            if (PLC_Device_醫囑資料_掃碼.Bool) cnt++;
+            if (PLC_Device_醫令資料_掃碼.Bool) cnt++;
         }
-        void cnt_Program_醫囑資料_掃碼_檢查放開(ref int cnt)
+        void cnt_Program_醫令資料_掃碼_檢查放開(ref int cnt)
         {
-            if (!PLC_Device_醫囑資料_掃碼.Bool) cnt = 65500;
+            if (!PLC_Device_醫令資料_掃碼.Bool) cnt = 65500;
         }
-        void cnt_Program_醫囑資料_掃碼_初始化(ref int cnt)
+        void cnt_Program_醫令資料_掃碼_初始化(ref int cnt)
         {
           
             cnt++;
@@ -566,9 +566,9 @@ namespace 調劑台管理系統
             {
                 plC_RJ_ScreenButton_交易紀錄查詢.SetVisible(false);
             }
-            if (plC_CheckBox_不顯示設定_醫囑資料.Checked)
+            if (plC_CheckBox_不顯示設定_醫令資料.Checked)
             {
-                plC_RJ_ScreenButton_醫囑資料.SetVisible(false);
+                plC_RJ_ScreenButton_醫令資料.SetVisible(false);
             }
             if (plC_CheckBox_不顯示設定_藥品資料.Checked)
             {
