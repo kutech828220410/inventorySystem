@@ -53,18 +53,35 @@ namespace 智能藥庫系統
         {
             this.DeviceBasicClass_藥局.Init(dBConfigClass.DB_Basic, "phar_device_jsonstring");
 
-            this.sqL_DataGridView_藥局_藥品資料_效期及庫存.Init();
-        
+            string url = $"{dBConfigClass.Api_URL}/api/MED_page/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            returnData.TableName = "medicine_page_phar";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table table = json.JsonDeserializet<Table>();
+            if (table == null)
+            {
+                MyMessageBox.ShowDialog($"藥局-藥品資料表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
+            }
+            this.sqL_DataGridView_藥局_藥品資料.Init(table);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnVisible(false, new enum_藥局_藥品資料().GetEnumNames());
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.藥品碼);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.料號);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_藥局_藥品資料.藥品名稱);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_藥局_藥品資料.藥品學名);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_藥局_藥品資料.中文名稱);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.包裝單位);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.包裝數量);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.基準量);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.安全庫存);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.藥局庫存);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.藥局庫存);
+            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_藥局_藥品資料.總庫存);
 
-            this.sqL_DataGridView_藥局_藥品資料.Init();
-            if (!this.sqL_DataGridView_藥局_藥品資料.SQL_IsTableCreat()) this.sqL_DataGridView_藥局_藥品資料.SQL_CreateTable();
-            else this.sqL_DataGridView_藥局_藥品資料.SQL_CheckAllColumnName(true);
 
-            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnVisible(false, enum_藥局_藥品資料.健保碼);
-            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnVisible(false, enum_藥局_藥品資料.中文名稱);
-            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnVisible(false, enum_藥局_藥品資料.最小包裝單位);
-            this.sqL_DataGridView_藥局_藥品資料.Set_ColumnVisible(false, enum_藥局_藥品資料.最小包裝數量);          
-                        
             this.sqL_DataGridView_藥局_藥品資料.DataGridRowsChangeRefEvent += SqL_DataGridView_藥局_藥品資料_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_藥局_藥品資料.RowEnterEvent += SqL_DataGridView_藥局_藥品資料_RowEnterEvent;
  

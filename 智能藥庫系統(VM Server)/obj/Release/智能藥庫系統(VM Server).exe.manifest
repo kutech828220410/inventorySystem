@@ -270,14 +270,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyOffice.dll" size="48128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyOffice.dll" size="48640">
       <assemblyIdentity name="MyOffice" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1CcbRO+84iXghI3gzDCkG+0W0ADW5H8L/SgocIm/fHA=</dsig:DigestValue>
+        <dsig:DigestValue>9AZ2q3C5/OhLnKVWdgPSJaZuL++SM16C39hwIbW15yk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

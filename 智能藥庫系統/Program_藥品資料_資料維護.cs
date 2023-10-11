@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Encodings.Web;
+using System.Text.Json.Serialization;
 using MyUI;
 using Basic;
+using System.Diagnostics;//記得取用 FileVersionInfo繼承
+using System.Reflection;//記得取用 Assembly繼承
+using H_Pannel_lib;
 using HIS_DB_Lib;
-using System.Text.RegularExpressions;
+using SQLUI;
+
 namespace 智能藥庫系統
 {
 
@@ -78,13 +84,32 @@ namespace 智能藥庫系統
         {
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
 
-            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Init();
-            
-            if (!this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_IsTableCreat())
+            string url = $"{dBConfigClass.Api_URL}/api/MED_page/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            returnData.TableName = "medicine_page_cloud";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table table = json.JsonDeserializet<Table>();
+            if (table == null)
             {
-                this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_CreateTable();
+                MyMessageBox.ShowDialog($"雲端藥檔表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
             }
-            else this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.SQL_CheckAllColumnName(true);
+
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Init(table);
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.料號);
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.中文名稱);
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品學名);
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.管制級別);
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝數量);
+
+
             this.sqL_DataGridView_藥品資料_資料維護_雲端藥檔.DataGridRefreshEvent += SqL_DataGridView_藥品資料_資料維護_雲端藥檔_DataGridRefreshEvent;
 
             this.plC_RJ_Button_藥品資料_資料維護_雲端藥檔_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_資料維護_雲端藥檔_搜尋_MouseDownEvent;
@@ -241,7 +266,7 @@ namespace 智能藥庫系統
                     {
                         object[] value_SQL = list_SQL_Value_buf[0];
                         value_load[(int)enum_雲端藥檔.GUID] = value_SQL[(int)enum_雲端藥檔.GUID];
-                        value_load[(int)enum_雲端藥檔.包裝數量] = Regex.Replace(value_load[(int)enum_雲端藥檔.包裝數量].ObjectToString(), "[^0-9]", "");
+                        value_load[(int)enum_雲端藥檔.包裝數量] = System.Text.RegularExpressions.Regex.Replace(value_load[(int)enum_雲端藥檔.包裝數量].ObjectToString(), "[^0-9]", "");
                         bool flag_Equal = value_load.IsEqual(value_SQL);
                         if (!flag_Equal)
                         {
@@ -252,7 +277,7 @@ namespace 智能藥庫系統
                     else
                     {
                         value_load[(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
-                        value_load[(int)enum_雲端藥檔.包裝數量] = Regex.Replace(value_load[(int)enum_雲端藥檔.包裝數量].ObjectToString(), "[^0-9]", "");
+                        value_load[(int)enum_雲端藥檔.包裝數量] = System.Text.RegularExpressions.Regex.Replace(value_load[(int)enum_雲端藥檔.包裝數量].ObjectToString(), "[^0-9]", "");
                         list_Add_buf = list_Add.GetRows((int)enum_雲端藥檔.藥品碼, value_load[(int)enum_雲端藥檔.藥品碼].ObjectToString());
 
                         if (list_Add_buf.Count == 0)

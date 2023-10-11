@@ -27,7 +27,15 @@ namespace HIS_WebApi
     [ApiController]
     public class inventoryController : Controller
     {
-
+        private class SheetTemp
+        {
+            public SheetTemp(string name)
+            {
+                Name = name;
+            }
+            public string Name = "";
+            public List<object[]> list_value = new List<object[]>();
+        }
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
@@ -1401,6 +1409,7 @@ namespace HIS_WebApi
         [HttpPost]
         public async Task<ActionResult> Post_download_excel_by_IC_SN([FromBody] returnData returnData)
         {
+
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
@@ -1429,16 +1438,13 @@ namespace HIS_WebApi
             }
             List<inventoryClass.creat> creats = returnData.Data.ObjToListClass<inventoryClass.creat>();
             List<object[]> list_value = new List<object[]>();
+            System.Data.DataTable dataTable;
+            SheetClass sheetClass;
             inventoryClass.creat creat = creats[0];
             List<SheetClass> sheetClasses = new List<SheetClass>();
-            string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_inventory.txt", "utf-8");
+            List<SheetTemp> sheetTemps = new List<SheetTemp>();
+            List<SheetTemp> sheetTemps_buf = new List<SheetTemp>();
             Console.WriteLine($"取得creats {myTimer.ToString()}");
-            SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
-            sheetClass.ReplaceCell(1, 1, $"{creat.盤點單號}");
-            sheetClass.ReplaceCell(1, 5, $"{creat.建表人}");
-            sheetClass.ReplaceCell(2, 1, $"{creat.盤點開始時間}");
-            sheetClass.ReplaceCell(2, 5, $"{creat.盤點結束時間}");
-            int NumOfRow = 0;
             for (int i = 0; i < creat.Contents.Count; i++)
             {
                 if (creat.Contents[i].盤點量.StringToInt32() <= 0)
@@ -1453,36 +1459,49 @@ namespace HIS_WebApi
                 value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
                 value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].盤點量;
                 list_value.Add(value);
-                //int 差異量 = 0;
-         
-                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 5, $"{creat.Contents[i].理論值}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 6, $"{creat.Contents[i].盤點量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                //if (!creat.Contents[i].理論值.StringIsEmpty() && !creat.Contents[i].盤點量.StringIsEmpty())
-                //{
-                //    差異量 = creat.Contents[i].理論值.StringToInt32() - creat.Contents[i].盤點量.StringToInt32();
-                //}
-                //else
-                //{
 
-                //}
-                //sheetClass.AddNewCell_Webapi(NumOfRow + 4, 7, $"{差異量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                for (int k = 0; k < creat.Contents[i].Sub_content.Count; k++)
+                {
+                    string 操作人 = creat.Contents[i].Sub_content[k].操作人;
+                    sheetTemps_buf = (from temp in sheetTemps
+                                      where temp.Name == 操作人
+                                      select temp).ToList();
+                    if(sheetTemps_buf.Count == 0)
+                    {
+                        sheetTemps.Add(new SheetTemp(操作人));
+                        sheetTemps_buf = (from temp in sheetTemps
+                                          where temp.Name == 操作人
+                                          select temp).ToList();
+                    }
+                    value = new object[new enum_盤點定盤_Excel().GetLength()];
+                    value[(int)enum_盤點定盤_Excel.藥碼] = creat.Contents[i].Sub_content[k].藥品碼;
+                    value[(int)enum_盤點定盤_Excel.料號] = creat.Contents[i].Sub_content[k].料號;
+                    value[(int)enum_盤點定盤_Excel.藥名] = creat.Contents[i].Sub_content[k].藥品名稱;
+                    value[(int)enum_盤點定盤_Excel.單位] = creat.Contents[i].Sub_content[k].包裝單位;
+                    value[(int)enum_盤點定盤_Excel.庫存量] = creat.Contents[i].理論值;
+                    value[(int)enum_盤點定盤_Excel.盤點量] = creat.Contents[i].Sub_content[k].盤點量;
+                    sheetTemps_buf[0].list_value.Add(value);
+                }
 
-                //NumOfRow++;
             }
-            System.Data.DataTable dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
-            Console.WriteLine($"寫入Sheet {myTimer.ToString()}");
+            dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
+            sheetClass = dataTable.NPOI_GetSheetClass();
+            sheetClass.Name = "盤點總表";
+            sheetClasses.Add(sheetClass);
+            for(int i = 0; i < sheetTemps.Count; i++)
+            {
+                dataTable = sheetTemps[i].list_value.ToDataTable(new enum_盤點定盤_Excel());
+                sheetClass = dataTable.NPOI_GetSheetClass();
+                sheetClass.Name = sheetTemps[i].Name;
+                sheetClasses.Add(sheetClass);
+            }
 
             Console.WriteLine($"NewCell_Webapi_Buffer_Caculate {myTimer.ToString()}");
 
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
 
-            byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xlsx);
+            byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xlsx);
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
         }
@@ -1776,4 +1795,6 @@ namespace HIS_WebApi
             }
         }
     }
+
 }
+
