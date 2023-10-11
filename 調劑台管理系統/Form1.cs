@@ -772,7 +772,7 @@ namespace 調劑台管理系統
                 dBConfigClass.DB_Medicine_Cloud.UserName = serverSettingClass.User;
                 dBConfigClass.DB_Medicine_Cloud.Password = serverSettingClass.Password;
             }
-            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.醫令資料);
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "醫囑資料");
             if (serverSettingClass != null)
             {
                 dBConfigClass.DB_order_list.IP = serverSettingClass.Server;

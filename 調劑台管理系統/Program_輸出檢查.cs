@@ -149,7 +149,7 @@ namespace 調劑台管理系統
                 else if (value_device is RFIDClass)
                 {
                     RFIDClass rFIDClass = value_device as RFIDClass;
-                    //this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
+                    this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                     this.List_RFID_雲端資料.Add_NewRFIDClass(rFIDClass);
                 }
 

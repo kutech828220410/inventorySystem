@@ -221,17 +221,19 @@ namespace 調劑台管理系統
                                 if (myTimer_領藥台_02_Logout.IsTimeOut())
                                 {
                                     myTimer_領藥台_02_Logout.TickStop();
-                                    Task.Run(new Action(delegate
+                                    if(plC_CheckBox_登出時間到要警示.Checked)
                                     {
-                                        using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                        Task.Run(new Action(delegate
                                         {
-                                            sp.Stop();
-                                            sp.Play();
-                                            sp.PlaySync();
-                                        }
+                                            using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\logout.wav"))
+                                            {
+                                                sp.Stop();
+                                                sp.Play();
+                                                sp.PlaySync();
+                                            }
 
-                                    }));
-
+                                        }));
+                                    }                             
                                 }
                             }
                             if (MyTimer_領藥台_02_閒置登出時間.IsTimeOut())

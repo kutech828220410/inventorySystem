@@ -27,6 +27,7 @@ namespace HIS_WebApi
     [ApiController]
     public class testController : ControllerBase
     {
+        static string Version = "Ver1.0.0";
         [HttpGet]
         public string Get()
         {
@@ -48,8 +49,9 @@ namespace HIS_WebApi
             strs.Add($"VM Server : {VM_Server}");
             strs.Add($"VM Database : {VM_DB}");
             strs.Add($"uDP_Class PORT: {Startup.uDP_Class.Port}");
+            strs.Add($"Version : {Version}");
 
-            
+
             returnData.Data = strs;
 
 

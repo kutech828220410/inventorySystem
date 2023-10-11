@@ -1148,6 +1148,7 @@
             this.button_工程模式_調劑台名稱儲存 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.plC_CheckBox_登出時間到要警示 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_要檢查抽屜開啟異常 = new MyUI.PLC_CheckBox();
             this.plC_CheckBox_後台閒置要自動登出 = new MyUI.PLC_CheckBox();
             this.groupBox33 = new System.Windows.Forms.GroupBox();
@@ -30262,6 +30263,7 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.plC_CheckBox_登出時間到要警示);
             this.tabPage1.Controls.Add(this.plC_CheckBox_要檢查抽屜開啟異常);
             this.tabPage1.Controls.Add(this.plC_CheckBox_後台閒置要自動登出);
             this.tabPage1.Controls.Add(this.groupBox33);
@@ -30274,6 +30276,27 @@
             this.tabPage1.Size = new System.Drawing.Size(1654, 862);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "鎖控設定";
+            // 
+            // plC_CheckBox_登出時間到要警示
+            // 
+            this.plC_CheckBox_登出時間到要警示.AutoSize = true;
+            this.plC_CheckBox_登出時間到要警示.Bool = false;
+            this.plC_CheckBox_登出時間到要警示.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_登出時間到要警示.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_登出時間到要警示.Location = new System.Drawing.Point(182, 707);
+            this.plC_CheckBox_登出時間到要警示.Name = "plC_CheckBox_登出時間到要警示";
+            this.plC_CheckBox_登出時間到要警示.Size = new System.Drawing.Size(155, 20);
+            this.plC_CheckBox_登出時間到要警示.TabIndex = 132;
+            this.plC_CheckBox_登出時間到要警示.Text = "登出時間到要警示";
+            this.plC_CheckBox_登出時間到要警示.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_登出時間到要警示.Visible = false;
+            this.plC_CheckBox_登出時間到要警示.寫入元件位置 = "S3103";
+            this.plC_CheckBox_登出時間到要警示.文字內容 = "登出時間到要警示";
+            this.plC_CheckBox_登出時間到要警示.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_登出時間到要警示.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_登出時間到要警示.讀取元件位置 = "S3103";
+            this.plC_CheckBox_登出時間到要警示.讀寫鎖住 = false;
+            this.plC_CheckBox_登出時間到要警示.音效 = false;
             // 
             // plC_CheckBox_要檢查抽屜開啟異常
             // 
@@ -41122,6 +41145,7 @@
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD583_儲位內容_庫存顯示;
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD583_儲位內容_藥品碼顯示;
         private MyUI.PLC_CheckBox plC_CheckBox_儲位管理_EPD1020_警報;
+        private MyUI.PLC_CheckBox plC_CheckBox_登出時間到要警示;
     }
 }
 
