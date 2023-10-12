@@ -13,25 +13,13 @@ using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using MySQL_Login;
 using H_Pannel_lib;
+using HIS_DB_Lib;
+using SQLUI;
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
     {
-        public enum enum_人員資料
-        {
-            GUID,
-            ID,
-            姓名,
-            性別,
-            密碼,
-            單位,
-            權限等級,
-            顏色,
-            卡號,
-            一維卡號,
-            識別圖案,
-            開門權限,
-        }
+     
         public enum enum_人員資料_匯出
         {
             ID,
@@ -79,13 +67,28 @@ namespace 勤務傳送櫃
             this.loginUI.Set_login_data_index_DB(dBConfigClass.DB_person_page);
             this.loginUI.Init();
 
-            this.sqL_DataGridView_人員資料.Init();
-            if (!this.sqL_DataGridView_人員資料.SQL_IsTableCreat()) this.sqL_DataGridView_人員資料.SQL_CreateTable();
-            this.sqL_DataGridView_人員資料.DataGridRefreshEvent += SqL_DataGridView_人員資料_DataGridRefreshEvent;
-            this.sqL_DataGridView_人員資料.RowEnterEvent += SqL_DataGridView_人員資料_RowEnterEvent;
+            string url = $"{dBConfigClass.Api_URL}/api/person_page/init";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.傳送櫃.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            Table table = json.JsonDeserializet<Table>();
+            if (table == null)
+            {
+                MyMessageBox.ShowDialog($"人員資料表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.Init(table);
+            this.sqL_DataGridView_人員資料.Set_ColumnVisible(false, new enum_人員資料().GetEnumNames());
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.ID);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.姓名);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.性別);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.單位);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.權限等級);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.卡號);
             this.sqL_DataGridView_人員資料.RowDoubleClickEvent += SqL_DataGridView_人員資料_RowDoubleClickEvent;
-            this.sqL_DataGridView_人員資料.MouseDown += SqL_DataGridView_人員資料_MouseDown;
-            this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
+            this.sqL_DataGridView_人員資料.DataGridRefreshEvent += SqL_DataGridView_人員資料_DataGridRefreshEvent;
 
             this.plC_Button_權限設定_設定至Server.MouseDownEvent += PlC_Button_權限設定_設定至Server_MouseDownEvent;
             this.plC_RJ_ComboBox_權限管理_權限等級.OnSelectedIndexChanged += PlC_RJ_ComboBox_權限管理_權限等級_OnSelectedIndexChanged;
@@ -106,12 +109,16 @@ namespace 勤務傳送櫃
             this.plC_RJ_Button_人員資料_開門權限全開.MouseDownEvent += PlC_RJ_Button_人員資料_開門權限全開_MouseDownEvent;
             this.plC_RJ_Button_人員資料_開門權限全關.MouseDownEvent += PlC_RJ_Button_人員資料_開門權限全關_MouseDownEvent;
 
+            this.plC_RJ_Button_人員資料_資料查詢_ID.MouseDownEvent += PlC_RJ_Button_人員資料_資料查詢_ID_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.MouseDownEvent += PlC_RJ_Button_人員資料_資料查詢_姓名_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.MouseDownEvent += PlC_RJ_Button_人員資料_資料查詢_卡號_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.MouseDownEvent += PlC_RJ_Button_人員資料_資料查詢_一維條碼_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_顯示全部.MouseDownEvent += PlC_RJ_Button_人員資料_顯示全部_MouseDownEvent;
+
             this.Function_人員資料_開門權限_初始化();
 
             this.plC_UI_Init.Add_Method(this.Program_人員資料);
         }
-
- 
 
         bool flag_人員資料_頁面更新 = false;
         private void Program_人員資料()
@@ -205,40 +212,14 @@ namespace 勤務傳送櫃
                 this.Invoke(new Action(delegate
                 {
                     this.rJ_TextBox_人員資料_卡號.Text = list_RFID_Devices[0].UID;
+                    rJ_TextBox_人員資料_資料查詢_一維條碼.Text = list_RFID_Devices[0].UID;
                 }));
                 cnt++;
                 return;
 
             }
-            //List<RFID_UI.RFID_UID_Class> list_RFID_UID_Class = this.rfiD_UI.GetRFID();
-            //if(list_RFID_UID_Class.Count > 0)
-            //{
-            //    this.Invoke(new Action(delegate
-            //    {
-            //        this.rJ_TextBox_人員資料_卡號.Text = list_RFID_UID_Class[0].UID;
-            //    }));
-            //    cnt++;
-            //    return;
-            //}
             cnt++;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         #endregion
 
@@ -271,10 +252,6 @@ namespace 勤務傳送櫃
                 this.rJ_TextBox_人員資料_密碼.Text = "";
                 this.rJ_TextBox_人員資料_單位.Text = "";
                 this.rJ_TextBox_人員資料_卡號.Text = "";
-                this.textBox_人員資料_顏色.Text = colorDialog.Color.ToColorString();
-                this.comboBox_人員資料_權限等級.Text = "";
-                this.rJ_TextBox_人員資料_一維條碼.Text = "";
-                this.rJ_TextBox_人員資料_識別圖案.Text = "";
             }));
 
         }
@@ -295,9 +272,6 @@ namespace 勤務傳送櫃
                 value[(int)enum_人員資料.單位] = this.rJ_TextBox_人員資料_單位.Text;
                 value[(int)enum_人員資料.卡號] = this.rJ_TextBox_人員資料_卡號.Text;
                 value[(int)enum_人員資料.權限等級] = this.comboBox_人員資料_權限等級.Text;
-                value[(int)enum_人員資料.顏色] = this.textBox_人員資料_顏色.Text;
-                value[(int)enum_人員資料.一維卡號] = this.rJ_TextBox_人員資料_一維條碼.Text;
-                value[(int)enum_人員資料.識別圖案] = this.rJ_TextBox_人員資料_識別圖案.Text;
                 value[(int)enum_人員資料.開門權限] = this.openDoorPermission_UIs.GetOpenDoorPermission();
                 string str_error = this.Function_人員資料_檢查內容(value);
                 if (!str_error.StringIsEmpty())
@@ -319,9 +293,6 @@ namespace 勤務傳送櫃
                     value[(int)enum_人員資料.單位] = this.rJ_TextBox_人員資料_單位.Text;
                     value[(int)enum_人員資料.卡號] = this.rJ_TextBox_人員資料_卡號.Text;
                     value[(int)enum_人員資料.權限等級] = this.comboBox_人員資料_權限等級.Text;
-                    value[(int)enum_人員資料.顏色] = this.textBox_人員資料_顏色.Text;
-                    value[(int)enum_人員資料.一維卡號] = this.rJ_TextBox_人員資料_一維條碼.Text;
-                    value[(int)enum_人員資料.識別圖案] = this.rJ_TextBox_人員資料_識別圖案.Text;
                     value[(int)enum_人員資料.開門權限] = this.openDoorPermission_UIs.GetOpenDoorPermission();
                     string str_error = this.Function_人員資料_檢查內容(value);
                     if (!str_error.StringIsEmpty())
@@ -520,14 +491,7 @@ namespace 勤務傳送櫃
                 }
             }
         }
-        private void button_人員資料_顏色選擇_Click(object sender, EventArgs e)
-        {
-            if (this.colorDialog.ShowDialog() == DialogResult.OK)
-            {
-                textBox_人員資料_顏色.Text = this.colorDialog.Color.ToColorString();
-                textBox_人員資料_顏色.BackColor = textBox_人員資料_顏色.Text.ToColor();
-            }
-        }
+    
         private void SqL_DataGridView_人員資料_DataGridRefreshEvent()
         {
             for (int i = 0; i < this.sqL_DataGridView_人員資料.dataGridView.Rows.Count; i++)
@@ -537,24 +501,6 @@ namespace 勤務傳送櫃
                 this.sqL_DataGridView_人員資料.dataGridView.Rows[i].Cells[(int)enum_人員資料.顏色].Style.ForeColor = color;
             }
         }
-        private void SqL_DataGridView_人員資料_RowEnterEvent(object[] RowValue)
-        {
-            //rJ_TextBox_人員資料_ID.Text = RowValue[(int)enum_人員資料.ID].ObjectToString();
-            //rJ_TextBox_人員資料_姓名.Text = RowValue[(int)enum_人員資料.姓名].ObjectToString();
-            //rJ_TextBox_人員資料_密碼.Text = RowValue[(int)enum_人員資料.密碼].ObjectToString();
-            //rJ_TextBox_人員資料_單位.Text = RowValue[(int)enum_人員資料.單位].ObjectToString();
-            //comboBox_人員資料_權限等級.Text = RowValue[(int)enum_人員資料.權限等級].ObjectToString();
-            //textBox_人員資料_顏色.Text = RowValue[(int)enum_人員資料.顏色].ObjectToString();
-            //textBox_人員資料_顏色.BackColor = textBox_人員資料_顏色.Text.ToColor();
-            //rJ_TextBox_人員資料_卡號.Text = RowValue[(int)enum_人員資料.卡號].ObjectToString();
-            //rJ_TextBox_人員資料_一維條碼.Text = RowValue[(int)enum_人員資料.一維卡號].ObjectToString();
-            //rJ_TextBox_人員資料_識別圖案.Text = RowValue[(int)enum_人員資料.識別圖案].ObjectToString();
-
-
-            //string 性別 = RowValue[(int)enum_人員資料.性別].ObjectToString();
-            //if (性別 == "男") rJ_RatioButton_人員資料_男.Checked = true;
-            //else rJ_RatioButton_人員資料_女.Checked = true;
-        }
         private void SqL_DataGridView_人員資料_RowDoubleClickEvent(object[] RowValue)
         {
             rJ_TextBox_人員資料_ID.Text = RowValue[(int)enum_人員資料.ID].ObjectToString();
@@ -562,11 +508,7 @@ namespace 勤務傳送櫃
             rJ_TextBox_人員資料_密碼.Text = RowValue[(int)enum_人員資料.密碼].ObjectToString();
             rJ_TextBox_人員資料_單位.Text = RowValue[(int)enum_人員資料.單位].ObjectToString();
             comboBox_人員資料_權限等級.Text = RowValue[(int)enum_人員資料.權限等級].ObjectToString();
-            textBox_人員資料_顏色.Text = RowValue[(int)enum_人員資料.顏色].ObjectToString();
-            textBox_人員資料_顏色.BackColor = textBox_人員資料_顏色.Text.ToColor();
             rJ_TextBox_人員資料_卡號.Text = RowValue[(int)enum_人員資料.卡號].ObjectToString();
-            rJ_TextBox_人員資料_一維條碼.Text = RowValue[(int)enum_人員資料.一維卡號].ObjectToString();
-            rJ_TextBox_人員資料_識別圖案.Text = RowValue[(int)enum_人員資料.識別圖案].ObjectToString();
             this.openDoorPermission_UIs.SetOpenDoorPermission(RowValue[(int)enum_人員資料.開門權限].ObjectToString());
 
             string 性別 = RowValue[(int)enum_人員資料.性別].ObjectToString();
@@ -667,6 +609,71 @@ namespace 勤務傳送櫃
             value = $"{bytes.ByteToStringHex()}";
 
             this.openDoorPermission_UIs.SetOpenDoorPermission(value);
+        }
+
+        private void PlC_RJ_Button_人員資料_顯示全部_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
+        }
+        private void PlC_RJ_Button_人員資料_資料查詢_一維條碼_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (rJ_TextBox_人員資料_資料查詢_一維條碼.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋條件空白!");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.一維條碼, rJ_TextBox_人員資料_資料查詢_一維條碼.Text, false);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_人員資料_資料查詢_卡號_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (rJ_TextBox_人員資料_資料查詢_卡號.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋條件空白!");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.卡號, rJ_TextBox_人員資料_資料查詢_卡號.Text, false);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_人員資料_資料查詢_姓名_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (rJ_TextBox_人員資料_資料查詢_姓名.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋條件空白!");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRowsByLike((int)enum_人員資料.姓名, rJ_TextBox_人員資料_資料查詢_姓名.Text, false);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_人員資料_資料查詢_ID_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (rJ_TextBox_人員資料_資料查詢_ID.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("搜尋條件空白!");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRowsByLike((int)enum_人員資料.ID, rJ_TextBox_人員資料_資料查詢_ID.Text, false);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+                return;
+            }
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value);
         }
         #endregion
     }

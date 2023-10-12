@@ -23,6 +23,7 @@ namespace HIS_DB_Lib
         識別圖案,
         指紋辨識,
         指紋ID,
+        開門權限
     }
     public class personPageClass
     {
@@ -54,5 +55,7 @@ namespace HIS_DB_Lib
         public string 指紋辨識 { get; set; }
         [JsonPropertyName("finger_ID")]
         public string 指紋ID { get; set; }
+        [JsonPropertyName("open_access")]
+        public string 開門權限 { get; set; }
     }
 }

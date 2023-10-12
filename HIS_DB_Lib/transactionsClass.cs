@@ -10,6 +10,7 @@ namespace HIS_DB_Lib
 {
     public enum enum_交易記錄查詢動作
     {
+        藥袋刷入,
         掃碼領藥,
         手輸領藥,
         批次領藥,
@@ -65,17 +66,46 @@ namespace HIS_DB_Lib
         結存量,
         盤點量,
         操作人,
+        領用人,
         藥師證字號,
         病人姓名,
         頻次,
+        病房號,
         床號,
         病歷號,
         操作時間,
+        領用時間,
         開方時間,
         收支原因,
         備註,
     }
 
+    public enum enum_傳送櫃領用紀錄動作
+    {
+        藥袋刷入,     
+        人臉識別登入,
+        RFID登入,
+        一維碼登入,
+        密碼登入,
+        登出,
+        操作工程模式,       
+        門片未關閉異常,
+        關閉門片,
+        開啟門片,
+        交班對點,
+        取消作業,
+        盤點量更正,
+        批次過帳,
+        驗收作業,
+        驗收入庫,
+        自動撥補,
+        緊急申領,
+        新增效期,
+        修正庫存,
+        修正批號,
+        盤存盈虧,
+        None,
+    }
 
 
     public class transactionsClass
@@ -108,10 +138,14 @@ namespace HIS_DB_Lib
         public string 盤點量 { get; set; }
         [JsonPropertyName("OP")]
         public string 操作人 { get; set; }
+        [JsonPropertyName("RECV")]
+        public string 領用人 { get; set; }
         [JsonPropertyName("LICENSE")]
         public string 藥師證字號 { get; set; }
         [JsonPropertyName("PAT")]
         public string 病人姓名 { get; set; }
+        [JsonPropertyName("WARD_NAME")]
+        public string 病房號 { get; set; }
         [JsonPropertyName("BED")]
         public string 床號 { get; set; }
         [JsonPropertyName("FREQ")]
@@ -122,14 +156,16 @@ namespace HIS_DB_Lib
         public string 操作時間 { get; set; }
         [JsonPropertyName("RX_TIME")]
         public string 開方時間 { get; set; }
+        [JsonPropertyName("RECV_TIME")]
+        public string 領用時間 { get; set; }
         [JsonPropertyName("RSN")]
         public string 收支原因 { get; set; }
         [JsonPropertyName("NOTE")]
         public string 備註 { get; set; }
 
 
-   
 
+        
         public class ICP_By_OP_Time : IComparer<object[]>
         {
             //實作Compare方法

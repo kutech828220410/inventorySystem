@@ -37,6 +37,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass6 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass7 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass8 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass9 = new HIS_DB_Lib.ServerSettingClass();
             this.button_讀取 = new System.Windows.Forms.Button();
             this.button_刪除 = new System.Windows.Forms.Button();
             this.button_新增 = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@ namespace ServerSettingForm
             this.panel_SQLContent8 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent7 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent6 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_SQLContent2 = new ServerSettingForm.Panel_SQLContent();
             this.SuspendLayout();
             // 
             // button_讀取
@@ -343,11 +345,36 @@ namespace ServerSettingForm
             this.panel_SQLContent6.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent6.TabIndex = 70;
             // 
+            // panel_SQLContent2
+            // 
+            this.panel_SQLContent2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent2.Content = "人員資料";
+            this.panel_SQLContent2.Location = new System.Drawing.Point(738, 73);
+            this.panel_SQLContent2.Name = "panel_SQLContent2";
+            serverSettingClass9.DBName = "";
+            serverSettingClass9.GUID = null;
+            serverSettingClass9.Password = "";
+            serverSettingClass9.Port = "";
+            serverSettingClass9.Server = "";
+            serverSettingClass9.TableName = null;
+            serverSettingClass9.User = "";
+            serverSettingClass9.Value = null;
+            serverSettingClass9.內容 = "人員資料";
+            serverSettingClass9.單位 = null;
+            serverSettingClass9.程式類別 = null;
+            serverSettingClass9.設備名稱 = "";
+            serverSettingClass9.類別 = "傳送櫃";
+            this.panel_SQLContent2.ServerSetting = serverSettingClass9;
+            this.panel_SQLContent2.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_SQLContent2.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent2.TabIndex = 71;
+            // 
             // Dialog_傳送櫃
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_SQLContent2);
             this.Controls.Add(this.panel_SQLContent6);
             this.Controls.Add(this.panel_API_URL5);
             this.Controls.Add(this.panel_API_URL4);
@@ -392,5 +419,6 @@ namespace ServerSettingForm
         private Panel_API_URL panel_API_URL5;
         private Panel_API_URL panel_API_URL4;
         private Panel_SQLContent panel_SQLContent6;
+        private Panel_SQLContent panel_SQLContent2;
     }
 }

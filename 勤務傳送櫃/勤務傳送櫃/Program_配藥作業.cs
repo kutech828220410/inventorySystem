@@ -189,11 +189,12 @@ namespace 勤務傳送櫃
              
             }));
             object[] value = new object[new enum_交易記錄查詢資料().GetLength()];
-            value[(int)enum_交易記錄查詢資料.GUID] = Guid.NewGuid().ToString();
-            value[(int)enum_交易記錄查詢資料.動作] = enum_交易記錄查詢動作.掃碼領藥.GetEnumName();
+            value[(int)enum_交易記錄查詢資料.GUID] = orderClasses[0].GUID;
+            value[(int)enum_交易記錄查詢資料.動作] = enum_交易記錄查詢動作.藥袋刷入.GetEnumName();
             value[(int)enum_交易記錄查詢資料.藥品碼] = orderClasses[0].藥品碼;
             value[(int)enum_交易記錄查詢資料.藥品名稱] = orderClasses[0].藥品名稱;
             value[(int)enum_交易記錄查詢資料.頻次] = orderClasses[0].頻次;
+            value[(int)enum_交易記錄查詢資料.病房號] = orderClasses[0].病房;
             value[(int)enum_交易記錄查詢資料.交易量] = orderClasses[0].交易量;
             value[(int)enum_交易記錄查詢資料.病人姓名] = orderClasses[0].病人姓名;
             value[(int)enum_交易記錄查詢資料.病歷號] = orderClasses[0].病歷號;

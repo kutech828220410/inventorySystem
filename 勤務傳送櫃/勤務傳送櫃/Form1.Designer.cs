@@ -202,11 +202,29 @@
             this.textBox_藥品資料_藥檔資料_資料查詢_藥品碼 = new MyUI.RJ_TextBox();
             this.rJ_Lable17 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
-            this.藥袋資料 = new System.Windows.Forms.TabPage();
             this.人員資料 = new System.Windows.Forms.TabPage();
+            this.rJ_GroupBox2 = new MyUI.RJ_GroupBox();
+            this.plC_RJ_Button_人員資料_顯示全部 = new MyUI.PLC_RJ_Button();
+            this.rJ_Pannel14 = new MyUI.RJ_Pannel();
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼 = new MyUI.PLC_RJ_Button();
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼 = new MyUI.RJ_TextBox();
+            this.rJ_Lable136 = new MyUI.RJ_Lable();
+            this.rJ_Pannel13 = new MyUI.RJ_Pannel();
+            this.plC_RJ_Button_人員資料_資料查詢_卡號 = new MyUI.PLC_RJ_Button();
+            this.rJ_TextBox_人員資料_資料查詢_卡號 = new MyUI.RJ_TextBox();
+            this.rJ_Lable135 = new MyUI.RJ_Lable();
+            this.rJ_Pannel18 = new MyUI.RJ_Pannel();
+            this.plC_RJ_Button_人員資料_資料查詢_姓名 = new MyUI.PLC_RJ_Button();
+            this.rJ_TextBox_人員資料_資料查詢_姓名 = new MyUI.RJ_TextBox();
+            this.rJ_Lable137 = new MyUI.RJ_Lable();
+            this.rJ_Pannel19 = new MyUI.RJ_Pannel();
+            this.plC_RJ_Button_人員資料_資料查詢_ID = new MyUI.PLC_RJ_Button();
+            this.rJ_TextBox_人員資料_資料查詢_ID = new MyUI.RJ_TextBox();
+            this.rJ_Lable138 = new MyUI.RJ_Lable();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.plC_ScreenPage_人員資料_權限設定 = new MyUI.PLC_ScreenPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.panel_權限設定 = new MyUI.RJ_Pannel();
             this.loginIndex_Pannel = new MySQL_Login.LoginIndex_Pannel();
             this.panel29 = new System.Windows.Forms.Panel();
             this.rJ_Lable64 = new MyUI.RJ_Lable();
@@ -242,6 +260,8 @@
             this.panel_人員資料_權限設定 = new System.Windows.Forms.Panel();
             this.plC_RJ_ScreenButton7 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton4 = new MyUI.PLC_RJ_ScreenButton();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.sqL_DataGridView_人員資料 = new SQLUI.SQL_DataGridView();
             this.rJ_GroupBox20 = new MyUI.RJ_GroupBox();
             this.plC_RJ_Button_人員資料_開門權限全關 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_人員資料_開門權限全開 = new MyUI.PLC_RJ_Button();
@@ -251,9 +271,7 @@
             this.plC_RJ_Button_人員資料_匯入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_人員資料_匯出 = new MyUI.PLC_RJ_Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.rJ_TextBox_人員資料_一維條碼 = new MyUI.RJ_TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.rJ_TextBox_人員資料_卡號 = new MyUI.RJ_TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.comboBox_人員資料_權限等級 = new MyUI.RJ_ComboBox();
             this.rJ_TextBox_人員資料_單位 = new MyUI.RJ_TextBox();
             this.rJ_TextBox_人員資料_密碼 = new MyUI.RJ_TextBox();
@@ -265,17 +283,10 @@
             this.label138 = new System.Windows.Forms.Label();
             this.label143 = new System.Windows.Forms.Label();
             this.label102 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.panel149 = new System.Windows.Forms.Panel();
-            this.panel150 = new System.Windows.Forms.Panel();
-            this.button_人員資料_顏色選擇 = new System.Windows.Forms.Button();
-            this.textBox_人員資料_顏色 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.rJ_RatioButton_人員資料_男 = new MyUI.RJ_RatioButton();
             this.rJ_RatioButton_人員資料_女 = new MyUI.RJ_RatioButton();
-            this.rJ_TextBox_人員資料_識別圖案 = new MyUI.RJ_TextBox();
-            this.sqL_DataGridView_人員資料 = new SQLUI.SQL_DataGridView();
+            this.rJ_TextBox_人員資料_卡號 = new MyUI.RJ_TextBox();
             this.系統頁面 = new System.Windows.Forms.TabPage();
             this.plC_ScreenPage_系統頁面 = new MyUI.PLC_ScreenPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -314,14 +325,42 @@
             this.plC_RJ_ScreenButton2 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton5 = new MyUI.PLC_RJ_ScreenButton();
             this.交易紀錄 = new System.Windows.Forms.TabPage();
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋 = new MyUI.PLC_RJ_Button();
+            this.rJ_TextBox_交易記錄查詢_領用人 = new MyUI.RJ_TextBox();
+            this.rJ_Lable11 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋 = new MyUI.PLC_RJ_Button();
+            this.rJ_TextBox_交易記錄查詢_調劑人 = new MyUI.RJ_TextBox();
+            this.rJ_Lable9 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋 = new MyUI.PLC_RJ_Button();
+            this.rJ_TextBox_交易記錄查詢_藥品名稱 = new MyUI.RJ_TextBox();
+            this.rJ_Lable8 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋 = new MyUI.PLC_RJ_Button();
+            this.textBox_交易記錄查詢_藥品碼 = new MyUI.RJ_TextBox();
+            this.rJ_Lable26 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_交易記錄查詢_顯示全部 = new MyUI.PLC_RJ_Button();
             this.sqL_DataGridView_交易記錄查詢 = new SQLUI.SQL_DataGridView();
             this.暫存區 = new System.Windows.Forms.TabPage();
             this.plC_AlarmFlow1 = new MyUI.PLC_AlarmFlow();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.pannel_Box1 = new 勤務傳送櫃.Pannel_Box();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.pannel_Box1 = new 勤務傳送櫃.Pannel_Box();
+            this.plC_CheckBox_交易記錄查詢_顯示細節 = new MyUI.PLC_CheckBox();
+            this.rJ_Lable30 = new MyUI.RJ_Lable();
+            this.dateTimePicker_交易記錄查詢_操作時間_結束 = new MyUI.RJ_DatePicker();
+            this.label106 = new System.Windows.Forms.Label();
+            this.dateTimePicker_交易記錄查詢_操作時間_起始 = new MyUI.RJ_DatePicker();
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋 = new MyUI.PLC_RJ_Button();
+            this.rJ_Lable13 = new MyUI.RJ_Lable();
+            this.dateTimePicker_交易記錄查詢_開方時間_結束 = new MyUI.RJ_DatePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker_交易記錄查詢_開方時間_起始 = new MyUI.RJ_DatePicker();
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋 = new MyUI.PLC_RJ_Button();
+            this.rJ_Lable15 = new MyUI.RJ_Lable();
+            this.dateTimePicker_交易記錄查詢_領用時間_結束 = new MyUI.RJ_DatePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker_交易記錄查詢_領用時間_起始 = new MyUI.RJ_DatePicker();
             this.panel_Main.SuspendLayout();
             this.panel232.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
@@ -368,9 +407,16 @@
             this.rJ_Pannel3.SuspendLayout();
             this.rJ_Pannel2.SuspendLayout();
             this.人員資料.SuspendLayout();
+            this.rJ_GroupBox2.ContentsPanel.SuspendLayout();
+            this.rJ_GroupBox2.SuspendLayout();
+            this.rJ_Pannel14.SuspendLayout();
+            this.rJ_Pannel13.SuspendLayout();
+            this.rJ_Pannel18.SuspendLayout();
+            this.rJ_Pannel19.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.plC_ScreenPage_人員資料_權限設定.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.panel_權限設定.SuspendLayout();
             this.panel29.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.plC_ScreenPage_人員資料_開門權限.SuspendLayout();
@@ -384,11 +430,10 @@
             this.tabPage14.SuspendLayout();
             this.panel_人員資料_開門權限.SuspendLayout();
             this.panel_人員資料_權限設定.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.rJ_GroupBox20.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox20.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.panel149.SuspendLayout();
-            this.panel150.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.系統頁面.SuspendLayout();
             this.plC_ScreenPage_系統頁面.SuspendLayout();
@@ -508,7 +553,7 @@
             this.plC_RJ_ScreenButton_人員資料.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
             this.plC_RJ_ScreenButton_人員資料.控制位址 = "D3";
             this.plC_RJ_ScreenButton_人員資料.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButton_人員資料.致能讀取位置 = "S39001";
+            this.plC_RJ_ScreenButton_人員資料.致能讀取位置 = "";
             this.plC_RJ_ScreenButton_人員資料.讀取位元反向 = false;
             this.plC_RJ_ScreenButton_人員資料.讀取位置註解 = "";
             this.plC_RJ_ScreenButton_人員資料.讀取元件位置 = "";
@@ -1018,7 +1063,6 @@
             this.plC_ScreenPage_Main.Controls.Add(this.配藥核對);
             this.plC_ScreenPage_Main.Controls.Add(this.登入畫面);
             this.plC_ScreenPage_Main.Controls.Add(this.藥品資料);
-            this.plC_ScreenPage_Main.Controls.Add(this.藥袋資料);
             this.plC_ScreenPage_Main.Controls.Add(this.人員資料);
             this.plC_ScreenPage_Main.Controls.Add(this.系統頁面);
             this.plC_ScreenPage_Main.Controls.Add(this.交易紀錄);
@@ -3984,29 +4028,530 @@
             this.sqL_DataGridView_藥品資料_藥檔資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品資料_藥檔資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
-            // 藥袋資料
-            // 
-            this.藥袋資料.BackColor = System.Drawing.Color.White;
-            this.藥袋資料.Location = new System.Drawing.Point(4, 25);
-            this.藥袋資料.Name = "藥袋資料";
-            this.藥袋資料.Size = new System.Drawing.Size(1639, 1006);
-            this.藥袋資料.TabIndex = 9;
-            this.藥袋資料.Text = "藥袋資料";
-            // 
             // 人員資料
             // 
-            this.人員資料.AutoScroll = true;
             this.人員資料.BackColor = System.Drawing.SystemColors.Window;
-            this.人員資料.Controls.Add(this.plC_ScreenPage_人員資料_權限設定);
-            this.人員資料.Controls.Add(this.panel_人員資料_權限設定);
-            this.人員資料.Controls.Add(this.rJ_GroupBox20);
-            this.人員資料.Controls.Add(this.sqL_DataGridView_人員資料);
+            this.人員資料.Controls.Add(this.rJ_GroupBox2);
+            this.人員資料.Controls.Add(this.panel8);
+            this.人員資料.Controls.Add(this.panel5);
             this.人員資料.Location = new System.Drawing.Point(4, 25);
             this.人員資料.Margin = new System.Windows.Forms.Padding(0);
             this.人員資料.Name = "人員資料";
             this.人員資料.Size = new System.Drawing.Size(1639, 1006);
             this.人員資料.TabIndex = 1;
             this.人員資料.Text = "人員資料";
+            // 
+            // rJ_GroupBox2
+            // 
+            // 
+            // rJ_GroupBox2.ContentsPanel
+            // 
+            this.rJ_GroupBox2.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_GroupBox2.ContentsPanel.BorderRadius = 1;
+            this.rJ_GroupBox2.ContentsPanel.BorderSize = 2;
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.plC_RJ_Button_人員資料_顯示全部);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_Pannel14);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_Pannel13);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_Pannel18);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_Pannel19);
+            this.rJ_GroupBox2.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_GroupBox2.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.ContentsPanel.IsSelected = false;
+            this.rJ_GroupBox2.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.rJ_GroupBox2.ContentsPanel.Name = "ContentsPanel";
+            this.rJ_GroupBox2.ContentsPanel.Size = new System.Drawing.Size(521, 453);
+            this.rJ_GroupBox2.ContentsPanel.TabIndex = 2;
+            this.rJ_GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_GroupBox2.GUID = "";
+            this.rJ_GroupBox2.Location = new System.Drawing.Point(0, 516);
+            this.rJ_GroupBox2.Name = "rJ_GroupBox2";
+            this.rJ_GroupBox2.PannelBackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.PannelBorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_GroupBox2.PannelBorderRadius = 1;
+            this.rJ_GroupBox2.PannelBorderSize = 2;
+            this.rJ_GroupBox2.Size = new System.Drawing.Size(521, 490);
+            this.rJ_GroupBox2.TabIndex = 120;
+            this.rJ_GroupBox2.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.rJ_GroupBox2.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_GroupBox2.TitleBorderRadius = 5;
+            this.rJ_GroupBox2.TitleBorderSize = 0;
+            this.rJ_GroupBox2.TitleFont = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_GroupBox2.TitleForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.TitleHeight = 37;
+            this.rJ_GroupBox2.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_GroupBox2.TitleTexts = "資料查詢";
+            // 
+            // plC_RJ_Button_人員資料_顯示全部
+            // 
+            this.plC_RJ_Button_人員資料_顯示全部.AutoResetState = false;
+            this.plC_RJ_Button_人員資料_顯示全部.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_人員資料_顯示全部.Bool = false;
+            this.plC_RJ_Button_人員資料_顯示全部.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_人員資料_顯示全部.BorderRadius = 5;
+            this.plC_RJ_Button_人員資料_顯示全部.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_顯示全部.but_press = false;
+            this.plC_RJ_Button_人員資料_顯示全部.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料_顯示全部.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_顯示全部.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料_顯示全部.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_顯示全部.GUID = "";
+            this.plC_RJ_Button_人員資料_顯示全部.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料_顯示全部.Location = new System.Drawing.Point(376, 281);
+            this.plC_RJ_Button_人員資料_顯示全部.Name = "plC_RJ_Button_人員資料_顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.OFF_文字內容 = "顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_顯示全部.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_顯示全部.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_顯示全部.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_顯示全部.ON_文字內容 = "顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_顯示全部.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_顯示全部.Size = new System.Drawing.Size(117, 68);
+            this.plC_RJ_Button_人員資料_顯示全部.State = false;
+            this.plC_RJ_Button_人員資料_顯示全部.TabIndex = 145;
+            this.plC_RJ_Button_人員資料_顯示全部.Text = "顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_顯示全部.Texts = "顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料_顯示全部.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料_顯示全部.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料_顯示全部.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.音效 = true;
+            this.plC_RJ_Button_人員資料_顯示全部.顯示 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.顯示狀態 = false;
+            // 
+            // rJ_Pannel14
+            // 
+            this.rJ_Pannel14.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel14.BorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Pannel14.BorderRadius = 5;
+            this.rJ_Pannel14.BorderSize = 2;
+            this.rJ_Pannel14.Controls.Add(this.plC_RJ_Button_人員資料_資料查詢_一維條碼);
+            this.rJ_Pannel14.Controls.Add(this.rJ_TextBox_人員資料_資料查詢_一維條碼);
+            this.rJ_Pannel14.Controls.Add(this.rJ_Lable136);
+            this.rJ_Pannel14.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel14.IsSelected = false;
+            this.rJ_Pannel14.Location = new System.Drawing.Point(23, 216);
+            this.rJ_Pannel14.Name = "rJ_Pannel14";
+            this.rJ_Pannel14.Size = new System.Drawing.Size(384, 59);
+            this.rJ_Pannel14.TabIndex = 144;
+            // 
+            // plC_RJ_Button_人員資料_資料查詢_一維條碼
+            // 
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.AutoResetState = true;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Bool = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.BorderRadius = 5;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.but_press = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.GUID = "";
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Location = new System.Drawing.Point(293, 6);
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Name = "plC_RJ_Button_人員資料_資料查詢_一維條碼";
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Size = new System.Drawing.Size(83, 47);
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.State = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.TabIndex = 140;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Text = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Texts = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.音效 = true;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.顯示 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.顯示狀態 = false;
+            // 
+            // rJ_TextBox_人員資料_資料查詢_一維條碼
+            // 
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.BorderRadius = 2;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.BorderSize = 1;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.GUID = "";
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.Location = new System.Drawing.Point(104, 9);
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.Multiline = false;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.Name = "rJ_TextBox_人員資料_資料查詢_一維條碼";
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.PassWordChar = false;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.PlaceholderText = "";
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.ShowTouchPannel = false;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.Size = new System.Drawing.Size(177, 40);
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.TabIndex = 114;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.Texts = "";
+            this.rJ_TextBox_人員資料_資料查詢_一維條碼.UnderlineStyle = false;
+            // 
+            // rJ_Lable136
+            // 
+            this.rJ_Lable136.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable136.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable136.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable136.BorderRadius = 8;
+            this.rJ_Lable136.BorderSize = 0;
+            this.rJ_Lable136.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable136.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable136.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable136.GUID = "";
+            this.rJ_Lable136.Location = new System.Drawing.Point(13, 6);
+            this.rJ_Lable136.Name = "rJ_Lable136";
+            this.rJ_Lable136.Size = new System.Drawing.Size(85, 46);
+            this.rJ_Lable136.TabIndex = 2;
+            this.rJ_Lable136.Text = "一維條碼";
+            this.rJ_Lable136.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable136.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Pannel13
+            // 
+            this.rJ_Pannel13.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel13.BorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Pannel13.BorderRadius = 5;
+            this.rJ_Pannel13.BorderSize = 2;
+            this.rJ_Pannel13.Controls.Add(this.plC_RJ_Button_人員資料_資料查詢_卡號);
+            this.rJ_Pannel13.Controls.Add(this.rJ_TextBox_人員資料_資料查詢_卡號);
+            this.rJ_Pannel13.Controls.Add(this.rJ_Lable135);
+            this.rJ_Pannel13.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel13.IsSelected = false;
+            this.rJ_Pannel13.Location = new System.Drawing.Point(23, 151);
+            this.rJ_Pannel13.Name = "rJ_Pannel13";
+            this.rJ_Pannel13.Size = new System.Drawing.Size(384, 59);
+            this.rJ_Pannel13.TabIndex = 143;
+            // 
+            // plC_RJ_Button_人員資料_資料查詢_卡號
+            // 
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.AutoResetState = true;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.Bool = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.BorderRadius = 5;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.but_press = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.GUID = "";
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.Location = new System.Drawing.Point(293, 6);
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.Name = "plC_RJ_Button_人員資料_資料查詢_卡號";
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.Size = new System.Drawing.Size(83, 47);
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.State = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.TabIndex = 140;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.Text = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.Texts = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.音效 = true;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.顯示 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.顯示狀態 = false;
+            // 
+            // rJ_TextBox_人員資料_資料查詢_卡號
+            // 
+            this.rJ_TextBox_人員資料_資料查詢_卡號.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.BorderRadius = 2;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.BorderSize = 1;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_人員資料_資料查詢_卡號.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.GUID = "";
+            this.rJ_TextBox_人員資料_資料查詢_卡號.Location = new System.Drawing.Point(104, 9);
+            this.rJ_TextBox_人員資料_資料查詢_卡號.Multiline = false;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.Name = "rJ_TextBox_人員資料_資料查詢_卡號";
+            this.rJ_TextBox_人員資料_資料查詢_卡號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_人員資料_資料查詢_卡號.PassWordChar = false;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.PlaceholderText = "";
+            this.rJ_TextBox_人員資料_資料查詢_卡號.ShowTouchPannel = false;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.Size = new System.Drawing.Size(177, 40);
+            this.rJ_TextBox_人員資料_資料查詢_卡號.TabIndex = 114;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_人員資料_資料查詢_卡號.Texts = "";
+            this.rJ_TextBox_人員資料_資料查詢_卡號.UnderlineStyle = false;
+            // 
+            // rJ_Lable135
+            // 
+            this.rJ_Lable135.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable135.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable135.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable135.BorderRadius = 8;
+            this.rJ_Lable135.BorderSize = 0;
+            this.rJ_Lable135.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable135.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable135.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable135.GUID = "";
+            this.rJ_Lable135.Location = new System.Drawing.Point(13, 6);
+            this.rJ_Lable135.Name = "rJ_Lable135";
+            this.rJ_Lable135.Size = new System.Drawing.Size(85, 46);
+            this.rJ_Lable135.TabIndex = 2;
+            this.rJ_Lable135.Text = "卡號";
+            this.rJ_Lable135.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable135.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Pannel18
+            // 
+            this.rJ_Pannel18.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel18.BorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Pannel18.BorderRadius = 5;
+            this.rJ_Pannel18.BorderSize = 2;
+            this.rJ_Pannel18.Controls.Add(this.plC_RJ_Button_人員資料_資料查詢_姓名);
+            this.rJ_Pannel18.Controls.Add(this.rJ_TextBox_人員資料_資料查詢_姓名);
+            this.rJ_Pannel18.Controls.Add(this.rJ_Lable137);
+            this.rJ_Pannel18.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel18.IsSelected = false;
+            this.rJ_Pannel18.Location = new System.Drawing.Point(23, 86);
+            this.rJ_Pannel18.Name = "rJ_Pannel18";
+            this.rJ_Pannel18.Size = new System.Drawing.Size(384, 59);
+            this.rJ_Pannel18.TabIndex = 142;
+            // 
+            // plC_RJ_Button_人員資料_資料查詢_姓名
+            // 
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.AutoResetState = true;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.Bool = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.BorderRadius = 5;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.but_press = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.GUID = "";
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.Location = new System.Drawing.Point(293, 6);
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.Name = "plC_RJ_Button_人員資料_資料查詢_姓名";
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.Size = new System.Drawing.Size(83, 47);
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.State = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.TabIndex = 140;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.Text = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.Texts = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.音效 = true;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.顯示 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.顯示狀態 = false;
+            // 
+            // rJ_TextBox_人員資料_資料查詢_姓名
+            // 
+            this.rJ_TextBox_人員資料_資料查詢_姓名.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.BorderRadius = 2;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.BorderSize = 1;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_人員資料_資料查詢_姓名.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.GUID = "";
+            this.rJ_TextBox_人員資料_資料查詢_姓名.Location = new System.Drawing.Point(104, 9);
+            this.rJ_TextBox_人員資料_資料查詢_姓名.Multiline = false;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.Name = "rJ_TextBox_人員資料_資料查詢_姓名";
+            this.rJ_TextBox_人員資料_資料查詢_姓名.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_人員資料_資料查詢_姓名.PassWordChar = false;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.PlaceholderText = "";
+            this.rJ_TextBox_人員資料_資料查詢_姓名.ShowTouchPannel = false;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.Size = new System.Drawing.Size(177, 40);
+            this.rJ_TextBox_人員資料_資料查詢_姓名.TabIndex = 5;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_人員資料_資料查詢_姓名.Texts = "";
+            this.rJ_TextBox_人員資料_資料查詢_姓名.UnderlineStyle = false;
+            // 
+            // rJ_Lable137
+            // 
+            this.rJ_Lable137.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable137.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable137.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable137.BorderRadius = 8;
+            this.rJ_Lable137.BorderSize = 0;
+            this.rJ_Lable137.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable137.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable137.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable137.GUID = "";
+            this.rJ_Lable137.Location = new System.Drawing.Point(13, 6);
+            this.rJ_Lable137.Name = "rJ_Lable137";
+            this.rJ_Lable137.Size = new System.Drawing.Size(85, 46);
+            this.rJ_Lable137.TabIndex = 2;
+            this.rJ_Lable137.Text = "姓名";
+            this.rJ_Lable137.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable137.TextColor = System.Drawing.Color.Black;
+            // 
+            // rJ_Pannel19
+            // 
+            this.rJ_Pannel19.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel19.BorderColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Pannel19.BorderRadius = 5;
+            this.rJ_Pannel19.BorderSize = 2;
+            this.rJ_Pannel19.Controls.Add(this.plC_RJ_Button_人員資料_資料查詢_ID);
+            this.rJ_Pannel19.Controls.Add(this.rJ_TextBox_人員資料_資料查詢_ID);
+            this.rJ_Pannel19.Controls.Add(this.rJ_Lable138);
+            this.rJ_Pannel19.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel19.IsSelected = false;
+            this.rJ_Pannel19.Location = new System.Drawing.Point(23, 21);
+            this.rJ_Pannel19.Name = "rJ_Pannel19";
+            this.rJ_Pannel19.Size = new System.Drawing.Size(384, 59);
+            this.rJ_Pannel19.TabIndex = 141;
+            // 
+            // plC_RJ_Button_人員資料_資料查詢_ID
+            // 
+            this.plC_RJ_Button_人員資料_資料查詢_ID.AutoResetState = true;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.Bool = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.BorderRadius = 5;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.but_press = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.Font = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_ID.GUID = "";
+            this.plC_RJ_Button_人員資料_資料查詢_ID.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.Location = new System.Drawing.Point(293, 6);
+            this.plC_RJ_Button_人員資料_資料查詢_ID.Name = "plC_RJ_Button_人員資料_資料查詢_ID";
+            this.plC_RJ_Button_人員資料_資料查詢_ID.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_ID.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_ID.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_ID.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
+            this.plC_RJ_Button_人員資料_資料查詢_ID.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.Size = new System.Drawing.Size(83, 47);
+            this.plC_RJ_Button_人員資料_資料查詢_ID.State = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.TabIndex = 139;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.Text = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_ID.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.Texts = "搜尋";
+            this.plC_RJ_Button_人員資料_資料查詢_ID.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.音效 = true;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.顯示 = false;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.顯示狀態 = false;
+            // 
+            // rJ_TextBox_人員資料_資料查詢_ID
+            // 
+            this.rJ_TextBox_人員資料_資料查詢_ID.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_人員資料_資料查詢_ID.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.rJ_TextBox_人員資料_資料查詢_ID.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_人員資料_資料查詢_ID.BorderRadius = 2;
+            this.rJ_TextBox_人員資料_資料查詢_ID.BorderSize = 1;
+            this.rJ_TextBox_人員資料_資料查詢_ID.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_人員資料_資料查詢_ID.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_資料查詢_ID.GUID = "";
+            this.rJ_TextBox_人員資料_資料查詢_ID.Location = new System.Drawing.Point(104, 9);
+            this.rJ_TextBox_人員資料_資料查詢_ID.Multiline = false;
+            this.rJ_TextBox_人員資料_資料查詢_ID.Name = "rJ_TextBox_人員資料_資料查詢_ID";
+            this.rJ_TextBox_人員資料_資料查詢_ID.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_人員資料_資料查詢_ID.PassWordChar = false;
+            this.rJ_TextBox_人員資料_資料查詢_ID.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_人員資料_資料查詢_ID.PlaceholderText = "";
+            this.rJ_TextBox_人員資料_資料查詢_ID.ShowTouchPannel = false;
+            this.rJ_TextBox_人員資料_資料查詢_ID.Size = new System.Drawing.Size(177, 40);
+            this.rJ_TextBox_人員資料_資料查詢_ID.TabIndex = 3;
+            this.rJ_TextBox_人員資料_資料查詢_ID.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_人員資料_資料查詢_ID.Texts = "";
+            this.rJ_TextBox_人員資料_資料查詢_ID.UnderlineStyle = false;
+            // 
+            // rJ_Lable138
+            // 
+            this.rJ_Lable138.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable138.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable138.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable138.BorderRadius = 8;
+            this.rJ_Lable138.BorderSize = 0;
+            this.rJ_Lable138.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable138.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable138.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable138.GUID = "";
+            this.rJ_Lable138.Location = new System.Drawing.Point(13, 6);
+            this.rJ_Lable138.Name = "rJ_Lable138";
+            this.rJ_Lable138.Size = new System.Drawing.Size(85, 46);
+            this.rJ_Lable138.TabIndex = 2;
+            this.rJ_Lable138.Text = "ID";
+            this.rJ_Lable138.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable138.TextColor = System.Drawing.Color.Black;
+            // 
+            // panel8
+            // 
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.panel4);
+            this.panel8.Controls.Add(this.panel_人員資料_權限設定);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(521, 516);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1118, 490);
+            this.panel8.TabIndex = 119;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.plC_ScreenPage_人員資料_權限設定);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 57);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1116, 431);
+            this.panel4.TabIndex = 117;
             // 
             // plC_ScreenPage_人員資料_權限設定
             // 
@@ -4017,10 +4562,10 @@
             this.plC_ScreenPage_人員資料_權限設定.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_ScreenPage_人員資料_權限設定.ForekColor = System.Drawing.Color.Black;
             this.plC_ScreenPage_人員資料_權限設定.ItemSize = new System.Drawing.Size(54, 21);
-            this.plC_ScreenPage_人員資料_權限設定.Location = new System.Drawing.Point(529, 573);
+            this.plC_ScreenPage_人員資料_權限設定.Location = new System.Drawing.Point(0, 0);
             this.plC_ScreenPage_人員資料_權限設定.Name = "plC_ScreenPage_人員資料_權限設定";
             this.plC_ScreenPage_人員資料_權限設定.SelectedIndex = 0;
-            this.plC_ScreenPage_人員資料_權限設定.Size = new System.Drawing.Size(1110, 433);
+            this.plC_ScreenPage_人員資料_權限設定.Size = new System.Drawing.Size(1116, 431);
             this.plC_ScreenPage_人員資料_權限設定.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_人員資料_權限設定.TabIndex = 116;
             this.plC_ScreenPage_人員資料_權限設定.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -4029,29 +4574,13 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.White;
-            this.tabPage3.Controls.Add(this.panel_權限設定);
+            this.tabPage3.Controls.Add(this.loginIndex_Pannel);
             this.tabPage3.Controls.Add(this.panel29);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1102, 404);
+            this.tabPage3.Size = new System.Drawing.Size(1108, 402);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "一般權限";
-            // 
-            // panel_權限設定
-            // 
-            this.panel_權限設定.BackColor = System.Drawing.Color.White;
-            this.panel_權限設定.BorderColor = System.Drawing.Color.SkyBlue;
-            this.panel_權限設定.BorderRadius = 10;
-            this.panel_權限設定.BorderSize = 2;
-            this.panel_權限設定.Controls.Add(this.loginIndex_Pannel);
-            this.panel_權限設定.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_權限設定.ForeColor = System.Drawing.Color.White;
-            this.panel_權限設定.IsSelected = false;
-            this.panel_權限設定.Location = new System.Drawing.Point(0, 66);
-            this.panel_權限設定.Name = "panel_權限設定";
-            this.panel_權限設定.Padding = new System.Windows.Forms.Padding(5);
-            this.panel_權限設定.Size = new System.Drawing.Size(1102, 338);
-            this.panel_權限設定.TabIndex = 125;
             // 
             // loginIndex_Pannel
             // 
@@ -4061,17 +4590,16 @@
             this.loginIndex_Pannel.CheckBox_OnToggleColor = System.Drawing.Color.WhiteSmoke;
             this.loginIndex_Pannel.CheckBox_SolidStyle = true;
             this.loginIndex_Pannel.CheckBoxWidth = 59;
-            this.loginIndex_Pannel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.loginIndex_Pannel.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.loginIndex_Pannel.Index = -1;
-            this.loginIndex_Pannel.Location = new System.Drawing.Point(5, 5);
+            this.loginIndex_Pannel.Location = new System.Drawing.Point(9, 76);
             this.loginIndex_Pannel.LoginIndex = ((System.Collections.Generic.List<string>)(resources.GetObject("loginIndex_Pannel.LoginIndex")));
             this.loginIndex_Pannel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.loginIndex_Pannel.Name = "loginIndex_Pannel";
             this.loginIndex_Pannel.PanelHeight = 30;
             this.loginIndex_Pannel.PanelWidth = 220;
             this.loginIndex_Pannel.Show_Index = true;
-            this.loginIndex_Pannel.Size = new System.Drawing.Size(1092, 328);
+            this.loginIndex_Pannel.Size = new System.Drawing.Size(743, 434);
             this.loginIndex_Pannel.SpaceWidth = 10;
             this.loginIndex_Pannel.TabIndex = 1;
             this.loginIndex_Pannel.Title_BackgroundColor = System.Drawing.Color.CornflowerBlue;
@@ -4088,10 +4616,9 @@
             this.panel29.Controls.Add(this.rJ_Lable64);
             this.panel29.Controls.Add(this.plC_RJ_ComboBox_權限管理_權限等級);
             this.panel29.Controls.Add(this.plC_Button_權限設定_設定至Server);
-            this.panel29.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel29.Location = new System.Drawing.Point(0, 0);
+            this.panel29.Location = new System.Drawing.Point(9, 3);
             this.panel29.Name = "panel29";
-            this.panel29.Size = new System.Drawing.Size(1102, 66);
+            this.panel29.Size = new System.Drawing.Size(652, 66);
             this.panel29.TabIndex = 126;
             // 
             // rJ_Lable64
@@ -4191,7 +4718,6 @@
             this.plC_Button_權限設定_設定至Server.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
             this.plC_Button_權限設定_設定至Server.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_Button_權限設定_設定至Server.文字鎖住 = false;
-            this.plC_Button_權限設定_設定至Server.致能讀取位置 = "S39014";
             this.plC_Button_權限設定_設定至Server.讀取位元反向 = false;
             this.plC_Button_權限設定_設定至Server.讀寫鎖住 = false;
             this.plC_Button_權限設定_設定至Server.音效 = true;
@@ -4205,7 +4731,7 @@
             this.tabPage5.Controls.Add(this.panel_人員資料_開門權限);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1102, 404);
+            this.tabPage5.Size = new System.Drawing.Size(1108, 402);
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "開門權限";
             // 
@@ -4227,7 +4753,7 @@
             this.plC_ScreenPage_人員資料_開門權限.Location = new System.Drawing.Point(0, 0);
             this.plC_ScreenPage_人員資料_開門權限.Name = "plC_ScreenPage_人員資料_開門權限";
             this.plC_ScreenPage_人員資料_開門權限.SelectedIndex = 0;
-            this.plC_ScreenPage_人員資料_開門權限.Size = new System.Drawing.Size(1102, 339);
+            this.plC_ScreenPage_人員資料_開門權限.Size = new System.Drawing.Size(1108, 337);
             this.plC_ScreenPage_人員資料_開門權限.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_人員資料_開門權限.TabIndex = 1;
             this.plC_ScreenPage_人員資料_開門權限.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -4239,7 +4765,7 @@
             this.tabPage7.Controls.Add(this.flowLayoutPanel_開門權限_01);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1094, 310);
+            this.tabPage7.Size = new System.Drawing.Size(1100, 308);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "01";
             // 
@@ -4249,7 +4775,7 @@
             this.flowLayoutPanel_開門權限_01.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_開門權限_01.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_開門權限_01.Name = "flowLayoutPanel_開門權限_01";
-            this.flowLayoutPanel_開門權限_01.Size = new System.Drawing.Size(1094, 307);
+            this.flowLayoutPanel_開門權限_01.Size = new System.Drawing.Size(1100, 307);
             this.flowLayoutPanel_開門權限_01.TabIndex = 1;
             // 
             // tabPage8
@@ -4258,7 +4784,7 @@
             this.tabPage8.Controls.Add(this.flowLayoutPanel_開門權限_02);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1094, 310);
+            this.tabPage8.Size = new System.Drawing.Size(1100, 308);
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "02";
             // 
@@ -4268,7 +4794,7 @@
             this.flowLayoutPanel_開門權限_02.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_開門權限_02.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_開門權限_02.Name = "flowLayoutPanel_開門權限_02";
-            this.flowLayoutPanel_開門權限_02.Size = new System.Drawing.Size(1094, 308);
+            this.flowLayoutPanel_開門權限_02.Size = new System.Drawing.Size(1100, 308);
             this.flowLayoutPanel_開門權限_02.TabIndex = 2;
             // 
             // tabPage9
@@ -4277,7 +4803,7 @@
             this.tabPage9.Controls.Add(this.flowLayoutPanel_開門權限_03);
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1094, 310);
+            this.tabPage9.Size = new System.Drawing.Size(1100, 308);
             this.tabPage9.TabIndex = 2;
             this.tabPage9.Text = "03";
             // 
@@ -4287,7 +4813,7 @@
             this.flowLayoutPanel_開門權限_03.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_開門權限_03.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_開門權限_03.Name = "flowLayoutPanel_開門權限_03";
-            this.flowLayoutPanel_開門權限_03.Size = new System.Drawing.Size(1094, 308);
+            this.flowLayoutPanel_開門權限_03.Size = new System.Drawing.Size(1100, 308);
             this.flowLayoutPanel_開門權限_03.TabIndex = 2;
             // 
             // tabPage10
@@ -4296,7 +4822,7 @@
             this.tabPage10.Controls.Add(this.flowLayoutPanel_開門權限_04);
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(1094, 310);
+            this.tabPage10.Size = new System.Drawing.Size(1100, 308);
             this.tabPage10.TabIndex = 3;
             this.tabPage10.Text = "04";
             // 
@@ -4306,7 +4832,7 @@
             this.flowLayoutPanel_開門權限_04.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_開門權限_04.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_開門權限_04.Name = "flowLayoutPanel_開門權限_04";
-            this.flowLayoutPanel_開門權限_04.Size = new System.Drawing.Size(1094, 308);
+            this.flowLayoutPanel_開門權限_04.Size = new System.Drawing.Size(1100, 308);
             this.flowLayoutPanel_開門權限_04.TabIndex = 2;
             // 
             // tabPage11
@@ -4315,7 +4841,7 @@
             this.tabPage11.Controls.Add(this.flowLayoutPanel_開門權限_05);
             this.tabPage11.Location = new System.Drawing.Point(4, 25);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(1094, 310);
+            this.tabPage11.Size = new System.Drawing.Size(1100, 308);
             this.tabPage11.TabIndex = 4;
             this.tabPage11.Text = "05";
             // 
@@ -4325,7 +4851,7 @@
             this.flowLayoutPanel_開門權限_05.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_開門權限_05.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_開門權限_05.Name = "flowLayoutPanel_開門權限_05";
-            this.flowLayoutPanel_開門權限_05.Size = new System.Drawing.Size(1094, 308);
+            this.flowLayoutPanel_開門權限_05.Size = new System.Drawing.Size(1100, 308);
             this.flowLayoutPanel_開門權限_05.TabIndex = 2;
             // 
             // tabPage12
@@ -4334,7 +4860,7 @@
             this.tabPage12.Controls.Add(this.flowLayoutPanel_開門權限_06);
             this.tabPage12.Location = new System.Drawing.Point(4, 25);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1094, 310);
+            this.tabPage12.Size = new System.Drawing.Size(1100, 308);
             this.tabPage12.TabIndex = 5;
             this.tabPage12.Text = "06";
             // 
@@ -4344,7 +4870,7 @@
             this.flowLayoutPanel_開門權限_06.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_開門權限_06.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_開門權限_06.Name = "flowLayoutPanel_開門權限_06";
-            this.flowLayoutPanel_開門權限_06.Size = new System.Drawing.Size(1094, 308);
+            this.flowLayoutPanel_開門權限_06.Size = new System.Drawing.Size(1100, 308);
             this.flowLayoutPanel_開門權限_06.TabIndex = 2;
             // 
             // tabPage13
@@ -4353,7 +4879,7 @@
             this.tabPage13.Controls.Add(this.flowLayoutPanel_開門權限_07);
             this.tabPage13.Location = new System.Drawing.Point(4, 25);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(1094, 310);
+            this.tabPage13.Size = new System.Drawing.Size(1100, 308);
             this.tabPage13.TabIndex = 6;
             this.tabPage13.Text = "07";
             // 
@@ -4363,7 +4889,7 @@
             this.flowLayoutPanel_開門權限_07.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_開門權限_07.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_開門權限_07.Name = "flowLayoutPanel_開門權限_07";
-            this.flowLayoutPanel_開門權限_07.Size = new System.Drawing.Size(1094, 308);
+            this.flowLayoutPanel_開門權限_07.Size = new System.Drawing.Size(1100, 308);
             this.flowLayoutPanel_開門權限_07.TabIndex = 2;
             // 
             // tabPage14
@@ -4372,7 +4898,7 @@
             this.tabPage14.Controls.Add(this.flowLayoutPanel_開門權限_08);
             this.tabPage14.Location = new System.Drawing.Point(4, 25);
             this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(1094, 310);
+            this.tabPage14.Size = new System.Drawing.Size(1100, 308);
             this.tabPage14.TabIndex = 7;
             this.tabPage14.Text = "08";
             // 
@@ -4382,7 +4908,7 @@
             this.flowLayoutPanel_開門權限_08.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel_開門權限_08.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel_開門權限_08.Name = "flowLayoutPanel_開門權限_08";
-            this.flowLayoutPanel_開門權限_08.Size = new System.Drawing.Size(1094, 308);
+            this.flowLayoutPanel_開門權限_08.Size = new System.Drawing.Size(1100, 308);
             this.flowLayoutPanel_開門權限_08.TabIndex = 2;
             // 
             // panel_人員資料_開門權限
@@ -4396,9 +4922,9 @@
             this.panel_人員資料_開門權限.Controls.Add(this.plC_RJ_ScreenButton9);
             this.panel_人員資料_開門權限.Controls.Add(this.plC_RJ_ScreenButton8);
             this.panel_人員資料_開門權限.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_人員資料_開門權限.Location = new System.Drawing.Point(0, 339);
+            this.panel_人員資料_開門權限.Location = new System.Drawing.Point(0, 337);
             this.panel_人員資料_開門權限.Name = "panel_人員資料_開門權限";
-            this.panel_人員資料_開門權限.Size = new System.Drawing.Size(1102, 65);
+            this.panel_人員資料_開門權限.Size = new System.Drawing.Size(1108, 65);
             this.panel_人員資料_開門權限.TabIndex = 0;
             // 
             // plC_RJ_ScreenButton15
@@ -4718,9 +5244,9 @@
             this.panel_人員資料_權限設定.Controls.Add(this.plC_RJ_ScreenButton7);
             this.panel_人員資料_權限設定.Controls.Add(this.plC_RJ_ScreenButton4);
             this.panel_人員資料_權限設定.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_人員資料_權限設定.Location = new System.Drawing.Point(529, 516);
+            this.panel_人員資料_權限設定.Location = new System.Drawing.Point(0, 0);
             this.panel_人員資料_權限設定.Name = "panel_人員資料_權限設定";
-            this.panel_人員資料_權限設定.Size = new System.Drawing.Size(1110, 57);
+            this.panel_人員資料_權限設定.Size = new System.Drawing.Size(1116, 57);
             this.panel_人員資料_權限設定.TabIndex = 115;
             // 
             // plC_RJ_ScreenButton7
@@ -4801,6 +5327,64 @@
             this.plC_RJ_ScreenButton4.顯示狀態 = false;
             this.plC_RJ_ScreenButton4.顯示讀取位置 = "";
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.sqL_DataGridView_人員資料);
+            this.panel5.Controls.Add(this.rJ_GroupBox20);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1639, 516);
+            this.panel5.TabIndex = 118;
+            // 
+            // sqL_DataGridView_人員資料
+            // 
+            this.sqL_DataGridView_人員資料.AutoSelectToDeep = false;
+            this.sqL_DataGridView_人員資料.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_人員資料.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_人員資料.BorderRadius = 10;
+            this.sqL_DataGridView_人員資料.BorderSize = 2;
+            this.sqL_DataGridView_人員資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_人員資料.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_人員資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_人員資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_人員資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_人員資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_人員資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_人員資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_人員資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_人員資料.DataBaseName = "Dispensing_000";
+            this.sqL_DataGridView_人員資料.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_人員資料.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_人員資料.ImageBox = false;
+            this.sqL_DataGridView_人員資料.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_人員資料.Name = "sqL_DataGridView_人員資料";
+            this.sqL_DataGridView_人員資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_人員資料.Password = "user82822040";
+            this.sqL_DataGridView_人員資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_人員資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_人員資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_人員資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.sqL_DataGridView_人員資料.RowsHeight = 50;
+            this.sqL_DataGridView_人員資料.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_人員資料.Server = "localhost";
+            this.sqL_DataGridView_人員資料.Size = new System.Drawing.Size(1110, 516);
+            this.sqL_DataGridView_人員資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_人員資料.TabIndex = 115;
+            this.sqL_DataGridView_人員資料.TableName = "person_page";
+            this.sqL_DataGridView_人員資料.UserName = "root";
+            this.sqL_DataGridView_人員資料.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_人員資料.可選擇多列 = true;
+            this.sqL_DataGridView_人員資料.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_人員資料.自動換行 = true;
+            this.sqL_DataGridView_人員資料.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_人員資料.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_人員資料.顯示CheckBox = false;
+            this.sqL_DataGridView_人員資料.顯示首列 = true;
+            this.sqL_DataGridView_人員資料.顯示首行 = true;
+            this.sqL_DataGridView_人員資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_人員資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
             // rJ_GroupBox20
             // 
             // 
@@ -4818,25 +5402,24 @@
             this.rJ_GroupBox20.ContentsPanel.Controls.Add(this.plC_RJ_Button_人員資料_匯入);
             this.rJ_GroupBox20.ContentsPanel.Controls.Add(this.plC_RJ_Button_人員資料_匯出);
             this.rJ_GroupBox20.ContentsPanel.Controls.Add(this.tableLayoutPanel5);
-            this.rJ_GroupBox20.ContentsPanel.Controls.Add(this.rJ_TextBox_人員資料_識別圖案);
             this.rJ_GroupBox20.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox20.ContentsPanel.ForeColor = System.Drawing.Color.White;
             this.rJ_GroupBox20.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox20.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox20.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox20.ContentsPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.rJ_GroupBox20.ContentsPanel.Size = new System.Drawing.Size(529, 453);
+            this.rJ_GroupBox20.ContentsPanel.Size = new System.Drawing.Size(529, 479);
             this.rJ_GroupBox20.ContentsPanel.TabIndex = 2;
-            this.rJ_GroupBox20.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_GroupBox20.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_GroupBox20.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_GroupBox20.GUID = "";
-            this.rJ_GroupBox20.Location = new System.Drawing.Point(0, 516);
+            this.rJ_GroupBox20.Location = new System.Drawing.Point(1110, 0);
             this.rJ_GroupBox20.Name = "rJ_GroupBox20";
             this.rJ_GroupBox20.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox20.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox20.PannelBorderRadius = 2;
             this.rJ_GroupBox20.PannelBorderSize = 2;
-            this.rJ_GroupBox20.Size = new System.Drawing.Size(529, 490);
+            this.rJ_GroupBox20.Size = new System.Drawing.Size(529, 516);
             this.rJ_GroupBox20.TabIndex = 114;
             this.rJ_GroupBox20.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox20.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -4851,7 +5434,7 @@
             // plC_RJ_Button_人員資料_開門權限全關
             // 
             this.plC_RJ_Button_人員資料_開門權限全關.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_開門權限全關.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_Button_人員資料_開門權限全關.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_開門權限全關.Bool = false;
             this.plC_RJ_Button_人員資料_開門權限全關.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_開門權限全關.BorderRadius = 5;
@@ -4863,7 +5446,7 @@
             this.plC_RJ_Button_人員資料_開門權限全關.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_開門權限全關.GUID = "";
             this.plC_RJ_Button_人員資料_開門權限全關.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料_開門權限全關.Location = new System.Drawing.Point(157, 384);
+            this.plC_RJ_Button_人員資料_開門權限全關.Location = new System.Drawing.Point(139, 411);
             this.plC_RJ_Button_人員資料_開門權限全關.Name = "plC_RJ_Button_人員資料_開門權限全關";
             this.plC_RJ_Button_人員資料_開門權限全關.OFF_文字內容 = "開門權限全關";
             this.plC_RJ_Button_人員資料_開門權限全關.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -4894,7 +5477,7 @@
             // plC_RJ_Button_人員資料_開門權限全開
             // 
             this.plC_RJ_Button_人員資料_開門權限全開.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_開門權限全開.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_Button_人員資料_開門權限全開.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_開門權限全開.Bool = false;
             this.plC_RJ_Button_人員資料_開門權限全開.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_開門權限全開.BorderRadius = 5;
@@ -4906,7 +5489,7 @@
             this.plC_RJ_Button_人員資料_開門權限全開.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_開門權限全開.GUID = "";
             this.plC_RJ_Button_人員資料_開門權限全開.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料_開門權限全開.Location = new System.Drawing.Point(343, 384);
+            this.plC_RJ_Button_人員資料_開門權限全開.Location = new System.Drawing.Point(325, 411);
             this.plC_RJ_Button_人員資料_開門權限全開.Name = "plC_RJ_Button_人員資料_開門權限全開";
             this.plC_RJ_Button_人員資料_開門權限全開.OFF_文字內容 = "開門權限全開";
             this.plC_RJ_Button_人員資料_開門權限全開.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -4937,7 +5520,7 @@
             // plC_RJ_Button_人員資料_清除內容
             // 
             this.plC_RJ_Button_人員資料_清除內容.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_清除內容.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_Button_人員資料_清除內容.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_清除內容.Bool = false;
             this.plC_RJ_Button_人員資料_清除內容.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_清除內容.BorderRadius = 5;
@@ -4949,7 +5532,7 @@
             this.plC_RJ_Button_人員資料_清除內容.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_清除內容.GUID = "";
             this.plC_RJ_Button_人員資料_清除內容.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料_清除內容.Location = new System.Drawing.Point(343, 331);
+            this.plC_RJ_Button_人員資料_清除內容.Location = new System.Drawing.Point(389, 338);
             this.plC_RJ_Button_人員資料_清除內容.Name = "plC_RJ_Button_人員資料_清除內容";
             this.plC_RJ_Button_人員資料_清除內容.OFF_文字內容 = "清除內容";
             this.plC_RJ_Button_人員資料_清除內容.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -4960,7 +5543,7 @@
             this.plC_RJ_Button_人員資料_清除內容.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_清除內容.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_清除內容.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_清除內容.Size = new System.Drawing.Size(117, 46);
+            this.plC_RJ_Button_人員資料_清除內容.Size = new System.Drawing.Size(117, 56);
             this.plC_RJ_Button_人員資料_清除內容.State = false;
             this.plC_RJ_Button_人員資料_清除內容.TabIndex = 136;
             this.plC_RJ_Button_人員資料_清除內容.Text = "清除內容";
@@ -4980,7 +5563,7 @@
             // plC_RJ_Button_人員資料_刪除
             // 
             this.plC_RJ_Button_人員資料_刪除.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_刪除.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_Button_人員資料_刪除.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_刪除.Bool = false;
             this.plC_RJ_Button_人員資料_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_刪除.BorderRadius = 5;
@@ -4992,7 +5575,7 @@
             this.plC_RJ_Button_人員資料_刪除.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_刪除.GUID = "";
             this.plC_RJ_Button_人員資料_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料_刪除.Location = new System.Drawing.Point(262, 331);
+            this.plC_RJ_Button_人員資料_刪除.Location = new System.Drawing.Point(201, 338);
             this.plC_RJ_Button_人員資料_刪除.Name = "plC_RJ_Button_人員資料_刪除";
             this.plC_RJ_Button_人員資料_刪除.OFF_文字內容 = "刪除";
             this.plC_RJ_Button_人員資料_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -5003,7 +5586,7 @@
             this.plC_RJ_Button_人員資料_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_刪除.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_刪除.Size = new System.Drawing.Size(75, 46);
+            this.plC_RJ_Button_人員資料_刪除.Size = new System.Drawing.Size(88, 56);
             this.plC_RJ_Button_人員資料_刪除.State = false;
             this.plC_RJ_Button_人員資料_刪除.TabIndex = 133;
             this.plC_RJ_Button_人員資料_刪除.Text = "刪除";
@@ -5023,7 +5606,7 @@
             // plC_RJ_Button_人員資料_登錄
             // 
             this.plC_RJ_Button_人員資料_登錄.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_登錄.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_Button_人員資料_登錄.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_登錄.Bool = false;
             this.plC_RJ_Button_人員資料_登錄.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_登錄.BorderRadius = 5;
@@ -5035,7 +5618,7 @@
             this.plC_RJ_Button_人員資料_登錄.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_登錄.GUID = "";
             this.plC_RJ_Button_人員資料_登錄.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料_登錄.Location = new System.Drawing.Point(181, 331);
+            this.plC_RJ_Button_人員資料_登錄.Location = new System.Drawing.Point(295, 338);
             this.plC_RJ_Button_人員資料_登錄.Name = "plC_RJ_Button_人員資料_登錄";
             this.plC_RJ_Button_人員資料_登錄.OFF_文字內容 = "登錄";
             this.plC_RJ_Button_人員資料_登錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -5046,7 +5629,7 @@
             this.plC_RJ_Button_人員資料_登錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_登錄.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_登錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_登錄.Size = new System.Drawing.Size(75, 46);
+            this.plC_RJ_Button_人員資料_登錄.Size = new System.Drawing.Size(88, 56);
             this.plC_RJ_Button_人員資料_登錄.State = false;
             this.plC_RJ_Button_人員資料_登錄.TabIndex = 132;
             this.plC_RJ_Button_人員資料_登錄.Text = "登錄";
@@ -5066,7 +5649,7 @@
             // plC_RJ_Button_人員資料_匯入
             // 
             this.plC_RJ_Button_人員資料_匯入.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_匯入.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_Button_人員資料_匯入.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_匯入.Bool = false;
             this.plC_RJ_Button_人員資料_匯入.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_匯入.BorderRadius = 5;
@@ -5078,7 +5661,7 @@
             this.plC_RJ_Button_人員資料_匯入.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_匯入.GUID = "";
             this.plC_RJ_Button_人員資料_匯入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料_匯入.Location = new System.Drawing.Point(100, 331);
+            this.plC_RJ_Button_人員資料_匯入.Location = new System.Drawing.Point(107, 338);
             this.plC_RJ_Button_人員資料_匯入.Name = "plC_RJ_Button_人員資料_匯入";
             this.plC_RJ_Button_人員資料_匯入.OFF_文字內容 = "匯入";
             this.plC_RJ_Button_人員資料_匯入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -5089,7 +5672,7 @@
             this.plC_RJ_Button_人員資料_匯入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_匯入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_匯入.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_匯入.Size = new System.Drawing.Size(75, 46);
+            this.plC_RJ_Button_人員資料_匯入.Size = new System.Drawing.Size(88, 56);
             this.plC_RJ_Button_人員資料_匯入.State = false;
             this.plC_RJ_Button_人員資料_匯入.TabIndex = 131;
             this.plC_RJ_Button_人員資料_匯入.Text = "匯入";
@@ -5109,7 +5692,7 @@
             // plC_RJ_Button_人員資料_匯出
             // 
             this.plC_RJ_Button_人員資料_匯出.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_匯出.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.plC_RJ_Button_人員資料_匯出.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_匯出.Bool = false;
             this.plC_RJ_Button_人員資料_匯出.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_匯出.BorderRadius = 5;
@@ -5121,7 +5704,7 @@
             this.plC_RJ_Button_人員資料_匯出.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_匯出.GUID = "";
             this.plC_RJ_Button_人員資料_匯出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料_匯出.Location = new System.Drawing.Point(19, 331);
+            this.plC_RJ_Button_人員資料_匯出.Location = new System.Drawing.Point(13, 338);
             this.plC_RJ_Button_人員資料_匯出.Name = "plC_RJ_Button_人員資料_匯出";
             this.plC_RJ_Button_人員資料_匯出.OFF_文字內容 = "匯出";
             this.plC_RJ_Button_人員資料_匯出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -5132,7 +5715,7 @@
             this.plC_RJ_Button_人員資料_匯出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_匯出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_匯出.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_匯出.Size = new System.Drawing.Size(75, 46);
+            this.plC_RJ_Button_人員資料_匯出.Size = new System.Drawing.Size(88, 56);
             this.plC_RJ_Button_人員資料_匯出.State = false;
             this.plC_RJ_Button_人員資料_匯出.TabIndex = 130;
             this.plC_RJ_Button_人員資料_匯出.Text = "匯出";
@@ -5155,9 +5738,7 @@
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.00766F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.99234F));
-            this.tableLayoutPanel5.Controls.Add(this.rJ_TextBox_人員資料_一維條碼, 1, 8);
-            this.tableLayoutPanel5.Controls.Add(this.label1, 0, 8);
-            this.tableLayoutPanel5.Controls.Add(this.rJ_TextBox_人員資料_卡號, 1, 7);
+            this.tableLayoutPanel5.Controls.Add(this.label17, 0, 6);
             this.tableLayoutPanel5.Controls.Add(this.comboBox_人員資料_權限等級, 1, 5);
             this.tableLayoutPanel5.Controls.Add(this.rJ_TextBox_人員資料_單位, 1, 4);
             this.tableLayoutPanel5.Controls.Add(this.rJ_TextBox_人員資料_密碼, 1, 3);
@@ -5169,10 +5750,8 @@
             this.tableLayoutPanel5.Controls.Add(this.label138, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.label143, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.label102, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.label44, 0, 6);
-            this.tableLayoutPanel5.Controls.Add(this.label17, 0, 7);
-            this.tableLayoutPanel5.Controls.Add(this.panel149, 1, 6);
             this.tableLayoutPanel5.Controls.Add(this.flowLayoutPanel2, 1, 2);
+            this.tableLayoutPanel5.Controls.Add(this.rJ_TextBox_人員資料_卡號, 1, 6);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -5191,68 +5770,20 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(523, 325);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(523, 253);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
-            // rJ_TextBox_人員資料_一維條碼
+            // label17
             // 
-            this.rJ_TextBox_人員資料_一維條碼.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_人員資料_一維條碼.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_TextBox_人員資料_一維條碼.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_人員資料_一維條碼.BorderRadius = 0;
-            this.rJ_TextBox_人員資料_一維條碼.BorderSize = 2;
-            this.rJ_TextBox_人員資料_一維條碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_一維條碼.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_人員資料_一維條碼.GUID = "";
-            this.rJ_TextBox_人員資料_一維條碼.Location = new System.Drawing.Point(98, 292);
-            this.rJ_TextBox_人員資料_一維條碼.Multiline = false;
-            this.rJ_TextBox_人員資料_一維條碼.Name = "rJ_TextBox_人員資料_一維條碼";
-            this.rJ_TextBox_人員資料_一維條碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_人員資料_一維條碼.PassWordChar = false;
-            this.rJ_TextBox_人員資料_一維條碼.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_人員資料_一維條碼.PlaceholderText = "";
-            this.rJ_TextBox_人員資料_一維條碼.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_一維條碼.Size = new System.Drawing.Size(421, 30);
-            this.rJ_TextBox_人員資料_一維條碼.TabIndex = 134;
-            this.rJ_TextBox_人員資料_一維條碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_人員資料_一維條碼.Texts = "";
-            this.rJ_TextBox_人員資料_一維條碼.UnderlineStyle = false;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.LightCyan;
-            this.label1.Font = new System.Drawing.Font("新細明體", 12F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(4, 289);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 35);
-            this.label1.TabIndex = 134;
-            this.label1.Text = "一維條碼";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // rJ_TextBox_人員資料_卡號
-            // 
-            this.rJ_TextBox_人員資料_卡號.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_人員資料_卡號.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_TextBox_人員資料_卡號.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_人員資料_卡號.BorderRadius = 0;
-            this.rJ_TextBox_人員資料_卡號.BorderSize = 2;
-            this.rJ_TextBox_人員資料_卡號.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_卡號.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_人員資料_卡號.GUID = "";
-            this.rJ_TextBox_人員資料_卡號.Location = new System.Drawing.Point(98, 256);
-            this.rJ_TextBox_人員資料_卡號.Multiline = false;
-            this.rJ_TextBox_人員資料_卡號.Name = "rJ_TextBox_人員資料_卡號";
-            this.rJ_TextBox_人員資料_卡號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_人員資料_卡號.PassWordChar = false;
-            this.rJ_TextBox_人員資料_卡號.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_人員資料_卡號.PlaceholderText = "";
-            this.rJ_TextBox_人員資料_卡號.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_卡號.Size = new System.Drawing.Size(421, 30);
-            this.rJ_TextBox_人員資料_卡號.TabIndex = 113;
-            this.rJ_TextBox_人員資料_卡號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_人員資料_卡號.Texts = "";
-            this.rJ_TextBox_人員資料_卡號.UnderlineStyle = false;
+            this.label17.BackColor = System.Drawing.Color.LightCyan;
+            this.label17.Font = new System.Drawing.Font("新細明體", 12F);
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(4, 217);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(86, 35);
+            this.label17.TabIndex = 139;
+            this.label17.Text = "卡號";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboBox_人員資料_權限等級
             // 
@@ -5260,6 +5791,7 @@
             this.comboBox_人員資料_權限等級.BorderColor = System.Drawing.Color.LightSteelBlue;
             this.comboBox_人員資料_權限等級.BorderSize = 1;
             this.comboBox_人員資料_權限等級.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.comboBox_人員資料_權限等級.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_人員資料_權限等級.ForeColor = System.Drawing.Color.DimGray;
             this.comboBox_人員資料_權限等級.GUID = "";
             this.comboBox_人員資料_權限等級.IconColor = System.Drawing.Color.RoyalBlue;
@@ -5290,7 +5822,7 @@
             this.comboBox_人員資料_權限等級.MinimumSize = new System.Drawing.Size(50, 30);
             this.comboBox_人員資料_權限等級.Name = "comboBox_人員資料_權限等級";
             this.comboBox_人員資料_權限等級.Padding = new System.Windows.Forms.Padding(1);
-            this.comboBox_人員資料_權限等級.Size = new System.Drawing.Size(119, 30);
+            this.comboBox_人員資料_權限等級.Size = new System.Drawing.Size(140, 30);
             this.comboBox_人員資料_權限等級.TabIndex = 111;
             this.comboBox_人員資料_權限等級.Texts = "";
             // 
@@ -5462,68 +5994,6 @@
             this.label102.Text = "密碼";
             this.label102.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label44
-            // 
-            this.label44.BackColor = System.Drawing.Color.LightCyan;
-            this.label44.Font = new System.Drawing.Font("新細明體", 12F);
-            this.label44.ForeColor = System.Drawing.Color.Black;
-            this.label44.Location = new System.Drawing.Point(4, 217);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(86, 35);
-            this.label44.TabIndex = 14;
-            this.label44.Text = "顏色";
-            this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label17
-            // 
-            this.label17.BackColor = System.Drawing.Color.LightCyan;
-            this.label17.Font = new System.Drawing.Font("新細明體", 12F);
-            this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(4, 253);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(86, 35);
-            this.label17.TabIndex = 13;
-            this.label17.Text = "卡號";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel149
-            // 
-            this.panel149.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel149.Controls.Add(this.panel150);
-            this.panel149.Controls.Add(this.textBox_人員資料_顏色);
-            this.panel149.Location = new System.Drawing.Point(98, 220);
-            this.panel149.Name = "panel149";
-            this.panel149.Size = new System.Drawing.Size(216, 29);
-            this.panel149.TabIndex = 16;
-            // 
-            // panel150
-            // 
-            this.panel150.Controls.Add(this.button_人員資料_顏色選擇);
-            this.panel150.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel150.Location = new System.Drawing.Point(179, 0);
-            this.panel150.Name = "panel150";
-            this.panel150.Size = new System.Drawing.Size(37, 29);
-            this.panel150.TabIndex = 0;
-            // 
-            // button_人員資料_顏色選擇
-            // 
-            this.button_人員資料_顏色選擇.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button_人員資料_顏色選擇.Location = new System.Drawing.Point(0, 0);
-            this.button_人員資料_顏色選擇.Name = "button_人員資料_顏色選擇";
-            this.button_人員資料_顏色選擇.Size = new System.Drawing.Size(37, 29);
-            this.button_人員資料_顏色選擇.TabIndex = 5;
-            this.button_人員資料_顏色選擇.Text = "...";
-            this.button_人員資料_顏色選擇.UseVisualStyleBackColor = true;
-            // 
-            // textBox_人員資料_顏色
-            // 
-            this.textBox_人員資料_顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox_人員資料_顏色.Location = new System.Drawing.Point(2, 2);
-            this.textBox_人員資料_顏色.Name = "textBox_人員資料_顏色";
-            this.textBox_人員資料_顏色.ReadOnly = true;
-            this.textBox_人員資料_顏色.Size = new System.Drawing.Size(177, 29);
-            this.textBox_人員資料_顏色.TabIndex = 5;
-            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.rJ_RatioButton_人員資料_男);
@@ -5567,78 +6037,29 @@
             this.rJ_RatioButton_人員資料_女.UncheckColor = System.Drawing.Color.Gray;
             this.rJ_RatioButton_人員資料_女.UseVisualStyleBackColor = false;
             // 
-            // rJ_TextBox_人員資料_識別圖案
+            // rJ_TextBox_人員資料_卡號
             // 
-            this.rJ_TextBox_人員資料_識別圖案.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_人員資料_識別圖案.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_TextBox_人員資料_識別圖案.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_人員資料_識別圖案.BorderRadius = 0;
-            this.rJ_TextBox_人員資料_識別圖案.BorderSize = 2;
-            this.rJ_TextBox_人員資料_識別圖案.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_識別圖案.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_人員資料_識別圖案.GUID = "";
-            this.rJ_TextBox_人員資料_識別圖案.Location = new System.Drawing.Point(49, 334);
-            this.rJ_TextBox_人員資料_識別圖案.Multiline = false;
-            this.rJ_TextBox_人員資料_識別圖案.Name = "rJ_TextBox_人員資料_識別圖案";
-            this.rJ_TextBox_人員資料_識別圖案.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_人員資料_識別圖案.PassWordChar = false;
-            this.rJ_TextBox_人員資料_識別圖案.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_人員資料_識別圖案.PlaceholderText = "";
-            this.rJ_TextBox_人員資料_識別圖案.ShowTouchPannel = false;
-            this.rJ_TextBox_人員資料_識別圖案.Size = new System.Drawing.Size(421, 30);
-            this.rJ_TextBox_人員資料_識別圖案.TabIndex = 135;
-            this.rJ_TextBox_人員資料_識別圖案.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_人員資料_識別圖案.Texts = "";
-            this.rJ_TextBox_人員資料_識別圖案.UnderlineStyle = false;
-            this.rJ_TextBox_人員資料_識別圖案.Visible = false;
-            // 
-            // sqL_DataGridView_人員資料
-            // 
-            this.sqL_DataGridView_人員資料.AutoSelectToDeep = false;
-            this.sqL_DataGridView_人員資料.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_人員資料.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_人員資料.BorderRadius = 10;
-            this.sqL_DataGridView_人員資料.BorderSize = 2;
-            this.sqL_DataGridView_人員資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_人員資料.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_人員資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_人員資料.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_人員資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_人員資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_人員資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_人員資料.columnHeadersHeight = 18;
-            this.sqL_DataGridView_人員資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_人員資料.DataBaseName = "Dispensing_000";
-            this.sqL_DataGridView_人員資料.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sqL_DataGridView_人員資料.Font = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_人員資料.ImageBox = false;
-            this.sqL_DataGridView_人員資料.Location = new System.Drawing.Point(0, 0);
-            this.sqL_DataGridView_人員資料.Name = "sqL_DataGridView_人員資料";
-            this.sqL_DataGridView_人員資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_人員資料.Password = "user82822040";
-            this.sqL_DataGridView_人員資料.Port = ((uint)(3306u));
-            this.sqL_DataGridView_人員資料.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
-            this.sqL_DataGridView_人員資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_人員資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.sqL_DataGridView_人員資料.RowsHeight = 50;
-            this.sqL_DataGridView_人員資料.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_人員資料.Server = "localhost";
-            this.sqL_DataGridView_人員資料.Size = new System.Drawing.Size(1639, 516);
-            this.sqL_DataGridView_人員資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_人員資料.TabIndex = 113;
-            this.sqL_DataGridView_人員資料.TableName = "person_page";
-            this.sqL_DataGridView_人員資料.UserName = "root";
-            this.sqL_DataGridView_人員資料.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_人員資料.可選擇多列 = true;
-            this.sqL_DataGridView_人員資料.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_人員資料.自動換行 = true;
-            this.sqL_DataGridView_人員資料.表單字體 = new System.Drawing.Font("新細明體", 9F);
-            this.sqL_DataGridView_人員資料.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sqL_DataGridView_人員資料.顯示CheckBox = false;
-            this.sqL_DataGridView_人員資料.顯示首列 = false;
-            this.sqL_DataGridView_人員資料.顯示首行 = true;
-            this.sqL_DataGridView_人員資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_人員資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.rJ_TextBox_人員資料_卡號.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_人員資料_卡號.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.rJ_TextBox_人員資料_卡號.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_人員資料_卡號.BorderRadius = 0;
+            this.rJ_TextBox_人員資料_卡號.BorderSize = 2;
+            this.rJ_TextBox_人員資料_卡號.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_人員資料_卡號.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_卡號.GUID = "";
+            this.rJ_TextBox_人員資料_卡號.Location = new System.Drawing.Point(98, 220);
+            this.rJ_TextBox_人員資料_卡號.Multiline = false;
+            this.rJ_TextBox_人員資料_卡號.Name = "rJ_TextBox_人員資料_卡號";
+            this.rJ_TextBox_人員資料_卡號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_人員資料_卡號.PassWordChar = false;
+            this.rJ_TextBox_人員資料_卡號.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_人員資料_卡號.PlaceholderText = "";
+            this.rJ_TextBox_人員資料_卡號.ShowTouchPannel = false;
+            this.rJ_TextBox_人員資料_卡號.Size = new System.Drawing.Size(421, 30);
+            this.rJ_TextBox_人員資料_卡號.TabIndex = 113;
+            this.rJ_TextBox_人員資料_卡號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_人員資料_卡號.Texts = "";
+            this.rJ_TextBox_人員資料_卡號.UnderlineStyle = false;
             // 
             // 系統頁面
             // 
@@ -6532,6 +6953,34 @@
             // 交易紀錄
             // 
             this.交易紀錄.BackColor = System.Drawing.SystemColors.Window;
+            this.交易紀錄.Controls.Add(this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋);
+            this.交易紀錄.Controls.Add(this.rJ_Lable15);
+            this.交易紀錄.Controls.Add(this.dateTimePicker_交易記錄查詢_領用時間_結束);
+            this.交易紀錄.Controls.Add(this.label2);
+            this.交易紀錄.Controls.Add(this.dateTimePicker_交易記錄查詢_領用時間_起始);
+            this.交易紀錄.Controls.Add(this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋);
+            this.交易紀錄.Controls.Add(this.rJ_Lable13);
+            this.交易紀錄.Controls.Add(this.dateTimePicker_交易記錄查詢_開方時間_結束);
+            this.交易紀錄.Controls.Add(this.label1);
+            this.交易紀錄.Controls.Add(this.dateTimePicker_交易記錄查詢_開方時間_起始);
+            this.交易紀錄.Controls.Add(this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋);
+            this.交易紀錄.Controls.Add(this.rJ_Lable30);
+            this.交易紀錄.Controls.Add(this.dateTimePicker_交易記錄查詢_操作時間_結束);
+            this.交易紀錄.Controls.Add(this.label106);
+            this.交易紀錄.Controls.Add(this.dateTimePicker_交易記錄查詢_操作時間_起始);
+            this.交易紀錄.Controls.Add(this.plC_CheckBox_交易記錄查詢_顯示細節);
+            this.交易紀錄.Controls.Add(this.plC_RJ_Button_交易記錄查詢_領用人_搜尋);
+            this.交易紀錄.Controls.Add(this.rJ_TextBox_交易記錄查詢_領用人);
+            this.交易紀錄.Controls.Add(this.rJ_Lable11);
+            this.交易紀錄.Controls.Add(this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋);
+            this.交易紀錄.Controls.Add(this.rJ_TextBox_交易記錄查詢_調劑人);
+            this.交易紀錄.Controls.Add(this.rJ_Lable9);
+            this.交易紀錄.Controls.Add(this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋);
+            this.交易紀錄.Controls.Add(this.rJ_TextBox_交易記錄查詢_藥品名稱);
+            this.交易紀錄.Controls.Add(this.rJ_Lable8);
+            this.交易紀錄.Controls.Add(this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋);
+            this.交易紀錄.Controls.Add(this.textBox_交易記錄查詢_藥品碼);
+            this.交易紀錄.Controls.Add(this.rJ_Lable26);
             this.交易紀錄.Controls.Add(this.plC_RJ_Button_交易記錄查詢_顯示全部);
             this.交易紀錄.Controls.Add(this.sqL_DataGridView_交易記錄查詢);
             this.交易紀錄.Location = new System.Drawing.Point(4, 25);
@@ -6539,6 +6988,350 @@
             this.交易紀錄.Size = new System.Drawing.Size(1639, 1006);
             this.交易紀錄.TabIndex = 7;
             this.交易紀錄.Text = "交易紀錄";
+            // 
+            // plC_RJ_Button_交易記錄查詢_領用人_搜尋
+            // 
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.AutoResetState = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Bool = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.BorderRadius = 5;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.but_press = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.GUID = "";
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Location = new System.Drawing.Point(360, 912);
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Name = "plC_RJ_Button_交易記錄查詢_領用人_搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.ON_BorderSize = 5;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Size = new System.Drawing.Size(87, 46);
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.State = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.TabIndex = 174;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Text = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Texts = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.字型鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.文字鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.讀取位元反向 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.音效 = true;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.顯示 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.顯示狀態 = false;
+            // 
+            // rJ_TextBox_交易記錄查詢_領用人
+            // 
+            this.rJ_TextBox_交易記錄查詢_領用人.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_交易記錄查詢_領用人.BorderColor = System.Drawing.Color.Navy;
+            this.rJ_TextBox_交易記錄查詢_領用人.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_交易記錄查詢_領用人.BorderRadius = 0;
+            this.rJ_TextBox_交易記錄查詢_領用人.BorderSize = 2;
+            this.rJ_TextBox_交易記錄查詢_領用人.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.rJ_TextBox_交易記錄查詢_領用人.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_交易記錄查詢_領用人.GUID = "";
+            this.rJ_TextBox_交易記錄查詢_領用人.Location = new System.Drawing.Point(158, 917);
+            this.rJ_TextBox_交易記錄查詢_領用人.Multiline = false;
+            this.rJ_TextBox_交易記錄查詢_領用人.Name = "rJ_TextBox_交易記錄查詢_領用人";
+            this.rJ_TextBox_交易記錄查詢_領用人.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_交易記錄查詢_領用人.PassWordChar = false;
+            this.rJ_TextBox_交易記錄查詢_領用人.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_交易記錄查詢_領用人.PlaceholderText = "";
+            this.rJ_TextBox_交易記錄查詢_領用人.ShowTouchPannel = false;
+            this.rJ_TextBox_交易記錄查詢_領用人.Size = new System.Drawing.Size(188, 36);
+            this.rJ_TextBox_交易記錄查詢_領用人.TabIndex = 173;
+            this.rJ_TextBox_交易記錄查詢_領用人.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_交易記錄查詢_領用人.Texts = "";
+            this.rJ_TextBox_交易記錄查詢_領用人.UnderlineStyle = false;
+            // 
+            // rJ_Lable11
+            // 
+            this.rJ_Lable11.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable11.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable11.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable11.BorderRadius = 8;
+            this.rJ_Lable11.BorderSize = 0;
+            this.rJ_Lable11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable11.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable11.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable11.GUID = "";
+            this.rJ_Lable11.Location = new System.Drawing.Point(30, 912);
+            this.rJ_Lable11.Name = "rJ_Lable11";
+            this.rJ_Lable11.Size = new System.Drawing.Size(117, 46);
+            this.rJ_Lable11.TabIndex = 172;
+            this.rJ_Lable11.Text = "領用人";
+            this.rJ_Lable11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable11.TextColor = System.Drawing.Color.Black;
+            // 
+            // plC_RJ_Button__交易記錄查詢_調劑人_搜尋
+            // 
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.AutoResetState = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Bool = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.BorderRadius = 5;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.BorderSize = 0;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.but_press = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.GUID = "";
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Location = new System.Drawing.Point(360, 858);
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Name = "plC_RJ_Button__交易記錄查詢_調劑人_搜尋";
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.ON_BorderSize = 5;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Size = new System.Drawing.Size(87, 46);
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.State = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.TabIndex = 171;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Text = "搜尋";
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Texts = "搜尋";
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.字型鎖住 = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.文字鎖住 = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.讀取位元反向 = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.讀寫鎖住 = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.音效 = true;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.顯示 = false;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.顯示狀態 = false;
+            // 
+            // rJ_TextBox_交易記錄查詢_調劑人
+            // 
+            this.rJ_TextBox_交易記錄查詢_調劑人.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_交易記錄查詢_調劑人.BorderColor = System.Drawing.Color.Navy;
+            this.rJ_TextBox_交易記錄查詢_調劑人.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_交易記錄查詢_調劑人.BorderRadius = 0;
+            this.rJ_TextBox_交易記錄查詢_調劑人.BorderSize = 2;
+            this.rJ_TextBox_交易記錄查詢_調劑人.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.rJ_TextBox_交易記錄查詢_調劑人.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_交易記錄查詢_調劑人.GUID = "";
+            this.rJ_TextBox_交易記錄查詢_調劑人.Location = new System.Drawing.Point(158, 863);
+            this.rJ_TextBox_交易記錄查詢_調劑人.Multiline = false;
+            this.rJ_TextBox_交易記錄查詢_調劑人.Name = "rJ_TextBox_交易記錄查詢_調劑人";
+            this.rJ_TextBox_交易記錄查詢_調劑人.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_交易記錄查詢_調劑人.PassWordChar = false;
+            this.rJ_TextBox_交易記錄查詢_調劑人.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_交易記錄查詢_調劑人.PlaceholderText = "";
+            this.rJ_TextBox_交易記錄查詢_調劑人.ShowTouchPannel = false;
+            this.rJ_TextBox_交易記錄查詢_調劑人.Size = new System.Drawing.Size(188, 36);
+            this.rJ_TextBox_交易記錄查詢_調劑人.TabIndex = 170;
+            this.rJ_TextBox_交易記錄查詢_調劑人.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_交易記錄查詢_調劑人.Texts = "";
+            this.rJ_TextBox_交易記錄查詢_調劑人.UnderlineStyle = false;
+            // 
+            // rJ_Lable9
+            // 
+            this.rJ_Lable9.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable9.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable9.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable9.BorderRadius = 8;
+            this.rJ_Lable9.BorderSize = 0;
+            this.rJ_Lable9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable9.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable9.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable9.GUID = "";
+            this.rJ_Lable9.Location = new System.Drawing.Point(30, 858);
+            this.rJ_Lable9.Name = "rJ_Lable9";
+            this.rJ_Lable9.Size = new System.Drawing.Size(117, 46);
+            this.rJ_Lable9.TabIndex = 169;
+            this.rJ_Lable9.Text = "調劑人";
+            this.rJ_Lable9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable9.TextColor = System.Drawing.Color.Black;
+            // 
+            // plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋
+            // 
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.AutoResetState = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Bool = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.BorderRadius = 5;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.but_press = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.GUID = "";
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Location = new System.Drawing.Point(360, 803);
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Name = "plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.ON_BorderSize = 5;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Size = new System.Drawing.Size(87, 46);
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.State = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.TabIndex = 168;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Text = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Texts = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.字型鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.文字鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.讀取位元反向 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.音效 = true;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.顯示 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.顯示狀態 = false;
+            // 
+            // rJ_TextBox_交易記錄查詢_藥品名稱
+            // 
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.BorderColor = System.Drawing.Color.Navy;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.BorderRadius = 0;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.BorderSize = 2;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.GUID = "";
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.Location = new System.Drawing.Point(158, 808);
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.Multiline = false;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.Name = "rJ_TextBox_交易記錄查詢_藥品名稱";
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.PassWordChar = false;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.PlaceholderText = "";
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.ShowTouchPannel = false;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.Size = new System.Drawing.Size(188, 36);
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.TabIndex = 167;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.Texts = "";
+            this.rJ_TextBox_交易記錄查詢_藥品名稱.UnderlineStyle = false;
+            // 
+            // rJ_Lable8
+            // 
+            this.rJ_Lable8.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable8.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable8.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable8.BorderRadius = 8;
+            this.rJ_Lable8.BorderSize = 0;
+            this.rJ_Lable8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable8.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable8.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable8.GUID = "";
+            this.rJ_Lable8.Location = new System.Drawing.Point(30, 803);
+            this.rJ_Lable8.Name = "rJ_Lable8";
+            this.rJ_Lable8.Size = new System.Drawing.Size(117, 46);
+            this.rJ_Lable8.TabIndex = 166;
+            this.rJ_Lable8.Text = "藥品名稱";
+            this.rJ_Lable8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable8.TextColor = System.Drawing.Color.Black;
+            // 
+            // plC_RJ_Button_交易記錄查詢_藥品碼_搜尋
+            // 
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.AutoResetState = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Bool = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.BorderRadius = 5;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.but_press = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.GUID = "";
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Location = new System.Drawing.Point(360, 750);
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Name = "plC_RJ_Button_交易記錄查詢_藥品碼_搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.ON_BorderSize = 5;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Size = new System.Drawing.Size(87, 46);
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.State = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.TabIndex = 165;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Text = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Texts = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.字型鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.文字鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.讀取位元反向 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.音效 = true;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.顯示 = false;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.顯示狀態 = false;
+            // 
+            // textBox_交易記錄查詢_藥品碼
+            // 
+            this.textBox_交易記錄查詢_藥品碼.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_交易記錄查詢_藥品碼.BorderColor = System.Drawing.Color.Navy;
+            this.textBox_交易記錄查詢_藥品碼.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_交易記錄查詢_藥品碼.BorderRadius = 0;
+            this.textBox_交易記錄查詢_藥品碼.BorderSize = 2;
+            this.textBox_交易記錄查詢_藥品碼.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.textBox_交易記錄查詢_藥品碼.ForeColor = System.Drawing.Color.DimGray;
+            this.textBox_交易記錄查詢_藥品碼.GUID = "";
+            this.textBox_交易記錄查詢_藥品碼.Location = new System.Drawing.Point(158, 755);
+            this.textBox_交易記錄查詢_藥品碼.Multiline = false;
+            this.textBox_交易記錄查詢_藥品碼.Name = "textBox_交易記錄查詢_藥品碼";
+            this.textBox_交易記錄查詢_藥品碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_交易記錄查詢_藥品碼.PassWordChar = false;
+            this.textBox_交易記錄查詢_藥品碼.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.textBox_交易記錄查詢_藥品碼.PlaceholderText = "";
+            this.textBox_交易記錄查詢_藥品碼.ShowTouchPannel = false;
+            this.textBox_交易記錄查詢_藥品碼.Size = new System.Drawing.Size(188, 36);
+            this.textBox_交易記錄查詢_藥品碼.TabIndex = 145;
+            this.textBox_交易記錄查詢_藥品碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_交易記錄查詢_藥品碼.Texts = "";
+            this.textBox_交易記錄查詢_藥品碼.UnderlineStyle = false;
+            // 
+            // rJ_Lable26
+            // 
+            this.rJ_Lable26.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable26.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable26.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable26.BorderRadius = 8;
+            this.rJ_Lable26.BorderSize = 0;
+            this.rJ_Lable26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable26.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable26.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable26.GUID = "";
+            this.rJ_Lable26.Location = new System.Drawing.Point(30, 750);
+            this.rJ_Lable26.Name = "rJ_Lable26";
+            this.rJ_Lable26.Size = new System.Drawing.Size(117, 46);
+            this.rJ_Lable26.TabIndex = 144;
+            this.rJ_Lable26.Text = "藥品碼";
+            this.rJ_Lable26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable26.TextColor = System.Drawing.Color.Black;
             // 
             // plC_RJ_Button_交易記錄查詢_顯示全部
             // 
@@ -6555,7 +7348,7 @@
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_交易記錄查詢_顯示全部.GUID = "";
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.Location = new System.Drawing.Point(1475, 760);
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.Location = new System.Drawing.Point(1475, 913);
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Name = "plC_RJ_Button_交易記錄查詢_顯示全部";
             this.plC_RJ_Button_交易記錄查詢_顯示全部.OFF_文字內容 = "顯示全部";
             this.plC_RJ_Button_交易記錄查詢_顯示全部.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
@@ -6582,6 +7375,7 @@
             this.plC_RJ_Button_交易記錄查詢_顯示全部.音效 = true;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.顯示 = false;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.顯示狀態 = false;
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.顯示讀取位置 = "S4077";
             // 
             // sqL_DataGridView_交易記錄查詢
             // 
@@ -6592,10 +7386,10 @@
             this.sqL_DataGridView_交易記錄查詢.BorderSize = 2;
             this.sqL_DataGridView_交易記錄查詢.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.sqL_DataGridView_交易記錄查詢.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_交易記錄查詢.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_交易記錄查詢.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_交易記錄查詢.cellStylForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_交易記錄查詢.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_交易記錄查詢.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_交易記錄查詢.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_交易記錄查詢.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.sqL_DataGridView_交易記錄查詢.columnHeadersHeight = 18;
             this.sqL_DataGridView_交易記錄查詢.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -6611,7 +7405,7 @@
             this.sqL_DataGridView_交易記錄查詢.rowHeaderBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_交易記錄查詢.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_交易記錄查詢.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.sqL_DataGridView_交易記錄查詢.RowsHeight = 80;
+            this.sqL_DataGridView_交易記錄查詢.RowsHeight = 60;
             this.sqL_DataGridView_交易記錄查詢.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_交易記錄查詢.Server = "localhost";
             this.sqL_DataGridView_交易記錄查詢.Size = new System.Drawing.Size(1639, 690);
@@ -6656,6 +7450,11 @@
             this.plC_AlarmFlow1.警報編輯 = ((System.Collections.Generic.List<string>)(resources.GetObject("plC_AlarmFlow1.警報編輯")));
             this.plC_AlarmFlow1.顯示警報編號 = false;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // pannel_Box1
             // 
             this.pannel_Box1.Alarm_Time_Adress = "";
@@ -6679,10 +7478,323 @@
             this.pannel_Box1.TabIndex = 0;
             this.pannel_Box1.WardFont = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             // 
-            // contextMenuStrip1
+            // plC_CheckBox_交易記錄查詢_顯示細節
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.plC_CheckBox_交易記錄查詢_顯示細節.AutoSize = true;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.Bool = false;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_交易記錄查詢_顯示細節.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.Location = new System.Drawing.Point(502, 707);
+            this.plC_CheckBox_交易記錄查詢_顯示細節.Name = "plC_CheckBox_交易記錄查詢_顯示細節";
+            this.plC_CheckBox_交易記錄查詢_顯示細節.Size = new System.Drawing.Size(115, 31);
+            this.plC_CheckBox_交易記錄查詢_顯示細節.TabIndex = 175;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.Text = "顯示細節";
+            this.plC_CheckBox_交易記錄查詢_顯示細節.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.文字內容 = "顯示細節";
+            this.plC_CheckBox_交易記錄查詢_顯示細節.文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_CheckBox_交易記錄查詢_顯示細節.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.讀寫鎖住 = false;
+            this.plC_CheckBox_交易記錄查詢_顯示細節.音效 = true;
+            // 
+            // rJ_Lable30
+            // 
+            this.rJ_Lable30.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable30.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable30.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable30.BorderRadius = 8;
+            this.rJ_Lable30.BorderSize = 0;
+            this.rJ_Lable30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable30.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable30.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable30.GUID = "";
+            this.rJ_Lable30.Location = new System.Drawing.Point(495, 750);
+            this.rJ_Lable30.Name = "rJ_Lable30";
+            this.rJ_Lable30.Size = new System.Drawing.Size(122, 46);
+            this.rJ_Lable30.TabIndex = 176;
+            this.rJ_Lable30.Text = "操作時間";
+            this.rJ_Lable30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable30.TextColor = System.Drawing.Color.Black;
+            // 
+            // dateTimePicker_交易記錄查詢_操作時間_結束
+            // 
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.Font = new System.Drawing.Font("新細明體", 15.75F);
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.Location = new System.Drawing.Point(794, 756);
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.MinimumSize = new System.Drawing.Size(100, 35);
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.Name = "dateTimePicker_交易記錄查詢_操作時間_結束";
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.Size = new System.Drawing.Size(141, 35);
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.SkinColor = System.Drawing.Color.CornflowerBlue;
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.TabIndex = 179;
+            this.dateTimePicker_交易記錄查詢_操作時間_結束.TextColor = System.Drawing.Color.White;
+            // 
+            // label106
+            // 
+            this.label106.AutoSize = true;
+            this.label106.ForeColor = System.Drawing.Color.Black;
+            this.label106.Location = new System.Drawing.Point(777, 767);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(11, 12);
+            this.label106.TabIndex = 178;
+            this.label106.Text = "~";
+            // 
+            // dateTimePicker_交易記錄查詢_操作時間_起始
+            // 
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.Font = new System.Drawing.Font("新細明體", 15.75F);
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.Location = new System.Drawing.Point(630, 756);
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.MinimumSize = new System.Drawing.Size(100, 35);
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.Name = "dateTimePicker_交易記錄查詢_操作時間_起始";
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.Size = new System.Drawing.Size(142, 35);
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.SkinColor = System.Drawing.Color.CornflowerBlue;
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.TabIndex = 177;
+            this.dateTimePicker_交易記錄查詢_操作時間_起始.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_交易記錄查詢_操作時間_搜尋
+            // 
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.AutoResetState = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Bool = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.BorderRadius = 5;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.but_press = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.GUID = "";
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Location = new System.Drawing.Point(941, 750);
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Name = "plC_RJ_Button_交易記錄查詢_操作時間_搜尋";
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.ON_BorderSize = 5;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Size = new System.Drawing.Size(87, 46);
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.State = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.TabIndex = 180;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Text = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Texts = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.字型鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.文字鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.讀取位元反向 = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.音效 = true;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.顯示 = false;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_交易記錄查詢_開方時間_搜尋
+            // 
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.AutoResetState = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Bool = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.BorderRadius = 5;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.but_press = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.GUID = "";
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Location = new System.Drawing.Point(941, 803);
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Name = "plC_RJ_Button_交易記錄查詢_開方時間_搜尋";
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.ON_BorderSize = 5;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Size = new System.Drawing.Size(87, 46);
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.State = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.TabIndex = 185;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Text = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Texts = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.字型鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.文字鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.讀取位元反向 = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.音效 = true;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.顯示 = false;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.顯示狀態 = false;
+            // 
+            // rJ_Lable13
+            // 
+            this.rJ_Lable13.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable13.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable13.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable13.BorderRadius = 8;
+            this.rJ_Lable13.BorderSize = 0;
+            this.rJ_Lable13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable13.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable13.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable13.GUID = "";
+            this.rJ_Lable13.Location = new System.Drawing.Point(495, 803);
+            this.rJ_Lable13.Name = "rJ_Lable13";
+            this.rJ_Lable13.Size = new System.Drawing.Size(122, 46);
+            this.rJ_Lable13.TabIndex = 181;
+            this.rJ_Lable13.Text = "開方時間";
+            this.rJ_Lable13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable13.TextColor = System.Drawing.Color.Black;
+            // 
+            // dateTimePicker_交易記錄查詢_開方時間_結束
+            // 
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.Font = new System.Drawing.Font("新細明體", 15.75F);
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.Location = new System.Drawing.Point(794, 809);
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.MinimumSize = new System.Drawing.Size(100, 35);
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.Name = "dateTimePicker_交易記錄查詢_開方時間_結束";
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.Size = new System.Drawing.Size(141, 35);
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.SkinColor = System.Drawing.Color.CornflowerBlue;
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.TabIndex = 184;
+            this.dateTimePicker_交易記錄查詢_開方時間_結束.TextColor = System.Drawing.Color.White;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(777, 820);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(11, 12);
+            this.label1.TabIndex = 183;
+            this.label1.Text = "~";
+            // 
+            // dateTimePicker_交易記錄查詢_開方時間_起始
+            // 
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.Font = new System.Drawing.Font("新細明體", 15.75F);
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.Location = new System.Drawing.Point(630, 809);
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.MinimumSize = new System.Drawing.Size(100, 35);
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.Name = "dateTimePicker_交易記錄查詢_開方時間_起始";
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.Size = new System.Drawing.Size(142, 35);
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.SkinColor = System.Drawing.Color.CornflowerBlue;
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.TabIndex = 182;
+            this.dateTimePicker_交易記錄查詢_開方時間_起始.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_交易記錄查詢_領用時間_搜尋
+            // 
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.AutoResetState = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Bool = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.BorderRadius = 5;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.but_press = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.GUID = "";
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Location = new System.Drawing.Point(941, 855);
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Name = "plC_RJ_Button_交易記錄查詢_領用時間_搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.ON_BorderSize = 5;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Size = new System.Drawing.Size(87, 46);
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.State = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.TabIndex = 190;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Text = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Texts = "搜尋";
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.字型鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.文字鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.讀取位元反向 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.音效 = true;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.顯示 = false;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.顯示狀態 = false;
+            // 
+            // rJ_Lable15
+            // 
+            this.rJ_Lable15.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable15.BackgroundColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable15.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable15.BorderRadius = 8;
+            this.rJ_Lable15.BorderSize = 0;
+            this.rJ_Lable15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable15.Font = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_Lable15.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable15.GUID = "";
+            this.rJ_Lable15.Location = new System.Drawing.Point(495, 855);
+            this.rJ_Lable15.Name = "rJ_Lable15";
+            this.rJ_Lable15.Size = new System.Drawing.Size(122, 46);
+            this.rJ_Lable15.TabIndex = 186;
+            this.rJ_Lable15.Text = "領用時間";
+            this.rJ_Lable15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable15.TextColor = System.Drawing.Color.Black;
+            // 
+            // dateTimePicker_交易記錄查詢_領用時間_結束
+            // 
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.Font = new System.Drawing.Font("新細明體", 15.75F);
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.Location = new System.Drawing.Point(794, 861);
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.MinimumSize = new System.Drawing.Size(100, 35);
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.Name = "dateTimePicker_交易記錄查詢_領用時間_結束";
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.Size = new System.Drawing.Size(141, 35);
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.SkinColor = System.Drawing.Color.CornflowerBlue;
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.TabIndex = 189;
+            this.dateTimePicker_交易記錄查詢_領用時間_結束.TextColor = System.Drawing.Color.White;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(777, 872);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(11, 12);
+            this.label2.TabIndex = 188;
+            this.label2.Text = "~";
+            // 
+            // dateTimePicker_交易記錄查詢_領用時間_起始
+            // 
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.BorderSize = 0;
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.Font = new System.Drawing.Font("新細明體", 15.75F);
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.Location = new System.Drawing.Point(630, 861);
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.MinimumSize = new System.Drawing.Size(100, 35);
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.Name = "dateTimePicker_交易記錄查詢_領用時間_起始";
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.Size = new System.Drawing.Size(142, 35);
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.SkinColor = System.Drawing.Color.CornflowerBlue;
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.TabIndex = 187;
+            this.dateTimePicker_交易記錄查詢_領用時間_起始.TextColor = System.Drawing.Color.White;
             // 
             // Form1
             // 
@@ -6748,9 +7860,16 @@
             this.rJ_Pannel3.ResumeLayout(false);
             this.rJ_Pannel2.ResumeLayout(false);
             this.人員資料.ResumeLayout(false);
+            this.rJ_GroupBox2.ContentsPanel.ResumeLayout(false);
+            this.rJ_GroupBox2.ResumeLayout(false);
+            this.rJ_Pannel14.ResumeLayout(false);
+            this.rJ_Pannel13.ResumeLayout(false);
+            this.rJ_Pannel18.ResumeLayout(false);
+            this.rJ_Pannel19.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.plC_ScreenPage_人員資料_權限設定.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.panel_權限設定.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.plC_ScreenPage_人員資料_開門權限.ResumeLayout(false);
@@ -6764,12 +7883,10 @@
             this.tabPage14.ResumeLayout(false);
             this.panel_人員資料_開門權限.ResumeLayout(false);
             this.panel_人員資料_權限設定.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.rJ_GroupBox20.ContentsPanel.ResumeLayout(false);
             this.rJ_GroupBox20.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            this.panel149.ResumeLayout(false);
-            this.panel149.PerformLayout();
-            this.panel150.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.系統頁面.ResumeLayout(false);
@@ -6790,6 +7907,7 @@
             this.tabPage21.ResumeLayout(false);
             this.panel_系統頁面.ResumeLayout(false);
             this.交易紀錄.ResumeLayout(false);
+            this.交易紀錄.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -6843,14 +7961,11 @@
         private MySQL_Login.LoginUI loginUI;
         private MyUI.RJ_GroupBox rJ_GroupBox20;
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_清除內容;
-        private MyUI.RJ_TextBox rJ_TextBox_人員資料_識別圖案;
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_刪除;
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_登錄;
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_匯入;
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_匯出;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private MyUI.RJ_TextBox rJ_TextBox_人員資料_一維條碼;
-        private System.Windows.Forms.Label label1;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_卡號;
         private MyUI.RJ_ComboBox comboBox_人員資料_權限等級;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_單位;
@@ -6863,16 +7978,9 @@
         private System.Windows.Forms.Label label138;
         private System.Windows.Forms.Label label143;
         private System.Windows.Forms.Label label102;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Panel panel149;
-        private System.Windows.Forms.Panel panel150;
-        private System.Windows.Forms.Button button_人員資料_顏色選擇;
-        private System.Windows.Forms.TextBox textBox_人員資料_顏色;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private MyUI.RJ_RatioButton rJ_RatioButton_人員資料_男;
         private MyUI.RJ_RatioButton rJ_RatioButton_人員資料_女;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_人員資料;
         private System.Windows.Forms.Panel panel232;
         private MyUI.RJ_TextBox rJ_TextBox_登入者顏色;
         private MyUI.RJ_TextBox rJ_TextBox_登入者姓名;
@@ -6883,7 +7991,6 @@
         private System.Windows.Forms.ColorDialog colorDialog;
         private MyUI.PLC_ScreenPage plC_ScreenPage_人員資料_權限設定;
         private System.Windows.Forms.TabPage tabPage3;
-        private MyUI.RJ_Pannel panel_權限設定;
         private MySQL_Login.LoginIndex_Pannel loginIndex_Pannel;
         private MyUI.PLC_RJ_Button plC_Button_權限設定_設定至Server;
         private MyUI.PLC_RJ_ComboBox plC_RJ_ComboBox_權限管理_權限等級;
@@ -7057,7 +8164,6 @@
         private System.Windows.Forms.TabPage tabPage21;
         private H_Pannel_lib.StorageUI_EPD_266 storageUI_EPD_266;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton17;
-        private System.Windows.Forms.TabPage 藥袋資料;
         private SQLUI.SQL_DataGridView sqL_DataGridView_交易記錄查詢;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton_勤務取藥;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton_配藥核對;
@@ -7088,6 +8194,57 @@
         private MyUI.RJ_Lable rJ_Lable_配藥核對_狀態;
         private System.Windows.Forms.Panel panel3;
         private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_顯示全部;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_人員資料;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Panel panel8;
+        private MyUI.RJ_GroupBox rJ_GroupBox2;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_顯示全部;
+        private MyUI.RJ_Pannel rJ_Pannel14;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_資料查詢_一維條碼;
+        private MyUI.RJ_TextBox rJ_TextBox_人員資料_資料查詢_一維條碼;
+        private MyUI.RJ_Lable rJ_Lable136;
+        private MyUI.RJ_Pannel rJ_Pannel13;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_資料查詢_卡號;
+        private MyUI.RJ_TextBox rJ_TextBox_人員資料_資料查詢_卡號;
+        private MyUI.RJ_Lable rJ_Lable135;
+        private MyUI.RJ_Pannel rJ_Pannel18;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_資料查詢_姓名;
+        private MyUI.RJ_TextBox rJ_TextBox_人員資料_資料查詢_姓名;
+        private MyUI.RJ_Lable rJ_Lable137;
+        private MyUI.RJ_Pannel rJ_Pannel19;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_資料查詢_ID;
+        private MyUI.RJ_TextBox rJ_TextBox_人員資料_資料查詢_ID;
+        private MyUI.RJ_Lable rJ_Lable138;
+        private MyUI.RJ_TextBox textBox_交易記錄查詢_藥品碼;
+        private MyUI.RJ_Lable rJ_Lable26;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋;
+        private MyUI.RJ_TextBox rJ_TextBox_交易記錄查詢_藥品名稱;
+        private MyUI.RJ_Lable rJ_Lable8;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_藥品碼_搜尋;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_領用人_搜尋;
+        private MyUI.RJ_TextBox rJ_TextBox_交易記錄查詢_領用人;
+        private MyUI.RJ_Lable rJ_Lable11;
+        private MyUI.PLC_RJ_Button plC_RJ_Button__交易記錄查詢_調劑人_搜尋;
+        private MyUI.RJ_TextBox rJ_TextBox_交易記錄查詢_調劑人;
+        private MyUI.RJ_Lable rJ_Lable9;
+        private MyUI.PLC_CheckBox plC_CheckBox_交易記錄查詢_顯示細節;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_領用時間_搜尋;
+        private MyUI.RJ_Lable rJ_Lable15;
+        private MyUI.RJ_DatePicker dateTimePicker_交易記錄查詢_領用時間_結束;
+        private System.Windows.Forms.Label label2;
+        private MyUI.RJ_DatePicker dateTimePicker_交易記錄查詢_領用時間_起始;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_開方時間_搜尋;
+        private MyUI.RJ_Lable rJ_Lable13;
+        private MyUI.RJ_DatePicker dateTimePicker_交易記錄查詢_開方時間_結束;
+        private System.Windows.Forms.Label label1;
+        private MyUI.RJ_DatePicker dateTimePicker_交易記錄查詢_開方時間_起始;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交易記錄查詢_操作時間_搜尋;
+        private MyUI.RJ_Lable rJ_Lable30;
+        private MyUI.RJ_DatePicker dateTimePicker_交易記錄查詢_操作時間_結束;
+        private System.Windows.Forms.Label label106;
+        private MyUI.RJ_DatePicker dateTimePicker_交易記錄查詢_操作時間_起始;
     }
 }
 

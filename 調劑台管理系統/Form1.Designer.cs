@@ -7209,7 +7209,7 @@
             this.rJ_GroupBox19.ContentsPanel.Size = new System.Drawing.Size(294, 243);
             this.rJ_GroupBox19.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox19.GUID = "";
-            this.rJ_GroupBox19.Location = new System.Drawing.Point(723, 695);
+            this.rJ_GroupBox19.Location = new System.Drawing.Point(711, 695);
             this.rJ_GroupBox19.Name = "rJ_GroupBox19";
             this.rJ_GroupBox19.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox19.PannelBorderColor = System.Drawing.Color.SkyBlue;
@@ -7381,7 +7381,7 @@
             this.rJ_GroupBox18.ContentsPanel.Size = new System.Drawing.Size(294, 243);
             this.rJ_GroupBox18.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox18.GUID = "";
-            this.rJ_GroupBox18.Location = new System.Drawing.Point(423, 695);
+            this.rJ_GroupBox18.Location = new System.Drawing.Point(411, 695);
             this.rJ_GroupBox18.Name = "rJ_GroupBox18";
             this.rJ_GroupBox18.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox18.PannelBorderColor = System.Drawing.Color.SkyBlue;
@@ -7604,7 +7604,7 @@
             this.rJ_GroupBox6.ContentsPanel.Size = new System.Drawing.Size(402, 243);
             this.rJ_GroupBox6.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox6.GUID = "";
-            this.rJ_GroupBox6.Location = new System.Drawing.Point(15, 695);
+            this.rJ_GroupBox6.Location = new System.Drawing.Point(3, 695);
             this.rJ_GroupBox6.Name = "rJ_GroupBox6";
             this.rJ_GroupBox6.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox6.PannelBorderColor = System.Drawing.Color.SkyBlue;
@@ -13219,7 +13219,7 @@
             this.plC_RJ_Button_人員資料_顯示全部.Font = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_顯示全部.GUID = "";
             this.plC_RJ_Button_人員資料_顯示全部.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料_顯示全部.Location = new System.Drawing.Point(313, 265);
+            this.plC_RJ_Button_人員資料_顯示全部.Location = new System.Drawing.Point(300, 264);
             this.plC_RJ_Button_人員資料_顯示全部.Name = "plC_RJ_Button_人員資料_顯示全部";
             this.plC_RJ_Button_人員資料_顯示全部.OFF_文字內容 = "顯示全部";
             this.plC_RJ_Button_人員資料_顯示全部.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);

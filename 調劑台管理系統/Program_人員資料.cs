@@ -67,6 +67,7 @@ namespace 調劑台管理系統
         private void Program_人員資料_Init()
         {
 
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_人員資料, dBConfigClass.DB_person_page);
 
             this.loginUI.Set_login_data_DB(dBConfigClass.DB_person_page);
             this.loginUI.Set_login_data_index_DB(dBConfigClass.DB_person_page);
@@ -697,27 +698,7 @@ namespace 調劑台管理系統
 
             }
         }
-        private void Function_登入權限資料_取得權限(int level)
-        {
-            LoginDataWebAPI.Class_login_data class_Login_Data = this.loginUI.Get_login_data(level);
-            if (class_Login_Data != null)
-            {
-                for (int i = 0; i < class_Login_Data.data.Count; i++)
-                {
-                    this.List_PLC_Device_權限管理[i].Bool = class_Login_Data.data[i];
-                }
-            }
-        }
-        private void Function_登入權限資料_最高權限()
-        {
-            for (int i = 0; i < 256; i++)
-            {
-                this.List_PLC_Device_權限管理[i].Bool = true;
-            }
-            PLC_Device_最高權限.Bool = true;
-            this.PLC_Device_最高權限 = this.PLC_Device_最高權限;
-
-        }
+    
         private void Function_登入權限資料_清除權限()
         {
             for (int i = 0; i < 256; i++)
