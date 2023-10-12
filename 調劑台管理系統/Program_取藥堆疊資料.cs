@@ -2884,17 +2884,17 @@ namespace 調劑台管理系統
             {
                 string Order_GUID = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
                 操作人 = list_取藥堆疊母資料_ReplaceValue[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
-                List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫令資料.PRI_KEY, Order_GUID, false);
+                List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, Order_GUID, false);
                 if (list_value.Count == 0) continue;
                 for(int m = 0; m < list_value.Count; m++)
                 {
-                    if (list_value[m][(int)enum_醫令資料.狀態].ObjectToString() == enum_醫令資料_狀態.已過帳.GetEnumName()) continue;
-                    list_value[m][(int)enum_醫令資料.狀態] = enum_醫令資料_狀態.已過帳.GetEnumName();
-                    list_value[m][(int)enum_醫令資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
-                    list_value[m][(int)enum_醫令資料.備註] = $"調劑人[{操作人}]";
+                    if (list_value[m][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
+                    list_value[m][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
+                    list_value[m][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
+                    list_value[m][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
                     list_醫令資料_ReplaceValue.Add(list_value[m]);
                 }
-                //List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫令資料>();
+                //List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫囑資料>();
                 //Console.WriteLine($"{orderClasses.JsonSerializationt()}");
             }
 

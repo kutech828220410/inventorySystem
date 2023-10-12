@@ -95,7 +95,7 @@ namespace 調劑台管理系統
             {
                 if (MyMessageBox.ShowDialog("退藥數量為（0）,確認進行作業?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             }
-            RowValue[(int)enum_醫令資料.交易量] = num;
+            RowValue[(int)enum_醫囑資料.交易量] = num;
             this.value = RowValue;
             this.DialogResult = DialogResult.Yes;
             this.Close();

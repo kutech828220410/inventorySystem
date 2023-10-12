@@ -47,7 +47,7 @@ namespace 勤務傳送櫃
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode);
-            List<object[]> list_value = orderClasses.ClassToSQL<OrderClass, enum_醫令資料>();
+            List<object[]> list_value = orderClasses.ClassToSQL<OrderClass, enum_醫囑資料>();
        
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;

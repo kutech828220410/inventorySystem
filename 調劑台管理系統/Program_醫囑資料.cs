@@ -38,27 +38,27 @@ namespace 調劑台管理系統
             }
 
             this.sqL_DataGridView_醫令資料.Init(table);
-            this.sqL_DataGridView_醫令資料.Set_ColumnVisible(false, new enum_醫令資料().GetEnumNames());
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.藥局代碼);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.藥袋類型);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.藥品碼);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.藥品名稱);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.批序);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.單次劑量);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.劑量單位);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.途徑);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.頻次);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.費用別);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.病房);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.床號);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.病人姓名);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.病歷號);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_醫令資料.交易量);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫令資料.開方日期);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫令資料.產出時間);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫令資料.過帳時間);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.狀態);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫令資料.備註);
+            this.sqL_DataGridView_醫令資料.Set_ColumnVisible(false, new enum_醫囑資料().GetEnumNames());
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥局代碼);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥袋類型);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品碼);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品名稱);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.批序);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.單次劑量);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.劑量單位);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.途徑);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.頻次);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.費用別);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病房);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.床號);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病人姓名);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病歷號);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_醫囑資料.交易量);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.開方日期);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.產出時間);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.過帳時間);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.狀態);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.備註);
 
             this.sqL_DataGridView_醫令資料.DataGridRowsChangeRefEvent += SqL_DataGridView_醫令資料_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_醫令資料.DataGridRefreshEvent += SqL_DataGridView_醫令資料_DataGridRefreshEvent;
@@ -287,7 +287,7 @@ namespace 調劑台管理系統
             for (int i = 0; i < orderClasses.Count; i++)
             {
                 string pri_key = orderClasses[i].PRI_KEY;
-                List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫令資料.PRI_KEY, pri_key, false);
+                List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, pri_key, false);
                 list_value.LockAdd(list_value_buf);
             }
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
@@ -298,11 +298,11 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode);
-            List<object[]> list_value = orderClasses.ClassToSQL<OrderClass ,enum_醫令資料>();
+            List<object[]> list_value = orderClasses.ClassToSQL<OrderClass ,enum_醫囑資料>();
             //for (int i = 0; i < orderClasses.Count; i++)
             //{
             //    string pri_key = orderClasses[i].PRI_KEY;
-            //    List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫令資料.PRI_KEY, pri_key, false);
+            //    List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, pri_key, false);
             //    list_value.LockAdd(list_value_buf);
             //}
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
@@ -395,18 +395,18 @@ namespace 調劑台管理系統
             String 狀態 = "";
             for (int i = 0; i < this.sqL_DataGridView_醫令資料.dataGridView.Rows.Count; i++)
             {
-                狀態 = this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].Cells[(int)enum_醫令資料.狀態].Value.ToString();
-                if (狀態 == enum_醫令資料_狀態.已過帳.GetEnumName())
+                狀態 = this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].Cells[(int)enum_醫囑資料.狀態].Value.ToString();
+                if (狀態 == enum_醫囑資料_狀態.已過帳.GetEnumName())
                 {
                     this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Lime;
                     this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
-                if (狀態 == enum_醫令資料_狀態.庫存不足.GetEnumName())
+                if (狀態 == enum_醫囑資料_狀態.庫存不足.GetEnumName())
                 {
                     this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
                     this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
-                if (狀態 == enum_醫令資料_狀態.無儲位.GetEnumName())
+                if (狀態 == enum_醫囑資料_狀態.無儲位.GetEnumName())
                 {
                     this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                     this.sqL_DataGridView_醫令資料.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
@@ -440,8 +440,8 @@ namespace 調劑台管理系統
             string str_datetime = dialog_設定產出時間.Value.ToDateTimeString_6();
             for (int i = 0; i < list_value.Count; i++)
             {
-                list_value[i][(int)enum_醫令資料.產出時間] = str_datetime;
-                list_value[i][(int)enum_醫令資料.狀態] = enum_醫令資料_狀態.未過帳.GetEnumName();
+                list_value[i][(int)enum_醫囑資料.產出時間] = str_datetime;
+                list_value[i][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.未過帳.GetEnumName();
             }
             this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(list_value, false);
             this.sqL_DataGridView_醫令資料.ReplaceExtra(list_value, true);
@@ -453,7 +453,7 @@ namespace 調劑台管理系統
             List<object[]> list_交易紀錄新增資料_AddValue = new List<object[]>();
             DateTime dateTime_start = DateTime.Now.AddHours(-1).AddMinutes(-10);
             DateTime dateTime_end = DateTime.Now.AddHours(-1).AddMinutes(0);
-            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRowsByBetween((int)enum_醫令資料.產出時間, dateTime_start, dateTime_end, false);
+            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRowsByBetween((int)enum_醫囑資料.產出時間, dateTime_start, dateTime_end, false);
             List<object[]> list_replace = new List<object[]>();
             Console.Write($"取得醫令資料共{list_value.Count}筆資料,{dateTime_start.ToString()} 至 {dateTime_end.ToString()},耗時{myTimer.ToString()}ms\n");
             if (mevent != null) this.Function_從SQL取得儲位到雲端資料();
@@ -479,26 +479,26 @@ namespace 調劑台管理系統
             for (int i = 0; i < list_value.Count; i++)
             {
                 if (mevent != null) dialog_Prcessbar.Value = i;
-                if (list_value[i][(int)enum_醫令資料.狀態].ObjectToString() != enum_醫令資料_狀態.未過帳.GetEnumName()) continue;
-                藥品碼 = list_value[i][(int)enum_醫令資料.藥品碼].ObjectToString();
-                藥品名稱 = list_value[i][(int)enum_醫令資料.藥品名稱].ObjectToString();
-                病人姓名 = list_value[i][(int)enum_醫令資料.病人姓名].ObjectToString();
-                藥袋序號 = list_value[i][(int)enum_醫令資料.藥袋條碼].ObjectToString();
-                病歷號 = list_value[i][(int)enum_醫令資料.病歷號].ObjectToString();
-                開方時間 = list_value[i][(int)enum_醫令資料.開方日期].ToDateTimeString();
-                交易量 = list_value[i][(int)enum_醫令資料.交易量].ObjectToString().StringToInt32();
+                if (list_value[i][(int)enum_醫囑資料.狀態].ObjectToString() != enum_醫囑資料_狀態.未過帳.GetEnumName()) continue;
+                藥品碼 = list_value[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
+                藥品名稱 = list_value[i][(int)enum_醫囑資料.藥品名稱].ObjectToString();
+                病人姓名 = list_value[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
+                藥袋序號 = list_value[i][(int)enum_醫囑資料.藥袋條碼].ObjectToString();
+                病歷號 = list_value[i][(int)enum_醫囑資料.病歷號].ObjectToString();
+                開方時間 = list_value[i][(int)enum_醫囑資料.開方日期].ToDateTimeString();
+                交易量 = list_value[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                 庫存量 = this.Function_從雲端資料取得庫存(藥品碼);
                 結存量 = 交易量 + 庫存量;
                 備註 = "";
                 if (庫存量 == -999)
                 {
-                    list_value[i][(int)enum_醫令資料.狀態] = enum_醫令資料_狀態.無儲位.GetEnumName();
+                    list_value[i][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.無儲位.GetEnumName();
                     list_replace.Add(list_value[i]);
                     continue;
                 }
                 if (交易量 + 庫存量 < 0)
                 {
-                    list_value[i][(int)enum_醫令資料.狀態] = enum_醫令資料_狀態.庫存不足.GetEnumName();
+                    list_value[i][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.庫存不足.GetEnumName();
                     list_replace.Add(list_value[i]);
                     continue;
                 }
@@ -509,7 +509,7 @@ namespace 調劑台管理系統
                     this.Function_庫存異動至雲端資料(list_儲位資訊[k], false);
                     List_效期.Add(list_儲位資訊[k][(int)enum_儲位資訊.效期].ObjectToString());
                 }
-                list_value[i][(int)enum_醫令資料.狀態] = enum_醫令資料_狀態.已過帳.GetEnumName();
+                list_value[i][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
                 list_replace.Add(list_value[i]);
 
                 //新增交易紀錄資料
@@ -561,7 +561,7 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < list_value.Count; i++)
             {
-                list_value[i][(int)enum_醫令資料.狀態] = enum_醫令資料_狀態.未過帳.GetEnumName();
+                list_value[i][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.未過帳.GetEnumName();
             }
             this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(list_value, false);
             this.sqL_DataGridView_醫令資料.ReplaceExtra(list_value, true);
@@ -571,11 +571,11 @@ namespace 調劑台管理系統
             MyTimer myTimer = new MyTimer();
             myTimer.TickStop();
             myTimer.StartTickTime(50000);
-            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRowsByBetween((int)enum_醫令資料.開方日期, dateTimePicke_醫令資料_開方日期_起始, dateTimePicke_醫令資料_開方日期_結束, false);
+            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRowsByBetween((int)enum_醫囑資料.開方日期, dateTimePicke_醫令資料_開方日期_起始, dateTimePicke_醫令資料_開方日期_結束, false);
 
-            if (rJ_TextBox_醫令資料_搜尋條件_藥品碼.Texts.StringIsEmpty() == false) list_value = list_value.GetRowsByLike((int)enum_醫令資料.藥品碼, rJ_TextBox_醫令資料_搜尋條件_藥品碼.Texts);
-            if (rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Texts.StringIsEmpty() == false) list_value = list_value.GetRowsByLike((int)enum_醫令資料.藥品名稱, rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Texts);
-            if (rJ_TextBox_醫令資料_搜尋條件_病歷號.Texts.StringIsEmpty() == false) list_value = list_value.GetRows((int)enum_醫令資料.病歷號, rJ_TextBox_醫令資料_搜尋條件_病歷號.Texts);
+            if (rJ_TextBox_醫令資料_搜尋條件_藥品碼.Texts.StringIsEmpty() == false) list_value = list_value.GetRowsByLike((int)enum_醫囑資料.藥品碼, rJ_TextBox_醫令資料_搜尋條件_藥品碼.Texts);
+            if (rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Texts.StringIsEmpty() == false) list_value = list_value.GetRowsByLike((int)enum_醫囑資料.藥品名稱, rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Texts);
+            if (rJ_TextBox_醫令資料_搜尋條件_病歷號.Texts.StringIsEmpty() == false) list_value = list_value.GetRows((int)enum_醫囑資料.病歷號, rJ_TextBox_醫令資料_搜尋條件_病歷號.Texts);
 
             Console.Write($"取得醫令資料 , 耗時 : {myTimer.ToString()} ms\n");
             this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
@@ -590,7 +590,7 @@ namespace 調劑台管理系統
             for (int i = 0; i < orderClasses.Count; i++)
             {
                 string pri_key = orderClasses[i].PRI_KEY;
-                List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫令資料.PRI_KEY, pri_key, false);
+                List<object[]> list_value_buf = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.PRI_KEY, pri_key, false);
                 list_value.LockAdd(list_value_buf);
             }
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
@@ -622,8 +622,8 @@ namespace 調劑台管理系統
             public int Compare(object[] x, object[] y)
             {
 
-                string date01 = x[(int)enum_醫令資料.產出時間].ToDateTimeString_6();
-                string date02 = y[(int)enum_醫令資料.產出時間].ToDateTimeString_6();
+                string date01 = x[(int)enum_醫囑資料.產出時間].ToDateTimeString_6();
+                string date02 = y[(int)enum_醫囑資料.產出時間].ToDateTimeString_6();
                 return date01.CompareTo(date02);
 
             }
