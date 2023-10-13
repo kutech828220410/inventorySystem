@@ -9,7 +9,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <Optimize>false</Optimize>
     <NoWarn>1701;1702;1998;0169;0219;8632</NoWarn>
-    <DocumentationFile>C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\HIS_WebApi.xml</DocumentationFile>
+    <DocumentationFile>\inventorySystem\HIS_WebApi\HIS_WebApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

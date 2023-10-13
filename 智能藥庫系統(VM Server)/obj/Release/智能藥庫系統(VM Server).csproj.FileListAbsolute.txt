@@ -778,3 +778,73 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫�
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).csproj.CopyComplete
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).exe
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).pdb
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\智能藥庫系統(VM Server).exe.config
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\智能藥庫系統(VM Server).exe.manifest
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\智能藥庫系統(VM Server).application
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\智能藥庫系統(VM Server).exe
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\智能藥庫系統(VM Server).pdb
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Basic.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\DrawingClass.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\FontAwesome.Sharp.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\HCGUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\H_Pannel_lib.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\IBM.Data.DB2.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\LadderUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\LeadShineUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\LicenseLib.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\LightControlUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MeasureSystemUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MVSDK.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MVSDKUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MyOffice.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MySql.Data.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MySqlBackup.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MySQL_Login.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MyUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Newtonsoft.Json.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\PortControlUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\SLDUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\SQLUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Buffers.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Memory.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Numerics.Vectors.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Text.Encodings.Web.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Text.Json.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Threading.Tasks.Extensions.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.ValueTuple.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\TCP.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\ZealTechUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\zxing.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Interop.SpeechLib.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\CallBackUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MeasureSystemFunction.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OOXML.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\office.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OpenXml4Net.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OpenXmlFormats.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\stdole.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Buffers.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Memory.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Numerics.Vectors.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Text.Encodings.Web.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Text.Json.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Threading.Tasks.Extensions.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.ValueTuple.xml
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).csproj.AssemblyReference.cache
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統_VM_Server_.Form1.resources
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統_VM_Server_.Form_Buf.resources
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統_VM_Server_.Properties.Resources.resources
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).csproj.GenerateResource.cache
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).csproj.CoreCompileInputs.cache
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).exe.manifest
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).application
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).csproj.CopyComplete
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).exe
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).pdb

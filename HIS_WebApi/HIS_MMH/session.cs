@@ -105,7 +105,7 @@ namespace HIS_WebApi
                     sQLControl_person_page.UpdateByDefulteExtra(null, list);
                 }
             }
-            json_result = Net.WEBApiPostJson("http://192.168.5.250:4433/api/session/login", returnData.JsonSerializationt());
+            json_result = Net.WEBApiPostJson("http://127.0.0.1:4433/api/session/login", returnData.JsonSerializationt());
             return json_result;
         }
     }

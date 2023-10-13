@@ -738,3 +738,4 @@ C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Rel
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\bin\Release\ICSharpCode.SharpZipLib.xml
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_EPDPanel.resources
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_更改病房名稱.resources
+C:\Users\vendors\Desktop\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.exe
