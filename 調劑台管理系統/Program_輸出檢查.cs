@@ -212,39 +212,41 @@ namespace 調劑台管理系統
                 {
                     if (loker.Input || true)
                     {
-                        Task.Run(() =>
+                        List<Task> taskList = new List<Task>();
+
+                        taskList.Add(Task.Run(() =>
                         {
                             Drawer drawer = this.List_EPD583_雲端資料.SortByIP(IP);
                             if (drawer != null)
                             {
                                 this.drawerUI_EPD_583.Set_LockOpen(drawer);
                             }
-                        });
-                        Task.Run(() =>
+                        }));
+                        taskList.Add(Task.Run(() =>
                         {
                             Drawer drawer = this.List_EPD1020_雲端資料.SortByIP(IP);
                             if (drawer != null)
                             {
                                 this.drawerUI_EPD_1020.Set_LockOpen(drawer);
                             }
-                        });
-                        Task.Run(() =>
+                        }));
+                        taskList.Add(Task.Run(() =>
                         {
                             Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
                             if (storage != null)
                             {
                                 this.storageUI_EPD_266.Set_LockOpen(storage);
                             }
-                        });
-                        Task.Run(() =>
+                        }));
+                        taskList.Add(Task.Run(() =>
                         {
                             Storage pannel35 = this.List_Pannel35_雲端資料.SortByIP(IP);
                             if (pannel35 != null)
                             {
                                 this.storageUI_WT32.Set_LockOpen(pannel35);
                             }
-                        });
-                        Task.Run(() =>
+                        }));
+                        taskList.Add(Task.Run(() =>
                         {
                             RFIDClass rFIDClass = this.List_RFID_雲端資料.SortByIP(IP);
                             if (rFIDClass != null)
@@ -252,7 +254,8 @@ namespace 調劑台管理系統
                                 if (Num == -1) return;
                                 this.rfiD_UI.Set_LockOpen(rFIDClass, Num);
                             }
-                        });
+                        }));
+                        Task allTask = Task.WhenAll(taskList);
                         loker.Master_GUID = Master_GUID;
                         loker.Open();
                     }
