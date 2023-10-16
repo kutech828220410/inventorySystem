@@ -2741,8 +2741,11 @@ namespace 調劑台管理系統
             string 藥師證字號 = "";
             string 效期 = "";
             string 批號 = "";
+            string 顏色 = "";
             List<string> List_效期 = new List<string>();
             List<string> List_批號 = new List<string>();
+            List<string> list_儲位刷新_藥品碼 = new List<string>();
+            List<string> list_儲位刷新_藥品碼_buf = new List<string>();
             list_可入賬母資料.Sort(new Icp_取藥堆疊母資料_index排序());
             List<string> list_Codes = (from temp in list_可入賬母資料
                                        select temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString()).Distinct().ToList();
@@ -2766,6 +2769,8 @@ namespace 調劑台管理系統
                 總異動量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
                 交易量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString();
                 盤點量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.盤點量].ObjectToString();
+                顏色 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.顏色].ObjectToString();
+
                 病人姓名 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.病人姓名].ObjectToString();
                 床號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
                 頻次 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.頻次].ObjectToString();
@@ -2832,7 +2837,27 @@ namespace 調劑台管理系統
                 收支原因 = $"[{動作.GetEnumName()}]{收支原因}";
                 value_trading[(int)enum_交易記錄查詢資料.收支原因] = 收支原因;
 
-                if ((動作 == enum_交易記錄查詢動作.系統領藥.GetEnumName() || 動作 == enum_交易記錄查詢動作.系統入庫.GetEnumName()) && 總異動量 == 0) continue;
+                if ((動作 == enum_交易記錄查詢動作.系統領藥.GetEnumName() || 動作 == enum_交易記錄查詢動作.系統入庫.GetEnumName()))
+                {
+                    if (總異動量 == 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (顏色 == Color.Black.ToColorString())
+                        {
+                            list_儲位刷新_藥品碼_buf = (from temp in list_儲位刷新_藥品碼
+                                                 where temp == 藥品碼
+                                                 select temp).ToList();
+                            if (list_儲位刷新_藥品碼_buf.Count == 0)
+                            {
+                                list_儲位刷新_藥品碼.Add(藥品碼);
+                            }
+                        }
+
+                    }
+                }
                 list_交易紀錄新增資料_AddValue.Add(value_trading);
                 Console.WriteLine($"寫入交易紀錄,藥碼 : {藥品碼} ,交易量 : {交易量}");
                 if (flag_修正盤點量 && plC_CheckBox_盤點量要修正至結存量.Checked)
@@ -2878,7 +2903,10 @@ namespace 調劑台管理系統
                 //List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫囑資料>();
                 //Console.WriteLine($"{orderClasses.JsonSerializationt()}");
             }
-
+            for (int i = 0; i < list_儲位刷新_藥品碼.Count; i++)
+            {
+                Function_儲位刷新(list_儲位刷新_藥品碼[i]);
+            }
 
             if (list_交易紀錄新增資料_AddValue.Count > 0) this.sqL_DataGridView_交易記錄查詢.SQL_AddRows(list_交易紀錄新增資料_AddValue, false);
             if (list_取藥堆疊子資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(list_取藥堆疊子資料_ReplaceValue, false);
