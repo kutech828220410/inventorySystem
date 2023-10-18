@@ -205,3 +205,4 @@ C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統(V
 C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).exe
 C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).pdb
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\ICSharpCode.SharpZipLib.dll

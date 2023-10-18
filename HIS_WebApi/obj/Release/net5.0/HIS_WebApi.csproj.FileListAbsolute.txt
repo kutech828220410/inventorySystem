@@ -703,7 +703,6 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OOXML.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.OpenXmlFormats.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.GenerateResource.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.GeneratedMSBuildEditorConfig.editorconfig
@@ -2043,3 +2042,10 @@ C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebAp
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CopyComplete
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Microsoft.OpenApi.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache

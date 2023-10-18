@@ -94,7 +94,6 @@ namespace HIS_DB_Lib
         public string 產出時間 { get; set; }
         [JsonPropertyName("POST_TIME")]
         public string 過帳時間 { get; set; }
-
         [JsonPropertyName("STATE")]
         public string 狀態 { get; set; }
         [JsonPropertyName("NOTE")]

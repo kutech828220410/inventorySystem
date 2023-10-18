@@ -1,0 +1,4 @@
+{
+  "RFID_COMPort": "COM1",
+  "Scanner01_COMPort": "COM2"
+}
