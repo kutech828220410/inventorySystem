@@ -331,12 +331,9 @@ namespace HIS_WebApi
         ///   {
         ///     "Data": 
         ///     {
+        ///        "NAME": "測試"
         ///     },
-        ///     "Value": "",
-        ///     "TableName": "",
-        ///     "ServerName": "",
-        ///     "ServerType": "",
-        ///     "TimeTaken": ""
+        ///     "Value": "f2563e24-9e54-4f47-9aa9-bb1f42e1bc34"
         ///   }
         /// </code>
         /// </remarks>
