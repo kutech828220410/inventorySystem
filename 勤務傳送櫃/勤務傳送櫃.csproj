@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8685E561-35B8-45D4-A21C-B465884C14FE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>勤務傳送櫃</RootNamespace>
-    <AssemblyName>勤務傳送櫃</AssemblyName>
+    <RootNamespace>勤務傳送系統</RootNamespace>
+    <AssemblyName>勤務傳送系統</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -233,13 +233,19 @@
     <Compile Include="OpenDoorPermission_UI.Designer.cs">
       <DependentUpon>OpenDoorPermission_UI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Program_勤務取藥.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_藥品資料.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Program_配藥作業.cs">
+    <Compile Include="Program_配藥核對.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_雲端藥檔.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_醫令資料.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Pannel_Box.cs">

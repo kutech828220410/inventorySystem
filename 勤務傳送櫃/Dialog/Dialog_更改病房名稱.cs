@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Basic;
 namespace 勤務傳送櫃
 {
     public partial class Dialog_更改病房名稱 : Form
@@ -33,26 +33,58 @@ namespace 勤務傳送櫃
         private static readonly object synRoot = new object();
         static private bool formIsCreate = false;
         public enum_Type Enum_Type = enum_Type.None;
+
+        private string _原始名稱 = "";
         public string 原始名稱
         {
             get
             {
-                return this.rJ_TextBox_原始名稱.Texts;
+                return this.rJ_TextBox_原始名稱.Text;
             }
             private set
             {
-                this.rJ_TextBox_原始名稱.Texts = value;
+                this._原始名稱 = value;
             }
         }
+        private string _修改名稱 = "";
         public string 修改名稱
         {
             get
             {
-                return this.rJ_TextBox_更動名稱.Texts;
+                return this.rJ_TextBox_修改名稱.Text;
             }
             private set
             {
-                this.rJ_TextBox_更動名稱.Texts = value;
+                this._修改名稱 = value;
+            }
+        }
+        private List<string> _病房名稱 = new List<string>();
+        public List<string> 病房名稱
+        {
+            get
+            {
+                _病房名稱.Clear();
+                if (rJ_TextBox_病房01名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房01名稱.Text);
+                if (rJ_TextBox_病房02名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房02名稱.Text);
+                if (rJ_TextBox_病房03名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房03名稱.Text);
+                if (rJ_TextBox_病房04名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房04名稱.Text);
+                if (rJ_TextBox_病房05名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房05名稱.Text);
+                if (rJ_TextBox_病房06名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房06名稱.Text);
+                if (rJ_TextBox_病房07名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房07名稱.Text);
+                if (rJ_TextBox_病房08名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房08名稱.Text);
+                if (rJ_TextBox_病房09名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房09名稱.Text);
+                if (rJ_TextBox_病房10名稱.Text.StringIsEmpty() == false) _病房名稱.Add(rJ_TextBox_病房10名稱.Text);
+                _病房名稱 = (from temp in _病房名稱
+                         select temp.ToUpper()).Distinct().ToList();
+
+
+                return _病房名稱;
+            }
+            set
+            {
+                _病房名稱 = value;
+
+     
             }
         }
         public enum enum_Type
@@ -73,24 +105,37 @@ namespace 勤務傳送櫃
             }
         }
 
-        public static Dialog_更改病房名稱 GetForm(string name)
-        {
-            lock (synRoot)
-            {
-                if (dialog_更改病房名稱 == null)
-                {
-                    dialog_更改病房名稱 = new Dialog_更改病房名稱();
-                }
-                formIsCreate = true;
-            }
-            dialog_更改病房名稱.原始名稱 = name;
-            dialog_更改病房名稱.修改名稱 = "";
-            dialog_更改病房名稱.Enum_Type = enum_Type.None;
-            return dialog_更改病房名稱;
-        }
-        public Dialog_更改病房名稱()
+        public Dialog_更改病房名稱(string name, List<string> WardNames)
         {
             InitializeComponent();
+            this.Load += Dialog_更改病房名稱_Load;
+            this._原始名稱 = name;
+            this._修改名稱 = name;
+            if (WardNames == null) WardNames = new List<string>();
+            this._病房名稱 = WardNames;
+        }
+
+        private void Dialog_更改病房名稱_Load(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+
+                for (int i = 0; i < _病房名稱.Count; i++)
+                {
+                    if (i == 0) rJ_TextBox_病房01名稱.Texts = _病房名稱[i];
+                    if (i == 1) rJ_TextBox_病房02名稱.Texts = _病房名稱[i];
+                    if (i == 2) rJ_TextBox_病房03名稱.Texts = _病房名稱[i];
+                    if (i == 3) rJ_TextBox_病房04名稱.Texts = _病房名稱[i];
+                    if (i == 4) rJ_TextBox_病房05名稱.Texts = _病房名稱[i];
+                    if (i == 5) rJ_TextBox_病房06名稱.Texts = _病房名稱[i];
+                    if (i == 6) rJ_TextBox_病房07名稱.Texts = _病房名稱[i];
+                    if (i == 7) rJ_TextBox_病房08名稱.Texts = _病房名稱[i];
+                    if (i == 8) rJ_TextBox_病房09名稱.Texts = _病房名稱[i];
+                    if (i == 9) rJ_TextBox_病房10名稱.Texts = _病房名稱[i];
+                }
+                this.rJ_TextBox_原始名稱.Texts = _原始名稱;
+                this.rJ_TextBox_修改名稱.Texts = _修改名稱;
+            }));
         }
 
         private void rJ_Button_確認_Click(object sender, EventArgs e)
@@ -114,7 +159,7 @@ namespace 勤務傳送櫃
             }
         }
 
-        private void rJ_TextBox_更動名稱_KeyPress(object sender, KeyPressEventArgs e)
+        private void rJ_TextBox_修改名稱_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {

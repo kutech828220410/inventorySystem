@@ -1,0 +1,7 @@
+C:\Users\Evan\Desktop\北榮-35格傳櫃20220420\北榮-35格傳櫃\四格管制櫃\勤務傳送櫃\obj\Debug\勤務傳送櫃.csprojAssemblyReference.cache
+C:\Users\Evan\Desktop\北榮-35格傳櫃20220420\北榮-35格傳櫃\四格管制櫃\勤務傳送櫃\obj\Debug\勤務傳送櫃.exe.config
+C:\Users\Evan\Desktop\北榮-35格傳櫃20220420\北榮-35格傳櫃\四格管制櫃\勤務傳送櫃\obj\Debug\勤務傳送櫃.Form1.resources
+C:\Users\Evan\Desktop\北榮-35格傳櫃20220420\北榮-35格傳櫃\四格管制櫃\勤務傳送櫃\obj\Debug\勤務傳送櫃.Pannel_Box.resources
+C:\Users\Evan\Desktop\北榮-35格傳櫃20220420\北榮-35格傳櫃\四格管制櫃\勤務傳送櫃\obj\Debug\勤務傳送櫃.Properties.Resources.resources
+C:\Users\Evan\Desktop\北榮-35格傳櫃20220420\北榮-35格傳櫃\四格管制櫃\勤務傳送櫃\obj\Debug\勤務傳送櫃.csproj.GenerateResource.cache
+C:\Users\Evan\Desktop\北榮-35格傳櫃20220420\北榮-35格傳櫃\四格管制櫃\勤務傳送櫃\obj\Debug\勤務傳送櫃.csproj.CoreCompileInputs.cache

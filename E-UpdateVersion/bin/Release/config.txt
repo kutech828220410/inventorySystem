@@ -1,4 +1,4 @@
 {
   "Default_program": "",
-  "Api_server": "http://10.13.66.58:4433"
+  "Api_server": "http://127.0.0.1:4433"
 }

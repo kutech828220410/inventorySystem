@@ -77,6 +77,20 @@ namespace 勤務傳送櫃
     static public class OpenDoorPermissionMethod
     {
         static private MyConvert myConvert = new MyConvert();
+        static public bool GetOpenDoorPermission(string value, List<string> wardNames)
+        {
+            List<string> list_value = value.JsonDeserializet<List<string>>();
+            if (list_value == null) return false;
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                for(int k = 0; k < wardNames.Count; k++)
+                {
+                    if (list_value[i] == wardNames[k]) return true;
+                }
+              
+            }
+            return false;
+        }
         static public bool GetOpenDoorPermission(string value, string wardName)
         {
             List<string> list_value = value.JsonDeserializet<List<string>>();

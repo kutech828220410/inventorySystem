@@ -87,9 +87,11 @@ namespace E_UpdateVersion
             this.comboBox_預設程式.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_預設程式.FormattingEnabled = true;
             this.comboBox_預設程式.Items.AddRange(new object[] {
+            "無",
             "調劑台管理系統",
             "智能藥庫系統",
-            "中心叫號系統"});
+            "中心叫號系統",
+            "勤務傳送系統"});
             this.comboBox_預設程式.Location = new System.Drawing.Point(732, 11);
             this.comboBox_預設程式.Name = "comboBox_預設程式";
             this.comboBox_預設程式.Size = new System.Drawing.Size(166, 32);

@@ -22,8 +22,8 @@ using HIS_DB_Lib;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-[assembly: AssemblyVersion("1.0.0")]
-[assembly: AssemblyFileVersion("1.0.0")]
+[assembly: AssemblyVersion("1.0.0.17")]
+[assembly: AssemblyFileVersion("1.0.0.17")]
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
@@ -38,7 +38,7 @@ namespace 勤務傳送櫃
         Basic.MyConvert myConvert = new Basic.MyConvert();
 
         #region DBConfigClass
-        private const string DBConfigFileName = "DBConfig.txt";
+        private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         public DBConfigClass dBConfigClass = new DBConfigClass();
         public class DBConfigClass
         {
@@ -46,6 +46,8 @@ namespace 勤務傳送櫃
             private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_tradding = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_order = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_storage = new SQL_DataGridView.ConnentionClass();
 
             private string web_URL = "";
             private string api_URL = "";
@@ -59,6 +61,10 @@ namespace 勤務傳送櫃
             public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_tradding { get => dB_tradding; set => dB_tradding = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_order { get => dB_order; set => dB_order = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_storage { get => dB_storage; set => dB_storage = value; }
 
             private string name = "";
             private string api_Server = "";
@@ -76,14 +82,15 @@ namespace 勤務傳送櫃
         }
         private void LoadDBConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{DBConfigFileName}");
+            this.LoadcommandLineArgs();
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
  
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass());
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
                 }
@@ -97,7 +104,7 @@ namespace 勤務傳送櫃
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
                 }
@@ -105,8 +112,8 @@ namespace 勤務傳送櫃
             }
         }
         #endregion
-        #region MyConfigClass
-        private const string MyConfigFileName = "MyConfig.txt";
+        #region MyConfigClass 
+        private static string MyConfigFileName = $@"{currentDirectory}\MyConfig.txt";
         public MyConfigClass myConfigClass = new MyConfigClass();
         public class MyConfigClass
         {
@@ -119,13 +126,13 @@ namespace 勤務傳送櫃
         }
         private void LoadMyConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{MyConfigFileName}");
+            string jsonstr = MyFileStream.LoadFileAllText($"{MyConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
                 jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
                 }
@@ -139,7 +146,7 @@ namespace 勤務傳送櫃
                 jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
                 }
@@ -159,35 +166,12 @@ namespace 勤務傳送櫃
             InitializeComponent();
         }
 
-        private void Pannel_Box_AlarmEvent(string WardName, string Index, string Time)
-        {
-            this.新增交易紀錄(enum_交易記錄查詢動作.門片未關閉異常, "", WardName, "");
-            
-        }
-        private void Pannel_Box_CloseEvent(string WardName, string Index, string Time)
-        {
-            this.新增交易紀錄(enum_交易記錄查詢動作.關閉門片, "", $"{Index}.{WardName}", "");
-        }
-        private void Pannel_Box_EPDSettingEvent(string EPD_IP ,string Name)
-        {
-            Storage storage = this.storageUI_EPD_266.SQL_GetStorage(EPD_IP);
-            if(storage == null)
-            {
-                Console.WriteLine($"找無[{EPD_IP}]內容,無法進入設定!");
-                return;
-            }
-            storage.Name = Name;
-            Dialog_EPDPanel dialog_EPDPanel = new Dialog_EPDPanel(this.storageUI_EPD_266, storage);
-            dialog_EPDPanel.ShowDialog();
-        }
-        private void Pannel_Box_PharmacyLightEvent(string EPD_IP, string Name)
-        {
-       
-        }
+  
         private void Form1_Load(object sender, EventArgs e)
         {
             if (this.DesignMode == false)
             {
+                MyMessageBox.form = this.FindForm();
                 Dialog_修改密碼.form = this.FindForm();
                 Dialog_更改病房名稱.form = this.FindForm();
                 Dialog_EPDPanel.form = this.FindForm();
@@ -213,7 +197,7 @@ namespace 勤務傳送櫃
                 {
                     this.rfiD_FX600_UI.Init(myConfigClass.RFID_COMPort);
                 }
-
+                this.textBox_登入畫面_密碼.PassWordChar = true;
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
                 StorageUI_EPD_266.Get_Storage_bmpChangeEvent += StorageUI_EPD_266_Get_Storage_bmpChangeEvent;
             }
@@ -288,11 +272,11 @@ namespace 勤務傳送櫃
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_雲端藥檔, dBConfigClass.DB_Medicine_Cloud);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_交易記錄查詢, dBConfigClass.DB_tradding);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_人員資料, dBConfigClass.DB_person_page);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_醫令資料, dBConfigClass.DB_order);
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_Box_Index_Table, dBConfigClass.DB_Basic);
 
-
             
-            this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            this.rfiD_UI.Init(dBConfigClass.DB_storage.DataBaseName, dBConfigClass.DB_storage.UserName, dBConfigClass.DB_storage.Password, dBConfigClass.DB_storage.IP, dBConfigClass.DB_storage.Port, dBConfigClass.DB_storage.MySqlSslMode);
             this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_Main, this.plC_ScreenPage_Main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_人員資料_權限設定, this.plC_ScreenPage_人員資料_權限設定);
@@ -302,6 +286,7 @@ namespace 勤務傳送櫃
 
          
             this.Program_系統頁面_Init();
+            this.Program_醫令資料_Init();
             this.Program_交易紀錄_Init();
             this.Program_人員資料_Init();
             this.Program_登入畫面_Init();       
@@ -309,6 +294,7 @@ namespace 勤務傳送櫃
             this.Program_櫃體狀態_Init();
             this.Program_雲端藥檔_Init();
             this.Program_藥品資料_藥檔資料_Init();
+            this.Program_勤務取藥_Init();
             this.Program_配藥核對_Init();
             this.Pannel_Box_Init();
 
@@ -364,6 +350,24 @@ namespace 勤務傳送櫃
                 dBConfigClass.DB_tradding.UserName = serverSettingClass.User;
                 dBConfigClass.DB_tradding.Password = serverSettingClass.Password;
             }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "醫囑資料");
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_order.IP = serverSettingClass.Server;
+                dBConfigClass.DB_order.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_order.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_order.UserName = serverSettingClass.User;
+                dBConfigClass.DB_order.Password = serverSettingClass.Password;
+            }
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "儲位資料");
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_storage.IP = serverSettingClass.Server;
+                dBConfigClass.DB_storage.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_storage.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_storage.UserName = serverSettingClass.User;
+                dBConfigClass.DB_storage.Password = serverSettingClass.Password;
+            }
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "API01");
             if (serverSettingClass != null) dBConfigClass.Api_URL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "Order_API");
@@ -372,7 +376,25 @@ namespace 勤務傳送櫃
             if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
 
         }
-
+        private void LoadcommandLineArgs()
+        {
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            if (commandLineArgs.Length >= 3)
+            {
+                dBConfigClass.Api_Server = commandLineArgs[1];
+                dBConfigClass.Name = commandLineArgs[2];
+              
+                jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
+                }
+                return;
+            }
+        }
         #region PLC_Method
         PLC_Device PLC_Device_Method = new PLC_Device("");
         PLC_Device PLC_Device_Method_OK = new PLC_Device("");
@@ -467,6 +489,7 @@ namespace 勤務傳送櫃
                 Pannel_Box.Panels.Add(pannel_Box);
                 pannel_Box.AlarmEvent += Pannel_Box_AlarmEvent;
                 pannel_Box.CloseEvent += Pannel_Box_CloseEvent;
+                pannel_Box.OpenEvent += Pannel_Box_OpenEvent;
                 pannel_Box.EPDSettingEvent += Pannel_Box_EPDSettingEvent;
                 pannel_Box.PharmacyLightEvent += Pannel_Box_PharmacyLightEvent;
                 this.plC_UI_Init.Add_Method(pannel_Box.Run);
@@ -476,6 +499,54 @@ namespace 勤務傳送櫃
          
 
         }
+  
+        private void Pannel_Box_AlarmEvent(Pannel_Box pannel_Box)
+        {
+            this.新增交易紀錄(enum_交易記錄查詢動作.門片未關閉異常, pannel_Box.CT_Name, $"{pannel_Box.Number}.{pannel_Box.WardName}", "");
+        }
+        private void Pannel_Box_CloseEvent(Pannel_Box pannel_Box)
+        {
+            if (pannel_Box.CT_Name.StringIsEmpty()) return;
+            this.新增交易紀錄(enum_交易記錄查詢動作.關閉門片, pannel_Box.CT_Name, $"{pannel_Box.Number}.{pannel_Box.WardName}", "");
+            pannel_Box.Name = "";
+        }
+        private void Pannel_Box_OpenEvent(Pannel_Box pannel_Box)
+        {
+            if (pannel_Box.CT_Name.StringIsEmpty()) return;
+            this.新增交易紀錄(enum_交易記錄查詢動作.開啟門片, pannel_Box.CT_Name, $"{pannel_Box.Number}.{pannel_Box.WardName}", "");
+            string[] serch_colName = {enum_交易記錄查詢資料.領用時間.GetEnumName() };
+            string[] serch_Value = {"1999-01-01 00:00:00" };
 
+            MyTimer myTimer = new MyTimer(50000);
+            List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serch_colName, serch_Value, false);
+            List<object[]> list_交易紀錄_buf = new List<object[]>();
+            for (int i = 0; i < pannel_Box.List_serchName.Count; i++)
+            {
+                list_交易紀錄_buf.LockAdd(list_交易紀錄.GetRows((int)enum_交易記錄查詢資料.病房號, pannel_Box.List_serchName[i]));
+            }
+            for (int i = 0; i < list_交易紀錄_buf.Count; i++)
+            {
+                list_交易紀錄_buf[i][(int)enum_交易記錄查詢資料.領用人] = pannel_Box.CT_Name;
+                //list_交易紀錄[i][(int)enum_交易記錄查詢資料.領用時間] = DateTime.Now.ToDateTimeString_6();
+            }
+            this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄, false);
+            Console.WriteLine($"領用人寫入共<{list_交易紀錄.Count}>筆 ,耗時{myTimer.ToString()} {DateTime.Now.ToDateTimeString()}");
+        }
+        private void Pannel_Box_EPDSettingEvent(string EPD_IP, string Name)
+        {
+            Storage storage = this.storageUI_EPD_266.SQL_GetStorage(EPD_IP);
+            if (storage == null)
+            {
+                Console.WriteLine($"找無[{EPD_IP}]內容,無法進入設定!");
+                return;
+            }
+            storage.Name = Name;
+            Dialog_EPDPanel dialog_EPDPanel = new Dialog_EPDPanel(this.storageUI_EPD_266, storage);
+            dialog_EPDPanel.ShowDialog();
+        }
+        private void Pannel_Box_PharmacyLightEvent(string EPD_IP, string Name)
+        {
+
+        }
     }
 }

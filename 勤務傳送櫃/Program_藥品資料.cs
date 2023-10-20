@@ -46,7 +46,7 @@ namespace 勤務傳送櫃
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.中文名稱);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品學名);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.包裝單位);
-            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.警訊藥品);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.高價藥品);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.管制級別);
 
             this.sqL_DataGridView_藥品資料_藥檔資料.RowDoubleClickEvent += SqL_DataGridView_藥品資料_藥檔資料_RowDoubleClickEvent;
@@ -447,7 +447,6 @@ namespace 勤務傳送櫃
                 else
                 {
                     object[] value = list_藥品資料_buf[0];
-                    value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品碼] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品名稱] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
                     value[(int)enum_藥品資料_藥檔資料.藥品學名] = list_雲端藥檔[i][(int)enum_雲端藥檔.藥品學名].ObjectToString();

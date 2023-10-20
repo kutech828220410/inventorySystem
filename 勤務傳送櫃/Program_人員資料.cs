@@ -15,6 +15,7 @@ using MySQL_Login;
 using H_Pannel_lib;
 using HIS_DB_Lib;
 using SQLUI;
+using MyOffice;
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
@@ -27,8 +28,10 @@ namespace 勤務傳送櫃
             性別,
             密碼,
             單位,
+            藥師證字號,
             卡號,
-            一維卡號,
+            一維條碼,
+            開門權限
         }
         public enum enum_人員資料_匯入
         {
@@ -37,8 +40,10 @@ namespace 勤務傳送櫃
             性別,
             密碼,
             單位,
+            藥師證字號,
             卡號,
-            一維卡號,
+            一維條碼,
+            開門權限
         }
         public enum ContextMenuStrip_人員資料
         {
@@ -307,11 +312,37 @@ namespace 勤務傳送櫃
             saveFileDialog_SaveExcel.OverwritePrompt = false;
             if (saveFileDialog_SaveExcel.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable datatable = new DataTable();
-                datatable = sqL_DataGridView_人員資料.GetDataTable();
-                datatable = datatable.ReorderTable(new enum_人員資料_匯出());
-                CSVHelper.SaveFile(datatable, saveFileDialog_SaveExcel.FileName);
-                MyMessageBox.ShowDialog("匯出完成!");
+                this.Invoke(new Action(delegate
+                {
+                    DataTable datatable = new DataTable();
+                    List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                    for (int i = 0; i < list_value.Count; i++)
+                    {
+                        string str = "";
+                        List<string> list_開門權限 = list_value[i][(int)enum_人員資料.開門權限].ObjectToString().JsonDeserializet<List<string>>();
+                        if (list_開門權限 == null) continue;
+                        for(int k = 0; k < list_開門權限.Count; k++)
+                        {
+                            str += list_開門權限[k];
+                            if (k != list_開門權限.Count - 1) str += ",";
+                        }
+                        list_value[i][(int)enum_人員資料.開門權限] = str;
+                    }
+                    datatable = list_value.ToDataTable(new enum_人員資料());
+                    datatable = datatable.ReorderTable(new enum_人員資料_匯出());
+                    string Extension = System.IO.Path.GetExtension(this.saveFileDialog_SaveExcel.FileName);
+                    if (Extension == ".txt")
+                    {
+                        CSVHelper.SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
+                    else if (Extension == ".xls" || Extension == ".xlsx")
+                    {
+                        MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
+                }));
+
             }
         }
         private void Function_人員資料_匯入()
@@ -319,22 +350,38 @@ namespace 勤務傳送櫃
             if (openFileDialog_LoadExcel.ShowDialog(this) == DialogResult.OK)
             {
                 this.Cursor = Cursors.WaitCursor;
+
                 DataTable dataTable = new DataTable();
-                CSVHelper.LoadFile(this.openFileDialog_LoadExcel.FileName, 0, dataTable);
+                string Extension = System.IO.Path.GetExtension(this.openFileDialog_LoadExcel.FileName);
+
+                if (Extension == ".txt")
+                {
+                    CSVHelper.LoadFile(this.openFileDialog_LoadExcel.FileName, 0, dataTable);
+                }
+                else if (Extension == ".xls" || Extension == ".xlsx")
+                {
+                    dataTable = MyOffice.ExcelClass.NPOI_LoadFile(this.openFileDialog_LoadExcel.FileName);
+                }
+                if (dataTable == null)
+                {
+                    MyMessageBox.ShowDialog("匯入失敗,請檢查是否檔案開啟中!");
+                    this.Cursor = Cursors.Default;
+                    return;
+                }
                 DataTable datatable_buf = dataTable.ReorderTable(new enum_人員資料_匯入());
                 if (datatable_buf == null)
                 {
                     MyMessageBox.ShowDialog("匯入檔案,資料錯誤!");
+                    this.Cursor = Cursors.Default;
                     return;
                 }
                 List<object[]> list_LoadValue = datatable_buf.DataTableToRowList();
                 List<object[]> list_SQL_Value = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                List<object[]> list_SQL_Value_buf = new List<object[]>();
                 List<object[]> list_Add = new List<object[]>();
-                List<object[]> list_Delete_ColumnName = new List<object[]>();
-                List<object[]> list_Delete_SerchValue = new List<object[]>();
+
                 List<string> list_Replace_SerchValue = new List<string>();
                 List<object[]> list_Replace_Value = new List<object[]>();
-                List<object[]> list_SQL_Value_buf = new List<object[]>();
 
                 for (int i = 0; i < list_LoadValue.Count; i++)
                 {
@@ -348,18 +395,20 @@ namespace 勤務傳送櫃
                     if (權限等級.StringToInt32() <= 0 || 權限等級.StringToInt32() > 20) 權限等級 = "01";
                     value_load[(int)enum_人員資料.性別] = 性別;
                     value_load[(int)enum_人員資料.權限等級] = 權限等級;
-
+                    string str_開門權限 = value_load[(int)enum_人員資料.開門權限].ObjectToString();
+                    string[] ary_開門權限 = str_開門權限.Split(',');
+                    List<string> list_開門權限 = new List<string>();
+                    for (int k = 0; k < ary_開門權限.Length; k++)
+                    {
+                        list_開門權限.Add(ary_開門權限[k]);
+                    }
+                    value_load[(int)enum_人員資料.開門權限] = list_開門權限.JsonSerializationt();
                     list_SQL_Value_buf = list_SQL_Value.GetRows((int)enum_人員資料.ID, value_load[(int)enum_人員資料.ID].ObjectToString());
                     if (list_SQL_Value_buf.Count > 0)
                     {
                         object[] value_SQL = list_SQL_Value_buf[0];
                         value_load[(int)enum_人員資料.GUID] = value_SQL[(int)enum_人員資料.GUID];
-                        bool flag_Equal = value_load.IsEqual(value_SQL);
-                        if (!flag_Equal)
-                        {
-                            list_Replace_SerchValue.Add(value_load[(int)enum_人員資料.GUID].ObjectToString());
-                            list_Replace_Value.Add(value_load);
-                        }
+                        list_Replace_Value.Add(value_load);
                     }
                     else
                     {
@@ -368,7 +417,7 @@ namespace 勤務傳送櫃
                     }
                 }
                 this.sqL_DataGridView_人員資料.SQL_AddRows(list_Add, false);
-                this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(enum_人員資料.GUID.GetEnumName(), list_Replace_SerchValue, list_Replace_Value, false);
+                this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(list_Replace_Value, false);
                 this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
                 this.Cursor = Cursors.Default;
                 MyMessageBox.ShowDialog("匯入完成!");
@@ -433,15 +482,6 @@ namespace 勤務傳送櫃
             this.ResumeLayout(false);
         }
 
-        private bool Function_人員資料_取得開門權限(string value, int num)
-        {
-            if (num < 0) return false;
-            byte[] bytes = value.StringHexTobytes();
-            int temp0 = num / 8;
-            int temp1 = num % 8;
-            if (temp0 >= bytes.Length) return false;
-            return myConvert.ByteGetBit(bytes[temp0], temp1);
-        }
         #endregion
         #region Event
         private void SqL_DataGridView_人員資料_MouseDown(object sender, MouseEventArgs e)

@@ -740,18 +740,13 @@ C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Rel
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_更改病房名稱.resources
 C:\Users\vendors\Desktop\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\勤務傳送櫃\obj\Release\勤務傳送櫃.exe
-C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_EPDPanel.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.Form1.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.OpenDoorPermission_UI.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.Pannel_Box.resources
-C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.Properties.Resources.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_更改病房名稱.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.GenerateResource.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送櫃.exe.config
-C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送櫃.exe
-C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送櫃.pdb
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\ICSharpCode.SharpZipLib.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\System.Buffers.dll
@@ -764,7 +759,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\System.ValueTuple.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\MySql.Data.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CopyComplete
-C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.pdb
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\CallBackUI.dll
@@ -803,3 +797,9 @@ C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送系統.exe.config
+C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送系統.exe
+C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送系統.pdb
+C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.Properties.Resources.resources
+C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.exe
+C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.pdb

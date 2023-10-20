@@ -63,7 +63,7 @@ namespace 勤務傳送櫃
             if (this.MyTimer_蜂鳴警報檢查_結束延遲.IsTimeOut())
             {
                 Pannel_Box.AlarmBeepTime = PLC_Device_蜂鳴持續時間.Value;
-                for (int i = 0; i < 160; i++)
+                for (int i = 0; i < Pannel_Box.Panels.Count; i++)
                 {
                     if (Pannel_Box.Panels[i].AlarmBeep)
                     {

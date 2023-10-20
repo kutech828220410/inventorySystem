@@ -39,7 +39,7 @@ namespace 勤務傳送櫃
         int cnt_Program_櫃體狀態_更新病房資料 = 65534;
         void Program_櫃體狀態_更新病房資料()
         {
-            if (this.plC_ScreenPage_Main.PageText == "櫃體狀態") PLC_Device_櫃體狀態_更新病房資料.Bool = true;
+             PLC_Device_櫃體狀態_更新病房資料.Bool = true;
             if (cnt_Program_櫃體狀態_更新病房資料 == 65534)
             {
                 PLC_Device_櫃體狀態_更新病房資料.SetComment("PLC_櫃體狀態_更新病房資料");
@@ -71,7 +71,9 @@ namespace 勤務傳送櫃
         }
         void cnt_Program_櫃體狀態_更新病房資料_初始化(ref int cnt)
         {
-            this.MyTimer_櫃體狀態_更新病房資料_更新間隔.StartTickTime(1000);
+            if(this.plC_CheckBox_主機模式.Checked) this.MyTimer_櫃體狀態_更新病房資料_更新間隔.StartTickTime(1000);
+            else this.MyTimer_櫃體狀態_更新病房資料_更新間隔.StartTickTime(5000);
+
             cnt++;
         }
         void cnt_Program_櫃體狀態_更新病房資料_檢查時間到達(ref int cnt)
@@ -133,6 +135,7 @@ namespace 勤務傳送櫃
                     Pannel_Box.Panels[i].Port = rFIDClass.DeviceClasses[RFID_num].Port;
                     Pannel_Box.Panels[i].WardName = rFIDClass.DeviceClasses[RFID_num].Name;
                     Pannel_Box.Panels[i].WardFont = rFIDClass.DeviceClasses[RFID_num].Name_font;
+                    Pannel_Box.Panels[i].serchName = rFIDClass.DeviceClasses[RFID_num].WardName;
                     Pannel_Box.Panels[i].RFID_num = RFID_num;
                     Pannel_Box.Panels[i].Lock_input_num = Lock_input_num;
                     Pannel_Box.Panels[i].Lock_output_num = Lock_output_num;
@@ -224,16 +227,16 @@ namespace 勤務傳送櫃
                 if (pannel_Box == null) continue;
                 string 姓名 = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
                 string 藥櫃編號 = pannel_Box.Number.ToString();
-                string 病房名稱 = pannel_Box.WardName;
+                List<string> 病房名稱 = pannel_Box.List_serchName;
                 string ID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
                 string opendoor_value = list_人員資料_buf[0][(int)enum_人員資料.開門權限].ObjectToString();
                 if (opendoor_value.StringIsEmpty() == true) continue;
                 //long.TryParse(list_人員資料_buf[0][(int)enum_人員資料.開門權限].ObjectToString(), out 權限);
-                if (OpenDoorPermissionMethod.GetOpenDoorPermission(opendoor_value, pannel_Box.WardName))
+                if (OpenDoorPermissionMethod.GetOpenDoorPermission(opendoor_value, 病房名稱))
                 {
                     if (!pannel_Box.IsOpen())
                     {
-                        this.新增交易紀錄(enum_交易記錄查詢動作.開啟門片, 姓名,  病房名稱, "");
+                        pannel_Box.CT_Name = 姓名;
                         pannel_Box.Open();
                     }
                 }

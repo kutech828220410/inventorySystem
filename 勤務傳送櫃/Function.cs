@@ -80,7 +80,7 @@ namespace 勤務傳送櫃
             }
             if (returnData.Code != 200)
             {
-                MyMessageBox.ShowDialog($"{returnData.Result}");
+                //MyMessageBox.ShowDialog($"{returnData.Result}");
                 return new List<OrderClass>();
 
             }

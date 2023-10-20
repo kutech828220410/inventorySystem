@@ -79,7 +79,7 @@ namespace 勤務傳送櫃
             this.plC_RJ_Button_Box_Index_Table_刪除.MouseDownEvent += PlC_RJ_Button_Box_Index_Table_刪除_MouseDownEvent;
             this.plC_RJ_Button_Box_Index_Table_更新.MouseDownEvent += PlC_RJ_Button_Box_Index_Table_更新_MouseDownEvent;
 
-            this.plC_RJ_Button_檢查病房有藥未領取.MouseDownEvent += PlC_RJ_Button_檢查病房有藥未領取_MouseDownEvent;
+            this.plC_RJ_Button_檢查病房有藥未調劑.MouseDownEvent += PlC_RJ_Button_檢查病房有藥未調劑_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(Program_系統頁面);
         }
@@ -90,65 +90,70 @@ namespace 勤務傳送櫃
         {
             if (plC_NumBox_病房提示亮燈.Value < 5000) plC_NumBox_病房提示亮燈.Value = 5000;
             Pannel_Box.PharLightOnTime = plC_NumBox_病房提示亮燈.Value;
-
-            sub_Program_檢查病房有藥未領取();
-        }
-
-        #region PLC_檢查病房有藥未領取
-        PLC_Device PLC_Device_檢查病房有藥未領取 = new PLC_Device("");
-        PLC_Device PLC_Device_檢查病房有藥未領取_OK = new PLC_Device("");
-        Task Task_檢查病房有藥未領取;
-        MyTimer MyTimer_檢查病房有藥未領取_結束延遲 = new MyTimer();
-        int cnt_Program_檢查病房有藥未領取 = 65534;
-        void sub_Program_檢查病房有藥未領取()
-        {
-            if (plC_CheckBox_主機模式.Checked) PLC_Device_檢查病房有藥未領取.Bool = true;
-            if (cnt_Program_檢查病房有藥未領取 == 65534)
+            if(plC_CheckBox_主機模式.Checked)
             {
-                this.MyTimer_檢查病房有藥未領取_結束延遲.StartTickTime(1000);
-                PLC_Device_檢查病房有藥未領取.SetComment("PLC_檢查病房有藥未領取");
-                PLC_Device_檢查病房有藥未領取_OK.SetComment("PLC_檢查病房有藥未領取_OK");
-                PLC_Device_檢查病房有藥未領取.Bool = false;
-                cnt_Program_檢查病房有藥未領取 = 65535;
+                sub_Program_檢查病房有藥未調劑();
             }
-            if (cnt_Program_檢查病房有藥未領取 == 65535) cnt_Program_檢查病房有藥未領取 = 1;
-            if (cnt_Program_檢查病房有藥未領取 == 1) cnt_Program_檢查病房有藥未領取_檢查按下(ref cnt_Program_檢查病房有藥未領取);
-            if (cnt_Program_檢查病房有藥未領取 == 2) cnt_Program_檢查病房有藥未領取_初始化(ref cnt_Program_檢查病房有藥未領取);
-            if (cnt_Program_檢查病房有藥未領取 == 3) cnt_Program_檢查病房有藥未領取 = 65500;
-            if (cnt_Program_檢查病房有藥未領取 > 1) cnt_Program_檢查病房有藥未領取_檢查放開(ref cnt_Program_檢查病房有藥未領取);
+            Pannel_Box.flag_Run = this.plC_CheckBox_主機模式.Checked;
 
-            if (cnt_Program_檢查病房有藥未領取 == 65500)
+
+        }
+
+        #region PLC_檢查病房有藥未調劑
+        PLC_Device PLC_Device_檢查病房有藥未調劑 = new PLC_Device("");
+        PLC_Device PLC_Device_檢查病房有藥未調劑_OK = new PLC_Device("");
+        Task Task_檢查病房有藥未調劑;
+        MyTimer MyTimer_檢查病房有藥未調劑_結束延遲 = new MyTimer();
+        int cnt_Program_檢查病房有藥未調劑 = 65534;
+        void sub_Program_檢查病房有藥未調劑()
+        {
+            if (plC_CheckBox_主機模式.Checked) PLC_Device_檢查病房有藥未調劑.Bool = true;
+            if (cnt_Program_檢查病房有藥未調劑 == 65534)
             {
-                this.MyTimer_檢查病房有藥未領取_結束延遲.TickStop();
-                this.MyTimer_檢查病房有藥未領取_結束延遲.StartTickTime(1000);
-                PLC_Device_檢查病房有藥未領取.Bool = false;
-                PLC_Device_檢查病房有藥未領取_OK.Bool = false;
-                cnt_Program_檢查病房有藥未領取 = 65535;
+                this.MyTimer_檢查病房有藥未調劑_結束延遲.StartTickTime(1000);
+                PLC_Device_檢查病房有藥未調劑.SetComment("PLC_檢查病房有藥未調劑");
+                PLC_Device_檢查病房有藥未調劑_OK.SetComment("PLC_檢查病房有藥未調劑_OK");
+                PLC_Device_檢查病房有藥未調劑.Bool = false;
+                cnt_Program_檢查病房有藥未調劑 = 65535;
+            }
+            if (cnt_Program_檢查病房有藥未調劑 == 65535) cnt_Program_檢查病房有藥未調劑 = 1;
+            if (cnt_Program_檢查病房有藥未調劑 == 1) cnt_Program_檢查病房有藥未調劑_檢查按下(ref cnt_Program_檢查病房有藥未調劑);
+            if (cnt_Program_檢查病房有藥未調劑 == 2) cnt_Program_檢查病房有藥未調劑_初始化(ref cnt_Program_檢查病房有藥未調劑);
+            if (cnt_Program_檢查病房有藥未調劑 == 3) cnt_Program_檢查病房有藥未調劑 = 65500;
+            if (cnt_Program_檢查病房有藥未調劑 > 1) cnt_Program_檢查病房有藥未調劑_檢查放開(ref cnt_Program_檢查病房有藥未調劑);
+
+            if (cnt_Program_檢查病房有藥未調劑 == 65500)
+            {
+                this.MyTimer_檢查病房有藥未調劑_結束延遲.TickStop();
+                this.MyTimer_檢查病房有藥未調劑_結束延遲.StartTickTime(1000);
+                PLC_Device_檢查病房有藥未調劑.Bool = false;
+                PLC_Device_檢查病房有藥未調劑_OK.Bool = false;
+                cnt_Program_檢查病房有藥未調劑 = 65535;
             }
         }
-        void cnt_Program_檢查病房有藥未領取_檢查按下(ref int cnt)
+        void cnt_Program_檢查病房有藥未調劑_檢查按下(ref int cnt)
         {
-            if (PLC_Device_檢查病房有藥未領取.Bool) cnt++;
+            if (PLC_Device_檢查病房有藥未調劑.Bool) cnt++;
         }
-        void cnt_Program_檢查病房有藥未領取_檢查放開(ref int cnt)
+        void cnt_Program_檢查病房有藥未調劑_檢查放開(ref int cnt)
         {
-            if (!PLC_Device_檢查病房有藥未領取.Bool) cnt = 65500;
+            if (!PLC_Device_檢查病房有藥未調劑.Bool) cnt = 65500;
         }
-        void cnt_Program_檢查病房有藥未領取_初始化(ref int cnt)
+        void cnt_Program_檢查病房有藥未調劑_初始化(ref int cnt)
         {
-            if (this.MyTimer_檢查病房有藥未領取_結束延遲.IsTimeOut())
+            if (this.MyTimer_檢查病房有藥未調劑_結束延遲.IsTimeOut())
             {
-                if (Task_檢查病房有藥未領取 == null)
+                if (Task_檢查病房有藥未調劑 == null)
                 {
-                    Task_檢查病房有藥未領取 = new Task(new Action(delegate { PlC_RJ_Button_檢查病房有藥未領取_MouseDownEvent(null); }));
+                    Task_檢查病房有藥未調劑 = new Task(new Action(delegate { PlC_RJ_Button_檢查病房有藥未調劑_MouseDownEvent(null); }));
                 }
-                if (Task_檢查病房有藥未領取.Status == TaskStatus.RanToCompletion)
+                if (Task_檢查病房有藥未調劑.Status == TaskStatus.RanToCompletion)
                 {
-                    Task_檢查病房有藥未領取 = new Task(new Action(delegate { PlC_RJ_Button_檢查病房有藥未領取_MouseDownEvent(null); }));
+                    Task_檢查病房有藥未調劑 = new Task(new Action(delegate { PlC_RJ_Button_檢查病房有藥未調劑_MouseDownEvent(null); }));
                 }
-                if (Task_檢查病房有藥未領取.Status == TaskStatus.Created)
+                if (Task_檢查病房有藥未調劑.Status == TaskStatus.Created)
                 {
-                    Task_檢查病房有藥未領取.Start();
+                    Task_檢查病房有藥未調劑.Start();
                 }
                 cnt++;
             }
@@ -162,15 +167,15 @@ namespace 勤務傳送櫃
 
         #endregion
         #region Event
-        private void PlC_RJ_Button_檢查病房有藥未領取_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_檢查病房有藥未調劑_MouseDownEvent(MouseEventArgs mevent)
         {
             DateTime dt_st = new DateTime(DateTime.Now.AddDays(-1).Year, DateTime.Now.AddDays(-1).Month, DateTime.Now.AddDays(-1).Day, 00, 00, 00);
             DateTime dt_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
             List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, dt_st, dt_end, false);
             List<string> wardName = (from temp in list_value
-                          where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.藥袋刷入.GetEnumName()
-                          where temp[(int)enum_交易記錄查詢資料.領用時間].ToDateTimeString().StringIsEmpty()
-                          select temp[(int)enum_交易記錄查詢資料.病房號].ObjectToString()).Distinct().ToList();
+                                     where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.藥袋刷入.GetEnumName()
+                                     where temp[(int)enum_交易記錄查詢資料.領用時間].ToDateTimeString().StringToDateTime() == "1999-01-01 00:00:00".StringToDateTime()
+                                     select temp[(int)enum_交易記錄查詢資料.病房號].ObjectToString()).Distinct().ToList();
             Pannel_Box.PanelLightOnCheck(wardName);
         }
         private void SqL_DataGridView_Box_Index_Table_DataGridRowsChangeEvent(List<object[]> RowsList)

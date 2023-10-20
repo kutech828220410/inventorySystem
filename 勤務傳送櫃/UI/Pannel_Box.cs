@@ -25,63 +25,76 @@ namespace 勤務傳送櫃
         public static int AlarmBeepTime = 5000;
         public static int PharLightOnTime = 5000;
         public static int InitDelay = 2000;
-
+        public static bool flag_Run = false;
 
         public static List<string> GetAllWardName()
         {
-            List<string> names = (from temp in Panels
-                                  where temp.WardName.StringIsEmpty() == false
-                                  select temp.WardName).Distinct().ToList();
+            List<string> list_temp = new List<string>();
+            for (int i = 0; i < Panels.Count; i++)
+            {
+                foreach(string temp in Panels[i].list_serchName)
+                {
+                    list_temp.Add(temp);
+                }
+            }
+            List<string> names = (from temp in list_temp
+                                  select temp).Distinct().ToList();
             return names;
         }
+        public static List<Pannel_Box> SerchByWardName(List<string> wardNames)
+        {
+            List<Pannel_Box> pannel_Boxes = new List<Pannel_Box>();
+            for (int i = 0; i < wardNames.Count; i++)
+            {
+                pannel_Boxes.LockAdd(SerchByWardName(wardNames[i]));
+            }
+            return pannel_Boxes;
+        }
+        public static List<Pannel_Box> SerchByWardName(string WardName)
+        {
+            List<Pannel_Box> pannel_Boxes = new List<Pannel_Box>();
+            for (int i = 0; i < Panels.Count; i++)
+            {
+                foreach (string temp in Panels[i].list_serchName)
+                {
+                    if (temp.StringIsEmpty()) continue;
+                    if (temp.ToUpper() == WardName.ToUpper())
+                    {
+                        pannel_Boxes.Add(Panels[i]);
+                        break;
+                    }
+                }
+            }
+            return pannel_Boxes;
+        }
+
         public static bool PharLightOn(string WardName)
         {
+            List<Pannel_Box> pannel_Boxes = SerchByWardName(WardName);
             bool flag = false;
-            for(int i = 0; i < Panels.Count; i++)
+            for(int i = 0; i < pannel_Boxes.Count; i++)
             {
-                if (Panels[i].WardName.StringIsEmpty()) continue;
-                if (Panels[i].WardName == WardName)
-                {
-                    Panels[i].PharmacyLightOn();
-                    flag = true;
-                }
+                pannel_Boxes[i].PharmacyLightOn();
+                flag = true;
+
             }
             return flag;
         }
         public static void PanelLightOnCheck(List<string> wardNames)
         {
-            List<Pannel_Box> Panels_buf = new List<Pannel_Box>();
-            List<string> wardNames_buf = GetAllWardName();
-
-            List<string> allNames = GetAllWardName();
-            for (int i = 0; i < allNames.Count; i++)
+            for (int i = 0; i < Panels.Count; i++)
             {
-                wardNames_buf = (from temp in wardNames
-                                 where temp == allNames[i]
-                                 select temp).ToList();
-                if(wardNames_buf.Count != 0)
+                if (Panels[i].list_serchName.Count == 0) continue;
+                if(Panels[i].CheckWardName(wardNames))
                 {
-                    Panels_buf = (from temp in Panels
-                                  where temp.WardName == wardNames_buf[0]
-                                  select temp).ToList();
-                    for(int k = 0; k < Panels_buf.Count; k++)
-                    {
-                        Panels_buf[k].PanelLightOn();
-                    }
+                    Panels[i].PanelLightOn();
                 }
                 else
                 {
-                    Panels_buf = (from temp in Panels
-                                  where temp.WardName == allNames[i]
-                                  select temp).ToList();
-                    for (int k = 0; k < Panels_buf.Count; k++)
-                    {
-                        Panels_buf[k].PanelLightOff();
-                    }
+                    Panels[i].PanelLightOff();
                 }
-        
-
             }
+    
         }
 
 
@@ -93,10 +106,12 @@ namespace 勤務傳送櫃
 
 
      
-        public delegate void AlarmEventHandler(string WardName, string Number, string Time);
-        public delegate void CloseEventHandler(string WardName, string Number, string Time);
+        public delegate void AlarmEventHandler(Pannel_Box pannel_Box);
+        public delegate void CloseEventHandler(Pannel_Box pannel_Box);
+        public delegate void OpenEventHandler(Pannel_Box pannel_Box);
         public event AlarmEventHandler AlarmEvent;
         public event CloseEventHandler CloseEvent;
+        public event OpenEventHandler OpenEvent;
 
         public bool AlarmBeep = false;
 
@@ -306,6 +321,44 @@ namespace 勤務傳送櫃
             }
         }
 
+        private string cT_Name = "";
+        [ReadOnly(false), Browsable(false), Category("Config"), Description(""), DefaultValue("")]
+        public string CT_Name
+        {
+            get
+            {
+                return cT_Name;
+            }
+            set
+            {
+                cT_Name = value;
+            }
+        }
+
+        private List<string> list_serchName = new List<string>();
+        [ReadOnly(false), Browsable(false), Category("Config"), Description(""), DefaultValue("")]
+        public List<string> List_serchName
+        {
+            get
+            {
+                return list_serchName;
+            }
+            set
+            {
+                list_serchName = value;
+            }
+        }
+        public string serchName
+        {
+            set
+            {
+                List<string> temp = value.JsonDeserializet<List<string>>();
+                if (temp == null) temp = new List<string>();
+                list_serchName = temp;
+            }
+        }
+
+
         public enum enum_door_state
         {
             Close,
@@ -482,6 +535,7 @@ namespace 勤務傳送櫃
         MyTimerBasic MyTimerBasic_lock_input = new MyTimerBasic(200); 
         public void Run()
         {
+            if (!flag_Run) return;
             if(this.pLC_Device_lock_input.Bool)
             {
                 if (MyTimerBasic_lock_input.IsTimeOut())
@@ -531,6 +585,7 @@ namespace 勤務傳送櫃
             if (flag_lock_output == true)
             {
                 this.rFID_UI.Set_OutputPINTrigger(IP, Port, this.lock_output_num, true);
+                this.OpenEvent(this);
                 flag_lock_output = false;
             }
 
@@ -613,7 +668,7 @@ namespace 勤務傳送櫃
                     {
                         if (this.myTimer_InitinputDelay.IsTimeOut())
                         {
-                            this.CloseEvent(this.WardName, this.Number, DateTime.Now.ToDateTimeString_6());
+                            this.CloseEvent(this);
                             Console.WriteLine($"[CloseEvent]  WardName:{WardName},Number{Number} { DateTime.Now.ToDateTimeString_6()}");
                         }
   
@@ -633,7 +688,7 @@ namespace 勤務傳送櫃
                         this.myTimer_alarm_beep_time.TickStop();
                         this.myTimer_alarm_beep_time.StartTickTime(AlarmBeepTime);
 
-                        if (this.AlarmEvent != null && flag_Init) this.AlarmEvent(this.WardName, this.Number, DateTime.Now.ToDateTimeString_6());
+                        if (this.AlarmEvent != null && flag_Init) this.AlarmEvent(this);
 
                         flag_alarm_is_active = false;
                     }
@@ -765,9 +820,30 @@ namespace 勤務傳送櫃
                 this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, true);
             }
         }
+
+        public bool CheckWardName(string WardName)
+        {
+            for(int i = 0; i < this.list_serchName.Count; i++)
+            {
+                if(WardName.ToUpper() == this.list_serchName[i].ToUpper())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public bool CheckWardName(List<string> WardNames)
+        {
+            for (int i = 0; i < WardNames.Count; i++)
+            {
+                if (this.CheckWardName(WardNames[i])) return true;
+            }
+            return false;
+        }
         public Pannel_Box()
         {
             InitializeComponent();
+            this.list_serchName = list_serchName;
         }
 
         private void 開門ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -776,7 +852,7 @@ namespace 勤務傳送櫃
         }
         private void 更改病房名稱ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dialog_更改病房名稱 form = Dialog_更改病房名稱.GetForm(this.WardName);
+            Dialog_更改病房名稱 form = new Dialog_更改病房名稱(this.WardName , this.list_serchName);
             form.ShowDialog();
             if(form.Enum_Type == Dialog_更改病房名稱.enum_Type.OK)
             {
@@ -784,6 +860,7 @@ namespace 勤務傳送櫃
                 if (rFIDClass == null) return;
                 if (this.rFID_num >= rFIDClass.DeviceClasses.Length) return;
                 rFIDClass.DeviceClasses[this.rFID_num].Name = form.修改名稱;
+                rFIDClass.DeviceClasses[this.rFID_num].WardName = form.病房名稱.JsonSerializationt();
                 this.rFID_UI.SQL_ReplaceRFIDClass(rFIDClass);
                 this.WardName = form.修改名稱;
                
