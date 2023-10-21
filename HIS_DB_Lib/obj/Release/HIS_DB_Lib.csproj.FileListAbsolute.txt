@@ -461,3 +461,4 @@ C:\Users\vendors\Desktop\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.cspro
 C:\Users\vendors\Desktop\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.dll
 C:\Users\vendors\Desktop\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.xml

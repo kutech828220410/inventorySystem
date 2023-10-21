@@ -528,3 +528,4 @@ C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\obj\Release\ServerSet
 C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_傳送櫃.resources
+C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_傳送櫃.resources

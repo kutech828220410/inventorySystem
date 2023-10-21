@@ -43,6 +43,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥袋類型);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品碼);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品名稱);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.領藥號);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.批序);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.單次劑量);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.劑量單位);
@@ -55,9 +56,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病歷號);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_醫囑資料.交易量);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.開方日期);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.產出時間);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.過帳時間);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.狀態);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.備註);
 
             this.sqL_DataGridView_醫令資料.DataGridRowsChangeRefEvent += SqL_DataGridView_醫令資料_DataGridRowsChangeRefEvent;
@@ -65,19 +64,22 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.DataGridRowsChangeEvent += SqL_DataGridView_醫令資料_DataGridRowsChangeEvent;
 
 
-            this.plC_RJ_Button_醫令資料_顯示全部.MouseDownEvent += PlC_RJ_Button_醫令資料_顯示全部_MouseDownEvent;
             this.plC_RJ_Button_醫令資料_自動過帳.MouseDownEvent += PlC_RJ_Button_醫令資料_自動過帳_MouseDownEvent;
             this.plC_RJ_Button_醫令資料_設定產出時間.MouseDownEvent += PlC_RJ_Button_醫令資料_設定產出時間_MouseDownEvent;
             this.plC_RJ_Button_醫令資料_設為未過帳.MouseDownEvent += PlC_RJ_Button_醫令資料_設為未過帳_MouseDownEvent;
             this.plC_RJ_Button_醫令資料_定期API測試.MouseDownEvent += PlC_RJ_Button_醫令資料_定期API測試_MouseDownEvent;
             this.plC_RJ_Button_醫令資料_選取資料刪除.MouseDownEvent += PlC_RJ_Button_醫令資料_選取資料刪除_MouseDownEvent;
 
+            this.plC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋.MouseDownEvent += PlC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋.MouseDownEvent += PlC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋.MouseDownEvent += PlC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋_MouseDownEvent;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋.MouseDownEvent += PlC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(Program_醫令資料);
         }
 
-   
+ 
 
         private void Program_醫令資料()
         {
@@ -415,11 +417,18 @@ namespace 調劑台管理系統
         }
         private void SqL_DataGridView_醫令資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
+            for (int i = 0; i < RowsList.Count; i++)
+            { 
+                if(RowsList[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.未過帳.GetEnumName())
+                {
+
+                }
+            }
             RowsList.Sort(new ICP_醫令資料());
         }
         private void SqL_DataGridView_醫令資料_DataGridRowsChangeEvent(List<object[]> RowsList)
         {
-            // RowsList.Sort(new ICP_醫令資料());
+        
         }
         private void PlC_RJ_Button_醫令資料_設定產出時間_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -566,20 +575,6 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(list_value, false);
             this.sqL_DataGridView_醫令資料.ReplaceExtra(list_value, true);
         }
-        private void PlC_RJ_Button_醫令資料_顯示全部_MouseDownEvent(MouseEventArgs mevent)
-        {
-            MyTimer myTimer = new MyTimer();
-            myTimer.TickStop();
-            myTimer.StartTickTime(50000);
-            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRowsByBetween((int)enum_醫囑資料.開方日期, dateTimePicke_醫令資料_開方日期_起始, dateTimePicke_醫令資料_開方日期_結束, false);
-
-            if (rJ_TextBox_醫令資料_搜尋條件_藥品碼.Texts.StringIsEmpty() == false) list_value = list_value.GetRowsByLike((int)enum_醫囑資料.藥品碼, rJ_TextBox_醫令資料_搜尋條件_藥品碼.Texts);
-            if (rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Texts.StringIsEmpty() == false) list_value = list_value.GetRowsByLike((int)enum_醫囑資料.藥品名稱, rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Texts);
-            if (rJ_TextBox_醫令資料_搜尋條件_病歷號.Texts.StringIsEmpty() == false) list_value = list_value.GetRows((int)enum_醫囑資料.病歷號, rJ_TextBox_醫令資料_搜尋條件_病歷號.Texts);
-
-            Console.Write($"取得醫令資料 , 耗時 : {myTimer.ToString()} ms\n");
-            this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
-        }
         private void PlC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             MyTimer myTimer = new MyTimer();
@@ -595,6 +590,66 @@ namespace 調劑台管理系統
             }
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
+
+        }
+        private void PlC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic(50000);
+            DateTime dateTime_st = new DateTime(dateTimePicke_醫令資料_開方日期_起始.Value.Year, dateTimePicke_醫令資料_開方日期_起始.Value.Month, dateTimePicke_醫令資料_開方日期_起始.Value.Day, 00, 00, 00);
+            DateTime dateTime_end = new DateTime(dateTimePicke_醫令資料_開方日期_結束.Value.Year, dateTimePicke_醫令資料_開方日期_結束.Value.Month, dateTimePicke_醫令資料_開方日期_結束.Value.Day, 23, 59, 59);
+            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRowsByBetween((int)enum_醫囑資料.開方日期, dateTime_st, dateTime_end, false);
+            Console.WriteLine($"搜尋資料耗時{myTimerBasic.ToString()}");
+            this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
+            if(list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料");
+            }
+        }
+        private void PlC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic(50000);
+            if (rJ_TextBox_醫令資料_搜尋條件_病歷號.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("未輸入搜尋條件");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.病歷號, rJ_TextBox_醫令資料_搜尋條件_病歷號.Text , false);
+            Console.WriteLine($"搜尋資料耗時{myTimerBasic.ToString()}");
+            this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料");
+            }
+        }
+        private void PlC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic(50000);
+            if (rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("未輸入搜尋條件");
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.藥品名稱, rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Text, false);
+            Console.WriteLine($"搜尋資料耗時{myTimerBasic.ToString()}");
+            this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料");
+            }
+        }
+        private void PlC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.藥品碼 ,rJ_TextBox_醫令資料_搜尋條件_藥品碼.Text, false);
+            if (rJ_TextBox_醫令資料_搜尋條件_藥品碼.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("未輸入搜尋條件");
+                return;
+            }
+            this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料");
+            }
 
         }
         private void PlC_RJ_Button_醫令資料_定期API測試_MouseDownEvent(MouseEventArgs mevent)
@@ -622,8 +677,8 @@ namespace 調劑台管理系統
             public int Compare(object[] x, object[] y)
             {
 
-                string date01 = x[(int)enum_醫囑資料.產出時間].ToDateTimeString_6();
-                string date02 = y[(int)enum_醫囑資料.產出時間].ToDateTimeString_6();
+                string date01 = x[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
+                string date02 = y[(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
                 return date01.CompareTo(date02);
 
             }

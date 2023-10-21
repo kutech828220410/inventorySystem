@@ -1337,7 +1337,7 @@ namespace 調劑台管理系統
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
 
-
+            bool flag_OK = true;
             MyTimer myTimer_total = new MyTimer();
             myTimer_total.StartTickTime(50000);
             int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
@@ -1381,12 +1381,14 @@ namespace 調劑台管理系統
                 if (list_醫令資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單碼無資料");
+                    flag_OK = false;
                     return;
                 }
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單已過期");
+                    flag_OK = false;
                     return;
                 }
                 List<object[]> list_醫令資料_remove = new List<object[]>();
@@ -1395,6 +1397,7 @@ namespace 調劑台管理系統
                 if (list_醫令資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單無未過帳資料");
+                    flag_OK = false;
                     return;
                 }
 
@@ -1406,6 +1409,7 @@ namespace 調劑台管理系統
                 if (list_醫令資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("未搜尋到儲位");
+                    flag_OK = false;
                     return;
                 }
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -1494,7 +1498,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            if (flag_OK )this.voice.SpeakOnTask("掃碼成功");
         }
         private void Function_領藥台_01_醫令退藥(string BarCode)
         {
@@ -3249,7 +3253,7 @@ namespace 調劑台管理系統
         private void Function_領藥台_02_醫令領藥(string BarCode)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
-
+            bool flag_OK = true;
 
             MyTimer myTimer_total = new MyTimer();
             myTimer_total.StartTickTime(50000);
@@ -3294,12 +3298,14 @@ namespace 調劑台管理系統
                 if (list_醫令資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單碼無資料");
+                    flag_OK = false;
                     return;
                 }
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單已過期");
+                    flag_OK = false;
                     return;
                 }
                 List<object[]> list_醫令資料_remove = new List<object[]>();
@@ -3308,6 +3314,7 @@ namespace 調劑台管理系統
                 if (list_醫令資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("此藥單無未過帳資料");
+                    flag_OK = false;
                     return;
                 }
 
@@ -3319,6 +3326,7 @@ namespace 調劑台管理系統
                 if (list_醫令資料.Count == 0)
                 {
                     this.voice.SpeakOnTask("未搜尋到儲位");
+                    flag_OK = false;
                     return;
                 }
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -3408,7 +3416,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            if (flag_OK) this.voice.SpeakOnTask("掃碼成功");
         }
         private void Function_領藥台_02_醫令退藥(string BarCode)
         {

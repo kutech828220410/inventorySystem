@@ -1373,7 +1373,7 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < list_取藥堆疊子資料_DeleteValue.Count; i++)
             {
-                this.Function_取藥堆疊資料_刪除子資料(list_取藥堆疊子資料_DeleteValue[i][(int)enum_取藥堆疊子資料.GUID].ObjectToString(), false);
+                this.Function_取藥堆疊資料_刪除子資料(list_取藥堆疊子資料_DeleteValue[i][(int)enum_取藥堆疊子資料.GUID].ObjectToString(), true);
             }
             this.list_取藥堆疊子資料 = this.Function_取藥堆疊資料_取得子資料();
             this.list_取藥堆疊子資料.Sort(new Icp_取藥堆疊子資料_index排序());
@@ -2742,6 +2742,7 @@ namespace 調劑台管理系統
             string 效期 = "";
             string 批號 = "";
             string 顏色 = "";
+            string 領藥號 = "";
             List<string> List_效期 = new List<string>();
             List<string> List_批號 = new List<string>();
             List<string> list_儲位刷新_藥品碼 = new List<string>();
@@ -2770,6 +2771,7 @@ namespace 調劑台管理系統
                 交易量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString();
                 盤點量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.盤點量].ObjectToString();
                 顏色 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.顏色].ObjectToString();
+                領藥號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
 
                 病人姓名 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.病人姓名].ObjectToString();
                 床號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
@@ -2818,6 +2820,7 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.藥品名稱] = 藥品名稱;
                 value_trading[(int)enum_交易記錄查詢資料.藥袋序號] = 藥袋序號;
                 value_trading[(int)enum_交易記錄查詢資料.藥師證字號] = 藥師證字號;
+                value_trading[(int)enum_交易記錄查詢資料.領藥號] = 領藥號;
                 value_trading[(int)enum_交易記錄查詢資料.類別] = 類別;
                 value_trading[(int)enum_交易記錄查詢資料.庫存量] = 庫存量;
                 value_trading[(int)enum_交易記錄查詢資料.交易量] = 交易量;
