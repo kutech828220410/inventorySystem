@@ -18,18 +18,12 @@ namespace 調劑台管理系統
 {
     public enum ContextMenuStrip_藥品資料_藥檔資料
     {
-        [Description("S39007")]
+        [Description("M8000")]
         匯出,
-        [Description("S39007")]
+        [Description("M8000")]
         匯入,
-        [Description("S39007")]
-        匯出選取資料,
-        [Description("S39007")]
-        登錄資料,
-        [Description("S39007")]
-        刪除選取資料,
-        [Description("S39007")]
-        設定安全庫存,
+        [Description("M8000")]
+        顯示有儲位藥品,
         [Description("M8000")]
         下載未建置條碼藥品,
         [Description("M8000")]
@@ -37,7 +31,9 @@ namespace 調劑台管理系統
         [Description("M8000")]
         上載條碼Excel表,
         [Description("M8000")]
-        回傳至雲端,
+        藥檔維護,
+        [Description("S4077")]
+        更新至線上藥檔,
     }
 
    
@@ -162,13 +158,13 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_藥品條碼_搜尋_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_中文名_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_中文名_搜尋_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_商品名_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_商品名_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_管制級別_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_管制級別_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_高價藥品_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_高價藥品_搜尋_MouseDownEvent;
 
             this.plC_RJ_Button_藥品資料_條碼管理.MouseDownEvent += PlC_RJ_Button_藥品資料_條碼管理_MouseDownEvent;
-            this.plC_RJ_Button_藥品資料_匯入.MouseDownEvent += PlC_RJ_Button_藥品資料_匯入_MouseDownEvent;
-            this.plC_RJ_Button_藥品資料_匯出.MouseDownEvent += PlC_RJ_Button_藥品資料_匯出_MouseDownEvent;
+
             this.plC_RJ_Button_藥品資料_登錄.MouseDownEvent += PlC_RJ_Button_藥品資料_登錄_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_刪除.MouseDownEvent += PlC_RJ_Button_藥品資料_刪除_MouseDownEvent;
-            this.plC_RJ_Button_藥品資料_顯示有儲位藥品.MouseDownEvent += PlC_RJ_Button_藥品資料_顯示有儲位藥品_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_HIS填入.MouseDownEvent += PlC_RJ_Button_藥品資料_HIS填入_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.MouseDownEvent += PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.MouseDownEvent += PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent;
@@ -182,7 +178,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_藥品資料_藥檔資料);
         }
 
-    
+ 
 
         bool flag_藥品資料_藥檔資料_頁面更新 = false;
         private void sub_Program_藥品資料_藥檔資料()
@@ -712,6 +708,25 @@ namespace 調劑台管理系統
          
             
         }
+        private void Function_藥品資料_藥檔資料_顯示有儲位藥品()
+        {
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            List<object[]> list_藥品資料_buf = new List<object[]>();
+            List<object[]> list_value = new List<object[]>();
+
+            List<Device> devices = this.Function_從SQL取得所有儲位();
+            List<string> list_code = (from value in devices
+                                      select value.Code).ToList().Distinct().ToList();
+            for (int i = 0; i < list_code.Count; i++)
+            {
+                list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, list_code[i]);
+                if (list_藥品資料_buf.Count > 0)
+                {
+                    list_value.Add(list_藥品資料_buf[0]);
+                }
+            }
+            this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_value);
+        }
         #endregion
         #region Event
         private void PlC_RJ_Button_藥品資料_條碼管理_MouseDownEvent(MouseEventArgs mevent)
@@ -736,57 +751,7 @@ namespace 調劑台管理系統
                     {
                         Function_藥品資料_藥檔資料_匯入();
                     }
-                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.匯出選取資料.GetEnumName())
-                    {
-                        saveFileDialog_SaveExcel.OverwritePrompt = false;
-                        if (saveFileDialog_SaveExcel.ShowDialog(this) == DialogResult.OK)
-                        {
-                            DataTable datatable = new DataTable();
-                            datatable = sqL_DataGridView_藥品資料_藥檔資料.GetSelectRowsDataTable();
-                            datatable = datatable.ReorderTable(new enum_藥品資料_藥檔資料_匯出());
-                            CSVHelper.SaveFile(datatable, saveFileDialog_SaveExcel.FileName);
-                            MyMessageBox.ShowDialog("匯出完成!");
-                        }
-                    }
-                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.刪除選取資料.GetEnumName())
-                    {
-                        if (MyMessageBox.ShowDialog("是否刪除選取資料", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
-                        {
-                            this.Cursor = Cursors.WaitCursor;
-                            List<object[]> list_value = this.sqL_DataGridView_藥品資料_藥檔資料.Get_All_Select_RowsValues();
-                            List<object> list_delete_serchValue = new List<object>();
-                            for (int i = 0; i < list_value.Count; i++)
-                            {
-                                string GUID = list_value[i][(int)enum_藥品資料_藥檔資料.GUID].ObjectToString();
-                                list_delete_serchValue.Add(GUID);
-                            }
-                            this.sqL_DataGridView_藥品資料_藥檔資料.SQL_DeleteExtra(enum_藥品資料_藥檔資料.GUID.GetEnumName(), list_delete_serchValue, true);
-                            this.Cursor = Cursors.Default;
-                        }
-                    }
-                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.登錄資料.GetEnumName())
-                    {
-                        Function_藥品資料_藥檔資料_登錄();
-                    }
-                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.設定安全庫存.GetEnumName())
-                    {
-                        Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
-                        if(dialog_NumPannel.ShowDialog() == DialogResult.Yes)
-                        {
-                            List<object[]> list_value = sqL_DataGridView_藥品資料_藥檔資料.Get_All_Select_RowsValues();
-                            for (int i = 0; i < list_value.Count; i++)
-                            {
-                                list_value[i][(int)enum_藥品資料_藥檔資料.安全庫存] = dialog_NumPannel.Value.ToString();
-                            }
-                            sqL_DataGridView_藥品資料_藥檔資料.SQL_ReplaceExtra(list_value, true);
-                        }
-                        else
-                        {
-                            this.SqL_DataGridView_藥品資料_藥檔資料_MouseDown(sender, e);
-                        }
-                    }
-             
-                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.回傳至雲端.GetEnumName())
+                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.更新至線上藥檔.GetEnumName())
                     {
                         List<object[]> list_value = sqL_DataGridView_藥品資料_藥檔資料.Get_All_Select_RowsValues();
                         List<object[]> list_value_upload = new List<object[]>();
@@ -826,20 +791,26 @@ namespace 調劑台管理系統
                     }
                     else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.下載未建置條碼藥品.GetEnumName())
                     {
-
                         this.Function_藥品資料_藥檔資料_下載未建置條碼藥品();
                     }
                     else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.下載已建置條碼藥品.GetEnumName())
                     {
-
                         this.Function_藥品資料_藥檔資料_下載已建置條碼藥品();
                     }
                     else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.上載條碼Excel表.GetEnumName())
                     {
-
                         this.Function_藥品資料_藥檔資料_上載條碼Excel表();
                     }
-                    
+                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.顯示有儲位藥品.GetEnumName())
+                    {
+                        this.Function_藥品資料_藥檔資料_顯示有儲位藥品();
+                    }
+                    else if (dialog_ContextMenuStrip.Value == ContextMenuStrip_藥品資料_藥檔資料.藥檔維護.GetEnumName())
+                    {
+                        Dialog_藥檔維護 dialog_藥檔維護 = new Dialog_藥檔維護();
+                        dialog_藥檔維護.ShowDialog();
+
+                    }
                 }
             }
         }
@@ -1027,6 +998,31 @@ namespace 調劑台管理系統
                 }
             }
         }
+        private void PlC_RJ_Button_藥品資料_管制級別_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            if (rJ_ComboBox_藥品資料_藥檔資料_資料查詢_管制級別.SelectedItem.ObjectToString().StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("請選擇資料!");
+                return;
+            }
+            list_value = list_value.GetRows((int)enum_藥品資料_藥檔資料.管制級別, rJ_ComboBox_藥品資料_藥檔資料_資料查詢_管制級別.SelectedItem.ObjectToString());
+            this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_value);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+            }
+        }
+        private void PlC_RJ_Button_藥品資料_高價藥品_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
+            list_value = list_value.GetRowsByLike((int)enum_藥品資料_藥檔資料.高價藥品, true.ToString().ToUpper(), true);
+            this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_value);
+            if (list_value.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無資料!");
+            }
+        }
 
         private void PlC_RJ_Button_藥品資料_刪除_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1074,25 +1070,6 @@ namespace 調劑台管理系統
             {
                 Function_藥品資料_藥檔資料_匯入();
             }));
-        }
-        private void PlC_RJ_Button_藥品資料_顯示有儲位藥品_MouseDownEvent(MouseEventArgs mevent)
-        {
-            List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
-            List<object[]> list_藥品資料_buf = new List<object[]>();
-            List<object[]> list_value = new List<object[]>();
-
-            List<Device> devices = this.Function_從SQL取得所有儲位();
-            List<string> list_code = (from value in devices
-                                      select value.Code).ToList().Distinct().ToList();
-            for (int i = 0; i < list_code.Count; i++)
-            {
-                list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, list_code[i]);
-                if(list_藥品資料_buf.Count > 0)
-                {
-                    list_value.Add(list_藥品資料_buf[0]);
-                }
-            }
-            this.sqL_DataGridView_藥品資料_藥檔資料.RefreshGrid(list_value);
         }
         private void PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent(MouseEventArgs mevent)
         {

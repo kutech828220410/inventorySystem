@@ -36,6 +36,7 @@
             // 
             // rJ_Button_確認
             // 
+            this.rJ_Button_確認.AutoResetState = false;
             this.rJ_Button_確認.BackColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_確認.BorderColor = System.Drawing.Color.PaleVioletRed;
@@ -47,6 +48,7 @@
             this.rJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.rJ_Button_確認.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_確認.GUID = "";
             this.rJ_Button_確認.Location = new System.Drawing.Point(599, 0);
             this.rJ_Button_確認.Name = "rJ_Button_確認";
             this.rJ_Button_確認.Size = new System.Drawing.Size(165, 98);
@@ -58,6 +60,7 @@
             // 
             // rJ_Button_退出
             // 
+            this.rJ_Button_退出.AutoResetState = false;
             this.rJ_Button_退出.BackColor = System.Drawing.Color.Gray;
             this.rJ_Button_退出.BackgroundColor = System.Drawing.Color.Gray;
             this.rJ_Button_退出.BorderColor = System.Drawing.Color.PaleVioletRed;
@@ -69,6 +72,7 @@
             this.rJ_Button_退出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_退出.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_退出.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_退出.GUID = "";
             this.rJ_Button_退出.Location = new System.Drawing.Point(764, 0);
             this.rJ_Button_退出.Name = "rJ_Button_退出";
             this.rJ_Button_退出.Size = new System.Drawing.Size(165, 98);
@@ -87,6 +91,7 @@
             this.rJ_TextBox_條碼號.BorderSize = 2;
             this.rJ_TextBox_條碼號.Font = new System.Drawing.Font("微軟正黑體", 20F);
             this.rJ_TextBox_條碼號.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_條碼號.GUID = "";
             this.rJ_TextBox_條碼號.Location = new System.Drawing.Point(169, 24);
             this.rJ_TextBox_條碼號.Multiline = false;
             this.rJ_TextBox_條碼號.Name = "rJ_TextBox_條碼號";
@@ -111,6 +116,7 @@
             this.rJ_Lable26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Lable26.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable26.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Lable26.GUID = "";
             this.rJ_Lable26.Location = new System.Drawing.Point(12, 18);
             this.rJ_Lable26.Name = "rJ_Lable26";
             this.rJ_Lable26.Size = new System.Drawing.Size(147, 63);

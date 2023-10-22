@@ -50,10 +50,12 @@ namespace 調劑台管理系統.Dialog
             this.rJ_GroupBox8.ContentsPanel.Controls.Add(this.sqL_DataGridView_收支作業_儲位資料);
             this.rJ_GroupBox8.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox8.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox8.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox8.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox8.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox8.ContentsPanel.Size = new System.Drawing.Size(728, 378);
             this.rJ_GroupBox8.ContentsPanel.TabIndex = 2;
+            this.rJ_GroupBox8.GUID = "";
             this.rJ_GroupBox8.Location = new System.Drawing.Point(12, 12);
             this.rJ_GroupBox8.Name = "rJ_GroupBox8";
             this.rJ_GroupBox8.PannelBackColor = System.Drawing.Color.White;
@@ -74,6 +76,7 @@ namespace 調劑台管理系統.Dialog
             // 
             // plC_RJ_Button_收支作業_選擇儲位
             // 
+            this.plC_RJ_Button_收支作業_選擇儲位.AutoResetState = false;
             this.plC_RJ_Button_收支作業_選擇儲位.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_收支作業_選擇儲位.Bool = false;
             this.plC_RJ_Button_收支作業_選擇儲位.BorderColor = System.Drawing.Color.PaleVioletRed;
@@ -84,6 +87,7 @@ namespace 調劑台管理系統.Dialog
             this.plC_RJ_Button_收支作業_選擇儲位.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_收支作業_選擇儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_收支作業_選擇儲位.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_收支作業_選擇儲位.GUID = "";
             this.plC_RJ_Button_收支作業_選擇儲位.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_收支作業_選擇儲位.Location = new System.Drawing.Point(3, 309);
             this.plC_RJ_Button_收支作業_選擇儲位.Name = "plC_RJ_Button_收支作業_選擇儲位";
@@ -91,6 +95,7 @@ namespace 調劑台管理系統.Dialog
             this.plC_RJ_Button_收支作業_選擇儲位.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_收支作業_選擇儲位.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_收支作業_選擇儲位.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_選擇儲位.ON_BorderSize = 5;
             this.plC_RJ_Button_收支作業_選擇儲位.ON_文字內容 = "選擇儲位";
             this.plC_RJ_Button_收支作業_選擇儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_選擇儲位.ON_文字顏色 = System.Drawing.Color.Black;
@@ -157,8 +162,10 @@ namespace 調劑台管理系統.Dialog
             this.sqL_DataGridView_收支作業_儲位資料.可拖曳欄位寬度 = false;
             this.sqL_DataGridView_收支作業_儲位資料.可選擇多列 = false;
             this.sqL_DataGridView_收支作業_儲位資料.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_收支作業_儲位資料.自動換行 = true;
             this.sqL_DataGridView_收支作業_儲位資料.表單字體 = new System.Drawing.Font("標楷體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_收支作業_儲位資料.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_收支作業_儲位資料.顯示CheckBox = false;
             this.sqL_DataGridView_收支作業_儲位資料.顯示首列 = false;
             this.sqL_DataGridView_收支作業_儲位資料.顯示首行 = true;
             this.sqL_DataGridView_收支作業_儲位資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;

@@ -1850,7 +1850,6 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuck
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_WebApi.xml
-C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.GenerateResource.cache
@@ -2055,3 +2054,4 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\bin
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache

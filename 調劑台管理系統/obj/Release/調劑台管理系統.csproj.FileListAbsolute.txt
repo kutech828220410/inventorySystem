@@ -2730,3 +2730,4 @@ C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Re
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_醫令退藥.resources
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_手輸醫令.resources
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_醫令退藥.resources
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_藥檔維護.resources

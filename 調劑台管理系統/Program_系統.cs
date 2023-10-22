@@ -93,9 +93,6 @@ namespace 調劑台管理系統
         private void Program_系統_Init()
         {
 
-           
-         
-
             this.sqL_DataGridView_Locker_Index_Table.Init();
             if (!this.sqL_DataGridView_Locker_Index_Table.SQL_IsTableCreat()) this.sqL_DataGridView_Locker_Index_Table.SQL_CreateTable();
             else this.sqL_DataGridView_Locker_Index_Table.SQL_CheckAllColumnName(true);
