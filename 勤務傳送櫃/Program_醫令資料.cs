@@ -46,6 +46,7 @@ namespace 勤務傳送櫃
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品碼);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品名稱);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.劑量單位);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.頻次);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病房);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病人姓名);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病歷號);
