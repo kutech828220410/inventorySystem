@@ -1026,11 +1026,8 @@ namespace HIS_WebApi
 
             string GUID = content.GUID;
             returnData.Data = null;
-            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
-            List<object[]> list_inventory_content_buf = new List<object[]>();
-            List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetAllRows(null);
-            List<object[]> list_inventory_sub_content_buf = new List<object[]>();
-            list_inventory_content_buf = list_inventory_content.GetRows((int)enum_盤點內容.GUID, GUID);
+            List<object[]> list_inventory_content_buf = sQLControl_inventory_content.GetRowsByDefult(null, (int)enum_盤點內容.GUID, GUID);
+        
             if (list_inventory_content_buf.Count == 0)
             {
                 returnData.Code = -1;
@@ -1056,7 +1053,7 @@ namespace HIS_WebApi
 
                 content = list_inventory_content_buf[0].SQLToClass<inventoryClass.content, enum_盤點內容>(); 
                 int 盤點量 = 0;
-                list_inventory_sub_content_buf = list_inventory_sub_content.GetRows((int)enum_盤點明細.Master_GUID, content.GUID);
+                List<object[]> list_inventory_sub_content_buf = sQLControl_inventory_sub_content.GetRowsByDefult(null, (int)enum_盤點明細.Master_GUID, content.GUID);
                 for (int m = 0; m < list_inventory_sub_content_buf.Count; m++)
                 {
                     inventoryClass.sub_content sub_Content = list_inventory_sub_content_buf[m].SQLToClass<inventoryClass.sub_content, enum_盤點明細>(); 
@@ -1269,15 +1266,15 @@ namespace HIS_WebApi
 
 
             list_inventory_content_buf = list_inventory_content;
-            if (list_inventory_content_buf.Count == 0)
-            {
-                returnData.Code = -5;
-                returnData.TimeTaken = myTimer.ToString();
-                returnData.Result = $"找無資料!";
-                returnData.Method = "sub_content_add";
-                returnData.Data = null;
-                return returnData.JsonSerializationt();
-            }
+            //if (list_inventory_content_buf.Count == 0)
+            //{
+            //    returnData.Code = -5;
+            //    returnData.TimeTaken = myTimer.ToString();
+            //    returnData.Result = $"找無資料!";
+            //    returnData.Method = "sub_content_add";
+            //    returnData.Data = null;
+            //    return returnData.JsonSerializationt();
+            //}
 
         
 
