@@ -592,7 +592,6 @@ C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\bin\Release\S
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\bin\Release\System.ValueTuple.xml
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.AssemblyReference.cache
-C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe.config
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.Dialog_列印及匯出.resources
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.Dialog_輸入備註.resources
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.Dialog.Dialog_輸入批號.resources
@@ -1005,3 +1004,4 @@ C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\obj\Release\智能�
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
 C:\Users\Administrator\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\ICSharpCode.SharpZipLib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統\bin\Release\ICSharpCode.SharpZipLib.xml
+C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\bin\Release\ICSharpCode.SharpZipLib.xml
