@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.0.6")]
-[assembly: AssemblyFileVersion("1.2.0.6")]
+[assembly: AssemblyVersion("1.2.0.7")]
+[assembly: AssemblyFileVersion("1.2.0.7")]
 namespace 調劑台管理系統
 {
 
@@ -482,7 +482,7 @@ namespace 調劑台管理系統
             {
                 pictureBox_後台網址_QRCODE.Image = H_Pannel_lib.Communication.CreateQRCode(dBConfigClass.Web_URL, pictureBox_後台網址_QRCODE.Width, pictureBox_後台網址_QRCODE.Height);
             }
-        
+            plC_Button_合併同藥品.Bool = false;
             if (this.ControlMode)
             {
                 this.plC_RJ_GroupBox_調劑台切換.Visible = true;

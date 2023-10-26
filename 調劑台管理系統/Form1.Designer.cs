@@ -31220,6 +31220,7 @@
             this.plC_Button_合併同藥品.Size = new System.Drawing.Size(146, 49);
             this.plC_Button_合併同藥品.Style = MyUI.PLC_Button.StyleEnum.經典;
             this.plC_Button_合併同藥品.TabIndex = 121;
+            this.plC_Button_合併同藥品.Visible = false;
             this.plC_Button_合併同藥品.事件驅動 = false;
             this.plC_Button_合併同藥品.字型鎖住 = false;
             this.plC_Button_合併同藥品.寫入元件位置 = "S5011";
