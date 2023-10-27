@@ -134,15 +134,18 @@ namespace 勤務傳送櫃
                     if (dialog_ContextMenuStrip.Value == ContextMenuStrip_交易紀錄.選取資料設定為已領用.GetEnumName())
                     {
                         List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.Get_All_Select_RowsValues();
+                        int index = 0;
                         for (int i = 0; i < list_value.Count; i++)
                         {
+                            if (list_value[i][(int)enum_交易記錄查詢資料.領用時間].ToDateTimeString() == new DateTime(1999, 1, 1, 0, 0, 0).ToDateTimeString()) continue;
                             list_value[i][(int)enum_交易記錄查詢資料.領用人] = this.登入者名稱;
                             list_value[i][(int)enum_交易記錄查詢資料.領用時間] = DateTime.Now.ToDateTimeString_6();
                             list_value[i][(int)enum_交易記錄查詢資料.備註] = "[強制領用]";
+                            index++;
                         }
                         this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_value, false);
                         this.sqL_DataGridView_交易記錄查詢.ReplaceExtra(list_value, true);
-                        MyMessageBox.ShowDialog($"已修正領用數量{list_value.Count}筆!");
+                        MyMessageBox.ShowDialog($"已修正領用數量{index}筆!");
                     }                  
                 }
             }
