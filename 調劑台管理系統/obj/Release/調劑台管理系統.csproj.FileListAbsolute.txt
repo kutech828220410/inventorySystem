@@ -2735,3 +2735,4 @@ C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Releas
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_手輸醫令.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_醫令退藥.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_交班藥品選擇.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_藥檔維護.resources

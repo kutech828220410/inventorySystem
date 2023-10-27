@@ -89,6 +89,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_選取資料刪除_MouseDownEvent;
             this.plC_RJ_Button_交易紀錄查詢_匯出資料.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_匯出資料_MouseDownEvent;
 
+
+
             this.plC_UI_Init.Add_Method(this.sub_Program_交易記錄查詢);
         }
         private void sub_Program_交易記錄查詢()

@@ -23,6 +23,13 @@ namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
     {
+        public enum ContextMenuStrip_交易紀錄
+        {
+            [Description("M8000")]
+            選取資料設定為已領用,
+            
+        }
+
         private void Program_交易紀錄_Init()
         {
             string url = $"{dBConfigClass.Api_URL}/api/transactions/init";
@@ -40,6 +47,8 @@ namespace 勤務傳送櫃
             this.sqL_DataGridView_交易記錄查詢.Init(table);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnVisible(false, new enum_交易記錄查詢資料().GetEnumNames());
 
+            this.sqL_DataGridView_交易記錄查詢.MouseDown += SqL_DataGridView_交易記錄查詢_MouseDown;
+
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.動作);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.領藥號);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.藥品碼);
@@ -55,6 +64,8 @@ namespace 勤務傳送櫃
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(110, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.開方時間);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.備註);
             this.sqL_DataGridView_交易記錄查詢.DataGridRowsChangeRefEvent += SqL_DataGridView_交易記錄查詢_DataGridRowsChangeRefEvent;
+            this.sqL_DataGridView_交易記錄查詢.DataGridRefreshEvent += SqL_DataGridView_交易記錄查詢_DataGridRefreshEvent;
+
 
             this.plC_RJ_Button_交易記錄查詢_顯示全部.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_顯示全部_MouseDownEvent;
             this.plC_RJ_Button_交易記錄查詢_刪除資料.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_刪除資料_MouseDownEvent;
@@ -65,18 +76,15 @@ namespace 勤務傳送櫃
             this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_操作時間_搜尋_MouseDownEvent;
             this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_開方時間_搜尋_MouseDownEvent;
             this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_領用時間_搜尋_MouseDownEvent;
-          
+            this.plC_RJ_Button_交易記錄查詢_病歷號_搜尋.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_病歷號_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_交易記錄查詢_病房號_搜尋.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_病房號_搜尋_MouseDownEvent;
+
 
             this.plC_UI_Init.Add_Method(this.Program_交易紀錄);
 
         }
 
-   
-
-        private void SqL_DataGridView_交易記錄查詢_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
-        {
-            RowsList.Sort(new ICP_交易記錄查詢());
-        }
+     
 
         bool flag_交易紀錄_頁面更新_init = false;
         private void Program_交易紀錄() 
@@ -116,6 +124,68 @@ namespace 勤務傳送櫃
         #endregion
 
         #region Event
+        private void SqL_DataGridView_交易記錄查詢_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(new ContextMenuStrip_交易紀錄());
+                if (dialog_ContextMenuStrip.ShowDialog() == DialogResult.Yes)
+                {
+                    if (dialog_ContextMenuStrip.Value == ContextMenuStrip_交易紀錄.選取資料設定為已領用.GetEnumName())
+                    {
+                        List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.Get_All_Select_RowsValues();
+                        for (int i = 0; i < list_value.Count; i++)
+                        {
+                            list_value[i][(int)enum_交易記錄查詢資料.領用人] = this.登入者名稱;
+                            list_value[i][(int)enum_交易記錄查詢資料.領用時間] = DateTime.Now.ToDateTimeString_6();
+                            list_value[i][(int)enum_交易記錄查詢資料.備註] = "[強制領用]";
+                        }
+                        this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_value, false);
+                        this.sqL_DataGridView_交易記錄查詢.ReplaceExtra(list_value, true);
+                        MyMessageBox.ShowDialog($"已修正領用數量{list_value.Count}筆!");
+                    }                  
+                }
+            }
+        }
+        private void SqL_DataGridView_交易記錄查詢_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
+        {
+          
+            List<object[]> RowsList_buf = new List<object[]>();
+           
+            if(plC_CheckBox_交易記錄查詢_顯示已領用.Checked == true)
+            {
+                List<object[]> temp_buf = (from temp in RowsList
+                                           where temp[(int)enum_交易記錄查詢資料.領用時間].ToDateString() != "1999/01/01"
+                                           select temp).ToList();
+                RowsList_buf.LockAdd(temp_buf);
+            }
+            if (plC_CheckBox_交易記錄查詢_顯示未領用.Checked == true)
+            {
+                List<object[]> temp_buf = (from temp in RowsList
+                                           where temp[(int)enum_交易記錄查詢資料.領用時間].ToDateString() == "1999/01/01"
+                                           select temp).ToList();
+                RowsList_buf.LockAdd(temp_buf);
+            }
+            if (plC_CheckBox_交易記錄查詢_顯示細節.Checked == false)
+            {
+                RowsList_buf = RowsList_buf.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.藥袋刷入.GetEnumName());
+            }
+            RowsList_buf.Sort(new ICP_交易記錄查詢());
+            RowsList = RowsList_buf;
+           
+        }
+        private void SqL_DataGridView_交易記錄查詢_DataGridRefreshEvent()
+        {
+            string date = "";
+            for (int i = 0; i < this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows.Count; i++)
+            {
+                date = this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].Cells[enum_交易記錄查詢資料.領用時間.GetEnumName()].Value.ToString();
+                if(date == "1999-01-01 00:00:00")
+                {
+                    this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].Cells[enum_交易記錄查詢資料.領用時間.GetEnumName()].Value = "-";
+                }
+            }
+        }
         private void PlC_RJ_Button_交易記錄查詢_顯示全部_MouseDownEvent(MouseEventArgs mevent)
         {
             this.sqL_DataGridView_交易記錄查詢.SQL_GetAllRows(true);
@@ -169,6 +239,24 @@ namespace 勤務傳送櫃
             }
             this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByLike((int)enum_交易記錄查詢資料.操作人, this.rJ_TextBox_交易記錄查詢_調劑人.Text, true);
         }
+        private void PlC_RJ_Button_交易記錄查詢_病歷號_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (this.rJ_TextBox_交易記錄查詢_病歷號.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("未輸入資料!");
+                return;
+            }
+            this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByLike((int)enum_交易記錄查詢資料.病歷號, this.rJ_TextBox_交易記錄查詢_病歷號.Text, true);
+        }
+        private void PlC_RJ_Button_交易記錄查詢_病房號_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (this.rJ_TextBox_交易記錄查詢_病房號.Text.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("未輸入資料!");
+                return;
+            }
+            this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByLike((int)enum_交易記錄查詢資料.病房號, this.rJ_TextBox_交易記錄查詢_病房號.Text, true);
+        }
         private void PlC_RJ_Button_交易記錄查詢_領用時間_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             DateTime dateTime_st = dateTimePicker_交易記錄查詢_領用時間_起始.Value;
@@ -176,10 +264,7 @@ namespace 勤務傳送櫃
             dateTime_st = new DateTime(dateTime_st.Year, dateTime_st.Month, dateTime_st.Day, 00, 00, 00);
             dateTime_end = new DateTime(dateTime_end.Year, dateTime_end.Month, dateTime_end.Day, 23, 59, 59);
             List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.領用時間, dateTime_st, dateTime_end, false);
-            if(plC_CheckBox_交易記錄查詢_顯示細節.Checked == false)
-            {
-                list_value = list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.藥袋刷入.GetEnumName());
-            }
+          
             this.sqL_DataGridView_交易記錄查詢.RefreshGrid(list_value);
         }
         private void PlC_RJ_Button_交易記錄查詢_開方時間_搜尋_MouseDownEvent(MouseEventArgs mevent)
@@ -189,10 +274,7 @@ namespace 勤務傳送櫃
             dateTime_st = new DateTime(dateTime_st.Year, dateTime_st.Month, dateTime_st.Day, 00, 00, 00);
             dateTime_end = new DateTime(dateTime_end.Year, dateTime_end.Month, dateTime_end.Day, 23, 59, 59);
             List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.開方時間, dateTime_st, dateTime_end, false);
-            if (plC_CheckBox_交易記錄查詢_顯示細節.Checked == false)
-            {
-                list_value = list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.藥袋刷入.GetEnumName());
-            }
+         
             this.sqL_DataGridView_交易記錄查詢.RefreshGrid(list_value);
         }
         private void PlC_RJ_Button_交易記錄查詢_操作時間_搜尋_MouseDownEvent(MouseEventArgs mevent)
@@ -202,10 +284,7 @@ namespace 勤務傳送櫃
             dateTime_st = new DateTime(dateTime_st.Year, dateTime_st.Month, dateTime_st.Day, 00, 00, 00);
             dateTime_end = new DateTime(dateTime_end.Year, dateTime_end.Month, dateTime_end.Day, 23, 59, 59);
             List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, dateTime_st, dateTime_end, false);
-            if (plC_CheckBox_交易記錄查詢_顯示細節.Checked == false)
-            {
-                list_value = list_value.GetRows((int)enum_交易記錄查詢資料.動作, enum_交易記錄查詢動作.藥袋刷入.GetEnumName());
-            }
+          
             this.sqL_DataGridView_交易記錄查詢.RefreshGrid(list_value);
         }
         #endregion
