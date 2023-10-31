@@ -191,7 +191,7 @@
         </member>
         <member name="M:HIS_WebApi.inventoryController.POST_creat_add(HIS_DB_Lib.returnData)">
             <summary>
-            創建盤點單
+            創建盤點單(盤點單號自訂)
             </summary>
             <remarks>
             [必要輸入參數說明]<br/> 
@@ -244,6 +244,307 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為盤點單結構</returns>
         </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_auto_add(HIS_DB_Lib.returnData)">
+            <summary>
+            創建盤點單(自動填入盤點單號)
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單名稱 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+                   "IC_NAME": "測試盤點",
+                   "CT": "",
+                   "NOTE": "",
+                   "Contents": 
+                    [
+                       {
+                           "CODE": "220302IHYA",
+                           "SKDIACODE": "",
+                           "CHT_NAME": "Hyaluronate Sodium",
+                           "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+                           "PAKAGE": "Syri",
+                           "BARCODE1": "",
+                           "BARCODE2": "[]",
+                           "START_QTY": "0",
+                           "END_QTY": "0",
+                           "ADD_TIME": "2023/10/30 20:41:53",
+                           "NOTE": "",
+                           "Sub_content": []
+                       },
+                       {
+                           "CODE": "220IHYA",
+                           "SKDIACODE": "",
+                           "CHT_NAME": "Hyaluronate Sodium",
+                           "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+                           "PAKAGE": "",
+                           "BARCODE1": "",
+                           "BARCODE2": "[]",
+                           "START_QTY": "0",
+                           "END_QTY": "0",
+                           "ADD_TIME": "2023/10/30 20:41:53",
+                           "NOTE": "",
+                           "Sub_content": []
+                        }
+                    ]       
+                }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_lock(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號鎖定盤點單
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "20231026-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_unlock(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號解鎖盤點單
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "20231026-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_delete_by_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號刪除盤點單
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "20231026-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.get_creat_Islocked_by_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號取得盤點單是否鎖定
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "20231026-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_contents_delete_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID刪除盤點單內盤點藥品
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               [                 
+                   {
+                       "GUID": "a6f58a75-094a-411c-8f87-9804d46b78ea"
+                   },
+                   {
+                       "GUID": "024e17eb-fa68-4495-92fa-d78ed753c23b"
+                   }
+               ]
+             }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>無</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_content_get_by_content_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID取得盤點單內盤點藥品
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+                   "GUID": "a6f58a75-094a-411c-8f87-9804d46b78ea"         
+               }
+             }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data] :content資料結構 </returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_sub_content_get_by_content_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID取得盤點單內盤點藥品中的明細
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+                  "GUID": "4710df0c-5bfe-4c98-ac0e-46453ab8b043"
+               }
+             }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data] :sub_content陣列資料結構 </returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_sub_content_add_single(HIS_DB_Lib.returnData)">
+            <summary>
+            新增單筆盤點藥品中的明細且刪除原本明細
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+                  "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0",
+                  "OP": "測試者",
+                  "END_QTY": "56"
+               }
+             }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data] :sub_content資料結構 </returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_sub_content_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增單筆盤點藥品中的明細
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+                  "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0",
+                  "OP": "測試者",
+                  "END_QTY": "56"
+               }
+             }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data] :sub_content資料結構 </returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_sub_contents_delete_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID刪除盤點藥品中的明細
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               [                 
+                   {
+                       "GUID": "a6f58a75-094a-411c-8f87-9804d46b78ea",
+                       "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0"     
+                   },
+                   {
+                       "GUID": "024e17eb-fa68-4495-92fa-d78ed753c23b",
+                       "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0"
+                   }
+               ]
+             }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data] :content資料結構 </returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.Post_download_excel_by_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號下載
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "20231026-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>Excel</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:HIS_WebApi.inventoryController.POST_excel_upload(Microsoft.AspNetCore.Http.IFormFile)" -->
         <member name="M:HIS_WebApi.medGroupController.GET_json_sample(HIS_DB_Lib.returnData)">
             <summary>
             查詢藥品群組JSON格式範例

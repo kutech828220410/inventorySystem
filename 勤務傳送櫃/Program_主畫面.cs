@@ -209,7 +209,7 @@ namespace 勤務傳送櫃
             string IP = "";
             int RFID_Num = -1;
             string 卡號 = "";
-            List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+          
             List<object[]> list_人員資料_buf = new List<object[]>();
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Box_Index_Table.SQL_GetAllRows(false);
             List<object[]> list_locker_table_value_buf = new List<object[]>();
@@ -220,7 +220,8 @@ namespace 勤務傳送櫃
                 IP = list_RFID_UID_Class[i].IP;
                 RFID_Num = list_RFID_UID_Class[i].Num;
                 卡號 = list_RFID_UID_Class[i].UID;
-                list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.卡號, 卡號);
+                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.卡號, 卡號, false);
+                list_人員資料_buf = list_人員資料;
 
                 if (list_人員資料_buf.Count == 0) continue;
                 Pannel_Box pannel_Box = Pannel_Box.Panels.SortByRFID(IP, RFID_Num);
