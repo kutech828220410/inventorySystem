@@ -25,6 +25,148 @@
               查詢類似 ConfigurationManager 的當地語系化字串。
             </summary>
         </member>
+        <member name="M:HIS_WebApi.inventoryController.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化盤點單資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.GET_new_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            取得可建立今日最新盤點單號
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Value]為建立盤點單號</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_get_all_unlock_creat(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有解鎖盤點單
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_get_by_CT_TIME_ST_END(HIS_DB_Lib.returnData)">
+            <summary>
+            以建表日區間搜尋盤點單
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 起始日期,結束日期 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "2023/10/26,2023/10/27"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_get_by_CT_TIME(HIS_DB_Lib.returnData)">
+            <summary>
+            以建表日搜尋盤點單
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 建表日期 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "2023/10/26"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_update_startime_by_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號更新盤點單開始時間
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "20231026-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_get_by_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號搜尋盤點單
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "20231026-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
         <member name="M:HIS_WebApi.medGroupController.GET_json_sample(HIS_DB_Lib.returnData)">
             <summary>
             查詢藥品群組JSON格式範例
