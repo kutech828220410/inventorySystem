@@ -688,7 +688,8 @@ namespace 勤務傳送櫃
                 MyMessageBox.ShowDialog("搜尋條件空白!");
                 return;
             }
-            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRowsByLike((int)enum_人員資料.姓名, rJ_TextBox_人員資料_資料查詢_姓名.Text, false);
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+            list_value = list_value.GetRowsByLike((int)enum_人員資料.姓名, rJ_TextBox_人員資料_資料查詢_姓名.Text);
             if (list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料!");

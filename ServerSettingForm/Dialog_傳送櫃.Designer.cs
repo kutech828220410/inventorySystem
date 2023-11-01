@@ -40,6 +40,8 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass9 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass10 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass11 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass12 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass13 = new HIS_DB_Lib.ServerSettingClass();
             this.button_讀取 = new System.Windows.Forms.Button();
             this.button_刪除 = new System.Windows.Forms.Button();
             this.button_新增 = new System.Windows.Forms.Button();
@@ -60,6 +62,8 @@ namespace ServerSettingForm
             this.panel_SQLContent8 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent7 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent4 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_API_URL3 = new ServerSettingForm.Panel_API_URL();
+            this.panel_API_URL6 = new ServerSettingForm.Panel_API_URL();
             this.SuspendLayout();
             // 
             // button_讀取
@@ -421,11 +425,59 @@ namespace ServerSettingForm
             this.panel_SQLContent4.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent4.TabIndex = 73;
             // 
+            // panel_API_URL3
+            // 
+            this.panel_API_URL3.Content = "OrderCheckin_API";
+            this.panel_API_URL3.Location = new System.Drawing.Point(14, 589);
+            this.panel_API_URL3.Name = "panel_API_URL3";
+            serverSettingClass12.DBName = null;
+            serverSettingClass12.GUID = null;
+            serverSettingClass12.Password = null;
+            serverSettingClass12.Port = null;
+            serverSettingClass12.Server = "";
+            serverSettingClass12.TableName = null;
+            serverSettingClass12.User = null;
+            serverSettingClass12.Value = null;
+            serverSettingClass12.內容 = "OrderCheckin_API";
+            serverSettingClass12.單位 = null;
+            serverSettingClass12.程式類別 = null;
+            serverSettingClass12.設備名稱 = "";
+            serverSettingClass12.類別 = "傳送櫃";
+            this.panel_API_URL3.ServerSetting = serverSettingClass12;
+            this.panel_API_URL3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_API_URL3.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL3.TabIndex = 74;
+            // 
+            // panel_API_URL6
+            // 
+            this.panel_API_URL6.Content = "OrderTakeOut_API";
+            this.panel_API_URL6.Location = new System.Drawing.Point(12, 631);
+            this.panel_API_URL6.Name = "panel_API_URL6";
+            serverSettingClass13.DBName = null;
+            serverSettingClass13.GUID = null;
+            serverSettingClass13.Password = null;
+            serverSettingClass13.Port = null;
+            serverSettingClass13.Server = "";
+            serverSettingClass13.TableName = null;
+            serverSettingClass13.User = null;
+            serverSettingClass13.Value = null;
+            serverSettingClass13.內容 = "OrderTakeOut_API";
+            serverSettingClass13.單位 = null;
+            serverSettingClass13.程式類別 = null;
+            serverSettingClass13.設備名稱 = "";
+            serverSettingClass13.類別 = "傳送櫃";
+            this.panel_API_URL6.ServerSetting = serverSettingClass13;
+            this.panel_API_URL6.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.傳送櫃;
+            this.panel_API_URL6.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL6.TabIndex = 75;
+            // 
             // Dialog_傳送櫃
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_API_URL6);
+            this.Controls.Add(this.panel_API_URL3);
             this.Controls.Add(this.panel_SQLContent4);
             this.Controls.Add(this.panel_SQLContent3);
             this.Controls.Add(this.panel_SQLContent2);
@@ -476,5 +528,7 @@ namespace ServerSettingForm
         private Panel_SQLContent panel_SQLContent2;
         private Panel_SQLContent panel_SQLContent3;
         private Panel_SQLContent panel_SQLContent4;
+        private Panel_API_URL panel_API_URL3;
+        private Panel_API_URL panel_API_URL6;
     }
 }

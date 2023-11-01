@@ -94,9 +94,22 @@ namespace 勤務傳送櫃
                     Panels[i].PanelLightOff();
                 }
             }
-    
         }
-
+        public static void H_COST_LightOnCheck(List<string> wardNames)
+        {
+            for (int i = 0; i < Panels.Count; i++)
+            {
+                if (Panels[i].list_serchName.Count == 0) continue;
+                if (Panels[i].CheckWardName(wardNames))
+                {
+                    Panels[i].H_COST_LightOn();
+                }
+                else
+                {
+                    Panels[i].H_COST_LightOff();
+                }
+            }
+        }
 
         public delegate void EPDSettingEventHandler(string EPD_IP , string Name);
         public event EPDSettingEventHandler EPDSettingEvent;
@@ -117,6 +130,9 @@ namespace 勤務傳送櫃
 
         private RFID_UI rFID_UI;
         private H_Pannel_lib.StorageUI_EPD_266 storageUI_EPD_266;
+        static public Color H_COST_Color = Color.Yellow;
+        private Color _H_COST_Color = Color.Gray;
+
         private PLC_Device pLC_Device_sensor_input = new PLC_Device();
         private PLC_Device pLC_Device_lock_input = new PLC_Device();
         private PLC_Device pLC_Device_output = new PLC_Device();
@@ -810,7 +826,11 @@ namespace 勤務傳送櫃
         public void PanelLightOff()
         {
             bool flag = this.rFID_UI.GetOutput(this.IP, this.Led_output_num);
-            if (flag) this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, false);
+            if (flag)
+            {
+                this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, false);
+                Console.WriteLine($"\n{WardName} : 外面板亮燈 {DateTime.Now.ToDateTimeString()}");
+            }
         }
         public void PanelLightOn()
         {
@@ -818,6 +838,39 @@ namespace 勤務傳送櫃
             if (!flag)
             {
                 this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, true);
+                Console.WriteLine($"\n{WardName} : 外面板滅燈 {DateTime.Now.ToDateTimeString()}");
+            }
+        }
+        public void H_COST_LightOff()
+        {
+            if(this._H_COST_Color.ToColorString() != Color.Black.ToColorString())
+            {
+                this._H_COST_Color = Color.Black;
+                Storage storage = this.storageUI_EPD_266.SQL_GetStorage(EPD_IP);
+                if (storage == null)
+                {
+                    Console.WriteLine($"找無[{EPD_IP}]內容,無法控制外高價藥燈!");
+                    return;
+                }
+                this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+            
+                Console.WriteLine($"\n{WardName} : 高價藥品亮燈 {DateTime.Now.ToDateTimeString()}");
+            }
+        }
+        public void H_COST_LightOn()
+        {
+            if (this._H_COST_Color.ToColorString() != H_COST_Color.ToColorString())
+            {
+                this._H_COST_Color = H_COST_Color;
+                Storage storage = this.storageUI_EPD_266.SQL_GetStorage(EPD_IP);
+                if (storage == null)
+                {
+                    Console.WriteLine($"找無[{EPD_IP}]內容,無法控制外高價藥燈!");
+                    return;
+                }
+                this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, H_COST_Color);
+         
+                Console.WriteLine($"\n{WardName} : 高價藥品滅燈 {DateTime.Now.ToDateTimeString()}");
             }
         }
 

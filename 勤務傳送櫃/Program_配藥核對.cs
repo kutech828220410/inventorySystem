@@ -182,7 +182,7 @@ namespace 勤務傳送櫃
                 rJ_Lable_配藥核對_病人姓名.Text = orderClasses[0].病人姓名;
                 rJ_Lable_配藥核對_病歷號.Text = orderClasses[0].病歷號;
                 rJ_Lable_配藥核對_開方時間.Text = orderClasses[0].開方日期;
-                rJ_Lable_配藥核對_病房.Text = orderClasses[0].病房;
+                rJ_Lable_配藥核對_病房.Text = $"{orderClasses[0].病房}-{orderClasses[0].床號}";
                 Application.DoEvents();
             }));
             if (orderClasses[0].狀態 == "已調劑")

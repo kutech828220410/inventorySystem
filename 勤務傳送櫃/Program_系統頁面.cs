@@ -171,12 +171,31 @@ namespace 勤務傳送櫃
         {
             DateTime dt_st = new DateTime(DateTime.Now.AddDays(-1).Year, DateTime.Now.AddDays(-1).Month, DateTime.Now.AddDays(-1).Day, 00, 00, 00);
             DateTime dt_end = new DateTime(DateTime.Now.AddDays(0).Year, DateTime.Now.AddDays(0).Month, DateTime.Now.AddDays(0).Day, 23, 59, 59);
-            List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, dt_st, dt_end, false);
-            List<string> wardName = (from temp in list_value
-                                     where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.藥袋刷入.GetEnumName()
-                                     where temp[(int)enum_交易記錄查詢資料.領用時間].ToDateTimeString().StringToDateTime() == "1999-01-01 00:00:00".StringToDateTime()
-                                     select temp[(int)enum_交易記錄查詢資料.病房號].ObjectToString()).Distinct().ToList();
-            Pannel_Box.PanelLightOnCheck(wardName);
+            List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, dt_st, dt_end, false);
+            List<object[]> list_交易記錄_buf = (from temp in list_交易記錄
+                                             where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString() == enum_交易記錄查詢動作.藥袋刷入.GetEnumName()
+                                             where temp[(int)enum_交易記錄查詢資料.領用時間].ToDateTimeString().StringToDateTime() == "1999-01-01 00:00:00".StringToDateTime()
+                                             select temp).ToList();
+
+            List<string> wardName_一般藥品 = (from temp in list_交易記錄_buf
+                                          select temp[(int)enum_交易記錄查詢資料.病房號].ObjectToString()).Distinct().ToList();
+            Pannel_Box.PanelLightOnCheck(wardName_一般藥品);
+
+            List<object[]> list_交易記錄_高價藥品 = new List<object[]>();
+            List<object[]> list_高價藥品 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetRows((int)enum_藥品資料_藥檔資料.高價藥品, "True", false);
+            List<object[]> list_高價藥品_buf = new List<object[]>();
+            for(int i = 0; i < list_交易記錄_buf.Count; i++)
+            {
+                string 藥品碼 = list_交易記錄_buf[i][(int)enum_交易記錄查詢資料.藥品碼].ObjectToString();
+                list_高價藥品_buf = list_高價藥品.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
+                if(list_高價藥品_buf.Count > 0)
+                {
+                    list_交易記錄_高價藥品.Add(list_交易記錄_buf[i]);
+                }
+            }
+            List<string> wardName_高價藥品 = (from temp in list_交易記錄_高價藥品
+                                          select temp[(int)enum_交易記錄查詢資料.病房號].ObjectToString()).Distinct().ToList();
+            Pannel_Box.H_COST_LightOnCheck(wardName_高價藥品);
         }
         private void SqL_DataGridView_Box_Index_Table_DataGridRowsChangeEvent(List<object[]> RowsList)
         {

@@ -29,9 +29,11 @@ namespace 勤務傳送櫃
         {
             this.plC_UI_Init.Add_Method(this.Program_勤務取藥);
             this.textBox_勤務取藥_條碼刷入區.KeyPress += TextBox_勤務取藥_條碼刷入區_KeyPress;
+
+            this.plC_RJ_Button_勤務取藥_條碼刷入區_清除.MouseDownEvent += PlC_RJ_Button_勤務取藥_條碼刷入區_清除_MouseDownEvent;
         }
 
-  
+ 
 
         bool flag_勤務取藥_頁面更新_init = false;
         private void Program_勤務取藥()
@@ -129,14 +131,7 @@ namespace 勤務傳送櫃
 
         #endregion
 
-        private void TextBox_勤務取藥_條碼刷入區_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter || sender == null)
-            {
-
-                勤務取藥_text = textBox_勤務取藥_條碼刷入區.Text;
-            }
-        }
+     
         #region Function
         MyTimerBasic MyTimerBasic_勤務取藥_刷藥單結束計時 = new MyTimerBasic();
         string 勤務取藥_text = "";
@@ -225,7 +220,7 @@ namespace 勤務傳送櫃
                 rJ_Lable_勤務取藥_病人姓名.Text = orderClasses[0].病人姓名;
                 rJ_Lable_勤務取藥_病歷號.Text = orderClasses[0].病歷號;
                 rJ_Lable_勤務取藥_開方時間.Text = orderClasses[0].開方日期;
-                rJ_Lable_勤務取藥_病房.Text = orderClasses[0].病房;
+                rJ_Lable_勤務取藥_病房.Text = $"{orderClasses[0].病房}-{orderClasses[0].床號}";
                 Application.DoEvents();
             }));
             List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows((int)enum_交易記錄查詢資料.GUID, orderClasses[0].GUID, false);
@@ -252,7 +247,15 @@ namespace 勤務傳送櫃
                     value[(int)enum_交易記錄查詢資料.備註] = "氣送作業";
                     this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value, false);
                 }
+                else
+                {
 
+                    object[] value = list_交易紀錄[0];
+                    value[(int)enum_交易記錄查詢資料.領用人] = this.登入者名稱;
+                    value[(int)enum_交易記錄查詢資料.領用時間] = "1999-01-01 00:00:00";
+                    value[(int)enum_交易記錄查詢資料.備註] = "氣送作業";
+                    this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄[0], false);
+                }
 
                 object[] value_醫令資料 = orderClasses[0].ClassToSQL<OrderClass, enum_醫囑資料>();
                 value_醫令資料[(int)enum_醫囑資料.狀態] = "已調劑";
@@ -293,6 +296,7 @@ namespace 勤務傳送櫃
                         string 領用人 = list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用人].ObjectToString();
                         rJ_Lable_勤務取藥_狀態.BackColor = Color.DarkGreen;
                         rJ_Lable_勤務取藥_狀態.Text = $"[{領用人}] 刷取成功!";
+                        textBox_勤務取藥_條碼刷入區.Text = "";
                         Application.DoEvents();
                     }));
                 }
@@ -339,7 +343,20 @@ namespace 勤務傳送櫃
         }
         #endregion
         #region Event
-
+        private void TextBox_勤務取藥_條碼刷入區_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter || sender == null)
+            {
+                勤務取藥_text = textBox_勤務取藥_條碼刷入區.Text;
+            }
+        }
+        private void PlC_RJ_Button_勤務取藥_條碼刷入區_清除_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate 
+            {
+                textBox_勤務取藥_條碼刷入區.Text = "";
+            }));
+        }
         #endregion
     }
 }

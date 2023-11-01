@@ -60,6 +60,7 @@ namespace 勤務傳送櫃
             this.sqL_DataGridView_醫令資料.DataGridRowsChangeRefEvent += SqL_DataGridView_醫令資料_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_醫令資料.DataGridRefreshEvent += SqL_DataGridView_醫令資料_DataGridRefreshEvent;
             this.sqL_DataGridView_醫令資料.DataGridRowsChangeEvent += SqL_DataGridView_醫令資料_DataGridRowsChangeEvent;
+            this.sqL_DataGridView_醫令資料.RowDoubleClickEvent += SqL_DataGridView_醫令資料_RowDoubleClickEvent;
 
             this.plC_RJ_Button_醫令資料_顯示全部.MouseDownEvent += PlC_RJ_Button_醫令資料_顯示全部_MouseDownEvent;
             this.plC_RJ_Button_醫令資料_設為未調劑.MouseDownEvent += PlC_RJ_Button_醫令資料_設為未調劑_MouseDownEvent;
@@ -67,7 +68,7 @@ namespace 勤務傳送櫃
             this.plC_UI_Init.Add_Method(Program_醫令資料);
         }
 
-  
+    
 
         private void Program_醫令資料()
         {
@@ -77,6 +78,14 @@ namespace 勤務傳送櫃
 
         #endregion
         #region Event
+        private void SqL_DataGridView_醫令資料_RowDoubleClickEvent(object[] RowValue)
+        {
+            string pri_key = RowValue[(int)enum_醫囑資料.PRI_KEY].ObjectToString();
+            this.Invoke(new Action(delegate 
+            {
+                textBox_醫令資料_PRI_KEY.Text = pri_key;
+            }));
+        }
         private void SqL_DataGridView_醫令資料_DataGridRefreshEvent()
         {
             String 狀態 = "";
@@ -118,6 +127,7 @@ namespace 勤務傳送櫃
             if (rJ_TextBox_醫令資料_搜尋條件_藥品碼.Texts.StringIsEmpty() == false) list_value = list_value.GetRowsByLike((int)enum_醫囑資料.藥品碼, rJ_TextBox_醫令資料_搜尋條件_藥品碼.Texts);
             if (rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Texts.StringIsEmpty() == false) list_value = list_value.GetRowsByLike((int)enum_醫囑資料.藥品名稱, rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Texts);
             if (rJ_TextBox_醫令資料_搜尋條件_病歷號.Texts.StringIsEmpty() == false) list_value = list_value.GetRows((int)enum_醫囑資料.病歷號, rJ_TextBox_醫令資料_搜尋條件_病歷號.Texts);
+            if (rJ_TextBox_醫令資料_搜尋條件_領藥號.Texts.StringIsEmpty() == false) list_value = list_value.GetRows((int)enum_醫囑資料.領藥號, rJ_TextBox_醫令資料_搜尋條件_領藥號.Texts);
 
             Console.Write($"取得醫令資料 , 耗時 : {myTimer.ToString()} ms\n");
             this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);

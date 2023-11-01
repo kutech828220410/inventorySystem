@@ -22,8 +22,8 @@ using HIS_DB_Lib;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-[assembly: AssemblyVersion("1.0.0.20")]
-[assembly: AssemblyFileVersion("1.0.0.20")]
+[assembly: AssemblyVersion("1.0.0.21")]
+[assembly: AssemblyFileVersion("1.0.0.21")]
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
@@ -529,8 +529,8 @@ namespace 勤務傳送櫃
                 list_交易紀錄_buf[i][(int)enum_交易記錄查詢資料.領用人] = pannel_Box.CT_Name;
                 //list_交易紀錄[i][(int)enum_交易記錄查詢資料.領用時間] = DateTime.Now.ToDateTimeString_6();
             }
-            this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄, false);
-            Console.WriteLine($"領用人寫入共<{list_交易紀錄.Count}>筆 ,耗時{myTimer.ToString()} {DateTime.Now.ToDateTimeString()}");
+            this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄_buf, false);
+            Console.WriteLine($"領用人寫入共<{list_交易紀錄_buf.Count}>筆 ,耗時{myTimer.ToString()} {DateTime.Now.ToDateTimeString()}");
         }
         private void Pannel_Box_EPDSettingEvent(string EPD_IP, string Name)
         {
