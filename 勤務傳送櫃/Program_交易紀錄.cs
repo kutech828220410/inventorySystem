@@ -60,10 +60,11 @@ namespace 勤務傳送櫃
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.領用人);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.病人姓名);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.病房號);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.病歷號);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(110, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.操作時間);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(110, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.領用時間);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(110, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.開方時間);
-            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.備註);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.備註);
 
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_交易記錄查詢資料.操作時間);
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_交易記錄查詢資料.領用時間);

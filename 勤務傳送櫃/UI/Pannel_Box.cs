@@ -130,7 +130,7 @@ namespace 勤務傳送櫃
 
         private RFID_UI rFID_UI;
         private H_Pannel_lib.StorageUI_EPD_266 storageUI_EPD_266;
-        static public Color H_COST_Color = Color.Yellow;
+        static public Color H_COST_Color = Color.Red;
         private Color _H_COST_Color = Color.Gray;
 
         private PLC_Device pLC_Device_sensor_input = new PLC_Device();

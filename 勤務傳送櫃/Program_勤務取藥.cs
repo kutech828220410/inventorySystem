@@ -200,7 +200,7 @@ namespace 勤務傳送櫃
                     Application.DoEvents();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.StartTickTime(3000);
-                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\fail_01.wav"))
+                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\ttsmaker-請重刷.wav"))
                     {
                         sp.Stop();
                         sp.Play();
@@ -277,7 +277,7 @@ namespace 勤務傳送櫃
                     Application.DoEvents();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.StartTickTime(3000);
-                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\fail_01.wav"))
+                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\ttsmaker-請藥師重刷.wav"))
                     {
                         sp.Stop();
                         sp.Play();
@@ -338,8 +338,13 @@ namespace 勤務傳送櫃
             }));
             list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用時間] = DateTime.Now.ToDateTimeString_6();
 
-            this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄[0], false);
-            Funtion_勤務取藥API(orderClasses[0], list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用人].ObjectToString(), "");
+            this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄[0], false); 
+            string str = list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用人].ObjectToString();
+            if(this.plC_CheckBox_氣送作業.Checked)
+            {
+                str = str + "(氣送)";
+            }
+            Funtion_勤務取藥API(orderClasses[0], str, "");
 
         }
         #endregion

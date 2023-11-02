@@ -163,7 +163,7 @@ namespace 勤務傳送櫃
                     Application.DoEvents();
                     MyTimerBasic_配藥核對_刷藥單結束計時.TickStop();
                     MyTimerBasic_配藥核對_刷藥單結束計時.StartTickTime(3000);
-                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\fail_01.wav"))
+                    using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\ttsmaker-請重刷.wav"))
                     {
                         sp.Stop();
                         sp.Play();
