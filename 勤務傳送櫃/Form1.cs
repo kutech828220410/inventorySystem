@@ -22,8 +22,8 @@ using HIS_DB_Lib;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-[assembly: AssemblyVersion("1.0.0.21")]
-[assembly: AssemblyFileVersion("1.0.0.21")]
+[assembly: AssemblyVersion("1.0.0.24")]
+[assembly: AssemblyFileVersion("1.0.0.24")]
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
@@ -53,6 +53,8 @@ namespace 勤務傳送櫃
             private string api_URL = "";
             private string orderApiURL = "";
             private string medApiURL = "";
+            private string orderCheckinApiURL = "";
+            private string orderTakeOutApiURL = "";
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             [JsonIgnore]
@@ -79,6 +81,10 @@ namespace 勤務傳送櫃
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
             [JsonIgnore]
             public string MedApiURL { get => medApiURL; set => medApiURL = value; }
+            [JsonIgnore]
+            public string OrderCheckinApiURL { get => orderCheckinApiURL; set => orderCheckinApiURL = value; }
+            [JsonIgnore]
+            public string OrderTakeOutApiURL { get => orderTakeOutApiURL; set => orderTakeOutApiURL = value; }
         }
         private void LoadDBConfig()
         {
@@ -374,6 +380,10 @@ namespace 勤務傳送櫃
             if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "Med_API");
             if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "OrderCheckin_API");
+            if (serverSettingClass != null) dBConfigClass.OrderCheckinApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(dBConfigClass.Name, enum_ServerSetting_Type.傳送櫃, "OrderTakeOut_API");
+            if (serverSettingClass != null) dBConfigClass.OrderTakeOutApiURL = serverSettingClass.Server;
 
         }
         private void LoadcommandLineArgs()

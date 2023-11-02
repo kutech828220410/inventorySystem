@@ -339,6 +339,7 @@ namespace 勤務傳送櫃
             list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用時間] = DateTime.Now.ToDateTimeString_6();
 
             this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄[0], false);
+            Funtion_勤務取藥API(orderClasses[0], list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用人].ObjectToString(), "");
 
         }
         #endregion

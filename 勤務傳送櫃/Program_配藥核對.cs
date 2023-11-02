@@ -51,6 +51,7 @@ namespace 勤務傳送櫃
 
             sub_Program_配藥核對_刷入藥袋();
         }
+
         #region PLC_配藥核對_刷入藥袋
         PLC_Device PLC_Device_配藥核對_刷入藥袋 = new PLC_Device("");
         PLC_Device PLC_Device_配藥核對_刷入藥袋_OK = new PLC_Device("");
@@ -112,7 +113,6 @@ namespace 勤務傳送櫃
         }
 
         #endregion
-
 
         #region Function
         MyTimerBasic MyTimerBasic_配藥核對_刷藥單結束計時 = new MyTimerBasic();
@@ -270,6 +270,8 @@ namespace 勤務傳送櫃
             value_醫令資料[(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
             this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value, false);
             this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(value_醫令資料, false);
+
+            Funtion_藥袋刷入API(orderClasses[0], this.登入者名稱, this.登入者ID);
 
         }
         #endregion

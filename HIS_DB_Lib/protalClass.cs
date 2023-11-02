@@ -8,43 +8,7 @@ using Basic;
 
 namespace HIS_DB_Lib
 {
-    public enum enum_醫囑資料_狀態
-    {
-        未過帳,
-        已過帳,
-        庫存不足,
-        無儲位,
-    }
-    public enum enum_醫囑資料
-    {
-        GUID,
-        PRI_KEY,
-        藥局代碼,
-        藥袋條碼,
-        藥袋類型,
-        藥品碼,
-        藥品名稱,
-        領藥號,
-        批序,
-        單次劑量,
-        劑量單位,
-        途徑,
-        頻次,
-        費用別,
-        病房,
-        床號,
-        病人姓名,
-        病歷號,
-        交易量,
-        開方日期,
-        結方日期,
-        展藥時間,
-        產出時間,
-        過帳時間,
-        狀態,
-        備註,
-    }
-    public class OrderClass
+    public class protal_check_Class
     {
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
@@ -66,8 +30,6 @@ namespace HIS_DB_Lib
         public string 住院序號 { get; set; }
         [JsonPropertyName("UDORDSEQ")]
         public string 就醫序號 { get; set; }
-        [JsonPropertyName("HCASETYP")]
-        public string 就醫類別 { get; set; }
         [JsonPropertyName("DOS")]
         public string 批序 { get; set; }
         [JsonPropertyName("SD")]
@@ -112,6 +74,5 @@ namespace HIS_DB_Lib
         public string 狀態 { get; set; }
         [JsonPropertyName("NOTE")]
         public string 備註 { get; set; }
-
     }
 }

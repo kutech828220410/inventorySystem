@@ -95,5 +95,33 @@ namespace 勤務傳送櫃
 
             return orderClasses;
         }
+        private void Funtion_藥袋刷入API(OrderClass orderClass , string 操作人 ,string ID)
+        {
+            string url = dBConfigClass.OrderCheckinApiURL;
+            orderClass.藥師姓名 = 操作人;
+            orderClass.藥師ID = ID;
+            if (url.StringIsEmpty() == true) return;
+            returnData returnData = new returnData();
+            returnData.Data = orderClass;
+            string jsonin = returnData.JsonSerializationt();
+            string json_result = Net.WEBApiPostJson(url, jsonin);
+            Console.WriteLine($"\n");
+            Console.WriteLine($"----------------------[藥袋刷入]----------------------");
+            Console.WriteLine($"{json_result}");
+        }
+        private void Funtion_勤務取藥API(OrderClass orderClass, string 操作人, string ID)
+        {
+            string url = dBConfigClass.OrderTakeOutApiURL;
+            orderClass.領藥姓名 = 操作人;
+            orderClass.領藥ID = ID;
+            if (url.StringIsEmpty() == true) return;
+            returnData returnData = new returnData();
+            returnData.Data = orderClass;
+            string jsonin = returnData.JsonSerializationt();
+            string json_result = Net.WEBApiPostJson(url, jsonin);
+            Console.WriteLine($"\n");
+            Console.WriteLine($"----------------------[勤務取藥]----------------------");
+            Console.WriteLine($"{json_result}");
+        }
     }
 }

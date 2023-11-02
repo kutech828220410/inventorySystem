@@ -298,7 +298,7 @@ namespace 勤務傳送櫃
         }
         private void Function_功能顯示()
         {
-            if(!this.plC_CheckBox_氣送作業.Checked || PLC_Device_最高權限.Bool)
+            if(this.plC_CheckBox_配藥核對.Checked || PLC_Device_最高權限.Bool)
             {
                 this.plC_ScreenPage_Main.SelecteTabText("配藥核對");
                 this.plC_RJ_ScreenButton_系統頁面.Visible = true;
@@ -311,7 +311,11 @@ namespace 勤務傳送櫃
                 panel_Main.Visible = true;
 
             }
-            else if(this.plC_CheckBox_氣送作業.Checked)
+            else if (this.plC_CheckBox_氣送作業.Checked)
+            {
+                this.plC_ScreenPage_Main.SelecteTabText("勤務取藥");
+            }
+            else if (this.plC_CheckBox_勤務取藥.Checked)
             {
                 this.plC_ScreenPage_Main.SelecteTabText("勤務取藥");
             }

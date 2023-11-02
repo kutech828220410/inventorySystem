@@ -101,6 +101,7 @@
     <Compile Include="orderClass.cs" />
     <Compile Include="personClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="protalClass.cs" />
     <Compile Include="ServerSettingClass.cs" />
     <Compile Include="sessionClass.cs" />
     <Compile Include="takeMedicineStackClass.cs" />

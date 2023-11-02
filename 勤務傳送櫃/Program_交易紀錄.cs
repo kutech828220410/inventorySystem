@@ -27,7 +27,9 @@ namespace 勤務傳送櫃
         {
             [Description("M8000")]
             選取資料設定為已領用,
-            
+            [Description("M8000")]
+            選取資料設定為未領用,
+
         }
 
         private void Program_交易紀錄_Init()
@@ -151,7 +153,23 @@ namespace 勤務傳送櫃
                         this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_value, false);
                         this.sqL_DataGridView_交易記錄查詢.ReplaceExtra(list_value, true);
                         MyMessageBox.ShowDialog($"已修正領用數量{index}筆!");
-                    }                  
+                    }
+                    if (dialog_ContextMenuStrip.Value == ContextMenuStrip_交易紀錄.選取資料設定為未領用.GetEnumName())
+                    {
+                        List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.Get_All_Select_RowsValues();
+                        int index = 0;
+                        for (int i = 0; i < list_value.Count; i++)
+                        {
+                            if (list_value[i][(int)enum_交易記錄查詢資料.領用時間].ToDateTimeString() == new DateTime(1999, 1, 1, 0, 0, 0).ToDateTimeString()) continue;
+                            list_value[i][(int)enum_交易記錄查詢資料.領用人] = "未領用";
+                            list_value[i][(int)enum_交易記錄查詢資料.領用時間] = "1999-01-01 00:00:00";
+                            list_value[i][(int)enum_交易記錄查詢資料.備註] = "";
+                            index++;
+                        }
+                        this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_value, false);
+                        this.sqL_DataGridView_交易記錄查詢.ReplaceExtra(list_value, true);
+                        MyMessageBox.ShowDialog($"已修正領用數量{index}筆!");
+                    }
                 }
             }
         }
