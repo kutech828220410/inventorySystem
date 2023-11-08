@@ -145,6 +145,8 @@ namespace HIS_DB_Lib
             public string 藥品條碼2 { get; set; }
             [JsonPropertyName("END_QTY")]
             public string 實收數量 { get; set; }
+            [JsonPropertyName("TOLTAL_QTY")]
+            public string 總量 { get; set; }
             [JsonPropertyName("VAL")]
             public string 效期 { get; set; }
             [JsonPropertyName("LOT")]

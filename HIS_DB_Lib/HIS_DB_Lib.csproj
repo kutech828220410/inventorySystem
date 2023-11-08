@@ -86,6 +86,7 @@
     <Compile Include="BasicClass.cs" />
     <Compile Include="computerConfigClass.cs" />
     <Compile Include="consumptionClass.cs" />
+    <Compile Include="ctclistClass.cs" />
     <Compile Include="IncomeReasonsClass.cs" />
     <Compile Include="inspectionClass.cs" />
     <Compile Include="inventoryClass.cs" />

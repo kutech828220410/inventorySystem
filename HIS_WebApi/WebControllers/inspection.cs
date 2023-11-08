@@ -33,6 +33,23 @@ namespace HIS_WebApi
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
+
+        /// <summary>
+        /// 初始化驗收單資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("init")]
         [HttpPost]
         public string GET_init([FromBody] returnData returnData)
@@ -40,7 +57,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -54,9 +71,23 @@ namespace HIS_WebApi
                 string msg = "";
                 return msg;
             }
-
         }
-        //取得可建立今日最新驗收單
+        /// <summary>
+        /// 取得可建立今日最新驗收單號
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Value]為建立驗收單號</returns>       
         [Route("new_IC_SN")]
         [HttpPost]
         public string GET_new_IC_SN([FromBody] returnData returnData)
@@ -66,7 +97,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -106,8 +137,26 @@ namespace HIS_WebApi
             returnData.Result = $"成功! {myTimer.ToString()}";
             return returnData.JsonSerializationt(true);
         }
-
-        //以建表日搜尋驗收單
+        /// <summary>
+        /// 以建表日區間搜尋驗收單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 起始日期,結束日期 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "2023/10/26,2023/10/27"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_get_by_CT_TIME_ST_END")]
         [HttpPost]
         public string POST_creat_get_by_CT_TIME_ST_END([FromBody] returnData returnData)
@@ -119,7 +168,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -171,8 +220,26 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
-
-        //以建表日搜尋驗收單
+        /// <summary>
+        /// 以建表日搜尋盤點單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 建表日期 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "2023/10/26"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("creat_get_by_CT_TIME")]
         [HttpPost]
         public string POST_creat_get_by_CT_TIME([FromBody] returnData returnData)
@@ -184,7 +251,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -231,10 +298,27 @@ namespace HIS_WebApi
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
             }
-
-
         }
-        //以建表日更新驗收單
+        /// <summary>
+        /// 以驗收單號更新驗收單開始時間
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 驗收單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "20231026-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_update_startime_by_IC_SN")]
         [HttpPost]
         public string POST_creat_update_startime_by_IC_SN([FromBody] returnData returnData)
@@ -246,7 +330,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -308,7 +392,26 @@ namespace HIS_WebApi
 
 
         }
-        //以驗收單號搜尋驗收單
+        /// <summary>
+        /// 以驗收單號搜尋驗收單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 驗收單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "20231026-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_get_by_IC_SN")]
         [HttpPost]
         public string POST_creat_get_by_IC_SN([FromBody] returnData returnData)
@@ -320,7 +423,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -366,7 +469,59 @@ namespace HIS_WebApi
             }
 
         }
-        //驗收單新增
+        /// <summary>
+        /// 創建驗收單(驗收單號自訂)
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 驗收單名稱 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///        "IC_NAME": "測試驗收",
+        ///        "IC_SN": "Q202230101-測試驗收單",
+        ///        "CT": "",
+        ///        "NOTE": "",
+        ///        "Contents": 
+        ///         [
+        ///            {
+        ///                "CODE": "220302IHYA",
+        ///                "SKDIACODE": "",
+        ///                "CHT_NAME": "Hyaluronate Sodium",
+        ///                "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+        ///                "PAKAGE": "Syri",
+        ///                "BARCODE1": "",
+        ///                "BARCODE2": "[]",
+        ///                "START_QTY": "0",
+        ///                "END_QTY": "0",
+        ///                "ADD_TIME": "2023/10/30 20:41:53",
+        ///                "NOTE": "",
+        ///                "Sub_content": []
+        ///            },
+        ///            {
+        ///                "CODE": "220IHYA",
+        ///                "SKDIACODE": "",
+        ///                "CHT_NAME": "Hyaluronate Sodium",
+        ///                "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+        ///                "PAKAGE": "",
+        ///                "BARCODE1": "",
+        ///                "BARCODE2": "[]",
+        ///                "START_QTY": "0",
+        ///                "END_QTY": "0",
+        ///                "ADD_TIME": "2023/10/30 20:41:53",
+        ///                "NOTE": "",
+        ///                "Sub_content": []
+        ///             }
+        ///         ]       
+        ///     }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_add")]
         [HttpPost]
         public string POST_creat_add([FromBody] returnData returnData)
@@ -375,7 +530,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -489,6 +644,58 @@ namespace HIS_WebApi
             returnData.Result = $"成功加入新驗收單! 共{list_inspection_content_add.Count}筆資料";
             return returnData.JsonSerializationt(true);
         }
+        /// <summary>
+        /// 創建驗收單(自動填入驗收單號)
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 驗收單名稱 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///        "IC_NAME": "測試驗收",
+        ///        "CT": "",
+        ///        "NOTE": "",
+        ///        "Contents": 
+        ///         [
+        ///            {
+        ///                "CODE": "220302IHYA",
+        ///                "SKDIACODE": "",
+        ///                "CHT_NAME": "Hyaluronate Sodium",
+        ///                "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+        ///                "PAKAGE": "Syri",
+        ///                "BARCODE1": "",
+        ///                "BARCODE2": "[]",
+        ///                "START_QTY": "0",
+        ///                "END_QTY": "0",
+        ///                "ADD_TIME": "2023/10/30 20:41:53",
+        ///                "NOTE": "",
+        ///                "Sub_content": []
+        ///            },
+        ///            {
+        ///                "CODE": "220IHYA",
+        ///                "SKDIACODE": "",
+        ///                "CHT_NAME": "Hyaluronate Sodium",
+        ///                "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+        ///                "PAKAGE": "",
+        ///                "BARCODE1": "",
+        ///                "BARCODE2": "[]",
+        ///                "START_QTY": "0",
+        ///                "END_QTY": "0",
+        ///                "ADD_TIME": "2023/10/30 20:41:53",
+        ///                "NOTE": "",
+        ///                "Sub_content": []
+        ///             }
+        ///         ]       
+        ///     }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_auto_add")]
         [HttpPost]
         public string POST_creat_auto_add([FromBody] returnData returnData)
@@ -565,7 +772,26 @@ namespace HIS_WebApi
             }
 
         }
-        //驗收單鎖定
+        /// <summary>
+        /// 以驗收單號鎖定驗收單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 驗收單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "20231026-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_lock_by_IC_SN")]
         [HttpPost]
         public string POST_creat_lock([FromBody] returnData returnData)
@@ -622,7 +848,26 @@ namespace HIS_WebApi
             returnData.Method = "creat_lock_by_IC_SN";
             return returnData.JsonSerializationt(true);
         }
-        //驗收單解鎖
+        /// <summary>
+        /// 以驗收單號解鎖驗收單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 驗收單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "20231026-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>
         [Route("creat_unlock_by_IC_SN")]
         [HttpPost]
         public string POST_creat_unlock([FromBody] returnData returnData)
@@ -679,7 +924,26 @@ namespace HIS_WebApi
 
             return returnData.JsonSerializationt(true);
         }
-        //以驗收單號刪除驗收單
+        /// <summary>
+        /// 以驗收單號刪除驗收單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 驗收單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "20231026-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>       
         [Route("creat_delete_by_IC_SN")]
         [HttpPost]
         public string POST_creat_delete_by_IC_SN([FromBody] returnData returnData)
@@ -735,7 +999,29 @@ namespace HIS_WebApi
 
 
         }
-
+        /// <summary>
+        /// 以GUID刪除驗收單內驗收藥品
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    [                 
+        ///        {
+        ///            "GUID": "a6f58a75-094a-411c-8f87-9804d46b78ea"
+        ///        },
+        ///        {
+        ///            "GUID": "024e17eb-fa68-4495-92fa-d78ed753c23b"
+        ///        }
+        ///    ]
+        ///  }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>無</returns>
         [Route("contents_delete_by_GUID")]
         [HttpPost]
         public string POST_contents_delete_by_GUID([FromBody] returnData returnData)
@@ -782,6 +1068,24 @@ namespace HIS_WebApi
 
             return returnData.JsonSerializationt();
         }
+        /// <summary>
+        /// 以GUID取得驗收單內驗收藥品
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///        "GUID": "a6f58a75-094a-411c-8f87-9804d46b78ea"         
+        ///    }
+        ///  }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data] :content資料結構 </returns>
         [Route("content_get_by_content_GUID")]
         [HttpPost]
         public string POST_content_get_by_content_GUID([FromBody] returnData returnData)
@@ -861,8 +1165,24 @@ namespace HIS_WebApi
             }
 
         }
-
-
+        /// <summary>
+        /// 以GUID取得驗收單內驗收藥品中的明細
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///       "GUID": "4710df0c-5bfe-4c98-ac0e-46453ab8b043"
+        ///    }
+        ///  }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data] :sub_content陣列資料結構 </returns>
         [Route("sub_content_get_by_content_GUID")]
         [HttpPost]
         public string POST_sub_content_get_by_content_GUID([FromBody] returnData returnData)
@@ -914,7 +1234,26 @@ namespace HIS_WebApi
 
             return returnData.JsonSerializationt();
         }
-        //驗收明細新增
+        /// <summary>
+        /// 新增單筆驗收藥品中的明細且刪除原本明細
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///       "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0",
+        ///       "OP": "測試者",
+        ///       "END_QTY": "56"
+        ///    }
+        ///  }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data] :sub_content資料結構 </returns>
         [Route("sub_content_add_single")]
         [HttpPost]
         public string POST_sub_content_add_single([FromBody] returnData returnData)
@@ -988,7 +1327,26 @@ namespace HIS_WebApi
 
             return returnData.JsonSerializationt();
         }
-        //驗收明細新增
+        /// <summary>
+        /// 新增單筆驗收藥品中的明細
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///       "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0",
+        ///       "OP": "測試者",
+        ///       "END_QTY": "56"
+        ///    }
+        ///  }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data] :sub_content資料結構 </returns>
         [Route("sub_content_add")]
         [HttpPost]
         public string POST_sub_content_add([FromBody] returnData returnData)
@@ -1077,7 +1435,31 @@ namespace HIS_WebApi
             returnData.Method = "sub_content_add";
             return returnData.JsonSerializationt();
         }
-        //以GUID刪除驗收明細
+        /// <summary>
+        /// 以GUID刪除驗收藥品中的明細
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    [                 
+        ///        {
+        ///            "GUID": "a6f58a75-094a-411c-8f87-9804d46b78ea",
+        ///            "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0"     
+        ///        },
+        ///        {
+        ///            "GUID": "024e17eb-fa68-4495-92fa-d78ed753c23b",
+        ///            "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0"
+        ///        }
+        ///    ]
+        ///  }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data] :content資料結構 </returns>
         [Route("sub_contents_delete_by_GUID")]
         [HttpPost]
         public string POST_sub_contents_delete_by_GUID([FromBody] returnData returnData)
@@ -1151,7 +1533,26 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt();
         }
 
-
+        /// <summary>
+        /// 以驗收單號下載
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 驗收單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "20231026-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>Excel</returns>
         [Route("download_excel_by_IC_SN")]
         [HttpPost]
         public async Task<ActionResult> Post_download_excel_by_IC_SN([FromBody] returnData returnData)
@@ -1455,8 +1856,8 @@ namespace HIS_WebApi
             table_inspection_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inspection_content.AddColumnList("廠牌", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table_inspection_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inspection_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inspection_content.AddColumnList("藥品條碼2", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inspection_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inspection_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
             table_inspection_content.AddColumnList("應收數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_inspection_content.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inspection_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
@@ -1471,8 +1872,8 @@ namespace HIS_WebApi
             table_inspection_sub_content.AddColumnList("驗收單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
             table_inspection_sub_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inspection_sub_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inspection_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inspection_sub_content.AddColumnList("藥品條碼2", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_inspection_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inspection_sub_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
             table_inspection_sub_content.AddColumnList("實收數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_inspection_sub_content.AddColumnList("效期", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inspection_sub_content.AddColumnList("批號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
