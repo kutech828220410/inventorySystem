@@ -591,47 +591,22 @@ namespace HIS_WebApi
             list_inspection_creat_add.Add(value);
 
 
-            MED_pageController mED_PageController = new MED_pageController();
-            returnData returnData_med = new returnData();
-            returnData_med.Server = Server;
-            returnData_med.DbName = DB;
-            returnData_med.TableName = returnData.TableName;
-            returnData_med.Port = Port;
-            returnData_med.UserName = UserName;
-            returnData_med.Password = Password;
-
-            returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
-            List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
-            List<medClass> medClasses_buf = new List<medClass>();
+        
             for (int i = 0; i < creat.Contents.Count; i++)
             {
-                string 藥品碼 = creat.Contents[i].藥品碼;
-                string 料號 = creat.Contents[i].料號;
-                if (藥品碼.StringIsEmpty() == false)
-                {
-                    medClasses_buf = (from temp in medClasses
-                                      where temp.藥品碼 == 藥品碼
-                                      select temp).ToList();
-                }
-                else if (料號.StringIsEmpty() == false)
-                {
-                    medClasses_buf = (from temp in medClasses
-                                      where temp.料號 == 料號
-                                      select temp).ToList();
-                }
+
+                
                 creat.Contents[i].GUID = Guid.NewGuid().ToString();
                 creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
                 creat.Contents[i].Master_GUID = creat.GUID;
                 creat.Contents[i].驗收單號 = creat.驗收單號;
-                if(medClasses_buf.Count > 0)
-                {
-                    creat.Contents[i].藥品碼 = medClasses_buf[0].藥品碼;
-                    creat.Contents[i].料號 = medClasses_buf[0].料號;
-                    creat.Contents[i].藥品名稱 = medClasses_buf[0].藥品名稱;
-                    creat.Contents[i].中文名稱 = medClasses_buf[0].中文名稱;
-                }
+                creat.Contents[i].請購單號 = creat.請購單號;
+
+
                 value = new object[new enum_驗收內容().GetLength()];
                 value = creat.Contents[i].ClassToSQL<inspectionClass.content, enum_驗收內容>();
+
+
                 list_inspection_content_add.Add(value);
             }
             sQLControl_inspection_creat.AddRows(null, list_inspection_creat_add);
@@ -703,7 +678,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses_buf.Count == 0)
                 {
                     returnData.Code = -200;
@@ -721,19 +696,18 @@ namespace HIS_WebApi
 
                 MED_pageController mED_PageController = new MED_pageController();
                 returnData returnData_med = new returnData();
+                returnData_med.ServerName = returnData.ServerName;
+                returnData_med.ServerType = returnData.ServerType;
                 returnData_med.Server = Server;
                 returnData_med.DbName = DB;
-                returnData_med.TableName = returnData.TableName;
+                returnData_med.TableName = "medicine_page_cloud";
                 returnData_med.Port = Port;
                 returnData_med.UserName = UserName;
                 returnData_med.Password = Password;
 
-                returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
+                returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
-
-                deviceController deviceController = new deviceController();
-                serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
-
+          
                 inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
                 creat.驗收單號 = str_IC_SN;
                 for (int i = 0; i < medClasses.Count; i++)
@@ -742,15 +716,11 @@ namespace HIS_WebApi
                     content.藥品碼 = medClasses[i].藥品碼;
                     content.藥品名稱 = medClasses[i].藥品名稱;
                     content.中文名稱 = medClasses[i].中文名稱;
+                    content.廠牌 = medClasses[i].廠牌;
                     content.料號 = medClasses[i].料號;
-                    content.藥品條碼1 = medClasses[i].藥品條碼1;
-                    content.藥品條碼2 = medClasses[i].藥品條碼2;
                     content.包裝單位 = medClasses[i].包裝單位;
                     content.應收數量 = "0";
        
-
-
-
                     creat.Contents.Add(content);
                 }
                 if (creat.Contents.Count == 0)
@@ -800,7 +770,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -876,7 +846,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -952,7 +922,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1030,7 +1000,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1094,7 +1064,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1191,7 +1161,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1262,7 +1232,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1355,7 +1325,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1468,7 +1438,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;
@@ -1561,7 +1531,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-            serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
                 returnData.Code = -200;

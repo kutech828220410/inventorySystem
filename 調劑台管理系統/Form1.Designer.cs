@@ -1973,7 +1973,7 @@
             this.plC_ScreenPage_Main.Location = new System.Drawing.Point(234, 0);
             this.plC_ScreenPage_Main.Name = "plC_ScreenPage_Main";
             this.plC_ScreenPage_Main.SelectedIndex = 0;
-            this.plC_ScreenPage_Main.Size = new System.Drawing.Size(1670, 1035);
+            this.plC_ScreenPage_Main.Size = new System.Drawing.Size(970, 855);
             this.plC_ScreenPage_Main.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_Main.TabIndex = 1;
             this.plC_ScreenPage_Main.控制位址 = "D0";
@@ -1987,7 +1987,7 @@
             this.調劑作業.Controls.Add(this.panel19);
             this.調劑作業.Location = new System.Drawing.Point(4, 25);
             this.調劑作業.Name = "調劑作業";
-            this.調劑作業.Size = new System.Drawing.Size(1662, 1006);
+            this.調劑作業.Size = new System.Drawing.Size(962, 826);
             this.調劑作業.TabIndex = 0;
             this.調劑作業.Text = "調劑作業";
             // 
@@ -1997,7 +1997,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel19.Location = new System.Drawing.Point(0, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(1662, 1006);
+            this.panel19.Size = new System.Drawing.Size(962, 826);
             this.panel19.TabIndex = 0;
             // 
             // panel1
@@ -2007,7 +2007,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1662, 1006);
+            this.panel1.Size = new System.Drawing.Size(962, 826);
             this.panel1.TabIndex = 22;
             // 
             // rJ_GroupBox_領藥台_02
@@ -2039,7 +2039,7 @@
             this.rJ_GroupBox_領藥台_02.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox_領藥台_02.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox_領藥台_02.ContentsPanel.Name = "ContentsPanel";
-            this.rJ_GroupBox_領藥台_02.ContentsPanel.Size = new System.Drawing.Size(827, 969);
+            this.rJ_GroupBox_領藥台_02.ContentsPanel.Size = new System.Drawing.Size(827, 789);
             this.rJ_GroupBox_領藥台_02.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox_領藥台_02.Dock = System.Windows.Forms.DockStyle.Left;
             this.rJ_GroupBox_領藥台_02.GUID = "";
@@ -2049,7 +2049,7 @@
             this.rJ_GroupBox_領藥台_02.PannelBorderColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox_領藥台_02.PannelBorderRadius = 5;
             this.rJ_GroupBox_領藥台_02.PannelBorderSize = 5;
-            this.rJ_GroupBox_領藥台_02.Size = new System.Drawing.Size(827, 1006);
+            this.rJ_GroupBox_領藥台_02.Size = new System.Drawing.Size(827, 826);
             this.rJ_GroupBox_領藥台_02.TabIndex = 9;
             this.rJ_GroupBox_領藥台_02.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox_領藥台_02.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -2087,6 +2087,7 @@
             this.plC_RJ_Button_領藥台_02_病歷號輸入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_02_病歷號輸入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_02_病歷號輸入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_病歷號輸入.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_02_病歷號輸入.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台_02_病歷號輸入.State = false;
             this.plC_RJ_Button_領藥台_02_病歷號輸入.TabIndex = 124;
@@ -2130,6 +2131,7 @@
             this.plC_RJ_Button_領藥台02_管藥模式.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_領藥台02_管藥模式.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_領藥台02_管藥模式.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台02_管藥模式.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台02_管藥模式.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台02_管藥模式.State = false;
             this.plC_RJ_Button_領藥台02_管藥模式.TabIndex = 123;
@@ -2175,6 +2177,7 @@
             this.plC_RJ_Button_領藥台_02_強制入賬.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_02_強制入賬.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_02_強制入賬.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_強制入賬.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_02_強制入賬.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台_02_強制入賬.State = false;
             this.plC_RJ_Button_領藥台_02_強制入賬.TabIndex = 122;
@@ -2220,6 +2223,7 @@
             this.plC_RJ_Button_領藥台_02_手輸醫令.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_02_手輸醫令.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_02_手輸醫令.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_手輸醫令.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_02_手輸醫令.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台_02_手輸醫令.State = false;
             this.plC_RJ_Button_領藥台_02_手輸醫令.TabIndex = 121;
@@ -2263,6 +2267,7 @@
             this.plC_RJ_Button_領藥台_02_手動作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_02_手動作業.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_02_手動作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_手動作業.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_02_手動作業.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台_02_手動作業.State = false;
             this.plC_RJ_Button_領藥台_02_手動作業.TabIndex = 120;
@@ -2323,6 +2328,7 @@
             this.plC_RJ_Button_領藥台_02_取消作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
             this.plC_RJ_Button_領藥台_02_取消作業.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_02_取消作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_取消作業.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_02_取消作業.Size = new System.Drawing.Size(200, 72);
             this.plC_RJ_Button_領藥台_02_取消作業.State = false;
             this.plC_RJ_Button_領藥台_02_取消作業.TabIndex = 117;
@@ -2430,6 +2436,7 @@
             this.plC_RJ_Button_領藥台_02_登出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
             this.plC_RJ_Button_領藥台_02_登出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_02_登出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_登出.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_02_登出.Size = new System.Drawing.Size(200, 72);
             this.plC_RJ_Button_領藥台_02_登出.State = false;
             this.plC_RJ_Button_領藥台_02_登出.TabIndex = 9;
@@ -2648,6 +2655,7 @@
             this.plC_RJ_Button_領藥台_02_登入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_02_登入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_02_登入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_02_登入.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_02_登入.Size = new System.Drawing.Size(152, 74);
             this.plC_RJ_Button_領藥台_02_登入.State = false;
             this.plC_RJ_Button_領藥台_02_登入.TabIndex = 12;
@@ -2742,7 +2750,7 @@
             this.rJ_GroupBox_領藥台_01.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Name = "ContentsPanel";
-            this.rJ_GroupBox_領藥台_01.ContentsPanel.Size = new System.Drawing.Size(827, 969);
+            this.rJ_GroupBox_領藥台_01.ContentsPanel.Size = new System.Drawing.Size(827, 789);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox_領藥台_01.Dock = System.Windows.Forms.DockStyle.Left;
             this.rJ_GroupBox_領藥台_01.GUID = "";
@@ -2752,7 +2760,7 @@
             this.rJ_GroupBox_領藥台_01.PannelBorderColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox_領藥台_01.PannelBorderRadius = 5;
             this.rJ_GroupBox_領藥台_01.PannelBorderSize = 5;
-            this.rJ_GroupBox_領藥台_01.Size = new System.Drawing.Size(827, 1006);
+            this.rJ_GroupBox_領藥台_01.Size = new System.Drawing.Size(827, 826);
             this.rJ_GroupBox_領藥台_01.TabIndex = 7;
             this.rJ_GroupBox_領藥台_01.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox_領藥台_01.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -2790,6 +2798,7 @@
             this.plC_RJ_Button_領藥台_01_病歷號輸入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_01_病歷號輸入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_01_病歷號輸入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_病歷號輸入.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_01_病歷號輸入.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台_01_病歷號輸入.State = false;
             this.plC_RJ_Button_領藥台_01_病歷號輸入.TabIndex = 122;
@@ -2833,6 +2842,7 @@
             this.plC_RJ_Button_領藥台01_管藥模式.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_領藥台01_管藥模式.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_領藥台01_管藥模式.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台01_管藥模式.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台01_管藥模式.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台01_管藥模式.State = false;
             this.plC_RJ_Button_領藥台01_管藥模式.TabIndex = 121;
@@ -2878,6 +2888,7 @@
             this.plC_RJ_Button_領藥台_01_手輸醫令.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_01_手輸醫令.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_01_手輸醫令.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_手輸醫令.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_01_手輸醫令.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台_01_手輸醫令.State = false;
             this.plC_RJ_Button_領藥台_01_手輸醫令.TabIndex = 120;
@@ -2921,6 +2932,7 @@
             this.plC_RJ_Button_領藥台_01_手動作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_01_手動作業.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_01_手動作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_手動作業.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_01_手動作業.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台_01_手動作業.State = false;
             this.plC_RJ_Button_領藥台_01_手動作業.TabIndex = 119;
@@ -2981,6 +2993,7 @@
             this.plC_RJ_Button_領藥台_01_取消作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
             this.plC_RJ_Button_領藥台_01_取消作業.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_01_取消作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_取消作業.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_01_取消作業.Size = new System.Drawing.Size(200, 72);
             this.plC_RJ_Button_領藥台_01_取消作業.State = false;
             this.plC_RJ_Button_領藥台_01_取消作業.TabIndex = 117;
@@ -3088,6 +3101,7 @@
             this.plC_RJ_Button_領藥台_01_登出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
             this.plC_RJ_Button_領藥台_01_登出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_01_登出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_登出.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_01_登出.Size = new System.Drawing.Size(200, 72);
             this.plC_RJ_Button_領藥台_01_登出.State = false;
             this.plC_RJ_Button_領藥台_01_登出.TabIndex = 9;
@@ -3185,6 +3199,7 @@
             this.plC_RJ_Button_掃碼測試.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_掃碼測試.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_掃碼測試.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_掃碼測試.ShowLoadingForm = false;
             this.plC_RJ_Button_掃碼測試.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_掃碼測試.State = false;
             this.plC_RJ_Button_掃碼測試.TabIndex = 123;
@@ -3231,6 +3246,7 @@
             this.plC_RJ_Button_領藥台_01_強制入賬.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_01_強制入賬.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_01_強制入賬.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_強制入賬.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_01_強制入賬.Size = new System.Drawing.Size(152, 69);
             this.plC_RJ_Button_領藥台_01_強制入賬.State = false;
             this.plC_RJ_Button_領藥台_01_強制入賬.TabIndex = 121;
@@ -3399,6 +3415,7 @@
             this.plC_RJ_Button_領藥台_01_登入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_領藥台_01_登入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_領藥台_01_登入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_領藥台_01_登入.ShowLoadingForm = false;
             this.plC_RJ_Button_領藥台_01_登入.Size = new System.Drawing.Size(152, 74);
             this.plC_RJ_Button_領藥台_01_登入.State = false;
             this.plC_RJ_Button_領藥台_01_登入.TabIndex = 12;
@@ -3469,7 +3486,7 @@
             this.管制抽屜.Controls.Add(this.pannel_Locker_Design);
             this.管制抽屜.Location = new System.Drawing.Point(4, 25);
             this.管制抽屜.Name = "管制抽屜";
-            this.管制抽屜.Size = new System.Drawing.Size(1662, 1006);
+            this.管制抽屜.Size = new System.Drawing.Size(962, 826);
             this.管制抽屜.TabIndex = 16;
             this.管制抽屜.Text = "管制抽屜";
             // 
@@ -3480,7 +3497,7 @@
             this.pannel_Locker_Design.Location = new System.Drawing.Point(0, 0);
             this.pannel_Locker_Design.Name = "pannel_Locker_Design";
             this.pannel_Locker_Design.ShowControlPannel = true;
-            this.pannel_Locker_Design.Size = new System.Drawing.Size(1662, 1006);
+            this.pannel_Locker_Design.Size = new System.Drawing.Size(962, 826);
             this.pannel_Locker_Design.TabIndex = 0;
             // 
             // 後台登入
@@ -3494,7 +3511,7 @@
             this.後台登入.Controls.Add(this.rJ_Lable5);
             this.後台登入.Location = new System.Drawing.Point(4, 25);
             this.後台登入.Name = "後台登入";
-            this.後台登入.Size = new System.Drawing.Size(1662, 1006);
+            this.後台登入.Size = new System.Drawing.Size(962, 826);
             this.後台登入.TabIndex = 11;
             this.後台登入.Text = "後台登入";
             // 
@@ -3771,6 +3788,7 @@
             this.plC_RJ_Button_系統更新.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_系統更新.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_系統更新.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_系統更新.ShowLoadingForm = false;
             this.plC_RJ_Button_系統更新.Size = new System.Drawing.Size(155, 61);
             this.plC_RJ_Button_系統更新.State = false;
             this.plC_RJ_Button_系統更新.TabIndex = 123;
@@ -3870,6 +3888,7 @@
             this.plC_RJ_Button_後台登入_登入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.plC_RJ_Button_後台登入_登入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_後台登入_登入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_後台登入_登入.ShowLoadingForm = false;
             this.plC_RJ_Button_後台登入_登入.Size = new System.Drawing.Size(133, 66);
             this.plC_RJ_Button_後台登入_登入.State = false;
             this.plC_RJ_Button_後台登入_登入.TabIndex = 31;
@@ -3969,7 +3988,7 @@
             this.交班作業.Controls.Add(this.panel_交班作業);
             this.交班作業.Location = new System.Drawing.Point(4, 25);
             this.交班作業.Name = "交班作業";
-            this.交班作業.Size = new System.Drawing.Size(1662, 1006);
+            this.交班作業.Size = new System.Drawing.Size(962, 826);
             this.交班作業.TabIndex = 17;
             this.交班作業.Text = "交班作業";
             // 
@@ -3986,7 +4005,7 @@
             this.plC_ScreenPage_交班作業.Location = new System.Drawing.Point(0, 50);
             this.plC_ScreenPage_交班作業.Name = "plC_ScreenPage_交班作業";
             this.plC_ScreenPage_交班作業.SelectedIndex = 0;
-            this.plC_ScreenPage_交班作業.Size = new System.Drawing.Size(1662, 956);
+            this.plC_ScreenPage_交班作業.Size = new System.Drawing.Size(962, 776);
             this.plC_ScreenPage_交班作業.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_交班作業.TabIndex = 1;
             this.plC_ScreenPage_交班作業.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -3998,7 +4017,7 @@
             this.tabPage16.Controls.Add(this.plC_RJ_Pannel3);
             this.tabPage16.Location = new System.Drawing.Point(4, 25);
             this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Size = new System.Drawing.Size(1654, 927);
+            this.tabPage16.Size = new System.Drawing.Size(954, 747);
             this.tabPage16.TabIndex = 0;
             this.tabPage16.Text = "對點作業";
             // 
@@ -4014,7 +4033,7 @@
             this.plC_RJ_Pannel3.IsSelected = false;
             this.plC_RJ_Pannel3.Location = new System.Drawing.Point(0, 0);
             this.plC_RJ_Pannel3.Name = "plC_RJ_Pannel3";
-            this.plC_RJ_Pannel3.Size = new System.Drawing.Size(1654, 927);
+            this.plC_RJ_Pannel3.Size = new System.Drawing.Size(954, 747);
             this.plC_RJ_Pannel3.TabIndex = 116;
             // 
             // panel71
@@ -4029,7 +4048,7 @@
             this.panel71.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel71.Location = new System.Drawing.Point(0, 0);
             this.panel71.Name = "panel71";
-            this.panel71.Size = new System.Drawing.Size(1654, 927);
+            this.panel71.Size = new System.Drawing.Size(954, 747);
             this.panel71.TabIndex = 115;
             // 
             // plC_RJ_Pannel2
@@ -4076,6 +4095,7 @@
             this.plC_RJ_Button_交班作業_對點作業_測試登入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
             this.plC_RJ_Button_交班作業_對點作業_測試登入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班作業_對點作業_測試登入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_測試登入.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_對點作業_測試登入.Size = new System.Drawing.Size(139, 63);
             this.plC_RJ_Button_交班作業_對點作業_測試登入.State = false;
             this.plC_RJ_Button_交班作業_對點作業_測試登入.TabIndex = 142;
@@ -4260,6 +4280,7 @@
             this.plC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
             this.plC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡.Size = new System.Drawing.Size(139, 88);
             this.plC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡.State = false;
             this.plC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡.TabIndex = 142;
@@ -4399,6 +4420,7 @@
             this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_文字顏色 = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_交班作業_對點作業_開始交班.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_開始交班.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_對點作業_開始交班.Size = new System.Drawing.Size(453, 152);
             this.plC_RJ_Button_交班作業_對點作業_開始交班.State = false;
             this.plC_RJ_Button_交班作業_對點作業_開始交班.TabIndex = 141;
@@ -4442,6 +4464,7 @@
             this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
             this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班作業_對點作業_取消作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_取消作業.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_對點作業_取消作業.Size = new System.Drawing.Size(215, 88);
             this.plC_RJ_Button_交班作業_對點作業_取消作業.State = false;
             this.plC_RJ_Button_交班作業_對點作業_取消作業.TabIndex = 140;
@@ -4567,6 +4590,7 @@
             this.plC_RJ_Button_交班作業_對點作業_當班交接人_感應刷卡.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
             this.plC_RJ_Button_交班作業_對點作業_當班交接人_感應刷卡.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班作業_對點作業_當班交接人_感應刷卡.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_對點作業_當班交接人_感應刷卡.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_對點作業_當班交接人_感應刷卡.Size = new System.Drawing.Size(139, 88);
             this.plC_RJ_Button_交班作業_對點作業_當班交接人_感應刷卡.State = false;
             this.plC_RJ_Button_交班作業_對點作業_當班交接人_感應刷卡.TabIndex = 141;
@@ -4693,7 +4717,7 @@
             this.rJ_Lable76.GUID = "";
             this.rJ_Lable76.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable76.Name = "rJ_Lable76";
-            this.rJ_Lable76.Size = new System.Drawing.Size(1654, 127);
+            this.rJ_Lable76.Size = new System.Drawing.Size(954, 127);
             this.rJ_Lable76.TabIndex = 115;
             this.rJ_Lable76.Text = "對點作業";
             this.rJ_Lable76.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4930,6 +4954,7 @@
             this.plC_RJ_Button_交班對點_管制結存_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_交班對點_管制結存_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班對點_管制結存_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班對點_管制結存_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_交班對點_管制結存_搜尋.Size = new System.Drawing.Size(99, 79);
             this.plC_RJ_Button_交班對點_管制結存_搜尋.State = false;
             this.plC_RJ_Button_交班對點_管制結存_搜尋.TabIndex = 138;
@@ -4973,6 +4998,7 @@
             this.plC_RJ_Button_交班對點_管制結存_重置.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_交班對點_管制結存_重置.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班對點_管制結存_重置.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班對點_管制結存_重置.ShowLoadingForm = false;
             this.plC_RJ_Button_交班對點_管制結存_重置.Size = new System.Drawing.Size(99, 79);
             this.plC_RJ_Button_交班對點_管制結存_重置.State = false;
             this.plC_RJ_Button_交班對點_管制結存_重置.TabIndex = 128;
@@ -5311,6 +5337,7 @@
             this.plC_RJ_Button_交班作業_交班表_設定.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_交班作業_交班表_設定.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班作業_交班表_設定.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_交班表_設定.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_交班表_設定.Size = new System.Drawing.Size(137, 95);
             this.plC_RJ_Button_交班作業_交班表_設定.State = false;
             this.plC_RJ_Button_交班作業_交班表_設定.TabIndex = 130;
@@ -5354,6 +5381,7 @@
             this.plC_RJ_Button_交班作業_交班表_處方檢視.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_交班作業_交班表_處方檢視.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_交班表_處方檢視.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.Size = new System.Drawing.Size(190, 95);
             this.plC_RJ_Button_交班作業_交班表_處方檢視.State = false;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.TabIndex = 129;
@@ -5397,6 +5425,7 @@
             this.plC_RJ_Button_交班作業_交班表_班別_大夜班.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_交班作業_交班表_班別_大夜班.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_交班作業_交班表_班別_大夜班.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_交班表_班別_大夜班.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_交班表_班別_大夜班.Size = new System.Drawing.Size(150, 82);
             this.plC_RJ_Button_交班作業_交班表_班別_大夜班.State = false;
             this.plC_RJ_Button_交班作業_交班表_班別_大夜班.TabIndex = 2;
@@ -5439,6 +5468,7 @@
             this.plC_RJ_Button_交班作業_交班表_生成明細.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_交班作業_交班表_生成明細.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交班作業_交班表_生成明細.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_交班表_生成明細.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_交班表_生成明細.Size = new System.Drawing.Size(190, 95);
             this.plC_RJ_Button_交班作業_交班表_生成明細.State = false;
             this.plC_RJ_Button_交班作業_交班表_生成明細.TabIndex = 128;
@@ -5482,6 +5512,7 @@
             this.plC_RJ_Button_交班作業_交班表_班別_小夜班.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_交班作業_交班表_班別_小夜班.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_交班作業_交班表_班別_小夜班.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_交班表_班別_小夜班.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_交班表_班別_小夜班.Size = new System.Drawing.Size(150, 82);
             this.plC_RJ_Button_交班作業_交班表_班別_小夜班.State = false;
             this.plC_RJ_Button_交班作業_交班表_班別_小夜班.TabIndex = 1;
@@ -5543,6 +5574,7 @@
             this.plC_RJ_Button_交班作業_交班表_班別_白班.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_交班作業_交班表_班別_白班.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_交班作業_交班表_班別_白班.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交班作業_交班表_班別_白班.ShowLoadingForm = false;
             this.plC_RJ_Button_交班作業_交班表_班別_白班.Size = new System.Drawing.Size(150, 82);
             this.plC_RJ_Button_交班作業_交班表_班別_白班.State = false;
             this.plC_RJ_Button_交班作業_交班表_班別_白班.TabIndex = 0;
@@ -5582,7 +5614,7 @@
             this.panel_交班作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_交班作業.Location = new System.Drawing.Point(0, 0);
             this.panel_交班作業.Name = "panel_交班作業";
-            this.panel_交班作業.Size = new System.Drawing.Size(1662, 50);
+            this.panel_交班作業.Size = new System.Drawing.Size(962, 50);
             this.panel_交班作業.TabIndex = 0;
             // 
             // plC_RJ_ScreenButton17
@@ -5709,7 +5741,7 @@
             this.收支作業.Controls.Add(this.panel_收支作業);
             this.收支作業.Location = new System.Drawing.Point(4, 25);
             this.收支作業.Name = "收支作業";
-            this.收支作業.Size = new System.Drawing.Size(1662, 1006);
+            this.收支作業.Size = new System.Drawing.Size(962, 826);
             this.收支作業.TabIndex = 1;
             this.收支作業.Text = "收支作業";
             // 
@@ -5725,7 +5757,7 @@
             this.plC_ScreenPage_收支作業.Location = new System.Drawing.Point(0, 50);
             this.plC_ScreenPage_收支作業.Name = "plC_ScreenPage_收支作業";
             this.plC_ScreenPage_收支作業.SelectedIndex = 0;
-            this.plC_ScreenPage_收支作業.Size = new System.Drawing.Size(1662, 956);
+            this.plC_ScreenPage_收支作業.Size = new System.Drawing.Size(962, 776);
             this.plC_ScreenPage_收支作業.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_收支作業.TabIndex = 1;
             this.plC_ScreenPage_收支作業.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -5740,7 +5772,7 @@
             this.tabPage21.Controls.Add(this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋);
             this.tabPage21.Location = new System.Drawing.Point(4, 25);
             this.tabPage21.Name = "tabPage21";
-            this.tabPage21.Size = new System.Drawing.Size(1654, 927);
+            this.tabPage21.Size = new System.Drawing.Size(954, 747);
             this.tabPage21.TabIndex = 0;
             this.tabPage21.Text = "收支作業";
             // 
@@ -5751,7 +5783,7 @@
             // 
             this.plC_RJ_GroupBox26.ContentsPanel.BackColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox26.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
-            this.plC_RJ_GroupBox26.ContentsPanel.BorderRadius = 5;
+            this.plC_RJ_GroupBox26.ContentsPanel.BorderRadius = 0;
             this.plC_RJ_GroupBox26.ContentsPanel.BorderSize = 2;
             this.plC_RJ_GroupBox26.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_入庫);
             this.plC_RJ_GroupBox26.ContentsPanel.Controls.Add(this.plC_RJ_Button_收支作業_設定);
@@ -5763,7 +5795,7 @@
             this.plC_RJ_GroupBox26.ContentsPanel.IsSelected = false;
             this.plC_RJ_GroupBox26.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox26.ContentsPanel.Name = "ContentsPanel";
-            this.plC_RJ_GroupBox26.ContentsPanel.Size = new System.Drawing.Size(839, 105);
+            this.plC_RJ_GroupBox26.ContentsPanel.Size = new System.Drawing.Size(139, 0);
             this.plC_RJ_GroupBox26.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox26.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_GroupBox26.GUID = "";
@@ -5771,9 +5803,9 @@
             this.plC_RJ_GroupBox26.Name = "plC_RJ_GroupBox26";
             this.plC_RJ_GroupBox26.PannelBackColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox26.PannelBorderColor = System.Drawing.Color.SkyBlue;
-            this.plC_RJ_GroupBox26.PannelBorderRadius = 5;
+            this.plC_RJ_GroupBox26.PannelBorderRadius = 0;
             this.plC_RJ_GroupBox26.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox26.Size = new System.Drawing.Size(839, 142);
+            this.plC_RJ_GroupBox26.Size = new System.Drawing.Size(139, 0);
             this.plC_RJ_GroupBox26.TabIndex = 147;
             this.plC_RJ_GroupBox26.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox26.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -5811,6 +5843,7 @@
             this.plC_RJ_Button_收支作業_入庫.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_收支作業_入庫.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_收支作業_入庫.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_入庫.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_入庫.Size = new System.Drawing.Size(157, 74);
             this.plC_RJ_Button_收支作業_入庫.State = false;
             this.plC_RJ_Button_收支作業_入庫.TabIndex = 141;
@@ -5855,6 +5888,7 @@
             this.plC_RJ_Button_收支作業_設定.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_收支作業_設定.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_收支作業_設定.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_設定.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_設定.Size = new System.Drawing.Size(88, 74);
             this.plC_RJ_Button_收支作業_設定.State = false;
             this.plC_RJ_Button_收支作業_設定.TabIndex = 146;
@@ -5899,6 +5933,7 @@
             this.plC_RJ_Button_收支作業_出庫.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_收支作業_出庫.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_收支作業_出庫.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_出庫.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_出庫.Size = new System.Drawing.Size(157, 74);
             this.plC_RJ_Button_收支作業_出庫.State = false;
             this.plC_RJ_Button_收支作業_出庫.TabIndex = 142;
@@ -5943,6 +5978,7 @@
             this.plC_RJ_Button_收支作業_調入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_收支作業_調入.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_收支作業_調入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_調入.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_調入.Size = new System.Drawing.Size(157, 74);
             this.plC_RJ_Button_收支作業_調入.State = false;
             this.plC_RJ_Button_收支作業_調入.TabIndex = 143;
@@ -5987,6 +6023,7 @@
             this.plC_RJ_Button_收支作業_調出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_收支作業_調出.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_收支作業_調出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_調出.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_調出.Size = new System.Drawing.Size(157, 74);
             this.plC_RJ_Button_收支作業_調出.State = false;
             this.plC_RJ_Button_收支作業_調出.TabIndex = 144;
@@ -6033,17 +6070,17 @@
             this.rJ_GroupBox8.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox8.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox8.ContentsPanel.Name = "ContentsPanel";
-            this.rJ_GroupBox8.ContentsPanel.Size = new System.Drawing.Size(839, 242);
+            this.rJ_GroupBox8.ContentsPanel.Size = new System.Drawing.Size(139, 242);
             this.rJ_GroupBox8.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rJ_GroupBox8.GUID = "";
-            this.rJ_GroupBox8.Location = new System.Drawing.Point(815, 142);
+            this.rJ_GroupBox8.Location = new System.Drawing.Point(815, -38);
             this.rJ_GroupBox8.Name = "rJ_GroupBox8";
             this.rJ_GroupBox8.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox8.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox8.PannelBorderRadius = 5;
             this.rJ_GroupBox8.PannelBorderSize = 2;
-            this.rJ_GroupBox8.Size = new System.Drawing.Size(839, 279);
+            this.rJ_GroupBox8.Size = new System.Drawing.Size(139, 279);
             this.rJ_GroupBox8.TabIndex = 145;
             this.rJ_GroupBox8.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox8.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -6081,6 +6118,7 @@
             this.plC_RJ_Button_收支作業_單品入庫_藥品條碼輸入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_單品入庫_藥品條碼輸入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_單品入庫_藥品條碼輸入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_單品入庫_藥品條碼輸入.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_單品入庫_藥品條碼輸入.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_收支作業_單品入庫_藥品條碼輸入.State = false;
             this.plC_RJ_Button_收支作業_單品入庫_藥品條碼輸入.TabIndex = 139;
@@ -6167,6 +6205,7 @@
             this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋.State = false;
             this.plC_RJ_Button_收支作業_單品入庫_中文名稱搜尋.TabIndex = 136;
@@ -6253,6 +6292,7 @@
             this.plC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋.State = false;
             this.plC_RJ_Button_收支作業_單品入庫_藥品名稱搜尋.TabIndex = 133;
@@ -6339,6 +6379,7 @@
             this.plC_RJ_Button_收支作業_單品入庫_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_單品入庫_藥品碼搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_單品入庫_藥品碼搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_單品入庫_藥品碼搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_單品入庫_藥品碼搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_收支作業_單品入庫_藥品碼搜尋.State = false;
             this.plC_RJ_Button_收支作業_單品入庫_藥品碼搜尋.TabIndex = 130;
@@ -6425,6 +6466,7 @@
             this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.Size = new System.Drawing.Size(132, 158);
             this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.State = false;
             this.plC_RJ_Button_收支作業_單品入庫_顯示所有儲位.TabIndex = 127;
@@ -6468,6 +6510,7 @@
             this.plC_RJ_Button_收支作業_選擇儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 21.75F);
             this.plC_RJ_Button_收支作業_選擇儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_選擇儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_選擇儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_選擇儲位.Size = new System.Drawing.Size(174, 154);
             this.plC_RJ_Button_收支作業_選擇儲位.State = false;
             this.plC_RJ_Button_收支作業_選擇儲位.TabIndex = 126;
@@ -6503,17 +6546,17 @@
             this.rJ_GroupBox4.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox4.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox4.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.rJ_GroupBox4.ContentsPanel.Size = new System.Drawing.Size(839, 469);
+            this.rJ_GroupBox4.ContentsPanel.Size = new System.Drawing.Size(139, 469);
             this.rJ_GroupBox4.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rJ_GroupBox4.GUID = "";
-            this.rJ_GroupBox4.Location = new System.Drawing.Point(815, 421);
+            this.rJ_GroupBox4.Location = new System.Drawing.Point(815, 241);
             this.rJ_GroupBox4.Name = "rJ_GroupBox4";
             this.rJ_GroupBox4.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox4.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox4.PannelBorderRadius = 5;
             this.rJ_GroupBox4.PannelBorderSize = 0;
-            this.rJ_GroupBox4.Size = new System.Drawing.Size(839, 506);
+            this.rJ_GroupBox4.Size = new System.Drawing.Size(139, 506);
             this.rJ_GroupBox4.TabIndex = 129;
             this.rJ_GroupBox4.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox4.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -6551,6 +6594,7 @@
             this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.Size = new System.Drawing.Size(168, 53);
             this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.State = false;
             this.plC_RJ_Button_收支作業_入庫狀態_選取資料強制入賬.TabIndex = 128;
@@ -6594,6 +6638,7 @@
             this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料.Size = new System.Drawing.Size(159, 53);
             this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料.State = false;
             this.plC_RJ_Button_收支作業_入庫狀態_清除選取資料.TabIndex = 127;
@@ -6636,6 +6681,7 @@
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.ShowLoadingForm = false;
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.Size = new System.Drawing.Size(159, 53);
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.State = false;
             this.plC_RJ_Button_收支作業_入庫狀態_清除所有資料.TabIndex = 126;
@@ -6666,7 +6712,7 @@
             this.sqL_DataGridView_收支作業_入庫狀態.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_收支作業_入庫狀態.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_收支作業_入庫狀態.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_收支作業_入庫狀態.columnHeadersHeight = 18;
+            this.sqL_DataGridView_收支作業_入庫狀態.columnHeadersHeight = 15;
             this.sqL_DataGridView_收支作業_入庫狀態.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_收支作業_入庫狀態.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_收支作業_入庫狀態.Font = new System.Drawing.Font("標楷體", 9F);
@@ -6683,7 +6729,7 @@
             this.sqL_DataGridView_收支作業_入庫狀態.RowsHeight = 60;
             this.sqL_DataGridView_收支作業_入庫狀態.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_收支作業_入庫狀態.Server = "127.0.0.0";
-            this.sqL_DataGridView_收支作業_入庫狀態.Size = new System.Drawing.Size(829, 396);
+            this.sqL_DataGridView_收支作業_入庫狀態.Size = new System.Drawing.Size(129, 396);
             this.sqL_DataGridView_收支作業_入庫狀態.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_收支作業_入庫狀態.TabIndex = 26;
             this.sqL_DataGridView_收支作業_入庫狀態.UserName = "root";
@@ -6740,7 +6786,7 @@
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RowsHeight = 80;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Server = "localhost";
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Size = new System.Drawing.Size(815, 927);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Size = new System.Drawing.Size(815, 747);
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.TabIndex = 130;
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.TableName = "medicine_page";
@@ -6772,7 +6818,7 @@
             this.panel_收支作業.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_收支作業.Location = new System.Drawing.Point(0, 0);
             this.panel_收支作業.Name = "panel_收支作業";
-            this.panel_收支作業.Size = new System.Drawing.Size(1662, 50);
+            this.panel_收支作業.Size = new System.Drawing.Size(962, 50);
             this.panel_收支作業.TabIndex = 0;
             // 
             // plC_RJ_ScreenButton22
@@ -6822,7 +6868,7 @@
             this.交易記錄查詢.Controls.Add(this.groupBox24);
             this.交易記錄查詢.Location = new System.Drawing.Point(4, 25);
             this.交易記錄查詢.Name = "交易記錄查詢";
-            this.交易記錄查詢.Size = new System.Drawing.Size(1662, 1006);
+            this.交易記錄查詢.Size = new System.Drawing.Size(962, 826);
             this.交易記錄查詢.TabIndex = 3;
             this.交易記錄查詢.Text = "交易記錄查詢";
             // 
@@ -6838,7 +6884,7 @@
             this.plC_ScreenPage_交易紀錄查詢.Location = new System.Drawing.Point(0, 50);
             this.plC_ScreenPage_交易紀錄查詢.Name = "plC_ScreenPage_交易紀錄查詢";
             this.plC_ScreenPage_交易紀錄查詢.SelectedIndex = 0;
-            this.plC_ScreenPage_交易紀錄查詢.Size = new System.Drawing.Size(1662, 956);
+            this.plC_ScreenPage_交易紀錄查詢.Size = new System.Drawing.Size(962, 776);
             this.plC_ScreenPage_交易紀錄查詢.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_交易紀錄查詢.TabIndex = 111;
             this.plC_ScreenPage_交易紀錄查詢.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -6850,7 +6896,7 @@
             this.tabPage19.Controls.Add(this.panel208);
             this.tabPage19.Location = new System.Drawing.Point(4, 25);
             this.tabPage19.Name = "tabPage19";
-            this.tabPage19.Size = new System.Drawing.Size(1654, 927);
+            this.tabPage19.Size = new System.Drawing.Size(954, 747);
             this.tabPage19.TabIndex = 0;
             this.tabPage19.Text = "交易紀錄";
             // 
@@ -6868,7 +6914,7 @@
             this.panel208.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel208.Location = new System.Drawing.Point(0, 0);
             this.panel208.Name = "panel208";
-            this.panel208.Size = new System.Drawing.Size(1654, 927);
+            this.panel208.Size = new System.Drawing.Size(954, 747);
             this.panel208.TabIndex = 109;
             // 
             // plC_RJ_Button_交易紀錄查詢_匯出資料
@@ -6897,6 +6943,7 @@
             this.plC_RJ_Button_交易紀錄查詢_匯出資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_交易紀錄查詢_匯出資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交易紀錄查詢_匯出資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易紀錄查詢_匯出資料.ShowLoadingForm = false;
             this.plC_RJ_Button_交易紀錄查詢_匯出資料.Size = new System.Drawing.Size(201, 100);
             this.plC_RJ_Button_交易紀錄查詢_匯出資料.State = false;
             this.plC_RJ_Button_交易紀錄查詢_匯出資料.TabIndex = 214;
@@ -6941,6 +6988,7 @@
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_選取資料刪除.ShowLoadingForm = false;
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.Size = new System.Drawing.Size(201, 100);
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.State = false;
             this.plC_RJ_Button_交易記錄查詢_選取資料刪除.TabIndex = 213;
@@ -6986,6 +7034,7 @@
             this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.ShowLoadingForm = false;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Size = new System.Drawing.Size(106, 148);
             this.plC_RJ_Button_交易記錄查詢_顯示全部.State = false;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.TabIndex = 164;
@@ -7927,7 +7976,7 @@
             this.sqL_DataGridView_交易記錄查詢.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_交易記錄查詢.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_交易記錄查詢.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.sqL_DataGridView_交易記錄查詢.columnHeadersHeight = 18;
+            this.sqL_DataGridView_交易記錄查詢.columnHeadersHeight = 17;
             this.sqL_DataGridView_交易記錄查詢.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_交易記錄查詢.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_交易記錄查詢.Font = new System.Drawing.Font("新細明體", 12F);
@@ -7944,7 +7993,7 @@
             this.sqL_DataGridView_交易記錄查詢.RowsHeight = 60;
             this.sqL_DataGridView_交易記錄查詢.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_交易記錄查詢.Server = "localhost";
-            this.sqL_DataGridView_交易記錄查詢.Size = new System.Drawing.Size(1654, 690);
+            this.sqL_DataGridView_交易記錄查詢.Size = new System.Drawing.Size(954, 690);
             this.sqL_DataGridView_交易記錄查詢.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_交易記錄查詢.TabIndex = 43;
             this.sqL_DataGridView_交易記錄查詢.TableName = "trading";
@@ -8003,6 +8052,7 @@
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易紀錄_結存量_匯出資料.ShowLoadingForm = false;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.Size = new System.Drawing.Size(217, 100);
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.State = false;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.TabIndex = 215;
@@ -8104,6 +8154,7 @@
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易紀錄_結存量_顯示全部.ShowLoadingForm = false;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.Size = new System.Drawing.Size(217, 93);
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.State = false;
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.TabIndex = 165;
@@ -8180,7 +8231,7 @@
             this.panel_交易紀錄查詢.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_交易紀錄查詢.Location = new System.Drawing.Point(0, 0);
             this.panel_交易紀錄查詢.Name = "panel_交易紀錄查詢";
-            this.panel_交易紀錄查詢.Size = new System.Drawing.Size(1662, 50);
+            this.panel_交易紀錄查詢.Size = new System.Drawing.Size(962, 50);
             this.panel_交易紀錄查詢.TabIndex = 110;
             // 
             // plC_RJ_ScreenButton19
@@ -8298,7 +8349,7 @@
             this.醫令資料.Controls.Add(this.sqL_DataGridView_醫令資料);
             this.醫令資料.Location = new System.Drawing.Point(4, 25);
             this.醫令資料.Name = "醫令資料";
-            this.醫令資料.Size = new System.Drawing.Size(1662, 1006);
+            this.醫令資料.Size = new System.Drawing.Size(962, 826);
             this.醫令資料.TabIndex = 15;
             this.醫令資料.Text = "醫令資料";
             // 
@@ -8328,6 +8379,7 @@
             this.plC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋.State = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_開方日期_搜尋.TabIndex = 218;
@@ -8371,6 +8423,7 @@
             this.plC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋.State = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋.TabIndex = 217;
@@ -8414,6 +8467,7 @@
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋.State = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋.TabIndex = 216;
@@ -8457,6 +8511,7 @@
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋.TabIndex = 215;
@@ -8500,6 +8555,7 @@
             this.plC_RJ_Button_醫令資料_選取資料刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_醫令資料_選取資料刪除.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_選取資料刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_選取資料刪除.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_選取資料刪除.Size = new System.Drawing.Size(180, 67);
             this.plC_RJ_Button_醫令資料_選取資料刪除.State = false;
             this.plC_RJ_Button_醫令資料_選取資料刪除.TabIndex = 214;
@@ -8545,6 +8601,7 @@
             this.plC_RJ_Button_醫令資料_定期API測試.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_定期API測試.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_定期API測試.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_定期API測試.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_定期API測試.Size = new System.Drawing.Size(145, 58);
             this.plC_RJ_Button_醫令資料_定期API測試.State = false;
             this.plC_RJ_Button_醫令資料_定期API測試.TabIndex = 174;
@@ -8590,6 +8647,7 @@
             this.plC_RJ_Button_醫令資料_設為未過帳.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_設為未過帳.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_設為未過帳.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_設為未過帳.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_設為未過帳.Size = new System.Drawing.Size(145, 58);
             this.plC_RJ_Button_醫令資料_設為未過帳.State = false;
             this.plC_RJ_Button_醫令資料_設為未過帳.TabIndex = 173;
@@ -8635,6 +8693,7 @@
             this.plC_RJ_Button_醫令資料_設定產出時間.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_設定產出時間.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_設定產出時間.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_設定產出時間.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_設定產出時間.Size = new System.Drawing.Size(145, 58);
             this.plC_RJ_Button_醫令資料_設定產出時間.State = false;
             this.plC_RJ_Button_醫令資料_設定產出時間.TabIndex = 172;
@@ -8680,6 +8739,7 @@
             this.plC_RJ_Button_醫令資料_自動過帳.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_自動過帳.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_自動過帳.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_自動過帳.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_自動過帳.Size = new System.Drawing.Size(145, 58);
             this.plC_RJ_Button_醫令資料_自動過帳.State = false;
             this.plC_RJ_Button_醫令資料_自動過帳.TabIndex = 171;
@@ -8725,6 +8785,7 @@
             this.plC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋.State = false;
             this.plC_RJ_Button_醫令資料_搜尋條件_藥袋條碼_搜尋.TabIndex = 170;
@@ -8985,7 +9046,7 @@
             this.sqL_DataGridView_醫令資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_醫令資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_醫令資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_醫令資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_醫令資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_醫令資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_醫令資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_醫令資料.Font = new System.Drawing.Font("新細明體", 9F);
@@ -9001,7 +9062,7 @@
             this.sqL_DataGridView_醫令資料.RowsHeight = 40;
             this.sqL_DataGridView_醫令資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_醫令資料.Server = "127.0.0.0";
-            this.sqL_DataGridView_醫令資料.Size = new System.Drawing.Size(1662, 790);
+            this.sqL_DataGridView_醫令資料.Size = new System.Drawing.Size(962, 790);
             this.sqL_DataGridView_醫令資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_醫令資料.TabIndex = 6;
             this.sqL_DataGridView_醫令資料.TableName = "order_list";
@@ -9025,7 +9086,7 @@
             this.藥品資料_藥檔資料.Controls.Add(this.panel_藥品資料);
             this.藥品資料_藥檔資料.Location = new System.Drawing.Point(4, 25);
             this.藥品資料_藥檔資料.Name = "藥品資料_藥檔資料";
-            this.藥品資料_藥檔資料.Size = new System.Drawing.Size(1662, 1006);
+            this.藥品資料_藥檔資料.Size = new System.Drawing.Size(962, 826);
             this.藥品資料_藥檔資料.TabIndex = 4;
             this.藥品資料_藥檔資料.Text = "藥品資料";
             // 
@@ -9043,7 +9104,7 @@
             this.plC_ScreenPage_藥品資料.Location = new System.Drawing.Point(0, 51);
             this.plC_ScreenPage_藥品資料.Name = "plC_ScreenPage_藥品資料";
             this.plC_ScreenPage_藥品資料.SelectedIndex = 0;
-            this.plC_ScreenPage_藥品資料.Size = new System.Drawing.Size(1662, 955);
+            this.plC_ScreenPage_藥品資料.Size = new System.Drawing.Size(962, 775);
             this.plC_ScreenPage_藥品資料.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_藥品資料.TabIndex = 115;
             this.plC_ScreenPage_藥品資料.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -9057,7 +9118,7 @@
             this.藥檔資料.Controls.Add(this.sqL_DataGridView_藥品資料_藥檔資料);
             this.藥檔資料.Location = new System.Drawing.Point(4, 25);
             this.藥檔資料.Name = "藥檔資料";
-            this.藥檔資料.Size = new System.Drawing.Size(1654, 926);
+            this.藥檔資料.Size = new System.Drawing.Size(954, 746);
             this.藥檔資料.TabIndex = 0;
             this.藥檔資料.Text = "藥檔資料";
             // 
@@ -9084,7 +9145,7 @@
             this.rJ_GroupBox13.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox13.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox13.ContentsPanel.Name = "ContentsPanel";
-            this.rJ_GroupBox13.ContentsPanel.Size = new System.Drawing.Size(817, 412);
+            this.rJ_GroupBox13.ContentsPanel.Size = new System.Drawing.Size(117, 232);
             this.rJ_GroupBox13.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox13.GUID = "";
@@ -9094,7 +9155,7 @@
             this.rJ_GroupBox13.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox13.PannelBorderRadius = 2;
             this.rJ_GroupBox13.PannelBorderSize = 2;
-            this.rJ_GroupBox13.Size = new System.Drawing.Size(817, 449);
+            this.rJ_GroupBox13.Size = new System.Drawing.Size(117, 269);
             this.rJ_GroupBox13.TabIndex = 116;
             this.rJ_GroupBox13.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox13.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -9147,6 +9208,7 @@
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_高價藥品_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.Size = new System.Drawing.Size(84, 46);
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.State = false;
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.TabIndex = 141;
@@ -9251,6 +9313,7 @@
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_管制級別_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.Size = new System.Drawing.Size(84, 46);
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.State = false;
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.TabIndex = 141;
@@ -9329,6 +9392,7 @@
             this.plC_RJ_Button_藥品資料_商品名_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_商品名_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_商品名_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_商品名_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_商品名_搜尋.Size = new System.Drawing.Size(84, 46);
             this.plC_RJ_Button_藥品資料_商品名_搜尋.State = false;
             this.plC_RJ_Button_藥品資料_商品名_搜尋.TabIndex = 142;
@@ -9431,6 +9495,7 @@
             this.plC_RJ_Button_藥品資料_中文名_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_中文名_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_中文名_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_中文名_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_中文名_搜尋.Size = new System.Drawing.Size(84, 46);
             this.plC_RJ_Button_藥品資料_中文名_搜尋.State = false;
             this.plC_RJ_Button_藥品資料_中文名_搜尋.TabIndex = 142;
@@ -9517,6 +9582,7 @@
             this.plC_RJ_Button_藥品資料_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_顯示全部.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_顯示全部.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_顯示全部.Size = new System.Drawing.Size(141, 67);
             this.plC_RJ_Button_藥品資料_顯示全部.State = false;
             this.plC_RJ_Button_藥品資料_顯示全部.TabIndex = 142;
@@ -9621,6 +9687,7 @@
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.Size = new System.Drawing.Size(84, 46);
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.State = false;
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.TabIndex = 142;
@@ -9723,6 +9790,7 @@
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.Size = new System.Drawing.Size(84, 46);
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.State = false;
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.TabIndex = 142;
@@ -9825,6 +9893,7 @@
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.Size = new System.Drawing.Size(84, 46);
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.TabIndex = 141;
@@ -9906,7 +9975,7 @@
             this.rJ_GroupBox12.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox12.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox12.ContentsPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.rJ_GroupBox12.ContentsPanel.Size = new System.Drawing.Size(837, 412);
+            this.rJ_GroupBox12.ContentsPanel.Size = new System.Drawing.Size(837, 232);
             this.rJ_GroupBox12.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox12.Dock = System.Windows.Forms.DockStyle.Left;
             this.rJ_GroupBox12.GUID = "";
@@ -9916,7 +9985,7 @@
             this.rJ_GroupBox12.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox12.PannelBorderRadius = 2;
             this.rJ_GroupBox12.PannelBorderSize = 2;
-            this.rJ_GroupBox12.Size = new System.Drawing.Size(837, 449);
+            this.rJ_GroupBox12.Size = new System.Drawing.Size(837, 269);
             this.rJ_GroupBox12.TabIndex = 115;
             this.rJ_GroupBox12.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox12.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -9954,6 +10023,7 @@
             this.plC_RJ_Button_藥品資料_登錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_登錄.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_登錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_登錄.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_登錄.Size = new System.Drawing.Size(75, 52);
             this.plC_RJ_Button_藥品資料_登錄.State = false;
             this.plC_RJ_Button_藥品資料_登錄.TabIndex = 136;
@@ -9998,6 +10068,7 @@
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.Size = new System.Drawing.Size(103, 52);
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.State = false;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.TabIndex = 139;
@@ -10042,6 +10113,7 @@
             this.plC_RJ_Button_藥品資料_HIS填入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_藥品資料_HIS填入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_HIS填入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_HIS填入.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_HIS填入.Size = new System.Drawing.Size(132, 52);
             this.plC_RJ_Button_藥品資料_HIS填入.State = false;
             this.plC_RJ_Button_藥品資料_HIS填入.TabIndex = 139;
@@ -10085,6 +10157,7 @@
             this.plC_RJ_Button_藥品資料_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_刪除.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_刪除.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_刪除.Size = new System.Drawing.Size(75, 52);
             this.plC_RJ_Button_藥品資料_刪除.State = false;
             this.plC_RJ_Button_藥品資料_刪除.TabIndex = 137;
@@ -10129,6 +10202,7 @@
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_更新藥櫃資料.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.Size = new System.Drawing.Size(154, 52);
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.State = false;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.TabIndex = 130;
@@ -10433,6 +10507,7 @@
             this.plC_RJ_Button_藥品資料_條碼管理.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_條碼管理.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_條碼管理.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_條碼管理.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_條碼管理.Size = new System.Drawing.Size(216, 36);
             this.plC_RJ_Button_藥品資料_條碼管理.State = false;
             this.plC_RJ_Button_藥品資料_條碼管理.TabIndex = 131;
@@ -11160,7 +11235,7 @@
             this.sqL_DataGridView_藥品資料_藥檔資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥品資料_藥檔資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥品資料_藥檔資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_藥品資料_藥檔資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥品資料_藥檔資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_藥品資料_藥檔資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥品資料_藥檔資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_藥品資料_藥檔資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -11178,7 +11253,7 @@
             this.sqL_DataGridView_藥品資料_藥檔資料.RowsHeight = 50;
             this.sqL_DataGridView_藥品資料_藥檔資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_藥品資料_藥檔資料.Server = "localhost";
-            this.sqL_DataGridView_藥品資料_藥檔資料.Size = new System.Drawing.Size(1654, 477);
+            this.sqL_DataGridView_藥品資料_藥檔資料.Size = new System.Drawing.Size(954, 477);
             this.sqL_DataGridView_藥品資料_藥檔資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品資料_藥檔資料.TabIndex = 114;
             this.sqL_DataGridView_藥品資料_藥檔資料.TableName = "medicine_page";
@@ -11330,6 +11405,7 @@
             this.plC_RJ_Button_藥品群組_刷新.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品群組_刷新.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品群組_刷新.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品群組_刷新.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品群組_刷新.Size = new System.Drawing.Size(104, 74);
             this.plC_RJ_Button_藥品群組_刷新.State = false;
             this.plC_RJ_Button_藥品群組_刷新.TabIndex = 139;
@@ -11373,6 +11449,7 @@
             this.plC_RJ_Button_藥品群組_選取資料填入至藥品資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品群組_選取資料填入至藥品資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品群組_選取資料填入至藥品資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品群組_選取資料填入至藥品資料.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品群組_選取資料填入至藥品資料.Size = new System.Drawing.Size(157, 74);
             this.plC_RJ_Button_藥品群組_選取資料填入至藥品資料.State = false;
             this.plC_RJ_Button_藥品群組_選取資料填入至藥品資料.TabIndex = 138;
@@ -11417,6 +11494,7 @@
             this.plC_RJ_Button_藥品群組_登錄至藥品群組.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品群組_登錄至藥品群組.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品群組_登錄至藥品群組.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品群組_登錄至藥品群組.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品群組_登錄至藥品群組.Size = new System.Drawing.Size(157, 74);
             this.plC_RJ_Button_藥品群組_登錄至藥品群組.State = false;
             this.plC_RJ_Button_藥品群組_登錄至藥品群組.TabIndex = 137;
@@ -11628,6 +11706,7 @@
             this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.Size = new System.Drawing.Size(84, 67);
             this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.State = false;
             this.plC_RJ_Button_藥品資料_管藥設定_管制取藥設定_上傳.TabIndex = 129;
@@ -11896,6 +11975,7 @@
             this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部.Size = new System.Drawing.Size(184, 76);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部.State = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部.TabIndex = 140;
@@ -11938,6 +12018,7 @@
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋.State = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋.TabIndex = 139;
@@ -12024,6 +12105,7 @@
             this.plC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋.State = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋.TabIndex = 136;
@@ -12110,6 +12192,7 @@
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋.State = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋.TabIndex = 133;
@@ -12196,6 +12279,7 @@
             this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.Size = new System.Drawing.Size(184, 76);
             this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.State = false;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.TabIndex = 124;
@@ -12313,6 +12397,7 @@
             this.plC_RJ_Button_藥品資料_儲位效期表_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_藥品資料_儲位效期表_顯示全部.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位效期表_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位效期表_顯示全部.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_顯示全部.Size = new System.Drawing.Size(184, 76);
             this.plC_RJ_Button_藥品資料_儲位效期表_顯示全部.State = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_顯示全部.TabIndex = 162;
@@ -12355,6 +12440,7 @@
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品名稱搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品名稱搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品名稱搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位效期表_藥品名稱搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品名稱搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品名稱搜尋.State = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品名稱搜尋.TabIndex = 161;
@@ -12441,6 +12527,7 @@
             this.plC_RJ_Button_藥品資料_儲位效期表_儲位名稱搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_藥品資料_儲位效期表_儲位名稱搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位效期表_儲位名稱搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位效期表_儲位名稱搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_儲位名稱搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_藥品資料_儲位效期表_儲位名稱搜尋.State = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_儲位名稱搜尋.TabIndex = 158;
@@ -12527,6 +12614,7 @@
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品碼搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品碼搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位效期表_藥品碼搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品碼搜尋.Size = new System.Drawing.Size(96, 46);
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品碼搜尋.State = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_藥品碼搜尋.TabIndex = 155;
@@ -12613,6 +12701,7 @@
             this.plC_RJ_Button_藥品資料_儲位效期表_匯出資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_藥品資料_儲位效期表_匯出資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_藥品資料_儲位效期表_匯出資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_儲位效期表_匯出資料.ShowLoadingForm = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_匯出資料.Size = new System.Drawing.Size(184, 76);
             this.plC_RJ_Button_藥品資料_儲位效期表_匯出資料.State = false;
             this.plC_RJ_Button_藥品資料_儲位效期表_匯出資料.TabIndex = 152;
@@ -12693,7 +12782,7 @@
             this.panel_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_藥品資料.Location = new System.Drawing.Point(0, 0);
             this.panel_藥品資料.Name = "panel_藥品資料";
-            this.panel_藥品資料.Size = new System.Drawing.Size(1662, 51);
+            this.panel_藥品資料.Size = new System.Drawing.Size(962, 51);
             this.panel_藥品資料.TabIndex = 114;
             // 
             // plC_RJ_ScreenButton_儲位效期表
@@ -12860,7 +12949,7 @@
             this.效期管理.Controls.Add(this.sqL_DataGridView_效期管理);
             this.效期管理.Location = new System.Drawing.Point(4, 25);
             this.效期管理.Name = "效期管理";
-            this.效期管理.Size = new System.Drawing.Size(1662, 1006);
+            this.效期管理.Size = new System.Drawing.Size(962, 826);
             this.效期管理.TabIndex = 5;
             this.效期管理.Text = "效期管理";
             // 
@@ -13157,7 +13246,7 @@
             this.sqL_DataGridView_效期管理.RowsHeight = 25;
             this.sqL_DataGridView_效期管理.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_效期管理.Server = "localhost";
-            this.sqL_DataGridView_效期管理.Size = new System.Drawing.Size(965, 1006);
+            this.sqL_DataGridView_效期管理.Size = new System.Drawing.Size(965, 826);
             this.sqL_DataGridView_效期管理.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_效期管理.TabIndex = 39;
             this.sqL_DataGridView_效期管理.TableName = "validity_page";
@@ -13181,7 +13270,7 @@
             this.人員資料.Controls.Add(this.panel_人員資料);
             this.人員資料.Location = new System.Drawing.Point(4, 25);
             this.人員資料.Name = "人員資料";
-            this.人員資料.Size = new System.Drawing.Size(1662, 1006);
+            this.人員資料.Size = new System.Drawing.Size(962, 826);
             this.人員資料.TabIndex = 6;
             this.人員資料.Text = "人員資料";
             // 
@@ -13198,7 +13287,7 @@
             this.plC_ScreenPage_人員資料.Location = new System.Drawing.Point(0, 51);
             this.plC_ScreenPage_人員資料.Name = "plC_ScreenPage_人員資料";
             this.plC_ScreenPage_人員資料.SelectedIndex = 0;
-            this.plC_ScreenPage_人員資料.Size = new System.Drawing.Size(1662, 955);
+            this.plC_ScreenPage_人員資料.Size = new System.Drawing.Size(962, 775);
             this.plC_ScreenPage_人員資料.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_人員資料.TabIndex = 116;
             this.plC_ScreenPage_人員資料.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -13215,7 +13304,7 @@
             this.tabPage7.Controls.Add(this.sqL_DataGridView_人員資料);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1654, 926);
+            this.tabPage7.Size = new System.Drawing.Size(954, 746);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "資料維護";
             // 
@@ -13228,7 +13317,7 @@
             this.panel80.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel80.Location = new System.Drawing.Point(465, 549);
             this.panel80.Name = "panel80";
-            this.panel80.Size = new System.Drawing.Size(170, 377);
+            this.panel80.Size = new System.Drawing.Size(170, 197);
             this.panel80.TabIndex = 141;
             // 
             // rJ_TextBox_人員資料_識別圖案
@@ -13371,17 +13460,17 @@
             this.rJ_GroupBox16.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox16.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox16.ContentsPanel.Name = "ContentsPanel";
-            this.rJ_GroupBox16.ContentsPanel.Size = new System.Drawing.Size(436, 340);
+            this.rJ_GroupBox16.ContentsPanel.Size = new System.Drawing.Size(436, 160);
             this.rJ_GroupBox16.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox16.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_GroupBox16.GUID = "";
-            this.rJ_GroupBox16.Location = new System.Drawing.Point(647, 549);
+            this.rJ_GroupBox16.Location = new System.Drawing.Point(-53, 549);
             this.rJ_GroupBox16.Name = "rJ_GroupBox16";
             this.rJ_GroupBox16.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox16.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox16.PannelBorderRadius = 2;
             this.rJ_GroupBox16.PannelBorderSize = 2;
-            this.rJ_GroupBox16.Size = new System.Drawing.Size(436, 377);
+            this.rJ_GroupBox16.Size = new System.Drawing.Size(436, 197);
             this.rJ_GroupBox16.TabIndex = 140;
             this.rJ_GroupBox16.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox16.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -13419,6 +13508,7 @@
             this.plC_RJ_Button_人員資料_顯示全部.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_顯示全部.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_顯示全部.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_顯示全部.Size = new System.Drawing.Size(117, 68);
             this.plC_RJ_Button_人員資料_顯示全部.State = false;
             this.plC_RJ_Button_人員資料_顯示全部.TabIndex = 140;
@@ -13479,6 +13569,7 @@
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Size = new System.Drawing.Size(83, 47);
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.State = false;
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.TabIndex = 140;
@@ -13582,6 +13673,7 @@
             this.plC_RJ_Button_人員資料_資料查詢_卡號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_資料查詢_卡號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_資料查詢_卡號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_資料查詢_卡號.Size = new System.Drawing.Size(83, 47);
             this.plC_RJ_Button_人員資料_資料查詢_卡號.State = false;
             this.plC_RJ_Button_人員資料_資料查詢_卡號.TabIndex = 140;
@@ -13685,6 +13777,7 @@
             this.plC_RJ_Button_人員資料_資料查詢_姓名.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_資料查詢_姓名.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_資料查詢_姓名.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_資料查詢_姓名.Size = new System.Drawing.Size(83, 47);
             this.plC_RJ_Button_人員資料_資料查詢_姓名.State = false;
             this.plC_RJ_Button_人員資料_資料查詢_姓名.TabIndex = 140;
@@ -13788,6 +13881,7 @@
             this.plC_RJ_Button_人員資料_資料查詢_ID.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_資料查詢_ID.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_資料查詢_ID.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_資料查詢_ID.Size = new System.Drawing.Size(83, 47);
             this.plC_RJ_Button_人員資料_資料查詢_ID.State = false;
             this.plC_RJ_Button_人員資料_資料查詢_ID.TabIndex = 139;
@@ -13865,17 +13959,17 @@
             this.plC_RJ_GroupBox24.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox24.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox24.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_GroupBox24.ContentsPanel.Size = new System.Drawing.Size(571, 340);
+            this.plC_RJ_GroupBox24.ContentsPanel.Size = new System.Drawing.Size(571, 160);
             this.plC_RJ_GroupBox24.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox24.Dock = System.Windows.Forms.DockStyle.Right;
             this.plC_RJ_GroupBox24.GUID = "";
-            this.plC_RJ_GroupBox24.Location = new System.Drawing.Point(1083, 549);
+            this.plC_RJ_GroupBox24.Location = new System.Drawing.Point(383, 549);
             this.plC_RJ_GroupBox24.Name = "plC_RJ_GroupBox24";
             this.plC_RJ_GroupBox24.PannelBackColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox24.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox24.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox24.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox24.Size = new System.Drawing.Size(571, 377);
+            this.plC_RJ_GroupBox24.Size = new System.Drawing.Size(571, 197);
             this.plC_RJ_GroupBox24.TabIndex = 139;
             this.plC_RJ_GroupBox24.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox24.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -13893,7 +13987,7 @@
             this.panel_人員資料_管制抽屜開鎖權限.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_人員資料_管制抽屜開鎖權限.Location = new System.Drawing.Point(5, 5);
             this.panel_人員資料_管制抽屜開鎖權限.Name = "panel_人員資料_管制抽屜開鎖權限";
-            this.panel_人員資料_管制抽屜開鎖權限.Size = new System.Drawing.Size(561, 330);
+            this.panel_人員資料_管制抽屜開鎖權限.Size = new System.Drawing.Size(561, 150);
             this.panel_人員資料_管制抽屜開鎖權限.TabIndex = 0;
             // 
             // plC_CheckBox5
@@ -13924,7 +14018,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(340, 549);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(125, 377);
+            this.panel4.Size = new System.Drawing.Size(125, 197);
             this.panel4.TabIndex = 138;
             // 
             // plC_RJ_Button_人員資料_匯出
@@ -13953,6 +14047,7 @@
             this.plC_RJ_Button_人員資料_匯出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_匯出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_匯出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_匯出.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_匯出.Size = new System.Drawing.Size(117, 68);
             this.plC_RJ_Button_人員資料_匯出.State = false;
             this.plC_RJ_Button_人員資料_匯出.TabIndex = 130;
@@ -13997,6 +14092,7 @@
             this.plC_RJ_Button_人員資料_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_刪除.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_刪除.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_刪除.Size = new System.Drawing.Size(117, 59);
             this.plC_RJ_Button_人員資料_刪除.State = false;
             this.plC_RJ_Button_人員資料_刪除.TabIndex = 133;
@@ -14041,6 +14137,7 @@
             this.plC_RJ_Button_人員資料_匯入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_匯入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_匯入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_匯入.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_匯入.Size = new System.Drawing.Size(117, 68);
             this.plC_RJ_Button_人員資料_匯入.State = false;
             this.plC_RJ_Button_人員資料_匯入.TabIndex = 131;
@@ -14085,6 +14182,7 @@
             this.plC_RJ_Button_人員資料_清除內容.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_清除內容.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_清除內容.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_清除內容.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_清除內容.Size = new System.Drawing.Size(117, 68);
             this.plC_RJ_Button_人員資料_清除內容.State = false;
             this.plC_RJ_Button_人員資料_清除內容.TabIndex = 136;
@@ -14129,6 +14227,7 @@
             this.plC_RJ_Button_人員資料_登錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_人員資料_登錄.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_人員資料_登錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_登錄.ShowLoadingForm = false;
             this.plC_RJ_Button_人員資料_登錄.Size = new System.Drawing.Size(117, 68);
             this.plC_RJ_Button_人員資料_登錄.State = false;
             this.plC_RJ_Button_人員資料_登錄.TabIndex = 132;
@@ -14163,7 +14262,7 @@
             this.rJ_GroupBox15.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox15.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox15.ContentsPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.rJ_GroupBox15.ContentsPanel.Size = new System.Drawing.Size(340, 340);
+            this.rJ_GroupBox15.ContentsPanel.Size = new System.Drawing.Size(340, 160);
             this.rJ_GroupBox15.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox15.Dock = System.Windows.Forms.DockStyle.Left;
             this.rJ_GroupBox15.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -14174,7 +14273,7 @@
             this.rJ_GroupBox15.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox15.PannelBorderRadius = 2;
             this.rJ_GroupBox15.PannelBorderSize = 2;
-            this.rJ_GroupBox15.Size = new System.Drawing.Size(340, 377);
+            this.rJ_GroupBox15.Size = new System.Drawing.Size(340, 197);
             this.rJ_GroupBox15.TabIndex = 108;
             this.rJ_GroupBox15.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox15.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -14657,7 +14756,7 @@
             this.sqL_DataGridView_人員資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_人員資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_人員資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_人員資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_人員資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_人員資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_人員資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_人員資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -14674,7 +14773,7 @@
             this.sqL_DataGridView_人員資料.RowsHeight = 50;
             this.sqL_DataGridView_人員資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_人員資料.Server = "localhost";
-            this.sqL_DataGridView_人員資料.Size = new System.Drawing.Size(1654, 549);
+            this.sqL_DataGridView_人員資料.Size = new System.Drawing.Size(954, 549);
             this.sqL_DataGridView_人員資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_人員資料.TabIndex = 21;
             this.sqL_DataGridView_人員資料.TableName = "person_page";
@@ -15470,6 +15569,7 @@
             this.plC_Button_權限設定_設定至Server.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_Button_權限設定_設定至Server.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_Button_權限設定_設定至Server.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_權限設定_設定至Server.ShowLoadingForm = false;
             this.plC_Button_權限設定_設定至Server.Size = new System.Drawing.Size(136, 58);
             this.plC_Button_權限設定_設定至Server.State = false;
             this.plC_Button_權限設定_設定至Server.TabIndex = 120;
@@ -15577,7 +15677,7 @@
             this.panel_人員資料.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_人員資料.Location = new System.Drawing.Point(0, 0);
             this.panel_人員資料.Name = "panel_人員資料";
-            this.panel_人員資料.Size = new System.Drawing.Size(1662, 51);
+            this.panel_人員資料.Size = new System.Drawing.Size(962, 51);
             this.panel_人員資料.TabIndex = 115;
             // 
             // plC_RJ_ScreenButton18
@@ -15704,7 +15804,7 @@
             this.儲位管理.Controls.Add(this.panel_儲位管理);
             this.儲位管理.Location = new System.Drawing.Point(4, 25);
             this.儲位管理.Name = "儲位管理";
-            this.儲位管理.Size = new System.Drawing.Size(1662, 1006);
+            this.儲位管理.Size = new System.Drawing.Size(962, 826);
             this.儲位管理.TabIndex = 8;
             this.儲位管理.Text = "儲位管理";
             // 
@@ -15724,7 +15824,7 @@
             this.plC_ScreenPage_儲位管理.Location = new System.Drawing.Point(0, 51);
             this.plC_ScreenPage_儲位管理.Name = "plC_ScreenPage_儲位管理";
             this.plC_ScreenPage_儲位管理.SelectedIndex = 0;
-            this.plC_ScreenPage_儲位管理.Size = new System.Drawing.Size(1662, 955);
+            this.plC_ScreenPage_儲位管理.Size = new System.Drawing.Size(962, 775);
             this.plC_ScreenPage_儲位管理.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_儲位管理.TabIndex = 116;
             this.plC_ScreenPage_儲位管理.控制位址 = "D4";
@@ -15740,7 +15840,7 @@
             this.EPD583.Controls.Add(this.groupBox3);
             this.EPD583.Location = new System.Drawing.Point(4, 25);
             this.EPD583.Name = "EPD583";
-            this.EPD583.Size = new System.Drawing.Size(1654, 926);
+            this.EPD583.Size = new System.Drawing.Size(954, 746);
             this.EPD583.TabIndex = 0;
             this.EPD583.Text = "EPD583";
             // 
@@ -15768,7 +15868,7 @@
             this.plC_RJ_GroupBox3.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox3.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox3.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_GroupBox3.ContentsPanel.Size = new System.Drawing.Size(1305, 220);
+            this.plC_RJ_GroupBox3.ContentsPanel.Size = new System.Drawing.Size(605, 220);
             this.plC_RJ_GroupBox3.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox3.Dock = System.Windows.Forms.DockStyle.Top;
             this.plC_RJ_GroupBox3.GUID = "";
@@ -15778,7 +15878,7 @@
             this.plC_RJ_GroupBox3.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox3.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox3.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox3.Size = new System.Drawing.Size(1305, 257);
+            this.plC_RJ_GroupBox3.Size = new System.Drawing.Size(605, 257);
             this.plC_RJ_GroupBox3.TabIndex = 37;
             this.plC_RJ_GroupBox3.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox3.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -15860,6 +15960,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_填入資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_填入資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_填入資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_填入資料.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_填入資料.Size = new System.Drawing.Size(122, 46);
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_填入資料.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_填入資料.TabIndex = 129;
@@ -15903,6 +16004,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品名稱_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品名稱_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品名稱_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品名稱_搜尋.TabIndex = 128;
@@ -15987,6 +16089,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_藥品搜尋_藥品碼_搜尋.TabIndex = 125;
@@ -16059,7 +16162,7 @@
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -16077,7 +16180,7 @@
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.RowsHeight = 40;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Server = "localhost";
-            this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Size = new System.Drawing.Size(1295, 158);
+            this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Size = new System.Drawing.Size(595, 158);
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.TabIndex = 32;
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.TableName = "medicine_page";
@@ -16111,7 +16214,7 @@
             this.plC_RJ_GroupBox1.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox1.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox1.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(349, 889);
+            this.plC_RJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(349, 709);
             this.plC_RJ_GroupBox1.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_GroupBox1.GUID = "";
@@ -16121,7 +16224,7 @@
             this.plC_RJ_GroupBox1.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox1.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox1.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox1.Size = new System.Drawing.Size(349, 926);
+            this.plC_RJ_GroupBox1.Size = new System.Drawing.Size(349, 746);
             this.plC_RJ_GroupBox1.TabIndex = 36;
             this.plC_RJ_GroupBox1.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox1.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -16155,7 +16258,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(5, 531);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(339, 353);
+            this.panel12.Size = new System.Drawing.Size(339, 173);
             this.panel12.TabIndex = 44;
             // 
             // plC_CheckBox_儲位管理_EPD583_警報
@@ -16244,6 +16347,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.TabIndex = 146;
@@ -16289,6 +16393,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_匯入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_匯入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_匯入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_匯入.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_匯入.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_匯入.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_匯入.TabIndex = 129;
@@ -16334,6 +16439,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_匯出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_匯出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_匯出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_匯出.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_匯出.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_匯出.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_匯出.TabIndex = 128;
@@ -16379,6 +16485,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_貼上儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_貼上儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_貼上儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_貼上儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_貼上儲位.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_貼上儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_貼上儲位.TabIndex = 127;
@@ -16422,6 +16529,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_複製儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_複製儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_複製儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_複製儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_複製儲位.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_複製儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_複製儲位.TabIndex = 126;
@@ -16465,6 +16573,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_上傳至面板.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_EPD583_上傳至面板.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_上傳至面板.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_上傳至面板.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_上傳至面板.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_上傳至面板.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_上傳至面板.TabIndex = 125;
@@ -16507,6 +16616,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_寫入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_寫入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_寫入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_寫入.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_寫入.Size = new System.Drawing.Size(79, 100);
             this.plC_RJ_Button_儲位管理_EPD583_寫入.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_寫入.TabIndex = 124;
@@ -16549,6 +16659,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_清除燈號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_清除燈號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_清除燈號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_清除燈號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_清除燈號.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_清除燈號.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_清除燈號.TabIndex = 123;
@@ -16666,6 +16777,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_面板亮燈.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_面板亮燈.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_面板亮燈.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_面板亮燈.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_面板亮燈.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_面板亮燈.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_面板亮燈.TabIndex = 117;
@@ -16870,6 +16982,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_全部解鎖.TabIndex = 152;
@@ -16913,6 +17026,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_全部上鎖.TabIndex = 151;
@@ -17013,6 +17127,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_更新.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_更新.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_更新.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_更新.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_更新.Size = new System.Drawing.Size(82, 46);
             this.plC_RJ_Button_儲位管理_EPD583_更新.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_更新.TabIndex = 148;
@@ -17134,6 +17249,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_貼上格式.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_貼上格式.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_貼上格式.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_貼上格式.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_貼上格式.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_貼上格式.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_貼上格式.TabIndex = 142;
@@ -17177,6 +17293,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_複製格式.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_複製格式.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_複製格式.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_複製格式.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_複製格式.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_複製格式.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_複製格式.TabIndex = 141;
@@ -17220,6 +17337,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位初始化.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位初始化.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位初始化.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位初始化.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位初始化.Size = new System.Drawing.Size(136, 66);
             this.plC_RJ_Button_儲位管理_EPD583_儲位初始化.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位初始化.TabIndex = 135;
@@ -17265,6 +17383,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_開鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_開鎖.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_開鎖.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_開鎖.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_開鎖.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_開鎖.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_開鎖.TabIndex = 134;
@@ -17307,6 +17426,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(62, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.TabIndex = 133;
@@ -17466,6 +17586,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_單格亮燈.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_單格亮燈.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_單格亮燈.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_單格亮燈.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_單格亮燈.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD583_單格亮燈.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_單格亮燈.TabIndex = 129;
@@ -17593,6 +17714,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正批號.TabIndex = 135;
@@ -17637,6 +17759,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_修正庫存.TabIndex = 129;
@@ -17680,6 +17803,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期管理_新增效期.TabIndex = 128;
@@ -17804,6 +17928,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_效期字體更動.TabIndex = 139;
@@ -17913,6 +18038,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_總庫存字體更動.TabIndex = 130;
@@ -18021,6 +18147,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位名稱字體更動.TabIndex = 130;
@@ -18118,6 +18245,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_包裝單位字體更動.TabIndex = 130;
@@ -18226,6 +18354,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品條碼字體更動.TabIndex = 130;
@@ -18343,6 +18472,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼字體更動.TabIndex = 130;
@@ -18439,6 +18569,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_中文名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_中文名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_中文名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_中文名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_中文名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_中文名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_中文名稱字體更動.TabIndex = 130;
@@ -18536,6 +18667,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品學名字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品學名字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品學名字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品學名字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品學名字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品學名字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品學名字體更動.TabIndex = 130;
@@ -18633,6 +18765,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_藥品名稱字體更動.TabIndex = 130;
@@ -18700,6 +18833,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_初始化儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_初始化儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_初始化儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_初始化儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_初始化儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_EPD583_初始化儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_初始化儲位.TabIndex = 127;
@@ -18743,6 +18877,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_刪除儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_刪除儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_刪除儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_刪除儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_刪除儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_EPD583_刪除儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_刪除儲位.TabIndex = 126;
@@ -18786,6 +18921,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_分割儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_分割儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_分割儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_分割儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_分割儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_EPD583_分割儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_分割儲位.TabIndex = 125;
@@ -18829,6 +18965,7 @@
             this.plC_RJ_Button_儲位管理_EPD583_合併儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_合併儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_合併儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD583_合併儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD583_合併儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_EPD583_合併儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_合併儲位.TabIndex = 124;
@@ -19001,6 +19138,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料.Size = new System.Drawing.Size(119, 46);
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_填入資料.TabIndex = 135;
@@ -19044,6 +19182,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品名稱_搜尋.TabIndex = 134;
@@ -19128,6 +19267,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_藥品搜尋_藥品碼_搜尋.TabIndex = 131;
@@ -19287,6 +19427,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱.TabIndex = 145;
@@ -19332,6 +19473,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_匯入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_匯入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_匯入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_匯入.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_匯入.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_匯入.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_匯入.TabIndex = 144;
@@ -19377,6 +19519,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_匯出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_匯出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_匯出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_匯出.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_匯出.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_匯出.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_匯出.TabIndex = 143;
@@ -19440,6 +19583,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位初始化.TabIndex = 141;
@@ -19484,6 +19628,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_貼上格式.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_貼上格式.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_貼上格式.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_貼上格式.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_貼上格式.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_貼上格式.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_貼上格式.TabIndex = 140;
@@ -19527,6 +19672,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_複製格式.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_複製格式.TabIndex = 139;
@@ -19570,6 +19716,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_開鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_開鎖.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_開鎖.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_開鎖.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_開鎖.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_開鎖.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_開鎖.TabIndex = 138;
@@ -19612,6 +19759,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Size = new System.Drawing.Size(62, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.TabIndex = 137;
@@ -19654,6 +19802,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_上傳至面板.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_EPD266_上傳至面板.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_上傳至面板.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_上傳至面板.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_上傳至面板.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_上傳至面板.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_上傳至面板.TabIndex = 133;
@@ -19738,6 +19887,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_刪除儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_刪除儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_刪除儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_刪除儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_刪除儲位.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD266_刪除儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_刪除儲位.TabIndex = 134;
@@ -19781,6 +19931,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_清除燈號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_清除燈號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_清除燈號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_清除燈號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_清除燈號.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD266_清除燈號.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_清除燈號.TabIndex = 132;
@@ -19898,6 +20049,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.TabIndex = 130;
@@ -20118,6 +20270,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正批號.TabIndex = 132;
@@ -20212,6 +20365,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存.TabIndex = 129;
@@ -20255,6 +20409,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_新增效期.TabIndex = 128;
@@ -20329,6 +20484,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_效期字體更動.TabIndex = 136;
@@ -20438,6 +20594,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_總庫存字體更動.TabIndex = 130;
@@ -20545,6 +20702,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位名稱字體更動.TabIndex = 130;
@@ -20661,6 +20819,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_包裝單位字體更動.TabIndex = 130;
@@ -20787,6 +20946,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品條碼字體更動.TabIndex = 130;
@@ -20904,6 +21064,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品碼字體更動.TabIndex = 130;
@@ -21019,6 +21180,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_中文名稱字體更動.TabIndex = 130;
@@ -21134,6 +21296,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品學名字體更動.TabIndex = 130;
@@ -21249,6 +21412,7 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_藥品名稱字體更動.TabIndex = 130;
@@ -21438,6 +21602,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_刪除儲位.TabIndex = 130;
@@ -21480,6 +21645,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位資料_新增儲位.TabIndex = 129;
@@ -21659,6 +21825,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正批號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正批號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正批號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正批號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正批號.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正批號.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正批號.TabIndex = 132;
@@ -21753,6 +21920,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正庫存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正庫存.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正庫存.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正庫存.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正庫存.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正庫存.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_修正庫存.TabIndex = 129;
@@ -21796,6 +21964,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_新增效期.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_新增效期.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_新增效期.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_新增效期.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_新增效期.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_新增效期.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期管理_新增效期.TabIndex = 128;
@@ -21910,6 +22079,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_效期字體更動.TabIndex = 136;
@@ -22001,6 +22171,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_總庫存字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_總庫存字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_總庫存字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_總庫存字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_總庫存字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_總庫存字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_總庫存字體更動.TabIndex = 130;
@@ -22108,6 +22279,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位名稱字體更動.TabIndex = 130;
@@ -22204,6 +22376,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_包裝單位字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_包裝單位字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_包裝單位字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_包裝單位字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_包裝單位字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_包裝單位字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_包裝單位字體更動.TabIndex = 130;
@@ -22311,6 +22484,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品條碼字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品條碼字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品條碼字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品條碼字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品條碼字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品條碼字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品條碼字體更動.TabIndex = 130;
@@ -22408,6 +22582,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品碼字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品碼字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品碼字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品碼字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品碼字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品碼字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品碼字體更動.TabIndex = 130;
@@ -22525,6 +22700,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_中文名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_中文名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_中文名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_中文名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_中文名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_中文名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_中文名稱字體更動.TabIndex = 130;
@@ -22642,6 +22818,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品學名字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品學名字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品學名字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品學名字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品學名字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品學名字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品學名字體更動.TabIndex = 130;
@@ -22759,6 +22936,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_藥品名稱字體更動.TabIndex = 130;
@@ -22908,6 +23086,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_開鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_開鎖.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_開鎖.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_開鎖.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_開鎖.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD1020_開鎖.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_開鎖.TabIndex = 152;
@@ -22974,6 +23153,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(62, 30);
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_搜尋.TabIndex = 149;
@@ -23016,6 +23196,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_上傳至面板.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_EPD1020_上傳至面板.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_上傳至面板.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_上傳至面板.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_上傳至面板.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_EPD1020_上傳至面板.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_上傳至面板.TabIndex = 150;
@@ -23118,6 +23299,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_寫入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_寫入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_寫入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_寫入.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_寫入.Size = new System.Drawing.Size(79, 100);
             this.plC_RJ_Button_儲位管理_EPD1020_寫入.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_寫入.TabIndex = 124;
@@ -23227,6 +23409,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_清除燈號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_清除燈號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_清除燈號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_清除燈號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_清除燈號.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD1020_清除燈號.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_清除燈號.TabIndex = 146;
@@ -23362,6 +23545,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_面板亮燈.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_面板亮燈.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_面板亮燈.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_面板亮燈.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_面板亮燈.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_EPD1020_面板亮燈.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_面板亮燈.TabIndex = 144;
@@ -23542,6 +23726,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_填入資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_填入資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_填入資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_填入資料.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_填入資料.Size = new System.Drawing.Size(119, 46);
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_填入資料.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_填入資料.TabIndex = 135;
@@ -23585,6 +23770,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品名稱_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品名稱_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品名稱_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品名稱_搜尋.TabIndex = 134;
@@ -23669,6 +23855,7 @@
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD1020_藥品搜尋_藥品碼_搜尋.TabIndex = 131;
@@ -23942,6 +24129,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_刪除儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_刪除儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_刪除儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_刪除儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_刪除儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_刪除儲位.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_刪除儲位.TabIndex = 130;
@@ -23984,6 +24172,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_新增儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_新增儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_新增儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_新增儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_新增儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_新增儲位.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位資料_新增儲位.TabIndex = 129;
@@ -24125,6 +24314,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_儲位初始化.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位初始化.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位初始化.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位初始化.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位初始化.Size = new System.Drawing.Size(136, 66);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位初始化.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位初始化.TabIndex = 139;
@@ -24210,6 +24400,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正批號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正批號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正批號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正批號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正批號.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正批號.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正批號.TabIndex = 131;
@@ -24254,6 +24445,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正庫存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正庫存.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正庫存.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正庫存.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正庫存.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正庫存.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_修正庫存.TabIndex = 129;
@@ -24297,6 +24489,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_新增效期.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_新增效期.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_新增效期.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_新增效期.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_新增效期.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_新增效期.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_效期管理_新增效期.TabIndex = 128;
@@ -24973,6 +25166,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_填入資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_填入資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_填入資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_填入資料.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_填入資料.Size = new System.Drawing.Size(122, 46);
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_填入資料.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_填入資料.TabIndex = 129;
@@ -25016,6 +25210,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品名稱_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品名稱_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品名稱_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品名稱_搜尋.TabIndex = 128;
@@ -25100,6 +25295,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_藥品搜尋_藥品碼_搜尋.TabIndex = 125;
@@ -25172,7 +25368,7 @@
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -25294,6 +25490,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.TabIndex = 147;
@@ -25339,6 +25536,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_匯入.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.TabIndex = 146;
@@ -25384,6 +25582,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_匯出.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.Size = new System.Drawing.Size(97, 56);
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.TabIndex = 145;
@@ -25429,6 +25628,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_貼上儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_RowsLED_貼上儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_貼上儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_貼上儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_貼上儲位.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_RowsLED_貼上儲位.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_貼上儲位.TabIndex = 144;
@@ -25472,6 +25672,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_複製儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_RowsLED_複製儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_複製儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_複製儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_複製儲位.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_RowsLED_複製儲位.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_複製儲位.TabIndex = 143;
@@ -25515,6 +25716,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Size = new System.Drawing.Size(62, 30);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.TabIndex = 142;
@@ -25557,6 +25759,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_寫入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_寫入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_寫入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_寫入.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_寫入.Size = new System.Drawing.Size(79, 66);
             this.plC_RJ_Button_儲位管理_RowsLED_寫入.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_寫入.TabIndex = 124;
@@ -25623,6 +25826,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.TabIndex = 123;
@@ -25870,6 +26074,7 @@
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_刪除儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_刪除儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_刪除儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_儲位資料_刪除儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_刪除儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_刪除儲位.State = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_刪除儲位.TabIndex = 130;
@@ -25912,6 +26117,7 @@
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_新增儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_新增儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_新增儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_儲位資料_新增儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_新增儲位.Size = new System.Drawing.Size(111, 66);
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_新增儲位.State = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位資料_新增儲位.TabIndex = 129;
@@ -26053,6 +26259,7 @@
             this.plC_RJ_Button_儲位管理_RFID_儲位初始化.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_儲位初始化.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_儲位初始化.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_儲位初始化.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位初始化.Size = new System.Drawing.Size(101, 66);
             this.plC_RJ_Button_儲位管理_RFID_儲位初始化.State = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位初始化.TabIndex = 143;
@@ -26138,6 +26345,7 @@
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正批號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正批號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正批號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正批號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正批號.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正批號.State = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正批號.TabIndex = 130;
@@ -26182,6 +26390,7 @@
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正庫存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正庫存.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正庫存.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正庫存.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正庫存.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正庫存.State = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_修正庫存.TabIndex = 129;
@@ -26225,6 +26434,7 @@
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_新增效期.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_新增效期.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_新增效期.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_新增效期.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_新增效期.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_新增效期.State = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_效期管理_新增效期.TabIndex = 128;
@@ -26860,6 +27070,7 @@
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_填入資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_填入資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_填入資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_填入資料.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_填入資料.Size = new System.Drawing.Size(122, 46);
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_填入資料.State = false;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_填入資料.TabIndex = 129;
@@ -26903,6 +27114,7 @@
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品名稱_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品名稱_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品名稱_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品名稱_搜尋.TabIndex = 128;
@@ -26987,6 +27199,7 @@
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_RFID_藥品搜尋_藥品碼_搜尋.TabIndex = 125;
@@ -27059,7 +27272,7 @@
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_儲位管理_RFID_藥品資料_藥檔資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -27352,6 +27565,7 @@
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_儲位搜尋_藥品碼搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_儲位內容_儲位搜尋_藥品碼搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_儲位搜尋_藥品碼搜尋.Size = new System.Drawing.Size(62, 30);
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_儲位搜尋_藥品碼搜尋.State = false;
             this.plC_RJ_Button_儲位管理_RFID_儲位內容_儲位搜尋_藥品碼搜尋.TabIndex = 142;
@@ -27394,6 +27608,7 @@
             this.plC_RJ_Button_儲位管理_RFID_寫入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RFID_寫入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RFID_寫入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_RFID_寫入.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_RFID_寫入.Size = new System.Drawing.Size(79, 66);
             this.plC_RJ_Button_儲位管理_RFID_寫入.State = false;
             this.plC_RJ_Button_儲位管理_RFID_寫入.TabIndex = 124;
@@ -27733,6 +27948,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_填入資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_填入資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_填入資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_填入資料.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_填入資料.Size = new System.Drawing.Size(119, 64);
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_填入資料.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_填入資料.TabIndex = 135;
@@ -27776,6 +27992,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品名稱_搜尋.TabIndex = 134;
@@ -27860,6 +28077,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(79, 37);
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.TabIndex = 131;
@@ -28015,6 +28233,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位初始化.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位初始化.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位初始化.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位初始化.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位初始化.Size = new System.Drawing.Size(101, 66);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位初始化.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位初始化.TabIndex = 142;
@@ -28067,6 +28286,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_貼上儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_Pannel35_貼上儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_貼上儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_貼上儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_貼上儲位.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_Pannel35_貼上儲位.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_貼上儲位.TabIndex = 140;
@@ -28110,6 +28330,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_複製儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_Pannel35_複製儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_複製儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_複製儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_複製儲位.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_Pannel35_複製儲位.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_複製儲位.TabIndex = 139;
@@ -28153,6 +28374,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_開鎖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_開鎖.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_開鎖.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_開鎖.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_開鎖.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_Pannel35_開鎖.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_開鎖.TabIndex = 138;
@@ -28195,6 +28417,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
             this.plC_RJ_Button_儲位管理_Pannel35_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_搜尋.Size = new System.Drawing.Size(62, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_搜尋.TabIndex = 137;
@@ -28237,6 +28460,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_上傳至面板.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_上傳至面板.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_上傳至面板.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_上傳至面板.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_上傳至面板.Size = new System.Drawing.Size(113, 66);
             this.plC_RJ_Button_儲位管理_Pannel35_上傳至面板.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_上傳至面板.TabIndex = 133;
@@ -28321,6 +28545,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_刪除儲位.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_刪除儲位.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_刪除儲位.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_刪除儲位.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_刪除儲位.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_Pannel35_刪除儲位.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_刪除儲位.TabIndex = 134;
@@ -28364,6 +28589,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_清除燈號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_清除燈號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_清除燈號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_清除燈號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_清除燈號.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_Pannel35_清除燈號.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_清除燈號.TabIndex = 132;
@@ -28481,6 +28707,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈.Size = new System.Drawing.Size(97, 66);
             this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_面板亮燈.TabIndex = 130;
@@ -28659,6 +28886,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正批號.TabIndex = 132;
@@ -28703,6 +28931,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_修正庫存.TabIndex = 129;
@@ -28746,6 +28975,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期.Size = new System.Drawing.Size(111, 44);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_效期管理_新增效期.TabIndex = 128;
@@ -28846,6 +29076,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_總庫存字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_總庫存字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_總庫存字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_總庫存字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_總庫存字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_總庫存字體更動.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_總庫存字體更動.TabIndex = 130;
@@ -28953,6 +29184,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_儲位名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_儲位名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_儲位名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_儲位名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_儲位名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_儲位名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_儲位名稱字體更動.TabIndex = 130;
@@ -29049,6 +29281,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_包裝單位字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_包裝單位字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_包裝單位字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_包裝單位字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_包裝單位字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_包裝單位字體更動.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_包裝單位字體更動.TabIndex = 130;
@@ -29156,6 +29389,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品條碼字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品條碼字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品條碼字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品條碼字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品條碼字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品條碼字體更動.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品條碼字體更動.TabIndex = 130;
@@ -29253,6 +29487,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品碼字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品碼字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品碼字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品碼字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品碼字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品碼字體更動.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品碼字體更動.TabIndex = 130;
@@ -29350,6 +29585,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_中文名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_中文名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_中文名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_中文名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_中文名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_中文名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_中文名稱字體更動.TabIndex = 130;
@@ -29447,6 +29683,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品學名字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品學名字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品學名字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品學名字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品學名字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品學名字體更動.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品學名字體更動.TabIndex = 130;
@@ -29544,6 +29781,7 @@
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品名稱字體更動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品名稱字體更動.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品名稱字體更動.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品名稱字體更動.ShowLoadingForm = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品名稱字體更動.Size = new System.Drawing.Size(45, 30);
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品名稱字體更動.State = false;
             this.plC_RJ_Button_儲位管理_Pannel35_儲位內容_藥品名稱字體更動.TabIndex = 130;
@@ -29666,7 +29904,7 @@
             this.panel_儲位管理.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_儲位管理.Location = new System.Drawing.Point(0, 0);
             this.panel_儲位管理.Name = "panel_儲位管理";
-            this.panel_儲位管理.Size = new System.Drawing.Size(1662, 51);
+            this.panel_儲位管理.Size = new System.Drawing.Size(962, 51);
             this.panel_儲位管理.TabIndex = 115;
             // 
             // plC_RJ_ScreenButton_Pannel35
@@ -29910,7 +30148,7 @@
             this.工程模式.Controls.Add(this.tabControl1);
             this.工程模式.Location = new System.Drawing.Point(4, 25);
             this.工程模式.Name = "工程模式";
-            this.工程模式.Size = new System.Drawing.Size(1662, 1006);
+            this.工程模式.Size = new System.Drawing.Size(962, 826);
             this.工程模式.TabIndex = 9;
             this.工程模式.Text = "工程模式";
             // 
@@ -29928,7 +30166,7 @@
             this.panel66.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel66.Location = new System.Drawing.Point(0, 888);
             this.panel66.Name = "panel66";
-            this.panel66.Size = new System.Drawing.Size(1662, 118);
+            this.panel66.Size = new System.Drawing.Size(962, 0);
             this.panel66.TabIndex = 26;
             // 
             // panel84
@@ -30445,7 +30683,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1662, 888);
+            this.tabControl1.Size = new System.Drawing.Size(962, 888);
             this.tabControl1.TabIndex = 25;
             // 
             // tabPage1
@@ -30462,7 +30700,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1654, 862);
+            this.tabPage1.Size = new System.Drawing.Size(954, 862);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "鎖控設定";
             // 
@@ -31245,7 +31483,7 @@
             this.tabControl2.Location = new System.Drawing.Point(3, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(1648, 645);
+            this.tabControl2.Size = new System.Drawing.Size(1641, 645);
             this.tabControl2.TabIndex = 114;
             // 
             // 鎖控列表01
@@ -31310,7 +31548,7 @@
             this.鎖控列表01.Location = new System.Drawing.Point(4, 22);
             this.鎖控列表01.Name = "鎖控列表01";
             this.鎖控列表01.Padding = new System.Windows.Forms.Padding(3);
-            this.鎖控列表01.Size = new System.Drawing.Size(1640, 619);
+            this.鎖控列表01.Size = new System.Drawing.Size(1633, 619);
             this.鎖控列表01.TabIndex = 0;
             this.鎖控列表01.Text = "01";
             // 
@@ -33516,7 +33754,7 @@
             this.系統.Controls.Add(this.panel_系統);
             this.系統.Location = new System.Drawing.Point(4, 25);
             this.系統.Name = "系統";
-            this.系統.Size = new System.Drawing.Size(1662, 1006);
+            this.系統.Size = new System.Drawing.Size(962, 826);
             this.系統.TabIndex = 7;
             this.系統.Text = "系統";
             // 
@@ -33536,7 +33774,7 @@
             this.plC_ScreenPage_系統.Location = new System.Drawing.Point(0, 51);
             this.plC_ScreenPage_系統.Name = "plC_ScreenPage_系統";
             this.plC_ScreenPage_系統.SelectedIndex = 0;
-            this.plC_ScreenPage_系統.Size = new System.Drawing.Size(1662, 955);
+            this.plC_ScreenPage_系統.Size = new System.Drawing.Size(962, 775);
             this.plC_ScreenPage_系統.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_系統.TabIndex = 116;
             this.plC_ScreenPage_系統.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -33549,7 +33787,7 @@
             this.tabPage28.Controls.Add(this.panel_系統_Pannel設定);
             this.tabPage28.Location = new System.Drawing.Point(4, 25);
             this.tabPage28.Name = "tabPage28";
-            this.tabPage28.Size = new System.Drawing.Size(1654, 926);
+            this.tabPage28.Size = new System.Drawing.Size(954, 746);
             this.tabPage28.TabIndex = 3;
             this.tabPage28.Text = "設定01";
             // 
@@ -33569,7 +33807,7 @@
             this.plC_ScreenPage_系統_Pannel設定.Location = new System.Drawing.Point(0, 51);
             this.plC_ScreenPage_系統_Pannel設定.Name = "plC_ScreenPage_系統_Pannel設定";
             this.plC_ScreenPage_系統_Pannel設定.SelectedIndex = 0;
-            this.plC_ScreenPage_系統_Pannel設定.Size = new System.Drawing.Size(1654, 875);
+            this.plC_ScreenPage_系統_Pannel設定.Size = new System.Drawing.Size(954, 695);
             this.plC_ScreenPage_系統_Pannel設定.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_系統_Pannel設定.TabIndex = 117;
             this.plC_ScreenPage_系統_Pannel設定.控制位址 = "D6";
@@ -33583,7 +33821,7 @@
             this.tabPage29.Controls.Add(this.drawerUI_EPD_583);
             this.tabPage29.Location = new System.Drawing.Point(4, 25);
             this.tabPage29.Name = "tabPage29";
-            this.tabPage29.Size = new System.Drawing.Size(1646, 846);
+            this.tabPage29.Size = new System.Drawing.Size(946, 666);
             this.tabPage29.TabIndex = 0;
             this.tabPage29.Text = "EPD583";
             // 
@@ -33603,7 +33841,7 @@
             this.drawerUI_EPD_583.Port = ((uint)(3306u));
             this.drawerUI_EPD_583.Server_IP_Adress = "0.0.0.0";
             this.drawerUI_EPD_583.Server_Port = "0";
-            this.drawerUI_EPD_583.Size = new System.Drawing.Size(1646, 846);
+            this.drawerUI_EPD_583.Size = new System.Drawing.Size(946, 666);
             this.drawerUI_EPD_583.SSID = "";
             this.drawerUI_EPD_583.Station = "0";
             this.drawerUI_EPD_583.Subnet = "0.0.0.0";
@@ -33811,7 +34049,7 @@
             this.panel_系統_Pannel設定.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_系統_Pannel設定.Location = new System.Drawing.Point(0, 0);
             this.panel_系統_Pannel設定.Name = "panel_系統_Pannel設定";
-            this.panel_系統_Pannel設定.Size = new System.Drawing.Size(1654, 51);
+            this.panel_系統_Pannel設定.Size = new System.Drawing.Size(954, 51);
             this.panel_系統_Pannel設定.TabIndex = 116;
             // 
             // plC_RJ_ScreenButton12
@@ -34099,7 +34337,7 @@
             this.sqL_DataGridView_取藥堆疊母資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_取藥堆疊母資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_取藥堆疊母資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_取藥堆疊母資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_取藥堆疊母資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_取藥堆疊母資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_取藥堆疊母資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_取藥堆疊母資料.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -34158,7 +34396,7 @@
             this.sqL_DataGridView_取藥堆疊子資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_取藥堆疊子資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_取藥堆疊子資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_取藥堆疊子資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_取藥堆疊子資料.columnHeadersHeight = 4;
             this.sqL_DataGridView_取藥堆疊子資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_取藥堆疊子資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_取藥堆疊子資料.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -34472,7 +34710,7 @@
             this.sqL_DataGridView_藥品設定表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_藥品設定表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥品設定表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_藥品設定表.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥品設定表.columnHeadersHeight = 4;
             this.sqL_DataGridView_藥品設定表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥品設定表.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_藥品設定表.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -34838,6 +35076,7 @@
             this.plC_RJ_Button_檢查頁面不顯示.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_檢查頁面不顯示.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_檢查頁面不顯示.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_檢查頁面不顯示.ShowLoadingForm = false;
             this.plC_RJ_Button_檢查頁面不顯示.Size = new System.Drawing.Size(173, 68);
             this.plC_RJ_Button_檢查頁面不顯示.State = false;
             this.plC_RJ_Button_檢查頁面不顯示.TabIndex = 128;
@@ -35291,6 +35530,7 @@
             this.plC_RJ_Button_雲端藥檔_取得資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_雲端藥檔_取得資料.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_雲端藥檔_取得資料.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_雲端藥檔_取得資料.ShowLoadingForm = false;
             this.plC_RJ_Button_雲端藥檔_取得資料.Size = new System.Drawing.Size(152, 67);
             this.plC_RJ_Button_雲端藥檔_取得資料.State = false;
             this.plC_RJ_Button_雲端藥檔_取得資料.TabIndex = 145;
@@ -35319,7 +35559,7 @@
             this.panel_系統.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_系統.Location = new System.Drawing.Point(0, 0);
             this.panel_系統.Name = "panel_系統";
-            this.panel_系統.Size = new System.Drawing.Size(1662, 51);
+            this.panel_系統.Size = new System.Drawing.Size(962, 51);
             this.panel_系統.TabIndex = 115;
             // 
             // plC_RJ_ScreenButton6
@@ -35565,7 +35805,7 @@
             this.批次領藥.Controls.Add(this.plC_RJ_Button17);
             this.批次領藥.Location = new System.Drawing.Point(4, 25);
             this.批次領藥.Name = "批次領藥";
-            this.批次領藥.Size = new System.Drawing.Size(1662, 1006);
+            this.批次領藥.Size = new System.Drawing.Size(962, 826);
             this.批次領藥.TabIndex = 14;
             this.批次領藥.Text = "批次領藥";
             // 
@@ -35595,6 +35835,7 @@
             this.plC_RJ_Button_批次領藥_重領已領取藥品.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F);
             this.plC_RJ_Button_批次領藥_重領已領取藥品.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_批次領藥_重領已領取藥品.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_批次領藥_重領已領取藥品.ShowLoadingForm = false;
             this.plC_RJ_Button_批次領藥_重領已領取藥品.Size = new System.Drawing.Size(234, 97);
             this.plC_RJ_Button_批次領藥_重領已領取藥品.State = false;
             this.plC_RJ_Button_批次領藥_重領已領取藥品.TabIndex = 129;
@@ -35619,7 +35860,7 @@
             this.panel27.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel27.Location = new System.Drawing.Point(0, 0);
             this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(896, 1006);
+            this.panel27.Size = new System.Drawing.Size(896, 826);
             this.panel27.TabIndex = 128;
             // 
             // rJ_GroupBox27
@@ -35637,7 +35878,7 @@
             this.rJ_GroupBox27.ContentsPanel.IsSelected = false;
             this.rJ_GroupBox27.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox27.ContentsPanel.Name = "ContentsPanel";
-            this.rJ_GroupBox27.ContentsPanel.Size = new System.Drawing.Size(896, 439);
+            this.rJ_GroupBox27.ContentsPanel.Size = new System.Drawing.Size(896, 259);
             this.rJ_GroupBox27.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox27.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox27.GUID = "";
@@ -35647,7 +35888,7 @@
             this.rJ_GroupBox27.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox27.PannelBorderRadius = 0;
             this.rJ_GroupBox27.PannelBorderSize = 2;
-            this.rJ_GroupBox27.Size = new System.Drawing.Size(896, 476);
+            this.rJ_GroupBox27.Size = new System.Drawing.Size(896, 296);
             this.rJ_GroupBox27.TabIndex = 123;
             this.rJ_GroupBox27.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox27.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -35703,7 +35944,7 @@
             this.sqL_DataGridView_批次領藥_已領取領藥清單.RowsHeight = 25;
             this.sqL_DataGridView_批次領藥_已領取領藥清單.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_批次領藥_已領取領藥清單.Server = "127.0.0.0";
-            this.sqL_DataGridView_批次領藥_已領取領藥清單.Size = new System.Drawing.Size(896, 439);
+            this.sqL_DataGridView_批次領藥_已領取領藥清單.Size = new System.Drawing.Size(896, 259);
             this.sqL_DataGridView_批次領藥_已領取領藥清單.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_批次領藥_已領取領藥清單.TabIndex = 7;
             this.sqL_DataGridView_批次領藥_已領取領藥清單.UserName = "root";
@@ -35938,6 +36179,7 @@
             this.plC_RJ_Button17.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F);
             this.plC_RJ_Button17.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button17.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button17.ShowLoadingForm = false;
             this.plC_RJ_Button17.Size = new System.Drawing.Size(234, 97);
             this.plC_RJ_Button17.State = false;
             this.plC_RJ_Button17.TabIndex = 119;
@@ -35965,7 +36207,7 @@
             this.盤點作業.Controls.Add(this.panel_盤點作業);
             this.盤點作業.Location = new System.Drawing.Point(4, 25);
             this.盤點作業.Name = "盤點作業";
-            this.盤點作業.Size = new System.Drawing.Size(1662, 1006);
+            this.盤點作業.Size = new System.Drawing.Size(962, 826);
             this.盤點作業.TabIndex = 18;
             this.盤點作業.Text = "盤點作業";
             // 
@@ -35983,7 +36225,7 @@
             this.plC_ScreenPage_盤點作業.Location = new System.Drawing.Point(0, 52);
             this.plC_ScreenPage_盤點作業.Name = "plC_ScreenPage_盤點作業";
             this.plC_ScreenPage_盤點作業.SelectedIndex = 0;
-            this.plC_ScreenPage_盤點作業.Size = new System.Drawing.Size(1662, 954);
+            this.plC_ScreenPage_盤點作業.Size = new System.Drawing.Size(962, 774);
             this.plC_ScreenPage_盤點作業.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_盤點作業.TabIndex = 118;
             this.plC_ScreenPage_盤點作業.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -35995,7 +36237,7 @@
             this.tabPage32.Controls.Add(this.plC_RJ_GroupBox33);
             this.tabPage32.Location = new System.Drawing.Point(4, 25);
             this.tabPage32.Name = "tabPage32";
-            this.tabPage32.Size = new System.Drawing.Size(1654, 925);
+            this.tabPage32.Size = new System.Drawing.Size(954, 745);
             this.tabPage32.TabIndex = 3;
             this.tabPage32.Text = "定盤";
             // 
@@ -36022,7 +36264,7 @@
             this.plC_RJ_GroupBox33.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.plC_RJ_GroupBox33.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox33.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_GroupBox33.ContentsPanel.Size = new System.Drawing.Size(1654, 888);
+            this.plC_RJ_GroupBox33.ContentsPanel.Size = new System.Drawing.Size(954, 708);
             this.plC_RJ_GroupBox33.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox33.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_GroupBox33.GUID = "";
@@ -36032,7 +36274,7 @@
             this.plC_RJ_GroupBox33.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox33.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox33.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox33.Size = new System.Drawing.Size(1654, 925);
+            this.plC_RJ_GroupBox33.Size = new System.Drawing.Size(954, 745);
             this.plC_RJ_GroupBox33.TabIndex = 1;
             this.plC_RJ_GroupBox33.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.plC_RJ_GroupBox33.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -36070,6 +36312,7 @@
             this.plC_RJ_Button_盤點作業_定盤_重置作業.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_盤點作業_定盤_重置作業.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_定盤_重置作業.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_重置作業.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_定盤_重置作業.Size = new System.Drawing.Size(179, 59);
             this.plC_RJ_Button_盤點作業_定盤_重置作業.State = false;
             this.plC_RJ_Button_盤點作業_定盤_重置作業.TabIndex = 140;
@@ -36122,6 +36365,7 @@
             this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.Size = new System.Drawing.Size(179, 59);
             this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.State = false;
             this.plC_RJ_Button_盤點作業_定盤_確認更動庫存值.TabIndex = 135;
@@ -36185,6 +36429,7 @@
             this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.Size = new System.Drawing.Size(163, 59);
             this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.State = false;
             this.plC_RJ_Button_盤點作業_定盤_計算定盤結果.TabIndex = 135;
@@ -36250,6 +36495,7 @@
             this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_定盤_上傳Excel.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_定盤_上傳Excel.Size = new System.Drawing.Size(132, 59);
             this.plC_RJ_Button_盤點作業_定盤_上傳Excel.State = false;
             this.plC_RJ_Button_盤點作業_定盤_上傳Excel.TabIndex = 133;
@@ -36306,7 +36552,7 @@
             this.sqL_DataGridView_盤點作業_定盤.RowsHeight = 50;
             this.sqL_DataGridView_盤點作業_定盤.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_盤點作業_定盤.Server = "127.0.0.0";
-            this.sqL_DataGridView_盤點作業_定盤.Size = new System.Drawing.Size(1644, 772);
+            this.sqL_DataGridView_盤點作業_定盤.Size = new System.Drawing.Size(944, 772);
             this.sqL_DataGridView_盤點作業_定盤.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_盤點作業_定盤.TabIndex = 0;
             this.sqL_DataGridView_盤點作業_定盤.UserName = "root";
@@ -36464,6 +36710,7 @@
             this.plC_RJ_Button_盤點作業_盤點藥品清單_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.plC_RJ_Button_盤點作業_盤點藥品清單_刪除.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_盤點藥品清單_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_盤點藥品清單_刪除.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_盤點藥品清單_刪除.Size = new System.Drawing.Size(180, 117);
             this.plC_RJ_Button_盤點作業_盤點藥品清單_刪除.State = false;
             this.plC_RJ_Button_盤點作業_盤點藥品清單_刪除.TabIndex = 199;
@@ -36507,6 +36754,7 @@
             this.plC_RJ_Button_盤點作業_盤點藥品清單_送出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_盤點作業_盤點藥品清單_送出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_盤點藥品清單_送出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_盤點藥品清單_送出.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_盤點藥品清單_送出.Size = new System.Drawing.Size(182, 119);
             this.plC_RJ_Button_盤點作業_盤點藥品清單_送出.State = false;
             this.plC_RJ_Button_盤點作業_盤點藥品清單_送出.TabIndex = 198;
@@ -36632,7 +36880,7 @@
             this.sqL_DataGridView_盤點作業_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點作業_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點作業_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點作業_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_盤點作業_藥品資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_盤點作業_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_盤點作業_藥品資料.DataBaseName = "storehouse_0";
             this.sqL_DataGridView_盤點作業_藥品資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -36797,6 +37045,7 @@
             this.plC_RJ_Button_盤點作業_藥品資料_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_盤點作業_藥品資料_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_藥品資料_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_藥品資料_搜尋.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_藥品資料_搜尋.Size = new System.Drawing.Size(121, 89);
             this.plC_RJ_Button_盤點作業_藥品資料_搜尋.State = false;
             this.plC_RJ_Button_盤點作業_藥品資料_搜尋.TabIndex = 149;
@@ -36897,6 +37146,7 @@
             this.plC_RJ_Button_盤點作業_新增盤點_建立測試單.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14F);
             this.plC_RJ_Button_盤點作業_新增盤點_建立測試單.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_新增盤點_建立測試單.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_新增盤點_建立測試單.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_新增盤點_建立測試單.Size = new System.Drawing.Size(240, 53);
             this.plC_RJ_Button_盤點作業_新增盤點_建立測試單.State = false;
             this.plC_RJ_Button_盤點作業_新增盤點_建立測試單.TabIndex = 239;
@@ -36941,6 +37191,7 @@
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_新增盤點_自動生成.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.Size = new System.Drawing.Size(127, 53);
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.State = false;
             this.plC_RJ_Button_盤點作業_新增盤點_自動生成.TabIndex = 238;
@@ -37071,6 +37322,7 @@
             this.plC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細.ShowLoadingForm = false;
             this.plC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細.Size = new System.Drawing.Size(127, 71);
             this.plC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細.State = false;
             this.plC_RJ_Button__盤點作業_單號查詢_新增藥品盤點明細.TabIndex = 243;
@@ -37114,6 +37366,7 @@
             this.plC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細.ShowLoadingForm = false;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細.Size = new System.Drawing.Size(127, 71);
             this.plC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細.State = false;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除藥品盤點明細.TabIndex = 242;
@@ -37307,6 +37560,7 @@
             this.plC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容.ShowLoadingForm = false;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容.Size = new System.Drawing.Size(127, 71);
             this.plC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容.State = false;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除盤點藥品內容.TabIndex = 241;
@@ -37457,6 +37711,7 @@
             this.plC_RJ_Button__盤點作業_單號查詢_刪除單號.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button__盤點作業_單號查詢_刪除單號.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除單號.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button__盤點作業_單號查詢_刪除單號.ShowLoadingForm = false;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除單號.Size = new System.Drawing.Size(127, 71);
             this.plC_RJ_Button__盤點作業_單號查詢_刪除單號.State = false;
             this.plC_RJ_Button__盤點作業_單號查詢_刪除單號.TabIndex = 240;
@@ -37862,6 +38117,7 @@
             this.plC_RJ_Button_盤點作業_單號查詢_下載.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_盤點作業_單號查詢_下載.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_單號查詢_下載.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_單號查詢_下載.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_單號查詢_下載.Size = new System.Drawing.Size(127, 53);
             this.plC_RJ_Button_盤點作業_單號查詢_下載.State = false;
             this.plC_RJ_Button_盤點作業_單號查詢_下載.TabIndex = 240;
@@ -37906,6 +38162,7 @@
             this.plC_RJ_Button_盤點作業_單號查詢_選擇.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_盤點作業_單號查詢_選擇.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_盤點作業_單號查詢_選擇.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_盤點作業_單號查詢_選擇.ShowLoadingForm = false;
             this.plC_RJ_Button_盤點作業_單號查詢_選擇.Size = new System.Drawing.Size(127, 53);
             this.plC_RJ_Button_盤點作業_單號查詢_選擇.State = false;
             this.plC_RJ_Button_盤點作業_單號查詢_選擇.TabIndex = 239;
@@ -38068,7 +38325,7 @@
             this.sqL_DataGridView_盤點單號.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點單號.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點單號.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點單號.columnHeadersHeight = 18;
+            this.sqL_DataGridView_盤點單號.columnHeadersHeight = 15;
             this.sqL_DataGridView_盤點單號.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_盤點單號.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_盤點單號.Font = new System.Drawing.Font("新細明體", 9F);
@@ -38165,7 +38422,7 @@
             this.sqL_DataGridView_盤點內容.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點內容.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點內容.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點內容.columnHeadersHeight = 18;
+            this.sqL_DataGridView_盤點內容.columnHeadersHeight = 15;
             this.sqL_DataGridView_盤點內容.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_盤點內容.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_盤點內容.Font = new System.Drawing.Font("新細明體", 9F);
@@ -38261,7 +38518,7 @@
             this.sqL_DataGridView_盤點明細.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_盤點明細.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_盤點明細.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_盤點明細.columnHeadersHeight = 18;
+            this.sqL_DataGridView_盤點明細.columnHeadersHeight = 15;
             this.sqL_DataGridView_盤點明細.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_盤點明細.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_盤點明細.Font = new System.Drawing.Font("新細明體", 12F);
@@ -38305,7 +38562,7 @@
             this.panel_盤點作業.Location = new System.Drawing.Point(0, 0);
             this.panel_盤點作業.Name = "panel_盤點作業";
             this.panel_盤點作業.Padding = new System.Windows.Forms.Padding(2);
-            this.panel_盤點作業.Size = new System.Drawing.Size(1662, 52);
+            this.panel_盤點作業.Size = new System.Drawing.Size(962, 52);
             this.panel_盤點作業.TabIndex = 117;
             // 
             // plC_RJ_ScreenButton40
@@ -38467,9 +38724,9 @@
             // plC_AlarmFlow
             // 
             this.plC_AlarmFlow.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.plC_AlarmFlow.Location = new System.Drawing.Point(234, 1035);
+            this.plC_AlarmFlow.Location = new System.Drawing.Point(234, 855);
             this.plC_AlarmFlow.Name = "plC_AlarmFlow";
-            this.plC_AlarmFlow.Size = new System.Drawing.Size(1670, 26);
+            this.plC_AlarmFlow.Size = new System.Drawing.Size(970, 26);
             this.plC_AlarmFlow.TabIndex = 0;
             this.plC_AlarmFlow.捲動速度 = 200;
             this.plC_AlarmFlow.文字字體 = new System.Drawing.Font("標楷體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -38568,7 +38825,7 @@
             this.panel_Main.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_Main.Location = new System.Drawing.Point(0, 0);
             this.panel_Main.Name = "panel_Main";
-            this.panel_Main.Size = new System.Drawing.Size(234, 1061);
+            this.panel_Main.Size = new System.Drawing.Size(234, 881);
             this.panel_Main.TabIndex = 2;
             // 
             // rJ_ProgressBar_閒置登出時間
@@ -38578,7 +38835,7 @@
             this.rJ_ProgressBar_閒置登出時間.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.rJ_ProgressBar_閒置登出時間.ForeBackColor = System.Drawing.Color.RoyalBlue;
             this.rJ_ProgressBar_閒置登出時間.ForeColor = System.Drawing.Color.White;
-            this.rJ_ProgressBar_閒置登出時間.Location = new System.Drawing.Point(0, 819);
+            this.rJ_ProgressBar_閒置登出時間.Location = new System.Drawing.Point(0, 639);
             this.rJ_ProgressBar_閒置登出時間.Name = "rJ_ProgressBar_閒置登出時間";
             this.rJ_ProgressBar_閒置登出時間.ShowMaximun = false;
             this.rJ_ProgressBar_閒置登出時間.ShowValue = MyUI.TextPosition.Right;
@@ -39043,7 +39300,7 @@
             this.plC_RJ_ScreenButton_系統.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.plC_RJ_ScreenButton_系統.IconChar = FontAwesome.Sharp.IconChar.Cog;
             this.plC_RJ_ScreenButton_系統.IconSize = 40;
-            this.plC_RJ_ScreenButton_系統.Location = new System.Drawing.Point(0, 842);
+            this.plC_RJ_ScreenButton_系統.Location = new System.Drawing.Point(0, 662);
             this.plC_RJ_ScreenButton_系統.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton_系統.Name = "plC_RJ_ScreenButton_系統";
             this.plC_RJ_ScreenButton_系統.OffBackColor = System.Drawing.Color.SteelBlue;
@@ -39127,7 +39384,7 @@
             this.panel232.Controls.Add(this.rJ_Lable52);
             this.panel232.Controls.Add(this.plC_RJ_Button_後台登入_登出);
             this.panel232.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel232.Location = new System.Drawing.Point(0, 907);
+            this.panel232.Location = new System.Drawing.Point(0, 727);
             this.panel232.Name = "panel232";
             this.panel232.Size = new System.Drawing.Size(234, 73);
             this.panel232.TabIndex = 93;
@@ -39269,6 +39526,7 @@
             this.plC_RJ_Button_後台登入_登出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_後台登入_登出.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_後台登入_登出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_後台登入_登出.ShowLoadingForm = false;
             this.plC_RJ_Button_後台登入_登出.Size = new System.Drawing.Size(49, 66);
             this.plC_RJ_Button_後台登入_登出.State = false;
             this.plC_RJ_Button_後台登入_登出.TabIndex = 23;
@@ -39292,7 +39550,7 @@
             this.plC_RJ_ScreenButton143.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.plC_RJ_ScreenButton143.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
             this.plC_RJ_ScreenButton143.IconSize = 40;
-            this.plC_RJ_ScreenButton143.Location = new System.Drawing.Point(0, 980);
+            this.plC_RJ_ScreenButton143.Location = new System.Drawing.Point(0, 800);
             this.plC_RJ_ScreenButton143.Margin = new System.Windows.Forms.Padding(0);
             this.plC_RJ_ScreenButton143.Name = "plC_RJ_ScreenButton143";
             this.plC_RJ_ScreenButton143.OffBackColor = System.Drawing.Color.SteelBlue;
@@ -39345,7 +39603,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1061);
+            this.ClientSize = new System.Drawing.Size(1204, 881);
             this.Controls.Add(this.plC_ScreenPage_Main);
             this.Controls.Add(this.plC_AlarmFlow);
             this.Controls.Add(this.panel_Main);
