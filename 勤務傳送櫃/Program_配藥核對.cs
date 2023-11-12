@@ -25,9 +25,15 @@ namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
     {
+        MyThread myThread_配藥核對;
         private void Program_配藥核對_Init()
         {
             this.plC_UI_Init.Add_Method(this.Program_配藥核對);
+            myThread_配藥核對 = new MyThread();
+            myThread_配藥核對.AutoRun(true);
+            myThread_配藥核對.Add_Method(sub_Program_配藥核對_刷入藥袋);
+            myThread_配藥核對.SetSleepTime(10);
+            myThread_配藥核對.Trigger();
         }
         bool flag_配藥核對_頁面更新_init = false;
         private void Program_配藥核對()
@@ -49,7 +55,7 @@ namespace 勤務傳送櫃
                 flag_配藥核對_頁面更新_init = true;
             }
 
-            sub_Program_配藥核對_刷入藥袋();
+            //sub_Program_配藥核對_刷入藥袋();
         }
 
         #region PLC_配藥核對_刷入藥袋
@@ -94,22 +100,23 @@ namespace 勤務傳送櫃
         }
         void cnt_Program_配藥核對_刷入藥袋_初始化(ref int cnt)
         {
-            if (this.MyTimer_配藥核對_刷入藥袋_結束延遲.IsTimeOut())
-            {
-                if (Task_配藥核對_刷入藥袋 == null)
-                {
-                    Task_配藥核對_刷入藥袋 = new Task(new Action(delegate { Function_配藥核對_刷入藥袋(); }));
-                }
-                if (Task_配藥核對_刷入藥袋.Status == TaskStatus.RanToCompletion)
-                {
-                    Task_配藥核對_刷入藥袋 = new Task(new Action(delegate { Function_配藥核對_刷入藥袋(); }));
-                }
-                if (Task_配藥核對_刷入藥袋.Status == TaskStatus.Created)
-                {
-                    Task_配藥核對_刷入藥袋.Start();
-                }
-                cnt++;
-            }
+            Function_配藥核對_刷入藥袋();
+            //if (this.MyTimer_配藥核對_刷入藥袋_結束延遲.IsTimeOut())
+            //{
+            //    if (Task_配藥核對_刷入藥袋 == null)
+            //    {
+            //        Task_配藥核對_刷入藥袋 = new Task(new Action(delegate { Function_配藥核對_刷入藥袋(); }));
+            //    }
+            //    if (Task_配藥核對_刷入藥袋.Status == TaskStatus.RanToCompletion)
+            //    {
+            //        Task_配藥核對_刷入藥袋 = new Task(new Action(delegate { Function_配藥核對_刷入藥袋(); }));
+            //    }
+            //    if (Task_配藥核對_刷入藥袋.Status == TaskStatus.Created)
+            //    {
+            //        Task_配藥核對_刷入藥袋.Start();
+            //    }
+            //    cnt++;
+            //}
         }
 
         #endregion
@@ -149,6 +156,7 @@ namespace 勤務傳送櫃
             if (text.StringIsEmpty()) return;
             if (text.Length <= 2 || text.Length > 500)
             {
+                MySerialPort_Scanner01.ClearReadByte();
                 return;
             }
             text = text.Replace("\r\n", "");

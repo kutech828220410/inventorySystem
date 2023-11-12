@@ -354,6 +354,7 @@ namespace 勤務傳送櫃
             if (e.KeyChar == (char)Keys.Enter || sender == null)
             {
                 勤務取藥_text = textBox_勤務取藥_條碼刷入區.Text;
+                textBox_勤務取藥_條碼刷入區.Text = "";
             }
         }
         private void PlC_RJ_Button_勤務取藥_條碼刷入區_清除_MouseDownEvent(MouseEventArgs mevent)
