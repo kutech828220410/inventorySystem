@@ -1107,7 +1107,14 @@ namespace HIS_WebApi
             }
             else
             {
-
+                MED_pageController mED_PageController = new MED_pageController();
+                returnData returnData_med = new returnData();
+                returnData_med.TableName = "medicine_page_cloud";
+                returnData_med.ServerType = "網頁";
+                returnData_med.ServerName = "Main";
+                returnData_med.Value = list_inspection_content_buf[0][(int)enum_驗收內容.藥品碼].ObjectToString();
+                string json_med = mED_PageController.POST_get_by_code(returnData_med);
+                returnData_med = json_med.JsonDeserializet<returnData>();
 
                 content = list_inspection_content_buf[0].SQLToClass<inspectionClass.content, enum_驗收內容>();
                 int 實收數量 = 0;
@@ -1123,6 +1130,32 @@ namespace HIS_WebApi
                     }
                     content.Sub_content.Add(sub_Content);
                 }
+                if (returnData_med != null)
+                {
+                    if (returnData_med.Code == 200)
+                    {
+                        List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
+                        if (medClasses.Count > 0)
+                        {
+                            string 藥品名稱 = medClasses[0].藥品名稱;
+                            string 中文名稱 = medClasses[0].中文名稱;
+                            string 包裝單位 = medClasses[0].包裝單位;
+                            content.藥品名稱 = 藥品名稱;
+                            content.中文名稱 = 中文名稱;
+                            content.包裝單位 = 包裝單位;
+                            for (int i = 0; i < content.Sub_content.Count; i++)
+                            {
+                                content.Sub_content[i].藥品名稱 = 藥品名稱;
+                                content.Sub_content[i].中文名稱 = 中文名稱;
+                                content.Sub_content[i].包裝單位 = 包裝單位;
+                                content.Sub_content[i].總量 = 實收數量.ToString();
+                            }
+                        }
+
+
+                    }
+                }
+
                 content.實收數量 = 實收數量.ToString();
                 content.Sub_content.Sort(new ICP_sub_content());
                 returnData.Data = content;

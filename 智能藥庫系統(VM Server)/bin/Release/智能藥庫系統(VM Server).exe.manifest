@@ -318,14 +318,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyUI.dll" size="1208832">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyUI.dll" size="1838080">
       <assemblyIdentity name="MyUI" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jpaGVnb0u/CpJffyRbeJ1tGR5fscYZLzguDvcXmdggk=</dsig:DigestValue>
+        <dsig:DigestValue>+gx88qCFCuvhQRgXAV47tCwp/v5i/gjfjyLf6C+VqRM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
