@@ -1001,7 +1001,18 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>Excel</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:HIS_WebApi.inventoryController.POST_excel_upload(Microsoft.AspNetCore.Http.IFormFile)" -->
+        <member name="M:HIS_WebApi.inventoryController.POST_excel_upload(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            以盤點單號上傳
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+            fineStream
+             --------------------------------------------<br/> 
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.medGroupController.GET_json_sample(HIS_DB_Lib.returnData)">
             <summary>
             查詢藥品群組JSON格式範例

@@ -36,6 +36,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass5 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass6 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass7 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass8 = new HIS_DB_Lib.ServerSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@ namespace ServerSettingForm
             this.panel_API_URL4 = new ServerSettingForm.Panel_API_URL();
             this.panel_API_URL5 = new ServerSettingForm.Panel_API_URL();
             this.panel_SQLContent2 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_SQLContent3 = new ServerSettingForm.Panel_SQLContent();
             this.SuspendLayout();
             // 
             // label1
@@ -306,12 +308,37 @@ namespace ServerSettingForm
             this.panel_SQLContent2.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent2.TabIndex = 69;
             // 
+            // panel_SQLContent3
+            // 
+            this.panel_SQLContent3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent3.Content = "藥檔資料";
+            this.panel_SQLContent3.Location = new System.Drawing.Point(401, 282);
+            this.panel_SQLContent3.Name = "panel_SQLContent3";
+            serverSettingClass8.DBName = "";
+            serverSettingClass8.GUID = null;
+            serverSettingClass8.Password = "";
+            serverSettingClass8.Port = "";
+            serverSettingClass8.Server = "";
+            serverSettingClass8.TableName = null;
+            serverSettingClass8.User = "";
+            serverSettingClass8.Value = null;
+            serverSettingClass8.內容 = "藥檔資料";
+            serverSettingClass8.單位 = null;
+            serverSettingClass8.程式類別 = null;
+            serverSettingClass8.設備名稱 = "";
+            serverSettingClass8.類別 = "網頁";
+            this.panel_SQLContent3.ServerSetting = serverSettingClass8;
+            this.panel_SQLContent3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
+            this.panel_SQLContent3.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent3.TabIndex = 70;
+            // 
             // Dialog_網頁
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1431, 659);
+            this.Controls.Add(this.panel_SQLContent3);
             this.Controls.Add(this.panel_SQLContent2);
             this.Controls.Add(this.panel_API_URL5);
             this.Controls.Add(this.panel_API_URL4);
@@ -355,5 +382,6 @@ namespace ServerSettingForm
         private Panel_API_URL panel_API_URL4;
         private Panel_API_URL panel_API_URL5;
         private Panel_SQLContent panel_SQLContent2;
+        private Panel_SQLContent panel_SQLContent3;
     }
 }

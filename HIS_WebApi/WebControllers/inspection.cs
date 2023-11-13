@@ -1732,14 +1732,17 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
 
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
+
             MED_pageController mED_PageController = new MED_pageController();
             returnData returnData_med = new returnData();
-            returnData_med.Server = Server;
-            returnData_med.DbName = DB;
-            returnData_med.TableName = MED_TableName;
-            returnData_med.UserName = UserName;
-            returnData_med.Password = Password;
-            returnData_med.Port = Port;
+            returnData_med.Server = serverSettingClasses_med.Server;
+            returnData_med.DbName = serverSettingClasses_med.DBName;
+            returnData_med.TableName = "medicine_page_cloud";
+            returnData_med.UserName = serverSettingClasses_med.User;
+            returnData_med.Password = serverSettingClasses_med.Password;
+            returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
             returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
             List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
             List<medClass> medClasses_buf = new List<medClass>();
