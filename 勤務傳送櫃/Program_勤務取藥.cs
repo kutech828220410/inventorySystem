@@ -153,7 +153,7 @@ namespace 勤務傳送櫃
                         rJ_Lable_勤務取藥_病歷號.Text = "";
                         rJ_Lable_勤務取藥_開方時間.Text = "";
                         rJ_Lable_勤務取藥_病房.Text = "";
-                        Application.DoEvents();
+                        //Application.DoEvents();
                     }));
                 }
             }
@@ -163,6 +163,8 @@ namespace 勤務傳送櫃
             if (text != null)
             {
                 System.Threading.Thread.Sleep(200);
+                MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
+                MyTimerBasic_勤務取藥_刷藥單結束計時.StartTickTime(100000);
                 text = MySerialPort_Scanner01.ReadString();
                 MySerialPort_Scanner01.ClearReadByte();
                 text = text.Replace("\0", "");
@@ -183,7 +185,7 @@ namespace 勤務傳送櫃
                     textBox_勤務取藥_條碼刷入區.Text = text;
                     TextBox_勤務取藥_條碼刷入區_KeyPress(null, new KeyPressEventArgs((char)Keys.Enter));
                     Console.WriteLine($"接收掃碼內容:{text}");
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
              
             }));
@@ -197,7 +199,7 @@ namespace 勤務傳送櫃
                 {
                     rJ_Lable_勤務取藥_狀態.BackColor = Color.HotPink;
                     rJ_Lable_勤務取藥_狀態.Text = "找無藥單資料!";
-                    Application.DoEvents();
+                    //Application.DoEvents();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.StartTickTime(3000);
                     using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\ttsmaker-請重刷.wav"))
@@ -221,7 +223,7 @@ namespace 勤務傳送櫃
                 rJ_Lable_勤務取藥_病歷號.Text = orderClasses[0].病歷號;
                 rJ_Lable_勤務取藥_開方時間.Text = orderClasses[0].開方日期;
                 rJ_Lable_勤務取藥_病房.Text = $"{orderClasses[0].病房}-{orderClasses[0].床號}";
-                Application.DoEvents();
+                //Application.DoEvents();
             }));
             List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows((int)enum_交易記錄查詢資料.GUID, orderClasses[0].GUID, false);
             if (this.plC_CheckBox_氣送作業.Checked)
@@ -274,7 +276,7 @@ namespace 勤務傳送櫃
                 {
                     rJ_Lable_勤務取藥_狀態.BackColor = Color.HotPink;
                     rJ_Lable_勤務取藥_狀態.Text = "此藥單未配藥,請通知藥局刷入";
-                    Application.DoEvents();
+                    //Application.DoEvents();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.StartTickTime(3000);
                     using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\ttsmaker-請藥師重刷.wav"))
@@ -297,7 +299,7 @@ namespace 勤務傳送櫃
                         rJ_Lable_勤務取藥_狀態.BackColor = Color.DarkGreen;
                         rJ_Lable_勤務取藥_狀態.Text = $"[{領用人}] 刷取成功!";
                         textBox_勤務取藥_條碼刷入區.Text = "";
-                        Application.DoEvents();
+                        //Application.DoEvents();
                     }));
                 }
                 else
@@ -306,7 +308,7 @@ namespace 勤務傳送櫃
                     {
                         rJ_Lable_勤務取藥_狀態.BackColor = Color.HotPink;
                         rJ_Lable_勤務取藥_狀態.Text = "藥單重複刷取";
-                        Application.DoEvents();
+                        //Application.DoEvents();
                         MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
                         MyTimerBasic_勤務取藥_刷藥單結束計時.StartTickTime(3000);
                         using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\fail_01.wav"))
@@ -325,7 +327,7 @@ namespace 勤務傳送櫃
 
             this.Invoke(new Action(delegate
             {
-                Application.DoEvents();
+                //Application.DoEvents();
                 MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
                 MyTimerBasic_勤務取藥_刷藥單結束計時.StartTickTime(5000);
                 using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{currentDirectory}\sucess_01.wav"))

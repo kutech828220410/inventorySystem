@@ -34,6 +34,7 @@ namespace HIS_DB_Lib
         調劑台,
         藥庫,
         傳送櫃,
+        癌症備藥機,
         更新資訊,
     }
     public enum enum_ServerSetting_ProgramType

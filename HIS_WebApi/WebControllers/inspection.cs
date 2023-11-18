@@ -1662,6 +1662,17 @@ namespace HIS_WebApi
             return json;
         }
 
+        /// <summary>
+        /// 上傳Excel表單
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[file] : 上傳xls/xlsx <br/> 
+        ///  1.[IC_NAME] : 驗收單名稱 <br/> 
+        ///  2.[PON] : 請購單號名稱 <br/> 
+        ///  3.[CT] : 操作者 <br/> 
+        /// </remarks>
+        /// <returns>Excel</returns>
         [Route("excel_upload")]
         [HttpPost]
         public async Task<string> POST_excel([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string PON, [FromForm] string CT)
@@ -1683,31 +1694,25 @@ namespace HIS_WebApi
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 await formFile.CopyToAsync(memoryStream);
-                json = ExcelClass.NPOI_LoadSheetToJson(memoryStream.ToArray(), extension);
-
-                SheetClass sheetClass = json.JsonDeserializet<SheetClass>();
-                // 在这里可以对 memoryStream 进行操作，例如读取或写入数据
-                for (int i = 0; i < sheetClass.Rows.Count; i++)
+                System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
+                List<object[]> list_value = dt.DataTableToRowList();
+                for(int i = 0; i < list_value.Count; i++)
                 {
-                    if (i == 0) continue;
                     inspectionClass.content content = new inspectionClass.content();
-                    string 請購單號 = sheetClass.Rows[i].Cell[0].Text;
-                    string 代碼 = sheetClass.Rows[i].Cell[1].Text;
-                    string 採購數量 = sheetClass.Rows[i].Cell[5].Text;
-                    string 已交貨數量 = sheetClass.Rows[i].Cell[6].Text;
-                    string 廠牌 = sheetClass.Rows[i].Cell[8].Text;
-
-                    content.請購單號 = 請購單號;
-                    content.料號 = 代碼;
-                    content.應收數量 = (採購數量.StringToInt32() - 已交貨數量.StringToInt32()).ToString();
-                    content.廠牌 = 廠牌;
+                    content.藥品碼 = list_value[i][(int)enum_驗收單匯入.藥碼].ObjectToString();
+                    content.藥品名稱 = list_value[i][(int)enum_驗收單匯入.名稱].ObjectToString();
+                    content.廠牌 = list_value[i][(int)enum_驗收單匯入.供應商名稱].ObjectToString();
+                    content.請購單號 = list_value[i][(int)enum_驗收單匯入.請購單號].ObjectToString();
+                    content.應收數量 = list_value[i][(int)enum_驗收單匯入.採購數量].ObjectToString();
+                    content.實收數量 = list_value[i][(int)enum_驗收單匯入.已交貨數量].ObjectToString();
                     creat.Contents.Add(content);
                 }
+
             }
             returnData returnData = new returnData();
-            returnData.ServerName = "DS01";
-            returnData.ServerType = "藥庫";
-            returnData.TableName = "medicine_page_firstclass";
+            //returnData.ServerName = "DS01";
+            //returnData.ServerType = "藥庫";
+            //returnData.TableName = "medicine_page_firstclass";
             returnData.Data = creat;
 
             return POST_creat_add(returnData);

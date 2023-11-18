@@ -25,6 +25,46 @@
               查詢類似 ConfigurationManager 的當地語系化字串。
             </summary>
         </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始排程醫令資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_add_order(HIS_DB_Lib.returnData)">
+            <summary>
+            新增處方至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.inspectionController.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化驗收單資料庫
@@ -480,6 +520,19 @@
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
+            <returns>Excel</returns>
+        </member>
+        <member name="M:HIS_WebApi.inspectionController.POST_excel(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String,System.String)">
+            <summary>
+            上傳Excel表單
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[file] : 上傳xls/xlsx <br/> 
+             1.[IC_NAME] : 驗收單名稱 <br/> 
+             2.[PON] : 請購單號名稱 <br/> 
+             3.[CT] : 操作者 <br/> 
+            </remarks>
             <returns>Excel</returns>
         </member>
         <member name="M:HIS_WebApi.inventoryController.GET_init(HIS_DB_Lib.returnData)">

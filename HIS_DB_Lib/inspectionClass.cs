@@ -7,6 +7,23 @@ using System.Text.Json.Serialization;
 using Basic;
 namespace HIS_DB_Lib
 {
+    public enum enum_驗收單匯入
+    {
+        請購單號,
+        藥碼,
+        名稱,
+        規格,
+        單位,
+        採購數量,
+        已交貨數量,
+        未交量,
+        供應商名稱,
+        供應商電話,
+        請購日期,
+        採購日期,
+        下單日期,
+        請購發票年月
+    }
     public enum enum_驗收單號
     {
         GUID,

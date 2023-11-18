@@ -104,6 +104,12 @@
     <Compile Include="Dialog_傳送櫃.Designer.cs">
       <DependentUpon>Dialog_傳送櫃.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_癌症備藥機.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_癌症備藥機.Designer.cs">
+      <DependentUpon>Dialog_癌症備藥機.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_新增.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialog_傳送櫃.resx">
       <DependentUpon>Dialog_傳送櫃.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_癌症備藥機.resx">
+      <DependentUpon>Dialog_癌症備藥機.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_新增.resx">
       <DependentUpon>Dialog_新增.cs</DependentUpon>

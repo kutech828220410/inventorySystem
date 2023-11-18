@@ -34,12 +34,13 @@ namespace ServerSettingForm
             this.button_網頁 = new System.Windows.Forms.Button();
             this.button_更新資訊 = new System.Windows.Forms.Button();
             this.button_傳送櫃 = new System.Windows.Forms.Button();
+            this.button_癌症備藥機 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_調劑台
             // 
             this.button_調劑台.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_調劑台.Location = new System.Drawing.Point(84, 119);
+            this.button_調劑台.Location = new System.Drawing.Point(351, 27);
             this.button_調劑台.Name = "button_調劑台";
             this.button_調劑台.Size = new System.Drawing.Size(284, 86);
             this.button_調劑台.TabIndex = 0;
@@ -49,7 +50,7 @@ namespace ServerSettingForm
             // button_藥庫
             // 
             this.button_藥庫.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_藥庫.Location = new System.Drawing.Point(84, 211);
+            this.button_藥庫.Location = new System.Drawing.Point(351, 119);
             this.button_藥庫.Name = "button_藥庫";
             this.button_藥庫.Size = new System.Drawing.Size(284, 86);
             this.button_藥庫.TabIndex = 1;
@@ -59,7 +60,7 @@ namespace ServerSettingForm
             // button_網頁
             // 
             this.button_網頁.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_網頁.Location = new System.Drawing.Point(84, 27);
+            this.button_網頁.Location = new System.Drawing.Point(39, 27);
             this.button_網頁.Name = "button_網頁";
             this.button_網頁.Size = new System.Drawing.Size(284, 86);
             this.button_網頁.TabIndex = 2;
@@ -69,7 +70,7 @@ namespace ServerSettingForm
             // button_更新資訊
             // 
             this.button_更新資訊.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_更新資訊.Location = new System.Drawing.Point(84, 460);
+            this.button_更新資訊.Location = new System.Drawing.Point(39, 303);
             this.button_更新資訊.Name = "button_更新資訊";
             this.button_更新資訊.Size = new System.Drawing.Size(284, 86);
             this.button_更新資訊.TabIndex = 3;
@@ -79,18 +80,29 @@ namespace ServerSettingForm
             // button_傳送櫃
             // 
             this.button_傳送櫃.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_傳送櫃.Location = new System.Drawing.Point(84, 303);
+            this.button_傳送櫃.Location = new System.Drawing.Point(351, 211);
             this.button_傳送櫃.Name = "button_傳送櫃";
             this.button_傳送櫃.Size = new System.Drawing.Size(284, 86);
             this.button_傳送櫃.TabIndex = 4;
             this.button_傳送櫃.Text = "傳送櫃";
             this.button_傳送櫃.UseVisualStyleBackColor = true;
             // 
+            // button_癌症備藥機
+            // 
+            this.button_癌症備藥機.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_癌症備藥機.Location = new System.Drawing.Point(351, 303);
+            this.button_癌症備藥機.Name = "button_癌症備藥機";
+            this.button_癌症備藥機.Size = new System.Drawing.Size(284, 86);
+            this.button_癌症備藥機.TabIndex = 5;
+            this.button_癌症備藥機.Text = "癌症備藥機";
+            this.button_癌症備藥機.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 558);
+            this.ClientSize = new System.Drawing.Size(681, 436);
+            this.Controls.Add(this.button_癌症備藥機);
             this.Controls.Add(this.button_傳送櫃);
             this.Controls.Add(this.button_更新資訊);
             this.Controls.Add(this.button_網頁);
@@ -113,6 +125,7 @@ namespace ServerSettingForm
         private System.Windows.Forms.Button button_網頁;
         private System.Windows.Forms.Button button_更新資訊;
         private System.Windows.Forms.Button button_傳送櫃;
+        private System.Windows.Forms.Button button_癌症備藥機;
     }
 }
 

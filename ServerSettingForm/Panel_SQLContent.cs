@@ -99,7 +99,7 @@ namespace ServerSettingForm
             }
             else
             {
-                MyMessageBox.ShowDialog("藥檔資料連線測試失敗!");
+                MyMessageBox.ShowDialog($"[{Content}] 連線測試失敗!");
             }
         }
 

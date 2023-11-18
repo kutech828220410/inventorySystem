@@ -22,16 +22,24 @@ namespace ServerSettingForm
             MyMessageBox.音效 = false;
             MyMessageBox.form = this.FindForm();
             Dialog_調劑台.form = this.FindForm();
+            Dialog_癌症備藥機.form = this.FindForm();
+            Dialog_藥庫.form = this.FindForm();
+            Dialog_更新資訊.form = this.FindForm();
+            Dialog_網頁.form = this.FindForm();
 
             this.button_網頁.Click += Button_網頁_Click;
             this.button_調劑台.Click += Button_調劑台_Click;
             this.button_藥庫.Click += Button_藥庫_Click;
             this.button_傳送櫃.Click += Button_傳送櫃_Click;
             this.button_更新資訊.Click += Button_更新資訊_Click;
+            this.button_癌症備藥機.Click += Button_癌症備藥機_Click;
         }
 
-     
-
+        private void Button_癌症備藥機_Click(object sender, EventArgs e)
+        {
+            Dialog_癌症備藥機 dialog_癌症備藥機 = new Dialog_癌症備藥機();
+            dialog_癌症備藥機.ShowDialog();
+        }
         private void Button_網頁_Click(object sender, EventArgs e)
         {
             Dialog_網頁 dialog_網頁 = new Dialog_網頁();

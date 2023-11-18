@@ -29,7 +29,6 @@ namespace ServerSettingForm
         /// </summary>
         private void InitializeComponent()
         {
-            HIS_DB_Lib.ServerSettingClass serverSettingClass1 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass1 = new HIS_DB_Lib.updateVersionClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass2 = new HIS_DB_Lib.updateVersionClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass3 = new HIS_DB_Lib.updateVersionClass();
@@ -37,6 +36,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.updateVersionClass updateVersionClass5 = new HIS_DB_Lib.updateVersionClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass6 = new HIS_DB_Lib.updateVersionClass();
             HIS_DB_Lib.updateVersionClass updateVersionClass7 = new HIS_DB_Lib.updateVersionClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass1 = new HIS_DB_Lib.ServerSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -46,14 +46,14 @@ namespace ServerSettingForm
             this.button_讀取 = new System.Windows.Forms.Button();
             this.label_名稱 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
-            this.panel_UpdateVersion1 = new ServerSettingForm.Panel_UpdateVersion();
-            this.panel_UpdateVersion2 = new ServerSettingForm.Panel_UpdateVersion();
-            this.panel_UpdateVersion3 = new ServerSettingForm.Panel_UpdateVersion();
-            this.panel_UpdateVersion4 = new ServerSettingForm.Panel_UpdateVersion();
-            this.panel_UpdateVersion5 = new ServerSettingForm.Panel_UpdateVersion();
-            this.panel_UpdateVersion6 = new ServerSettingForm.Panel_UpdateVersion();
             this.panel_UpdateVersion7 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion6 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion5 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion4 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion3 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion2 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_UpdateVersion1 = new ServerSettingForm.Panel_UpdateVersion();
+            this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
             this.SuspendLayout();
             // 
             // label1
@@ -146,6 +146,118 @@ namespace ServerSettingForm
             this.label_名稱.TabIndex = 52;
             this.label_名稱.Text = "update";
             // 
+            // panel_UpdateVersion7
+            // 
+            this.panel_UpdateVersion7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion7.Location = new System.Drawing.Point(210, 579);
+            this.panel_UpdateVersion7.Name = "panel_UpdateVersion7";
+            this.panel_UpdateVersion7.Program_name = "傳送櫃";
+            this.panel_UpdateVersion7.Size = new System.Drawing.Size(1072, 106);
+            this.panel_UpdateVersion7.TabIndex = 74;
+            updateVersionClass1.enable = "False";
+            updateVersionClass1.filepath = "";
+            updateVersionClass1.GUID = null;
+            updateVersionClass1.program_name = "傳送櫃";
+            updateVersionClass1.update_time = "0000/00/00 00:00:00";
+            updateVersionClass1.version = "";
+            this.panel_UpdateVersion7.UpdateVersionClass = updateVersionClass1;
+            // 
+            // panel_UpdateVersion6
+            // 
+            this.panel_UpdateVersion6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion6.Location = new System.Drawing.Point(12, 857);
+            this.panel_UpdateVersion6.Name = "panel_UpdateVersion6";
+            this.panel_UpdateVersion6.Program_name = "temp1";
+            this.panel_UpdateVersion6.Size = new System.Drawing.Size(1072, 106);
+            this.panel_UpdateVersion6.TabIndex = 73;
+            updateVersionClass2.enable = "False";
+            updateVersionClass2.filepath = "";
+            updateVersionClass2.GUID = null;
+            updateVersionClass2.program_name = "temp1";
+            updateVersionClass2.update_time = "0000/00/00 00:00:00";
+            updateVersionClass2.version = "";
+            this.panel_UpdateVersion6.UpdateVersionClass = updateVersionClass2;
+            // 
+            // panel_UpdateVersion5
+            // 
+            this.panel_UpdateVersion5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion5.Location = new System.Drawing.Point(12, 745);
+            this.panel_UpdateVersion5.Name = "panel_UpdateVersion5";
+            this.panel_UpdateVersion5.Program_name = "temp0";
+            this.panel_UpdateVersion5.Size = new System.Drawing.Size(1072, 106);
+            this.panel_UpdateVersion5.TabIndex = 72;
+            updateVersionClass3.enable = "False";
+            updateVersionClass3.filepath = "";
+            updateVersionClass3.GUID = null;
+            updateVersionClass3.program_name = "temp0";
+            updateVersionClass3.update_time = "0000/00/00 00:00:00";
+            updateVersionClass3.version = "";
+            this.panel_UpdateVersion5.UpdateVersionClass = updateVersionClass3;
+            // 
+            // panel_UpdateVersion4
+            // 
+            this.panel_UpdateVersion4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion4.Location = new System.Drawing.Point(210, 74);
+            this.panel_UpdateVersion4.Name = "panel_UpdateVersion4";
+            this.panel_UpdateVersion4.Program_name = "update";
+            this.panel_UpdateVersion4.Size = new System.Drawing.Size(1072, 106);
+            this.panel_UpdateVersion4.TabIndex = 71;
+            updateVersionClass4.enable = "False";
+            updateVersionClass4.filepath = "";
+            updateVersionClass4.GUID = null;
+            updateVersionClass4.program_name = "update";
+            updateVersionClass4.update_time = "0000/00/00 00:00:00";
+            updateVersionClass4.version = "";
+            this.panel_UpdateVersion4.UpdateVersionClass = updateVersionClass4;
+            // 
+            // panel_UpdateVersion3
+            // 
+            this.panel_UpdateVersion3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion3.Location = new System.Drawing.Point(210, 467);
+            this.panel_UpdateVersion3.Name = "panel_UpdateVersion3";
+            this.panel_UpdateVersion3.Program_name = "中心叫號系統";
+            this.panel_UpdateVersion3.Size = new System.Drawing.Size(1072, 106);
+            this.panel_UpdateVersion3.TabIndex = 70;
+            updateVersionClass5.enable = "False";
+            updateVersionClass5.filepath = "";
+            updateVersionClass5.GUID = null;
+            updateVersionClass5.program_name = "中心叫號系統";
+            updateVersionClass5.update_time = "0000/00/00 00:00:00";
+            updateVersionClass5.version = "";
+            this.panel_UpdateVersion3.UpdateVersionClass = updateVersionClass5;
+            // 
+            // panel_UpdateVersion2
+            // 
+            this.panel_UpdateVersion2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion2.Location = new System.Drawing.Point(210, 355);
+            this.panel_UpdateVersion2.Name = "panel_UpdateVersion2";
+            this.panel_UpdateVersion2.Program_name = "藥庫";
+            this.panel_UpdateVersion2.Size = new System.Drawing.Size(1072, 106);
+            this.panel_UpdateVersion2.TabIndex = 69;
+            updateVersionClass6.enable = "False";
+            updateVersionClass6.filepath = "";
+            updateVersionClass6.GUID = null;
+            updateVersionClass6.program_name = "藥庫";
+            updateVersionClass6.update_time = "0000/00/00 00:00:00";
+            updateVersionClass6.version = "";
+            this.panel_UpdateVersion2.UpdateVersionClass = updateVersionClass6;
+            // 
+            // panel_UpdateVersion1
+            // 
+            this.panel_UpdateVersion1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_UpdateVersion1.Location = new System.Drawing.Point(210, 243);
+            this.panel_UpdateVersion1.Name = "panel_UpdateVersion1";
+            this.panel_UpdateVersion1.Program_name = "調劑台";
+            this.panel_UpdateVersion1.Size = new System.Drawing.Size(1072, 106);
+            this.panel_UpdateVersion1.TabIndex = 68;
+            updateVersionClass7.enable = "False";
+            updateVersionClass7.filepath = "";
+            updateVersionClass7.GUID = null;
+            updateVersionClass7.program_name = "調劑台";
+            updateVersionClass7.update_time = "0000/00/00 00:00:00";
+            updateVersionClass7.version = "";
+            this.panel_UpdateVersion1.UpdateVersionClass = updateVersionClass7;
+            // 
             // panel_SQLContent1
             // 
             this.panel_SQLContent1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -169,118 +281,6 @@ namespace ServerSettingForm
             this.panel_SQLContent1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.更新資訊;
             this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent1.TabIndex = 67;
-            // 
-            // panel_UpdateVersion1
-            // 
-            this.panel_UpdateVersion1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion1.Location = new System.Drawing.Point(210, 243);
-            this.panel_UpdateVersion1.Name = "panel_UpdateVersion1";
-            this.panel_UpdateVersion1.Program_name = "調劑台";
-            this.panel_UpdateVersion1.Size = new System.Drawing.Size(1072, 106);
-            this.panel_UpdateVersion1.TabIndex = 68;
-            updateVersionClass1.enable = "False";
-            updateVersionClass1.filepath = "";
-            updateVersionClass1.GUID = null;
-            updateVersionClass1.program_name = "調劑台";
-            updateVersionClass1.update_time = "0000/00/00 00:00:00";
-            updateVersionClass1.version = "";
-            this.panel_UpdateVersion1.UpdateVersionClass = updateVersionClass1;
-            // 
-            // panel_UpdateVersion2
-            // 
-            this.panel_UpdateVersion2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion2.Location = new System.Drawing.Point(210, 355);
-            this.panel_UpdateVersion2.Name = "panel_UpdateVersion2";
-            this.panel_UpdateVersion2.Program_name = "藥庫";
-            this.panel_UpdateVersion2.Size = new System.Drawing.Size(1072, 106);
-            this.panel_UpdateVersion2.TabIndex = 69;
-            updateVersionClass2.enable = "False";
-            updateVersionClass2.filepath = "";
-            updateVersionClass2.GUID = null;
-            updateVersionClass2.program_name = "藥庫";
-            updateVersionClass2.update_time = "0000/00/00 00:00:00";
-            updateVersionClass2.version = "";
-            this.panel_UpdateVersion2.UpdateVersionClass = updateVersionClass2;
-            // 
-            // panel_UpdateVersion3
-            // 
-            this.panel_UpdateVersion3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion3.Location = new System.Drawing.Point(210, 467);
-            this.panel_UpdateVersion3.Name = "panel_UpdateVersion3";
-            this.panel_UpdateVersion3.Program_name = "中心叫號系統";
-            this.panel_UpdateVersion3.Size = new System.Drawing.Size(1072, 106);
-            this.panel_UpdateVersion3.TabIndex = 70;
-            updateVersionClass3.enable = "False";
-            updateVersionClass3.filepath = "";
-            updateVersionClass3.GUID = null;
-            updateVersionClass3.program_name = "中心叫號系統";
-            updateVersionClass3.update_time = "0000/00/00 00:00:00";
-            updateVersionClass3.version = "";
-            this.panel_UpdateVersion3.UpdateVersionClass = updateVersionClass3;
-            // 
-            // panel_UpdateVersion4
-            // 
-            this.panel_UpdateVersion4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion4.Location = new System.Drawing.Point(210, 74);
-            this.panel_UpdateVersion4.Name = "panel_UpdateVersion4";
-            this.panel_UpdateVersion4.Program_name = "update";
-            this.panel_UpdateVersion4.Size = new System.Drawing.Size(1072, 106);
-            this.panel_UpdateVersion4.TabIndex = 71;
-            updateVersionClass4.enable = "False";
-            updateVersionClass4.filepath = "";
-            updateVersionClass4.GUID = null;
-            updateVersionClass4.program_name = "update";
-            updateVersionClass4.update_time = "0000/00/00 00:00:00";
-            updateVersionClass4.version = "";
-            this.panel_UpdateVersion4.UpdateVersionClass = updateVersionClass4;
-            // 
-            // panel_UpdateVersion5
-            // 
-            this.panel_UpdateVersion5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion5.Location = new System.Drawing.Point(12, 745);
-            this.panel_UpdateVersion5.Name = "panel_UpdateVersion5";
-            this.panel_UpdateVersion5.Program_name = "temp0";
-            this.panel_UpdateVersion5.Size = new System.Drawing.Size(1072, 106);
-            this.panel_UpdateVersion5.TabIndex = 72;
-            updateVersionClass5.enable = "False";
-            updateVersionClass5.filepath = "";
-            updateVersionClass5.GUID = null;
-            updateVersionClass5.program_name = "temp0";
-            updateVersionClass5.update_time = "0000/00/00 00:00:00";
-            updateVersionClass5.version = "";
-            this.panel_UpdateVersion5.UpdateVersionClass = updateVersionClass5;
-            // 
-            // panel_UpdateVersion6
-            // 
-            this.panel_UpdateVersion6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion6.Location = new System.Drawing.Point(12, 857);
-            this.panel_UpdateVersion6.Name = "panel_UpdateVersion6";
-            this.panel_UpdateVersion6.Program_name = "temp1";
-            this.panel_UpdateVersion6.Size = new System.Drawing.Size(1072, 106);
-            this.panel_UpdateVersion6.TabIndex = 73;
-            updateVersionClass6.enable = "False";
-            updateVersionClass6.filepath = "";
-            updateVersionClass6.GUID = null;
-            updateVersionClass6.program_name = "temp1";
-            updateVersionClass6.update_time = "0000/00/00 00:00:00";
-            updateVersionClass6.version = "";
-            this.panel_UpdateVersion6.UpdateVersionClass = updateVersionClass6;
-            // 
-            // panel_UpdateVersion7
-            // 
-            this.panel_UpdateVersion7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_UpdateVersion7.Location = new System.Drawing.Point(210, 579);
-            this.panel_UpdateVersion7.Name = "panel_UpdateVersion7";
-            this.panel_UpdateVersion7.Program_name = "傳送櫃";
-            this.panel_UpdateVersion7.Size = new System.Drawing.Size(1072, 106);
-            this.panel_UpdateVersion7.TabIndex = 74;
-            updateVersionClass7.enable = "False";
-            updateVersionClass7.filepath = "";
-            updateVersionClass7.GUID = null;
-            updateVersionClass7.program_name = "傳送櫃";
-            updateVersionClass7.update_time = "0000/00/00 00:00:00";
-            updateVersionClass7.version = "";
-            this.panel_UpdateVersion7.UpdateVersionClass = updateVersionClass7;
             // 
             // Dialog_更新資訊
             // 
