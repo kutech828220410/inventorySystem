@@ -797,7 +797,7 @@ namespace 調劑台管理系統
                 GUID = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
                 序號 = (i + 1).ToString();
                 動作 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString();
-                藥袋序號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
+                藥袋序號 = $"{list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString()}:{list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.頻次].ObjectToString()}";
                 藥品碼 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 藥品名稱 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 病歷號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
@@ -1704,7 +1704,7 @@ namespace 調劑台管理系統
             string GUID = Guid.NewGuid().ToString();
             string 調劑台名稱 = this.領藥台_01名稱;
             enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
-            string 藥袋序號 = this.領藥台_01名稱;
+            string 藥袋序號 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥袋序號].ObjectToString();
             string 病人姓名 = "";
             string ID = 領藥台_01_ID;
             string 操作人 = 領藥台_01_登入者姓名;
@@ -1721,8 +1721,8 @@ namespace 調劑台管理系統
             string 頻次 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.頻次].ObjectToString();
 
 
-            string[] _serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName() };
-            string[] _serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次 };
+            string[] _serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName(), enum_交易記錄查詢資料.藥袋序號.GetEnumName() };
+            string[] _serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次, 藥袋序號 };
 
             bool flag_重複領藥 = false;
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(_serchnames, _serchvalues, false);
@@ -1742,8 +1742,8 @@ namespace 調劑台管理系統
                 else return;
             }
 
-            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName() };
-            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間 };
+            string[] serchnames = new string[] { enum_領藥內容.藥品碼.GetEnumName(), enum_領藥內容.病歷號.GetEnumName(), enum_領藥內容.開方時間.GetEnumName(), enum_領藥內容.藥袋序號.GetEnumName() };
+            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 藥袋序號 };
             if (sqL_DataGridView_領藥台_01_領藥內容.GetRows(serchnames, serchvalues, false).Count > 0)
             {
                 this.voice.SpeakOnTask("此藥單正在領取中");
@@ -1816,7 +1816,7 @@ namespace 調劑台管理系統
             string 包裝單位 = Scanner01_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.包裝單位].ObjectToString();
 
 
-            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName() };
+            string[] serchnames = new string[] { enum_取藥堆疊母資料.藥品碼.GetEnumName(), enum_取藥堆疊母資料.病歷號.GetEnumName(), enum_取藥堆疊母資料.開方時間.GetEnumName() };
             string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間 };
 
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(serchnames, serchvalues, false);
@@ -2717,7 +2717,7 @@ namespace 調劑台管理系統
                 GUID = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
                 序號 = (i + 1).ToString();
                 動作 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString();
-                藥袋序號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
+                藥袋序號 = $"{list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString()}:{list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.頻次].ObjectToString()}";
                 藥品碼 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 藥品名稱 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 病歷號 = list_取藥堆疊資料[i][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
@@ -3622,7 +3622,7 @@ namespace 調劑台管理系統
             string GUID = Guid.NewGuid().ToString();
             string 調劑台名稱 = this.領藥台_02名稱;
             enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
-            string 藥袋序號 = this.領藥台_02名稱;
+            string 藥袋序號 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.藥袋序號].ObjectToString();
             string 病人姓名 = "";
             string ID = 領藥台_02_ID;
             string 操作人 = 領藥台_02_登入者姓名;
@@ -3639,8 +3639,8 @@ namespace 調劑台管理系統
             string 頻次 = Scanner02_讀取藥單資料_Array[(int)enum_Scanner_陣列內容.頻次].ObjectToString();
 
 
-            string[] _serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName() };
-            string[] _serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次 };
+            string[] _serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName(), enum_交易記錄查詢資料.頻次.GetEnumName(), enum_交易記錄查詢資料.藥袋序號.GetEnumName() };
+            string[] _serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 頻次, 藥袋序號 };
 
             bool flag_重複領藥 = false;
             List<object[]> list_交易記錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows(_serchnames, _serchvalues, false);
@@ -3659,8 +3659,8 @@ namespace 調劑台管理系統
                 }
                 else return;
             }
-            string[] serchnames = new string[] { enum_交易記錄查詢資料.藥品碼.GetEnumName(), enum_交易記錄查詢資料.病歷號.GetEnumName(), enum_交易記錄查詢資料.開方時間.GetEnumName() };
-            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間 };
+            string[] serchnames = new string[] { enum_領藥內容.藥品碼.GetEnumName(), enum_領藥內容.病歷號.GetEnumName(), enum_領藥內容.開方時間.GetEnumName(), enum_領藥內容.藥袋序號.GetEnumName() };
+            string[] serchvalues = new string[] { 藥品碼, 病歷號, 開方時間, 藥袋序號 };
             if (sqL_DataGridView_領藥台_02_領藥內容.GetRows(serchnames, serchvalues, false).Count > 0)
             {
                 this.voice.SpeakOnTask("此藥單正在領取中");

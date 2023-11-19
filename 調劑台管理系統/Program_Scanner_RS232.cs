@@ -24,6 +24,7 @@ namespace 調劑台管理系統
         {
             病人姓名 = 10,
             藥品碼 = 14,
+            藥袋序號 = 15,
             使用數量 = 9,
             病歷號 = 10,
             開方日期 = 11,
@@ -32,7 +33,7 @@ namespace 調劑台管理系統
             中文名稱 = 1,
             頻次 = 7,
             包裝單位 = 8,
-      
+
         }
         void Program_Scanner_RS232_Init()
         {
@@ -56,8 +57,8 @@ namespace 調劑台管理系統
                         MyMessageBox.ShowDialog("掃碼器[02]初始化失敗!");
                     }
                 }
-               
-          
+
+
             }
 
             plC_UI_Init.Add_Method(sub_Program_Scanner_RS232);
@@ -128,7 +129,7 @@ namespace 調劑台管理系統
         {
             if (MySerialPort_Scanner01.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {
-                
+
                 string text = "";
 
                 if (!plC_RJ_Button_掃碼測試.Bool) text = MySerialPort_Scanner01.ReadString();
@@ -140,7 +141,7 @@ namespace 調劑台管理系統
                 if (!plC_CheckBox_QRcode_Mode.Bool)
                 {
                     this.領藥台_01_醫令條碼 = text;
-                
+
                     Console.WriteLine($"接收資料內容 : {text} ");
                     cnt++;
                     return;
@@ -148,7 +149,7 @@ namespace 調劑台管理系統
 
                 plC_RJ_Button_掃碼測試.Bool = false;
 
-          
+
                 if (text.Length <= 2 || text.Length > 300)
                 {
                     Console.WriteLine($"接收資料長度異常");
@@ -166,6 +167,7 @@ namespace 調劑台管理系統
 
                 string 病人姓名 = "";
                 string 藥品代碼 = "";
+                string 藥袋序號 = "";
                 string 使用數量 = "";
                 string 病歷號 = "";
                 string 開方日期 = "";
@@ -181,6 +183,7 @@ namespace 調劑台管理系統
                     病人姓名 = array_buf[(int)enum_Scanner_陣列內容.病人姓名];
                     藥品代碼 = array_buf[(int)enum_Scanner_陣列內容.藥品碼];
                     使用數量 = array_buf[(int)enum_Scanner_陣列內容.使用數量];
+                    藥袋序號 = array_buf[(int)enum_Scanner_陣列內容.藥袋序號];
                     病歷號 = array_buf[(int)enum_Scanner_陣列內容.病歷號];
                     開方日期 = array_buf[(int)enum_Scanner_陣列內容.開方日期];
                     開方時間 = array_buf[(int)enum_Scanner_陣列內容.開方時間];
@@ -212,6 +215,7 @@ namespace 調劑台管理系統
                 array[(int)enum_Scanner_陣列內容.開方日期] = 開方日期.Trim();
                 array[(int)enum_Scanner_陣列內容.開方時間] = 開方時間.Trim();
                 array[(int)enum_Scanner_陣列內容.頻次] = 頻次.Trim();
+                array[(int)enum_Scanner_陣列內容.藥袋序號] = 藥袋序號.Trim();
 
 
                 string[] 開方日期_array = myConvert.分解分隔號字串(開方日期, "-");
@@ -219,7 +223,7 @@ namespace 調劑台管理系統
                 {
                     array[(int)enum_Scanner_陣列內容.開方日期] = $"{DateTime.Now.Year}/{開方日期_array[0]}/{開方日期_array[1]}";
                 }
-                else if(開方日期_array.Length == 1)
+                else if (開方日期_array.Length == 1)
                 {
                     array[(int)enum_Scanner_陣列內容.開方日期] = $"{開方日期_array[0]}";
                 }
@@ -387,6 +391,7 @@ namespace 調劑台管理系統
                 string 藥品代碼 = "";
                 string 使用數量 = "";
                 string 病歷號 = "";
+                string 藥袋序號 = "";
                 string 開方日期 = "";
                 string 開方時間 = "";
                 string 頻次 = "";
@@ -401,6 +406,7 @@ namespace 調劑台管理系統
                     藥品代碼 = array_buf[(int)enum_Scanner_陣列內容.藥品碼];
                     使用數量 = array_buf[(int)enum_Scanner_陣列內容.使用數量];
                     病歷號 = array_buf[(int)enum_Scanner_陣列內容.病歷號];
+                    藥袋序號 = array_buf[(int)enum_Scanner_陣列內容.藥袋序號];
                     開方日期 = array_buf[(int)enum_Scanner_陣列內容.開方日期];
                     開方時間 = array_buf[(int)enum_Scanner_陣列內容.開方時間];
                     頻次 = array_buf[(int)enum_Scanner_陣列內容.頻次];
@@ -431,6 +437,7 @@ namespace 調劑台管理系統
                 array[(int)enum_Scanner_陣列內容.開方日期] = 開方日期.Trim();
                 array[(int)enum_Scanner_陣列內容.開方時間] = 開方時間.Trim();
                 array[(int)enum_Scanner_陣列內容.頻次] = 頻次.Trim();
+                array[(int)enum_Scanner_陣列內容.藥袋序號] = 藥袋序號.Trim();
 
 
                 string[] 開方日期_array = myConvert.分解分隔號字串(開方日期, "-");

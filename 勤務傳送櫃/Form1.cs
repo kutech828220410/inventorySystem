@@ -22,14 +22,15 @@ using HIS_DB_Lib;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-[assembly: AssemblyVersion("1.0.0.31")]
-[assembly: AssemblyFileVersion("1.0.0.31")]
+[assembly: AssemblyVersion("1.0.0.33")]
+[assembly: AssemblyFileVersion("1.0.0.33")]
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
     {
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         static MySerialPort MySerialPort_Scanner01 = new MySerialPort();
+        static MySerialPort MySerialPort_Scanner02 = new MySerialPort();
         private Voice voice = new Voice();
         private string FormText = "";
         private LadderConnection.LowerMachine PLC;
@@ -126,9 +127,11 @@ namespace 勤務傳送櫃
 
             private string rFID_COMPort = "";
             private string scanner01_COMPort = "COM2";
+            private string scanner02_COMPort = "COM3";
 
             public string RFID_COMPort { get => rFID_COMPort; set => rFID_COMPort = value; }
             public string Scanner01_COMPort { get => scanner01_COMPort; set => scanner01_COMPort = value; }
+            public string Scanner02_COMPort { get => scanner02_COMPort; set => scanner02_COMPort = value; }
         }
         private void LoadMyConfig()
         {
@@ -271,7 +274,15 @@ namespace 勤務傳送櫃
                     MyMessageBox.ShowDialog("掃碼器[01]初始化失敗!");
                 }
             }
-
+            if (!myConfigClass.Scanner02_COMPort.StringIsEmpty())
+            {
+                MySerialPort_Scanner02.ConsoleWrite = true;
+                MySerialPort_Scanner02.Init(myConfigClass.Scanner02_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
+                if (!MySerialPort_Scanner02.IsConnected)
+                {
+                    MyMessageBox.ShowDialog("掃碼器[02]初始化失敗!");
+                }
+            }
             this.ApiServerSetting();
 
             SQLUI.SQL_DataGridView.SQL_Set_Properties(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, this.FindForm());

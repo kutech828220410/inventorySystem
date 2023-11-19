@@ -143,7 +143,7 @@ namespace 勤務傳送櫃
                 {
                     this.Invoke(new Action(delegate
                     {
-                        rJ_Lable_勤務取藥_狀態.BackColor = Color.MidnightBlue;
+                        rJ_Lable_勤務取藥_狀態.BackgroundColor = Color.MidnightBlue;
                         rJ_Lable_勤務取藥_狀態.Text = "等待刷藥單...";
 
                         rJ_Lable_勤務取藥_藥名.Text = "";
@@ -197,7 +197,7 @@ namespace 勤務傳送櫃
             {
                 this.Invoke(new Action(delegate
                 {
-                    rJ_Lable_勤務取藥_狀態.BackColor = Color.HotPink;
+                    rJ_Lable_勤務取藥_狀態.BackgroundColor = Color.HotPink;
                     rJ_Lable_勤務取藥_狀態.Text = "找無藥單資料!";
                     //Application.DoEvents();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
@@ -274,7 +274,7 @@ namespace 勤務傳送櫃
             {
                 this.Invoke(new Action(delegate
                 {
-                    rJ_Lable_勤務取藥_狀態.BackColor = Color.HotPink;
+                    rJ_Lable_勤務取藥_狀態.BackgroundColor = Color.HotPink;
                     rJ_Lable_勤務取藥_狀態.Text = "此藥單未配藥,請通知藥局刷入";
                     //Application.DoEvents();
                     MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();
@@ -296,7 +296,7 @@ namespace 勤務傳送櫃
                     this.Invoke(new Action(delegate
                     {
                         string 領用人 = list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用人].ObjectToString();
-                        rJ_Lable_勤務取藥_狀態.BackColor = Color.DarkGreen;
+                        rJ_Lable_勤務取藥_狀態.BackgroundColor = Color.DarkGreen;
                         rJ_Lable_勤務取藥_狀態.Text = $"[{領用人}] 刷取成功!";
                         textBox_勤務取藥_條碼刷入區.Text = "";
                         //Application.DoEvents();
@@ -306,7 +306,7 @@ namespace 勤務傳送櫃
                 {
                     this.Invoke(new Action(delegate
                     {
-                        rJ_Lable_勤務取藥_狀態.BackColor = Color.HotPink;
+                        rJ_Lable_勤務取藥_狀態.BackgroundColor = Color.HotPink;
                         rJ_Lable_勤務取藥_狀態.Text = "藥單重複刷取";
                         //Application.DoEvents();
                         MyTimerBasic_勤務取藥_刷藥單結束計時.TickStop();

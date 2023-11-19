@@ -133,7 +133,7 @@ namespace 勤務傳送櫃
                     {
                         this.Invoke(new Action(delegate
                         {
-                            rJ_Lable_配藥核對_狀態.BackColor = Color.MidnightBlue;
+                            rJ_Lable_配藥核對_狀態.BackgroundColor = Color.MidnightBlue;
                             rJ_Lable_配藥核對_狀態.Text = "等待刷藥單...";
 
                             rJ_Lable_配藥核對_藥名.Text = "";
@@ -148,19 +148,43 @@ namespace 勤務傳送櫃
                     }
                 }
 
-
-                string text = MySerialPort_Scanner01.ReadString();
-                if (text == null) return;
+                string text = null;
+                int scn_load = 0;
+                if (text == null)
+                {
+                    if (MySerialPort_Scanner01.IsConnected)
+                    {
+                        text = MySerialPort_Scanner01.ReadString();
+                        scn_load = 1;
+                    }
+                }
+                if (text == null)
+                {
+                    if (MySerialPort_Scanner02.IsConnected)
+                    {
+                        text = MySerialPort_Scanner02.ReadString();
+                        scn_load = 2;
+                    }
+                }
+                if (text == null)
+                {
+                    return;
+                }
                 System.Threading.Thread.Sleep(200);
                 MyTimerBasic_配藥核對_刷藥單結束計時.TickStop();
                 MyTimerBasic_配藥核對_刷藥單結束計時.StartTickTime(100000);
-                text = MySerialPort_Scanner01.ReadString();
+                if (scn_load == 1) text = MySerialPort_Scanner01.ReadString();
+                if (scn_load == 2) text = MySerialPort_Scanner02.ReadString();
                 MySerialPort_Scanner01.ClearReadByte();
+                MySerialPort_Scanner02.ClearReadByte();
                 text = text.Replace("\0", "");
+                text = text.Replace("\n", "");
                 if (text.StringIsEmpty()) return;
                 if (text.Length <= 2 || text.Length > 500)
                 {
                     MySerialPort_Scanner01.ClearReadByte();
+                    MySerialPort_Scanner02.ClearReadByte();
+
                     return;
                 }
                 text = text.Replace("\r\n", "");
@@ -170,7 +194,7 @@ namespace 勤務傳送櫃
                 {
                     this.Invoke(new Action(delegate
                     {
-                        rJ_Lable_配藥核對_狀態.BackColor = Color.HotPink;
+                        rJ_Lable_配藥核對_狀態.BackgroundColor = Color.HotPink;
                         rJ_Lable_配藥核對_狀態.Text = "找無藥單資料!";
                         //Application.DoEvents();
                         MyTimerBasic_配藥核對_刷藥單結束計時.TickStop();
@@ -201,7 +225,7 @@ namespace 勤務傳送櫃
                 {
                     this.Invoke(new Action(delegate
                     {
-                        rJ_Lable_配藥核對_狀態.BackColor = Color.HotPink;
+                        rJ_Lable_配藥核對_狀態.BackgroundColor = Color.HotPink;
                         rJ_Lable_配藥核對_狀態.Text = "此藥單已刷入過!";
                         //Application.DoEvents();
                         MyTimerBasic_配藥核對_刷藥單結束計時.TickStop();
@@ -219,7 +243,7 @@ namespace 勤務傳送櫃
                 {
                     this.Invoke(new Action(delegate
                     {
-                        rJ_Lable_配藥核對_狀態.BackColor = Color.DarkGreen;
+                        rJ_Lable_配藥核對_狀態.BackgroundColor = Color.DarkGreen;
                         rJ_Lable_配藥核對_狀態.Text = "刷取成功!";
                         //Application.DoEvents();
                     }));
@@ -230,7 +254,7 @@ namespace 勤務傳送櫃
                 {
                     this.Invoke(new Action(delegate
                     {
-                        rJ_Lable_配藥核對_狀態.BackColor = Color.HotPink;
+                        rJ_Lable_配藥核對_狀態.BackgroundColor = Color.HotPink;
                         rJ_Lable_配藥核對_狀態.Text = "未在櫃體內,找到病房名稱!";
                         //Application.DoEvents();
                         MyTimerBasic_配藥核對_刷藥單結束計時.TickStop();

@@ -24,8 +24,11 @@ namespace 勤務傳送櫃
     {
         private void Program_櫃體狀態_Init()
         {
+            this.plC_RJ_Button_櫃體狀態_重置設備.MouseDownEvent += PlC_RJ_Button_櫃體狀態_重置設備_MouseDownEvent;
             this.plC_UI_Init.Add_Method(Program_櫃體狀態);
         }
+
+    
 
         private void Program_櫃體狀態()
         {
@@ -269,5 +272,12 @@ namespace 勤務傳送櫃
 
 
         #endregion
+
+        private void PlC_RJ_Button_櫃體狀態_重置設備_MouseDownEvent(MouseEventArgs mevent)
+        {
+            UDP_Class uDP_Class = new UDP_Class("0.0.0.0", 29005);
+            H_Pannel_lib.Communication.Set_OutputPINTrigger(uDP_Class, "192.168.32.240", 1, true);
+            uDP_Class.Dispose();
+        }
     }
 }
