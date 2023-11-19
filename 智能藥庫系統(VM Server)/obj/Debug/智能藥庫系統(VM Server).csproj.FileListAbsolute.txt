@@ -206,3 +206,73 @@ C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統(V
 C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).exe
 C:\Users\Administrator\Source\Repos\inventorySystem20230517\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).pdb
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\智能藥庫系統(VM Server).exe.config
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\智能藥庫系統(VM Server).exe.manifest
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\智能藥庫系統(VM Server).application
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\智能藥庫系統(VM Server).exe
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\智能藥庫系統(VM Server).pdb
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\Basic.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\DrawingClass.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\HCGUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\H_Pannel_lib.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\IBM.Data.DB2.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\LadderUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\LeadShineUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\LicenseLib.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\LightControlUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MeasureSystemUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MVSDK.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MVSDKUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MyOffice.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MySql.Data.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MySqlBackup.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MySQL_Login.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MyUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\Newtonsoft.Json.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\PortControlUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\SLDUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\SQLUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Buffers.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Memory.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Text.Json.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.ValueTuple.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\TCP.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\ZealTechUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\zxing.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\Interop.SpeechLib.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\CallBackUI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\MeasureSystemFunction.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\NPOI.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\NPOI.OOXML.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\office.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\stdole.dll
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Buffers.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Memory.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Text.Json.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Debug\System.ValueTuple.xml
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).csproj.AssemblyReference.cache
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統_VM_Server_.Form1.resources
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統_VM_Server_.Form_Buf.resources
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統_VM_Server_.Properties.Resources.resources
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).csproj.GenerateResource.cache
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).csproj.CoreCompileInputs.cache
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).exe.manifest
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).application
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).csproj.CopyComplete
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).exe
+C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Debug\智能藥庫系統(VM Server).pdb

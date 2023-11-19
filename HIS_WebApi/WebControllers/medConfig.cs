@@ -34,7 +34,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;

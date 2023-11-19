@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Basic.dll" size="192512">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Basic.dll" size="193536">
       <assemblyIdentity name="Basic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>cHo8gw+HJnwOleALCCKiEXRM5vsP5HN+ZHxAxg3HZfw=</dsig:DigestValue>
+        <dsig:DigestValue>RhH70xwze5MJUYw4vkwVZKOTg7ffOfBpdIsTeuiRJQo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="722944">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="723456">
       <assemblyIdentity name="H_Pannel_lib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dLvdK6fRSP8AXtrsz97RlDt5y7zTcVir+NTXXSUtRzA=</dsig:DigestValue>
+        <dsig:DigestValue>7KymSgwlLTiDv4EE+KZnhEvhs/nXwX1hKxqUqgzZ++o=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -318,14 +318,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyUI.dll" size="1208832">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyUI.dll" size="1842176">
       <assemblyIdentity name="MyUI" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qM4c69dO9FAtJ0lmMQKdCNoxXdbW35e8EWwGPe8StPA=</dsig:DigestValue>
+        <dsig:DigestValue>GunBtYN0sgGvq8QNFzq9NyEtUcAjb+AJYTTdr6rKEg0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -426,14 +426,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="138240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="138752">
       <assemblyIdentity name="SQLUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>eDSStfcZWdgIVTwuONCL0OHALzMrG0aPU+5O/j7sliU=</dsig:DigestValue>
+        <dsig:DigestValue>oqyK3YBoa6Sh0oVZanY1Ya21BdVqcNludsds1PLi4Ws=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -589,7 +589,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kc3cHsx5g6/62x6e4RFoqLWL7DYkXy2ysdDTtehNtbI=</dsig:DigestValue>
+        <dsig:DigestValue>heXnwRLhUUUx8paAsdtW0df7t/eaNBj54hf/AsaImYY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
