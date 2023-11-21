@@ -1951,13 +1951,17 @@ namespace HIS_WebApi
 
             }
             dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
-            sheetClass = dataTable.NPOI_GetSheetClass();
+            sheetClass = dataTable.NPOI_GetSheetClass(new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
+            ,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
+            ,(int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
             sheetClass.Name = "盤點總表";
             sheetClasses.Add(sheetClass);
             for (int i = 0; i < sheetTemps.Count; i++)
             {
                 dataTable = sheetTemps[i].list_value.ToDataTable(new enum_盤點定盤_Excel());
-                sheetClass = dataTable.NPOI_GetSheetClass();
+                sheetClass = dataTable.NPOI_GetSheetClass(new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
+             ,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
+            , (int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
                 sheetClass.Name = sheetTemps[i].Name;
                 sheetClasses.Add(sheetClass);
             }

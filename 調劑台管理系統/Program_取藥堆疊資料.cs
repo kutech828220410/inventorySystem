@@ -2876,7 +2876,7 @@ namespace 調劑台管理系統
                     }
                     transactionsClass transactionsClass = value_trading.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                     transactionsClass.GUID = Guid.NewGuid().ToString();
-                    transactionsClass.動作 = enum_交易記錄查詢動作.盤點量更正.GetEnumName();
+                    transactionsClass.動作 = enum_交易記錄查詢動作.盤點調整.GetEnumName();
                     transactionsClass.庫存量 = 庫存量.ToString();
                     transactionsClass.交易量 = 交易量;
                     transactionsClass.盤點量 = "無";

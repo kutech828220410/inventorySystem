@@ -47,8 +47,6 @@ namespace HIS_DB_Lib
         癌症用藥途徑,
     }
 
- 
-
     public class ctclistClass
     {
         [JsonPropertyName("GUID")]

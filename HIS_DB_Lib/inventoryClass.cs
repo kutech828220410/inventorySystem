@@ -180,4 +180,57 @@ namespace HIS_DB_Lib
          
         }
     }
+
+    public enum enum_inv_combinelist
+    {
+        GUID,
+        Master_GUID,
+        合併單號,
+        合併單名稱,
+        建表姓名,
+        建表時間,
+    }
+    public class inv_combinelist
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        [JsonPropertyName("ICB_SN")]
+        public string 合併單號 { get; set; }
+        [JsonPropertyName("ICB_NAME")]
+        public string 合併單名稱 { get; set; }
+        [JsonPropertyName("CT")]
+        public string 建表姓名 { get; set; }
+        [JsonPropertyName("CT_TIME")]
+        public string 建表時間 { get; set; }
+        [JsonPropertyName("ICB_ARY")]
+        List<ICB_ARY_Class> ICB_ARY { get; set; }
+        public enum enum_ICB_ARY
+        {
+            GUID,
+            Master_GUID,
+            合併子單號,
+            合併子單名稱,
+            合併單類型,
+            加入表單姓名,
+            加入表單時間,
+        }
+        public class ICB_ARY_Class
+        {
+            [JsonPropertyName("GUID")]
+            public string GUID { get; set; }
+            [JsonPropertyName("Master_GUID")]
+            public string 合併子單號 { get; set; }
+            [JsonPropertyName("Master_GUID")]
+            public string 合併子單名稱 { get; set; }
+            [JsonPropertyName("Master_GUID")]
+            public string 合併單類型 { get; set; }
+            [JsonPropertyName("Master_GUID")]
+            public string 加入表單姓名 { get; set; }
+            [JsonPropertyName("Master_GUID")]
+            public string 加入表單時間 { get; set; }
+        }
+
+    }
 }

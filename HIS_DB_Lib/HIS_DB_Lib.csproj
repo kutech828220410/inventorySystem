@@ -107,6 +107,7 @@
     <Compile Include="sessionClass.cs" />
     <Compile Include="takeMedicineStackClass.cs" />
     <Compile Include="transactionsClass.cs" />
+    <Compile Include="udnoectc.cs" />
     <Compile Include="updateVersionClass.cs" />
   </ItemGroup>
   <ItemGroup>

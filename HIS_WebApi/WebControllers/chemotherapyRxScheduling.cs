@@ -22,7 +22,7 @@ namespace HIS_WebApi
 
 
         /// <summary>
-        /// 初始排程醫令資料庫
+        /// 初始化處方資料庫
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -39,9 +39,9 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        [Route("init")]
+        [Route("init_ctclist")]
         [HttpPost]
-        public string GET_init(returnData returnData)
+        public string GET_init_ctclist(returnData returnData)
         {
             try
             {
@@ -51,14 +51,13 @@ namespace HIS_WebApi
                 {
                     return $"找無Server資料!";
                 }
-                return CheckCreatTable(serverSettingClasses[0]);
+                return CheckCreatTable_ctclist(serverSettingClasses[0]);
             }
             catch (Exception e)
             {
                 return e.Message;
             }
         }
-
         /// <summary>
         /// 新增處方至資料庫
         /// </summary>
@@ -69,7 +68,7 @@ namespace HIS_WebApi
         ///   }
         /// </code>
         /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <param name="ctclistClass">化療處方結構</param>
         /// <returns></returns>
         [Route("add_ctclist_ex")]
         [HttpPost]
@@ -81,7 +80,6 @@ namespace HIS_WebApi
             returnData.Data = ctclistClass;
             return POST_add_ctclist(returnData);
         }
-
         /// <summary>
         /// 新增處方至資料庫
         /// </summary>
@@ -106,7 +104,7 @@ namespace HIS_WebApi
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
-            returnData.Method = "add_order";
+            returnData.Method = "add_ctclist";
             try
             {
 
@@ -190,7 +188,189 @@ namespace HIS_WebApi
 
         }
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        /// <summary>
+        /// 初始化配藥通知資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "cheom",
+        ///     "ServerType" : "癌症備藥機",
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("init_udnoectc")]
+        [HttpPost]
+        public string GET_init_udnoectc(returnData returnData)
+        {
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    return $"找無Server資料!";
+                }
+                return CheckCreatTable_udnoectc(serverSettingClasses[0]);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+        /// <summary>
+        /// 新增配藥通知至資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="udnoectcClass">化療配藥通知結構</param>
+        /// <returns></returns>
+        [Route("add_udnoectc_ex")]
+        [HttpPost]
+        public string POST_add_udnoectc(udnoectc udnoectcClass)
+        {
+            returnData returnData = new returnData();
+            returnData.ServerName = "cheom";
+            returnData.ServerType = "癌症備藥機";
+            returnData.Data = udnoectcClass;
+            List<udnoectc.ordersClass> orsersAry = udnoectcClass.ordersAry;
+            return POST_add_udnoectc(returnData);
+        }
+        /// <summary>
+        /// 新增配藥通知至資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "cheom",
+        ///     "ServerType" : "癌症備藥機",
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("add_udnoectc")]
+        [HttpPost]
+        public string POST_add_udnoectc(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "add_udnoectc";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                udnoectc udnoectcClass = returnData.Data.ObjToClass<udnoectc>();
+                if (udnoectcClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料結構錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                returnData.Data = "";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
+
+                object[] _udnoectc = udnoectcClass.ClassToSQL<udnoectc, enum_udnoectc>();
+                List<object[]> list_udnoectc = new List<object[]>();
+                List<object[]> list_udnoectc_Add = new List<object[]>();
+                List<object[]> list_udnoectc_Replace = new List<object[]>();
+                List<object[]> udnoectc_order = udnoectcClass.ordersAry.ClassToSQL<udnoectc.ordersClass, udnoectc.enum_orders>();
+                List<object[]> list_udnoectc_order_Add = new List<object[]>();
+                List<object[]> list_udnoectc_order_Replace = new List<object[]>();
+                List<object[]> udnoectc_ctcvars = udnoectcClass.ctcvarsAry.ClassToSQL<udnoectc.ctcvarsClass, udnoectc.enum_ctcvars>();
+                List<object[]> list_udnoectc_ctcvars_Add = new List<object[]>();
+                List<object[]> list_udnoectc_ctcvars_Replace = new List<object[]>();
+
+                string 病歷號 = _udnoectc[(int)enum_udnoectc.病歷號].ObjectToString();
+                string 診別 = _udnoectc[(int)enum_udnoectc.診別].ObjectToString();
+                string 就醫序號 = _udnoectc[(int)enum_udnoectc.就醫序號].ObjectToString();
+                string 醫囑序號 = _udnoectc[(int)enum_udnoectc.醫囑序號].ObjectToString();
+              
+                string[] udnoectc_serch_colname = new string[] { "病歷號", "診別", "就醫序號", "醫囑序號" };
+                string[] udnoectc_serch_value = new string[] { $"{病歷號}", $"{診別}", $"{就醫序號}", $"{醫囑序號}" };
+                string Master_GUID = "";
+                list_udnoectc = sQLControl_udnoectc.GetRowsByDefult(null, udnoectc_serch_colname, udnoectc_serch_value);
+                if(list_udnoectc.Count == 0)
+                {
+                    Master_GUID = Guid.NewGuid().ToString();
+                    object[] value = _udnoectc;
+                    value[(int)enum_udnoectc.GUID] = Master_GUID;
+                  
+                    list_udnoectc_Add.Add(value);
+                }
+                else
+                {
+                    Master_GUID = list_udnoectc[0][(int)enum_udnoectc.GUID].ObjectToString();
+                    object[] value = _udnoectc;
+                    value[(int)enum_udnoectc.GUID] = Master_GUID;
+                    sQLControl_udnoectc_orders.DeleteByDefult(null, (int)udnoectc.enum_orders.Master_GUID, Master_GUID);
+                    sQLControl_udnoectc_ctcvars.DeleteByDefult(null, (int)udnoectc.enum_ctcvars.Master_GUID, Master_GUID);
+
+                    list_udnoectc_Replace.Add(value);
+                }
+                for (int i = 0; i < udnoectc_order.Count; i++)
+                {
+                    udnoectc_order[i][(int)udnoectc.enum_orders.GUID] = Guid.NewGuid().ToString();
+                    udnoectc_order[i][(int)udnoectc.enum_orders.Master_GUID] = Master_GUID;
+                }
+                for (int i = 0; i < udnoectc_ctcvars.Count; i++)
+                {
+                    udnoectc_ctcvars[i][(int)udnoectc.enum_ctcvars.GUID] = Guid.NewGuid().ToString();
+                    udnoectc_ctcvars[i][(int)udnoectc.enum_ctcvars.Master_GUID] = Master_GUID;
+                }
+
+                if (list_udnoectc_Add.Count > 0) sQLControl_udnoectc.AddRows(null, list_udnoectc_Add);
+                if (list_udnoectc_Replace.Count > 0) sQLControl_udnoectc.UpdateByDefulteExtra(null, list_udnoectc_Replace);
+                sQLControl_udnoectc_orders.AddRows(null, udnoectc_order);
+                sQLControl_udnoectc_ctcvars.AddRows(null, udnoectc_ctcvars);
+
+                returnData.Result = $"udnoectc 新增<{list_udnoectc_Add.Count}>筆,修改<{list_udnoectc_Replace.Count}>筆 ";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+
+        private string CheckCreatTable_ctclist(ServerSettingClass serverSettingClass)
         {
             string Server = serverSettingClass.Server;
             string DB = serverSettingClass.DBName;
@@ -299,6 +479,82 @@ namespace HIS_WebApi
             if (!sQLControl_ctclist_noteAry.IsTableCreat()) sQLControl_ctclist_noteAry.CreatTable(table_ctclist_noteAry);
             else sQLControl_ctclist_noteAry.CheckAllColumnName(table_ctclist_noteAry, true);
             tables.Add(table_ctclist_noteAry);
+
+            return tables.JsonSerializationt(true);
+        }
+        private string CheckCreatTable_udnoectc(ServerSettingClass serverSettingClass)
+        {
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
+
+
+            List<Table> tables = new List<Table>();
+            Table table_udnoectc = new Table("udnoectc");
+            table_udnoectc.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table_udnoectc.AddColumnList("病房", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
+            table_udnoectc.AddColumnList("床號", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc.AddColumnList("病人姓名", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_udnoectc.AddColumnList("病歷號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+            table_udnoectc.AddColumnList("生日", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc.AddColumnList("性別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc.AddColumnList("身高", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc.AddColumnList("體重", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc.AddColumnList("診斷", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc.AddColumnList("科別", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
+            table_udnoectc.AddColumnList("開立醫師", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+            table_udnoectc.AddColumnList("過敏記錄", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc.AddColumnList("RegimenName", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc.AddColumnList("天數順序", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc.AddColumnList("診別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc.AddColumnList("就醫序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
+            table_udnoectc.AddColumnList("醫囑序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
+            table_udnoectc.AddColumnList("化學治療前檢核項目", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            if (!sQLControl_udnoectc.IsTableCreat()) sQLControl_udnoectc.CreatTable(table_udnoectc);
+            else sQLControl_udnoectc.CheckAllColumnName(table_udnoectc, true);
+            tables.Add(table_udnoectc);
+
+
+            Table table_udnoectc_orders = new Table("udnoectc_orders");
+            table_udnoectc_orders.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table_udnoectc_orders.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
+            table_udnoectc_orders.AddColumnList("藥囑序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
+            table_udnoectc_orders.AddColumnList("服藥順序", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("藥碼", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
+            table_udnoectc_orders.AddColumnList("藥名", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("警示", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("劑量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("途徑", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("頻次", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("儲位1", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("儲位2", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("處方開始時間", Table.DateType.DATETIME, 10, Table.IndexType.INDEX);
+            table_udnoectc_orders.AddColumnList("處方結束時間", Table.DateType.DATETIME, 10, Table.IndexType.INDEX);
+            if (!sQLControl_udnoectc_orders.IsTableCreat()) sQLControl_udnoectc_orders.CreatTable(table_udnoectc_orders);
+            else sQLControl_udnoectc_orders.CheckAllColumnName(table_udnoectc_orders, true);
+            tables.Add(table_udnoectc_orders);
+
+
+            Table table_udnoectc_ctcvars = new Table("udnoectc_ctcvars");
+            table_udnoectc_ctcvars.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table_udnoectc_ctcvars.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);       
+            table_udnoectc_ctcvars.AddColumnList("藥名", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc_ctcvars.AddColumnList("變異時間", Table.DateType.DATETIME, 10, Table.IndexType.None);
+            table_udnoectc_ctcvars.AddColumnList("變異原因", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc_ctcvars.AddColumnList("變異內容", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc_ctcvars.AddColumnList("說明", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+
+            if (!sQLControl_udnoectc_ctcvars.IsTableCreat()) sQLControl_udnoectc_ctcvars.CreatTable(table_udnoectc_ctcvars);
+            else sQLControl_udnoectc_ctcvars.CheckAllColumnName(table_udnoectc_ctcvars, true);
+            tables.Add(table_udnoectc_ctcvars);
 
             return tables.JsonSerializationt(true);
         }
