@@ -46,7 +46,6 @@ namespace HIS_DB_Lib
         診斷,
         癌症用藥途徑,
     }
-
     public class ctclistClass
     {
         [JsonPropertyName("GUID")]
@@ -123,152 +122,155 @@ namespace HIS_DB_Lib
         public string 癌症用藥途徑 { get; set; }
 
         [JsonPropertyName("udAry")]
-        public List<udAryClass> udAry { get; set; }
+        public List<ctclist_udAryClass> udAry { get; set; }
         [JsonPropertyName("changAry")]
-        public List<changAryClass> changAry { get; set; }
+        public List<ctclist_changAryClass> changAry { get; set; }
         [JsonPropertyName("ctcAry")]
-        public List<ctcAryClass> ctcAry { get; set; }
+        public List<ctclist_ctcAryClass> ctcAry { get; set; }
         [JsonPropertyName("noteAry")]
-        public List<noteAryClass> noteAry { get; set; }
+        public List<ctclist_noteAryClass> noteAry { get; set; }
 
-        public enum enum_udAry
-        {
-            GUID,
-            Master_GUID,
-            病歷號,
-            藥局代碼,
-            醫囑序號,
-            藥囑序號,
-            服藥順序,
-            REGIMEN編號,
-            藥碼,
-            藥囑名稱,
-            自費,
-            劑量,
-            頻次,
-            途徑,
-            天數,
-            開始時間,
-            結束時間,
-            藥品外型外觀,
-            藥品使用,
-            藥品下方註記,
-            藥品圖片網址,
-        }
-        public enum enum_changAry
-        {
-            GUID,
-            Master_GUID,
-            藥品名稱,
-            變異時間,
-            變異原因,
-            變異內容,
-        }
-        public enum enum_ctcAry
-        {
-            GUID,
-            Master_GUID,
-            歷經第幾次化療,
-            開立日期,
-            Regimen名稱,
-        }
-        public enum enum_noteAry
-        {
-            GUID,
-            Master_GUID,
-            藥品名稱,
-            調整與注意事項,
-        }
-        public class udAryClass
-        {
-            [JsonPropertyName("GUID")]
-            public string GUID { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string Master_GUID { get; set; }
-            [JsonPropertyName("hhisnum")]
-            public string 病歷號 { get; set; }
-            [JsonPropertyName("hcasetyp")]
-            public string 藥局代碼 { get; set; }
-            [JsonPropertyName("hcaseno")]
-            public string 醫囑序號 { get; set; }
-            [JsonPropertyName("udordseq")]
-            public string 藥囑序號 { get; set; }
-            [JsonPropertyName("udseqseq")]
-            public string 服藥順序 { get; set; }
-            [JsonPropertyName("udstaseq")]
-            public string REGIMEN編號 { get; set; }
-            [JsonPropertyName("uddrgno")]
-            public string 藥碼 { get; set; }      
-            [JsonPropertyName("udmdpnam")]
-            public string 藥囑名稱 { get; set; }
-            [JsonPropertyName("udselbuy")]
-            public string 自費 { get; set; }
-            [JsonPropertyName("uddosage")]
-            public string 劑量 { get; set; }
-            [JsonPropertyName("udfreqn")]
-            public string 頻次 { get; set; }
-            [JsonPropertyName("udroute")]
-            public string 途徑 { get; set; }
-            [JsonPropertyName("uddurat")]
-            public string 天數 { get; set; }
-            [JsonPropertyName("udbgndt")]
-            public string 開始日 { get; set; }
-            [JsonPropertyName("udbgntm")]
-            public string 開始時間 { get; set; }
-            [JsonPropertyName("udenddt")]
-            public string 結束日 { get; set; }
-            [JsonPropertyName("udendtm")]
-            public string 結束時間 { get; set; }
+      
+    }
 
-            [JsonPropertyName("coldesch")]
-            public string 藥品外型外觀 { get; set; }
-            [JsonPropertyName("aprdesch")]
-            public string 藥品使用 { get; set; }
-            [JsonPropertyName("udwords")]
-            public string 藥品下方註記 { get; set; }
-            [JsonPropertyName("udpicUrl")]
-            public string 藥品圖片網址 { get; set; }
-        }
-        public class changAryClass
-        {
-            [JsonPropertyName("GUID")]
-            public string GUID { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string Master_GUID { get; set; }
-            [JsonPropertyName("udmdpnam")]
-            public string 藥品名稱 { get; set; }
-            [JsonPropertyName("usdate")]
-            public string 變異日期 { get; set; }
-            [JsonPropertyName("ustime")]
-            public string 變異時間 { get; set; }
-            [JsonPropertyName("varrsn")]
-            public string 變異原因 { get; set; }
-            [JsonPropertyName("vardata")]
-            public string 變異內容 { get; set; }
-        }
-        public class ctcAryClass
-        {
-            [JsonPropertyName("GUID")]
-            public string GUID { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string Master_GUID { get; set; }
-            [JsonPropertyName("ctcseq")]
-            public string 歷經第幾次化療 { get; set; }
-            [JsonPropertyName("udbgndt")]
-            public string 開立日期 { get; set; }
-            [JsonPropertyName("regname")]
-            public string Regimen名稱 { get; set; }
-        }
-        public class noteAryClass
-        {
-            [JsonPropertyName("GUID")]
-            public string GUID { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string Master_GUID { get; set; }
-            [JsonPropertyName("dgname")]
-            public string 藥品名稱 { get; set; }
-            [JsonPropertyName("dgnote")]
-            public string 調整與注意事項 { get; set; }
-        }
+
+    public enum enum_ctclist_udAry
+    {
+        GUID,
+        Master_GUID,
+        病歷號,
+        藥局代碼,
+        醫囑序號,
+        藥囑序號,
+        服藥順序,
+        REGIMEN編號,
+        藥碼,
+        藥囑名稱,
+        自費,
+        劑量,
+        頻次,
+        途徑,
+        天數,
+        開始時間,
+        結束時間,
+        藥品外型外觀,
+        藥品使用,
+        藥品下方註記,
+        藥品圖片網址,
+    }
+    public enum enum_ctclist_changAry
+    {
+        GUID,
+        Master_GUID,
+        藥品名稱,
+        變異時間,
+        變異原因,
+        變異內容,
+    }
+    public enum enum_ctclist_ctcAry
+    {
+        GUID,
+        Master_GUID,
+        歷經第幾次化療,
+        開立日期,
+        Regimen名稱,
+    }
+    public enum enum_ctclist_noteAry
+    {
+        GUID,
+        Master_GUID,
+        藥品名稱,
+        調整與注意事項,
+    }
+    public class ctclist_udAryClass
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        [JsonPropertyName("hhisnum")]
+        public string 病歷號 { get; set; }
+        [JsonPropertyName("hcasetyp")]
+        public string 藥局代碼 { get; set; }
+        [JsonPropertyName("hcaseno")]
+        public string 醫囑序號 { get; set; }
+        [JsonPropertyName("udordseq")]
+        public string 藥囑序號 { get; set; }
+        [JsonPropertyName("udseqseq")]
+        public string 服藥順序 { get; set; }
+        [JsonPropertyName("udstaseq")]
+        public string REGIMEN編號 { get; set; }
+        [JsonPropertyName("uddrgno")]
+        public string 藥碼 { get; set; }
+        [JsonPropertyName("udmdpnam")]
+        public string 藥囑名稱 { get; set; }
+        [JsonPropertyName("udselbuy")]
+        public string 自費 { get; set; }
+        [JsonPropertyName("uddosage")]
+        public string 劑量 { get; set; }
+        [JsonPropertyName("udfreqn")]
+        public string 頻次 { get; set; }
+        [JsonPropertyName("udroute")]
+        public string 途徑 { get; set; }
+        [JsonPropertyName("uddurat")]
+        public string 天數 { get; set; }
+        [JsonPropertyName("udbgndt")]
+        public string 開始日 { get; set; }
+        [JsonPropertyName("udbgntm")]
+        public string 開始時間 { get; set; }
+        [JsonPropertyName("udenddt")]
+        public string 結束日 { get; set; }
+        [JsonPropertyName("udendtm")]
+        public string 結束時間 { get; set; }
+
+        [JsonPropertyName("coldesch")]
+        public string 藥品外型外觀 { get; set; }
+        [JsonPropertyName("aprdesch")]
+        public string 藥品使用 { get; set; }
+        [JsonPropertyName("udwords")]
+        public string 藥品下方註記 { get; set; }
+        [JsonPropertyName("udpicUrl")]
+        public string 藥品圖片網址 { get; set; }
+    }
+    public class ctclist_changAryClass
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        [JsonPropertyName("udmdpnam")]
+        public string 藥品名稱 { get; set; }
+        [JsonPropertyName("usdate")]
+        public string 變異日期 { get; set; }
+        [JsonPropertyName("ustime")]
+        public string 變異時間 { get; set; }
+        [JsonPropertyName("varrsn")]
+        public string 變異原因 { get; set; }
+        [JsonPropertyName("vardata")]
+        public string 變異內容 { get; set; }
+    }
+    public class ctclist_ctcAryClass
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        [JsonPropertyName("ctcseq")]
+        public string 歷經第幾次化療 { get; set; }
+        [JsonPropertyName("udbgndt")]
+        public string 開立日期 { get; set; }
+        [JsonPropertyName("regname")]
+        public string Regimen名稱 { get; set; }
+    }
+    public class ctclist_noteAryClass
+    {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("Master_GUID")]
+        public string Master_GUID { get; set; }
+        [JsonPropertyName("dgname")]
+        public string 藥品名稱 { get; set; }
+        [JsonPropertyName("dgnote")]
+        public string 調整與注意事項 { get; set; }
     }
 }

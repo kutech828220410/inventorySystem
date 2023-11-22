@@ -108,6 +108,7 @@
     <Compile Include="takeMedicineStackClass.cs" />
     <Compile Include="transactionsClass.cs" />
     <Compile Include="udnoectc.cs" />
+    <Compile Include="udphnoph.cs" />
     <Compile Include="updateVersionClass.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -45,7 +45,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_ctclist(HIS_DB_Lib.ctclistClass)">
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_ctclist_ex(HIS_DB_Lib.ctclistClass)">
             <summary>
             新增處方至資料庫
             </summary>
@@ -99,7 +99,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udnoectc(HIS_DB_Lib.udnoectc)">
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udnoectc_ex(HIS_DB_Lib.udnoectc)">
             <summary>
             新增配藥通知至資料庫
             </summary>
@@ -116,6 +116,60 @@
         <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udnoectc(HIS_DB_Lib.returnData)">
             <summary>
             新增配藥通知至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init_udphnoph(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化領藥通知資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udphnoph_ex(HIS_DB_Lib.udphnoph)">
+            <summary>
+            新增領藥通知至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+              }
+            </code>
+            </remarks>
+            <param name="udphnophClass">化療領藥通知結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udphnoph(HIS_DB_Lib.returnData)">
+            <summary>
+            新增領藥通知至資料庫
             </summary>
             <remarks>
             以下為範例JSON範例
