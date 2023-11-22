@@ -45,6 +45,7 @@ namespace HIS_DB_Lib
         Pulmdata,
         診斷,
         癌症用藥途徑,
+        加入時間,
     }
     public class ctclistClass
     {
@@ -130,7 +131,8 @@ namespace HIS_DB_Lib
         [JsonPropertyName("noteAry")]
         public List<ctclist_noteAryClass> noteAry { get; set; }
 
-      
+        [JsonPropertyName("ctdate")]
+        public string 加入時間 { get; set; }
     }
 
 
@@ -231,6 +233,8 @@ namespace HIS_DB_Lib
         public string 藥品下方註記 { get; set; }
         [JsonPropertyName("udpicUrl")]
         public string 藥品圖片網址 { get; set; }
+
+        
     }
     public class ctclist_changAryClass
     {

@@ -29,6 +29,7 @@ namespace HIS_DB_Lib
         就醫序號,
         醫囑序號,
         化學治療前檢核項目,
+        加入時間,
     }
     public class udnoectc
     {
@@ -80,6 +81,8 @@ namespace HIS_DB_Lib
                 化學治療前檢核項目 = value.JsonSerializationt();
             }
         }
+        [JsonPropertyName("ctdate")]
+        public string 加入時間 { get; set; }
 
         public string 化學治療前檢核項目 { get; set; }
 

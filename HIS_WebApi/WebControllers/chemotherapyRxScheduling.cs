@@ -143,6 +143,7 @@ namespace HIS_WebApi
 
                 string Master_GUID = Guid.NewGuid().ToString();
                 ctclist[(int)enum_ctclist.GUID] = Master_GUID;
+                ctclist[(int)enum_ctclist.加入時間] = DateTime.Now.ToDateTimeString_6();
                 for (int i = 0; i < ctclist_udAry.Count; i++)
                 {
                     ctclist_udAry[i][(int)enum_ctclist_udAry.GUID] = Guid.NewGuid().ToString();
@@ -320,12 +321,13 @@ namespace HIS_WebApi
                 string[] udnoectc_serch_value = new string[] { $"{病歷號}", $"{診別}", $"{就醫序號}", $"{醫囑序號}" };
                 string Master_GUID = "";
                 list_udnoectc = sQLControl_udnoectc.GetRowsByDefult(null, udnoectc_serch_colname, udnoectc_serch_value);
-                if(list_udnoectc.Count == 0)
+                if(list_udnoectc.Count == 0 || true)
                 {
                     Master_GUID = Guid.NewGuid().ToString();
                     object[] value = _udnoectc;
                     value[(int)enum_udnoectc.GUID] = Master_GUID;
-                  
+                    value[(int)enum_udnoectc.加入時間] = DateTime.Now.ToDateTimeString_6();
+
                     list_udnoectc_Add.Add(value);
                 }
                 else
@@ -354,7 +356,7 @@ namespace HIS_WebApi
                 sQLControl_udnoectc_orders.AddRows(null, udnoectc_order);
                 sQLControl_udnoectc_ctcvars.AddRows(null, udnoectc_ctcvars);
 
-                returnData.Result = $"udnoectc 新增<{list_udnoectc_Add.Count}>筆,修改<{list_udnoectc_Replace.Count}>筆 ";
+                returnData.Result = $"udnoectc 新增<{list_udnoectc_Add.Count}>筆,";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
                 return returnData.JsonSerializationt(true);
@@ -496,12 +498,12 @@ namespace HIS_WebApi
                 string[] udphnoph_serch_value = new string[] { $"{通知時間}" };
                 string Master_GUID = "";
                 list_udphnoph = sQLControl_udphnoph.GetRowsByDefult(null, udphnoph_serch_colname, udphnoph_serch_value);
-                if (list_udphnoph.Count == 0)
+                if (list_udphnoph.Count == 0 || true)
                 {
                     Master_GUID = Guid.NewGuid().ToString();
                     object[] value = _udphnoph;
                     value[(int)enum_udphnoph.GUID] = Master_GUID;
-
+                    value[(int)enum_udphnoph.加入時間] = DateTime.Now.ToDateTimeString_6();
                     list_udphnoph_Add.Add(value);
                 }
                 else
@@ -524,7 +526,7 @@ namespace HIS_WebApi
                 if (list_udphnoph_Replace.Count > 0) sQLControl_udphnoph.UpdateByDefulteExtra(null, list_udphnoph_Replace);
                 sQLControl_udphnoph_orders.AddRows(null, udphnoph_order);
 
-                returnData.Result = $"udphnoph 新增<{list_udphnoph_Add.Count}>筆,修改<{list_udphnoph_Replace.Count}>筆 ";
+                returnData.Result = $"udphnoph 新增<{list_udphnoph_Add.Count}>筆";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
                 return returnData.JsonSerializationt(true);
@@ -590,6 +592,8 @@ namespace HIS_WebApi
             table_ctclist.AddColumnList("Pulmdata", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table_ctclist.AddColumnList("診斷", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table_ctclist.AddColumnList("癌症用藥途徑", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table_ctclist.AddColumnList("加入時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
+
             if (!sQLControl_ctclist.IsTableCreat()) sQLControl_ctclist.CreatTable(table_ctclist);
             else sQLControl_ctclist.CheckAllColumnName(table_ctclist, true);
             tables.Add(table_ctclist);
@@ -685,6 +689,7 @@ namespace HIS_WebApi
             table_udnoectc.AddColumnList("就醫序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
             table_udnoectc.AddColumnList("醫囑序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
             table_udnoectc.AddColumnList("化學治療前檢核項目", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc.AddColumnList("加入時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
             if (!sQLControl_udnoectc.IsTableCreat()) sQLControl_udnoectc.CreatTable(table_udnoectc);
             else sQLControl_udnoectc.CheckAllColumnName(table_udnoectc, true);
             tables.Add(table_udnoectc);
@@ -753,6 +758,7 @@ namespace HIS_WebApi
             table_udphnoph.AddColumnList("性別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_udphnoph.AddColumnList("身分", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_udphnoph.AddColumnList("發藥醫師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_udphnoph.AddColumnList("加入時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
 
             if (!sQLControl_udphnoph.IsTableCreat()) sQLControl_udphnoph.CreatTable(table_udphnoph);
             else sQLControl_udphnoph.CheckAllColumnName(table_udphnoph, true);

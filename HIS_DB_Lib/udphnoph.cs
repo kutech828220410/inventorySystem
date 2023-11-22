@@ -23,6 +23,7 @@ namespace HIS_DB_Lib
         性別,
         身分,
         發藥醫師,
+        加入時間,
     }
     public class udphnoph
     {
@@ -54,7 +55,9 @@ namespace HIS_DB_Lib
         public string 發藥醫師 { get; set; }
         [JsonPropertyName("orders")]
         public List<udphnoph_ordersClass> ordersAry { get; set; }
-       
+        public string 加入時間 { get; set; }
+
+
     }
     public enum enum_udphnoph_orders
     {
@@ -78,6 +81,8 @@ namespace HIS_DB_Lib
         頻次2,
         數量2,
         醫囑2,
+
+
     }
     public class udphnoph_ordersClass
     {
@@ -117,6 +122,7 @@ namespace HIS_DB_Lib
         public string 頻次2 { get; set; }
         [JsonPropertyName("rlqnty2")]
         public string 數量2 { get; set; }
-
+        [JsonPropertyName("ctdate")]
+        public string 加入時間 { get; set; }
     }
 }
