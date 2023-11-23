@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-UpdateVersion", "E-Update
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "勤務傳送櫃", "勤務傳送櫃\勤務傳送櫃.csproj", "{8685E561-35B8-45D4-A21C-B465884C14FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "癌症自動備藥機暨自動備藥系統", "癌症自動備藥機暨排程系統\癌症自動備藥機暨自動備藥系統.csproj", "{9952E5D3-B159-497F-9DED-612B4B5E1C98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{8685E561-35B8-45D4-A21C-B465884C14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8685E561-35B8-45D4-A21C-B465884C14FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
