@@ -25,6 +25,11 @@
               查詢類似 ConfigurationManager 的當地語系化字串。
             </summary>
         </member>
+        <member name="T:HIS_WebApi.ChemotherapyRxScheduling">
+            <summary>
+            化療藥局癌症備藥系統
+            </summary>
+        </member>
         <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init_ctclist(HIS_DB_Lib.returnData)">
             <summary>
             初始化處方資料庫
@@ -126,6 +131,27 @@
                 "Data": 
                 {
              
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_get_udnoectc_by_ctdate(HIS_DB_Lib.returnData)">
+            <summary>
+            以加入時間的時間範圍取得配藥通知
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Value" : "2023-11-24 00:00:00,2023-11-24 23:59:59",
+                "Data": 
+                {
+                  
                 }
               }
             </code>

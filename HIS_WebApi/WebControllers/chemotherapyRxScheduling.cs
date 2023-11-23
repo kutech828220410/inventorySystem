@@ -13,6 +13,9 @@ using System.Configuration;
 using HIS_DB_Lib;
 namespace HIS_WebApi
 {
+    /// <summary>
+    /// 化療藥局癌症備藥系統
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ChemotherapyRxScheduling : ControllerBase
@@ -305,10 +308,10 @@ namespace HIS_WebApi
                 List<object[]> list_udnoectc = new List<object[]>();
                 List<object[]> list_udnoectc_Add = new List<object[]>();
                 List<object[]> list_udnoectc_Replace = new List<object[]>();
-                List<object[]> udnoectc_order = udnoectcClass.ordersAry.ClassToSQL<udnoectc_ordersClass, enum_udnoectc_orders>();
+                List<object[]> udnoectc_order = udnoectcClass.ordersAry.ClassToSQL<udnoectc_orders, enum_udnoectc_orders>();
                 List<object[]> list_udnoectc_order_Add = new List<object[]>();
                 List<object[]> list_udnoectc_order_Replace = new List<object[]>();
-                List<object[]> udnoectc_ctcvars = udnoectcClass.ctcvarsAry.ClassToSQL<udnoectc_ctcvarsClass, enum_udnoectc_ctcvars>();
+                List<object[]> udnoectc_ctcvars = udnoectcClass.ctcvarsAry.ClassToSQL<udnoectc_ctcvars, enum_udnoectc_ctcvars>();
                 List<object[]> list_udnoectc_ctcvars_Add = new List<object[]>();
                 List<object[]> list_udnoectc_ctcvars_Replace = new List<object[]>();
 
@@ -356,8 +359,109 @@ namespace HIS_WebApi
                 sQLControl_udnoectc_orders.AddRows(null, udnoectc_order);
                 sQLControl_udnoectc_ctcvars.AddRows(null, udnoectc_ctcvars);
 
-                returnData.Result = $"udnoectc 新增<{list_udnoectc_Add.Count}>筆,";
+                returnData.Result = $"udnoectc 新增<{list_udnoectc_Add.Count}>筆";
                 returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+        /// <summary>
+        /// 以加入時間的時間範圍取得配藥通知
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "cheom",
+        ///     "ServerType" : "癌症備藥機",
+        ///     "Value" : "2023-11-24 00:00:00,2023-11-24 23:59:59",
+        ///     "Data": 
+        ///     {
+        ///       
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_udnoectc_by_ctdate_st_end")]
+        [HttpPost]
+        public string POST_get_udnoectc_by_ctdate(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_udnoectc_by_ctdate_st_end";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                udnoectc udnoectcClass = returnData.Data.ObjToClass<udnoectc>();
+                if (udnoectcClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料結構錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                if(returnData.Value.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 空白!";
+                    return returnData.JsonSerializationt(true);
+                }
+                string[] dateTimes = returnData.Value.Split(',');
+                if(dateTimes.Length != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 資料錯誤!";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (dateTimes[0].Check_Date_String() == false || dateTimes[1].Check_Date_String() == false)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 資料錯誤!";
+                    return returnData.JsonSerializationt(true);
+                }
+                returnData.Data = "";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_udnoectc = sQLControl_udnoectc.GetRowsByBetween(null, (int)enum_udnoectc.加入時間, dateTimes[0], dateTimes[1]);
+                List<object[]> list_udnoectc_orders = new List<object[]>();
+                List<object[]> list_udnoectc_ctcvars = new List<object[]>();
+                List<udnoectc> udnoectcs = list_udnoectc.SQLToClass<udnoectc, enum_udnoectc>();
+                for (int i = 0; i < udnoectcs.Count; i++)
+                {
+                    string Master_GUID = udnoectcs[i].GUID;
+                    list_udnoectc_orders = sQLControl_udnoectc_orders.GetRowsByDefult(null, (int)enum_udnoectc_orders.Master_GUID, Master_GUID);
+                    udnoectcs[i].ordersAry = list_udnoectc_orders.SQLToClass<udnoectc_orders, enum_udnoectc_orders>();
+                    list_udnoectc_ctcvars = sQLControl_udnoectc_ctcvars.GetRowsByDefult(null, (int)enum_udnoectc_ctcvars.Master_GUID, Master_GUID);
+                    udnoectcs[i].ctcvarsAry = list_udnoectc_ctcvars.SQLToClass<udnoectc_ctcvars, enum_udnoectc_ctcvars>();
+                }
+
+                returnData.Result = $"取得資料成功!共<{udnoectcs.Count}>筆資料!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = udnoectcs;
                 returnData.Code = 200;
                 return returnData.JsonSerializationt(true);
             }
@@ -541,7 +645,6 @@ namespace HIS_WebApi
 
         }
 
-
         private string CheckCreatTable_ctclist(ServerSettingClass serverSettingClass)
         {
             string Server = serverSettingClass.Server;
@@ -689,7 +792,15 @@ namespace HIS_WebApi
             table_udnoectc.AddColumnList("就醫序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
             table_udnoectc.AddColumnList("醫囑序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
             table_udnoectc.AddColumnList("化學治療前檢核項目", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc.AddColumnList("醫囑確認藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_udnoectc.AddColumnList("醫囑確認時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
+            table_udnoectc.AddColumnList("調劑藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_udnoectc.AddColumnList("調劑完成時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
+            table_udnoectc.AddColumnList("核對藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_udnoectc.AddColumnList("核對時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
             table_udnoectc.AddColumnList("加入時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
+       
+
             if (!sQLControl_udnoectc.IsTableCreat()) sQLControl_udnoectc.CreatTable(table_udnoectc);
             else sQLControl_udnoectc.CheckAllColumnName(table_udnoectc, true);
             tables.Add(table_udnoectc);
@@ -713,6 +824,9 @@ namespace HIS_WebApi
             table_udnoectc_orders.AddColumnList("數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_udnoectc_orders.AddColumnList("處方開始時間", Table.DateType.DATETIME, 10, Table.IndexType.INDEX);
             table_udnoectc_orders.AddColumnList("處方結束時間", Table.DateType.DATETIME, 10, Table.IndexType.INDEX);
+            table_udnoectc_orders.AddColumnList("已備藥完成", Table.StringType.VARCHAR, 10, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("備藥藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("備藥完成時間", Table.DateType.DATETIME, 10, Table.IndexType.INDEX);
             if (!sQLControl_udnoectc_orders.IsTableCreat()) sQLControl_udnoectc_orders.CreatTable(table_udnoectc_orders);
             else sQLControl_udnoectc_orders.CheckAllColumnName(table_udnoectc_orders, true);
             tables.Add(table_udnoectc_orders);

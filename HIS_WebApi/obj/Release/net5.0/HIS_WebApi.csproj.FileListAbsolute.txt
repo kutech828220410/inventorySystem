@@ -2253,3 +2253,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\ne
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_DB_Lib.xml

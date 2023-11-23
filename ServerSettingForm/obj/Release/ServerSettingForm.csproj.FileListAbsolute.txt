@@ -592,3 +592,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\ServerSettingForm\obj\Rel
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\ServerSettingForm\obj\Release\ServerSettingForm.pdb
+C:\Users\HS\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\HIS_DB_Lib.xml

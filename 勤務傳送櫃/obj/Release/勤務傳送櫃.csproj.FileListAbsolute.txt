@@ -1055,3 +1055,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\obj\Relea
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\obj\Release\勤務傳送系統.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\obj\Release\勤務傳送系統.pdb
+C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml

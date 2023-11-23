@@ -254,9 +254,9 @@
             備藥藥師
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.udnoectc_orders.備藥完成時間">
+        <member name="P:HIS_DB_Lib.udnoectc_orders.備藥時間">
             <summary>
-            備藥完成時間
+            備藥時間
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.udnoectc_ctcvars">

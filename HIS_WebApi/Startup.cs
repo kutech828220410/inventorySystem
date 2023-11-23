@@ -82,7 +82,12 @@ namespace HIS_WebApi
                 // 讀取 XML 檔案產生 API 說明
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                var xmlFile_HIS_DB_Lib = $"HIS_DB_Lib.xml";
+                var xmlPath_HIS_DB_Lib = Path.Combine(AppContext.BaseDirectory, xmlFile_HIS_DB_Lib);
+
                 c.IncludeXmlComments(xmlPath);
+                c.IncludeXmlComments(xmlPath_HIS_DB_Lib);
             });
         }
 
