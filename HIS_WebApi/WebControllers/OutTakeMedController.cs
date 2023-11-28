@@ -187,6 +187,77 @@ namespace HIS_WebApi
 
         }
 
+        [Route("light_on")]
+        [HttpPost]
+        public string POST_light_on(returnData returnData)
+        {
+            try
+            {
+                MyTimerBasic myTimerBasic = new MyTimerBasic();
+          
+                returnData.Method = "POST_light_on";
+                string input_str = returnData.Value;
+                if (input_str.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "Value空白,請輸入[藥碼,R,G,B]!";
+                    return returnData.JsonSerializationt();
+                }
+                string[] input_str_Ary = input_str.Split(",");
+                if (input_str_Ary.Length != 4)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "Value格式錯誤,請輸入[藥碼,R,G,B]!";
+                    return returnData.JsonSerializationt();
+                }
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(returnData.ServerName, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
+                if(serverSettingClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "找無serverSettingClass資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string IP = serverSettingClass.Server;
+                string DataBaseName = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                SQLControl sQLControl_take_medicine_stack = new SQLControl(IP, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+                string 藥碼 = input_str_Ary[0];
+                byte R = (byte)(input_str_Ary[1].StringToInt32());
+                byte G = (byte)(input_str_Ary[2].StringToInt32());
+                byte B = (byte)(input_str_Ary[3].StringToInt32());
+                object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
+                value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid();
+                value[(int)enum_取藥堆疊母資料.序號] = DateTime.Now.ToDateTimeString_6();
+                value[(int)enum_取藥堆疊母資料.藥品碼] = 藥碼;
+                value[(int)enum_取藥堆疊母資料.調劑台名稱] = "儲位亮燈";
+
+                value[(int)enum_取藥堆疊母資料.開方時間] = DateTime.Now.ToDateTimeString();
+                value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString();
+                value[(int)enum_取藥堆疊母資料.顏色] = Color.FromArgb(R,G,B).ToColorString();
+                value[(int)enum_取藥堆疊母資料.狀態] = "None";
+
+    
+ 
+
+                sQLControl_take_medicine_stack.AddRow(null, value);
+
+                returnData.Data = "";
+                returnData.Code = 200;
+                returnData.Result = $"亮燈完成! 藥碼:{input_str_Ary[0]},Color({input_str_Ary[1]},{input_str_Ary[2]},{input_str_Ary[3]})";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
 
         #region Function
         private string single_med_take(string name, List<class_OutTakeMed_data> data)
