@@ -1520,3 +1520,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\E-UpdateVersion\obj\Relea
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\E-UpdateVersion\obj\Release\E-UpdateVersion.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\E-UpdateVersion\obj\Release\E-UpdateVersion.pdb
 C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\HIS_DB_Lib.xml

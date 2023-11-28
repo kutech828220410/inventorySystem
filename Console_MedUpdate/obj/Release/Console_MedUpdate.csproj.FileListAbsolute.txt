@@ -489,3 +489,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\Console_MedUpdate\obj\Rel
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\Console_MedUpdate\obj\Release\Console_MedUpdate.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\Console_MedUpdate\obj\Release\Console_MedUpdate.pdb
 C:\Users\HS\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml

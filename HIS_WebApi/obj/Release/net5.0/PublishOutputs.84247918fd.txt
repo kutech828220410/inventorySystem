@@ -169,4 +169,5 @@ C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OOXML.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_DB_Lib.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.xml
