@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Basic.dll" size="193536">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Basic.dll" size="194048">
       <assemblyIdentity name="Basic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>RhH70xwze5MJUYw4vkwVZKOTg7ffOfBpdIsTeuiRJQo=</dsig:DigestValue>
+        <dsig:DigestValue>RWxe/IGKnGvrgwLhtz7b8VNcss0gsz2hIrmJpW5JYps=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -325,7 +325,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>D2hsBNIgIyKWEZzgE+LLchXid2ToetksZeMxTCsluaI=</dsig:DigestValue>
+        <dsig:DigestValue>cvhAvrqpGbb4J9EmlOfhem1xdkFOBRHKmSHvUc+WIjw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -426,14 +426,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="139264">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="141824">
       <assemblyIdentity name="SQLUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GUtGdgnTpcKFzYqky/dPe3gJabnUI/mDR5tmegB7qZ0=</dsig:DigestValue>
+        <dsig:DigestValue>qICWZBBPl8rNTHpJapDae9Y6riqx/3G78hKZfIwsLTw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
