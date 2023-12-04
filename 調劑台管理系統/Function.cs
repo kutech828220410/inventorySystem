@@ -1274,7 +1274,7 @@ namespace 調劑台管理系統
                         if (storage != null)
                         {
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.Pannel35_lock) list_lock_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.Pannel35 || device.DeviceType == DeviceType.Pannel35_lock) list_lock_IP.Add(IP);
                         }
                     }
                     else if (device.DeviceType == DeviceType.RowsLED)
@@ -1390,6 +1390,7 @@ namespace 調劑台管理系統
                             Task allTask = Task.WhenAll(taskList);
                             allTask.Wait();
                             list_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.Pannel35 || device.DeviceType == DeviceType.Pannel35_lock) list_lock_IP.Add(IP);
                         }
                     }
                     else if (device.DeviceType == DeviceType.RowsLED)

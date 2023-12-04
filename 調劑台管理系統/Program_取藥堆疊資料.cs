@@ -355,10 +355,7 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_取藥堆疊子資料.SQL_Delete(enum_取藥堆疊子資料.GUID.GetEnumName(), GUID, false);
                 if (藥品碼.StringIsEmpty()) return;
 
-                //if (color_off)
-                //{
-                //    this.Function_儲位亮燈(藥品碼, Color.Black);
-                //}
+                this.Function_儲位亮燈(藥品碼, Color.Black);
 
             }
         }

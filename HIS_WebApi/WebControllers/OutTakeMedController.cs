@@ -63,7 +63,6 @@ namespace HIS_WebApi
             }
 
         }
-
         [Route("statu")]
         [HttpGet()]
         public string Get_statu()
@@ -78,7 +77,6 @@ namespace HIS_WebApi
 
             return jsonString;
         }
-
         [Route("Sample")]
         [HttpGet()]
         public string Get_Sample()
@@ -128,7 +126,6 @@ namespace HIS_WebApi
 
             return jsonString;
         }
-
         [Route("new")]
         [HttpPost]
         public string Post([FromBody] returnData returnData)
@@ -186,7 +183,6 @@ namespace HIS_WebApi
             }
 
         }
-
         [Route("light_on")]
         [HttpPost]
         public string POST_light_on(returnData returnData)
