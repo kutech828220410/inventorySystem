@@ -25,194 +25,6 @@
               查詢類似 ConfigurationManager 的當地語系化字串。
             </summary>
         </member>
-        <member name="T:HIS_WebApi.ChemotherapyRxScheduling">
-            <summary>
-            化療藥局癌症備藥系統
-            </summary>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init_ctclist(HIS_DB_Lib.returnData)">
-            <summary>
-            初始化處方資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "ServerName" : "cheom",
-                "ServerType" : "癌症備藥機",
-                "Data": 
-                {
-             
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_ctclist_ex(HIS_DB_Lib.ctclistClass)">
-            <summary>
-            新增處方至資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-              }
-            </code>
-            </remarks>
-            <param name="ctclistClass">化療處方結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_ctclist(HIS_DB_Lib.returnData)">
-            <summary>
-            新增處方至資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "ServerName" : "cheom",
-                "ServerType" : "癌症備藥機",
-                "Data": 
-                {
-             
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init_udnoectc(HIS_DB_Lib.returnData)">
-            <summary>
-            初始化配藥通知資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "ServerName" : "cheom",
-                "ServerType" : "癌症備藥機",
-                "Data": 
-                {
-             
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udnoectc_ex(HIS_DB_Lib.udnoectc)">
-            <summary>
-            新增配藥通知至資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-              }
-            </code>
-            </remarks>
-            <param name="udnoectcClass">化療配藥通知結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udnoectc(HIS_DB_Lib.returnData)">
-            <summary>
-            新增配藥通知至資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "ServerName" : "cheom",
-                "ServerType" : "癌症備藥機",
-                "Data": 
-                {
-             
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_get_udnoectc_by_ctdate(HIS_DB_Lib.returnData)">
-            <summary>
-            以加入時間的時間範圍取得配藥通知
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "ServerName" : "cheom",
-                "ServerType" : "癌症備藥機",
-                "Value" : "2023-11-24 00:00:00,2023-11-24 23:59:59",
-                "Data": 
-                {
-                  
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init_udphnoph(HIS_DB_Lib.returnData)">
-            <summary>
-            初始化領藥通知資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "ServerName" : "cheom",
-                "ServerType" : "癌症備藥機",
-                "Data": 
-                {
-             
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udphnoph_ex(HIS_DB_Lib.udphnoph)">
-            <summary>
-            新增領藥通知至資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-              }
-            </code>
-            </remarks>
-            <param name="udphnophClass">化療領藥通知結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udphnoph(HIS_DB_Lib.returnData)">
-            <summary>
-            新增領藥通知至資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "ServerName" : "cheom",
-                "ServerType" : "癌症備藥機",
-                "Data": 
-                {
-             
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
         <member name="M:HIS_WebApi.inspectionController.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化驗收單資料庫
@@ -1369,6 +1181,219 @@
              --------------------------------------------<br/> 
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="T:HIS_WebApi.ChemotherapyRxScheduling">
+            <summary>
+            化療藥局癌症排程處方系統
+            </summary>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init_ctclist(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化處方資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_ctclist_ex(HIS_DB_Lib.ctclistClass)">
+            <summary>
+            新增處方至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+              }
+            </code>
+            </remarks>
+            <param name="ctclistClass">化療處方結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_ctclist(HIS_DB_Lib.returnData)">
+            <summary>
+            新增處方至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init_udnoectc(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化配藥通知資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udnoectc_ex(HIS_DB_Lib.udnoectc)">
+            <summary>
+            新增配藥通知至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+              }
+            </code>
+            </remarks>
+            <param name="udnoectcClass">化療配藥通知結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udnoectc(HIS_DB_Lib.returnData)">
+            <summary>
+            新增配藥通知至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_get_udnoectc_by_ctdate(HIS_DB_Lib.returnData)">
+            <summary>
+            以加入時間的時間範圍取得配藥通知
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Value" : "2023-11-24 00:00:00,2023-11-24 23:59:59",
+                "Data": 
+                {
+                  
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.GET_init_udphnoph(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化領藥通知資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udphnoph_ex(HIS_DB_Lib.udphnoph)">
+            <summary>
+            新增領藥通知至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+              }
+            </code>
+            </remarks>
+            <param name="udphnophClass">化療領藥通知結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ChemotherapyRxScheduling.POST_add_udphnoph(HIS_DB_Lib.returnData)">
+            <summary>
+            新增領藥通知至資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="T:HIS_WebApi.CPMP_StorageConfig">
+            <summary>
+            化療藥局癌症備藥機-出料馬達輸出索引表
+            </summary>
+        </member>
+        <member name="M:HIS_WebApi.CPMP_StorageConfig.GET_init_storage_config(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化出料馬達輸出索引表
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "cheom",
+                "ServerType" : "癌症備藥機",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
         </member>
     </members>
 </doc>

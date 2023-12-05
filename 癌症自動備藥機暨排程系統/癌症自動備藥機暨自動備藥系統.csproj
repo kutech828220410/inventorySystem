@@ -223,6 +223,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_buf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_buf.Designer.cs">
+      <DependentUpon>Form_buf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,7 +236,16 @@
       <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Program_系統.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_輸入輸出.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_buf.resx">
+      <DependentUpon>Form_buf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
     </EmbeddedResource>

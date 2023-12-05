@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="733184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="761344">
       <assemblyIdentity name="H_Pannel_lib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>7BhkYGo9tKEVXM7Soh5Hdlk5WYQqb3LaoJxRFeS5zTg=</dsig:DigestValue>
+        <dsig:DigestValue>IW4FNOK7Eox2xGgQ2yVZUaV9J+gYK6pW4L5ABIqBRPg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -426,14 +426,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="141824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="142336">
       <assemblyIdentity name="SQLUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qICWZBBPl8rNTHpJapDae9Y6riqx/3G78hKZfIwsLTw=</dsig:DigestValue>
+        <dsig:DigestValue>GohOuuS1kjWZQkDmKctIu3zq6PBr1QI+3wCfHYxV8N0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

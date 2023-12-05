@@ -1,0 +1,5 @@
+{
+  "Name": "cheom",
+  "Api_Server": "http://220.135.128.247:4433",
+  "Med_Update_ApiURL": ""
+}

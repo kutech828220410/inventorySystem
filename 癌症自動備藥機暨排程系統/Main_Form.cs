@@ -26,6 +26,150 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Main_Form : Form
     {
+        public static string ServerName = "";
+        public static string ServerType = enum_ServerSetting_Type.癌症備藥機.GetEnumName();
+        public static string API_Server = "";
+        public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        #region DBConfigClass
+        private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
+        public DBConfigClass dBConfigClass = new DBConfigClass();
+        public class DBConfigClass
+        {
+
+            public string Name { get => name; set => name = value; }
+            public string Api_Server { get => api_Server; set => api_Server = value; }
+
+            private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_person_page = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_order_list = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_tradding = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
+
+            private string web_URL = "";
+            private string api_URL = "";
+            private string login_URL = "";
+            private string name = "";
+            private string api_Server = "";
+
+            private string orderApiURL = "";
+            private string medApiURL = "";
+            private string med_Update_ApiURL = "";
+
+
+
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_person_page { get => dB_person_page; set => dB_person_page = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_order_list { get => dB_order_list; set => dB_order_list = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_Medicine_Cloud { get => dB_Medicine_Cloud; set => dB_Medicine_Cloud = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_tradding { get => dB_tradding; set => dB_tradding = value; }
+
+            [JsonIgnore]
+            public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
+            [JsonIgnore]
+            public string MedApiURL { get => medApiURL; set => medApiURL = value; }
+            [JsonIgnore]
+            public string Api_URL { get => api_URL; set => api_URL = value; }
+            [JsonIgnore]
+            public string Web_URL { get => web_URL; set => web_URL = value; }
+            [JsonIgnore]
+            public string Login_URL { get => login_URL; set => login_URL = value; }
+
+
+            public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
+
+        }
+        private void LoadDBConfig()
+        {
+
+            this.LoadcommandLineArgs();
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
+            if (jsonstr.StringIsEmpty())
+            {
+
+                jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass(), true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
+                }
+                MyMessageBox.ShowDialog($"未建立參數文件!請至子目錄設定{DBConfigFileName}");
+                Application.Exit();
+            }
+            else
+            {
+                dBConfigClass = Basic.Net.JsonDeserializet<DBConfigClass>(jsonstr);
+
+                jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
+                }
+
+            }
+        }
+        #endregion
+        #region Function
+        private void LoadcommandLineArgs()
+        {
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            if (commandLineArgs.Length >= 3)
+            {
+                dBConfigClass.Api_Server = commandLineArgs[1];
+                dBConfigClass.Name = commandLineArgs[2];
+               
+                jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
+                }
+                return;
+            }
+        }
+        private void ApiServerSetting()
+        {
+            this.ApiServerSetting(dBConfigClass.Name, "一般資料");
+        }
+        private void ApiServerSetting(string Name, string basicName)
+        {
+            string json_result = Basic.Net.WEBApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
+            if (json_result.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("API Server 連結失敗!");
+                return;
+            }
+            Console.WriteLine(json_result);
+            returnData returnData = json_result.JsonDeserializet<returnData>();
+            List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass;
+            ServerName = Name;
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.癌症備藥機, basicName);
+            List<string> DPS_Names = (from temp in serverSettingClasses
+                                      where temp.類別 == enum_ServerSetting_Type.癌症備藥機.GetEnumName()
+                                      select temp.設備名稱).Distinct().ToList();
+
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_Basic.IP = serverSettingClass.Server;
+                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_Basic.UserName = serverSettingClass.User;
+                dBConfigClass.DB_Basic.Password = serverSettingClass.Password;
+            }
+            API_Server = dBConfigClass.Api_Server;
+        }
+        #endregion
         public Main_Form()
         {
             InitializeComponent();
@@ -43,9 +187,16 @@ namespace 癌症自動備藥機暨排程系統
         private void PlC_UI_Init_UI_Finished_Event()
         {
             this.WindowState = FormWindowState.Maximized;
-            PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
 
-            string url = $"http://220.135.128.247:4433/api/ChemotherapyRxScheduling/init_udnoectc";
+            LoadDBConfig();
+            ApiServerSetting();
+
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
+
+            Program_系統_Init();
+
+            string url = $"{API_Server}/api/ChemotherapyRxScheduling/init_udnoectc";
             returnData returnData = new returnData();
             returnData.ServerName = "cheom";
             returnData.ServerType = "癌症備藥機";

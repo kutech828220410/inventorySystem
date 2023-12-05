@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicClass.cs" />
+    <Compile Include="CMPM_StorageConfig_Class.cs" />
     <Compile Include="computerConfigClass.cs" />
     <Compile Include="consumptionClass.cs" />
     <Compile Include="ctclistClass.cs" />
