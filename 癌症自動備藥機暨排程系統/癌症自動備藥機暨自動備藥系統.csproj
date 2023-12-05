@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9952E5D3-B159-497F-9DED-612B4B5E1C98}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>癌症自動備藥機暨排程系統</RootNamespace>
     <AssemblyName>癌症自動備藥機暨排程系統</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -47,6 +47,9 @@
     </Reference>
     <Reference Include="cjwdev.windowsapi">
       <HintPath>..\0.DLL\cjwdev.windowsapi.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaMotor485">
+      <HintPath>..\0.DLL\DeltaMotor485.dll</HintPath>
     </Reference>
     <Reference Include="DrawingClass">
       <HintPath>..\0.DLL\DrawingClass.dll</HintPath>
@@ -237,6 +240,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Program_系統.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_軸控.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_輸入輸出.cs">

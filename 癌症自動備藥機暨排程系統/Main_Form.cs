@@ -30,7 +30,7 @@ namespace 癌症自動備藥機暨排程系統
         public static string ServerType = enum_ServerSetting_Type.癌症備藥機.GetEnumName();
         public static string API_Server = "";
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
+        public LadderConnection.Properties PLC;
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         public DBConfigClass dBConfigClass = new DBConfigClass();
@@ -180,6 +180,7 @@ namespace 癌症自動備藥機暨排程系統
         {
             this.plC_UI_Init.音效 = false;
             this.plC_UI_Init.全螢幕顯示 = true;
+
             this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
             this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
         }
@@ -187,7 +188,7 @@ namespace 癌症自動備藥機暨排程系統
         private void PlC_UI_Init_UI_Finished_Event()
         {
             this.WindowState = FormWindowState.Maximized;
-
+            PLC = this.lowerMachine_Panel.GetlowerMachine().properties;
             LoadDBConfig();
             ApiServerSetting();
 
@@ -195,6 +196,8 @@ namespace 癌症自動備藥機暨排程系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
 
             Program_系統_Init();
+            Program_輸入輸出_Init();
+            Program_軸控_Init();
 
             string url = $"{API_Server}/api/ChemotherapyRxScheduling/init_udnoectc";
             returnData returnData = new returnData();
@@ -219,7 +222,7 @@ namespace 癌症自動備藥機暨排程系統
 
         private void Function_取得備藥通知()
         {
-            string url = $"http://220.135.128.247:4433/api/ChemotherapyRxScheduling/get_udnoectc_by_ctdate_st_end";
+            string url = $"{API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_ctdate_st_end";
             returnData returnData = new returnData();
             returnData.ServerName = "cheom";
             returnData.ServerType = "癌症備藥機";
