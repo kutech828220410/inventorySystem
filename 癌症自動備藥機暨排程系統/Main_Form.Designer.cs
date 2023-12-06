@@ -270,6 +270,74 @@ namespace 癌症自動備藥機暨排程系統
             this.label16 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Pannel2 = new MyUI.PLC_RJ_Pannel();
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸 = new MyUI.PLC_Button();
+            this.label78 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區Z軸_復歸偏移 = new MyUI.PLC_NumBox();
+            this.rJ_Lable43 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_冷藏區Z軸_解剎車 = new MyUI.PLC_Button();
+            this.plC_Button_冷藏區Z軸_ALARM = new MyUI.PLC_Button();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.rJ_Lable39 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_冷藏區Z軸_復歸 = new MyUI.PLC_RJ_Button();
+            this.plC_Button_冷藏區Z軸_正極限 = new MyUI.PLC_Button();
+            this.label55 = new System.Windows.Forms.Label();
+            this.plC_Button_冷藏區Z軸_原點 = new MyUI.PLC_Button();
+            this.label56 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區Z軸_JOG速度 = new MyUI.PLC_NumBox();
+            this.rJ_Lable40 = new MyUI.RJ_Lable();
+            this.rJ_Lable41 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_冷藏區Z軸_Stop = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_冷藏區Z軸_PJOG = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_冷藏區Z軸_NJOG = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_冷藏區Z軸_ServoON = new MyUI.PLC_RJ_Button();
+            this.plC_NumBox_冷藏區Z軸_現在位置 = new MyUI.PLC_NumBox();
+            this.plC_Button_冷藏區Z軸_零速度檢出 = new MyUI.PLC_Button();
+            this.label57 = new System.Windows.Forms.Label();
+            this.plC_Button_冷藏區Z軸_Ready = new MyUI.PLC_Button();
+            this.label58 = new System.Windows.Forms.Label();
+            this.plC_RJ_Pannel1 = new MyUI.PLC_RJ_Pannel();
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸 = new MyUI.PLC_Button();
+            this.label61 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區X軸_復歸偏移 = new MyUI.PLC_NumBox();
+            this.rJ_Lable42 = new MyUI.RJ_Lable();
+            this.plC_Button_冷藏區X軸_ALARM = new MyUI.PLC_Button();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.rJ_Lable38 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_冷藏區X軸_復歸 = new MyUI.PLC_RJ_Button();
+            this.plC_Button_冷藏區X軸_正極限 = new MyUI.PLC_Button();
+            this.label52 = new System.Windows.Forms.Label();
+            this.plC_Button_冷藏區X軸_原點 = new MyUI.PLC_Button();
+            this.label49 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區X軸_JOG速度 = new MyUI.PLC_NumBox();
+            this.rJ_Lable37 = new MyUI.RJ_Lable();
+            this.rJ_Lable36 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_冷藏區X軸_Stop = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_冷藏區X軸_PJOG = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_冷藏區X軸_NJOG = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_冷藏區X軸_ServoON = new MyUI.PLC_RJ_Button();
+            this.plC_NumBox_冷藏區X軸_現在位置 = new MyUI.PLC_NumBox();
+            this.plC_Button_冷藏區X軸_零速度檢出 = new MyUI.PLC_Button();
+            this.label51 = new System.Windows.Forms.Label();
+            this.plC_Button_冷藏區X軸_Ready = new MyUI.PLC_Button();
+            this.label50 = new System.Windows.Forms.Label();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.label80 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z = new MyUI.PLC_NumBox();
+            this.rJ_Lable46 = new MyUI.RJ_Lable();
+            this.label79 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區_藥盒傳接位置X = new MyUI.PLC_NumBox();
+            this.rJ_Lable45 = new MyUI.RJ_Lable();
+            this.plC_Button4 = new MyUI.PLC_Button();
+            this.plC_Button3 = new MyUI.PLC_Button();
+            this.plC_RJ_Button_冷藏區_輸送門開啟 = new MyUI.PLC_Button();
+            this.plC_RJ_Button_冷藏區_輸送門關閉 = new MyUI.PLC_Button();
+            this.plC_Button2 = new MyUI.PLC_Button();
+            this.plC_Button1 = new MyUI.PLC_Button();
+            this.plC_RJ_Button_冷藏區_輸送帶後退 = new MyUI.PLC_Button();
+            this.plC_RJ_Button_冷藏區_輸送帶前進 = new MyUI.PLC_Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.rJ_Pannel9 = new MyUI.RJ_Pannel();
             this.plC_Button_X00 = new MyUI.PLC_Button();
@@ -327,69 +395,32 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_ScreenButton7 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton6 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton5 = new MyUI.PLC_RJ_ScreenButton();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Pannel2 = new MyUI.PLC_RJ_Pannel();
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸 = new MyUI.PLC_Button();
-            this.label78 = new System.Windows.Forms.Label();
-            this.plC_NumBox_冷藏區Z軸_復歸偏移 = new MyUI.PLC_NumBox();
-            this.rJ_Lable43 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_冷藏區Z軸_解剎車 = new MyUI.PLC_Button();
-            this.plC_Button_冷藏區Z軸_ALARM = new MyUI.PLC_Button();
-            this.label60 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.rJ_Lable39 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_冷藏區Z軸_復歸 = new MyUI.PLC_RJ_Button();
-            this.plC_Button_冷藏區Z軸_正極限 = new MyUI.PLC_Button();
-            this.label55 = new System.Windows.Forms.Label();
-            this.plC_Button_冷藏區Z軸_原點 = new MyUI.PLC_Button();
-            this.label56 = new System.Windows.Forms.Label();
-            this.plC_NumBox_冷藏區Z軸_JOG速度 = new MyUI.PLC_NumBox();
-            this.rJ_Lable40 = new MyUI.RJ_Lable();
-            this.rJ_Lable41 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_冷藏區Z軸_Stop = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_冷藏區Z軸_PJOG = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_冷藏區Z軸_NJOG = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_冷藏區Z軸_ServoON = new MyUI.PLC_RJ_Button();
-            this.plC_NumBox_冷藏區Z軸_現在位置 = new MyUI.PLC_NumBox();
-            this.plC_Button_冷藏區Z軸_零速度檢出 = new MyUI.PLC_Button();
-            this.label57 = new System.Windows.Forms.Label();
-            this.plC_Button_冷藏區Z軸_Ready = new MyUI.PLC_Button();
-            this.label58 = new System.Windows.Forms.Label();
-            this.plC_RJ_Pannel1 = new MyUI.PLC_RJ_Pannel();
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸 = new MyUI.PLC_Button();
-            this.label61 = new System.Windows.Forms.Label();
-            this.plC_NumBox_冷藏區X軸_復歸偏移 = new MyUI.PLC_NumBox();
-            this.rJ_Lable42 = new MyUI.RJ_Lable();
-            this.plC_Button_冷藏區X軸_ALARM = new MyUI.PLC_Button();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.rJ_Lable38 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_冷藏區X軸_復歸 = new MyUI.PLC_RJ_Button();
-            this.plC_Button_冷藏區X軸_正極限 = new MyUI.PLC_Button();
-            this.label52 = new System.Windows.Forms.Label();
-            this.plC_Button_冷藏區X軸_原點 = new MyUI.PLC_Button();
-            this.label49 = new System.Windows.Forms.Label();
-            this.plC_NumBox_冷藏區X軸_JOG速度 = new MyUI.PLC_NumBox();
-            this.rJ_Lable37 = new MyUI.RJ_Lable();
-            this.rJ_Lable36 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_冷藏區X軸_Stop = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_冷藏區X軸_PJOG = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_冷藏區X軸_NJOG = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_冷藏區X軸_ServoON = new MyUI.PLC_RJ_Button();
-            this.plC_NumBox_冷藏區X軸_現在位置 = new MyUI.PLC_NumBox();
-            this.plC_Button_冷藏區X軸_零速度檢出 = new MyUI.PLC_Button();
-            this.label51 = new System.Windows.Forms.Label();
-            this.plC_Button_冷藏區X軸_Ready = new MyUI.PLC_Button();
-            this.label50 = new System.Windows.Forms.Label();
-            this.plC_RJ_Button_冷藏區_輸送帶前進 = new MyUI.PLC_Button();
-            this.rJ_Lable44 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_冷藏區_輸送帶後退 = new MyUI.PLC_Button();
-            this.plC_Button1 = new MyUI.PLC_Button();
-            this.plC_Button2 = new MyUI.PLC_Button();
-            this.plC_RJ_Button_冷藏區_輸送門關閉 = new MyUI.PLC_Button();
-            this.plC_Button3 = new MyUI.PLC_Button();
-            this.plC_Button4 = new MyUI.PLC_Button();
-            this.plC_RJ_Button_冷藏區_輸送門開啟 = new MyUI.PLC_Button();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置 = new MyUI.PLC_Button();
+            this.rJ_Lable47 = new MyUI.RJ_Lable();
+            this.label81 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區X軸_絕對位置 = new MyUI.PLC_NumBox();
+            this.label82 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區X軸_運轉速度 = new MyUI.PLC_NumBox();
+            this.rJ_Lable50 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動 = new MyUI.PLC_RJ_Button();
+            this.label83 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區Z軸_運轉速度 = new MyUI.PLC_NumBox();
+            this.rJ_Lable48 = new MyUI.RJ_Lable();
+            this.label84 = new System.Windows.Forms.Label();
+            this.plC_NumBox_冷藏區Z軸_絕對位置 = new MyUI.PLC_NumBox();
+            this.rJ_Lable49 = new MyUI.RJ_Lable();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.plC_Button_冷藏區_移動至待命位置 = new MyUI.PLC_Button();
+            this.label85 = new System.Windows.Forms.Label();
+            this.rJ_Lable51 = new MyUI.RJ_Lable();
+            this.plC_NumBox1 = new MyUI.PLC_NumBox();
+            this.plC_NumBox2 = new MyUI.PLC_NumBox();
+            this.rJ_Lable52 = new MyUI.RJ_Lable();
+            this.label86 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.plC_RJ_ScreenButton10 = new MyUI.PLC_RJ_ScreenButton();
             this.panel_main.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
             this.自動備藥.SuspendLayout();
@@ -421,12 +452,14 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Pannel6.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel15.SuspendLayout();
+            this.plC_RJ_Pannel2.SuspendLayout();
+            this.plC_RJ_Pannel1.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.rJ_Pannel9.SuspendLayout();
             this.panel_系統.SuspendLayout();
-            this.panel16.SuspendLayout();
-            this.plC_RJ_Pannel2.SuspendLayout();
-            this.plC_RJ_Pannel1.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel18.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_main
@@ -2368,6 +2401,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage2);
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage3);
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage4);
+            this.plC_ScreenPage_系統.Controls.Add(this.tabPage6);
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage5);
             this.plC_ScreenPage_系統.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_ScreenPage_系統.ForekColor = System.Drawing.Color.Black;
@@ -6434,7 +6468,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1048, 1688);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "軸控";
+            this.tabPage4.Text = "冷藏區";
             // 
             // panel15
             // 
@@ -6444,8 +6478,1833 @@ namespace 癌症自動備藥機暨排程系統
             this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel15.Location = new System.Drawing.Point(0, 0);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(1048, 895);
+            this.panel15.Size = new System.Drawing.Size(1048, 1030);
             this.panel15.TabIndex = 0;
+            // 
+            // plC_RJ_Pannel2
+            // 
+            this.plC_RJ_Pannel2.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel2.BackgroundColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_Pannel2.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Pannel2.BorderRadius = 10;
+            this.plC_RJ_Pannel2.BorderSize = 2;
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_絕對位置移動);
+            this.plC_RJ_Pannel2.Controls.Add(this.label83);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_NumBox_冷藏區Z軸_運轉速度);
+            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable48);
+            this.plC_RJ_Pannel2.Controls.Add(this.label84);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_NumBox_冷藏區Z軸_絕對位置);
+            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable49);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_已完成復歸);
+            this.plC_RJ_Pannel2.Controls.Add(this.label78);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_NumBox_冷藏區Z軸_復歸偏移);
+            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable43);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_解剎車);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_ALARM);
+            this.plC_RJ_Pannel2.Controls.Add(this.label60);
+            this.plC_RJ_Pannel2.Controls.Add(this.label54);
+            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable39);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_復歸);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_正極限);
+            this.plC_RJ_Pannel2.Controls.Add(this.label55);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_原點);
+            this.plC_RJ_Pannel2.Controls.Add(this.label56);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_NumBox_冷藏區Z軸_JOG速度);
+            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable40);
+            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable41);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_Stop);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_PJOG);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_NJOG);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_ServoON);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_NumBox_冷藏區Z軸_現在位置);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_零速度檢出);
+            this.plC_RJ_Pannel2.Controls.Add(this.label57);
+            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_Ready);
+            this.plC_RJ_Pannel2.Controls.Add(this.label58);
+            this.plC_RJ_Pannel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_RJ_Pannel2.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_Pannel2.IsSelected = false;
+            this.plC_RJ_Pannel2.Location = new System.Drawing.Point(526, 324);
+            this.plC_RJ_Pannel2.Name = "plC_RJ_Pannel2";
+            this.plC_RJ_Pannel2.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
+            this.plC_RJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Pannel2.ShadowSize = 3;
+            this.plC_RJ_Pannel2.Size = new System.Drawing.Size(522, 706);
+            this.plC_RJ_Pannel2.TabIndex = 6;
+            // 
+            // plC_RJ_Button_冷藏區Z軸_已完成復歸
+            // 
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Bool = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.but_press = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Location = new System.Drawing.Point(356, 167);
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Name = "plC_RJ_Button_冷藏區Z軸_已完成復歸";
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.OFF_文字內容 = "未完成復歸";
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.ON_文字內容 = "已完成復歸";
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Size = new System.Drawing.Size(136, 49);
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.TabIndex = 66;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.事件驅動 = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區Z軸_已完成復歸.狀態OFF圖片")));
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區Z軸_已完成復歸.狀態ON圖片")));
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.起始狀態 = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.音效 = true;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.顯示 = false;
+            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.顯示狀態 = false;
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label78.Location = new System.Drawing.Point(298, 538);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(46, 24);
+            this.label78.TabIndex = 65;
+            this.label78.Text = "mm";
+            // 
+            // plC_NumBox_冷藏區Z軸_復歸偏移
+            // 
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.Location = new System.Drawing.Point(178, 513);
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.Name = "plC_NumBox_冷藏區Z軸_復歸偏移";
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.ReadOnly = false;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.Size = new System.Drawing.Size(118, 49);
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.TabIndex = 64;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.Value = 0;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.密碼欄位 = false;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.寫入元件位置 = "R5012";
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.小數點位置 = 2;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.微調數值 = 1;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.讀取元件位置 = "R5012";
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.音效 = true;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區Z軸_復歸偏移.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable43
+            // 
+            this.rJ_Lable43.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable43.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable43.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable43.BorderRadius = 10;
+            this.rJ_Lable43.BorderSize = 0;
+            this.rJ_Lable43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable43.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable43.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable43.GUID = "";
+            this.rJ_Lable43.Location = new System.Drawing.Point(15, 510);
+            this.rJ_Lable43.Name = "rJ_Lable43";
+            this.rJ_Lable43.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable43.ShadowSize = 3;
+            this.rJ_Lable43.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable43.TabIndex = 63;
+            this.rJ_Lable43.Text = "復歸偏移";
+            this.rJ_Lable43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable43.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_冷藏區Z軸_解剎車
+            // 
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.Bool = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.but_press = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.Location = new System.Drawing.Point(200, 299);
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.Name = "plC_RJ_Button_冷藏區Z軸_解剎車";
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.OFF_文字內容 = "冷藏Z軸解煞車";
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.ON_文字內容 = "冷藏Z軸解煞車";
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.Size = new System.Drawing.Size(164, 49);
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.TabIndex = 62;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.事件驅動 = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.寫入元件位置 = "Y13";
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區Z軸_解剎車.狀態OFF圖片")));
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區Z軸_解剎車.狀態ON圖片")));
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.讀取元件位置 = "Y13";
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.起始狀態 = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.音效 = true;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.顯示 = false;
+            this.plC_RJ_Button_冷藏區Z軸_解剎車.顯示狀態 = false;
+            // 
+            // plC_Button_冷藏區Z軸_ALARM
+            // 
+            this.plC_Button_冷藏區Z軸_ALARM.Bool = false;
+            this.plC_Button_冷藏區Z軸_ALARM.but_press = false;
+            this.plC_Button_冷藏區Z軸_ALARM.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區Z軸_ALARM.Location = new System.Drawing.Point(12, 288);
+            this.plC_Button_冷藏區Z軸_ALARM.Name = "plC_Button_冷藏區Z軸_ALARM";
+            this.plC_Button_冷藏區Z軸_ALARM.OFF_文字內容 = "X115";
+            this.plC_Button_冷藏區Z軸_ALARM.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_ALARM.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_ALARM.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_ALARM.ON_文字內容 = "X115";
+            this.plC_Button_冷藏區Z軸_ALARM.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_ALARM.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區Z軸_ALARM.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_ALARM.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區Z軸_ALARM.Style = MyUI.PLC_Button.StyleEnum.Lamp_紅;
+            this.plC_Button_冷藏區Z軸_ALARM.TabIndex = 60;
+            this.plC_Button_冷藏區Z軸_ALARM.事件驅動 = false;
+            this.plC_Button_冷藏區Z軸_ALARM.字型鎖住 = false;
+            this.plC_Button_冷藏區Z軸_ALARM.寫入元件位置 = "X115";
+            this.plC_Button_冷藏區Z軸_ALARM.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區Z軸_ALARM.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區Z軸_ALARM.文字鎖住 = false;
+            this.plC_Button_冷藏區Z軸_ALARM.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_ALARM.狀態OFF圖片")));
+            this.plC_Button_冷藏區Z軸_ALARM.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_ALARM.狀態ON圖片")));
+            this.plC_Button_冷藏區Z軸_ALARM.讀取位元反向 = false;
+            this.plC_Button_冷藏區Z軸_ALARM.讀取元件位置 = "X115";
+            this.plC_Button_冷藏區Z軸_ALARM.讀寫鎖住 = false;
+            this.plC_Button_冷藏區Z軸_ALARM.起始狀態 = false;
+            this.plC_Button_冷藏區Z軸_ALARM.音效 = true;
+            this.plC_Button_冷藏區Z軸_ALARM.顯示 = false;
+            this.plC_Button_冷藏區Z軸_ALARM.顯示狀態 = false;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label60.Location = new System.Drawing.Point(88, 311);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(80, 24);
+            this.label60.TabIndex = 61;
+            this.label60.Text = "ALARM";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label54.Location = new System.Drawing.Point(307, 386);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(48, 24);
+            this.label54.TabIndex = 57;
+            this.label54.Text = "rpm";
+            // 
+            // rJ_Lable39
+            // 
+            this.rJ_Lable39.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable39.BackgroundColor = System.Drawing.Color.Silver;
+            this.rJ_Lable39.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable39.BorderRadius = 10;
+            this.rJ_Lable39.BorderSize = 0;
+            this.rJ_Lable39.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable39.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable39.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable39.GUID = "";
+            this.rJ_Lable39.Location = new System.Drawing.Point(10, 5);
+            this.rJ_Lable39.Name = "rJ_Lable39";
+            this.rJ_Lable39.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable39.ShadowSize = 3;
+            this.rJ_Lable39.Size = new System.Drawing.Size(502, 75);
+            this.rJ_Lable39.TabIndex = 55;
+            this.rJ_Lable39.Text = "Z軸";
+            this.rJ_Lable39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable39.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_冷藏區Z軸_復歸
+            // 
+            this.plC_RJ_Button_冷藏區Z軸_復歸.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.Bool = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.but_press = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_復歸.GUID = "";
+            this.plC_RJ_Button_冷藏區Z軸_復歸.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.Location = new System.Drawing.Point(348, 499);
+            this.plC_RJ_Button_冷藏區Z軸_復歸.Name = "plC_RJ_Button_冷藏區Z軸_復歸";
+            this.plC_RJ_Button_冷藏區Z軸_復歸.OFF_文字內容 = "復歸";
+            this.plC_RJ_Button_冷藏區Z軸_復歸.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_復歸.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_文字內容 = "復歸";
+            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區Z軸_復歸.State = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.TabIndex = 54;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.Text = "復歸";
+            this.plC_RJ_Button_冷藏區Z軸_復歸.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.Texts = "復歸";
+            this.plC_RJ_Button_冷藏區Z軸_復歸.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.音效 = true;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.顯示 = false;
+            this.plC_RJ_Button_冷藏區Z軸_復歸.顯示狀態 = false;
+            // 
+            // plC_Button_冷藏區Z軸_正極限
+            // 
+            this.plC_Button_冷藏區Z軸_正極限.Bool = false;
+            this.plC_Button_冷藏區Z軸_正極限.but_press = false;
+            this.plC_Button_冷藏區Z軸_正極限.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區Z軸_正極限.Location = new System.Drawing.Point(200, 222);
+            this.plC_Button_冷藏區Z軸_正極限.Name = "plC_Button_冷藏區Z軸_正極限";
+            this.plC_Button_冷藏區Z軸_正極限.OFF_文字內容 = "X114";
+            this.plC_Button_冷藏區Z軸_正極限.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_正極限.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_正極限.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_正極限.ON_文字內容 = "X114";
+            this.plC_Button_冷藏區Z軸_正極限.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_正極限.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區Z軸_正極限.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_正極限.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區Z軸_正極限.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button_冷藏區Z軸_正極限.TabIndex = 52;
+            this.plC_Button_冷藏區Z軸_正極限.事件驅動 = false;
+            this.plC_Button_冷藏區Z軸_正極限.字型鎖住 = false;
+            this.plC_Button_冷藏區Z軸_正極限.寫入元件位置 = "X114";
+            this.plC_Button_冷藏區Z軸_正極限.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區Z軸_正極限.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區Z軸_正極限.文字鎖住 = false;
+            this.plC_Button_冷藏區Z軸_正極限.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_正極限.狀態OFF圖片")));
+            this.plC_Button_冷藏區Z軸_正極限.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_正極限.狀態ON圖片")));
+            this.plC_Button_冷藏區Z軸_正極限.讀取位元反向 = false;
+            this.plC_Button_冷藏區Z軸_正極限.讀取元件位置 = "X114";
+            this.plC_Button_冷藏區Z軸_正極限.讀寫鎖住 = false;
+            this.plC_Button_冷藏區Z軸_正極限.起始狀態 = false;
+            this.plC_Button_冷藏區Z軸_正極限.音效 = true;
+            this.plC_Button_冷藏區Z軸_正極限.顯示 = false;
+            this.plC_Button_冷藏區Z軸_正極限.顯示狀態 = false;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label55.Location = new System.Drawing.Point(276, 245);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(67, 24);
+            this.label55.TabIndex = 53;
+            this.label55.Text = "正極限";
+            // 
+            // plC_Button_冷藏區Z軸_原點
+            // 
+            this.plC_Button_冷藏區Z軸_原點.Bool = false;
+            this.plC_Button_冷藏區Z軸_原點.but_press = false;
+            this.plC_Button_冷藏區Z軸_原點.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區Z軸_原點.Location = new System.Drawing.Point(200, 156);
+            this.plC_Button_冷藏區Z軸_原點.Name = "plC_Button_冷藏區Z軸_原點";
+            this.plC_Button_冷藏區Z軸_原點.OFF_文字內容 = "X113";
+            this.plC_Button_冷藏區Z軸_原點.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_原點.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_原點.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_原點.ON_文字內容 = "X113";
+            this.plC_Button_冷藏區Z軸_原點.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_原點.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區Z軸_原點.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_原點.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區Z軸_原點.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button_冷藏區Z軸_原點.TabIndex = 50;
+            this.plC_Button_冷藏區Z軸_原點.事件驅動 = false;
+            this.plC_Button_冷藏區Z軸_原點.字型鎖住 = false;
+            this.plC_Button_冷藏區Z軸_原點.寫入元件位置 = "X113";
+            this.plC_Button_冷藏區Z軸_原點.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區Z軸_原點.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區Z軸_原點.文字鎖住 = false;
+            this.plC_Button_冷藏區Z軸_原點.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_原點.狀態OFF圖片")));
+            this.plC_Button_冷藏區Z軸_原點.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_原點.狀態ON圖片")));
+            this.plC_Button_冷藏區Z軸_原點.讀取位元反向 = false;
+            this.plC_Button_冷藏區Z軸_原點.讀取元件位置 = "X113";
+            this.plC_Button_冷藏區Z軸_原點.讀寫鎖住 = false;
+            this.plC_Button_冷藏區Z軸_原點.起始狀態 = false;
+            this.plC_Button_冷藏區Z軸_原點.音效 = true;
+            this.plC_Button_冷藏區Z軸_原點.顯示 = false;
+            this.plC_Button_冷藏區Z軸_原點.顯示狀態 = false;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label56.Location = new System.Drawing.Point(276, 179);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(48, 24);
+            this.label56.TabIndex = 51;
+            this.label56.Text = "原點";
+            // 
+            // plC_NumBox_冷藏區Z軸_JOG速度
+            // 
+            this.plC_NumBox_冷藏區Z軸_JOG速度.Font = new System.Drawing.Font("微軟正黑體", 21.75F);
+            this.plC_NumBox_冷藏區Z軸_JOG速度.Location = new System.Drawing.Point(178, 358);
+            this.plC_NumBox_冷藏區Z軸_JOG速度.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.Name = "plC_NumBox_冷藏區Z軸_JOG速度";
+            this.plC_NumBox_冷藏區Z軸_JOG速度.ReadOnly = false;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.Size = new System.Drawing.Size(123, 56);
+            this.plC_NumBox_冷藏區Z軸_JOG速度.TabIndex = 49;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.Value = 0;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.密碼欄位 = false;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.寫入元件位置 = "R5011";
+            this.plC_NumBox_冷藏區Z軸_JOG速度.小數點位置 = 0;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.微調數值 = 1;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.讀取元件位置 = "R5011";
+            this.plC_NumBox_冷藏區Z軸_JOG速度.音效 = true;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區Z軸_JOG速度.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable40
+            // 
+            this.rJ_Lable40.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable40.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable40.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable40.BorderRadius = 10;
+            this.rJ_Lable40.BorderSize = 0;
+            this.rJ_Lable40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable40.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable40.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable40.GUID = "";
+            this.rJ_Lable40.Location = new System.Drawing.Point(15, 358);
+            this.rJ_Lable40.Name = "rJ_Lable40";
+            this.rJ_Lable40.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable40.ShadowSize = 3;
+            this.rJ_Lable40.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable40.TabIndex = 48;
+            this.rJ_Lable40.Text = "JOG速度";
+            this.rJ_Lable40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable40.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_Lable41
+            // 
+            this.rJ_Lable41.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable41.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable41.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable41.BorderRadius = 10;
+            this.rJ_Lable41.BorderSize = 0;
+            this.rJ_Lable41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable41.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable41.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable41.GUID = "";
+            this.rJ_Lable41.Location = new System.Drawing.Point(161, 91);
+            this.rJ_Lable41.Name = "rJ_Lable41";
+            this.rJ_Lable41.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable41.ShadowSize = 3;
+            this.rJ_Lable41.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable41.TabIndex = 47;
+            this.rJ_Lable41.Text = "現在位置";
+            this.rJ_Lable41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable41.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_冷藏區Z軸_Stop
+            // 
+            this.plC_RJ_Button_冷藏區Z軸_Stop.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.BackgroundColor = System.Drawing.Color.DarkRed;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.Bool = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.but_press = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_Stop.GUID = "";
+            this.plC_RJ_Button_冷藏區Z軸_Stop.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.Location = new System.Drawing.Point(348, 426);
+            this.plC_RJ_Button_冷藏區Z軸_Stop.Name = "plC_RJ_Button_冷藏區Z軸_Stop";
+            this.plC_RJ_Button_冷藏區Z軸_Stop.OFF_文字內容 = "Stop";
+            this.plC_RJ_Button_冷藏區Z軸_Stop.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_Stop.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_文字內容 = "Stop";
+            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區Z軸_Stop.State = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.TabIndex = 46;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.Text = "Stop";
+            this.plC_RJ_Button_冷藏區Z軸_Stop.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.Texts = "Stop";
+            this.plC_RJ_Button_冷藏區Z軸_Stop.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.音效 = true;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.顯示 = false;
+            this.plC_RJ_Button_冷藏區Z軸_Stop.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區Z軸_PJOG
+            // 
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.Bool = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.but_press = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.GUID = "";
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.Location = new System.Drawing.Point(178, 426);
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.Name = "plC_RJ_Button_冷藏區Z軸_PJOG";
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.OFF_文字內容 = "JOG+";
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_文字內容 = "JOG+";
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.State = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.TabIndex = 45;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.Text = "JOG+";
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.Texts = "JOG+";
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.音效 = true;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.顯示 = false;
+            this.plC_RJ_Button_冷藏區Z軸_PJOG.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區Z軸_NJOG
+            // 
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.Bool = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.but_press = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.GUID = "";
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.Location = new System.Drawing.Point(8, 426);
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.Name = "plC_RJ_Button_冷藏區Z軸_NJOG";
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.OFF_文字內容 = "JOG-";
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_文字內容 = "JOG-";
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.State = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.TabIndex = 44;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.Text = "JOG-";
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.Texts = "JOG-";
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.音效 = true;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.顯示 = false;
+            this.plC_RJ_Button_冷藏區Z軸_NJOG.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區Z軸_ServoON
+            // 
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.Bool = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.BorderColor = System.Drawing.Color.Red;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.but_press = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.GUID = "";
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.Location = new System.Drawing.Point(19, 85);
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.Name = "plC_RJ_Button_冷藏區Z軸_ServoON";
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.OFF_文字內容 = "Servo On";
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_文字內容 = "Servo On";
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.Size = new System.Drawing.Size(136, 67);
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.State = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.TabIndex = 43;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.Text = "Servo On";
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.Texts = "Servo On";
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.寫入元件位置 = "S100";
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.讀取元件位置 = "Y110";
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.音效 = true;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.顯示 = false;
+            this.plC_RJ_Button_冷藏區Z軸_ServoON.顯示狀態 = false;
+            // 
+            // plC_NumBox_冷藏區Z軸_現在位置
+            // 
+            this.plC_NumBox_冷藏區Z軸_現在位置.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區Z軸_現在位置.Location = new System.Drawing.Point(324, 92);
+            this.plC_NumBox_冷藏區Z軸_現在位置.mBackColor = System.Drawing.SystemColors.Control;
+            this.plC_NumBox_冷藏區Z軸_現在位置.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區Z軸_現在位置.Name = "plC_NumBox_冷藏區Z軸_現在位置";
+            this.plC_NumBox_冷藏區Z軸_現在位置.ReadOnly = true;
+            this.plC_NumBox_冷藏區Z軸_現在位置.Size = new System.Drawing.Size(168, 52);
+            this.plC_NumBox_冷藏區Z軸_現在位置.TabIndex = 41;
+            this.plC_NumBox_冷藏區Z軸_現在位置.Value = 0;
+            this.plC_NumBox_冷藏區Z軸_現在位置.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區Z軸_現在位置.密碼欄位 = false;
+            this.plC_NumBox_冷藏區Z軸_現在位置.寫入元件位置 = "R5010";
+            this.plC_NumBox_冷藏區Z軸_現在位置.小數點位置 = 2;
+            this.plC_NumBox_冷藏區Z軸_現在位置.微調數值 = 1;
+            this.plC_NumBox_冷藏區Z軸_現在位置.讀取元件位置 = "R5010";
+            this.plC_NumBox_冷藏區Z軸_現在位置.音效 = true;
+            this.plC_NumBox_冷藏區Z軸_現在位置.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區Z軸_現在位置.顯示螢幕小鍵盤 = false;
+            // 
+            // plC_Button_冷藏區Z軸_零速度檢出
+            // 
+            this.plC_Button_冷藏區Z軸_零速度檢出.Bool = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.but_press = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區Z軸_零速度檢出.Location = new System.Drawing.Point(12, 222);
+            this.plC_Button_冷藏區Z軸_零速度檢出.Name = "plC_Button_冷藏區Z軸_零速度檢出";
+            this.plC_Button_冷藏區Z軸_零速度檢出.OFF_文字內容 = "X112";
+            this.plC_Button_冷藏區Z軸_零速度檢出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_零速度檢出.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_零速度檢出.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_零速度檢出.ON_文字內容 = "X112";
+            this.plC_Button_冷藏區Z軸_零速度檢出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_零速度檢出.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區Z軸_零速度檢出.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_零速度檢出.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區Z軸_零速度檢出.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button_冷藏區Z軸_零速度檢出.TabIndex = 38;
+            this.plC_Button_冷藏區Z軸_零速度檢出.事件驅動 = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.字型鎖住 = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.寫入元件位置 = "X112";
+            this.plC_Button_冷藏區Z軸_零速度檢出.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區Z軸_零速度檢出.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區Z軸_零速度檢出.文字鎖住 = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_零速度檢出.狀態OFF圖片")));
+            this.plC_Button_冷藏區Z軸_零速度檢出.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_零速度檢出.狀態ON圖片")));
+            this.plC_Button_冷藏區Z軸_零速度檢出.讀取位元反向 = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.讀取元件位置 = "X112";
+            this.plC_Button_冷藏區Z軸_零速度檢出.讀寫鎖住 = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.起始狀態 = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.音效 = true;
+            this.plC_Button_冷藏區Z軸_零速度檢出.顯示 = false;
+            this.plC_Button_冷藏區Z軸_零速度檢出.顯示狀態 = false;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label57.Location = new System.Drawing.Point(88, 245);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(105, 24);
+            this.label57.TabIndex = 39;
+            this.label57.Text = "零速度檢出";
+            // 
+            // plC_Button_冷藏區Z軸_Ready
+            // 
+            this.plC_Button_冷藏區Z軸_Ready.Bool = false;
+            this.plC_Button_冷藏區Z軸_Ready.but_press = false;
+            this.plC_Button_冷藏區Z軸_Ready.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區Z軸_Ready.Location = new System.Drawing.Point(12, 156);
+            this.plC_Button_冷藏區Z軸_Ready.Name = "plC_Button_冷藏區Z軸_Ready";
+            this.plC_Button_冷藏區Z軸_Ready.OFF_文字內容 = "X111";
+            this.plC_Button_冷藏區Z軸_Ready.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_Ready.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_Ready.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_Ready.ON_文字內容 = "X111";
+            this.plC_Button_冷藏區Z軸_Ready.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區Z軸_Ready.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區Z軸_Ready.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區Z軸_Ready.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區Z軸_Ready.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button_冷藏區Z軸_Ready.TabIndex = 36;
+            this.plC_Button_冷藏區Z軸_Ready.事件驅動 = false;
+            this.plC_Button_冷藏區Z軸_Ready.字型鎖住 = false;
+            this.plC_Button_冷藏區Z軸_Ready.寫入元件位置 = "X111";
+            this.plC_Button_冷藏區Z軸_Ready.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區Z軸_Ready.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區Z軸_Ready.文字鎖住 = false;
+            this.plC_Button_冷藏區Z軸_Ready.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_Ready.狀態OFF圖片")));
+            this.plC_Button_冷藏區Z軸_Ready.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_Ready.狀態ON圖片")));
+            this.plC_Button_冷藏區Z軸_Ready.讀取位元反向 = false;
+            this.plC_Button_冷藏區Z軸_Ready.讀取元件位置 = "X111";
+            this.plC_Button_冷藏區Z軸_Ready.讀寫鎖住 = false;
+            this.plC_Button_冷藏區Z軸_Ready.起始狀態 = false;
+            this.plC_Button_冷藏區Z軸_Ready.音效 = true;
+            this.plC_Button_冷藏區Z軸_Ready.顯示 = false;
+            this.plC_Button_冷藏區Z軸_Ready.顯示狀態 = false;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label58.Location = new System.Drawing.Point(88, 179);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(67, 24);
+            this.label58.TabIndex = 37;
+            this.label58.Text = "Ready";
+            // 
+            // plC_RJ_Pannel1
+            // 
+            this.plC_RJ_Pannel1.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_Pannel1.BackgroundColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_Pannel1.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Pannel1.BorderRadius = 10;
+            this.plC_RJ_Pannel1.BorderSize = 2;
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_絕對位置移動);
+            this.plC_RJ_Pannel1.Controls.Add(this.label82);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_NumBox_冷藏區X軸_運轉速度);
+            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable50);
+            this.plC_RJ_Pannel1.Controls.Add(this.label81);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_NumBox_冷藏區X軸_絕對位置);
+            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable47);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_已完成復歸);
+            this.plC_RJ_Pannel1.Controls.Add(this.label61);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_NumBox_冷藏區X軸_復歸偏移);
+            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable42);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_ALARM);
+            this.plC_RJ_Pannel1.Controls.Add(this.label59);
+            this.plC_RJ_Pannel1.Controls.Add(this.label53);
+            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable38);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_復歸);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_正極限);
+            this.plC_RJ_Pannel1.Controls.Add(this.label52);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_原點);
+            this.plC_RJ_Pannel1.Controls.Add(this.label49);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_NumBox_冷藏區X軸_JOG速度);
+            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable37);
+            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable36);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_Stop);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_PJOG);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_NJOG);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_ServoON);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_NumBox_冷藏區X軸_現在位置);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_零速度檢出);
+            this.plC_RJ_Pannel1.Controls.Add(this.label51);
+            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_Ready);
+            this.plC_RJ_Pannel1.Controls.Add(this.label50);
+            this.plC_RJ_Pannel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_Pannel1.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_Pannel1.IsSelected = false;
+            this.plC_RJ_Pannel1.Location = new System.Drawing.Point(0, 324);
+            this.plC_RJ_Pannel1.Name = "plC_RJ_Pannel1";
+            this.plC_RJ_Pannel1.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
+            this.plC_RJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Pannel1.ShadowSize = 3;
+            this.plC_RJ_Pannel1.Size = new System.Drawing.Size(522, 706);
+            this.plC_RJ_Pannel1.TabIndex = 5;
+            // 
+            // plC_RJ_Button_冷藏區X軸_已完成復歸
+            // 
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Bool = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.but_press = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Location = new System.Drawing.Point(356, 167);
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Name = "plC_RJ_Button_冷藏區X軸_已完成復歸";
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.OFF_文字內容 = "未完成復歸";
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.ON_文字內容 = "已完成復歸";
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Size = new System.Drawing.Size(136, 49);
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.TabIndex = 63;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.事件驅動 = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區X軸_已完成復歸.狀態OFF圖片")));
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區X軸_已完成復歸.狀態ON圖片")));
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.起始狀態 = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.音效 = true;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.顯示 = false;
+            this.plC_RJ_Button_冷藏區X軸_已完成復歸.顯示狀態 = false;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label61.Location = new System.Drawing.Point(292, 537);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(46, 24);
+            this.label61.TabIndex = 62;
+            this.label61.Text = "mm";
+            // 
+            // plC_NumBox_冷藏區X軸_復歸偏移
+            // 
+            this.plC_NumBox_冷藏區X軸_復歸偏移.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區X軸_復歸偏移.Location = new System.Drawing.Point(172, 512);
+            this.plC_NumBox_冷藏區X軸_復歸偏移.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.Name = "plC_NumBox_冷藏區X軸_復歸偏移";
+            this.plC_NumBox_冷藏區X軸_復歸偏移.ReadOnly = false;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.Size = new System.Drawing.Size(118, 49);
+            this.plC_NumBox_冷藏區X軸_復歸偏移.TabIndex = 61;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.Value = 0;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.密碼欄位 = false;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.寫入元件位置 = "R5002";
+            this.plC_NumBox_冷藏區X軸_復歸偏移.小數點位置 = 2;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.微調數值 = 1;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.讀取元件位置 = "R5002";
+            this.plC_NumBox_冷藏區X軸_復歸偏移.音效 = true;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區X軸_復歸偏移.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable42
+            // 
+            this.rJ_Lable42.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable42.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable42.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable42.BorderRadius = 10;
+            this.rJ_Lable42.BorderSize = 0;
+            this.rJ_Lable42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable42.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable42.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable42.GUID = "";
+            this.rJ_Lable42.Location = new System.Drawing.Point(9, 509);
+            this.rJ_Lable42.Name = "rJ_Lable42";
+            this.rJ_Lable42.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable42.ShadowSize = 3;
+            this.rJ_Lable42.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable42.TabIndex = 60;
+            this.rJ_Lable42.Text = "復歸偏移";
+            this.rJ_Lable42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable42.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_Button_冷藏區X軸_ALARM
+            // 
+            this.plC_Button_冷藏區X軸_ALARM.Bool = false;
+            this.plC_Button_冷藏區X軸_ALARM.but_press = false;
+            this.plC_Button_冷藏區X軸_ALARM.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區X軸_ALARM.Location = new System.Drawing.Point(12, 288);
+            this.plC_Button_冷藏區X軸_ALARM.Name = "plC_Button_冷藏區X軸_ALARM";
+            this.plC_Button_冷藏區X軸_ALARM.OFF_文字內容 = "X105";
+            this.plC_Button_冷藏區X軸_ALARM.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_ALARM.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_ALARM.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_ALARM.ON_文字內容 = "X105";
+            this.plC_Button_冷藏區X軸_ALARM.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_ALARM.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區X軸_ALARM.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_ALARM.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區X軸_ALARM.Style = MyUI.PLC_Button.StyleEnum.Lamp_紅;
+            this.plC_Button_冷藏區X軸_ALARM.TabIndex = 58;
+            this.plC_Button_冷藏區X軸_ALARM.事件驅動 = false;
+            this.plC_Button_冷藏區X軸_ALARM.字型鎖住 = false;
+            this.plC_Button_冷藏區X軸_ALARM.寫入元件位置 = "X105";
+            this.plC_Button_冷藏區X軸_ALARM.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區X軸_ALARM.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區X軸_ALARM.文字鎖住 = false;
+            this.plC_Button_冷藏區X軸_ALARM.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_ALARM.狀態OFF圖片")));
+            this.plC_Button_冷藏區X軸_ALARM.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_ALARM.狀態ON圖片")));
+            this.plC_Button_冷藏區X軸_ALARM.讀取位元反向 = false;
+            this.plC_Button_冷藏區X軸_ALARM.讀取元件位置 = "X105";
+            this.plC_Button_冷藏區X軸_ALARM.讀寫鎖住 = false;
+            this.plC_Button_冷藏區X軸_ALARM.起始狀態 = false;
+            this.plC_Button_冷藏區X軸_ALARM.音效 = true;
+            this.plC_Button_冷藏區X軸_ALARM.顯示 = false;
+            this.plC_Button_冷藏區X軸_ALARM.顯示狀態 = false;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label59.Location = new System.Drawing.Point(88, 311);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(80, 24);
+            this.label59.TabIndex = 59;
+            this.label59.Text = "ALARM";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label53.Location = new System.Drawing.Point(292, 383);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(48, 24);
+            this.label53.TabIndex = 57;
+            this.label53.Text = "rpm";
+            // 
+            // rJ_Lable38
+            // 
+            this.rJ_Lable38.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable38.BackgroundColor = System.Drawing.Color.Silver;
+            this.rJ_Lable38.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable38.BorderRadius = 10;
+            this.rJ_Lable38.BorderSize = 0;
+            this.rJ_Lable38.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable38.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable38.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable38.GUID = "";
+            this.rJ_Lable38.Location = new System.Drawing.Point(10, 5);
+            this.rJ_Lable38.Name = "rJ_Lable38";
+            this.rJ_Lable38.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable38.ShadowSize = 3;
+            this.rJ_Lable38.Size = new System.Drawing.Size(502, 75);
+            this.rJ_Lable38.TabIndex = 55;
+            this.rJ_Lable38.Text = "X軸";
+            this.rJ_Lable38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable38.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_冷藏區X軸_復歸
+            // 
+            this.plC_RJ_Button_冷藏區X軸_復歸.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區X軸_復歸.Bool = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區X軸_復歸.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區X軸_復歸.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_復歸.but_press = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區X軸_復歸.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_復歸.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區X軸_復歸.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_復歸.GUID = "";
+            this.plC_RJ_Button_冷藏區X軸_復歸.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區X軸_復歸.Location = new System.Drawing.Point(344, 496);
+            this.plC_RJ_Button_冷藏區X軸_復歸.Name = "plC_RJ_Button_冷藏區X軸_復歸";
+            this.plC_RJ_Button_冷藏區X軸_復歸.OFF_文字內容 = "復歸";
+            this.plC_RJ_Button_冷藏區X軸_復歸.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_復歸.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_復歸.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區X軸_復歸.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區X軸_復歸.ON_文字內容 = "復歸";
+            this.plC_RJ_Button_冷藏區X軸_復歸.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_復歸.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_復歸.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區X軸_復歸.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區X軸_復歸.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區X軸_復歸.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區X軸_復歸.State = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.TabIndex = 54;
+            this.plC_RJ_Button_冷藏區X軸_復歸.Text = "復歸";
+            this.plC_RJ_Button_冷藏區X軸_復歸.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_復歸.Texts = "復歸";
+            this.plC_RJ_Button_冷藏區X軸_復歸.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區X軸_復歸.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區X軸_復歸.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.音效 = true;
+            this.plC_RJ_Button_冷藏區X軸_復歸.顯示 = false;
+            this.plC_RJ_Button_冷藏區X軸_復歸.顯示狀態 = false;
+            // 
+            // plC_Button_冷藏區X軸_正極限
+            // 
+            this.plC_Button_冷藏區X軸_正極限.Bool = false;
+            this.plC_Button_冷藏區X軸_正極限.but_press = false;
+            this.plC_Button_冷藏區X軸_正極限.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區X軸_正極限.Location = new System.Drawing.Point(201, 222);
+            this.plC_Button_冷藏區X軸_正極限.Name = "plC_Button_冷藏區X軸_正極限";
+            this.plC_Button_冷藏區X軸_正極限.OFF_文字內容 = "X104";
+            this.plC_Button_冷藏區X軸_正極限.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_正極限.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_正極限.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_正極限.ON_文字內容 = "X104";
+            this.plC_Button_冷藏區X軸_正極限.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_正極限.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區X軸_正極限.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_正極限.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區X軸_正極限.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button_冷藏區X軸_正極限.TabIndex = 52;
+            this.plC_Button_冷藏區X軸_正極限.事件驅動 = false;
+            this.plC_Button_冷藏區X軸_正極限.字型鎖住 = false;
+            this.plC_Button_冷藏區X軸_正極限.寫入元件位置 = "X104";
+            this.plC_Button_冷藏區X軸_正極限.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區X軸_正極限.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區X軸_正極限.文字鎖住 = false;
+            this.plC_Button_冷藏區X軸_正極限.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_正極限.狀態OFF圖片")));
+            this.plC_Button_冷藏區X軸_正極限.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_正極限.狀態ON圖片")));
+            this.plC_Button_冷藏區X軸_正極限.讀取位元反向 = false;
+            this.plC_Button_冷藏區X軸_正極限.讀取元件位置 = "X104";
+            this.plC_Button_冷藏區X軸_正極限.讀寫鎖住 = false;
+            this.plC_Button_冷藏區X軸_正極限.起始狀態 = false;
+            this.plC_Button_冷藏區X軸_正極限.音效 = true;
+            this.plC_Button_冷藏區X軸_正極限.顯示 = false;
+            this.plC_Button_冷藏區X軸_正極限.顯示狀態 = false;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label52.Location = new System.Drawing.Point(277, 245);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(67, 24);
+            this.label52.TabIndex = 53;
+            this.label52.Text = "正極限";
+            // 
+            // plC_Button_冷藏區X軸_原點
+            // 
+            this.plC_Button_冷藏區X軸_原點.Bool = false;
+            this.plC_Button_冷藏區X軸_原點.but_press = false;
+            this.plC_Button_冷藏區X軸_原點.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區X軸_原點.Location = new System.Drawing.Point(201, 156);
+            this.plC_Button_冷藏區X軸_原點.Name = "plC_Button_冷藏區X軸_原點";
+            this.plC_Button_冷藏區X軸_原點.OFF_文字內容 = "X103";
+            this.plC_Button_冷藏區X軸_原點.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_原點.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_原點.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_原點.ON_文字內容 = "X103";
+            this.plC_Button_冷藏區X軸_原點.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_原點.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區X軸_原點.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_原點.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區X軸_原點.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button_冷藏區X軸_原點.TabIndex = 50;
+            this.plC_Button_冷藏區X軸_原點.事件驅動 = false;
+            this.plC_Button_冷藏區X軸_原點.字型鎖住 = false;
+            this.plC_Button_冷藏區X軸_原點.寫入元件位置 = "X103";
+            this.plC_Button_冷藏區X軸_原點.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區X軸_原點.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區X軸_原點.文字鎖住 = false;
+            this.plC_Button_冷藏區X軸_原點.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_原點.狀態OFF圖片")));
+            this.plC_Button_冷藏區X軸_原點.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_原點.狀態ON圖片")));
+            this.plC_Button_冷藏區X軸_原點.讀取位元反向 = false;
+            this.plC_Button_冷藏區X軸_原點.讀取元件位置 = "X103";
+            this.plC_Button_冷藏區X軸_原點.讀寫鎖住 = false;
+            this.plC_Button_冷藏區X軸_原點.起始狀態 = false;
+            this.plC_Button_冷藏區X軸_原點.音效 = true;
+            this.plC_Button_冷藏區X軸_原點.顯示 = false;
+            this.plC_Button_冷藏區X軸_原點.顯示狀態 = false;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label49.Location = new System.Drawing.Point(277, 179);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(48, 24);
+            this.label49.TabIndex = 51;
+            this.label49.Text = "原點";
+            // 
+            // plC_NumBox_冷藏區X軸_JOG速度
+            // 
+            this.plC_NumBox_冷藏區X軸_JOG速度.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區X軸_JOG速度.Location = new System.Drawing.Point(174, 358);
+            this.plC_NumBox_冷藏區X軸_JOG速度.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區X軸_JOG速度.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區X軸_JOG速度.Name = "plC_NumBox_冷藏區X軸_JOG速度";
+            this.plC_NumBox_冷藏區X軸_JOG速度.ReadOnly = false;
+            this.plC_NumBox_冷藏區X軸_JOG速度.Size = new System.Drawing.Size(116, 49);
+            this.plC_NumBox_冷藏區X軸_JOG速度.TabIndex = 49;
+            this.plC_NumBox_冷藏區X軸_JOG速度.Value = 0;
+            this.plC_NumBox_冷藏區X軸_JOG速度.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區X軸_JOG速度.密碼欄位 = false;
+            this.plC_NumBox_冷藏區X軸_JOG速度.寫入元件位置 = "R5001";
+            this.plC_NumBox_冷藏區X軸_JOG速度.小數點位置 = 0;
+            this.plC_NumBox_冷藏區X軸_JOG速度.微調數值 = 1;
+            this.plC_NumBox_冷藏區X軸_JOG速度.讀取元件位置 = "R5001";
+            this.plC_NumBox_冷藏區X軸_JOG速度.音效 = true;
+            this.plC_NumBox_冷藏區X軸_JOG速度.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區X軸_JOG速度.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable37
+            // 
+            this.rJ_Lable37.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable37.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable37.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable37.BorderRadius = 10;
+            this.rJ_Lable37.BorderSize = 0;
+            this.rJ_Lable37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable37.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable37.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable37.GUID = "";
+            this.rJ_Lable37.Location = new System.Drawing.Point(11, 355);
+            this.rJ_Lable37.Name = "rJ_Lable37";
+            this.rJ_Lable37.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable37.ShadowSize = 3;
+            this.rJ_Lable37.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable37.TabIndex = 48;
+            this.rJ_Lable37.Text = "JOG速度";
+            this.rJ_Lable37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable37.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_Lable36
+            // 
+            this.rJ_Lable36.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable36.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable36.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable36.BorderRadius = 10;
+            this.rJ_Lable36.BorderSize = 0;
+            this.rJ_Lable36.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable36.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable36.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable36.GUID = "";
+            this.rJ_Lable36.Location = new System.Drawing.Point(161, 91);
+            this.rJ_Lable36.Name = "rJ_Lable36";
+            this.rJ_Lable36.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable36.ShadowSize = 3;
+            this.rJ_Lable36.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable36.TabIndex = 47;
+            this.rJ_Lable36.Text = "現在位置";
+            this.rJ_Lable36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable36.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_冷藏區X軸_Stop
+            // 
+            this.plC_RJ_Button_冷藏區X軸_Stop.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.BackgroundColor = System.Drawing.Color.DarkRed;
+            this.plC_RJ_Button_冷藏區X軸_Stop.Bool = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區X軸_Stop.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區X軸_Stop.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_Stop.but_press = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區X軸_Stop.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_Stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區X軸_Stop.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_Stop.GUID = "";
+            this.plC_RJ_Button_冷藏區X軸_Stop.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區X軸_Stop.Location = new System.Drawing.Point(344, 423);
+            this.plC_RJ_Button_冷藏區X軸_Stop.Name = "plC_RJ_Button_冷藏區X軸_Stop";
+            this.plC_RJ_Button_冷藏區X軸_Stop.OFF_文字內容 = "Stop";
+            this.plC_RJ_Button_冷藏區X軸_Stop.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_Stop.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_Stop.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區X軸_Stop.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區X軸_Stop.ON_文字內容 = "Stop";
+            this.plC_RJ_Button_冷藏區X軸_Stop.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_Stop.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_Stop.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區X軸_Stop.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區X軸_Stop.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區X軸_Stop.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區X軸_Stop.State = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.TabIndex = 46;
+            this.plC_RJ_Button_冷藏區X軸_Stop.Text = "Stop";
+            this.plC_RJ_Button_冷藏區X軸_Stop.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_Stop.Texts = "Stop";
+            this.plC_RJ_Button_冷藏區X軸_Stop.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_冷藏區X軸_Stop.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區X軸_Stop.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.音效 = true;
+            this.plC_RJ_Button_冷藏區X軸_Stop.顯示 = false;
+            this.plC_RJ_Button_冷藏區X軸_Stop.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區X軸_PJOG
+            // 
+            this.plC_RJ_Button_冷藏區X軸_PJOG.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.Bool = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.but_press = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_PJOG.GUID = "";
+            this.plC_RJ_Button_冷藏區X軸_PJOG.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.Location = new System.Drawing.Point(174, 423);
+            this.plC_RJ_Button_冷藏區X軸_PJOG.Name = "plC_RJ_Button_冷藏區X軸_PJOG";
+            this.plC_RJ_Button_冷藏區X軸_PJOG.OFF_文字內容 = "JOG+";
+            this.plC_RJ_Button_冷藏區X軸_PJOG.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_PJOG.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_文字內容 = "JOG+";
+            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區X軸_PJOG.State = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.TabIndex = 45;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.Text = "JOG+";
+            this.plC_RJ_Button_冷藏區X軸_PJOG.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.Texts = "JOG+";
+            this.plC_RJ_Button_冷藏區X軸_PJOG.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.音效 = true;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.顯示 = false;
+            this.plC_RJ_Button_冷藏區X軸_PJOG.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區X軸_NJOG
+            // 
+            this.plC_RJ_Button_冷藏區X軸_NJOG.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.Bool = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.but_press = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_NJOG.GUID = "";
+            this.plC_RJ_Button_冷藏區X軸_NJOG.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.Location = new System.Drawing.Point(4, 423);
+            this.plC_RJ_Button_冷藏區X軸_NJOG.Name = "plC_RJ_Button_冷藏區X軸_NJOG";
+            this.plC_RJ_Button_冷藏區X軸_NJOG.OFF_文字內容 = "JOG-";
+            this.plC_RJ_Button_冷藏區X軸_NJOG.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_NJOG.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_文字內容 = "JOG-";
+            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區X軸_NJOG.State = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.TabIndex = 44;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.Text = "JOG-";
+            this.plC_RJ_Button_冷藏區X軸_NJOG.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.Texts = "JOG-";
+            this.plC_RJ_Button_冷藏區X軸_NJOG.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.音效 = true;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.顯示 = false;
+            this.plC_RJ_Button_冷藏區X軸_NJOG.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區X軸_ServoON
+            // 
+            this.plC_RJ_Button_冷藏區X軸_ServoON.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.Bool = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.BorderColor = System.Drawing.Color.Red;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.but_press = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區X軸_ServoON.GUID = "";
+            this.plC_RJ_Button_冷藏區X軸_ServoON.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.Location = new System.Drawing.Point(19, 85);
+            this.plC_RJ_Button_冷藏區X軸_ServoON.Name = "plC_RJ_Button_冷藏區X軸_ServoON";
+            this.plC_RJ_Button_冷藏區X軸_ServoON.OFF_文字內容 = "Servo On";
+            this.plC_RJ_Button_冷藏區X軸_ServoON.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區X軸_ServoON.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_文字內容 = "Servo On";
+            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.Size = new System.Drawing.Size(136, 67);
+            this.plC_RJ_Button_冷藏區X軸_ServoON.State = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.TabIndex = 43;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.Text = "Servo On";
+            this.plC_RJ_Button_冷藏區X軸_ServoON.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.Texts = "Servo On";
+            this.plC_RJ_Button_冷藏區X軸_ServoON.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.寫入元件位置 = "S100";
+            this.plC_RJ_Button_冷藏區X軸_ServoON.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.讀取元件位置 = "Y100";
+            this.plC_RJ_Button_冷藏區X軸_ServoON.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.音效 = true;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.顯示 = false;
+            this.plC_RJ_Button_冷藏區X軸_ServoON.顯示狀態 = false;
+            // 
+            // plC_NumBox_冷藏區X軸_現在位置
+            // 
+            this.plC_NumBox_冷藏區X軸_現在位置.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區X軸_現在位置.Location = new System.Drawing.Point(324, 92);
+            this.plC_NumBox_冷藏區X軸_現在位置.mBackColor = System.Drawing.SystemColors.Control;
+            this.plC_NumBox_冷藏區X軸_現在位置.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區X軸_現在位置.Name = "plC_NumBox_冷藏區X軸_現在位置";
+            this.plC_NumBox_冷藏區X軸_現在位置.ReadOnly = true;
+            this.plC_NumBox_冷藏區X軸_現在位置.Size = new System.Drawing.Size(168, 52);
+            this.plC_NumBox_冷藏區X軸_現在位置.TabIndex = 41;
+            this.plC_NumBox_冷藏區X軸_現在位置.Value = 0;
+            this.plC_NumBox_冷藏區X軸_現在位置.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區X軸_現在位置.密碼欄位 = false;
+            this.plC_NumBox_冷藏區X軸_現在位置.寫入元件位置 = "R5000";
+            this.plC_NumBox_冷藏區X軸_現在位置.小數點位置 = 2;
+            this.plC_NumBox_冷藏區X軸_現在位置.微調數值 = 1;
+            this.plC_NumBox_冷藏區X軸_現在位置.讀取元件位置 = "R5000";
+            this.plC_NumBox_冷藏區X軸_現在位置.音效 = true;
+            this.plC_NumBox_冷藏區X軸_現在位置.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區X軸_現在位置.顯示螢幕小鍵盤 = false;
+            // 
+            // plC_Button_冷藏區X軸_零速度檢出
+            // 
+            this.plC_Button_冷藏區X軸_零速度檢出.Bool = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.but_press = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區X軸_零速度檢出.Location = new System.Drawing.Point(12, 222);
+            this.plC_Button_冷藏區X軸_零速度檢出.Name = "plC_Button_冷藏區X軸_零速度檢出";
+            this.plC_Button_冷藏區X軸_零速度檢出.OFF_文字內容 = "X102";
+            this.plC_Button_冷藏區X軸_零速度檢出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_零速度檢出.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_零速度檢出.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_零速度檢出.ON_文字內容 = "X102";
+            this.plC_Button_冷藏區X軸_零速度檢出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_零速度檢出.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區X軸_零速度檢出.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_零速度檢出.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區X軸_零速度檢出.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button_冷藏區X軸_零速度檢出.TabIndex = 38;
+            this.plC_Button_冷藏區X軸_零速度檢出.事件驅動 = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.字型鎖住 = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.寫入元件位置 = "X102";
+            this.plC_Button_冷藏區X軸_零速度檢出.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區X軸_零速度檢出.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區X軸_零速度檢出.文字鎖住 = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_零速度檢出.狀態OFF圖片")));
+            this.plC_Button_冷藏區X軸_零速度檢出.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_零速度檢出.狀態ON圖片")));
+            this.plC_Button_冷藏區X軸_零速度檢出.讀取位元反向 = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.讀取元件位置 = "X102";
+            this.plC_Button_冷藏區X軸_零速度檢出.讀寫鎖住 = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.起始狀態 = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.音效 = true;
+            this.plC_Button_冷藏區X軸_零速度檢出.顯示 = false;
+            this.plC_Button_冷藏區X軸_零速度檢出.顯示狀態 = false;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label51.Location = new System.Drawing.Point(88, 245);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(105, 24);
+            this.label51.TabIndex = 39;
+            this.label51.Text = "零速度檢出";
+            // 
+            // plC_Button_冷藏區X軸_Ready
+            // 
+            this.plC_Button_冷藏區X軸_Ready.Bool = false;
+            this.plC_Button_冷藏區X軸_Ready.but_press = false;
+            this.plC_Button_冷藏區X軸_Ready.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區X軸_Ready.Location = new System.Drawing.Point(12, 156);
+            this.plC_Button_冷藏區X軸_Ready.Name = "plC_Button_冷藏區X軸_Ready";
+            this.plC_Button_冷藏區X軸_Ready.OFF_文字內容 = "X101";
+            this.plC_Button_冷藏區X軸_Ready.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_Ready.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_Ready.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_Ready.ON_文字內容 = "X101";
+            this.plC_Button_冷藏區X軸_Ready.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區X軸_Ready.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區X軸_Ready.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區X軸_Ready.Size = new System.Drawing.Size(60, 60);
+            this.plC_Button_冷藏區X軸_Ready.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button_冷藏區X軸_Ready.TabIndex = 36;
+            this.plC_Button_冷藏區X軸_Ready.事件驅動 = false;
+            this.plC_Button_冷藏區X軸_Ready.字型鎖住 = false;
+            this.plC_Button_冷藏區X軸_Ready.寫入元件位置 = "X101";
+            this.plC_Button_冷藏區X軸_Ready.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button_冷藏區X軸_Ready.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區X軸_Ready.文字鎖住 = false;
+            this.plC_Button_冷藏區X軸_Ready.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_Ready.狀態OFF圖片")));
+            this.plC_Button_冷藏區X軸_Ready.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_Ready.狀態ON圖片")));
+            this.plC_Button_冷藏區X軸_Ready.讀取位元反向 = false;
+            this.plC_Button_冷藏區X軸_Ready.讀取元件位置 = "X101";
+            this.plC_Button_冷藏區X軸_Ready.讀寫鎖住 = false;
+            this.plC_Button_冷藏區X軸_Ready.起始狀態 = false;
+            this.plC_Button_冷藏區X軸_Ready.音效 = true;
+            this.plC_Button_冷藏區X軸_Ready.顯示 = false;
+            this.plC_Button_冷藏區X軸_Ready.顯示狀態 = false;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label50.Location = new System.Drawing.Point(88, 179);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(67, 24);
+            this.label50.TabIndex = 37;
+            this.label50.Text = "Ready";
+            // 
+            // panel16
+            // 
+            this.panel16.Controls.Add(this.panel18);
+            this.panel16.Controls.Add(this.panel17);
+            this.panel16.Controls.Add(this.plC_Button4);
+            this.panel16.Controls.Add(this.plC_Button3);
+            this.panel16.Controls.Add(this.plC_RJ_Button_冷藏區_輸送門開啟);
+            this.panel16.Controls.Add(this.plC_RJ_Button_冷藏區_輸送門關閉);
+            this.panel16.Controls.Add(this.plC_Button2);
+            this.panel16.Controls.Add(this.plC_Button1);
+            this.panel16.Controls.Add(this.plC_RJ_Button_冷藏區_輸送帶後退);
+            this.panel16.Controls.Add(this.plC_RJ_Button_冷藏區_輸送帶前進);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel16.Location = new System.Drawing.Point(0, 0);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(1048, 324);
+            this.panel16.TabIndex = 0;
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label80.Location = new System.Drawing.Point(291, 107);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(46, 24);
+            this.label80.TabIndex = 79;
+            this.label80.Text = "mm";
+            // 
+            // plC_NumBox_冷藏區_藥盒傳接位置Z
+            // 
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.Location = new System.Drawing.Point(172, 93);
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.Name = "plC_NumBox_冷藏區_藥盒傳接位置Z";
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.ReadOnly = false;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.Size = new System.Drawing.Size(118, 38);
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.TabIndex = 78;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.Value = 0;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.密碼欄位 = false;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.寫入元件位置 = "R5023";
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.小數點位置 = 2;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.微調數值 = 1;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.讀取元件位置 = "R5023";
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.音效 = true;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區_藥盒傳接位置Z.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable46
+            // 
+            this.rJ_Lable46.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable46.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable46.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable46.BorderRadius = 10;
+            this.rJ_Lable46.BorderSize = 0;
+            this.rJ_Lable46.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable46.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable46.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable46.GUID = "";
+            this.rJ_Lable46.Location = new System.Drawing.Point(8, 93);
+            this.rJ_Lable46.Name = "rJ_Lable46";
+            this.rJ_Lable46.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable46.ShadowSize = 3;
+            this.rJ_Lable46.Size = new System.Drawing.Size(157, 38);
+            this.rJ_Lable46.TabIndex = 77;
+            this.rJ_Lable46.Text = "Z位置";
+            this.rJ_Lable46.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable46.TextColor = System.Drawing.Color.White;
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label79.Location = new System.Drawing.Point(291, 63);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(46, 24);
+            this.label79.TabIndex = 76;
+            this.label79.Text = "mm";
+            // 
+            // plC_NumBox_冷藏區_藥盒傳接位置X
+            // 
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.Location = new System.Drawing.Point(172, 49);
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.Name = "plC_NumBox_冷藏區_藥盒傳接位置X";
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.ReadOnly = false;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.Size = new System.Drawing.Size(118, 38);
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.TabIndex = 75;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.Value = 0;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.密碼欄位 = false;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.寫入元件位置 = "R5022";
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.小數點位置 = 2;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.微調數值 = 1;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.讀取元件位置 = "R5022";
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.音效 = true;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區_藥盒傳接位置X.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable45
+            // 
+            this.rJ_Lable45.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable45.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable45.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable45.BorderRadius = 10;
+            this.rJ_Lable45.BorderSize = 0;
+            this.rJ_Lable45.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable45.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable45.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable45.GUID = "";
+            this.rJ_Lable45.Location = new System.Drawing.Point(8, 49);
+            this.rJ_Lable45.Name = "rJ_Lable45";
+            this.rJ_Lable45.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable45.ShadowSize = 3;
+            this.rJ_Lable45.Size = new System.Drawing.Size(157, 38);
+            this.rJ_Lable45.TabIndex = 74;
+            this.rJ_Lable45.Text = "X位置";
+            this.rJ_Lable45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable45.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_Button4
+            // 
+            this.plC_Button4.Bool = false;
+            this.plC_Button4.but_press = false;
+            this.plC_Button4.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button4.Location = new System.Drawing.Point(426, 88);
+            this.plC_Button4.Name = "plC_Button4";
+            this.plC_Button4.OFF_文字內容 = "X05";
+            this.plC_Button4.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button4.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button4.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button4.ON_文字內容 = "X05";
+            this.plC_Button4.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button4.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button4.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button4.Size = new System.Drawing.Size(47, 46);
+            this.plC_Button4.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button4.TabIndex = 73;
+            this.plC_Button4.事件驅動 = false;
+            this.plC_Button4.字型鎖住 = false;
+            this.plC_Button4.寫入元件位置 = "X05";
+            this.plC_Button4.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button4.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button4.文字鎖住 = false;
+            this.plC_Button4.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button4.狀態OFF圖片")));
+            this.plC_Button4.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button4.狀態ON圖片")));
+            this.plC_Button4.讀取位元反向 = false;
+            this.plC_Button4.讀取元件位置 = "X05";
+            this.plC_Button4.讀寫鎖住 = false;
+            this.plC_Button4.起始狀態 = false;
+            this.plC_Button4.音效 = true;
+            this.plC_Button4.顯示 = false;
+            this.plC_Button4.顯示狀態 = false;
+            // 
+            // plC_Button3
+            // 
+            this.plC_Button3.Bool = false;
+            this.plC_Button3.but_press = false;
+            this.plC_Button3.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button3.Location = new System.Drawing.Point(649, 88);
+            this.plC_Button3.Name = "plC_Button3";
+            this.plC_Button3.OFF_文字內容 = "X04";
+            this.plC_Button3.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button3.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button3.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button3.ON_文字內容 = "X04";
+            this.plC_Button3.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button3.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button3.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button3.Size = new System.Drawing.Size(47, 46);
+            this.plC_Button3.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button3.TabIndex = 71;
+            this.plC_Button3.事件驅動 = false;
+            this.plC_Button3.字型鎖住 = false;
+            this.plC_Button3.寫入元件位置 = "X04";
+            this.plC_Button3.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button3.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button3.文字鎖住 = false;
+            this.plC_Button3.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button3.狀態OFF圖片")));
+            this.plC_Button3.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button3.狀態ON圖片")));
+            this.plC_Button3.讀取位元反向 = false;
+            this.plC_Button3.讀取元件位置 = "X04";
+            this.plC_Button3.讀寫鎖住 = false;
+            this.plC_Button3.起始狀態 = false;
+            this.plC_Button3.音效 = true;
+            this.plC_Button3.顯示 = false;
+            this.plC_Button3.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區_輸送門開啟
+            // 
+            this.plC_RJ_Button_冷藏區_輸送門開啟.Bool = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.but_press = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.Location = new System.Drawing.Point(479, 88);
+            this.plC_RJ_Button_冷藏區_輸送門開啟.Name = "plC_RJ_Button_冷藏區_輸送門開啟";
+            this.plC_RJ_Button_冷藏區_輸送門開啟.OFF_文字內容 = "冷藏輸送門開啟";
+            this.plC_RJ_Button_冷藏區_輸送門開啟.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區_輸送門開啟.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.ON_文字內容 = "冷藏輸送門開啟";
+            this.plC_RJ_Button_冷藏區_輸送門開啟.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區_輸送門開啟.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.Size = new System.Drawing.Size(164, 49);
+            this.plC_RJ_Button_冷藏區_輸送門開啟.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.TabIndex = 72;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.事件驅動 = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送門開啟.狀態OFF圖片")));
+            this.plC_RJ_Button_冷藏區_輸送門開啟.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送門開啟.狀態ON圖片")));
+            this.plC_RJ_Button_冷藏區_輸送門開啟.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.起始狀態 = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.音效 = true;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.顯示 = false;
+            this.plC_RJ_Button_冷藏區_輸送門開啟.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區_輸送門關閉
+            // 
+            this.plC_RJ_Button_冷藏區_輸送門關閉.Bool = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.but_press = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.Location = new System.Drawing.Point(702, 88);
+            this.plC_RJ_Button_冷藏區_輸送門關閉.Name = "plC_RJ_Button_冷藏區_輸送門關閉";
+            this.plC_RJ_Button_冷藏區_輸送門關閉.OFF_文字內容 = "冷藏輸送門關閉";
+            this.plC_RJ_Button_冷藏區_輸送門關閉.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區_輸送門關閉.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.ON_文字內容 = "冷藏輸送門關閉";
+            this.plC_RJ_Button_冷藏區_輸送門關閉.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區_輸送門關閉.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.Size = new System.Drawing.Size(164, 49);
+            this.plC_RJ_Button_冷藏區_輸送門關閉.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.TabIndex = 70;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.事件驅動 = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送門關閉.狀態OFF圖片")));
+            this.plC_RJ_Button_冷藏區_輸送門關閉.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送門關閉.狀態ON圖片")));
+            this.plC_RJ_Button_冷藏區_輸送門關閉.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.起始狀態 = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.音效 = true;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.顯示 = false;
+            this.plC_RJ_Button_冷藏區_輸送門關閉.顯示狀態 = false;
+            // 
+            // plC_Button2
+            // 
+            this.plC_Button2.Bool = false;
+            this.plC_Button2.but_press = false;
+            this.plC_Button2.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button2.Location = new System.Drawing.Point(6, 88);
+            this.plC_Button2.Name = "plC_Button2";
+            this.plC_Button2.OFF_文字內容 = "X200";
+            this.plC_Button2.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button2.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button2.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button2.ON_文字內容 = "X200";
+            this.plC_Button2.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button2.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button2.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button2.Size = new System.Drawing.Size(47, 46);
+            this.plC_Button2.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button2.TabIndex = 69;
+            this.plC_Button2.事件驅動 = false;
+            this.plC_Button2.字型鎖住 = false;
+            this.plC_Button2.寫入元件位置 = "X200";
+            this.plC_Button2.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button2.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button2.文字鎖住 = false;
+            this.plC_Button2.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button2.狀態OFF圖片")));
+            this.plC_Button2.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button2.狀態ON圖片")));
+            this.plC_Button2.讀取位元反向 = false;
+            this.plC_Button2.讀取元件位置 = "X200";
+            this.plC_Button2.讀寫鎖住 = false;
+            this.plC_Button2.起始狀態 = false;
+            this.plC_Button2.音效 = true;
+            this.plC_Button2.顯示 = false;
+            this.plC_Button2.顯示狀態 = false;
+            // 
+            // plC_Button1
+            // 
+            this.plC_Button1.Bool = false;
+            this.plC_Button1.but_press = false;
+            this.plC_Button1.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button1.Location = new System.Drawing.Point(201, 91);
+            this.plC_Button1.Name = "plC_Button1";
+            this.plC_Button1.OFF_文字內容 = "X03";
+            this.plC_Button1.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button1.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button1.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button1.ON_文字內容 = "X03";
+            this.plC_Button1.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button1.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button1.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_Button1.Size = new System.Drawing.Size(47, 46);
+            this.plC_Button1.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
+            this.plC_Button1.TabIndex = 68;
+            this.plC_Button1.事件驅動 = false;
+            this.plC_Button1.字型鎖住 = false;
+            this.plC_Button1.寫入元件位置 = "X03";
+            this.plC_Button1.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
+            this.plC_Button1.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button1.文字鎖住 = false;
+            this.plC_Button1.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button1.狀態OFF圖片")));
+            this.plC_Button1.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button1.狀態ON圖片")));
+            this.plC_Button1.讀取位元反向 = false;
+            this.plC_Button1.讀取元件位置 = "X03";
+            this.plC_Button1.讀寫鎖住 = false;
+            this.plC_Button1.起始狀態 = false;
+            this.plC_Button1.音效 = true;
+            this.plC_Button1.顯示 = false;
+            this.plC_Button1.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區_輸送帶後退
+            // 
+            this.plC_RJ_Button_冷藏區_輸送帶後退.Bool = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.but_press = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.Location = new System.Drawing.Point(254, 88);
+            this.plC_RJ_Button_冷藏區_輸送帶後退.Name = "plC_RJ_Button_冷藏區_輸送帶後退";
+            this.plC_RJ_Button_冷藏區_輸送帶後退.OFF_文字內容 = "輸送帶後退";
+            this.plC_RJ_Button_冷藏區_輸送帶後退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區_輸送帶後退.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.ON_文字內容 = "輸送帶後退";
+            this.plC_RJ_Button_冷藏區_輸送帶後退.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區_輸送帶後退.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.Size = new System.Drawing.Size(136, 49);
+            this.plC_RJ_Button_冷藏區_輸送帶後退.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.TabIndex = 67;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.事件驅動 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送帶後退.狀態OFF圖片")));
+            this.plC_RJ_Button_冷藏區_輸送帶後退.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送帶後退.狀態ON圖片")));
+            this.plC_RJ_Button_冷藏區_輸送帶後退.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.起始狀態 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.音效 = true;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.顯示 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶後退.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區_輸送帶前進
+            // 
+            this.plC_RJ_Button_冷藏區_輸送帶前進.Bool = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.but_press = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.Location = new System.Drawing.Point(57, 88);
+            this.plC_RJ_Button_冷藏區_輸送帶前進.Name = "plC_RJ_Button_冷藏區_輸送帶前進";
+            this.plC_RJ_Button_冷藏區_輸送帶前進.OFF_文字內容 = "輸送帶前進";
+            this.plC_RJ_Button_冷藏區_輸送帶前進.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區_輸送帶前進.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.ON_文字內容 = "輸送帶前進";
+            this.plC_RJ_Button_冷藏區_輸送帶前進.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_冷藏區_輸送帶前進.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.Size = new System.Drawing.Size(136, 49);
+            this.plC_RJ_Button_冷藏區_輸送帶前進.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.TabIndex = 64;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.事件驅動 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送帶前進.狀態OFF圖片")));
+            this.plC_RJ_Button_冷藏區_輸送帶前進.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送帶前進.狀態ON圖片")));
+            this.plC_RJ_Button_冷藏區_輸送帶前進.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.起始狀態 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.音效 = true;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.顯示 = false;
+            this.plC_RJ_Button_冷藏區_輸送帶前進.顯示狀態 = false;
             // 
             // tabPage5
             // 
@@ -7784,6 +9643,7 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel_系統
             // 
+            this.panel_系統.Controls.Add(this.plC_RJ_ScreenButton10);
             this.panel_系統.Controls.Add(this.plC_RJ_ScreenButton9);
             this.panel_系統.Controls.Add(this.plC_RJ_ScreenButton8);
             this.panel_系統.Controls.Add(this.plC_RJ_ScreenButton7);
@@ -7809,12 +9669,12 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_ScreenButton9.OffFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton9.OffForeColor = System.Drawing.Color.Gray;
             this.plC_RJ_ScreenButton9.OffIconColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButton9.OffText = "9016";
+            this.plC_RJ_ScreenButton9.OffText = "常溫區";
             this.plC_RJ_ScreenButton9.OnBackColor = System.Drawing.Color.Black;
             this.plC_RJ_ScreenButton9.OnFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_ScreenButton9.OnForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton9.OnIconColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButton9.OnText = "9016";
+            this.plC_RJ_ScreenButton9.OnText = "常溫區";
             this.plC_RJ_ScreenButton9.ShowIcon = false;
             this.plC_RJ_ScreenButton9.Size = new System.Drawing.Size(148, 57);
             this.plC_RJ_ScreenButton9.TabIndex = 5;
@@ -7829,7 +9689,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_ScreenButton9.讀取位置註解 = "";
             this.plC_RJ_ScreenButton9.讀取元件位置 = "";
             this.plC_RJ_ScreenButton9.音效 = true;
-            this.plC_RJ_ScreenButton9.頁面名稱 = "9016";
+            this.plC_RJ_ScreenButton9.頁面名稱 = "常溫區";
             this.plC_RJ_ScreenButton9.頁面編號 = 0;
             this.plC_RJ_ScreenButton9.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
             this.plC_RJ_ScreenButton9.顯示狀態 = false;
@@ -7848,12 +9708,12 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_ScreenButton8.OffFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_ScreenButton8.OffForeColor = System.Drawing.Color.Gray;
             this.plC_RJ_ScreenButton8.OffIconColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButton8.OffText = "軸控";
+            this.plC_RJ_ScreenButton8.OffText = "冷藏區";
             this.plC_RJ_ScreenButton8.OnBackColor = System.Drawing.Color.Black;
             this.plC_RJ_ScreenButton8.OnFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_ScreenButton8.OnForeColor = System.Drawing.Color.White;
             this.plC_RJ_ScreenButton8.OnIconColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButton8.OnText = "軸控";
+            this.plC_RJ_ScreenButton8.OnText = "冷藏區";
             this.plC_RJ_ScreenButton8.ShowIcon = false;
             this.plC_RJ_ScreenButton8.Size = new System.Drawing.Size(148, 57);
             this.plC_RJ_ScreenButton8.TabIndex = 4;
@@ -7868,7 +9728,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_ScreenButton8.讀取位置註解 = "";
             this.plC_RJ_ScreenButton8.讀取元件位置 = "";
             this.plC_RJ_ScreenButton8.音效 = true;
-            this.plC_RJ_ScreenButton8.頁面名稱 = "軸控";
+            this.plC_RJ_ScreenButton8.頁面名稱 = "冷藏區";
             this.plC_RJ_ScreenButton8.頁面編號 = 0;
             this.plC_RJ_ScreenButton8.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
             this.plC_RJ_ScreenButton8.顯示狀態 = false;
@@ -7991,1733 +9851,557 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_ScreenButton5.顯示狀態 = false;
             this.plC_RJ_ScreenButton5.顯示讀取位置 = "";
             // 
-            // panel16
-            // 
-            this.panel16.Controls.Add(this.plC_Button4);
-            this.panel16.Controls.Add(this.plC_Button3);
-            this.panel16.Controls.Add(this.plC_RJ_Button_冷藏區_輸送門開啟);
-            this.panel16.Controls.Add(this.plC_RJ_Button_冷藏區_輸送門關閉);
-            this.panel16.Controls.Add(this.plC_Button2);
-            this.panel16.Controls.Add(this.plC_Button1);
-            this.panel16.Controls.Add(this.plC_RJ_Button_冷藏區_輸送帶後退);
-            this.panel16.Controls.Add(this.rJ_Lable44);
-            this.panel16.Controls.Add(this.plC_RJ_Button_冷藏區_輸送帶前進);
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel16.Location = new System.Drawing.Point(0, 0);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(1048, 268);
-            this.panel16.TabIndex = 0;
-            // 
-            // plC_RJ_Pannel2
-            // 
-            this.plC_RJ_Pannel2.BackColor = System.Drawing.Color.White;
-            this.plC_RJ_Pannel2.BackgroundColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_Pannel2.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_Pannel2.BorderRadius = 10;
-            this.plC_RJ_Pannel2.BorderSize = 2;
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_已完成復歸);
-            this.plC_RJ_Pannel2.Controls.Add(this.label78);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_NumBox_冷藏區Z軸_復歸偏移);
-            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable43);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_解剎車);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_ALARM);
-            this.plC_RJ_Pannel2.Controls.Add(this.label60);
-            this.plC_RJ_Pannel2.Controls.Add(this.label54);
-            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable39);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_復歸);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_正極限);
-            this.plC_RJ_Pannel2.Controls.Add(this.label55);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_原點);
-            this.plC_RJ_Pannel2.Controls.Add(this.label56);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_NumBox_冷藏區Z軸_JOG速度);
-            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable40);
-            this.plC_RJ_Pannel2.Controls.Add(this.rJ_Lable41);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_Stop);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_PJOG);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_NJOG);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_RJ_Button_冷藏區Z軸_ServoON);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_NumBox_冷藏區Z軸_現在位置);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_零速度檢出);
-            this.plC_RJ_Pannel2.Controls.Add(this.label57);
-            this.plC_RJ_Pannel2.Controls.Add(this.plC_Button_冷藏區Z軸_Ready);
-            this.plC_RJ_Pannel2.Controls.Add(this.label58);
-            this.plC_RJ_Pannel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.plC_RJ_Pannel2.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_Pannel2.IsSelected = false;
-            this.plC_RJ_Pannel2.Location = new System.Drawing.Point(526, 268);
-            this.plC_RJ_Pannel2.Name = "plC_RJ_Pannel2";
-            this.plC_RJ_Pannel2.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
-            this.plC_RJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Pannel2.ShadowSize = 3;
-            this.plC_RJ_Pannel2.Size = new System.Drawing.Size(522, 627);
-            this.plC_RJ_Pannel2.TabIndex = 6;
-            // 
-            // plC_RJ_Button_冷藏區Z軸_已完成復歸
-            // 
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Bool = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.but_press = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Location = new System.Drawing.Point(356, 167);
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Name = "plC_RJ_Button_冷藏區Z軸_已完成復歸";
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.OFF_文字內容 = "未完成復歸";
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.ON_文字內容 = "已完成復歸";
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Size = new System.Drawing.Size(136, 49);
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.TabIndex = 66;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.事件驅動 = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區Z軸_已完成復歸.狀態OFF圖片")));
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區Z軸_已完成復歸.狀態ON圖片")));
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.起始狀態 = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.音效 = true;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.顯示 = false;
-            this.plC_RJ_Button_冷藏區Z軸_已完成復歸.顯示狀態 = false;
-            // 
-            // label78
-            // 
-            this.label78.AutoSize = true;
-            this.label78.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label78.Location = new System.Drawing.Point(296, 578);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(46, 24);
-            this.label78.TabIndex = 65;
-            this.label78.Text = "mm";
-            // 
-            // plC_NumBox_冷藏區Z軸_復歸偏移
-            // 
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.Location = new System.Drawing.Point(176, 553);
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.mBackColor = System.Drawing.SystemColors.HighlightText;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.Name = "plC_NumBox_冷藏區Z軸_復歸偏移";
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.ReadOnly = false;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.Size = new System.Drawing.Size(118, 49);
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.TabIndex = 64;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.Value = 0;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.密碼欄位 = false;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.寫入元件位置 = "R5012";
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.小數點位置 = 2;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.微調數值 = 1;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.讀取元件位置 = "R5012";
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.音效 = true;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.顯示微調按鈕 = false;
-            this.plC_NumBox_冷藏區Z軸_復歸偏移.顯示螢幕小鍵盤 = true;
-            // 
-            // rJ_Lable43
-            // 
-            this.rJ_Lable43.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable43.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable43.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable43.BorderRadius = 10;
-            this.rJ_Lable43.BorderSize = 0;
-            this.rJ_Lable43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable43.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable43.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable43.GUID = "";
-            this.rJ_Lable43.Location = new System.Drawing.Point(13, 550);
-            this.rJ_Lable43.Name = "rJ_Lable43";
-            this.rJ_Lable43.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable43.ShadowSize = 3;
-            this.rJ_Lable43.Size = new System.Drawing.Size(157, 54);
-            this.rJ_Lable43.TabIndex = 63;
-            this.rJ_Lable43.Text = "復歸偏移";
-            this.rJ_Lable43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable43.TextColor = System.Drawing.Color.White;
-            // 
-            // plC_RJ_Button_冷藏區Z軸_解剎車
-            // 
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.Bool = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.but_press = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.Location = new System.Drawing.Point(200, 299);
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.Name = "plC_RJ_Button_冷藏區Z軸_解剎車";
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.OFF_文字內容 = "冷藏Z軸解煞車";
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.ON_文字內容 = "冷藏Z軸解煞車";
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.Size = new System.Drawing.Size(164, 49);
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.TabIndex = 62;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.事件驅動 = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.寫入元件位置 = "Y13";
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區Z軸_解剎車.狀態OFF圖片")));
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區Z軸_解剎車.狀態ON圖片")));
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.讀取元件位置 = "Y13";
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.起始狀態 = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.音效 = true;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.顯示 = false;
-            this.plC_RJ_Button_冷藏區Z軸_解剎車.顯示狀態 = false;
-            // 
-            // plC_Button_冷藏區Z軸_ALARM
-            // 
-            this.plC_Button_冷藏區Z軸_ALARM.Bool = false;
-            this.plC_Button_冷藏區Z軸_ALARM.but_press = false;
-            this.plC_Button_冷藏區Z軸_ALARM.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區Z軸_ALARM.Location = new System.Drawing.Point(12, 288);
-            this.plC_Button_冷藏區Z軸_ALARM.Name = "plC_Button_冷藏區Z軸_ALARM";
-            this.plC_Button_冷藏區Z軸_ALARM.OFF_文字內容 = "X115";
-            this.plC_Button_冷藏區Z軸_ALARM.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_ALARM.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_ALARM.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_ALARM.ON_文字內容 = "X115";
-            this.plC_Button_冷藏區Z軸_ALARM.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_ALARM.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區Z軸_ALARM.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_ALARM.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區Z軸_ALARM.Style = MyUI.PLC_Button.StyleEnum.Lamp_紅;
-            this.plC_Button_冷藏區Z軸_ALARM.TabIndex = 60;
-            this.plC_Button_冷藏區Z軸_ALARM.事件驅動 = false;
-            this.plC_Button_冷藏區Z軸_ALARM.字型鎖住 = false;
-            this.plC_Button_冷藏區Z軸_ALARM.寫入元件位置 = "X115";
-            this.plC_Button_冷藏區Z軸_ALARM.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區Z軸_ALARM.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區Z軸_ALARM.文字鎖住 = false;
-            this.plC_Button_冷藏區Z軸_ALARM.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_ALARM.狀態OFF圖片")));
-            this.plC_Button_冷藏區Z軸_ALARM.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_ALARM.狀態ON圖片")));
-            this.plC_Button_冷藏區Z軸_ALARM.讀取位元反向 = false;
-            this.plC_Button_冷藏區Z軸_ALARM.讀取元件位置 = "X115";
-            this.plC_Button_冷藏區Z軸_ALARM.讀寫鎖住 = false;
-            this.plC_Button_冷藏區Z軸_ALARM.起始狀態 = false;
-            this.plC_Button_冷藏區Z軸_ALARM.音效 = true;
-            this.plC_Button_冷藏區Z軸_ALARM.顯示 = false;
-            this.plC_Button_冷藏區Z軸_ALARM.顯示狀態 = false;
-            // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label60.Location = new System.Drawing.Point(88, 311);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(80, 24);
-            this.label60.TabIndex = 61;
-            this.label60.Text = "ALARM";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label54.Location = new System.Drawing.Point(305, 426);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(48, 24);
-            this.label54.TabIndex = 57;
-            this.label54.Text = "rpm";
-            // 
-            // rJ_Lable39
-            // 
-            this.rJ_Lable39.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable39.BackgroundColor = System.Drawing.Color.Silver;
-            this.rJ_Lable39.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable39.BorderRadius = 10;
-            this.rJ_Lable39.BorderSize = 0;
-            this.rJ_Lable39.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable39.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable39.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable39.GUID = "";
-            this.rJ_Lable39.Location = new System.Drawing.Point(10, 5);
-            this.rJ_Lable39.Name = "rJ_Lable39";
-            this.rJ_Lable39.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable39.ShadowSize = 3;
-            this.rJ_Lable39.Size = new System.Drawing.Size(502, 75);
-            this.rJ_Lable39.TabIndex = 55;
-            this.rJ_Lable39.Text = "Z軸";
-            this.rJ_Lable39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable39.TextColor = System.Drawing.Color.White;
-            // 
-            // plC_RJ_Button_冷藏區Z軸_復歸
-            // 
-            this.plC_RJ_Button_冷藏區Z軸_復歸.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.Bool = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.but_press = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_復歸.GUID = "";
-            this.plC_RJ_Button_冷藏區Z軸_復歸.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.Location = new System.Drawing.Point(346, 539);
-            this.plC_RJ_Button_冷藏區Z軸_復歸.Name = "plC_RJ_Button_冷藏區Z軸_復歸";
-            this.plC_RJ_Button_冷藏區Z軸_復歸.OFF_文字內容 = "復歸";
-            this.plC_RJ_Button_冷藏區Z軸_復歸.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_復歸.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_文字內容 = "復歸";
-            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.Size = new System.Drawing.Size(164, 67);
-            this.plC_RJ_Button_冷藏區Z軸_復歸.State = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.TabIndex = 54;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.Text = "復歸";
-            this.plC_RJ_Button_冷藏區Z軸_復歸.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.Texts = "復歸";
-            this.plC_RJ_Button_冷藏區Z軸_復歸.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.音效 = true;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.顯示 = false;
-            this.plC_RJ_Button_冷藏區Z軸_復歸.顯示狀態 = false;
-            // 
-            // plC_Button_冷藏區Z軸_正極限
-            // 
-            this.plC_Button_冷藏區Z軸_正極限.Bool = false;
-            this.plC_Button_冷藏區Z軸_正極限.but_press = false;
-            this.plC_Button_冷藏區Z軸_正極限.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區Z軸_正極限.Location = new System.Drawing.Point(200, 222);
-            this.plC_Button_冷藏區Z軸_正極限.Name = "plC_Button_冷藏區Z軸_正極限";
-            this.plC_Button_冷藏區Z軸_正極限.OFF_文字內容 = "X114";
-            this.plC_Button_冷藏區Z軸_正極限.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_正極限.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_正極限.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_正極限.ON_文字內容 = "X114";
-            this.plC_Button_冷藏區Z軸_正極限.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_正極限.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區Z軸_正極限.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_正極限.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區Z軸_正極限.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button_冷藏區Z軸_正極限.TabIndex = 52;
-            this.plC_Button_冷藏區Z軸_正極限.事件驅動 = false;
-            this.plC_Button_冷藏區Z軸_正極限.字型鎖住 = false;
-            this.plC_Button_冷藏區Z軸_正極限.寫入元件位置 = "X114";
-            this.plC_Button_冷藏區Z軸_正極限.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區Z軸_正極限.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區Z軸_正極限.文字鎖住 = false;
-            this.plC_Button_冷藏區Z軸_正極限.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_正極限.狀態OFF圖片")));
-            this.plC_Button_冷藏區Z軸_正極限.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_正極限.狀態ON圖片")));
-            this.plC_Button_冷藏區Z軸_正極限.讀取位元反向 = false;
-            this.plC_Button_冷藏區Z軸_正極限.讀取元件位置 = "X114";
-            this.plC_Button_冷藏區Z軸_正極限.讀寫鎖住 = false;
-            this.plC_Button_冷藏區Z軸_正極限.起始狀態 = false;
-            this.plC_Button_冷藏區Z軸_正極限.音效 = true;
-            this.plC_Button_冷藏區Z軸_正極限.顯示 = false;
-            this.plC_Button_冷藏區Z軸_正極限.顯示狀態 = false;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label55.Location = new System.Drawing.Point(276, 245);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(67, 24);
-            this.label55.TabIndex = 53;
-            this.label55.Text = "正極限";
-            // 
-            // plC_Button_冷藏區Z軸_原點
-            // 
-            this.plC_Button_冷藏區Z軸_原點.Bool = false;
-            this.plC_Button_冷藏區Z軸_原點.but_press = false;
-            this.plC_Button_冷藏區Z軸_原點.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區Z軸_原點.Location = new System.Drawing.Point(200, 156);
-            this.plC_Button_冷藏區Z軸_原點.Name = "plC_Button_冷藏區Z軸_原點";
-            this.plC_Button_冷藏區Z軸_原點.OFF_文字內容 = "X113";
-            this.plC_Button_冷藏區Z軸_原點.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_原點.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_原點.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_原點.ON_文字內容 = "X113";
-            this.plC_Button_冷藏區Z軸_原點.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_原點.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區Z軸_原點.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_原點.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區Z軸_原點.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button_冷藏區Z軸_原點.TabIndex = 50;
-            this.plC_Button_冷藏區Z軸_原點.事件驅動 = false;
-            this.plC_Button_冷藏區Z軸_原點.字型鎖住 = false;
-            this.plC_Button_冷藏區Z軸_原點.寫入元件位置 = "X113";
-            this.plC_Button_冷藏區Z軸_原點.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區Z軸_原點.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區Z軸_原點.文字鎖住 = false;
-            this.plC_Button_冷藏區Z軸_原點.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_原點.狀態OFF圖片")));
-            this.plC_Button_冷藏區Z軸_原點.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_原點.狀態ON圖片")));
-            this.plC_Button_冷藏區Z軸_原點.讀取位元反向 = false;
-            this.plC_Button_冷藏區Z軸_原點.讀取元件位置 = "X113";
-            this.plC_Button_冷藏區Z軸_原點.讀寫鎖住 = false;
-            this.plC_Button_冷藏區Z軸_原點.起始狀態 = false;
-            this.plC_Button_冷藏區Z軸_原點.音效 = true;
-            this.plC_Button_冷藏區Z軸_原點.顯示 = false;
-            this.plC_Button_冷藏區Z軸_原點.顯示狀態 = false;
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label56.Location = new System.Drawing.Point(276, 179);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(48, 24);
-            this.label56.TabIndex = 51;
-            this.label56.Text = "原點";
-            // 
-            // plC_NumBox_冷藏區Z軸_JOG速度
-            // 
-            this.plC_NumBox_冷藏區Z軸_JOG速度.Font = new System.Drawing.Font("微軟正黑體", 21.75F);
-            this.plC_NumBox_冷藏區Z軸_JOG速度.Location = new System.Drawing.Point(176, 398);
-            this.plC_NumBox_冷藏區Z軸_JOG速度.mBackColor = System.Drawing.SystemColors.HighlightText;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.Name = "plC_NumBox_冷藏區Z軸_JOG速度";
-            this.plC_NumBox_冷藏區Z軸_JOG速度.ReadOnly = false;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.Size = new System.Drawing.Size(123, 56);
-            this.plC_NumBox_冷藏區Z軸_JOG速度.TabIndex = 49;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.Value = 0;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.密碼欄位 = false;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.寫入元件位置 = "R5011";
-            this.plC_NumBox_冷藏區Z軸_JOG速度.小數點位置 = 0;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.微調數值 = 1;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.讀取元件位置 = "R5011";
-            this.plC_NumBox_冷藏區Z軸_JOG速度.音效 = true;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.顯示微調按鈕 = false;
-            this.plC_NumBox_冷藏區Z軸_JOG速度.顯示螢幕小鍵盤 = true;
-            // 
-            // rJ_Lable40
-            // 
-            this.rJ_Lable40.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable40.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable40.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable40.BorderRadius = 10;
-            this.rJ_Lable40.BorderSize = 0;
-            this.rJ_Lable40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable40.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable40.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable40.GUID = "";
-            this.rJ_Lable40.Location = new System.Drawing.Point(13, 398);
-            this.rJ_Lable40.Name = "rJ_Lable40";
-            this.rJ_Lable40.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable40.ShadowSize = 3;
-            this.rJ_Lable40.Size = new System.Drawing.Size(157, 54);
-            this.rJ_Lable40.TabIndex = 48;
-            this.rJ_Lable40.Text = "JOG速度";
-            this.rJ_Lable40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable40.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Lable41
-            // 
-            this.rJ_Lable41.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable41.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable41.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable41.BorderRadius = 10;
-            this.rJ_Lable41.BorderSize = 0;
-            this.rJ_Lable41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable41.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable41.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable41.GUID = "";
-            this.rJ_Lable41.Location = new System.Drawing.Point(161, 91);
-            this.rJ_Lable41.Name = "rJ_Lable41";
-            this.rJ_Lable41.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable41.ShadowSize = 3;
-            this.rJ_Lable41.Size = new System.Drawing.Size(157, 54);
-            this.rJ_Lable41.TabIndex = 47;
-            this.rJ_Lable41.Text = "現在位置";
-            this.rJ_Lable41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable41.TextColor = System.Drawing.Color.White;
-            // 
-            // plC_RJ_Button_冷藏區Z軸_Stop
-            // 
-            this.plC_RJ_Button_冷藏區Z軸_Stop.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.BackgroundColor = System.Drawing.Color.DarkRed;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.Bool = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.but_press = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_Stop.GUID = "";
-            this.plC_RJ_Button_冷藏區Z軸_Stop.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.Location = new System.Drawing.Point(346, 466);
-            this.plC_RJ_Button_冷藏區Z軸_Stop.Name = "plC_RJ_Button_冷藏區Z軸_Stop";
-            this.plC_RJ_Button_冷藏區Z軸_Stop.OFF_文字內容 = "Stop";
-            this.plC_RJ_Button_冷藏區Z軸_Stop.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_Stop.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_文字內容 = "Stop";
-            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.Size = new System.Drawing.Size(164, 67);
-            this.plC_RJ_Button_冷藏區Z軸_Stop.State = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.TabIndex = 46;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.Text = "Stop";
-            this.plC_RJ_Button_冷藏區Z軸_Stop.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.Texts = "Stop";
-            this.plC_RJ_Button_冷藏區Z軸_Stop.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.音效 = true;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.顯示 = false;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_冷藏區Z軸_PJOG
-            // 
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.Bool = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.but_press = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.GUID = "";
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.Location = new System.Drawing.Point(176, 466);
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.Name = "plC_RJ_Button_冷藏區Z軸_PJOG";
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.OFF_文字內容 = "JOG+";
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_文字內容 = "JOG+";
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.Size = new System.Drawing.Size(164, 67);
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.State = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.TabIndex = 45;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.Text = "JOG+";
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.Texts = "JOG+";
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.音效 = true;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.顯示 = false;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_冷藏區Z軸_NJOG
-            // 
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.Bool = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.but_press = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.GUID = "";
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.Location = new System.Drawing.Point(6, 466);
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.Name = "plC_RJ_Button_冷藏區Z軸_NJOG";
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.OFF_文字內容 = "JOG-";
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_文字內容 = "JOG-";
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.Size = new System.Drawing.Size(164, 67);
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.State = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.TabIndex = 44;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.Text = "JOG-";
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.Texts = "JOG-";
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.音效 = true;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.顯示 = false;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_冷藏區Z軸_ServoON
-            // 
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.Bool = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.but_press = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.GUID = "";
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.Location = new System.Drawing.Point(19, 85);
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.Name = "plC_RJ_Button_冷藏區Z軸_ServoON";
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.OFF_文字內容 = "Servo On";
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_文字內容 = "Servo On";
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.Size = new System.Drawing.Size(136, 67);
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.State = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.TabIndex = 43;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.Text = "Servo On";
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.Texts = "Servo On";
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.寫入元件位置 = "S100";
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.讀取元件位置 = "Y110";
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.音效 = true;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.顯示 = false;
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.顯示狀態 = false;
-            // 
-            // plC_NumBox_冷藏區Z軸_現在位置
-            // 
-            this.plC_NumBox_冷藏區Z軸_現在位置.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_冷藏區Z軸_現在位置.Location = new System.Drawing.Point(324, 92);
-            this.plC_NumBox_冷藏區Z軸_現在位置.mBackColor = System.Drawing.SystemColors.Control;
-            this.plC_NumBox_冷藏區Z軸_現在位置.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_冷藏區Z軸_現在位置.Name = "plC_NumBox_冷藏區Z軸_現在位置";
-            this.plC_NumBox_冷藏區Z軸_現在位置.ReadOnly = true;
-            this.plC_NumBox_冷藏區Z軸_現在位置.Size = new System.Drawing.Size(168, 52);
-            this.plC_NumBox_冷藏區Z軸_現在位置.TabIndex = 41;
-            this.plC_NumBox_冷藏區Z軸_現在位置.Value = 0;
-            this.plC_NumBox_冷藏區Z軸_現在位置.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_冷藏區Z軸_現在位置.密碼欄位 = false;
-            this.plC_NumBox_冷藏區Z軸_現在位置.寫入元件位置 = "R5010";
-            this.plC_NumBox_冷藏區Z軸_現在位置.小數點位置 = 2;
-            this.plC_NumBox_冷藏區Z軸_現在位置.微調數值 = 1;
-            this.plC_NumBox_冷藏區Z軸_現在位置.讀取元件位置 = "R5010";
-            this.plC_NumBox_冷藏區Z軸_現在位置.音效 = true;
-            this.plC_NumBox_冷藏區Z軸_現在位置.顯示微調按鈕 = false;
-            this.plC_NumBox_冷藏區Z軸_現在位置.顯示螢幕小鍵盤 = false;
-            // 
-            // plC_Button_冷藏區Z軸_零速度檢出
-            // 
-            this.plC_Button_冷藏區Z軸_零速度檢出.Bool = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.but_press = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區Z軸_零速度檢出.Location = new System.Drawing.Point(12, 222);
-            this.plC_Button_冷藏區Z軸_零速度檢出.Name = "plC_Button_冷藏區Z軸_零速度檢出";
-            this.plC_Button_冷藏區Z軸_零速度檢出.OFF_文字內容 = "X112";
-            this.plC_Button_冷藏區Z軸_零速度檢出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_零速度檢出.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_零速度檢出.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_零速度檢出.ON_文字內容 = "X112";
-            this.plC_Button_冷藏區Z軸_零速度檢出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_零速度檢出.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區Z軸_零速度檢出.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_零速度檢出.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區Z軸_零速度檢出.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button_冷藏區Z軸_零速度檢出.TabIndex = 38;
-            this.plC_Button_冷藏區Z軸_零速度檢出.事件驅動 = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.字型鎖住 = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.寫入元件位置 = "X112";
-            this.plC_Button_冷藏區Z軸_零速度檢出.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區Z軸_零速度檢出.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區Z軸_零速度檢出.文字鎖住 = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_零速度檢出.狀態OFF圖片")));
-            this.plC_Button_冷藏區Z軸_零速度檢出.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_零速度檢出.狀態ON圖片")));
-            this.plC_Button_冷藏區Z軸_零速度檢出.讀取位元反向 = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.讀取元件位置 = "X112";
-            this.plC_Button_冷藏區Z軸_零速度檢出.讀寫鎖住 = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.起始狀態 = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.音效 = true;
-            this.plC_Button_冷藏區Z軸_零速度檢出.顯示 = false;
-            this.plC_Button_冷藏區Z軸_零速度檢出.顯示狀態 = false;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label57.Location = new System.Drawing.Point(88, 245);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(105, 24);
-            this.label57.TabIndex = 39;
-            this.label57.Text = "零速度檢出";
-            // 
-            // plC_Button_冷藏區Z軸_Ready
-            // 
-            this.plC_Button_冷藏區Z軸_Ready.Bool = false;
-            this.plC_Button_冷藏區Z軸_Ready.but_press = false;
-            this.plC_Button_冷藏區Z軸_Ready.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區Z軸_Ready.Location = new System.Drawing.Point(12, 156);
-            this.plC_Button_冷藏區Z軸_Ready.Name = "plC_Button_冷藏區Z軸_Ready";
-            this.plC_Button_冷藏區Z軸_Ready.OFF_文字內容 = "X111";
-            this.plC_Button_冷藏區Z軸_Ready.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_Ready.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_Ready.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_Ready.ON_文字內容 = "X111";
-            this.plC_Button_冷藏區Z軸_Ready.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區Z軸_Ready.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區Z軸_Ready.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區Z軸_Ready.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區Z軸_Ready.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button_冷藏區Z軸_Ready.TabIndex = 36;
-            this.plC_Button_冷藏區Z軸_Ready.事件驅動 = false;
-            this.plC_Button_冷藏區Z軸_Ready.字型鎖住 = false;
-            this.plC_Button_冷藏區Z軸_Ready.寫入元件位置 = "X111";
-            this.plC_Button_冷藏區Z軸_Ready.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區Z軸_Ready.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區Z軸_Ready.文字鎖住 = false;
-            this.plC_Button_冷藏區Z軸_Ready.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_Ready.狀態OFF圖片")));
-            this.plC_Button_冷藏區Z軸_Ready.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區Z軸_Ready.狀態ON圖片")));
-            this.plC_Button_冷藏區Z軸_Ready.讀取位元反向 = false;
-            this.plC_Button_冷藏區Z軸_Ready.讀取元件位置 = "X111";
-            this.plC_Button_冷藏區Z軸_Ready.讀寫鎖住 = false;
-            this.plC_Button_冷藏區Z軸_Ready.起始狀態 = false;
-            this.plC_Button_冷藏區Z軸_Ready.音效 = true;
-            this.plC_Button_冷藏區Z軸_Ready.顯示 = false;
-            this.plC_Button_冷藏區Z軸_Ready.顯示狀態 = false;
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label58.Location = new System.Drawing.Point(88, 179);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(67, 24);
-            this.label58.TabIndex = 37;
-            this.label58.Text = "Ready";
-            // 
-            // plC_RJ_Pannel1
-            // 
-            this.plC_RJ_Pannel1.BackColor = System.Drawing.Color.White;
-            this.plC_RJ_Pannel1.BackgroundColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_Pannel1.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_Pannel1.BorderRadius = 10;
-            this.plC_RJ_Pannel1.BorderSize = 2;
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_已完成復歸);
-            this.plC_RJ_Pannel1.Controls.Add(this.label61);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_NumBox_冷藏區X軸_復歸偏移);
-            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable42);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_ALARM);
-            this.plC_RJ_Pannel1.Controls.Add(this.label59);
-            this.plC_RJ_Pannel1.Controls.Add(this.label53);
-            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable38);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_復歸);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_正極限);
-            this.plC_RJ_Pannel1.Controls.Add(this.label52);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_原點);
-            this.plC_RJ_Pannel1.Controls.Add(this.label49);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_NumBox_冷藏區X軸_JOG速度);
-            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable37);
-            this.plC_RJ_Pannel1.Controls.Add(this.rJ_Lable36);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_Stop);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_PJOG);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_NJOG);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_RJ_Button_冷藏區X軸_ServoON);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_NumBox_冷藏區X軸_現在位置);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_零速度檢出);
-            this.plC_RJ_Pannel1.Controls.Add(this.label51);
-            this.plC_RJ_Pannel1.Controls.Add(this.plC_Button_冷藏區X軸_Ready);
-            this.plC_RJ_Pannel1.Controls.Add(this.label50);
-            this.plC_RJ_Pannel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_Pannel1.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_Pannel1.IsSelected = false;
-            this.plC_RJ_Pannel1.Location = new System.Drawing.Point(0, 268);
-            this.plC_RJ_Pannel1.Name = "plC_RJ_Pannel1";
-            this.plC_RJ_Pannel1.Padding = new System.Windows.Forms.Padding(10, 5, 10, 10);
-            this.plC_RJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Pannel1.ShadowSize = 3;
-            this.plC_RJ_Pannel1.Size = new System.Drawing.Size(522, 627);
-            this.plC_RJ_Pannel1.TabIndex = 5;
-            // 
-            // plC_RJ_Button_冷藏區X軸_已完成復歸
-            // 
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Bool = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.but_press = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Location = new System.Drawing.Point(356, 167);
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Name = "plC_RJ_Button_冷藏區X軸_已完成復歸";
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.OFF_文字內容 = "未完成復歸";
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.ON_文字內容 = "已完成復歸";
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Size = new System.Drawing.Size(136, 49);
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.TabIndex = 63;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.事件驅動 = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區X軸_已完成復歸.狀態OFF圖片")));
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區X軸_已完成復歸.狀態ON圖片")));
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.起始狀態 = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.音效 = true;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.顯示 = false;
-            this.plC_RJ_Button_冷藏區X軸_已完成復歸.顯示狀態 = false;
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label61.Location = new System.Drawing.Point(294, 580);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(46, 24);
-            this.label61.TabIndex = 62;
-            this.label61.Text = "mm";
-            // 
-            // plC_NumBox_冷藏區X軸_復歸偏移
-            // 
-            this.plC_NumBox_冷藏區X軸_復歸偏移.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_冷藏區X軸_復歸偏移.Location = new System.Drawing.Point(174, 555);
-            this.plC_NumBox_冷藏區X軸_復歸偏移.mBackColor = System.Drawing.SystemColors.HighlightText;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.Name = "plC_NumBox_冷藏區X軸_復歸偏移";
-            this.plC_NumBox_冷藏區X軸_復歸偏移.ReadOnly = false;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.Size = new System.Drawing.Size(118, 49);
-            this.plC_NumBox_冷藏區X軸_復歸偏移.TabIndex = 61;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.Value = 0;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.密碼欄位 = false;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.寫入元件位置 = "R5002";
-            this.plC_NumBox_冷藏區X軸_復歸偏移.小數點位置 = 2;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.微調數值 = 1;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.讀取元件位置 = "R5002";
-            this.plC_NumBox_冷藏區X軸_復歸偏移.音效 = true;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.顯示微調按鈕 = false;
-            this.plC_NumBox_冷藏區X軸_復歸偏移.顯示螢幕小鍵盤 = true;
-            // 
-            // rJ_Lable42
-            // 
-            this.rJ_Lable42.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable42.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable42.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable42.BorderRadius = 10;
-            this.rJ_Lable42.BorderSize = 0;
-            this.rJ_Lable42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable42.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable42.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable42.GUID = "";
-            this.rJ_Lable42.Location = new System.Drawing.Point(11, 552);
-            this.rJ_Lable42.Name = "rJ_Lable42";
-            this.rJ_Lable42.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable42.ShadowSize = 3;
-            this.rJ_Lable42.Size = new System.Drawing.Size(157, 54);
-            this.rJ_Lable42.TabIndex = 60;
-            this.rJ_Lable42.Text = "復歸偏移";
-            this.rJ_Lable42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable42.TextColor = System.Drawing.Color.White;
-            // 
-            // plC_Button_冷藏區X軸_ALARM
-            // 
-            this.plC_Button_冷藏區X軸_ALARM.Bool = false;
-            this.plC_Button_冷藏區X軸_ALARM.but_press = false;
-            this.plC_Button_冷藏區X軸_ALARM.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區X軸_ALARM.Location = new System.Drawing.Point(12, 288);
-            this.plC_Button_冷藏區X軸_ALARM.Name = "plC_Button_冷藏區X軸_ALARM";
-            this.plC_Button_冷藏區X軸_ALARM.OFF_文字內容 = "X105";
-            this.plC_Button_冷藏區X軸_ALARM.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_ALARM.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_ALARM.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_ALARM.ON_文字內容 = "X105";
-            this.plC_Button_冷藏區X軸_ALARM.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_ALARM.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區X軸_ALARM.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_ALARM.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區X軸_ALARM.Style = MyUI.PLC_Button.StyleEnum.Lamp_紅;
-            this.plC_Button_冷藏區X軸_ALARM.TabIndex = 58;
-            this.plC_Button_冷藏區X軸_ALARM.事件驅動 = false;
-            this.plC_Button_冷藏區X軸_ALARM.字型鎖住 = false;
-            this.plC_Button_冷藏區X軸_ALARM.寫入元件位置 = "X105";
-            this.plC_Button_冷藏區X軸_ALARM.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區X軸_ALARM.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區X軸_ALARM.文字鎖住 = false;
-            this.plC_Button_冷藏區X軸_ALARM.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_ALARM.狀態OFF圖片")));
-            this.plC_Button_冷藏區X軸_ALARM.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_ALARM.狀態ON圖片")));
-            this.plC_Button_冷藏區X軸_ALARM.讀取位元反向 = false;
-            this.plC_Button_冷藏區X軸_ALARM.讀取元件位置 = "X105";
-            this.plC_Button_冷藏區X軸_ALARM.讀寫鎖住 = false;
-            this.plC_Button_冷藏區X軸_ALARM.起始狀態 = false;
-            this.plC_Button_冷藏區X軸_ALARM.音效 = true;
-            this.plC_Button_冷藏區X軸_ALARM.顯示 = false;
-            this.plC_Button_冷藏區X軸_ALARM.顯示狀態 = false;
-            // 
-            // label59
-            // 
-            this.label59.AutoSize = true;
-            this.label59.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label59.Location = new System.Drawing.Point(88, 311);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(80, 24);
-            this.label59.TabIndex = 59;
-            this.label59.Text = "ALARM";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label53.Location = new System.Drawing.Point(294, 426);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(48, 24);
-            this.label53.TabIndex = 57;
-            this.label53.Text = "rpm";
-            // 
-            // rJ_Lable38
-            // 
-            this.rJ_Lable38.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable38.BackgroundColor = System.Drawing.Color.Silver;
-            this.rJ_Lable38.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable38.BorderRadius = 10;
-            this.rJ_Lable38.BorderSize = 0;
-            this.rJ_Lable38.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable38.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable38.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable38.GUID = "";
-            this.rJ_Lable38.Location = new System.Drawing.Point(10, 5);
-            this.rJ_Lable38.Name = "rJ_Lable38";
-            this.rJ_Lable38.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable38.ShadowSize = 3;
-            this.rJ_Lable38.Size = new System.Drawing.Size(502, 75);
-            this.rJ_Lable38.TabIndex = 55;
-            this.rJ_Lable38.Text = "X軸";
-            this.rJ_Lable38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable38.TextColor = System.Drawing.Color.White;
-            // 
-            // plC_RJ_Button_冷藏區X軸_復歸
-            // 
-            this.plC_RJ_Button_冷藏區X軸_復歸.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區X軸_復歸.Bool = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區X軸_復歸.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區X軸_復歸.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_復歸.but_press = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區X軸_復歸.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_復歸.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區X軸_復歸.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_復歸.GUID = "";
-            this.plC_RJ_Button_冷藏區X軸_復歸.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區X軸_復歸.Location = new System.Drawing.Point(346, 539);
-            this.plC_RJ_Button_冷藏區X軸_復歸.Name = "plC_RJ_Button_冷藏區X軸_復歸";
-            this.plC_RJ_Button_冷藏區X軸_復歸.OFF_文字內容 = "復歸";
-            this.plC_RJ_Button_冷藏區X軸_復歸.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_復歸.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_復歸.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區X軸_復歸.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區X軸_復歸.ON_文字內容 = "復歸";
-            this.plC_RJ_Button_冷藏區X軸_復歸.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_復歸.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_復歸.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區X軸_復歸.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區X軸_復歸.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區X軸_復歸.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.Size = new System.Drawing.Size(164, 67);
-            this.plC_RJ_Button_冷藏區X軸_復歸.State = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.TabIndex = 54;
-            this.plC_RJ_Button_冷藏區X軸_復歸.Text = "復歸";
-            this.plC_RJ_Button_冷藏區X軸_復歸.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_復歸.Texts = "復歸";
-            this.plC_RJ_Button_冷藏區X軸_復歸.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區X軸_復歸.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區X軸_復歸.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.音效 = true;
-            this.plC_RJ_Button_冷藏區X軸_復歸.顯示 = false;
-            this.plC_RJ_Button_冷藏區X軸_復歸.顯示狀態 = false;
-            // 
-            // plC_Button_冷藏區X軸_正極限
-            // 
-            this.plC_Button_冷藏區X軸_正極限.Bool = false;
-            this.plC_Button_冷藏區X軸_正極限.but_press = false;
-            this.plC_Button_冷藏區X軸_正極限.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區X軸_正極限.Location = new System.Drawing.Point(201, 222);
-            this.plC_Button_冷藏區X軸_正極限.Name = "plC_Button_冷藏區X軸_正極限";
-            this.plC_Button_冷藏區X軸_正極限.OFF_文字內容 = "X104";
-            this.plC_Button_冷藏區X軸_正極限.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_正極限.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_正極限.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_正極限.ON_文字內容 = "X104";
-            this.plC_Button_冷藏區X軸_正極限.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_正極限.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區X軸_正極限.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_正極限.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區X軸_正極限.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button_冷藏區X軸_正極限.TabIndex = 52;
-            this.plC_Button_冷藏區X軸_正極限.事件驅動 = false;
-            this.plC_Button_冷藏區X軸_正極限.字型鎖住 = false;
-            this.plC_Button_冷藏區X軸_正極限.寫入元件位置 = "X104";
-            this.plC_Button_冷藏區X軸_正極限.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區X軸_正極限.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區X軸_正極限.文字鎖住 = false;
-            this.plC_Button_冷藏區X軸_正極限.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_正極限.狀態OFF圖片")));
-            this.plC_Button_冷藏區X軸_正極限.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_正極限.狀態ON圖片")));
-            this.plC_Button_冷藏區X軸_正極限.讀取位元反向 = false;
-            this.plC_Button_冷藏區X軸_正極限.讀取元件位置 = "X104";
-            this.plC_Button_冷藏區X軸_正極限.讀寫鎖住 = false;
-            this.plC_Button_冷藏區X軸_正極限.起始狀態 = false;
-            this.plC_Button_冷藏區X軸_正極限.音效 = true;
-            this.plC_Button_冷藏區X軸_正極限.顯示 = false;
-            this.plC_Button_冷藏區X軸_正極限.顯示狀態 = false;
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label52.Location = new System.Drawing.Point(277, 245);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(67, 24);
-            this.label52.TabIndex = 53;
-            this.label52.Text = "正極限";
-            // 
-            // plC_Button_冷藏區X軸_原點
-            // 
-            this.plC_Button_冷藏區X軸_原點.Bool = false;
-            this.plC_Button_冷藏區X軸_原點.but_press = false;
-            this.plC_Button_冷藏區X軸_原點.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區X軸_原點.Location = new System.Drawing.Point(201, 156);
-            this.plC_Button_冷藏區X軸_原點.Name = "plC_Button_冷藏區X軸_原點";
-            this.plC_Button_冷藏區X軸_原點.OFF_文字內容 = "X103";
-            this.plC_Button_冷藏區X軸_原點.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_原點.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_原點.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_原點.ON_文字內容 = "X103";
-            this.plC_Button_冷藏區X軸_原點.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_原點.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區X軸_原點.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_原點.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區X軸_原點.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button_冷藏區X軸_原點.TabIndex = 50;
-            this.plC_Button_冷藏區X軸_原點.事件驅動 = false;
-            this.plC_Button_冷藏區X軸_原點.字型鎖住 = false;
-            this.plC_Button_冷藏區X軸_原點.寫入元件位置 = "X103";
-            this.plC_Button_冷藏區X軸_原點.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區X軸_原點.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區X軸_原點.文字鎖住 = false;
-            this.plC_Button_冷藏區X軸_原點.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_原點.狀態OFF圖片")));
-            this.plC_Button_冷藏區X軸_原點.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_原點.狀態ON圖片")));
-            this.plC_Button_冷藏區X軸_原點.讀取位元反向 = false;
-            this.plC_Button_冷藏區X軸_原點.讀取元件位置 = "X103";
-            this.plC_Button_冷藏區X軸_原點.讀寫鎖住 = false;
-            this.plC_Button_冷藏區X軸_原點.起始狀態 = false;
-            this.plC_Button_冷藏區X軸_原點.音效 = true;
-            this.plC_Button_冷藏區X軸_原點.顯示 = false;
-            this.plC_Button_冷藏區X軸_原點.顯示狀態 = false;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label49.Location = new System.Drawing.Point(277, 179);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(48, 24);
-            this.label49.TabIndex = 51;
-            this.label49.Text = "原點";
-            // 
-            // plC_NumBox_冷藏區X軸_JOG速度
-            // 
-            this.plC_NumBox_冷藏區X軸_JOG速度.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_冷藏區X軸_JOG速度.Location = new System.Drawing.Point(176, 401);
-            this.plC_NumBox_冷藏區X軸_JOG速度.mBackColor = System.Drawing.SystemColors.HighlightText;
-            this.plC_NumBox_冷藏區X軸_JOG速度.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_冷藏區X軸_JOG速度.Name = "plC_NumBox_冷藏區X軸_JOG速度";
-            this.plC_NumBox_冷藏區X軸_JOG速度.ReadOnly = false;
-            this.plC_NumBox_冷藏區X軸_JOG速度.Size = new System.Drawing.Size(116, 49);
-            this.plC_NumBox_冷藏區X軸_JOG速度.TabIndex = 49;
-            this.plC_NumBox_冷藏區X軸_JOG速度.Value = 0;
-            this.plC_NumBox_冷藏區X軸_JOG速度.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_冷藏區X軸_JOG速度.密碼欄位 = false;
-            this.plC_NumBox_冷藏區X軸_JOG速度.寫入元件位置 = "R5001";
-            this.plC_NumBox_冷藏區X軸_JOG速度.小數點位置 = 0;
-            this.plC_NumBox_冷藏區X軸_JOG速度.微調數值 = 1;
-            this.plC_NumBox_冷藏區X軸_JOG速度.讀取元件位置 = "R5001";
-            this.plC_NumBox_冷藏區X軸_JOG速度.音效 = true;
-            this.plC_NumBox_冷藏區X軸_JOG速度.顯示微調按鈕 = false;
-            this.plC_NumBox_冷藏區X軸_JOG速度.顯示螢幕小鍵盤 = true;
-            // 
-            // rJ_Lable37
-            // 
-            this.rJ_Lable37.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable37.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable37.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable37.BorderRadius = 10;
-            this.rJ_Lable37.BorderSize = 0;
-            this.rJ_Lable37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable37.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable37.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable37.GUID = "";
-            this.rJ_Lable37.Location = new System.Drawing.Point(13, 398);
-            this.rJ_Lable37.Name = "rJ_Lable37";
-            this.rJ_Lable37.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable37.ShadowSize = 3;
-            this.rJ_Lable37.Size = new System.Drawing.Size(157, 54);
-            this.rJ_Lable37.TabIndex = 48;
-            this.rJ_Lable37.Text = "JOG速度";
-            this.rJ_Lable37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable37.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Lable36
-            // 
-            this.rJ_Lable36.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable36.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable36.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable36.BorderRadius = 10;
-            this.rJ_Lable36.BorderSize = 0;
-            this.rJ_Lable36.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable36.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable36.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable36.GUID = "";
-            this.rJ_Lable36.Location = new System.Drawing.Point(161, 91);
-            this.rJ_Lable36.Name = "rJ_Lable36";
-            this.rJ_Lable36.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable36.ShadowSize = 3;
-            this.rJ_Lable36.Size = new System.Drawing.Size(157, 54);
-            this.rJ_Lable36.TabIndex = 47;
-            this.rJ_Lable36.Text = "現在位置";
-            this.rJ_Lable36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable36.TextColor = System.Drawing.Color.White;
-            // 
-            // plC_RJ_Button_冷藏區X軸_Stop
-            // 
-            this.plC_RJ_Button_冷藏區X軸_Stop.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.BackgroundColor = System.Drawing.Color.DarkRed;
-            this.plC_RJ_Button_冷藏區X軸_Stop.Bool = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區X軸_Stop.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區X軸_Stop.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_Stop.but_press = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區X軸_Stop.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_Stop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區X軸_Stop.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_Stop.GUID = "";
-            this.plC_RJ_Button_冷藏區X軸_Stop.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區X軸_Stop.Location = new System.Drawing.Point(346, 466);
-            this.plC_RJ_Button_冷藏區X軸_Stop.Name = "plC_RJ_Button_冷藏區X軸_Stop";
-            this.plC_RJ_Button_冷藏區X軸_Stop.OFF_文字內容 = "Stop";
-            this.plC_RJ_Button_冷藏區X軸_Stop.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_Stop.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_Stop.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區X軸_Stop.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區X軸_Stop.ON_文字內容 = "Stop";
-            this.plC_RJ_Button_冷藏區X軸_Stop.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_Stop.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_Stop.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區X軸_Stop.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區X軸_Stop.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區X軸_Stop.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.Size = new System.Drawing.Size(164, 67);
-            this.plC_RJ_Button_冷藏區X軸_Stop.State = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.TabIndex = 46;
-            this.plC_RJ_Button_冷藏區X軸_Stop.Text = "Stop";
-            this.plC_RJ_Button_冷藏區X軸_Stop.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_Stop.Texts = "Stop";
-            this.plC_RJ_Button_冷藏區X軸_Stop.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_冷藏區X軸_Stop.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區X軸_Stop.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.音效 = true;
-            this.plC_RJ_Button_冷藏區X軸_Stop.顯示 = false;
-            this.plC_RJ_Button_冷藏區X軸_Stop.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_冷藏區X軸_PJOG
-            // 
-            this.plC_RJ_Button_冷藏區X軸_PJOG.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.Bool = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.but_press = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_PJOG.GUID = "";
-            this.plC_RJ_Button_冷藏區X軸_PJOG.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.Location = new System.Drawing.Point(176, 466);
-            this.plC_RJ_Button_冷藏區X軸_PJOG.Name = "plC_RJ_Button_冷藏區X軸_PJOG";
-            this.plC_RJ_Button_冷藏區X軸_PJOG.OFF_文字內容 = "JOG+";
-            this.plC_RJ_Button_冷藏區X軸_PJOG.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_PJOG.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_文字內容 = "JOG+";
-            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.Size = new System.Drawing.Size(164, 67);
-            this.plC_RJ_Button_冷藏區X軸_PJOG.State = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.TabIndex = 45;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.Text = "JOG+";
-            this.plC_RJ_Button_冷藏區X軸_PJOG.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.Texts = "JOG+";
-            this.plC_RJ_Button_冷藏區X軸_PJOG.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.音效 = true;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.顯示 = false;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_冷藏區X軸_NJOG
-            // 
-            this.plC_RJ_Button_冷藏區X軸_NJOG.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.Bool = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.but_press = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_NJOG.GUID = "";
-            this.plC_RJ_Button_冷藏區X軸_NJOG.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.Location = new System.Drawing.Point(6, 466);
-            this.plC_RJ_Button_冷藏區X軸_NJOG.Name = "plC_RJ_Button_冷藏區X軸_NJOG";
-            this.plC_RJ_Button_冷藏區X軸_NJOG.OFF_文字內容 = "JOG-";
-            this.plC_RJ_Button_冷藏區X軸_NJOG.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_NJOG.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_文字內容 = "JOG-";
-            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.Size = new System.Drawing.Size(164, 67);
-            this.plC_RJ_Button_冷藏區X軸_NJOG.State = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.TabIndex = 44;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.Text = "JOG-";
-            this.plC_RJ_Button_冷藏區X軸_NJOG.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.Texts = "JOG-";
-            this.plC_RJ_Button_冷藏區X軸_NJOG.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.音效 = true;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.顯示 = false;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_冷藏區X軸_ServoON
-            // 
-            this.plC_RJ_Button_冷藏區X軸_ServoON.AutoResetState = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.Bool = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.BorderColor = System.Drawing.Color.LightSteelBlue;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.BorderRadius = 20;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.but_press = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區X軸_ServoON.GUID = "";
-            this.plC_RJ_Button_冷藏區X軸_ServoON.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.Location = new System.Drawing.Point(19, 85);
-            this.plC_RJ_Button_冷藏區X軸_ServoON.Name = "plC_RJ_Button_冷藏區X軸_ServoON";
-            this.plC_RJ_Button_冷藏區X軸_ServoON.OFF_文字內容 = "Servo On";
-            this.plC_RJ_Button_冷藏區X軸_ServoON.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區X軸_ServoON.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_BorderSize = 5;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_文字內容 = "Servo On";
-            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.ShadowSize = 3;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.ShowLoadingForm = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.Size = new System.Drawing.Size(136, 67);
-            this.plC_RJ_Button_冷藏區X軸_ServoON.State = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.TabIndex = 43;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.Text = "Servo On";
-            this.plC_RJ_Button_冷藏區X軸_ServoON.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.Texts = "Servo On";
-            this.plC_RJ_Button_冷藏區X軸_ServoON.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.寫入元件位置 = "S100";
-            this.plC_RJ_Button_冷藏區X軸_ServoON.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.讀取元件位置 = "Y100";
-            this.plC_RJ_Button_冷藏區X軸_ServoON.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.音效 = true;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.顯示 = false;
-            this.plC_RJ_Button_冷藏區X軸_ServoON.顯示狀態 = false;
-            // 
-            // plC_NumBox_冷藏區X軸_現在位置
-            // 
-            this.plC_NumBox_冷藏區X軸_現在位置.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_冷藏區X軸_現在位置.Location = new System.Drawing.Point(324, 92);
-            this.plC_NumBox_冷藏區X軸_現在位置.mBackColor = System.Drawing.SystemColors.Control;
-            this.plC_NumBox_冷藏區X軸_現在位置.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_冷藏區X軸_現在位置.Name = "plC_NumBox_冷藏區X軸_現在位置";
-            this.plC_NumBox_冷藏區X軸_現在位置.ReadOnly = true;
-            this.plC_NumBox_冷藏區X軸_現在位置.Size = new System.Drawing.Size(168, 52);
-            this.plC_NumBox_冷藏區X軸_現在位置.TabIndex = 41;
-            this.plC_NumBox_冷藏區X軸_現在位置.Value = 0;
-            this.plC_NumBox_冷藏區X軸_現在位置.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_冷藏區X軸_現在位置.密碼欄位 = false;
-            this.plC_NumBox_冷藏區X軸_現在位置.寫入元件位置 = "R5000";
-            this.plC_NumBox_冷藏區X軸_現在位置.小數點位置 = 2;
-            this.plC_NumBox_冷藏區X軸_現在位置.微調數值 = 1;
-            this.plC_NumBox_冷藏區X軸_現在位置.讀取元件位置 = "R5000";
-            this.plC_NumBox_冷藏區X軸_現在位置.音效 = true;
-            this.plC_NumBox_冷藏區X軸_現在位置.顯示微調按鈕 = false;
-            this.plC_NumBox_冷藏區X軸_現在位置.顯示螢幕小鍵盤 = false;
-            // 
-            // plC_Button_冷藏區X軸_零速度檢出
-            // 
-            this.plC_Button_冷藏區X軸_零速度檢出.Bool = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.but_press = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區X軸_零速度檢出.Location = new System.Drawing.Point(12, 222);
-            this.plC_Button_冷藏區X軸_零速度檢出.Name = "plC_Button_冷藏區X軸_零速度檢出";
-            this.plC_Button_冷藏區X軸_零速度檢出.OFF_文字內容 = "X102";
-            this.plC_Button_冷藏區X軸_零速度檢出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_零速度檢出.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_零速度檢出.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_零速度檢出.ON_文字內容 = "X102";
-            this.plC_Button_冷藏區X軸_零速度檢出.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_零速度檢出.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區X軸_零速度檢出.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_零速度檢出.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區X軸_零速度檢出.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button_冷藏區X軸_零速度檢出.TabIndex = 38;
-            this.plC_Button_冷藏區X軸_零速度檢出.事件驅動 = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.字型鎖住 = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.寫入元件位置 = "X102";
-            this.plC_Button_冷藏區X軸_零速度檢出.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區X軸_零速度檢出.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區X軸_零速度檢出.文字鎖住 = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_零速度檢出.狀態OFF圖片")));
-            this.plC_Button_冷藏區X軸_零速度檢出.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_零速度檢出.狀態ON圖片")));
-            this.plC_Button_冷藏區X軸_零速度檢出.讀取位元反向 = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.讀取元件位置 = "X102";
-            this.plC_Button_冷藏區X軸_零速度檢出.讀寫鎖住 = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.起始狀態 = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.音效 = true;
-            this.plC_Button_冷藏區X軸_零速度檢出.顯示 = false;
-            this.plC_Button_冷藏區X軸_零速度檢出.顯示狀態 = false;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label51.Location = new System.Drawing.Point(88, 245);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(105, 24);
-            this.label51.TabIndex = 39;
-            this.label51.Text = "零速度檢出";
-            // 
-            // plC_Button_冷藏區X軸_Ready
-            // 
-            this.plC_Button_冷藏區X軸_Ready.Bool = false;
-            this.plC_Button_冷藏區X軸_Ready.but_press = false;
-            this.plC_Button_冷藏區X軸_Ready.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_冷藏區X軸_Ready.Location = new System.Drawing.Point(12, 156);
-            this.plC_Button_冷藏區X軸_Ready.Name = "plC_Button_冷藏區X軸_Ready";
-            this.plC_Button_冷藏區X軸_Ready.OFF_文字內容 = "X101";
-            this.plC_Button_冷藏區X軸_Ready.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_Ready.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_Ready.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_Ready.ON_文字內容 = "X101";
-            this.plC_Button_冷藏區X軸_Ready.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_冷藏區X軸_Ready.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button_冷藏區X軸_Ready.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button_冷藏區X軸_Ready.Size = new System.Drawing.Size(60, 60);
-            this.plC_Button_冷藏區X軸_Ready.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button_冷藏區X軸_Ready.TabIndex = 36;
-            this.plC_Button_冷藏區X軸_Ready.事件驅動 = false;
-            this.plC_Button_冷藏區X軸_Ready.字型鎖住 = false;
-            this.plC_Button_冷藏區X軸_Ready.寫入元件位置 = "X101";
-            this.plC_Button_冷藏區X軸_Ready.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button_冷藏區X軸_Ready.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_冷藏區X軸_Ready.文字鎖住 = false;
-            this.plC_Button_冷藏區X軸_Ready.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_Ready.狀態OFF圖片")));
-            this.plC_Button_冷藏區X軸_Ready.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區X軸_Ready.狀態ON圖片")));
-            this.plC_Button_冷藏區X軸_Ready.讀取位元反向 = false;
-            this.plC_Button_冷藏區X軸_Ready.讀取元件位置 = "X101";
-            this.plC_Button_冷藏區X軸_Ready.讀寫鎖住 = false;
-            this.plC_Button_冷藏區X軸_Ready.起始狀態 = false;
-            this.plC_Button_冷藏區X軸_Ready.音效 = true;
-            this.plC_Button_冷藏區X軸_Ready.顯示 = false;
-            this.plC_Button_冷藏區X軸_Ready.顯示狀態 = false;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label50.Location = new System.Drawing.Point(88, 179);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(67, 24);
-            this.label50.TabIndex = 37;
-            this.label50.Text = "Ready";
-            // 
-            // plC_RJ_Button_冷藏區_輸送帶前進
-            // 
-            this.plC_RJ_Button_冷藏區_輸送帶前進.Bool = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.but_press = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.Location = new System.Drawing.Point(57, 88);
-            this.plC_RJ_Button_冷藏區_輸送帶前進.Name = "plC_RJ_Button_冷藏區_輸送帶前進";
-            this.plC_RJ_Button_冷藏區_輸送帶前進.OFF_文字內容 = "輸送帶前進";
-            this.plC_RJ_Button_冷藏區_輸送帶前進.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區_輸送帶前進.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.ON_文字內容 = "輸送帶前進";
-            this.plC_RJ_Button_冷藏區_輸送帶前進.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區_輸送帶前進.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.Size = new System.Drawing.Size(136, 49);
-            this.plC_RJ_Button_冷藏區_輸送帶前進.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.TabIndex = 64;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.事件驅動 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送帶前進.狀態OFF圖片")));
-            this.plC_RJ_Button_冷藏區_輸送帶前進.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送帶前進.狀態ON圖片")));
-            this.plC_RJ_Button_冷藏區_輸送帶前進.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.起始狀態 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.音效 = true;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.顯示 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶前進.顯示狀態 = false;
-            // 
-            // rJ_Lable44
-            // 
-            this.rJ_Lable44.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable44.BackgroundColor = System.Drawing.Color.Silver;
-            this.rJ_Lable44.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable44.BorderRadius = 10;
-            this.rJ_Lable44.BorderSize = 0;
-            this.rJ_Lable44.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable44.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable44.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable44.GUID = "";
-            this.rJ_Lable44.Location = new System.Drawing.Point(0, 0);
-            this.rJ_Lable44.Name = "rJ_Lable44";
-            this.rJ_Lable44.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable44.ShadowSize = 3;
-            this.rJ_Lable44.Size = new System.Drawing.Size(1048, 75);
-            this.rJ_Lable44.TabIndex = 66;
-            this.rJ_Lable44.Text = "冷藏區";
-            this.rJ_Lable44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable44.TextColor = System.Drawing.Color.White;
-            // 
-            // plC_RJ_Button_冷藏區_輸送帶後退
-            // 
-            this.plC_RJ_Button_冷藏區_輸送帶後退.Bool = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.but_press = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.Location = new System.Drawing.Point(254, 88);
-            this.plC_RJ_Button_冷藏區_輸送帶後退.Name = "plC_RJ_Button_冷藏區_輸送帶後退";
-            this.plC_RJ_Button_冷藏區_輸送帶後退.OFF_文字內容 = "輸送帶後退";
-            this.plC_RJ_Button_冷藏區_輸送帶後退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區_輸送帶後退.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.ON_文字內容 = "輸送帶後退";
-            this.plC_RJ_Button_冷藏區_輸送帶後退.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區_輸送帶後退.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.Size = new System.Drawing.Size(136, 49);
-            this.plC_RJ_Button_冷藏區_輸送帶後退.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.TabIndex = 67;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.事件驅動 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送帶後退.狀態OFF圖片")));
-            this.plC_RJ_Button_冷藏區_輸送帶後退.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送帶後退.狀態ON圖片")));
-            this.plC_RJ_Button_冷藏區_輸送帶後退.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.起始狀態 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.音效 = true;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.顯示 = false;
-            this.plC_RJ_Button_冷藏區_輸送帶後退.顯示狀態 = false;
-            // 
-            // plC_Button1
-            // 
-            this.plC_Button1.Bool = false;
-            this.plC_Button1.but_press = false;
-            this.plC_Button1.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button1.Location = new System.Drawing.Point(201, 91);
-            this.plC_Button1.Name = "plC_Button1";
-            this.plC_Button1.OFF_文字內容 = "X03";
-            this.plC_Button1.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button1.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button1.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button1.ON_文字內容 = "X03";
-            this.plC_Button1.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button1.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button1.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button1.Size = new System.Drawing.Size(47, 46);
-            this.plC_Button1.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button1.TabIndex = 68;
-            this.plC_Button1.事件驅動 = false;
-            this.plC_Button1.字型鎖住 = false;
-            this.plC_Button1.寫入元件位置 = "X03";
-            this.plC_Button1.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button1.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button1.文字鎖住 = false;
-            this.plC_Button1.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button1.狀態OFF圖片")));
-            this.plC_Button1.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button1.狀態ON圖片")));
-            this.plC_Button1.讀取位元反向 = false;
-            this.plC_Button1.讀取元件位置 = "X03";
-            this.plC_Button1.讀寫鎖住 = false;
-            this.plC_Button1.起始狀態 = false;
-            this.plC_Button1.音效 = true;
-            this.plC_Button1.顯示 = false;
-            this.plC_Button1.顯示狀態 = false;
-            // 
-            // plC_Button2
-            // 
-            this.plC_Button2.Bool = false;
-            this.plC_Button2.but_press = false;
-            this.plC_Button2.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button2.Location = new System.Drawing.Point(6, 88);
-            this.plC_Button2.Name = "plC_Button2";
-            this.plC_Button2.OFF_文字內容 = "X200";
-            this.plC_Button2.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button2.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button2.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button2.ON_文字內容 = "X200";
-            this.plC_Button2.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button2.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button2.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button2.Size = new System.Drawing.Size(47, 46);
-            this.plC_Button2.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button2.TabIndex = 69;
-            this.plC_Button2.事件驅動 = false;
-            this.plC_Button2.字型鎖住 = false;
-            this.plC_Button2.寫入元件位置 = "X200";
-            this.plC_Button2.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button2.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button2.文字鎖住 = false;
-            this.plC_Button2.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button2.狀態OFF圖片")));
-            this.plC_Button2.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button2.狀態ON圖片")));
-            this.plC_Button2.讀取位元反向 = false;
-            this.plC_Button2.讀取元件位置 = "X200";
-            this.plC_Button2.讀寫鎖住 = false;
-            this.plC_Button2.起始狀態 = false;
-            this.plC_Button2.音效 = true;
-            this.plC_Button2.顯示 = false;
-            this.plC_Button2.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_冷藏區_輸送門關閉
-            // 
-            this.plC_RJ_Button_冷藏區_輸送門關閉.Bool = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.but_press = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.Location = new System.Drawing.Point(702, 88);
-            this.plC_RJ_Button_冷藏區_輸送門關閉.Name = "plC_RJ_Button_冷藏區_輸送門關閉";
-            this.plC_RJ_Button_冷藏區_輸送門關閉.OFF_文字內容 = "冷藏輸送門關閉";
-            this.plC_RJ_Button_冷藏區_輸送門關閉.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區_輸送門關閉.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.ON_文字內容 = "冷藏輸送門關閉";
-            this.plC_RJ_Button_冷藏區_輸送門關閉.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區_輸送門關閉.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.Size = new System.Drawing.Size(164, 49);
-            this.plC_RJ_Button_冷藏區_輸送門關閉.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.TabIndex = 70;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.事件驅動 = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送門關閉.狀態OFF圖片")));
-            this.plC_RJ_Button_冷藏區_輸送門關閉.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送門關閉.狀態ON圖片")));
-            this.plC_RJ_Button_冷藏區_輸送門關閉.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.起始狀態 = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.音效 = true;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.顯示 = false;
-            this.plC_RJ_Button_冷藏區_輸送門關閉.顯示狀態 = false;
-            // 
-            // plC_Button3
-            // 
-            this.plC_Button3.Bool = false;
-            this.plC_Button3.but_press = false;
-            this.plC_Button3.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button3.Location = new System.Drawing.Point(649, 88);
-            this.plC_Button3.Name = "plC_Button3";
-            this.plC_Button3.OFF_文字內容 = "X04";
-            this.plC_Button3.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button3.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button3.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button3.ON_文字內容 = "X04";
-            this.plC_Button3.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button3.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button3.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button3.Size = new System.Drawing.Size(47, 46);
-            this.plC_Button3.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button3.TabIndex = 71;
-            this.plC_Button3.事件驅動 = false;
-            this.plC_Button3.字型鎖住 = false;
-            this.plC_Button3.寫入元件位置 = "X04";
-            this.plC_Button3.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button3.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button3.文字鎖住 = false;
-            this.plC_Button3.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button3.狀態OFF圖片")));
-            this.plC_Button3.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button3.狀態ON圖片")));
-            this.plC_Button3.讀取位元反向 = false;
-            this.plC_Button3.讀取元件位置 = "X04";
-            this.plC_Button3.讀寫鎖住 = false;
-            this.plC_Button3.起始狀態 = false;
-            this.plC_Button3.音效 = true;
-            this.plC_Button3.顯示 = false;
-            this.plC_Button3.顯示狀態 = false;
-            // 
-            // plC_Button4
-            // 
-            this.plC_Button4.Bool = false;
-            this.plC_Button4.but_press = false;
-            this.plC_Button4.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button4.Location = new System.Drawing.Point(426, 88);
-            this.plC_Button4.Name = "plC_Button4";
-            this.plC_Button4.OFF_文字內容 = "X05";
-            this.plC_Button4.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button4.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button4.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button4.ON_文字內容 = "X05";
-            this.plC_Button4.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button4.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button4.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_Button4.Size = new System.Drawing.Size(47, 46);
-            this.plC_Button4.Style = MyUI.PLC_Button.StyleEnum.Lamp_綠;
-            this.plC_Button4.TabIndex = 73;
-            this.plC_Button4.事件驅動 = false;
-            this.plC_Button4.字型鎖住 = false;
-            this.plC_Button4.寫入元件位置 = "X05";
-            this.plC_Button4.按鈕型態 = MyUI.PLC_Button.StatusEnum.保持型;
-            this.plC_Button4.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button4.文字鎖住 = false;
-            this.plC_Button4.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button4.狀態OFF圖片")));
-            this.plC_Button4.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button4.狀態ON圖片")));
-            this.plC_Button4.讀取位元反向 = false;
-            this.plC_Button4.讀取元件位置 = "X05";
-            this.plC_Button4.讀寫鎖住 = false;
-            this.plC_Button4.起始狀態 = false;
-            this.plC_Button4.音效 = true;
-            this.plC_Button4.顯示 = false;
-            this.plC_Button4.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_冷藏區_輸送門開啟
-            // 
-            this.plC_RJ_Button_冷藏區_輸送門開啟.Bool = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.but_press = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.Location = new System.Drawing.Point(479, 88);
-            this.plC_RJ_Button_冷藏區_輸送門開啟.Name = "plC_RJ_Button_冷藏區_輸送門開啟";
-            this.plC_RJ_Button_冷藏區_輸送門開啟.OFF_文字內容 = "冷藏輸送門開啟";
-            this.plC_RJ_Button_冷藏區_輸送門開啟.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區_輸送門開啟.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.ON_文字內容 = "冷藏輸送門開啟";
-            this.plC_RJ_Button_冷藏區_輸送門開啟.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_冷藏區_輸送門開啟.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.Size = new System.Drawing.Size(164, 49);
-            this.plC_RJ_Button_冷藏區_輸送門開啟.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.TabIndex = 72;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.事件驅動 = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.字型鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.文字鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送門開啟.狀態OFF圖片")));
-            this.plC_RJ_Button_冷藏區_輸送門開啟.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_RJ_Button_冷藏區_輸送門開啟.狀態ON圖片")));
-            this.plC_RJ_Button_冷藏區_輸送門開啟.讀取位元反向 = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.讀寫鎖住 = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.起始狀態 = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.音效 = true;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.顯示 = false;
-            this.plC_RJ_Button_冷藏區_輸送門開啟.顯示狀態 = false;
+            // panel17
+            // 
+            this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel17.Controls.Add(this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置);
+            this.panel17.Controls.Add(this.label80);
+            this.panel17.Controls.Add(this.rJ_Lable45);
+            this.panel17.Controls.Add(this.plC_NumBox_冷藏區_藥盒傳接位置Z);
+            this.panel17.Controls.Add(this.plC_NumBox_冷藏區_藥盒傳接位置X);
+            this.panel17.Controls.Add(this.rJ_Lable46);
+            this.panel17.Controls.Add(this.label79);
+            this.panel17.Location = new System.Drawing.Point(367, 158);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(345, 138);
+            this.panel17.TabIndex = 81;
+            // 
+            // plC_Button_冷藏區_移動至常溫區藥盒傳接位置
+            // 
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.Bool = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.but_press = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.Dock = System.Windows.Forms.DockStyle.Top;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.Location = new System.Drawing.Point(0, 0);
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.Name = "plC_Button_冷藏區_移動至常溫區藥盒傳接位置";
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.OFF_文字內容 = "藥盒傳接位置";
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.ON_文字內容 = "藥盒傳接位置";
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.Size = new System.Drawing.Size(343, 43);
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.TabIndex = 80;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.事件驅動 = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.字型鎖住 = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.寫入元件位置 = "S5001";
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.文字鎖住 = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區_移動至常溫區藥盒傳接位置.狀態OFF圖片")));
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區_移動至常溫區藥盒傳接位置.狀態ON圖片")));
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.讀取位元反向 = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.讀取元件位置 = "S5001";
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.讀寫鎖住 = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.起始狀態 = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.音效 = true;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.顯示 = false;
+            this.plC_Button_冷藏區_移動至常溫區藥盒傳接位置.顯示狀態 = false;
+            // 
+            // rJ_Lable47
+            // 
+            this.rJ_Lable47.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable47.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable47.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable47.BorderRadius = 10;
+            this.rJ_Lable47.BorderSize = 0;
+            this.rJ_Lable47.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable47.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable47.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable47.GUID = "";
+            this.rJ_Lable47.Location = new System.Drawing.Point(9, 576);
+            this.rJ_Lable47.Name = "rJ_Lable47";
+            this.rJ_Lable47.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable47.ShadowSize = 3;
+            this.rJ_Lable47.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable47.TabIndex = 64;
+            this.rJ_Lable47.Text = "絕對位置";
+            this.rJ_Lable47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable47.TextColor = System.Drawing.Color.White;
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label81.Location = new System.Drawing.Point(292, 601);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(46, 24);
+            this.label81.TabIndex = 66;
+            this.label81.Text = "mm";
+            // 
+            // plC_NumBox_冷藏區X軸_絕對位置
+            // 
+            this.plC_NumBox_冷藏區X軸_絕對位置.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區X軸_絕對位置.Location = new System.Drawing.Point(172, 576);
+            this.plC_NumBox_冷藏區X軸_絕對位置.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區X軸_絕對位置.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區X軸_絕對位置.Name = "plC_NumBox_冷藏區X軸_絕對位置";
+            this.plC_NumBox_冷藏區X軸_絕對位置.ReadOnly = false;
+            this.plC_NumBox_冷藏區X軸_絕對位置.Size = new System.Drawing.Size(118, 49);
+            this.plC_NumBox_冷藏區X軸_絕對位置.TabIndex = 65;
+            this.plC_NumBox_冷藏區X軸_絕對位置.Value = 0;
+            this.plC_NumBox_冷藏區X軸_絕對位置.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區X軸_絕對位置.密碼欄位 = false;
+            this.plC_NumBox_冷藏區X軸_絕對位置.寫入元件位置 = "R5003";
+            this.plC_NumBox_冷藏區X軸_絕對位置.小數點位置 = 2;
+            this.plC_NumBox_冷藏區X軸_絕對位置.微調數值 = 1;
+            this.plC_NumBox_冷藏區X軸_絕對位置.讀取元件位置 = "R5003";
+            this.plC_NumBox_冷藏區X軸_絕對位置.音效 = true;
+            this.plC_NumBox_冷藏區X軸_絕對位置.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區X軸_絕對位置.顯示螢幕小鍵盤 = true;
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label82.Location = new System.Drawing.Point(292, 655);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(48, 24);
+            this.label82.TabIndex = 69;
+            this.label82.Text = "rpm";
+            // 
+            // plC_NumBox_冷藏區X軸_運轉速度
+            // 
+            this.plC_NumBox_冷藏區X軸_運轉速度.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區X軸_運轉速度.Location = new System.Drawing.Point(172, 630);
+            this.plC_NumBox_冷藏區X軸_運轉速度.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區X軸_運轉速度.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區X軸_運轉速度.Name = "plC_NumBox_冷藏區X軸_運轉速度";
+            this.plC_NumBox_冷藏區X軸_運轉速度.ReadOnly = false;
+            this.plC_NumBox_冷藏區X軸_運轉速度.Size = new System.Drawing.Size(118, 49);
+            this.plC_NumBox_冷藏區X軸_運轉速度.TabIndex = 68;
+            this.plC_NumBox_冷藏區X軸_運轉速度.Value = 0;
+            this.plC_NumBox_冷藏區X軸_運轉速度.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區X軸_運轉速度.密碼欄位 = false;
+            this.plC_NumBox_冷藏區X軸_運轉速度.寫入元件位置 = "R5004";
+            this.plC_NumBox_冷藏區X軸_運轉速度.小數點位置 = 0;
+            this.plC_NumBox_冷藏區X軸_運轉速度.微調數值 = 1;
+            this.plC_NumBox_冷藏區X軸_運轉速度.讀取元件位置 = "R5004";
+            this.plC_NumBox_冷藏區X軸_運轉速度.音效 = true;
+            this.plC_NumBox_冷藏區X軸_運轉速度.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區X軸_運轉速度.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable50
+            // 
+            this.rJ_Lable50.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable50.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable50.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable50.BorderRadius = 10;
+            this.rJ_Lable50.BorderSize = 0;
+            this.rJ_Lable50.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable50.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable50.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable50.GUID = "";
+            this.rJ_Lable50.Location = new System.Drawing.Point(9, 630);
+            this.rJ_Lable50.Name = "rJ_Lable50";
+            this.rJ_Lable50.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable50.ShadowSize = 3;
+            this.rJ_Lable50.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable50.TabIndex = 67;
+            this.rJ_Lable50.Text = "運轉速度";
+            this.rJ_Lable50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable50.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_RJ_Button_冷藏區X軸_絕對位置移動
+            // 
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.but_press = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.GUID = "";
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.Location = new System.Drawing.Point(344, 612);
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.Name = "plC_RJ_Button_冷藏區X軸_絕對位置移動";
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.OFF_文字內容 = "絕對位置移動";
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.ON_文字內容 = "絕對位置移動";
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.State = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.TabIndex = 70;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.Text = "絕對位置移動";
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.Texts = "絕對位置移動";
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.音效 = true;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.顯示 = false;
+            this.plC_RJ_Button_冷藏區X軸_絕對位置移動.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_冷藏區Z軸_絕對位置移動
+            // 
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.AutoResetState = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.BorderColor = System.Drawing.Color.LightSteelBlue;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.BorderRadius = 20;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.but_press = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.GUID = "";
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.Location = new System.Drawing.Point(350, 612);
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.Name = "plC_RJ_Button_冷藏區Z軸_絕對位置移動";
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.OFF_文字內容 = "絕對位置移動";
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.ON_BorderSize = 5;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.ON_文字內容 = "絕對位置移動";
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.ShadowSize = 3;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.ShowLoadingForm = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.Size = new System.Drawing.Size(164, 67);
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.State = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.TabIndex = 77;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.Text = "絕對位置移動";
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.Texts = "絕對位置移動";
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.字型鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.文字鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.讀取位元反向 = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.讀寫鎖住 = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.音效 = true;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.顯示 = false;
+            this.plC_RJ_Button_冷藏區Z軸_絕對位置移動.顯示狀態 = false;
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label83.Location = new System.Drawing.Point(298, 655);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(48, 24);
+            this.label83.TabIndex = 76;
+            this.label83.Text = "rpm";
+            // 
+            // plC_NumBox_冷藏區Z軸_運轉速度
+            // 
+            this.plC_NumBox_冷藏區Z軸_運轉速度.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區Z軸_運轉速度.Location = new System.Drawing.Point(178, 630);
+            this.plC_NumBox_冷藏區Z軸_運轉速度.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.Name = "plC_NumBox_冷藏區Z軸_運轉速度";
+            this.plC_NumBox_冷藏區Z軸_運轉速度.ReadOnly = false;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.Size = new System.Drawing.Size(118, 49);
+            this.plC_NumBox_冷藏區Z軸_運轉速度.TabIndex = 75;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.Value = 0;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.密碼欄位 = false;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.寫入元件位置 = "R5014";
+            this.plC_NumBox_冷藏區Z軸_運轉速度.小數點位置 = 0;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.微調數值 = 1;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.讀取元件位置 = "R5014";
+            this.plC_NumBox_冷藏區Z軸_運轉速度.音效 = true;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區Z軸_運轉速度.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable48
+            // 
+            this.rJ_Lable48.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable48.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable48.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable48.BorderRadius = 10;
+            this.rJ_Lable48.BorderSize = 0;
+            this.rJ_Lable48.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable48.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable48.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable48.GUID = "";
+            this.rJ_Lable48.Location = new System.Drawing.Point(15, 630);
+            this.rJ_Lable48.Name = "rJ_Lable48";
+            this.rJ_Lable48.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable48.ShadowSize = 3;
+            this.rJ_Lable48.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable48.TabIndex = 74;
+            this.rJ_Lable48.Text = "運轉速度";
+            this.rJ_Lable48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable48.TextColor = System.Drawing.Color.White;
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label84.Location = new System.Drawing.Point(298, 601);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(46, 24);
+            this.label84.TabIndex = 73;
+            this.label84.Text = "mm";
+            // 
+            // plC_NumBox_冷藏區Z軸_絕對位置
+            // 
+            this.plC_NumBox_冷藏區Z軸_絕對位置.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_冷藏區Z軸_絕對位置.Location = new System.Drawing.Point(178, 576);
+            this.plC_NumBox_冷藏區Z軸_絕對位置.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.Name = "plC_NumBox_冷藏區Z軸_絕對位置";
+            this.plC_NumBox_冷藏區Z軸_絕對位置.ReadOnly = false;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.Size = new System.Drawing.Size(118, 49);
+            this.plC_NumBox_冷藏區Z軸_絕對位置.TabIndex = 72;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.Value = 0;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.密碼欄位 = false;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.寫入元件位置 = "R5013";
+            this.plC_NumBox_冷藏區Z軸_絕對位置.小數點位置 = 2;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.微調數值 = 1;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.讀取元件位置 = "R5013";
+            this.plC_NumBox_冷藏區Z軸_絕對位置.音效 = true;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.顯示微調按鈕 = false;
+            this.plC_NumBox_冷藏區Z軸_絕對位置.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable49
+            // 
+            this.rJ_Lable49.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable49.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable49.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable49.BorderRadius = 10;
+            this.rJ_Lable49.BorderSize = 0;
+            this.rJ_Lable49.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable49.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable49.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable49.GUID = "";
+            this.rJ_Lable49.Location = new System.Drawing.Point(15, 576);
+            this.rJ_Lable49.Name = "rJ_Lable49";
+            this.rJ_Lable49.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable49.ShadowSize = 3;
+            this.rJ_Lable49.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable49.TabIndex = 71;
+            this.rJ_Lable49.Text = "絕對位置";
+            this.rJ_Lable49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable49.TextColor = System.Drawing.Color.White;
+            // 
+            // panel18
+            // 
+            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel18.Controls.Add(this.plC_Button_冷藏區_移動至待命位置);
+            this.panel18.Controls.Add(this.label85);
+            this.panel18.Controls.Add(this.rJ_Lable51);
+            this.panel18.Controls.Add(this.plC_NumBox1);
+            this.panel18.Controls.Add(this.plC_NumBox2);
+            this.panel18.Controls.Add(this.rJ_Lable52);
+            this.panel18.Controls.Add(this.label86);
+            this.panel18.Location = new System.Drawing.Point(16, 158);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(345, 138);
+            this.panel18.TabIndex = 82;
+            // 
+            // plC_Button_冷藏區_移動至待命位置
+            // 
+            this.plC_Button_冷藏區_移動至待命位置.Bool = false;
+            this.plC_Button_冷藏區_移動至待命位置.but_press = false;
+            this.plC_Button_冷藏區_移動至待命位置.Dock = System.Windows.Forms.DockStyle.Top;
+            this.plC_Button_冷藏區_移動至待命位置.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_冷藏區_移動至待命位置.Location = new System.Drawing.Point(0, 0);
+            this.plC_Button_冷藏區_移動至待命位置.Name = "plC_Button_冷藏區_移動至待命位置";
+            this.plC_Button_冷藏區_移動至待命位置.OFF_文字內容 = "待命位置";
+            this.plC_Button_冷藏區_移動至待命位置.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區_移動至待命位置.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button_冷藏區_移動至待命位置.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_冷藏區_移動至待命位置.ON_文字內容 = "待命位置";
+            this.plC_Button_冷藏區_移動至待命位置.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_冷藏區_移動至待命位置.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_冷藏區_移動至待命位置.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button_冷藏區_移動至待命位置.Size = new System.Drawing.Size(343, 43);
+            this.plC_Button_冷藏區_移動至待命位置.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button_冷藏區_移動至待命位置.TabIndex = 80;
+            this.plC_Button_冷藏區_移動至待命位置.事件驅動 = false;
+            this.plC_Button_冷藏區_移動至待命位置.字型鎖住 = false;
+            this.plC_Button_冷藏區_移動至待命位置.寫入元件位置 = "S5000";
+            this.plC_Button_冷藏區_移動至待命位置.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button_冷藏區_移動至待命位置.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_冷藏區_移動至待命位置.文字鎖住 = false;
+            this.plC_Button_冷藏區_移動至待命位置.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區_移動至待命位置.狀態OFF圖片")));
+            this.plC_Button_冷藏區_移動至待命位置.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button_冷藏區_移動至待命位置.狀態ON圖片")));
+            this.plC_Button_冷藏區_移動至待命位置.讀取位元反向 = false;
+            this.plC_Button_冷藏區_移動至待命位置.讀取元件位置 = "S5000";
+            this.plC_Button_冷藏區_移動至待命位置.讀寫鎖住 = false;
+            this.plC_Button_冷藏區_移動至待命位置.起始狀態 = false;
+            this.plC_Button_冷藏區_移動至待命位置.音效 = true;
+            this.plC_Button_冷藏區_移動至待命位置.顯示 = false;
+            this.plC_Button_冷藏區_移動至待命位置.顯示狀態 = false;
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label85.Location = new System.Drawing.Point(291, 107);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(46, 24);
+            this.label85.TabIndex = 79;
+            this.label85.Text = "mm";
+            // 
+            // rJ_Lable51
+            // 
+            this.rJ_Lable51.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable51.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable51.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable51.BorderRadius = 10;
+            this.rJ_Lable51.BorderSize = 0;
+            this.rJ_Lable51.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable51.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable51.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable51.GUID = "";
+            this.rJ_Lable51.Location = new System.Drawing.Point(8, 49);
+            this.rJ_Lable51.Name = "rJ_Lable51";
+            this.rJ_Lable51.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable51.ShadowSize = 3;
+            this.rJ_Lable51.Size = new System.Drawing.Size(157, 38);
+            this.rJ_Lable51.TabIndex = 74;
+            this.rJ_Lable51.Text = "X位置";
+            this.rJ_Lable51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable51.TextColor = System.Drawing.Color.White;
+            // 
+            // plC_NumBox1
+            // 
+            this.plC_NumBox1.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox1.Location = new System.Drawing.Point(172, 93);
+            this.plC_NumBox1.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox1.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox1.Name = "plC_NumBox1";
+            this.plC_NumBox1.ReadOnly = false;
+            this.plC_NumBox1.Size = new System.Drawing.Size(118, 38);
+            this.plC_NumBox1.TabIndex = 78;
+            this.plC_NumBox1.Value = 0;
+            this.plC_NumBox1.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox1.密碼欄位 = false;
+            this.plC_NumBox1.寫入元件位置 = "R5021";
+            this.plC_NumBox1.小數點位置 = 2;
+            this.plC_NumBox1.微調數值 = 1;
+            this.plC_NumBox1.讀取元件位置 = "R5021";
+            this.plC_NumBox1.音效 = true;
+            this.plC_NumBox1.顯示微調按鈕 = false;
+            this.plC_NumBox1.顯示螢幕小鍵盤 = true;
+            // 
+            // plC_NumBox2
+            // 
+            this.plC_NumBox2.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox2.Location = new System.Drawing.Point(172, 49);
+            this.plC_NumBox2.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox2.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox2.Name = "plC_NumBox2";
+            this.plC_NumBox2.ReadOnly = false;
+            this.plC_NumBox2.Size = new System.Drawing.Size(118, 38);
+            this.plC_NumBox2.TabIndex = 75;
+            this.plC_NumBox2.Value = 0;
+            this.plC_NumBox2.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox2.密碼欄位 = false;
+            this.plC_NumBox2.寫入元件位置 = "R5020";
+            this.plC_NumBox2.小數點位置 = 2;
+            this.plC_NumBox2.微調數值 = 1;
+            this.plC_NumBox2.讀取元件位置 = "R5020";
+            this.plC_NumBox2.音效 = true;
+            this.plC_NumBox2.顯示微調按鈕 = false;
+            this.plC_NumBox2.顯示螢幕小鍵盤 = true;
+            // 
+            // rJ_Lable52
+            // 
+            this.rJ_Lable52.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable52.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable52.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable52.BorderRadius = 10;
+            this.rJ_Lable52.BorderSize = 0;
+            this.rJ_Lable52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable52.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable52.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable52.GUID = "";
+            this.rJ_Lable52.Location = new System.Drawing.Point(8, 93);
+            this.rJ_Lable52.Name = "rJ_Lable52";
+            this.rJ_Lable52.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable52.ShadowSize = 3;
+            this.rJ_Lable52.Size = new System.Drawing.Size(157, 38);
+            this.rJ_Lable52.TabIndex = 77;
+            this.rJ_Lable52.Text = "Z位置";
+            this.rJ_Lable52.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable52.TextColor = System.Drawing.Color.White;
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label86.Location = new System.Drawing.Point(291, 63);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(46, 24);
+            this.label86.TabIndex = 76;
+            this.label86.Text = "mm";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.BackColor = System.Drawing.Color.White;
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1048, 1688);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "常溫區";
+            // 
+            // plC_RJ_ScreenButton10
+            // 
+            this.plC_RJ_ScreenButton10.but_press = false;
+            this.plC_RJ_ScreenButton10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButton10.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.plC_RJ_ScreenButton10.IconSize = 32;
+            this.plC_RJ_ScreenButton10.Location = new System.Drawing.Point(760, 3);
+            this.plC_RJ_ScreenButton10.Margin = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_ScreenButton10.Name = "plC_RJ_ScreenButton10";
+            this.plC_RJ_ScreenButton10.OffBackColor = System.Drawing.Color.Silver;
+            this.plC_RJ_ScreenButton10.OffFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_ScreenButton10.OffForeColor = System.Drawing.Color.Gray;
+            this.plC_RJ_ScreenButton10.OffIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton10.OffText = "9016";
+            this.plC_RJ_ScreenButton10.OnBackColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton10.OnFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton10.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton10.OnIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton10.OnText = "9016";
+            this.plC_RJ_ScreenButton10.ShowIcon = false;
+            this.plC_RJ_ScreenButton10.Size = new System.Drawing.Size(148, 57);
+            this.plC_RJ_ScreenButton10.TabIndex = 6;
+            this.plC_RJ_ScreenButton10.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButton10.寫入位置註解 = "";
+            this.plC_RJ_ScreenButton10.寫入元件位置 = "";
+            this.plC_RJ_ScreenButton10.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
+            this.plC_RJ_ScreenButton10.控制位址 = "";
+            this.plC_RJ_ScreenButton10.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButton10.致能讀取位置 = "";
+            this.plC_RJ_ScreenButton10.讀取位元反向 = false;
+            this.plC_RJ_ScreenButton10.讀取位置註解 = "";
+            this.plC_RJ_ScreenButton10.讀取元件位置 = "";
+            this.plC_RJ_ScreenButton10.音效 = true;
+            this.plC_RJ_ScreenButton10.頁面名稱 = "9016";
+            this.plC_RJ_ScreenButton10.頁面編號 = 0;
+            this.plC_RJ_ScreenButton10.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButton10.顯示狀態 = false;
+            this.plC_RJ_ScreenButton10.顯示讀取位置 = "";
             // 
             // Main_Form
             // 
@@ -9768,15 +10452,19 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Pannel6.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.rJ_Pannel9.ResumeLayout(false);
-            this.rJ_Pannel9.PerformLayout();
-            this.panel_系統.ResumeLayout(false);
-            this.panel16.ResumeLayout(false);
             this.plC_RJ_Pannel2.ResumeLayout(false);
             this.plC_RJ_Pannel2.PerformLayout();
             this.plC_RJ_Pannel1.ResumeLayout(false);
             this.plC_RJ_Pannel1.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.rJ_Pannel9.ResumeLayout(false);
+            this.rJ_Pannel9.PerformLayout();
+            this.panel_系統.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -10135,7 +10823,6 @@ namespace 癌症自動備藥機暨排程系統
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Panel panel16;
         private MyUI.PLC_Button plC_RJ_Button_冷藏區_輸送帶後退;
-        private MyUI.RJ_Lable rJ_Lable44;
         private MyUI.PLC_Button plC_RJ_Button_冷藏區_輸送帶前進;
         private MyUI.PLC_Button plC_Button2;
         private MyUI.PLC_Button plC_Button1;
@@ -10143,6 +10830,38 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_Button plC_RJ_Button_冷藏區_輸送門開啟;
         private MyUI.PLC_Button plC_Button3;
         private MyUI.PLC_Button plC_RJ_Button_冷藏區_輸送門關閉;
+        private System.Windows.Forms.Label label80;
+        private MyUI.PLC_NumBox plC_NumBox_冷藏區_藥盒傳接位置Z;
+        private MyUI.RJ_Lable rJ_Lable46;
+        private System.Windows.Forms.Label label79;
+        private MyUI.PLC_NumBox plC_NumBox_冷藏區_藥盒傳接位置X;
+        private MyUI.RJ_Lable rJ_Lable45;
+        private System.Windows.Forms.Panel panel17;
+        private MyUI.PLC_Button plC_Button_冷藏區_移動至常溫區藥盒傳接位置;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_冷藏區X軸_絕對位置移動;
+        private System.Windows.Forms.Label label82;
+        private MyUI.PLC_NumBox plC_NumBox_冷藏區X軸_運轉速度;
+        private MyUI.RJ_Lable rJ_Lable50;
+        private System.Windows.Forms.Label label81;
+        private MyUI.PLC_NumBox plC_NumBox_冷藏區X軸_絕對位置;
+        private MyUI.RJ_Lable rJ_Lable47;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_冷藏區Z軸_絕對位置移動;
+        private System.Windows.Forms.Label label83;
+        private MyUI.PLC_NumBox plC_NumBox_冷藏區Z軸_運轉速度;
+        private MyUI.RJ_Lable rJ_Lable48;
+        private System.Windows.Forms.Label label84;
+        private MyUI.PLC_NumBox plC_NumBox_冷藏區Z軸_絕對位置;
+        private MyUI.RJ_Lable rJ_Lable49;
+        private System.Windows.Forms.Panel panel18;
+        private MyUI.PLC_Button plC_Button_冷藏區_移動至待命位置;
+        private System.Windows.Forms.Label label85;
+        private MyUI.RJ_Lable rJ_Lable51;
+        private MyUI.PLC_NumBox plC_NumBox1;
+        private MyUI.PLC_NumBox plC_NumBox2;
+        private MyUI.RJ_Lable rJ_Lable52;
+        private System.Windows.Forms.Label label86;
+        private System.Windows.Forms.TabPage tabPage6;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton10;
     }
 }
 
