@@ -236,5 +236,73 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_備藥通知.RefreshGrid(list_udnoectc);
 
         }
+
+        #region PLC_Method
+        PLC_Device PLC_Device_Method = new PLC_Device("");
+        PLC_Device PLC_Device_Method_OK = new PLC_Device("");
+        Task Task_Method;
+        MyTimer MyTimer_Method_結束延遲 = new MyTimer();
+        int cnt_Program_Method = 65534;
+        void sub_Program_Method()
+        {
+            if (cnt_Program_Method == 65534)
+            {
+                this.MyTimer_Method_結束延遲.StartTickTime(10000);
+                PLC_Device_Method.SetComment("PLC_Method");
+                PLC_Device_Method_OK.SetComment("PLC_Method_OK");
+                PLC_Device_Method.Bool = false;
+                cnt_Program_Method = 65535;
+            }
+            if (cnt_Program_Method == 65535) cnt_Program_Method = 1;
+            if (cnt_Program_Method == 1) cnt_Program_Method_檢查按下(ref cnt_Program_Method);
+            if (cnt_Program_Method == 2) cnt_Program_Method_初始化(ref cnt_Program_Method);
+            if (cnt_Program_Method == 3) cnt_Program_Method = 65500;
+            if (cnt_Program_Method > 1) cnt_Program_Method_檢查放開(ref cnt_Program_Method);
+
+            if (cnt_Program_Method == 65500)
+            {
+                this.MyTimer_Method_結束延遲.TickStop();
+                this.MyTimer_Method_結束延遲.StartTickTime(10000);
+                PLC_Device_Method.Bool = false;
+                PLC_Device_Method_OK.Bool = false;
+                cnt_Program_Method = 65535;
+            }
+        }
+        void cnt_Program_Method_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_Method.Bool) cnt++;
+        }
+        void cnt_Program_Method_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_Method.Bool) cnt = 65500;
+        }
+        void cnt_Program_Method_初始化(ref int cnt)
+        {
+            if (this.MyTimer_Method_結束延遲.IsTimeOut())
+            {
+                if (Task_Method == null)
+                {
+                    Task_Method = new Task(new Action(delegate { }));
+                }
+                if (Task_Method.Status == TaskStatus.RanToCompletion)
+                {
+                    Task_Method = new Task(new Action(delegate { }));
+                }
+                if (Task_Method.Status == TaskStatus.Created)
+                {
+                    Task_Method.Start();
+                  
+                }
+                cnt++;
+            }
+        }
+
+
+
+
+
+
+
+        #endregion
     }
 }

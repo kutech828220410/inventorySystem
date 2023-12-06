@@ -835,12 +835,14 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_Method_OK = new PLC_Device("");
         Task Task_Method;
         MyTimer MyTimer_Method_結束延遲 = new MyTimer();
+        MyTimer MyTimer_Method_開始延遲 = new MyTimer();
         int cnt_Program_Method = 65534;
         void sub_Program_Method()
         {
             if (cnt_Program_Method == 65534)
             {
                 this.MyTimer_Method_結束延遲.StartTickTime(10000);
+                this.MyTimer_Method_開始延遲.StartTickTime(10000);
                 PLC_Device_Method.SetComment("PLC_Method");
                 PLC_Device_Method_OK.SetComment("PLC_Method_OK");
                 PLC_Device_Method.Bool = false;
