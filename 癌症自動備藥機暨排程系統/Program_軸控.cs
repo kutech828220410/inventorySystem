@@ -33,6 +33,8 @@ namespace 癌症自動備藥機暨排程系統
             常溫區_X軸 = 3,
             常溫區_Z軸 = 4,
         }
+        PLC_Device PLC_IO_冷藏區X軸_現在位置 = new PLC_Device("R5000");
+
         PLC_Device PLC_IO_冷藏區Z軸_解剎車 = new PLC_Device("Y13");
 
         PLC_Device PLC_IO_冷藏區_輸送帶前進 = new PLC_Device("Y11");
@@ -47,6 +49,19 @@ namespace 癌症自動備藥機暨排程系統
         PLC_Device PLC_IO_冷藏區_輸送門關閉 = new PLC_Device("S240");
         PLC_Device PLC_IO_冷藏區_輸送台關閉到位 = new PLC_Device("X04");
 
+        PLC_Device PLC_IO_常溫區Z軸_解剎車 = new PLC_Device("Y12");
+
+        PLC_Device PLC_IO_常溫區_輸送帶前進 = new PLC_Device("Y07");
+        PLC_Device PLC_IO_常溫區_輸送台進退終點 = new PLC_Device("X201");
+
+        PLC_Device PLC_IO_常溫區_輸送帶後退 = new PLC_Device("Y06");
+        PLC_Device PLC_IO_常溫區_輸送台進退原點 = new PLC_Device("X13");
+
+        PLC_Device PLC_IO_常溫區_輸送門開啟 = new PLC_Device("S243");
+        PLC_Device PLC_IO_常溫區_輸送台開啟到位 = new PLC_Device("X15");
+
+        PLC_Device PLC_IO_常溫區_輸送門關閉 = new PLC_Device("S242");
+        PLC_Device PLC_IO_常溫區_輸送台關閉到位 = new PLC_Device("X14");
 
         DeltaMotor485.Port DeltaMotor485_port = new DeltaMotor485.Port();
         MySerialPort mySerialPort_delta = new MySerialPort();
@@ -67,6 +82,15 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_冷藏區Z軸_NJOG.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_NJOG_MouseDownEvent;
             this.plC_RJ_Button_冷藏區Z軸_Stop.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_Stop_MouseDownEvent;
 
+            this.plC_RJ_Button_常溫區X軸_ServoON.MouseDownEvent += PlC_RJ_Button_常溫區X軸_ServoON_MouseDownEvent;
+            this.plC_RJ_Button_常溫區X軸_PJOG.MouseDownEvent += PlC_RJ_Button_常溫區X軸_PJOG_MouseDownEvent;
+            this.plC_RJ_Button_常溫區X軸_NJOG.MouseDownEvent += PlC_RJ_Button_常溫區X軸_NJOG_MouseDownEvent;
+            this.plC_RJ_Button_常溫區X軸_Stop.MouseDownEvent += PlC_RJ_Button_常溫區X軸_Stop_MouseDownEvent;
+
+            this.plC_RJ_Button_常溫區Z軸_ServoON.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_ServoON_MouseDownEvent;
+            this.plC_RJ_Button_常溫區Z軸_PJOG.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_PJOG_MouseDownEvent;
+            this.plC_RJ_Button_常溫區Z軸_NJOG.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_NJOG_MouseDownEvent;
+            this.plC_RJ_Button_常溫區Z軸_Stop.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_Stop_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(Program_軸控);
         }
@@ -109,6 +133,44 @@ namespace 癌症自動備藥機暨排程系統
             DeltaMotor485_port[2].Servo_on_off(!flag_output);
         }
 
+
+        private void PlC_RJ_Button_常溫區X軸_Stop_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port[3].Stop();
+        }
+        private void PlC_RJ_Button_常溫區X軸_NJOG_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port[3].JOG(-plC_NumBox_常溫區X軸_JOG速度.Value);
+        }
+        private void PlC_RJ_Button_常溫區X軸_PJOG_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port[3].JOG(+plC_NumBox_常溫區X軸_JOG速度.Value);
+        }
+        private void PlC_RJ_Button_常溫區X軸_ServoON_MouseDownEvent(MouseEventArgs mevent)
+        {
+            bool flag_output = PLC.Device.Get_DeviceFast_Ex(plC_RJ_Button_常溫區X軸_ServoON.寫入元件位置);
+            DeltaMotor485_port[3].Servo_on_off(!flag_output);
+        }
+
+
+        private void PlC_RJ_Button_常溫區Z軸_Stop_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port[4].Stop();
+        }
+        private void PlC_RJ_Button_常溫區Z軸_NJOG_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port[4].JOG(-plC_NumBox_常溫區Z軸_JOG速度.Value);
+        }
+        private void PlC_RJ_Button_常溫區Z軸_PJOG_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port[4].JOG(+plC_NumBox_常溫區Z軸_JOG速度.Value);
+        }
+        private void PlC_RJ_Button_常溫區Z軸_ServoON_MouseDownEvent(MouseEventArgs mevent)
+        {
+            bool flag_output = PLC.Device.Get_DeviceFast_Ex(plC_RJ_Button_常溫區Z軸_ServoON.寫入元件位置);
+            DeltaMotor485_port[4].Servo_on_off(!flag_output);
+        }
+
         private void Program_軸控()
         {
             PLC.Device.Set_Device(plC_RJ_Button_冷藏區X軸_ServoON.讀取元件位置, DeltaMotor485_port[1].SON);
@@ -132,6 +194,26 @@ namespace 癌症自動備藥機暨排程系統
             plC_NumBox_冷藏區Z軸_現在位置.Value = DeltaMotor485_port[2].CommandPosition;
 
 
+            PLC.Device.Set_Device(plC_RJ_Button_常溫區X軸_ServoON.讀取元件位置, DeltaMotor485_port[3].SON);
+            DeltaMotor485_port[3].Read485_Enable = true;
+            plC_RJ_Button_常溫區X軸_ServoON.Bool = DeltaMotor485_port[3].SON;
+            plC_Button_常溫區X軸_Ready.Bool = DeltaMotor485_port[3].SRDY;
+            plC_Button_常溫區X軸_零速度檢出.Bool = DeltaMotor485_port[3].ZSPD;
+            plC_Button_常溫區X軸_原點.Bool = DeltaMotor485_port[3].DI.ORGP;
+            plC_Button_常溫區X軸_正極限.Bool = DeltaMotor485_port[3].DI.PL;
+            plC_Button_常溫區X軸_ALARM.Bool = DeltaMotor485_port[3].ALRM;
+            plC_NumBox_常溫區X軸_現在位置.Value = DeltaMotor485_port[3].CommandPosition;
+
+            PLC.Device.Set_Device(plC_RJ_Button_常溫區Z軸_ServoON.讀取元件位置, DeltaMotor485_port[4].SON);
+            DeltaMotor485_port[4].Read485_Enable = true;
+            plC_RJ_Button_常溫區Z軸_ServoON.Bool = DeltaMotor485_port[4].SON;
+            plC_Button_常溫區Z軸_Ready.Bool = DeltaMotor485_port[4].SRDY;
+            plC_Button_常溫區Z軸_零速度檢出.Bool = DeltaMotor485_port[4].ZSPD;
+            plC_Button_常溫區Z軸_原點.Bool = DeltaMotor485_port[4].DI.ORGP;
+            plC_Button_常溫區Z軸_正極限.Bool = DeltaMotor485_port[4].DI.PL;
+            plC_Button_常溫區Z軸_ALARM.Bool = DeltaMotor485_port[4].ALRM;
+            plC_NumBox_常溫區Z軸_現在位置.Value = DeltaMotor485_port[4].CommandPosition;
+
             sub_Program_軸控初始化();
             sub_Program_冷藏區X軸復歸();
             sub_Program_冷藏區Z軸復歸();
@@ -146,6 +228,21 @@ namespace 癌症自動備藥機暨排程系統
             sub_Program_冷藏區Z軸_絕對位置移動();
             sub_Program_冷藏區_移動至待命位置();
             sub_Program_冷藏區_移動至常溫區藥盒傳接位置();
+            sub_Program_冷藏區_移動至零點位置();
+
+            sub_Program_常溫區X軸復歸();
+            sub_Program_常溫區Z軸復歸();
+
+            sub_Program_常溫區輸送帶前進();
+            sub_Program_常溫區輸送帶後退();
+
+            sub_Program_常溫區輸送門開啟();
+            sub_Program_常溫區輸送門關閉();
+
+            sub_Program_常溫區X軸_絕對位置移動();
+            sub_Program_常溫區Z軸_絕對位置移動();
+            sub_Program_常溫區_移動至待命位置();
+            sub_Program_常溫區_移動至常溫區藥盒傳接位置();
         }
 
 
@@ -261,6 +358,7 @@ namespace 癌症自動備藥機暨排程系統
 
             ServoInit(enum_軸號.常溫區_Z軸);
             ServoON(enum_軸號.常溫區_Z軸, true);
+            PLC_IO_常溫區Z軸_解剎車.Bool = true;
 
             cnt++;
         }
@@ -272,6 +370,7 @@ namespace 癌症自動備藥機暨排程系統
 
 
         #endregion
+
         #region PLC_冷藏區X軸復歸
         PLC_Device PLC_Device_冷藏區X軸復歸 = new PLC_Device("");
         PLC_Device PLC_Device_冷藏區X軸復歸_OK = new PLC_Device("");
@@ -553,7 +652,7 @@ namespace 癌症自動備藥機暨排程系統
 
         #endregion
         #region PLC_冷藏區輸送帶前進
-        PLC_Device PLC_Device_冷藏區輸送帶前進 = new PLC_Device("");
+        PLC_Device PLC_Device_冷藏區輸送帶前進 = new PLC_Device("S5050");
         PLC_Device PLC_Device_冷藏區輸送帶前進_OK = new PLC_Device("");
         Task Task_冷藏區輸送帶前進;
         MyTimer MyTimer_冷藏區輸送帶前進_結束延遲 = new MyTimer();
@@ -561,7 +660,6 @@ namespace 癌症自動備藥機暨排程系統
         int cnt_Program_冷藏區輸送帶前進 = 65534;
         void sub_Program_冷藏區輸送帶前進()
         {
-            PLC_Device_冷藏區輸送帶前進.Bool = plC_RJ_Button_冷藏區_輸送帶前進.Bool;
             if (cnt_Program_冷藏區輸送帶前進 == 65534)
             {
                 this.MyTimer_冷藏區輸送帶前進_結束延遲.StartTickTime(10000);
@@ -582,7 +680,7 @@ namespace 癌症自動備藥機暨排程系統
             {
                 this.MyTimer_冷藏區輸送帶前進_結束延遲.TickStop();
                 this.MyTimer_冷藏區輸送帶前進_結束延遲.StartTickTime(10000);
-                plC_RJ_Button_冷藏區_輸送帶前進.Bool = false;
+                PLC_Device_冷藏區輸送帶前進.Bool = false;
                 PLC_IO_冷藏區_輸送帶前進.Bool = false;
                 cnt_Program_冷藏區輸送帶前進 = 65535;
             }
@@ -597,8 +695,8 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_冷藏區輸送帶前進_初始化(ref int cnt)
         {
-            plC_RJ_Button_冷藏區_輸送帶後退.Bool = false;
             PLC_IO_冷藏區_輸送帶後退.Bool = false;
+            PLC_Device_冷藏區輸送帶後退.Bool = false;
             cnt++;
         }
         void cnt_Program_冷藏區輸送帶前進_輸送帶前進(ref int cnt)
@@ -618,7 +716,7 @@ namespace 癌症自動備藥機暨排程系統
 
         #endregion
         #region PLC_冷藏區輸送帶後退
-        PLC_Device PLC_Device_冷藏區輸送帶後退 = new PLC_Device("");
+        PLC_Device PLC_Device_冷藏區輸送帶後退 = new PLC_Device("S5051");
         PLC_Device PLC_Device_冷藏區輸送帶後退_OK = new PLC_Device("");
         Task Task_冷藏區輸送帶後退;
         MyTimer MyTimer_冷藏區輸送帶後退_結束延遲 = new MyTimer();
@@ -647,7 +745,7 @@ namespace 癌症自動備藥機暨排程系統
             {
                 this.MyTimer_冷藏區輸送帶後退_結束延遲.TickStop();
                 this.MyTimer_冷藏區輸送帶後退_結束延遲.StartTickTime(10000);
-                plC_RJ_Button_冷藏區_輸送帶後退.Bool = false;
+                PLC_Device_冷藏區輸送帶後退.Bool = false;
                 PLC_IO_冷藏區_輸送帶後退.Bool = false;
                 cnt_Program_冷藏區輸送帶後退 = 65535;
             }
@@ -662,8 +760,8 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_冷藏區輸送帶後退_初始化(ref int cnt)
         {
-            plC_RJ_Button_冷藏區_輸送帶前進.Bool = false;
             PLC_IO_冷藏區_輸送帶前進.Bool = false;
+            PLC_Device_冷藏區輸送帶前進.Bool = false;
             cnt++;
         }
         void cnt_Program_冷藏區輸送帶後退_輸送帶後退(ref int cnt)
@@ -677,7 +775,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         #endregion
         #region PLC_冷藏區輸送門開啟
-        PLC_Device PLC_Device_冷藏區輸送門開啟 = new PLC_Device("");
+        PLC_Device PLC_Device_冷藏區輸送門開啟 = new PLC_Device("S5052");
         PLC_Device PLC_Device_冷藏區輸送門開啟_OK = new PLC_Device("");
         Task Task_冷藏區輸送門開啟;
         MyTimer MyTimer_冷藏區輸送門開啟_輸出延遲 = new MyTimer();
@@ -708,7 +806,7 @@ namespace 癌症自動備藥機暨排程系統
             {
                 this.MyTimer_冷藏區輸送門開啟_結束延遲.TickStop();
                 this.MyTimer_冷藏區輸送門開啟_結束延遲.StartTickTime(10000);
-                plC_RJ_Button_冷藏區_輸送門開啟.Bool = false;
+                PLC_Device_冷藏區輸送門開啟.Bool = false;
                 PLC_IO_冷藏區_輸送門開啟.Bool = false;
                 cnt_Program_冷藏區輸送門開啟 = 65535;
             }
@@ -724,7 +822,7 @@ namespace 癌症自動備藥機暨排程系統
         void cnt_Program_冷藏區輸送門開啟_初始化(ref int cnt)
         {
             PLC_IO_冷藏區_輸送門關閉.Bool = false;
-            plC_RJ_Button_冷藏區_輸送門關閉.Bool = false;
+            PLC_Device_冷藏區輸送門關閉.Bool = false;
             cnt++;
         }
         void cnt_Program_冷藏區輸送門開啟_輸送門開啟(ref int cnt)
@@ -749,7 +847,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         #endregion
         #region PLC_冷藏區輸送門關閉
-        PLC_Device PLC_Device_冷藏區輸送門關閉 = new PLC_Device("");
+        PLC_Device PLC_Device_冷藏區輸送門關閉 = new PLC_Device("S5053");
         PLC_Device PLC_Device_冷藏區輸送門關閉_OK = new PLC_Device("");
         Task Task_冷藏區輸送門關閉;
         MyTimer MyTimer_冷藏區輸送門關閉_結束延遲 = new MyTimer();
@@ -778,7 +876,7 @@ namespace 癌症自動備藥機暨排程系統
             {
                 this.MyTimer_冷藏區輸送門關閉_結束延遲.TickStop();
                 this.MyTimer_冷藏區輸送門關閉_結束延遲.StartTickTime(10000);
-                plC_RJ_Button_冷藏區_輸送門關閉.Bool = false;
+                PLC_Device_冷藏區輸送門關閉.Bool = false;
                 PLC_IO_冷藏區_輸送門關閉.Bool = false;
                 cnt_Program_冷藏區輸送門關閉 = 65535;
             }
@@ -794,7 +892,8 @@ namespace 癌症自動備藥機暨排程系統
         void cnt_Program_冷藏區輸送門關閉_初始化(ref int cnt)
         {
             PLC_IO_冷藏區_輸送門開啟.Bool = false;
-            plC_RJ_Button_冷藏區_輸送門開啟.Bool = false;
+            PLC_Device_冷藏區輸送門開啟.Bool = false;
+
             cnt++;
         }
         void cnt_Program_冷藏區輸送門關閉_輸送門關閉(ref int cnt)
@@ -808,6 +907,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         #endregion
         #region PLC_冷藏區X軸_絕對位置移動
+        PLC_Device PLC_Device_冷藏區X軸_絕對位置移動 = new PLC_Device("S5040");
         PLC_Device PLC_Device_冷藏區X軸_絕對位置移動_目標位置 = new PLC_Device("R5003");
         PLC_Device PLC_Device_冷藏區X軸_絕對位置移動_運傳速度 = new PLC_Device("R5004");
         PLC_Device PLC_Device_冷藏區X軸_絕對位置移動_加減速度 = new PLC_Device("k800");
@@ -820,7 +920,7 @@ namespace 癌症自動備藥機暨排程系統
             if (cnt_Program_冷藏區X軸_絕對位置移動 == 65534)
             {
                 this.MyTimer_冷藏區X軸_絕對位置移動_結束延遲.StartTickTime(10000);
-                plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區X軸_絕對位置移動.Bool = false;
                 cnt_Program_冷藏區X軸_絕對位置移動 = 65535;
             }
             if (cnt_Program_冷藏區X軸_絕對位置移動 == 65535) cnt_Program_冷藏區X軸_絕對位置移動 = 1;
@@ -835,7 +935,7 @@ namespace 癌症自動備藥機暨排程系統
             {
                 this.MyTimer_冷藏區X軸_絕對位置移動_結束延遲.TickStop();
                 this.MyTimer_冷藏區X軸_絕對位置移動_結束延遲.StartTickTime(10000);
-                plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區X軸_絕對位置移動.Bool = false;
                 PLC_Device_冷藏區X軸_絕對位置移動_OK.Bool = false;
                 Servo_Stop(enum_軸號.冷藏區_X軸);
                 cnt_Program_冷藏區X軸_絕對位置移動 = 65535;
@@ -843,11 +943,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_冷藏區X軸_絕對位置移動_檢查按下(ref int cnt)
         {
-            if (plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool) cnt++;
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) cnt++;
         }
         void cnt_Program_冷藏區X軸_絕對位置移動_檢查放開(ref int cnt)
         {
-            if (!plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool) cnt = 65500;
+            if (!PLC_Device_冷藏區X軸_絕對位置移動.Bool) cnt = 65500;
         }
         void cnt_Program_冷藏區X軸_絕對位置移動_初始化(ref int cnt)
         {
@@ -875,8 +975,9 @@ namespace 癌症自動備藥機暨排程系統
 
         #endregion
         #region PLC_冷藏區Z軸_絕對位置移動
-        PLC_Device PLC_Device_冷藏區Z軸_絕對位置移動_目標位置 = new PLC_Device("R5013");
-        PLC_Device PLC_Device_冷藏區Z軸_絕對位置移動_運傳速度 = new PLC_Device("R5014");
+        PLC_Device PLC_Device_冷藏區Z軸_絕對位置移動 = new PLC_Device("S5140");
+        PLC_Device PLC_Device_冷藏區Z軸_絕對位置移動_目標位置 = new PLC_Device("R5103");
+        PLC_Device PLC_Device_冷藏區Z軸_絕對位置移動_運傳速度 = new PLC_Device("R5104");
         PLC_Device PLC_Device_冷藏區Z軸_絕對位置移動_加減速度 = new PLC_Device("k800");
         PLC_Device PLC_Device_冷藏區Z軸_絕對位置移動_OK = new PLC_Device("");
         Task Task_冷藏區Z軸_絕對位置移動;
@@ -887,7 +988,7 @@ namespace 癌症自動備藥機暨排程系統
             if (cnt_Program_冷藏區Z軸_絕對位置移動 == 65534)
             {
                 this.MyTimer_冷藏區Z軸_絕對位置移動_結束延遲.StartTickTime(10000);
-                plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區Z軸_絕對位置移動.Bool = false;
                 cnt_Program_冷藏區Z軸_絕對位置移動 = 65535;
             }
             if (cnt_Program_冷藏區Z軸_絕對位置移動 == 65535) cnt_Program_冷藏區Z軸_絕對位置移動 = 1;
@@ -902,7 +1003,7 @@ namespace 癌症自動備藥機暨排程系統
             {
                 this.MyTimer_冷藏區Z軸_絕對位置移動_結束延遲.TickStop();
                 this.MyTimer_冷藏區Z軸_絕對位置移動_結束延遲.StartTickTime(10000);
-                plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區Z軸_絕對位置移動.Bool = false;
                 PLC_Device_冷藏區Z軸_絕對位置移動_OK.Bool = false;
                 Servo_Stop(enum_軸號.冷藏區_Z軸);
                 cnt_Program_冷藏區Z軸_絕對位置移動 = 65535;
@@ -910,11 +1011,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_冷藏區Z軸_絕對位置移動_檢查按下(ref int cnt)
         {
-            if (plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool) cnt++;
+            if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) cnt++;
         }
         void cnt_Program_冷藏區Z軸_絕對位置移動_檢查放開(ref int cnt)
         {
-            if (!plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool) cnt = 65500;
+            if (!PLC_Device_冷藏區Z軸_絕對位置移動.Bool) cnt = 65500;
         }
         void cnt_Program_冷藏區Z軸_絕對位置移動_初始化(ref int cnt)
         {
@@ -975,8 +1076,8 @@ namespace 癌症自動備藥機暨排程系統
                 PLC_Device_冷藏區_移動至待命位置.Bool = false;
                 PLC_Device_冷藏區_移動至待命位置_OK.Bool = false;
 
-                plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool = false;
-                plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區X軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區Z軸_絕對位置移動.Bool = false;
                 cnt_Program_冷藏區_移動至待命位置 = 65535;
             }
         }
@@ -995,20 +1096,20 @@ namespace 癌症自動備藥機暨排程系統
 
         void cnt_Program_冷藏區_移動至待命位置_檢查各部件READY(ref int cnt)
         {
-            if (plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool) return;
-            if (plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
 
             PLC_Device_冷藏區X軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至待命位置_目標位置X.Value;
             PLC_Device_冷藏區Z軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至待命位置_目標位置Z.Value;
-            plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool = true;
-            plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool = true;
+            PLC_Device_冷藏區X軸_絕對位置移動.Bool = true;
+            PLC_Device_冷藏區Z軸_絕對位置移動.Bool = true;
             cnt++;
 
         }
         void cnt_Program_冷藏區_移動至待命位置_等待完成(ref int cnt)
         {
-            if (plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool) return;
-            if (plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
             cnt++;
 
         }
@@ -1060,8 +1161,8 @@ namespace 癌症自動備藥機暨排程系統
 
                 plC_RJ_Button_冷藏區_輸送帶後退.Bool = false;
                 plC_RJ_Button_冷藏區_輸送門開啟.Bool = false;
-                plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool = false;
-                plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區X軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區Z軸_絕對位置移動.Bool = false;
                 PLC_Device_冷藏區_移動至待命位置.Bool = false;
                 cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 = 65535;
             }
@@ -1106,26 +1207,973 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_Z軸Ready(ref int cnt)
         {
-            if (plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
             PLC_Device_冷藏區Z軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_目標位置Z.Value;
-            plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool = true;
+            PLC_Device_冷藏區Z軸_絕對位置移動.Bool = true;
             cnt++;
         }
         void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_Z軸完成(ref int cnt)
         {
-            if (plC_RJ_Button_冷藏區Z軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
             cnt++;
         }
         void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_X軸Ready(ref int cnt)
         {
-            if (plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
             PLC_Device_冷藏區X軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_目標位置X.Value;
-            plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool = true;
+            PLC_Device_冷藏區X軸_絕對位置移動.Bool = true;
             cnt++;
         }
         void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_X軸完成(ref int cnt)
         {
-            if (plC_RJ_Button_冷藏區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
+            cnt++;
+        }
+
+        #endregion
+        #region PLC_冷藏區_移動至零點位置
+        PLC_Device PLC_Device_冷藏區_移動至零點位置_目標位置X = new PLC_Device("R5024");
+        PLC_Device PLC_Device_冷藏區_移動至零點位置_目標位置Z = new PLC_Device("R5025");
+
+        PLC_Device PLC_Device_冷藏區_移動至零點位置 = new PLC_Device("S5002");
+        PLC_Device PLC_Device_冷藏區_移動至零點位置_OK = new PLC_Device("");
+        Task Task_冷藏區_移動至零點位置;
+        MyTimer MyTimer_冷藏區_移動至零點位置_結束延遲 = new MyTimer();
+        int cnt_Program_冷藏區_移動至零點位置 = 65534;
+        void sub_Program_冷藏區_移動至零點位置()
+        {
+            if (cnt_Program_冷藏區_移動至零點位置 == 65534)
+            {
+                this.MyTimer_冷藏區_移動至零點位置_結束延遲.StartTickTime(10000);
+                PLC_Device_冷藏區_移動至零點位置.SetComment("PLC_冷藏區_移動至零點位置");
+                PLC_Device_冷藏區_移動至零點位置_OK.SetComment("PLC_冷藏區_移動至零點位置_OK");
+                PLC_Device_冷藏區_移動至零點位置.Bool = false;
+                cnt_Program_冷藏區_移動至零點位置 = 65535;
+            }
+            if (cnt_Program_冷藏區_移動至零點位置 == 65535) cnt_Program_冷藏區_移動至零點位置 = 1;
+            if (cnt_Program_冷藏區_移動至零點位置 == 1) cnt_Program_冷藏區_移動至零點位置_檢查按下(ref cnt_Program_冷藏區_移動至零點位置);
+            if (cnt_Program_冷藏區_移動至零點位置 == 2) cnt_Program_冷藏區_移動至零點位置_初始化(ref cnt_Program_冷藏區_移動至零點位置);
+            if (cnt_Program_冷藏區_移動至零點位置 == 3) cnt_Program_冷藏區_移動至零點位置_檢查各部件READY(ref cnt_Program_冷藏區_移動至零點位置);
+            if (cnt_Program_冷藏區_移動至零點位置 == 4) cnt_Program_冷藏區_移動至零點位置_檢查X軸小於待命位置(ref cnt_Program_冷藏區_移動至零點位置);
+            if (cnt_Program_冷藏區_移動至零點位置 == 5) cnt_Program_冷藏區_移動至零點位置_等待完成(ref cnt_Program_冷藏區_移動至零點位置);
+            if (cnt_Program_冷藏區_移動至零點位置 == 6) cnt_Program_冷藏區_移動至零點位置 = 65500;
+            if (cnt_Program_冷藏區_移動至零點位置 > 1) cnt_Program_冷藏區_移動至零點位置_檢查放開(ref cnt_Program_冷藏區_移動至零點位置);
+
+            if (cnt_Program_冷藏區_移動至零點位置 == 65500)
+            {
+                this.MyTimer_冷藏區_移動至零點位置_結束延遲.TickStop();
+                this.MyTimer_冷藏區_移動至零點位置_結束延遲.StartTickTime(10000);
+                PLC_Device_冷藏區_移動至零點位置.Bool = false;
+                PLC_Device_冷藏區_移動至零點位置_OK.Bool = false;
+
+                PLC_Device_冷藏區X軸_絕對位置移動.Bool = false;
+                PLC_Device_冷藏區Z軸_絕對位置移動.Bool = false;
+                cnt_Program_冷藏區_移動至零點位置 = 65535;
+            }
+        }
+        void cnt_Program_冷藏區_移動至零點位置_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_冷藏區_移動至零點位置.Bool) cnt++;
+        }
+        void cnt_Program_冷藏區_移動至零點位置_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_冷藏區_移動至零點位置.Bool) cnt = 65500;
+        }
+        void cnt_Program_冷藏區_移動至零點位置_初始化(ref int cnt)
+        {
+            cnt++;
+        }
+
+        void cnt_Program_冷藏區_移動至零點位置_檢查各部件READY(ref int cnt)
+        {
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
+            
+            PLC_Device_冷藏區X軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至零點位置_目標位置X.Value;
+            PLC_Device_冷藏區X軸_絕對位置移動.Bool = true;
+            cnt++;
+
+        }
+        void cnt_Program_冷藏區_移動至零點位置_檢查X軸小於待命位置(ref int cnt)
+        {
+            if (PLC_IO_冷藏區X軸_現在位置.Value <= PLC_Device_冷藏區_移動至待命位置_目標位置X.Value)
+            {
+                PLC_Device_冷藏區Z軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至零點位置_目標位置Z.Value;
+                PLC_Device_冷藏區Z軸_絕對位置移動.Bool = true;
+                cnt++;
+            }      
+           
+        }
+        void cnt_Program_冷藏區_移動至零點位置_等待完成(ref int cnt)
+        {
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
+            cnt++;
+
+        }
+
+
+
+
+
+        #endregion
+
+        #region PLC_常溫區X軸復歸
+        PLC_Device PLC_Device_常溫區X軸復歸 = new PLC_Device("");
+        PLC_Device PLC_Device_常溫區X軸復歸_OK = new PLC_Device("");
+        Task Task_常溫區X軸復歸;
+        MyTimer MyTimer_常溫區X軸復歸_向前JOG時間 = new MyTimer();
+        MyTimer MyTimer_常溫區X軸復歸_結束延遲 = new MyTimer();
+        MyTimer MyTimer_常溫區X軸復歸_開始延遲 = new MyTimer();
+        int cnt_Program_常溫區X軸復歸 = 65534;
+        void sub_Program_常溫區X軸復歸()
+        {
+            PLC_Device_常溫區X軸復歸.Bool = plC_RJ_Button_常溫區X軸_復歸.Bool;
+            if (cnt_Program_常溫區X軸復歸 == 65534)
+            {
+                this.MyTimer_常溫區X軸復歸_結束延遲.StartTickTime(10000);
+                this.MyTimer_常溫區X軸復歸_開始延遲.StartTickTime(10000);
+                PLC_Device_常溫區X軸復歸.SetComment("PLC_常溫區X軸復歸");
+                PLC_Device_常溫區X軸復歸_OK.SetComment("PLC_常溫區X軸復歸_OK");
+                PLC_Device_常溫區X軸復歸.Bool = false;
+                cnt_Program_常溫區X軸復歸 = 65535;
+            }
+            if (cnt_Program_常溫區X軸復歸 == 65535) cnt_Program_常溫區X軸復歸 = 1;
+            if (cnt_Program_常溫區X軸復歸 == 1) cnt_Program_常溫區X軸復歸_檢查按下(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 2) cnt_Program_常溫區X軸復歸_初始化(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 3) cnt_Program_常溫區X軸復歸_輸送帶後退(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 4) cnt_Program_常溫區X軸復歸_等待輸送帶後退(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 5) cnt_Program_常溫區X軸復歸_向前JOG(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 6) cnt_Program_常溫區X軸復歸_向前JOG時間到達(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 7) cnt_Program_常溫區X軸復歸_離開正極限(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 8) cnt_Program_常溫區X軸復歸_檢查馬達停止(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 9) cnt_Program_常溫區X軸復歸_開始復歸(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 10) cnt_Program_常溫區X軸復歸_檢查HOME_OFF(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 11) cnt_Program_常溫區X軸復歸_檢查復歸完成(ref cnt_Program_常溫區X軸復歸);
+            if (cnt_Program_常溫區X軸復歸 == 12) cnt_Program_常溫區X軸復歸 = 65500;
+            if (cnt_Program_常溫區X軸復歸 > 1) cnt_Program_常溫區X軸復歸_檢查放開(ref cnt_Program_常溫區X軸復歸);
+
+            if (cnt_Program_常溫區X軸復歸 == 65500)
+            {
+                this.MyTimer_常溫區X軸復歸_結束延遲.TickStop();
+                this.MyTimer_常溫區X軸復歸_結束延遲.StartTickTime(10000);
+                Servo_Stop(enum_軸號.常溫區_X軸);
+                plC_RJ_Button_常溫區X軸_復歸.Bool = false;
+                plC_RJ_Button_常溫區X軸_已完成復歸.Bool = true;
+                cnt_Program_常溫區X軸復歸 = 65535;
+            }
+        }
+        void cnt_Program_常溫區X軸復歸_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸復歸.Bool) cnt++;
+        }
+        void cnt_Program_常溫區X軸復歸_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區X軸復歸.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區X軸復歸_初始化(ref int cnt)
+        {
+            PLC_Device_常溫區X軸復歸_OK.Bool = false;
+            cnt++;
+        }
+        void cnt_Program_常溫區X軸復歸_輸送帶後退(ref int cnt)
+        {
+            if (!plC_RJ_Button_常溫區_輸送帶後退.Bool)
+            {
+                plC_RJ_Button_常溫區_輸送帶後退.Bool = true;
+                cnt++;
+                return;
+            }
+        }
+        void cnt_Program_常溫區X軸復歸_等待輸送帶後退(ref int cnt)
+        {
+            if (!plC_RJ_Button_常溫區_輸送帶後退.Bool)
+            {
+                cnt++;
+                return;
+            }
+        }
+        void cnt_Program_常溫區X軸復歸_向前JOG(ref int cnt)
+        {
+            if (plC_Button_常溫區X軸_正極限.Bool)
+            {
+                cnt++;
+                return;
+            }
+            Servo_JOG(enum_軸號.常溫區_X軸, 100);
+            MyTimer_常溫區X軸復歸_向前JOG時間.TickStop();
+            MyTimer_常溫區X軸復歸_向前JOG時間.StartTickTime(2000);
+            cnt++;
+        }
+        void cnt_Program_常溫區X軸復歸_向前JOG時間到達(ref int cnt)
+        {
+            if (plC_Button_常溫區X軸_正極限.Bool)
+            {
+                Servo_JOG(enum_軸號.常溫區_X軸, -100);
+                cnt++;
+                return;
+            }
+            if (MyTimer_常溫區X軸復歸_向前JOG時間.IsTimeOut())
+            {
+                Servo_Stop(enum_軸號.常溫區_X軸);
+                cnt++;
+            }
+
+        }
+        void cnt_Program_常溫區X軸復歸_離開正極限(ref int cnt)
+        {
+            if (!plC_Button_常溫區X軸_正極限.Bool)
+            {
+                Servo_Stop(enum_軸號.常溫區_X軸);
+                cnt++;
+                return;
+            }
+        }
+        void cnt_Program_常溫區X軸復歸_檢查馬達停止(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.常溫區_X軸, enum_DO.ZSPD) == true)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_常溫區X軸復歸_開始復歸(ref int cnt)
+        {
+            DeltaMotor485_port[(byte)enum_軸號.常溫區_X軸].Home(enum_Direction.CCW, true, 250, 10, 50, 50, plC_NumBox_常溫區X軸_復歸偏移.Value, 200, 50);
+            cnt++;
+        }
+        void cnt_Program_常溫區X軸復歸_檢查HOME_OFF(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.常溫區_X軸, enum_DO.HOME) == false)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_常溫區X軸復歸_檢查復歸完成(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.常溫區_X軸, enum_DO.HOME) == true && Servo_State(enum_軸號.常溫區_X軸, enum_DO.ZSPD) == true)
+            {
+                cnt++;
+            }
+        }
+
+
+        #endregion
+        #region PLC_常溫區Z軸復歸
+        PLC_Device PLC_Device_常溫區Z軸復歸 = new PLC_Device("");
+        PLC_Device PLC_Device_常溫區Z軸復歸_OK = new PLC_Device("");
+        Task Task_常溫區Z軸復歸;
+        MyTimer MyTimer_常溫區Z軸復歸_向前JOG時間 = new MyTimer();
+        MyTimer MyTimer_常溫區Z軸復歸_結束延遲 = new MyTimer();
+        MyTimer MyTimer_常溫區Z軸復歸_開始延遲 = new MyTimer();
+        int cnt_Program_常溫區Z軸復歸 = 65534;
+        void sub_Program_常溫區Z軸復歸()
+        {
+            PLC_Device_常溫區Z軸復歸.Bool = plC_RJ_Button_常溫區Z軸_復歸.Bool;
+            if (cnt_Program_常溫區Z軸復歸 == 65534)
+            {
+                this.MyTimer_常溫區Z軸復歸_結束延遲.StartTickTime(10000);
+                this.MyTimer_常溫區Z軸復歸_開始延遲.StartTickTime(10000);
+                PLC_Device_常溫區Z軸復歸.SetComment("PLC_常溫區Z軸復歸");
+                PLC_Device_常溫區Z軸復歸_OK.SetComment("PLC_常溫區Z軸復歸_OK");
+                PLC_Device_常溫區Z軸復歸.Bool = false;
+                cnt_Program_常溫區Z軸復歸 = 65535;
+            }
+            if (cnt_Program_常溫區Z軸復歸 == 65535) cnt_Program_常溫區Z軸復歸 = 1;
+            if (cnt_Program_常溫區Z軸復歸 == 1) cnt_Program_常溫區Z軸復歸_檢查按下(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 2) cnt_Program_常溫區Z軸復歸_初始化(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 3) cnt_Program_常溫區Z軸復歸_輸送帶後退(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 4) cnt_Program_常溫區Z軸復歸_等待輸送帶後退(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 5) cnt_Program_常溫區Z軸復歸_向前JOG(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 6) cnt_Program_常溫區Z軸復歸_向前JOG時間到達(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 7) cnt_Program_常溫區Z軸復歸_離開正極限(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 8) cnt_Program_常溫區Z軸復歸_檢查馬達停止(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 9) cnt_Program_常溫區Z軸復歸_開始復歸(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 10) cnt_Program_常溫區Z軸復歸_檢查HOME_OFF(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 11) cnt_Program_常溫區Z軸復歸_檢查復歸完成(ref cnt_Program_常溫區Z軸復歸);
+            if (cnt_Program_常溫區Z軸復歸 == 12) cnt_Program_常溫區Z軸復歸 = 65500;
+            if (cnt_Program_常溫區Z軸復歸 > 1) cnt_Program_常溫區Z軸復歸_檢查放開(ref cnt_Program_常溫區Z軸復歸);
+
+            if (cnt_Program_常溫區Z軸復歸 == 65500)
+            {
+                this.MyTimer_常溫區Z軸復歸_結束延遲.TickStop();
+                this.MyTimer_常溫區Z軸復歸_結束延遲.StartTickTime(10000);
+                Servo_Stop(enum_軸號.常溫區_Z軸);
+                plC_RJ_Button_常溫區Z軸_復歸.Bool = false;
+                plC_RJ_Button_常溫區Z軸_已完成復歸.Bool = true;
+                cnt_Program_常溫區Z軸復歸 = 65535;
+            }
+        }
+        void cnt_Program_常溫區Z軸復歸_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區Z軸復歸.Bool) cnt++;
+        }
+        void cnt_Program_常溫區Z軸復歸_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區Z軸復歸.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區Z軸復歸_初始化(ref int cnt)
+        {
+            PLC_Device_常溫區Z軸復歸_OK.Bool = false;
+            cnt++;
+        }
+        void cnt_Program_常溫區Z軸復歸_輸送帶後退(ref int cnt)
+        {
+            if (!plC_RJ_Button_常溫區_輸送帶後退.Bool)
+            {
+                plC_RJ_Button_常溫區_輸送帶後退.Bool = true;
+                cnt++;
+                return;
+            }
+        }
+        void cnt_Program_常溫區Z軸復歸_等待輸送帶後退(ref int cnt)
+        {
+            if (!plC_RJ_Button_常溫區_輸送帶後退.Bool)
+            {
+                cnt++;
+                return;
+            }
+        }
+        void cnt_Program_常溫區Z軸復歸_向前JOG(ref int cnt)
+        {
+            if (plC_Button_常溫區Z軸_正極限.Bool)
+            {
+                cnt++;
+                return;
+            }
+            Servo_JOG(enum_軸號.常溫區_Z軸, 100);
+            MyTimer_常溫區Z軸復歸_向前JOG時間.TickStop();
+            MyTimer_常溫區Z軸復歸_向前JOG時間.StartTickTime(2000);
+            cnt++;
+        }
+        void cnt_Program_常溫區Z軸復歸_向前JOG時間到達(ref int cnt)
+        {
+            if (plC_Button_常溫區Z軸_正極限.Bool)
+            {
+                Servo_JOG(enum_軸號.常溫區_Z軸, -100);
+                cnt++;
+                return;
+            }
+            if (MyTimer_常溫區Z軸復歸_向前JOG時間.IsTimeOut())
+            {
+                Servo_Stop(enum_軸號.常溫區_Z軸);
+                cnt++;
+            }
+
+        }
+        void cnt_Program_常溫區Z軸復歸_離開正極限(ref int cnt)
+        {
+            if (!plC_Button_常溫區Z軸_正極限.Bool)
+            {
+                Servo_Stop(enum_軸號.常溫區_Z軸);
+                cnt++;
+                return;
+            }
+        }
+        void cnt_Program_常溫區Z軸復歸_檢查馬達停止(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.常溫區_Z軸, enum_DO.ZSPD) == true)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_常溫區Z軸復歸_開始復歸(ref int cnt)
+        {
+            DeltaMotor485_port[(byte)enum_軸號.常溫區_Z軸].Home(enum_Direction.CCW, true, 100, 10, 50, 50, plC_NumBox_常溫區Z軸_復歸偏移.Value, 200, 50);
+            cnt++;
+        }
+        void cnt_Program_常溫區Z軸復歸_檢查HOME_OFF(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.常溫區_Z軸, enum_DO.HOME) == false)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_常溫區Z軸復歸_檢查復歸完成(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.常溫區_Z軸, enum_DO.HOME) == true && Servo_State(enum_軸號.常溫區_Z軸, enum_DO.ZSPD) == true)
+            {
+                cnt++;
+            }
+        }
+
+
+        #endregion
+        #region PLC_常溫區輸送帶前進
+        PLC_Device PLC_Device_常溫區輸送帶前進 = new PLC_Device("S5250");
+        PLC_Device PLC_Device_常溫區輸送帶前進_OK = new PLC_Device("");
+        Task Task_常溫區輸送帶前進;
+        MyTimer MyTimer_常溫區輸送帶前進_結束延遲 = new MyTimer();
+        MyTimer MyTimer_常溫區輸送帶前進_開始延遲 = new MyTimer();
+        int cnt_Program_常溫區輸送帶前進 = 65534;
+        void sub_Program_常溫區輸送帶前進()
+        {
+            if (cnt_Program_常溫區輸送帶前進 == 65534)
+            {
+                this.MyTimer_常溫區輸送帶前進_結束延遲.StartTickTime(10000);
+                this.MyTimer_常溫區輸送帶前進_開始延遲.StartTickTime(10000);
+                PLC_Device_常溫區輸送帶前進.SetComment("PLC_常溫區輸送帶前進");
+                PLC_Device_常溫區輸送帶前進_OK.SetComment("PLC_常溫區輸送帶前進_OK");
+                PLC_Device_常溫區輸送帶前進.Bool = false;
+                cnt_Program_常溫區輸送帶前進 = 65535;
+            }
+            if (cnt_Program_常溫區輸送帶前進 == 65535) cnt_Program_常溫區輸送帶前進 = 1;
+            if (cnt_Program_常溫區輸送帶前進 == 1) cnt_Program_常溫區輸送帶前進_檢查按下(ref cnt_Program_常溫區輸送帶前進);
+            if (cnt_Program_常溫區輸送帶前進 == 2) cnt_Program_常溫區輸送帶前進_初始化(ref cnt_Program_常溫區輸送帶前進);
+            if (cnt_Program_常溫區輸送帶前進 == 3) cnt_Program_常溫區輸送帶前進_輸送帶前進(ref cnt_Program_常溫區輸送帶前進);
+            if (cnt_Program_常溫區輸送帶前進 == 4) cnt_Program_常溫區輸送帶前進 = 65500;
+            if (cnt_Program_常溫區輸送帶前進 > 1) cnt_Program_常溫區輸送帶前進_檢查放開(ref cnt_Program_常溫區輸送帶前進);
+
+            if (cnt_Program_常溫區輸送帶前進 == 65500)
+            {
+                this.MyTimer_常溫區輸送帶前進_結束延遲.TickStop();
+                this.MyTimer_常溫區輸送帶前進_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區輸送帶前進.Bool = false;
+                PLC_IO_常溫區_輸送帶前進.Bool = false;
+                cnt_Program_常溫區輸送帶前進 = 65535;
+            }
+        }
+        void cnt_Program_常溫區輸送帶前進_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區輸送帶前進.Bool) cnt++;
+        }
+        void cnt_Program_常溫區輸送帶前進_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區輸送帶前進.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區輸送帶前進_初始化(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送帶後退.Bool = false;
+            PLC_Device_常溫區輸送帶後退.Bool = false;
+            cnt++;
+        }
+        void cnt_Program_常溫區輸送帶前進_輸送帶前進(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送帶前進.Bool = true;
+            if (PLC_IO_常溫區_輸送台進退終點.Bool)
+            {
+                cnt++;
+            }
+
+        }
+
+
+
+
+
+
+        #endregion
+        #region PLC_常溫區輸送帶後退
+        PLC_Device PLC_Device_常溫區輸送帶後退 = new PLC_Device("S5251");
+        PLC_Device PLC_Device_常溫區輸送帶後退_OK = new PLC_Device("");
+        Task Task_常溫區輸送帶後退;
+        MyTimer MyTimer_常溫區輸送帶後退_結束延遲 = new MyTimer();
+        MyTimer MyTimer_常溫區輸送帶後退_開始延遲 = new MyTimer();
+        int cnt_Program_常溫區輸送帶後退 = 65534;
+        void sub_Program_常溫區輸送帶後退()
+        {
+            PLC_Device_常溫區輸送帶後退.Bool = plC_RJ_Button_常溫區_輸送帶後退.Bool;
+            if (cnt_Program_常溫區輸送帶後退 == 65534)
+            {
+                this.MyTimer_常溫區輸送帶後退_結束延遲.StartTickTime(10000);
+                this.MyTimer_常溫區輸送帶後退_開始延遲.StartTickTime(10000);
+                PLC_Device_常溫區輸送帶後退.SetComment("PLC_常溫區輸送帶後退");
+                PLC_Device_常溫區輸送帶後退_OK.SetComment("PLC_常溫區輸送帶後退_OK");
+                PLC_Device_常溫區輸送帶後退.Bool = false;
+                cnt_Program_常溫區輸送帶後退 = 65535;
+            }
+            if (cnt_Program_常溫區輸送帶後退 == 65535) cnt_Program_常溫區輸送帶後退 = 1;
+            if (cnt_Program_常溫區輸送帶後退 == 1) cnt_Program_常溫區輸送帶後退_檢查按下(ref cnt_Program_常溫區輸送帶後退);
+            if (cnt_Program_常溫區輸送帶後退 == 2) cnt_Program_常溫區輸送帶後退_初始化(ref cnt_Program_常溫區輸送帶後退);
+            if (cnt_Program_常溫區輸送帶後退 == 3) cnt_Program_常溫區輸送帶後退_輸送帶後退(ref cnt_Program_常溫區輸送帶後退);
+            if (cnt_Program_常溫區輸送帶後退 == 4) cnt_Program_常溫區輸送帶後退 = 65500;
+            if (cnt_Program_常溫區輸送帶後退 > 1) cnt_Program_常溫區輸送帶後退_檢查放開(ref cnt_Program_常溫區輸送帶後退);
+
+            if (cnt_Program_常溫區輸送帶後退 == 65500)
+            {
+                this.MyTimer_常溫區輸送帶後退_結束延遲.TickStop();
+                this.MyTimer_常溫區輸送帶後退_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區輸送帶後退.Bool = false;
+                PLC_IO_常溫區_輸送帶後退.Bool = false;
+                cnt_Program_常溫區輸送帶後退 = 65535;
+            }
+        }
+        void cnt_Program_常溫區輸送帶後退_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區輸送帶後退.Bool) cnt++;
+        }
+        void cnt_Program_常溫區輸送帶後退_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區輸送帶後退.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區輸送帶後退_初始化(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送帶前進.Bool = false;
+            PLC_Device_常溫區輸送帶前進.Bool = false;
+            cnt++;
+        }
+        void cnt_Program_常溫區輸送帶後退_輸送帶後退(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送帶後退.Bool = true;
+            if (PLC_IO_常溫區_輸送台進退原點.Bool)
+            {
+                cnt++;
+            }
+
+        }
+        #endregion
+        #region PLC_常溫區輸送門開啟
+        PLC_Device PLC_Device_常溫區輸送門開啟 = new PLC_Device("S5252");
+        PLC_Device PLC_Device_常溫區輸送門開啟_OK = new PLC_Device("");
+        Task Task_常溫區輸送門開啟;
+        MyTimer MyTimer_常溫區輸送門開啟_輸出延遲 = new MyTimer();
+        MyTimer MyTimer_常溫區輸送門開啟_結束延遲 = new MyTimer();
+        MyTimer MyTimer_常溫區輸送門開啟_開始延遲 = new MyTimer();
+        int cnt_Program_常溫區輸送門開啟 = 65534;
+        void sub_Program_常溫區輸送門開啟()
+        {
+            PLC_Device_常溫區輸送門開啟.Bool = plC_RJ_Button_常溫區_輸送門開啟.Bool;
+            if (cnt_Program_常溫區輸送門開啟 == 65534)
+            {
+                this.MyTimer_常溫區輸送門開啟_結束延遲.StartTickTime(10000);
+                this.MyTimer_常溫區輸送門開啟_開始延遲.StartTickTime(10000);
+                PLC_Device_常溫區輸送門開啟.SetComment("PLC_常溫區輸送門開啟");
+                PLC_Device_常溫區輸送門開啟_OK.SetComment("PLC_常溫區輸送門開啟_OK");
+                PLC_Device_常溫區輸送門開啟.Bool = false;
+                cnt_Program_常溫區輸送門開啟 = 65535;
+            }
+            if (cnt_Program_常溫區輸送門開啟 == 65535) cnt_Program_常溫區輸送門開啟 = 1;
+            if (cnt_Program_常溫區輸送門開啟 == 1) cnt_Program_常溫區輸送門開啟_檢查按下(ref cnt_Program_常溫區輸送門開啟);
+            if (cnt_Program_常溫區輸送門開啟 == 2) cnt_Program_常溫區輸送門開啟_初始化(ref cnt_Program_常溫區輸送門開啟);
+            if (cnt_Program_常溫區輸送門開啟 == 3) cnt_Program_常溫區輸送門開啟_輸送門開啟(ref cnt_Program_常溫區輸送門開啟);
+            if (cnt_Program_常溫區輸送門開啟 == 4) cnt_Program_常溫區輸送門開啟_等待輸出延遲(ref cnt_Program_常溫區輸送門開啟);
+            if (cnt_Program_常溫區輸送門開啟 == 5) cnt_Program_常溫區輸送門開啟 = 65500;
+            if (cnt_Program_常溫區輸送門開啟 > 1) cnt_Program_常溫區輸送門開啟_檢查放開(ref cnt_Program_常溫區輸送門開啟);
+
+            if (cnt_Program_常溫區輸送門開啟 == 65500)
+            {
+                this.MyTimer_常溫區輸送門開啟_結束延遲.TickStop();
+                this.MyTimer_常溫區輸送門開啟_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區輸送門開啟.Bool = false;
+                PLC_IO_常溫區_輸送門開啟.Bool = false;
+                cnt_Program_常溫區輸送門開啟 = 65535;
+            }
+        }
+        void cnt_Program_常溫區輸送門開啟_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區輸送門開啟.Bool) cnt++;
+        }
+        void cnt_Program_常溫區輸送門開啟_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區輸送門開啟.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區輸送門開啟_初始化(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送門關閉.Bool = false;
+            PLC_Device_常溫區輸送門關閉.Bool = false;
+            cnt++;
+        }
+        void cnt_Program_常溫區輸送門開啟_輸送門開啟(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送門開啟.Bool = true;
+            if (PLC_IO_常溫區_輸送台開啟到位.Bool)
+            {
+                MyTimer_常溫區輸送門開啟_輸出延遲.TickStop();
+                MyTimer_常溫區輸送門開啟_輸出延遲.StartTickTime(3000);
+                cnt++;
+            }
+
+        }
+        void cnt_Program_常溫區輸送門開啟_等待輸出延遲(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送門開啟.Bool = true;
+            if (MyTimer_常溫區輸送門開啟_輸出延遲.IsTimeOut())
+            {
+                cnt++;
+            }
+
+        }
+        #endregion
+        #region PLC_常溫區輸送門關閉
+        PLC_Device PLC_Device_常溫區輸送門關閉 = new PLC_Device("S5253");
+        PLC_Device PLC_Device_常溫區輸送門關閉_OK = new PLC_Device("");
+        Task Task_常溫區輸送門關閉;
+        MyTimer MyTimer_常溫區輸送門關閉_結束延遲 = new MyTimer();
+        MyTimer MyTimer_常溫區輸送門關閉_開始延遲 = new MyTimer();
+        int cnt_Program_常溫區輸送門關閉 = 65534;
+        void sub_Program_常溫區輸送門關閉()
+        {
+            PLC_Device_常溫區輸送門關閉.Bool = plC_RJ_Button_常溫區_輸送門關閉.Bool;
+            if (cnt_Program_常溫區輸送門關閉 == 65534)
+            {
+                this.MyTimer_常溫區輸送門關閉_結束延遲.StartTickTime(10000);
+                this.MyTimer_常溫區輸送門關閉_開始延遲.StartTickTime(10000);
+                PLC_Device_常溫區輸送門關閉.SetComment("PLC_常溫區輸送門關閉");
+                PLC_Device_常溫區輸送門關閉_OK.SetComment("PLC_常溫區輸送門關閉_OK");
+                PLC_Device_常溫區輸送門關閉.Bool = false;
+                cnt_Program_常溫區輸送門關閉 = 65535;
+            }
+            if (cnt_Program_常溫區輸送門關閉 == 65535) cnt_Program_常溫區輸送門關閉 = 1;
+            if (cnt_Program_常溫區輸送門關閉 == 1) cnt_Program_常溫區輸送門關閉_檢查按下(ref cnt_Program_常溫區輸送門關閉);
+            if (cnt_Program_常溫區輸送門關閉 == 2) cnt_Program_常溫區輸送門關閉_初始化(ref cnt_Program_常溫區輸送門關閉);
+            if (cnt_Program_常溫區輸送門關閉 == 3) cnt_Program_常溫區輸送門關閉_輸送門關閉(ref cnt_Program_常溫區輸送門關閉);
+            if (cnt_Program_常溫區輸送門關閉 == 4) cnt_Program_常溫區輸送門關閉 = 65500;
+            if (cnt_Program_常溫區輸送門關閉 > 1) cnt_Program_常溫區輸送門關閉_檢查放開(ref cnt_Program_常溫區輸送門關閉);
+
+            if (cnt_Program_常溫區輸送門關閉 == 65500)
+            {
+                this.MyTimer_常溫區輸送門關閉_結束延遲.TickStop();
+                this.MyTimer_常溫區輸送門關閉_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區輸送門關閉.Bool = false;
+                PLC_IO_常溫區_輸送門關閉.Bool = false;
+                cnt_Program_常溫區輸送門關閉 = 65535;
+            }
+        }
+        void cnt_Program_常溫區輸送門關閉_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區輸送門關閉.Bool) cnt++;
+        }
+        void cnt_Program_常溫區輸送門關閉_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區輸送門關閉.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區輸送門關閉_初始化(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送門開啟.Bool = false;
+            PLC_Device_常溫區輸送門開啟.Bool = false;
+
+            cnt++;
+        }
+        void cnt_Program_常溫區輸送門關閉_輸送門關閉(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送門關閉.Bool = true;
+            if (PLC_IO_常溫區_輸送台關閉到位.Bool)
+            {
+                cnt++;
+            }
+
+        }
+        #endregion
+        #region PLC_常溫區X軸_絕對位置移動
+        PLC_Device PLC_Device_常溫區X軸_絕對位置移動 = new PLC_Device("S5240");
+        PLC_Device PLC_Device_常溫區X軸_絕對位置移動_目標位置 = new PLC_Device("R5203");
+        PLC_Device PLC_Device_常溫區X軸_絕對位置移動_運傳速度 = new PLC_Device("R5204");
+        PLC_Device PLC_Device_常溫區X軸_絕對位置移動_加減速度 = new PLC_Device("k800");
+        PLC_Device PLC_Device_常溫區X軸_絕對位置移動_OK = new PLC_Device("");
+        Task Task_常溫區X軸_絕對位置移動;
+        MyTimer MyTimer_常溫區X軸_絕對位置移動_結束延遲 = new MyTimer();
+        int cnt_Program_常溫區X軸_絕對位置移動 = 65534;
+        void sub_Program_常溫區X軸_絕對位置移動()
+        {
+            if (cnt_Program_常溫區X軸_絕對位置移動 == 65534)
+            {
+                this.MyTimer_常溫區X軸_絕對位置移動_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區X軸_絕對位置移動.Bool = false;
+                cnt_Program_常溫區X軸_絕對位置移動 = 65535;
+            }
+            if (cnt_Program_常溫區X軸_絕對位置移動 == 65535) cnt_Program_常溫區X軸_絕對位置移動 = 1;
+            if (cnt_Program_常溫區X軸_絕對位置移動 == 1) cnt_Program_常溫區X軸_絕對位置移動_檢查按下(ref cnt_Program_常溫區X軸_絕對位置移動);
+            if (cnt_Program_常溫區X軸_絕對位置移動 == 2) cnt_Program_常溫區X軸_絕對位置移動_初始化(ref cnt_Program_常溫區X軸_絕對位置移動);
+            if (cnt_Program_常溫區X軸_絕對位置移動 == 3) cnt_Program_常溫區X軸_絕對位置移動_開始移動(ref cnt_Program_常溫區X軸_絕對位置移動);
+            if (cnt_Program_常溫區X軸_絕對位置移動 == 4) cnt_Program_常溫區X軸_絕對位置移動_等待移動結束(ref cnt_Program_常溫區X軸_絕對位置移動);
+            if (cnt_Program_常溫區X軸_絕對位置移動 == 5) cnt_Program_常溫區X軸_絕對位置移動 = 65500;
+            if (cnt_Program_常溫區X軸_絕對位置移動 > 1) cnt_Program_常溫區X軸_絕對位置移動_檢查放開(ref cnt_Program_常溫區X軸_絕對位置移動);
+
+            if (cnt_Program_常溫區X軸_絕對位置移動 == 65500)
+            {
+                this.MyTimer_常溫區X軸_絕對位置移動_結束延遲.TickStop();
+                this.MyTimer_常溫區X軸_絕對位置移動_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區X軸_絕對位置移動.Bool = false;
+                PLC_Device_常溫區X軸_絕對位置移動_OK.Bool = false;
+                Servo_Stop(enum_軸號.常溫區_X軸);
+                cnt_Program_常溫區X軸_絕對位置移動 = 65535;
+            }
+        }
+        void cnt_Program_常溫區X軸_絕對位置移動_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) cnt++;
+        }
+        void cnt_Program_常溫區X軸_絕對位置移動_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區X軸_絕對位置移動.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區X軸_絕對位置移動_初始化(ref int cnt)
+        {
+            cnt++;
+        }
+        void cnt_Program_常溫區X軸_絕對位置移動_開始移動(ref int cnt)
+        {
+            int position = PLC_Device_常溫區X軸_絕對位置移動_目標位置.Value;
+            int speed = PLC_Device_常溫區X軸_絕對位置移動_運傳速度.Value;
+            int acc = PLC_Device_常溫區X軸_絕對位置移動_加減速度.Value;
+            Servo_DDRVA(enum_軸號.常溫區_X軸, position, speed, acc);
+            cnt++;
+        }
+        void cnt_Program_常溫區X軸_絕對位置移動_等待移動結束(ref int cnt)
+        {
+            if (Servo_DDRVA(enum_軸號.常溫區_X軸))
+            {
+                cnt++;
+            }
+        }
+
+
+
+
+
+        #endregion
+        #region PLC_常溫區Z軸_絕對位置移動
+        PLC_Device PLC_Device_常溫區Z軸_絕對位置移動 = new PLC_Device("S5340");
+        PLC_Device PLC_Device_常溫區Z軸_絕對位置移動_目標位置 = new PLC_Device("R5303");
+        PLC_Device PLC_Device_常溫區Z軸_絕對位置移動_運傳速度 = new PLC_Device("R5304");
+        PLC_Device PLC_Device_常溫區Z軸_絕對位置移動_加減速度 = new PLC_Device("k800");
+        PLC_Device PLC_Device_常溫區Z軸_絕對位置移動_OK = new PLC_Device("");
+        Task Task_常溫區Z軸_絕對位置移動;
+        MyTimer MyTimer_常溫區Z軸_絕對位置移動_結束延遲 = new MyTimer();
+        int cnt_Program_常溫區Z軸_絕對位置移動 = 65534;
+        void sub_Program_常溫區Z軸_絕對位置移動()
+        {
+            if (cnt_Program_常溫區Z軸_絕對位置移動 == 65534)
+            {
+                this.MyTimer_常溫區Z軸_絕對位置移動_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區Z軸_絕對位置移動.Bool = false;
+                cnt_Program_常溫區Z軸_絕對位置移動 = 65535;
+            }
+            if (cnt_Program_常溫區Z軸_絕對位置移動 == 65535) cnt_Program_常溫區Z軸_絕對位置移動 = 1;
+            if (cnt_Program_常溫區Z軸_絕對位置移動 == 1) cnt_Program_常溫區Z軸_絕對位置移動_檢查按下(ref cnt_Program_常溫區Z軸_絕對位置移動);
+            if (cnt_Program_常溫區Z軸_絕對位置移動 == 2) cnt_Program_常溫區Z軸_絕對位置移動_初始化(ref cnt_Program_常溫區Z軸_絕對位置移動);
+            if (cnt_Program_常溫區Z軸_絕對位置移動 == 3) cnt_Program_常溫區Z軸_絕對位置移動_開始移動(ref cnt_Program_常溫區Z軸_絕對位置移動);
+            if (cnt_Program_常溫區Z軸_絕對位置移動 == 4) cnt_Program_常溫區Z軸_絕對位置移動_等待移動結束(ref cnt_Program_常溫區Z軸_絕對位置移動);
+            if (cnt_Program_常溫區Z軸_絕對位置移動 == 5) cnt_Program_常溫區Z軸_絕對位置移動 = 65500;
+            if (cnt_Program_常溫區Z軸_絕對位置移動 > 1) cnt_Program_常溫區Z軸_絕對位置移動_檢查放開(ref cnt_Program_常溫區Z軸_絕對位置移動);
+
+            if (cnt_Program_常溫區Z軸_絕對位置移動 == 65500)
+            {
+                this.MyTimer_常溫區Z軸_絕對位置移動_結束延遲.TickStop();
+                this.MyTimer_常溫區Z軸_絕對位置移動_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區Z軸_絕對位置移動.Bool = false;
+                PLC_Device_常溫區Z軸_絕對位置移動_OK.Bool = false;
+                Servo_Stop(enum_軸號.常溫區_Z軸);
+                cnt_Program_常溫區Z軸_絕對位置移動 = 65535;
+            }
+        }
+        void cnt_Program_常溫區Z軸_絕對位置移動_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) cnt++;
+        }
+        void cnt_Program_常溫區Z軸_絕對位置移動_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區Z軸_絕對位置移動.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區Z軸_絕對位置移動_初始化(ref int cnt)
+        {
+            cnt++;
+        }
+        void cnt_Program_常溫區Z軸_絕對位置移動_開始移動(ref int cnt)
+        {
+            int position = PLC_Device_常溫區Z軸_絕對位置移動_目標位置.Value;
+            int speed = PLC_Device_常溫區Z軸_絕對位置移動_運傳速度.Value;
+            int acc = PLC_Device_常溫區Z軸_絕對位置移動_加減速度.Value;
+            Servo_DDRVA(enum_軸號.常溫區_Z軸, position, speed, acc);
+            cnt++;
+        }
+        void cnt_Program_常溫區Z軸_絕對位置移動_等待移動結束(ref int cnt)
+        {
+            if (Servo_DDRVA(enum_軸號.常溫區_Z軸))
+            {
+                cnt++;
+            }
+        }
+
+
+
+
+
+        #endregion
+        #region PLC_常溫區_移動至待命位置
+        PLC_Device PLC_Device_常溫區_移動至待命位置_目標位置X = new PLC_Device("R5220");
+        PLC_Device PLC_Device_常溫區_移動至待命位置_目標位置Z = new PLC_Device("R5221");
+
+        PLC_Device PLC_Device_常溫區_移動至待命位置 = new PLC_Device("S5200");
+        PLC_Device PLC_Device_常溫區_移動至待命位置_OK = new PLC_Device("");
+        Task Task_常溫區_移動至待命位置;
+        MyTimer MyTimer_常溫區_移動至待命位置_結束延遲 = new MyTimer();
+        int cnt_Program_常溫區_移動至待命位置 = 65534;
+        void sub_Program_常溫區_移動至待命位置()
+        {
+            if (cnt_Program_常溫區_移動至待命位置 == 65534)
+            {
+                this.MyTimer_常溫區_移動至待命位置_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區_移動至待命位置.SetComment("PLC_常溫區_移動至待命位置");
+                PLC_Device_常溫區_移動至待命位置_OK.SetComment("PLC_常溫區_移動至待命位置_OK");
+                PLC_Device_常溫區_移動至待命位置.Bool = false;
+                cnt_Program_常溫區_移動至待命位置 = 65535;
+            }
+            if (cnt_Program_常溫區_移動至待命位置 == 65535) cnt_Program_常溫區_移動至待命位置 = 1;
+            if (cnt_Program_常溫區_移動至待命位置 == 1) cnt_Program_常溫區_移動至待命位置_檢查按下(ref cnt_Program_常溫區_移動至待命位置);
+            if (cnt_Program_常溫區_移動至待命位置 == 2) cnt_Program_常溫區_移動至待命位置_初始化(ref cnt_Program_常溫區_移動至待命位置);
+            if (cnt_Program_常溫區_移動至待命位置 == 3) cnt_Program_常溫區_移動至待命位置_檢查各部件READY(ref cnt_Program_常溫區_移動至待命位置);
+            if (cnt_Program_常溫區_移動至待命位置 == 4) cnt_Program_常溫區_移動至待命位置_等待完成(ref cnt_Program_常溫區_移動至待命位置);
+            if (cnt_Program_常溫區_移動至待命位置 == 5) cnt_Program_常溫區_移動至待命位置 = 65500;
+            if (cnt_Program_常溫區_移動至待命位置 > 1) cnt_Program_常溫區_移動至待命位置_檢查放開(ref cnt_Program_常溫區_移動至待命位置);
+
+            if (cnt_Program_常溫區_移動至待命位置 == 65500)
+            {
+                this.MyTimer_常溫區_移動至待命位置_結束延遲.TickStop();
+                this.MyTimer_常溫區_移動至待命位置_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區_移動至待命位置.Bool = false;
+                PLC_Device_常溫區_移動至待命位置_OK.Bool = false;
+
+                PLC_Device_常溫區X軸_絕對位置移動.Bool = false;
+                PLC_Device_常溫區Z軸_絕對位置移動.Bool = false;
+                cnt_Program_常溫區_移動至待命位置 = 65535;
+            }
+        }
+        void cnt_Program_常溫區_移動至待命位置_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區_移動至待命位置.Bool) cnt++;
+        }
+        void cnt_Program_常溫區_移動至待命位置_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區_移動至待命位置.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區_移動至待命位置_初始化(ref int cnt)
+        {
+            cnt++;
+        }
+
+        void cnt_Program_常溫區_移動至待命位置_檢查各部件READY(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
+
+            PLC_Device_常溫區X軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至待命位置_目標位置X.Value;
+            PLC_Device_常溫區Z軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至待命位置_目標位置Z.Value;
+            PLC_Device_常溫區X軸_絕對位置移動.Bool = true;
+            PLC_Device_常溫區Z軸_絕對位置移動.Bool = true;
+            cnt++;
+
+        }
+        void cnt_Program_常溫區_移動至待命位置_等待完成(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
+            cnt++;
+
+        }
+
+
+
+
+
+        #endregion
+        #region PLC_常溫區_移動至常溫區藥盒傳接位置
+        PLC_Device PLC_Device_常溫區_移動至常溫區藥盒傳接位置_目標位置X = new PLC_Device("R5222");
+        PLC_Device PLC_Device_常溫區_移動至常溫區藥盒傳接位置_目標位置Z = new PLC_Device("R5223");
+
+        PLC_Device PLC_Device_常溫區_移動至常溫區藥盒傳接位置 = new PLC_Device("S5201");
+        PLC_Device PLC_Device_常溫區_移動至常溫區藥盒傳接位置_OK = new PLC_Device("");
+        Task Task_常溫區_移動至常溫區藥盒傳接位置;
+        MyTimer MyTimer_常溫區_移動至常溫區藥盒傳接位置_結束延遲 = new MyTimer();
+        int cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 65534;
+        void sub_Program_常溫區_移動至常溫區藥盒傳接位置()
+        {
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 65534)
+            {
+                this.MyTimer_常溫區_移動至常溫區藥盒傳接位置_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區_移動至常溫區藥盒傳接位置.SetComment("PLC_常溫區_移動至常溫區藥盒傳接位置");
+                PLC_Device_常溫區_移動至常溫區藥盒傳接位置_OK.SetComment("PLC_常溫區_移動至常溫區藥盒傳接位置_OK");
+                PLC_Device_常溫區_移動至常溫區藥盒傳接位置.Bool = false;
+                cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 65535;
+            }
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 65535) cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 1;
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 1) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查按下(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 2) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_初始化(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 3) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查待命位置READY(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 4) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_等待待命位置完成(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 5) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_開門Ready(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 6) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_開門完成(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 7) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_Z軸Ready(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 8) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_Z軸完成(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 9) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_X軸Ready(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 10) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_X軸完成(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 11) cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 65500;
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 > 1) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查放開(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+
+            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 65500)
+            {
+                this.MyTimer_常溫區_移動至常溫區藥盒傳接位置_結束延遲.TickStop();
+                this.MyTimer_常溫區_移動至常溫區藥盒傳接位置_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區_移動至常溫區藥盒傳接位置.Bool = false;
+                PLC_Device_常溫區_移動至常溫區藥盒傳接位置_OK.Bool = false;
+
+                plC_RJ_Button_常溫區_輸送帶後退.Bool = false;
+                plC_RJ_Button_常溫區_輸送門開啟.Bool = false;
+                PLC_Device_常溫區X軸_絕對位置移動.Bool = false;
+                PLC_Device_常溫區Z軸_絕對位置移動.Bool = false;
+                PLC_Device_常溫區_移動至待命位置.Bool = false;
+                cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 65535;
+            }
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區_移動至常溫區藥盒傳接位置.Bool) cnt++;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區_移動至常溫區藥盒傳接位置.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_初始化(ref int cnt)
+        {
+            cnt++;
+        }
+
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查待命位置READY(ref int cnt)
+        {
+            if (PLC_Device_常溫區_移動至待命位置.Bool) return;
+            if (plC_RJ_Button_常溫區_輸送帶後退.Bool) return;
+            PLC_Device_常溫區_移動至待命位置.Bool = true;
+            plC_RJ_Button_常溫區_輸送帶後退.Bool = true;
+            cnt++;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_等待待命位置完成(ref int cnt)
+        {
+            if (PLC_Device_常溫區_移動至待命位置.Bool) return;
+            if (plC_RJ_Button_常溫區_輸送帶後退.Bool) return;
+            cnt++;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_開門Ready(ref int cnt)
+        {
+            if (plC_RJ_Button_常溫區_輸送門開啟.Bool) return;
+            plC_RJ_Button_常溫區_輸送門開啟.Bool = true;
+            cnt++;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_開門完成(ref int cnt)
+        {
+            if (plC_RJ_Button_常溫區_輸送門開啟.Bool) return;
+            cnt++;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_Z軸Ready(ref int cnt)
+        {
+            if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
+            PLC_Device_常溫區Z軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至常溫區藥盒傳接位置_目標位置Z.Value;
+            PLC_Device_常溫區Z軸_絕對位置移動.Bool = true;
+            cnt++;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_Z軸完成(ref int cnt)
+        {
+            if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
+            cnt++;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_X軸Ready(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
+            PLC_Device_常溫區X軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至常溫區藥盒傳接位置_目標位置X.Value;
+            PLC_Device_常溫區X軸_絕對位置移動.Bool = true;
+            cnt++;
+        }
+        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_X軸完成(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
             cnt++;
         }
 
