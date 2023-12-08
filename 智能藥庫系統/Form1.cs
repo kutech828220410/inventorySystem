@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,20 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Reflection;
 using MyUI;
 using Basic;
-using MySql.Data.MySqlClient;
+using SQLUI;
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
-using SQLUI;
-using H_Pannel_lib;
-using System.Net.Http;
-using HIS_DB_Lib;
 
-[assembly: AssemblyVersion("1.0.0.2")]
-[assembly: AssemblyFileVersion("1.0.0.2")]
+using System.Reflection;
+using System.Runtime.InteropServices;
+using MyPrinterlib;
+using MyOffice;
+using HIS_DB_Lib;
+[assembly: AssemblyVersion("1.0.0.4")]
+[assembly: AssemblyFileVersion("1.0.0.4")]
 namespace 智能藥庫系統
 {
 
@@ -32,14 +33,18 @@ namespace 智能藥庫系統
         private MyTimer MyTimer_TickTime = new MyTimer();
         private MyConvert myConvert = new MyConvert();
         private Stopwatch stopwatch = new Stopwatch();
-        private const string DBConfigFileName = "DBConfig.txt";
-        private const string MyConfigFileName = "MyConfig.txt";
+        public static string ServerName = "";
+        public static string ServerType = enum_ServerSetting_Type.藥庫.GetEnumName();
+        public static string API_Server = "";
+        public static string Order_URL = "";
+        public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public DBConfigClass dBConfigClass = new DBConfigClass();
         private PLC_Device PLC_Device_主機模式 = new PLC_Device("S1050");
         private PLC_Device PLC_Device_滑鼠左鍵按下 = new PLC_Device("S4600");
         private PLC_Device PLC_Device_M8013 = new PLC_Device("M8013");
         private PLC_Device PLC_Device_主頁面頁碼 = new PLC_Device("D0");
         #region DBConfig
+        private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         public class DBConfigClass
         {
             private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();
@@ -87,7 +92,8 @@ namespace 智能藥庫系統
         }
         private void LoadDBConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{DBConfigFileName}");
+            this.LoadcommandLineArgs();
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
             if (jsonstr.StringIsEmpty())
             {
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass(), true);
@@ -107,7 +113,7 @@ namespace 智能藥庫系統
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
                 }
@@ -119,6 +125,25 @@ namespace 智能藥庫系統
         public Form1()
         {
             InitializeComponent();
+        }
+        private void LoadcommandLineArgs()
+        {
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
+            string[] commandLineArgs = Environment.GetCommandLineArgs();
+            if (commandLineArgs.Length >= 3)
+            {
+                dBConfigClass.Api_Server = commandLineArgs[1];
+                dBConfigClass.Name = commandLineArgs[2];
+             
+                jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
+                }
+                return;
+            }
         }
         private void ApiServerSetting()
         {

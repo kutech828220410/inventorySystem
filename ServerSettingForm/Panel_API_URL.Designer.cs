@@ -42,7 +42,7 @@ namespace ServerSettingForm
             this.label_標題.ForeColor = System.Drawing.Color.White;
             this.label_標題.Location = new System.Drawing.Point(0, 0);
             this.label_標題.Name = "label_標題";
-            this.label_標題.Size = new System.Drawing.Size(214, 36);
+            this.label_標題.Size = new System.Drawing.Size(344, 36);
             this.label_標題.TabIndex = 18;
             this.label_標題.Text = "標題";
             this.label_標題.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -69,7 +69,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_URL.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_URL.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_API_URL.GUID = "";
-            this.rJ_TextBox_API_URL.Location = new System.Drawing.Point(214, 0);
+            this.rJ_TextBox_API_URL.Location = new System.Drawing.Point(344, 0);
             this.rJ_TextBox_API_URL.Multiline = false;
             this.rJ_TextBox_API_URL.Name = "rJ_TextBox_API_URL";
             this.rJ_TextBox_API_URL.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -77,7 +77,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_URL.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_API_URL.PlaceholderText = "http://XXX.XXX.XXX.XXX:4433";
             this.rJ_TextBox_API_URL.ShowTouchPannel = false;
-            this.rJ_TextBox_API_URL.Size = new System.Drawing.Size(610, 36);
+            this.rJ_TextBox_API_URL.Size = new System.Drawing.Size(480, 36);
             this.rJ_TextBox_API_URL.TabIndex = 24;
             this.rJ_TextBox_API_URL.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_API_URL.Texts = "";

@@ -1710,9 +1710,7 @@ namespace HIS_WebApi
 
             }
             returnData returnData = new returnData();
-            //returnData.ServerName = "DS01";
-            //returnData.ServerType = "藥庫";
-            //returnData.TableName = "medicine_page_firstclass";
+  
             returnData.Data = creat;
 
             return POST_creat_add(returnData);
