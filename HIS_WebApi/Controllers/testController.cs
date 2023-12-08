@@ -27,7 +27,7 @@ namespace HIS_WebApi
     [ApiController]
     public class testController : ControllerBase
     {
-        static string Version = "Ver1.0.0";
+        static string Version = "Ver1.0.0.1";
         [HttpGet]
         public string Get()
         {

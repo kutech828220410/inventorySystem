@@ -161,6 +161,7 @@ namespace HIS_DB_Lib
                 return null;
             }
         }
+       
         public static ServerSettingClass MyFind(this List<ServerSettingClass> serverSettingClasses, string Name, enum_ServerSetting_Type _enum_ServerSetting_Type, string Content)
         {
             if (serverSettingClasses == null) return null;

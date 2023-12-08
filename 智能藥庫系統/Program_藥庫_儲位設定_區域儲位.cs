@@ -67,7 +67,7 @@ namespace 智能藥庫系統
         #region Function
         private void Function_藥庫_儲位管理_區域儲位_檢查表格合理性()
         {
-            int 貨架數量 = myConfigClass.貨架數量;
+            int 貨架數量 = 25;
             List<object[]> list_value = this.sqL_DataGridView_貨架區域儲位列表.SQL_GetAllRows(false);
             List<object[]> list_value_add = new List<object[]>();
             List<object[]> list_value_delete = new List<object[]>();

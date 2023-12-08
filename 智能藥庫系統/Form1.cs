@@ -20,8 +20,8 @@ using H_Pannel_lib;
 using System.Net.Http;
 using HIS_DB_Lib;
 
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]
 namespace 智能藥庫系統
 {
 
@@ -34,7 +34,6 @@ namespace 智能藥庫系統
         private Stopwatch stopwatch = new Stopwatch();
         private const string DBConfigFileName = "DBConfig.txt";
         private const string MyConfigFileName = "MyConfig.txt";
-        public MyConfigClass myConfigClass = new MyConfigClass();
         public DBConfigClass dBConfigClass = new DBConfigClass();
         private PLC_Device PLC_Device_主機模式 = new PLC_Device("S1050");
         private PLC_Device PLC_Device_滑鼠左鍵按下 = new PLC_Device("S4600");
@@ -116,55 +115,7 @@ namespace 智能藥庫系統
             }
         }
         #endregion
-        #region MyConfig
-        public class MyConfigClass
-        {
-            private string fTP_Server = "";
-            private string fTP_username = "";
-            private string fTP_password = "";
-            private int _貨架數量 = 8;
-            private bool _主機模式 = false;
-            private bool _線上更新 = true;
-
-            public string FTP_Server { get => fTP_Server; set => fTP_Server = value; }
-            public int 貨架數量 { get => _貨架數量; set => _貨架數量 = value; }
-            public bool 主機模式 { get => _主機模式; set => _主機模式 = value; }
-            public string FTP_username { get => fTP_username; set => fTP_username = value; }
-            public string FTP_password { get => fTP_password; set => fTP_password = value; }
-            public bool 線上更新 { get => _線上更新; set => _線上更新 = value; }
-        }
-        private void LoadMyConfig()
-        {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{MyConfigFileName}");
-            if (jsonstr.StringIsEmpty())
-            {
-                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
-                List<string> list_jsonstring = new List<string>();
-                list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
-                {
-                    MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
-                }
-                MyMessageBox.ShowDialog($"未建立參數文件!請至子目錄設定{MyConfigFileName}");
-                Application.Exit();
-            }
-            else
-            {
-                myConfigClass = Basic.Net.JsonDeserializet<MyConfigClass>(jsonstr);
-
-                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
-                List<string> list_jsonstring = new List<string>();
-                list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
-                {
-                    MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
-                }
-
-            }
-
-            //this.ftp_DounloadUI1.FTP_Server = myConfigClass.FTP_Server;
-        }
-        #endregion
+        
         public Form1()
         {
             InitializeComponent();
@@ -241,19 +192,8 @@ namespace 智能藥庫系統
                 Dialog_寫入藥品碼.form = this.FindForm();
                 Dialog_更換密碼.form = this.FindForm();
 
-                this.LoadMyConfig();
                 this.LoadDBConfig();
-                this.ftp_DounloadUI.FTP_Server = myConfigClass.FTP_Server;
-                this.ftp_DounloadUI.Username = myConfigClass.FTP_username;
-                this.ftp_DounloadUI.Password = myConfigClass.FTP_password;
-                if (myConfigClass.線上更新)
-                {
-                    string updateVersion = this.ftp_DounloadUI.GetFileVersion();
-                    if (this.ftp_DounloadUI.CheckUpdate(this.ProductVersion, updateVersion))
-                    {
-                        this.Invoke(new Action(delegate { this.Update(); }));
-                    }
-                }
+         
               
                 this.Text += "Ver" + this.ProductVersion;
                 this.FormText = this.Text;

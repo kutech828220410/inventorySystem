@@ -207,13 +207,14 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(returnData.ServerName, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
-                if(serverSettingClass == null)
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count ==0 )
                 {
                     returnData.Code = -200;
                     returnData.Result = "找無serverSettingClass資料!";
                     return returnData.JsonSerializationt();
                 }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
                 string IP = serverSettingClass.Server;
                 string DataBaseName = serverSettingClass.DBName;
                 string UserName = serverSettingClass.User;

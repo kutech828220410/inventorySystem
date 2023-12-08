@@ -169,4 +169,5 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OOXML.dll
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.xml

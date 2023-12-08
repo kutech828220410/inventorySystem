@@ -645,12 +645,13 @@ namespace 智能藥庫系統
             if (cnt_Program_堆疊資料_檢查資料 == 1) cnt_Program_堆疊資料_檢查資料_檢查按下(ref cnt_Program_堆疊資料_檢查資料);
             if (cnt_Program_堆疊資料_檢查資料 == 2) cnt_Program_堆疊資料_檢查資料_初始化(ref cnt_Program_堆疊資料_檢查資料);
             if (cnt_Program_堆疊資料_檢查資料 == 3) cnt_Program_堆疊資料_檢查資料_堆疊資料整理(ref cnt_Program_堆疊資料_檢查資料);
-            if (cnt_Program_堆疊資料_檢查資料 == 4) cnt_Program_堆疊資料_檢查資料_從SQL讀取儲位資料(ref cnt_Program_堆疊資料_檢查資料);
-            if (cnt_Program_堆疊資料_檢查資料 == 5) cnt_Program_堆疊資料_檢查資料_刷新新增效期(ref cnt_Program_堆疊資料_檢查資料);
-            if (cnt_Program_堆疊資料_檢查資料 == 6) cnt_Program_堆疊資料_檢查資料_刷新資料(ref cnt_Program_堆疊資料_檢查資料);
-            if (cnt_Program_堆疊資料_檢查資料 == 7) cnt_Program_堆疊資料_檢查資料_設定致能(ref cnt_Program_堆疊資料_檢查資料);
-            if (cnt_Program_堆疊資料_檢查資料 == 8) cnt_Program_堆疊資料_檢查資料_等待刷新時間到達(ref cnt_Program_堆疊資料_檢查資料);
-            if (cnt_Program_堆疊資料_檢查資料 == 9) cnt_Program_堆疊資料_檢查資料 = 65500;
+            if (cnt_Program_堆疊資料_檢查資料 == 4) cnt_Program_堆疊資料_檢查資料_檢查儲位亮燈(ref cnt_Program_堆疊資料_檢查資料);        
+            if (cnt_Program_堆疊資料_檢查資料 == 5) cnt_Program_堆疊資料_檢查資料_從SQL讀取儲位資料(ref cnt_Program_堆疊資料_檢查資料);
+            if (cnt_Program_堆疊資料_檢查資料 == 6) cnt_Program_堆疊資料_檢查資料_刷新新增效期(ref cnt_Program_堆疊資料_檢查資料);
+            if (cnt_Program_堆疊資料_檢查資料 == 7) cnt_Program_堆疊資料_檢查資料_刷新資料(ref cnt_Program_堆疊資料_檢查資料);
+            if (cnt_Program_堆疊資料_檢查資料 == 8) cnt_Program_堆疊資料_檢查資料_設定致能(ref cnt_Program_堆疊資料_檢查資料);
+            if (cnt_Program_堆疊資料_檢查資料 == 9) cnt_Program_堆疊資料_檢查資料_等待刷新時間到達(ref cnt_Program_堆疊資料_檢查資料);
+            if (cnt_Program_堆疊資料_檢查資料 == 10) cnt_Program_堆疊資料_檢查資料 = 65500;
             if (cnt_Program_堆疊資料_檢查資料 > 1) cnt_Program_堆疊資料_檢查資料_檢查放開(ref cnt_Program_堆疊資料_檢查資料);
             if (cnt_Program_堆疊資料_檢查資料 == 65500)
             {
@@ -749,6 +750,86 @@ namespace 智能藥庫系統
             this.list_堆疊子資料 = this.Function_堆疊資料_取得子資料();
             this.list_堆疊子資料.Sort(new Icp_堆疊子資料_index排序());
             this.list_堆疊母資料.Sort(new Icp_堆疊母資料_index排序());
+            cnt++;
+        }
+        void cnt_Program_堆疊資料_檢查資料_檢查儲位亮燈(ref int cnt)
+        {
+            //-----------------------------------------------------------------------------------------------------------------------------------------
+            //檢查系統領藥是否資料是否到達時間
+            List<object[]> list_取藥堆疊母資料 = this.Function_堆疊資料_取得母資料();
+            list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "儲位亮燈");
+            List<object[]> list_取藥堆疊母資料_buf_未亮燈 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.備註, "");
+            List<object[]> list_取藥堆疊母資料_buf_已亮燈 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.備註, "已亮燈");
+            List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
+            List<object[]> list_取藥堆疊母資料_retplace = new List<object[]>();
+            int 刷新時間 = 10;
+            if (list_取藥堆疊母資料_buf_未亮燈.Count > 0 && list_取藥堆疊母資料_buf_已亮燈.Count > 0)
+            {
+                for (int i = 0; i < list_取藥堆疊母資料_buf_已亮燈.Count; i++)
+                {
+                    list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料_buf_已亮燈[i]);
+                    string 藥品碼 = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                    string 顏色 = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.顏色].ObjectToString();
+                    if (藥品碼.StringIsEmpty() == false)
+                    {
+                        Task.Run(() =>
+                        {
+                            this.Function_儲位亮燈(藥品碼, Color.Black);
+                        });
+                    }
+                }
+                if (list_取藥堆疊母資料_delete.Count > 0)
+                {
+                    this.sqL_DataGridView_堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                    return;
+                }
+            }
+
+            for (int i = 0; i < list_取藥堆疊母資料_buf_已亮燈.Count; i++)
+            {
+                string 藥品碼 = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                string 顏色 = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.顏色].ObjectToString();
+                DateTime dt_start = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.操作時間].ObjectToString().StringToDateTime();
+                DateTime dt_end = DateTime.Now;
+                TimeSpan ts = dt_end - dt_start;
+                if (ts.TotalSeconds >= 刷新時間)
+                {
+                    list_取藥堆疊母資料_delete.Add(list_取藥堆疊母資料_buf_已亮燈[i]);
+                    if (藥品碼.StringIsEmpty() == false)
+                    {
+                        Task.Run(() =>
+                        {
+                            this.Function_儲位亮燈(藥品碼, Color.Black);
+                        });
+                    }
+
+                }
+                if (list_取藥堆疊母資料_delete.Count > 0)
+                {
+                    this.sqL_DataGridView_堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_delete, false);
+                    return;
+                }
+            }
+            for (int i = 0; i < list_取藥堆疊母資料_buf_未亮燈.Count; i++)
+            {
+                list_取藥堆疊母資料_buf_未亮燈[i][(int)enum_取藥堆疊母資料.備註] = "已亮燈";
+                list_取藥堆疊母資料_retplace.Add(list_取藥堆疊母資料_buf_未亮燈[i]);
+                string 藥品碼 = list_取藥堆疊母資料_buf_未亮燈[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                string 顏色 = list_取藥堆疊母資料_buf_未亮燈[i][(int)enum_取藥堆疊母資料.顏色].ObjectToString();
+                if (藥品碼.StringIsEmpty() == false)
+                {
+                    Task.Run(() =>
+                    {
+                        this.Function_儲位亮燈(藥品碼, 顏色.ToColor());
+                    });
+                }
+            }
+            if (list_取藥堆疊母資料_retplace.Count > 0)
+            {
+                this.sqL_DataGridView_堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_retplace, false);
+                return;
+            }
+
             cnt++;
         }
         void cnt_Program_堆疊資料_檢查資料_從SQL讀取儲位資料(ref int cnt)
