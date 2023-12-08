@@ -577,8 +577,8 @@ namespace 智能藥庫系統
             dB_local.UserName = "user";
             dB_local.Password = "66437068";
             dB_local.MySqlSslMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_堆疊母資料, dB_local);
-            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_堆疊子資料, dB_local);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_堆疊母資料, dBConfigClass.DB_Basic);
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_堆疊子資料, dBConfigClass.DB_Basic);
 
             string url = $"{dBConfigClass.Api_URL}/api/OutTakeMed/init";
             returnData returnData = new returnData();
@@ -762,7 +762,7 @@ namespace 智能藥庫系統
             List<object[]> list_取藥堆疊母資料_buf_已亮燈 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.備註, "已亮燈");
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_retplace = new List<object[]>();
-            int 刷新時間 = 10;
+            
             if (list_取藥堆疊母資料_buf_未亮燈.Count > 0 && list_取藥堆疊母資料_buf_已亮燈.Count > 0)
             {
                 for (int i = 0; i < list_取藥堆疊母資料_buf_已亮燈.Count; i++)
@@ -789,6 +789,7 @@ namespace 智能藥庫系統
             {
                 string 藥品碼 = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 顏色 = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.顏色].ObjectToString();
+                int 刷新時間 = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
                 DateTime dt_start = list_取藥堆疊母資料_buf_已亮燈[i][(int)enum_取藥堆疊母資料.操作時間].ObjectToString().StringToDateTime();
                 DateTime dt_end = DateTime.Now;
                 TimeSpan ts = dt_end - dt_start;

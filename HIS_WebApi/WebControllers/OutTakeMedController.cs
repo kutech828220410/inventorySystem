@@ -196,14 +196,14 @@ namespace HIS_WebApi
                 if (input_str.StringIsEmpty())
                 {
                     returnData.Code = -200;
-                    returnData.Result = "Value空白,請輸入[藥碼,R,G,B]!";
+                    returnData.Result = "Value空白,請輸入[藥碼,R,G,B,亮燈時間]!";
                     return returnData.JsonSerializationt();
                 }
                 string[] input_str_Ary = input_str.Split(",");
-                if (input_str_Ary.Length != 4)
+                if (input_str_Ary.Length != 5)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "Value格式錯誤,請輸入[藥碼,R,G,B]!";
+                    returnData.Result = "Value格式錯誤,請輸入[藥碼,R,G,B,亮燈時間]!";
                     return returnData.JsonSerializationt();
                 }
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
@@ -225,6 +225,7 @@ namespace HIS_WebApi
                 byte R = (byte)(input_str_Ary[1].StringToInt32());
                 byte G = (byte)(input_str_Ary[2].StringToInt32());
                 byte B = (byte)(input_str_Ary[3].StringToInt32());
+                int time = input_str_Ary[4].StringToInt32();
                 object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
                 value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid();
                 value[(int)enum_取藥堆疊母資料.序號] = DateTime.Now.ToDateTimeString_6();
@@ -235,9 +236,10 @@ namespace HIS_WebApi
                 value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString();
                 value[(int)enum_取藥堆疊母資料.顏色] = Color.FromArgb(R,G,B).ToColorString();
                 value[(int)enum_取藥堆疊母資料.狀態] = "None";
+                value[(int)enum_取藥堆疊母資料.總異動量] = time;
 
-    
- 
+
+
 
                 sQLControl_take_medicine_stack.AddRow(null, value);
 
