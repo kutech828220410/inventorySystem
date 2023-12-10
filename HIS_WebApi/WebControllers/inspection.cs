@@ -570,7 +570,9 @@ namespace HIS_WebApi
                 returnData.Result += $"驗收單號: {creat.驗收單號} 已存在,請刪除後再建立! \n";
                 return returnData.JsonSerializationt();
             }
-            if(creat.驗收單號.StringIsEmpty())
+         
+
+            if (creat.驗收單號.StringIsEmpty())
             {
                 string IC_SN_json = GET_new_IC_SN(returnData);
                 returnData returnData_IC_SN = IC_SN_json.JsonDeserializet<returnData>();
@@ -600,7 +602,6 @@ namespace HIS_WebApi
                 creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
                 creat.Contents[i].Master_GUID = creat.GUID;
                 creat.Contents[i].驗收單號 = creat.驗收單號;
-                creat.Contents[i].請購單號 = creat.請購單號;
 
 
                 value = new object[new enum_驗收內容().GetLength()];
@@ -1686,6 +1687,22 @@ namespace HIS_WebApi
             string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
+
+            MED_pageController mED_PageController = new MED_pageController();
+            returnData returnData_med = new returnData();
+            returnData_med.Server = serverSettingClasses_med.Server;
+            returnData_med.DbName = serverSettingClasses_med.DBName;
+            returnData_med.TableName = "medicine_page_cloud";
+            returnData_med.UserName = serverSettingClasses_med.User;
+            returnData_med.Password = serverSettingClasses_med.Password;
+            returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
+            string json_med = Basic.Net.WEBApiPostJson("http://127.0.0.1:4433/api/MED_page", returnData_med.JsonSerializationt());
+            returnData_med = json_med.JsonDeserializet<returnData>();
+            List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
+            List<medClass> medClasses_buf = new List<medClass>();
+
             string json = "";
             inspectionClass.creat creat = new inspectionClass.creat();
             creat.驗收名稱 = IC_NAME;
@@ -1700,6 +1717,14 @@ namespace HIS_WebApi
                 {
                     inspectionClass.content content = new inspectionClass.content();
                     content.藥品碼 = list_value[i][(int)enum_驗收單匯入.藥碼].ObjectToString();
+                    medClasses_buf = (from temp in medClasses
+                                      where (temp.藥品碼 == content.藥品碼  || temp.料號 == content.藥品碼)
+                                      select temp).ToList();
+                    if(medClasses_buf.Count > 0)
+                    {
+                        content.藥品碼 = medClasses_buf[0].藥品碼;
+                        content.料號 = medClasses_buf[0].料號;
+                    }
                     content.藥品名稱 = list_value[i][(int)enum_驗收單匯入.名稱].ObjectToString();
                     content.廠牌 = list_value[i][(int)enum_驗收單匯入.供應商名稱].ObjectToString();
                     content.請購單號 = list_value[i][(int)enum_驗收單匯入.請購單號].ObjectToString();
