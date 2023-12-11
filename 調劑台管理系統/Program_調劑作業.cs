@@ -64,8 +64,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_領藥台_01_取消作業.MouseDownEvent += PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent;
             this.plC_RJ_Button_領藥台_01_手動作業.MouseDownEvent += PlC_RJ_Button_領藥台_01_手動作業_MouseDownEvent;
             this.plC_RJ_Button_領藥台_01_手輸醫令.MouseDownEvent += PlC_RJ_Button_領藥台_01_手輸醫令_MouseDownEvent;
-            this.plC_Button_領藥台_01_領.btnClick += PlC_Button_領藥台_01_領_btnClick;
-            this.plC_Button_領藥台_01_退.btnClick += PlC_Button_領藥台_01_退_btnClick;
+            this.plC_Button_領藥台_01_領.MouseDownEvent += PlC_Button_領藥台_01_領_MouseDownEvent;
+            this.plC_Button_領藥台_01_退.MouseDownEvent += PlC_Button_領藥台_01_退_MouseDownEvent;
             this.plC_RJ_Button_領藥台_01_病歷號輸入.MouseDownEvent += PlC_RJ_Button_領藥台_01_病歷號輸入_MouseDownEvent;
 
 
@@ -83,8 +83,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_領藥台_02_手動作業.MouseDownEvent += PlC_RJ_Button_領藥台_02_手動作業_MouseDownEvent;
             this.plC_RJ_Button_領藥台_02_手輸醫令.MouseDownEvent += PlC_RJ_Button_領藥台_02_手輸醫令_MouseDownEvent;
             this.plC_RJ_Button_領藥台_02_強制入賬.MouseDownEvent += PlC_RJ_Button_領藥台_02_強制入賬_MouseDownEvent;
-            this.plC_Button_領藥台_02_領.btnClick += PlC_Button_領藥台_02_領_btnClick;
-            this.plC_Button_領藥台_02_退.btnClick += PlC_Button_領藥台_02_退_btnClick;
+            this.plC_Button_領藥台_02_領.MouseDownEvent += PlC_Button_領藥台_02_領_MouseDownEvent;
+            this.plC_Button_領藥台_02_退.MouseDownEvent += PlC_Button_領藥台_02_退_MouseDownEvent;
             this.plC_RJ_Button_領藥台_02_病歷號輸入.MouseDownEvent += PlC_RJ_Button_領藥台_02_病歷號輸入_MouseDownEvent;
 
             this.MyThread_領藥台_01 = new Basic.MyThread(this.FindForm());
@@ -115,6 +115,8 @@ namespace 調劑台管理系統
             this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(100);
             this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
         }
+
+    
 
         private void sub_Program_領藥台_01()
         {
@@ -2181,17 +2183,18 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
         }
-        private void PlC_Button_領藥台_01_領_btnClick(object sender, EventArgs e)
-        {
-            this.plC_Button_領藥台_01_領.Bool = true;
-            this.plC_Button_領藥台_01_退.Bool = false;
-        }
-        private void PlC_Button_領藥台_01_退_btnClick(object sender, EventArgs e)
+   
+        private void PlC_Button_領藥台_01_退_MouseDownEvent(MouseEventArgs mevent)
         {
             this.plC_Button_領藥台_01_領.Bool = false;
             this.plC_Button_領藥台_01_退.Bool = true;
         }
 
+        private void PlC_Button_領藥台_01_領_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.plC_Button_領藥台_01_領.Bool = true;
+            this.plC_Button_領藥台_01_退.Bool = false;
+        }
         private void SqL_DataGridView_領藥台_01_領藥內容_DataGridRefreshEvent()
         {
             String 狀態 = "";
@@ -3994,16 +3997,17 @@ namespace 調劑台管理系統
             this.PLC_Device_領藥台_02_已登入.Bool = false;
             this.PLC_Device_最高權限.Bool = false;
         }
-        private void PlC_Button_領藥台_02_領_btnClick(object sender, EventArgs e)
-        {
-            this.plC_Button_領藥台_02_領.Bool = true;
-            this.plC_Button_領藥台_02_退.Bool = false;
-        }
-        private void PlC_Button_領藥台_02_退_btnClick(object sender, EventArgs e)
+        private void PlC_Button_領藥台_02_退_MouseDownEvent(MouseEventArgs mevent)
         {
             this.plC_Button_領藥台_02_領.Bool = false;
             this.plC_Button_領藥台_02_退.Bool = true;
         }
+        private void PlC_Button_領藥台_02_領_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.plC_Button_領藥台_02_領.Bool = true;
+            this.plC_Button_領藥台_02_退.Bool = false;
+        }
+
         private void PlC_RJ_Button_領藥台_02_病歷號輸入_MouseDownEvent(MouseEventArgs mevent)
         {
             MyTimer myTimer = new MyTimer();
