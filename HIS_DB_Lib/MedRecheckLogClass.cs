@@ -8,6 +8,11 @@ using Basic;
 
 namespace HIS_DB_Lib
 {
+    public enum enum_MedRecheckLog_State
+    {
+        未排除,
+        已排除
+    }
     public enum enum_MedRecheckLog
     {
         GUID,
@@ -23,6 +28,7 @@ namespace HIS_DB_Lib
         操作人,
         發生時間,
         排除時間,
+        狀態,
     }
     public class MedRecheckLogClass
     {
@@ -52,5 +58,7 @@ namespace HIS_DB_Lib
         public string 發生時間 { get; set; }
         [JsonPropertyName("troubleshooting_time")]
         public string 排除時間 { get; set; }
+        [JsonPropertyName("state")]
+        public string 狀態 { get; set; }
     }
 }

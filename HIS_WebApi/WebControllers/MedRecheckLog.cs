@@ -107,6 +107,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                GET_init(returnData);
                 string Server = serverSettingClass.Server;
                 string DB = serverSettingClass.DBName;
                 string UserName = serverSettingClass.User;
@@ -125,6 +126,7 @@ namespace HIS_WebApi
                 if (medRecheckLogClass.校正庫存值.StringIsEmpty() == true) medRecheckLogClass.校正庫存值 = "0";
                 medRecheckLogClass.發生時間 = DateTime.Now.ToDateTimeString_6();
                 medRecheckLogClass.排除時間 = DateTime.MinValue.ToDateTimeString();
+                medRecheckLogClass.狀態 = enum_MedRecheckLog_State.未排除.GetEnumName();
                 SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
                 object[] value = medRecheckLogClass.ClassToSQL<MedRecheckLogClass , enum_MedRecheckLog>();
                 sQLControl.AddRow(null, value);
@@ -368,7 +370,64 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 取得未排除覆盤異常資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "管藥",
+        ///     "ServerType" : "調劑台",
+        ///     "Value" : "2023-12-11 00:00:00,2023-12-11 23:59:59",
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_ng_state_data")]
+        [HttpPost]
+        public string POST_get_ng_state_data([FromBody] returnData returnData)
+        {
+            try
+            {
+                returnData.Method = "get_ng_state_data";
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
 
+              
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetRowsByDefult(null, (int)enum_MedRecheckLog.狀態, "未排除");
+                List<MedRecheckLogClass> medRecheckLogClasses = list_value.SQLToClass<MedRecheckLogClass, enum_MedRecheckLog>();
+                returnData.Data = medRecheckLogClasses;
+                returnData.Code = 200;
+                returnData.Result = $"取得資料成功,共{medRecheckLogClasses.Count}筆!";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
@@ -400,6 +459,7 @@ namespace HIS_WebApi
             table.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
             table.AddColumnList("發生時間", Table.DateType.DATETIME, 20, Table.IndexType.INDEX);
             table.AddColumnList("排除時間", Table.DateType.DATETIME, 20, Table.IndexType.INDEX);
+            table.AddColumnList("狀態", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
 
 
             if (!sQLControl.IsTableCreat())

@@ -1728,7 +1728,7 @@ namespace HIS_WebApi
                     content.藥品名稱 = list_value[i][(int)enum_驗收單匯入.名稱].ObjectToString();
                     content.廠牌 = list_value[i][(int)enum_驗收單匯入.供應商名稱].ObjectToString();
                     content.請購單號 = list_value[i][(int)enum_驗收單匯入.請購單號].ObjectToString();
-                    content.應收數量 = list_value[i][(int)enum_驗收單匯入.採購數量].ObjectToString();
+                    content.應收數量 = list_value[i][(int)enum_驗收單匯入.未交量].ObjectToString();
                     content.實收數量 = list_value[i][(int)enum_驗收單匯入.已交貨數量].ObjectToString();
                     creat.Contents.Add(content);
                 }

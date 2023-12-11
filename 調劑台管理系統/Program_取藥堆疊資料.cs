@@ -3065,6 +3065,9 @@ namespace 調劑台管理系統
             string 批號 = "";
             string 顏色 = "";
             string 領藥號 = "";
+            string 醫令_GUID = "";
+            string 交易紀錄_GUID = "";
+
             List<string> List_效期 = new List<string>();
             List<string> List_批號 = new List<string>();
             List<string> list_儲位刷新_藥品碼 = new List<string>();
@@ -3136,6 +3139,7 @@ namespace 調劑台管理系統
 
                 object[] value_trading = new object[new enum_交易記錄查詢資料().GetLength()];
                 value_trading[(int)enum_交易記錄查詢資料.GUID] = Guid.NewGuid().ToString();
+                交易紀錄_GUID = value_trading[(int)enum_交易記錄查詢資料.GUID].ObjectToString();
                 value_trading[(int)enum_交易記錄查詢資料.動作] = 動作;
                 value_trading[(int)enum_交易記錄查詢資料.診別] = 診別;
                 value_trading[(int)enum_交易記錄查詢資料.藥品碼] = 藥品碼;
@@ -3209,6 +3213,33 @@ namespace 調劑台管理系統
                     transactionsClass.收支原因 = "";
                     list_交易紀錄新增資料_AddValue.Add(transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>());
 
+                }
+                if (收支原因.Contains("覆盤錯誤"))
+                {
+                    string url = $"{API_Server}/api/MedRecheckLog/add";
+                    returnData returnData = new returnData();
+                    returnData.ServerName = ServerName;
+                    returnData.ServerType = ServerType;
+                    MedRecheckLogClass medRecheckLogClass = new MedRecheckLogClass();
+                    medRecheckLogClass.藥碼 = 藥品碼;
+                    medRecheckLogClass.藥名 = 藥品名稱;
+                    medRecheckLogClass.系統理論值 = 庫存量.ToString();
+                    medRecheckLogClass.覆盤理論值 = 盤點量;
+                    medRecheckLogClass.操作人 = 操作人;
+                    medRecheckLogClass.交易紀錄_GUID = 交易紀錄_GUID;
+                    for (int m = 0; m < List_效期.Count; m++)
+                    {
+                        medRecheckLogClass.效期 += List_效期[m];
+                        if (m != List_效期.Count - 1) medRecheckLogClass.效期 += ",";
+                    }
+                    for (int m = 0; m < List_批號.Count; m++)
+                    {
+                        medRecheckLogClass.批號 += List_批號[m];
+                        if (m != List_批號.Count - 1) medRecheckLogClass.批號 += ",";
+                    }
+                    returnData.Data = medRecheckLogClass;
+                    string json_in = returnData.JsonSerializationt(true);
+                    string json_result = Net.WEBApiPostJson(url, json_in);
                 }
             }
             for (int i = 0; i < list_取藥堆疊母資料_ReplaceValue.Count; i++)

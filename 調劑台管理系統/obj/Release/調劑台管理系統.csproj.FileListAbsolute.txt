@@ -2833,3 +2833,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\調劑台管理系統\obj
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\調劑台管理系統\bin\Release\HIS_DB_Lib.xml
+C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_錯誤提示.resources
