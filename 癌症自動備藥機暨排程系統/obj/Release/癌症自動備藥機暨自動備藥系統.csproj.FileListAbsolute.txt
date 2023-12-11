@@ -501,3 +501,4 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\癌症自動�
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨自動備藥系統.csproj.CopyComplete
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.exe
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.pdb
+C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\DeltaMotor485.dll

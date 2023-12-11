@@ -64,7 +64,6 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_領藥台_01_取消作業.MouseDownEvent += PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent;
             this.plC_RJ_Button_領藥台_01_手動作業.MouseDownEvent += PlC_RJ_Button_領藥台_01_手動作業_MouseDownEvent;
             this.plC_RJ_Button_領藥台_01_手輸醫令.MouseDownEvent += PlC_RJ_Button_領藥台_01_手輸醫令_MouseDownEvent;
-            this.plC_RJ_Button_領藥台_01_強制入賬.MouseDownEvent += PlC_RJ_Button_領藥台_01_強制入賬_MouseDownEvent;
             this.plC_Button_領藥台_01_領.btnClick += PlC_Button_領藥台_01_領_btnClick;
             this.plC_Button_領藥台_01_退.btnClick += PlC_Button_領藥台_01_退_btnClick;
             this.plC_RJ_Button_領藥台_01_病歷號輸入.MouseDownEvent += PlC_RJ_Button_領藥台_01_病歷號輸入_MouseDownEvent;
@@ -2014,10 +2013,10 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent(MouseEventArgs mevent)
         {
             if (!this.PLC_Device_領藥台_01_已登入.Bool) return;
-            this.Invoke(new Action(delegate
-            {
-                this.pictureBox_領藥台_01_藥品圖片.Image = null;
-            }));
+            //this.Invoke(new Action(delegate
+            //{
+            //    this.pictureBox_領藥台_01_藥品圖片.Image = null;
+            //}));
             Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.取消作業, 領藥台_01_登入者姓名, "01.號使用者");
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.ClearGrid();
@@ -2082,10 +2081,10 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(MouseEventArgs mevent)
         {
             if (!this.PLC_Device_領藥台_01_已登入.Bool) return;
-            this.Invoke(new Action(delegate
-            {
-                this.pictureBox_領藥台_01_藥品圖片.Image = null;
-            }));
+            //this.Invoke(new Action(delegate
+            //{
+            //    this.pictureBox_領藥台_01_藥品圖片.Image = null;
+            //}));
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.ClearGrid();
 
@@ -3915,10 +3914,10 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_領藥台_02_取消作業_MouseDownEvent(MouseEventArgs mevent)
         {
             if (!this.PLC_Device_領藥台_02_已登入.Bool) return;
-            this.Invoke(new Action(delegate
-            {
-                this.pictureBox_領藥台_02_藥品圖片.Image = null;
-            }));
+            //this.Invoke(new Action(delegate
+            //{
+            //    this.pictureBox_領藥台_02_藥品圖片.Image = null;
+            //}));
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             this.sqL_DataGridView_領藥台_02_領藥內容.ClearGrid();
         }
@@ -3983,10 +3982,10 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(MouseEventArgs mevent)
         {
             if (!this.PLC_Device_領藥台_02_已登入.Bool) return;
-            this.Invoke(new Action(delegate
-            {
-                this.pictureBox_領藥台_02_藥品圖片.Image = null;
-            }));
+            //this.Invoke(new Action(delegate
+            //{
+            //    this.pictureBox_領藥台_02_藥品圖片.Image = null;
+            //}));
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             this.sqL_DataGridView_領藥台_02_領藥內容.ClearGrid();
 

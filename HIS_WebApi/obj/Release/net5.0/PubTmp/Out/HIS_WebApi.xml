@@ -4,6 +4,109 @@
         <name>HIS_WebApi</name>
     </assembly>
     <members>
+        <member name="M:HIS_WebApi.MedRecheckLog.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化覆盤異常資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MedRecheckLog.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增資料至覆盤異常資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MedRecheckLog.POST_replace_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            更新資料至覆盤異常資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",
+                "Value" : "c301bce4-d865-474c-8faf-23fef4451869",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MedRecheckLog.POST_get_by_occurrence_time_st_end(HIS_DB_Lib.returnData)">
+            <summary>
+            取得指定發生時間範圍覆盤異常資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",
+                "Value" : "2023-12-11 00:00:00,2023-12-11 23:59:59",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MedRecheckLog.POST_get_by_troubleshooting_time_st_end(HIS_DB_Lib.returnData)">
+            <summary>
+            取得指定排除時間範圍覆盤異常資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",
+                "Value" : "2023-12-11 00:00:00,2023-12-11 23:59:59",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="T:HIS_WebApi.Properties.Resources">
             <summary>
               用於查詢當地語系化字串等的強類型資源類別。
