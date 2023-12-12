@@ -309,6 +309,8 @@ namespace 調劑台管理系統
                         break;
                     }
                     list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
+                    int 庫存量 = Function_從SQL取得庫存(藥碼);
+                    結存量 = 庫存量 + 總異動量;
                     if (結存量.ToString() == dialog_NumPannel.Value.ToString()) break;
                     voice.SpeakOnTask("盲盤數量錯誤");
                     if (retry == 0)
