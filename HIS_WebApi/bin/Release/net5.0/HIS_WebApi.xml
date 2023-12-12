@@ -1230,6 +1230,27 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.MedRecheckLog.POST_replace_QTY_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥碼異常排除,更新資料至覆盤異常資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",
+                "Value" : "c301bce4-d865-474c-8faf-23fef4451869",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.MedRecheckLog.POST_get_by_occurrence_time_st_end(HIS_DB_Lib.returnData)">
             <summary>
             取得指定發生時間範圍覆盤異常資料庫

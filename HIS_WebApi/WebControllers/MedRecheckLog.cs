@@ -217,6 +217,78 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 以藥碼異常排除,更新資料至覆盤異常資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "管藥",
+        ///     "ServerType" : "調劑台",
+        ///     "Value" : "c301bce4-d865-474c-8faf-23fef4451869",
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("replace_QTY_by_code")]
+        [HttpPost]
+        public string POST_replace_QTY_by_code([FromBody] returnData returnData)
+        {
+            try
+            {
+                returnData.Method = "POST_replace_QTY_by_code";
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+          
+                if (returnData.Value.StringIsEmpty() == true)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"[eturnData.Value] 藥碼,校正值 空白!";
+                    return returnData.JsonSerializationt();
+                }
+                string[] str_Ary = returnData.Value.Split(",");
+                string 藥碼 = str_Ary[0];
+                string 校正庫存值 = str_Ary[1];
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetRowsByDefult(null, (int)enum_MedRecheckLog.藥碼, 藥碼);
+                list_value = list_value.GetRows((int)enum_MedRecheckLog.狀態, enum_MedRecheckLog_State.未排除.GetEnumName());
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    list_value[i][(int)enum_MedRecheckLog.校正庫存值] = 校正庫存值;
+                    list_value[i][(int)enum_MedRecheckLog.排除時間] = DateTime.Now.ToDateTimeString_6();
+                    list_value[i][(int)enum_MedRecheckLog.狀態] = enum_MedRecheckLog_State.已排除.GetEnumName();
+                }
+                sQLControl.UpdateByDefulteExtra(null, list_value);
+                returnData.Code = 200;
+                returnData.Result = $"更新資料成功,共<{list_value.Count}>筆!";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
         /// 取得指定發生時間範圍覆盤異常資料庫
         /// </summary>
         /// <remarks>
@@ -271,7 +343,7 @@ namespace HIS_WebApi
                     returnData.Result = $"[eturnData.Value] 日期範圍 格式錯誤!";
                     return returnData.JsonSerializationt();
                 }
-                if (date_ary[0].Check_Date_String() == false || date_ary[1].Check_Date_String())
+                if (date_ary[0].Check_Date_String() == false || date_ary[1].Check_Date_String() == false)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"[eturnData.Value] 日期範圍 格式錯誤!";
@@ -348,7 +420,7 @@ namespace HIS_WebApi
                     returnData.Result = $"[eturnData.Value] 日期範圍 格式錯誤!";
                     return returnData.JsonSerializationt();
                 }
-                if (date_ary[0].Check_Date_String() == false || date_ary[1].Check_Date_String())
+                if (date_ary[0].Check_Date_String() == false || date_ary[1].Check_Date_String() == false)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"[eturnData.Value] 日期範圍 格式錯誤!";
