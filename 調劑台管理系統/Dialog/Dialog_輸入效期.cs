@@ -83,6 +83,7 @@ namespace 調劑台管理系統
         {
             InitializeComponent();
             this.TopMost = true;
+
         }
 
         private void touchch_TextBox_Year_TextChanged(object sender, EventArgs e)

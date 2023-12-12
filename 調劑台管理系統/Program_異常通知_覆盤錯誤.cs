@@ -240,6 +240,8 @@ namespace 調劑台管理系統
                 transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.備註 = 備註;
                 object[] trading_value = transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
+                list_交易紀錄_Add.Add(trading_value);
+
             }
             else
             {
