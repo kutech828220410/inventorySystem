@@ -1600,7 +1600,7 @@ namespace 調劑台管理系統
                 string 儲位名稱 = sheetClasses[i].Name;
                 Drawer drawer = this.List_EPD583_本地資料.SortByName(儲位名稱);
                 if (drawer == null) continue;
-                drawer = this.epD_583_Pannel.SeparateBoxesAll(drawer);
+                //drawer = this.epD_583_Pannel.SeparateBoxesAll(drawer);
                 for (int k = 0; k < sheetClasses[i].CellValues.Count; k++)
                 {
                     if (sheetClasses[i].CellValues[k].Slave == false)

@@ -328,14 +328,18 @@ namespace 調劑台管理系統
             if (jsonString.StringIsEmpty())
             {
                 this.voice.SpeakOnTask("網路異常");
-                MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"呼叫串接資料失敗!請檢查網路連線...", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
                 return orderClasses;
             }
             returnData returnData = jsonString.JsonDeserializet<returnData>();
             if (returnData == null)
             {
                 this.voice.SpeakOnTask("藥單條碼錯誤");
-                MyMessageBox.ShowDialog(jsonString);
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"藥單條碼錯誤:{jsonString}", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog(jsonString);
                 return new List<OrderClass>();
             }
             orderClasses = returnData.Data.ObjToListClass<OrderClass>();
@@ -365,19 +369,25 @@ namespace 調劑台管理系統
             if (jsonString.StringIsEmpty())
             {
                 this.voice.SpeakOnTask("網路異常");
-                MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"呼叫串接資料失敗!請檢查網路連線", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog($"呼叫串接資料失敗!請檢查網路連線...");
                 return orderClasses;
             }
             returnData returnData = jsonString.JsonDeserializet<returnData>();
             if(returnData == null)
             {
                 this.voice.SpeakOnTask("藥單條碼錯誤");
-                MyMessageBox.ShowDialog(jsonString);
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"藥單條碼錯誤:{jsonString}", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog(jsonString);
                 return new List<OrderClass>();
             }
             if(returnData.Code != 200)
             {
-                MyMessageBox.ShowDialog($"{returnData.Result}");
+                //MyMessageBox.ShowDialog($"{returnData.Result}");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示($"{returnData.Result}", 2000);
+                dialog_錯誤提示.ShowDialog();
                 return new List<OrderClass>();
                 
             }
@@ -604,7 +614,9 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
             if(list_value.Count == 0)
             {
-                MyMessageBox.ShowDialog("查無資料");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("查無資料", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("查無資料");
             }
         }
         private void PlC_RJ_Button_醫令資料_搜尋條件_病歷號_搜尋_MouseDownEvent(MouseEventArgs mevent)
@@ -612,7 +624,9 @@ namespace 調劑台管理系統
             MyTimerBasic myTimerBasic = new MyTimerBasic(50000);
             if (rJ_TextBox_醫令資料_搜尋條件_病歷號.Text.StringIsEmpty())
             {
-                MyMessageBox.ShowDialog("未輸入搜尋條件");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("未輸入搜尋條件", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("未輸入搜尋條件");
                 return;
             }
             List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.病歷號, rJ_TextBox_醫令資料_搜尋條件_病歷號.Text , false);
@@ -620,7 +634,10 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
             if (list_value.Count == 0)
             {
-                MyMessageBox.ShowDialog("查無資料");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("查無資料", 2000);
+                dialog_錯誤提示.ShowDialog();
+
+                //MyMessageBox.ShowDialog("查無資料");
             }
         }
         private void PlC_RJ_Button_醫令資料_搜尋條件_藥品名稱_搜尋_MouseDownEvent(MouseEventArgs mevent)
@@ -628,7 +645,9 @@ namespace 調劑台管理系統
             MyTimerBasic myTimerBasic = new MyTimerBasic(50000);
             if (rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Text.StringIsEmpty())
             {
-                MyMessageBox.ShowDialog("未輸入搜尋條件");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("未輸入搜尋條件", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("未輸入搜尋條件");
                 return;
             }
             List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.藥品名稱, rJ_TextBox_醫令資料_搜尋條件_藥品名稱.Text, false);
@@ -636,7 +655,9 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
             if (list_value.Count == 0)
             {
-                MyMessageBox.ShowDialog("查無資料");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("查無資料", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("查無資料");
             }
         }
         private void PlC_RJ_Button_醫令資料_搜尋條件_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
@@ -644,13 +665,17 @@ namespace 調劑台管理系統
             List<object[]> list_value = this.sqL_DataGridView_醫令資料.SQL_GetRows((int)enum_醫囑資料.藥品碼 ,rJ_TextBox_醫令資料_搜尋條件_藥品碼.Text, false);
             if (rJ_TextBox_醫令資料_搜尋條件_藥品碼.Text.StringIsEmpty())
             {
-                MyMessageBox.ShowDialog("未輸入搜尋條件");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("未輸入搜尋條件", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("未輸入搜尋條件");
                 return;
             }
             this.sqL_DataGridView_醫令資料.RefreshGrid(list_value);
             if (list_value.Count == 0)
             {
-                MyMessageBox.ShowDialog("查無資料");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("查無資料", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("查無資料");
             }
 
         }

@@ -29,6 +29,10 @@ namespace 調劑台管理系統
         bool flag_工程模式_頁面更新 = false;
         private void sub_Program_工程模式()
         {
+            if (plC_NumBox_亮燈亮度.Value > 100) plC_NumBox_亮燈亮度.Value = 100;
+            if (plC_NumBox_亮燈亮度.Value <= 0) plC_NumBox_亮燈亮度.Value = 80;
+            DrawerUI_EPD_583.Lightness = plC_NumBox_亮燈亮度.Value / 100D;
+            RowsLEDUI.Lightness = plC_NumBox_亮燈亮度.Value / 100D;
             if (this.plC_ScreenPage_Main.PageText == "工程模式")
             {
                 if (!this.flag_工程模式_頁面更新)

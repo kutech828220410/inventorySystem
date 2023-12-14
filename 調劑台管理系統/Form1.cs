@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.0.12")]
-[assembly: AssemblyFileVersion("1.2.0.12")]
+[assembly: AssemblyVersion("1.2.0.16")]
+[assembly: AssemblyFileVersion("1.2.0.16")]
 namespace 調劑台管理系統
 {
 
@@ -899,10 +899,14 @@ namespace 調劑台管理系統
 
 
 
+
+
         #endregion
- 
 
+        private void label32_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 
 

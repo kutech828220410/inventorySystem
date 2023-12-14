@@ -2066,13 +2066,17 @@ namespace 調劑台管理系統
             list_value = list_value.GetRows((int)enum_人員資料.ID, textBox_領藥台_01_帳號.Texts);
             if (list_value.Count == 0)
             {
-                MyMessageBox.ShowDialog("查無此帳號!");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("查無此帳號", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("查無此帳號!");
                 return;
             }
             string password = list_value[0][(int)enum_人員資料.密碼].ObjectToString();
             if (textBox_領藥台_01_密碼.Texts != password)
             {
-                MyMessageBox.ShowDialog("密碼錯誤!");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("密碼錯誤", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("密碼錯誤!");
                 return;
             }
             領藥台_01_登入者姓名 = list_value[0][(int)enum_人員資料.姓名].ObjectToString();
@@ -3990,13 +3994,17 @@ namespace 調劑台管理系統
             list_value = list_value.GetRows((int)enum_人員資料.ID, textBox_領藥台_02_帳號.Texts);
             if (list_value.Count == 0)
             {
-                MyMessageBox.ShowDialog("查無此帳號!");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("查無此帳號", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("查無此帳號!");
                 return;
             }
             string password = list_value[0][(int)enum_人員資料.密碼].ObjectToString();
             if (textBox_領藥台_02_密碼.Texts != password)
             {
-                MyMessageBox.ShowDialog("密碼錯誤!");
+                Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("密碼錯誤", 2000);
+                dialog_錯誤提示.ShowDialog();
+                //MyMessageBox.ShowDialog("密碼錯誤!");
                 return;
             }
             領藥台_02_登入者姓名 = list_value[0][(int)enum_人員資料.姓名].ObjectToString();

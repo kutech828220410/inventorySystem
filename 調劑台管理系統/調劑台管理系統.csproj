@@ -348,10 +348,10 @@
     <Compile Include="Dialog\Dialog_藥檔維護.Designer.cs">
       <DependentUpon>Dialog_藥檔維護.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog_錯誤提示.cs">
+    <Compile Include="Dialog\Dialog_錯誤提示.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog_錯誤提示.Designer.cs">
+    <Compile Include="Dialog\Dialog_錯誤提示.Designer.cs">
       <DependentUpon>Dialog_錯誤提示.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -497,6 +497,12 @@
     <Compile Include="Program_藥品管制方式設定.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialog\Dialog_新藥建置.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_新藥建置.Designer.cs">
+      <DependentUpon>Dialog_新藥建置.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dialog\Dialog_交班表_交易紀錄明細.resx">
       <DependentUpon>Dialog_交班表_交易紀錄明細.cs</DependentUpon>
     </EmbeddedResource>
@@ -572,7 +578,7 @@
     <EmbeddedResource Include="Dialog\Dialog_交班藥品選擇.resx">
       <DependentUpon>Dialog_交班藥品選擇.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog_錯誤提示.resx">
+    <EmbeddedResource Include="Dialog\Dialog_錯誤提示.resx">
       <DependentUpon>Dialog_錯誤提示.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
@@ -601,6 +607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\Pannel_Locker_Design.resx">
       <DependentUpon>Pannel_Locker_Design.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_新藥建置.resx">
+      <DependentUpon>Dialog_新藥建置.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest">
       <SubType>Designer</SubType>

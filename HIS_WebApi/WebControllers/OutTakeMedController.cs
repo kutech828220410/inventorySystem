@@ -970,7 +970,7 @@ namespace HIS_WebApi
             Table table = new Table("take_medicine_stack_new");
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
             table.AddColumnList("Order_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table.AddColumnList("序號", Table.StringType.VARCHAR, 2, Table.IndexType.None);
+            table.AddColumnList("序號", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table.AddColumnList("調劑台名稱", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("IP", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table.AddColumnList("操作人", Table.StringType.VARCHAR, 20, Table.IndexType.None);
@@ -1008,7 +1008,7 @@ namespace HIS_WebApi
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
             table.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("Device_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("序號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("序號", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table.AddColumnList("調劑台名稱", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table.AddColumnList("IP", Table.StringType.VARCHAR, 20, Table.IndexType.None);

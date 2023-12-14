@@ -165,7 +165,7 @@ namespace 調劑台管理系統
 
             this.plC_RJ_Button_藥品資料_登錄.MouseDownEvent += PlC_RJ_Button_藥品資料_登錄_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_刪除.MouseDownEvent += PlC_RJ_Button_藥品資料_刪除_MouseDownEvent;
-            this.plC_RJ_Button_藥品資料_HIS填入.MouseDownEvent += PlC_RJ_Button_藥品資料_HIS填入_MouseDownEvent;
+            this.plC_RJ_Button_藥品資料_新藥建置.MouseDownEvent += PlC_RJ_Button_藥品資料_新藥建置_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.MouseDownEvent += PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.MouseDownEvent += PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent;
 
@@ -1167,6 +1167,10 @@ namespace 調劑台管理系統
             this.textBox_藥品資料_藥檔資料_包裝單位.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString().ToLower() == "true");
             this.comboBox_藥品資料_藥檔資料_管制級別.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.管制級別].ObjectToString();
+        }
+        private void PlC_RJ_Button_藥品資料_新藥建置_MouseDownEvent(MouseEventArgs mevent)
+        {
+            
         }
         private void PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent(MouseEventArgs mevent)
         {
