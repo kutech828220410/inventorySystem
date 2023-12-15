@@ -36,6 +36,7 @@ namespace 癌症自動備藥機暨排程系統
             H_Pannel_lib.Communication.UART_ConsoletWrite = false;
             H_Pannel_lib.Driver_IO_Board driver_IO_Board = new H_Pannel_lib.Driver_IO_Board();
 
+            H_Pannel_lib.Communication.UART_Delay = 0;
             this.BoardUIInit();
             driver_IO_Board.SleepTime = 0;
             driver_IO_Board.ProgramEvent += Driver_IO_Board_ProgramEvent;

@@ -67,9 +67,10 @@ namespace 癌症自動備藥機暨排程系統
         MySerialPort mySerialPort_delta = new MySerialPort();
         private void Program_軸控_Init()
         {
+            DeltaMotor485.Communication.UART_Delay = 5;
             DeltaMotor485.Communication.ConsoleWrite = false;
             mySerialPort_delta.BufferSize = 2048;
-            mySerialPort_delta.Init("COM2", 115200, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
+            mySerialPort_delta.Init("COM2", 115200, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
             DeltaMotor485_port.Init(mySerialPort_delta, new byte[] { 1, 2, 3, 4 });
 
             this.plC_RJ_Button_冷藏區X軸_ServoON.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_ServoON_MouseDownEvent;
@@ -114,7 +115,8 @@ namespace 癌症自動備藥機暨排程系統
             DeltaMotor485_port[1].Servo_on_off(!flag_output);
         }
 
-      
+
+
         private void PlC_RJ_Button_冷藏區Z軸_Stop_MouseDownEvent(MouseEventArgs mevent)
         {
             DeltaMotor485_port[2].Stop();
@@ -213,6 +215,8 @@ namespace 癌症自動備藥機暨排程系統
             plC_Button_常溫區Z軸_正極限.Bool = DeltaMotor485_port[4].DI.PL;
             plC_Button_常溫區Z軸_ALARM.Bool = DeltaMotor485_port[4].ALRM;
             plC_NumBox_常溫區Z軸_現在位置.Value = DeltaMotor485_port[4].CommandPosition;
+
+
 
             sub_Program_軸控初始化();
             sub_Program_冷藏區X軸復歸();
@@ -370,6 +374,7 @@ namespace 癌症自動備藥機暨排程系統
 
 
         #endregion
+
 
         #region PLC_冷藏區X軸復歸
         PLC_Device PLC_Device_冷藏區X軸復歸 = new PLC_Device("");
