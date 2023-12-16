@@ -32,6 +32,7 @@ namespace 癌症自動備藥機暨排程系統
             冷藏區_Z軸 = 2,
             常溫區_X軸 = 3,
             常溫區_Z軸 = 4,
+            出盒區_Y軸 = 5,
         }
         PLC_Device PLC_IO_冷藏區X軸_現在位置 = new PLC_Device("R5000");
 
@@ -63,15 +64,59 @@ namespace 癌症自動備藥機暨排程系統
         PLC_Device PLC_IO_常溫區_輸送門關閉 = new PLC_Device("S242");
         PLC_Device PLC_IO_常溫區_輸送台關閉到位 = new PLC_Device("X14");
 
-        DeltaMotor485.Port DeltaMotor485_port = new DeltaMotor485.Port();
-        MySerialPort mySerialPort_delta = new MySerialPort();
+        DeltaMotor485.Port DeltaMotor485_port_冷藏區_X軸 = new DeltaMotor485.Port();
+        DeltaMotor485.Port DeltaMotor485_port_冷藏區_Z軸 = new DeltaMotor485.Port();
+
+        DeltaMotor485.Port DeltaMotor485_port_常溫區_X軸 = new DeltaMotor485.Port();
+        DeltaMotor485.Port DeltaMotor485_port_常溫區_Z軸 = new DeltaMotor485.Port();
+        DeltaMotor485.Port DeltaMotor485_port_出盒區_Y軸 = new DeltaMotor485.Port();
+
+        MySerialPort mySerialPort_delta_冷藏區_X軸 = new MySerialPort();
+        MySerialPort mySerialPort_delta_冷藏區_Z軸 = new MySerialPort();
+        MySerialPort mySerialPort_delta_常溫區_X軸 = new MySerialPort();
+        MySerialPort mySerialPort_delta_常溫區_Z軸 = new MySerialPort();
+        MySerialPort mySerialPort_delta_出盒區_Y軸 = new MySerialPort();
         private void Program_軸控_Init()
         {
+  
+            mySerialPort_delta_冷藏區_X軸.BufferSize = 2048;
+            mySerialPort_delta_冷藏區_X軸.Init("COM2", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
             DeltaMotor485.Communication.UART_Delay = 5;
             DeltaMotor485.Communication.ConsoleWrite = false;
-            mySerialPort_delta.BufferSize = 2048;
-            mySerialPort_delta.Init("COM2", 115200, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
-            DeltaMotor485_port.Init(mySerialPort_delta, new byte[] { 1, 2, 3, 4 });
+            DeltaMotor485_port_冷藏區_X軸.Init(mySerialPort_delta_冷藏區_X軸, new byte[] { 1 });
+            DeltaMotor485_port_冷藏區_X軸.SleepTime = 10;
+
+
+            mySerialPort_delta_冷藏區_Z軸.BufferSize = 2048;
+            mySerialPort_delta_冷藏區_Z軸.Init("COM3", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+            DeltaMotor485.Communication.UART_Delay = 5;
+            DeltaMotor485.Communication.ConsoleWrite = false;
+            DeltaMotor485_port_冷藏區_Z軸.Init(mySerialPort_delta_冷藏區_Z軸, new byte[] { 2 });
+            DeltaMotor485_port_冷藏區_Z軸.SleepTime = 10;
+
+
+            mySerialPort_delta_常溫區_X軸.BufferSize = 2048;
+            mySerialPort_delta_常溫區_X軸.Init("COM4", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+            DeltaMotor485.Communication.UART_Delay = 5;
+            DeltaMotor485.Communication.ConsoleWrite = false;
+            DeltaMotor485_port_常溫區_X軸.Init(mySerialPort_delta_常溫區_X軸, new byte[] { 3 });
+            DeltaMotor485_port_常溫區_X軸.SleepTime = 10;
+
+
+            mySerialPort_delta_常溫區_Z軸.BufferSize = 2048;
+            mySerialPort_delta_常溫區_Z軸.Init("COM5", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+            DeltaMotor485.Communication.UART_Delay = 5;
+            DeltaMotor485.Communication.ConsoleWrite = false;
+            DeltaMotor485_port_常溫區_Z軸.Init(mySerialPort_delta_常溫區_Z軸, new byte[] { 4 });
+            DeltaMotor485_port_常溫區_Z軸.SleepTime = 10;
+
+
+            mySerialPort_delta_出盒區_Y軸.BufferSize = 2048;
+            mySerialPort_delta_出盒區_Y軸.Init("COM6", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+            DeltaMotor485.Communication.UART_Delay = 5;
+            DeltaMotor485.Communication.ConsoleWrite = false;
+            DeltaMotor485_port_出盒區_Y軸.Init(mySerialPort_delta_出盒區_Y軸, new byte[] { 5 });
+            DeltaMotor485_port_出盒區_Y軸.SleepTime = 10;
 
             this.plC_RJ_Button_冷藏區X軸_ServoON.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_ServoON_MouseDownEvent;
             this.plC_RJ_Button_冷藏區X軸_PJOG.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_PJOG_MouseDownEvent;
@@ -99,122 +144,122 @@ namespace 癌症自動備藥機暨排程系統
    
         private void PlC_RJ_Button_冷藏區X軸_Stop_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[1].Stop();
+            DeltaMotor485_port_冷藏區_X軸[1].Stop();
         }
         private void PlC_RJ_Button_冷藏區X軸_NJOG_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[1].JOG(-plC_NumBox_冷藏區X軸_JOG速度.Value);
+            DeltaMotor485_port_冷藏區_X軸[1].JOG(-plC_NumBox_冷藏區X軸_JOG速度.Value);
         }
         private void PlC_RJ_Button_冷藏區X軸_PJOG_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[1].JOG(+plC_NumBox_冷藏區X軸_JOG速度.Value);
+            DeltaMotor485_port_冷藏區_X軸[1].JOG(+plC_NumBox_冷藏區X軸_JOG速度.Value);
         }
         private void PlC_RJ_Button_冷藏區X軸_ServoON_MouseDownEvent(MouseEventArgs mevent)
         {
             bool flag_output = PLC.Device.Get_DeviceFast_Ex(plC_RJ_Button_冷藏區X軸_ServoON.寫入元件位置);
-            DeltaMotor485_port[1].Servo_on_off(!flag_output);
+            DeltaMotor485_port_冷藏區_X軸[1].Servo_on_off(!flag_output);
         }
 
 
 
         private void PlC_RJ_Button_冷藏區Z軸_Stop_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[2].Stop();
+            DeltaMotor485_port_冷藏區_Z軸[2].Stop();
         }
         private void PlC_RJ_Button_冷藏區Z軸_NJOG_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[2].JOG(-plC_NumBox_冷藏區Z軸_JOG速度.Value);
+            DeltaMotor485_port_冷藏區_Z軸[2].JOG(-plC_NumBox_冷藏區Z軸_JOG速度.Value);
         }
         private void PlC_RJ_Button_冷藏區Z軸_PJOG_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[2].JOG(+plC_NumBox_冷藏區Z軸_JOG速度.Value);
+            DeltaMotor485_port_冷藏區_Z軸[2].JOG(+plC_NumBox_冷藏區Z軸_JOG速度.Value);
         }
         private void PlC_RJ_Button_冷藏區Z軸_ServoON_MouseDownEvent(MouseEventArgs mevent)
         {
             bool flag_output = PLC.Device.Get_DeviceFast_Ex(plC_RJ_Button_冷藏區Z軸_ServoON.寫入元件位置);
-            DeltaMotor485_port[2].Servo_on_off(!flag_output);
+            DeltaMotor485_port_冷藏區_Z軸[2].Servo_on_off(!flag_output);
         }
 
 
         private void PlC_RJ_Button_常溫區X軸_Stop_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[3].Stop();
+            DeltaMotor485_port_常溫區_X軸[3].Stop();
         }
         private void PlC_RJ_Button_常溫區X軸_NJOG_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[3].JOG(-plC_NumBox_常溫區X軸_JOG速度.Value);
+            DeltaMotor485_port_常溫區_X軸[3].JOG(-plC_NumBox_常溫區X軸_JOG速度.Value);
         }
         private void PlC_RJ_Button_常溫區X軸_PJOG_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[3].JOG(+plC_NumBox_常溫區X軸_JOG速度.Value);
+            DeltaMotor485_port_常溫區_X軸[3].JOG(+plC_NumBox_常溫區X軸_JOG速度.Value);
         }
         private void PlC_RJ_Button_常溫區X軸_ServoON_MouseDownEvent(MouseEventArgs mevent)
         {
             bool flag_output = PLC.Device.Get_DeviceFast_Ex(plC_RJ_Button_常溫區X軸_ServoON.寫入元件位置);
-            DeltaMotor485_port[3].Servo_on_off(!flag_output);
+            DeltaMotor485_port_常溫區_X軸[3].Servo_on_off(!flag_output);
         }
 
 
         private void PlC_RJ_Button_常溫區Z軸_Stop_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[4].Stop();
+            DeltaMotor485_port_常溫區_Z軸[4].Stop();
         }
         private void PlC_RJ_Button_常溫區Z軸_NJOG_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[4].JOG(-plC_NumBox_常溫區Z軸_JOG速度.Value);
+            DeltaMotor485_port_常溫區_Z軸[4].JOG(-plC_NumBox_常溫區Z軸_JOG速度.Value);
         }
         private void PlC_RJ_Button_常溫區Z軸_PJOG_MouseDownEvent(MouseEventArgs mevent)
         {
-            DeltaMotor485_port[4].JOG(+plC_NumBox_常溫區Z軸_JOG速度.Value);
+            DeltaMotor485_port_常溫區_Z軸[4].JOG(+plC_NumBox_常溫區Z軸_JOG速度.Value);
         }
         private void PlC_RJ_Button_常溫區Z軸_ServoON_MouseDownEvent(MouseEventArgs mevent)
         {
             bool flag_output = PLC.Device.Get_DeviceFast_Ex(plC_RJ_Button_常溫區Z軸_ServoON.寫入元件位置);
-            DeltaMotor485_port[4].Servo_on_off(!flag_output);
+            DeltaMotor485_port_常溫區_Z軸[4].Servo_on_off(!flag_output);
         }
 
         private void Program_軸控()
         {
-            PLC.Device.Set_Device(plC_RJ_Button_冷藏區X軸_ServoON.讀取元件位置, DeltaMotor485_port[1].SON);
-            DeltaMotor485_port[1].Read485_Enable = true;
-            plC_RJ_Button_冷藏區X軸_ServoON.Bool = DeltaMotor485_port[1].SON;
-            plC_Button_冷藏區X軸_Ready.Bool = DeltaMotor485_port[1].SRDY;
-            plC_Button_冷藏區X軸_零速度檢出.Bool = DeltaMotor485_port[1].ZSPD;
-            plC_Button_冷藏區X軸_原點.Bool = DeltaMotor485_port[1].DI.ORGP;
-            plC_Button_冷藏區X軸_正極限.Bool = DeltaMotor485_port[1].DI.PL;
-            plC_Button_冷藏區X軸_ALARM.Bool = DeltaMotor485_port[1].ALRM;      
-            plC_NumBox_冷藏區X軸_現在位置.Value = DeltaMotor485_port[1].CommandPosition;
+            PLC.Device.Set_Device(plC_RJ_Button_冷藏區X軸_ServoON.讀取元件位置, DeltaMotor485_port_冷藏區_X軸[1].SON);
+            DeltaMotor485_port_冷藏區_X軸[1].Read485_Enable = true;
+            plC_RJ_Button_冷藏區X軸_ServoON.Bool = DeltaMotor485_port_冷藏區_X軸[1].SON;
+            plC_Button_冷藏區X軸_Ready.Bool = DeltaMotor485_port_冷藏區_X軸[1].SRDY;
+            plC_Button_冷藏區X軸_零速度檢出.Bool = DeltaMotor485_port_冷藏區_X軸[1].ZSPD;
+            plC_Button_冷藏區X軸_原點.Bool = DeltaMotor485_port_冷藏區_X軸[1].DI.ORGP;
+            plC_Button_冷藏區X軸_正極限.Bool = DeltaMotor485_port_冷藏區_X軸[1].DI.PL;
+            plC_Button_冷藏區X軸_ALARM.Bool = DeltaMotor485_port_冷藏區_X軸[1].ALRM;      
+            plC_NumBox_冷藏區X軸_現在位置.Value = DeltaMotor485_port_冷藏區_X軸[1].CommandPosition;
 
-            PLC.Device.Set_Device(plC_RJ_Button_冷藏區Z軸_ServoON.讀取元件位置, DeltaMotor485_port[2].SON);
-            DeltaMotor485_port[2].Read485_Enable = true;
-            plC_RJ_Button_冷藏區Z軸_ServoON.Bool = DeltaMotor485_port[2].SON;
-            plC_Button_冷藏區Z軸_Ready.Bool = DeltaMotor485_port[2].SRDY;
-            plC_Button_冷藏區Z軸_零速度檢出.Bool = DeltaMotor485_port[2].ZSPD;
-            plC_Button_冷藏區Z軸_原點.Bool = DeltaMotor485_port[2].DI.ORGP;
-            plC_Button_冷藏區Z軸_正極限.Bool = DeltaMotor485_port[2].DI.PL;
-            plC_Button_冷藏區Z軸_ALARM.Bool = DeltaMotor485_port[2].ALRM;
-            plC_NumBox_冷藏區Z軸_現在位置.Value = DeltaMotor485_port[2].CommandPosition;
+            PLC.Device.Set_Device(plC_RJ_Button_冷藏區Z軸_ServoON.讀取元件位置, DeltaMotor485_port_冷藏區_Z軸[2].SON);
+            DeltaMotor485_port_冷藏區_Z軸[2].Read485_Enable = true;
+            plC_RJ_Button_冷藏區Z軸_ServoON.Bool = DeltaMotor485_port_冷藏區_Z軸[2].SON;
+            plC_Button_冷藏區Z軸_Ready.Bool = DeltaMotor485_port_冷藏區_Z軸[2].SRDY;
+            plC_Button_冷藏區Z軸_零速度檢出.Bool = DeltaMotor485_port_冷藏區_Z軸[2].ZSPD;
+            plC_Button_冷藏區Z軸_原點.Bool = DeltaMotor485_port_冷藏區_Z軸[2].DI.ORGP;
+            plC_Button_冷藏區Z軸_正極限.Bool = DeltaMotor485_port_冷藏區_Z軸[2].DI.PL;
+            plC_Button_冷藏區Z軸_ALARM.Bool = DeltaMotor485_port_冷藏區_Z軸[2].ALRM;
+            plC_NumBox_冷藏區Z軸_現在位置.Value = DeltaMotor485_port_冷藏區_Z軸[2].CommandPosition;
 
 
-            PLC.Device.Set_Device(plC_RJ_Button_常溫區X軸_ServoON.讀取元件位置, DeltaMotor485_port[3].SON);
-            DeltaMotor485_port[3].Read485_Enable = true;
-            plC_RJ_Button_常溫區X軸_ServoON.Bool = DeltaMotor485_port[3].SON;
-            plC_Button_常溫區X軸_Ready.Bool = DeltaMotor485_port[3].SRDY;
-            plC_Button_常溫區X軸_零速度檢出.Bool = DeltaMotor485_port[3].ZSPD;
-            plC_Button_常溫區X軸_原點.Bool = DeltaMotor485_port[3].DI.ORGP;
-            plC_Button_常溫區X軸_正極限.Bool = DeltaMotor485_port[3].DI.PL;
-            plC_Button_常溫區X軸_ALARM.Bool = DeltaMotor485_port[3].ALRM;
-            plC_NumBox_常溫區X軸_現在位置.Value = DeltaMotor485_port[3].CommandPosition;
+            PLC.Device.Set_Device(plC_RJ_Button_常溫區X軸_ServoON.讀取元件位置, DeltaMotor485_port_常溫區_X軸[3].SON);
+            DeltaMotor485_port_常溫區_X軸[3].Read485_Enable = true;
+            plC_RJ_Button_常溫區X軸_ServoON.Bool = DeltaMotor485_port_常溫區_X軸[3].SON;
+            plC_Button_常溫區X軸_Ready.Bool = DeltaMotor485_port_常溫區_X軸[3].SRDY;
+            plC_Button_常溫區X軸_零速度檢出.Bool = DeltaMotor485_port_常溫區_X軸[3].ZSPD;
+            plC_Button_常溫區X軸_原點.Bool = DeltaMotor485_port_常溫區_X軸[3].DI.ORGP;
+            plC_Button_常溫區X軸_正極限.Bool = DeltaMotor485_port_常溫區_X軸[3].DI.PL;
+            plC_Button_常溫區X軸_ALARM.Bool = DeltaMotor485_port_常溫區_X軸[3].ALRM;
+            plC_NumBox_常溫區X軸_現在位置.Value = DeltaMotor485_port_常溫區_X軸[3].CommandPosition;
 
-            PLC.Device.Set_Device(plC_RJ_Button_常溫區Z軸_ServoON.讀取元件位置, DeltaMotor485_port[4].SON);
-            DeltaMotor485_port[4].Read485_Enable = true;
-            plC_RJ_Button_常溫區Z軸_ServoON.Bool = DeltaMotor485_port[4].SON;
-            plC_Button_常溫區Z軸_Ready.Bool = DeltaMotor485_port[4].SRDY;
-            plC_Button_常溫區Z軸_零速度檢出.Bool = DeltaMotor485_port[4].ZSPD;
-            plC_Button_常溫區Z軸_原點.Bool = DeltaMotor485_port[4].DI.ORGP;
-            plC_Button_常溫區Z軸_正極限.Bool = DeltaMotor485_port[4].DI.PL;
-            plC_Button_常溫區Z軸_ALARM.Bool = DeltaMotor485_port[4].ALRM;
-            plC_NumBox_常溫區Z軸_現在位置.Value = DeltaMotor485_port[4].CommandPosition;
+            PLC.Device.Set_Device(plC_RJ_Button_常溫區Z軸_ServoON.讀取元件位置, DeltaMotor485_port_常溫區_Z軸[4].SON);
+            DeltaMotor485_port_常溫區_Z軸[4].Read485_Enable = true;
+            plC_RJ_Button_常溫區Z軸_ServoON.Bool = DeltaMotor485_port_常溫區_Z軸[4].SON;
+            plC_Button_常溫區Z軸_Ready.Bool = DeltaMotor485_port_常溫區_Z軸[4].SRDY;
+            plC_Button_常溫區Z軸_零速度檢出.Bool = DeltaMotor485_port_常溫區_Z軸[4].ZSPD;
+            plC_Button_常溫區Z軸_原點.Bool = DeltaMotor485_port_常溫區_Z軸[4].DI.ORGP;
+            plC_Button_常溫區Z軸_正極限.Bool = DeltaMotor485_port_常溫區_Z軸[4].DI.PL;
+            plC_Button_常溫區Z軸_ALARM.Bool = DeltaMotor485_port_常溫區_Z軸[4].ALRM;
+            plC_NumBox_常溫區Z軸_現在位置.Value = DeltaMotor485_port_常溫區_Z軸[4].CommandPosition;
 
 
 
@@ -231,7 +276,7 @@ namespace 癌症自動備藥機暨排程系統
             sub_Program_冷藏區X軸_絕對位置移動();
             sub_Program_冷藏區Z軸_絕對位置移動();
             sub_Program_冷藏區_移動至待命位置();
-            sub_Program_冷藏區_移動至常溫區藥盒傳接位置();
+            sub_Program_冷藏區_移動至與常溫區藥盒傳接位置();
             sub_Program_冷藏區_移動至零點位置();
 
             sub_Program_常溫區X軸復歸();
@@ -246,58 +291,206 @@ namespace 癌症自動備藥機暨排程系統
             sub_Program_常溫區X軸_絕對位置移動();
             sub_Program_常溫區Z軸_絕對位置移動();
             sub_Program_常溫區_移動至待命位置();
-            sub_Program_常溫區_移動至常溫區藥盒傳接位置();
+            sub_Program_常溫區_移動至與冷藏區藥盒傳接位置();
         }
 
 
         private void ServoON(enum_軸號 enum_軸號 , bool state)
         {
-            DeltaMotor485_port[(byte)enum_軸號].Servo_on_off(state);
+            DeltaMotor485.Driver_DO driver_DO = null;
+            if (enum_軸號 == enum_軸號.冷藏區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_X軸[1];
+            }
+            else if (enum_軸號 == enum_軸號.冷藏區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_Z軸[2];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_X軸[3];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
+            }
+            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            {
+                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+            }
+            driver_DO.Servo_on_off(state);
         }
         private void ServoInit(enum_軸號 enum_軸號)
         {
-            DeltaMotor485_port[(byte)enum_軸號].flag_Init = true;
+            DeltaMotor485.Driver_DO driver_DO = null;
+            if (enum_軸號 == enum_軸號.冷藏區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_X軸[1];
+            }
+            else if (enum_軸號 == enum_軸號.冷藏區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_Z軸[2];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_X軸[3];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
+            }
+            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            {
+                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+            }
+            driver_DO.flag_Init = true;
         }
         private void Servo_JOG(enum_軸號 enum_軸號 , int speed_rpm)
         {
-            DeltaMotor485_port[(byte)enum_軸號].JOG(speed_rpm);
+            DeltaMotor485.Driver_DO driver_DO = null;
+            if (enum_軸號 == enum_軸號.冷藏區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_X軸[1];
+            }
+            else if (enum_軸號 == enum_軸號.冷藏區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_Z軸[2];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_X軸[3];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
+            }
+            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            {
+                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+            }
+            driver_DO.JOG(speed_rpm);
         }
         private void Servo_Stop(enum_軸號 enum_軸號)
         {
-            DeltaMotor485_port[(byte)enum_軸號].Stop();
+            DeltaMotor485.Driver_DO driver_DO = null;
+            if (enum_軸號 == enum_軸號.冷藏區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_X軸[1];
+            }
+            else if (enum_軸號 == enum_軸號.冷藏區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_Z軸[2];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_X軸[3];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
+            }
+            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            {
+                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+            }
+            driver_DO.Stop();
         }
         private bool Servo_State(enum_軸號 enum_軸號 , DeltaMotor485.enum_DO enum_DO)
         {
+            DeltaMotor485.Driver_DO driver_DO = null;
+            if (enum_軸號 == enum_軸號.冷藏區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_X軸[1];
+            }
+            else if (enum_軸號 == enum_軸號.冷藏區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_Z軸[2];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_X軸[3];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
+            }
+            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            {
+                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+            }
+
             if (enum_DO == enum_DO.SON)
             {
-                return DeltaMotor485_port[(byte)enum_軸號].SON;
+                return driver_DO.SON;
             }
             else if (enum_DO == enum_DO.SRDY)
             {
-                return DeltaMotor485_port[(byte)enum_軸號].SRDY;
+                return driver_DO.SRDY;
             }
             else if (enum_DO == enum_DO.ZSPD)
             {
-                return DeltaMotor485_port[(byte)enum_軸號].ZSPD;
+                return driver_DO.ZSPD;
             }
             else if (enum_DO == enum_DO.ALRM)
             {
-                return DeltaMotor485_port[(byte)enum_軸號].ALRM;
+                return driver_DO.ALRM;
             }
             else if (enum_DO == enum_DO.HOME)
             {
-                return DeltaMotor485_port[(byte)enum_軸號].HOME;
+                return driver_DO.HOME;
             }
 
             return false;
         }
         private void Servo_DDRVA(enum_軸號 enum_軸號, int position, int speed, int acc )
         {
-            DeltaMotor485_port[(byte)enum_軸號].DDRVA(position, speed, acc);
+            DeltaMotor485.Driver_DO driver_DO = null;
+            if (enum_軸號 == enum_軸號.冷藏區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_X軸[1];
+            }
+            else if (enum_軸號 == enum_軸號.冷藏區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_Z軸[2];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_X軸[3];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
+            }
+            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            {
+                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+            }
+            driver_DO.DDRVA(position, speed, acc);
         }
         private bool Servo_DDRVA(enum_軸號 enum_軸號)
         {
-            return DeltaMotor485_port[(byte)enum_軸號].DDRVA_Done;
+            DeltaMotor485.Driver_DO driver_DO = null;
+            if (enum_軸號 == enum_軸號.冷藏區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_X軸[1];
+            }
+            else if (enum_軸號 == enum_軸號.冷藏區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_冷藏區_Z軸[2];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_X軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_X軸[3];
+            }
+            else if (enum_軸號 == enum_軸號.常溫區_Z軸)
+            {
+                driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
+            }
+            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            {
+                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+            }
+            return driver_DO.DDRVA_Done;
         }
 
         #region PLC_軸控初始化
@@ -364,6 +557,9 @@ namespace 癌症自動備藥機暨排程系統
             ServoON(enum_軸號.常溫區_Z軸, true);
             PLC_IO_常溫區Z軸_解剎車.Bool = true;
 
+
+            ServoInit(enum_軸號.出盒區_Y軸);
+            ServoON(enum_軸號.出盒區_Y軸, true);
             cnt++;
         }
 
@@ -496,7 +692,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_冷藏區X軸復歸_開始復歸(ref int cnt)
         {
-            DeltaMotor485_port[(byte)enum_軸號.冷藏區_X軸].Home(enum_Direction.CCW, true, 250, 10, 50, 50, plC_NumBox_冷藏區X軸_復歸偏移.Value, 200, 50);
+            DeltaMotor485_port_冷藏區_X軸[1].Home(enum_Direction.CCW, true, 250, 10, 50, 50, plC_NumBox_冷藏區X軸_復歸偏移.Value, 200, 50);
             cnt++;
         }
         void cnt_Program_冷藏區X軸復歸_檢查HOME_OFF(ref int cnt)
@@ -636,7 +832,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_冷藏區Z軸復歸_開始復歸(ref int cnt)
         {
-            DeltaMotor485_port[(byte)enum_軸號.冷藏區_Z軸].Home(enum_Direction.CCW, true, 100, 10, 50, 50, plC_NumBox_冷藏區Z軸_復歸偏移.Value, 200, 50);
+            DeltaMotor485_port_冷藏區_Z軸[2].Home(enum_Direction.CCW, true, 100, 10, 50, 50, plC_NumBox_冷藏區Z軸_復歸偏移.Value, 200, 50);
             cnt++;
         }
         void cnt_Program_冷藏區Z軸復歸_檢查HOME_OFF(ref int cnt)
@@ -1124,68 +1320,68 @@ namespace 癌症自動備藥機暨排程系統
 
 
         #endregion
-        #region PLC_冷藏區_移動至常溫區藥盒傳接位置
-        PLC_Device PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_目標位置X = new PLC_Device("R5022");
-        PLC_Device PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_目標位置Z = new PLC_Device("R5023");
+        #region PLC_冷藏區_移動至與常溫區藥盒傳接位置
+        PLC_Device PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置_目標位置X = new PLC_Device("R5022");
+        PLC_Device PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置_目標位置Z = new PLC_Device("R5023");
 
-        PLC_Device PLC_Device_冷藏區_移動至常溫區藥盒傳接位置 = new PLC_Device("S5001");
-        PLC_Device PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_OK = new PLC_Device("");
-        Task Task_冷藏區_移動至常溫區藥盒傳接位置;
-        MyTimer MyTimer_冷藏區_移動至常溫區藥盒傳接位置_結束延遲 = new MyTimer();
-        int cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 = 65534;
-        void sub_Program_冷藏區_移動至常溫區藥盒傳接位置()
+        PLC_Device PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置 = new PLC_Device("S5001");
+        PLC_Device PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置_OK = new PLC_Device("");
+        Task Task_冷藏區_移動至與常溫區藥盒傳接位置;
+        MyTimer MyTimer_冷藏區_移動至與常溫區藥盒傳接位置_結束延遲 = new MyTimer();
+        int cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 = 65534;
+        void sub_Program_冷藏區_移動至與常溫區藥盒傳接位置()
         {
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 65534)
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 65534)
             {
-                this.MyTimer_冷藏區_移動至常溫區藥盒傳接位置_結束延遲.StartTickTime(10000);
-                PLC_Device_冷藏區_移動至常溫區藥盒傳接位置.SetComment("PLC_冷藏區_移動至常溫區藥盒傳接位置");
-                PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_OK.SetComment("PLC_冷藏區_移動至常溫區藥盒傳接位置_OK");
-                PLC_Device_冷藏區_移動至常溫區藥盒傳接位置.Bool = false;
-                cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 = 65535;
+                this.MyTimer_冷藏區_移動至與常溫區藥盒傳接位置_結束延遲.StartTickTime(10000);
+                PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置.SetComment("PLC_冷藏區_移動至與常溫區藥盒傳接位置");
+                PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置_OK.SetComment("PLC_冷藏區_移動至與常溫區藥盒傳接位置_OK");
+                PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置.Bool = false;
+                cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 = 65535;
             }
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 65535) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 = 1;
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 1) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_檢查按下(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 2) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_初始化(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 3) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_檢查待命位置READY(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 4) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_等待待命位置完成(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 5) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_開門Ready(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 6) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_開門完成(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 7) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_Z軸Ready(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 8) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_Z軸完成(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 9) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_X軸Ready(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 10) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_X軸完成(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 11) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 = 65500;
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 > 1) cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_檢查放開(ref cnt_Program_冷藏區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 65535) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 = 1;
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 1) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_檢查按下(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 2) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_初始化(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 3) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_檢查待命位置READY(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 4) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_等待待命位置完成(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 5) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_開門Ready(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 6) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_開門完成(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 7) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_Z軸Ready(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 8) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_Z軸完成(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 9) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_X軸Ready(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 10) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_X軸完成(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 11) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 = 65500;
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 > 1) cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_檢查放開(ref cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置);
 
-            if (cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 == 65500)
+            if (cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 == 65500)
             {
-                this.MyTimer_冷藏區_移動至常溫區藥盒傳接位置_結束延遲.TickStop();
-                this.MyTimer_冷藏區_移動至常溫區藥盒傳接位置_結束延遲.StartTickTime(10000);
-                PLC_Device_冷藏區_移動至常溫區藥盒傳接位置.Bool = false;
-                PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_OK.Bool = false;
+                this.MyTimer_冷藏區_移動至與常溫區藥盒傳接位置_結束延遲.TickStop();
+                this.MyTimer_冷藏區_移動至與常溫區藥盒傳接位置_結束延遲.StartTickTime(10000);
+                PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置.Bool = false;
+                PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置_OK.Bool = false;
 
                 plC_RJ_Button_冷藏區_輸送帶後退.Bool = false;
                 plC_RJ_Button_冷藏區_輸送門開啟.Bool = false;
                 PLC_Device_冷藏區X軸_絕對位置移動.Bool = false;
                 PLC_Device_冷藏區Z軸_絕對位置移動.Bool = false;
                 PLC_Device_冷藏區_移動至待命位置.Bool = false;
-                cnt_Program_冷藏區_移動至常溫區藥盒傳接位置 = 65535;
+                cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置 = 65535;
             }
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_檢查按下(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_檢查按下(ref int cnt)
         {
-            if (PLC_Device_冷藏區_移動至常溫區藥盒傳接位置.Bool) cnt++;
+            if (PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置.Bool) cnt++;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_檢查放開(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_檢查放開(ref int cnt)
         {
-            if (!PLC_Device_冷藏區_移動至常溫區藥盒傳接位置.Bool) cnt = 65500;
+            if (!PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置.Bool) cnt = 65500;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_初始化(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_初始化(ref int cnt)
         {
             cnt++;
         }
 
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_檢查待命位置READY(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_檢查待命位置READY(ref int cnt)
         {
             if (PLC_Device_冷藏區_移動至待命位置.Bool) return;
             if (plC_RJ_Button_冷藏區_輸送帶後退.Bool) return;
@@ -1193,43 +1389,43 @@ namespace 癌症自動備藥機暨排程系統
             plC_RJ_Button_冷藏區_輸送帶後退.Bool = true;
             cnt++;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_等待待命位置完成(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_等待待命位置完成(ref int cnt)
         {
             if (PLC_Device_冷藏區_移動至待命位置.Bool) return;
             if (plC_RJ_Button_冷藏區_輸送帶後退.Bool) return;
             cnt++;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_開門Ready(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_開門Ready(ref int cnt)
         {
             if (plC_RJ_Button_冷藏區_輸送門開啟.Bool) return;
             plC_RJ_Button_冷藏區_輸送門開啟.Bool = true;
             cnt++;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_開門完成(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_開門完成(ref int cnt)
         {
             if (plC_RJ_Button_冷藏區_輸送門開啟.Bool) return;
             cnt++;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_Z軸Ready(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_Z軸Ready(ref int cnt)
         {
             if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
-            PLC_Device_冷藏區Z軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_目標位置Z.Value;
+            PLC_Device_冷藏區Z軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置_目標位置Z.Value;
             PLC_Device_冷藏區Z軸_絕對位置移動.Bool = true;
             cnt++;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_Z軸完成(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_Z軸完成(ref int cnt)
         {
             if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
             cnt++;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_X軸Ready(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_X軸Ready(ref int cnt)
         {
             if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
-            PLC_Device_冷藏區X軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至常溫區藥盒傳接位置_目標位置X.Value;
+            PLC_Device_冷藏區X軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至與常溫區藥盒傳接位置_目標位置X.Value;
             PLC_Device_冷藏區X軸_絕對位置移動.Bool = true;
             cnt++;
         }
-        void cnt_Program_冷藏區_移動至常溫區藥盒傳接位置_X軸完成(ref int cnt)
+        void cnt_Program_冷藏區_移動至與常溫區藥盒傳接位置_X軸完成(ref int cnt)
         {
             if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
             cnt++;
@@ -1443,7 +1639,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_常溫區X軸復歸_開始復歸(ref int cnt)
         {
-            DeltaMotor485_port[(byte)enum_軸號.常溫區_X軸].Home(enum_Direction.CCW, true, 250, 10, 50, 50, plC_NumBox_常溫區X軸_復歸偏移.Value, 200, 50);
+            DeltaMotor485_port_常溫區_X軸[3].Home(enum_Direction.CCW, true, 250, 10, 50, 50, plC_NumBox_常溫區X軸_復歸偏移.Value, 200, 50);
             cnt++;
         }
         void cnt_Program_常溫區X軸復歸_檢查HOME_OFF(ref int cnt)
@@ -1583,7 +1779,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_常溫區Z軸復歸_開始復歸(ref int cnt)
         {
-            DeltaMotor485_port[(byte)enum_軸號.常溫區_Z軸].Home(enum_Direction.CCW, true, 100, 10, 50, 50, plC_NumBox_常溫區Z軸_復歸偏移.Value, 200, 50);
+            DeltaMotor485_port_常溫區_Z軸[4].Home(enum_Direction.CCW, true, 100, 10, 50, 50, plC_NumBox_常溫區Z軸_復歸偏移.Value, 200, 50);
             cnt++;
         }
         void cnt_Program_常溫區Z軸復歸_檢查HOME_OFF(ref int cnt)
@@ -1995,10 +2191,10 @@ namespace 癌症自動備藥機暨排程系統
 
         #endregion
         #region PLC_常溫區_移動至待命位置
-        PLC_Device PLC_Device_常溫區_移動至待命位置_目標位置X = new PLC_Device("R5220");
-        PLC_Device PLC_Device_常溫區_移動至待命位置_目標位置Z = new PLC_Device("R5221");
+        PLC_Device PLC_Device_常溫區_移動至待命位置_目標位置X = new PLC_Device("R6020");
+        PLC_Device PLC_Device_常溫區_移動至待命位置_目標位置Z = new PLC_Device("R6021");
 
-        PLC_Device PLC_Device_常溫區_移動至待命位置 = new PLC_Device("S5200");
+        PLC_Device PLC_Device_常溫區_移動至待命位置 = new PLC_Device("S6000");
         PLC_Device PLC_Device_常溫區_移動至待命位置_OK = new PLC_Device("");
         Task Task_常溫區_移動至待命位置;
         MyTimer MyTimer_常溫區_移動至待命位置_結束延遲 = new MyTimer();
@@ -2071,68 +2267,68 @@ namespace 癌症自動備藥機暨排程系統
 
 
         #endregion
-        #region PLC_常溫區_移動至常溫區藥盒傳接位置
-        PLC_Device PLC_Device_常溫區_移動至常溫區藥盒傳接位置_目標位置X = new PLC_Device("R5222");
-        PLC_Device PLC_Device_常溫區_移動至常溫區藥盒傳接位置_目標位置Z = new PLC_Device("R5223");
+        #region PLC_常溫區_移動至與冷藏區藥盒傳接位置
+        PLC_Device PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置_目標位置X = new PLC_Device("R6022");
+        PLC_Device PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置_目標位置Z = new PLC_Device("R6023");
 
-        PLC_Device PLC_Device_常溫區_移動至常溫區藥盒傳接位置 = new PLC_Device("S5201");
-        PLC_Device PLC_Device_常溫區_移動至常溫區藥盒傳接位置_OK = new PLC_Device("");
-        Task Task_常溫區_移動至常溫區藥盒傳接位置;
-        MyTimer MyTimer_常溫區_移動至常溫區藥盒傳接位置_結束延遲 = new MyTimer();
-        int cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 65534;
-        void sub_Program_常溫區_移動至常溫區藥盒傳接位置()
+        PLC_Device PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置 = new PLC_Device("S6001");
+        PLC_Device PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置_OK = new PLC_Device("");
+        Task Task_常溫區_移動至與冷藏區藥盒傳接位置;
+        MyTimer MyTimer_常溫區_移動至與冷藏區藥盒傳接位置_結束延遲 = new MyTimer();
+        int cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 = 65534;
+        void sub_Program_常溫區_移動至與冷藏區藥盒傳接位置()
         {
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 65534)
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 65534)
             {
-                this.MyTimer_常溫區_移動至常溫區藥盒傳接位置_結束延遲.StartTickTime(10000);
-                PLC_Device_常溫區_移動至常溫區藥盒傳接位置.SetComment("PLC_常溫區_移動至常溫區藥盒傳接位置");
-                PLC_Device_常溫區_移動至常溫區藥盒傳接位置_OK.SetComment("PLC_常溫區_移動至常溫區藥盒傳接位置_OK");
-                PLC_Device_常溫區_移動至常溫區藥盒傳接位置.Bool = false;
-                cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 65535;
+                this.MyTimer_常溫區_移動至與冷藏區藥盒傳接位置_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置.SetComment("PLC_常溫區_移動至與冷藏區藥盒傳接位置");
+                PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置_OK.SetComment("PLC_常溫區_移動至與冷藏區藥盒傳接位置_OK");
+                PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置.Bool = false;
+                cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 = 65535;
             }
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 65535) cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 1;
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 1) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查按下(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 2) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_初始化(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 3) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查待命位置READY(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 4) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_等待待命位置完成(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 5) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_開門Ready(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 6) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_開門完成(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 7) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_Z軸Ready(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 8) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_Z軸完成(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 9) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_X軸Ready(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 10) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_X軸完成(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 11) cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 65500;
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 > 1) cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查放開(ref cnt_Program_常溫區_移動至常溫區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 65535) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 = 1;
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 1) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_檢查按下(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 2) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_初始化(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 3) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_檢查待命位置READY(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 4) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_等待待命位置完成(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 5) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_開門Ready(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 6) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_開門完成(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 7) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_Z軸Ready(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 8) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_Z軸完成(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 9) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_X軸Ready(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 10) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_X軸完成(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 11) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 = 65500;
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 > 1) cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_檢查放開(ref cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置);
 
-            if (cnt_Program_常溫區_移動至常溫區藥盒傳接位置 == 65500)
+            if (cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 == 65500)
             {
-                this.MyTimer_常溫區_移動至常溫區藥盒傳接位置_結束延遲.TickStop();
-                this.MyTimer_常溫區_移動至常溫區藥盒傳接位置_結束延遲.StartTickTime(10000);
-                PLC_Device_常溫區_移動至常溫區藥盒傳接位置.Bool = false;
-                PLC_Device_常溫區_移動至常溫區藥盒傳接位置_OK.Bool = false;
+                this.MyTimer_常溫區_移動至與冷藏區藥盒傳接位置_結束延遲.TickStop();
+                this.MyTimer_常溫區_移動至與冷藏區藥盒傳接位置_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置.Bool = false;
+                PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置_OK.Bool = false;
 
                 plC_RJ_Button_常溫區_輸送帶後退.Bool = false;
-                plC_RJ_Button_常溫區_輸送門開啟.Bool = false;
+                plC_RJ_Button_冷藏區_輸送門開啟.Bool = false;
                 PLC_Device_常溫區X軸_絕對位置移動.Bool = false;
                 PLC_Device_常溫區Z軸_絕對位置移動.Bool = false;
                 PLC_Device_常溫區_移動至待命位置.Bool = false;
-                cnt_Program_常溫區_移動至常溫區藥盒傳接位置 = 65535;
+                cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置 = 65535;
             }
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查按下(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_檢查按下(ref int cnt)
         {
-            if (PLC_Device_常溫區_移動至常溫區藥盒傳接位置.Bool) cnt++;
+            if (PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置.Bool) cnt++;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查放開(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_檢查放開(ref int cnt)
         {
-            if (!PLC_Device_常溫區_移動至常溫區藥盒傳接位置.Bool) cnt = 65500;
+            if (!PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置.Bool) cnt = 65500;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_初始化(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_初始化(ref int cnt)
         {
             cnt++;
         }
 
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_檢查待命位置READY(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_檢查待命位置READY(ref int cnt)
         {
             if (PLC_Device_常溫區_移動至待命位置.Bool) return;
             if (plC_RJ_Button_常溫區_輸送帶後退.Bool) return;
@@ -2140,43 +2336,43 @@ namespace 癌症自動備藥機暨排程系統
             plC_RJ_Button_常溫區_輸送帶後退.Bool = true;
             cnt++;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_等待待命位置完成(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_等待待命位置完成(ref int cnt)
         {
             if (PLC_Device_常溫區_移動至待命位置.Bool) return;
             if (plC_RJ_Button_常溫區_輸送帶後退.Bool) return;
             cnt++;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_開門Ready(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_開門Ready(ref int cnt)
         {
-            if (plC_RJ_Button_常溫區_輸送門開啟.Bool) return;
-            plC_RJ_Button_常溫區_輸送門開啟.Bool = true;
+            if (plC_RJ_Button_冷藏區_輸送門開啟.Bool) return;
+            plC_RJ_Button_冷藏區_輸送門開啟.Bool = true;
             cnt++;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_開門完成(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_開門完成(ref int cnt)
         {
-            if (plC_RJ_Button_常溫區_輸送門開啟.Bool) return;
+            if (plC_RJ_Button_冷藏區_輸送門開啟.Bool) return;
             cnt++;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_Z軸Ready(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_Z軸Ready(ref int cnt)
         {
             if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
-            PLC_Device_常溫區Z軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至常溫區藥盒傳接位置_目標位置Z.Value;
+            PLC_Device_常溫區Z軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置_目標位置Z.Value;
             PLC_Device_常溫區Z軸_絕對位置移動.Bool = true;
             cnt++;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_Z軸完成(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_Z軸完成(ref int cnt)
         {
             if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
             cnt++;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_X軸Ready(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_X軸Ready(ref int cnt)
         {
             if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
-            PLC_Device_常溫區X軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至常溫區藥盒傳接位置_目標位置X.Value;
+            PLC_Device_常溫區X軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至與冷藏區藥盒傳接位置_目標位置X.Value;
             PLC_Device_常溫區X軸_絕對位置移動.Bool = true;
             cnt++;
         }
-        void cnt_Program_常溫區_移動至常溫區藥盒傳接位置_X軸完成(ref int cnt)
+        void cnt_Program_常溫區_移動至與冷藏區藥盒傳接位置_X軸完成(ref int cnt)
         {
             if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
             cnt++;
