@@ -28,7 +28,7 @@ namespace 勤務傳送櫃
             }
             else
             {
-                MessageBox.Show("程式已經在執行！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("程式已經在執行！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Exit();
             }
         }

@@ -22,8 +22,8 @@ using HIS_DB_Lib;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 
-[assembly: AssemblyVersion("1.0.0.33")]
-[assembly: AssemblyFileVersion("1.0.0.33")]
+[assembly: AssemblyVersion("1.0.0.35")]
+[assembly: AssemblyFileVersion("1.0.0.35")]
 namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
@@ -128,10 +128,12 @@ namespace 勤務傳送櫃
             private string rFID_COMPort = "";
             private string scanner01_COMPort = "COM2";
             private string scanner02_COMPort = "COM3";
+            private bool show_login = true;
 
             public string RFID_COMPort { get => rFID_COMPort; set => rFID_COMPort = value; }
             public string Scanner01_COMPort { get => scanner01_COMPort; set => scanner01_COMPort = value; }
             public string Scanner02_COMPort { get => scanner02_COMPort; set => scanner02_COMPort = value; }
+            public bool Show_login { get => show_login; set => show_login = value; }
         }
         private void LoadMyConfig()
         {
@@ -315,6 +317,11 @@ namespace 勤務傳送櫃
             this.Program_配藥核對_Init();
             this.Pannel_Box_Init();
 
+            if (this.myConfigClass.Show_login == false)
+            {
+                this.plC_ScreenPage_Main.SelecteTabText("勤務取藥");
+                panel_Main.Visible = false;
+            }
 
             if (PLC_Device_開門異常時間.Value <= 5000) PLC_Device_開門異常時間.Value = 5000;
             Pannel_Box.AlarmTime = PLC_Device_開門異常時間.Value;

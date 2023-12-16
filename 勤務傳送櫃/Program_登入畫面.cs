@@ -315,10 +315,7 @@ namespace 勤務傳送櫃
             {
                 this.plC_ScreenPage_Main.SelecteTabText("勤務取藥");
             }
-            else if (this.plC_CheckBox_勤務取藥.Checked)
-            {
-                this.plC_ScreenPage_Main.SelecteTabText("勤務取藥");
-            }
+            
         }
         private void Function_功能隱藏()
         {

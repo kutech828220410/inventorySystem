@@ -228,44 +228,44 @@ namespace 勤務傳送櫃
             List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRows((int)enum_交易記錄查詢資料.GUID, orderClasses[0].GUID, false);
             if (this.plC_CheckBox_氣送作業.Checked)
             {
-                if (list_交易紀錄.Count == 0)
-                {
-                    object[] value = new object[new enum_交易記錄查詢資料().GetLength()];
-                    value[(int)enum_交易記錄查詢資料.GUID] = orderClasses[0].GUID;
-                    value[(int)enum_交易記錄查詢資料.動作] = enum_交易記錄查詢動作.藥袋刷入.GetEnumName();
-                    value[(int)enum_交易記錄查詢資料.藥品碼] = orderClasses[0].藥品碼;
-                    value[(int)enum_交易記錄查詢資料.領藥號] = orderClasses[0].領藥號;
-                    value[(int)enum_交易記錄查詢資料.藥品名稱] = orderClasses[0].藥品名稱;
-                    value[(int)enum_交易記錄查詢資料.頻次] = orderClasses[0].頻次;
-                    value[(int)enum_交易記錄查詢資料.病房號] = orderClasses[0].病房;
-                    value[(int)enum_交易記錄查詢資料.交易量] = orderClasses[0].交易量;
-                    value[(int)enum_交易記錄查詢資料.病人姓名] = orderClasses[0].病人姓名;
-                    value[(int)enum_交易記錄查詢資料.病歷號] = orderClasses[0].病歷號;
-                    value[(int)enum_交易記錄查詢資料.開方時間] = orderClasses[0].開方日期;
-                    value[(int)enum_交易記錄查詢資料.領用人] = this.登入者名稱;
-                    value[(int)enum_交易記錄查詢資料.領用時間] = "1999-01-01 00:00:00";
-                    value[(int)enum_交易記錄查詢資料.操作時間] = DateTime.Now.ToDateTimeString_6();
-                    value[(int)enum_交易記錄查詢資料.操作人] = this.登入者名稱;
-                    value[(int)enum_交易記錄查詢資料.備註] = "氣送作業";
-                    this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value, false);
-                }
-                else
-                {
+                //if (list_交易紀錄.Count == 0)
+                //{
+                //    object[] value = new object[new enum_交易記錄查詢資料().GetLength()];
+                //    value[(int)enum_交易記錄查詢資料.GUID] = orderClasses[0].GUID;
+                //    value[(int)enum_交易記錄查詢資料.動作] = enum_交易記錄查詢動作.藥袋刷入.GetEnumName();
+                //    value[(int)enum_交易記錄查詢資料.藥品碼] = orderClasses[0].藥品碼;
+                //    value[(int)enum_交易記錄查詢資料.領藥號] = orderClasses[0].領藥號;
+                //    value[(int)enum_交易記錄查詢資料.藥品名稱] = orderClasses[0].藥品名稱;
+                //    value[(int)enum_交易記錄查詢資料.頻次] = orderClasses[0].頻次;
+                //    value[(int)enum_交易記錄查詢資料.病房號] = orderClasses[0].病房;
+                //    value[(int)enum_交易記錄查詢資料.交易量] = orderClasses[0].交易量;
+                //    value[(int)enum_交易記錄查詢資料.病人姓名] = orderClasses[0].病人姓名;
+                //    value[(int)enum_交易記錄查詢資料.病歷號] = orderClasses[0].病歷號;
+                //    value[(int)enum_交易記錄查詢資料.開方時間] = orderClasses[0].開方日期;
+                //    value[(int)enum_交易記錄查詢資料.領用人] = this.登入者名稱;
+                //    value[(int)enum_交易記錄查詢資料.領用時間] = "1999-01-01 00:00:00";
+                //    value[(int)enum_交易記錄查詢資料.操作時間] = DateTime.Now.ToDateTimeString_6();
+                //    value[(int)enum_交易記錄查詢資料.操作人] = this.登入者名稱;
+                //    value[(int)enum_交易記錄查詢資料.備註] = "氣送作業";
+                //    this.sqL_DataGridView_交易記錄查詢.SQL_AddRow(value, false);
+                //}
+                //else
+                //{
 
-                    object[] value = list_交易紀錄[0];
-                    value[(int)enum_交易記錄查詢資料.領用人] = this.登入者名稱;
-                    value[(int)enum_交易記錄查詢資料.領用時間] = "1999-01-01 00:00:00";
-                    value[(int)enum_交易記錄查詢資料.備註] = "氣送作業";
-                    this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄[0], false);
-                }
+                //    object[] value = list_交易紀錄[0];
+                //    value[(int)enum_交易記錄查詢資料.領用人] = this.登入者名稱;
+                //    value[(int)enum_交易記錄查詢資料.領用時間] = "1999-01-01 00:00:00";
+                //    value[(int)enum_交易記錄查詢資料.備註] = "氣送作業";
+                //    this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄[0], false);
+                //}
 
-                object[] value_醫令資料 = orderClasses[0].ClassToSQL<OrderClass, enum_醫囑資料>();
-                value_醫令資料[(int)enum_醫囑資料.狀態] = "已調劑";
-                value_醫令資料[(int)enum_醫囑資料.結方日期] = DateTime.MinValue.ToDateTimeString();
-                value_醫令資料[(int)enum_醫囑資料.展藥時間] = DateTime.MinValue.ToDateTimeString();
-                value_醫令資料[(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
+                //object[] value_醫令資料 = orderClasses[0].ClassToSQL<OrderClass, enum_醫囑資料>();
+                //value_醫令資料[(int)enum_醫囑資料.狀態] = "已調劑";
+                //value_醫令資料[(int)enum_醫囑資料.結方日期] = DateTime.MinValue.ToDateTimeString();
+                //value_醫令資料[(int)enum_醫囑資料.展藥時間] = DateTime.MinValue.ToDateTimeString();
+                //value_醫令資料[(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
 
-                this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(value_醫令資料, false);
+                //this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(value_醫令資料, false);
             }
 
 
@@ -339,7 +339,10 @@ namespace 勤務傳送櫃
                 textBox_勤務取藥_條碼刷入區.Text = "";
             }));
             list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用時間] = DateTime.Now.ToDateTimeString_6();
-
+            if (this.plC_CheckBox_氣送作業.Checked)
+            {
+                list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用人] = this.登入者名稱;
+            }
             this.sqL_DataGridView_交易記錄查詢.SQL_ReplaceExtra(list_交易紀錄[0], false); 
             string str = list_交易紀錄[0][(int)enum_交易記錄查詢資料.領用人].ObjectToString();
             if(this.plC_CheckBox_氣送作業.Checked)

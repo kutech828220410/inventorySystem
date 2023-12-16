@@ -23,6 +23,24 @@ namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
     {
+        public enum enum_交易記錄查詢資料_匯出
+        {
+            動作,
+            領藥號,
+            藥品碼,
+            藥品名稱,
+            交易量,
+            操作人,
+            領用人,
+            病人姓名,
+            病房號,
+            病歷號,
+            操作時間,
+            領用時間,
+            開方時間,
+            備註,
+        }
+
         public enum ContextMenuStrip_交易紀錄
         {
             [Description("M8000")]
@@ -86,13 +104,13 @@ namespace 勤務傳送櫃
             this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_領用時間_搜尋_MouseDownEvent;
             this.plC_RJ_Button_交易記錄查詢_病歷號_搜尋.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_病歷號_搜尋_MouseDownEvent;
             this.plC_RJ_Button_交易記錄查詢_病房號_搜尋.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_病房號_搜尋_MouseDownEvent;
-
+            this.plC_RJ_Button_交易記錄查詢_匯出.MouseDownEvent += PlC_RJ_Button_交易記錄查詢_匯出_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(this.Program_交易紀錄);
 
         }
 
-     
+  
 
         bool flag_交易紀錄_頁面更新_init = false;
         private void Program_交易紀錄() 
@@ -212,6 +230,26 @@ namespace 勤務傳送櫃
                     this.sqL_DataGridView_交易記錄查詢.dataGridView.Rows[i].Cells[enum_交易記錄查詢資料.領用時間.GetEnumName()].Value = "-";
                 }
             }
+        }
+        private void PlC_RJ_Button_交易記錄查詢_匯出_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate 
+            {
+                List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.GetAllRows();
+                if(list_value.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("無資料可匯出!");
+                    return;
+                }
+                if(this.saveFileDialog_SaveExcel.ShowDialog() == DialogResult.OK)
+                {
+                    string filename = this.saveFileDialog_SaveExcel.FileName;
+                    DataTable dataTable = list_value.ToDataTable(new enum_交易記錄查詢資料());
+                    dataTable = dataTable.ReorderTable(new enum_交易記錄查詢資料_匯出().GetEnumNames());
+                    MyOffice.ExcelClass.SaveFile(dataTable, filename);
+                    MyMessageBox.ShowDialog("資料匯出完成!");
+                }
+            }));
         }
         private void PlC_RJ_Button_交易記錄查詢_顯示全部_MouseDownEvent(MouseEventArgs mevent)
         {
