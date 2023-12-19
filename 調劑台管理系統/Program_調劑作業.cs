@@ -1477,7 +1477,12 @@ namespace 調劑台管理系統
                     string 收支原因 = "";
 
                     list_堆疊資料_buf = list_堆疊資料.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
-                    if(list_堆疊資料_buf.Count > 0)
+
+                    list_堆疊資料_buf = (from temp in list_堆疊資料
+                                     where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
+                                     select temp).ToList();
+
+                    if (list_堆疊資料_buf.Count > 0)
                     {
                         顏色 = Color.Purple.ToColorString();
                     }
@@ -3431,6 +3436,11 @@ namespace 調劑台管理系統
 
 
                     list_堆疊資料_buf = list_堆疊資料.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
+
+                    list_堆疊資料_buf = (from temp in list_堆疊資料
+                                     where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
+                                     select temp).ToList();
+
                     if (list_堆疊資料_buf.Count > 0)
                     {
                         顏色 = Color.Purple.ToColorString();

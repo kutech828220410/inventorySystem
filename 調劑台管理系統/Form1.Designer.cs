@@ -1172,6 +1172,7 @@
             this.plC_NumBox7 = new MyUI.PLC_NumBox();
             this.plC_Button1 = new MyUI.PLC_Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.plC_CheckBox_關閉抽屜不滅燈 = new MyUI.PLC_CheckBox();
             this.groupBox38 = new System.Windows.Forms.GroupBox();
             this.label32 = new System.Windows.Forms.Label();
             this.plC_NumBox_亮燈亮度 = new MyUI.PLC_NumBox();
@@ -1544,7 +1545,6 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
-            this.plC_CheckBox_關閉抽屜不滅燈 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -32049,6 +32049,26 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "調劑作業設定";
             // 
+            // plC_CheckBox_關閉抽屜不滅燈
+            // 
+            this.plC_CheckBox_關閉抽屜不滅燈.AutoSize = true;
+            this.plC_CheckBox_關閉抽屜不滅燈.Bool = false;
+            this.plC_CheckBox_關閉抽屜不滅燈.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_關閉抽屜不滅燈.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_關閉抽屜不滅燈.Location = new System.Drawing.Point(163, 86);
+            this.plC_CheckBox_關閉抽屜不滅燈.Name = "plC_CheckBox_關閉抽屜不滅燈";
+            this.plC_CheckBox_關閉抽屜不滅燈.Size = new System.Drawing.Size(139, 20);
+            this.plC_CheckBox_關閉抽屜不滅燈.TabIndex = 133;
+            this.plC_CheckBox_關閉抽屜不滅燈.Text = "關閉抽屜不滅燈";
+            this.plC_CheckBox_關閉抽屜不滅燈.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_關閉抽屜不滅燈.寫入元件位置 = "S3111";
+            this.plC_CheckBox_關閉抽屜不滅燈.文字內容 = "關閉抽屜不滅燈";
+            this.plC_CheckBox_關閉抽屜不滅燈.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_關閉抽屜不滅燈.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_關閉抽屜不滅燈.讀取元件位置 = "S3111";
+            this.plC_CheckBox_關閉抽屜不滅燈.讀寫鎖住 = false;
+            this.plC_CheckBox_關閉抽屜不滅燈.音效 = false;
+            // 
             // groupBox38
             // 
             this.groupBox38.Controls.Add(this.label32);
@@ -41253,27 +41273,6 @@
             this.ContentsPanel.ShadowSize = 0;
             this.ContentsPanel.Size = new System.Drawing.Size(561, 230);
             this.ContentsPanel.TabIndex = 2;
-            // 
-            // plC_CheckBox_關閉抽屜不滅燈
-            // 
-            this.plC_CheckBox_關閉抽屜不滅燈.AutoSize = true;
-            this.plC_CheckBox_關閉抽屜不滅燈.Bool = false;
-            this.plC_CheckBox_關閉抽屜不滅燈.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_關閉抽屜不滅燈.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_關閉抽屜不滅燈.Location = new System.Drawing.Point(224, 169);
-            this.plC_CheckBox_關閉抽屜不滅燈.Name = "plC_CheckBox_關閉抽屜不滅燈";
-            this.plC_CheckBox_關閉抽屜不滅燈.Size = new System.Drawing.Size(139, 20);
-            this.plC_CheckBox_關閉抽屜不滅燈.TabIndex = 133;
-            this.plC_CheckBox_關閉抽屜不滅燈.Text = "關閉抽屜不滅燈";
-            this.plC_CheckBox_關閉抽屜不滅燈.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_關閉抽屜不滅燈.Visible = false;
-            this.plC_CheckBox_關閉抽屜不滅燈.寫入元件位置 = "S3111";
-            this.plC_CheckBox_關閉抽屜不滅燈.文字內容 = "關閉抽屜不滅燈";
-            this.plC_CheckBox_關閉抽屜不滅燈.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_關閉抽屜不滅燈.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_關閉抽屜不滅燈.讀取元件位置 = "S3111";
-            this.plC_CheckBox_關閉抽屜不滅燈.讀寫鎖住 = false;
-            this.plC_CheckBox_關閉抽屜不滅燈.音效 = false;
             // 
             // Form1
             // 
