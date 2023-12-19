@@ -1367,7 +1367,8 @@ namespace 調劑台管理系統
 
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(14).Year, DateTime.Now.AddDays(14).Month, DateTime.Now.AddDays(14).Day, 23, 59, 59);
-
+            List<object[]> list_堆疊資料 = Function_取藥堆疊資料_取得母資料();
+            List<object[]> list_堆疊資料_buf = new List<object[]>();
             Task Task_刪除資料 = Task.Run(() =>
             {
                 MyTimer myTimer = new MyTimer();
@@ -1440,8 +1441,6 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
-                List<object[]> list_堆疊資料 = Function_取藥堆疊資料_取得母資料();
-                List<object[]> list_堆疊資料_buf = new List<object[]>();
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
                     string 藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
@@ -1478,10 +1477,10 @@ namespace 調劑台管理系統
 
                     list_堆疊資料_buf = list_堆疊資料.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
 
-                    list_堆疊資料_buf = (from temp in list_堆疊資料
+                    list_堆疊資料_buf = (from temp in list_堆疊資料_buf
+                                     where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
                                      select temp).ToList();
-
                     if (list_堆疊資料_buf.Count > 0)
                     {
                         顏色 = Color.Purple.ToColorString();
@@ -3325,7 +3324,8 @@ namespace 調劑台管理系統
 
             DateTime dateTime_start = new DateTime(DateTime.Now.AddDays(daynum).Year, DateTime.Now.AddDays(daynum).Month, DateTime.Now.AddDays(daynum).Day, 0, 0, 0);
             DateTime dateTime_end = new DateTime(DateTime.Now.AddDays(14).Year, DateTime.Now.AddDays(14).Month, DateTime.Now.AddDays(14).Day, 23, 59, 59);
-
+            List<object[]> list_堆疊資料 = Function_取藥堆疊資料_取得母資料();
+            List<object[]> list_堆疊資料_buf = new List<object[]>();
             Task Task_刪除資料 = Task.Run(() =>
             {
                 MyTimer myTimer = new MyTimer();
@@ -3397,8 +3397,7 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
-                List<object[]> list_堆疊資料 = Function_取藥堆疊資料_取得母資料();
-                List<object[]> list_堆疊資料_buf = new List<object[]>();
+      
 
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
@@ -3437,7 +3436,8 @@ namespace 調劑台管理系統
 
                     list_堆疊資料_buf = list_堆疊資料.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
 
-                    list_堆疊資料_buf = (from temp in list_堆疊資料
+                    list_堆疊資料_buf = (from temp in list_堆疊資料_buf
+                                     where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
                                      select temp).ToList();
 

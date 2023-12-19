@@ -315,6 +315,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_value_buf, false);
 
             string 藥品碼 = list_value_buf[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+            string 操作人 = list_value_buf[0][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
             list_value_buf = list_value.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
             list_value_buf = list_value_buf.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
             if (list_value_buf.Count == 0)
@@ -325,6 +326,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClass.調劑台名稱 = "刷新面板";
+                takeMedicineStackClass.操作人 = $"{操作人}";
                 this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRow(takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>(), false);
             }
             else
@@ -334,6 +336,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                 takeMedicineStackClass.調劑台名稱 = "刷新面板";
+                takeMedicineStackClass.操作人 = $"{操作人}";
                 this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(takeMedicineStackClass.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>(), false);
             }
 
