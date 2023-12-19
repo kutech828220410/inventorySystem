@@ -1440,7 +1440,8 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
-
+                List<object[]> list_堆疊資料 = Function_取藥堆疊資料_取得母資料();
+                List<object[]> list_堆疊資料_buf = new List<object[]>();
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
                     string 藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
@@ -1474,6 +1475,12 @@ namespace 調劑台管理系統
                     int 總異動量 = list_醫令資料[i][(int)enum_醫囑資料.交易量].ObjectToString().StringToInt32();
                     string 效期 = "";
                     string 收支原因 = "";
+
+                    list_堆疊資料_buf = list_堆疊資料.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
+                    if(list_堆疊資料_buf.Count > 0)
+                    {
+                        顏色 = Color.Purple.ToColorString();
+                    }
 
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -3385,6 +3392,8 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
+                List<object[]> list_堆疊資料 = Function_取藥堆疊資料_取得母資料();
+                List<object[]> list_堆疊資料_buf = new List<object[]>();
 
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
@@ -3420,6 +3429,12 @@ namespace 調劑台管理系統
                     string 效期 = "";
                     string 收支原因 = "";
 
+
+                    list_堆疊資料_buf = list_堆疊資料.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
+                    if (list_堆疊資料_buf.Count > 0)
+                    {
+                        顏色 = Color.Purple.ToColorString();
+                    }
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;

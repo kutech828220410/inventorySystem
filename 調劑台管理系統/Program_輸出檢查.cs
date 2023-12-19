@@ -124,9 +124,13 @@ namespace 調劑台管理系統
                     {
                         if(boxes[0].DeviceType == DeviceType.EPD583 || boxes[0].DeviceType == DeviceType.EPD583_lock)
                         {
-                            drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
-                            drawer.ActionDone = true;
-                            this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                            if(this.plC_CheckBox_關閉抽屜不滅燈.Checked == false)
+                            {
+                                drawer.LED_Bytes = DrawerUI_EPD_583.Get_Empty_LEDBytes();
+                                drawer.ActionDone = true;
+                                this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                            }
+                         
                             if (plC_Button_同藥碼全亮.Bool) return;
                          
                             //this.List_EPD583_雲端資料.Add_NewDrawer(drawer);

@@ -482,7 +482,7 @@ namespace 調劑台管理系統
                 if (list_value_replace.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_value_replace, false);
 
             }
-            System.Threading.Thread.Sleep(100);
+            System.Threading.Thread.Sleep(500);
         }
         private List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱)
         {

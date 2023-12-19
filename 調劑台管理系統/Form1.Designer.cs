@@ -1544,6 +1544,7 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
+            this.plC_CheckBox_關閉抽屜不滅燈 = new MyUI.PLC_CheckBox();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -32035,6 +32036,7 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.plC_CheckBox_關閉抽屜不滅燈);
             this.groupBox8.Controls.Add(this.groupBox38);
             this.groupBox8.Controls.Add(this.plC_CheckBox_盤點量要修正至結存量);
             this.groupBox8.Controls.Add(this.groupBox6);
@@ -36949,7 +36951,7 @@
             this.rJ_GroupBox27.PannelBorderSize = 2;
             this.rJ_GroupBox27.Size = new System.Drawing.Size(896, 472);
             this.rJ_GroupBox27.TabIndex = 123;
-            this.rJ_GroupBox27.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.rJ_GroupBox27.TitleBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox27.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_GroupBox27.TitleBorderRadius = 5;
             this.rJ_GroupBox27.TitleBorderSize = 0;
@@ -37049,7 +37051,7 @@
             this.rJ_GroupBox5.PannelBorderSize = 2;
             this.rJ_GroupBox5.Size = new System.Drawing.Size(896, 530);
             this.rJ_GroupBox5.TabIndex = 122;
-            this.rJ_GroupBox5.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.rJ_GroupBox5.TitleBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox5.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_GroupBox5.TitleBorderRadius = 5;
             this.rJ_GroupBox5.TitleBorderSize = 0;
@@ -37148,7 +37150,7 @@
             this.rJ_GroupBox26.PannelBorderSize = 0;
             this.rJ_GroupBox26.Size = new System.Drawing.Size(544, 527);
             this.rJ_GroupBox26.TabIndex = 127;
-            this.rJ_GroupBox26.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.rJ_GroupBox26.TitleBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox26.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_GroupBox26.TitleBorderRadius = 5;
             this.rJ_GroupBox26.TitleBorderSize = 0;
@@ -41252,6 +41254,27 @@
             this.ContentsPanel.Size = new System.Drawing.Size(561, 230);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // plC_CheckBox_關閉抽屜不滅燈
+            // 
+            this.plC_CheckBox_關閉抽屜不滅燈.AutoSize = true;
+            this.plC_CheckBox_關閉抽屜不滅燈.Bool = false;
+            this.plC_CheckBox_關閉抽屜不滅燈.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_關閉抽屜不滅燈.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_關閉抽屜不滅燈.Location = new System.Drawing.Point(224, 169);
+            this.plC_CheckBox_關閉抽屜不滅燈.Name = "plC_CheckBox_關閉抽屜不滅燈";
+            this.plC_CheckBox_關閉抽屜不滅燈.Size = new System.Drawing.Size(139, 20);
+            this.plC_CheckBox_關閉抽屜不滅燈.TabIndex = 133;
+            this.plC_CheckBox_關閉抽屜不滅燈.Text = "關閉抽屜不滅燈";
+            this.plC_CheckBox_關閉抽屜不滅燈.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_關閉抽屜不滅燈.Visible = false;
+            this.plC_CheckBox_關閉抽屜不滅燈.寫入元件位置 = "S3111";
+            this.plC_CheckBox_關閉抽屜不滅燈.文字內容 = "關閉抽屜不滅燈";
+            this.plC_CheckBox_關閉抽屜不滅燈.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_關閉抽屜不滅燈.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_關閉抽屜不滅燈.讀取元件位置 = "S3111";
+            this.plC_CheckBox_關閉抽屜不滅燈.讀寫鎖住 = false;
+            this.plC_CheckBox_關閉抽屜不滅燈.音效 = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -43285,6 +43308,7 @@
         private System.Windows.Forms.GroupBox groupBox38;
         private System.Windows.Forms.Label label32;
         private MyUI.PLC_NumBox plC_NumBox_亮燈亮度;
+        private MyUI.PLC_CheckBox plC_CheckBox_關閉抽屜不滅燈;
     }
 }
 
