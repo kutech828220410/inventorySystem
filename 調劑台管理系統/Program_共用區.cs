@@ -31,7 +31,33 @@ namespace 調劑台管理系統
         {
             this.serverSettingClass = serverSettingClass;
         }
-
+        public static Drawer GetEPD583(string IP , ref List<CommonSapceClass> commonSapceClasses)
+        {
+            for(int i = 0; i < commonSapceClasses.Count; i++)
+            {
+                Drawer drawer = commonSapceClasses[i].List_EPD583.SortByIP(IP);
+                if (drawer != null) return drawer;
+            }
+            return null;
+        }
+        public static RowsLED GetRowsLED(string IP, ref List<CommonSapceClass> commonSapceClasses)
+        {
+            for (int i = 0; i < commonSapceClasses.Count; i++)
+            {
+                RowsLED rowsLED = commonSapceClasses[i].List_RowsLED.SortByIP(IP);
+                if (rowsLED != null) return rowsLED;
+            }
+            return null;
+        }
+        public static Storage GetEPD266(string IP, ref List<CommonSapceClass> commonSapceClasses)
+        {
+            for (int i = 0; i < commonSapceClasses.Count; i++)
+            {
+                Storage storage = commonSapceClasses[i].List_EPD266.SortByIP(IP);
+                if (storage != null) return storage;
+            }
+            return null;
+        }
         public void Load()
         {
             string IP = serverSettingClass.Server;

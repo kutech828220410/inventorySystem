@@ -1475,16 +1475,13 @@ namespace 調劑台管理系統
                     string 效期 = "";
                     string 收支原因 = "";
 
-                    list_堆疊資料_buf = list_堆疊資料.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
-
-                    list_堆疊資料_buf = (from temp in list_堆疊資料_buf
+                    list_堆疊資料_buf = (from temp in list_堆疊資料
+                                     where temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == 藥品碼
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
+                                     where temp[(int)enum_取藥堆疊母資料.操作人].ObjectToString() != 操作人
                                      select temp).ToList();
-                    if (list_堆疊資料_buf.Count > 0)
-                    {
-                        顏色 = Color.Purple.ToColorString();
-                    }
+                  
 
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -1496,6 +1493,12 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.領藥號 = 領藥號;
                     takeMedicineStackClass.診別 = 診別;
                     takeMedicineStackClass.顏色 = 顏色;
+                    if (list_堆疊資料_buf.Count > 0)
+                    {
+                        takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
+                      
+
+                    }
                     takeMedicineStackClass.藥品名稱 = 藥品名稱;
                     takeMedicineStackClass.藥袋序號 = 藥袋序號;
                     takeMedicineStackClass.病歷號 = 病歷號;
@@ -3435,17 +3438,15 @@ namespace 調劑台管理系統
                     string 收支原因 = "";
 
 
-                    list_堆疊資料_buf = list_堆疊資料.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
 
-                    list_堆疊資料_buf = (from temp in list_堆疊資料_buf
+                    list_堆疊資料_buf = (from temp in list_堆疊資料
+                                     where temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == 藥品碼
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
+                                     where temp[(int)enum_取藥堆疊母資料.操作人].ObjectToString() != 操作人
                                      select temp).ToList();
 
-                    if (list_堆疊資料_buf.Count > 0)
-                    {
-                        顏色 = Color.Purple.ToColorString();
-                    }
+             
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
@@ -3456,6 +3457,10 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.領藥號 = 領藥號;
                     takeMedicineStackClass.診別 = 診別;
                     takeMedicineStackClass.顏色 = 顏色;
+                    if (list_堆疊資料_buf.Count > 0)
+                    {
+                        takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
+                    }
                     takeMedicineStackClass.藥品名稱 = 藥品名稱;
                     takeMedicineStackClass.藥袋序號 = 藥袋序號;
                     takeMedicineStackClass.病歷號 = 病歷號;

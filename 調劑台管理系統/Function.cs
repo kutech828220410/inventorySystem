@@ -1208,18 +1208,23 @@ namespace 調劑台管理系統
         }
         public void Function_儲位亮燈(string 藥品碼, Color color)
         {
+            if (PLC_Device_主機輸出模式.Bool == false)
+            {
+                return;
+            }
             List<string> list_lock_IP = new List<string>();
             this.Function_儲位亮燈(藥品碼, color ,ref list_lock_IP);
         }
         public void Function_儲位亮燈(string 藥品碼, Color color, ref List<string> list_lock_IP)
         {
             if (藥品碼.StringIsEmpty()) return;
-            if (list_lock_IP.Count == 0)
+            if (list_lock_IP.Count == 0 )
             {
                 LightOn lightOn = new LightOn();
                 lightOn.藥品碼 = 藥品碼;
                 lightOn.顏色 = color;
                 lightOns.Add(lightOn);
+
             }
     
             List<object> list_Device = this.Function_從雲端資料取得儲位(藥品碼);

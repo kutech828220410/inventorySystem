@@ -142,7 +142,7 @@ namespace 調劑台管理系統
             returnData.ServerType = ServerType;
 
             string json_in = returnData.JsonSerializationt(true);
-            string json_result = Net.WEBApiPostJson(url, json_in);
+            string json_result = Net.WEBApiPostJson(url, json_in , false);
 
             returnData = json_result.JsonDeserializet<returnData>();
             medRecheckLogClasses = returnData.Data.ObjToListClass<MedRecheckLogClass>();
