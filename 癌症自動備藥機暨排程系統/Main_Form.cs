@@ -304,5 +304,10 @@ namespace 癌症自動備藥機暨排程系統
 
 
         #endregion
+
+        private void panel21_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

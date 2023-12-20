@@ -35,7 +35,6 @@ namespace 癌症自動備藥機暨排程系統
             出盒區_Y軸 = 5,
         }
         PLC_Device PLC_IO_冷藏區X軸_現在位置 = new PLC_Device("R5000");
-
         PLC_Device PLC_IO_冷藏區Z軸_解剎車 = new PLC_Device("Y13");
 
         PLC_Device PLC_IO_冷藏區_輸送帶前進 = new PLC_Device("Y11");
@@ -49,6 +48,14 @@ namespace 癌症自動備藥機暨排程系統
 
         PLC_Device PLC_IO_冷藏區_輸送門關閉 = new PLC_Device("S240");
         PLC_Device PLC_IO_冷藏區_輸送台關閉到位 = new PLC_Device("X04");
+
+        PLC_Device PLC_IO_冷藏區_輸送帶啟動 = new PLC_Device("Y2");
+        PLC_Device PLC_IO_冷藏區_輸送帶反轉 = new PLC_Device("Y3");
+        PLC_Device PLC_IO_冷藏區_藥盒左感應 = new PLC_Device("X02");
+        PLC_Device PLC_IO_冷藏區_藥盒中感應 = new PLC_Device("X01");
+        PLC_Device PLC_IO_冷藏區_藥盒右感應 = new PLC_Device("X00");
+
+        PLC_Device PLC_IO_常溫區X軸_現在位置 = new PLC_Device("R5200");
 
         PLC_Device PLC_IO_常溫區Z軸_解剎車 = new PLC_Device("Y12");
 
@@ -287,6 +294,9 @@ namespace 癌症自動備藥機暨排程系統
             sub_Program_冷藏區_移動至待命位置();
             sub_Program_冷藏區_移動至與常溫區藥盒傳接位置();
             sub_Program_冷藏區_移動至零點位置();
+            sub_Program_冷藏區藥盒輸送至左方();
+            sub_Program_冷藏區藥盒輸送至右方();
+            sub_Program_冷藏區藥盒輸送至中間();
 
             sub_Program_常溫區復歸();
             sub_Program_常溫區X軸復歸();
@@ -302,6 +312,7 @@ namespace 癌症自動備藥機暨排程系統
             sub_Program_常溫區Z軸_絕對位置移動();
             sub_Program_常溫區_移動至待命位置();
             sub_Program_常溫區_移動至與冷藏區藥盒傳接位置();
+            sub_Program_常溫區_移動至零點位置();
             sub_Program_常溫區藥盒輸送至左方();
             sub_Program_常溫區藥盒輸送至右方();
             sub_Program_常溫區藥盒輸送至中間();
@@ -1366,9 +1377,11 @@ namespace 癌症自動備藥機暨排程系統
             if (cnt_Program_冷藏區_移動至待命位置 == 65535) cnt_Program_冷藏區_移動至待命位置 = 1;
             if (cnt_Program_冷藏區_移動至待命位置 == 1) cnt_Program_冷藏區_移動至待命位置_檢查按下(ref cnt_Program_冷藏區_移動至待命位置);
             if (cnt_Program_冷藏區_移動至待命位置 == 2) cnt_Program_冷藏區_移動至待命位置_初始化(ref cnt_Program_冷藏區_移動至待命位置);
-            if (cnt_Program_冷藏區_移動至待命位置 == 3) cnt_Program_冷藏區_移動至待命位置_檢查各部件READY(ref cnt_Program_冷藏區_移動至待命位置);
-            if (cnt_Program_冷藏區_移動至待命位置 == 4) cnt_Program_冷藏區_移動至待命位置_等待完成(ref cnt_Program_冷藏區_移動至待命位置);
-            if (cnt_Program_冷藏區_移動至待命位置 == 5) cnt_Program_冷藏區_移動至待命位置 = 65500;
+            if (cnt_Program_冷藏區_移動至待命位置 == 3) cnt_Program_冷藏區_移動至待命位置_移動X軸(ref cnt_Program_冷藏區_移動至待命位置);
+            if (cnt_Program_冷藏區_移動至待命位置 == 4) cnt_Program_冷藏區_移動至待命位置_等待移動X軸完成(ref cnt_Program_冷藏區_移動至待命位置);
+            if (cnt_Program_冷藏區_移動至待命位置 == 5) cnt_Program_冷藏區_移動至待命位置_移動Z軸(ref cnt_Program_冷藏區_移動至待命位置);
+            if (cnt_Program_冷藏區_移動至待命位置 == 6) cnt_Program_冷藏區_移動至待命位置_等待移動Z軸完成(ref cnt_Program_冷藏區_移動至待命位置);
+            if (cnt_Program_冷藏區_移動至待命位置 == 7) cnt_Program_冷藏區_移動至待命位置 = 65500;
             if (cnt_Program_冷藏區_移動至待命位置 > 1) cnt_Program_冷藏區_移動至待命位置_檢查放開(ref cnt_Program_冷藏區_移動至待命位置);
 
             if (cnt_Program_冷藏區_移動至待命位置 == 65500)
@@ -1400,20 +1413,34 @@ namespace 癌症自動備藥機暨排程系統
         {
             if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
             if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
+            cnt++;
 
+        }
+        void cnt_Program_冷藏區_移動至待命位置_移動X軸(ref int cnt)
+        {
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
             PLC_Device_冷藏區X軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至待命位置_目標位置X.Value;
-            PLC_Device_冷藏區Z軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至待命位置_目標位置Z.Value;
             PLC_Device_冷藏區X軸_絕對位置移動.Bool = true;
+            cnt++;
+
+        }
+        void cnt_Program_冷藏區_移動至待命位置_等待移動X軸完成(ref int cnt)
+        {
+            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
+            cnt++;
+        }
+        void cnt_Program_冷藏區_移動至待命位置_移動Z軸(ref int cnt)
+        {
+            if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
+            PLC_Device_冷藏區Z軸_絕對位置移動_目標位置.Value = PLC_Device_冷藏區_移動至待命位置_目標位置Z.Value;
             PLC_Device_冷藏區Z軸_絕對位置移動.Bool = true;
             cnt++;
 
         }
-        void cnt_Program_冷藏區_移動至待命位置_等待完成(ref int cnt)
+        void cnt_Program_冷藏區_移動至待命位置_等待移動Z軸完成(ref int cnt)
         {
-            if (PLC_Device_冷藏區X軸_絕對位置移動.Bool) return;
             if (PLC_Device_冷藏區Z軸_絕對位置移動.Bool) return;
             cnt++;
-
         }
 
 
@@ -1619,6 +1646,224 @@ namespace 癌症自動備藥機暨排程系統
 
 
         #endregion
+        #region PLC_冷藏區藥盒輸送至左方
+        PLC_Device PLC_Device_冷藏區藥盒輸送至左方 = new PLC_Device("S5100");
+        PLC_Device PLC_Device_冷藏區藥盒輸送至左方_OK = new PLC_Device("");
+        Task Task_冷藏區藥盒輸送至左方;
+        MyTimer MyTimer_冷藏區藥盒輸送至左方_結束延遲 = new MyTimer();
+        MyTimer MyTimer_冷藏區藥盒輸送至左方_開始延遲 = new MyTimer();
+        int cnt_Program_冷藏區藥盒輸送至左方 = 65534;
+        void sub_Program_冷藏區藥盒輸送至左方()
+        {
+            if (cnt_Program_冷藏區藥盒輸送至左方 == 65534)
+            {
+                this.MyTimer_冷藏區藥盒輸送至左方_結束延遲.StartTickTime(10000);
+                this.MyTimer_冷藏區藥盒輸送至左方_開始延遲.StartTickTime(10000);
+                PLC_Device_冷藏區藥盒輸送至左方.SetComment("PLC_冷藏區藥盒輸送至左方");
+                PLC_Device_冷藏區藥盒輸送至左方_OK.SetComment("PLC_冷藏區藥盒輸送至左方_OK");
+                PLC_Device_冷藏區藥盒輸送至左方.Bool = false;
+                cnt_Program_冷藏區藥盒輸送至左方 = 65535;
+            }
+            if (cnt_Program_冷藏區藥盒輸送至左方 == 65535) cnt_Program_冷藏區藥盒輸送至左方 = 1;
+            if (cnt_Program_冷藏區藥盒輸送至左方 == 1) cnt_Program_冷藏區藥盒輸送至左方_檢查按下(ref cnt_Program_冷藏區藥盒輸送至左方);
+            if (cnt_Program_冷藏區藥盒輸送至左方 == 2) cnt_Program_冷藏區藥盒輸送至左方_初始化(ref cnt_Program_冷藏區藥盒輸送至左方);
+            if (cnt_Program_冷藏區藥盒輸送至左方 == 3) cnt_Program_冷藏區藥盒輸送至左方_輸送帶啟動(ref cnt_Program_冷藏區藥盒輸送至左方);
+            if (cnt_Program_冷藏區藥盒輸送至左方 == 4) cnt_Program_冷藏區藥盒輸送至左方 = 65500;
+            if (cnt_Program_冷藏區藥盒輸送至左方 > 1) cnt_Program_冷藏區藥盒輸送至左方_檢查放開(ref cnt_Program_冷藏區藥盒輸送至左方);
+
+            if (cnt_Program_冷藏區藥盒輸送至左方 == 65500)
+            {
+                this.MyTimer_冷藏區藥盒輸送至左方_結束延遲.TickStop();
+                this.MyTimer_冷藏區藥盒輸送至左方_結束延遲.StartTickTime(10000);
+
+                PLC_IO_冷藏區_輸送帶啟動.Bool = false;
+                PLC_IO_冷藏區_輸送帶反轉.Bool = false;
+
+                PLC_Device_冷藏區藥盒輸送至左方.Bool = false;
+                PLC_Device_冷藏區藥盒輸送至左方_OK.Bool = false;
+
+                cnt_Program_冷藏區藥盒輸送至左方 = 65535;
+            }
+        }
+        void cnt_Program_冷藏區藥盒輸送至左方_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_冷藏區藥盒輸送至左方.Bool)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_冷藏區藥盒輸送至左方_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_冷藏區藥盒輸送至左方.Bool) cnt = 65500;
+        }
+        void cnt_Program_冷藏區藥盒輸送至左方_初始化(ref int cnt)
+        {
+            PLC_IO_冷藏區_輸送帶啟動.Bool = false;
+            PLC_IO_冷藏區_輸送帶反轉.Bool = false;
+
+            cnt++;
+        }
+        void cnt_Program_冷藏區藥盒輸送至左方_輸送帶啟動(ref int cnt)
+        {
+            if (PLC_IO_冷藏區_藥盒左感應.Bool)
+            {
+                cnt++;
+                return;
+            }
+            PLC_IO_冷藏區_輸送帶反轉.Bool = true;
+            PLC_IO_冷藏區_輸送帶啟動.Bool = true;
+        }
+        #endregion
+        #region PLC_冷藏區藥盒輸送至右方
+        PLC_Device PLC_Device_冷藏區藥盒輸送至右方 = new PLC_Device("S5102");
+        PLC_Device PLC_Device_冷藏區藥盒輸送至右方_OK = new PLC_Device("");
+        Task Task_冷藏區藥盒輸送至右方;
+        MyTimer MyTimer_冷藏區藥盒輸送至右方_結束延遲 = new MyTimer();
+        MyTimer MyTimer_冷藏區藥盒輸送至右方_開始延遲 = new MyTimer();
+        int cnt_Program_冷藏區藥盒輸送至右方 = 65534;
+        void sub_Program_冷藏區藥盒輸送至右方()
+        {
+            if (cnt_Program_冷藏區藥盒輸送至右方 == 65534)
+            {
+                this.MyTimer_冷藏區藥盒輸送至右方_結束延遲.StartTickTime(10000);
+                this.MyTimer_冷藏區藥盒輸送至右方_開始延遲.StartTickTime(10000);
+                PLC_Device_冷藏區藥盒輸送至右方.SetComment("PLC_冷藏區藥盒輸送至右方");
+                PLC_Device_冷藏區藥盒輸送至右方_OK.SetComment("PLC_冷藏區藥盒輸送至右方_OK");
+                PLC_Device_冷藏區藥盒輸送至右方.Bool = false;
+                cnt_Program_冷藏區藥盒輸送至右方 = 65535;
+            }
+            if (cnt_Program_冷藏區藥盒輸送至右方 == 65535) cnt_Program_冷藏區藥盒輸送至右方 = 1;
+            if (cnt_Program_冷藏區藥盒輸送至右方 == 1) cnt_Program_冷藏區藥盒輸送至右方_檢查按下(ref cnt_Program_冷藏區藥盒輸送至右方);
+            if (cnt_Program_冷藏區藥盒輸送至右方 == 2) cnt_Program_冷藏區藥盒輸送至右方_初始化(ref cnt_Program_冷藏區藥盒輸送至右方);
+            if (cnt_Program_冷藏區藥盒輸送至右方 == 3) cnt_Program_冷藏區藥盒輸送至右方_輸送帶啟動(ref cnt_Program_冷藏區藥盒輸送至右方);
+            if (cnt_Program_冷藏區藥盒輸送至右方 == 4) cnt_Program_冷藏區藥盒輸送至右方 = 65500;
+            if (cnt_Program_冷藏區藥盒輸送至右方 > 1) cnt_Program_冷藏區藥盒輸送至右方_檢查放開(ref cnt_Program_冷藏區藥盒輸送至右方);
+
+            if (cnt_Program_冷藏區藥盒輸送至右方 == 65500)
+            {
+                this.MyTimer_冷藏區藥盒輸送至右方_結束延遲.TickStop();
+                this.MyTimer_冷藏區藥盒輸送至右方_結束延遲.StartTickTime(10000);
+
+                PLC_IO_冷藏區_輸送帶啟動.Bool = false;
+                PLC_IO_冷藏區_輸送帶反轉.Bool = false;
+
+                PLC_Device_冷藏區藥盒輸送至右方.Bool = false;
+                PLC_Device_冷藏區藥盒輸送至右方_OK.Bool = false;
+
+                cnt_Program_冷藏區藥盒輸送至右方 = 65535;
+            }
+        }
+        void cnt_Program_冷藏區藥盒輸送至右方_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_冷藏區藥盒輸送至右方.Bool)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_冷藏區藥盒輸送至右方_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_冷藏區藥盒輸送至右方.Bool) cnt = 65500;
+        }
+        void cnt_Program_冷藏區藥盒輸送至右方_初始化(ref int cnt)
+        {
+            PLC_IO_冷藏區_輸送帶啟動.Bool = false;
+            PLC_IO_冷藏區_輸送帶反轉.Bool = false;
+
+            cnt++;
+        }
+        void cnt_Program_冷藏區藥盒輸送至右方_輸送帶啟動(ref int cnt)
+        {
+            if (PLC_IO_冷藏區_藥盒右感應.Bool)
+            {
+                cnt++;
+                return;
+            }
+            PLC_IO_冷藏區_輸送帶反轉.Bool = false;
+            PLC_IO_冷藏區_輸送帶啟動.Bool = true;
+        }
+        #endregion
+        #region PLC_冷藏區藥盒輸送至中間
+        PLC_Device PLC_Device_冷藏區藥盒輸送至中間 = new PLC_Device("S5101");
+        PLC_Device PLC_Device_冷藏區藥盒輸送至中間_OK = new PLC_Device("");
+        Task Task_冷藏區藥盒輸送至中間;
+        MyTimer MyTimer_冷藏區藥盒輸送至中間_結束延遲 = new MyTimer();
+        MyTimer MyTimer_冷藏區藥盒輸送至中間_開始延遲 = new MyTimer();
+        int cnt_Program_冷藏區藥盒輸送至中間 = 65534;
+        void sub_Program_冷藏區藥盒輸送至中間()
+        {
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 65534)
+            {
+                this.MyTimer_冷藏區藥盒輸送至中間_結束延遲.StartTickTime(10000);
+                this.MyTimer_冷藏區藥盒輸送至中間_開始延遲.StartTickTime(10000);
+                PLC_Device_冷藏區藥盒輸送至中間.SetComment("PLC_冷藏區藥盒輸送至中間");
+                PLC_Device_冷藏區藥盒輸送至中間_OK.SetComment("PLC_冷藏區藥盒輸送至中間_OK");
+                PLC_Device_冷藏區藥盒輸送至中間.Bool = false;
+                cnt_Program_冷藏區藥盒輸送至中間 = 65535;
+            }
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 65535) cnt_Program_冷藏區藥盒輸送至中間 = 1;
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 1) cnt_Program_冷藏區藥盒輸送至中間_檢查按下(ref cnt_Program_冷藏區藥盒輸送至中間);
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 2) cnt_Program_冷藏區藥盒輸送至中間_初始化(ref cnt_Program_冷藏區藥盒輸送至中間);
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 3) cnt_Program_冷藏區藥盒輸送至中間_輸送至右方(ref cnt_Program_冷藏區藥盒輸送至中間);
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 4) cnt_Program_冷藏區藥盒輸送至中間_等待輸送至右方完成(ref cnt_Program_冷藏區藥盒輸送至中間);
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 5) cnt_Program_冷藏區藥盒輸送至中間_輸送帶啟動(ref cnt_Program_冷藏區藥盒輸送至中間);
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 6) cnt_Program_冷藏區藥盒輸送至中間 = 65500;
+            if (cnt_Program_冷藏區藥盒輸送至中間 > 1) cnt_Program_冷藏區藥盒輸送至中間_檢查放開(ref cnt_Program_冷藏區藥盒輸送至中間);
+
+            if (cnt_Program_冷藏區藥盒輸送至中間 == 65500)
+            {
+                this.MyTimer_冷藏區藥盒輸送至中間_結束延遲.TickStop();
+                this.MyTimer_冷藏區藥盒輸送至中間_結束延遲.StartTickTime(10000);
+
+                PLC_IO_冷藏區_輸送帶啟動.Bool = false;
+                PLC_IO_冷藏區_輸送帶反轉.Bool = false;
+
+                PLC_Device_冷藏區藥盒輸送至中間.Bool = false;
+                PLC_Device_冷藏區藥盒輸送至中間_OK.Bool = false;
+
+                cnt_Program_冷藏區藥盒輸送至中間 = 65535;
+            }
+        }
+        void cnt_Program_冷藏區藥盒輸送至中間_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_冷藏區藥盒輸送至中間.Bool)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_冷藏區藥盒輸送至中間_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_冷藏區藥盒輸送至中間.Bool) cnt = 65500;
+        }
+        void cnt_Program_冷藏區藥盒輸送至中間_初始化(ref int cnt)
+        {
+            PLC_IO_冷藏區_輸送帶啟動.Bool = false;
+            PLC_IO_冷藏區_輸送帶反轉.Bool = false;
+
+            cnt++;
+        }
+        void cnt_Program_冷藏區藥盒輸送至中間_輸送至右方(ref int cnt)
+        {
+            if (PLC_Device_冷藏區藥盒輸送至右方.Bool) return;
+            PLC_Device_冷藏區藥盒輸送至右方.Bool = true;
+            cnt++;
+        }
+        void cnt_Program_冷藏區藥盒輸送至中間_等待輸送至右方完成(ref int cnt)
+        {
+            if (PLC_Device_冷藏區藥盒輸送至右方.Bool) return;
+            cnt++;
+        }
+        void cnt_Program_冷藏區藥盒輸送至中間_輸送帶啟動(ref int cnt)
+        {
+            if (PLC_IO_冷藏區_藥盒中感應.Bool)
+            {
+                cnt++;
+                return;
+            }
+            PLC_IO_冷藏區_輸送帶反轉.Bool = true;
+            PLC_IO_冷藏區_輸送帶啟動.Bool = true;
+        }
+        #endregion
+
 
         #region PLC_常溫區復歸
         PLC_Device PLC_Device_常溫區復歸 = new PLC_Device("S6012");
@@ -2403,9 +2648,11 @@ namespace 癌症自動備藥機暨排程系統
             if (cnt_Program_常溫區_移動至待命位置 == 65535) cnt_Program_常溫區_移動至待命位置 = 1;
             if (cnt_Program_常溫區_移動至待命位置 == 1) cnt_Program_常溫區_移動至待命位置_檢查按下(ref cnt_Program_常溫區_移動至待命位置);
             if (cnt_Program_常溫區_移動至待命位置 == 2) cnt_Program_常溫區_移動至待命位置_初始化(ref cnt_Program_常溫區_移動至待命位置);
-            if (cnt_Program_常溫區_移動至待命位置 == 3) cnt_Program_常溫區_移動至待命位置_檢查各部件READY(ref cnt_Program_常溫區_移動至待命位置);
-            if (cnt_Program_常溫區_移動至待命位置 == 4) cnt_Program_常溫區_移動至待命位置_等待完成(ref cnt_Program_常溫區_移動至待命位置);
-            if (cnt_Program_常溫區_移動至待命位置 == 5) cnt_Program_常溫區_移動至待命位置 = 65500;
+            if (cnt_Program_常溫區_移動至待命位置 == 3) cnt_Program_常溫區_移動至待命位置_移動X軸(ref cnt_Program_常溫區_移動至待命位置);
+            if (cnt_Program_常溫區_移動至待命位置 == 4) cnt_Program_常溫區_移動至待命位置_等待移動X軸完成(ref cnt_Program_常溫區_移動至待命位置);
+            if (cnt_Program_常溫區_移動至待命位置 == 5) cnt_Program_常溫區_移動至待命位置_移動Z軸(ref cnt_Program_常溫區_移動至待命位置);
+            if (cnt_Program_常溫區_移動至待命位置 == 6) cnt_Program_常溫區_移動至待命位置_等待移動Z軸完成(ref cnt_Program_常溫區_移動至待命位置);
+            if (cnt_Program_常溫區_移動至待命位置 == 7) cnt_Program_常溫區_移動至待命位置 = 65500;
             if (cnt_Program_常溫區_移動至待命位置 > 1) cnt_Program_常溫區_移動至待命位置_檢查放開(ref cnt_Program_常溫區_移動至待命位置);
 
             if (cnt_Program_常溫區_移動至待命位置 == 65500)
@@ -2437,20 +2684,34 @@ namespace 癌症自動備藥機暨排程系統
         {
             if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
             if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
+            cnt++;
 
+        }
+        void cnt_Program_常溫區_移動至待命位置_移動X軸(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
             PLC_Device_常溫區X軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至待命位置_目標位置X.Value;
-            PLC_Device_常溫區Z軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至待命位置_目標位置Z.Value;
             PLC_Device_常溫區X軸_絕對位置移動.Bool = true;
+            cnt++;
+
+        }
+        void cnt_Program_常溫區_移動至待命位置_等待移動X軸完成(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
+            cnt++;
+        }
+        void cnt_Program_常溫區_移動至待命位置_移動Z軸(ref int cnt)
+        {
+            if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
+            PLC_Device_常溫區Z軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至待命位置_目標位置Z.Value;
             PLC_Device_常溫區Z軸_絕對位置移動.Bool = true;
             cnt++;
 
         }
-        void cnt_Program_常溫區_移動至待命位置_等待完成(ref int cnt)
+        void cnt_Program_常溫區_移動至待命位置_等待移動Z軸完成(ref int cnt)
         {
-            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
             if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
             cnt++;
-
         }
 
 
@@ -2568,6 +2829,92 @@ namespace 癌症自動備藥機暨排程系統
             if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
             cnt++;
         }
+
+        #endregion
+        #region PLC_常溫區_移動至零點位置
+        PLC_Device PLC_Device_常溫區_移動至零點位置_目標位置X = new PLC_Device("R6024");
+        PLC_Device PLC_Device_常溫區_移動至零點位置_目標位置Z = new PLC_Device("R6025");
+
+        PLC_Device PLC_Device_常溫區_移動至零點位置 = new PLC_Device("S6002");
+        PLC_Device PLC_Device_常溫區_移動至零點位置_OK = new PLC_Device("");
+        Task Task_常溫區_移動至零點位置;
+        MyTimer MyTimer_常溫區_移動至零點位置_結束延遲 = new MyTimer();
+        int cnt_Program_常溫區_移動至零點位置 = 65534;
+        void sub_Program_常溫區_移動至零點位置()
+        {
+            if (cnt_Program_常溫區_移動至零點位置 == 65534)
+            {
+                this.MyTimer_常溫區_移動至零點位置_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區_移動至零點位置.SetComment("PLC_常溫區_移動至零點位置");
+                PLC_Device_常溫區_移動至零點位置_OK.SetComment("PLC_常溫區_移動至零點位置_OK");
+                PLC_Device_常溫區_移動至零點位置.Bool = false;
+                cnt_Program_常溫區_移動至零點位置 = 65535;
+            }
+            if (cnt_Program_常溫區_移動至零點位置 == 65535) cnt_Program_常溫區_移動至零點位置 = 1;
+            if (cnt_Program_常溫區_移動至零點位置 == 1) cnt_Program_常溫區_移動至零點位置_檢查按下(ref cnt_Program_常溫區_移動至零點位置);
+            if (cnt_Program_常溫區_移動至零點位置 == 2) cnt_Program_常溫區_移動至零點位置_初始化(ref cnt_Program_常溫區_移動至零點位置);
+            if (cnt_Program_常溫區_移動至零點位置 == 3) cnt_Program_常溫區_移動至零點位置_檢查各部件READY(ref cnt_Program_常溫區_移動至零點位置);
+            if (cnt_Program_常溫區_移動至零點位置 == 4) cnt_Program_常溫區_移動至零點位置_檢查X軸小於待命位置(ref cnt_Program_常溫區_移動至零點位置);
+            if (cnt_Program_常溫區_移動至零點位置 == 5) cnt_Program_常溫區_移動至零點位置_等待完成(ref cnt_Program_常溫區_移動至零點位置);
+            if (cnt_Program_常溫區_移動至零點位置 == 6) cnt_Program_常溫區_移動至零點位置 = 65500;
+            if (cnt_Program_常溫區_移動至零點位置 > 1) cnt_Program_常溫區_移動至零點位置_檢查放開(ref cnt_Program_常溫區_移動至零點位置);
+
+            if (cnt_Program_常溫區_移動至零點位置 == 65500)
+            {
+                this.MyTimer_常溫區_移動至零點位置_結束延遲.TickStop();
+                this.MyTimer_常溫區_移動至零點位置_結束延遲.StartTickTime(10000);
+                PLC_Device_常溫區_移動至零點位置.Bool = false;
+                PLC_Device_常溫區_移動至零點位置_OK.Bool = false;
+
+                PLC_Device_常溫區X軸_絕對位置移動.Bool = false;
+                PLC_Device_常溫區Z軸_絕對位置移動.Bool = false;
+                cnt_Program_常溫區_移動至零點位置 = 65535;
+            }
+        }
+        void cnt_Program_常溫區_移動至零點位置_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區_移動至零點位置.Bool) cnt++;
+        }
+        void cnt_Program_常溫區_移動至零點位置_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區_移動至零點位置.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區_移動至零點位置_初始化(ref int cnt)
+        {
+            cnt++;
+        }
+
+        void cnt_Program_常溫區_移動至零點位置_檢查各部件READY(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
+
+            PLC_Device_常溫區X軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至零點位置_目標位置X.Value;
+            PLC_Device_常溫區X軸_絕對位置移動.Bool = true;
+            cnt++;
+
+        }
+        void cnt_Program_常溫區_移動至零點位置_檢查X軸小於待命位置(ref int cnt)
+        {
+            if (PLC_IO_常溫區X軸_現在位置.Value <= PLC_Device_常溫區_移動至待命位置_目標位置X.Value)
+            {
+                PLC_Device_常溫區Z軸_絕對位置移動_目標位置.Value = PLC_Device_常溫區_移動至零點位置_目標位置Z.Value;
+                PLC_Device_常溫區Z軸_絕對位置移動.Bool = true;
+                cnt++;
+            }
+
+        }
+        void cnt_Program_常溫區_移動至零點位置_等待完成(ref int cnt)
+        {
+            if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
+            if (PLC_Device_常溫區Z軸_絕對位置移動.Bool) return;
+            cnt++;
+
+        }
+
+
+
+
 
         #endregion
         #region PLC_常溫區藥盒輸送至左方
