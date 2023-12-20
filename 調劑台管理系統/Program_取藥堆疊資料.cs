@@ -1252,7 +1252,7 @@ namespace 調劑台管理系統
                                 bool flag_commonlight = false;
                                 if(color != Color.Black)
                                 {
-                                    for (int k = 0; k < Drawer.NumOfLED; k++)
+                                    for (int k = 0; k < 450; k++)
                                     {
                                         int R = LED_Bytes[k * 3 + 0];
                                         int G = LED_Bytes[k * 3 + 1];
@@ -1261,6 +1261,7 @@ namespace 調劑台管理系統
 
                                         if (R != color.R || G != color.G || B != color.B)
                                         {
+                                            Console.WriteLine($"藥品碼 : {藥品碼} , {color.R},{color.G},{color.B} [{R},{G},{B}]");
                                             flag_commonlight = true;
                                             break;
                                         }
