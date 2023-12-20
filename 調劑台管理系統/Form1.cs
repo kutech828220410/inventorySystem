@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.0.21")]
-[assembly: AssemblyFileVersion("1.2.0.21")]
+[assembly: AssemblyVersion("1.2.0.22")]
+[assembly: AssemblyFileVersion("1.2.0.22")]
 namespace 調劑台管理系統
 {
 
@@ -418,6 +418,8 @@ namespace 調劑台管理系統
                 Dialog_調劑作業_病歷號輸入.form = this.FindForm();
                 Dialog_藥檔維護.form = this.FindForm();
                 Dialog_錯誤提示.form = this.FindForm();
+                Dialog_共用區設置.form = this.FindForm();
+
 
                 LoadDBConfig();
                 LoadMyConfig();
@@ -563,6 +565,7 @@ namespace 調劑台管理系統
             this.Program_交班作業_交班表_Init();
             this.Program_藥品管制方式設定_Init();
             this.Program_藥品設定表_Init();
+            this.Program_共用區_Init();
 
             this.sub_Program_盤點作業_定盤_Init();
             this.sub_Program_盤點作業_新增盤點_Init();
