@@ -410,7 +410,7 @@ namespace 調劑台管理系統
                 list_value.Add(rFIDDevices);
             }
             return list_value;
-        }    
+        }
         public List<object> Function_從雲端資料取得儲位(string 藥品碼)
         {
             List<object> list_value = new List<object>();
@@ -440,7 +440,7 @@ namespace 調劑台管理系統
             {
                 list_value.Add(rowsDevices[i]);
             }
-            for(int i = 0; i < rFIDDevices.Count; i++)
+            for (int i = 0; i < rFIDDevices.Count; i++)
             {
                 list_value.Add(rFIDDevices[i]);
             }

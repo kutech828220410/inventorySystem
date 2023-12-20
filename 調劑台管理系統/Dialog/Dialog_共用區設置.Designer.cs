@@ -43,10 +43,10 @@ namespace 調劑台管理系統
             this.panel2.Controls.Add(this.plC_RJ_Button_取消);
             this.panel2.Controls.Add(this.plC_RJ_Button_確認);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 185);
+            this.panel2.Location = new System.Drawing.Point(0, 212);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.panel2.Size = new System.Drawing.Size(594, 58);
+            this.panel2.Size = new System.Drawing.Size(639, 58);
             this.panel2.TabIndex = 2;
             // 
             // rJ_Lable1
@@ -87,7 +87,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_取消.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_取消.GUID = "";
             this.plC_RJ_Button_取消.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_取消.Location = new System.Drawing.Point(364, 2);
+            this.plC_RJ_Button_取消.Location = new System.Drawing.Point(409, 2);
             this.plC_RJ_Button_取消.Name = "plC_RJ_Button_取消";
             this.plC_RJ_Button_取消.OFF_文字內容 = "取消";
             this.plC_RJ_Button_取消.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -134,7 +134,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_確認.GUID = "";
             this.plC_RJ_Button_確認.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_確認.Location = new System.Drawing.Point(478, 2);
+            this.plC_RJ_Button_確認.Location = new System.Drawing.Point(523, 2);
             this.plC_RJ_Button_確認.Name = "plC_RJ_Button_確認";
             this.plC_RJ_Button_確認.OFF_文字內容 = "確認";
             this.plC_RJ_Button_確認.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -166,11 +166,11 @@ namespace 調劑台管理系統
             // 
             // flowLayoutPanel
             // 
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
             this.flowLayoutPanel.Padding = new System.Windows.Forms.Padding(20);
-            this.flowLayoutPanel.Size = new System.Drawing.Size(594, 185);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(639, 195);
             this.flowLayoutPanel.TabIndex = 3;
             // 
             // Dialog_共用區設置
@@ -178,7 +178,7 @@ namespace 調劑台管理系統
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(594, 243);
+            this.ClientSize = new System.Drawing.Size(639, 270);
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

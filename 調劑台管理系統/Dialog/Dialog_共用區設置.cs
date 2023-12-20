@@ -24,6 +24,7 @@ using HIS_DB_Lib;
 
 namespace 調劑台管理系統
 {
+  
     public partial class Dialog_共用區設置 : Form
     {
 

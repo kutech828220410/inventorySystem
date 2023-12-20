@@ -2113,6 +2113,7 @@ namespace 調劑台管理系統
                 textBox_領藥台_01_帳號.Texts = "";
                 textBox_領藥台_01_密碼.Texts = "";
             }));
+            this.commonSapceClasses = Function_取得共用區所有儲位();
             this.voice.SpeakOnTask("使用者登入完成");
 
         }
@@ -4056,6 +4057,7 @@ namespace 調劑台管理系統
                 textBox_領藥台_02_帳號.Texts = "";
                 textBox_領藥台_02_密碼.Texts = "";
             }));
+            this.commonSapceClasses = Function_取得共用區所有儲位();
             this.voice.SpeakOnTask("使用者登入完成");
 
         }

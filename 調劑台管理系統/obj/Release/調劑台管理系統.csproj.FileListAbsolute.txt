@@ -2838,3 +2838,4 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Re
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_新藥建置.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_新藥建置.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_共用區設置.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_共用區設置.resources
