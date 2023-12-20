@@ -304,6 +304,7 @@ namespace 癌症自動備藥機暨排程系統
             sub_Program_常溫區_移動至與冷藏區藥盒傳接位置();
             sub_Program_常溫區藥盒輸送至左方();
             sub_Program_常溫區藥盒輸送至右方();
+            sub_Program_常溫區藥盒輸送至中間();
         }
 
 
@@ -2702,6 +2703,87 @@ namespace 癌症自動備藥機暨排程系統
                 return;
             }
             PLC_IO_常溫區_輸送帶反轉.Bool = false;
+            PLC_IO_常溫區_輸送帶啟動.Bool = true;
+        }
+        #endregion
+        #region PLC_常溫區藥盒輸送至中間
+        PLC_Device PLC_Device_常溫區藥盒輸送至中間 = new PLC_Device("S6101");
+        PLC_Device PLC_Device_常溫區藥盒輸送至中間_OK = new PLC_Device("");
+        Task Task_常溫區藥盒輸送至中間;
+        MyTimer MyTimer_常溫區藥盒輸送至中間_結束延遲 = new MyTimer();
+        MyTimer MyTimer_常溫區藥盒輸送至中間_開始延遲 = new MyTimer();
+        int cnt_Program_常溫區藥盒輸送至中間 = 65534;
+        void sub_Program_常溫區藥盒輸送至中間()
+        {
+            if (cnt_Program_常溫區藥盒輸送至中間 == 65534)
+            {
+                this.MyTimer_常溫區藥盒輸送至中間_結束延遲.StartTickTime(10000);
+                this.MyTimer_常溫區藥盒輸送至中間_開始延遲.StartTickTime(10000);
+                PLC_Device_常溫區藥盒輸送至中間.SetComment("PLC_常溫區藥盒輸送至中間");
+                PLC_Device_常溫區藥盒輸送至中間_OK.SetComment("PLC_常溫區藥盒輸送至中間_OK");
+                PLC_Device_常溫區藥盒輸送至中間.Bool = false;
+                cnt_Program_常溫區藥盒輸送至中間 = 65535;
+            }
+            if (cnt_Program_常溫區藥盒輸送至中間 == 65535) cnt_Program_常溫區藥盒輸送至中間 = 1;
+            if (cnt_Program_常溫區藥盒輸送至中間 == 1) cnt_Program_常溫區藥盒輸送至中間_檢查按下(ref cnt_Program_常溫區藥盒輸送至中間);
+            if (cnt_Program_常溫區藥盒輸送至中間 == 2) cnt_Program_常溫區藥盒輸送至中間_初始化(ref cnt_Program_常溫區藥盒輸送至中間);
+            if (cnt_Program_常溫區藥盒輸送至中間 == 3) cnt_Program_常溫區藥盒輸送至中間_輸送至右方(ref cnt_Program_常溫區藥盒輸送至中間);
+            if (cnt_Program_常溫區藥盒輸送至中間 == 4) cnt_Program_常溫區藥盒輸送至中間_等待輸送至右方完成(ref cnt_Program_常溫區藥盒輸送至中間);
+            if (cnt_Program_常溫區藥盒輸送至中間 == 5) cnt_Program_常溫區藥盒輸送至中間_輸送帶啟動(ref cnt_Program_常溫區藥盒輸送至中間);
+            if (cnt_Program_常溫區藥盒輸送至中間 == 6) cnt_Program_常溫區藥盒輸送至中間 = 65500;
+            if (cnt_Program_常溫區藥盒輸送至中間 > 1) cnt_Program_常溫區藥盒輸送至中間_檢查放開(ref cnt_Program_常溫區藥盒輸送至中間);
+
+            if (cnt_Program_常溫區藥盒輸送至中間 == 65500)
+            {
+                this.MyTimer_常溫區藥盒輸送至中間_結束延遲.TickStop();
+                this.MyTimer_常溫區藥盒輸送至中間_結束延遲.StartTickTime(10000);
+
+                PLC_IO_常溫區_輸送帶啟動.Bool = false;
+                PLC_IO_常溫區_輸送帶反轉.Bool = false;
+
+                PLC_Device_常溫區藥盒輸送至中間.Bool = false;
+                PLC_Device_常溫區藥盒輸送至中間_OK.Bool = false;
+
+                cnt_Program_常溫區藥盒輸送至中間 = 65535;
+            }
+        }
+        void cnt_Program_常溫區藥盒輸送至中間_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_常溫區藥盒輸送至中間.Bool)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_常溫區藥盒輸送至中間_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_常溫區藥盒輸送至中間.Bool) cnt = 65500;
+        }
+        void cnt_Program_常溫區藥盒輸送至中間_初始化(ref int cnt)
+        {
+            PLC_IO_常溫區_輸送帶啟動.Bool = false;
+            PLC_IO_常溫區_輸送帶反轉.Bool = false;
+
+            cnt++;
+        }
+        void cnt_Program_常溫區藥盒輸送至中間_輸送至右方(ref int cnt)
+        {
+            if (PLC_Device_常溫區藥盒輸送至右方.Bool) return;
+            PLC_Device_常溫區藥盒輸送至右方.Bool = true;
+            cnt++;
+        }
+        void cnt_Program_常溫區藥盒輸送至中間_等待輸送至右方完成(ref int cnt)
+        {
+            if (PLC_Device_常溫區藥盒輸送至右方.Bool) return;
+            cnt++;
+        }
+        void cnt_Program_常溫區藥盒輸送至中間_輸送帶啟動(ref int cnt)
+        {
+            if (PLC_IO_常溫區_藥盒中感應.Bool)
+            {
+                cnt++;
+                return;
+            }
+            PLC_IO_常溫區_輸送帶反轉.Bool = true;
             PLC_IO_常溫區_輸送帶啟動.Bool = true;
         }
         #endregion

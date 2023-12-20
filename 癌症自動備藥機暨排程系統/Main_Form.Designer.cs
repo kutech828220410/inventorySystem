@@ -537,6 +537,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_Button16 = new MyUI.PLC_Button();
             this.plC_Button15 = new MyUI.PLC_Button();
             this.plC_Button21 = new MyUI.PLC_Button();
+            this.plC_Button22 = new MyUI.PLC_Button();
             this.panel_main.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
             this.自動備藥.SuspendLayout();
@@ -13213,6 +13214,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Pannel10.BorderColor = System.Drawing.Color.LightGray;
             this.rJ_Pannel10.BorderRadius = 10;
             this.rJ_Pannel10.BorderSize = 2;
+            this.rJ_Pannel10.Controls.Add(this.plC_Button22);
             this.rJ_Pannel10.Controls.Add(this.plC_Button21);
             this.rJ_Pannel10.Controls.Add(this.plC_Button19);
             this.rJ_Pannel10.Controls.Add(this.plC_Button20);
@@ -13497,7 +13499,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_Button21.Bool = false;
             this.plC_Button21.but_press = false;
             this.plC_Button21.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button21.Location = new System.Drawing.Point(523, 96);
+            this.plC_Button21.Location = new System.Drawing.Point(547, 96);
             this.plC_Button21.Name = "plC_Button21";
             this.plC_Button21.OFF_文字內容 = "輸送至右方";
             this.plC_Button21.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -13525,6 +13527,40 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_Button21.音效 = true;
             this.plC_Button21.顯示 = false;
             this.plC_Button21.顯示狀態 = false;
+            // 
+            // plC_Button22
+            // 
+            this.plC_Button22.Bool = false;
+            this.plC_Button22.but_press = false;
+            this.plC_Button22.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button22.Location = new System.Drawing.Point(404, 96);
+            this.plC_Button22.Name = "plC_Button22";
+            this.plC_Button22.OFF_文字內容 = "輸送至中間";
+            this.plC_Button22.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button22.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button22.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button22.ON_文字內容 = "輸送至中間";
+            this.plC_Button22.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button22.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button22.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button22.Size = new System.Drawing.Size(136, 49);
+            this.plC_Button22.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button22.TabIndex = 94;
+            this.plC_Button22.事件驅動 = false;
+            this.plC_Button22.字型鎖住 = false;
+            this.plC_Button22.寫入元件位置 = "S6101";
+            this.plC_Button22.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button22.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button22.文字鎖住 = false;
+            this.plC_Button22.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button22.狀態OFF圖片")));
+            this.plC_Button22.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button22.狀態ON圖片")));
+            this.plC_Button22.讀取位元反向 = false;
+            this.plC_Button22.讀取元件位置 = "S6101";
+            this.plC_Button22.讀寫鎖住 = false;
+            this.plC_Button22.起始狀態 = false;
+            this.plC_Button22.音效 = true;
+            this.plC_Button22.顯示 = false;
+            this.plC_Button22.顯示狀態 = false;
             // 
             // Main_Form
             // 
@@ -14116,6 +14152,7 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_Button plC_Button16;
         private MyUI.PLC_Button plC_Button15;
         private MyUI.PLC_Button plC_Button21;
+        private MyUI.PLC_Button plC_Button22;
     }
 }
 
