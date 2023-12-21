@@ -2839,3 +2839,7 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Re
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_新藥建置.resources
 C:\Users\HS\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_共用區設置.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_共用區設置.resources
+C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\bin\Release\HIS_DB_Lib.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_共用區設置.resources
+C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_錯誤提示.resources
+C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_新藥建置.resources

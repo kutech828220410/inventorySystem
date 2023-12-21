@@ -589,11 +589,7 @@ namespace HIS_WebApi
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                table.Server = Server;
-                table.DBName = DB;
-                table.Username = UserName;
-                table.Password = Password;
-                table.Port = Port.ToString();
+               
                 table = new Table("medicine_page_cloud");
                 table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
                 table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
@@ -617,7 +613,11 @@ namespace HIS_WebApi
                 table.AddColumnList("廠牌", Table.StringType.VARCHAR, 200, Table.IndexType.None);
                 table.AddColumnList("藥品許可證號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
                 table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-
+                table.Server = Server;
+                table.DBName = DB;
+                table.Username = UserName;
+                table.Password = Password;
+                table.Port = Port.ToString();
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
                 else sQLControl.CheckAllColumnName(table, true);
             }
@@ -637,7 +637,7 @@ namespace HIS_WebApi
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-
+               
                 table = new Table("medicine_page_firstclass");
                 table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
                 table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
@@ -659,7 +659,11 @@ namespace HIS_WebApi
                 table.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 200, Table.IndexType.None);
                 table.AddColumnList("藥品條碼2", Table.StringType.TEXT, 200, Table.IndexType.None);
                 table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-
+                table.Server = Server;
+                table.DBName = DB;
+                table.Username = UserName;
+                table.Password = Password;
+                table.Port = Port.ToString();
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
                 else sQLControl.CheckAllColumnName(table, true);
             }
@@ -678,9 +682,10 @@ namespace HIS_WebApi
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-
+             
                 table = new Table("medicine_page_phar");
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+            
                 table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
                 table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
                 table.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
@@ -701,7 +706,11 @@ namespace HIS_WebApi
                 table.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 200, Table.IndexType.None);
                 table.AddColumnList("藥品條碼2", Table.StringType.TEXT, 200, Table.IndexType.None);
                 table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-
+                table.Server = Server;
+                table.DBName = DB;
+                table.Username = UserName;
+                table.Password = Password;
+                table.Port = Port.ToString();
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
                 else sQLControl.CheckAllColumnName(table, true);
             }
@@ -722,6 +731,7 @@ namespace HIS_WebApi
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+              
                 table = new Table("medicine_page");
                 table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
                 table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
@@ -747,7 +757,11 @@ namespace HIS_WebApi
                 table.AddColumnList("廠牌", Table.StringType.VARCHAR, 200, Table.IndexType.None);
                 table.AddColumnList("藥品許可證號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
                 table.AddColumnList("開檔狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-
+                table.Server = Server;
+                table.DBName = DB;
+                table.Username = UserName;
+                table.Password = Password;
+                table.Port = Port.ToString();
                 if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
                 else sQLControl.CheckAllColumnName(table, true);
             }

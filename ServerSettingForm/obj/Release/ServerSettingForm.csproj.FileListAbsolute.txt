@@ -597,3 +597,4 @@ C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Releas
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_癌症備藥機.resources
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\ServerSettingForm\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_癌症備藥機.resources
+C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\bin\Release\HIS_DB_Lib.xml

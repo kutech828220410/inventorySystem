@@ -491,3 +491,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\Console_MedUpdate\obj\Rel
 C:\Users\HS\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml

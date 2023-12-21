@@ -1085,3 +1085,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統\obj\Re
 C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\HIS_DB_Lib.xml

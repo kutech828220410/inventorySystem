@@ -1058,3 +1058,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\obj\Relea
 C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
