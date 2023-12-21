@@ -24,6 +24,7 @@ namespace HIS_DB_Lib
         出料馬達輸入延遲時間,
         出料位置X,
         出料位置Y,     
+        藥盒方位,
     }
     public class CMPM_StorageConfig_Class
     {
@@ -53,5 +54,7 @@ namespace HIS_DB_Lib
         public string 出料位置X { get; set; }
         [JsonPropertyName("position_y")]
         public string 出料位置Y { get; set; }
+        [JsonPropertyName("box_direction")]
+        public string 藥盒方位 { get; set; }
     }
 }
