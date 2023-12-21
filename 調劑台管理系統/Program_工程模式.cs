@@ -242,14 +242,14 @@ namespace 調劑台管理系統
         {
             public string 領藥台_01_名稱 = "";
             public string 領藥台_02_名稱 = "";
-            public string 領藥台03_名稱 = "";
-            public string 領藥台04_名稱 = "";
+            public string 領藥台_03_名稱 = "";
+            public string 領藥台_04_名稱 = "";
             public string 門未關閉警報語音內容 = "";
 
             public Color 領藥台_01_Color = Color.Black;
             public Color 領藥台_02_Color = Color.Black;
-            public Color 領藥台03_Color = Color.Black;
-            public Color 領藥台04_Color = Color.Black;
+            public Color 領藥台_03_Color = Color.Black;
+            public Color 領藥台_04_Color = Color.Black;
         }
         public void SaveConfig工程模式()
         {
@@ -259,6 +259,8 @@ namespace 調劑台管理系統
 
             saveConfig.領藥台_01_Color = this.panel_工程模式_領藥台_01_顏色.BackColor;
             saveConfig.領藥台_02_Color = this.panel_工程模式_領藥台_02_顏色.BackColor;
+            saveConfig.領藥台_03_Color = this.panel_工程模式_領藥台_03_顏色.BackColor;
+            saveConfig.領藥台_04_Color = this.panel_工程模式_領藥台_04_顏色.BackColor;
             Basic.FileIO.SaveProperties(saveConfig, StreamName);
         }
         public void LoadConfig工程模式()
@@ -273,6 +275,8 @@ namespace 調劑台管理系統
 
                     this.panel_工程模式_領藥台_01_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_01_Color;
                     this.panel_工程模式_領藥台_02_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_02_Color;
+                    this.panel_工程模式_領藥台_03_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_03_Color;
+                    this.panel_工程模式_領藥台_04_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_04_Color;
 
                     this.rJ_GroupBox_領藥台_01.PannelBorderColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
                     this.rJ_GroupBox_領藥台_01.TitleBackColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
@@ -280,6 +284,11 @@ namespace 調劑台管理系統
                     this.rJ_GroupBox_領藥台_02.PannelBorderColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
                     this.rJ_GroupBox_領藥台_02.TitleBackColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
 
+                    //this.rJ_GroupBox_領藥台_03.PannelBorderColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
+                    //this.rJ_GroupBox_領藥台_03.TitleBackColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
+
+                    //this.rJ_GroupBox_領藥台_04.PannelBorderColor = this.panel_工程模式_領藥台_04_顏色.BackColor;
+                    //this.rJ_GroupBox_領藥台_04.TitleBackColor = this.panel_工程模式_領藥台_04_顏色.BackColor;
                 }));
             }
 

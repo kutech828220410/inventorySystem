@@ -1218,6 +1218,16 @@ namespace 調劑台管理系統
         public void Function_儲位亮燈(string 藥品碼, Color color, ref List<string> list_lock_IP)
         {
             if (藥品碼.StringIsEmpty()) return;
+            if(color == Color.Black)
+            {
+                List<object[]> list_取藥堆疊母資料 = sqL_DataGridView_取藥堆疊母資料.SQL_GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼, false);
+
+                list_取藥堆疊母資料 = (from temp in list_取藥堆疊母資料
+                                where temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == 藥品碼
+                                where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
+                                select temp).ToList();
+                if (list_取藥堆疊母資料.Count != 0) return;
+            }
             if (list_lock_IP.Count == 0 )
             {
                 LightOn lightOn = new LightOn();

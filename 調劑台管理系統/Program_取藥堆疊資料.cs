@@ -22,6 +22,25 @@ namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
+        public class MyColor
+        {
+            public int R = 0;
+            public int G = 0;
+            public int B = 0;
+            public MyColor(int r, int g, int b)
+            {
+                this.R = r;
+                this.G = g;
+                this.B = b;
+            }
+
+
+            public bool IsEqual(int r, int g, int b)
+            {
+                return (R == r && G == g && B == b);
+            }
+        }
+
         List<object[]> list_取藥堆疊母資料 = new List<object[]>();
         List<object[]> list_取藥堆疊子資料 = new List<object[]>();
         private MyThread MyThread_取藥堆疊資料_檢查資料;
@@ -359,12 +378,11 @@ namespace 調劑台管理系統
             List<object[]> list_value = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetRows(enum_取藥堆疊子資料.GUID.GetEnumName(), GUID, false);
             if (list_value.Count > 0)
             {
-                string device_Type = list_value[0][(int)enum_取藥堆疊子資料.TYPE].ObjectToString();
-                string IP = list_value[0][(int)enum_取藥堆疊子資料.IP].ObjectToString();
                 string 藥品碼 = list_value[0][(int)enum_取藥堆疊子資料.藥品碼].ObjectToString();
-                string device_GUID = list_value[0][(int)enum_取藥堆疊子資料.Device_GUID].ObjectToString();
                 this.sqL_DataGridView_取藥堆疊子資料.SQL_Delete(enum_取藥堆疊子資料.GUID.GetEnumName(), GUID, false);
                 if (藥品碼.StringIsEmpty()) return;
+
+              
 
                 this.Function_儲位亮燈(藥品碼, Color.Black);
 
@@ -1174,6 +1192,7 @@ namespace 調劑台管理系統
                     }
                     lightOns.Clear();
                     List<Task> taskList = new List<Task>();
+
                     for (int i = 0; i < lightOns_buf.Count; i++)
                     {
                         string 藥品碼 = lightOns_buf[i].藥品碼;
@@ -1195,6 +1214,20 @@ namespace 調劑台管理系統
             //    Function_儲位亮燈_Ex(lightOns[0].藥品碼, lightOns[0].顏色);
             //    lightOns.RemoveAt(0);
             //}
+        }
+        public void Function_儲位亮燈_取得抽屜亮燈IP(string 藥品碼, Color color)
+        {
+            if (藥品碼.StringIsEmpty()) return;
+            List<object> list_Device = this.Function_從雲端資料取得儲位(藥品碼);
+            List<object> list_commonSpace_device = this.Function_從共用區取得儲位(藥品碼);
+            for (int i = 0; i < list_commonSpace_device.Count; i++)
+            {
+                list_Device.Add(list_commonSpace_device[i]);
+            }
+            List<string> list_IP = new List<string>();
+            for (int i = 0; i < list_Device.Count; i++)
+            {
+            }
         }
         public void Function_儲位亮燈_Ex(string 藥品碼, Color color)
         {
@@ -1250,9 +1283,10 @@ namespace 調劑台管理系統
                                     LED_Bytes[k] = drawer.LED_Bytes[k];
                                 }
                                 bool flag_commonlight = false;
+                                List<MyColor> myColors = new List<MyColor>();
                                 if(color != Color.Black)
                                 {
-                                    for (int k = 0; k < 450; k++)
+                                    for (int k = 0; k < 400; k++)
                                     {
                                         int R = LED_Bytes[k * 3 + 0];
                                         int G = LED_Bytes[k * 3 + 1];
@@ -1269,7 +1303,30 @@ namespace 調劑台管理系統
                                 }
                                
                                 drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color);
-                                if (!flag_commonlight) drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
+                                if (!flag_commonlight)
+                                {
+                                    if (color != Color.Black)
+                                    {
+                                        drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
+                                    }
+                                    else
+                                    {
+                                        bool flag_led_black_enable = true;
+                                        for (int k = 0; k < 400; k++)
+                                        {
+                                            int R = LED_Bytes[k * 3 + 0];
+                                            int G = LED_Bytes[k * 3 + 1];
+                                            int B = LED_Bytes[k * 3 + 2];
+                                            if (R != 0 || G != 0 || B != 0)
+                                            {
+                                                flag_led_black_enable = false;
+                                                break;
+                                            }
+                                        }
+                                        if (flag_led_black_enable) drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
+
+                                    }
+                                }
                                 else drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, Color.Purple);
 
                                 for (int k = 0; k < drawer.LED_Bytes.Length; k++)
@@ -1343,7 +1400,6 @@ namespace 調劑台管理系統
                                 {
                                     drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
                                 }
-                                List<Box> boxes = drawer.SortByCode(藥品碼);
 
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {

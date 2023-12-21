@@ -341,7 +341,37 @@ namespace 調劑台管理系統
         public static string 領藥台_01_藥師證字號 = "";
         public static string 領藥台_01_ID = "";
         public static string 領藥台_01_卡號 = "";
-        public static string 領藥台_01_顏色 = "";
+        public static string _領藥台_01_顏色 = "";
+        public string 領藥台_01_顏色
+        {
+            get
+            {
+                if(plC_CheckBox_掃碼顏色固定.Checked)
+                {
+                    this.Invoke(new Action(delegate 
+                    {
+                        Color color = this.panel_工程模式_領藥台_01_顏色.BackColor;
+                        if (color == Color.Black)
+                        {
+                            this.panel_工程模式_領藥台_01_顏色.BackColor = Color.Blue;
+                            SaveConfig工程模式();
+                        }
+                        _領藥台_01_顏色 = color.ToColorString();
+                    }));
+                 
+
+                    return _領藥台_01_顏色;
+                }
+                else
+                {
+                    return _領藥台_01_顏色;
+                }
+            }
+            set
+            {
+                _領藥台_01_顏色 = value;
+            }
+        }
         public static string 領藥台_01_一維碼 = "";
 
 
@@ -622,7 +652,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_檢查輸入資料_初始化(ref int cnt)
         {
-            PLC_Device_Scanner01_讀取藥單資料.Bool = false;
+            //PLC_Device_Scanner01_讀取藥單資料.Bool = false;
             cnt++;
         }
         void cnt_Program_領藥台_01_檢查輸入資料_設定開始掃描(ref int cnt)
@@ -631,6 +661,7 @@ namespace 調劑台管理系統
             {
                 if (!PLC_Device_Scanner01_讀取藥單資料.Bool)
                 {
+                    PLC_Device_Scanner01_讀取藥單資料_OK.Bool = false;
                     PLC_Device_Scanner01_讀取藥單資料.Bool = true;
                     cnt++;
                     return;
@@ -640,6 +671,7 @@ namespace 調劑台管理系統
             {
                 if (!PLC_Device_Scanner01_讀取藥單資料.Bool)
                 {
+                    PLC_Device_Scanner01_讀取藥單資料_OK.Bool = false;
                     PLC_Device_Scanner01_讀取藥單資料.Bool = true;
                     cnt++;
                     return;
@@ -650,7 +682,7 @@ namespace 調劑台管理系統
         {
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
-                if (!PLC_Device_Scanner01_讀取藥單資料.Bool)
+                if (!PLC_Device_Scanner01_讀取藥單資料.Bool || PLC_Device_Scanner01_讀取藥單資料_OK.Bool)
                 {
                     if (PLC_Device_Scanner01_讀取藥單資料_OK.Bool)
                     {
@@ -667,7 +699,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                if (!PLC_Device_Scanner01_讀取藥單資料.Bool)
+                if (!PLC_Device_Scanner01_讀取藥單資料.Bool || PLC_Device_Scanner01_讀取藥單資料_OK.Bool)
                 {
                     cnt++;
                     return;
@@ -2304,7 +2336,37 @@ namespace 調劑台管理系統
         public static string 領藥台_02_登入者姓名 = "";
         public static string 領藥台_02_ID = "";
         public static string 領藥台_02_卡號 = "";
-        public static string 領藥台_02_顏色 = "";
+        public static string _領藥台_02_顏色 = "";
+        public string 領藥台_02_顏色
+        {
+            get
+            {
+                if (plC_CheckBox_掃碼顏色固定.Checked)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        Color color = this.panel_工程模式_領藥台_02_顏色.BackColor;
+                        if (color == Color.Black)
+                        {
+                            this.panel_工程模式_領藥台_02_顏色.BackColor = Color.Blue;
+                            SaveConfig工程模式();
+                        }
+                        _領藥台_02_顏色 = color.ToColorString();
+                    }));
+
+
+                    return _領藥台_02_顏色;
+                }
+                else
+                {
+                    return _領藥台_02_顏色;
+                }
+            }
+            set
+            {
+                _領藥台_02_顏色 = value;
+            }
+        }
         public static string 領藥台_02_一維碼 = "";
         public static string 領藥台_02_藥師證字號 = "";
 
@@ -2585,7 +2647,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_02_檢查輸入資料_初始化(ref int cnt)
         {
-            PLC_Device_Scanner02_讀取藥單資料.Bool = false;
+            //PLC_Device_Scanner02_讀取藥單資料.Bool = false;
             cnt++;
         }
         void cnt_Program_領藥台_02_檢查輸入資料_設定開始掃描(ref int cnt)
@@ -2594,6 +2656,7 @@ namespace 調劑台管理系統
             {
                 if (!PLC_Device_Scanner02_讀取藥單資料.Bool)
                 {
+                    PLC_Device_Scanner02_讀取藥單資料_OK.Bool = false;
                     PLC_Device_Scanner02_讀取藥單資料.Bool = true;
                     cnt++;
                     return;
@@ -2603,6 +2666,7 @@ namespace 調劑台管理系統
             {
                 if (!PLC_Device_Scanner02_讀取藥單資料.Bool)
                 {
+                    PLC_Device_Scanner02_讀取藥單資料_OK.Bool = false;
                     PLC_Device_Scanner02_讀取藥單資料.Bool = true;
                     cnt++;
                     return;
@@ -2613,7 +2677,7 @@ namespace 調劑台管理系統
         {
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
-                if (!PLC_Device_Scanner02_讀取藥單資料.Bool)
+                if (!PLC_Device_Scanner02_讀取藥單資料.Bool || PLC_Device_Scanner02_讀取藥單資料_OK.Bool)
                 {
                     if (PLC_Device_Scanner02_讀取藥單資料_OK.Bool)
                     {
@@ -2630,7 +2694,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                if (!PLC_Device_Scanner02_讀取藥單資料.Bool)
+                if (!PLC_Device_Scanner02_讀取藥單資料.Bool || PLC_Device_Scanner02_讀取藥單資料_OK.Bool)
                 {
                     cnt++;
                     return;
