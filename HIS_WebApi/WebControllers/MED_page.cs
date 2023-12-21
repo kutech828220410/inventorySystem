@@ -589,7 +589,11 @@ namespace HIS_WebApi
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
                 SQLControl sQLControl = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-
+                table.Server = Server;
+                table.DBName = DB;
+                table.Username = UserName;
+                table.Password = Password;
+                table.Port = Port.ToString();
                 table = new Table("medicine_page_cloud");
                 table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
                 table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
