@@ -1192,12 +1192,19 @@ namespace 調劑台管理系統
                     }
                     lightOns.Clear();
                     List<Task> taskList = new List<Task>();
-
+                    List<string> list_抽屜亮燈_IP = new List<string>();
                     for (int i = 0; i < lightOns_buf.Count; i++)
                     {
                         string 藥品碼 = lightOns_buf[i].藥品碼;
                         Color 顏色 = lightOns_buf[i].顏色;
-
+                        list_抽屜亮燈_IP.LockAdd(Function_儲位亮燈_取得抽屜亮燈IP(藥品碼, 顏色));
+                 
+                    }
+                    Function_儲位亮燈_抽屜亮燈(list_抽屜亮燈_IP);
+                    for (int i = 0; i < lightOns_buf.Count; i++)
+                    {
+                        string 藥品碼 = lightOns_buf[i].藥品碼;
+                        Color 顏色 = lightOns_buf[i].顏色;
                         taskList.Add(Task.Run(() =>
                         {
                             Function_儲位亮燈_Ex(藥品碼, 顏色);
@@ -1215,18 +1222,140 @@ namespace 調劑台管理系統
             //    lightOns.RemoveAt(0);
             //}
         }
-        public void Function_儲位亮燈_取得抽屜亮燈IP(string 藥品碼, Color color)
+        public List<string> Function_儲位亮燈_取得抽屜亮燈IP(string 藥品碼, Color color)
         {
-            if (藥品碼.StringIsEmpty()) return;
+            if (藥品碼.StringIsEmpty()) return new List<string>();
             List<object> list_Device = this.Function_從雲端資料取得儲位(藥品碼);
             List<object> list_commonSpace_device = this.Function_從共用區取得儲位(藥品碼);
             for (int i = 0; i < list_commonSpace_device.Count; i++)
             {
                 list_Device.Add(list_commonSpace_device[i]);
             }
+            bool flag_led_refresh = true;
             List<string> list_IP = new List<string>();
             for (int i = 0; i < list_Device.Count; i++)
             {
+                Device device = list_Device[i] as Device;
+                string IP = device.IP;
+
+                if (device == null) continue;
+
+                if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                {
+                    Box box = list_Device[i] as Box;
+                    if (box != null)
+                    {
+                        bool flag_common_device = false;
+                        Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                        if (drawer == null)
+                        {
+                            drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
+                            flag_common_device = true;
+                        }
+                        if (drawer == null) continue;
+                        List<Box> boxes = drawer.SortByCode(藥品碼);
+                      
+                        if (drawer.IsAllLight)
+                        {
+                            byte[] LED_Bytes = new byte[drawer.LED_Bytes.Length];
+                            for (int k = 0; k < drawer.LED_Bytes.Length; k++)
+                            {
+                                LED_Bytes[k] = drawer.LED_Bytes[k];
+                            }
+                            bool flag_commonlight = false;
+                            List<MyColor> myColors = new List<MyColor>();
+                            if (color != Color.Black)
+                            {
+                                for (int k = 0; k < 400; k++)
+                                {
+                                    int R = LED_Bytes[k * 3 + 0];
+                                    int G = LED_Bytes[k * 3 + 1];
+                                    int B = LED_Bytes[k * 3 + 2];
+                                    if (R == 0 && G == 0 && B == 0) continue;
+
+                                    if (R != color.R || G != color.G || B != color.B)
+                                    {
+                                        Console.WriteLine($"藥品碼 : {藥品碼} , {color.R},{color.G},{color.B} [{R},{G},{B}]");
+                                        flag_commonlight = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color);
+                            if (!flag_commonlight)
+                            {
+                                if (color != Color.Black)
+                                {
+                                    drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
+                                }
+                                else
+                                {
+                                    bool flag_led_black_enable = true;
+                                    for (int k = 0; k < 400; k++)
+                                    {
+                                        int R = LED_Bytes[k * 3 + 0];
+                                        int G = LED_Bytes[k * 3 + 1];
+                                        int B = LED_Bytes[k * 3 + 2];
+                                        if (R != 0 || G != 0 || B != 0)
+                                        {
+                                            flag_led_black_enable = false;
+                                            break;
+                                        }
+                                    }
+                                    if (flag_led_black_enable|| flag_common_device) drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
+
+                                }
+                            }
+                            else drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, Color.Purple);
+
+                            for (int k = 0; k < drawer.LED_Bytes.Length; k++)
+                            {
+                                if (LED_Bytes[k] != drawer.LED_Bytes[k])
+                                {
+                                    flag_led_refresh = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, color);
+                            flag_led_refresh = true;
+                        }
+                    }
+                    list_IP.Add(IP);
+                }
+
+            }
+            list_IP = (from temp in list_IP
+                       select temp).Distinct().ToList();
+            return list_IP;
+        }
+        public void Function_儲位亮燈_抽屜亮燈(List<string> list_IP)
+        {
+            list_IP = (from temp in list_IP
+                       select temp).Distinct().ToList();
+            Task allTask;
+            List<Task> taskList = new List<Task>();
+            for (int i = 0; i < list_IP.Count; i++)
+            {
+                string IP = list_IP[i];
+                taskList.Add(Task.Run(() =>
+                {
+                    Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                    if (drawer == null)
+                    {
+                        drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
+                    }
+                    if (drawer == null) return;
+                    if (!plC_CheckBox_測試模式.Checked)
+                    {
+                        this.drawerUI_EPD_583.Set_LED_UDP(drawer);
+                    }
+
+                }));
+                //allTask = Task.WhenAll(taskList);
+                //allTask.Wait();
             }
         }
         public void Function_儲位亮燈_Ex(string 藥品碼, Color color)
@@ -1263,87 +1392,8 @@ namespace 調劑台管理系統
 
                 if (device != null)
                 {
-                    if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
-                    {
-                        Box box = list_Device[i] as Box;
-                        if (box != null)
-                        {
-                            Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
-                            if (drawer == null)
-                            {
-                                drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
-                            }
-                            List<Box> boxes = drawer.SortByCode(藥品碼);
-
-                            if (drawer.IsAllLight)
-                            {
-                                byte[] LED_Bytes = new byte[drawer.LED_Bytes.Length];
-                                for (int k = 0; k < drawer.LED_Bytes.Length; k++)
-                                {
-                                    LED_Bytes[k] = drawer.LED_Bytes[k];
-                                }
-                                bool flag_commonlight = false;
-                                List<MyColor> myColors = new List<MyColor>();
-                                if(color != Color.Black)
-                                {
-                                    for (int k = 0; k < 400; k++)
-                                    {
-                                        int R = LED_Bytes[k * 3 + 0];
-                                        int G = LED_Bytes[k * 3 + 1];
-                                        int B = LED_Bytes[k * 3 + 2];
-                                        if (R == 0 && G == 0 && B == 0) continue;
-
-                                        if (R != color.R || G != color.G || B != color.B)
-                                        {
-                                            Console.WriteLine($"藥品碼 : {藥品碼} , {color.R},{color.G},{color.B} [{R},{G},{B}]");
-                                            flag_commonlight = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                               
-                                drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, boxes, color);
-                                if (!flag_commonlight)
-                                {
-                                    if (color != Color.Black)
-                                    {
-                                        drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
-                                    }
-                                    else
-                                    {
-                                        bool flag_led_black_enable = true;
-                                        for (int k = 0; k < 400; k++)
-                                        {
-                                            int R = LED_Bytes[k * 3 + 0];
-                                            int G = LED_Bytes[k * 3 + 1];
-                                            int B = LED_Bytes[k * 3 + 2];
-                                            if (R != 0 || G != 0 || B != 0)
-                                            {
-                                                flag_led_black_enable = false;
-                                                break;
-                                            }
-                                        }
-                                        if (flag_led_black_enable) drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, color);
-
-                                    }
-                                }
-                                else drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, Color.Purple);
-
-                                for (int k = 0; k < drawer.LED_Bytes.Length; k++)
-                                {
-                                    if (LED_Bytes[k] != drawer.LED_Bytes[k])
-                                    {
-                                        flag_led_refresh = true;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                drawer.LED_Bytes = DrawerUI_EPD_583.Set_LEDBytes(drawer, color);
-                            }
-                        }
-                    }
-                    else if (device.DeviceType == DeviceType.RowsLED)
+                    
+                    if (device.DeviceType == DeviceType.RowsLED)
                     {
                         RowsDevice rowsDevice = list_Device[i] as RowsDevice;
                         if (rowsDevice != null)
@@ -1390,31 +1440,31 @@ namespace 調劑台管理系統
                     }
                     else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
                     {
-                        Box box = list_Device[i] as Box;
-                        if (box != null)
-                        {
-                            taskList.Add(Task.Run(() =>
-                            {
-                                Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
-                                if (drawer == null)
-                                {
-                                    drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
-                                }
+                        //Box box = list_Device[i] as Box;
+                        //if (box != null)
+                        //{
+                        //    taskList.Add(Task.Run(() =>
+                        //    {
+                        //        Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                        //        if (drawer == null)
+                        //        {
+                        //            drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
+                        //        }
 
-                                if (!plC_CheckBox_測試模式.Checked)
-                                {
+                        //        if (!plC_CheckBox_測試模式.Checked)
+                        //        {
 
-                                    if (flag_led_refresh)
-                                    {
-                                        this.drawerUI_EPD_583.Set_LED_UDP(drawer);
-                                    }
-                                }
+                        //            if (flag_led_refresh)
+                        //            {
+                        //                this.drawerUI_EPD_583.Set_LED_UDP(drawer);
+                        //            }
+                        //        }
 
-                            }));
-                            //allTask = Task.WhenAll(taskList);
-                            //allTask.Wait();
-                            list_IP.Add(IP);
-                        }
+                        //    }));
+                        //    //allTask = Task.WhenAll(taskList);
+                        //    //allTask.Wait();
+                        //    list_IP.Add(IP);
+                        //}
                     }
                     else if (device.DeviceType == DeviceType.EPD1020 || device.DeviceType == DeviceType.EPD1020_lock)
                     {
