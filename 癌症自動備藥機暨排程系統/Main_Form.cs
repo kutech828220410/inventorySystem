@@ -198,6 +198,8 @@ namespace 癌症自動備藥機暨排程系統
             Program_系統_Init();
             Program_輸入輸出_Init();
             Program_軸控_Init();
+            Program_藥檔資料_Init();
+
 
             string url = $"{API_Server}/api/ChemotherapyRxScheduling/init_udnoectc";
             returnData returnData = new returnData();
@@ -305,9 +307,6 @@ namespace 癌症自動備藥機暨排程系統
 
         #endregion
 
-        private void panel21_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
     }
 }
