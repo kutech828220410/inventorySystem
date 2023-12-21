@@ -70,6 +70,14 @@ namespace HIS_WebApi
             SQLControl sQLControl_storage_config = new SQLControl(Server, DB, "storage_config", UserName, Password, Port, SSLMode);
         
             Table table_storage_config = new Table("storage_config");
+
+            table_storage_config.Server = Server;
+            table_storage_config.DBName = DB;
+            table_storage_config.Username = UserName;
+            table_storage_config.Password = Password;
+            table_storage_config.Port = Port.ToString();
+
+
             table_storage_config.SetTableConfig(sQLControl_storage_config);
             table_storage_config.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
             table_storage_config.AddColumnList("IP", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);

@@ -36,11 +36,7 @@ namespace 癌症自動備藥機暨排程系統
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             Table table = json.JsonDeserializet<Table>();
-            table.Server = returnData.Server;
-            table.DBName = returnData.DbName;
-            table.Port = returnData.Port.ToString();
-            table.Username = returnData.UserName;
-            table.Password = returnData.Password;
+  
             if (table == null)
             {
                 MyMessageBox.ShowDialog($"雲端藥檔表單建立失敗!! Api_URL:{API_Server}");

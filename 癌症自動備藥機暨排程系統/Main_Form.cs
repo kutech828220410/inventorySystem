@@ -192,14 +192,15 @@ namespace 癌症自動備藥機暨排程系統
             LoadDBConfig();
             ApiServerSetting();
 
-            PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_main01, this.plC_ScreenPage_main);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_main02, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
 
             Program_系統_Init();
             Program_輸入輸出_Init();
             Program_軸控_Init();
             Program_藥檔資料_Init();
-
+            Program_馬達輸出索引表_Init();
 
             string url = $"{API_Server}/api/ChemotherapyRxScheduling/init_udnoectc";
             returnData returnData = new returnData();
