@@ -43,6 +43,8 @@ namespace 調劑台管理系統
             {
                 MySerialPort_Scanner01.ConsoleWrite = true;
                 MySerialPort_Scanner02.ConsoleWrite = true;
+                MySerialPort_Scanner03.ConsoleWrite = true;
+                MySerialPort_Scanner04.ConsoleWrite = true;
                 if (!myConfigClass.Scanner01_COMPort.StringIsEmpty())
                 {
                     MySerialPort_Scanner01.Init(myConfigClass.Scanner01_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
@@ -64,7 +66,7 @@ namespace 調劑台管理系統
                     MySerialPort_Scanner03.Init(myConfigClass.Scanner03_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
                     if (!MySerialPort_Scanner03.IsConnected)
                     {
-                        //MyMessageBox.ShowDialog("掃碼器[03]初始化失敗!");
+                        MyMessageBox.ShowDialog("掃碼器[03]初始化失敗!");
                     }
                 }
                 if (!myConfigClass.Scanner04_COMPort.StringIsEmpty())
@@ -72,7 +74,7 @@ namespace 調劑台管理系統
                     MySerialPort_Scanner04.Init(myConfigClass.Scanner04_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
                     if (!MySerialPort_Scanner04.IsConnected)
                     {
-                        //MyMessageBox.ShowDialog("掃碼器[04]初始化失敗!");
+                        MyMessageBox.ShowDialog("掃碼器[04]初始化失敗!");
                     }
                 }
             }
@@ -666,7 +668,7 @@ namespace 調劑台管理系統
 
                     if (!plC_CheckBox_QRcode_Mode.Bool)
                     {
-                        this.領藥台_01_醫令條碼 = text;
+                        this.領藥台_03_醫令條碼 = text;
                         PLC_Device_Scanner03_讀取藥單資料_OK.Bool = true;
                         Console.WriteLine($"接收資料內容 : {text} ");
                         cnt++;
@@ -917,7 +919,7 @@ namespace 調劑台管理系統
 
                     if (!plC_CheckBox_QRcode_Mode.Bool)
                     {
-                        this.領藥台_01_醫令條碼 = text;
+                        this.領藥台_04_醫令條碼 = text;
                         PLC_Device_Scanner04_讀取藥單資料_OK.Bool = true;
                         Console.WriteLine($"接收資料內容 : {text} ");
                         cnt++;

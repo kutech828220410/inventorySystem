@@ -2813,7 +2813,7 @@ namespace 調劑台管理系統
                         textBox_領藥台_02_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                         this.PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(null);
                     }));
-                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_02_登入者姓名, "01.號使用者");
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_02_登入者姓名, "02.號使用者");
 
                 }
                 else
@@ -2828,7 +2828,7 @@ namespace 調劑台管理系統
                             textBox_領藥台_02_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                             this.PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(null);
                         }));
-                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_02_登入者姓名, "01.號使用者");
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_02_登入者姓名, "02.號使用者");
                     }
                 }
                 cnt++;
@@ -2862,7 +2862,7 @@ namespace 調劑台管理系統
                         this.PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(null);
                     }));
 
-                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_02_登入者姓名, "01.號使用者");
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_02_登入者姓名, "02.號使用者");
                 }
                 else
                 {
@@ -2876,7 +2876,7 @@ namespace 調劑台管理系統
                             textBox_領藥台_02_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                             this.PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(null);
                         }));
-                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_02_登入者姓名, "01.號使用者");
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_02_登入者姓名, "02.號使用者");
                     }
                 }
                 cnt++;
@@ -4447,7 +4447,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             this.sqL_DataGridView_領藥台_02_領藥內容.ClearGrid();
 
-            Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, 領藥台_02_登入者姓名, "01.號使用者");
+            Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, 領藥台_02_登入者姓名, "02.號使用者");
             領藥台_02_登入者姓名 = "None";
             this.PLC_Device_領藥台_02_已登入.Bool = false;
             this.PLC_Device_最高權限.Bool = false;
@@ -4611,12 +4611,12 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_領藥台_03_閒置登出時間 = new PLC_Device("D100");
         MyTimer MyTimer_領藥台_03_入賬完成時間 = new MyTimer("D101");
         PLC_Device PLC_Device_領藥台_03_入賬完成時間 = new PLC_Device("D101");
-        int 領藥台_03_RFID站號 = 2;
+        int 領藥台_03_RFID站號 = 3;
         List<object> 領藥台_03_儲位 = new List<object>();
         List<object[]> 領藥台_03_領藥儲位資訊 = new List<object[]>();
         List<string[]> 領藥台_03_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_03_登出 = new PLC_Device();
-        PLC_Device PLC_Device_領藥台_03_已登入 = new PLC_Device("S200");
+        PLC_Device PLC_Device_領藥台_03_已登入 = new PLC_Device("S250");
 
         PLC_Device PLC_Device_領藥台_03_狀態顯示_等待登入 = new PLC_Device("M5000");
         PLC_Device PLC_Device_領藥台_03_狀態顯示_登入者姓名 = new PLC_Device("M5001");
@@ -4803,7 +4803,7 @@ namespace 調劑台管理系統
                         textBox_領藥台_03_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                         this.PlC_RJ_Button_領藥台_03_登入_MouseDownEvent(null);
                     }));
-                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_03_登入者姓名, "01.號使用者");
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_03_登入者姓名, "03.號使用者");
 
                 }
                 else
@@ -4818,7 +4818,7 @@ namespace 調劑台管理系統
                             textBox_領藥台_03_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                             this.PlC_RJ_Button_領藥台_03_登入_MouseDownEvent(null);
                         }));
-                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_03_登入者姓名, "01.號使用者");
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_03_登入者姓名, "03.號使用者");
                     }
                 }
                 cnt++;
@@ -4852,7 +4852,7 @@ namespace 調劑台管理系統
                         this.PlC_RJ_Button_領藥台_03_登入_MouseDownEvent(null);
                     }));
 
-                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_03_登入者姓名, "01.號使用者");
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_03_登入者姓名, "03.號使用者");
                 }
                 else
                 {
@@ -4866,7 +4866,7 @@ namespace 調劑台管理系統
                             textBox_領藥台_03_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                             this.PlC_RJ_Button_領藥台_03_登入_MouseDownEvent(null);
                         }));
-                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_03_登入者姓名, "01.號使用者");
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_03_登入者姓名, "03.號使用者");
                     }
                 }
                 cnt++;
@@ -6418,7 +6418,7 @@ namespace 調劑台管理系統
                 textBox_領藥台_03_帳號.Texts = "";
                 textBox_領藥台_03_密碼.Texts = "";
                 plC_RJ_Button_領藥台_03_登入.Texts = "登出";
-                rJ_GroupBox_領藥台_03.TitleTexts = $"    02. [{領藥台_03_登入者姓名}]";
+                rJ_GroupBox_領藥台_03.TitleTexts = $"    03. [{領藥台_03_登入者姓名}]";
                 this.rJ_GroupBox_領藥台_03.PannelBorderColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
                 this.rJ_GroupBox_領藥台_03.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_03.TitleForeColor = Color.Black;
@@ -6437,7 +6437,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
             this.sqL_DataGridView_領藥台_03_領藥內容.ClearGrid();
 
-            Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, 領藥台_03_登入者姓名, "01.號使用者");
+            Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, 領藥台_03_登入者姓名, "03.號使用者");
             領藥台_03_登入者姓名 = "None";
             this.PLC_Device_領藥台_03_已登入.Bool = false;
             this.PLC_Device_最高權限.Bool = false;
@@ -6446,7 +6446,7 @@ namespace 調劑台管理系統
                 textBox_領藥台_03_帳號.Texts = "";
                 textBox_領藥台_03_密碼.Texts = "";
                 plC_RJ_Button_領藥台_03_登入.Texts = "登入";
-                rJ_GroupBox_領藥台_03.TitleTexts = $"    02. [未登入]";
+                rJ_GroupBox_領藥台_03.TitleTexts = $"    03. [未登入]";
                 this.rJ_GroupBox_領藥台_03.PannelBorderColor = Color.DimGray;
                 this.rJ_GroupBox_領藥台_03.TitleBackColor = Color.DimGray;
                 this.rJ_GroupBox_領藥台_03.TitleForeColor = Color.White;
@@ -6601,12 +6601,12 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_領藥台_04_閒置登出時間 = new PLC_Device("D100");
         MyTimer MyTimer_領藥台_04_入賬完成時間 = new MyTimer("D101");
         PLC_Device PLC_Device_領藥台_04_入賬完成時間 = new PLC_Device("D101");
-        int 領藥台_04_RFID站號 = 2;
+        int 領藥台_04_RFID站號 = 4;
         List<object> 領藥台_04_儲位 = new List<object>();
         List<object[]> 領藥台_04_領藥儲位資訊 = new List<object[]>();
         List<string[]> 領藥台_04_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_04_登出 = new PLC_Device();
-        PLC_Device PLC_Device_領藥台_04_已登入 = new PLC_Device("S200");
+        PLC_Device PLC_Device_領藥台_04_已登入 = new PLC_Device("S400");
 
         PLC_Device PLC_Device_領藥台_04_狀態顯示_等待登入 = new PLC_Device("M5000");
         PLC_Device PLC_Device_領藥台_04_狀態顯示_登入者姓名 = new PLC_Device("M5001");
@@ -6793,7 +6793,7 @@ namespace 調劑台管理系統
                         textBox_領藥台_04_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                         this.PlC_RJ_Button_領藥台_04_登入_MouseDownEvent(null);
                     }));
-                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_04_登入者姓名, "01.號使用者");
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_04_登入者姓名, "04.號使用者");
 
                 }
                 else
@@ -6808,7 +6808,7 @@ namespace 調劑台管理系統
                             textBox_領藥台_04_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                             this.PlC_RJ_Button_領藥台_04_登入_MouseDownEvent(null);
                         }));
-                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_04_登入者姓名, "01.號使用者");
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, 領藥台_04_登入者姓名, "04.號使用者");
                     }
                 }
                 cnt++;
@@ -6842,7 +6842,7 @@ namespace 調劑台管理系統
                         this.PlC_RJ_Button_領藥台_04_登入_MouseDownEvent(null);
                     }));
 
-                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_04_登入者姓名, "01.號使用者");
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_04_登入者姓名, "04.號使用者");
                 }
                 else
                 {
@@ -6856,7 +6856,7 @@ namespace 調劑台管理系統
                             textBox_領藥台_04_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
                             this.PlC_RJ_Button_領藥台_04_登入_MouseDownEvent(null);
                         }));
-                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_04_登入者姓名, "01.號使用者");
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_04_登入者姓名, "04.號使用者");
                     }
                 }
                 cnt++;
@@ -8408,7 +8408,7 @@ namespace 調劑台管理系統
                 textBox_領藥台_04_帳號.Texts = "";
                 textBox_領藥台_04_密碼.Texts = "";
                 plC_RJ_Button_領藥台_04_登入.Texts = "登出";
-                rJ_GroupBox_領藥台_04.TitleTexts = $"    02. [{領藥台_04_登入者姓名}]";
+                rJ_GroupBox_領藥台_04.TitleTexts = $"    04. [{領藥台_04_登入者姓名}]";
                 this.rJ_GroupBox_領藥台_04.PannelBorderColor = this.panel_工程模式_領藥台_04_顏色.BackColor;
                 this.rJ_GroupBox_領藥台_04.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_04.TitleForeColor = Color.Black;
@@ -8427,7 +8427,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
             this.sqL_DataGridView_領藥台_04_領藥內容.ClearGrid();
 
-            Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, 領藥台_04_登入者姓名, "01.號使用者");
+            Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, 領藥台_04_登入者姓名, "04.號使用者");
             領藥台_04_登入者姓名 = "None";
             this.PLC_Device_領藥台_04_已登入.Bool = false;
             this.PLC_Device_最高權限.Bool = false;
@@ -8436,7 +8436,7 @@ namespace 調劑台管理系統
                 textBox_領藥台_04_帳號.Texts = "";
                 textBox_領藥台_04_密碼.Texts = "";
                 plC_RJ_Button_領藥台_04_登入.Texts = "登入";
-                rJ_GroupBox_領藥台_04.TitleTexts = $"    02. [未登入]";
+                rJ_GroupBox_領藥台_04.TitleTexts = $"    04. [未登入]";
                 this.rJ_GroupBox_領藥台_04.PannelBorderColor = Color.DimGray;
                 this.rJ_GroupBox_領藥台_04.TitleBackColor = Color.DimGray;
                 this.rJ_GroupBox_領藥台_04.TitleForeColor = Color.White;
