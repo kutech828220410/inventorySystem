@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.0.30")]
-[assembly: AssemblyFileVersion("1.2.0.30")]
+[assembly: AssemblyVersion("1.2.1.00")]
+[assembly: AssemblyFileVersion("1.2.1.00")]
 namespace 調劑台管理系統
 {
 
@@ -40,7 +40,7 @@ namespace 調劑台管理系統
             get
             {
                 if(this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
-                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_03";
+                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S01";
 
             }
         }
@@ -49,9 +49,26 @@ namespace 調劑台管理系統
             get
             {
                 if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_02";
-                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_04";
+                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S02";
             }
         }
+        public string 領藥台_03名稱
+        {
+            get
+            {
+                if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_03";
+                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S03";
+            }
+        }
+        public string 領藥台_04名稱
+        {
+            get
+            {
+                if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_04";
+                else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S04";
+            }
+        }
+
         private PrinterClass printerClass = new PrinterClass();
         private string FormText = "";
         private LadderConnection.LowerMachine PLC;
@@ -177,6 +194,8 @@ namespace 調劑台管理系統
             private string rFID_COMPort = "COM1";
             private string scanner01_COMPort = "COM2";
             private string scanner02_COMPort = "COM3";
+            private string scanner03_COMPort = "";
+            private string scanner04_COMPort = "";
             private string _藥物辨識網址 = "";
     
 
@@ -187,6 +206,8 @@ namespace 調劑台管理系統
             public string RFID_COMPort { get => rFID_COMPort; set => rFID_COMPort = value; }
             public string Scanner01_COMPort { get => scanner01_COMPort; set => scanner01_COMPort = value; }
             public string Scanner02_COMPort { get => scanner02_COMPort; set => scanner02_COMPort = value; }
+            public string Scanner03_COMPort { get => scanner03_COMPort; set => scanner03_COMPort = value; }
+            public string Scanner04_COMPort { get => scanner04_COMPort; set => scanner04_COMPort = value; }
             public bool 藥物辨識圖片顯示 { get => _藥物辨識圖片顯示; set => _藥物辨識圖片顯示 = value; }
             public bool EPD583_Enable { get => ePD583_Enable; set => ePD583_Enable = value; }
             public bool EPD266_Enable { get => ePD266_Enable; set => ePD266_Enable = value; }
@@ -198,6 +219,7 @@ namespace 調劑台管理系統
             public bool 外部輸出 { get => _外部輸出; set => _外部輸出 = value; }
             public bool 系統取藥模式 { get => _系統取藥模式; set => _系統取藥模式 = value; }
             public bool EPD1020_Enable { get => ePD1020_Enable; set => ePD1020_Enable = value; }
+   
         }
         private void LoadMyConfig()
         {
@@ -230,64 +252,7 @@ namespace 調劑台管理系統
 
         }
         #endregion
-        #region FtpConfigClass
-        private static string FtpConfigFileName = $@"{currentDirectory}\FtpConfig.txt";
-        public FtpConfigClass ftpConfigClass = new FtpConfigClass();
-        public class FtpConfigClass
-        {
-            private string fTP_Server = "";
-            private string fTP_username = "";
-            private string fTP_password = "";
-
-            public string FTP_Server { get => fTP_Server; set => fTP_Server = value; }
-            public string FTP_username { get => fTP_username; set => fTP_username = value; }
-            public string FTP_password { get => fTP_password; set => fTP_password = value; }
-        }
-        private void LoadFtpConfig()
-        {
-            string jsonstr = MyFileStream.LoadFileAllText($"{FtpConfigFileName}");
-            if (jsonstr.StringIsEmpty())
-            {
-                jsonstr = Basic.Net.JsonSerializationt<FtpConfigClass>(new FtpConfigClass(), true);
-                List<string> list_jsonstring = new List<string>();
-                list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($"{FtpConfigFileName}", list_jsonstring))
-                {
-                    MyMessageBox.ShowDialog($"建立{FtpConfigFileName}檔案失敗!");
-                }
-                MyMessageBox.ShowDialog($"未建立參數文件!請至子目錄設定{FtpConfigFileName}");
-                Application.Exit();
-            }
-            else
-            {
-                ftpConfigClass = Basic.Net.JsonDeserializet<FtpConfigClass>(jsonstr);
-
-                jsonstr = Basic.Net.JsonSerializationt<FtpConfigClass>(ftpConfigClass, true);
-                List<string> list_jsonstring = new List<string>();
-                list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($"{FtpConfigFileName}", list_jsonstring))
-                {
-                    MyMessageBox.ShowDialog($"建立{FtpConfigFileName}檔案失敗!");
-                }
-
-            }
-            //if (myConfigClass.線上更新)
-            //{
-            //    this.ftp_DounloadUI.FTP_Server = ftpConfigClass.FTP_Server;
-            //    this.ftp_DounloadUI.Username = ftpConfigClass.FTP_username;
-            //    this.ftp_DounloadUI.Password = ftpConfigClass.FTP_password;
-            //    string updateVersion = this.ftp_DounloadUI.GetFileVersion();
-            //    if (this.ftp_DounloadUI.CheckUpdate(this.ProductVersion, updateVersion))
-            //    {
-            //        if (Basic.MyMessageBox.ShowDialog(string.Format("有新版本是否更新? (Ver : {0})", updateVersion), "Update", Basic.MyMessageBox.enum_BoxType.Asterisk, Basic.MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
-            //        {
-            //            this.Invoke(new Action(delegate { this.Update(); }));
-            //        }
-            //    }
-            //}
-
-        }
-        #endregion
+        
 
         public Form1()
         {
@@ -305,90 +270,90 @@ namespace 調劑台管理系統
             MyUI.PLC_MultiStateDisplay.TextValue textValue10 = new MyUI.PLC_MultiStateDisplay.TextValue();
             MyUI.PLC_MultiStateDisplay.TextValue textValue11 = new MyUI.PLC_MultiStateDisplay.TextValue();
             MyUI.PLC_MultiStateDisplay.TextValue textValue12 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            textValue1.Name = "M5000";
-            textValue1.Text = "請登入身分...";
-            textValue1.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            textValue1.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue1.文字顏色 = System.Drawing.Color.Black;
-            textValue1.自定義參數 = false;
-            textValue2.Name = "M5001";
-            textValue2.Text = "登入者姓名 : XXX";
-            textValue2.字體 = new System.Drawing.Font("微軟正黑體", 30F);
-            textValue2.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue2.文字顏色 = System.Drawing.Color.Black;
-            textValue2.自定義參數 = true;
-            textValue3.Name = "M5002";
-            textValue3.Text = "登入失敗,查無此資料!";
-            textValue3.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            textValue3.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue3.文字顏色 = System.Drawing.Color.Red;
-            textValue3.自定義參數 = false;
-            textValue4.Name = "M5005";
-            textValue4.Text = "請選擇領/退藥";
-            textValue4.字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            textValue4.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue4.文字顏色 = System.Drawing.Color.Red;
-            textValue4.自定義參數 = false;
-            textValue5.Name = "M5006";
-            textValue5.Text = "此藥單已領用過!";
-            textValue5.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            textValue5.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue5.文字顏色 = System.Drawing.Color.Red;
-            textValue5.自定義參數 = false;
-            textValue6.Name = "M5007";
-            textValue6.Text = "掃碼失敗!";
-            textValue6.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            textValue6.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue6.文字顏色 = System.Drawing.Color.Red;
-            textValue6.自定義參數 = false;
-            this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue1);
-            this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue2);
-            this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue3);
-            this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue4);
-            this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue5);
-            this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue6);
-            textValue7.Name = "M4000";
-            textValue7.Text = "請登入身分...";
-            textValue7.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            textValue7.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue7.文字顏色 = System.Drawing.Color.Black;
-            textValue7.自定義參數 = false;
-            textValue8.Name = "M4001";
-            textValue8.Text = "登入者姓名 : XXX";
-            textValue8.字體 = new System.Drawing.Font("微軟正黑體", 30F);
-            textValue8.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue8.文字顏色 = System.Drawing.Color.Black;
-            textValue8.自定義參數 = true;
-            textValue9.Name = "M4002";
-            textValue9.Text = "登入失敗,查無此資料!";
-            textValue9.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            textValue9.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue9.文字顏色 = System.Drawing.Color.Red;
-            textValue9.自定義參數 = false;
-            textValue10.Name = "M4005";
-            textValue10.Text = "請選擇領/退藥";
-            textValue10.字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            textValue10.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue10.文字顏色 = System.Drawing.Color.Red;
-            textValue10.自定義參數 = false;
-            textValue11.Name = "M4006";
-            textValue11.Text = "此藥單已領用過!";
-            textValue11.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            textValue11.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue11.文字顏色 = System.Drawing.Color.Red;
-            textValue11.自定義參數 = false;
-            textValue12.Name = "M4007";
-            textValue12.Text = "掃碼失敗!";
-            textValue12.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            textValue12.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            textValue12.文字顏色 = System.Drawing.Color.Red;
-            textValue12.自定義參數 = false;
-            this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue7);
-            this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue8);
-            this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue9);
-            this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue10);
-            this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue11);
-            this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue12);
+            //textValue1.Name = "M5000";
+            //textValue1.Text = "請登入身分...";
+            //textValue1.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            //textValue1.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue1.文字顏色 = System.Drawing.Color.Black;
+            //textValue1.自定義參數 = false;
+            //textValue2.Name = "M5001";
+            //textValue2.Text = "登入者姓名 : XXX";
+            //textValue2.字體 = new System.Drawing.Font("微軟正黑體", 30F);
+            //textValue2.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue2.文字顏色 = System.Drawing.Color.Black;
+            //textValue2.自定義參數 = true;
+            //textValue3.Name = "M5002";
+            //textValue3.Text = "登入失敗,查無此資料!";
+            //textValue3.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            //textValue3.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue3.文字顏色 = System.Drawing.Color.Red;
+            //textValue3.自定義參數 = false;
+            //textValue4.Name = "M5005";
+            //textValue4.Text = "請選擇領/退藥";
+            //textValue4.字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            //textValue4.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue4.文字顏色 = System.Drawing.Color.Red;
+            //textValue4.自定義參數 = false;
+            //textValue5.Name = "M5006";
+            //textValue5.Text = "此藥單已領用過!";
+            //textValue5.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            //textValue5.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue5.文字顏色 = System.Drawing.Color.Red;
+            //textValue5.自定義參數 = false;
+            //textValue6.Name = "M5007";
+            //textValue6.Text = "掃碼失敗!";
+            //textValue6.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            //textValue6.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue6.文字顏色 = System.Drawing.Color.Red;
+            //textValue6.自定義參數 = false;
+            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue1);
+            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue2);
+            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue3);
+            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue4);
+            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue5);
+            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue6);
+            //textValue7.Name = "M4000";
+            //textValue7.Text = "請登入身分...";
+            //textValue7.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            //textValue7.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue7.文字顏色 = System.Drawing.Color.Black;
+            //textValue7.自定義參數 = false;
+            //textValue8.Name = "M4001";
+            //textValue8.Text = "登入者姓名 : XXX";
+            //textValue8.字體 = new System.Drawing.Font("微軟正黑體", 30F);
+            //textValue8.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue8.文字顏色 = System.Drawing.Color.Black;
+            //textValue8.自定義參數 = true;
+            //textValue9.Name = "M4002";
+            //textValue9.Text = "登入失敗,查無此資料!";
+            //textValue9.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            //textValue9.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue9.文字顏色 = System.Drawing.Color.Red;
+            //textValue9.自定義參數 = false;
+            //textValue10.Name = "M4005";
+            //textValue10.Text = "請選擇領/退藥";
+            //textValue10.字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            //textValue10.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue10.文字顏色 = System.Drawing.Color.Red;
+            //textValue10.自定義參數 = false;
+            //textValue11.Name = "M4006";
+            //textValue11.Text = "此藥單已領用過!";
+            //textValue11.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            //textValue11.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue11.文字顏色 = System.Drawing.Color.Red;
+            //textValue11.自定義參數 = false;
+            //textValue12.Name = "M4007";
+            //textValue12.Text = "掃碼失敗!";
+            //textValue12.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
+            //textValue12.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
+            //textValue12.文字顏色 = System.Drawing.Color.Red;
+            //textValue12.自定義參數 = false;
+            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue7);
+            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue8);
+            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue9);
+            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue10);
+            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue11);
+            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue12);
             #endregion
         }
         
@@ -420,10 +385,8 @@ namespace 調劑台管理系統
                 Dialog_錯誤提示.form = this.FindForm();
                 Dialog_共用區設置.form = this.FindForm();
 
-
                 LoadDBConfig();
                 LoadMyConfig();
-                LoadFtpConfig();
 
                 ApiServerSetting();
 
@@ -434,7 +397,7 @@ namespace 調劑台管理系統
 
                 this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
                 this.plC_UI_Init.音效 = false;
-                this.plC_UI_Init.全螢幕顯示 = false;
+                this.plC_UI_Init.全螢幕顯示 = true;
 
                 Basic.Keyboard.Hook.KeyDown += Hook_KeyDown;
                 Basic.Keyboard.Hook.MouseDown += Hook_MouseDown;
@@ -514,8 +477,7 @@ namespace 調劑台管理系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_人員資料, this.plC_ScreenPage_人員資料);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_盤點作業, this.plC_ScreenPage_盤點作業);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_交易紀錄查詢, this.plC_ScreenPage_交易紀錄查詢);
-            
-            
+                        
             this.plC_RJ_ScreenButton_EPD583.Visible = myConfigClass.EPD583_Enable;
             this.plC_RJ_ScreenButton_EPD266.Visible = myConfigClass.EPD266_Enable;
             this.plC_RJ_ScreenButton_EPD1020.Visible = myConfigClass.EPD1020_Enable;

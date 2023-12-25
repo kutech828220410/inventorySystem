@@ -278,11 +278,11 @@ namespace 調劑台管理系統
                     this.panel_工程模式_領藥台_03_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_03_Color;
                     this.panel_工程模式_領藥台_04_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_04_Color;
 
-                    this.rJ_GroupBox_領藥台_01.PannelBorderColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
-                    this.rJ_GroupBox_領藥台_01.TitleBackColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
+                    //this.rJ_GroupBox_領藥台_01.PannelBorderColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
+                    //this.rJ_GroupBox_領藥台_01.TitleBackColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
 
-                    this.rJ_GroupBox_領藥台_02.PannelBorderColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
-                    this.rJ_GroupBox_領藥台_02.TitleBackColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
+                    //this.rJ_GroupBox_領藥台_02.PannelBorderColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
+                    //this.rJ_GroupBox_領藥台_02.TitleBackColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
 
                     //this.rJ_GroupBox_領藥台_03.PannelBorderColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
                     //this.rJ_GroupBox_領藥台_03.TitleBackColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
