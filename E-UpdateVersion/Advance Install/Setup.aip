@@ -12,10 +12,10 @@
     <ROW Property="AiSkipExitDlg" Value="1"/>
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="Manufacturer" Value="鴻森整合機電有限公司"/>
-    <ROW Property="ProductCode" Value="1028:{A1AFA42A-5D49-49FA-8BF5-EF69C1027E82} " Type="16"/>
+    <ROW Property="ProductCode" Value="1028:{CB2CEB7C-978E-4205-A70A-80EB73C7C3BA} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1028"/>
     <ROW Property="ProductName" Value="次世代智慧藥局整合平台"/>
-    <ROW Property="ProductVersion" Value="1.0.7.0" Type="32" TargetFile="exe"/>
+    <ROW Property="ProductVersion" Value="1.0.10.0" Type="32" TargetFile="exe"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{8FE40B3B-0F28-415F-BE7B-F12C75DCB707}"/>
@@ -185,12 +185,10 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="Basic.dll" Component_="Basic.dll" FileName="Basic.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\Basic.dll" SelfReg="false" NextFile="CallBackUI.dll"/>
     <ROW File="CallBackUI.dll" Component_="CallBackUI.dll" FileName="CALLBA~1.DLL|CallBackUI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\CallBackUI.dll" SelfReg="false" NextFile="cjwdev.windowsapi.dll"/>
-    <ROW File="DotNetZip.dll" Component_="DotNetZip.dll" FileName="DOTNET~1.DLL|DotNetZip.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\DotNetZip.dll" SelfReg="false" NextFile="DotNetZip.pdb"/>
-    <ROW File="DotNetZip.pdb" Component_="DotNetZip.dll" FileName="DOTNET~1.PDB|DotNetZip.pdb" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\DotNetZip.pdb" SelfReg="false" NextFile="DotNetZip.xml"/>
+    <ROW File="DotNetZip.dll" Component_="DotNetZip.dll" FileName="DOTNET~1.DLL|DotNetZip.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\DotNetZip.dll" SelfReg="false" NextFile="DotNetZip.xml"/>
     <ROW File="DotNetZip.xml" Component_="Device.val" FileName="DOTNET~1.XML|DotNetZip.xml" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\DotNetZip.xml" SelfReg="false" NextFile="DrawingClass.dll"/>
     <ROW File="DrawingClass.dll" Component_="DrawingClass.dll" FileName="DRAWIN~1.DLL|DrawingClass.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\DrawingClass.dll" SelfReg="false" NextFile="EUpdateVersion.exe.config"/>
-    <ROW File="EUpdateVersion.exe.config" Component_="Device.val" FileName="E-UPDA~1.CON|E-UpdateVersion.exe.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\E-UpdateVersion.exe.config" SelfReg="false" NextFile="EUpdateVersion.pdb"/>
-    <ROW File="EUpdateVersion.pdb" Component_="exe" FileName="E-UPDA~1.PDB|E-UpdateVersion.pdb" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\E-UpdateVersion.pdb" SelfReg="false" NextFile="FontAwesome.Sharp.dll"/>
+    <ROW File="EUpdateVersion.exe.config" Component_="Device.val" FileName="E-UPDA~1.CON|E-UpdateVersion.exe.config" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\E-UpdateVersion.exe.config" SelfReg="false" NextFile="FontAwesome.Sharp.dll"/>
     <ROW File="FontAwesome.Sharp.dll" Component_="FontAwesome.Sharp.dll" FileName="FONTAW~1.DLL|FontAwesome.Sharp.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\FontAwesome.Sharp.dll" SelfReg="false" NextFile="H_Pannel_lib.dll"/>
     <ROW File="HCGUI.dll" Component_="HCGUI.dll" FileName="HCGUI.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\HCGUI.dll" SelfReg="false" NextFile="HIS_DB_Lib.dll"/>
     <ROW File="HIS_DB_Lib.dll" Component_="HIS_DB_Lib.dll" FileName="HIS_DB~1.DLL|HIS_DB_Lib.dll" Version="65535.65535.65535.65535" Attributes="0" SourcePath="..\bin\Release\HIS_DB_Lib.dll" SelfReg="false" NextFile="HIS_WebApi.dll"/>
