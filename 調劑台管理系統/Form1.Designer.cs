@@ -66,7 +66,6 @@
             this.plC_RJ_Button_領藥台_01_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_01_取消作業 = new MyUI.PLC_RJ_Button();
             this.rJ_ProgressBar_領藥台_01_入賬完成時間條 = new MyUI.RJ_ProgressBar();
-            this.plC_RJ_Button_掃碼測試 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_01_病歷號輸入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台01_管藥模式 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_01_手輸醫令 = new MyUI.PLC_RJ_Button();
@@ -1121,6 +1120,7 @@
             this.plC_RJ_ScreenButton_EPD583 = new MyUI.PLC_RJ_ScreenButton();
             this.工程模式 = new System.Windows.Forms.TabPage();
             this.panel66 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_掃碼顏色固定 = new MyUI.PLC_CheckBox();
             this.groupBox39 = new System.Windows.Forms.GroupBox();
             this.panel_工程模式_領藥台_04_顏色 = new System.Windows.Forms.Panel();
             this.rJ_Lable174 = new MyUI.RJ_Lable();
@@ -1554,7 +1554,7 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
-            this.plC_CheckBox_掃碼顏色固定 = new MyUI.PLC_CheckBox();
+            this.plC_RJ_Button_掃碼測試 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -2796,7 +2796,6 @@
             this.rJ_GroupBox_領藥台_01.ContentsPanel.BorderSize = 5;
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.sqL_DataGridView_領藥台_01_領藥內容);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.panel112);
-            this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_掃碼測試);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_01_病歷號輸入);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台01_管藥模式);
             this.rJ_GroupBox_領藥台_01.ContentsPanel.Controls.Add(this.plC_RJ_Button_領藥台_01_手輸醫令);
@@ -3121,52 +3120,6 @@
             this.rJ_ProgressBar_領藥台_01_入賬完成時間條.SymbolAfter = "";
             this.rJ_ProgressBar_領藥台_01_入賬完成時間條.SymbolBefore = "";
             this.rJ_ProgressBar_領藥台_01_入賬完成時間條.TabIndex = 118;
-            // 
-            // plC_RJ_Button_掃碼測試
-            // 
-            this.plC_RJ_Button_掃碼測試.AutoResetState = false;
-            this.plC_RJ_Button_掃碼測試.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.plC_RJ_Button_掃碼測試.Bool = false;
-            this.plC_RJ_Button_掃碼測試.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_掃碼測試.BorderRadius = 20;
-            this.plC_RJ_Button_掃碼測試.BorderSize = 0;
-            this.plC_RJ_Button_掃碼測試.but_press = false;
-            this.plC_RJ_Button_掃碼測試.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_掃碼測試.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_掃碼測試.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_掃碼測試.Font = new System.Drawing.Font("微軟正黑體", 18F);
-            this.plC_RJ_Button_掃碼測試.GUID = "";
-            this.plC_RJ_Button_掃碼測試.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_掃碼測試.Location = new System.Drawing.Point(579, 31);
-            this.plC_RJ_Button_掃碼測試.Name = "plC_RJ_Button_掃碼測試";
-            this.plC_RJ_Button_掃碼測試.OFF_文字內容 = "掃碼測試";
-            this.plC_RJ_Button_掃碼測試.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
-            this.plC_RJ_Button_掃碼測試.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_掃碼測試.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_掃碼測試.ON_BorderSize = 5;
-            this.plC_RJ_Button_掃碼測試.ON_文字內容 = "掃碼測試";
-            this.plC_RJ_Button_掃碼測試.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
-            this.plC_RJ_Button_掃碼測試.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_掃碼測試.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_掃碼測試.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_掃碼測試.ShadowSize = 3;
-            this.plC_RJ_Button_掃碼測試.ShowLoadingForm = false;
-            this.plC_RJ_Button_掃碼測試.Size = new System.Drawing.Size(200, 72);
-            this.plC_RJ_Button_掃碼測試.State = false;
-            this.plC_RJ_Button_掃碼測試.TabIndex = 123;
-            this.plC_RJ_Button_掃碼測試.Text = "掃碼測試";
-            this.plC_RJ_Button_掃碼測試.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_掃碼測試.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_掃碼測試.Visible = false;
-            this.plC_RJ_Button_掃碼測試.字型鎖住 = false;
-            this.plC_RJ_Button_掃碼測試.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_掃碼測試.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_掃碼測試.文字鎖住 = false;
-            this.plC_RJ_Button_掃碼測試.讀取位元反向 = false;
-            this.plC_RJ_Button_掃碼測試.讀寫鎖住 = false;
-            this.plC_RJ_Button_掃碼測試.音效 = true;
-            this.plC_RJ_Button_掃碼測試.顯示 = false;
-            this.plC_RJ_Button_掃碼測試.顯示狀態 = false;
             // 
             // plC_RJ_Button_領藥台_01_病歷號輸入
             // 
@@ -31176,6 +31129,26 @@
             this.panel66.Size = new System.Drawing.Size(1662, 114);
             this.panel66.TabIndex = 26;
             // 
+            // plC_CheckBox_掃碼顏色固定
+            // 
+            this.plC_CheckBox_掃碼顏色固定.AutoSize = true;
+            this.plC_CheckBox_掃碼顏色固定.Bool = false;
+            this.plC_CheckBox_掃碼顏色固定.Font = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_掃碼顏色固定.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_掃碼顏色固定.Location = new System.Drawing.Point(383, 18);
+            this.plC_CheckBox_掃碼顏色固定.Name = "plC_CheckBox_掃碼顏色固定";
+            this.plC_CheckBox_掃碼顏色固定.Size = new System.Drawing.Size(123, 20);
+            this.plC_CheckBox_掃碼顏色固定.TabIndex = 135;
+            this.plC_CheckBox_掃碼顏色固定.Text = "掃碼顏色固定";
+            this.plC_CheckBox_掃碼顏色固定.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_掃碼顏色固定.寫入元件位置 = "S3112";
+            this.plC_CheckBox_掃碼顏色固定.文字內容 = "掃碼顏色固定";
+            this.plC_CheckBox_掃碼顏色固定.文字字體 = new System.Drawing.Font("新細明體", 12F);
+            this.plC_CheckBox_掃碼顏色固定.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_掃碼顏色固定.讀取元件位置 = "S3112";
+            this.plC_CheckBox_掃碼顏色固定.讀寫鎖住 = false;
+            this.plC_CheckBox_掃碼顏色固定.音效 = false;
+            // 
             // groupBox39
             // 
             this.groupBox39.Controls.Add(this.panel_工程模式_領藥台_04_顏色);
@@ -36288,6 +36261,7 @@
             // tabPage25
             // 
             this.tabPage25.BackColor = System.Drawing.SystemColors.Window;
+            this.tabPage25.Controls.Add(this.plC_RJ_Button_掃碼測試);
             this.tabPage25.Controls.Add(this.groupBox10);
             this.tabPage25.Controls.Add(this.plC_Button218);
             this.tabPage25.Controls.Add(this.plC_UI_Init);
@@ -36695,7 +36669,7 @@
             // 
             // plC_RJ_GroupBox23.ContentsPanel
             // 
-            this.plC_RJ_GroupBox23.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox23.ContentsPanel.BackColor = System.Drawing.SystemColors.Window;
             this.plC_RJ_GroupBox23.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
             this.plC_RJ_GroupBox23.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox23.ContentsPanel.BorderRadius = 5;
@@ -36716,13 +36690,13 @@
             this.plC_RJ_GroupBox23.GUID = "";
             this.plC_RJ_GroupBox23.Location = new System.Drawing.Point(0, 0);
             this.plC_RJ_GroupBox23.Name = "plC_RJ_GroupBox23";
-            this.plC_RJ_GroupBox23.PannelBackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox23.PannelBackColor = System.Drawing.SystemColors.Window;
             this.plC_RJ_GroupBox23.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox23.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox23.PannelBorderSize = 2;
             this.plC_RJ_GroupBox23.Size = new System.Drawing.Size(1654, 630);
             this.plC_RJ_GroupBox23.TabIndex = 1;
-            this.plC_RJ_GroupBox23.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.plC_RJ_GroupBox23.TitleBackColor = System.Drawing.SystemColors.Window;
             this.plC_RJ_GroupBox23.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_GroupBox23.TitleBorderRadius = 5;
             this.plC_RJ_GroupBox23.TitleBorderSize = 0;
@@ -41475,25 +41449,51 @@
             this.ContentsPanel.Size = new System.Drawing.Size(561, 230);
             this.ContentsPanel.TabIndex = 2;
             // 
-            // plC_CheckBox_掃碼顏色固定
+            // plC_RJ_Button_掃碼測試
             // 
-            this.plC_CheckBox_掃碼顏色固定.AutoSize = true;
-            this.plC_CheckBox_掃碼顏色固定.Bool = false;
-            this.plC_CheckBox_掃碼顏色固定.Font = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_掃碼顏色固定.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_掃碼顏色固定.Location = new System.Drawing.Point(383, 18);
-            this.plC_CheckBox_掃碼顏色固定.Name = "plC_CheckBox_掃碼顏色固定";
-            this.plC_CheckBox_掃碼顏色固定.Size = new System.Drawing.Size(123, 20);
-            this.plC_CheckBox_掃碼顏色固定.TabIndex = 135;
-            this.plC_CheckBox_掃碼顏色固定.Text = "掃碼顏色固定";
-            this.plC_CheckBox_掃碼顏色固定.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_掃碼顏色固定.寫入元件位置 = "S3112";
-            this.plC_CheckBox_掃碼顏色固定.文字內容 = "掃碼顏色固定";
-            this.plC_CheckBox_掃碼顏色固定.文字字體 = new System.Drawing.Font("新細明體", 12F);
-            this.plC_CheckBox_掃碼顏色固定.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_掃碼顏色固定.讀取元件位置 = "S3112";
-            this.plC_CheckBox_掃碼顏色固定.讀寫鎖住 = false;
-            this.plC_CheckBox_掃碼顏色固定.音效 = false;
+            this.plC_RJ_Button_掃碼測試.AutoResetState = false;
+            this.plC_RJ_Button_掃碼測試.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_掃碼測試.Bool = false;
+            this.plC_RJ_Button_掃碼測試.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_掃碼測試.BorderRadius = 20;
+            this.plC_RJ_Button_掃碼測試.BorderSize = 0;
+            this.plC_RJ_Button_掃碼測試.but_press = false;
+            this.plC_RJ_Button_掃碼測試.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_掃碼測試.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_掃碼測試.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_掃碼測試.Font = new System.Drawing.Font("微軟正黑體", 18F);
+            this.plC_RJ_Button_掃碼測試.GUID = "";
+            this.plC_RJ_Button_掃碼測試.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_掃碼測試.Location = new System.Drawing.Point(23, 598);
+            this.plC_RJ_Button_掃碼測試.Name = "plC_RJ_Button_掃碼測試";
+            this.plC_RJ_Button_掃碼測試.OFF_文字內容 = "掃碼測試";
+            this.plC_RJ_Button_掃碼測試.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
+            this.plC_RJ_Button_掃碼測試.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_掃碼測試.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_掃碼測試.ON_BorderSize = 5;
+            this.plC_RJ_Button_掃碼測試.ON_文字內容 = "掃碼測試";
+            this.plC_RJ_Button_掃碼測試.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F);
+            this.plC_RJ_Button_掃碼測試.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_掃碼測試.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_掃碼測試.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_掃碼測試.ShadowSize = 3;
+            this.plC_RJ_Button_掃碼測試.ShowLoadingForm = false;
+            this.plC_RJ_Button_掃碼測試.Size = new System.Drawing.Size(200, 72);
+            this.plC_RJ_Button_掃碼測試.State = false;
+            this.plC_RJ_Button_掃碼測試.TabIndex = 124;
+            this.plC_RJ_Button_掃碼測試.Text = "掃碼測試";
+            this.plC_RJ_Button_掃碼測試.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_掃碼測試.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_掃碼測試.Visible = false;
+            this.plC_RJ_Button_掃碼測試.字型鎖住 = false;
+            this.plC_RJ_Button_掃碼測試.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_掃碼測試.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_掃碼測試.文字鎖住 = false;
+            this.plC_RJ_Button_掃碼測試.讀取位元反向 = false;
+            this.plC_RJ_Button_掃碼測試.讀寫鎖住 = false;
+            this.plC_RJ_Button_掃碼測試.音效 = true;
+            this.plC_RJ_Button_掃碼測試.顯示 = false;
+            this.plC_RJ_Button_掃碼測試.顯示狀態 = false;
             // 
             // Form1
             // 
@@ -43498,7 +43498,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥品資料_高價藥品_搜尋;
         private MyUI.RJ_Lable rJ_Lable173;
         private MyUI.RJ_Pannel ContentsPanel;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_掃碼測試;
         private System.Windows.Forms.Panel panel57;
         private MyUI.PLC_RJ_Button plC_Button_領藥台_01_退;
         private MyUI.PLC_RJ_Button plC_Button_領藥台_01_領;
@@ -43542,6 +43541,7 @@
         private System.Windows.Forms.Panel panel_工程模式_領藥台_03_顏色;
         private MyUI.RJ_Lable rJ_Lable175;
         private MyUI.PLC_CheckBox plC_CheckBox_掃碼顏色固定;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_掃碼測試;
     }
 }
 

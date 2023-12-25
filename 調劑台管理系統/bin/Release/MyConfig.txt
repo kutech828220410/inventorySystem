@@ -2,7 +2,7 @@
   "主機扣帳模式": true,
   "主機輸出模式": false,
   "RFID使用": false,
-  "掃碼槍COM通訊": false,
+  "掃碼槍COM通訊": true,
   "RFID_COMPort": "COM1",
   "Scanner01_COMPort": "COM2",
   "Scanner02_COMPort": "COM3",
