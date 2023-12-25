@@ -429,18 +429,26 @@ namespace 調劑台管理系統
        
 
 
-            int index = 0;
             if (myConfigClass.Scanner01_COMPort.StringIsEmpty())
             {
                 rJ_GroupBox_領藥台_01.Visible = false;
-                index++;
             }
             if (myConfigClass.Scanner02_COMPort.StringIsEmpty())
             {
                 rJ_GroupBox_領藥台_02.Visible = false;
-                index++;
             }
-
+            if (myConfigClass.Scanner03_COMPort.StringIsEmpty())
+            {
+                rJ_GroupBox_領藥台_03.Visible = false;
+            }
+            if (myConfigClass.Scanner04_COMPort.StringIsEmpty())
+            {
+                rJ_GroupBox_領藥台_04.Visible = false;
+            }
+            if(myConfigClass.Scanner03_COMPort.StringIsEmpty() && myConfigClass.Scanner04_COMPort.StringIsEmpty())
+            {
+                panel_領藥台_03_04.Visible = false;
+            }
             if (dBConfigClass.Web_URL.StringIsEmpty()) plC_RJ_GroupBox_後台網址_QRCODE.Visible = false;
             else
             {
