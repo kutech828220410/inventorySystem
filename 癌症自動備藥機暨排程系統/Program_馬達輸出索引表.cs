@@ -68,20 +68,29 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_馬達輸出索引表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_馬達輸出索引表.MouseDown += SqL_DataGridView_馬達輸出索引表_MouseDown;
             this.sqL_DataGridView_馬達輸出索引表.Init(table);
-        
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnVisible(false, new enum_CMPM_StorageConfig().GetEnumNames());
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.IP);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.鎖控輸出索引);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.鎖控輸入索引);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.出料馬達輸出索引);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.出料馬達輸入索引);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.出料馬達輸入延遲時間);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.出料位置X);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.出料位置Y);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.藥盒方位);
+
+
             this.plC_RJ_Button_馬達輸出索引表_匯出.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_匯出_MouseDownEvent;
             this.plC_RJ_Button_馬達輸出索引表_匯入.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_匯入_MouseDownEvent;
 
-
             this.plC_UI_Init.Add_Method(Program_馬達輸出索引表);
         }
-
-  
 
         private void Program_馬達輸出索引表()
         {
 
         }
+
         #region Event
         private void SqL_DataGridView_馬達輸出索引表_MouseDown(object sender, MouseEventArgs e)
         {

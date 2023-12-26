@@ -32,18 +32,20 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass1 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass2 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass3 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass4 = new HIS_DB_Lib.ServerSettingClass();
             this.button_讀取 = new System.Windows.Forms.Button();
             this.button_刪除 = new System.Windows.Forms.Button();
             this.button_上傳 = new System.Windows.Forms.Button();
             this.button_測試 = new System.Windows.Forms.Button();
-            this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox_名稱 = new System.Windows.Forms.ComboBox();
             this.button_新增 = new System.Windows.Forms.Button();
+            this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
+            this.panel_SQLContent3 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent2 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
-            this.panel_SQLContent3 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_SQLContent4 = new ServerSettingForm.Panel_SQLContent();
             this.SuspendLayout();
             // 
             // button_讀取
@@ -81,30 +83,6 @@ namespace ServerSettingForm
             this.button_測試.TabIndex = 55;
             this.button_測試.Text = "測試";
             this.button_測試.UseVisualStyleBackColor = true;
-            // 
-            // rJ_TextBox_API_Server
-            // 
-            this.rJ_TextBox_API_Server.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_API_Server.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_API_Server.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_API_Server.BorderRadius = 0;
-            this.rJ_TextBox_API_Server.BorderSize = 2;
-            this.rJ_TextBox_API_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_API_Server.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_API_Server.GUID = "";
-            this.rJ_TextBox_API_Server.Location = new System.Drawing.Point(145, 17);
-            this.rJ_TextBox_API_Server.Multiline = false;
-            this.rJ_TextBox_API_Server.Name = "rJ_TextBox_API_Server";
-            this.rJ_TextBox_API_Server.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_API_Server.PassWordChar = false;
-            this.rJ_TextBox_API_Server.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_API_Server.PlaceholderText = "http://XXX.XXX.XXX.XXX:4433";
-            this.rJ_TextBox_API_Server.ShowTouchPannel = false;
-            this.rJ_TextBox_API_Server.Size = new System.Drawing.Size(293, 40);
-            this.rJ_TextBox_API_Server.TabIndex = 54;
-            this.rJ_TextBox_API_Server.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_API_Server.Texts = "";
-            this.rJ_TextBox_API_Server.UnderlineStyle = false;
             // 
             // label1
             // 
@@ -145,12 +123,36 @@ namespace ServerSettingForm
             this.button_新增.Text = "新增";
             this.button_新增.UseVisualStyleBackColor = true;
             // 
-            // panel_SQLContent2
+            // rJ_TextBox_API_Server
             // 
-            this.panel_SQLContent2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_SQLContent2.Content = "一般資料";
-            this.panel_SQLContent2.Location = new System.Drawing.Point(208, 79);
-            this.panel_SQLContent2.Name = "panel_SQLContent2";
+            this.rJ_TextBox_API_Server.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_API_Server.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_API_Server.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_API_Server.BorderRadius = 0;
+            this.rJ_TextBox_API_Server.BorderSize = 2;
+            this.rJ_TextBox_API_Server.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_API_Server.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_API_Server.GUID = "";
+            this.rJ_TextBox_API_Server.Location = new System.Drawing.Point(145, 17);
+            this.rJ_TextBox_API_Server.Multiline = false;
+            this.rJ_TextBox_API_Server.Name = "rJ_TextBox_API_Server";
+            this.rJ_TextBox_API_Server.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_API_Server.PassWordChar = false;
+            this.rJ_TextBox_API_Server.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_API_Server.PlaceholderText = "http://XXX.XXX.XXX.XXX:4433";
+            this.rJ_TextBox_API_Server.ShowTouchPannel = false;
+            this.rJ_TextBox_API_Server.Size = new System.Drawing.Size(293, 40);
+            this.rJ_TextBox_API_Server.TabIndex = 54;
+            this.rJ_TextBox_API_Server.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_API_Server.Texts = "";
+            this.rJ_TextBox_API_Server.UnderlineStyle = false;
+            // 
+            // panel_SQLContent3
+            // 
+            this.panel_SQLContent3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent3.Content = "藥檔資料";
+            this.panel_SQLContent3.Location = new System.Drawing.Point(389, 79);
+            this.panel_SQLContent3.Name = "panel_SQLContent3";
             serverSettingClass1.DBName = "";
             serverSettingClass1.GUID = null;
             serverSettingClass1.Password = "";
@@ -159,12 +161,36 @@ namespace ServerSettingForm
             serverSettingClass1.TableName = null;
             serverSettingClass1.User = "";
             serverSettingClass1.Value = null;
-            serverSettingClass1.內容 = "一般資料";
+            serverSettingClass1.內容 = "藥檔資料";
             serverSettingClass1.單位 = null;
             serverSettingClass1.程式類別 = null;
             serverSettingClass1.設備名稱 = "";
             serverSettingClass1.類別 = "癌症備藥機";
-            this.panel_SQLContent2.ServerSetting = serverSettingClass1;
+            this.panel_SQLContent3.ServerSetting = serverSettingClass1;
+            this.panel_SQLContent3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent3.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent3.TabIndex = 65;
+            // 
+            // panel_SQLContent2
+            // 
+            this.panel_SQLContent2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent2.Content = "一般資料";
+            this.panel_SQLContent2.Location = new System.Drawing.Point(208, 79);
+            this.panel_SQLContent2.Name = "panel_SQLContent2";
+            serverSettingClass2.DBName = "";
+            serverSettingClass2.GUID = null;
+            serverSettingClass2.Password = "";
+            serverSettingClass2.Port = "";
+            serverSettingClass2.Server = "";
+            serverSettingClass2.TableName = null;
+            serverSettingClass2.User = "";
+            serverSettingClass2.Value = null;
+            serverSettingClass2.內容 = "一般資料";
+            serverSettingClass2.單位 = null;
+            serverSettingClass2.程式類別 = null;
+            serverSettingClass2.設備名稱 = "";
+            serverSettingClass2.類別 = "癌症備藥機";
+            this.panel_SQLContent2.ServerSetting = serverSettingClass2;
             this.panel_SQLContent2.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
             this.panel_SQLContent2.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent2.TabIndex = 64;
@@ -175,30 +201,6 @@ namespace ServerSettingForm
             this.panel_SQLContent1.Content = "排程醫令資料";
             this.panel_SQLContent1.Location = new System.Drawing.Point(27, 79);
             this.panel_SQLContent1.Name = "panel_SQLContent1";
-            serverSettingClass2.DBName = "";
-            serverSettingClass2.GUID = null;
-            serverSettingClass2.Password = "";
-            serverSettingClass2.Port = "";
-            serverSettingClass2.Server = "";
-            serverSettingClass2.TableName = null;
-            serverSettingClass2.User = "";
-            serverSettingClass2.Value = null;
-            serverSettingClass2.內容 = "排程醫令資料";
-            serverSettingClass2.單位 = null;
-            serverSettingClass2.程式類別 = null;
-            serverSettingClass2.設備名稱 = "";
-            serverSettingClass2.類別 = "癌症備藥機";
-            this.panel_SQLContent1.ServerSetting = serverSettingClass2;
-            this.panel_SQLContent1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
-            this.panel_SQLContent1.TabIndex = 62;
-            // 
-            // panel_SQLContent3
-            // 
-            this.panel_SQLContent3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_SQLContent3.Content = "藥檔資料";
-            this.panel_SQLContent3.Location = new System.Drawing.Point(389, 79);
-            this.panel_SQLContent3.Name = "panel_SQLContent3";
             serverSettingClass3.DBName = "";
             serverSettingClass3.GUID = null;
             serverSettingClass3.Password = "";
@@ -207,21 +209,46 @@ namespace ServerSettingForm
             serverSettingClass3.TableName = null;
             serverSettingClass3.User = "";
             serverSettingClass3.Value = null;
-            serverSettingClass3.內容 = "藥檔資料";
+            serverSettingClass3.內容 = "排程醫令資料";
             serverSettingClass3.單位 = null;
             serverSettingClass3.程式類別 = null;
             serverSettingClass3.設備名稱 = "";
             serverSettingClass3.類別 = "癌症備藥機";
-            this.panel_SQLContent3.ServerSetting = serverSettingClass3;
-            this.panel_SQLContent3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_SQLContent3.Size = new System.Drawing.Size(175, 309);
-            this.panel_SQLContent3.TabIndex = 65;
+            this.panel_SQLContent1.ServerSetting = serverSettingClass3;
+            this.panel_SQLContent1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent1.TabIndex = 62;
+            // 
+            // panel_SQLContent4
+            // 
+            this.panel_SQLContent4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent4.Content = "人員資料";
+            this.panel_SQLContent4.Location = new System.Drawing.Point(570, 79);
+            this.panel_SQLContent4.Name = "panel_SQLContent4";
+            serverSettingClass4.DBName = "";
+            serverSettingClass4.GUID = null;
+            serverSettingClass4.Password = "";
+            serverSettingClass4.Port = "";
+            serverSettingClass4.Server = "";
+            serverSettingClass4.TableName = null;
+            serverSettingClass4.User = "";
+            serverSettingClass4.Value = null;
+            serverSettingClass4.內容 = "人員資料";
+            serverSettingClass4.單位 = null;
+            serverSettingClass4.程式類別 = null;
+            serverSettingClass4.設備名稱 = "";
+            serverSettingClass4.類別 = "癌症備藥機";
+            this.panel_SQLContent4.ServerSetting = serverSettingClass4;
+            this.panel_SQLContent4.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent4.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent4.TabIndex = 66;
             // 
             // Dialog_癌症備藥機
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 970);
+            this.Controls.Add(this.panel_SQLContent4);
             this.Controls.Add(this.panel_SQLContent3);
             this.Controls.Add(this.panel_SQLContent2);
             this.Controls.Add(this.button_新增);
@@ -256,5 +283,6 @@ namespace ServerSettingForm
         private System.Windows.Forms.Button button_新增;
         private Panel_SQLContent panel_SQLContent2;
         private Panel_SQLContent panel_SQLContent3;
+        private Panel_SQLContent panel_SQLContent4;
     }
 }

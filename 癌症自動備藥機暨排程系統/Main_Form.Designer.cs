@@ -117,6 +117,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_UI_Init = new MyUI.PLC_UI_Init();
             this.lowerMachine_Panel = new LadderUI.LowerMachine_Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.plC_RJ_Button_馬達輸出索引表_匯入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_馬達輸出索引表_匯出 = new MyUI.PLC_RJ_Button();
             this.sqL_DataGridView_馬達輸出索引表 = new SQLUI.SQL_DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -573,7 +574,8 @@ namespace 癌症自動備藥機暨排程系統
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.plC_RJ_Button_馬達輸出索引表_匯入 = new MyUI.PLC_RJ_Button();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.loginUI = new MySQL_Login.LoginUI();
             this.plC_ScreenPage_main.SuspendLayout();
             this.自動備藥.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -628,6 +630,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel25.SuspendLayout();
             this.panel_main02.SuspendLayout();
             this.panel_main01.SuspendLayout();
+            this.tabPage9.SuspendLayout();
             this.SuspendLayout();
             // 
             // plC_ScreenPage_main
@@ -2434,6 +2437,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage5);
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage7);
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage8);
+            this.plC_ScreenPage_系統.Controls.Add(this.tabPage9);
             this.plC_ScreenPage_系統.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_ScreenPage_系統.ForekColor = System.Drawing.Color.Black;
             this.plC_ScreenPage_系統.ItemSize = new System.Drawing.Size(54, 21);
@@ -2494,6 +2498,52 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage2.Size = new System.Drawing.Size(1048, 1618);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "馬達輸出索引表";
+            // 
+            // plC_RJ_Button_馬達輸出索引表_匯入
+            // 
+            this.plC_RJ_Button_馬達輸出索引表_匯入.AutoResetState = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.Bool = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.BorderColor = System.Drawing.Color.Red;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.BorderRadius = 20;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.BorderSize = 0;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.but_press = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_馬達輸出索引表_匯入.GUID = "";
+            this.plC_RJ_Button_馬達輸出索引表_匯入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.Location = new System.Drawing.Point(153, 1257);
+            this.plC_RJ_Button_馬達輸出索引表_匯入.Name = "plC_RJ_Button_馬達輸出索引表_匯入";
+            this.plC_RJ_Button_馬達輸出索引表_匯入.OFF_文字內容 = "匯入";
+            this.plC_RJ_Button_馬達輸出索引表_匯入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_馬達輸出索引表_匯入.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_BorderSize = 5;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_文字內容 = "匯入";
+            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.ShadowSize = 3;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.ShowLoadingForm = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.Size = new System.Drawing.Size(136, 67);
+            this.plC_RJ_Button_馬達輸出索引表_匯入.State = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.TabIndex = 45;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.Text = "匯入";
+            this.plC_RJ_Button_馬達輸出索引表_匯入.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.Texts = "匯入";
+            this.plC_RJ_Button_馬達輸出索引表_匯入.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.字型鎖住 = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.文字鎖住 = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.讀取位元反向 = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.讀寫鎖住 = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.音效 = true;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.顯示 = false;
+            this.plC_RJ_Button_馬達輸出索引表_匯入.顯示狀態 = false;
             // 
             // plC_RJ_Button_馬達輸出索引表_匯出
             // 
@@ -14432,51 +14482,33 @@ namespace 癌症自動備藥機暨排程系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
-            // plC_RJ_Button_馬達輸出索引表_匯入
+            // tabPage9
             // 
-            this.plC_RJ_Button_馬達輸出索引表_匯入.AutoResetState = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.Bool = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.BorderColor = System.Drawing.Color.Red;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.BorderRadius = 20;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.BorderSize = 0;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.but_press = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_馬達輸出索引表_匯入.GUID = "";
-            this.plC_RJ_Button_馬達輸出索引表_匯入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.Location = new System.Drawing.Point(153, 1257);
-            this.plC_RJ_Button_馬達輸出索引表_匯入.Name = "plC_RJ_Button_馬達輸出索引表_匯入";
-            this.plC_RJ_Button_馬達輸出索引表_匯入.OFF_文字內容 = "匯入";
-            this.plC_RJ_Button_馬達輸出索引表_匯入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_馬達輸出索引表_匯入.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_BorderSize = 5;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_文字內容 = "匯入";
-            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.ON_背景顏色 = System.Drawing.SystemColors.ScrollBar;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.ShadowSize = 3;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.ShowLoadingForm = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.Size = new System.Drawing.Size(136, 67);
-            this.plC_RJ_Button_馬達輸出索引表_匯入.State = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.TabIndex = 45;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.Text = "匯入";
-            this.plC_RJ_Button_馬達輸出索引表_匯入.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.Texts = "匯入";
-            this.plC_RJ_Button_馬達輸出索引表_匯入.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.字型鎖住 = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.文字鎖住 = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.讀取位元反向 = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.讀寫鎖住 = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.音效 = true;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.顯示 = false;
-            this.plC_RJ_Button_馬達輸出索引表_匯入.顯示狀態 = false;
+            this.tabPage9.Controls.Add(this.loginUI);
+            this.tabPage9.Location = new System.Drawing.Point(4, 25);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(1048, 1618);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.Text = "權限資料";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // loginUI
+            // 
+            this.loginUI.Level_num = ((uint)(20u));
+            this.loginUI.Location = new System.Drawing.Point(21, 14);
+            this.loginUI.Login_data_index_mySqlSslMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.loginUI.Login_data_index_Password = "66437068";
+            this.loginUI.Login_data_index_Port = ((uint)(3306u));
+            this.loginUI.Login_data_index_Server = "localhost";
+            this.loginUI.Login_data_index_UserName = "user";
+            this.loginUI.Login_data_mySqlSslMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.loginUI.Login_data_Password = "66437068";
+            this.loginUI.Login_data_Port = ((uint)(3306u));
+            this.loginUI.Login_data_Server = "localhost";
+            this.loginUI.Login_data_UserName = "user";
+            this.loginUI.Name = "loginUI";
+            this.loginUI.Size = new System.Drawing.Size(861, 641);
+            this.loginUI.TabIndex = 1;
             // 
             // Main_Form
             // 
@@ -14561,6 +14593,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel25.ResumeLayout(false);
             this.panel_main02.ResumeLayout(false);
             this.panel_main01.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -15110,6 +15143,8 @@ namespace 癌症自動備藥機暨排程系統
         private System.Windows.Forms.ColorDialog colorDialog;
         private MyUI.PLC_RJ_Button plC_RJ_Button_馬達輸出索引表_匯出;
         private MyUI.PLC_RJ_Button plC_RJ_Button_馬達輸出索引表_匯入;
+        private System.Windows.Forms.TabPage tabPage9;
+        private MySQL_Login.LoginUI loginUI;
     }
 }
 

@@ -167,6 +167,16 @@ namespace 癌症自動備藥機暨排程系統
                 dBConfigClass.DB_Basic.UserName = serverSettingClass.User;
                 dBConfigClass.DB_Basic.Password = serverSettingClass.Password;
             }
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.癌症備藥機, "人員資料");
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_person_page.IP = serverSettingClass.Server;
+                dBConfigClass.DB_person_page.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_person_page.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
+                dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
+            }
+
             API_Server = dBConfigClass.Api_Server;
         }
         #endregion
@@ -201,6 +211,8 @@ namespace 癌症自動備藥機暨排程系統
             Program_軸控_Init();
             Program_藥檔資料_Init();
             Program_馬達輸出索引表_Init();
+            Program_登入權限資料_Init();
+
 
             string url = $"{API_Server}/api/ChemotherapyRxScheduling/init_udnoectc";
             returnData returnData = new returnData();

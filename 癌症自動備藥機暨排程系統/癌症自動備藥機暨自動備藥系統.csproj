@@ -239,6 +239,9 @@
       <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Program_登入權限資料.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_系統.cs">
       <SubType>Form</SubType>
     </Compile>
