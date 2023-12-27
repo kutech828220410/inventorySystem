@@ -1837,8 +1837,11 @@ namespace 調劑台管理系統
 
                 }
             });
-            Task_刪除資料.Wait();
-            Task_取得醫令.Wait();
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task_刪除資料);
+            taskList.Add(Task_取得醫令);
+            Task.WhenAll(taskList).Wait();
+
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
@@ -3853,8 +3856,10 @@ namespace 調劑台管理系統
 
                 }
             });
-            Task_刪除資料.Wait();
-            Task_取得醫令.Wait();
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task_刪除資料);
+            taskList.Add(Task_取得醫令);
+            Task.WhenAll(taskList).Wait();
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
@@ -5843,8 +5848,10 @@ namespace 調劑台管理系統
 
                 }
             });
-            Task_刪除資料.Wait();
-            Task_取得醫令.Wait();
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task_刪除資料);
+            taskList.Add(Task_取得醫令);
+            Task.WhenAll(taskList).Wait();
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
@@ -7833,8 +7840,10 @@ namespace 調劑台管理系統
 
                 }
             });
-            Task_刪除資料.Wait();
-            Task_取得醫令.Wait();
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task_刪除資料);
+            taskList.Add(Task_取得醫令);
+            Task.WhenAll(taskList).Wait();
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 

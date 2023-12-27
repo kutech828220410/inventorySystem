@@ -468,8 +468,9 @@ namespace 調劑台管理系統
                 {
                 
                     string 藥品碼 = list_value_buf[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                    this.Function_儲位亮燈(藥品碼, Color.Black);
+                 
                     if (藥品碼.StringIsEmpty()) continue;
+                    this.Function_儲位亮燈(藥品碼, Color.Black);
                     List<object[]> list_value_buf_temp = list_value_buf.GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼);
                     list_value_buf_temp = list_value_buf_temp.GetRows((int)enum_取藥堆疊母資料.調劑台名稱, "刷新面板");
 
@@ -511,7 +512,7 @@ namespace 調劑台管理系統
                 if (list_value_replace.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_value_replace, false);
 
             }
-            System.Threading.Thread.Sleep(500);
+            System.Threading.Thread.Sleep(100);
         }
         private List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱)
         {
@@ -1160,7 +1161,6 @@ namespace 調劑台管理系統
             this.MyThread_取藥堆疊資料_檢查資料.Add_Method(this.sub_Program_取藥堆疊資料_狀態更新);
             this.MyThread_取藥堆疊資料_檢查資料.Add_Method(this.sub_Program_取藥堆疊資料_流程作業檢查);
             this.MyThread_取藥堆疊資料_檢查資料.Add_Method(this.sub_Program_取藥堆疊資料_入賬檢查);
-
             this.MyThread_取藥堆疊資料_檢查資料.Trigger();
 
 
@@ -1175,7 +1175,10 @@ namespace 調劑台管理系統
             public string 藥品碼 { get; set; }
             public Color 顏色 { get; set; }
         }
-        List<LightOn> lightOns = new List<LightOn>();
+        private List<LightOn> lightOns = new List<LightOn>();
+        private int cnt_儲位亮燈 = 0;
+        private int 儲位亮燈數量_temp = 0;
+        private MyTimerBasic MyTimerBasic_儲位亮燈 = new MyTimerBasic();
         private void sub_Program_取藥堆疊資料_儲位亮燈()
         {
             if(lightOns.Count > 0)
@@ -1184,51 +1187,82 @@ namespace 調劑台管理系統
                 {
                     try
                     {
-                        List<LightOn> lightOns_buf = new List<LightOn>();
-                        for (int i = 0; i < lightOns.Count; i++)
+                        if (cnt_儲位亮燈 == 0)
                         {
-                            LightOn lightOn = new LightOn();
-                            lightOn.藥品碼 = lightOns[i].藥品碼;
-                            lightOn.顏色 = lightOns[i].顏色;
-                            lightOns_buf.Add(lightOn);
+                            儲位亮燈數量_temp = lightOns.Count;
+                            MyTimerBasic_儲位亮燈.TickStop();
+                            MyTimerBasic_儲位亮燈.StartTickTime(20);
+                            cnt_儲位亮燈++;
                         }
-                        lightOns.Clear();
-
-                        List<Task> taskList_抽屜層架 = new List<Task>();
-
-                        List<string> list_抽屜亮燈_IP = new List<string>();
-                        List<string> list_層架亮燈_IP = new List<string>();
-
-                        for (int i = 0; i < lightOns_buf.Count; i++)
+                        if (cnt_儲位亮燈 == 1)
                         {
-                            string 藥品碼 = lightOns_buf[i].藥品碼;
-                            Color 顏色 = lightOns_buf[i].顏色;
-                            list_抽屜亮燈_IP.LockAdd(Function_儲位亮燈_取得抽屜亮燈IP(藥品碼, 顏色));
-                            list_層架亮燈_IP.LockAdd(Function_儲位亮燈_取得層架亮燈IP(藥品碼, 顏色));
-                        }
-
-                        taskList_抽屜層架.Add(Task.Run(() =>
-                        {
-                            Function_儲位亮燈_抽屜亮燈(list_抽屜亮燈_IP);
-                        }));
-                        taskList_抽屜層架.Add(Task.Run(() =>
-                        {
-                            Function_儲位亮燈_層架亮燈(list_層架亮燈_IP);
-                        }));
-                        Task.WhenAll(taskList_抽屜層架).Wait();
-                        List<Task> taskList = new List<Task>();
-
-                        for (int i = 0; i < lightOns_buf.Count; i++)
-                        {
-                            string 藥品碼 = lightOns_buf[i].藥品碼;
-                            Color 顏色 = lightOns_buf[i].顏色;
-                            taskList.Add(Task.Run(() =>
+                            if(MyTimerBasic_儲位亮燈.IsTimeOut())
                             {
-                                Function_儲位亮燈_Ex(藥品碼, 顏色);
-
-                            }));
+                                if(儲位亮燈數量_temp == lightOns.Count)
+                                {
+                                    cnt_儲位亮燈++;
+                                }
+                                else
+                                {
+                                    cnt_儲位亮燈 = 0;
+                                }
+                            }
                         }
-                        Task.WhenAll(taskList).Wait();
+                        if (cnt_儲位亮燈 == 2)
+                        {
+                            List<LightOn> lightOns_buf = new List<LightOn>();
+                            for (int i = 0; i < lightOns.Count; i++)
+                            {
+                                LightOn lightOn = new LightOn();
+                                lightOn.藥品碼 = lightOns[i].藥品碼;
+                                lightOn.顏色 = lightOns[i].顏色;
+                                lightOns_buf.Add(lightOn);
+                            }
+                            lightOns.Clear();
+
+                            List<Task> taskList_抽屜層架 = new List<Task>();
+
+                            List<string> list_抽屜亮燈_IP = new List<string>();
+                            List<string> list_層架亮燈_IP = new List<string>();
+
+                            for (int i = 0; i < lightOns_buf.Count; i++)
+                            {
+                                string 藥品碼 = lightOns_buf[i].藥品碼;
+                                Color 顏色 = lightOns_buf[i].顏色;
+                                list_抽屜亮燈_IP.LockAdd(Function_儲位亮燈_取得抽屜亮燈IP(藥品碼, 顏色));
+                                list_層架亮燈_IP.LockAdd(Function_儲位亮燈_取得層架亮燈IP(藥品碼, 顏色));
+                            }
+
+                            taskList_抽屜層架.Add(Task.Run(() =>
+                            {
+                                Function_儲位亮燈_抽屜亮燈(list_抽屜亮燈_IP);
+                            }));
+                            taskList_抽屜層架.Add(Task.Run(() =>
+                            {
+                                Function_儲位亮燈_層架亮燈(list_層架亮燈_IP);
+                            }));
+
+                            Task.WhenAll(taskList_抽屜層架).Wait();
+                            List<Task> taskList = new List<Task>();
+                            for (int i = 0; i < lightOns_buf.Count; i++)
+                            {
+                                string 藥品碼 = lightOns_buf[i].藥品碼;
+                                Color 顏色 = lightOns_buf[i].顏色;
+                                taskList.Add(Task.Run(() =>
+                                {
+                                    Function_儲位亮燈_Ex(藥品碼, 顏色);
+
+                                }));
+                            }
+                            Task.WhenAll(taskList).Wait();
+                            cnt_儲位亮燈++;
+                        }
+                        if (cnt_儲位亮燈 == 3)
+                        {
+                            cnt_儲位亮燈 = 0;
+                        }
+       
+                       
                     }
                     catch
                     {
@@ -1242,18 +1276,12 @@ namespace 調劑台管理系統
                    
                 }
             }
-        
-        
-            //if (lightOns.Count > 0)
-            //{
-            //    Function_儲位亮燈_Ex(lightOns[0].藥品碼, lightOns[0].顏色);
-            //    lightOns.RemoveAt(0);
-            //}
+   
         }
         public List<string> Function_儲位亮燈_取得抽屜亮燈IP(string 藥品碼, Color color)
         {
             if (藥品碼.StringIsEmpty()) return new List<string>();
-            List<object> list_Device = this.Function_從雲端資料取得儲位(藥品碼);
+            List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
             List<object> list_commonSpace_device = this.Function_從共用區取得儲位(藥品碼);
             for (int i = 0; i < list_commonSpace_device.Count; i++)
             {
@@ -1274,7 +1302,7 @@ namespace 調劑台管理系統
                     if (box != null)
                     {
                         bool flag_common_device = false;
-                        Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                        Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                         if (drawer == null)
                         {
                             drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
@@ -1337,6 +1365,8 @@ namespace 調劑台管理系統
                             }
                             else drawer.LED_Bytes = DrawerUI_EPD_583.Set_Pannel_LEDBytes(drawer, Color.Purple);
 
+
+                            flag_led_refresh = true;
                             for (int k = 0; k < drawer.LED_Bytes.Length; k++)
                             {
                                 if (LED_Bytes[k] != drawer.LED_Bytes[k])
@@ -1372,7 +1402,7 @@ namespace 調劑台管理系統
                     string IP = list_IP[i];
                     taskList.Add(Task.Run(() =>
                     {
-                        Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
+                        Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                         if (drawer == null)
                         {
                             drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
@@ -1384,9 +1414,10 @@ namespace 調劑台管理系統
                         }
 
                     }));
-                    allTask = Task.WhenAll(taskList);
-                    allTask.Wait();
+                   
                 }
+                allTask = Task.WhenAll(taskList);
+                allTask.Wait();
             }
             catch
             {
@@ -1402,7 +1433,7 @@ namespace 調劑台管理系統
         public List<string> Function_儲位亮燈_取得層架亮燈IP(string 藥品碼, Color color)
         {
             if (藥品碼.StringIsEmpty()) return new List<string>();
-            List<object> list_Device = this.Function_從雲端資料取得儲位(藥品碼);
+            List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
             List<object> list_commonSpace_device = this.Function_從共用區取得儲位(藥品碼);
             for (int i = 0; i < list_commonSpace_device.Count; i++)
             {
@@ -1421,7 +1452,7 @@ namespace 調劑台管理系統
                     RowsDevice rowsDevice = list_Device[i] as RowsDevice;
                     if (rowsDevice != null)
                     {
-                        RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
+                        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
                         if (rowsLED == null)
                         {
                             rowsLED = CommonSapceClass.GetRowsLED(IP, ref this.commonSapceClasses);
@@ -1452,7 +1483,7 @@ namespace 調劑台管理系統
                     string IP = list_IP[i];
                     taskList.Add(Task.Run(() =>
                     {
-                        RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(IP);
+                        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(IP);
                         if (rowsLED == null)
                         {
                             rowsLED = CommonSapceClass.GetRowsLED(IP, ref this.commonSapceClasses);
@@ -1468,9 +1499,10 @@ namespace 調劑台管理系統
 
 
                     }));
-                    allTask = Task.WhenAll(taskList);
-                    allTask.Wait();
+                  
                 }
+                allTask = Task.WhenAll(taskList);
+                allTask.Wait();
             }
             catch
             {
@@ -1547,38 +1579,13 @@ namespace 調劑台管理系統
                                 }
 
                             }));
-                            //allTask = Task.WhenAll(taskList);
-                            //allTask.Wait();
+          
                             list_IP.Add(IP);
                         }
                     }
                     else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
                     {
-                        //Box box = list_Device[i] as Box;
-                        //if (box != null)
-                        //{
-                        //    taskList.Add(Task.Run(() =>
-                        //    {
-                        //        Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
-                        //        if (drawer == null)
-                        //        {
-                        //            drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
-                        //        }
-
-                        //        if (!plC_CheckBox_測試模式.Checked)
-                        //        {
-
-                        //            if (flag_led_refresh)
-                        //            {
-                        //                this.drawerUI_EPD_583.Set_LED_UDP(drawer);
-                        //            }
-                        //        }
-
-                        //    }));
-                        //    //allTask = Task.WhenAll(taskList);
-                        //    //allTask.Wait();
-                        //    list_IP.Add(IP);
-                        //}
+    
                     }
                     else if (device.DeviceType == DeviceType.EPD1020 || device.DeviceType == DeviceType.EPD1020_lock)
                     {
@@ -1595,8 +1602,7 @@ namespace 調劑台管理系統
                                 }
 
                             }));
-                            //allTask = Task.WhenAll(taskList);
-                            //allTask.Wait();
+  
                             list_IP.Add(IP);
                         }
                     }
@@ -1613,8 +1619,7 @@ namespace 調劑台管理系統
                                 }
 
                             }));
-                            //allTask = Task.WhenAll(taskList);
-                            //allTask.Wait();
+  
                             list_IP.Add(IP);
                         }
                     }
