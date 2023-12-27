@@ -64,6 +64,7 @@
             this.rJ_ProgressBar_領藥台_02_入賬完成時間條 = new MyUI.RJ_ProgressBar();
             this.plC_RJ_Button_領藥台_02_登入 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel24 = new MyUI.RJ_Pannel();
+            this.label_版本 = new System.Windows.Forms.Label();
             this.plC_RJ_Button_領藥台_01_手輸醫令 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_01_病歷號輸入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_01_手動作業 = new MyUI.PLC_RJ_Button();
@@ -110,7 +111,7 @@
             this.groupBox26 = new System.Windows.Forms.GroupBox();
             this.plC_RJ_Button_系統更新 = new MyUI.PLC_RJ_Button();
             this.ftp_DounloadUI = new MyFtpUI.Ftp_DounloadUI();
-            this.rJ_GroupBox7 = new MyUI.RJ_GroupBox();
+            this.rJ_GroupBox_後台登入_帳密輸入 = new MyUI.RJ_GroupBox();
             this.plC_RJ_Button_後台登入_登入 = new MyUI.PLC_RJ_Button();
             this.panel185 = new System.Windows.Forms.Panel();
             this.textBox_後台登入_帳號 = new System.Windows.Forms.TextBox();
@@ -1572,7 +1573,6 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
-            this.label_版本 = new System.Windows.Forms.Label();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -1606,8 +1606,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_後台網址_QRCODE)).BeginInit();
             this.rJ_Pannel_後台登入_歡迎登入.SuspendLayout();
             this.groupBox26.SuspendLayout();
-            this.rJ_GroupBox7.ContentsPanel.SuspendLayout();
-            this.rJ_GroupBox7.SuspendLayout();
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.SuspendLayout();
+            this.rJ_GroupBox_後台登入_帳密輸入.SuspendLayout();
             this.panel185.SuspendLayout();
             this.panel183.SuspendLayout();
             this.交班作業.SuspendLayout();
@@ -2919,6 +2919,18 @@
             this.rJ_Pannel24.Size = new System.Drawing.Size(1652, 84);
             this.rJ_Pannel24.TabIndex = 10;
             // 
+            // label_版本
+            // 
+            this.label_版本.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label_版本.Font = new System.Drawing.Font("微軟正黑體", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_版本.ForeColor = System.Drawing.Color.Black;
+            this.label_版本.Location = new System.Drawing.Point(1498, 10);
+            this.label_版本.Name = "label_版本";
+            this.label_版本.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label_版本.Size = new System.Drawing.Size(144, 61);
+            this.label_版本.TabIndex = 127;
+            this.label_版本.Text = "Ver 1.0.0.0";
+            // 
             // plC_RJ_Button_領藥台_01_手輸醫令
             // 
             this.plC_RJ_Button_領藥台_01_手輸醫令.AutoResetState = true;
@@ -3895,7 +3907,7 @@
             this.後台登入.Controls.Add(this.plC_RJ_GroupBox_後台網址_QRCODE);
             this.後台登入.Controls.Add(this.rJ_Pannel_後台登入_歡迎登入);
             this.後台登入.Controls.Add(this.groupBox26);
-            this.後台登入.Controls.Add(this.rJ_GroupBox7);
+            this.後台登入.Controls.Add(this.rJ_GroupBox_後台登入_帳密輸入);
             this.後台登入.Controls.Add(this.rJ_Lable5);
             this.後台登入.Location = new System.Drawing.Point(4, 25);
             this.後台登入.Name = "後台登入";
@@ -4006,6 +4018,7 @@
             this.plC_RJ_GroupBox_後台網址_QRCODE.TitleHeight = 37;
             this.plC_RJ_GroupBox_後台網址_QRCODE.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox_後台網址_QRCODE.TitleTexts = "後台網址";
+            this.plC_RJ_GroupBox_後台網址_QRCODE.Visible = false;
             // 
             // pictureBox_後台網址_QRCODE
             // 
@@ -4033,7 +4046,7 @@
             // 
             this.rJ_Pannel_後台登入_歡迎登入.BackColor = System.Drawing.Color.White;
             this.rJ_Pannel_後台登入_歡迎登入.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Pannel_後台登入_歡迎登入.BorderColor = System.Drawing.Color.YellowGreen;
+            this.rJ_Pannel_後台登入_歡迎登入.BorderColor = System.Drawing.Color.Gray;
             this.rJ_Pannel_後台登入_歡迎登入.BorderRadius = 10;
             this.rJ_Pannel_後台登入_歡迎登入.BorderSize = 2;
             this.rJ_Pannel_後台登入_歡迎登入.Controls.Add(this.rJ_Lable_後台登入_歡迎登入_ID);
@@ -4043,11 +4056,12 @@
             this.rJ_Pannel_後台登入_歡迎登入.Controls.Add(this.rJ_Lable56);
             this.rJ_Pannel_後台登入_歡迎登入.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel_後台登入_歡迎登入.IsSelected = false;
-            this.rJ_Pannel_後台登入_歡迎登入.Location = new System.Drawing.Point(515, 658);
+            this.rJ_Pannel_後台登入_歡迎登入.Location = new System.Drawing.Point(515, 404);
             this.rJ_Pannel_後台登入_歡迎登入.Name = "rJ_Pannel_後台登入_歡迎登入";
+            this.rJ_Pannel_後台登入_歡迎登入.Padding = new System.Windows.Forms.Padding(10);
             this.rJ_Pannel_後台登入_歡迎登入.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel_後台登入_歡迎登入.ShadowSize = 0;
-            this.rJ_Pannel_後台登入_歡迎登入.Size = new System.Drawing.Size(533, 268);
+            this.rJ_Pannel_後台登入_歡迎登入.ShadowSize = 3;
+            this.rJ_Pannel_後台登入_歡迎登入.Size = new System.Drawing.Size(533, 248);
             this.rJ_Pannel_後台登入_歡迎登入.TabIndex = 112;
             this.rJ_Pannel_後台登入_歡迎登入.Visible = false;
             // 
@@ -4062,7 +4076,7 @@
             this.rJ_Lable_後台登入_歡迎登入_ID.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable_後台登入_歡迎登入_ID.ForeColor = System.Drawing.Color.Black;
             this.rJ_Lable_後台登入_歡迎登入_ID.GUID = "";
-            this.rJ_Lable_後台登入_歡迎登入_ID.Location = new System.Drawing.Point(168, 185);
+            this.rJ_Lable_後台登入_歡迎登入_ID.Location = new System.Drawing.Point(174, 168);
             this.rJ_Lable_後台登入_歡迎登入_ID.Name = "rJ_Lable_後台登入_歡迎登入_ID";
             this.rJ_Lable_後台登入_歡迎登入_ID.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_後台登入_歡迎登入_ID.ShadowSize = 0;
@@ -4083,7 +4097,7 @@
             this.rJ_Lable_後台登入_歡迎登入_姓名.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable_後台登入_歡迎登入_姓名.ForeColor = System.Drawing.Color.Black;
             this.rJ_Lable_後台登入_歡迎登入_姓名.GUID = "";
-            this.rJ_Lable_後台登入_歡迎登入_姓名.Location = new System.Drawing.Point(168, 114);
+            this.rJ_Lable_後台登入_歡迎登入_姓名.Location = new System.Drawing.Point(174, 97);
             this.rJ_Lable_後台登入_歡迎登入_姓名.Name = "rJ_Lable_後台登入_歡迎登入_姓名";
             this.rJ_Lable_後台登入_歡迎登入_姓名.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_後台登入_歡迎登入_姓名.ShadowSize = 0;
@@ -4096,7 +4110,7 @@
             // rJ_Lable16
             // 
             this.rJ_Lable16.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable16.BackgroundColor = System.Drawing.Color.YellowGreen;
+            this.rJ_Lable16.BackgroundColor = System.Drawing.Color.Gray;
             this.rJ_Lable16.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable16.BorderRadius = 8;
             this.rJ_Lable16.BorderSize = 0;
@@ -4105,11 +4119,11 @@
             this.rJ_Lable16.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable16.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable16.GUID = "";
-            this.rJ_Lable16.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable16.Location = new System.Drawing.Point(10, 10);
             this.rJ_Lable16.Name = "rJ_Lable16";
             this.rJ_Lable16.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable16.ShadowSize = 0;
-            this.rJ_Lable16.Size = new System.Drawing.Size(533, 100);
+            this.rJ_Lable16.Size = new System.Drawing.Size(513, 67);
             this.rJ_Lable16.TabIndex = 111;
             this.rJ_Lable16.Text = "歡迎登入";
             this.rJ_Lable16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4126,7 +4140,7 @@
             this.rJ_Lable57.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable57.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable57.GUID = "";
-            this.rJ_Lable57.Location = new System.Drawing.Point(17, 185);
+            this.rJ_Lable57.Location = new System.Drawing.Point(23, 168);
             this.rJ_Lable57.Name = "rJ_Lable57";
             this.rJ_Lable57.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable57.ShadowSize = 3;
@@ -4147,7 +4161,7 @@
             this.rJ_Lable56.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable56.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable56.GUID = "";
-            this.rJ_Lable56.Location = new System.Drawing.Point(17, 114);
+            this.rJ_Lable56.Location = new System.Drawing.Point(23, 97);
             this.rJ_Lable56.Name = "rJ_Lable56";
             this.rJ_Lable56.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable56.ShadowSize = 3;
@@ -4233,46 +4247,46 @@
             this.ftp_DounloadUI.Username = "test";
             this.ftp_DounloadUI.Username_要顯示 = false;
             // 
-            // rJ_GroupBox7
+            // rJ_GroupBox_後台登入_帳密輸入
             // 
             // 
-            // rJ_GroupBox7.ContentsPanel
+            // rJ_GroupBox_後台登入_帳密輸入.ContentsPanel
             // 
-            this.rJ_GroupBox7.ContentsPanel.BackColor = System.Drawing.Color.White;
-            this.rJ_GroupBox7.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_GroupBox7.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
-            this.rJ_GroupBox7.ContentsPanel.BorderRadius = 5;
-            this.rJ_GroupBox7.ContentsPanel.BorderSize = 2;
-            this.rJ_GroupBox7.ContentsPanel.Controls.Add(this.plC_RJ_Button_後台登入_登入);
-            this.rJ_GroupBox7.ContentsPanel.Controls.Add(this.panel185);
-            this.rJ_GroupBox7.ContentsPanel.Controls.Add(this.panel183);
-            this.rJ_GroupBox7.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_GroupBox7.ContentsPanel.ForeColor = System.Drawing.Color.White;
-            this.rJ_GroupBox7.ContentsPanel.IsSelected = false;
-            this.rJ_GroupBox7.ContentsPanel.Location = new System.Drawing.Point(0, 37);
-            this.rJ_GroupBox7.ContentsPanel.Name = "ContentsPanel";
-            this.rJ_GroupBox7.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_GroupBox7.ContentsPanel.ShadowSize = 0;
-            this.rJ_GroupBox7.ContentsPanel.Size = new System.Drawing.Size(533, 249);
-            this.rJ_GroupBox7.ContentsPanel.TabIndex = 2;
-            this.rJ_GroupBox7.GUID = "";
-            this.rJ_GroupBox7.Location = new System.Drawing.Point(515, 366);
-            this.rJ_GroupBox7.Name = "rJ_GroupBox7";
-            this.rJ_GroupBox7.PannelBackColor = System.Drawing.Color.White;
-            this.rJ_GroupBox7.PannelBorderColor = System.Drawing.Color.SkyBlue;
-            this.rJ_GroupBox7.PannelBorderRadius = 5;
-            this.rJ_GroupBox7.PannelBorderSize = 2;
-            this.rJ_GroupBox7.Size = new System.Drawing.Size(533, 286);
-            this.rJ_GroupBox7.TabIndex = 107;
-            this.rJ_GroupBox7.TitleBackColor = System.Drawing.Color.White;
-            this.rJ_GroupBox7.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_GroupBox7.TitleBorderRadius = 5;
-            this.rJ_GroupBox7.TitleBorderSize = 0;
-            this.rJ_GroupBox7.TitleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_GroupBox7.TitleForeColor = System.Drawing.Color.White;
-            this.rJ_GroupBox7.TitleHeight = 37;
-            this.rJ_GroupBox7.TitleTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_GroupBox7.TitleTexts = "    帳號登入";
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.BorderColor = System.Drawing.Color.Gray;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.BorderRadius = 5;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.BorderSize = 2;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.Controls.Add(this.plC_RJ_Button_後台登入_登入);
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.Controls.Add(this.panel185);
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.Controls.Add(this.panel183);
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.IsSelected = false;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.Name = "ContentsPanel";
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.ShadowSize = 3;
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.Size = new System.Drawing.Size(533, 249);
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.TabIndex = 2;
+            this.rJ_GroupBox_後台登入_帳密輸入.GUID = "";
+            this.rJ_GroupBox_後台登入_帳密輸入.Location = new System.Drawing.Point(515, 366);
+            this.rJ_GroupBox_後台登入_帳密輸入.Name = "rJ_GroupBox_後台登入_帳密輸入";
+            this.rJ_GroupBox_後台登入_帳密輸入.PannelBackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox_後台登入_帳密輸入.PannelBorderColor = System.Drawing.Color.Gray;
+            this.rJ_GroupBox_後台登入_帳密輸入.PannelBorderRadius = 5;
+            this.rJ_GroupBox_後台登入_帳密輸入.PannelBorderSize = 2;
+            this.rJ_GroupBox_後台登入_帳密輸入.Size = new System.Drawing.Size(533, 286);
+            this.rJ_GroupBox_後台登入_帳密輸入.TabIndex = 107;
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleBackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleBorderRadius = 5;
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleBorderSize = 0;
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleHeight = 37;
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_GroupBox_後台登入_帳密輸入.TitleTexts = "    帳號登入";
             // 
             // plC_RJ_Button_後台登入_登入
             // 
@@ -41907,18 +41921,6 @@
             this.ContentsPanel.Size = new System.Drawing.Size(835, 407);
             this.ContentsPanel.TabIndex = 2;
             // 
-            // label_版本
-            // 
-            this.label_版本.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label_版本.Font = new System.Drawing.Font("微軟正黑體", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_版本.ForeColor = System.Drawing.Color.Black;
-            this.label_版本.Location = new System.Drawing.Point(1498, 10);
-            this.label_版本.Name = "label_版本";
-            this.label_版本.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label_版本.Size = new System.Drawing.Size(144, 61);
-            this.label_版本.TabIndex = 127;
-            this.label_版本.Text = "Ver 1.0.0.0";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -41966,8 +41968,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_後台網址_QRCODE)).EndInit();
             this.rJ_Pannel_後台登入_歡迎登入.ResumeLayout(false);
             this.groupBox26.ResumeLayout(false);
-            this.rJ_GroupBox7.ContentsPanel.ResumeLayout(false);
-            this.rJ_GroupBox7.ResumeLayout(false);
+            this.rJ_GroupBox_後台登入_帳密輸入.ContentsPanel.ResumeLayout(false);
+            this.rJ_GroupBox_後台登入_帳密輸入.ResumeLayout(false);
             this.panel185.ResumeLayout(false);
             this.panel185.PerformLayout();
             this.panel183.ResumeLayout(false);
@@ -42491,7 +42493,7 @@
         private System.Windows.Forms.Panel panel185;
         private System.Windows.Forms.Panel panel186;
         private MyUI.PLC_AlarmFlow plC_AlarmFlow;
-        private MyUI.RJ_GroupBox rJ_GroupBox7;
+        private MyUI.RJ_GroupBox rJ_GroupBox_後台登入_帳密輸入;
         private MyUI.RJ_Lable rJ_Lable5;
         private MyUI.RJ_GroupBox rJ_GroupBox11;
         private MyUI.RJ_TextBox textBox_效期管理_藥品碼;
