@@ -188,6 +188,10 @@ namespace 癌症自動備藥機暨排程系統
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
+            Dialog_AlarmForm.form = this.FindForm();
+            Dialog_NumPannel.form = this.FindForm();
+            MyMessageBox.form = this.FindForm();
+
             this.plC_UI_Init.音效 = false;
             this.plC_UI_Init.全螢幕顯示 = true;
 

@@ -221,6 +221,12 @@ namespace HIS_WebApi
             table.AddColumnList("指紋ID", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("開門權限", Table.StringType.VARCHAR, 300, Table.IndexType.None);
 
+            table.Server = Server;
+            table.DBName = DB;
+            table.Username = UserName;
+            table.Password = Password;
+            table.Port = Port.ToString();
+
             if (!sQLControl.IsTableCreat())
             {
                 sQLControl.CreatTable(table);

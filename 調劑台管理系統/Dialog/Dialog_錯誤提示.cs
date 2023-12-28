@@ -43,7 +43,6 @@ namespace 調劑台管理系統
             _title = title;
             _time_ms = time_ms;
 
-
             this.Load += Dialog_錯誤提示_Load;
             this.FormClosing += Dialog_錯誤提示_FormClosing;
         }

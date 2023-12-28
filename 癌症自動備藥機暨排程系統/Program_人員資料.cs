@@ -50,12 +50,51 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.一維條碼);
 
 
+            this.plC_RJ_Button_人員資料_資料搜尋_姓名.MouseDownEvent += PlC_RJ_Button_人員資料_資料搜尋_姓名_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料搜尋_ID.MouseDownEvent += PlC_RJ_Button_人員資料_資料搜尋_ID_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料搜尋_卡號.MouseDownEvent += PlC_RJ_Button_人員資料_資料搜尋_卡號_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.MouseDownEvent += PlC_RJ_Button_人員資料_資料搜尋_一維條碼_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_人員資料);
         }
+
+   
+
         private void Program_人員資料()
         {
 
            
         }
+
+        #region Function
+
+        #endregion
+        #region Event
+        private void PlC_RJ_Button_人員資料_資料搜尋_一維條碼_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string text = this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.Texts;
+            if(text.StringIsEmpty())
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("搜尋條件空白", 1500);
+                return;
+            }
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+            List<object[]> list_value_buf = list_value.GetRows((int)enum_人員資料.一維條碼, text);
+            this.sqL_DataGridView_人員資料.RefreshGrid(list_value_buf);
+            
+
+        }
+        private void PlC_RJ_Button_人員資料_資料搜尋_卡號_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+        private void PlC_RJ_Button_人員資料_資料搜尋_ID_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+        private void PlC_RJ_Button_人員資料_資料搜尋_姓名_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+        #endregion
     }
 }
