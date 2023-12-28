@@ -109,6 +109,9 @@ namespace 癌症自動備藥機暨排程系統
             this.panel12 = new System.Windows.Forms.Panel();
             this.rJ_Lable35 = new MyUI.RJ_Lable();
             this.人員資料 = new System.Windows.Forms.TabPage();
+            this.plC_RJ_Button_人員資料_刪除 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_人員資料_顯示全部 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_人員資料_存檔 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel12 = new MyUI.RJ_Pannel();
             this.panel34 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼 = new MyUI.PLC_RJ_Button();
@@ -611,6 +614,11 @@ namespace 癌症自動備藥機暨排程系統
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.rJ_Pannel13 = new MyUI.RJ_Pannel();
+            this.rJ_Lable84 = new MyUI.RJ_Lable();
+            this.panel35 = new System.Windows.Forms.Panel();
+            this.sqL_DataGridView_儲位設定_藥品搜尋 = new SQLUI.SQL_DataGridView();
             this.plC_ScreenPage_main.SuspendLayout();
             this.自動備藥.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -642,6 +650,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel28.SuspendLayout();
             this.panel27.SuspendLayout();
             this.panel26.SuspendLayout();
+            this.儲位設定.SuspendLayout();
             this.系統.SuspendLayout();
             this.plC_ScreenPage_系統.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -677,6 +686,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel25.SuspendLayout();
             this.panel_main02.SuspendLayout();
             this.panel_main01.SuspendLayout();
+            this.rJ_Pannel13.SuspendLayout();
             this.SuspendLayout();
             // 
             // plC_ScreenPage_main
@@ -2436,6 +2446,9 @@ namespace 癌症自動備藥機暨排程系統
             // 人員資料
             // 
             this.人員資料.BackColor = System.Drawing.Color.White;
+            this.人員資料.Controls.Add(this.plC_RJ_Button_人員資料_刪除);
+            this.人員資料.Controls.Add(this.plC_RJ_Button_人員資料_顯示全部);
+            this.人員資料.Controls.Add(this.plC_RJ_Button_人員資料_存檔);
             this.人員資料.Controls.Add(this.rJ_Pannel12);
             this.人員資料.Controls.Add(this.panel30);
             this.人員資料.Controls.Add(this.panel29);
@@ -2448,6 +2461,144 @@ namespace 癌症自動備藥機暨排程系統
             this.人員資料.Size = new System.Drawing.Size(1056, 1734);
             this.人員資料.TabIndex = 6;
             this.人員資料.Text = "人員資料";
+            // 
+            // plC_RJ_Button_人員資料_刪除
+            // 
+            this.plC_RJ_Button_人員資料_刪除.AutoResetState = false;
+            this.plC_RJ_Button_人員資料_刪除.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_刪除.Bool = false;
+            this.plC_RJ_Button_人員資料_刪除.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_人員資料_刪除.BorderRadius = 20;
+            this.plC_RJ_Button_人員資料_刪除.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_刪除.but_press = false;
+            this.plC_RJ_Button_人員資料_刪除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料_刪除.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_刪除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料_刪除.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_刪除.GUID = "";
+            this.plC_RJ_Button_人員資料_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料_刪除.Location = new System.Drawing.Point(420, 1546);
+            this.plC_RJ_Button_人員資料_刪除.Name = "plC_RJ_Button_人員資料_刪除";
+            this.plC_RJ_Button_人員資料_刪除.OFF_文字內容 = "刪除";
+            this.plC_RJ_Button_人員資料_刪除.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_刪除.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_刪除.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_刪除.ON_BorderSize = 2;
+            this.plC_RJ_Button_人員資料_刪除.ON_文字內容 = "刪除";
+            this.plC_RJ_Button_人員資料_刪除.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_刪除.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_刪除.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_人員資料_刪除.ShadowSize = 3;
+            this.plC_RJ_Button_人員資料_刪除.ShowLoadingForm = false;
+            this.plC_RJ_Button_人員資料_刪除.Size = new System.Drawing.Size(104, 68);
+            this.plC_RJ_Button_人員資料_刪除.State = false;
+            this.plC_RJ_Button_人員資料_刪除.TabIndex = 61;
+            this.plC_RJ_Button_人員資料_刪除.Text = "刪除";
+            this.plC_RJ_Button_人員資料_刪除.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_刪除.Texts = "刪除";
+            this.plC_RJ_Button_人員資料_刪除.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料_刪除.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料_刪除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料_刪除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料_刪除.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料_刪除.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料_刪除.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料_刪除.音效 = true;
+            this.plC_RJ_Button_人員資料_刪除.顯示 = false;
+            this.plC_RJ_Button_人員資料_刪除.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_人員資料_顯示全部
+            // 
+            this.plC_RJ_Button_人員資料_顯示全部.AutoResetState = false;
+            this.plC_RJ_Button_人員資料_顯示全部.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_顯示全部.Bool = false;
+            this.plC_RJ_Button_人員資料_顯示全部.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_人員資料_顯示全部.BorderRadius = 20;
+            this.plC_RJ_Button_人員資料_顯示全部.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_顯示全部.but_press = false;
+            this.plC_RJ_Button_人員資料_顯示全部.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料_顯示全部.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_顯示全部.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料_顯示全部.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_顯示全部.GUID = "";
+            this.plC_RJ_Button_人員資料_顯示全部.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料_顯示全部.Location = new System.Drawing.Point(420, 1641);
+            this.plC_RJ_Button_人員資料_顯示全部.Name = "plC_RJ_Button_人員資料_顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.OFF_文字內容 = "顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_顯示全部.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_顯示全部.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_顯示全部.ON_BorderSize = 2;
+            this.plC_RJ_Button_人員資料_顯示全部.ON_文字內容 = "顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_顯示全部.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_顯示全部.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_顯示全部.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_人員資料_顯示全部.ShadowSize = 3;
+            this.plC_RJ_Button_人員資料_顯示全部.ShowLoadingForm = true;
+            this.plC_RJ_Button_人員資料_顯示全部.Size = new System.Drawing.Size(104, 68);
+            this.plC_RJ_Button_人員資料_顯示全部.State = false;
+            this.plC_RJ_Button_人員資料_顯示全部.TabIndex = 60;
+            this.plC_RJ_Button_人員資料_顯示全部.Text = "顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_顯示全部.Texts = "顯示全部";
+            this.plC_RJ_Button_人員資料_顯示全部.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料_顯示全部.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料_顯示全部.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料_顯示全部.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.音效 = true;
+            this.plC_RJ_Button_人員資料_顯示全部.顯示 = false;
+            this.plC_RJ_Button_人員資料_顯示全部.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_人員資料_存檔
+            // 
+            this.plC_RJ_Button_人員資料_存檔.AutoResetState = false;
+            this.plC_RJ_Button_人員資料_存檔.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_存檔.Bool = false;
+            this.plC_RJ_Button_人員資料_存檔.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_人員資料_存檔.BorderRadius = 20;
+            this.plC_RJ_Button_人員資料_存檔.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_存檔.but_press = false;
+            this.plC_RJ_Button_人員資料_存檔.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料_存檔.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料_存檔.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料_存檔.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_存檔.GUID = "";
+            this.plC_RJ_Button_人員資料_存檔.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料_存檔.Location = new System.Drawing.Point(420, 1472);
+            this.plC_RJ_Button_人員資料_存檔.Name = "plC_RJ_Button_人員資料_存檔";
+            this.plC_RJ_Button_人員資料_存檔.OFF_文字內容 = "存檔";
+            this.plC_RJ_Button_人員資料_存檔.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_存檔.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_存檔.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_存檔.ON_BorderSize = 2;
+            this.plC_RJ_Button_人員資料_存檔.ON_文字內容 = "存檔";
+            this.plC_RJ_Button_人員資料_存檔.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_人員資料_存檔.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_存檔.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_存檔.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_人員資料_存檔.ShadowSize = 3;
+            this.plC_RJ_Button_人員資料_存檔.ShowLoadingForm = true;
+            this.plC_RJ_Button_人員資料_存檔.Size = new System.Drawing.Size(104, 68);
+            this.plC_RJ_Button_人員資料_存檔.State = false;
+            this.plC_RJ_Button_人員資料_存檔.TabIndex = 59;
+            this.plC_RJ_Button_人員資料_存檔.Text = "存檔";
+            this.plC_RJ_Button_人員資料_存檔.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料_存檔.Texts = "存檔";
+            this.plC_RJ_Button_人員資料_存檔.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料_存檔.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料_存檔.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料_存檔.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料_存檔.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料_存檔.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料_存檔.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料_存檔.音效 = true;
+            this.plC_RJ_Button_人員資料_存檔.顯示 = false;
+            this.plC_RJ_Button_人員資料_存檔.顯示狀態 = false;
             // 
             // rJ_Pannel12
             // 
@@ -2503,10 +2654,10 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ON_BorderSize = 2;
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ON_文字內容 = "搜尋";
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ON_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_人員資料_資料搜尋_一維條碼.ShadowSize = 3;
@@ -2557,7 +2708,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_人員資料_資料搜尋_一維條碼.BorderRadius = 0;
             this.rJ_TextBox_人員資料_資料搜尋_一維條碼.BorderSize = 2;
             this.rJ_TextBox_人員資料_資料搜尋_一維條碼.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_資料搜尋_一維條碼.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_資料搜尋_一維條碼.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_人員資料_資料搜尋_一維條碼.GUID = "";
             this.rJ_TextBox_人員資料_資料搜尋_一維條碼.Location = new System.Drawing.Point(167, 8);
             this.rJ_TextBox_人員資料_資料搜尋_一維條碼.Multiline = false;
@@ -2604,10 +2755,10 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_人員資料_資料搜尋_卡號.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_人員資料_資料搜尋_卡號.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_資料搜尋_卡號.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_資料搜尋_卡號.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_資料搜尋_卡號.ON_BorderSize = 2;
             this.plC_RJ_Button_人員資料_資料搜尋_卡號.ON_文字內容 = "搜尋";
             this.plC_RJ_Button_人員資料_資料搜尋_卡號.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_人員資料_資料搜尋_卡號.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_資料搜尋_卡號.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_資料搜尋_卡號.ON_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_人員資料_資料搜尋_卡號.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_人員資料_資料搜尋_卡號.ShadowSize = 3;
@@ -2658,7 +2809,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_人員資料_資料搜尋_卡號.BorderRadius = 0;
             this.rJ_TextBox_人員資料_資料搜尋_卡號.BorderSize = 2;
             this.rJ_TextBox_人員資料_資料搜尋_卡號.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_資料搜尋_卡號.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_資料搜尋_卡號.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_人員資料_資料搜尋_卡號.GUID = "";
             this.rJ_TextBox_人員資料_資料搜尋_卡號.Location = new System.Drawing.Point(167, 8);
             this.rJ_TextBox_人員資料_資料搜尋_卡號.Multiline = false;
@@ -2705,10 +2856,10 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_人員資料_資料搜尋_ID.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_人員資料_資料搜尋_ID.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_資料搜尋_ID.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_資料搜尋_ID.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_資料搜尋_ID.ON_BorderSize = 2;
             this.plC_RJ_Button_人員資料_資料搜尋_ID.ON_文字內容 = "搜尋";
             this.plC_RJ_Button_人員資料_資料搜尋_ID.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_人員資料_資料搜尋_ID.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_資料搜尋_ID.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_資料搜尋_ID.ON_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_人員資料_資料搜尋_ID.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_人員資料_資料搜尋_ID.ShadowSize = 3;
@@ -2759,7 +2910,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_人員資料_資料搜尋_ID.BorderRadius = 0;
             this.rJ_TextBox_人員資料_資料搜尋_ID.BorderSize = 2;
             this.rJ_TextBox_人員資料_資料搜尋_ID.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_資料搜尋_ID.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_資料搜尋_ID.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_人員資料_資料搜尋_ID.GUID = "";
             this.rJ_TextBox_人員資料_資料搜尋_ID.Location = new System.Drawing.Point(167, 8);
             this.rJ_TextBox_人員資料_資料搜尋_ID.Multiline = false;
@@ -2806,10 +2957,10 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_人員資料_資料搜尋_姓名.ON_BorderSize = 5;
+            this.plC_RJ_Button_人員資料_資料搜尋_姓名.ON_BorderSize = 2;
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.ON_文字內容 = "搜尋";
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_人員資料_資料搜尋_姓名.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料_資料搜尋_姓名.ON_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.ON_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.ShadowSize = 3;
@@ -2860,7 +3011,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_人員資料_資料搜尋_姓名.BorderRadius = 0;
             this.rJ_TextBox_人員資料_資料搜尋_姓名.BorderSize = 2;
             this.rJ_TextBox_人員資料_資料搜尋_姓名.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_資料搜尋_姓名.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_資料搜尋_姓名.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_人員資料_資料搜尋_姓名.GUID = "";
             this.rJ_TextBox_人員資料_資料搜尋_姓名.Location = new System.Drawing.Point(167, 8);
             this.rJ_TextBox_人員資料_資料搜尋_姓名.Multiline = false;
@@ -2936,7 +3087,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_人員資料_一維條碼.BorderRadius = 0;
             this.rJ_TextBox_人員資料_一維條碼.BorderSize = 2;
             this.rJ_TextBox_人員資料_一維條碼.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_一維條碼.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_一維條碼.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_人員資料_一維條碼.GUID = "";
             this.rJ_TextBox_人員資料_一維條碼.Location = new System.Drawing.Point(167, 8);
             this.rJ_TextBox_人員資料_一維條碼.Multiline = false;
@@ -2990,7 +3141,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_人員資料_卡號.BorderRadius = 0;
             this.rJ_TextBox_人員資料_卡號.BorderSize = 2;
             this.rJ_TextBox_人員資料_卡號.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_卡號.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_卡號.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_人員資料_卡號.GUID = "";
             this.rJ_TextBox_人員資料_卡號.Location = new System.Drawing.Point(167, 8);
             this.rJ_TextBox_人員資料_卡號.Multiline = false;
@@ -3041,6 +3192,27 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_ComboBox_人員資料_權限等級.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.plC_ComboBox_人員資料_權限等級.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_ComboBox_人員資料_權限等級.FormattingEnabled = true;
+            this.plC_ComboBox_人員資料_權限等級.Items.AddRange(new object[] {
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"});
             this.plC_ComboBox_人員資料_權限等級.Location = new System.Drawing.Point(167, 12);
             this.plC_ComboBox_人員資料_權限等級.Name = "plC_ComboBox_人員資料_權限等級";
             this.plC_ComboBox_人員資料_權限等級.Size = new System.Drawing.Size(100, 34);
@@ -3085,7 +3257,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_人員資料_ID.BorderRadius = 0;
             this.rJ_TextBox_人員資料_ID.BorderSize = 2;
             this.rJ_TextBox_人員資料_ID.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_ID.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_ID.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_人員資料_ID.GUID = "";
             this.rJ_TextBox_人員資料_ID.Location = new System.Drawing.Point(167, 8);
             this.rJ_TextBox_人員資料_ID.Multiline = false;
@@ -3139,7 +3311,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_人員資料_姓名.BorderRadius = 0;
             this.rJ_TextBox_人員資料_姓名.BorderSize = 2;
             this.rJ_TextBox_人員資料_姓名.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_人員資料_姓名.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_人員資料_姓名.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_人員資料_姓名.GUID = "";
             this.rJ_TextBox_人員資料_姓名.Location = new System.Drawing.Point(167, 8);
             this.rJ_TextBox_人員資料_姓名.Multiline = false;
@@ -3214,6 +3386,7 @@ namespace 癌症自動備藥機暨排程系統
             // 儲位設定
             // 
             this.儲位設定.BackColor = System.Drawing.Color.White;
+            this.儲位設定.Controls.Add(this.rJ_Pannel13);
             this.儲位設定.Location = new System.Drawing.Point(4, 25);
             this.儲位設定.Name = "儲位設定";
             this.儲位設定.Size = new System.Drawing.Size(1056, 1734);
@@ -15355,6 +15528,104 @@ namespace 癌症自動備藥機暨排程系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
+            // rJ_Pannel13
+            // 
+            this.rJ_Pannel13.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel13.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Pannel13.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Pannel13.BorderRadius = 10;
+            this.rJ_Pannel13.BorderSize = 2;
+            this.rJ_Pannel13.Controls.Add(this.sqL_DataGridView_儲位設定_藥品搜尋);
+            this.rJ_Pannel13.Controls.Add(this.panel35);
+            this.rJ_Pannel13.Controls.Add(this.rJ_Lable84);
+            this.rJ_Pannel13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Pannel13.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel13.IsSelected = false;
+            this.rJ_Pannel13.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Pannel13.Name = "rJ_Pannel13";
+            this.rJ_Pannel13.Padding = new System.Windows.Forms.Padding(10);
+            this.rJ_Pannel13.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Pannel13.ShadowSize = 3;
+            this.rJ_Pannel13.Size = new System.Drawing.Size(1056, 562);
+            this.rJ_Pannel13.TabIndex = 0;
+            // 
+            // rJ_Lable84
+            // 
+            this.rJ_Lable84.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable84.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable84.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable84.BorderRadius = 10;
+            this.rJ_Lable84.BorderSize = 0;
+            this.rJ_Lable84.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable84.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable84.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable84.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable84.GUID = "";
+            this.rJ_Lable84.Location = new System.Drawing.Point(10, 10);
+            this.rJ_Lable84.Name = "rJ_Lable84";
+            this.rJ_Lable84.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable84.ShadowSize = 3;
+            this.rJ_Lable84.Size = new System.Drawing.Size(1036, 84);
+            this.rJ_Lable84.TabIndex = 5;
+            this.rJ_Lable84.Text = "藥品搜尋";
+            this.rJ_Lable84.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable84.TextColor = System.Drawing.Color.White;
+            // 
+            // panel35
+            // 
+            this.panel35.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel35.Location = new System.Drawing.Point(10, 452);
+            this.panel35.Name = "panel35";
+            this.panel35.Size = new System.Drawing.Size(1036, 100);
+            this.panel35.TabIndex = 6;
+            // 
+            // sqL_DataGridView_儲位設定_藥品搜尋
+            // 
+            this.sqL_DataGridView_儲位設定_藥品搜尋.AutoSelectToDeep = true;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.backColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.BorderColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.BorderRadius = 10;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.BorderSize = 2;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.cellStylBackColor = System.Drawing.Color.PowderBlue;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_儲位設定_藥品搜尋.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.columnHeaderBackColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_儲位設定_藥品搜尋.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.columnHeadersHeight = 18;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_儲位設定_藥品搜尋.ImageBox = false;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Location = new System.Drawing.Point(10, 94);
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Name = "sqL_DataGridView_儲位設定_藥品搜尋";
+            this.sqL_DataGridView_儲位設定_藥品搜尋.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Password = "user82822040";
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位設定_藥品搜尋.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.RowsColor = System.Drawing.SystemColors.Control;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.RowsHeight = 80;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Server = "127.0.0.0";
+            this.sqL_DataGridView_儲位設定_藥品搜尋.Size = new System.Drawing.Size(1036, 358);
+            this.sqL_DataGridView_儲位設定_藥品搜尋.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.TabIndex = 8;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.UserName = "root";
+            this.sqL_DataGridView_儲位設定_藥品搜尋.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.可選擇多列 = false;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.自動換行 = true;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.表單字體 = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_儲位設定_藥品搜尋.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.顯示CheckBox = false;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.顯示首列 = true;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.顯示首行 = true;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_儲位設定_藥品搜尋.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -15401,6 +15672,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel28.ResumeLayout(false);
             this.panel27.ResumeLayout(false);
             this.panel26.ResumeLayout(false);
+            this.儲位設定.ResumeLayout(false);
             this.系統.ResumeLayout(false);
             this.plC_ScreenPage_系統.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -15450,6 +15722,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel25.ResumeLayout(false);
             this.panel_main02.ResumeLayout(false);
             this.panel_main01.ResumeLayout(false);
+            this.rJ_Pannel13.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -16036,6 +16309,14 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.RJ_Lable rJ_Lable80;
         private MyUI.RJ_TextBox rJ_TextBox_人員資料_資料搜尋_姓名;
         private MyUI.RJ_Lable rJ_Lable79;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_存檔;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_刪除;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_顯示全部;
+        private MyUI.RJ_Pannel rJ_Pannel13;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_儲位設定_藥品搜尋;
+        private System.Windows.Forms.Panel panel35;
+        private MyUI.RJ_Lable rJ_Lable84;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

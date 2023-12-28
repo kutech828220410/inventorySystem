@@ -242,6 +242,9 @@
     <Compile Include="Program_人員資料.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_儲位設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_登入權限資料.cs">
       <SubType>Form</SubType>
     </Compile>

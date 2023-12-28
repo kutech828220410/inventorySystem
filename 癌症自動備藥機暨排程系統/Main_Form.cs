@@ -217,6 +217,7 @@ namespace 癌症自動備藥機暨排程系統
             Program_馬達輸出索引表_Init();
             Program_登入權限資料_Init();
             Program_人員資料_Init();
+            Program_儲位設定_Init();
 
             string url = $"{API_Server}/api/ChemotherapyRxScheduling/init_udnoectc";
             returnData returnData = new returnData();
