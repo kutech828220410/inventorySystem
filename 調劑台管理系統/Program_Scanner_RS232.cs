@@ -137,6 +137,7 @@ namespace 調劑台管理系統
             PLC_Device_Scanner01_讀取藥單資料_OK.Bool = false;
             if (MySerialPort_Scanner01.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {
+                MyTimer_Scanner01_讀取藥單資料.TickStop();
                 MyTimer_Scanner01_讀取藥單資料.StartTickTime(200);
                 cnt++;
             }
@@ -388,6 +389,7 @@ namespace 調劑台管理系統
             PLC_Device_Scanner02_讀取藥單資料_OK.Bool = false;
             if (MySerialPort_Scanner02.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {
+                MyTimer_Scanner02_讀取藥單資料.TickStop();
                 MyTimer_Scanner02_讀取藥單資料.StartTickTime(200);
                 cnt++;
             }
@@ -637,6 +639,7 @@ namespace 調劑台管理系統
             PLC_Device_Scanner03_讀取藥單資料_OK.Bool = false;
             if (MySerialPort_Scanner03.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {
+                MyTimer_Scanner03_讀取藥單資料.TickStop();
                 MyTimer_Scanner03_讀取藥單資料.StartTickTime(200);
                 cnt++;
             }
@@ -888,6 +891,7 @@ namespace 調劑台管理系統
             PLC_Device_Scanner04_讀取藥單資料_OK.Bool = false;
             if (MySerialPort_Scanner04.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {
+                MyTimer_Scanner04_讀取藥單資料.TickStop();
                 MyTimer_Scanner04_讀取藥單資料.StartTickTime(200);
                 cnt++;
             }
