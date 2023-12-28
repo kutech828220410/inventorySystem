@@ -704,7 +704,7 @@ namespace 調劑台管理系統
         {
             this.textBox_工程模式_領藥台_名稱.Text = Name;
             this.Text = $"智慧調劑台管理系統 Ver{this.ProductVersion} [{this.textBox_工程模式_領藥台_名稱.Text}] {(this.ControlMode ? "****控制中心模式****" : "")}";
-            this.label_版本.Text = $"Ver {this.ProductVersion} ";
+            this.label_版本.Text = $"Ver {this.ProductVersion} [{this.textBox_工程模式_領藥台_名稱.Text}] {(this.ControlMode ? "****控制中心模式****" : "")}";
             string json_result = Basic.Net.WEBApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
             if (json_result.StringIsEmpty())
             {

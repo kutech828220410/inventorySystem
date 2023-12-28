@@ -2561,12 +2561,16 @@ namespace 調劑台管理系統
         {
             this.plC_Button_領藥台_01_領.Bool = false;
             this.plC_Button_領藥台_01_退.Bool = true;
+            this.plC_Button_領藥台_01_領.BackgroundColor = Color.LightGray;
+            this.plC_Button_領藥台_01_退.BackgroundColor = Color.DarkRed;
         }
 
         private void PlC_Button_領藥台_01_領_MouseDownEvent(MouseEventArgs mevent)
         {
             this.plC_Button_領藥台_01_領.Bool = true;
             this.plC_Button_領藥台_01_退.Bool = false;
+            this.plC_Button_領藥台_01_領.BackgroundColor = Color.Green;
+            this.plC_Button_領藥台_01_退.BackgroundColor = Color.LightGray;
         }
         private void SqL_DataGridView_領藥台_01_領藥內容_DataGridRefreshEvent()
         {
@@ -4472,13 +4476,17 @@ namespace 調劑台管理系統
         {
             this.plC_Button_領藥台_02_領.Bool = false;
             this.plC_Button_領藥台_02_退.Bool = true;
+            this.plC_Button_領藥台_02_領.BackgroundColor = Color.LightGray;
+            this.plC_Button_領藥台_02_退.BackgroundColor = Color.DarkRed;
         }
+
         private void PlC_Button_領藥台_02_領_MouseDownEvent(MouseEventArgs mevent)
         {
             this.plC_Button_領藥台_02_領.Bool = true;
             this.plC_Button_領藥台_02_退.Bool = false;
+            this.plC_Button_領藥台_02_領.BackgroundColor = Color.Green;
+            this.plC_Button_領藥台_02_退.BackgroundColor = Color.LightGray;
         }
-
         private void PlC_RJ_Button_領藥台_02_病歷號輸入_MouseDownEvent(MouseEventArgs mevent)
         {
             MyTimer myTimer = new MyTimer();
@@ -6464,13 +6472,17 @@ namespace 調劑台管理系統
         {
             this.plC_Button_領藥台_03_領.Bool = false;
             this.plC_Button_領藥台_03_退.Bool = true;
+            this.plC_Button_領藥台_03_領.BackgroundColor = Color.LightGray;
+            this.plC_Button_領藥台_03_退.BackgroundColor = Color.DarkRed;
         }
+
         private void PlC_Button_領藥台_03_領_MouseDownEvent(MouseEventArgs mevent)
         {
             this.plC_Button_領藥台_03_領.Bool = true;
             this.plC_Button_領藥台_03_退.Bool = false;
+            this.plC_Button_領藥台_03_領.BackgroundColor = Color.Green;
+            this.plC_Button_領藥台_03_退.BackgroundColor = Color.LightGray;
         }
-
         private void PlC_RJ_Button_領藥台_03_病歷號輸入_MouseDownEvent(MouseEventArgs mevent)
         {
             MyTimer myTimer = new MyTimer();
@@ -8456,13 +8468,17 @@ namespace 調劑台管理系統
         {
             this.plC_Button_領藥台_04_領.Bool = false;
             this.plC_Button_領藥台_04_退.Bool = true;
+            this.plC_Button_領藥台_04_領.BackgroundColor = Color.LightGray;
+            this.plC_Button_領藥台_04_退.BackgroundColor = Color.DarkRed;
         }
+
         private void PlC_Button_領藥台_04_領_MouseDownEvent(MouseEventArgs mevent)
         {
             this.plC_Button_領藥台_04_領.Bool = true;
             this.plC_Button_領藥台_04_退.Bool = false;
+            this.plC_Button_領藥台_04_領.BackgroundColor = Color.Green;
+            this.plC_Button_領藥台_04_退.BackgroundColor = Color.LightGray;
         }
-
         private void PlC_RJ_Button_領藥台_04_病歷號輸入_MouseDownEvent(MouseEventArgs mevent)
         {
             MyTimer myTimer = new MyTimer();
