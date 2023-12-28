@@ -297,11 +297,14 @@ namespace 調劑台管理系統
             Console.Write($"醫令資料搜尋共<{list_value.Count}>筆,耗時{myTimer.ToString()}ms\n");
             return list_value;
         }
-        private List<object[]> Function_醫令資料_API呼叫(string barcode)
+        private List<object[]> Function_醫令資料_API呼叫(string barcode , bool 單醫令模式)
         {   
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(dBConfigClass.OrderApiURL, barcode);
+            string url = "";
+            if (單醫令模式) url = dBConfigClass.OrderByCodeApiURL;
+            else url = dBConfigClass.OrderApiURL;
+            List<OrderClass> orderClasses = this.Function_醫令資料_API呼叫(url, barcode);
             List<object[]> list_value = orderClasses.ClassToSQL<OrderClass ,enum_醫囑資料>();
             //for (int i = 0; i < orderClasses.Count; i++)
             //{

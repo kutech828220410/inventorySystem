@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.06")]
-[assembly: AssemblyFileVersion("1.2.1.06")]
+[assembly: AssemblyVersion("1.2.1.07")]
+[assembly: AssemblyFileVersion("1.2.1.07")]
 namespace 調劑台管理系統
 {
 
@@ -34,6 +34,7 @@ namespace 調劑台管理系統
         public static string ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
         public static string API_Server = "";
         public static string Order_URL = "";
+        public static string OrderByCodeApi_URL = "";
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public string 領藥台_01名稱
         {
@@ -106,6 +107,7 @@ namespace 調劑台管理系統
             private string api_Server = "";
 
             private string orderApiURL = "";
+            private string orderByCodeApiURL = "";
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
 
@@ -135,7 +137,8 @@ namespace 調劑台管理系統
 
 
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
-  
+            [JsonIgnore]
+            public string OrderByCodeApiURL { get => orderByCodeApiURL; set => orderByCodeApiURL = value; }
         }
         private void LoadDBConfig()
         {
@@ -384,6 +387,7 @@ namespace 調劑台管理系統
                 Dialog_藥檔維護.form = this.FindForm();
                 Dialog_錯誤提示.form = this.FindForm();
                 Dialog_共用區設置.form = this.FindForm();
+                Dialog_AlarmForm.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();
@@ -774,15 +778,22 @@ namespace 調劑台管理系統
             }
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Order_API);
             if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_By_Code_API");
+            if (serverSettingClass != null) dBConfigClass.OrderByCodeApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
             if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Website);
             if (serverSettingClass != null) dBConfigClass.Web_URL = serverSettingClass.Server;
-
             serverSettingClass = serverSettingClasses.MyFind("Main", enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
             if (serverSettingClass != null) dBConfigClass.Login_URL = serverSettingClass.Server;
 
+
+            OrderByCodeApi_URL = dBConfigClass.OrderByCodeApiURL;
             Order_URL = dBConfigClass.OrderApiURL;
+            if(OrderByCodeApi_URL.StringIsEmpty())
+            {
+                OrderByCodeApi_URL = Order_URL;
+            }
         }
         new private void Update()
         {

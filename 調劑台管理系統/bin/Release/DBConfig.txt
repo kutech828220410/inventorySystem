@@ -1,5 +1,5 @@
 {
-  "Name": "管藥",
-  "Api_Server": "http://220.135.128.247:4433",
+  "Name": "口服台1",
+  "Api_Server": "http://192.168.5.200:4433",
   "Med_Update_ApiURL": ""
 }

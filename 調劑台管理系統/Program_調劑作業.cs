@@ -19,6 +19,7 @@ namespace 調劑台管理系統
 {
     public partial class Form1 : Form
     {
+        private string QR_Code_醫令模式切換 = "%%001";
         MyTimer myTimer_領藥台_01_Logout = new MyTimer(5000);
         MyTimer myTimer_領藥台_02_Logout = new MyTimer(5000);
         MyTimer myTimer_領藥台_03_Logout = new MyTimer(5000);
@@ -610,10 +611,11 @@ namespace 調劑台管理系統
         List<string[]> 領藥台_01_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_01_登出 = new PLC_Device();
         PLC_Device PLC_Device_領藥台_01_已登入 = new PLC_Device("S100");
+        PLC_Device PLC_Device_領藥台_01_單醫令模式 = new PLC_Device("S110");
 
         PLC_Device PLC_Device_領藥台_01_狀態顯示_等待登入 = new PLC_Device("M4000");
         PLC_Device PLC_Device_領藥台_01_狀態顯示_登入者姓名 = new PLC_Device("M4001");
-
+   
         public static string 領藥台_01_登入者姓名 = "";
         public static string 領藥台_01_藥師證字號 = "";
         public static string 領藥台_01_ID = "";
@@ -978,6 +980,56 @@ namespace 調劑台管理系統
             {
                 if (!PLC_Device_Scanner01_讀取藥單資料.Bool || PLC_Device_Scanner01_讀取藥單資料_OK.Bool)
                 {
+                    if (PLC_Device_領藥台_01_已登入.Bool)
+                    {
+                        if (領藥台_01_醫令條碼.Length < 15)
+                        {
+                            string text = 領藥台_01_醫令條碼.Replace("\n", "");
+                            text = text.Replace("\r", "");
+                            Console.WriteLine($"{text}");
+                            if(text == QR_Code_醫令模式切換)
+                            {
+                                PLC_Device_領藥台_01_單醫令模式.Bool = !PLC_Device_領藥台_01_單醫令模式.Bool;
+                               
+                                string text_temp = PLC_Device_領藥台_01_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
+                                Console.WriteLine($"切換模式至{text_temp}");
+                                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"切換模式至{text_temp}", 1000, 0, 0);
+                                this.Invoke(new Action(delegate
+                                {                                   
+                                 
+                                    rJ_GroupBox_領藥台_01.TitleTexts = $"    01. [{領藥台_01_登入者姓名}] {text_temp}";
+                                    this.rJ_GroupBox_領藥台_01.PannelBorderColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
+                                    this.rJ_GroupBox_領藥台_01.TitleBackColor = Color.GreenYellow;
+                                    this.rJ_GroupBox_領藥台_01.TitleForeColor = Color.Black;
+                                }));
+                                dialog_AlarmForm.ShowDialog();
+                                cnt = 65500;
+                                return;
+                            }
+                            List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
+                            if (list_人員資料.Count > 0)
+                            {
+                                if (領藥台_01_ID != list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
+                                {
+                                    this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(null);
+
+                                    this.Invoke(new Action(delegate
+                                    {
+                                        textBox_領藥台_01_帳號.Texts = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+                                        textBox_領藥台_01_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
+                                        this.PlC_RJ_Button_領藥台_01_登入_MouseDownEvent(null);
+                                    }));
+                                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_01_登入者姓名, "01.號使用者");
+                                   
+                                }
+                                cnt = 65500;
+                                return;
+                            }
+                        }
+                                            
+                    }
+                       
+
                     cnt++;
                     return;
                 }
@@ -1704,7 +1756,7 @@ namespace 調劑台管理系統
                 }
                 else
                 {
-                    list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode);
+                    list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_01_單醫令模式.Bool);
                 }
                 if (list_醫令資料.Count == 0)
                 {
@@ -1941,7 +1993,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode);
+                list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_01_單醫令模式.Bool);
 
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
@@ -2433,7 +2485,8 @@ namespace 調劑台管理系統
                 textBox_領藥台_01_帳號.Texts = "";
                 textBox_領藥台_01_密碼.Texts = "";
                 plC_RJ_Button_領藥台_01_登入.Texts = "登出";
-                rJ_GroupBox_領藥台_01.TitleTexts = $"    01. [{領藥台_01_登入者姓名}]";
+                string text_temp = PLC_Device_領藥台_01_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
+                rJ_GroupBox_領藥台_01.TitleTexts = $"    01. [{領藥台_01_登入者姓名}] {text_temp}";
                 this.rJ_GroupBox_領藥台_01.PannelBorderColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
                 this.rJ_GroupBox_領藥台_01.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_01.TitleForeColor = Color.Black;
@@ -2634,7 +2687,7 @@ namespace 調劑台管理系統
         List<string[]> 領藥台_02_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_02_登出 = new PLC_Device();
         PLC_Device PLC_Device_領藥台_02_已登入 = new PLC_Device("S200");
-
+        PLC_Device PLC_Device_領藥台_02_單醫令模式 = new PLC_Device("S210");
         PLC_Device PLC_Device_領藥台_02_狀態顯示_等待登入 = new PLC_Device("M5000");
         PLC_Device PLC_Device_領藥台_02_狀態顯示_登入者姓名 = new PLC_Device("M5001");
 
@@ -3001,6 +3054,54 @@ namespace 調劑台管理系統
             {
                 if (!PLC_Device_Scanner02_讀取藥單資料.Bool || PLC_Device_Scanner02_讀取藥單資料_OK.Bool)
                 {
+
+                    if (領藥台_02_醫令條碼.Length < 15)
+                    {
+                        string text = 領藥台_02_醫令條碼.Replace("\n", "");
+                        text = text.Replace("\r", "");
+                        Console.WriteLine($"{text}");
+
+                        if (text == QR_Code_醫令模式切換)
+                        {
+                            PLC_Device_領藥台_02_單醫令模式.Bool = !PLC_Device_領藥台_02_單醫令模式.Bool;
+
+                            string text_temp = PLC_Device_領藥台_02_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
+                            Console.WriteLine($"切換模式至{text_temp}");
+                            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"切換模式至{text_temp}", 1000, 0, 0);
+                            this.Invoke(new Action(delegate
+                            {
+
+                                rJ_GroupBox_領藥台_02.TitleTexts = $"    02. [{領藥台_02_登入者姓名}] {text_temp}";
+                                this.rJ_GroupBox_領藥台_02.PannelBorderColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
+                                this.rJ_GroupBox_領藥台_02.TitleBackColor = Color.GreenYellow;
+                                this.rJ_GroupBox_領藥台_02.TitleForeColor = Color.Black;
+                            }));
+                            dialog_AlarmForm.ShowDialog();
+                            cnt = 65500;
+                            return;
+                        }
+
+                        List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
+                        if (list_人員資料.Count > 0)
+                        {
+                            if (領藥台_02_ID != list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
+                            {
+                                this.PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(null);
+
+                                this.Invoke(new Action(delegate
+                                {
+                                    textBox_領藥台_02_帳號.Texts = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+                                    textBox_領藥台_02_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
+                                    this.PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(null);
+                                }));
+                                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_02_登入者姓名, "02.號使用者");
+
+                            }
+                            cnt = 65500;
+                            return;
+                        }
+                    }
+
                     cnt++;
                     return;
                 }
@@ -3725,7 +3826,7 @@ namespace 調劑台管理系統
                 }
                 else
                 {
-                    list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode);
+                    list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_02_單醫令模式.Bool);
                 }
                 if (list_醫令資料.Count == 0)
                 {
@@ -3963,7 +4064,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode);
+                list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_02_單醫令模式.Bool);
 
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
@@ -4437,7 +4538,8 @@ namespace 調劑台管理系統
                 textBox_領藥台_02_帳號.Texts = "";
                 textBox_領藥台_02_密碼.Texts = "";
                 plC_RJ_Button_領藥台_02_登入.Texts = "登出";
-                rJ_GroupBox_領藥台_02.TitleTexts = $"    02. [{領藥台_02_登入者姓名}]";
+                string text_temp = PLC_Device_領藥台_02_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
+                rJ_GroupBox_領藥台_02.TitleTexts = $"    02. [{領藥台_02_登入者姓名}] {text_temp}";
                 this.rJ_GroupBox_領藥台_02.PannelBorderColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
                 this.rJ_GroupBox_領藥台_02.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_02.TitleForeColor = Color.Black;
@@ -4630,7 +4732,7 @@ namespace 調劑台管理系統
         List<string[]> 領藥台_03_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_03_登出 = new PLC_Device();
         PLC_Device PLC_Device_領藥台_03_已登入 = new PLC_Device("S250");
-
+        PLC_Device PLC_Device_領藥台_03_單醫令模式 = new PLC_Device("S260");
         PLC_Device PLC_Device_領藥台_03_狀態顯示_等待登入 = new PLC_Device("M5000");
         PLC_Device PLC_Device_領藥台_03_狀態顯示_登入者姓名 = new PLC_Device("M5001");
 
@@ -4997,6 +5099,50 @@ namespace 調劑台管理系統
             {
                 if (!PLC_Device_Scanner03_讀取藥單資料.Bool || PLC_Device_Scanner03_讀取藥單資料_OK.Bool)
                 {
+                    if (領藥台_03_醫令條碼.Length < 15)
+                    {
+                        string text = 領藥台_03_醫令條碼.Replace("\n", "");
+                        text = text.Replace("\r", "");
+                        Console.WriteLine($"{text}");
+                        if (text == QR_Code_醫令模式切換)
+                        {
+                            PLC_Device_領藥台_03_單醫令模式.Bool = !PLC_Device_領藥台_03_單醫令模式.Bool;
+
+                            string text_temp = PLC_Device_領藥台_03_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
+                            Console.WriteLine($"切換模式至{text_temp}");
+                            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"切換模式至{text_temp}", 1000, 0, 0);
+                            this.Invoke(new Action(delegate
+                            {
+
+                                rJ_GroupBox_領藥台_03.TitleTexts = $"    03. [{領藥台_03_登入者姓名}] {text_temp}";
+                                this.rJ_GroupBox_領藥台_03.PannelBorderColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
+                                this.rJ_GroupBox_領藥台_03.TitleBackColor = Color.GreenYellow;
+                                this.rJ_GroupBox_領藥台_03.TitleForeColor = Color.Black;
+                            }));
+                            dialog_AlarmForm.ShowDialog();
+                            cnt = 65500;
+                            return;
+                        }
+                        List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
+                        if (list_人員資料.Count > 0)
+                        {
+                            if (領藥台_03_ID != list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
+                            {
+                                this.PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(null);
+
+                                this.Invoke(new Action(delegate
+                                {
+                                    textBox_領藥台_03_帳號.Texts = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+                                    textBox_領藥台_03_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
+                                    this.PlC_RJ_Button_領藥台_03_登入_MouseDownEvent(null);
+                                }));
+                                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_03_登入者姓名, "03.號使用者");
+
+                            }
+                            cnt = 65500;
+                            return;
+                        }
+                    }
                     cnt++;
                     return;
                 }
@@ -5721,7 +5867,7 @@ namespace 調劑台管理系統
                 }
                 else
                 {
-                    list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode);
+                    list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_03_單醫令模式.Bool);
                 }
                 if (list_醫令資料.Count == 0)
                 {
@@ -5959,7 +6105,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode);
+                list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_03_單醫令模式.Bool);
 
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
@@ -6433,7 +6579,8 @@ namespace 調劑台管理系統
                 textBox_領藥台_03_帳號.Texts = "";
                 textBox_領藥台_03_密碼.Texts = "";
                 plC_RJ_Button_領藥台_03_登入.Texts = "登出";
-                rJ_GroupBox_領藥台_03.TitleTexts = $"    03. [{領藥台_03_登入者姓名}]";
+                string text_temp = PLC_Device_領藥台_03_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
+                rJ_GroupBox_領藥台_03.TitleTexts = $"    03. [{領藥台_03_登入者姓名}] {text_temp}";
                 this.rJ_GroupBox_領藥台_03.PannelBorderColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
                 this.rJ_GroupBox_領藥台_03.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_03.TitleForeColor = Color.Black;
@@ -6626,7 +6773,7 @@ namespace 調劑台管理系統
         List<string[]> 領藥台_04_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_04_登出 = new PLC_Device();
         PLC_Device PLC_Device_領藥台_04_已登入 = new PLC_Device("S400");
-
+        PLC_Device PLC_Device_領藥台_04_單醫令模式 = new PLC_Device("S410");
         PLC_Device PLC_Device_領藥台_04_狀態顯示_等待登入 = new PLC_Device("M5000");
         PLC_Device PLC_Device_領藥台_04_狀態顯示_登入者姓名 = new PLC_Device("M5001");
 
@@ -6993,6 +7140,50 @@ namespace 調劑台管理系統
             {
                 if (!PLC_Device_Scanner04_讀取藥單資料.Bool || PLC_Device_Scanner04_讀取藥單資料_OK.Bool)
                 {
+                    if (領藥台_04_醫令條碼.Length < 15)
+                    {
+                        string text = 領藥台_04_醫令條碼.Replace("\n", "");
+                        text = text.Replace("\r", "");
+                        Console.WriteLine($"{text}");
+                        if (text == QR_Code_醫令模式切換)
+                        {
+                            PLC_Device_領藥台_04_單醫令模式.Bool = !PLC_Device_領藥台_04_單醫令模式.Bool;
+
+                            string text_temp = PLC_Device_領藥台_04_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
+                            Console.WriteLine($"切換模式至{text_temp}");
+                            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"切換模式至{text_temp}", 1000, 0, 0);
+                            this.Invoke(new Action(delegate
+                            {
+
+                                rJ_GroupBox_領藥台_04.TitleTexts = $"    04. [{領藥台_04_登入者姓名}] {text_temp}";
+                                this.rJ_GroupBox_領藥台_04.PannelBorderColor = this.panel_工程模式_領藥台_04_顏色.BackColor;
+                                this.rJ_GroupBox_領藥台_04.TitleBackColor = Color.GreenYellow;
+                                this.rJ_GroupBox_領藥台_04.TitleForeColor = Color.Black;
+                            }));
+                            dialog_AlarmForm.ShowDialog();
+                            cnt = 65500;
+                            return;
+                        }
+                        List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
+                        if (list_人員資料.Count > 0)
+                        {
+                            if (領藥台_04_ID != list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
+                            {
+                                this.PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(null);
+
+                                this.Invoke(new Action(delegate
+                                {
+                                    textBox_領藥台_04_帳號.Texts = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+                                    textBox_領藥台_04_密碼.Texts = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
+                                    this.PlC_RJ_Button_領藥台_04_登入_MouseDownEvent(null);
+                                }));
+                                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.一維碼登入, 領藥台_04_登入者姓名, "04.號使用者");
+
+                            }
+                            cnt = 65500;
+                            return;
+                        }
+                    }
                     cnt++;
                     return;
                 }
@@ -7717,7 +7908,7 @@ namespace 調劑台管理系統
                 }
                 else
                 {
-                    list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode);
+                    list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_04_單醫令模式.Bool);
                 }
                 if (list_醫令資料.Count == 0)
                 {
@@ -7955,7 +8146,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode);
+                list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, PLC_Device_領藥台_04_單醫令模式.Bool);
 
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
@@ -8429,7 +8620,8 @@ namespace 調劑台管理系統
                 textBox_領藥台_04_帳號.Texts = "";
                 textBox_領藥台_04_密碼.Texts = "";
                 plC_RJ_Button_領藥台_04_登入.Texts = "登出";
-                rJ_GroupBox_領藥台_04.TitleTexts = $"    04. [{領藥台_04_登入者姓名}]";
+                string text_temp = PLC_Device_領藥台_04_單醫令模式.Bool ? "【單醫令】" : "【多醫令】";
+                rJ_GroupBox_領藥台_04.TitleTexts = $"    04. [{領藥台_04_登入者姓名}] {text_temp}";
                 this.rJ_GroupBox_領藥台_04.PannelBorderColor = this.panel_工程模式_領藥台_04_顏色.BackColor;
                 this.rJ_GroupBox_領藥台_04.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_04.TitleForeColor = Color.Black;
