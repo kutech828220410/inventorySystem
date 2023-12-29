@@ -2493,6 +2493,7 @@ namespace 調劑台管理系統
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
             this.voice.SpeakOnTask("使用者登入完成");
+            PLC_Device_Scanner01_讀取藥單資料.Bool = false;
 
         }
         private void PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(MouseEventArgs mevent)
