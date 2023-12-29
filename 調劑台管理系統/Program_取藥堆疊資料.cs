@@ -2390,13 +2390,16 @@ namespace 調劑台管理系統
                             {
                                 List<string> list_效期 = new List<string>();
                                 List<string> list_批號 = new List<string>();
-
-                                Funnction_交易記錄查詢_取得指定藥碼批號期效期(藥品碼, ref list_效期, ref list_批號);
-                                if(list_效期.Count > 0 && list_批號.Count > 0)
+                                if(效期.StringIsEmpty())
                                 {
-                                    效期 = list_效期[0];
-                                    批號 = list_批號[0];
+                                    Funnction_交易記錄查詢_取得指定藥碼批號期效期(藥品碼, ref list_效期, ref list_批號);
+                                    if (list_效期.Count > 0 && list_批號.Count > 0)
+                                    {
+                                        效期 = list_效期[0];
+                                        批號 = list_批號[0];
+                                    }
                                 }
+                          
                                 儲位資訊 = Function_新增效期至雲端資料(藥品碼, 總異動量, 效期, 批號);
                             }
 

@@ -620,6 +620,7 @@ namespace 調劑台管理系統
                 {
 
                     Storage storage = (Storage)values[k];
+                    value_device = storage;
                     if (storage.取得庫存(效期) == -1)
                     {
                         if (!IP.StringIsEmpty())
@@ -628,7 +629,7 @@ namespace 調劑台管理系統
                         }
                         storage.新增效期(效期, 批號, 異動量.ToString());
                         this.List_EPD266_雲端資料.Add_NewStorage(storage);
-                        value_device = storage;
+                   
                         Type_str = TYPE[k];
                         break;
                     }
@@ -638,6 +639,7 @@ namespace 調劑台管理系統
                 {
 
                     Storage storage = (Storage)values[k];
+                    value_device = storage;
                     if (storage.取得庫存(效期) == -1)
                     {
                         if (!IP.StringIsEmpty())
@@ -646,7 +648,7 @@ namespace 調劑台管理系統
                         }
                         storage.新增效期(效期, 批號, 異動量.ToString());
                         this.List_Pannel35_雲端資料.Add_NewStorage(storage);
-                        value_device = storage;
+                  
                         Type_str = TYPE[k];
                         break;
                     }
