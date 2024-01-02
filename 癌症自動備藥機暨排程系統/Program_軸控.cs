@@ -32,7 +32,7 @@ namespace 癌症自動備藥機暨排程系統
             冷藏區_Z軸 = 2,
             常溫區_X軸 = 3,
             常溫區_Z軸 = 4,
-            出盒區_Y軸 = 5,
+            進出盒區_Y軸 = 5,
         }
         PLC_Device PLC_IO_冷藏區X軸_現在位置 = new PLC_Device("R5000");
         PLC_Device PLC_IO_冷藏區Z軸_解剎車 = new PLC_Device("Y13");
@@ -83,13 +83,13 @@ namespace 癌症自動備藥機暨排程系統
 
         DeltaMotor485.Port DeltaMotor485_port_常溫區_X軸 = new DeltaMotor485.Port();
         DeltaMotor485.Port DeltaMotor485_port_常溫區_Z軸 = new DeltaMotor485.Port();
-        DeltaMotor485.Port DeltaMotor485_port_出盒區_Y軸 = new DeltaMotor485.Port();
+        DeltaMotor485.Port DeltaMotor485_port_進出盒區_Y軸 = new DeltaMotor485.Port();
 
         MySerialPort mySerialPort_delta_冷藏區_X軸 = new MySerialPort();
         MySerialPort mySerialPort_delta_冷藏區_Z軸 = new MySerialPort();
         MySerialPort mySerialPort_delta_常溫區_X軸 = new MySerialPort();
         MySerialPort mySerialPort_delta_常溫區_Z軸 = new MySerialPort();
-        MySerialPort mySerialPort_delta_出盒區_Y軸 = new MySerialPort();
+        MySerialPort mySerialPort_delta_進出盒區_Y軸 = new MySerialPort();
         private void Program_軸控_Init()
         {
   
@@ -125,12 +125,12 @@ namespace 癌症自動備藥機暨排程系統
             DeltaMotor485_port_常溫區_Z軸.SleepTime = 10;
 
 
-            mySerialPort_delta_出盒區_Y軸.BufferSize = 2048;
-            mySerialPort_delta_出盒區_Y軸.Init("COM6", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+            mySerialPort_delta_進出盒區_Y軸.BufferSize = 2048;
+            mySerialPort_delta_進出盒區_Y軸.Init("COM6", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
             DeltaMotor485.Communication.UART_Delay = 5;
             DeltaMotor485.Communication.ConsoleWrite = false;
-            DeltaMotor485_port_出盒區_Y軸.Init(mySerialPort_delta_出盒區_Y軸, new byte[] { 5 });
-            DeltaMotor485_port_出盒區_Y軸.SleepTime = 10;
+            DeltaMotor485_port_進出盒區_Y軸.Init(mySerialPort_delta_進出盒區_Y軸, new byte[] { 5 });
+            DeltaMotor485_port_進出盒區_Y軸.SleepTime = 10;
 
             this.plC_RJ_Button_冷藏區X軸_ServoON.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_ServoON_MouseDownEvent;
             this.plC_RJ_Button_冷藏區X軸_PJOG.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_PJOG_MouseDownEvent;
@@ -151,6 +151,11 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_常溫區Z軸_PJOG.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_PJOG_MouseDownEvent;
             this.plC_RJ_Button_常溫區Z軸_NJOG.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_NJOG_MouseDownEvent;
             this.plC_RJ_Button_常溫區Z軸_Stop.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_Stop_MouseDownEvent;
+
+            this.plC_RJ_Button_進出盒區Y軸_ServoON.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_ServoON_MouseDownEvent;
+            this.plC_RJ_Button_進出盒區Y軸_PJOG.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_PJOG_MouseDownEvent;
+            this.plC_RJ_Button_進出盒區Y軸_NJOG.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_NJOG_MouseDownEvent;
+            this.plC_RJ_Button_進出盒區Y軸_Stop.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_Stop_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(Program_軸控);
         }
@@ -232,6 +237,25 @@ namespace 癌症自動備藥機暨排程系統
             DeltaMotor485_port_常溫區_Z軸[4].Servo_on_off(!flag_output);
         }
 
+
+        private void PlC_RJ_Button_進出盒區Y軸_Stop_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port_進出盒區_Y軸[5].Stop();
+        }
+        private void PlC_RJ_Button_進出盒區Y軸_NJOG_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port_進出盒區_Y軸[5].JOG(-plC_NumBox_進出盒區Y軸_JOG速度.Value);
+        }
+        private void PlC_RJ_Button_進出盒區Y軸_PJOG_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DeltaMotor485_port_進出盒區_Y軸[5].JOG(+plC_NumBox_進出盒區Y軸_JOG速度.Value);
+        }
+        private void PlC_RJ_Button_進出盒區Y軸_ServoON_MouseDownEvent(MouseEventArgs mevent)
+        {
+            bool flag_output = PLC.Device.Get_DeviceFast_Ex(plC_RJ_Button_進出盒區Y軸_ServoON.寫入元件位置);
+            DeltaMotor485_port_進出盒區_Y軸[5].Servo_on_off(!flag_output);
+        }
+
         private void Program_軸控()
         {
             PLC.Device.Set_Device(plC_RJ_Button_冷藏區X軸_ServoON.讀取元件位置, DeltaMotor485_port_冷藏區_X軸[1].SON);
@@ -275,6 +299,15 @@ namespace 癌症自動備藥機暨排程系統
             plC_Button_常溫區Z軸_ALARM.Bool = DeltaMotor485_port_常溫區_Z軸[4].ALRM;
             plC_NumBox_常溫區Z軸_現在位置.Value = DeltaMotor485_port_常溫區_Z軸[4].CommandPosition;
 
+            PLC.Device.Set_Device(plC_RJ_Button_進出盒區Y軸_ServoON.讀取元件位置, DeltaMotor485_port_進出盒區_Y軸[5].SON);
+            DeltaMotor485_port_進出盒區_Y軸[5].Read485_Enable = true;
+            plC_RJ_Button_進出盒區Y軸_ServoON.Bool = DeltaMotor485_port_進出盒區_Y軸[5].SON;
+            plC_Button_進出盒區Y軸_Ready.Bool = DeltaMotor485_port_進出盒區_Y軸[5].SRDY;
+            plC_Button_進出盒區Y軸_零速度檢出.Bool = DeltaMotor485_port_進出盒區_Y軸[5].ZSPD;
+            plC_Button_進出盒區Y軸_原點.Bool = DeltaMotor485_port_進出盒區_Y軸[5].DI.ORGP;
+            plC_Button_進出盒區Y軸_正極限.Bool = DeltaMotor485_port_進出盒區_Y軸[5].DI.PL;
+            plC_Button_進出盒區Y軸_ALARM.Bool = DeltaMotor485_port_進出盒區_Y軸[5].ALRM;
+            plC_NumBox_進出盒區Y軸_現在位置.Value = DeltaMotor485_port_進出盒區_Y軸[5].CommandPosition;
 
 
             sub_Program_軸控初始化();
@@ -316,6 +349,8 @@ namespace 癌症自動備藥機暨排程系統
             sub_Program_常溫區藥盒輸送至左方();
             sub_Program_常溫區藥盒輸送至右方();
             sub_Program_常溫區藥盒輸送至中間();
+
+            sub_Program_進出盒區Y軸復歸();
         }
 
 
@@ -338,9 +373,9 @@ namespace 癌症自動備藥機暨排程系統
             {
                 driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
             }
-            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            else if (enum_軸號 == enum_軸號.進出盒區_Y軸)
             {
-                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+                driver_DO = DeltaMotor485_port_進出盒區_Y軸[5];
             }
             driver_DO.Servo_on_off(state);
         }
@@ -363,9 +398,9 @@ namespace 癌症自動備藥機暨排程系統
             {
                 driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
             }
-            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            else if (enum_軸號 == enum_軸號.進出盒區_Y軸)
             {
-                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+                driver_DO = DeltaMotor485_port_進出盒區_Y軸[5];
             }
             driver_DO.flag_Init = true;
         }
@@ -388,9 +423,9 @@ namespace 癌症自動備藥機暨排程系統
             {
                 driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
             }
-            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            else if (enum_軸號 == enum_軸號.進出盒區_Y軸)
             {
-                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+                driver_DO = DeltaMotor485_port_進出盒區_Y軸[5];
             }
             driver_DO.JOG(speed_rpm);
         }
@@ -413,9 +448,9 @@ namespace 癌症自動備藥機暨排程系統
             {
                 driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
             }
-            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            else if (enum_軸號 == enum_軸號.進出盒區_Y軸)
             {
-                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+                driver_DO = DeltaMotor485_port_進出盒區_Y軸[5];
             }
             driver_DO.Stop();
         }
@@ -438,9 +473,9 @@ namespace 癌症自動備藥機暨排程系統
             {
                 driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
             }
-            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            else if (enum_軸號 == enum_軸號.進出盒區_Y軸)
             {
-                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+                driver_DO = DeltaMotor485_port_進出盒區_Y軸[5];
             }
 
             if (enum_DO == enum_DO.SON)
@@ -485,9 +520,9 @@ namespace 癌症自動備藥機暨排程系統
             {
                 driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
             }
-            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            else if (enum_軸號 == enum_軸號.進出盒區_Y軸)
             {
-                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+                driver_DO = DeltaMotor485_port_進出盒區_Y軸[5];
             }
             driver_DO.DDRVA(position, speed, acc);
         }
@@ -510,9 +545,9 @@ namespace 癌症自動備藥機暨排程系統
             {
                 driver_DO = DeltaMotor485_port_常溫區_Z軸[4];
             }
-            else if (enum_軸號 == enum_軸號.出盒區_Y軸)
+            else if (enum_軸號 == enum_軸號.進出盒區_Y軸)
             {
-                driver_DO = DeltaMotor485_port_出盒區_Y軸[5];
+                driver_DO = DeltaMotor485_port_進出盒區_Y軸[5];
             }
             return driver_DO.DDRVA_Done;
         }
@@ -582,8 +617,8 @@ namespace 癌症自動備藥機暨排程系統
             PLC_IO_常溫區Z軸_解剎車.Bool = true;
 
 
-            ServoInit(enum_軸號.出盒區_Y軸);
-            ServoON(enum_軸號.出盒區_Y軸, true);
+            ServoInit(enum_軸號.進出盒區_Y軸);
+            ServoON(enum_軸號.進出盒區_Y軸, true);
             cnt++;
         }
 
@@ -3133,6 +3168,130 @@ namespace 癌症自動備藥機暨排程系統
             PLC_IO_常溫區_輸送帶反轉.Bool = true;
             PLC_IO_常溫區_輸送帶啟動.Bool = true;
         }
+        #endregion
+
+
+        #region PLC_進出盒區Y軸復歸
+        PLC_Device PLC_Device_進出盒區Y軸復歸 = new PLC_Device("S7010");
+        PLC_Device PLC_Device_進出盒區Y軸復歸_OK = new PLC_Device("");
+        Task Task_進出盒區Y軸復歸;
+        MyTimer MyTimer_進出盒區Y軸復歸_向前JOG時間 = new MyTimer();
+        MyTimer MyTimer_進出盒區Y軸復歸_結束延遲 = new MyTimer();
+        MyTimer MyTimer_進出盒區Y軸復歸_開始延遲 = new MyTimer();
+        int cnt_Program_進出盒區Y軸復歸 = 65534;
+        void sub_Program_進出盒區Y軸復歸()
+        {
+            if (cnt_Program_進出盒區Y軸復歸 == 65534)
+            {
+                this.MyTimer_進出盒區Y軸復歸_結束延遲.StartTickTime(10000);
+                this.MyTimer_進出盒區Y軸復歸_開始延遲.StartTickTime(10000);
+                PLC_Device_進出盒區Y軸復歸.SetComment("PLC_進出盒區Y軸復歸");
+                PLC_Device_進出盒區Y軸復歸_OK.SetComment("PLC_進出盒區Y軸復歸_OK");
+                PLC_Device_進出盒區Y軸復歸.Bool = false;
+                cnt_Program_進出盒區Y軸復歸 = 65535;
+            }
+            if (cnt_Program_進出盒區Y軸復歸 == 65535) cnt_Program_進出盒區Y軸復歸 = 1;
+            if (cnt_Program_進出盒區Y軸復歸 == 1) cnt_Program_進出盒區Y軸復歸_檢查按下(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 2) cnt_Program_進出盒區Y軸復歸_初始化(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 3) cnt_Program_進出盒區Y軸復歸_向前JOG(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 4) cnt_Program_進出盒區Y軸復歸_向前JOG時間到達(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 5) cnt_Program_進出盒區Y軸復歸_離開正極限(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 6) cnt_Program_進出盒區Y軸復歸_檢查馬達停止(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 7) cnt_Program_進出盒區Y軸復歸_開始復歸(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 8) cnt_Program_進出盒區Y軸復歸_檢查HOME_OFF(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 9) cnt_Program_進出盒區Y軸復歸_檢查復歸完成(ref cnt_Program_進出盒區Y軸復歸);
+            if (cnt_Program_進出盒區Y軸復歸 == 10) cnt_Program_進出盒區Y軸復歸 = 65500;
+            if (cnt_Program_進出盒區Y軸復歸 > 1) cnt_Program_進出盒區Y軸復歸_檢查放開(ref cnt_Program_進出盒區Y軸復歸);
+
+            if (cnt_Program_進出盒區Y軸復歸 == 65500)
+            {
+                this.MyTimer_進出盒區Y軸復歸_結束延遲.TickStop();
+                this.MyTimer_進出盒區Y軸復歸_結束延遲.StartTickTime(10000);
+                Servo_Stop(enum_軸號.進出盒區_Y軸);
+                plC_RJ_Button_進出盒區Y軸_復歸.Bool = false;
+
+                cnt_Program_進出盒區Y軸復歸 = 65535;
+            }
+        }
+        void cnt_Program_進出盒區Y軸復歸_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_進出盒區Y軸復歸.Bool) cnt++;
+        }
+        void cnt_Program_進出盒區Y軸復歸_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_進出盒區Y軸復歸.Bool) cnt = 65500;
+        }
+        void cnt_Program_進出盒區Y軸復歸_初始化(ref int cnt)
+        {
+            PLC_Device_進出盒區Y軸復歸_OK.Bool = false;
+            cnt++;
+        }
+      
+        void cnt_Program_進出盒區Y軸復歸_向前JOG(ref int cnt)
+        {
+            if (plC_Button_進出盒區Y軸_正極限.Bool)
+            {
+                cnt++;
+                return;
+            }
+            Servo_JOG(enum_軸號.進出盒區_Y軸, 100);
+            MyTimer_進出盒區Y軸復歸_向前JOG時間.TickStop();
+            MyTimer_進出盒區Y軸復歸_向前JOG時間.StartTickTime(2000);
+            cnt++;
+        }
+        void cnt_Program_進出盒區Y軸復歸_向前JOG時間到達(ref int cnt)
+        {
+            if (plC_Button_進出盒區Y軸_正極限.Bool)
+            {
+                Servo_JOG(enum_軸號.進出盒區_Y軸, -100);
+                cnt++;
+                return;
+            }
+            if (MyTimer_進出盒區Y軸復歸_向前JOG時間.IsTimeOut())
+            {
+                Servo_Stop(enum_軸號.進出盒區_Y軸);
+                cnt++;
+            }
+
+        }
+        void cnt_Program_進出盒區Y軸復歸_離開正極限(ref int cnt)
+        {
+            if (!plC_Button_進出盒區Y軸_正極限.Bool)
+            {
+                Servo_Stop(enum_軸號.進出盒區_Y軸);
+                cnt++;
+                return;
+            }
+        }
+        void cnt_Program_進出盒區Y軸復歸_檢查馬達停止(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.進出盒區_Y軸, enum_DO.ZSPD) == true)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_進出盒區Y軸復歸_開始復歸(ref int cnt)
+        {
+            DeltaMotor485_port_進出盒區_Y軸[5].Home(enum_Direction.CCW, true, 250, 10, 50, 50, plC_NumBox_進出盒區Y軸_復歸偏移.Value, 200, 50);
+            cnt++;
+        }
+        void cnt_Program_進出盒區Y軸復歸_檢查HOME_OFF(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.進出盒區_Y軸, enum_DO.HOME) == false)
+            {
+                cnt++;
+            }
+        }
+        void cnt_Program_進出盒區Y軸復歸_檢查復歸完成(ref int cnt)
+        {
+            if (Servo_State(enum_軸號.進出盒區_Y軸, enum_DO.HOME) == true && Servo_State(enum_軸號.進出盒區_Y軸, enum_DO.ZSPD) == true)
+            {
+                plC_RJ_Button_進出盒區Y軸_已完成復歸.Bool = true;
+                cnt++;
+            }
+        }
+
+
         #endregion
     }
 }
