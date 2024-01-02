@@ -1014,13 +1014,26 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>Excel</returns>
         </member>
-        <member name="M:HIS_WebApi.inventoryController.POST_excel_upload(Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:HIS_WebApi.inventoryController.POST_get_excel_header">
+            <summary>
+            取得盤點上傳表頭
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_excel_upload(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String,System.String)">
             <summary>
             以盤點單號上傳
             </summary>
             <remarks>
             [必要輸入參數說明]<br/> 
-            fineStream
+            1. [file] : 盤點單<br/> 
+            2. [IC_NAME] : 盤點單名稱<br/> 
+            3. [CT] : 建表人<br/> 
+            4. [CT] : 預設盤點人<br/> 
              --------------------------------------------<br/> 
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>

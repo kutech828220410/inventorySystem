@@ -184,9 +184,7 @@ namespace 調劑台管理系統
             this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(100);
             this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
         }
-
     
-
         private void sub_Program_領藥台_01()
         {
             if (this.plC_ScreenPage_Main.PageText == "調劑作業")

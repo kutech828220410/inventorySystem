@@ -739,7 +739,7 @@ namespace HIS_WebApi
         {
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
-
+            GET_init(returnData);
 
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
@@ -796,6 +796,7 @@ namespace HIS_WebApi
             value[(int)enum_盤點單號.建表時間] = creat.建表時間;
             value[(int)enum_盤點單號.盤點開始時間] = creat.盤點開始時間;
             value[(int)enum_盤點單號.盤點結束時間] = creat.盤點結束時間;
+            value[(int)enum_盤點單號.預設盤點人] = creat.預設盤點人;
             value[(int)enum_盤點單號.盤點狀態] = "等待盤點";
             value[(int)enum_盤點單號.備註] = creat.備註;
 
@@ -810,9 +811,10 @@ namespace HIS_WebApi
                 creat.Contents[i].盤點單號 = creat.盤點單號;
                 value[(int)enum_盤點內容.GUID] = creat.Contents[i].GUID;
                 value[(int)enum_盤點內容.Master_GUID] = creat.Contents[i].Master_GUID;
+                value[(int)enum_盤點內容.序號] = creat.Contents[i].序號;
+                value[(int)enum_盤點內容.儲位名稱] = creat.Contents[i].儲位名稱;
                 value[(int)enum_盤點內容.藥品碼] = creat.Contents[i].藥品碼;
                 value[(int)enum_盤點內容.料號] = creat.Contents[i].料號;
-
                 value[(int)enum_盤點內容.藥品條碼1] = creat.Contents[i].藥品條碼1;
                 value[(int)enum_盤點內容.藥品條碼2] = creat.Contents[i].藥品條碼2;
                 value[(int)enum_盤點內容.盤點單號] = creat.Contents[i].盤點單號;
@@ -889,6 +891,7 @@ namespace HIS_WebApi
         {
             try
             {
+                GET_init(returnData);
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses_buf.Count == 0)
@@ -1971,9 +1974,34 @@ namespace HIS_WebApi
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
 
-            byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xlsx);
+            byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xls);
             Stream stream = new MemoryStream(excelData);
-            return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
+            return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xls"));
+        }
+
+        /// <summary>
+        /// 取得盤點上傳表頭
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_excel_header")]
+        [HttpPost]
+        public async Task<ActionResult> POST_get_excel_header()
+        {
+            string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            string xls_command = "application/vnd.ms-excel";
+
+            List<object[]> list_value = new List<object[]>();
+            System.Data.DataTable dataTable = list_value.ToDataTable(new enum_盤點單上傳_Excel());
+            SheetClass sheetClass = dataTable.NPOI_GetSheetClass(new int[] { (int)enum_盤點單上傳_Excel.序號, (int)enum_盤點單上傳_Excel.理論值});
+            byte[] excelData = sheetClass.NPOI_GetBytes(Excel_Type.xls);
+            Stream stream = new MemoryStream(excelData);
+            return await Task.FromResult(File(stream, xlsx_command, $"盤點上傳_header.xls"));
+
+
         }
 
         /// <summary>
@@ -1981,68 +2009,146 @@ namespace HIS_WebApi
         /// </summary>
         /// <remarks>
         /// [必要輸入參數說明]<br/> 
-        /// fineStream
+        /// 1. [file] : 盤點單<br/> 
+        /// 2. [IC_NAME] : 盤點單名稱<br/> 
+        /// 3. [CT] : 建表人<br/> 
+        /// 4. [CT] : 預設盤點人<br/> 
         ///  --------------------------------------------<br/> 
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [Route("excel_upload")]
         [HttpPost]
-        public async Task<string> POST_excel_upload([FromForm] IFormFile file)
+        public async Task<string> POST_excel_upload([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string CT, [FromForm] string DEFAULT_OP)
         {
             returnData returnData = new returnData();
-            returnData.Method = "POST_excel_upload";
-            var formFile = Request.Form.Files.FirstOrDefault();
-
-            if (formFile == null)
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
             {
-                returnData.Code = -200;
-                returnData.Result = "文件不得為空";
-                return returnData.JsonSerializationt(true);
-            }
-            string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            inventoryClass.creat creat = new inventoryClass.creat();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                await formFile.CopyToAsync(memoryStream);
-                string json = ExcelClass.NPOI_LoadSheetToJson(memoryStream.ToArray(), extension);
-
-                SheetClass sheetClass = json.JsonDeserializet<SheetClass>();
-                // 在这里可以对 memoryStream 进行操作，例如读取或写入数据
-                for (int i = 0; i < sheetClass.Rows.Count; i++)
+                MED_pageController mED_PageController = new MED_pageController();
+                returnData returnData_med = new returnData();
+                returnData_med.Server = serverSettingClasses_med.Server;
+                returnData_med.DbName = serverSettingClasses_med.DBName;
+                returnData_med.TableName = "medicine_page_cloud";
+                returnData_med.UserName = serverSettingClasses_med.User;
+                returnData_med.Password = serverSettingClasses_med.Password;
+                returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
+                string json_med = Basic.Net.WEBApiPostJson("http://127.0.0.1:4433/api/MED_page", returnData_med.JsonSerializationt());
+                returnData_med = json_med.JsonDeserializet<returnData>();
+                if (returnData_med == null)
                 {
-                    if (i == 0) continue;
-                    else if (i == 1)
+                    returnData.Code = -200;
+                    returnData.Result = "ServerSetting VM端設定異常!";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
+                List<object[]> list_medClasses = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
+                List<object[]> list_medClasses_buf = new List<object[]>();
+                Dictionary<object, List<object[]>> list_medClasses_藥碼_keys = list_medClasses.ConvertToDictionary((int)enum_雲端藥檔.藥品碼);
+                Dictionary<object, List<object[]>> list_medClasses_料號_keys = list_medClasses.ConvertToDictionary((int)enum_雲端藥檔.料號);
+
+                returnData.Method = "POST_excel_upload";
+                var formFile = Request.Form.Files.FirstOrDefault();
+
+                if (formFile == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "文件不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+                string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                inventoryClass.creat creat = new inventoryClass.creat();
+
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    await formFile.CopyToAsync(memoryStream);
+                    System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
+                    dt = dt.ReorderTable(new enum_盤點單上傳_Excel());
+                    if (dt == null)
                     {
-                        creat.盤點單號 = sheetClass.Rows[i].Cell[1].Text;
+                        returnData.Code = -200;
+                        returnData.Result = "上傳文件表頭無效!";
+                        return returnData.JsonSerializationt(true);
                     }
-                    else if (i == 2)
+                    List<object[]> list_value = dt.DataTableToRowList();
+                    returnData returnData_new_IC_SN = GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
+                    creat.盤點名稱 = IC_NAME;
+                    creat.盤點單號 = returnData_new_IC_SN.Value;
+                    creat.建表人 = CT;
+                    creat.預設盤點人 = DEFAULT_OP;
+                    creat.建表時間 = DateTime.Now.ToDateTimeString();
+                    creat.盤點開始時間 = DateTime.MinValue.ToDateTimeString();
+                    creat.盤點結束時間 = DateTime.MinValue.ToDateTimeString();
+                    creat.盤點狀態 = "等待盤點";
+                    string 藥碼 = "";
+                    string 料號 = "";
+                    for (int i = 0; i < list_value.Count; i++)
                     {
-                        creat.盤點開始時間 = sheetClass.Rows[i].Cell[1].Text;
-                        creat.盤點結束時間 = sheetClass.Rows[i].Cell[5].Text;
-                    }
-                    else if (i == 3) continue;
-                    else
-                    {
+                        list_medClasses_buf.Clear();
+
                         inventoryClass.content content = new inventoryClass.content();
                         content.GUID = Guid.NewGuid().ToString();
-                        content.藥品碼 = sheetClass.Rows[i].Cell[0].Text;
-                        content.料號 = sheetClass.Rows[i].Cell[1].Text;
-                        content.藥品名稱 = sheetClass.Rows[i].Cell[2].Text;
-                        content.中文名稱 = sheetClass.Rows[i].Cell[3].Text;
-                        content.包裝單位 = sheetClass.Rows[i].Cell[4].Text;
-                        content.盤點量 = sheetClass.Rows[i].Cell[6].Text;
-                        creat.Contents.Add(content);
+                        藥碼 = list_value[i][(int)enum_盤點單上傳_Excel.藥碼].ObjectToString();
+                        料號 = list_value[i][(int)enum_盤點單上傳_Excel.料號].ObjectToString();
+                        content.序號 = list_value[i][(int)enum_盤點單上傳_Excel.序號].ObjectToString();
+                        content.藥品碼 = list_value[i][(int)enum_盤點單上傳_Excel.藥碼].ObjectToString();
+                        content.儲位名稱 = list_value[i][(int)enum_盤點單上傳_Excel.儲位名稱].ObjectToString();
+                        content.理論值 = list_value[i][(int)enum_盤點單上傳_Excel.理論值].ObjectToString();
+
+                        if(content.藥品碼.StringIsEmpty() == false)
+                        {
+                            list_medClasses_buf = list_medClasses_藥碼_keys.GetRows(content.藥品碼);
+                        }
+                        if (list_medClasses_buf.Count == 0)
+                        {
+                            if (content.料號.StringIsEmpty() == false)
+                            {
+                                list_medClasses_buf = list_medClasses_料號_keys.GetRows(content.料號);
+                            }
+                        }
+                        if(list_medClasses_buf.Count > 0)
+                        {
+                            content.藥品碼 = list_medClasses_buf[0][(int)enum_雲端藥檔.藥品碼].ObjectToString();
+                            content.料號 = list_medClasses_buf[0][(int)enum_雲端藥檔.料號].ObjectToString();
+                            content.藥品名稱 = list_medClasses_buf[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
+                            content.中文名稱 = list_medClasses_buf[0][(int)enum_雲端藥檔.中文名稱].ObjectToString();
+                            content.包裝單位 = list_medClasses_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
+                            creat.Contents.Add(content);
+                        }
                     }
                 }
+                returnData.Data = creat;
+                string json_creat_add = POST_creat_add(returnData);
+                returnData = json_creat_add.JsonDeserializet<returnData>();
+                if (returnData.Code != 200)
+                {
+                    return returnData.JsonSerializationt(true);
+                }
+            
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = "接收上傳文件成功";
+                return returnData.JsonSerializationt(true);
             }
+            catch(Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+            finally
+            {
+             
+            }
+         
 
-            returnData.Data = creat;
-            returnData.Code = 200;
-            returnData.Result = "接收上傳文件成功";
-            return returnData.JsonSerializationt(true);
+
+            
         }
         private returnData Function_Get_inventory_creat(ServerSettingClass serverSettingClass, string MED_TableName, List<object[]> list_inventory_creat)
         {
@@ -2183,6 +2289,7 @@ namespace HIS_WebApi
             table_inventory_creat.AddColumnList("盤點開始時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
             table_inventory_creat.AddColumnList("盤點結束時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
             table_inventory_creat.AddColumnList("盤點狀態", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("預設盤點人", Table.StringType.VARCHAR, 100, Table.IndexType.None);
             table_inventory_creat.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             if (!sQLControl_inventory_creat.IsTableCreat()) sQLControl_inventory_creat.CreatTable(table_inventory_creat);
             else sQLControl_inventory_creat.CheckAllColumnName(table_inventory_creat, true);
@@ -2192,12 +2299,13 @@ namespace HIS_WebApi
             table_inventory_content = new Table("inventory_content");
             table_inventory_content.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
             table_inventory_content.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
+            table_inventory_content.AddColumnList("序號", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_inventory_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
             table_inventory_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
             table_inventory_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-
             table_inventory_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
+            table_inventory_content.AddColumnList("儲位名稱", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("理論值", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_inventory_content.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
             table_inventory_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
@@ -2242,30 +2350,40 @@ namespace HIS_WebApi
         {
             public int Compare(inventoryClass.content x, inventoryClass.content y)
             {
-                if (x.理論值 == "0" && y.理論值 == "0")
+                int 序號1 = x.序號.StringToInt32();
+                int 序號2 = x.序號.StringToInt32();
+                if (序號1 > 0 && 序號2 > 0)
                 {
-                    return x.藥品碼.CompareTo(y.藥品碼);
-                }
-                else if (x.理論值 != "0" && y.理論值 != "0")
-                {
-                    // 先按照理論值进行排序
-                    int theoryComparison = x.理論值.CompareTo(y.理論值);
-
-                    if (theoryComparison == 0)
-                    {
-                        // 如果理論值相同，则按照藥品碼进行排序
-                        return x.藥品碼.CompareTo(y.藥品碼);
-                    }
-                    else
-                    {
-                        return theoryComparison;
-                    }
+                    return 序號1.CompareTo(序號2);
                 }
                 else
                 {
-                    // 如果只有一个项的理論值为0，则将具有非零理論值的项排在前面
-                    return y.理論值.CompareTo(x.理論值);
+                    if (x.理論值 == "0" && y.理論值 == "0")
+                    {
+                        return x.藥品碼.CompareTo(y.藥品碼);
+                    }
+                    else if (x.理論值 != "0" && y.理論值 != "0")
+                    {
+                        // 先按照理論值进行排序
+                        int theoryComparison = x.理論值.CompareTo(y.理論值);
+
+                        if (theoryComparison == 0)
+                        {
+                            // 如果理論值相同，则按照藥品碼进行排序
+                            return x.藥品碼.CompareTo(y.藥品碼);
+                        }
+                        else
+                        {
+                            return theoryComparison;
+                        }
+                    }
+                    else
+                    {
+                        // 如果只有一个项的理論值为0，则将具有非零理論值的项排在前面
+                        return y.理論值.CompareTo(x.理論值);
+                    }
                 }
+                
             }
         }
         private class ICP_sub_content : IComparer<inventoryClass.sub_content>

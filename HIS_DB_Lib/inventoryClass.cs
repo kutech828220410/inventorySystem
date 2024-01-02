@@ -24,6 +24,15 @@ namespace HIS_DB_Lib
         誤差量,
         誤差金額
     }
+    public enum enum_盤點單上傳_Excel
+    {
+        序號,
+        藥碼,
+        儲位名稱,
+        料號,
+        藥名,
+        理論值,     
+    }
     public enum enum_盤點狀態
     {
         盤點中,
@@ -40,17 +49,20 @@ namespace HIS_DB_Lib
         盤點開始時間,
         盤點結束時間,
         盤點狀態,
+        預設盤點人,
         備註,
     }
     public enum enum_盤點內容
     {
         GUID,
         Master_GUID,
+        序號,
         盤點單號,
         藥品碼,
         料號,
         藥品條碼1,
         藥品條碼2,
+        儲位名稱,
         理論值,
         新增時間,
         備註,
@@ -92,6 +104,8 @@ namespace HIS_DB_Lib
             public string 盤點結束時間 { get; set; }
             [JsonPropertyName("STATE")]
             public string 盤點狀態 { get; set; }
+            [JsonPropertyName("DEFAULT_OP")]
+            public string 預設盤點人 { get; set; }
             [JsonPropertyName("NOTE")]
             public string 備註 { get; set; }
 
@@ -106,6 +120,8 @@ namespace HIS_DB_Lib
             public string GUID { get; set; }
             [JsonPropertyName("Master_GUID")]
             public string Master_GUID { get; set; }
+            [JsonPropertyName("INDEX")]
+            public string 序號 { get; set; }
             [JsonPropertyName("IC_SN")]
             public string 盤點單號 { get; set; }
             [JsonPropertyName("CODE")]
@@ -120,6 +136,8 @@ namespace HIS_DB_Lib
             public string 藥品名稱 { get; set; }
             [JsonPropertyName("PAKAGE")]
             public string 包裝單位 { get; set; }
+            [JsonPropertyName("STORAGE_NAME")]
+            public string 儲位名稱 { get; set; }
             [JsonPropertyName("BARCODE1")]
             public string 藥品條碼1 { get; set; }
             [JsonPropertyName("BARCODE2")]

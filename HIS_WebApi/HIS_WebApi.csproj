@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <Reference Include="Basic">
-      <HintPath>0.DLL\Basic.dll</HintPath>
+      <HintPath>..\0.DLL\Basic.dll</HintPath>
     </Reference>
     <Reference Include="DrawingClass">
       <HintPath>0.DLL\DrawingClass.dll</HintPath>

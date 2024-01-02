@@ -1,5 +1,5 @@
 {
-  "Name": "門診管制",
-  "Api_Server": "http://10.200.0.203:4433",
+  "Name": "管藥",
+  "Api_Server": "http://220.135.128.247:4433",
   "Med_Update_ApiURL": ""
 }
