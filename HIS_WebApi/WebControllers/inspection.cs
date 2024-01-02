@@ -1784,6 +1784,7 @@ namespace HIS_WebApi
             List<object[]> list_sub_inspection = sQLControl_inspection_sub_content.GetAllRows(null);
             List<object[]> list_sub_inspection_buf = new List<object[]>();
             string 藥品碼 = "";
+            string 料號 = "";
             string 藥品名稱 = "";
             string 中文名稱 = "";
             string 包裝單位 = "";
@@ -1793,6 +1794,11 @@ namespace HIS_WebApi
                 inspectionClass.creat creat = list_inspection_creat[i].SQLToClass<inspectionClass.creat, enum_驗收單號>();
                 if (allData)
                 {
+                    料號 = "";
+                    藥品名稱 = "";
+                    中文名稱 = "";
+                    包裝單位 = "";
+
                     list_inspection_content_buf = list_inspection_content.GetRows((int)enum_驗收內容.Master_GUID, creat.GUID);
                     for (int k = 0; k < list_inspection_content_buf.Count; k++)
                     {
@@ -1801,15 +1807,17 @@ namespace HIS_WebApi
                         if (medClasses != null)
                         {
                             medClasses_buf = (from value in medClasses
-                                              where value.藥品碼 == 藥品碼
+                                              where (value.藥品碼 == content.藥品碼 || value.料號 == content.藥品碼)
                                               select value).ToList();
                             if (medClasses_buf.Count > 0)
                             {
+                                料號 = medClasses_buf[0].料號;
                                 藥品名稱 = medClasses_buf[0].藥品名稱;
                                 中文名稱 = medClasses_buf[0].中文名稱;
                                 包裝單位 = medClasses_buf[0].包裝單位;
                             }
                         }
+                        content.料號 = 料號;
                         content.藥品名稱 = 藥品名稱;
                         content.中文名稱 = 中文名稱;
                         content.包裝單位 = 包裝單位;
