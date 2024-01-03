@@ -162,7 +162,7 @@ namespace HIS_DB_Lib
             public string GUID { get; set; }
             [JsonPropertyName("Master_GUID")]
             public string Master_GUID { get; set; }
-            [JsonPropertyName("ACPT_SN")]
+            [JsonPropertyName("IC_SN")]
             public string 盤點單號 { get; set; }
             [JsonPropertyName("CODE")]
             public string 藥品碼 { get; set; }

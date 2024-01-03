@@ -1039,6 +1039,117 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.inv_combinelist.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化合併單資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.GET_new_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            取得可建立今日最新合併單號
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Value]為建立合併單號</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_inv_creat_update(HIS_DB_Lib.returnData)">
+            <summary>
+            創建合併單
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單名稱 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+                   "INV_NAME": "測試合併",
+                   "CT": "王曉明",
+                   "NOTE": "",
+                   "records_Ary" :
+                   [
+                     {
+                        "SN" : "Q20240103-01",
+                        "NAME" : "測試01",
+                        "TYPE" : "盤點單"
+                     },
+                     {
+                        "SN" : "Q20240103-02",
+                        "NAME" : "測試02",
+                        "TYPE" : "盤點單"
+                     }
+                   ]
+                }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_get_all_inv(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有合併單資料
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 合併單名稱 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+               
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_get_all_records(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有可合併單
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+                   
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
         <member name="M:HIS_WebApi.medGroupController.GET_json_sample(HIS_DB_Lib.returnData)">
             <summary>
             查詢藥品群組JSON格式範例
