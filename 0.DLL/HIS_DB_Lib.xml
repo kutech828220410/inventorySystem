@@ -9,6 +9,116 @@
             回傳結果碼
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.inv_combinelistClass">
+            <summary>
+            合併總單
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.合併單名稱">
+            <summary>
+            合併單名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.建表人">
+            <summary>
+            建表人
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.建表時間">
+            <summary>
+            建表時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.備註">
+            <summary>
+            備註
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.Records_Ary">
+            <summary>
+            合併單明細
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.inv_sub_combinelistClass">
+            <summary>
+            合併單明細
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.Master_GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.REF_GUID">
+            <summary>
+            REF_GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.合併單號">
+            <summary>
+            合併單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.單號">
+            <summary>
+            單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.名稱">
+            <summary>
+            名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.類型">
+            <summary>
+            類型
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.新增時間">
+            <summary>
+            新增時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_sub_combinelistClass.備註">
+            <summary>
+            備註
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_records_Class.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_records_Class.單號">
+            <summary>
+            單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_records_Class.名稱">
+            <summary>
+            名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_records_Class.類型">
+            <summary>
+            類型
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.udnoectc">
             <summary>
             化療配藥通知處方
