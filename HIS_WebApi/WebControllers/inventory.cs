@@ -2243,7 +2243,7 @@ namespace HIS_WebApi
                 string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 inventoryClass.creat creat = new inventoryClass.creat();
-
+                string error = "";
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     await formFile.CopyToAsync(memoryStream);
@@ -2271,6 +2271,7 @@ namespace HIS_WebApi
                     creat.盤點狀態 = "等待盤點";
                     string 藥碼 = "";
                     string 料號 = "";
+             
                     for (int i = 0; i < list_value.Count; i++)
                     {
                         list_medClasses_buf.Clear();
@@ -2306,6 +2307,7 @@ namespace HIS_WebApi
                         {
                             content.藥品名稱 = "--------------------------------";
                             content.中文名稱 = "--------------------------------";
+                            error += $"({content.藥品碼})\n";
                             creat.Contents.Add(content);
                         }
                     }
@@ -2321,6 +2323,12 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Result = "接收上傳文件成功";
+                if (error.StringIsEmpty() == false)
+                {
+                    returnData.Result += "\n";
+                    returnData.Result += "-----下列藥碼,藥檔內無資料-----\n";
+                    returnData.Result += error;
+                }
                 return returnData.JsonSerializationt(true);
             }
             catch(Exception e)
