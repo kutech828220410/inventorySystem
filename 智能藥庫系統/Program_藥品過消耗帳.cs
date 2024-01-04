@@ -649,7 +649,7 @@ namespace 智能藥庫系統
 
             List<object[]> list_value = Function_藥品過消耗帳_取得所有過帳明細(藥品碼);
             Console.WriteLine($"藥品過消耗帳 ,從資料庫取得<{藥品碼}>資料 <{list_value.Count}>筆 , 耗時{myTimer.ToString()}ms");
-            list_value = list_value.GetRowsInMonth((int)enum_藥品過消耗帳.報表日期, DateTime.Now.AddMonths(-1).Month);
+            list_value = list_value.GetRowsInMonth((int)enum_藥品過消耗帳.報表日期, DateTime.Now.AddMonths(-1).Year, DateTime.Now.AddMonths(-1).Month);
             Console.WriteLine($"藥品過消耗帳 ,篩選<{ DateTime.Now.AddMonths(-1).Month}>月份資料 <{list_value.Count}>筆 , 耗時{myTimer.ToString()}ms");
 
             int 消耗量 = 0;
