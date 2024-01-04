@@ -992,6 +992,50 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data] :content資料結構 </returns>
         </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_update_default_op_by_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號寫入預設盤點人
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   "DEFAULT_OP" : "王曉明,張大同,克里斯"
+                },
+                "Value" : "20240104-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_creat_get_default_op_by_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號取得預設盤點人
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "Value" : "20240104-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
         <member name="M:HIS_WebApi.inventoryController.Post_download_excel_by_IC_SN(HIS_DB_Lib.returnData)">
             <summary>
             以盤點單號下載

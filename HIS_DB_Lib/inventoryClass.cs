@@ -26,12 +26,9 @@ namespace HIS_DB_Lib
     }
     public enum enum_盤點單上傳_Excel
     {
-        序號,
         藥碼,
-        儲位名稱,
-        料號,
         藥名,
-        理論值,     
+        儲位名稱,
     }
     public enum enum_盤點狀態
     {

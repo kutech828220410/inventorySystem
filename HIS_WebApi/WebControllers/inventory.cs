@@ -131,7 +131,7 @@ namespace HIS_WebApi
             int index = 0;
             while (true)
             {
-                盤點單號 = $"{DateTime.Now.ToDateTinyString()}-{index}";
+                盤點單號 = $"INV{DateTime.Now.ToDateTinyString()}-{index}";
                 index++;
                 list_inventory_creat_buf = list_inventory_creat.GetRows((int)enum_盤點單號.盤點單號, 盤點單號);
                 if (list_inventory_creat_buf.Count == 0) break;
@@ -1853,6 +1853,185 @@ namespace HIS_WebApi
 
             return returnData.JsonSerializationt();
         }
+        /// <summary>
+        /// 以盤點單號寫入預設盤點人
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 盤點單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        "DEFAULT_OP" : "王曉明,張大同,克里斯"
+        ///     },
+        ///     "Value" : "20240104-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
+        [Route("creat_update_default_op_by_IC_SN")]
+        [HttpPost]
+        public string POST_creat_update_default_op_by_IC_SN([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+                inventoryClass.creat creat_temp = returnData.Data.ObjToClass<inventoryClass.creat>();
+                inventoryClass.creat creat = new inventoryClass.creat();
+                string json_out = POST_creat_get_by_IC_SN(returnData);
+                returnData = json_out.JsonDeserializet<returnData>();
+                if (returnData.Code < 0)
+                {
+                    returnData.Method = "creat_update_default_op_by_IC_SN";
+                    return returnData.JsonSerializationt();
+                }
+                List<inventoryClass.creat> creats = returnData.Data.ObjToListClass<inventoryClass.creat>();
+                if (creats.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimer.ToString();
+                    returnData.Result = $"取得盤點資料失敗!";
+                    returnData.Method = "creat_update_default_op_by_IC_SN";
+
+                    return returnData.JsonSerializationt(true);
+                }
+                creat = creats[0];
+          
+                creat.預設盤點人 = creat_temp.預設盤點人;
+                object[] value = creat.ClassToSQL<inventoryClass.creat, enum_盤點單號>();
+                List<object[]> list_value = new List<object[]>();
+                list_value.Add(value);
+                sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_value);
+                returnData.Code = 200;
+                returnData.Data = creat;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"更新預設盤點人成功!";
+                returnData.Method = "creat_update_default_op_by_IC_SN";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
+        /// <summary>
+        /// 以盤點單號取得預設盤點人
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 盤點單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "Value" : "20240104-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
+        [Route("creat_get_default_op_by_IC_SN")]
+        [HttpPost]
+        public string POST_creat_get_default_op_by_IC_SN([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+                inventoryClass.creat creat_temp = returnData.Data.ObjToClass<inventoryClass.creat>();
+                inventoryClass.creat creat = new inventoryClass.creat();
+                string json_out = POST_creat_get_by_IC_SN(returnData);
+                returnData = json_out.JsonDeserializet<returnData>();
+                if (returnData.Code < 0)
+                {
+                    returnData.Method = "creat_get_default_op_by_IC_SN";
+                    return returnData.JsonSerializationt();
+                }
+                List<inventoryClass.creat> creats = returnData.Data.ObjToListClass<inventoryClass.creat>();
+                if (creats.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimer.ToString();
+                    returnData.Result = $"取得盤點資料失敗!";
+                    returnData.Method = "creat_get_default_op_by_IC_SN";
+
+                    return returnData.JsonSerializationt(true);
+                }
+                creat = creats[0];
+            
+                object[] value = creat.ClassToSQL<inventoryClass.creat, enum_盤點單號>();
+                List<object[]> list_value = new List<object[]>();
+                list_value.Add(value);
+                sQLControl_inventory_creat.UpdateByDefulteExtra(null, list_value);
+                returnData.Code = 200;
+                returnData.Data = creat;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"取得預設盤點人成功!";
+                returnData.Method = "creat_get_default_op_by_IC_SN";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
 
         /// <summary>
         /// 以盤點單號下載
@@ -1996,8 +2175,9 @@ namespace HIS_WebApi
 
             List<object[]> list_value = new List<object[]>();
             System.Data.DataTable dataTable = list_value.ToDataTable(new enum_盤點單上傳_Excel());
-            SheetClass sheetClass = dataTable.NPOI_GetSheetClass(new int[] { (int)enum_盤點單上傳_Excel.序號, (int)enum_盤點單上傳_Excel.理論值});
-            byte[] excelData = sheetClass.NPOI_GetBytes(Excel_Type.xls);
+            //SheetClass sheetClass = dataTable.NPOI_GetSheetClass(new int[] { (int)enum_盤點單上傳_Excel.理論值});
+         
+            byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xls);
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"盤點上傳_header.xls"));
 
@@ -2077,6 +2257,10 @@ namespace HIS_WebApi
                     }
                     List<object[]> list_value = dt.DataTableToRowList();
                     returnData returnData_new_IC_SN = GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
+                    if(IC_NAME.StringIsEmpty())
+                    {
+                        IC_NAME = Path.GetFileNameWithoutExtension(file.FileName);
+                    }
                     creat.盤點名稱 = IC_NAME;
                     creat.盤點單號 = returnData_new_IC_SN.Value;
                     creat.建表人 = CT;
@@ -2094,11 +2278,9 @@ namespace HIS_WebApi
                         inventoryClass.content content = new inventoryClass.content();
                         content.GUID = Guid.NewGuid().ToString();
                         藥碼 = list_value[i][(int)enum_盤點單上傳_Excel.藥碼].ObjectToString();
-                        料號 = list_value[i][(int)enum_盤點單上傳_Excel.料號].ObjectToString();
-                        content.序號 = list_value[i][(int)enum_盤點單上傳_Excel.序號].ObjectToString();
+                        content.序號 = (i + 1).ToString();
                         content.藥品碼 = list_value[i][(int)enum_盤點單上傳_Excel.藥碼].ObjectToString();
                         content.儲位名稱 = list_value[i][(int)enum_盤點單上傳_Excel.儲位名稱].ObjectToString();
-                        content.理論值 = list_value[i][(int)enum_盤點單上傳_Excel.理論值].ObjectToString();
 
                         if(content.藥品碼.StringIsEmpty() == false)
                         {
@@ -2108,7 +2290,7 @@ namespace HIS_WebApi
                         {
                             if (content.料號.StringIsEmpty() == false)
                             {
-                                list_medClasses_buf = list_medClasses_料號_keys.GetRows(content.料號);
+                                list_medClasses_buf = list_medClasses_料號_keys.GetRows(content.藥品碼);
                             }
                         }
                         if(list_medClasses_buf.Count > 0)
@@ -2289,7 +2471,7 @@ namespace HIS_WebApi
             table_inventory_creat.AddColumnList("盤點開始時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
             table_inventory_creat.AddColumnList("盤點結束時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
             table_inventory_creat.AddColumnList("盤點狀態", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("預設盤點人", Table.StringType.VARCHAR, 100, Table.IndexType.None);
+            table_inventory_creat.AddColumnList("預設盤點人", Table.StringType.VARCHAR, 300, Table.IndexType.None);
             table_inventory_creat.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             if (!sQLControl_inventory_creat.IsTableCreat()) sQLControl_inventory_creat.CreatTable(table_inventory_creat);
             else sQLControl_inventory_creat.CheckAllColumnName(table_inventory_creat, true);
