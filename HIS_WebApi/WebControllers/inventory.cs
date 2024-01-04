@@ -2302,6 +2302,12 @@ namespace HIS_WebApi
                             content.包裝單位 = list_medClasses_buf[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
                             creat.Contents.Add(content);
                         }
+                        else
+                        {
+                            content.藥品名稱 = "--------------------------------";
+                            content.中文名稱 = "--------------------------------";
+                            creat.Contents.Add(content);
+                        }
                     }
                 }
                 returnData.Data = creat;
