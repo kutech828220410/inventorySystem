@@ -4545,6 +4545,7 @@ namespace 調劑台管理系統
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
             this.voice.SpeakOnTask("使用者登入完成");
+            PLC_Device_Scanner02_讀取藥單資料.Bool = false;
 
         }
         private void PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(MouseEventArgs mevent)
@@ -6586,7 +6587,7 @@ namespace 調劑台管理系統
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
             this.voice.SpeakOnTask("使用者登入完成");
-
+            PLC_Device_Scanner03_讀取藥單資料.Bool = false;
         }
         private void PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -8627,7 +8628,7 @@ namespace 調劑台管理系統
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
             this.voice.SpeakOnTask("使用者登入完成");
-
+            PLC_Device_Scanner04_讀取藥單資料.Bool = false;
         }
         private void PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(MouseEventArgs mevent)
         {
