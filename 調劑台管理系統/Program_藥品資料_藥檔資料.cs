@@ -1197,6 +1197,8 @@ namespace 調劑台管理系統
             this.plC_CheckBox_藥品資料_藥檔資料_警訊藥品.Checked = (list_雲端藥檔_buf[0][(int)enum_雲端藥檔.警訊藥品].ObjectToString().ToLower() == "true");
             this.comboBox_藥品資料_藥檔資料_管制級別.Text = list_雲端藥檔_buf[0][(int)enum_雲端藥檔.管制級別].ObjectToString();
             PlC_RJ_Button_藥品資料_登錄_MouseDownEvent(null);
+            if (mevent == null) return;
+            MyMessageBox.ShowDialog("建置完成!");
         }
         private void PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent(MouseEventArgs mevent)
         {
