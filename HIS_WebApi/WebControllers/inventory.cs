@@ -2032,6 +2032,166 @@ namespace HIS_WebApi
 
 
         }
+        /// <summary>
+        /// 以盤點單號新增預藥品
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 盤點單號 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///    "Data": 
+        ///    {                 
+        ///        "Contents": 
+        ///         [
+        ///            {
+        ///                "CODE": "220302IHYA",
+        ///                "SKDIACODE": "",
+        ///                "CHT_NAME": "Hyaluronate Sodium",
+        ///                "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+        ///                "PAKAGE": "Syri",
+        ///                "BARCODE1": "",
+        ///                "BARCODE2": "[]",
+        ///                "START_QTY": "0",
+        ///                "END_QTY": "0",
+        ///                "NOTE": "",
+        ///                "Sub_content": []
+        ///            },
+        ///            {
+        ///                "CODE": "220IHYA",
+        ///                "SKDIACODE": "",
+        ///                "CHT_NAME": "Hyaluronate Sodium",
+        ///                "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+        ///                "PAKAGE": "",
+        ///                "BARCODE1": "",
+        ///                "BARCODE2": "[]",
+        ///                "START_QTY": "0",
+        ///                "END_QTY": "0",
+        ///                "NOTE": "",
+        ///                "Sub_content": []
+        ///             }
+        ///         ]       
+        ///     },
+        ///     "Value" : "20240104-0"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
+        [Route("content_add_by_IC_SN")]
+        [HttpPost]
+        public string POST_content_add_by_IC_SN([FromBody] returnData returnData)
+        {
+            try
+            {
+
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
+                inventoryClass.creat creat_temp = returnData.Data.ObjToClass<inventoryClass.creat>();
+                if (creat_temp == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"Data不是盤點資料結構";
+                    return returnData.JsonSerializationt();
+                }
+                List<inventoryClass.content> contents = creat_temp.Contents;
+                string SN = returnData.Value;
+                if(SN.StringIsEmpty() == true)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"return.Value空白!";
+                    return returnData.JsonSerializationt();
+                }
+                if(contents.Count == 0 || contents == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"Data內無藥品可新增";
+                    return returnData.JsonSerializationt();
+                }
+                string json_out = POST_creat_get_by_IC_SN(returnData);
+                returnData = json_out.JsonDeserializet<returnData>();
+                if (returnData.Code < 0)
+                {
+                    returnData.Method = "content_add_by_IC_SN";
+                    return returnData.JsonSerializationt();
+                }
+                List<inventoryClass.creat> creats = returnData.Data.ObjToListClass<inventoryClass.creat>();
+                if (creats.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.TimeTaken = myTimer.ToString();
+                    returnData.Result = $"取得盤點資料失敗!";
+                    returnData.Method = "content_add_by_IC_SN";
+
+                    return returnData.JsonSerializationt(true);
+                }
+                inventoryClass.creat creat = creats[0];
+
+                for(int i = 0; i < contents.Count; i++)
+                {
+                    creat.ContentAdd(contents[i]);
+                }
+                List<object[]> list_content = sQLControl_inventory_content.GetRowsByDefult(null, (int)enum_盤點內容.盤點單號, SN);
+                List<object[]> list_content_buf = new List<object[]>();
+                List<object[]> list_content_add = new List<object[]>();
+                for (int i = 0; i < contents.Count; i++)
+                {
+                    string 藥碼 = contents[i].藥品碼;
+                    list_content_buf = list_content.GetRows((int)enum_盤點內容.藥品碼, 藥碼);
+                    if(list_content_buf.Count == 0)
+                    {
+                        object[] value = contents[i].ClassToSQL<inventoryClass.content, enum_盤點內容>();
+                        value[(int)enum_盤點內容.GUID] = Guid.NewGuid().ToString();
+                        value[(int)enum_盤點內容.Master_GUID] = creat.GUID;
+                        value[(int)enum_盤點內容.盤點單號] = SN;
+                        list_content_add.Add(value);
+                    }
+                  
+                }
+
+                for (int i = 0; i < list_content_add.Count; i++)
+                {
+                    list_content_add[i][(int)enum_盤點內容.序號] = (list_content.Count + i + 1);
+                }
+                sQLControl_inventory_content.AddRows(null, list_content_add);
+                returnData.Code = 200;
+                returnData.Data = creat;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Result = $"新增盤點內容成功!共<{list_content_add.Count}>筆";
+                returnData.Method = "content_add_by_IC_SN";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
+
 
         /// <summary>
         /// 以盤點單號下載
@@ -2132,7 +2292,9 @@ namespace HIS_WebApi
                 }
 
             }
+  
             dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
+
             sheetClass = dataTable.NPOI_GetSheetClass(new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
             ,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
             ,(int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });

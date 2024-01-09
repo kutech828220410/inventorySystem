@@ -633,11 +633,7 @@ C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\SLDUI.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\PortControlUI.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\ZealTechUI.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OOXML.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\MVSDK.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXml4Net.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXmlFormats.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\DotNetZip.pdb
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\DotNetZip.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
@@ -838,8 +834,6 @@ C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\bin\Release\offic
 C:\Users\kwok\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\kwok\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\kwok\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\useradmin\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\useradmin\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\useradmin\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll
@@ -1523,3 +1517,9 @@ C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\HIS_DB_Lib.
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\E-UpdateVersion\bin\Release\HIS_DB_Lib.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OOXML.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll

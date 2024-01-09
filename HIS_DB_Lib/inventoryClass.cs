@@ -109,6 +109,17 @@ namespace HIS_DB_Lib
             private List<content> _contents = new List<content>();
             public List<content> Contents { get => _contents; set => _contents = value; }
 
+            public void ContentAdd(content content)
+            {
+                List<content> Contents_buf = new List<content>();
+                Contents_buf = (from temp in Contents
+                                where temp.藥品碼 == content.藥品碼
+                                select temp).ToList();
+                if(Contents_buf.Count == 0)
+                {
+                    Contents.Add(content);
+                }
+            }
           
         }
         public class content

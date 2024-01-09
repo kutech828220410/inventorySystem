@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "勤務傳送櫃", "勤務�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "癌症自動備藥機暨自動備藥系統", "癌症自動備藥機暨排程系統\癌症自動備藥機暨自動備藥系統.csproj", "{9952E5D3-B159-497F-9DED-612B4B5E1C98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital_Call_Light_System", "Hospital_Call_Light_System\Hospital_Call_Light_System.csproj", "{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9952E5D3-B159-497F-9DED-612B4B5E1C98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

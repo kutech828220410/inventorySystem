@@ -1036,6 +1036,56 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為盤點單結構</returns>
         </member>
+        <member name="M:HIS_WebApi.inventoryController.POST_content_add_by_IC_SN(HIS_DB_Lib.returnData)">
+            <summary>
+            以盤點單號新增預藥品
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.Value] : 盤點單號 <br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+               "Data": 
+               {                 
+                   "Contents": 
+                    [
+                       {
+                           "CODE": "220302IHYA",
+                           "SKDIACODE": "",
+                           "CHT_NAME": "Hyaluronate Sodium",
+                           "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+                           "PAKAGE": "Syri",
+                           "BARCODE1": "",
+                           "BARCODE2": "[]",
+                           "START_QTY": "0",
+                           "END_QTY": "0",
+                           "NOTE": "",
+                           "Sub_content": []
+                       },
+                       {
+                           "CODE": "220IHYA",
+                           "SKDIACODE": "",
+                           "CHT_NAME": "Hyaluronate Sodium",
+                           "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+                           "PAKAGE": "",
+                           "BARCODE1": "",
+                           "BARCODE2": "[]",
+                           "START_QTY": "0",
+                           "END_QTY": "0",
+                           "NOTE": "",
+                           "Sub_content": []
+                        }
+                    ]       
+                },
+                "Value" : "20240104-0"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
         <member name="M:HIS_WebApi.inventoryController.Post_download_excel_by_IC_SN(HIS_DB_Lib.returnData)">
             <summary>
             以盤點單號下載

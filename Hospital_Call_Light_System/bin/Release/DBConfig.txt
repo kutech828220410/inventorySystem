@@ -1,0 +1,11 @@
+{
+  "DB_Basic": {
+    "DataBaseName": "hcls",
+    "IP": "127.0.0.1",
+    "UserName": "user",
+    "Password": "66437068",
+    "Port": 3306,
+    "MySqlSslMode": 0,
+    "TableName": ""
+  }
+}

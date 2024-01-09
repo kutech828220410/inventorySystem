@@ -651,11 +651,119 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             GET_init(returnData);
-            string json_get_full_inv_by_SN = POST_get_full_inv_by_SN(returnData);
+
+            GET_init(returnData);
+
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API01");
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無Server資料!";
+                return null;
+            }
+            if (returnData.Value.StringIsEmpty() == true)
+            {
+                returnData.Code = -200;
+                returnData.Result = "returnData.Value 空白,請輸入合併單號!";
+                return null;
+            }
+            string api01_url = serverSettingClasses[0].Server;
+            string Server = serverSettingClasses[0].Server;
+            string DB = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+            string json_get_all_inv = POST_get_all_inv(returnData);
+            returnData returnData_get_all_inv = json_get_all_inv.JsonDeserializet<returnData>();
+            if (returnData_get_all_inv == null)
+            {
+                returnData.Code = -200;
+                return null;
+            }
+            List<inv_combinelistClass> inv_CombinelistClasses = returnData_get_all_inv.Data.ObjToClass<List<inv_combinelistClass>>();
+            if (returnData_get_all_inv == null)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"資料初始化失敗!";
+                return null;
+            }
+            List<inv_combinelistClass> inv_CombinelistClasses_buf = (from temp in inv_CombinelistClasses
+                                                                     where temp.合併單號 == returnData.Value
+                                                                     select temp).ToList();
+            if (inv_CombinelistClasses_buf.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無此合併單號! {returnData.Value} ";
+                return null;
+            }
+            inv_combinelistClass inv_CombinelistClass = inv_CombinelistClasses_buf[0];
+            List<inventoryClass.creat> creats = new List<inventoryClass.creat>();
+            for (int i = 0; i < inv_CombinelistClass.Records_Ary.Count; i++)
+            {
+                string 單號 = inv_CombinelistClass.Records_Ary[i].單號;
+                string 類型 = inv_CombinelistClass.Records_Ary[i].類型;
+                if (類型 == "盤點單")
+                {
+                    string url = $"{api01_url}/api/inventory/creat_get_by_IC_SN";
+                    returnData returnData_post_in = new returnData();
+                    returnData_post_in.Value = 單號;
+                    string json_post_out = Basic.Net.WEBApiPostJson(url, returnData_post_in.JsonSerializationt());
+                    returnData returnData_post_out = json_post_out.JsonDeserializet<returnData>();
+                    List<inventoryClass.creat> creats_buf = returnData_post_out.Data.ObjToClass<List<inventoryClass.creat>>();
+                    if (creats_buf.Count > 0)
+                    {
+                        creats.Add(creats_buf[0]);
+                    }
+                }
+            }
+            List<inventoryClass.content> contents = new List<inventoryClass.content>();
+            List<inventoryClass.content> contents_buf = new List<inventoryClass.content>();
+            List<System.Data.DataTable> dataTables_creat = new List<System.Data.DataTable>();
+            string 藥品碼 = "";
+            for (int i = 0; i < creats.Count; i++)
+            {
+                List<object[]> list_creat_buf = new List<object[]>();
+                System.Data.DataTable dataTable_buf = new System.Data.DataTable();
+                for (int k = 0; k < creats[i].Contents.Count; k++)
+                {
+                    object[] value = new object[new enum_盤點定盤_Excel().GetLength()];
+                    value[(int)enum_盤點定盤_Excel.藥碼] = creats[i].Contents[k].藥品碼;
+                    value[(int)enum_盤點定盤_Excel.料號] = creats[i].Contents[k].料號;
+                    value[(int)enum_盤點定盤_Excel.藥名] = creats[i].Contents[k].藥品名稱;
+                    value[(int)enum_盤點定盤_Excel.單位] = creats[i].Contents[k].包裝單位;
+                    value[(int)enum_盤點定盤_Excel.庫存量] = creats[i].Contents[k].理論值;
+                    value[(int)enum_盤點定盤_Excel.盤點量] = creats[i].Contents[k].盤點量;
+                    list_creat_buf.Add(value);
+
+                    藥品碼 = creats[i].Contents[k].藥品碼;
+                    contents_buf = (from temp in contents
+                                    where temp.藥品碼 == 藥品碼
+                                    select temp).ToList();
+                    if (contents_buf.Count == 0)
+                    {
+                        inventoryClass.content content = creats[i].Contents[k];
+                        content.GUID = "";
+                        content.Master_GUID = "";
+                        content.理論值 = "";
+                        content.新增時間 = "";
+                        content.盤點單號 = "";
+                        content.Sub_content.Clear();
+                        contents.Add(content);
+                    }
+                    else
+                    {
+                        contents_buf[0].盤點量 = (creats[i].Contents[k].盤點量.StringToInt32() + contents_buf[0].盤點量.StringToInt32()).ToString();
+                    }
+                }
+      
+                dataTable_buf = list_creat_buf.ToDataTable(new enum_盤點定盤_Excel());
+                dataTable_buf.TableName = $"{creats[i].盤點名稱}";
+                dataTables_creat.Add(dataTable_buf);
+            }
 
 
-            returnData returnData_get_full_inv_by_SN = json_get_full_inv_by_SN.JsonDeserializet<returnData>();
-            List<inventoryClass.content> contents = returnData_get_full_inv_by_SN.Data.ObjToClass<List<inventoryClass.content>>();
+   
             List<object[]> list_value = new List<object[]>();
             System.Data.DataTable dataTable;
             SheetClass sheetClass;
@@ -674,19 +782,30 @@ namespace HIS_WebApi
                 list_value.Add(value);
 
             }
+            List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
             dataTable = list_value.ToDataTable(new enum_盤點定盤_Excel());
-            sheetClass = dataTable.NPOI_GetSheetClass(new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
-            ,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
-            ,(int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
-            sheetClass.Name = "盤點總表";
+            dataTable.TableName = inv_CombinelistClass.合併單名稱;
+            dataTables.Add(dataTable);
+
+
+            for (int i = 0; i < dataTables_creat.Count; i++)
+            {
+                dataTables.Add(dataTables_creat[i]);
+            }
+            //sheetClass = dataTable.NPOI_GetSheetClass(new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
+            //,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
+            //,(int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
+            //sheetClass.Name = "盤點總表";
           
 
             Console.WriteLine($"NewCell_Webapi_Buffer_Caculate {myTimer.ToString()}");
 
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
-
-            byte[] excelData = sheetClass.NPOI_GetBytes(Excel_Type.xls);
+            byte[] excelData =   ExcelClass.NPOI_GetBytes(dataTables, new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
+            ,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
+            ,(int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
+           
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"{returnData.Value}_合併總表.xls"));
         }
