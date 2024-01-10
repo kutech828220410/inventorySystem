@@ -36,15 +36,13 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_檢查按鈕 = new MyUI.PLC_RJ_Button();
             this.button_第二台號碼輸入 = new System.Windows.Forms.Button();
             this.button_第一台號碼輸入 = new System.Windows.Forms.Button();
-            this.button_主畫面_存檔 = new System.Windows.Forms.Button();
             this.plC_RJ_Button_刷新螢幕 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton1 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton17 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton15 = new MyUI.PLC_RJ_ScreenButton();
+            this.button_顯示設定_存檔 = new System.Windows.Forms.Button();
             this.checkBox_全局音效 = new System.Windows.Forms.CheckBox();
             this.checkBox_本地音效 = new System.Windows.Forms.CheckBox();
-            this.checkBox_2號台顯示 = new System.Windows.Forms.CheckBox();
-            this.checkBox_1號台顯示 = new System.Windows.Forms.CheckBox();
             this.comboBox_二號台名稱 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox_一號台名稱 = new System.Windows.Forms.ComboBox();
@@ -56,17 +54,17 @@ namespace Hospital_Call_Light_System
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox2 = new MyUI.RJ_GroupBox();
-            this.rJ_TextBox_叫號台設定_叫號備註 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_叫號內容設定_叫號備註 = new MyUI.RJ_TextBox();
             this.rJ_Lable24 = new MyUI.RJ_Lable();
-            this.rJ_TextBox_叫號台設定_英文名 = new MyUI.RJ_TextBox();
+            this.rJ_TextBox_叫號內容設定_英文名 = new MyUI.RJ_TextBox();
             this.rJ_Lable23 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_叫號台設定_刪除 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_叫號台設定_登錄 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_叫號內容設定_刪除 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_叫號內容設定_登錄 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable3 = new MyUI.RJ_Lable();
-            this.comboBox_叫號台設定_代碼 = new System.Windows.Forms.ComboBox();
-            this.rJ_TextBox_叫號台設定_名稱 = new MyUI.RJ_TextBox();
+            this.comboBox_叫號內容設定_代碼 = new System.Windows.Forms.ComboBox();
+            this.rJ_TextBox_叫號內容設定_名稱 = new MyUI.RJ_TextBox();
             this.rJ_Lable2 = new MyUI.RJ_Lable();
-            this.sqL_DataGridView_叫號台設定 = new SQLUI.SQL_DataGridView();
+            this.sqL_DataGridView_叫號內容設定 = new SQLUI.SQL_DataGridView();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox1 = new MyUI.RJ_GroupBox();
             this.rJ_Lable1 = new MyUI.RJ_Lable();
@@ -112,6 +110,26 @@ namespace Hospital_Call_Light_System
             this.rJ_TextBox_第一台_標題_寬度 = new MyUI.RJ_TextBox();
             this.rJ_Lable5 = new MyUI.RJ_Lable();
             this.comboBox_代碼 = new System.Windows.Forms.ComboBox();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.rJ_GroupBox4 = new MyUI.RJ_GroupBox();
+            this.plC_RJ_Button_公告設定_重新整理 = new MyUI.PLC_RJ_Button();
+            this.panel_公告設定_背景顏色 = new System.Windows.Forms.Panel();
+            this.panel_公告設定_字體顏色 = new System.Windows.Forms.Panel();
+            this.rJ_TextBox_公告設定_字體 = new MyUI.RJ_TextBox();
+            this.plC_RJ_Button_公告設定_刪除 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_公告設定_登錄 = new MyUI.PLC_RJ_Button();
+            this.comboBox_公告設定_跑馬速度 = new System.Windows.Forms.ComboBox();
+            this.rJ_Lable43 = new MyUI.RJ_Lable();
+            this.comboBox_公告設定_列高度 = new System.Windows.Forms.ComboBox();
+            this.rJ_Lable42 = new MyUI.RJ_Lable();
+            this.rJ_Lable41 = new MyUI.RJ_Lable();
+            this.button_公告設定_字體選擇 = new System.Windows.Forms.Button();
+            this.rJ_Lable40 = new MyUI.RJ_Lable();
+            this.rJ_TextBox_公告設定_內容 = new MyUI.RJ_TextBox();
+            this.rJ_Lable39 = new MyUI.RJ_Lable();
+            this.rJ_TextBox_公告設定_名稱 = new MyUI.RJ_TextBox();
+            this.rJ_Lable38 = new MyUI.RJ_Lable();
+            this.sqL_DataGridView_公告設定 = new SQLUI.SQL_DataGridView();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.rJ_GroupBox3 = new MyUI.RJ_GroupBox();
             this.rJ_Lable34 = new MyUI.RJ_Lable();
@@ -142,6 +160,14 @@ namespace Hospital_Call_Light_System
             this.rJ_TextBox_第一台_加二號 = new MyUI.RJ_TextBox();
             this.rJ_TextBox_第一台_減二號 = new MyUI.RJ_TextBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button_公告名稱_重新整理 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox_公告名稱 = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rJ_Lable37 = new MyUI.RJ_Lable();
+            this.rJ_Lable36 = new MyUI.RJ_Lable();
             this.系統 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -158,11 +184,46 @@ namespace Hospital_Call_Light_System
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.rJ_Lable36 = new MyUI.RJ_Lable();
-            this.rJ_Lable37 = new MyUI.RJ_Lable();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.button_顯示設定_讀取 = new System.Windows.Forms.Button();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.sqL_DataGridView_圖片列表 = new SQLUI.SQL_DataGridView();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox_圖片上傳_序號 = new System.Windows.Forms.ComboBox();
+            this.pictureBox_圖片上傳 = new System.Windows.Forms.PictureBox();
+            this.button_圖片上傳_從本機讀取圖片 = new System.Windows.Forms.Button();
+            this.button_上傳圖片_從資料庫讀取圖片 = new System.Windows.Forms.Button();
+            this.button_圖片上傳_圖片上傳至資料庫 = new System.Windows.Forms.Button();
+            this.radioButton_二號台_號碼 = new System.Windows.Forms.RadioButton();
+            this.radioButton_二號台_圖片 = new System.Windows.Forms.RadioButton();
+            this.radioButton_二號台_不顯示 = new System.Windows.Forms.RadioButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.radioButton_一號台_不顯示 = new System.Windows.Forms.RadioButton();
+            this.radioButton_一號台_圖片 = new System.Windows.Forms.RadioButton();
+            this.radioButton_一號台_號碼 = new System.Windows.Forms.RadioButton();
+            this.plC_NumBox_圖片上傳_停留秒數 = new MyUI.PLC_NumBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.rJ_Lable44 = new MyUI.RJ_Lable();
+            this.rJ_Lable45 = new MyUI.RJ_Lable();
+            this.checkBox_一號台_顯示圖片01 = new System.Windows.Forms.CheckBox();
+            this.checkBox_一號台_顯示圖片02 = new System.Windows.Forms.CheckBox();
+            this.checkBox_一號台_顯示圖片03 = new System.Windows.Forms.CheckBox();
+            this.checkBox_一號台_顯示圖片04 = new System.Windows.Forms.CheckBox();
+            this.checkBox_一號台_顯示圖片05 = new System.Windows.Forms.CheckBox();
+            this.checkBox_一號台_顯示圖片09 = new System.Windows.Forms.CheckBox();
+            this.checkBox_一號台_顯示圖片08 = new System.Windows.Forms.CheckBox();
+            this.checkBox_一號台_顯示圖片07 = new System.Windows.Forms.CheckBox();
+            this.checkBox_一號台_顯示圖片06 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片09 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片08 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片07 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片06 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片05 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片04 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片03 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片02 = new System.Windows.Forms.CheckBox();
+            this.checkBox_二號台_顯示圖片01 = new System.Windows.Forms.CheckBox();
             this.panel_Main.SuspendLayout();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.主畫面.SuspendLayout();
@@ -176,10 +237,16 @@ namespace Hospital_Call_Light_System
             this.rJ_GroupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage11.SuspendLayout();
+            this.rJ_GroupBox4.ContentsPanel.SuspendLayout();
+            this.rJ_GroupBox4.SuspendLayout();
             this.tabPage9.SuspendLayout();
             this.rJ_GroupBox3.ContentsPanel.SuspendLayout();
             this.rJ_GroupBox3.SuspendLayout();
             this.tabPage10.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.系統.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -187,8 +254,11 @@ namespace Hospital_Call_Light_System
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.tabPage13.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_圖片上傳)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_Main
@@ -198,7 +268,6 @@ namespace Hospital_Call_Light_System
             this.panel_Main.Controls.Add(this.plC_RJ_Button_檢查按鈕);
             this.panel_Main.Controls.Add(this.button_第二台號碼輸入);
             this.panel_Main.Controls.Add(this.button_第一台號碼輸入);
-            this.panel_Main.Controls.Add(this.button_主畫面_存檔);
             this.panel_Main.Controls.Add(this.plC_RJ_Button_刷新螢幕);
             this.panel_Main.Controls.Add(this.plC_RJ_ScreenButton1);
             this.panel_Main.Controls.Add(this.plC_RJ_ScreenButton17);
@@ -212,7 +281,7 @@ namespace Hospital_Call_Light_System
             // plC_RJ_Button_全螢幕顯示
             // 
             this.plC_RJ_Button_全螢幕顯示.AutoResetState = false;
-            this.plC_RJ_Button_全螢幕顯示.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_全螢幕顯示.BackgroundColor = System.Drawing.Color.LightSlateGray;
             this.plC_RJ_Button_全螢幕顯示.Bool = false;
             this.plC_RJ_Button_全螢幕顯示.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_全螢幕顯示.BorderRadius = 5;
@@ -222,24 +291,24 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_全螢幕顯示.Dock = System.Windows.Forms.DockStyle.Right;
             this.plC_RJ_Button_全螢幕顯示.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_全螢幕顯示.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_全螢幕顯示.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_全螢幕顯示.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_全螢幕顯示.GUID = "";
             this.plC_RJ_Button_全螢幕顯示.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_全螢幕顯示.Location = new System.Drawing.Point(1059, 0);
+            this.plC_RJ_Button_全螢幕顯示.Location = new System.Drawing.Point(956, 0);
             this.plC_RJ_Button_全螢幕顯示.Name = "plC_RJ_Button_全螢幕顯示";
             this.plC_RJ_Button_全螢幕顯示.OFF_文字內容 = "全螢幕顯示";
-            this.plC_RJ_Button_全螢幕顯示.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_全螢幕顯示.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_全螢幕顯示.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_全螢幕顯示.OFF_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_全螢幕顯示.ON_BorderSize = 5;
             this.plC_RJ_Button_全螢幕顯示.ON_文字內容 = "全螢幕顯示";
-            this.plC_RJ_Button_全螢幕顯示.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_全螢幕顯示.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_全螢幕顯示.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_全螢幕顯示.ON_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_全螢幕顯示.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_全螢幕顯示.ShadowSize = 3;
             this.plC_RJ_Button_全螢幕顯示.ShowLoadingForm = false;
-            this.plC_RJ_Button_全螢幕顯示.Size = new System.Drawing.Size(205, 120);
+            this.plC_RJ_Button_全螢幕顯示.Size = new System.Drawing.Size(308, 120);
             this.plC_RJ_Button_全螢幕顯示.State = false;
             this.plC_RJ_Button_全螢幕顯示.TabIndex = 13;
             this.plC_RJ_Button_全螢幕顯示.Text = "全螢幕顯示";
@@ -369,16 +438,6 @@ namespace Hospital_Call_Light_System
             this.button_第一台號碼輸入.TabIndex = 17;
             this.button_第一台號碼輸入.Text = "第一台號碼輸入";
             this.button_第一台號碼輸入.UseVisualStyleBackColor = true;
-            // 
-            // button_主畫面_存檔
-            // 
-            this.button_主畫面_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_主畫面_存檔.Location = new System.Drawing.Point(1074, 8);
-            this.button_主畫面_存檔.Name = "button_主畫面_存檔";
-            this.button_主畫面_存檔.Size = new System.Drawing.Size(85, 106);
-            this.button_主畫面_存檔.TabIndex = 16;
-            this.button_主畫面_存檔.Text = "存檔";
-            this.button_主畫面_存檔.UseVisualStyleBackColor = true;
             // 
             // plC_RJ_Button_刷新螢幕
             // 
@@ -544,6 +603,16 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_ScreenButton15.顯示狀態 = false;
             this.plC_RJ_ScreenButton15.顯示讀取位置 = "";
             // 
+            // button_顯示設定_存檔
+            // 
+            this.button_顯示設定_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_顯示設定_存檔.Location = new System.Drawing.Point(948, 253);
+            this.button_顯示設定_存檔.Name = "button_顯示設定_存檔";
+            this.button_顯示設定_存檔.Size = new System.Drawing.Size(85, 106);
+            this.button_顯示設定_存檔.TabIndex = 16;
+            this.button_顯示設定_存檔.Text = "存檔";
+            this.button_顯示設定_存檔.UseVisualStyleBackColor = true;
+            // 
             // checkBox_全局音效
             // 
             this.checkBox_全局音效.AutoSize = true;
@@ -567,67 +636,45 @@ namespace Hospital_Call_Light_System
             this.checkBox_本地音效.UseVisualStyleBackColor = true;
             this.checkBox_本地音效.Visible = false;
             // 
-            // checkBox_2號台顯示
-            // 
-            this.checkBox_2號台顯示.AutoSize = true;
-            this.checkBox_2號台顯示.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_2號台顯示.Location = new System.Drawing.Point(348, 19);
-            this.checkBox_2號台顯示.Name = "checkBox_2號台顯示";
-            this.checkBox_2號台顯示.Size = new System.Drawing.Size(73, 30);
-            this.checkBox_2號台顯示.TabIndex = 23;
-            this.checkBox_2號台顯示.Text = "顯示";
-            this.checkBox_2號台顯示.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_1號台顯示
-            // 
-            this.checkBox_1號台顯示.AutoSize = true;
-            this.checkBox_1號台顯示.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_1號台顯示.Location = new System.Drawing.Point(345, 16);
-            this.checkBox_1號台顯示.Name = "checkBox_1號台顯示";
-            this.checkBox_1號台顯示.Size = new System.Drawing.Size(73, 30);
-            this.checkBox_1號台顯示.TabIndex = 22;
-            this.checkBox_1號台顯示.Text = "顯示";
-            this.checkBox_1號台顯示.UseVisualStyleBackColor = true;
-            // 
             // comboBox_二號台名稱
             // 
             this.comboBox_二號台名稱.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_二號台名稱.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_二號台名稱.FormattingEnabled = true;
-            this.comboBox_二號台名稱.Location = new System.Drawing.Point(168, 18);
+            this.comboBox_二號台名稱.Location = new System.Drawing.Point(89, 13);
             this.comboBox_二號台名稱.Name = "comboBox_二號台名稱";
-            this.comboBox_二號台名稱.Size = new System.Drawing.Size(162, 32);
+            this.comboBox_二號台名稱.Size = new System.Drawing.Size(237, 32);
             this.comboBox_二號台名稱.TabIndex = 21;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(12, 16);
+            this.label2.Location = new System.Drawing.Point(8, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(133, 37);
+            this.label2.Size = new System.Drawing.Size(75, 37);
             this.label2.TabIndex = 20;
-            this.label2.Text = "叫號名稱";
+            this.label2.Text = "名稱";
             // 
             // comboBox_一號台名稱
             // 
             this.comboBox_一號台名稱.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_一號台名稱.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_一號台名稱.FormattingEnabled = true;
-            this.comboBox_一號台名稱.Location = new System.Drawing.Point(165, 15);
+            this.comboBox_一號台名稱.Location = new System.Drawing.Point(89, 13);
             this.comboBox_一號台名稱.Name = "comboBox_一號台名稱";
-            this.comboBox_一號台名稱.Size = new System.Drawing.Size(162, 32);
+            this.comboBox_一號台名稱.Size = new System.Drawing.Size(237, 32);
             this.comboBox_一號台名稱.TabIndex = 19;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(9, 13);
+            this.label1.Location = new System.Drawing.Point(8, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 37);
+            this.label1.Size = new System.Drawing.Size(75, 37);
             this.label1.TabIndex = 0;
-            this.label1.Text = "叫號名稱";
+            this.label1.Text = "名稱";
             // 
             // plC_ScreenPage_Main
             // 
@@ -680,8 +727,9 @@ namespace Hospital_Call_Light_System
             // 
             this.tabControl3.Controls.Add(this.tabPage7);
             this.tabControl3.Controls.Add(this.tabPage8);
-            this.tabControl3.Controls.Add(this.tabPage9);
             this.tabControl3.Controls.Add(this.tabPage11);
+            this.tabControl3.Controls.Add(this.tabPage13);
+            this.tabControl3.Controls.Add(this.tabPage9);
             this.tabControl3.Controls.Add(this.tabPage10);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(0, 0);
@@ -695,7 +743,6 @@ namespace Hospital_Call_Light_System
             this.tabPage7.Controls.Add(this.rJ_GroupBox2);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage7.Size = new System.Drawing.Size(1248, 866);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "叫號內容";
@@ -711,17 +758,17 @@ namespace Hospital_Call_Light_System
             this.rJ_GroupBox2.ContentsPanel.BorderColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox2.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox2.ContentsPanel.BorderSize = 2;
-            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_TextBox_叫號台設定_叫號備註);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_TextBox_叫號內容設定_叫號備註);
             this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_Lable24);
-            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_TextBox_叫號台設定_英文名);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_TextBox_叫號內容設定_英文名);
             this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_Lable23);
-            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.plC_RJ_Button_叫號台設定_刪除);
-            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.plC_RJ_Button_叫號台設定_登錄);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.plC_RJ_Button_叫號內容設定_刪除);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.plC_RJ_Button_叫號內容設定_登錄);
             this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_Lable3);
-            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.comboBox_叫號台設定_代碼);
-            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_TextBox_叫號台設定_名稱);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.comboBox_叫號內容設定_代碼);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_TextBox_叫號內容設定_名稱);
             this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.rJ_Lable2);
-            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.sqL_DataGridView_叫號台設定);
+            this.rJ_GroupBox2.ContentsPanel.Controls.Add(this.sqL_DataGridView_叫號內容設定);
             this.rJ_GroupBox2.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox2.ContentsPanel.ForeColor = System.Drawing.Color.White;
             this.rJ_GroupBox2.ContentsPanel.IsSelected = false;
@@ -730,17 +777,17 @@ namespace Hospital_Call_Light_System
             this.rJ_GroupBox2.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
             this.rJ_GroupBox2.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox2.ContentsPanel.ShadowSize = 0;
-            this.rJ_GroupBox2.ContentsPanel.Size = new System.Drawing.Size(1242, 823);
+            this.rJ_GroupBox2.ContentsPanel.Size = new System.Drawing.Size(1248, 829);
             this.rJ_GroupBox2.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox2.GUID = "";
-            this.rJ_GroupBox2.Location = new System.Drawing.Point(3, 3);
+            this.rJ_GroupBox2.Location = new System.Drawing.Point(0, 0);
             this.rJ_GroupBox2.Name = "rJ_GroupBox2";
             this.rJ_GroupBox2.PannelBackColor = System.Drawing.Color.Transparent;
             this.rJ_GroupBox2.PannelBorderColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox2.PannelBorderRadius = 5;
             this.rJ_GroupBox2.PannelBorderSize = 2;
-            this.rJ_GroupBox2.Size = new System.Drawing.Size(1242, 860);
+            this.rJ_GroupBox2.Size = new System.Drawing.Size(1248, 866);
             this.rJ_GroupBox2.TabIndex = 20;
             this.rJ_GroupBox2.TitleBackColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox2.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -750,31 +797,31 @@ namespace Hospital_Call_Light_System
             this.rJ_GroupBox2.TitleForeColor = System.Drawing.Color.White;
             this.rJ_GroupBox2.TitleHeight = 37;
             this.rJ_GroupBox2.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_GroupBox2.TitleTexts = "叫號台設定";
+            this.rJ_GroupBox2.TitleTexts = "叫號內容設定";
             // 
-            // rJ_TextBox_叫號台設定_叫號備註
+            // rJ_TextBox_叫號內容設定_叫號備註
             // 
-            this.rJ_TextBox_叫號台設定_叫號備註.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_叫號台設定_叫號備註.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_叫號台設定_叫號備註.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_叫號台設定_叫號備註.BorderRadius = 0;
-            this.rJ_TextBox_叫號台設定_叫號備註.BorderSize = 2;
-            this.rJ_TextBox_叫號台設定_叫號備註.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_叫號台設定_叫號備註.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_叫號台設定_叫號備註.GUID = "";
-            this.rJ_TextBox_叫號台設定_叫號備註.Location = new System.Drawing.Point(163, 579);
-            this.rJ_TextBox_叫號台設定_叫號備註.Multiline = false;
-            this.rJ_TextBox_叫號台設定_叫號備註.Name = "rJ_TextBox_叫號台設定_叫號備註";
-            this.rJ_TextBox_叫號台設定_叫號備註.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_叫號台設定_叫號備註.PassWordChar = false;
-            this.rJ_TextBox_叫號台設定_叫號備註.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_叫號台設定_叫號備註.PlaceholderText = "";
-            this.rJ_TextBox_叫號台設定_叫號備註.ShowTouchPannel = false;
-            this.rJ_TextBox_叫號台設定_叫號備註.Size = new System.Drawing.Size(584, 40);
-            this.rJ_TextBox_叫號台設定_叫號備註.TabIndex = 23;
-            this.rJ_TextBox_叫號台設定_叫號備註.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_叫號台設定_叫號備註.Texts = "";
-            this.rJ_TextBox_叫號台設定_叫號備註.UnderlineStyle = false;
+            this.rJ_TextBox_叫號內容設定_叫號備註.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_叫號內容設定_叫號備註.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_叫號內容設定_叫號備註.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_叫號內容設定_叫號備註.BorderRadius = 0;
+            this.rJ_TextBox_叫號內容設定_叫號備註.BorderSize = 2;
+            this.rJ_TextBox_叫號內容設定_叫號備註.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_叫號內容設定_叫號備註.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_叫號內容設定_叫號備註.GUID = "";
+            this.rJ_TextBox_叫號內容設定_叫號備註.Location = new System.Drawing.Point(163, 579);
+            this.rJ_TextBox_叫號內容設定_叫號備註.Multiline = false;
+            this.rJ_TextBox_叫號內容設定_叫號備註.Name = "rJ_TextBox_叫號內容設定_叫號備註";
+            this.rJ_TextBox_叫號內容設定_叫號備註.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_叫號內容設定_叫號備註.PassWordChar = false;
+            this.rJ_TextBox_叫號內容設定_叫號備註.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_叫號內容設定_叫號備註.PlaceholderText = "";
+            this.rJ_TextBox_叫號內容設定_叫號備註.ShowTouchPannel = false;
+            this.rJ_TextBox_叫號內容設定_叫號備註.Size = new System.Drawing.Size(584, 40);
+            this.rJ_TextBox_叫號內容設定_叫號備註.TabIndex = 23;
+            this.rJ_TextBox_叫號內容設定_叫號備註.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_叫號內容設定_叫號備註.Texts = "";
+            this.rJ_TextBox_叫號內容設定_叫號備註.UnderlineStyle = false;
             // 
             // rJ_Lable24
             // 
@@ -797,29 +844,29 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable24.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_TextBox_叫號台設定_英文名
+            // rJ_TextBox_叫號內容設定_英文名
             // 
-            this.rJ_TextBox_叫號台設定_英文名.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_叫號台設定_英文名.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_叫號台設定_英文名.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_叫號台設定_英文名.BorderRadius = 0;
-            this.rJ_TextBox_叫號台設定_英文名.BorderSize = 2;
-            this.rJ_TextBox_叫號台設定_英文名.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_叫號台設定_英文名.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_叫號台設定_英文名.GUID = "";
-            this.rJ_TextBox_叫號台設定_英文名.Location = new System.Drawing.Point(163, 516);
-            this.rJ_TextBox_叫號台設定_英文名.Multiline = false;
-            this.rJ_TextBox_叫號台設定_英文名.Name = "rJ_TextBox_叫號台設定_英文名";
-            this.rJ_TextBox_叫號台設定_英文名.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_叫號台設定_英文名.PassWordChar = false;
-            this.rJ_TextBox_叫號台設定_英文名.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_叫號台設定_英文名.PlaceholderText = "";
-            this.rJ_TextBox_叫號台設定_英文名.ShowTouchPannel = false;
-            this.rJ_TextBox_叫號台設定_英文名.Size = new System.Drawing.Size(584, 40);
-            this.rJ_TextBox_叫號台設定_英文名.TabIndex = 21;
-            this.rJ_TextBox_叫號台設定_英文名.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_叫號台設定_英文名.Texts = "";
-            this.rJ_TextBox_叫號台設定_英文名.UnderlineStyle = false;
+            this.rJ_TextBox_叫號內容設定_英文名.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_叫號內容設定_英文名.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_叫號內容設定_英文名.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_叫號內容設定_英文名.BorderRadius = 0;
+            this.rJ_TextBox_叫號內容設定_英文名.BorderSize = 2;
+            this.rJ_TextBox_叫號內容設定_英文名.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_叫號內容設定_英文名.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_叫號內容設定_英文名.GUID = "";
+            this.rJ_TextBox_叫號內容設定_英文名.Location = new System.Drawing.Point(163, 516);
+            this.rJ_TextBox_叫號內容設定_英文名.Multiline = false;
+            this.rJ_TextBox_叫號內容設定_英文名.Name = "rJ_TextBox_叫號內容設定_英文名";
+            this.rJ_TextBox_叫號內容設定_英文名.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_叫號內容設定_英文名.PassWordChar = false;
+            this.rJ_TextBox_叫號內容設定_英文名.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_叫號內容設定_英文名.PlaceholderText = "";
+            this.rJ_TextBox_叫號內容設定_英文名.ShowTouchPannel = false;
+            this.rJ_TextBox_叫號內容設定_英文名.Size = new System.Drawing.Size(584, 40);
+            this.rJ_TextBox_叫號內容設定_英文名.TabIndex = 21;
+            this.rJ_TextBox_叫號內容設定_英文名.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_叫號內容設定_英文名.Texts = "";
+            this.rJ_TextBox_叫號內容設定_英文名.UnderlineStyle = false;
             // 
             // rJ_Lable23
             // 
@@ -842,97 +889,97 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable23.TextColor = System.Drawing.Color.White;
             // 
-            // plC_RJ_Button_叫號台設定_刪除
+            // plC_RJ_Button_叫號內容設定_刪除
             // 
-            this.plC_RJ_Button_叫號台設定_刪除.AutoResetState = false;
-            this.plC_RJ_Button_叫號台設定_刪除.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_叫號台設定_刪除.Bool = false;
-            this.plC_RJ_Button_叫號台設定_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_叫號台設定_刪除.BorderRadius = 5;
-            this.plC_RJ_Button_叫號台設定_刪除.BorderSize = 0;
-            this.plC_RJ_Button_叫號台設定_刪除.but_press = false;
-            this.plC_RJ_Button_叫號台設定_刪除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_叫號台設定_刪除.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_叫號台設定_刪除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_叫號台設定_刪除.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.plC_RJ_Button_叫號台設定_刪除.GUID = "";
-            this.plC_RJ_Button_叫號台設定_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_叫號台設定_刪除.Location = new System.Drawing.Point(842, 543);
-            this.plC_RJ_Button_叫號台設定_刪除.Name = "plC_RJ_Button_叫號台設定_刪除";
-            this.plC_RJ_Button_叫號台設定_刪除.OFF_文字內容 = "刪除";
-            this.plC_RJ_Button_叫號台設定_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.plC_RJ_Button_叫號台設定_刪除.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_叫號台設定_刪除.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_叫號台設定_刪除.ON_BorderSize = 5;
-            this.plC_RJ_Button_叫號台設定_刪除.ON_文字內容 = "刪除";
-            this.plC_RJ_Button_叫號台設定_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_叫號台設定_刪除.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_叫號台設定_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_叫號台設定_刪除.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_叫號台設定_刪除.ShadowSize = 3;
-            this.plC_RJ_Button_叫號台設定_刪除.ShowLoadingForm = false;
-            this.plC_RJ_Button_叫號台設定_刪除.Size = new System.Drawing.Size(109, 84);
-            this.plC_RJ_Button_叫號台設定_刪除.State = false;
-            this.plC_RJ_Button_叫號台設定_刪除.TabIndex = 19;
-            this.plC_RJ_Button_叫號台設定_刪除.Text = "刪除";
-            this.plC_RJ_Button_叫號台設定_刪除.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_叫號台設定_刪除.Texts = "刪除";
-            this.plC_RJ_Button_叫號台設定_刪除.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_叫號台設定_刪除.字型鎖住 = false;
-            this.plC_RJ_Button_叫號台設定_刪除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_叫號台設定_刪除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_叫號台設定_刪除.文字鎖住 = false;
-            this.plC_RJ_Button_叫號台設定_刪除.讀取位元反向 = false;
-            this.plC_RJ_Button_叫號台設定_刪除.讀寫鎖住 = false;
-            this.plC_RJ_Button_叫號台設定_刪除.音效 = true;
-            this.plC_RJ_Button_叫號台設定_刪除.顯示 = false;
-            this.plC_RJ_Button_叫號台設定_刪除.顯示狀態 = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.AutoResetState = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_叫號內容設定_刪除.Bool = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_叫號內容設定_刪除.BorderRadius = 5;
+            this.plC_RJ_Button_叫號內容設定_刪除.BorderSize = 0;
+            this.plC_RJ_Button_叫號內容設定_刪除.but_press = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_叫號內容設定_刪除.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_叫號內容設定_刪除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_叫號內容設定_刪除.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_叫號內容設定_刪除.GUID = "";
+            this.plC_RJ_Button_叫號內容設定_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_叫號內容設定_刪除.Location = new System.Drawing.Point(842, 543);
+            this.plC_RJ_Button_叫號內容設定_刪除.Name = "plC_RJ_Button_叫號內容設定_刪除";
+            this.plC_RJ_Button_叫號內容設定_刪除.OFF_文字內容 = "刪除";
+            this.plC_RJ_Button_叫號內容設定_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_叫號內容設定_刪除.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_叫號內容設定_刪除.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_刪除.ON_BorderSize = 5;
+            this.plC_RJ_Button_叫號內容設定_刪除.ON_文字內容 = "刪除";
+            this.plC_RJ_Button_叫號內容設定_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_叫號內容設定_刪除.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_叫號內容設定_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_刪除.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_叫號內容設定_刪除.ShadowSize = 3;
+            this.plC_RJ_Button_叫號內容設定_刪除.ShowLoadingForm = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.Size = new System.Drawing.Size(109, 84);
+            this.plC_RJ_Button_叫號內容設定_刪除.State = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.TabIndex = 19;
+            this.plC_RJ_Button_叫號內容設定_刪除.Text = "刪除";
+            this.plC_RJ_Button_叫號內容設定_刪除.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_叫號內容設定_刪除.Texts = "刪除";
+            this.plC_RJ_Button_叫號內容設定_刪除.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.字型鎖住 = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_叫號內容設定_刪除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_叫號內容設定_刪除.文字鎖住 = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.讀取位元反向 = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.讀寫鎖住 = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.音效 = true;
+            this.plC_RJ_Button_叫號內容設定_刪除.顯示 = false;
+            this.plC_RJ_Button_叫號內容設定_刪除.顯示狀態 = false;
             // 
-            // plC_RJ_Button_叫號台設定_登錄
+            // plC_RJ_Button_叫號內容設定_登錄
             // 
-            this.plC_RJ_Button_叫號台設定_登錄.AutoResetState = false;
-            this.plC_RJ_Button_叫號台設定_登錄.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_叫號台設定_登錄.Bool = false;
-            this.plC_RJ_Button_叫號台設定_登錄.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_叫號台設定_登錄.BorderRadius = 5;
-            this.plC_RJ_Button_叫號台設定_登錄.BorderSize = 0;
-            this.plC_RJ_Button_叫號台設定_登錄.but_press = false;
-            this.plC_RJ_Button_叫號台設定_登錄.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_叫號台設定_登錄.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_叫號台設定_登錄.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_叫號台設定_登錄.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.plC_RJ_Button_叫號台設定_登錄.GUID = "";
-            this.plC_RJ_Button_叫號台設定_登錄.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_叫號台設定_登錄.Location = new System.Drawing.Point(957, 543);
-            this.plC_RJ_Button_叫號台設定_登錄.Name = "plC_RJ_Button_叫號台設定_登錄";
-            this.plC_RJ_Button_叫號台設定_登錄.OFF_文字內容 = "登錄";
-            this.plC_RJ_Button_叫號台設定_登錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.plC_RJ_Button_叫號台設定_登錄.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_叫號台設定_登錄.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_叫號台設定_登錄.ON_BorderSize = 5;
-            this.plC_RJ_Button_叫號台設定_登錄.ON_文字內容 = "登錄";
-            this.plC_RJ_Button_叫號台設定_登錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_叫號台設定_登錄.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_叫號台設定_登錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_叫號台設定_登錄.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_叫號台設定_登錄.ShadowSize = 3;
-            this.plC_RJ_Button_叫號台設定_登錄.ShowLoadingForm = false;
-            this.plC_RJ_Button_叫號台設定_登錄.Size = new System.Drawing.Size(109, 84);
-            this.plC_RJ_Button_叫號台設定_登錄.State = false;
-            this.plC_RJ_Button_叫號台設定_登錄.TabIndex = 18;
-            this.plC_RJ_Button_叫號台設定_登錄.Text = "登錄";
-            this.plC_RJ_Button_叫號台設定_登錄.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_叫號台設定_登錄.Texts = "登錄";
-            this.plC_RJ_Button_叫號台設定_登錄.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_叫號台設定_登錄.字型鎖住 = false;
-            this.plC_RJ_Button_叫號台設定_登錄.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_叫號台設定_登錄.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_叫號台設定_登錄.文字鎖住 = false;
-            this.plC_RJ_Button_叫號台設定_登錄.讀取位元反向 = false;
-            this.plC_RJ_Button_叫號台設定_登錄.讀寫鎖住 = false;
-            this.plC_RJ_Button_叫號台設定_登錄.音效 = true;
-            this.plC_RJ_Button_叫號台設定_登錄.顯示 = false;
-            this.plC_RJ_Button_叫號台設定_登錄.顯示狀態 = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.AutoResetState = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_叫號內容設定_登錄.Bool = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_叫號內容設定_登錄.BorderRadius = 5;
+            this.plC_RJ_Button_叫號內容設定_登錄.BorderSize = 0;
+            this.plC_RJ_Button_叫號內容設定_登錄.but_press = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_叫號內容設定_登錄.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_叫號內容設定_登錄.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_叫號內容設定_登錄.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_叫號內容設定_登錄.GUID = "";
+            this.plC_RJ_Button_叫號內容設定_登錄.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_叫號內容設定_登錄.Location = new System.Drawing.Point(957, 543);
+            this.plC_RJ_Button_叫號內容設定_登錄.Name = "plC_RJ_Button_叫號內容設定_登錄";
+            this.plC_RJ_Button_叫號內容設定_登錄.OFF_文字內容 = "登錄";
+            this.plC_RJ_Button_叫號內容設定_登錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_叫號內容設定_登錄.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_叫號內容設定_登錄.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_登錄.ON_BorderSize = 5;
+            this.plC_RJ_Button_叫號內容設定_登錄.ON_文字內容 = "登錄";
+            this.plC_RJ_Button_叫號內容設定_登錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_叫號內容設定_登錄.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_叫號內容設定_登錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_叫號內容設定_登錄.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_叫號內容設定_登錄.ShadowSize = 3;
+            this.plC_RJ_Button_叫號內容設定_登錄.ShowLoadingForm = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.Size = new System.Drawing.Size(109, 84);
+            this.plC_RJ_Button_叫號內容設定_登錄.State = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.TabIndex = 18;
+            this.plC_RJ_Button_叫號內容設定_登錄.Text = "登錄";
+            this.plC_RJ_Button_叫號內容設定_登錄.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_叫號內容設定_登錄.Texts = "登錄";
+            this.plC_RJ_Button_叫號內容設定_登錄.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.字型鎖住 = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_叫號內容設定_登錄.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_叫號內容設定_登錄.文字鎖住 = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.讀取位元反向 = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.讀寫鎖住 = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.音效 = true;
+            this.plC_RJ_Button_叫號內容設定_登錄.顯示 = false;
+            this.plC_RJ_Button_叫號內容設定_登錄.顯示狀態 = false;
             // 
             // rJ_Lable3
             // 
@@ -955,12 +1002,12 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable3.TextColor = System.Drawing.Color.White;
             // 
-            // comboBox_叫號台設定_代碼
+            // comboBox_叫號內容設定_代碼
             // 
-            this.comboBox_叫號台設定_代碼.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_叫號台設定_代碼.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBox_叫號台設定_代碼.FormattingEnabled = true;
-            this.comboBox_叫號台設定_代碼.Items.AddRange(new object[] {
+            this.comboBox_叫號內容設定_代碼.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_叫號內容設定_代碼.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_叫號內容設定_代碼.FormattingEnabled = true;
+            this.comboBox_叫號內容設定_代碼.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
@@ -970,34 +1017,34 @@ namespace Hospital_Call_Light_System
             "7",
             "8",
             "9"});
-            this.comboBox_叫號台設定_代碼.Location = new System.Drawing.Point(920, 455);
-            this.comboBox_叫號台設定_代碼.Name = "comboBox_叫號台設定_代碼";
-            this.comboBox_叫號台設定_代碼.Size = new System.Drawing.Size(116, 32);
-            this.comboBox_叫號台設定_代碼.TabIndex = 12;
+            this.comboBox_叫號內容設定_代碼.Location = new System.Drawing.Point(920, 455);
+            this.comboBox_叫號內容設定_代碼.Name = "comboBox_叫號內容設定_代碼";
+            this.comboBox_叫號內容設定_代碼.Size = new System.Drawing.Size(116, 32);
+            this.comboBox_叫號內容設定_代碼.TabIndex = 12;
             // 
-            // rJ_TextBox_叫號台設定_名稱
+            // rJ_TextBox_叫號內容設定_名稱
             // 
-            this.rJ_TextBox_叫號台設定_名稱.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_叫號台設定_名稱.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.rJ_TextBox_叫號台設定_名稱.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_叫號台設定_名稱.BorderRadius = 0;
-            this.rJ_TextBox_叫號台設定_名稱.BorderSize = 2;
-            this.rJ_TextBox_叫號台設定_名稱.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_叫號台設定_名稱.ForeColor = System.Drawing.Color.DimGray;
-            this.rJ_TextBox_叫號台設定_名稱.GUID = "";
-            this.rJ_TextBox_叫號台設定_名稱.Location = new System.Drawing.Point(163, 454);
-            this.rJ_TextBox_叫號台設定_名稱.Multiline = false;
-            this.rJ_TextBox_叫號台設定_名稱.Name = "rJ_TextBox_叫號台設定_名稱";
-            this.rJ_TextBox_叫號台設定_名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_叫號台設定_名稱.PassWordChar = false;
-            this.rJ_TextBox_叫號台設定_名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_叫號台設定_名稱.PlaceholderText = "";
-            this.rJ_TextBox_叫號台設定_名稱.ShowTouchPannel = false;
-            this.rJ_TextBox_叫號台設定_名稱.Size = new System.Drawing.Size(584, 40);
-            this.rJ_TextBox_叫號台設定_名稱.TabIndex = 10;
-            this.rJ_TextBox_叫號台設定_名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_叫號台設定_名稱.Texts = "";
-            this.rJ_TextBox_叫號台設定_名稱.UnderlineStyle = false;
+            this.rJ_TextBox_叫號內容設定_名稱.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_叫號內容設定_名稱.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_叫號內容設定_名稱.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_叫號內容設定_名稱.BorderRadius = 0;
+            this.rJ_TextBox_叫號內容設定_名稱.BorderSize = 2;
+            this.rJ_TextBox_叫號內容設定_名稱.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_叫號內容設定_名稱.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_叫號內容設定_名稱.GUID = "";
+            this.rJ_TextBox_叫號內容設定_名稱.Location = new System.Drawing.Point(163, 454);
+            this.rJ_TextBox_叫號內容設定_名稱.Multiline = false;
+            this.rJ_TextBox_叫號內容設定_名稱.Name = "rJ_TextBox_叫號內容設定_名稱";
+            this.rJ_TextBox_叫號內容設定_名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_叫號內容設定_名稱.PassWordChar = false;
+            this.rJ_TextBox_叫號內容設定_名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_叫號內容設定_名稱.PlaceholderText = "";
+            this.rJ_TextBox_叫號內容設定_名稱.ShowTouchPannel = false;
+            this.rJ_TextBox_叫號內容設定_名稱.Size = new System.Drawing.Size(584, 40);
+            this.rJ_TextBox_叫號內容設定_名稱.TabIndex = 10;
+            this.rJ_TextBox_叫號內容設定_名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_叫號內容設定_名稱.Texts = "";
+            this.rJ_TextBox_叫號內容設定_名稱.UnderlineStyle = false;
             // 
             // rJ_Lable2
             // 
@@ -1020,60 +1067,59 @@ namespace Hospital_Call_Light_System
             this.rJ_Lable2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable2.TextColor = System.Drawing.Color.White;
             // 
-            // sqL_DataGridView_叫號台設定
+            // sqL_DataGridView_叫號內容設定
             // 
-            this.sqL_DataGridView_叫號台設定.AutoSelectToDeep = true;
-            this.sqL_DataGridView_叫號台設定.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_叫號台設定.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_叫號台設定.BorderRadius = 10;
-            this.sqL_DataGridView_叫號台設定.BorderSize = 2;
-            this.sqL_DataGridView_叫號台設定.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_叫號台設定.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_叫號台設定.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_叫號台設定.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_叫號台設定.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
-            this.sqL_DataGridView_叫號台設定.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_叫號台設定.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_叫號台設定.columnHeadersHeight = 18;
-            this.sqL_DataGridView_叫號台設定.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_叫號台設定.Dock = System.Windows.Forms.DockStyle.Top;
-            this.sqL_DataGridView_叫號台設定.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_叫號台設定.ImageBox = false;
-            this.sqL_DataGridView_叫號台設定.Location = new System.Drawing.Point(5, 5);
-            this.sqL_DataGridView_叫號台設定.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.sqL_DataGridView_叫號台設定.Name = "sqL_DataGridView_叫號台設定";
-            this.sqL_DataGridView_叫號台設定.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_叫號台設定.Password = "user82822040";
-            this.sqL_DataGridView_叫號台設定.Port = ((uint)(3306u));
-            this.sqL_DataGridView_叫號台設定.rowHeaderBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_叫號台設定.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_叫號台設定.RowsColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_叫號台設定.RowsHeight = 40;
-            this.sqL_DataGridView_叫號台設定.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_叫號台設定.Server = "127.0.0.0";
-            this.sqL_DataGridView_叫號台設定.Size = new System.Drawing.Size(1232, 431);
-            this.sqL_DataGridView_叫號台設定.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_叫號台設定.TabIndex = 3;
-            this.sqL_DataGridView_叫號台設定.TableName = "num_setting";
-            this.sqL_DataGridView_叫號台設定.UserName = "root";
-            this.sqL_DataGridView_叫號台設定.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_叫號台設定.可選擇多列 = false;
-            this.sqL_DataGridView_叫號台設定.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_叫號台設定.自動換行 = true;
-            this.sqL_DataGridView_叫號台設定.表單字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_叫號台設定.邊框樣式 = System.Windows.Forms.BorderStyle.None;
-            this.sqL_DataGridView_叫號台設定.顯示CheckBox = false;
-            this.sqL_DataGridView_叫號台設定.顯示首列 = true;
-            this.sqL_DataGridView_叫號台設定.顯示首行 = true;
-            this.sqL_DataGridView_叫號台設定.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_叫號台設定.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_叫號內容設定.AutoSelectToDeep = true;
+            this.sqL_DataGridView_叫號內容設定.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_叫號內容設定.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_叫號內容設定.BorderRadius = 10;
+            this.sqL_DataGridView_叫號內容設定.BorderSize = 2;
+            this.sqL_DataGridView_叫號內容設定.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_叫號內容設定.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_叫號內容設定.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_叫號內容設定.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_叫號內容設定.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_叫號內容設定.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_叫號內容設定.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_叫號內容設定.columnHeadersHeight = 18;
+            this.sqL_DataGridView_叫號內容設定.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_叫號內容設定.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sqL_DataGridView_叫號內容設定.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_叫號內容設定.ImageBox = false;
+            this.sqL_DataGridView_叫號內容設定.Location = new System.Drawing.Point(5, 5);
+            this.sqL_DataGridView_叫號內容設定.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sqL_DataGridView_叫號內容設定.Name = "sqL_DataGridView_叫號內容設定";
+            this.sqL_DataGridView_叫號內容設定.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_叫號內容設定.Password = "user82822040";
+            this.sqL_DataGridView_叫號內容設定.Port = ((uint)(3306u));
+            this.sqL_DataGridView_叫號內容設定.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_叫號內容設定.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_叫號內容設定.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_叫號內容設定.RowsHeight = 40;
+            this.sqL_DataGridView_叫號內容設定.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_叫號內容設定.Server = "127.0.0.0";
+            this.sqL_DataGridView_叫號內容設定.Size = new System.Drawing.Size(1238, 431);
+            this.sqL_DataGridView_叫號內容設定.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_叫號內容設定.TabIndex = 3;
+            this.sqL_DataGridView_叫號內容設定.TableName = "num_setting";
+            this.sqL_DataGridView_叫號內容設定.UserName = "root";
+            this.sqL_DataGridView_叫號內容設定.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_叫號內容設定.可選擇多列 = false;
+            this.sqL_DataGridView_叫號內容設定.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_叫號內容設定.自動換行 = true;
+            this.sqL_DataGridView_叫號內容設定.表單字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_叫號內容設定.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_叫號內容設定.顯示CheckBox = false;
+            this.sqL_DataGridView_叫號內容設定.顯示首列 = true;
+            this.sqL_DataGridView_叫號內容設定.顯示首行 = true;
+            this.sqL_DataGridView_叫號內容設定.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_叫號內容設定.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.rJ_GroupBox1);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.Size = new System.Drawing.Size(1248, 866);
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "樣式設定";
@@ -1102,18 +1148,18 @@ namespace Hospital_Call_Light_System
             this.rJ_GroupBox1.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox1.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox1.ContentsPanel.ShadowSize = 0;
-            this.rJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(1242, 823);
+            this.rJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(1248, 829);
             this.rJ_GroupBox1.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_GroupBox1.GUID = "";
-            this.rJ_GroupBox1.Location = new System.Drawing.Point(3, 3);
+            this.rJ_GroupBox1.Location = new System.Drawing.Point(0, 0);
             this.rJ_GroupBox1.Name = "rJ_GroupBox1";
             this.rJ_GroupBox1.PannelBackColor = System.Drawing.Color.Transparent;
             this.rJ_GroupBox1.PannelBorderColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox1.PannelBorderRadius = 5;
             this.rJ_GroupBox1.PannelBorderSize = 2;
-            this.rJ_GroupBox1.Size = new System.Drawing.Size(1242, 860);
+            this.rJ_GroupBox1.Size = new System.Drawing.Size(1248, 866);
             this.rJ_GroupBox1.TabIndex = 19;
             this.rJ_GroupBox1.TitleBackColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox1.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -1158,18 +1204,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_第一台_存檔.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_第一台_存檔.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_第一台_存檔.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_第一台_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_第一台_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_第一台_存檔.GUID = "";
             this.plC_RJ_Button_第一台_存檔.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_第一台_存檔.Location = new System.Drawing.Point(561, 12);
+            this.plC_RJ_Button_第一台_存檔.Location = new System.Drawing.Point(676, 12);
             this.plC_RJ_Button_第一台_存檔.Name = "plC_RJ_Button_第一台_存檔";
             this.plC_RJ_Button_第一台_存檔.OFF_文字內容 = "存檔";
-            this.plC_RJ_Button_第一台_存檔.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_第一台_存檔.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_第一台_存檔.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_第一台_存檔.OFF_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_第一台_存檔.ON_BorderSize = 5;
             this.plC_RJ_Button_第一台_存檔.ON_文字內容 = "存檔";
-            this.plC_RJ_Button_第一台_存檔.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_第一台_存檔.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_第一台_存檔.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_第一台_存檔.ON_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_第一台_存檔.ShadowColor = System.Drawing.Color.DimGray;
@@ -1570,18 +1616,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_設定_讀取.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_設定_讀取.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_設定_讀取.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_設定_讀取.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_設定_讀取.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_設定_讀取.GUID = "";
             this.plC_RJ_Button_設定_讀取.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_設定_讀取.Location = new System.Drawing.Point(676, 12);
+            this.plC_RJ_Button_設定_讀取.Location = new System.Drawing.Point(561, 12);
             this.plC_RJ_Button_設定_讀取.Name = "plC_RJ_Button_設定_讀取";
             this.plC_RJ_Button_設定_讀取.OFF_文字內容 = "讀取";
-            this.plC_RJ_Button_設定_讀取.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_設定_讀取.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_設定_讀取.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_設定_讀取.OFF_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_設定_讀取.ON_BorderSize = 5;
             this.plC_RJ_Button_設定_讀取.ON_文字內容 = "讀取";
-            this.plC_RJ_Button_設定_讀取.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_設定_讀取.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_設定_讀取.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_設定_讀取.ON_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_設定_讀取.ShadowColor = System.Drawing.Color.DimGray;
@@ -2060,6 +2106,530 @@ namespace Hospital_Call_Light_System
             this.comboBox_代碼.Size = new System.Drawing.Size(116, 32);
             this.comboBox_代碼.TabIndex = 7;
             // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.rJ_GroupBox4);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Size = new System.Drawing.Size(1248, 866);
+            this.tabPage11.TabIndex = 4;
+            this.tabPage11.Text = "公告設定";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // rJ_GroupBox4
+            // 
+            // 
+            // rJ_GroupBox4.ContentsPanel
+            // 
+            this.rJ_GroupBox4.ContentsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_GroupBox4.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_GroupBox4.ContentsPanel.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_GroupBox4.ContentsPanel.BorderRadius = 5;
+            this.rJ_GroupBox4.ContentsPanel.BorderSize = 2;
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.plC_RJ_Button_公告設定_重新整理);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.panel_公告設定_背景顏色);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.panel_公告設定_字體顏色);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_TextBox_公告設定_字體);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.plC_RJ_Button_公告設定_刪除);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.plC_RJ_Button_公告設定_登錄);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.comboBox_公告設定_跑馬速度);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_Lable43);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.comboBox_公告設定_列高度);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_Lable42);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_Lable41);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.button_公告設定_字體選擇);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_Lable40);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_TextBox_公告設定_內容);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_Lable39);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_TextBox_公告設定_名稱);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.rJ_Lable38);
+            this.rJ_GroupBox4.ContentsPanel.Controls.Add(this.sqL_DataGridView_公告設定);
+            this.rJ_GroupBox4.ContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_GroupBox4.ContentsPanel.ForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox4.ContentsPanel.IsSelected = false;
+            this.rJ_GroupBox4.ContentsPanel.Location = new System.Drawing.Point(0, 37);
+            this.rJ_GroupBox4.ContentsPanel.Name = "ContentsPanel";
+            this.rJ_GroupBox4.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
+            this.rJ_GroupBox4.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_GroupBox4.ContentsPanel.ShadowSize = 0;
+            this.rJ_GroupBox4.ContentsPanel.Size = new System.Drawing.Size(1248, 829);
+            this.rJ_GroupBox4.ContentsPanel.TabIndex = 2;
+            this.rJ_GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_GroupBox4.GUID = "";
+            this.rJ_GroupBox4.Location = new System.Drawing.Point(0, 0);
+            this.rJ_GroupBox4.Name = "rJ_GroupBox4";
+            this.rJ_GroupBox4.PannelBackColor = System.Drawing.Color.Transparent;
+            this.rJ_GroupBox4.PannelBorderColor = System.Drawing.Color.DimGray;
+            this.rJ_GroupBox4.PannelBorderRadius = 5;
+            this.rJ_GroupBox4.PannelBorderSize = 2;
+            this.rJ_GroupBox4.Size = new System.Drawing.Size(1248, 866);
+            this.rJ_GroupBox4.TabIndex = 21;
+            this.rJ_GroupBox4.TitleBackColor = System.Drawing.Color.DimGray;
+            this.rJ_GroupBox4.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_GroupBox4.TitleBorderRadius = 5;
+            this.rJ_GroupBox4.TitleBorderSize = 0;
+            this.rJ_GroupBox4.TitleFont = new System.Drawing.Font("新細明體", 12F);
+            this.rJ_GroupBox4.TitleForeColor = System.Drawing.Color.White;
+            this.rJ_GroupBox4.TitleHeight = 37;
+            this.rJ_GroupBox4.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_GroupBox4.TitleTexts = "公告設定";
+            // 
+            // plC_RJ_Button_公告設定_重新整理
+            // 
+            this.plC_RJ_Button_公告設定_重新整理.AutoResetState = false;
+            this.plC_RJ_Button_公告設定_重新整理.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_重新整理.Bool = false;
+            this.plC_RJ_Button_公告設定_重新整理.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_公告設定_重新整理.BorderRadius = 5;
+            this.plC_RJ_Button_公告設定_重新整理.BorderSize = 0;
+            this.plC_RJ_Button_公告設定_重新整理.but_press = false;
+            this.plC_RJ_Button_公告設定_重新整理.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_公告設定_重新整理.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_公告設定_重新整理.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_公告設定_重新整理.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_重新整理.GUID = "";
+            this.plC_RJ_Button_公告設定_重新整理.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_公告設定_重新整理.Location = new System.Drawing.Point(887, 722);
+            this.plC_RJ_Button_公告設定_重新整理.Name = "plC_RJ_Button_公告設定_重新整理";
+            this.plC_RJ_Button_公告設定_重新整理.OFF_文字內容 = "重新整理";
+            this.plC_RJ_Button_公告設定_重新整理.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_重新整理.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_重新整理.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_重新整理.ON_BorderSize = 5;
+            this.plC_RJ_Button_公告設定_重新整理.ON_文字內容 = "重新整理";
+            this.plC_RJ_Button_公告設定_重新整理.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_重新整理.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_重新整理.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_重新整理.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_公告設定_重新整理.ShadowSize = 3;
+            this.plC_RJ_Button_公告設定_重新整理.ShowLoadingForm = false;
+            this.plC_RJ_Button_公告設定_重新整理.Size = new System.Drawing.Size(109, 84);
+            this.plC_RJ_Button_公告設定_重新整理.State = false;
+            this.plC_RJ_Button_公告設定_重新整理.TabIndex = 31;
+            this.plC_RJ_Button_公告設定_重新整理.Text = "重新整理";
+            this.plC_RJ_Button_公告設定_重新整理.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_重新整理.Texts = "重新整理";
+            this.plC_RJ_Button_公告設定_重新整理.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_公告設定_重新整理.字型鎖住 = false;
+            this.plC_RJ_Button_公告設定_重新整理.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_公告設定_重新整理.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_公告設定_重新整理.文字鎖住 = false;
+            this.plC_RJ_Button_公告設定_重新整理.讀取位元反向 = false;
+            this.plC_RJ_Button_公告設定_重新整理.讀寫鎖住 = false;
+            this.plC_RJ_Button_公告設定_重新整理.音效 = true;
+            this.plC_RJ_Button_公告設定_重新整理.顯示 = false;
+            this.plC_RJ_Button_公告設定_重新整理.顯示狀態 = false;
+            // 
+            // panel_公告設定_背景顏色
+            // 
+            this.panel_公告設定_背景顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_公告設定_背景顏色.Location = new System.Drawing.Point(1042, 622);
+            this.panel_公告設定_背景顏色.Name = "panel_公告設定_背景顏色";
+            this.panel_公告設定_背景顏色.Size = new System.Drawing.Size(72, 39);
+            this.panel_公告設定_背景顏色.TabIndex = 30;
+            // 
+            // panel_公告設定_字體顏色
+            // 
+            this.panel_公告設定_字體顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_公告設定_字體顏色.Location = new System.Drawing.Point(1042, 566);
+            this.panel_公告設定_字體顏色.Name = "panel_公告設定_字體顏色";
+            this.panel_公告設定_字體顏色.Size = new System.Drawing.Size(72, 39);
+            this.panel_公告設定_字體顏色.TabIndex = 29;
+            // 
+            // rJ_TextBox_公告設定_字體
+            // 
+            this.rJ_TextBox_公告設定_字體.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_公告設定_字體.BorderColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_公告設定_字體.BorderFocusColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_公告設定_字體.BorderRadius = 0;
+            this.rJ_TextBox_公告設定_字體.BorderSize = 2;
+            this.rJ_TextBox_公告設定_字體.Enabled = false;
+            this.rJ_TextBox_公告設定_字體.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_公告設定_字體.ForeColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_公告設定_字體.GUID = "";
+            this.rJ_TextBox_公告設定_字體.Location = new System.Drawing.Point(898, 672);
+            this.rJ_TextBox_公告設定_字體.Multiline = false;
+            this.rJ_TextBox_公告設定_字體.Name = "rJ_TextBox_公告設定_字體";
+            this.rJ_TextBox_公告設定_字體.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_公告設定_字體.PassWordChar = false;
+            this.rJ_TextBox_公告設定_字體.PlaceholderColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_公告設定_字體.PlaceholderText = "";
+            this.rJ_TextBox_公告設定_字體.ShowTouchPannel = false;
+            this.rJ_TextBox_公告設定_字體.Size = new System.Drawing.Size(305, 36);
+            this.rJ_TextBox_公告設定_字體.TabIndex = 28;
+            this.rJ_TextBox_公告設定_字體.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_公告設定_字體.Texts = "";
+            this.rJ_TextBox_公告設定_字體.UnderlineStyle = false;
+            // 
+            // plC_RJ_Button_公告設定_刪除
+            // 
+            this.plC_RJ_Button_公告設定_刪除.AutoResetState = false;
+            this.plC_RJ_Button_公告設定_刪除.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_刪除.Bool = false;
+            this.plC_RJ_Button_公告設定_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_公告設定_刪除.BorderRadius = 5;
+            this.plC_RJ_Button_公告設定_刪除.BorderSize = 0;
+            this.plC_RJ_Button_公告設定_刪除.but_press = false;
+            this.plC_RJ_Button_公告設定_刪除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_公告設定_刪除.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_公告設定_刪除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_公告設定_刪除.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_刪除.GUID = "";
+            this.plC_RJ_Button_公告設定_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_公告設定_刪除.Location = new System.Drawing.Point(1002, 722);
+            this.plC_RJ_Button_公告設定_刪除.Name = "plC_RJ_Button_公告設定_刪除";
+            this.plC_RJ_Button_公告設定_刪除.OFF_文字內容 = "刪除";
+            this.plC_RJ_Button_公告設定_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_刪除.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_刪除.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_刪除.ON_BorderSize = 5;
+            this.plC_RJ_Button_公告設定_刪除.ON_文字內容 = "刪除";
+            this.plC_RJ_Button_公告設定_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_刪除.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_刪除.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_刪除.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_公告設定_刪除.ShadowSize = 3;
+            this.plC_RJ_Button_公告設定_刪除.ShowLoadingForm = false;
+            this.plC_RJ_Button_公告設定_刪除.Size = new System.Drawing.Size(109, 84);
+            this.plC_RJ_Button_公告設定_刪除.State = false;
+            this.plC_RJ_Button_公告設定_刪除.TabIndex = 27;
+            this.plC_RJ_Button_公告設定_刪除.Text = "刪除";
+            this.plC_RJ_Button_公告設定_刪除.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_刪除.Texts = "刪除";
+            this.plC_RJ_Button_公告設定_刪除.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_公告設定_刪除.字型鎖住 = false;
+            this.plC_RJ_Button_公告設定_刪除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_公告設定_刪除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_公告設定_刪除.文字鎖住 = false;
+            this.plC_RJ_Button_公告設定_刪除.讀取位元反向 = false;
+            this.plC_RJ_Button_公告設定_刪除.讀寫鎖住 = false;
+            this.plC_RJ_Button_公告設定_刪除.音效 = true;
+            this.plC_RJ_Button_公告設定_刪除.顯示 = false;
+            this.plC_RJ_Button_公告設定_刪除.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_公告設定_登錄
+            // 
+            this.plC_RJ_Button_公告設定_登錄.AutoResetState = false;
+            this.plC_RJ_Button_公告設定_登錄.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_登錄.Bool = false;
+            this.plC_RJ_Button_公告設定_登錄.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_Button_公告設定_登錄.BorderRadius = 5;
+            this.plC_RJ_Button_公告設定_登錄.BorderSize = 0;
+            this.plC_RJ_Button_公告設定_登錄.but_press = false;
+            this.plC_RJ_Button_公告設定_登錄.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_公告設定_登錄.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_公告設定_登錄.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_公告設定_登錄.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_登錄.GUID = "";
+            this.plC_RJ_Button_公告設定_登錄.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_公告設定_登錄.Location = new System.Drawing.Point(1117, 722);
+            this.plC_RJ_Button_公告設定_登錄.Name = "plC_RJ_Button_公告設定_登錄";
+            this.plC_RJ_Button_公告設定_登錄.OFF_文字內容 = "登錄";
+            this.plC_RJ_Button_公告設定_登錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_登錄.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_登錄.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_登錄.ON_BorderSize = 5;
+            this.plC_RJ_Button_公告設定_登錄.ON_文字內容 = "登錄";
+            this.plC_RJ_Button_公告設定_登錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_公告設定_登錄.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_公告設定_登錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_公告設定_登錄.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_公告設定_登錄.ShadowSize = 3;
+            this.plC_RJ_Button_公告設定_登錄.ShowLoadingForm = false;
+            this.plC_RJ_Button_公告設定_登錄.Size = new System.Drawing.Size(109, 84);
+            this.plC_RJ_Button_公告設定_登錄.State = false;
+            this.plC_RJ_Button_公告設定_登錄.TabIndex = 26;
+            this.plC_RJ_Button_公告設定_登錄.Text = "登錄";
+            this.plC_RJ_Button_公告設定_登錄.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_公告設定_登錄.Texts = "登錄";
+            this.plC_RJ_Button_公告設定_登錄.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_公告設定_登錄.字型鎖住 = false;
+            this.plC_RJ_Button_公告設定_登錄.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_公告設定_登錄.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_公告設定_登錄.文字鎖住 = false;
+            this.plC_RJ_Button_公告設定_登錄.讀取位元反向 = false;
+            this.plC_RJ_Button_公告設定_登錄.讀寫鎖住 = false;
+            this.plC_RJ_Button_公告設定_登錄.音效 = true;
+            this.plC_RJ_Button_公告設定_登錄.顯示 = false;
+            this.plC_RJ_Button_公告設定_登錄.顯示狀態 = false;
+            // 
+            // comboBox_公告設定_跑馬速度
+            // 
+            this.comboBox_公告設定_跑馬速度.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_公告設定_跑馬速度.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.comboBox_公告設定_跑馬速度.FormattingEnabled = true;
+            this.comboBox_公告設定_跑馬速度.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "10",
+            "20",
+            "30",
+            "40",
+            "50"});
+            this.comboBox_公告設定_跑馬速度.Location = new System.Drawing.Point(740, 625);
+            this.comboBox_公告設定_跑馬速度.Name = "comboBox_公告設定_跑馬速度";
+            this.comboBox_公告設定_跑馬速度.Size = new System.Drawing.Size(138, 32);
+            this.comboBox_公告設定_跑馬速度.TabIndex = 25;
+            // 
+            // rJ_Lable43
+            // 
+            this.rJ_Lable43.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable43.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable43.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable43.BorderRadius = 12;
+            this.rJ_Lable43.BorderSize = 0;
+            this.rJ_Lable43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable43.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable43.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable43.GUID = "";
+            this.rJ_Lable43.Location = new System.Drawing.Point(593, 613);
+            this.rJ_Lable43.Name = "rJ_Lable43";
+            this.rJ_Lable43.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable43.ShadowSize = 3;
+            this.rJ_Lable43.Size = new System.Drawing.Size(141, 56);
+            this.rJ_Lable43.TabIndex = 24;
+            this.rJ_Lable43.Text = "跑馬速度";
+            this.rJ_Lable43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable43.TextColor = System.Drawing.Color.White;
+            // 
+            // comboBox_公告設定_列高度
+            // 
+            this.comboBox_公告設定_列高度.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_公告設定_列高度.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.comboBox_公告設定_列高度.FormattingEnabled = true;
+            this.comboBox_公告設定_列高度.Items.AddRange(new object[] {
+            "30",
+            "40",
+            "50",
+            "60",
+            "70",
+            "80",
+            "90",
+            "100",
+            "120",
+            "150",
+            "180",
+            "210"});
+            this.comboBox_公告設定_列高度.Location = new System.Drawing.Point(740, 569);
+            this.comboBox_公告設定_列高度.Name = "comboBox_公告設定_列高度";
+            this.comboBox_公告設定_列高度.Size = new System.Drawing.Size(138, 32);
+            this.comboBox_公告設定_列高度.TabIndex = 23;
+            // 
+            // rJ_Lable42
+            // 
+            this.rJ_Lable42.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable42.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable42.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable42.BorderRadius = 12;
+            this.rJ_Lable42.BorderSize = 0;
+            this.rJ_Lable42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable42.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable42.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable42.GUID = "";
+            this.rJ_Lable42.Location = new System.Drawing.Point(593, 557);
+            this.rJ_Lable42.Name = "rJ_Lable42";
+            this.rJ_Lable42.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable42.ShadowSize = 3;
+            this.rJ_Lable42.Size = new System.Drawing.Size(141, 56);
+            this.rJ_Lable42.TabIndex = 22;
+            this.rJ_Lable42.Text = "列高度";
+            this.rJ_Lable42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable42.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_Lable41
+            // 
+            this.rJ_Lable41.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable41.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable41.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable41.BorderRadius = 12;
+            this.rJ_Lable41.BorderSize = 0;
+            this.rJ_Lable41.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable41.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable41.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable41.GUID = "";
+            this.rJ_Lable41.Location = new System.Drawing.Point(894, 613);
+            this.rJ_Lable41.Name = "rJ_Lable41";
+            this.rJ_Lable41.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable41.ShadowSize = 3;
+            this.rJ_Lable41.Size = new System.Drawing.Size(141, 56);
+            this.rJ_Lable41.TabIndex = 21;
+            this.rJ_Lable41.Text = "背景顏色";
+            this.rJ_Lable41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable41.TextColor = System.Drawing.Color.White;
+            // 
+            // button_公告設定_字體選擇
+            // 
+            this.button_公告設定_字體選擇.BackColor = System.Drawing.Color.White;
+            this.button_公告設定_字體選擇.ForeColor = System.Drawing.Color.Black;
+            this.button_公告設定_字體選擇.Location = new System.Drawing.Point(1128, 567);
+            this.button_公告設定_字體選擇.Name = "button_公告設定_字體選擇";
+            this.button_公告設定_字體選擇.Size = new System.Drawing.Size(85, 39);
+            this.button_公告設定_字體選擇.TabIndex = 19;
+            this.button_公告設定_字體選擇.Text = "字體選擇";
+            this.button_公告設定_字體選擇.UseVisualStyleBackColor = false;
+            // 
+            // rJ_Lable40
+            // 
+            this.rJ_Lable40.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable40.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable40.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable40.BorderRadius = 12;
+            this.rJ_Lable40.BorderSize = 0;
+            this.rJ_Lable40.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable40.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable40.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable40.GUID = "";
+            this.rJ_Lable40.Location = new System.Drawing.Point(894, 557);
+            this.rJ_Lable40.Name = "rJ_Lable40";
+            this.rJ_Lable40.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable40.ShadowSize = 3;
+            this.rJ_Lable40.Size = new System.Drawing.Size(141, 56);
+            this.rJ_Lable40.TabIndex = 18;
+            this.rJ_Lable40.Text = "字體顏色";
+            this.rJ_Lable40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable40.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_TextBox_公告設定_內容
+            // 
+            this.rJ_TextBox_公告設定_內容.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_公告設定_內容.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_公告設定_內容.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_公告設定_內容.BorderRadius = 0;
+            this.rJ_TextBox_公告設定_內容.BorderSize = 2;
+            this.rJ_TextBox_公告設定_內容.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_公告設定_內容.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_公告設定_內容.GUID = "";
+            this.rJ_TextBox_公告設定_內容.Location = new System.Drawing.Point(28, 672);
+            this.rJ_TextBox_公告設定_內容.Multiline = true;
+            this.rJ_TextBox_公告設定_內容.Name = "rJ_TextBox_公告設定_內容";
+            this.rJ_TextBox_公告設定_內容.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_公告設定_內容.PassWordChar = false;
+            this.rJ_TextBox_公告設定_內容.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_公告設定_內容.PlaceholderText = "";
+            this.rJ_TextBox_公告設定_內容.ShowTouchPannel = false;
+            this.rJ_TextBox_公告設定_內容.Size = new System.Drawing.Size(532, 134);
+            this.rJ_TextBox_公告設定_內容.TabIndex = 14;
+            this.rJ_TextBox_公告設定_內容.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_公告設定_內容.Texts = "";
+            this.rJ_TextBox_公告設定_內容.UnderlineStyle = false;
+            // 
+            // rJ_Lable39
+            // 
+            this.rJ_Lable39.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable39.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable39.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable39.BorderRadius = 12;
+            this.rJ_Lable39.BorderSize = 0;
+            this.rJ_Lable39.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable39.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable39.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable39.GUID = "";
+            this.rJ_Lable39.Location = new System.Drawing.Point(24, 613);
+            this.rJ_Lable39.Name = "rJ_Lable39";
+            this.rJ_Lable39.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable39.ShadowSize = 3;
+            this.rJ_Lable39.Size = new System.Drawing.Size(543, 56);
+            this.rJ_Lable39.TabIndex = 13;
+            this.rJ_Lable39.Text = "內容";
+            this.rJ_Lable39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable39.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_TextBox_公告設定_名稱
+            // 
+            this.rJ_TextBox_公告設定_名稱.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_公告設定_名稱.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.rJ_TextBox_公告設定_名稱.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_公告設定_名稱.BorderRadius = 0;
+            this.rJ_TextBox_公告設定_名稱.BorderSize = 2;
+            this.rJ_TextBox_公告設定_名稱.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_公告設定_名稱.ForeColor = System.Drawing.Color.DimGray;
+            this.rJ_TextBox_公告設定_名稱.GUID = "";
+            this.rJ_TextBox_公告設定_名稱.Location = new System.Drawing.Point(172, 565);
+            this.rJ_TextBox_公告設定_名稱.Multiline = false;
+            this.rJ_TextBox_公告設定_名稱.Name = "rJ_TextBox_公告設定_名稱";
+            this.rJ_TextBox_公告設定_名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_公告設定_名稱.PassWordChar = false;
+            this.rJ_TextBox_公告設定_名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_公告設定_名稱.PlaceholderText = "";
+            this.rJ_TextBox_公告設定_名稱.ShowTouchPannel = false;
+            this.rJ_TextBox_公告設定_名稱.Size = new System.Drawing.Size(388, 40);
+            this.rJ_TextBox_公告設定_名稱.TabIndex = 12;
+            this.rJ_TextBox_公告設定_名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_公告設定_名稱.Texts = "";
+            this.rJ_TextBox_公告設定_名稱.UnderlineStyle = false;
+            // 
+            // rJ_Lable38
+            // 
+            this.rJ_Lable38.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable38.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable38.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable38.BorderRadius = 12;
+            this.rJ_Lable38.BorderSize = 0;
+            this.rJ_Lable38.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable38.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable38.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable38.GUID = "";
+            this.rJ_Lable38.Location = new System.Drawing.Point(24, 557);
+            this.rJ_Lable38.Name = "rJ_Lable38";
+            this.rJ_Lable38.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable38.ShadowSize = 3;
+            this.rJ_Lable38.Size = new System.Drawing.Size(141, 56);
+            this.rJ_Lable38.TabIndex = 11;
+            this.rJ_Lable38.Text = "名稱";
+            this.rJ_Lable38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable38.TextColor = System.Drawing.Color.White;
+            // 
+            // sqL_DataGridView_公告設定
+            // 
+            this.sqL_DataGridView_公告設定.AutoSelectToDeep = true;
+            this.sqL_DataGridView_公告設定.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_公告設定.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_公告設定.BorderRadius = 10;
+            this.sqL_DataGridView_公告設定.BorderSize = 2;
+            this.sqL_DataGridView_公告設定.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_公告設定.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_公告設定.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_公告設定.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_公告設定.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_公告設定.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_公告設定.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_公告設定.columnHeadersHeight = 18;
+            this.sqL_DataGridView_公告設定.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_公告設定.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sqL_DataGridView_公告設定.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_公告設定.ImageBox = false;
+            this.sqL_DataGridView_公告設定.Location = new System.Drawing.Point(5, 5);
+            this.sqL_DataGridView_公告設定.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sqL_DataGridView_公告設定.Name = "sqL_DataGridView_公告設定";
+            this.sqL_DataGridView_公告設定.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_公告設定.Password = "user82822040";
+            this.sqL_DataGridView_公告設定.Port = ((uint)(3306u));
+            this.sqL_DataGridView_公告設定.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_公告設定.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_公告設定.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_公告設定.RowsHeight = 60;
+            this.sqL_DataGridView_公告設定.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_公告設定.Server = "127.0.0.0";
+            this.sqL_DataGridView_公告設定.Size = new System.Drawing.Size(1238, 535);
+            this.sqL_DataGridView_公告設定.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_公告設定.TabIndex = 3;
+            this.sqL_DataGridView_公告設定.TableName = "num_setting";
+            this.sqL_DataGridView_公告設定.UserName = "root";
+            this.sqL_DataGridView_公告設定.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_公告設定.可選擇多列 = false;
+            this.sqL_DataGridView_公告設定.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_公告設定.自動換行 = true;
+            this.sqL_DataGridView_公告設定.表單字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_公告設定.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_公告設定.顯示CheckBox = false;
+            this.sqL_DataGridView_公告設定.顯示首列 = true;
+            this.sqL_DataGridView_公告設定.顯示首行 = true;
+            this.sqL_DataGridView_公告設定.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_公告設定.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.rJ_GroupBox3);
@@ -2329,18 +2899,18 @@ namespace Hospital_Call_Light_System
             this.plC_RJ_Button_按鈕設定_存檔.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_按鈕設定_存檔.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_按鈕設定_存檔.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_按鈕設定_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_按鈕設定_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_按鈕設定_存檔.GUID = "";
             this.plC_RJ_Button_按鈕設定_存檔.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_按鈕設定_存檔.Location = new System.Drawing.Point(778, 12);
             this.plC_RJ_Button_按鈕設定_存檔.Name = "plC_RJ_Button_按鈕設定_存檔";
             this.plC_RJ_Button_按鈕設定_存檔.OFF_文字內容 = "存檔";
-            this.plC_RJ_Button_按鈕設定_存檔.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.plC_RJ_Button_按鈕設定_存檔.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_按鈕設定_存檔.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_按鈕設定_存檔.OFF_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_按鈕設定_存檔.ON_BorderSize = 5;
             this.plC_RJ_Button_按鈕設定_存檔.ON_文字內容 = "存檔";
-            this.plC_RJ_Button_按鈕設定_存檔.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_按鈕設定_存檔.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_按鈕設定_存檔.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_按鈕設定_存檔.ON_背景顏色 = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_按鈕設定_存檔.ShadowColor = System.Drawing.Color.DimGray;
@@ -2767,11 +3337,18 @@ namespace Hospital_Call_Light_System
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.panel4);
+            this.tabPage10.Controls.Add(this.button_顯示設定_讀取);
+            this.tabPage10.Controls.Add(this.button_公告名稱_重新整理);
+            this.tabPage10.Controls.Add(this.label3);
+            this.tabPage10.Controls.Add(this.comboBox_公告名稱);
+            this.tabPage10.Controls.Add(this.panel3);
             this.tabPage10.Controls.Add(this.panel2);
             this.tabPage10.Controls.Add(this.panel1);
             this.tabPage10.Controls.Add(this.rJ_Lable37);
             this.tabPage10.Controls.Add(this.rJ_Lable36);
             this.tabPage10.Controls.Add(this.checkBox_全局音效);
+            this.tabPage10.Controls.Add(this.button_顯示設定_存檔);
             this.tabPage10.Controls.Add(this.checkBox_本地音效);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
@@ -2779,6 +3356,130 @@ namespace Hospital_Call_Light_System
             this.tabPage10.TabIndex = 3;
             this.tabPage10.Text = "顯示設定";
             this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // button_公告名稱_重新整理
+            // 
+            this.button_公告名稱_重新整理.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_公告名稱_重新整理.Location = new System.Drawing.Point(804, 518);
+            this.button_公告名稱_重新整理.Name = "button_公告名稱_重新整理";
+            this.button_公告名稱_重新整理.Size = new System.Drawing.Size(128, 39);
+            this.button_公告名稱_重新整理.TabIndex = 34;
+            this.button_公告名稱_重新整理.Text = "重新整理";
+            this.button_公告名稱_重新整理.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Location = new System.Drawing.Point(26, 519);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(140, 37);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "公告名稱:";
+            // 
+            // comboBox_公告名稱
+            // 
+            this.comboBox_公告名稱.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_公告名稱.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_公告名稱.FormattingEnabled = true;
+            this.comboBox_公告名稱.Location = new System.Drawing.Point(172, 518);
+            this.comboBox_公告名稱.Name = "comboBox_公告名稱";
+            this.comboBox_公告名稱.Size = new System.Drawing.Size(610, 39);
+            this.comboBox_公告名稱.TabIndex = 32;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.radioButton_二號台_不顯示);
+            this.panel3.Controls.Add(this.radioButton_二號台_圖片);
+            this.panel3.Controls.Add(this.radioButton_二號台_號碼);
+            this.panel3.Location = new System.Drawing.Point(501, 89);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(432, 51);
+            this.panel3.TabIndex = 31;
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片09);
+            this.panel2.Controls.Add(this.rJ_Lable45);
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片08);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片07);
+            this.panel2.Controls.Add(this.comboBox_二號台名稱);
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片06);
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片01);
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片05);
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片02);
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片04);
+            this.panel2.Controls.Add(this.checkBox_二號台_顯示圖片03);
+            this.panel2.Location = new System.Drawing.Point(501, 146);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(432, 366);
+            this.panel2.TabIndex = 30;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片09);
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片08);
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片07);
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片06);
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片05);
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片04);
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片03);
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片02);
+            this.panel1.Controls.Add(this.checkBox_一號台_顯示圖片01);
+            this.panel1.Controls.Add(this.rJ_Lable44);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.comboBox_一號台名稱);
+            this.panel1.Location = new System.Drawing.Point(34, 146);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(432, 366);
+            this.panel1.TabIndex = 29;
+            // 
+            // rJ_Lable37
+            // 
+            this.rJ_Lable37.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable37.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable37.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable37.BorderRadius = 12;
+            this.rJ_Lable37.BorderSize = 0;
+            this.rJ_Lable37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable37.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable37.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable37.GUID = "";
+            this.rJ_Lable37.Location = new System.Drawing.Point(497, 30);
+            this.rJ_Lable37.Name = "rJ_Lable37";
+            this.rJ_Lable37.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable37.ShadowSize = 3;
+            this.rJ_Lable37.Size = new System.Drawing.Size(440, 56);
+            this.rJ_Lable37.TabIndex = 28;
+            this.rJ_Lable37.Text = "[二]號台";
+            this.rJ_Lable37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable37.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_Lable36
+            // 
+            this.rJ_Lable36.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable36.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable36.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable36.BorderRadius = 12;
+            this.rJ_Lable36.BorderSize = 0;
+            this.rJ_Lable36.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable36.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable36.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable36.GUID = "";
+            this.rJ_Lable36.Location = new System.Drawing.Point(30, 30);
+            this.rJ_Lable36.Name = "rJ_Lable36";
+            this.rJ_Lable36.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable36.ShadowSize = 3;
+            this.rJ_Lable36.Size = new System.Drawing.Size(440, 56);
+            this.rJ_Lable36.TabIndex = 27;
+            this.rJ_Lable36.Text = "[一]號台";
+            this.rJ_Lable36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable36.TextColor = System.Drawing.Color.White;
             // 
             // 系統
             // 
@@ -2889,6 +3590,7 @@ namespace Hospital_Call_Light_System
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
@@ -2960,7 +3662,7 @@ namespace Hospital_Call_Light_System
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(178, 42);
+            this.tabPage2.Size = new System.Drawing.Size(1234, 834);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "參數";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2995,7 +3697,7 @@ namespace Hospital_Call_Light_System
             this.sqL_DataGridView_參數.RowsHeight = 30;
             this.sqL_DataGridView_參數.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_參數.Server = "127.0.0.0";
-            this.sqL_DataGridView_參數.Size = new System.Drawing.Size(172, 313);
+            this.sqL_DataGridView_參數.Size = new System.Drawing.Size(1228, 313);
             this.sqL_DataGridView_參數.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_參數.TabIndex = 3;
             this.sqL_DataGridView_參數.TableName = "parameter";
@@ -3030,80 +3732,505 @@ namespace Hospital_Call_Light_System
             this.tabPage6.Text = "設定4";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // rJ_Lable36
+            // button_顯示設定_讀取
             // 
-            this.rJ_Lable36.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable36.BackgroundColor = System.Drawing.Color.DarkGray;
-            this.rJ_Lable36.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable36.BorderRadius = 12;
-            this.rJ_Lable36.BorderSize = 0;
-            this.rJ_Lable36.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable36.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable36.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable36.GUID = "";
-            this.rJ_Lable36.Location = new System.Drawing.Point(30, 30);
-            this.rJ_Lable36.Name = "rJ_Lable36";
-            this.rJ_Lable36.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable36.ShadowSize = 3;
-            this.rJ_Lable36.Size = new System.Drawing.Size(440, 56);
-            this.rJ_Lable36.TabIndex = 27;
-            this.rJ_Lable36.Text = "[一]號台";
-            this.rJ_Lable36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable36.TextColor = System.Drawing.Color.White;
+            this.button_顯示設定_讀取.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_顯示設定_讀取.Location = new System.Drawing.Point(948, 141);
+            this.button_顯示設定_讀取.Name = "button_顯示設定_讀取";
+            this.button_顯示設定_讀取.Size = new System.Drawing.Size(85, 106);
+            this.button_顯示設定_讀取.TabIndex = 35;
+            this.button_顯示設定_讀取.Text = "讀取";
+            this.button_顯示設定_讀取.UseVisualStyleBackColor = true;
             // 
-            // rJ_Lable37
+            // tabPage12
             // 
-            this.rJ_Lable37.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable37.BackgroundColor = System.Drawing.Color.DarkGray;
-            this.rJ_Lable37.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable37.BorderRadius = 12;
-            this.rJ_Lable37.BorderSize = 0;
-            this.rJ_Lable37.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable37.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable37.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable37.GUID = "";
-            this.rJ_Lable37.Location = new System.Drawing.Point(497, 30);
-            this.rJ_Lable37.Name = "rJ_Lable37";
-            this.rJ_Lable37.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable37.ShadowSize = 3;
-            this.rJ_Lable37.Size = new System.Drawing.Size(440, 56);
-            this.rJ_Lable37.TabIndex = 28;
-            this.rJ_Lable37.Text = "[二]號台";
-            this.rJ_Lable37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable37.TextColor = System.Drawing.Color.White;
+            this.tabPage12.Controls.Add(this.sqL_DataGridView_圖片列表);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(1234, 834);
+            this.tabPage12.TabIndex = 2;
+            this.tabPage12.Text = "圖片";
+            this.tabPage12.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // sqL_DataGridView_圖片列表
             // 
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.checkBox_1號台顯示);
-            this.panel1.Controls.Add(this.comboBox_一號台名稱);
-            this.panel1.Location = new System.Drawing.Point(34, 89);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(432, 270);
-            this.panel1.TabIndex = 29;
+            this.sqL_DataGridView_圖片列表.AutoSelectToDeep = true;
+            this.sqL_DataGridView_圖片列表.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_圖片列表.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_圖片列表.BorderRadius = 10;
+            this.sqL_DataGridView_圖片列表.BorderSize = 2;
+            this.sqL_DataGridView_圖片列表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_圖片列表.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_圖片列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_圖片列表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_圖片列表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_圖片列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_圖片列表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_圖片列表.columnHeadersHeight = 18;
+            this.sqL_DataGridView_圖片列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_圖片列表.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sqL_DataGridView_圖片列表.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_圖片列表.ImageBox = false;
+            this.sqL_DataGridView_圖片列表.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_圖片列表.Name = "sqL_DataGridView_圖片列表";
+            this.sqL_DataGridView_圖片列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_圖片列表.Password = "user82822040";
+            this.sqL_DataGridView_圖片列表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_圖片列表.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_圖片列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_圖片列表.RowsColor = System.Drawing.SystemColors.Control;
+            this.sqL_DataGridView_圖片列表.RowsHeight = 30;
+            this.sqL_DataGridView_圖片列表.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_圖片列表.Server = "127.0.0.0";
+            this.sqL_DataGridView_圖片列表.Size = new System.Drawing.Size(1234, 463);
+            this.sqL_DataGridView_圖片列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_圖片列表.TabIndex = 4;
+            this.sqL_DataGridView_圖片列表.TableName = "parameter";
+            this.sqL_DataGridView_圖片列表.UserName = "root";
+            this.sqL_DataGridView_圖片列表.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_圖片列表.可選擇多列 = false;
+            this.sqL_DataGridView_圖片列表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_圖片列表.自動換行 = true;
+            this.sqL_DataGridView_圖片列表.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_圖片列表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_圖片列表.顯示CheckBox = false;
+            this.sqL_DataGridView_圖片列表.顯示首列 = true;
+            this.sqL_DataGridView_圖片列表.顯示首行 = true;
+            this.sqL_DataGridView_圖片列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_圖片列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
-            // panel2
+            // tabPage13
             // 
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.checkBox_2號台顯示);
-            this.panel2.Controls.Add(this.comboBox_二號台名稱);
-            this.panel2.Location = new System.Drawing.Point(501, 89);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(432, 270);
-            this.panel2.TabIndex = 30;
+            this.tabPage13.Controls.Add(this.label5);
+            this.tabPage13.Controls.Add(this.label4);
+            this.tabPage13.Controls.Add(this.plC_NumBox_圖片上傳_停留秒數);
+            this.tabPage13.Controls.Add(this.button_圖片上傳_圖片上傳至資料庫);
+            this.tabPage13.Controls.Add(this.button_上傳圖片_從資料庫讀取圖片);
+            this.tabPage13.Controls.Add(this.button_圖片上傳_從本機讀取圖片);
+            this.tabPage13.Controls.Add(this.pictureBox_圖片上傳);
+            this.tabPage13.Controls.Add(this.groupBox3);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(1248, 866);
+            this.tabPage13.TabIndex = 5;
+            this.tabPage13.Text = "圖片上傳";
+            this.tabPage13.UseVisualStyleBackColor = true;
             // 
-            // tabPage11
+            // groupBox3
             // 
-            this.tabPage11.Location = new System.Drawing.Point(4, 22);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(1248, 866);
-            this.tabPage11.TabIndex = 4;
-            this.tabPage11.Text = "公告設定";
-            this.tabPage11.UseVisualStyleBackColor = true;
+            this.groupBox3.Controls.Add(this.comboBox_圖片上傳_序號);
+            this.groupBox3.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox3.Location = new System.Drawing.Point(18, 23);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(157, 97);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "圖片序號";
+            // 
+            // comboBox_圖片上傳_序號
+            // 
+            this.comboBox_圖片上傳_序號.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_圖片上傳_序號.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_圖片上傳_序號.FormattingEnabled = true;
+            this.comboBox_圖片上傳_序號.Location = new System.Drawing.Point(21, 39);
+            this.comboBox_圖片上傳_序號.Name = "comboBox_圖片上傳_序號";
+            this.comboBox_圖片上傳_序號.Size = new System.Drawing.Size(120, 39);
+            this.comboBox_圖片上傳_序號.TabIndex = 33;
+            // 
+            // pictureBox_圖片上傳
+            // 
+            this.pictureBox_圖片上傳.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox_圖片上傳.Location = new System.Drawing.Point(409, 76);
+            this.pictureBox_圖片上傳.Name = "pictureBox_圖片上傳";
+            this.pictureBox_圖片上傳.Size = new System.Drawing.Size(817, 759);
+            this.pictureBox_圖片上傳.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_圖片上傳.TabIndex = 1;
+            this.pictureBox_圖片上傳.TabStop = false;
+            // 
+            // button_圖片上傳_從本機讀取圖片
+            // 
+            this.button_圖片上傳_從本機讀取圖片.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_圖片上傳_從本機讀取圖片.Location = new System.Drawing.Point(1044, 12);
+            this.button_圖片上傳_從本機讀取圖片.Name = "button_圖片上傳_從本機讀取圖片";
+            this.button_圖片上傳_從本機讀取圖片.Size = new System.Drawing.Size(182, 58);
+            this.button_圖片上傳_從本機讀取圖片.TabIndex = 36;
+            this.button_圖片上傳_從本機讀取圖片.Text = "從本機讀取圖片";
+            this.button_圖片上傳_從本機讀取圖片.UseVisualStyleBackColor = true;
+            // 
+            // button_上傳圖片_從資料庫讀取圖片
+            // 
+            this.button_上傳圖片_從資料庫讀取圖片.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_上傳圖片_從資料庫讀取圖片.Location = new System.Drawing.Point(18, 126);
+            this.button_上傳圖片_從資料庫讀取圖片.Name = "button_上傳圖片_從資料庫讀取圖片";
+            this.button_上傳圖片_從資料庫讀取圖片.Size = new System.Drawing.Size(182, 58);
+            this.button_上傳圖片_從資料庫讀取圖片.TabIndex = 37;
+            this.button_上傳圖片_從資料庫讀取圖片.Text = "從資料庫讀取圖片";
+            this.button_上傳圖片_從資料庫讀取圖片.UseVisualStyleBackColor = true;
+            // 
+            // button_圖片上傳_圖片上傳至資料庫
+            // 
+            this.button_圖片上傳_圖片上傳至資料庫.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_圖片上傳_圖片上傳至資料庫.Location = new System.Drawing.Point(18, 190);
+            this.button_圖片上傳_圖片上傳至資料庫.Name = "button_圖片上傳_圖片上傳至資料庫";
+            this.button_圖片上傳_圖片上傳至資料庫.Size = new System.Drawing.Size(182, 58);
+            this.button_圖片上傳_圖片上傳至資料庫.TabIndex = 38;
+            this.button_圖片上傳_圖片上傳至資料庫.Text = "圖片上傳至資料庫";
+            this.button_圖片上傳_圖片上傳至資料庫.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_二號台_號碼
+            // 
+            this.radioButton_二號台_號碼.AutoSize = true;
+            this.radioButton_二號台_號碼.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton_二號台_號碼.Location = new System.Drawing.Point(16, 14);
+            this.radioButton_二號台_號碼.Name = "radioButton_二號台_號碼";
+            this.radioButton_二號台_號碼.Size = new System.Drawing.Size(60, 25);
+            this.radioButton_二號台_號碼.TabIndex = 0;
+            this.radioButton_二號台_號碼.Text = "號碼";
+            this.radioButton_二號台_號碼.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_二號台_圖片
+            // 
+            this.radioButton_二號台_圖片.AutoSize = true;
+            this.radioButton_二號台_圖片.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton_二號台_圖片.Location = new System.Drawing.Point(82, 14);
+            this.radioButton_二號台_圖片.Name = "radioButton_二號台_圖片";
+            this.radioButton_二號台_圖片.Size = new System.Drawing.Size(60, 25);
+            this.radioButton_二號台_圖片.TabIndex = 1;
+            this.radioButton_二號台_圖片.Text = "圖片";
+            this.radioButton_二號台_圖片.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_二號台_不顯示
+            // 
+            this.radioButton_二號台_不顯示.AutoSize = true;
+            this.radioButton_二號台_不顯示.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton_二號台_不顯示.Location = new System.Drawing.Point(148, 14);
+            this.radioButton_二號台_不顯示.Name = "radioButton_二號台_不顯示";
+            this.radioButton_二號台_不顯示.Size = new System.Drawing.Size(76, 25);
+            this.radioButton_二號台_不顯示.TabIndex = 2;
+            this.radioButton_二號台_不顯示.Text = "不顯示";
+            this.radioButton_二號台_不顯示.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.radioButton_一號台_不顯示);
+            this.panel4.Controls.Add(this.radioButton_一號台_圖片);
+            this.panel4.Controls.Add(this.radioButton_一號台_號碼);
+            this.panel4.Location = new System.Drawing.Point(34, 89);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(432, 51);
+            this.panel4.TabIndex = 36;
+            // 
+            // radioButton_一號台_不顯示
+            // 
+            this.radioButton_一號台_不顯示.AutoSize = true;
+            this.radioButton_一號台_不顯示.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton_一號台_不顯示.Location = new System.Drawing.Point(148, 14);
+            this.radioButton_一號台_不顯示.Name = "radioButton_一號台_不顯示";
+            this.radioButton_一號台_不顯示.Size = new System.Drawing.Size(76, 25);
+            this.radioButton_一號台_不顯示.TabIndex = 2;
+            this.radioButton_一號台_不顯示.Text = "不顯示";
+            this.radioButton_一號台_不顯示.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_一號台_圖片
+            // 
+            this.radioButton_一號台_圖片.AutoSize = true;
+            this.radioButton_一號台_圖片.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton_一號台_圖片.Location = new System.Drawing.Point(82, 14);
+            this.radioButton_一號台_圖片.Name = "radioButton_一號台_圖片";
+            this.radioButton_一號台_圖片.Size = new System.Drawing.Size(60, 25);
+            this.radioButton_一號台_圖片.TabIndex = 1;
+            this.radioButton_一號台_圖片.Text = "圖片";
+            this.radioButton_一號台_圖片.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_一號台_號碼
+            // 
+            this.radioButton_一號台_號碼.AutoSize = true;
+            this.radioButton_一號台_號碼.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton_一號台_號碼.Location = new System.Drawing.Point(16, 14);
+            this.radioButton_一號台_號碼.Name = "radioButton_一號台_號碼";
+            this.radioButton_一號台_號碼.Size = new System.Drawing.Size(60, 25);
+            this.radioButton_一號台_號碼.TabIndex = 0;
+            this.radioButton_一號台_號碼.Text = "號碼";
+            this.radioButton_一號台_號碼.UseVisualStyleBackColor = true;
+            // 
+            // plC_NumBox_圖片上傳_停留秒數
+            // 
+            this.plC_NumBox_圖片上傳_停留秒數.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_圖片上傳_停留秒數.Location = new System.Drawing.Point(536, 28);
+            this.plC_NumBox_圖片上傳_停留秒數.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_圖片上傳_停留秒數.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_圖片上傳_停留秒數.Name = "plC_NumBox_圖片上傳_停留秒數";
+            this.plC_NumBox_圖片上傳_停留秒數.ReadOnly = false;
+            this.plC_NumBox_圖片上傳_停留秒數.Size = new System.Drawing.Size(112, 39);
+            this.plC_NumBox_圖片上傳_停留秒數.TabIndex = 40;
+            this.plC_NumBox_圖片上傳_停留秒數.Value = 0;
+            this.plC_NumBox_圖片上傳_停留秒數.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_圖片上傳_停留秒數.密碼欄位 = false;
+            this.plC_NumBox_圖片上傳_停留秒數.小數點位置 = 0;
+            this.plC_NumBox_圖片上傳_停留秒數.微調數值 = 1;
+            this.plC_NumBox_圖片上傳_停留秒數.音效 = true;
+            this.plC_NumBox_圖片上傳_停留秒數.顯示微調按鈕 = false;
+            this.plC_NumBox_圖片上傳_停留秒數.顯示螢幕小鍵盤 = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label4.Location = new System.Drawing.Point(402, 28);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(133, 37);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "停留秒數";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label5.Location = new System.Drawing.Point(654, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 37);
+            this.label5.TabIndex = 42;
+            this.label5.Text = "s";
+            // 
+            // rJ_Lable44
+            // 
+            this.rJ_Lable44.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable44.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable44.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable44.BorderRadius = 12;
+            this.rJ_Lable44.BorderSize = 0;
+            this.rJ_Lable44.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable44.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable44.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable44.GUID = "";
+            this.rJ_Lable44.Location = new System.Drawing.Point(3, 90);
+            this.rJ_Lable44.Name = "rJ_Lable44";
+            this.rJ_Lable44.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable44.ShadowSize = 3;
+            this.rJ_Lable44.Size = new System.Drawing.Size(424, 56);
+            this.rJ_Lable44.TabIndex = 28;
+            this.rJ_Lable44.Text = "圖片顯示勾選";
+            this.rJ_Lable44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable44.TextColor = System.Drawing.Color.White;
+            // 
+            // rJ_Lable45
+            // 
+            this.rJ_Lable45.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable45.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable45.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable45.BorderRadius = 12;
+            this.rJ_Lable45.BorderSize = 0;
+            this.rJ_Lable45.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable45.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable45.ForeColor = System.Drawing.Color.White;
+            this.rJ_Lable45.GUID = "";
+            this.rJ_Lable45.Location = new System.Drawing.Point(3, 90);
+            this.rJ_Lable45.Name = "rJ_Lable45";
+            this.rJ_Lable45.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable45.ShadowSize = 3;
+            this.rJ_Lable45.Size = new System.Drawing.Size(424, 56);
+            this.rJ_Lable45.TabIndex = 29;
+            this.rJ_Lable45.Text = "圖片顯示勾選";
+            this.rJ_Lable45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable45.TextColor = System.Drawing.Color.White;
+            // 
+            // checkBox_一號台_顯示圖片01
+            // 
+            this.checkBox_一號台_顯示圖片01.AutoSize = true;
+            this.checkBox_一號台_顯示圖片01.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片01.Location = new System.Drawing.Point(18, 152);
+            this.checkBox_一號台_顯示圖片01.Name = "checkBox_一號台_顯示圖片01";
+            this.checkBox_一號台_顯示圖片01.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片01.TabIndex = 29;
+            this.checkBox_一號台_顯示圖片01.Text = "01";
+            this.checkBox_一號台_顯示圖片01.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_一號台_顯示圖片02
+            // 
+            this.checkBox_一號台_顯示圖片02.AutoSize = true;
+            this.checkBox_一號台_顯示圖片02.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片02.Location = new System.Drawing.Point(18, 188);
+            this.checkBox_一號台_顯示圖片02.Name = "checkBox_一號台_顯示圖片02";
+            this.checkBox_一號台_顯示圖片02.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片02.TabIndex = 30;
+            this.checkBox_一號台_顯示圖片02.Text = "02";
+            this.checkBox_一號台_顯示圖片02.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_一號台_顯示圖片03
+            // 
+            this.checkBox_一號台_顯示圖片03.AutoSize = true;
+            this.checkBox_一號台_顯示圖片03.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片03.Location = new System.Drawing.Point(18, 224);
+            this.checkBox_一號台_顯示圖片03.Name = "checkBox_一號台_顯示圖片03";
+            this.checkBox_一號台_顯示圖片03.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片03.TabIndex = 31;
+            this.checkBox_一號台_顯示圖片03.Text = "03";
+            this.checkBox_一號台_顯示圖片03.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_一號台_顯示圖片04
+            // 
+            this.checkBox_一號台_顯示圖片04.AutoSize = true;
+            this.checkBox_一號台_顯示圖片04.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片04.Location = new System.Drawing.Point(18, 260);
+            this.checkBox_一號台_顯示圖片04.Name = "checkBox_一號台_顯示圖片04";
+            this.checkBox_一號台_顯示圖片04.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片04.TabIndex = 32;
+            this.checkBox_一號台_顯示圖片04.Text = "04";
+            this.checkBox_一號台_顯示圖片04.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_一號台_顯示圖片05
+            // 
+            this.checkBox_一號台_顯示圖片05.AutoSize = true;
+            this.checkBox_一號台_顯示圖片05.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片05.Location = new System.Drawing.Point(18, 296);
+            this.checkBox_一號台_顯示圖片05.Name = "checkBox_一號台_顯示圖片05";
+            this.checkBox_一號台_顯示圖片05.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片05.TabIndex = 33;
+            this.checkBox_一號台_顯示圖片05.Text = "05";
+            this.checkBox_一號台_顯示圖片05.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_一號台_顯示圖片09
+            // 
+            this.checkBox_一號台_顯示圖片09.AutoSize = true;
+            this.checkBox_一號台_顯示圖片09.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片09.Location = new System.Drawing.Point(89, 260);
+            this.checkBox_一號台_顯示圖片09.Name = "checkBox_一號台_顯示圖片09";
+            this.checkBox_一號台_顯示圖片09.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片09.TabIndex = 37;
+            this.checkBox_一號台_顯示圖片09.Text = "09";
+            this.checkBox_一號台_顯示圖片09.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_一號台_顯示圖片08
+            // 
+            this.checkBox_一號台_顯示圖片08.AutoSize = true;
+            this.checkBox_一號台_顯示圖片08.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片08.Location = new System.Drawing.Point(89, 224);
+            this.checkBox_一號台_顯示圖片08.Name = "checkBox_一號台_顯示圖片08";
+            this.checkBox_一號台_顯示圖片08.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片08.TabIndex = 36;
+            this.checkBox_一號台_顯示圖片08.Text = "08";
+            this.checkBox_一號台_顯示圖片08.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_一號台_顯示圖片07
+            // 
+            this.checkBox_一號台_顯示圖片07.AutoSize = true;
+            this.checkBox_一號台_顯示圖片07.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片07.Location = new System.Drawing.Point(89, 188);
+            this.checkBox_一號台_顯示圖片07.Name = "checkBox_一號台_顯示圖片07";
+            this.checkBox_一號台_顯示圖片07.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片07.TabIndex = 35;
+            this.checkBox_一號台_顯示圖片07.Text = "07";
+            this.checkBox_一號台_顯示圖片07.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_一號台_顯示圖片06
+            // 
+            this.checkBox_一號台_顯示圖片06.AutoSize = true;
+            this.checkBox_一號台_顯示圖片06.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_一號台_顯示圖片06.Location = new System.Drawing.Point(89, 152);
+            this.checkBox_一號台_顯示圖片06.Name = "checkBox_一號台_顯示圖片06";
+            this.checkBox_一號台_顯示圖片06.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_一號台_顯示圖片06.TabIndex = 34;
+            this.checkBox_一號台_顯示圖片06.Text = "06";
+            this.checkBox_一號台_顯示圖片06.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片09
+            // 
+            this.checkBox_二號台_顯示圖片09.AutoSize = true;
+            this.checkBox_二號台_顯示圖片09.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片09.Location = new System.Drawing.Point(89, 260);
+            this.checkBox_二號台_顯示圖片09.Name = "checkBox_二號台_顯示圖片09";
+            this.checkBox_二號台_顯示圖片09.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片09.TabIndex = 46;
+            this.checkBox_二號台_顯示圖片09.Text = "09";
+            this.checkBox_二號台_顯示圖片09.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片08
+            // 
+            this.checkBox_二號台_顯示圖片08.AutoSize = true;
+            this.checkBox_二號台_顯示圖片08.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片08.Location = new System.Drawing.Point(89, 224);
+            this.checkBox_二號台_顯示圖片08.Name = "checkBox_二號台_顯示圖片08";
+            this.checkBox_二號台_顯示圖片08.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片08.TabIndex = 45;
+            this.checkBox_二號台_顯示圖片08.Text = "08";
+            this.checkBox_二號台_顯示圖片08.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片07
+            // 
+            this.checkBox_二號台_顯示圖片07.AutoSize = true;
+            this.checkBox_二號台_顯示圖片07.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片07.Location = new System.Drawing.Point(89, 188);
+            this.checkBox_二號台_顯示圖片07.Name = "checkBox_二號台_顯示圖片07";
+            this.checkBox_二號台_顯示圖片07.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片07.TabIndex = 44;
+            this.checkBox_二號台_顯示圖片07.Text = "07";
+            this.checkBox_二號台_顯示圖片07.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片06
+            // 
+            this.checkBox_二號台_顯示圖片06.AutoSize = true;
+            this.checkBox_二號台_顯示圖片06.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片06.Location = new System.Drawing.Point(89, 152);
+            this.checkBox_二號台_顯示圖片06.Name = "checkBox_二號台_顯示圖片06";
+            this.checkBox_二號台_顯示圖片06.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片06.TabIndex = 43;
+            this.checkBox_二號台_顯示圖片06.Text = "06";
+            this.checkBox_二號台_顯示圖片06.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片05
+            // 
+            this.checkBox_二號台_顯示圖片05.AutoSize = true;
+            this.checkBox_二號台_顯示圖片05.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片05.Location = new System.Drawing.Point(18, 296);
+            this.checkBox_二號台_顯示圖片05.Name = "checkBox_二號台_顯示圖片05";
+            this.checkBox_二號台_顯示圖片05.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片05.TabIndex = 42;
+            this.checkBox_二號台_顯示圖片05.Text = "05";
+            this.checkBox_二號台_顯示圖片05.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片04
+            // 
+            this.checkBox_二號台_顯示圖片04.AutoSize = true;
+            this.checkBox_二號台_顯示圖片04.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片04.Location = new System.Drawing.Point(18, 260);
+            this.checkBox_二號台_顯示圖片04.Name = "checkBox_二號台_顯示圖片04";
+            this.checkBox_二號台_顯示圖片04.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片04.TabIndex = 41;
+            this.checkBox_二號台_顯示圖片04.Text = "04";
+            this.checkBox_二號台_顯示圖片04.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片03
+            // 
+            this.checkBox_二號台_顯示圖片03.AutoSize = true;
+            this.checkBox_二號台_顯示圖片03.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片03.Location = new System.Drawing.Point(18, 224);
+            this.checkBox_二號台_顯示圖片03.Name = "checkBox_二號台_顯示圖片03";
+            this.checkBox_二號台_顯示圖片03.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片03.TabIndex = 40;
+            this.checkBox_二號台_顯示圖片03.Text = "03";
+            this.checkBox_二號台_顯示圖片03.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片02
+            // 
+            this.checkBox_二號台_顯示圖片02.AutoSize = true;
+            this.checkBox_二號台_顯示圖片02.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片02.Location = new System.Drawing.Point(18, 188);
+            this.checkBox_二號台_顯示圖片02.Name = "checkBox_二號台_顯示圖片02";
+            this.checkBox_二號台_顯示圖片02.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片02.TabIndex = 39;
+            this.checkBox_二號台_顯示圖片02.Text = "02";
+            this.checkBox_二號台_顯示圖片02.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_二號台_顯示圖片01
+            // 
+            this.checkBox_二號台_顯示圖片01.AutoSize = true;
+            this.checkBox_二號台_顯示圖片01.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_二號台_顯示圖片01.Location = new System.Drawing.Point(18, 152);
+            this.checkBox_二號台_顯示圖片01.Name = "checkBox_二號台_顯示圖片01";
+            this.checkBox_二號台_顯示圖片01.Size = new System.Drawing.Size(57, 30);
+            this.checkBox_二號台_顯示圖片01.TabIndex = 38;
+            this.checkBox_二號台_顯示圖片01.Text = "01";
+            this.checkBox_二號台_顯示圖片01.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -3114,6 +4241,7 @@ namespace Hospital_Call_Light_System
             this.Controls.Add(this.plC_ScreenPage_Main);
             this.Controls.Add(this.panel_Main);
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.Text = "叫號燈系統";
             this.Load += new System.EventHandler(this.Form_Load);
             this.panel_Main.ResumeLayout(false);
@@ -3129,11 +4257,20 @@ namespace Hospital_Call_Light_System
             this.rJ_GroupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.tabPage11.ResumeLayout(false);
+            this.rJ_GroupBox4.ContentsPanel.ResumeLayout(false);
+            this.rJ_GroupBox4.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
             this.rJ_GroupBox3.ContentsPanel.ResumeLayout(false);
             this.rJ_GroupBox3.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.系統.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -3141,10 +4278,13 @@ namespace Hospital_Call_Light_System
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.tabPage12.ResumeLayout(false);
+            this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_圖片上傳)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3205,24 +4345,22 @@ namespace Hospital_Call_Light_System
         private MyUI.PLC_Button plC_Button_Enter;
         private MyUI.PLC_RJ_Button plC_RJ_Button_刷新螢幕;
         private System.Windows.Forms.Panel panel_叫號;
-        private System.Windows.Forms.Button button_主畫面_存檔;
+        private System.Windows.Forms.Button button_顯示設定_存檔;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_第一台號碼輸入;
         private System.Windows.Forms.Button button_第二台號碼輸入;
         private MyUI.RJ_GroupBox rJ_GroupBox1;
         private MyUI.RJ_GroupBox rJ_GroupBox2;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_叫號台設定;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_叫號台設定_刪除;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_叫號台設定_登錄;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_叫號內容設定;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_叫號內容設定_刪除;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_叫號內容設定_登錄;
         private MyUI.RJ_Lable rJ_Lable3;
-        private System.Windows.Forms.ComboBox comboBox_叫號台設定_代碼;
+        private System.Windows.Forms.ComboBox comboBox_叫號內容設定_代碼;
         private MyUI.RJ_Lable rJ_Lable2;
-        private MyUI.RJ_TextBox rJ_TextBox_叫號台設定_名稱;
+        private MyUI.RJ_TextBox rJ_TextBox_叫號內容設定_名稱;
         private System.Windows.Forms.ComboBox comboBox_二號台名稱;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox_一號台名稱;
-        private System.Windows.Forms.CheckBox checkBox_2號台顯示;
-        private System.Windows.Forms.CheckBox checkBox_1號台顯示;
         private MyUI.PLC_RJ_Button plC_RJ_Button_檢查按鈕;
         private MyUI.RJ_GroupBox rJ_GroupBox3;
         private MyUI.RJ_Lable rJ_Lable4;
@@ -3236,9 +4374,9 @@ namespace Hospital_Call_Light_System
         private MyUI.RJ_TextBox rJ_TextBox_第二台_減一號;
         private MyUI.RJ_TextBox rJ_TextBox_第二台_加二號;
         private MyUI.RJ_TextBox rJ_TextBox_第二台_減二號;
-        private MyUI.RJ_TextBox rJ_TextBox_叫號台設定_叫號備註;
+        private MyUI.RJ_TextBox rJ_TextBox_叫號內容設定_叫號備註;
         private MyUI.RJ_Lable rJ_Lable24;
-        private MyUI.RJ_TextBox rJ_TextBox_叫號台設定_英文名;
+        private MyUI.RJ_TextBox rJ_TextBox_叫號內容設定_英文名;
         private MyUI.RJ_Lable rJ_Lable23;
         private MyUI.RJ_TextBox rJ_TextBox_第一台_標題_英文高度;
         private MyUI.RJ_Lable rJ_Lable28;
@@ -3284,6 +4422,69 @@ namespace Hospital_Call_Light_System
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabPage tabPage11;
+        private MyUI.RJ_GroupBox rJ_GroupBox4;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_公告設定;
+        private MyUI.RJ_Lable rJ_Lable41;
+        private System.Windows.Forms.Button button_公告設定_字體選擇;
+        private MyUI.RJ_TextBox rJ_TextBox_公告設定_內容;
+        private MyUI.RJ_Lable rJ_Lable39;
+        private MyUI.RJ_TextBox rJ_TextBox_公告設定_名稱;
+        private MyUI.RJ_Lable rJ_Lable38;
+        private System.Windows.Forms.ComboBox comboBox_公告設定_跑馬速度;
+        private MyUI.RJ_Lable rJ_Lable43;
+        private System.Windows.Forms.ComboBox comboBox_公告設定_列高度;
+        private MyUI.RJ_Lable rJ_Lable42;
+        private MyUI.RJ_Lable rJ_Lable40;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_公告設定_刪除;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_公告設定_登錄;
+        private MyUI.RJ_TextBox rJ_TextBox_公告設定_字體;
+        private System.Windows.Forms.Panel panel_公告設定_背景顏色;
+        private System.Windows.Forms.Panel panel_公告設定_字體顏色;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_公告設定_重新整理;
+        private System.Windows.Forms.Button button_公告名稱_重新整理;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox_公告名稱;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button_顯示設定_讀取;
+        private System.Windows.Forms.TabPage tabPage12;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_圖片列表;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.PictureBox pictureBox_圖片上傳;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox comboBox_圖片上傳_序號;
+        private System.Windows.Forms.Button button_圖片上傳_從本機讀取圖片;
+        private System.Windows.Forms.Button button_圖片上傳_圖片上傳至資料庫;
+        private System.Windows.Forms.Button button_上傳圖片_從資料庫讀取圖片;
+        private System.Windows.Forms.RadioButton radioButton_二號台_不顯示;
+        private System.Windows.Forms.RadioButton radioButton_二號台_圖片;
+        private System.Windows.Forms.RadioButton radioButton_二號台_號碼;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.RadioButton radioButton_一號台_不顯示;
+        private System.Windows.Forms.RadioButton radioButton_一號台_圖片;
+        private System.Windows.Forms.RadioButton radioButton_一號台_號碼;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private MyUI.PLC_NumBox plC_NumBox_圖片上傳_停留秒數;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片09;
+        private MyUI.RJ_Lable rJ_Lable45;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片08;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片07;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片06;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片01;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片05;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片02;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片04;
+        private System.Windows.Forms.CheckBox checkBox_二號台_顯示圖片03;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片09;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片08;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片07;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片06;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片05;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片04;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片03;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片02;
+        private System.Windows.Forms.CheckBox checkBox_一號台_顯示圖片01;
+        private MyUI.RJ_Lable rJ_Lable44;
     }
 }
 

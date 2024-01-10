@@ -266,10 +266,25 @@
     <Compile Include="Program_主畫面.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_公告設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_叫號內容.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_圖片上傳.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_樣式設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_設定.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_系統.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_顯示設定.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
