@@ -96,7 +96,8 @@ namespace 調劑台管理系統
                 if (value_device is Storage)
                 {
                     Storage storage = value_device as Storage;
-                    if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock)
+                    if (storage.DeviceType == DeviceType.EPD266 || storage.DeviceType == DeviceType.EPD266_lock
+                        || storage.DeviceType == DeviceType.EPD290 || storage.DeviceType == DeviceType.EPD290_lock)
                     {
                         this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                         storage.ActionDone = true;

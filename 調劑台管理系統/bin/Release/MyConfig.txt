@@ -8,15 +8,15 @@
   "Scanner02_COMPort": "",
   "Scanner03_COMPort": "",
   "Scanner04_COMPort": "",
-  "藥物辨識圖片顯示": false,
+  "藥物辨識圖片顯示": true,
   "EPD583_Enable": true,
   "EPD266_Enable": true,
-  "RowsLED_Enable": true,
-  "RFID_Enable": true,
-  "Pannel35_Enable": true,
+  "RowsLED_Enable": false,
+  "RFID_Enable": false,
+  "Pannel35_Enable": false,
   "帳密登入_Enable": true,
   "藥物辨識網址": "",
   "外部輸出": false,
   "系統取藥模式": false,
-  "EPD1020_Enable": true
+  "EPD1020_Enable": false
 }
