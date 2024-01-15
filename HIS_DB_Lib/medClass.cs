@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
-
+using System.Text.Json;
 namespace HIS_DB_Lib
 {
     public enum enum_藥品管制方式設定
@@ -76,17 +76,37 @@ namespace HIS_DB_Lib
         [JsonPropertyName("FILE_STATUS")]
         public string 開檔狀態 { get; set; }
 
+        //[JsonPropertyName("BARCODE")]
+        //public string Barcode_Json
+        //{
+        //    get
+        //    {
+        //        return 藥品條碼2;
+        //    }
+        //    set
+        //    {
+        //        藥品條碼2 = value;
+        //    }
+        //}
+        [JsonIgnore]
+        private static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
+        {
+          // PropertyNameCaseInsensitive = true,
+        };
+
         [JsonPropertyName("BARCODE")]
         public List<string> Barcode
         {
             get
             {
-                List<string> temp = 藥品條碼2.JsonDeserializet<List<string>>();
-                if (temp == null) return new List<string>();
+                if (藥品條碼2.StringIsEmpty()) return new List<string>(); ;
+                List<string> temp = JsonSerializer.Deserialize<List<string>>(藥品條碼2, jsonSerializerOptions);
+    
+
                 List<string> temp_buf = new List<string>();
-                for(int i = 0; i < temp.Count; i++)
+                for (int i = 0; i < temp.Count; i++)
                 {
-                    if(temp[i].StringIsEmpty()==false)
+                    if (!string.IsNullOrWhiteSpace(temp[i]))
                     {
                         temp_buf.Add(temp[i]);
                     }
@@ -95,7 +115,7 @@ namespace HIS_DB_Lib
             }
             set
             {
-                藥品條碼2 = value.JsonSerializationt();
+                藥品條碼2 = JsonSerializer.Serialize(value, jsonSerializerOptions);
             }
         }
         public void Add_BarCode(string barcode)

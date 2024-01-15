@@ -36,7 +36,7 @@ namespace HIS_WebApi
             }
         }
         [HttpPost]
-        public string Get(returnData returnData)
+        public string Get([FromBody] returnData returnData)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace HIS_WebApi
 
         [Route("get_by_apiserver")]
         [HttpPost]
-        public string POST_get_by_apiserver(returnData returnData)
+        public string POST_get_by_apiserver([FromBody] returnData returnData)
         {
             try
             {
@@ -145,7 +145,8 @@ namespace HIS_WebApi
                     returnData.Code = 200;
                     returnData.Result = "雲端藥檔取得成功!";
                     returnData.TimeTaken = myTimerBasic.ToString();
-                    return returnData.JsonSerializationt(true);
+                    string json_out = returnData.JsonSerializationt(false);
+                    return json_out;
                 }
                 if (TableName == "medicine_page_firstclass")
                 {
@@ -234,7 +235,7 @@ namespace HIS_WebApi
 
         [Route("get_by_code")]
         [HttpPost]
-        public string POST_get_by_code(returnData returnData)
+        public string POST_get_by_code([FromBody] returnData returnData)
         {
             try
             {
@@ -363,7 +364,7 @@ namespace HIS_WebApi
 
         [Route("upadte_by_guid")]
         [HttpPost]
-        public string POST_upadte_by_guid(returnData returnData)
+        public string POST_upadte_by_guid([FromBody] returnData returnData)
         {
             try
             {
@@ -508,7 +509,7 @@ namespace HIS_WebApi
 
         [Route("serch_by_BarCode")]
         [HttpPost]
-        public string POST_serch_by_BarCode(returnData returnData)
+        public string POST_serch_by_BarCode([FromBody] returnData returnData)
         {
             try
             {

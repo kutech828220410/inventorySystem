@@ -2531,24 +2531,23 @@ namespace HIS_WebApi
 
             MED_pageController mED_PageController = new MED_pageController();
             returnData returnData_med = new returnData();
+            returnData_med.ServerName = "Main";
+            returnData_med.ServerType = "網頁";
             returnData_med.Server = serverSettingClasses_med.Server;
             returnData_med.DbName = serverSettingClasses_med.DBName;
             returnData_med.TableName = "medicine_page_cloud";
             returnData_med.UserName = serverSettingClasses_med.User;
             returnData_med.Password = serverSettingClasses_med.Password;
             returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
-            returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
+            returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
             List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
             List<medClass> medClasses_buf = new List<medClass>();
 
             returnData returnData = new returnData();
             List<object[]> list_inventory_creat_buf = new List<object[]>();
-            List<object[]> list_inventory_content = sQLControl_inventory_content.GetAllRows(null);
             List<object[]> list_inventory_content_buf = new List<object[]>();
-            List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetAllRows(null);
             List<object[]> list_inventory_sub_content_buf = new List<object[]>();
-            List<object[]> list_sub_inventory = sQLControl_inventory_sub_content.GetAllRows(null);
-            List<object[]> list_sub_inventory_buf = new List<object[]>();
+ 
             string 藥品碼 = "";
             string 藥品名稱 = "";
             string 中文名稱 = "";
@@ -2557,8 +2556,11 @@ namespace HIS_WebApi
             for (int i = 0; i < list_inventory_creat.Count; i++)
             {
                 inventoryClass.creat creat = list_inventory_creat[i].SQLToClass<inventoryClass.creat, enum_盤點單號>();
+            
                 if (allData)
                 {
+                    List<object[]> list_inventory_content = sQLControl_inventory_content.GetRowsByDefult(null, (int)enum_盤點內容.盤點單號, creat.盤點單號);
+                    List<object[]> list_inventory_sub_content = sQLControl_inventory_sub_content.GetRowsByDefult(null, (int)enum_盤點明細.盤點單號, creat.盤點單號);
                     藥品碼 = "";
                     藥品名稱 = "";
                     中文名稱 = "";
