@@ -169,6 +169,11 @@ namespace 調劑台管理系統
             string IP = list_locker_table_value[0][(int)enum_Locker_Index_Table.IP].ObjectToString();
             string Num = list_locker_table_value[0][(int)enum_Locker_Index_Table.Num].ObjectToString();
             Console.WriteLine($"{IP},{Num},<抽屜開啟> {DateTime.Now.ToDateTimeString()}");
+            //if (plC_ScreenPage_Main.PageText == "管制抽屜")
+            //{
+            //    Pannel_Locker pannel_Locker = (Pannel_Locker)sender;
+            //    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.管制抽屜開啟, this.登入者名稱, $"[{pannel_Locker.StorageName}]");
+            //}
         }
         private bool Loker_LockAlarmEvent(object sender, PLC_Device PLC_Device_Input, PLC_Device PLC_Device_Output, string GUID)
         {
