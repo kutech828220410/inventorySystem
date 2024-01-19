@@ -125,7 +125,24 @@ namespace 調劑台管理系統
                 {
                     if (myConfigClass.RFID使用)
                     {
-                        this.rfiD_FX600_UI.Init(RFID_FX600lib.RFID_FX600_UI.Baudrate._9600, 3, myConfigClass.RFID_COMPort);
+                        int num = 1;
+                        if (myConfigClass.Scanner01_COMPort.StringIsEmpty() == false)
+                        {
+                            num++;
+                        }
+                        if (myConfigClass.Scanner02_COMPort.StringIsEmpty() == false)
+                        {
+                            num++;
+                        }
+                        if (myConfigClass.Scanner03_COMPort.StringIsEmpty() == false)
+                        {
+                            num++;
+                        }
+                        if (myConfigClass.Scanner04_COMPort.StringIsEmpty() == false)
+                        {
+                            num++;
+                        }
+                        this.rfiD_FX600_UI.Init(RFID_FX600lib.RFID_FX600_UI.Baudrate._9600, num, myConfigClass.RFID_COMPort);
                     }
                 }));
                 flag_rfiD_FX600_UI_Init = true;
