@@ -553,8 +553,13 @@ namespace 調劑台管理系統
             this.Program_異常通知_覆盤錯誤_Init();
 
             this.LoadConfig工程模式();
+
             if (!this.ControlMode) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_01名稱);
             if (!this.ControlMode) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(領藥台_02名稱);
+
+            this.drawerUI_EPD_1020.Set_UDP_WriteTime(10);
+            this.drawerUI_EPD_583.Set_UDP_WriteTime(10);
+
 
             Task task = Task.Run(new Action(delegate
             {
