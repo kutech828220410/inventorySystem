@@ -122,6 +122,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_Scanner01_讀取藥單資料_檢查按下(ref int cnt)
         {
+            if (PLC_Device_掃碼槍COM通訊.Bool == false)
+            {
+                cnt = 65500;
+                return;
+            }
             if (PLC_Device_Scanner01_讀取藥單資料.Bool)
             {
                 MySerialPort_Scanner01.ClearReadByte();
@@ -134,6 +139,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_Scanner01_讀取藥單資料_初始化(ref int cnt)
         {
+            if (PLC_Device_掃碼槍COM通訊.Bool == false)
+            {
+                cnt = 65500;
+                return;
+            }
             PLC_Device_Scanner01_讀取藥單資料_OK.Bool = false;
             if (MySerialPort_Scanner01.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {
@@ -374,6 +384,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_Scanner02_讀取藥單資料_檢查按下(ref int cnt)
         {
+            if (PLC_Device_掃碼槍COM通訊.Bool == false)
+            {
+                cnt = 65500;
+                return;
+            }
             if (PLC_Device_Scanner02_讀取藥單資料.Bool)
             {
                 MySerialPort_Scanner02.ClearReadByte();
@@ -386,6 +401,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_Scanner02_讀取藥單資料_初始化(ref int cnt)
         {
+            if (PLC_Device_掃碼槍COM通訊.Bool == false)
+            {
+                cnt = 65500;
+                return;
+            }
             PLC_Device_Scanner02_讀取藥單資料_OK.Bool = false;
             if (MySerialPort_Scanner02.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {
@@ -624,6 +644,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_Scanner03_讀取藥單資料_檢查按下(ref int cnt)
         {
+            if (PLC_Device_掃碼槍COM通訊.Bool == false)
+            {
+                cnt = 65500;
+                return;
+            }
             if (PLC_Device_Scanner03_讀取藥單資料.Bool)
             {
                 MySerialPort_Scanner03.ClearReadByte();
@@ -636,6 +661,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_Scanner03_讀取藥單資料_初始化(ref int cnt)
         {
+            if (PLC_Device_掃碼槍COM通訊.Bool == false)
+            {
+                cnt = 65500;
+                return;
+            }
             PLC_Device_Scanner03_讀取藥單資料_OK.Bool = false;
             if (MySerialPort_Scanner03.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {
@@ -876,6 +906,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_Scanner04_讀取藥單資料_檢查按下(ref int cnt)
         {
+            if (PLC_Device_掃碼槍COM通訊.Bool == false)
+            {
+                cnt = 65500;
+                return;
+            }
             if (PLC_Device_Scanner04_讀取藥單資料.Bool)
             {
                 MySerialPort_Scanner04.ClearReadByte();
@@ -888,6 +923,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_Scanner04_讀取藥單資料_初始化(ref int cnt)
         {
+            if (PLC_Device_掃碼槍COM通訊.Bool == false)
+            {
+                cnt = 65500;
+                return;
+            }
             PLC_Device_Scanner04_讀取藥單資料_OK.Bool = false;
             if (MySerialPort_Scanner04.ReadByte() != null || plC_RJ_Button_掃碼測試.Bool)
             {

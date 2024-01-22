@@ -166,6 +166,7 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\ne
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\SQLUI.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\System.Management.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Interop.SpeechLib.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OOXML.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OpenXml4Net.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OpenXmlFormats.dll
