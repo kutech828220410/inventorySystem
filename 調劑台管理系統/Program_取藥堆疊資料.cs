@@ -1172,6 +1172,7 @@ namespace 調劑台管理系統
         }
         public class LightOn
         {
+            public string IP { get; set; }
             public string 藥品碼 { get; set; }
             public Color 顏色 { get; set; }
         }
@@ -1245,7 +1246,7 @@ namespace 調劑台管理系統
                             }));
                             taskList_抽屜層架.Add(Task.Run(() =>
                             {
-                                Function_儲位亮燈_EPD1020亮燈(list_層架亮燈_IP);
+                                Function_儲位亮燈_EPD1020亮燈(list_EPD1020亮燈_IP);
                             }));
                             Task.WhenAll(taskList_抽屜層架).Wait();
                             List<Task> taskList = new List<Task>();
@@ -1539,11 +1540,11 @@ namespace 調劑台管理系統
                     Box box = list_Device[i] as Box;
                     if (box != null)
                     {
-                        Drawer drawer = List_EPD1020_本地資料.SortByIP(IP);
+                        Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
                  
                         if (drawer == null) continue;
                         List<Box> boxes = drawer.SortByCode(藥品碼);
-
+                        drawer.LED_Bytes = DrawerUI_EPD_1020.Set_Pannel_LEDBytes(drawer, color);
                         drawer.LED_Bytes = DrawerUI_EPD_1020.Set_LEDBytes(drawer, color);
                     }
                     list_IP.Add(IP);
@@ -1567,7 +1568,7 @@ namespace 調劑台管理系統
                     string IP = list_IP[i];
                     taskList.Add(Task.Run(() =>
                     {
-                        Drawer drawer = List_EPD1020_本地資料.SortByIP(IP);
+                        Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
         
                         if (drawer == null) return;
                         if (!plC_CheckBox_測試模式.Checked)
