@@ -689,8 +689,6 @@ C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統\bin\Release\of
 C:\Users\kwok\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\kwok\source\repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
 C:\Users\kwok\source\repos\inventorySystem\智能藥庫系統\bin\Release\stdole.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
 C:\Users\HS\Downloads\inventorySystem-master\inventorySystem-master\智能藥庫系統\bin\Release\智能藥庫系統.exe.config
 C:\Users\HS\Downloads\inventorySystem-master\inventorySystem-master\智能藥庫系統\bin\Release\智能藥庫系統.exe
 C:\Users\HS\Downloads\inventorySystem-master\inventorySystem-master\智能藥庫系統\bin\Release\智能藥庫系統.pdb

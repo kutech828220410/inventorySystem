@@ -25,6 +25,7 @@ namespace HIS_DB_Lib
         出料位置X,
         出料位置Y,     
         藥盒方位,
+        區域,
     }
     public class CMPM_StorageConfig_Class
     {
@@ -56,5 +57,7 @@ namespace HIS_DB_Lib
         public string 出料位置Y { get; set; }
         [JsonPropertyName("box_direction")]
         public string 藥盒方位 { get; set; }
+        [JsonPropertyName("area")]
+        public string 區域 { get; set; }
     }
 }

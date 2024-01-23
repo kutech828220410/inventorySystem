@@ -26,6 +26,7 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Main_Form : Form
     {
+        private List<Storage> List_本地儲位 = new List<Storage>();
         public enum enum_儲位列表
         {
             GUID,
@@ -78,20 +79,15 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_儲位設定_儲位列表_上傳面板.MouseDownEvent += PlC_RJ_Button_儲位設定_儲位列表_上傳面板_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_儲位列表_清除燈號.MouseDownEvent += PlC_RJ_Button_儲位設定_儲位列表_清除燈號_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_儲位列表_亮燈.MouseDownEvent += PlC_RJ_Button_儲位設定_儲位列表_亮燈_MouseDownEvent;
-            this.plC_RJ_Button_儲位設定_儲位列表_出料一次.MouseDownEvent += PlC_RJ_Button_儲位設定_儲位列表_出料一次_MouseDownEvent;
 
-
+            Function_取得本地儲位();
             plC_UI_Init.Add_Method(Program_儲位設定);
         }
+        private void Program_儲位設定()
+        {
 
-    
-
-
-
-
-
+        }
         #region Function
-
         #endregion
         #region Event
         private void PlC_ScreenPage_main_TabChangeEvent(string PageText)
@@ -127,24 +123,21 @@ namespace 癌症自動備藥機暨排程系統
             }
             if (MyMessageBox.ShowDialog($"選取儲位將強制出料,請確認!", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             LoadingForm.ShowLoadingForm();
-            List<Task> tasks = new List<Task>();
-            List<Storage> storages = storageUI_EPD_266.SQL_GetAllStorage();
-
             string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
-            Storage storage = storages.SortByIP(IP);
-            if (storage == null) return;
-            List<object[]> list_馬達輸出索引表 = this.sqL_DataGridView_馬達輸出索引表.SQL_GetAllRows(false);
-            if(list_馬達輸出索引表.Count == 0)
+            List<object[]> list_replace = new List<object[]>();
+
+            List<object[]> list_馬達輸出索引表 = this.sqL_DataGridView_馬達輸出索引表.SQL_GetRows((int)enum_CMPM_StorageConfig.IP, IP, false);
+            if (list_馬達輸出索引表.Count == 0)
             {
                 Console.WriteLine($"找無馬達索引 {DateTime.Now.ToDateTimeString()}");
             }
-            int ms = list_馬達輸出索引表[0][(int)enum_CMPM_StorageConfig.出料馬達輸入延遲時間].StringToInt32();
-            if (ms < 0) ms = 0;
-            tasks.Add(Task.Run(new Action(delegate
-            {
-                storageUI_EPD_266.Set_ADCMotorTrigger(storage, ms);
-            })));
-            Task.WhenAll(tasks).Wait();
+            list_馬達輸出索引表[0][(int)enum_CMPM_StorageConfig.出料馬達輸出觸發] = true.ToString();
+            list_replace.LockAdd(list_馬達輸出索引表[0]);
+
+
+
+            if (list_replace.Count > 0) sqL_DataGridView_馬達輸出索引表.SQL_ReplaceExtra(list_replace, false);
+
             LoadingForm.CloseLoadingForm();
         }
         private void PlC_RJ_Button_儲位設定_儲位列表_亮燈_MouseDownEvent(MouseEventArgs mevent)
@@ -391,10 +384,7 @@ namespace 癌症自動備藥機暨排程系統
             sqL_DataGridView_儲位列表.RefreshGrid(list_value);
         }
         #endregion
-        private void Program_儲位設定()
-        {
-
-        }
+       
 
 
         private class ICP_儲位列表 : IComparer<object[]>

@@ -93,6 +93,7 @@ namespace HIS_WebApi
             table_storage_config.AddColumnList("出料位置X", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table_storage_config.AddColumnList("出料位置Y", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table_storage_config.AddColumnList("藥盒方位", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table_storage_config.AddColumnList("區域", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             if (!sQLControl_storage_config.IsTableCreat()) sQLControl_storage_config.CreatTable(table_storage_config);
             else sQLControl_storage_config.CheckAllColumnName(table_storage_config, true);
 

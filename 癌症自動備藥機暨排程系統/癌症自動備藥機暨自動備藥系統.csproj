@@ -232,6 +232,9 @@
     <Compile Include="Form_buf.Designer.cs">
       <DependentUpon>Form_buf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Function.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +246,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_儲位設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_工程模式.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_登入權限資料.cs">
