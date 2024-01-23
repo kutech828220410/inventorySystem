@@ -45,7 +45,7 @@ namespace 癌症自動備藥機暨排程系統
             private SQL_DataGridView.ConnentionClass dB_order_list = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_tradding = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
-
+            private bool _主機模式 = false;
             private string web_URL = "";
             private string api_URL = "";
             private string login_URL = "";
@@ -82,7 +82,7 @@ namespace 癌症自動備藥機暨排程系統
 
 
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
-
+            public bool 主機模式 { get => _主機模式; set => _主機模式 = value; }
         }
         private void LoadDBConfig()
         {
@@ -218,23 +218,9 @@ namespace 癌症自動備藥機暨排程系統
             Program_人員資料_Init();
             Program_儲位設定_Init();
             Program_工程模式_Init();
+            Program_自動備藥_Init();
 
-            string url = $"{API_Server}/api/ChemotherapyRxScheduling/init_udnoectc";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            string json_in = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
-            List<Table> tables = json.JsonDeserializet<List<Table>>();
-
-            this.sqL_DataGridView_備藥通知.Init(tables[0]);
-            this.sqL_DataGridView_備藥通知.Set_ColumnVisible(false, new enum_udnoectc().GetEnumNames());
-
-            this.sqL_DataGridView_備藥通知.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.病房);
-            this.sqL_DataGridView_備藥通知.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.病歷號);
-            this.sqL_DataGridView_備藥通知.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.診別);
-            this.sqL_DataGridView_備藥通知.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.RegimenName);
-            Function_取得備藥通知();
+   
 
 
             sqL_DataGridView_出入庫作業.Init();
@@ -246,7 +232,7 @@ namespace 癌症自動備藥機暨排程系統
             returnData returnData = new returnData();
             returnData.ServerName = "cheom";
             returnData.ServerType = "癌症備藥機";
-            returnData.Value = "2023-11-23 00:00:00,2023-11-24 23:59:59";
+            returnData.Value = "2023-11-01 00:00:00,2024-02-01 23:59:59";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             returnData = json.JsonDeserializet<returnData>();

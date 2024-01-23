@@ -81,6 +81,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.出料位置X);
             this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.出料位置Y);
             this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.藥盒方位);
+            this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.區域);
             this.sqL_DataGridView_馬達輸出索引表.DataGridRowsChangeRefEvent += SqL_DataGridView_馬達輸出索引表_DataGridRowsChangeRefEvent;
 
             this.plC_RJ_Button_馬達輸出索引表_匯出.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_匯出_MouseDownEvent;
@@ -88,11 +89,10 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_馬達輸出索引表_出料一次.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_出料一次_MouseDownEvent;
             this.plC_UI_Init.Add_Method(Program_馬達輸出索引表);
         }
-
-     
-
+   
         private void Program_馬達輸出索引表()
         {
+            if (dBConfigClass.主機模式 == false) return;
             sub_Program_馬達輸出索引表_檢查輸入輸出狀態();
             sub_Program_馬達輸出索引表_檢查馬達輸出();
         }
@@ -332,6 +332,8 @@ namespace 癌症自動備藥機暨排程系統
                         value[(int)enum_CMPM_StorageConfig.鎖控輸入索引] = list_匯入資料[i][(int)enum_CMPM_StorageConfig_匯入.鎖控輸入索引].ObjectToString();
                         value[(int)enum_CMPM_StorageConfig.鎖控輸出索引] = list_匯入資料[i][(int)enum_CMPM_StorageConfig_匯入.鎖控輸出索引].ObjectToString();
                         value[(int)enum_CMPM_StorageConfig.鎖控輸出觸發] = "False";
+                        value[(int)enum_CMPM_StorageConfig.區域] = list_匯入資料[i][(int)enum_CMPM_StorageConfig_匯入.區域].ObjectToString();
+
                         list_馬達輸出索引表_add.Add(value);
                     }
                     else
@@ -345,6 +347,10 @@ namespace 癌症自動備藥機暨排程系統
                         value[(int)enum_CMPM_StorageConfig.藥盒方位] = list_匯入資料[i][(int)enum_CMPM_StorageConfig_匯入.藥盒方位].ObjectToString();
                         value[(int)enum_CMPM_StorageConfig.鎖控輸入索引] = list_匯入資料[i][(int)enum_CMPM_StorageConfig_匯入.鎖控輸入索引].ObjectToString();
                         value[(int)enum_CMPM_StorageConfig.鎖控輸出索引] = list_匯入資料[i][(int)enum_CMPM_StorageConfig_匯入.鎖控輸出索引].ObjectToString();
+                        value[(int)enum_CMPM_StorageConfig.區域] = list_匯入資料[i][(int)enum_CMPM_StorageConfig_匯入.區域].ObjectToString();
+                        value[(int)enum_CMPM_StorageConfig.出料馬達輸入延遲時間] = list_匯入資料[i][(int)enum_CMPM_StorageConfig_匯入.出料馬達輸入延遲時間].ObjectToString();
+
+
                         list_馬達輸出索引表_replace.Add(value);
                     }
 

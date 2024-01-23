@@ -257,6 +257,9 @@
     <Compile Include="Program_系統.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_自動備藥.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_藥檔資料.cs">
       <SubType>Form</SubType>
     </Compile>

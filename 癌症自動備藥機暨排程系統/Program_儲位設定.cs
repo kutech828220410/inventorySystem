@@ -85,8 +85,87 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Program_儲位設定()
         {
-
+            if (dBConfigClass.主機模式 == false) return;
+            sub_Program_儲位設定_出料一次();
         }
+        #region PLC_儲位設定_出料一次
+        PLC_Device PLC_Device_儲位設定_出料一次 = new PLC_Device("M12101");
+        PLC_Device PLC_Device_儲位設定_出料一次_OK = new PLC_Device("");
+        Task Task_儲位設定_出料一次;
+        MyTimer MyTimer_儲位設定_出料一次_結束延遲 = new MyTimer();
+        MyTimer MyTimer_儲位設定_出料一次_開始延遲 = new MyTimer();
+        int cnt_Program_儲位設定_出料一次 = 65534;
+        void sub_Program_儲位設定_出料一次()
+        {
+            if (cnt_Program_儲位設定_出料一次 == 65534)
+            {
+                this.MyTimer_儲位設定_出料一次_結束延遲.StartTickTime(10000);
+                this.MyTimer_儲位設定_出料一次_開始延遲.StartTickTime(10000);
+                PLC_Device_儲位設定_出料一次.SetComment("PLC_儲位設定_出料一次");
+                PLC_Device_儲位設定_出料一次_OK.SetComment("PLC_儲位設定_出料一次_OK");
+                PLC_Device_儲位設定_出料一次.Bool = false;
+                cnt_Program_儲位設定_出料一次 = 65535;
+            }
+            if (cnt_Program_儲位設定_出料一次 == 65535) cnt_Program_儲位設定_出料一次 = 1;
+            if (cnt_Program_儲位設定_出料一次 == 1) cnt_Program_儲位設定_出料一次_檢查按下(ref cnt_Program_儲位設定_出料一次);
+            if (cnt_Program_儲位設定_出料一次 == 2) cnt_Program_儲位設定_出料一次_初始化(ref cnt_Program_儲位設定_出料一次);
+            if (cnt_Program_儲位設定_出料一次 == 3) cnt_Program_儲位設定_出料一次_開始(ref cnt_Program_儲位設定_出料一次);
+            if (cnt_Program_儲位設定_出料一次 == 4) cnt_Program_儲位設定_出料一次_等待完成(ref cnt_Program_儲位設定_出料一次);
+            if (cnt_Program_儲位設定_出料一次 == 5) cnt_Program_儲位設定_出料一次 = 65500;
+            if (cnt_Program_儲位設定_出料一次 > 1) cnt_Program_儲位設定_出料一次_檢查放開(ref cnt_Program_儲位設定_出料一次);
+
+            if (cnt_Program_儲位設定_出料一次 == 65500)
+            {
+                PLC_Device_儲位設定_出料一次.Bool = false;
+                this.MyTimer_儲位設定_出料一次_結束延遲.TickStop();
+                this.MyTimer_儲位設定_出料一次_結束延遲.StartTickTime(10000);
+                PLC_Device_出料一次.Bool = false;
+                cnt_Program_儲位設定_出料一次 = 65535;
+            }
+        }
+        void cnt_Program_儲位設定_出料一次_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_儲位設定_出料一次.Bool) cnt++;
+        }
+        void cnt_Program_儲位設定_出料一次_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_儲位設定_出料一次.Bool) cnt = 65500;
+        }
+        void cnt_Program_儲位設定_出料一次_初始化(ref int cnt)
+        {
+            List<object[]> list_儲位列表 = sqL_DataGridView_儲位列表.Get_All_Select_RowsValues();
+            Dialog_AlarmForm dialog_AlarmForm;
+            if (list_儲位列表.Count == 0)
+            {
+                dialog_AlarmForm = new Dialog_AlarmForm("未選擇儲位", 2000, 0, -200, Color.DarkRed);
+                dialog_AlarmForm.ShowDialog();
+                cnt = 65500;
+                return;
+            }
+
+            cnt++;
+        }
+        void cnt_Program_儲位設定_出料一次_開始(ref int cnt)
+        {
+            if (PLC_Device_出料一次.Bool) return;
+            List<object[]> list_儲位列表 = sqL_DataGridView_儲位列表.Get_All_Select_RowsValues();
+            出料一次_IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
+            PLC_Device_出料一次.Bool = true;
+            cnt++;
+            return;
+        }
+        void cnt_Program_儲位設定_出料一次_等待完成(ref int cnt)
+        {
+            if (PLC_Device_出料一次.Bool) return;
+            cnt++;
+            return;
+        }
+
+
+
+
+
+        #endregion
         #region Function
         #endregion
         #region Event
@@ -125,7 +204,6 @@ namespace 癌症自動備藥機暨排程系統
             LoadingForm.ShowLoadingForm();
             string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
             List<object[]> list_replace = new List<object[]>();
-
             List<object[]> list_馬達輸出索引表 = this.sqL_DataGridView_馬達輸出索引表.SQL_GetRows((int)enum_CMPM_StorageConfig.IP, IP, false);
             if (list_馬達輸出索引表.Count == 0)
             {

@@ -31,16 +31,21 @@ namespace 癌症自動備藥機暨排程系統
         MySerialPort mySerial_IO = new MySerialPort();
         public void Program_輸入輸出_Init()
         {
-            mySerial_IO.BufferSize = 2048;
-            mySerial_IO.Init("COM1", 115200, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
-            H_Pannel_lib.Communication.UART_ConsoletWrite = false;
-            H_Pannel_lib.Driver_IO_Board driver_IO_Board = new H_Pannel_lib.Driver_IO_Board();
-            H_Pannel_lib.Communication.UART_TimeOut = 120;
-            H_Pannel_lib.Communication.UART_Delay = 10;
-            this.BoardUIInit();
-            driver_IO_Board.SleepTime = 0;
-            driver_IO_Board.ProgramEvent += Driver_IO_Board_ProgramEvent;
-            driver_IO_Board.Init(mySerial_IO, new byte[] { 0 ,1,2});
+            if(dBConfigClass.主機模式)
+            {
+                mySerial_IO.BufferSize = 2048;
+                mySerial_IO.Init("COM1", 115200, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+                H_Pannel_lib.Communication.UART_ConsoletWrite = false;
+                H_Pannel_lib.Driver_IO_Board driver_IO_Board = new H_Pannel_lib.Driver_IO_Board();
+                H_Pannel_lib.Communication.UART_TimeOut = 120;
+                H_Pannel_lib.Communication.UART_Delay = 10;
+                this.BoardUIInit();
+                driver_IO_Board.SleepTime = 0;
+                driver_IO_Board.ProgramEvent += Driver_IO_Board_ProgramEvent;
+                driver_IO_Board.Init(mySerial_IO, new byte[] { 0, 1, 2 });
+
+            }
+           
             this.plC_UI_Init.Add_Method(Program_輸入輸出);
         }
         public void Program_輸入輸出()
