@@ -2315,9 +2315,9 @@ namespace HIS_WebApi
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
 
-            byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xls);
+            byte[] excelData = sheetClasses.NPOI_GetBytes(Excel_Type.xlsx);
             Stream stream = new MemoryStream(excelData);
-            return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xls"));
+            return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
         }
 
         /// <summary>

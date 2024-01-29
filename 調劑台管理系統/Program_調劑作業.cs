@@ -1296,7 +1296,8 @@ namespace 調劑台管理系統
                 Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_01_ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
                 this.Invoke(new Action(delegate
                 {
-                    dialog_使用者登入.Location = new Point(this.rJ_GroupBox_領藥台_01.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_01.Width + 20, 1);
+
+                    //dialog_使用者登入.Location = new Point(this.rJ_GroupBox_領藥台_01.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_01.Width + 20, 1);
                 }));
 
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
@@ -1376,7 +1377,7 @@ namespace 調劑台管理系統
                     dialog_NumPannel.X_Visible = true;
                     this.Invoke(new Action(delegate
                     {
-                        dialog_NumPannel.Location = new Point(this.rJ_GroupBox_領藥台_01.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_01.Width + 20, 1);
+                        //dialog_NumPannel.Location = new Point(this.rJ_GroupBox_領藥台_01.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_01.Width + 20, 1);
                     }));
                     if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
                     {
@@ -1472,7 +1473,7 @@ namespace 調劑台管理系統
                     dialog_NumPannel.X_Visible = true;
                     this.Invoke(new Action(delegate
                     {
-                        dialog_NumPannel.Location = new Point(this.rJ_GroupBox_領藥台_01.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_01.Width + 20, 1);
+                        //dialog_NumPannel.Location = new Point(this.rJ_GroupBox_領藥台_01.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_01.Width + 20, 1);
                     }));
                     if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
                     {
@@ -3367,7 +3368,7 @@ namespace 調劑台管理系統
                 Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_02_ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
                 this.Invoke(new Action(delegate
                 {
-                    dialog_使用者登入.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_02.Width + 20, 1);
+                    //dialog_使用者登入.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_02.Width + 20, 1);
                 }));
 
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
@@ -3447,7 +3448,7 @@ namespace 調劑台管理系統
                     dialog_NumPannel.X_Visible = true;
                     this.Invoke(new Action(delegate
                     {
-                        dialog_NumPannel.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_02.Width + 20, 1);
+                        //dialog_NumPannel.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_02.Width + 20, 1);
                     }));
                     if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
                     {
@@ -3543,7 +3544,7 @@ namespace 調劑台管理系統
                     dialog_NumPannel.X_Visible = true;
                     this.Invoke(new Action(delegate
                     {
-                        dialog_NumPannel.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_02.Width + 20, 1);
+                        //dialog_NumPannel.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_02.Width + 20, 1);
                     }));
                     if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
                     {
