@@ -2258,4 +2258,3 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\HIS_WebApi\bin
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\bin\Release\net5.0\HIS_DB_Lib.xml
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Interop.SpeechLib.dll
-C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\bin\Release\net5.0\Interop.SpeechLib.dll

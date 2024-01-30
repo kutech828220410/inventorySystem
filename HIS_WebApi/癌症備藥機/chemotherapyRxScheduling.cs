@@ -54,6 +54,7 @@ namespace HIS_WebApi
                 {
                     return $"找無Server資料!";
                 }
+                Logger.Log("ctclist", "[init_ctclist] sucess!");
                 return CheckCreatTable_ctclist(serverSettingClasses[0]);
             }
             catch (Exception e)
@@ -126,6 +127,7 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料結構錯誤";
                     return returnData.JsonSerializationt(true);
                 }
+                Logger.Log("add_ctclist", $"{returnData.JsonSerializationt(true)}");
                 returnData.Data = "";
                 string Server = serverSettingClasses[0].Server;
                 string DB = serverSettingClasses[0].DBName;
@@ -180,10 +182,13 @@ namespace HIS_WebApi
                 returnData.Result = $"ctclist 寫入成功!";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
+
+                Logger.Log("add_ctclist", $"寫入成功!");
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
             {
+                Logger.Log("add_ctclist", $"異常! {e.Message}");
                 returnData.Code = -200;
                 returnData.Data = null;
                 returnData.Result = $"{e.Message}";
@@ -293,6 +298,7 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料結構錯誤";
                     return returnData.JsonSerializationt(true);
                 }
+                Logger.Log("add_udnoectc", $"{returnData.JsonSerializationt(true)}");
                 returnData.Data = "";
                 string Server = serverSettingClasses[0].Server;
                 string DB = serverSettingClasses[0].DBName;
@@ -362,6 +368,7 @@ namespace HIS_WebApi
                 returnData.Result = $"udnoectc 新增<{list_udnoectc_Add.Count}>筆";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
+                Logger.Log("add_udnoectc", $"寫入成功!");
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -369,6 +376,7 @@ namespace HIS_WebApi
                 returnData.Code = -200;
                 returnData.Data = null;
                 returnData.Result = $"{e.Message}";
+                Logger.Log("add_udnoectc", $"異常! {e.Message}");
                 return returnData.JsonSerializationt(true);
             }
 
@@ -576,6 +584,7 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料結構錯誤";
                     return returnData.JsonSerializationt(true);
                 }
+                Logger.Log("add_udphnoph", $"{returnData.JsonSerializationt(true)}");
                 returnData.Data = "";
                 string Server = serverSettingClasses[0].Server;
                 string DB = serverSettingClasses[0].DBName;
@@ -633,6 +642,7 @@ namespace HIS_WebApi
                 returnData.Result = $"udphnoph 新增<{list_udphnoph_Add.Count}>筆";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
+                Logger.Log("add_udphnoph", $"寫入成功!");
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -640,6 +650,7 @@ namespace HIS_WebApi
                 returnData.Code = -200;
                 returnData.Data = null;
                 returnData.Result = $"{e.Message}";
+                Logger.Log("add_udphnoph", $"異常! {e.Message}");
                 return returnData.JsonSerializationt(true);
             }
 

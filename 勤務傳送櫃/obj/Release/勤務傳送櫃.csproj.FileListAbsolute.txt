@@ -1038,9 +1038,6 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\bin\Relea
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\bin\Release\TCP.dll
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\bin\Release\ZealTechUI.dll
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\bin\Release\zxing.dll
-C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\bin\Release\Microsoft.Office.Interop.Excel.dll
-C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\bin\Release\office.dll
-C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\bin\Release\stdole.dll
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.AssemblyReference.cache
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_EPDPanel.resources
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\勤務傳送櫃\obj\Release\勤務傳送櫃.Form1.resources
