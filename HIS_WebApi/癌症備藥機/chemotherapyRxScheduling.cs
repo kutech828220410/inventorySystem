@@ -699,10 +699,10 @@ namespace HIS_WebApi
             table_ctclist.AddColumnList("BSA", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table_ctclist.AddColumnList("藥品狀態", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_ctclist.AddColumnList("Performance_status", Table.StringType.VARCHAR, 300, Table.IndexType.None);
-            table_ctclist.AddColumnList("細胞型態", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table_ctclist.AddColumnList("細胞型態", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table_ctclist.AddColumnList("檢查驗資料", Table.StringType.VARCHAR, 500, Table.IndexType.None);
             table_ctclist.AddColumnList("XRAY文字", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table_ctclist.AddColumnList("EKG文字", Table.StringType.VARCHAR, 20, Table.IndexType.None);
+            table_ctclist.AddColumnList("EKG文字", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table_ctclist.AddColumnList("Pulmdata", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table_ctclist.AddColumnList("診斷", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table_ctclist.AddColumnList("癌症用藥途徑", Table.StringType.VARCHAR, 20, Table.IndexType.None);
@@ -802,7 +802,7 @@ namespace HIS_WebApi
             table_udnoectc.AddColumnList("診別", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_udnoectc.AddColumnList("就醫序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
             table_udnoectc.AddColumnList("醫囑序號", Table.StringType.VARCHAR, 10, Table.IndexType.INDEX);
-            table_udnoectc.AddColumnList("化學治療前檢核項目", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+            table_udnoectc.AddColumnList("化學治療前檢核項目", Table.StringType.VARCHAR, 500, Table.IndexType.None);
             table_udnoectc.AddColumnList("醫囑確認藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_udnoectc.AddColumnList("醫囑確認時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
             table_udnoectc.AddColumnList("調劑藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
