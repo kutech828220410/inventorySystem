@@ -838,6 +838,11 @@ namespace HIS_WebApi
             table_udnoectc_orders.AddColumnList("已備藥完成", Table.StringType.VARCHAR, 10, Table.IndexType.None);
             table_udnoectc_orders.AddColumnList("備藥藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table_udnoectc_orders.AddColumnList("備藥完成時間", Table.DateType.DATETIME, 10, Table.IndexType.INDEX);
+            table_udnoectc_orders.AddColumnList("調劑藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("調劑完成時間", Table.DateType.DATETIME, 10, Table.IndexType.INDEX);
+            table_udnoectc_orders.AddColumnList("核對藥師", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+            table_udnoectc_orders.AddColumnList("核對時間", Table.DateType.DATETIME, 100, Table.IndexType.INDEX);
+
             if (!sQLControl_udnoectc_orders.IsTableCreat()) sQLControl_udnoectc_orders.CreatTable(table_udnoectc_orders);
             else sQLControl_udnoectc_orders.CheckAllColumnName(table_udnoectc_orders, true);
             tables.Add(table_udnoectc_orders);

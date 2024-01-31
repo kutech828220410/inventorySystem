@@ -43,17 +43,14 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_備藥通知.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.病歷號);
             this.sqL_DataGridView_備藥通知.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.診別);
             this.sqL_DataGridView_備藥通知.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.RegimenName);
-            object[] value = new object[new enum_udnoectc().GetLength()];
-            value[(int)enum_udnoectc.病房] = "W72";
-            value[(int)enum_udnoectc.病歷號] = "5179555";
-            value[(int)enum_udnoectc.診別] = "一般外科";
-            value[(int)enum_udnoectc.RegimenName] = "Gen + nab-paclitaxel";
 
-            
-            Function_取得備藥通知();
-            this.sqL_DataGridView_備藥通知.AddRow(value, true);
+            this.ToolStripMenuItem_取得即時備藥通知.Click += ToolStripMenuItem_取得即時備藥通知_Click;
+
             plC_UI_Init.Add_Method(Program_自動備藥);
         }
+
+ 
+
         private void Program_自動備藥()
         {
             sub_Program_自動備藥_測試處方();
@@ -267,5 +264,11 @@ namespace 癌症自動備藥機暨排程系統
             cnt++;
         }
         #endregion
+
+        private void ToolStripMenuItem_取得即時備藥通知_Click(object sender, EventArgs e)
+        {
+            List<object[]> list_value = Function_取得備藥通知(DateTime.Now, DateTime.Now);
+            this.sqL_DataGridView_備藥通知.RefreshGrid(list_value);
+        }
     }
 }

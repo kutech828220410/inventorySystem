@@ -227,7 +227,11 @@ namespace HIS_DB_Lib
         已備藥完成,
         備藥藥師,
         備藥完成時間,
-     
+        調劑藥師,
+        調劑完成時間,
+        核對藥師,
+        核對時間,
+
     }
     /// <summary>
     /// 藥囑資料(配藥通知子項目)
@@ -334,6 +338,26 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("comp_time")]
         public string 備藥完成時間 { get; set; }
+        /// <summary>
+        /// 調劑藥師
+        /// </summary>
+        [JsonPropertyName("disp_ph")]
+        public string 調劑藥師 { get; set; }
+        /// <summary>
+        /// 調劑完成時間
+        /// </summary>
+        [JsonPropertyName("disp_time")]
+        public string 調劑完成時間 { get; set; }
+        /// <summary>
+        /// 核對藥師
+        /// </summary>
+        [JsonPropertyName("check_ph")]
+        public string 核對藥師 { get; set; }
+        /// <summary>
+        /// 核對時間
+        /// </summary>
+        [JsonPropertyName("check_time")]
+        public string 核對時間 { get; set; }
     }
 
 

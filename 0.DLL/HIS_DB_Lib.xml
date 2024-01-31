@@ -369,6 +369,26 @@
             備藥完成時間
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.udnoectc_orders.調劑藥師">
+            <summary>
+            調劑藥師
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.udnoectc_orders.調劑完成時間">
+            <summary>
+            調劑完成時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.udnoectc_orders.核對藥師">
+            <summary>
+            核對藥師
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.udnoectc_orders.核對時間">
+            <summary>
+            核對時間
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.udnoectc_ctcvars">
             <summary>
             變異紀錄(配藥通知子項目)

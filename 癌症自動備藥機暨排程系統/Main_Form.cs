@@ -220,28 +220,10 @@ namespace 癌症自動備藥機暨排程系統
             Program_工程模式_Init();
             Program_自動備藥_Init();
 
-   
-
-
             sqL_DataGridView_出入庫作業.Init();
         }
 
-        private void Function_取得備藥通知()
-        {
-            string url = $"{API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_ctdate_st_end";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = "2023-11-01 00:00:00,2024-02-01 23:59:59";
-            string json_in = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
-            returnData = json.JsonDeserializet<returnData>();
-
-            List<udnoectc> udnoectcs = returnData.Data.ObjToListClass<udnoectc>();
-            List<object[]> list_udnoectc = udnoectcs.ClassToSQL<udnoectc, enum_udnoectc>();
-            this.sqL_DataGridView_備藥通知.RefreshGrid(list_udnoectc);
-
-        }
+      
 
         #region PLC_Method
         PLC_Device PLC_Device_Method = new PLC_Device("");
