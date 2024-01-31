@@ -212,13 +212,11 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\De
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\System.ValueTuple.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\TCP.dll
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\MeasureSystemUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\MVSDKUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\SLDUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\PortControlUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\ZealTechUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\MeasureSystemFunction.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\MVSDK.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\stdole.dll
@@ -362,3 +360,8 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\調劑台管理系統\obj
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\調劑台管理系統\obj\Debug\調劑台管理系統.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\調劑台管理系統\obj\Debug\調劑台管理系統.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\調劑台管理系統\obj\Debug\調劑台管理系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_共用區設置.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_藥檔維護.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_錯誤提示.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_新藥建置.resources

@@ -196,9 +196,7 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\Interop.SpeechLib.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\MeasureSystemFunction.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\NPOI.OOXML.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\stdole.dll
@@ -459,3 +457,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統\obj\De
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統\obj\Debug\智能藥庫系統.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統\obj\Debug\智能藥庫系統.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統\obj\Debug\智能藥庫系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\HIS_DB_Lib.xml

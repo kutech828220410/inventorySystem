@@ -178,3 +178,5 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\ServerSettingForm\obj\Deb
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\ServerSettingForm\obj\Debug\ServerSettingForm.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\ServerSettingForm\obj\Debug\ServerSettingForm.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\ServerSettingForm\obj\Debug\ServerSettingForm.pdb
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Debug\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Debug\ServerSettingForm.Dialog_癌症備藥機.resources

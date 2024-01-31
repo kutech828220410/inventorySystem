@@ -110,9 +110,7 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\CallBackUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\MeasureSystemFunction.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\NPOI.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\NPOI.OOXML.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Debug\stdole.dll

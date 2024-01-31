@@ -44,12 +44,26 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_備藥通知.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.診別);
             this.sqL_DataGridView_備藥通知.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_udnoectc.RegimenName);
 
+            this.sqL_DataGridView_備藥通知.RowPostPaintingEvent += SqL_DataGridView_備藥通知_RowPostPaintingEvent;
+
             this.ToolStripMenuItem_取得即時備藥通知.Click += ToolStripMenuItem_取得即時備藥通知_Click;
 
             plC_UI_Init.Add_Method(Program_自動備藥);
         }
 
- 
+        private void SqL_DataGridView_備藥通知_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
+        {
+            using (Brush brush = new SolidBrush(Color.DarkGray))
+            {
+                int x = e.RowBounds.Left;
+                int y = e.RowBounds.Top;
+                int width = e.RowBounds.Width;
+                int height = e.RowBounds.Height;
+                e.Graphics.FillRectangle(brush, e.RowBounds);
+                DrawRoundShadow(e.Graphics, new RectangleF(x - 1, y - 1 , width, height), Color.Black, 3, 3);
+            }
+
+        }
 
         private void Program_自動備藥()
         {

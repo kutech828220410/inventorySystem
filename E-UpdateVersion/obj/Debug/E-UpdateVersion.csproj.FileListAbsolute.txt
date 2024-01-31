@@ -208,10 +208,8 @@ C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\MV
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\SLDUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\PortControlUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\ZealTechUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\NPOI.OOXML.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\MVSDK.dll
-C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\stdole.dll
@@ -410,3 +408,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\E-UpdateVersion\obj\Debug
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\E-UpdateVersion\obj\Debug\E-UpdateVersion.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\E-UpdateVersion\obj\Debug\E-UpdateVersion.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\E-UpdateVersion\obj\Debug\E-UpdateVersion.pdb
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\HIS_DB_Lib.xml

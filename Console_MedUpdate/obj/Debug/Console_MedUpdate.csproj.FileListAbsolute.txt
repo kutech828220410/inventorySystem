@@ -145,3 +145,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\Console_MedUpdate\obj\Deb
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\Console_MedUpdate\obj\Debug\Console_MedUpdate.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\Console_MedUpdate\obj\Debug\Console_MedUpdate.exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\Console_MedUpdate\obj\Debug\Console_MedUpdate.pdb
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Debug\HIS_DB_Lib.xml
