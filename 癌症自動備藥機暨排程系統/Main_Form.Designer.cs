@@ -916,7 +916,7 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // sqL_DataGridView_備藥通知
             // 
-            this.sqL_DataGridView_備藥通知.AutoSelectToDeep = true;
+            this.sqL_DataGridView_備藥通知.AutoSelectToDeep = false;
             this.sqL_DataGridView_備藥通知.backColor = System.Drawing.Color.Silver;
             this.sqL_DataGridView_備藥通知.BorderColor = System.Drawing.Color.Silver;
             this.sqL_DataGridView_備藥通知.BorderRadius = 0;
