@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DrawingClass.dll" size="26624">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DrawingClass.dll" size="27648">
       <assemblyIdentity name="DrawingClass" version="1.0.0.5" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>IhoLJwLhCSNehNSWiGWxpP+wz+q0lhuThevnBYN82Og=</dsig:DigestValue>
+        <dsig:DigestValue>3AuLYF1lBSaDNYt8Zp5oxWNTKLCUL0ino5w15Og1xCM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -409,7 +409,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>V+S14XQk75kduYfexKZiHEQQY1HOLxiozFcctnIszEA=</dsig:DigestValue>
+        <dsig:DigestValue>xm5rq+7wrO8abQEnmll8ozuUsK4l0XXDGOiCmvwLyzg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

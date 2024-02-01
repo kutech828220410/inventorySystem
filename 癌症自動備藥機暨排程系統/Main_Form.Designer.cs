@@ -39,7 +39,7 @@ namespace 癌症自動備藥機暨排程系統
             this.contextMenuStrip_備藥通知 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItem_取得即時備藥通知 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button2 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_開始備藥 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable4 = new MyUI.RJ_Lable();
             this.panel5 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button11 = new MyUI.PLC_RJ_Button();
@@ -977,61 +977,59 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.plC_RJ_Button2);
+            this.panel7.Controls.Add(this.plC_RJ_Button_開始備藥);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(0, 1246);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1056, 142);
             this.panel7.TabIndex = 2;
             // 
-            // plC_RJ_Button2
+            // plC_RJ_Button_開始備藥
             // 
-            this.plC_RJ_Button2.AutoResetState = false;
-            this.plC_RJ_Button2.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button2.Bool = false;
-            this.plC_RJ_Button2.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button2.BorderRadius = 30;
-            this.plC_RJ_Button2.BorderSize = 0;
-            this.plC_RJ_Button2.but_press = false;
-            this.plC_RJ_Button2.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_RJ_Button2.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button2.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button2.GUID = "";
-            this.plC_RJ_Button2.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button2.Location = new System.Drawing.Point(0, 0);
-            this.plC_RJ_Button2.Name = "plC_RJ_Button2";
-            this.plC_RJ_Button2.OFF_文字內容 = "開  始  備  藥";
-            this.plC_RJ_Button2.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button2.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button2.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button2.ON_BorderSize = 5;
-            this.plC_RJ_Button2.ON_文字內容 = "開  始  備  藥";
-            this.plC_RJ_Button2.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button2.ON_文字顏色 = System.Drawing.Color.LightGray;
-            this.plC_RJ_Button2.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button2.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button2.ShadowSize = 3;
-            this.plC_RJ_Button2.ShowLoadingForm = false;
-            this.plC_RJ_Button2.Size = new System.Drawing.Size(1056, 142);
-            this.plC_RJ_Button2.State = false;
-            this.plC_RJ_Button2.TabIndex = 9;
-            this.plC_RJ_Button2.Text = "開  始  備  藥";
-            this.plC_RJ_Button2.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button2.Texts = "開  始  備  藥";
-            this.plC_RJ_Button2.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button2.字型鎖住 = false;
-            this.plC_RJ_Button2.寫入元件位置 = "M30000";
-            this.plC_RJ_Button2.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_RJ_Button2.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button2.文字鎖住 = false;
-            this.plC_RJ_Button2.讀取位元反向 = false;
-            this.plC_RJ_Button2.讀取元件位置 = "M30000";
-            this.plC_RJ_Button2.讀寫鎖住 = false;
-            this.plC_RJ_Button2.音效 = true;
-            this.plC_RJ_Button2.顯示 = false;
-            this.plC_RJ_Button2.顯示狀態 = false;
+            this.plC_RJ_Button_開始備藥.AutoResetState = false;
+            this.plC_RJ_Button_開始備藥.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_開始備藥.Bool = false;
+            this.plC_RJ_Button_開始備藥.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_開始備藥.BorderRadius = 30;
+            this.plC_RJ_Button_開始備藥.BorderSize = 0;
+            this.plC_RJ_Button_開始備藥.but_press = false;
+            this.plC_RJ_Button_開始備藥.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_開始備藥.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_Button_開始備藥.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_開始備藥.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_開始備藥.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_開始備藥.GUID = "";
+            this.plC_RJ_Button_開始備藥.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_開始備藥.Location = new System.Drawing.Point(0, 0);
+            this.plC_RJ_Button_開始備藥.Name = "plC_RJ_Button_開始備藥";
+            this.plC_RJ_Button_開始備藥.OFF_文字內容 = "開  始  備  藥";
+            this.plC_RJ_Button_開始備藥.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_開始備藥.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_開始備藥.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_開始備藥.ON_BorderSize = 5;
+            this.plC_RJ_Button_開始備藥.ON_文字內容 = "開  始  備  藥";
+            this.plC_RJ_Button_開始備藥.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_開始備藥.ON_文字顏色 = System.Drawing.Color.LightGray;
+            this.plC_RJ_Button_開始備藥.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_開始備藥.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_開始備藥.ShadowSize = 3;
+            this.plC_RJ_Button_開始備藥.ShowLoadingForm = false;
+            this.plC_RJ_Button_開始備藥.Size = new System.Drawing.Size(1056, 142);
+            this.plC_RJ_Button_開始備藥.State = false;
+            this.plC_RJ_Button_開始備藥.TabIndex = 9;
+            this.plC_RJ_Button_開始備藥.Text = "開  始  備  藥";
+            this.plC_RJ_Button_開始備藥.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_開始備藥.Texts = "開  始  備  藥";
+            this.plC_RJ_Button_開始備藥.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_開始備藥.字型鎖住 = false;
+            this.plC_RJ_Button_開始備藥.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_開始備藥.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_開始備藥.文字鎖住 = false;
+            this.plC_RJ_Button_開始備藥.讀取位元反向 = false;
+            this.plC_RJ_Button_開始備藥.讀寫鎖住 = false;
+            this.plC_RJ_Button_開始備藥.音效 = true;
+            this.plC_RJ_Button_開始備藥.顯示 = false;
+            this.plC_RJ_Button_開始備藥.顯示狀態 = false;
             // 
             // rJ_Lable4
             // 
@@ -19588,7 +19586,7 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_RJ_Button plC_RJ_Button1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
-        private MyUI.PLC_RJ_Button plC_RJ_Button2;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_開始備藥;
         private MyUI.RJ_Lable rJ_Lable4;
         private System.Windows.Forms.Panel panel5;
         private SQLUI.SQL_DataGridView sqL_DataGridView_備藥通知;

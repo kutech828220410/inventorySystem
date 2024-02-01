@@ -201,8 +201,43 @@ namespace HIS_DB_Lib
         [JsonPropertyName("ctcvars")]
         public List<udnoectc_ctcvars> ctcvarsAry { get; set; }
 
-        
+        public List<List<udnoectc_orders>> 藥囑資料
+        {
+            get
+            {
+                ordersAry.Sort(new ICP_udnoectc_orders());
+                List<List<udnoectc_orders>> udnoectc_Orders = new List<List<udnoectc_orders>>();
+                List<string> str_temp = (from temp in ordersAry
+                                         select temp.服藥順序).Distinct().ToList();
+                for (int i = 0; i < str_temp.Count; i++)
+                {
+                    List<udnoectc_orders> udnoectc_Orders_buf = (from temp in ordersAry
+                                                                 where temp.服藥順序 == str_temp[i]
+                                                                 select temp).ToList();
+                    if(udnoectc_Orders_buf.Count > 0)
+                    {
+                        udnoectc_Orders.LockAdd(udnoectc_Orders_buf);
+                    }
+                }
+                
+                return udnoectc_Orders;
+            }
+        }
+        private class ICP_udnoectc_orders : IComparer<udnoectc_orders>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(udnoectc_orders x, udnoectc_orders y)
+            {
 
+                int compare = x.服藥順序.CompareTo(y.服藥順序);
+                if(compare == 0)
+                {
+                    return x.藥囑序號.CompareTo(y.藥囑序號);
+                }
+                else return compare;
+            }
+        }
     }
 
     public enum enum_udnoectc_orders

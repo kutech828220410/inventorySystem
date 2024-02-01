@@ -670,3 +670,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨�
 C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨自動備藥系統.csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.exe
 C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_備藥清單.resources
