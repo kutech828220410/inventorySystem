@@ -24,6 +24,24 @@ namespace HIS_DB_Lib
         誤差量,
         誤差金額
     }
+    public enum enum_盤點覆盤_Excel
+    {
+        藥碼,
+        料號,
+        藥名,
+        單位,
+        單價,
+        庫存量,
+        庫存金額,
+        盤點量,
+        庫存差異量,
+        異動後結存量,
+        消耗量,
+        覆盤量,
+        結存金額,
+        誤差量,
+        誤差金額
+    }
     public enum enum_盤點單上傳_Excel
     {
         藥碼,
