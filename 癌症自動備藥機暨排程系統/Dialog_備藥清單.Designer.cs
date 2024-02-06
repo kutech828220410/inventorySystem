@@ -41,12 +41,14 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable17 = new MyUI.RJ_Lable();
             this.panel2 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_服藥順序 = new SQLUI.SQL_DataGridView();
+            this.plC_RJ_Button_變異紀錄 = new MyUI.PLC_RJ_Button();
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.plC_RJ_Button_變異紀錄);
             this.panel1.Controls.Add(this.plC_RJ_Button_返回);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -314,6 +316,53 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_服藥順序.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_服藥順序.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
+            // plC_RJ_Button_變異紀錄
+            // 
+            this.plC_RJ_Button_變異紀錄.AutoResetState = false;
+            this.plC_RJ_Button_變異紀錄.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_變異紀錄.Bool = false;
+            this.plC_RJ_Button_變異紀錄.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_變異紀錄.BorderRadius = 20;
+            this.plC_RJ_Button_變異紀錄.BorderSize = 0;
+            this.plC_RJ_Button_變異紀錄.but_press = false;
+            this.plC_RJ_Button_變異紀錄.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_變異紀錄.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_Button_變異紀錄.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_變異紀錄.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_變異紀錄.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_變異紀錄.GUID = "";
+            this.plC_RJ_Button_變異紀錄.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_變異紀錄.Location = new System.Drawing.Point(0, 0);
+            this.plC_RJ_Button_變異紀錄.Name = "plC_RJ_Button_變異紀錄";
+            this.plC_RJ_Button_變異紀錄.OFF_文字內容 = "變異紀錄";
+            this.plC_RJ_Button_變異紀錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_變異紀錄.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_變異紀錄.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_變異紀錄.ON_BorderSize = 5;
+            this.plC_RJ_Button_變異紀錄.ON_文字內容 = "變異紀錄";
+            this.plC_RJ_Button_變異紀錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_變異紀錄.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_變異紀錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_變異紀錄.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_變異紀錄.ShadowSize = 3;
+            this.plC_RJ_Button_變異紀錄.ShowLoadingForm = false;
+            this.plC_RJ_Button_變異紀錄.Size = new System.Drawing.Size(161, 88);
+            this.plC_RJ_Button_變異紀錄.State = false;
+            this.plC_RJ_Button_變異紀錄.TabIndex = 11;
+            this.plC_RJ_Button_變異紀錄.Text = "變異紀錄";
+            this.plC_RJ_Button_變異紀錄.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_變異紀錄.Texts = "變異紀錄";
+            this.plC_RJ_Button_變異紀錄.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_變異紀錄.字型鎖住 = false;
+            this.plC_RJ_Button_變異紀錄.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_變異紀錄.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_變異紀錄.文字鎖住 = false;
+            this.plC_RJ_Button_變異紀錄.讀取位元反向 = false;
+            this.plC_RJ_Button_變異紀錄.讀寫鎖住 = false;
+            this.plC_RJ_Button_變異紀錄.音效 = false;
+            this.plC_RJ_Button_變異紀錄.顯示 = false;
+            this.plC_RJ_Button_變異紀錄.顯示狀態 = false;
+            // 
             // Dialog_備藥清單
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -350,5 +399,6 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.RJ_Lable rJ_Lable17;
         private System.Windows.Forms.Panel panel2;
         private SQLUI.SQL_DataGridView sqL_DataGridView_服藥順序;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_變異紀錄;
     }
 }

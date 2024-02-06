@@ -54,7 +54,7 @@ namespace 癌症自動備藥機暨排程系統
 
             Dialog_備藥清單.form = this.ParentForm;
             this.Load += Dialog_備藥清單_Load;
-            this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
+           
 
             if(udnoectcs.Count == 0)
             {
@@ -84,18 +84,47 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_服藥順序.Init(table);
             this.sqL_DataGridView_服藥順序.Set_ColumnWidth(sqL_DataGridView_服藥順序.Width - 20, DataGridViewContentAlignment.MiddleLeft, "GUID");
             this.sqL_DataGridView_服藥順序.AutoScroll = false;
+            this.sqL_DataGridView_服藥順序.RowEnterEvent += SqL_DataGridView_服藥順序_RowEnterEvent;
             this.sqL_DataGridView_服藥順序.RowPostPaintingEvent += SqL_DataGridView_服藥順序_RowPostPaintingEvent;
+            this.sqL_DataGridView_服藥順序.RowClickEvent += SqL_DataGridView_服藥順序_RowClickEvent;
             for (int i = 0; i < udnoectc.藥囑資料.Count; i++)
             {
                 object[] value = new object[] { udnoectc.藥囑資料[i].JsonSerializationt() };
                 this.sqL_DataGridView_服藥順序.AddRow(value, false);
             }
             this.sqL_DataGridView_服藥順序.RefreshGrid();
+            this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
+            this.plC_RJ_Button_變異紀錄.MouseDownEvent += PlC_RJ_Button_變異紀錄_MouseDownEvent;
         }
-
+        #region Event
+        private void PlC_RJ_Button_變異紀錄_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Dialog_變異紀錄 dialog_變異紀錄 = new Dialog_變異紀錄(this.GUID);
+                dialog_變異紀錄.ShowDialog();
+            }));
+        }
+        private void SqL_DataGridView_服藥順序_RowClickEvent(object[] RowValue)
+        {
+            int index = sqL_DataGridView_服藥順序.GetSelectRow();
+            if (index >= 0)
+            {
+                sqL_DataGridView_服藥順序.Checked[index] = !sqL_DataGridView_服藥順序.Checked[index];
+            }
+        }
+        private void SqL_DataGridView_服藥順序_RowEnterEvent(object[] RowValue)
+        {
+          
+        }
         private void SqL_DataGridView_服藥順序_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
         {
-            using (Brush brush = new SolidBrush(Color.White))
+            Color color = Color.White;
+            if (sqL_DataGridView_服藥順序.Checked[e.RowIndex])
+            {
+                color = Color.GreenYellow;
+            }
+            using (Brush brush = new SolidBrush(color))
             {
                 int x = e.RowBounds.Left;
                 int y = e.RowBounds.Top;
@@ -160,7 +189,6 @@ namespace 癌症自動備藥機暨排程系統
             }
 
         }
-
         private void RJ_Pannel_處方內容_Paint(object sender, PaintEventArgs e)
         {
             int y = 0;
@@ -210,5 +238,6 @@ namespace 癌症自動備藥機暨排程系統
                 this.DialogResult = DialogResult.No;
             }));
         }
+        #endregion
     }
 }
