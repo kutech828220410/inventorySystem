@@ -645,7 +645,7 @@ namespace HIS_WebApi
                         list_udnoectc_orders_replace.Add(list_udnoectc_orders[0]);
                     }
                 }
-
+                if (list_udnoectc_orders_replace.Count > 0) sQLControl_udnoectc_orders.UpdateByDefulteExtra(null, list_udnoectc_orders_replace);
                 returnData.Result = $"更新資料成功!共<{list_udnoectc_orders_replace.Count}>筆資料!";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Data = null;
