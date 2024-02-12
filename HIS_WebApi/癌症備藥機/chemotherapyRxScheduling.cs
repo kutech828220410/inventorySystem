@@ -571,6 +571,97 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 更新備藥通知處方,備藥藥師
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "cheom",
+        ///     "ServerType" : "癌症備藥機",
+        ///     "Value" : "[藥師姓名]",
+        ///     "Data": 
+        ///     {
+        ///         [List(udnoectc_orders)]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("update_udnoectc_orders_comp")]
+        [HttpPost]
+        public string POST_set_udnoectc_orders_comp(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "set_udnoectc_orders_comp";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<udnoectc_orders> udnoectc_orders = returnData.Data.ObjToClass<List<udnoectc_orders>>();
+                if (udnoectc_orders == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料結構錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                //if (returnData.Value.StringIsEmpty())
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"returnData.Value 空白!";
+                //    return returnData.JsonSerializationt(true);
+                //}
+
+                returnData.Data = "";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_udnoectc_orders = new List<object[]>();
+                List<object[]> list_udnoectc_orders_replace = new List<object[]>();
+                for (int i = 0; i < udnoectc_orders.Count; i++)
+                {
+                    string GUID = udnoectc_orders[i].GUID;
+                    list_udnoectc_orders = sQLControl_udnoectc_orders.GetRowsByDefult(null, (int)enum_udnoectc_orders.GUID, GUID);
+                    if (list_udnoectc_orders.Count > 0)
+                    {
+                        list_udnoectc_orders[0][(int)enum_udnoectc_orders.備藥藥師] = returnData.Value;
+                        list_udnoectc_orders[0][(int)enum_udnoectc_orders.備藥完成時間] = DateTime.Now.ToDateTimeString();
+
+                    }
+                }
+
+                returnData.Result = $"取得資料成功!共<{list_udnoectc_orders_replace.Count}>筆資料!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = null;
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
+
 
 
         /// <summary>
