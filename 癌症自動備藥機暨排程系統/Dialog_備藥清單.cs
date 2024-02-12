@@ -94,8 +94,11 @@ namespace 癌症自動備藥機暨排程系統
             }
             this.sqL_DataGridView_服藥順序.RefreshGrid();
             this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
+            this.plC_RJ_Button_確認.MouseDownEvent += PlC_RJ_Button_確認_MouseDownEvent;
             this.plC_RJ_Button_變異紀錄.MouseDownEvent += PlC_RJ_Button_變異紀錄_MouseDownEvent;
         }
+
+       
         #region Event
         private void PlC_RJ_Button_變異紀錄_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -104,6 +107,33 @@ namespace 癌症自動備藥機暨排程系統
                 Dialog_變異紀錄 dialog_變異紀錄 = new Dialog_變異紀錄(this.GUID);
                 dialog_變異紀錄.ShowDialog();
             }));
+        }
+        private void PlC_RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_orders_comp";
+            returnData returnData = new returnData();
+            returnData.ServerName = "cheom";
+            returnData.ServerType = "癌症備藥機";
+            returnData.Value = "TEST";
+
+            List<object[]> list_value = this.sqL_DataGridView_服藥順序.Get_All_Checked_RowsValuesEx();
+            if (list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取備藥藥品", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            List<udnoectc_orders> list_udnoectc_orders = new List<udnoectc_orders>();
+            List<udnoectc_orders> list_udnoectc_orders_replace = new List<udnoectc_orders>();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                list_udnoectc_orders = list_value[i][0].ObjectToString().JsonDeserializet<List<udnoectc_orders>>();
+                list_udnoectc_orders_replace.LockAdd(list_udnoectc_orders);
+            }
+            returnData.Data = list_udnoectc_orders_replace;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
         }
         private void SqL_DataGridView_服藥順序_RowClickEvent(object[] RowValue)
         {
@@ -119,10 +149,25 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void SqL_DataGridView_服藥順序_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
         {
+            object[] value = this.sqL_DataGridView_服藥順序.GetRowsList()[e.RowIndex];
+            List<udnoectc_orders> udnoectc_Orders = value[0].ToString().JsonDeserializet<List<udnoectc_orders>>();
+            bool flag_未備藥 = true; 
             Color color = Color.White;
-            if (sqL_DataGridView_服藥順序.Checked[e.RowIndex])
+           
+            for (int i = 0; i < udnoectc_Orders.Count; i++)
             {
-                color = Color.GreenYellow;
+                if (udnoectc_Orders[i].備藥藥師.StringIsEmpty() == false) flag_未備藥 = false;
+            }
+            if(flag_未備藥)
+            {
+                if (sqL_DataGridView_服藥順序.Checked[e.RowIndex])
+                {
+                    color = Color.GreenYellow;
+                }
+            }
+            else
+            {
+                color = Color.DarkSlateGray; 
             }
             using (Brush brush = new SolidBrush(color))
             {
@@ -132,9 +177,7 @@ namespace 癌症自動備藥機暨排程系統
                 int height = e.RowBounds.Height;
                 e.Graphics.FillRectangle(brush, e.RowBounds);
                 DrawingClass.Draw.DrawRoundShadow(e.Graphics, new RectangleF(x - 1, y - 1, width, height), Color.DarkGray, 5, 5);
-                object[] value = this.sqL_DataGridView_服藥順序.GetRowsList()[e.RowIndex];
 
-                List<udnoectc_orders> udnoectc_Orders = value[0].ToString().JsonDeserializet<List<udnoectc_orders>>();
                 Size size = new Size();
                 PointF pointF = new PointF();
                 string 服藥順序 = "";

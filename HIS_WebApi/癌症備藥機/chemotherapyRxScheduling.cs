@@ -642,11 +642,11 @@ namespace HIS_WebApi
                     {
                         list_udnoectc_orders[0][(int)enum_udnoectc_orders.備藥藥師] = returnData.Value;
                         list_udnoectc_orders[0][(int)enum_udnoectc_orders.備藥完成時間] = DateTime.Now.ToDateTimeString();
-
+                        list_udnoectc_orders_replace.Add(list_udnoectc_orders[0]);
                     }
                 }
 
-                returnData.Result = $"取得資料成功!共<{list_udnoectc_orders_replace.Count}>筆資料!";
+                returnData.Result = $"更新資料成功!共<{list_udnoectc_orders_replace.Count}>筆資料!";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Data = null;
                 returnData.Code = 200;
