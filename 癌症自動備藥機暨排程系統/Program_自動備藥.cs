@@ -353,7 +353,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void ToolStripMenuItem_取得即時備藥通知_Click(object sender, EventArgs e)
         {
-            List<object[]> list_value = Function_取得備藥通知(DateTime.Now.AddDays(-1), DateTime.Now);
+            List<object[]> list_value = Function_取得備藥通知(DateTime.Now.AddDays(-5), DateTime.Now);
             this.sqL_DataGridView_備藥通知.RefreshGrid(list_value);
         }
         #endregion

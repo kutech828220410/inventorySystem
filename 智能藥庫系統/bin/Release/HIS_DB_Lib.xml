@@ -389,11 +389,6 @@
             核對時間
             </summary>
         </member>
-        <member name="T:HIS_DB_Lib.udnoectc_ctcvars">
-            <summary>
-            變異紀錄(配藥通知子項目)
-            </summary>
-        </member>
         <member name="P:HIS_DB_Lib.udnoectc_ctcvars.GUID">
             <summary>
             唯一KEY

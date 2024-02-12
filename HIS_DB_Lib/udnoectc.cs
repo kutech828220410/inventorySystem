@@ -406,6 +406,7 @@ namespace HIS_DB_Lib
         變異內容,
         說明,
     }
+    [Serializable]
     /// <summary>
     /// 變異紀錄(配藥通知子項目)
     /// </summary>
