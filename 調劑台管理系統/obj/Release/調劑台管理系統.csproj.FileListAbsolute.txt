@@ -2030,7 +2030,6 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Re
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\ZealTechUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\MeasureSystemFunction.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\MVSDK.dll
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\System.Buffers.xml
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\System.Memory.xml
@@ -2838,3 +2837,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\bin
 C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_共用區設置.resources
 C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_錯誤提示.resources
 C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_新藥建置.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\PopupControl.dll

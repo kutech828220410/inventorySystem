@@ -510,3 +510,4 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_DB_Lib\obj\Release\HI
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_DB_Lib\obj\Release\HIS_DB_Lib.dll
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
 C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\PopupControl.dll

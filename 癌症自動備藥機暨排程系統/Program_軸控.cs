@@ -61,72 +61,75 @@ namespace 癌症自動備藥機暨排程系統
         MySerialPort mySerialPort_delta_進出盒區_Y軸 = new MySerialPort();
         private void Program_軸控_Init()
         {
-  
-            mySerialPort_delta_冷藏區_X軸.BufferSize = 2048;
-            mySerialPort_delta_冷藏區_X軸.Init("COM2", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
-            DeltaMotor485.Communication.UART_Delay = 5;
-            DeltaMotor485.Communication.ConsoleWrite = false;
-            DeltaMotor485_port_冷藏區_X軸.Init(mySerialPort_delta_冷藏區_X軸, new byte[] { 1 });
-            DeltaMotor485_port_冷藏區_X軸.SleepTime = 10;
+            if (dBConfigClass.主機模式)
+            {
+                mySerialPort_delta_冷藏區_X軸.BufferSize = 2048;
+                mySerialPort_delta_冷藏區_X軸.Init("COM2", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+                DeltaMotor485.Communication.UART_Delay = 5;
+                DeltaMotor485.Communication.ConsoleWrite = false;
+                DeltaMotor485_port_冷藏區_X軸.Init(mySerialPort_delta_冷藏區_X軸, new byte[] { 1 });
+                DeltaMotor485_port_冷藏區_X軸.SleepTime = 10;
 
 
-            mySerialPort_delta_冷藏區_Z軸.BufferSize = 2048;
-            mySerialPort_delta_冷藏區_Z軸.Init("COM3", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
-            DeltaMotor485.Communication.UART_Delay = 5;
-            DeltaMotor485.Communication.ConsoleWrite = false;
-            DeltaMotor485_port_冷藏區_Z軸.Init(mySerialPort_delta_冷藏區_Z軸, new byte[] { 2 });
-            DeltaMotor485_port_冷藏區_Z軸.SleepTime = 10;
+                mySerialPort_delta_冷藏區_Z軸.BufferSize = 2048;
+                mySerialPort_delta_冷藏區_Z軸.Init("COM3", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+                DeltaMotor485.Communication.UART_Delay = 5;
+                DeltaMotor485.Communication.ConsoleWrite = false;
+                DeltaMotor485_port_冷藏區_Z軸.Init(mySerialPort_delta_冷藏區_Z軸, new byte[] { 2 });
+                DeltaMotor485_port_冷藏區_Z軸.SleepTime = 10;
 
 
-            mySerialPort_delta_常溫區_X軸.BufferSize = 2048;
-            mySerialPort_delta_常溫區_X軸.Init("COM4", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
-            DeltaMotor485.Communication.UART_Delay = 5;
-            DeltaMotor485.Communication.ConsoleWrite = false;
-            DeltaMotor485_port_常溫區_X軸.Init(mySerialPort_delta_常溫區_X軸, new byte[] { 3 });
-            DeltaMotor485_port_常溫區_X軸.SleepTime = 10;
+                mySerialPort_delta_常溫區_X軸.BufferSize = 2048;
+                mySerialPort_delta_常溫區_X軸.Init("COM4", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+                DeltaMotor485.Communication.UART_Delay = 5;
+                DeltaMotor485.Communication.ConsoleWrite = false;
+                DeltaMotor485_port_常溫區_X軸.Init(mySerialPort_delta_常溫區_X軸, new byte[] { 3 });
+                DeltaMotor485_port_常溫區_X軸.SleepTime = 10;
 
 
-            mySerialPort_delta_常溫區_Z軸.BufferSize = 2048;
-            mySerialPort_delta_常溫區_Z軸.Init("COM5", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
-            DeltaMotor485.Communication.UART_Delay = 5;
-            DeltaMotor485.Communication.ConsoleWrite = false;
-            DeltaMotor485_port_常溫區_Z軸.Init(mySerialPort_delta_常溫區_Z軸, new byte[] { 4 });
-            DeltaMotor485_port_常溫區_Z軸.SleepTime = 10;
+                mySerialPort_delta_常溫區_Z軸.BufferSize = 2048;
+                mySerialPort_delta_常溫區_Z軸.Init("COM5", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+                DeltaMotor485.Communication.UART_Delay = 5;
+                DeltaMotor485.Communication.ConsoleWrite = false;
+                DeltaMotor485_port_常溫區_Z軸.Init(mySerialPort_delta_常溫區_Z軸, new byte[] { 4 });
+                DeltaMotor485_port_常溫區_Z軸.SleepTime = 10;
 
 
-            mySerialPort_delta_進出盒區_Y軸.BufferSize = 2048;
-            mySerialPort_delta_進出盒區_Y軸.Init("COM6", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
-            DeltaMotor485.Communication.UART_Delay = 5;
-            DeltaMotor485.Communication.ConsoleWrite = false;
-            DeltaMotor485_port_進出盒區_Y軸.Init(mySerialPort_delta_進出盒區_Y軸, new byte[] { 5 });
-            DeltaMotor485_port_進出盒區_Y軸.SleepTime = 10;
+                mySerialPort_delta_進出盒區_Y軸.BufferSize = 2048;
+                mySerialPort_delta_進出盒區_Y軸.Init("COM6", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
+                DeltaMotor485.Communication.UART_Delay = 5;
+                DeltaMotor485.Communication.ConsoleWrite = false;
+                DeltaMotor485_port_進出盒區_Y軸.Init(mySerialPort_delta_進出盒區_Y軸, new byte[] { 5 });
+                DeltaMotor485_port_進出盒區_Y軸.SleepTime = 10;
 
-            this.plC_RJ_Button_冷藏區X軸_ServoON.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_ServoON_MouseDownEvent;
-            this.plC_RJ_Button_冷藏區X軸_PJOG.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_PJOG_MouseDownEvent;
-            this.plC_RJ_Button_冷藏區X軸_NJOG.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_NJOG_MouseDownEvent;
-            this.plC_RJ_Button_冷藏區X軸_Stop.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_Stop_MouseDownEvent;
-            
-            this.plC_RJ_Button_冷藏區Z軸_ServoON.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_ServoON_MouseDownEvent;
-            this.plC_RJ_Button_冷藏區Z軸_PJOG.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_PJOG_MouseDownEvent;
-            this.plC_RJ_Button_冷藏區Z軸_NJOG.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_NJOG_MouseDownEvent;
-            this.plC_RJ_Button_冷藏區Z軸_Stop.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_Stop_MouseDownEvent;
+                this.plC_RJ_Button_冷藏區X軸_ServoON.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_ServoON_MouseDownEvent;
+                this.plC_RJ_Button_冷藏區X軸_PJOG.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_PJOG_MouseDownEvent;
+                this.plC_RJ_Button_冷藏區X軸_NJOG.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_NJOG_MouseDownEvent;
+                this.plC_RJ_Button_冷藏區X軸_Stop.MouseDownEvent += PlC_RJ_Button_冷藏區X軸_Stop_MouseDownEvent;
 
-            this.plC_RJ_Button_常溫區X軸_ServoON.MouseDownEvent += PlC_RJ_Button_常溫區X軸_ServoON_MouseDownEvent;
-            this.plC_RJ_Button_常溫區X軸_PJOG.MouseDownEvent += PlC_RJ_Button_常溫區X軸_PJOG_MouseDownEvent;
-            this.plC_RJ_Button_常溫區X軸_NJOG.MouseDownEvent += PlC_RJ_Button_常溫區X軸_NJOG_MouseDownEvent;
-            this.plC_RJ_Button_常溫區X軸_Stop.MouseDownEvent += PlC_RJ_Button_常溫區X軸_Stop_MouseDownEvent;
+                this.plC_RJ_Button_冷藏區Z軸_ServoON.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_ServoON_MouseDownEvent;
+                this.plC_RJ_Button_冷藏區Z軸_PJOG.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_PJOG_MouseDownEvent;
+                this.plC_RJ_Button_冷藏區Z軸_NJOG.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_NJOG_MouseDownEvent;
+                this.plC_RJ_Button_冷藏區Z軸_Stop.MouseDownEvent += PlC_RJ_Button_冷藏區Z軸_Stop_MouseDownEvent;
 
-            this.plC_RJ_Button_常溫區Z軸_ServoON.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_ServoON_MouseDownEvent;
-            this.plC_RJ_Button_常溫區Z軸_PJOG.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_PJOG_MouseDownEvent;
-            this.plC_RJ_Button_常溫區Z軸_NJOG.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_NJOG_MouseDownEvent;
-            this.plC_RJ_Button_常溫區Z軸_Stop.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_Stop_MouseDownEvent;
+                this.plC_RJ_Button_常溫區X軸_ServoON.MouseDownEvent += PlC_RJ_Button_常溫區X軸_ServoON_MouseDownEvent;
+                this.plC_RJ_Button_常溫區X軸_PJOG.MouseDownEvent += PlC_RJ_Button_常溫區X軸_PJOG_MouseDownEvent;
+                this.plC_RJ_Button_常溫區X軸_NJOG.MouseDownEvent += PlC_RJ_Button_常溫區X軸_NJOG_MouseDownEvent;
+                this.plC_RJ_Button_常溫區X軸_Stop.MouseDownEvent += PlC_RJ_Button_常溫區X軸_Stop_MouseDownEvent;
 
-            this.plC_RJ_Button_進出盒區Y軸_ServoON.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_ServoON_MouseDownEvent;
-            this.plC_RJ_Button_進出盒區Y軸_PJOG.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_PJOG_MouseDownEvent;
-            this.plC_RJ_Button_進出盒區Y軸_NJOG.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_NJOG_MouseDownEvent;
-            this.plC_RJ_Button_進出盒區Y軸_Stop.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_Stop_MouseDownEvent;
+                this.plC_RJ_Button_常溫區Z軸_ServoON.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_ServoON_MouseDownEvent;
+                this.plC_RJ_Button_常溫區Z軸_PJOG.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_PJOG_MouseDownEvent;
+                this.plC_RJ_Button_常溫區Z軸_NJOG.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_NJOG_MouseDownEvent;
+                this.plC_RJ_Button_常溫區Z軸_Stop.MouseDownEvent += PlC_RJ_Button_常溫區Z軸_Stop_MouseDownEvent;
 
-            this.plC_UI_Init.Add_Method(Program_軸控);
+                this.plC_RJ_Button_進出盒區Y軸_ServoON.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_ServoON_MouseDownEvent;
+                this.plC_RJ_Button_進出盒區Y軸_PJOG.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_PJOG_MouseDownEvent;
+                this.plC_RJ_Button_進出盒區Y軸_NJOG.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_NJOG_MouseDownEvent;
+                this.plC_RJ_Button_進出盒區Y軸_Stop.MouseDownEvent += PlC_RJ_Button_進出盒區Y軸_Stop_MouseDownEvent;
+
+                this.plC_UI_Init.Add_Method(Program_軸控);
+            }
+               
         }
 
    

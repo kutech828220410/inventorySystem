@@ -360,7 +360,6 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OOXML.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\NPOI.OpenXmlFormats.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\System.Buffers.xml
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\System.Memory.xml
@@ -1081,3 +1080,4 @@ C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_L
 C:\Users\Administrator\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\PopupControl.dll

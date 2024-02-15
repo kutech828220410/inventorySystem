@@ -1517,4 +1517,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OOXML.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXmlFormats.dll
-C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\PopupControl.dll

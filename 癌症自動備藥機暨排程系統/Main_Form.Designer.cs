@@ -29,20 +29,16 @@ namespace 癌症自動備藥機暨排程系統
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.plC_ScreenPage_main = new MyUI.PLC_ScreenPage();
             this.自動備藥 = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.uc_備藥通知處方 = new 癌症自動備藥機暨排程系統.uc_備藥通知處方();
             this.rJ_Lable_備藥狀態 = new MyUI.RJ_Lable();
-            this.sqL_DataGridView_備藥通知 = new SQLUI.SQL_DataGridView();
-            this.contextMenuStrip_備藥通知 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ToolStripMenuItem_取得即時備藥通知 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel7 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_開始備藥 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable4 = new MyUI.RJ_Lable();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button11 = new MyUI.PLC_RJ_Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.rJ_Lable3 = new MyUI.RJ_Lable();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -58,47 +54,13 @@ namespace 癌症自動備藥機暨排程系統
             this.panel2 = new System.Windows.Forms.Panel();
             this.調配排程 = new System.Windows.Forms.TabPage();
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.rJ_Lable34 = new MyUI.RJ_Lable();
-            this.rJ_Lable33 = new MyUI.RJ_Lable();
-            this.rJ_Lable32 = new MyUI.RJ_Lable();
-            this.rJ_Pannel4 = new MyUI.RJ_Pannel();
-            this.rJ_Lable27 = new MyUI.RJ_Lable();
-            this.rJ_Lable28 = new MyUI.RJ_Lable();
-            this.rJ_Lable29 = new MyUI.RJ_Lable();
-            this.rJ_Lable30 = new MyUI.RJ_Lable();
-            this.rJ_Lable31 = new MyUI.RJ_Lable();
-            this.rJ_Pannel5 = new MyUI.RJ_Pannel();
-            this.rJ_Lable26 = new MyUI.RJ_Lable();
-            this.rJ_Lable25 = new MyUI.RJ_Lable();
-            this.rJ_Lable24 = new MyUI.RJ_Lable();
-            this.rJ_Lable23 = new MyUI.RJ_Lable();
-            this.rJ_Lable22 = new MyUI.RJ_Lable();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.rJ_Lable21 = new MyUI.RJ_Lable();
-            this.rJ_Lable20 = new MyUI.RJ_Lable();
-            this.rJ_Lable19 = new MyUI.RJ_Lable();
-            this.rJ_Lable18 = new MyUI.RJ_Lable();
-            this.rJ_Lable17 = new MyUI.RJ_Lable();
+            this.uc_備藥通知內容1 = new 癌症自動備藥機暨排程系統.uc_備藥通知處方內容();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.rJ_Pannel3 = new MyUI.RJ_Pannel();
-            this.rJ_Lable16 = new MyUI.RJ_Lable();
-            this.rJ_Lable15 = new MyUI.RJ_Lable();
-            this.rJ_Lable13 = new MyUI.RJ_Lable();
-            this.rJ_Lable14 = new MyUI.RJ_Lable();
-            this.rJ_Pannel2 = new MyUI.RJ_Pannel();
-            this.rJ_Lable7 = new MyUI.RJ_Lable();
-            this.rJ_Lable12 = new MyUI.RJ_Lable();
-            this.rJ_Lable8 = new MyUI.RJ_Lable();
-            this.rJ_Lable11 = new MyUI.RJ_Lable();
-            this.rJ_Lable9 = new MyUI.RJ_Lable();
-            this.rJ_Lable10 = new MyUI.RJ_Lable();
             this.panel9 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button5 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button4 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button3 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable6 = new MyUI.RJ_Lable();
-            this.rJ_Lable5 = new MyUI.RJ_Lable();
             this.panel1 = new System.Windows.Forms.Panel();
             this.出入庫作業 = new System.Windows.Forms.TabPage();
             this.plC_RJ_Button8 = new MyUI.PLC_RJ_Button();
@@ -754,25 +716,19 @@ namespace 癌症自動備藥機暨排程系統
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.plC_RJ_Button_調配排程_處方選擇 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_main.SuspendLayout();
             this.自動備藥.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.contextMenuStrip_備藥通知.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel185.SuspendLayout();
             this.panel183.SuspendLayout();
             this.調配排程.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.rJ_Pannel4.SuspendLayout();
-            this.rJ_Pannel5.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.rJ_Pannel3.SuspendLayout();
-            this.rJ_Pannel2.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.出入庫作業.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -881,15 +837,23 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.uc_備藥通知處方);
             this.panel6.Controls.Add(this.rJ_Lable_備藥狀態);
-            this.panel6.Controls.Add(this.sqL_DataGridView_備藥通知);
             this.panel6.Controls.Add(this.panel7);
             this.panel6.Controls.Add(this.rJ_Lable4);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 346);
+            this.panel6.Location = new System.Drawing.Point(0, 286);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1056, 1388);
+            this.panel6.Size = new System.Drawing.Size(1056, 1448);
             this.panel6.TabIndex = 3;
+            // 
+            // uc_備藥通知處方
+            // 
+            this.uc_備藥通知處方.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uc_備藥通知處方.Location = new System.Drawing.Point(0, 698);
+            this.uc_備藥通知處方.Name = "uc_備藥通知處方";
+            this.uc_備藥通知處方.Size = new System.Drawing.Size(1056, 608);
+            this.uc_備藥通知處方.TabIndex = 6;
             // 
             // rJ_Lable_備藥狀態
             // 
@@ -914,72 +878,11 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable_備藥狀態.TextColor = System.Drawing.Color.White;
             this.rJ_Lable_備藥狀態.Visible = false;
             // 
-            // sqL_DataGridView_備藥通知
-            // 
-            this.sqL_DataGridView_備藥通知.AutoSelectToDeep = false;
-            this.sqL_DataGridView_備藥通知.backColor = System.Drawing.Color.Silver;
-            this.sqL_DataGridView_備藥通知.BorderColor = System.Drawing.Color.Silver;
-            this.sqL_DataGridView_備藥通知.BorderRadius = 0;
-            this.sqL_DataGridView_備藥通知.BorderSize = 2;
-            this.sqL_DataGridView_備藥通知.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_備藥通知.cellStylBackColor = System.Drawing.Color.PowderBlue;
-            this.sqL_DataGridView_備藥通知.cellStyleFont = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_備藥通知.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_備藥通知.columnHeaderBackColor = System.Drawing.Color.DarkGray;
-            this.sqL_DataGridView_備藥通知.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_備藥通知.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_備藥通知.columnHeadersHeight = 40;
-            this.sqL_DataGridView_備藥通知.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.sqL_DataGridView_備藥通知.ContextMenuStrip = this.contextMenuStrip_備藥通知;
-            this.sqL_DataGridView_備藥通知.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqL_DataGridView_備藥通知.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_備藥通知.ImageBox = false;
-            this.sqL_DataGridView_備藥通知.Location = new System.Drawing.Point(0, 110);
-            this.sqL_DataGridView_備藥通知.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.sqL_DataGridView_備藥通知.Name = "sqL_DataGridView_備藥通知";
-            this.sqL_DataGridView_備藥通知.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_備藥通知.Password = "user82822040";
-            this.sqL_DataGridView_備藥通知.Port = ((uint)(3306u));
-            this.sqL_DataGridView_備藥通知.rowHeaderBackColor = System.Drawing.Color.Gray;
-            this.sqL_DataGridView_備藥通知.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_備藥通知.RowsColor = System.Drawing.SystemColors.Control;
-            this.sqL_DataGridView_備藥通知.RowsHeight = 80;
-            this.sqL_DataGridView_備藥通知.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_備藥通知.Server = "127.0.0.0";
-            this.sqL_DataGridView_備藥通知.Size = new System.Drawing.Size(1056, 1136);
-            this.sqL_DataGridView_備藥通知.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_備藥通知.TabIndex = 4;
-            this.sqL_DataGridView_備藥通知.UserName = "root";
-            this.sqL_DataGridView_備藥通知.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_備藥通知.可選擇多列 = false;
-            this.sqL_DataGridView_備藥通知.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.sqL_DataGridView_備藥通知.自動換行 = true;
-            this.sqL_DataGridView_備藥通知.表單字體 = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_備藥通知.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sqL_DataGridView_備藥通知.顯示CheckBox = false;
-            this.sqL_DataGridView_備藥通知.顯示首列 = false;
-            this.sqL_DataGridView_備藥通知.顯示首行 = false;
-            this.sqL_DataGridView_備藥通知.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_備藥通知.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            // 
-            // contextMenuStrip_備藥通知
-            // 
-            this.contextMenuStrip_備藥通知.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItem_取得即時備藥通知});
-            this.contextMenuStrip_備藥通知.Name = "contextMenuStrip_備藥通知";
-            this.contextMenuStrip_備藥通知.Size = new System.Drawing.Size(171, 26);
-            // 
-            // ToolStripMenuItem_取得即時備藥通知
-            // 
-            this.ToolStripMenuItem_取得即時備藥通知.Name = "ToolStripMenuItem_取得即時備藥通知";
-            this.ToolStripMenuItem_取得即時備藥通知.Size = new System.Drawing.Size(170, 22);
-            this.ToolStripMenuItem_取得即時備藥通知.Text = "取得即時備藥通知";
-            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.plC_RJ_Button_開始備藥);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 1246);
+            this.panel7.Location = new System.Drawing.Point(0, 1306);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1056, 142);
             this.panel7.TabIndex = 2;
@@ -1055,59 +958,11 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.plC_RJ_Button11);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 259);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1056, 87);
+            this.panel5.Size = new System.Drawing.Size(1056, 27);
             this.panel5.TabIndex = 2;
-            // 
-            // plC_RJ_Button11
-            // 
-            this.plC_RJ_Button11.AutoResetState = false;
-            this.plC_RJ_Button11.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button11.Bool = false;
-            this.plC_RJ_Button11.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button11.BorderRadius = 20;
-            this.plC_RJ_Button11.BorderSize = 0;
-            this.plC_RJ_Button11.but_press = false;
-            this.plC_RJ_Button11.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_Button11.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button11.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button11.GUID = "";
-            this.plC_RJ_Button11.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button11.Location = new System.Drawing.Point(0, 0);
-            this.plC_RJ_Button11.Name = "plC_RJ_Button11";
-            this.plC_RJ_Button11.OFF_文字內容 = "顯示處方細節";
-            this.plC_RJ_Button11.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button11.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button11.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button11.ON_BorderSize = 5;
-            this.plC_RJ_Button11.ON_文字內容 = "顯示處方細節";
-            this.plC_RJ_Button11.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button11.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button11.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button11.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button11.ShadowSize = 3;
-            this.plC_RJ_Button11.ShowLoadingForm = false;
-            this.plC_RJ_Button11.Size = new System.Drawing.Size(161, 87);
-            this.plC_RJ_Button11.State = false;
-            this.plC_RJ_Button11.TabIndex = 9;
-            this.plC_RJ_Button11.Text = "顯示處方細節";
-            this.plC_RJ_Button11.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button11.Texts = "顯示處方細節";
-            this.plC_RJ_Button11.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button11.字型鎖住 = false;
-            this.plC_RJ_Button11.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button11.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button11.文字鎖住 = false;
-            this.plC_RJ_Button11.讀取位元反向 = false;
-            this.plC_RJ_Button11.讀寫鎖住 = false;
-            this.plC_RJ_Button11.音效 = true;
-            this.plC_RJ_Button11.顯示 = false;
-            this.plC_RJ_Button11.顯示狀態 = false;
             // 
             // panel3
             // 
@@ -1312,7 +1167,6 @@ namespace 癌症自動備藥機暨排程系統
             this.調配排程.Controls.Add(this.rJ_Pannel1);
             this.調配排程.Controls.Add(this.panel9);
             this.調配排程.Controls.Add(this.rJ_Lable6);
-            this.調配排程.Controls.Add(this.rJ_Lable5);
             this.調配排程.Controls.Add(this.panel1);
             this.調配排程.Location = new System.Drawing.Point(4, 25);
             this.調配排程.Name = "調配排程";
@@ -1327,758 +1181,34 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Pannel1.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel1.BorderRadius = 0;
             this.rJ_Pannel1.BorderSize = 0;
-            this.rJ_Pannel1.Controls.Add(this.panel11);
-            this.rJ_Pannel1.Controls.Add(this.rJ_Pannel4);
-            this.rJ_Pannel1.Controls.Add(this.rJ_Pannel5);
-            this.rJ_Pannel1.Controls.Add(this.panel10);
+            this.rJ_Pannel1.Controls.Add(this.uc_備藥通知內容1);
             this.rJ_Pannel1.Controls.Add(this.panel8);
-            this.rJ_Pannel1.Controls.Add(this.rJ_Pannel3);
-            this.rJ_Pannel1.Controls.Add(this.rJ_Pannel2);
             this.rJ_Pannel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Pannel1.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel1.IsSelected = false;
-            this.rJ_Pannel1.Location = new System.Drawing.Point(0, 369);
+            this.rJ_Pannel1.Location = new System.Drawing.Point(0, 205);
             this.rJ_Pannel1.Name = "rJ_Pannel1";
             this.rJ_Pannel1.Padding = new System.Windows.Forms.Padding(5, 5, 10, 5);
             this.rJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel1.ShadowSize = 3;
-            this.rJ_Pannel1.Size = new System.Drawing.Size(1056, 1265);
+            this.rJ_Pannel1.Size = new System.Drawing.Size(1056, 1429);
             this.rJ_Pannel1.TabIndex = 6;
             // 
-            // panel11
+            // uc_備藥通知內容1
             // 
-            this.panel11.Controls.Add(this.rJ_Lable34);
-            this.panel11.Controls.Add(this.rJ_Lable33);
-            this.panel11.Controls.Add(this.rJ_Lable32);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(5, 1160);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1041, 100);
-            this.panel11.TabIndex = 13;
-            // 
-            // rJ_Lable34
-            // 
-            this.rJ_Lable34.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable34.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable34.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable34.BorderRadius = 0;
-            this.rJ_Lable34.BorderSize = 0;
-            this.rJ_Lable34.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable34.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable34.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable34.GUID = "";
-            this.rJ_Lable34.Location = new System.Drawing.Point(674, 0);
-            this.rJ_Lable34.Name = "rJ_Lable34";
-            this.rJ_Lable34.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable34.ShadowSize = 0;
-            this.rJ_Lable34.Size = new System.Drawing.Size(337, 100);
-            this.rJ_Lable34.TabIndex = 9;
-            this.rJ_Lable34.Text = "再次核對藥師:";
-            this.rJ_Lable34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable34.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable33
-            // 
-            this.rJ_Lable33.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable33.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable33.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable33.BorderRadius = 0;
-            this.rJ_Lable33.BorderSize = 0;
-            this.rJ_Lable33.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable33.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable33.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable33.GUID = "";
-            this.rJ_Lable33.Location = new System.Drawing.Point(337, 0);
-            this.rJ_Lable33.Name = "rJ_Lable33";
-            this.rJ_Lable33.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable33.ShadowSize = 0;
-            this.rJ_Lable33.Size = new System.Drawing.Size(337, 100);
-            this.rJ_Lable33.TabIndex = 8;
-            this.rJ_Lable33.Text = "調配認藥師:";
-            this.rJ_Lable33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable33.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable32
-            // 
-            this.rJ_Lable32.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable32.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable32.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable32.BorderRadius = 0;
-            this.rJ_Lable32.BorderSize = 0;
-            this.rJ_Lable32.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable32.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable32.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable32.GUID = "";
-            this.rJ_Lable32.Location = new System.Drawing.Point(0, 0);
-            this.rJ_Lable32.Name = "rJ_Lable32";
-            this.rJ_Lable32.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable32.ShadowSize = 0;
-            this.rJ_Lable32.Size = new System.Drawing.Size(337, 100);
-            this.rJ_Lable32.TabIndex = 7;
-            this.rJ_Lable32.Text = "醫囑確認藥師: 王毅夫";
-            this.rJ_Lable32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable32.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Pannel4
-            // 
-            this.rJ_Pannel4.BackColor = System.Drawing.Color.White;
-            this.rJ_Pannel4.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Pannel4.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Pannel4.BorderRadius = 10;
-            this.rJ_Pannel4.BorderSize = 1;
-            this.rJ_Pannel4.Controls.Add(this.rJ_Lable27);
-            this.rJ_Pannel4.Controls.Add(this.rJ_Lable28);
-            this.rJ_Pannel4.Controls.Add(this.rJ_Lable29);
-            this.rJ_Pannel4.Controls.Add(this.rJ_Lable30);
-            this.rJ_Pannel4.Controls.Add(this.rJ_Lable31);
-            this.rJ_Pannel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Pannel4.ForeColor = System.Drawing.Color.White;
-            this.rJ_Pannel4.IsSelected = false;
-            this.rJ_Pannel4.Location = new System.Drawing.Point(5, 584);
-            this.rJ_Pannel4.Name = "rJ_Pannel4";
-            this.rJ_Pannel4.Padding = new System.Windows.Forms.Padding(10);
-            this.rJ_Pannel4.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel4.ShadowSize = 3;
-            this.rJ_Pannel4.Size = new System.Drawing.Size(1041, 160);
-            this.rJ_Pannel4.TabIndex = 12;
-            // 
-            // rJ_Lable27
-            // 
-            this.rJ_Lable27.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable27.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable27.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable27.BorderRadius = 0;
-            this.rJ_Lable27.BorderSize = 0;
-            this.rJ_Lable27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_Lable27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable27.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable27.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable27.GUID = "";
-            this.rJ_Lable27.Location = new System.Drawing.Point(859, 10);
-            this.rJ_Lable27.Name = "rJ_Lable27";
-            this.rJ_Lable27.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable27.ShadowSize = 0;
-            this.rJ_Lable27.Size = new System.Drawing.Size(172, 140);
-            this.rJ_Lable27.TabIndex = 9;
-            this.rJ_Lable27.Text = "<CC102>\r\n02/02-02/03\r\n02/02-02/03";
-            this.rJ_Lable27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable27.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable28
-            // 
-            this.rJ_Lable28.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable28.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable28.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable28.BorderRadius = 0;
-            this.rJ_Lable28.BorderSize = 0;
-            this.rJ_Lable28.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable28.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable28.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable28.GUID = "";
-            this.rJ_Lable28.Location = new System.Drawing.Point(759, 10);
-            this.rJ_Lable28.Name = "rJ_Lable28";
-            this.rJ_Lable28.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable28.ShadowSize = 0;
-            this.rJ_Lable28.Size = new System.Drawing.Size(100, 140);
-            this.rJ_Lable28.TabIndex = 8;
-            this.rJ_Lable28.Text = "2\r\n1";
-            this.rJ_Lable28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable28.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable29
-            // 
-            this.rJ_Lable29.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable29.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable29.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable29.BorderRadius = 0;
-            this.rJ_Lable29.BorderSize = 0;
-            this.rJ_Lable29.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable29.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable29.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable29.GUID = "";
-            this.rJ_Lable29.Location = new System.Drawing.Point(453, 10);
-            this.rJ_Lable29.Name = "rJ_Lable29";
-            this.rJ_Lable29.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable29.ShadowSize = 0;
-            this.rJ_Lable29.Size = new System.Drawing.Size(306, 140);
-            this.rJ_Lable29.TabIndex = 7;
-            this.rJ_Lable29.Text = "2000 MG  IVA STAT\r\n250  ML  IVA STAT";
-            this.rJ_Lable29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable29.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable30
-            // 
-            this.rJ_Lable30.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable30.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable30.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable30.BorderRadius = 0;
-            this.rJ_Lable30.BorderSize = 0;
-            this.rJ_Lable30.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable30.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable30.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable30.GUID = "";
-            this.rJ_Lable30.Location = new System.Drawing.Point(89, 10);
-            this.rJ_Lable30.Name = "rJ_Lable30";
-            this.rJ_Lable30.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable30.ShadowSize = 0;
-            this.rJ_Lable30.Size = new System.Drawing.Size(364, 140);
-            this.rJ_Lable30.TabIndex = 6;
-            this.rJ_Lable30.Text = "★冷藏 Gemmis Inj 1000mg/30ml\r\nSod. Chloride 0.9% 250ml/PP/Bot\r\n*** FOR 30 MINS";
-            this.rJ_Lable30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable30.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable31
-            // 
-            this.rJ_Lable31.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable31.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable31.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable31.BorderRadius = 0;
-            this.rJ_Lable31.BorderSize = 0;
-            this.rJ_Lable31.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable31.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable31.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable31.GUID = "";
-            this.rJ_Lable31.Location = new System.Drawing.Point(10, 10);
-            this.rJ_Lable31.Name = "rJ_Lable31";
-            this.rJ_Lable31.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable31.ShadowSize = 0;
-            this.rJ_Lable31.Size = new System.Drawing.Size(79, 140);
-            this.rJ_Lable31.TabIndex = 5;
-            this.rJ_Lable31.Text = "2";
-            this.rJ_Lable31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable31.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Pannel5
-            // 
-            this.rJ_Pannel5.BackColor = System.Drawing.Color.White;
-            this.rJ_Pannel5.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Pannel5.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Pannel5.BorderRadius = 10;
-            this.rJ_Pannel5.BorderSize = 1;
-            this.rJ_Pannel5.Controls.Add(this.rJ_Lable26);
-            this.rJ_Pannel5.Controls.Add(this.rJ_Lable25);
-            this.rJ_Pannel5.Controls.Add(this.rJ_Lable24);
-            this.rJ_Pannel5.Controls.Add(this.rJ_Lable23);
-            this.rJ_Pannel5.Controls.Add(this.rJ_Lable22);
-            this.rJ_Pannel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Pannel5.ForeColor = System.Drawing.Color.White;
-            this.rJ_Pannel5.IsSelected = false;
-            this.rJ_Pannel5.Location = new System.Drawing.Point(5, 464);
-            this.rJ_Pannel5.Name = "rJ_Pannel5";
-            this.rJ_Pannel5.Padding = new System.Windows.Forms.Padding(10);
-            this.rJ_Pannel5.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel5.ShadowSize = 3;
-            this.rJ_Pannel5.Size = new System.Drawing.Size(1041, 120);
-            this.rJ_Pannel5.TabIndex = 11;
-            // 
-            // rJ_Lable26
-            // 
-            this.rJ_Lable26.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable26.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable26.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable26.BorderRadius = 0;
-            this.rJ_Lable26.BorderSize = 0;
-            this.rJ_Lable26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_Lable26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable26.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable26.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable26.GUID = "";
-            this.rJ_Lable26.Location = new System.Drawing.Point(859, 10);
-            this.rJ_Lable26.Name = "rJ_Lable26";
-            this.rJ_Lable26.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable26.ShadowSize = 0;
-            this.rJ_Lable26.Size = new System.Drawing.Size(172, 100);
-            this.rJ_Lable26.TabIndex = 9;
-            this.rJ_Lable26.Text = "<CC102>\r\n02/02-02/03";
-            this.rJ_Lable26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable26.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable25
-            // 
-            this.rJ_Lable25.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable25.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable25.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable25.BorderRadius = 0;
-            this.rJ_Lable25.BorderSize = 0;
-            this.rJ_Lable25.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable25.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable25.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable25.GUID = "";
-            this.rJ_Lable25.Location = new System.Drawing.Point(759, 10);
-            this.rJ_Lable25.Name = "rJ_Lable25";
-            this.rJ_Lable25.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable25.ShadowSize = 0;
-            this.rJ_Lable25.Size = new System.Drawing.Size(100, 100);
-            this.rJ_Lable25.TabIndex = 8;
-            this.rJ_Lable25.Text = "2";
-            this.rJ_Lable25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable25.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable24
-            // 
-            this.rJ_Lable24.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable24.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable24.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable24.BorderRadius = 0;
-            this.rJ_Lable24.BorderSize = 0;
-            this.rJ_Lable24.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable24.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable24.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable24.GUID = "";
-            this.rJ_Lable24.Location = new System.Drawing.Point(453, 10);
-            this.rJ_Lable24.Name = "rJ_Lable24";
-            this.rJ_Lable24.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable24.ShadowSize = 0;
-            this.rJ_Lable24.Size = new System.Drawing.Size(306, 100);
-            this.rJ_Lable24.TabIndex = 7;
-            this.rJ_Lable24.Text = "200 MG  IVA STAT";
-            this.rJ_Lable24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable24.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable23
-            // 
-            this.rJ_Lable23.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable23.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable23.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable23.BorderRadius = 0;
-            this.rJ_Lable23.BorderSize = 0;
-            this.rJ_Lable23.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable23.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable23.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable23.GUID = "";
-            this.rJ_Lable23.Location = new System.Drawing.Point(89, 10);
-            this.rJ_Lable23.Name = "rJ_Lable23";
-            this.rJ_Lable23.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable23.ShadowSize = 0;
-            this.rJ_Lable23.Size = new System.Drawing.Size(364, 100);
-            this.rJ_Lable23.TabIndex = 6;
-            this.rJ_Lable23.Text = "★ Abraxane Inj 100mg(Import)USA\r\n*** run 40 mins";
-            this.rJ_Lable23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable23.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable22
-            // 
-            this.rJ_Lable22.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable22.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable22.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable22.BorderRadius = 0;
-            this.rJ_Lable22.BorderSize = 0;
-            this.rJ_Lable22.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable22.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable22.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable22.GUID = "";
-            this.rJ_Lable22.Location = new System.Drawing.Point(10, 10);
-            this.rJ_Lable22.Name = "rJ_Lable22";
-            this.rJ_Lable22.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable22.ShadowSize = 0;
-            this.rJ_Lable22.Size = new System.Drawing.Size(79, 100);
-            this.rJ_Lable22.TabIndex = 5;
-            this.rJ_Lable22.Text = "1";
-            this.rJ_Lable22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable22.TextColor = System.Drawing.Color.Black;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.rJ_Lable21);
-            this.panel10.Controls.Add(this.rJ_Lable20);
-            this.panel10.Controls.Add(this.rJ_Lable19);
-            this.panel10.Controls.Add(this.rJ_Lable18);
-            this.panel10.Controls.Add(this.rJ_Lable17);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(5, 394);
-            this.panel10.Name = "panel10";
-            this.panel10.Padding = new System.Windows.Forms.Padding(5, 5, 5, 0);
-            this.panel10.Size = new System.Drawing.Size(1041, 70);
-            this.panel10.TabIndex = 9;
-            // 
-            // rJ_Lable21
-            // 
-            this.rJ_Lable21.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable21.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable21.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable21.BorderRadius = 0;
-            this.rJ_Lable21.BorderSize = 0;
-            this.rJ_Lable21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_Lable21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable21.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable21.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable21.GUID = "";
-            this.rJ_Lable21.Location = new System.Drawing.Point(859, 5);
-            this.rJ_Lable21.Name = "rJ_Lable21";
-            this.rJ_Lable21.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable21.ShadowSize = 0;
-            this.rJ_Lable21.Size = new System.Drawing.Size(177, 65);
-            this.rJ_Lable21.TabIndex = 8;
-            this.rJ_Lable21.Text = "期限";
-            this.rJ_Lable21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable21.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Lable20
-            // 
-            this.rJ_Lable20.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable20.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable20.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable20.BorderRadius = 0;
-            this.rJ_Lable20.BorderSize = 0;
-            this.rJ_Lable20.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable20.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable20.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable20.GUID = "";
-            this.rJ_Lable20.Location = new System.Drawing.Point(759, 5);
-            this.rJ_Lable20.Name = "rJ_Lable20";
-            this.rJ_Lable20.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable20.ShadowSize = 0;
-            this.rJ_Lable20.Size = new System.Drawing.Size(100, 65);
-            this.rJ_Lable20.TabIndex = 7;
-            this.rJ_Lable20.Text = "數量";
-            this.rJ_Lable20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable20.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Lable19
-            // 
-            this.rJ_Lable19.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable19.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable19.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable19.BorderRadius = 0;
-            this.rJ_Lable19.BorderSize = 0;
-            this.rJ_Lable19.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable19.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable19.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable19.GUID = "";
-            this.rJ_Lable19.Location = new System.Drawing.Point(453, 5);
-            this.rJ_Lable19.Name = "rJ_Lable19";
-            this.rJ_Lable19.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable19.ShadowSize = 0;
-            this.rJ_Lable19.Size = new System.Drawing.Size(306, 65);
-            this.rJ_Lable19.TabIndex = 6;
-            this.rJ_Lable19.Text = "劑量及用法";
-            this.rJ_Lable19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable19.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Lable18
-            // 
-            this.rJ_Lable18.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable18.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable18.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable18.BorderRadius = 0;
-            this.rJ_Lable18.BorderSize = 0;
-            this.rJ_Lable18.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable18.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable18.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable18.GUID = "";
-            this.rJ_Lable18.Location = new System.Drawing.Point(84, 5);
-            this.rJ_Lable18.Name = "rJ_Lable18";
-            this.rJ_Lable18.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable18.ShadowSize = 0;
-            this.rJ_Lable18.Size = new System.Drawing.Size(369, 65);
-            this.rJ_Lable18.TabIndex = 5;
-            this.rJ_Lable18.Text = "藥名";
-            this.rJ_Lable18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable18.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Lable17
-            // 
-            this.rJ_Lable17.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable17.BackgroundColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable17.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable17.BorderRadius = 0;
-            this.rJ_Lable17.BorderSize = 0;
-            this.rJ_Lable17.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rJ_Lable17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable17.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable17.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable17.GUID = "";
-            this.rJ_Lable17.Location = new System.Drawing.Point(5, 5);
-            this.rJ_Lable17.Name = "rJ_Lable17";
-            this.rJ_Lable17.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable17.ShadowSize = 0;
-            this.rJ_Lable17.Size = new System.Drawing.Size(79, 65);
-            this.rJ_Lable17.TabIndex = 4;
-            this.rJ_Lable17.Text = "服藥\r\n順序";
-            this.rJ_Lable17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable17.TextColor = System.Drawing.Color.White;
+            this.uc_備藥通知內容1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uc_備藥通知內容1.Location = new System.Drawing.Point(5, 23);
+            this.uc_備藥通知內容1.Name = "uc_備藥通知內容1";
+            this.uc_備藥通知內容1.Size = new System.Drawing.Size(1041, 1401);
+            this.uc_備藥通知內容1.TabIndex = 9;
             // 
             // panel8
             // 
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(5, 376);
+            this.panel8.Location = new System.Drawing.Point(5, 5);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1041, 18);
             this.panel8.TabIndex = 8;
-            // 
-            // rJ_Pannel3
-            // 
-            this.rJ_Pannel3.BackColor = System.Drawing.Color.White;
-            this.rJ_Pannel3.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Pannel3.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel3.BorderRadius = 10;
-            this.rJ_Pannel3.BorderSize = 2;
-            this.rJ_Pannel3.Controls.Add(this.rJ_Lable16);
-            this.rJ_Pannel3.Controls.Add(this.rJ_Lable15);
-            this.rJ_Pannel3.Controls.Add(this.rJ_Lable13);
-            this.rJ_Pannel3.Controls.Add(this.rJ_Lable14);
-            this.rJ_Pannel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Pannel3.ForeColor = System.Drawing.Color.White;
-            this.rJ_Pannel3.IsSelected = false;
-            this.rJ_Pannel3.Location = new System.Drawing.Point(5, 181);
-            this.rJ_Pannel3.Name = "rJ_Pannel3";
-            this.rJ_Pannel3.Padding = new System.Windows.Forms.Padding(20, 20, 10, 5);
-            this.rJ_Pannel3.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel3.ShadowSize = 3;
-            this.rJ_Pannel3.Size = new System.Drawing.Size(1041, 195);
-            this.rJ_Pannel3.TabIndex = 7;
-            // 
-            // rJ_Lable16
-            // 
-            this.rJ_Lable16.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable16.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable16.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable16.BorderRadius = 10;
-            this.rJ_Lable16.BorderSize = 0;
-            this.rJ_Lable16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable16.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable16.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable16.GUID = "";
-            this.rJ_Lable16.Location = new System.Drawing.Point(20, 140);
-            this.rJ_Lable16.Name = "rJ_Lable16";
-            this.rJ_Lable16.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable16.ShadowSize = 0;
-            this.rJ_Lable16.Size = new System.Drawing.Size(1011, 40);
-            this.rJ_Lable16.TabIndex = 8;
-            this.rJ_Lable16.Text = "Platelet: 557 K/uL";
-            this.rJ_Lable16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable16.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable15
-            // 
-            this.rJ_Lable15.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable15.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable15.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable15.BorderRadius = 10;
-            this.rJ_Lable15.BorderSize = 0;
-            this.rJ_Lable15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable15.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable15.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable15.GUID = "";
-            this.rJ_Lable15.Location = new System.Drawing.Point(20, 100);
-            this.rJ_Lable15.Name = "rJ_Lable15";
-            this.rJ_Lable15.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable15.ShadowSize = 0;
-            this.rJ_Lable15.Size = new System.Drawing.Size(1011, 40);
-            this.rJ_Lable15.TabIndex = 7;
-            this.rJ_Lable15.Text = "HBV:NONREACTIVE                     HCV:0.10             WBC:6.4 K/uL\r\n";
-            this.rJ_Lable15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable15.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable13
-            // 
-            this.rJ_Lable13.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable13.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable13.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable13.BorderRadius = 10;
-            this.rJ_Lable13.BorderSize = 0;
-            this.rJ_Lable13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable13.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable13.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable13.GUID = "";
-            this.rJ_Lable13.Location = new System.Drawing.Point(20, 60);
-            this.rJ_Lable13.Name = "rJ_Lable13";
-            this.rJ_Lable13.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable13.ShadowSize = 0;
-            this.rJ_Lable13.Size = new System.Drawing.Size(1011, 40);
-            this.rJ_Lable13.TabIndex = 6;
-            this.rJ_Lable13.Text = "化學治療前檢核項目:";
-            this.rJ_Lable13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable13.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable14
-            // 
-            this.rJ_Lable14.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable14.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable14.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable14.BorderRadius = 10;
-            this.rJ_Lable14.BorderSize = 0;
-            this.rJ_Lable14.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable14.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable14.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable14.GUID = "";
-            this.rJ_Lable14.Location = new System.Drawing.Point(20, 20);
-            this.rJ_Lable14.Name = "rJ_Lable14";
-            this.rJ_Lable14.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable14.ShadowSize = 0;
-            this.rJ_Lable14.Size = new System.Drawing.Size(1011, 40);
-            this.rJ_Lable14.TabIndex = 5;
-            this.rJ_Lable14.Text = "RegimenName : Gen + nab-paclitaxel                                   天數順序 : D1/D2" +
-    "";
-            this.rJ_Lable14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable14.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Pannel2
-            // 
-            this.rJ_Pannel2.BackColor = System.Drawing.Color.White;
-            this.rJ_Pannel2.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Pannel2.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel2.BorderRadius = 10;
-            this.rJ_Pannel2.BorderSize = 2;
-            this.rJ_Pannel2.Controls.Add(this.rJ_Lable7);
-            this.rJ_Pannel2.Controls.Add(this.rJ_Lable12);
-            this.rJ_Pannel2.Controls.Add(this.rJ_Lable8);
-            this.rJ_Pannel2.Controls.Add(this.rJ_Lable11);
-            this.rJ_Pannel2.Controls.Add(this.rJ_Lable9);
-            this.rJ_Pannel2.Controls.Add(this.rJ_Lable10);
-            this.rJ_Pannel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Pannel2.ForeColor = System.Drawing.Color.White;
-            this.rJ_Pannel2.IsSelected = false;
-            this.rJ_Pannel2.Location = new System.Drawing.Point(5, 5);
-            this.rJ_Pannel2.Name = "rJ_Pannel2";
-            this.rJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel2.ShadowSize = 3;
-            this.rJ_Pannel2.Size = new System.Drawing.Size(1041, 176);
-            this.rJ_Pannel2.TabIndex = 6;
-            // 
-            // rJ_Lable7
-            // 
-            this.rJ_Lable7.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable7.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable7.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable7.BorderRadius = 10;
-            this.rJ_Lable7.BorderSize = 0;
-            this.rJ_Lable7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable7.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable7.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable7.GUID = "";
-            this.rJ_Lable7.Location = new System.Drawing.Point(29, 23);
-            this.rJ_Lable7.Name = "rJ_Lable7";
-            this.rJ_Lable7.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable7.ShadowSize = 0;
-            this.rJ_Lable7.Size = new System.Drawing.Size(150, 40);
-            this.rJ_Lable7.TabIndex = 0;
-            this.rJ_Lable7.Text = "【住院】";
-            this.rJ_Lable7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable7.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable12
-            // 
-            this.rJ_Lable12.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable12.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable12.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable12.BorderRadius = 10;
-            this.rJ_Lable12.BorderSize = 0;
-            this.rJ_Lable12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable12.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable12.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable12.GUID = "";
-            this.rJ_Lable12.Location = new System.Drawing.Point(33, 67);
-            this.rJ_Lable12.Name = "rJ_Lable12";
-            this.rJ_Lable12.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable12.ShadowSize = 0;
-            this.rJ_Lable12.Size = new System.Drawing.Size(1002, 40);
-            this.rJ_Lable12.TabIndex = 5;
-            this.rJ_Lable12.Text = "W72     029    宋元平       5179555       1966/07/02   男  身高 : 180  體重 : 84.8";
-            this.rJ_Lable12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable12.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable8
-            // 
-            this.rJ_Lable8.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable8.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable8.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable8.BorderRadius = 10;
-            this.rJ_Lable8.BorderSize = 0;
-            this.rJ_Lable8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable8.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable8.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable8.GUID = "";
-            this.rJ_Lable8.Location = new System.Drawing.Point(174, 23);
-            this.rJ_Lable8.Name = "rJ_Lable8";
-            this.rJ_Lable8.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable8.ShadowSize = 0;
-            this.rJ_Lable8.Size = new System.Drawing.Size(316, 40);
-            this.rJ_Lable8.TabIndex = 1;
-            this.rJ_Lable8.Text = "日期 : 20230202 08:17:00";
-            this.rJ_Lable8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable8.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable11
-            // 
-            this.rJ_Lable11.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable11.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable11.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable11.BorderRadius = 10;
-            this.rJ_Lable11.BorderSize = 0;
-            this.rJ_Lable11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable11.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable11.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable11.GUID = "";
-            this.rJ_Lable11.Location = new System.Drawing.Point(496, 111);
-            this.rJ_Lable11.Name = "rJ_Lable11";
-            this.rJ_Lable11.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable11.ShadowSize = 0;
-            this.rJ_Lable11.Size = new System.Drawing.Size(258, 40);
-            this.rJ_Lable11.TabIndex = 4;
-            this.rJ_Lable11.Text = "開立醫師 : 王國強";
-            this.rJ_Lable11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable11.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable9
-            // 
-            this.rJ_Lable9.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable9.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable9.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable9.BorderRadius = 10;
-            this.rJ_Lable9.BorderSize = 0;
-            this.rJ_Lable9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable9.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable9.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable9.GUID = "";
-            this.rJ_Lable9.Location = new System.Drawing.Point(7, 111);
-            this.rJ_Lable9.Name = "rJ_Lable9";
-            this.rJ_Lable9.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable9.ShadowSize = 0;
-            this.rJ_Lable9.Size = new System.Drawing.Size(258, 40);
-            this.rJ_Lable9.TabIndex = 2;
-            this.rJ_Lable9.Text = "診斷 : 胰臟惡性腫瘤";
-            this.rJ_Lable9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable9.TextColor = System.Drawing.Color.Black;
-            // 
-            // rJ_Lable10
-            // 
-            this.rJ_Lable10.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable10.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable10.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable10.BorderRadius = 10;
-            this.rJ_Lable10.BorderSize = 0;
-            this.rJ_Lable10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable10.Font = new System.Drawing.Font("標楷體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable10.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable10.GUID = "";
-            this.rJ_Lable10.Location = new System.Drawing.Point(259, 111);
-            this.rJ_Lable10.Name = "rJ_Lable10";
-            this.rJ_Lable10.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable10.ShadowSize = 0;
-            this.rJ_Lable10.Size = new System.Drawing.Size(258, 40);
-            this.rJ_Lable10.TabIndex = 3;
-            this.rJ_Lable10.Text = "科別 : 一般外科";
-            this.rJ_Lable10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable10.TextColor = System.Drawing.Color.Black;
             // 
             // panel9
             // 
@@ -2244,7 +1374,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable6.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable6.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable6.GUID = "";
-            this.rJ_Lable6.Location = new System.Drawing.Point(0, 259);
+            this.rJ_Lable6.Location = new System.Drawing.Point(0, 95);
             this.rJ_Lable6.Name = "rJ_Lable6";
             this.rJ_Lable6.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable6.ShadowSize = 3;
@@ -2254,34 +1384,13 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable6.TextColor = System.Drawing.Color.White;
             // 
-            // rJ_Lable5
-            // 
-            this.rJ_Lable5.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable5.BackgroundColor = System.Drawing.Color.White;
-            this.rJ_Lable5.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Lable5.BorderRadius = 10;
-            this.rJ_Lable5.BorderSize = 1;
-            this.rJ_Lable5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable5.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable5.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable5.GUID = "";
-            this.rJ_Lable5.Location = new System.Drawing.Point(0, 33);
-            this.rJ_Lable5.Name = "rJ_Lable5";
-            this.rJ_Lable5.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable5.ShadowSize = 3;
-            this.rJ_Lable5.Size = new System.Drawing.Size(1056, 226);
-            this.rJ_Lable5.TabIndex = 2;
-            this.rJ_Lable5.Text = "已  鎖  定  處  方";
-            this.rJ_Lable5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable5.TextColor = System.Drawing.Color.Black;
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.plC_RJ_Button_調配排程_處方選擇);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1056, 33);
+            this.panel1.Size = new System.Drawing.Size(1056, 95);
             this.panel1.TabIndex = 1;
             // 
             // 出入庫作業
@@ -19441,6 +18550,52 @@ namespace 癌症自動備藥機暨排程系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
             // 
+            // plC_RJ_Button_調配排程_處方選擇
+            // 
+            this.plC_RJ_Button_調配排程_處方選擇.AutoResetState = false;
+            this.plC_RJ_Button_調配排程_處方選擇.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_調配排程_處方選擇.Bool = false;
+            this.plC_RJ_Button_調配排程_處方選擇.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_調配排程_處方選擇.BorderRadius = 20;
+            this.plC_RJ_Button_調配排程_處方選擇.BorderSize = 0;
+            this.plC_RJ_Button_調配排程_處方選擇.but_press = false;
+            this.plC_RJ_Button_調配排程_處方選擇.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_調配排程_處方選擇.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_調配排程_處方選擇.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_調配排程_處方選擇.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_調配排程_處方選擇.GUID = "";
+            this.plC_RJ_Button_調配排程_處方選擇.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_調配排程_處方選擇.Location = new System.Drawing.Point(11, 14);
+            this.plC_RJ_Button_調配排程_處方選擇.Name = "plC_RJ_Button_調配排程_處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字內容 = "處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_調配排程_處方選擇.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_調配排程_處方選擇.ON_BorderSize = 5;
+            this.plC_RJ_Button_調配排程_處方選擇.ON_文字內容 = "處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_調配排程_處方選擇.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_調配排程_處方選擇.ON_背景顏色 = System.Drawing.SystemColors.ControlDark;
+            this.plC_RJ_Button_調配排程_處方選擇.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_調配排程_處方選擇.ShadowSize = 3;
+            this.plC_RJ_Button_調配排程_處方選擇.ShowLoadingForm = false;
+            this.plC_RJ_Button_調配排程_處方選擇.Size = new System.Drawing.Size(144, 67);
+            this.plC_RJ_Button_調配排程_處方選擇.State = false;
+            this.plC_RJ_Button_調配排程_處方選擇.TabIndex = 9;
+            this.plC_RJ_Button_調配排程_處方選擇.Text = "處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_調配排程_處方選擇.Texts = "處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_調配排程_處方選擇.字型鎖住 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_調配排程_處方選擇.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_調配排程_處方選擇.文字鎖住 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.讀取位元反向 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.讀寫鎖住 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.音效 = true;
+            this.plC_RJ_Button_調配排程_處方選擇.顯示 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.顯示狀態 = false;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -19457,9 +18612,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_ScreenPage_main.ResumeLayout(false);
             this.自動備藥.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            this.contextMenuStrip_備藥通知.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel185.ResumeLayout(false);
@@ -19468,13 +18621,8 @@ namespace 癌症自動備藥機暨排程系統
             this.panel183.PerformLayout();
             this.調配排程.ResumeLayout(false);
             this.rJ_Pannel1.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.rJ_Pannel4.ResumeLayout(false);
-            this.rJ_Pannel5.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.rJ_Pannel3.ResumeLayout(false);
-            this.rJ_Pannel2.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.出入庫作業.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
@@ -19589,47 +18737,11 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_RJ_Button plC_RJ_Button_開始備藥;
         private MyUI.RJ_Lable rJ_Lable4;
         private System.Windows.Forms.Panel panel5;
-        private SQLUI.SQL_DataGridView sqL_DataGridView_備藥通知;
         private MyUI.RJ_Lable rJ_Lable6;
-        private MyUI.RJ_Lable rJ_Lable5;
         private System.Windows.Forms.Panel panel1;
         private MyUI.RJ_Pannel rJ_Pannel1;
-        private MyUI.RJ_Pannel rJ_Pannel5;
-        private System.Windows.Forms.Panel panel10;
-        private MyUI.RJ_Lable rJ_Lable21;
-        private MyUI.RJ_Lable rJ_Lable20;
-        private MyUI.RJ_Lable rJ_Lable19;
-        private MyUI.RJ_Lable rJ_Lable18;
-        private MyUI.RJ_Lable rJ_Lable17;
         private System.Windows.Forms.Panel panel8;
-        private MyUI.RJ_Pannel rJ_Pannel3;
-        private MyUI.RJ_Lable rJ_Lable16;
-        private MyUI.RJ_Lable rJ_Lable15;
-        private MyUI.RJ_Lable rJ_Lable13;
-        private MyUI.RJ_Lable rJ_Lable14;
-        private MyUI.RJ_Pannel rJ_Pannel2;
-        private MyUI.RJ_Lable rJ_Lable7;
-        private MyUI.RJ_Lable rJ_Lable12;
-        private MyUI.RJ_Lable rJ_Lable8;
-        private MyUI.RJ_Lable rJ_Lable11;
-        private MyUI.RJ_Lable rJ_Lable9;
-        private MyUI.RJ_Lable rJ_Lable10;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel11;
-        private MyUI.RJ_Lable rJ_Lable34;
-        private MyUI.RJ_Lable rJ_Lable33;
-        private MyUI.RJ_Lable rJ_Lable32;
-        private MyUI.RJ_Pannel rJ_Pannel4;
-        private MyUI.RJ_Lable rJ_Lable27;
-        private MyUI.RJ_Lable rJ_Lable28;
-        private MyUI.RJ_Lable rJ_Lable29;
-        private MyUI.RJ_Lable rJ_Lable30;
-        private MyUI.RJ_Lable rJ_Lable31;
-        private MyUI.RJ_Lable rJ_Lable26;
-        private MyUI.RJ_Lable rJ_Lable25;
-        private MyUI.RJ_Lable rJ_Lable24;
-        private MyUI.RJ_Lable rJ_Lable23;
-        private MyUI.RJ_Lable rJ_Lable22;
         private MyUI.PLC_RJ_Button plC_RJ_Button5;
         private MyUI.PLC_RJ_Button plC_RJ_Button4;
         private MyUI.PLC_RJ_Button plC_RJ_Button3;
@@ -20286,9 +19398,9 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_Button plC_Button71;
         private MyUI.PLC_Button plC_Button72;
         private MyUI.RJ_Lable rJ_Lable_備藥狀態;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip_備藥通知;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_取得即時備藥通知;
-        private MyUI.PLC_RJ_Button plC_RJ_Button11;
+        private 癌症自動備藥機暨排程系統.uc_備藥通知處方內容 uc_備藥通知內容1;
+        private uc_備藥通知處方 uc_備藥通知處方;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_調配排程_處方選擇;
     }
 }
 

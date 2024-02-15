@@ -660,3 +660,4 @@ C:\Users\User\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerS
 C:\Users\User\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\Users\User\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\User\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\PopupControl.dll

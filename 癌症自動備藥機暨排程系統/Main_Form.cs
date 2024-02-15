@@ -219,6 +219,7 @@ namespace 癌症自動備藥機暨排程系統
             Program_儲位設定_Init();
             Program_工程模式_Init();
             Program_自動備藥_Init();
+            Program_調配排程_Init();
 
             sqL_DataGridView_出入庫作業.Init();
         }

@@ -43,10 +43,10 @@ namespace 癌症自動備藥機暨排程系統
                 driver_IO_Board.SleepTime = 0;
                 driver_IO_Board.ProgramEvent += Driver_IO_Board_ProgramEvent;
                 driver_IO_Board.Init(mySerial_IO, new byte[] { 0, 1, 2 });
-
+                this.plC_UI_Init.Add_Method(Program_輸入輸出);
             }
            
-            this.plC_UI_Init.Add_Method(Program_輸入輸出);
+ 
         }
         public void Program_輸入輸出()
         {

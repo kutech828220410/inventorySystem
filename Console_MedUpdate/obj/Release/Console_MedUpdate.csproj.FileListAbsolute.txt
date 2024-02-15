@@ -492,3 +492,4 @@ C:\Users\HS\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Li
 C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\PopupControl.dll
