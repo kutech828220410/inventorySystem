@@ -48,6 +48,8 @@ namespace 癌症自動備藥機暨排程系統
         {
             Dialog_備藥通知處方選擇 dialog_備藥通知處方選擇 = new Dialog_備藥通知處方選擇();
             if (dialog_備藥通知處方選擇.ShowDialog() != DialogResult.Yes) return;
+
+            uc_備藥通知內容.Init(dialog_備藥通知處方選擇.udnoectc, 登入者名稱 ,true);
         }
         #endregion
     }

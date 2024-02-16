@@ -17,6 +17,8 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class uc_備藥通知處方內容 : UserControl
     {
+        private string _login_name = "";
+        private bool flag_init = false;
         public udnoectc udnoectc = null;
         public uc_備藥通知處方內容()
         {
@@ -29,22 +31,59 @@ namespace 癌症自動備藥機暨排程系統
             List<object[]> list_value = this.sqL_DataGridView_服藥順序.Get_All_Checked_RowsValuesEx();
             return list_value;
         }
-        public void Init(udnoectc udnoectc)
+        public void Init(udnoectc udnoectc , string login_name ,bool show_func_panel)
         {
             this.udnoectc = udnoectc;
-            rJ_Pannel_處方內容.Paint += RJ_Pannel_處方內容_Paint;
-            rJ_Pannel_備藥內容.Paint += RJ_Pannel_備藥內容_Paint;
+            this._login_name = login_name;
+            if (flag_init == false)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    this.panel_功能表.Visible = show_func_panel;
 
-            Table table = new Table("");
-            table.AddColumnList("GUID", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+                    rJ_Pannel_處方內容.Paint += RJ_Pannel_處方內容_Paint;
+                    rJ_Pannel_備藥內容.Paint += RJ_Pannel_備藥內容_Paint;
 
-            this.sqL_DataGridView_服藥順序.RowsHeight = 250;
-            this.sqL_DataGridView_服藥順序.Init(table);
-            this.sqL_DataGridView_服藥順序.Set_ColumnWidth(sqL_DataGridView_服藥順序.Width - 20, DataGridViewContentAlignment.MiddleLeft, "GUID");
-            this.sqL_DataGridView_服藥順序.AutoScroll = false;
-            this.sqL_DataGridView_服藥順序.RowEnterEvent += SqL_DataGridView_服藥順序_RowEnterEvent;
-            this.sqL_DataGridView_服藥順序.RowPostPaintingEvent += SqL_DataGridView_服藥順序_RowPostPaintingEvent;
-            this.sqL_DataGridView_服藥順序.RowClickEvent += SqL_DataGridView_服藥順序_RowClickEvent;
+                    Table table = new Table("");
+                    table.AddColumnList("GUID", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+
+                    this.sqL_DataGridView_服藥順序.RowsHeight = 250;
+                    this.sqL_DataGridView_服藥順序.Init(table);
+                    this.sqL_DataGridView_服藥順序.Set_ColumnWidth(sqL_DataGridView_服藥順序.Width - 20, DataGridViewContentAlignment.MiddleLeft, "GUID");
+                    this.sqL_DataGridView_服藥順序.AutoScroll = false;
+                    this.sqL_DataGridView_服藥順序.RowEnterEvent += SqL_DataGridView_服藥順序_RowEnterEvent;
+                    this.sqL_DataGridView_服藥順序.RowPostPaintingEvent += SqL_DataGridView_服藥順序_RowPostPaintingEvent;
+                    this.sqL_DataGridView_服藥順序.RowClickEvent += SqL_DataGridView_服藥順序_RowClickEvent;
+
+                    plC_RJ_Button_醫囑確認.MouseDownEvent += PlC_RJ_Button_醫囑確認_MouseDownEvent;
+                    plC_RJ_Button_調配完成.MouseDownEvent += PlC_RJ_Button_調配完成_MouseDownEvent;
+                    plC_RJ_Button_處方核對.MouseDownEvent += PlC_RJ_Button_處方核對_MouseDownEvent;
+                }));
+
+            }
+
+
+            refresh_UI();
+
+            flag_init = true;
+        }
+        public udnoectc Get_udnoectc_by_GUID(string GUID)
+        {
+            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_GUID";
+            returnData returnData = new returnData();
+            returnData.ServerName = "cheom";
+            returnData.ServerType = "癌症備藥機";
+            returnData.Value = GUID;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            List<udnoectc> udnoectcs = returnData.Data.ObjToClass<List<udnoectc>>();
+            return udnoectcs[0];
+        }
+
+
+        private void refresh_UI()
+        {
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < udnoectc.藥囑資料.Count; i++)
             {
@@ -52,12 +91,59 @@ namespace 癌症自動備藥機暨排程系統
                 this.sqL_DataGridView_服藥順序.AddRow(value, false);
                 list_value.Add(value);
             }
-            this.sqL_DataGridView_服藥順序.RefreshGrid(list_value);
+
+            this.Invoke(new Action(delegate
+            {
+                this.label_醫囑確認.Text = udnoectc.醫囑確認藥師;
+                this.label_調配完成.Text = udnoectc.調劑藥師;
+                this.label_處方核對.Text = udnoectc.核對藥師;
+
+                this.sqL_DataGridView_服藥順序.RefreshGrid(list_value);
+                rJ_Pannel_備藥內容.Refresh();
+                rJ_Pannel_處方內容.Refresh();
+
+                if (udnoectc.醫囑確認藥師.StringIsEmpty() == true)
+                {
+                    this.plC_RJ_Button_醫囑確認.Enabled = true;
+                    this.plC_RJ_Button_調配完成.Enabled = false;
+                    this.plC_RJ_Button_處方核對.Enabled = false;
+                }
+                else if (udnoectc.調劑藥師.StringIsEmpty() == true)
+                {
+                    this.plC_RJ_Button_醫囑確認.Enabled = false;
+                    this.plC_RJ_Button_調配完成.Enabled = true;
+                    this.plC_RJ_Button_處方核對.Enabled = false;
+                }
+                else if (udnoectc.核對藥師.StringIsEmpty() == true)
+                {
+                    this.plC_RJ_Button_醫囑確認.Enabled = false;
+                    this.plC_RJ_Button_調配完成.Enabled = false;
+                    this.plC_RJ_Button_處方核對.Enabled = true;
+                }
+                else
+                {
+                    this.plC_RJ_Button_醫囑確認.Enabled = false;
+                    this.plC_RJ_Button_調配完成.Enabled = false;
+                    this.plC_RJ_Button_處方核對.Enabled = false;
+                }
+            }));
         }
         private void Uc_備藥通知內容_Load(object sender, EventArgs e)
         {
+            this.panel_醫囑確認.Width = this.Width / 3;
+            this.panel_調配完成.Width = this.Width / 3;
+            this.panel_處方核對.Width = this.Width / 3;
+
+            this.plC_RJ_Button_醫囑確認.Width = this.Width / 3;
+            this.plC_RJ_Button_調配完成.Width = this.Width / 3;
+            this.plC_RJ_Button_處方核對.Width = this.Width / 3;
+            this.plC_RJ_Button_醫囑確認.Enabled = false;
+            this.plC_RJ_Button_調配完成.Enabled = false;
+            this.plC_RJ_Button_處方核對.Enabled = false;
 
         }
+
+        #region Event
         private void SqL_DataGridView_服藥順序_RowClickEvent(object[] RowValue)
         {
             int index = sqL_DataGridView_服藥順序.GetSelectRow();
@@ -209,5 +295,55 @@ namespace 癌症自動備藥機暨排程系統
             DrawingClass.Draw.文字左上繪製(開立醫師, new PointF(840 * 0.8F, y + 100), new Font("標楷體", 14, FontStyle.Bold), Color.Black, e.Graphics);
 
         }
+    
+        private void PlC_RJ_Button_醫囑確認_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_confirm_ph";
+            returnData returnData = new returnData();
+            returnData.ServerName = "cheom";
+            returnData.ServerType = "癌症備藥機";
+            returnData.Value = this._login_name;
+            returnData.Data = udnoectc;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            udnoectc = Get_udnoectc_by_GUID(udnoectc.GUID);
+            refresh_UI();
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("醫囑確認完成", 1500, Color.DarkGreen);
+            dialog_AlarmForm.ShowDialog();
+        }
+        private void PlC_RJ_Button_調配完成_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_disp_ph";
+            returnData returnData = new returnData();
+            returnData.ServerName = "cheom";
+            returnData.ServerType = "癌症備藥機";
+            returnData.Value = this._login_name;
+            returnData.Data = udnoectc;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            udnoectc = Get_udnoectc_by_GUID(udnoectc.GUID);
+            refresh_UI();
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("調配完成", 1500, Color.DarkGreen);
+            dialog_AlarmForm.ShowDialog();
+        }
+        private void PlC_RJ_Button_處方核對_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_check_ph";
+            returnData returnData = new returnData();
+            returnData.ServerName = "cheom";
+            returnData.ServerType = "癌症備藥機";
+            returnData.Value = this._login_name;
+            returnData.Data = udnoectc;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            udnoectc = Get_udnoectc_by_GUID(udnoectc.GUID);
+            refresh_UI();
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方核對完成", 1500, Color.DarkGreen);
+            dialog_AlarmForm.ShowDialog();
+        }
+      
+
+        #endregion
+
     }
 }

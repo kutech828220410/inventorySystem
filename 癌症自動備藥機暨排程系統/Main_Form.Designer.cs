@@ -54,14 +54,11 @@ namespace 癌症自動備藥機暨排程系統
             this.panel2 = new System.Windows.Forms.Panel();
             this.調配排程 = new System.Windows.Forms.TabPage();
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
-            this.uc_備藥通知內容1 = new 癌症自動備藥機暨排程系統.uc_備藥通知處方內容();
+            this.uc_備藥通知內容 = new 癌症自動備藥機暨排程系統.uc_備藥通知處方內容();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button5 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button4 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button3 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable6 = new MyUI.RJ_Lable();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_調配排程_處方選擇 = new MyUI.PLC_RJ_Button();
             this.出入庫作業 = new System.Windows.Forms.TabPage();
             this.plC_RJ_Button8 = new MyUI.PLC_RJ_Button();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -716,7 +713,6 @@ namespace 癌症自動備藥機暨排程系統
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.plC_RJ_Button_調配排程_處方選擇 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_main.SuspendLayout();
             this.自動備藥.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -727,7 +723,6 @@ namespace 癌症自動備藥機暨排程系統
             this.panel183.SuspendLayout();
             this.調配排程.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel1.SuspendLayout();
             this.出入庫作業.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -1165,7 +1160,6 @@ namespace 癌症自動備藥機暨排程系統
             // 
             this.調配排程.BackColor = System.Drawing.Color.White;
             this.調配排程.Controls.Add(this.rJ_Pannel1);
-            this.調配排程.Controls.Add(this.panel9);
             this.調配排程.Controls.Add(this.rJ_Lable6);
             this.調配排程.Controls.Add(this.panel1);
             this.調配排程.Location = new System.Drawing.Point(4, 25);
@@ -1181,7 +1175,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Pannel1.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel1.BorderRadius = 0;
             this.rJ_Pannel1.BorderSize = 0;
-            this.rJ_Pannel1.Controls.Add(this.uc_備藥通知內容1);
+            this.rJ_Pannel1.Controls.Add(this.uc_備藥通知內容);
             this.rJ_Pannel1.Controls.Add(this.panel8);
             this.rJ_Pannel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Pannel1.ForeColor = System.Drawing.Color.White;
@@ -1191,16 +1185,16 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Pannel1.Padding = new System.Windows.Forms.Padding(5, 5, 10, 5);
             this.rJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel1.ShadowSize = 3;
-            this.rJ_Pannel1.Size = new System.Drawing.Size(1056, 1429);
+            this.rJ_Pannel1.Size = new System.Drawing.Size(1056, 1529);
             this.rJ_Pannel1.TabIndex = 6;
             // 
-            // uc_備藥通知內容1
+            // uc_備藥通知內容
             // 
-            this.uc_備藥通知內容1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uc_備藥通知內容1.Location = new System.Drawing.Point(5, 23);
-            this.uc_備藥通知內容1.Name = "uc_備藥通知內容1";
-            this.uc_備藥通知內容1.Size = new System.Drawing.Size(1041, 1401);
-            this.uc_備藥通知內容1.TabIndex = 9;
+            this.uc_備藥通知內容.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uc_備藥通知內容.Location = new System.Drawing.Point(5, 23);
+            this.uc_備藥通知內容.Name = "uc_備藥通知內容";
+            this.uc_備藥通知內容.Size = new System.Drawing.Size(1041, 1501);
+            this.uc_備藥通知內容.TabIndex = 9;
             // 
             // panel8
             // 
@@ -1209,158 +1203,6 @@ namespace 癌症自動備藥機暨排程系統
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1041, 18);
             this.panel8.TabIndex = 8;
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.plC_RJ_Button5);
-            this.panel9.Controls.Add(this.plC_RJ_Button4);
-            this.panel9.Controls.Add(this.plC_RJ_Button3);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel9.Location = new System.Drawing.Point(0, 1634);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1056, 100);
-            this.panel9.TabIndex = 5;
-            // 
-            // plC_RJ_Button5
-            // 
-            this.plC_RJ_Button5.AutoResetState = false;
-            this.plC_RJ_Button5.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button5.Bool = false;
-            this.plC_RJ_Button5.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button5.BorderRadius = 30;
-            this.plC_RJ_Button5.BorderSize = 0;
-            this.plC_RJ_Button5.but_press = false;
-            this.plC_RJ_Button5.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_RJ_Button5.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button5.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button5.GUID = "";
-            this.plC_RJ_Button5.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button5.Location = new System.Drawing.Point(704, 0);
-            this.plC_RJ_Button5.Name = "plC_RJ_Button5";
-            this.plC_RJ_Button5.OFF_文字內容 = "處方核對";
-            this.plC_RJ_Button5.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button5.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button5.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button5.ON_BorderSize = 5;
-            this.plC_RJ_Button5.ON_文字內容 = "處方核對";
-            this.plC_RJ_Button5.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button5.ON_文字顏色 = System.Drawing.Color.LightGray;
-            this.plC_RJ_Button5.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button5.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button5.ShadowSize = 3;
-            this.plC_RJ_Button5.ShowLoadingForm = false;
-            this.plC_RJ_Button5.Size = new System.Drawing.Size(352, 100);
-            this.plC_RJ_Button5.State = false;
-            this.plC_RJ_Button5.TabIndex = 12;
-            this.plC_RJ_Button5.Text = "處方核對";
-            this.plC_RJ_Button5.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button5.Texts = "處方核對";
-            this.plC_RJ_Button5.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button5.字型鎖住 = false;
-            this.plC_RJ_Button5.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button5.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button5.文字鎖住 = false;
-            this.plC_RJ_Button5.讀取位元反向 = false;
-            this.plC_RJ_Button5.讀寫鎖住 = false;
-            this.plC_RJ_Button5.音效 = true;
-            this.plC_RJ_Button5.顯示 = false;
-            this.plC_RJ_Button5.顯示狀態 = false;
-            // 
-            // plC_RJ_Button4
-            // 
-            this.plC_RJ_Button4.AutoResetState = false;
-            this.plC_RJ_Button4.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button4.Bool = false;
-            this.plC_RJ_Button4.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button4.BorderRadius = 30;
-            this.plC_RJ_Button4.BorderSize = 0;
-            this.plC_RJ_Button4.but_press = false;
-            this.plC_RJ_Button4.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_Button4.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button4.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button4.GUID = "";
-            this.plC_RJ_Button4.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button4.Location = new System.Drawing.Point(352, 0);
-            this.plC_RJ_Button4.Name = "plC_RJ_Button4";
-            this.plC_RJ_Button4.OFF_文字內容 = "調配完成";
-            this.plC_RJ_Button4.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button4.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button4.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button4.ON_BorderSize = 5;
-            this.plC_RJ_Button4.ON_文字內容 = "調配完成";
-            this.plC_RJ_Button4.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button4.ON_文字顏色 = System.Drawing.Color.LightGray;
-            this.plC_RJ_Button4.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button4.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button4.ShadowSize = 3;
-            this.plC_RJ_Button4.ShowLoadingForm = false;
-            this.plC_RJ_Button4.Size = new System.Drawing.Size(352, 100);
-            this.plC_RJ_Button4.State = false;
-            this.plC_RJ_Button4.TabIndex = 11;
-            this.plC_RJ_Button4.Text = "調配完成";
-            this.plC_RJ_Button4.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button4.Texts = "調配完成";
-            this.plC_RJ_Button4.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button4.字型鎖住 = false;
-            this.plC_RJ_Button4.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button4.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button4.文字鎖住 = false;
-            this.plC_RJ_Button4.讀取位元反向 = false;
-            this.plC_RJ_Button4.讀寫鎖住 = false;
-            this.plC_RJ_Button4.音效 = true;
-            this.plC_RJ_Button4.顯示 = false;
-            this.plC_RJ_Button4.顯示狀態 = false;
-            // 
-            // plC_RJ_Button3
-            // 
-            this.plC_RJ_Button3.AutoResetState = false;
-            this.plC_RJ_Button3.BackgroundColor = System.Drawing.Color.Silver;
-            this.plC_RJ_Button3.Bool = false;
-            this.plC_RJ_Button3.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button3.BorderRadius = 30;
-            this.plC_RJ_Button3.BorderSize = 0;
-            this.plC_RJ_Button3.but_press = false;
-            this.plC_RJ_Button3.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_Button3.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button3.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button3.GUID = "";
-            this.plC_RJ_Button3.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button3.Location = new System.Drawing.Point(0, 0);
-            this.plC_RJ_Button3.Name = "plC_RJ_Button3";
-            this.plC_RJ_Button3.OFF_文字內容 = "醫囑確認";
-            this.plC_RJ_Button3.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button3.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button3.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button3.ON_BorderSize = 5;
-            this.plC_RJ_Button3.ON_文字內容 = "醫囑確認";
-            this.plC_RJ_Button3.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button3.ON_文字顏色 = System.Drawing.Color.LightGray;
-            this.plC_RJ_Button3.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button3.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button3.ShadowSize = 3;
-            this.plC_RJ_Button3.ShowLoadingForm = false;
-            this.plC_RJ_Button3.Size = new System.Drawing.Size(352, 100);
-            this.plC_RJ_Button3.State = false;
-            this.plC_RJ_Button3.TabIndex = 10;
-            this.plC_RJ_Button3.Text = "醫囑確認";
-            this.plC_RJ_Button3.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button3.Texts = "醫囑確認";
-            this.plC_RJ_Button3.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button3.字型鎖住 = false;
-            this.plC_RJ_Button3.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button3.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button3.文字鎖住 = false;
-            this.plC_RJ_Button3.讀取位元反向 = false;
-            this.plC_RJ_Button3.讀寫鎖住 = false;
-            this.plC_RJ_Button3.音效 = true;
-            this.plC_RJ_Button3.顯示 = false;
-            this.plC_RJ_Button3.顯示狀態 = false;
             // 
             // rJ_Lable6
             // 
@@ -1392,6 +1234,52 @@ namespace 癌症自動備藥機暨排程系統
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1056, 95);
             this.panel1.TabIndex = 1;
+            // 
+            // plC_RJ_Button_調配排程_處方選擇
+            // 
+            this.plC_RJ_Button_調配排程_處方選擇.AutoResetState = false;
+            this.plC_RJ_Button_調配排程_處方選擇.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_調配排程_處方選擇.Bool = false;
+            this.plC_RJ_Button_調配排程_處方選擇.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_調配排程_處方選擇.BorderRadius = 20;
+            this.plC_RJ_Button_調配排程_處方選擇.BorderSize = 0;
+            this.plC_RJ_Button_調配排程_處方選擇.but_press = false;
+            this.plC_RJ_Button_調配排程_處方選擇.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_調配排程_處方選擇.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_調配排程_處方選擇.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_調配排程_處方選擇.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_調配排程_處方選擇.GUID = "";
+            this.plC_RJ_Button_調配排程_處方選擇.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_調配排程_處方選擇.Location = new System.Drawing.Point(11, 14);
+            this.plC_RJ_Button_調配排程_處方選擇.Name = "plC_RJ_Button_調配排程_處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字內容 = "處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_調配排程_處方選擇.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_調配排程_處方選擇.ON_BorderSize = 5;
+            this.plC_RJ_Button_調配排程_處方選擇.ON_文字內容 = "處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_調配排程_處方選擇.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_調配排程_處方選擇.ON_背景顏色 = System.Drawing.SystemColors.ControlDark;
+            this.plC_RJ_Button_調配排程_處方選擇.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_調配排程_處方選擇.ShadowSize = 3;
+            this.plC_RJ_Button_調配排程_處方選擇.ShowLoadingForm = false;
+            this.plC_RJ_Button_調配排程_處方選擇.Size = new System.Drawing.Size(144, 67);
+            this.plC_RJ_Button_調配排程_處方選擇.State = false;
+            this.plC_RJ_Button_調配排程_處方選擇.TabIndex = 9;
+            this.plC_RJ_Button_調配排程_處方選擇.Text = "處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_調配排程_處方選擇.Texts = "處方選擇";
+            this.plC_RJ_Button_調配排程_處方選擇.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_調配排程_處方選擇.字型鎖住 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_調配排程_處方選擇.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_調配排程_處方選擇.文字鎖住 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.讀取位元反向 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.讀寫鎖住 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.音效 = true;
+            this.plC_RJ_Button_調配排程_處方選擇.顯示 = false;
+            this.plC_RJ_Button_調配排程_處方選擇.顯示狀態 = false;
             // 
             // 出入庫作業
             // 
@@ -1951,7 +1839,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Pannel12.BackColor = System.Drawing.Color.White;
             this.rJ_Pannel12.BackgroundColor = System.Drawing.Color.Transparent;
             this.rJ_Pannel12.BorderColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel12.BorderRadius = 10;
+            this.rJ_Pannel12.BorderRadius = 0;
             this.rJ_Pannel12.BorderSize = 2;
             this.rJ_Pannel12.Controls.Add(this.panel34);
             this.rJ_Pannel12.Controls.Add(this.panel33);
@@ -18550,52 +18438,6 @@ namespace 癌症自動備藥機暨排程系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
             // 
-            // plC_RJ_Button_調配排程_處方選擇
-            // 
-            this.plC_RJ_Button_調配排程_處方選擇.AutoResetState = false;
-            this.plC_RJ_Button_調配排程_處方選擇.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_調配排程_處方選擇.Bool = false;
-            this.plC_RJ_Button_調配排程_處方選擇.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_調配排程_處方選擇.BorderRadius = 20;
-            this.plC_RJ_Button_調配排程_處方選擇.BorderSize = 0;
-            this.plC_RJ_Button_調配排程_處方選擇.but_press = false;
-            this.plC_RJ_Button_調配排程_處方選擇.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_調配排程_處方選擇.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_調配排程_處方選擇.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_調配排程_處方選擇.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_調配排程_處方選擇.GUID = "";
-            this.plC_RJ_Button_調配排程_處方選擇.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_調配排程_處方選擇.Location = new System.Drawing.Point(11, 14);
-            this.plC_RJ_Button_調配排程_處方選擇.Name = "plC_RJ_Button_調配排程_處方選擇";
-            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字內容 = "處方選擇";
-            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_調配排程_處方選擇.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_調配排程_處方選擇.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_調配排程_處方選擇.ON_BorderSize = 5;
-            this.plC_RJ_Button_調配排程_處方選擇.ON_文字內容 = "處方選擇";
-            this.plC_RJ_Button_調配排程_處方選擇.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_調配排程_處方選擇.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_調配排程_處方選擇.ON_背景顏色 = System.Drawing.SystemColors.ControlDark;
-            this.plC_RJ_Button_調配排程_處方選擇.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_調配排程_處方選擇.ShadowSize = 3;
-            this.plC_RJ_Button_調配排程_處方選擇.ShowLoadingForm = false;
-            this.plC_RJ_Button_調配排程_處方選擇.Size = new System.Drawing.Size(144, 67);
-            this.plC_RJ_Button_調配排程_處方選擇.State = false;
-            this.plC_RJ_Button_調配排程_處方選擇.TabIndex = 9;
-            this.plC_RJ_Button_調配排程_處方選擇.Text = "處方選擇";
-            this.plC_RJ_Button_調配排程_處方選擇.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_調配排程_處方選擇.Texts = "處方選擇";
-            this.plC_RJ_Button_調配排程_處方選擇.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_調配排程_處方選擇.字型鎖住 = false;
-            this.plC_RJ_Button_調配排程_處方選擇.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_調配排程_處方選擇.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_調配排程_處方選擇.文字鎖住 = false;
-            this.plC_RJ_Button_調配排程_處方選擇.讀取位元反向 = false;
-            this.plC_RJ_Button_調配排程_處方選擇.讀寫鎖住 = false;
-            this.plC_RJ_Button_調配排程_處方選擇.音效 = true;
-            this.plC_RJ_Button_調配排程_處方選擇.顯示 = false;
-            this.plC_RJ_Button_調配排程_處方選擇.顯示狀態 = false;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -18621,7 +18463,6 @@ namespace 癌症自動備藥機暨排程系統
             this.panel183.PerformLayout();
             this.調配排程.ResumeLayout(false);
             this.rJ_Pannel1.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.出入庫作業.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
@@ -18741,10 +18582,6 @@ namespace 癌症自動備藥機暨排程系統
         private System.Windows.Forms.Panel panel1;
         private MyUI.RJ_Pannel rJ_Pannel1;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel9;
-        private MyUI.PLC_RJ_Button plC_RJ_Button5;
-        private MyUI.PLC_RJ_Button plC_RJ_Button4;
-        private MyUI.PLC_RJ_Button plC_RJ_Button3;
         private MyUI.PLC_RJ_Button plC_RJ_Button8;
         private System.Windows.Forms.Panel panel14;
         private MyUI.PLC_RJ_Button plC_RJ_Button10;
@@ -19398,7 +19235,7 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_Button plC_Button71;
         private MyUI.PLC_Button plC_Button72;
         private MyUI.RJ_Lable rJ_Lable_備藥狀態;
-        private 癌症自動備藥機暨排程系統.uc_備藥通知處方內容 uc_備藥通知內容1;
+        private 癌症自動備藥機暨排程系統.uc_備藥通知處方內容 uc_備藥通知內容;
         private uc_備藥通知處方 uc_備藥通知處方;
         private MyUI.PLC_RJ_Button plC_RJ_Button_調配排程_處方選擇;
     }

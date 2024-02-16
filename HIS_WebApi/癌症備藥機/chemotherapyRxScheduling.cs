@@ -592,11 +592,11 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("update_udnoectc_orders_comp")]
         [HttpPost]
-        public string POST_set_udnoectc_orders_comp(returnData returnData)
+        public string POST_update_udnoectc_orders_comp(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
-            returnData.Method = "set_udnoectc_orders_comp";
+            returnData.Method = "update_udnoectc_orders_comp";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
@@ -660,9 +660,264 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 更新備藥通知處方,醫囑確認藥師
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "cheom",
+        ///     "ServerType" : "癌症備藥機",
+        ///     "Value" : "[藥師姓名]",
+        ///     "Data": 
+        ///     {
+        ///         [List(udnoectc_orders)]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("update_udnoectc_confirm_ph")]
+        [HttpPost]
+        public string POST_update_udnoectc_confirm_ph(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_udnoectc_confirm_ph";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                udnoectc udnoectc = returnData.Data.ObjToClass<udnoectc>();
+                if (udnoectc == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料結構錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                //if (returnData.Value.StringIsEmpty())
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"returnData.Value 空白!";
+                //    return returnData.JsonSerializationt(true);
+                //}
 
+                returnData.Data = "";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
+                SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
 
+                List<object[]> list_udnoectc = new List<object[]>();
+                List<object[]> list_udnoectc_replace = new List<object[]>();
+                string GUID = udnoectc.GUID;
+                list_udnoectc = sQLControl_udnoectc.GetRowsByDefult(null, (int)enum_udnoectc.GUID, GUID);
+                if (list_udnoectc.Count > 0)
+                {
+                    list_udnoectc[0][(int)enum_udnoectc.醫囑確認藥師] = returnData.Value;
+                    list_udnoectc[0][(int)enum_udnoectc.醫囑確認時間] = DateTime.Now.ToDateTimeString();
+                    list_udnoectc_replace.Add(list_udnoectc[0]);
+                }
+                if (list_udnoectc_replace.Count > 0) sQLControl_udnoectc.UpdateByDefulteExtra(null, list_udnoectc_replace);
+                returnData.Result = $"更新資料成功!共<{list_udnoectc_replace.Count}>筆資料!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = null;
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 更新備藥通知處方,調劑完成藥師
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "cheom",
+        ///     "ServerType" : "癌症備藥機",
+        ///     "Value" : "[藥師姓名]",
+        ///     "Data": 
+        ///     {
+        ///         [List(udnoectc_orders)]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("update_udnoectc_disp_ph")]
+        [HttpPost]
+        public string POST_update_udnoectc_disp_ph(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_udnoectc_disp_ph";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                udnoectc udnoectc = returnData.Data.ObjToClass<udnoectc>();
+                if (udnoectc == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料結構錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                //if (returnData.Value.StringIsEmpty())
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"returnData.Value 空白!";
+                //    return returnData.JsonSerializationt(true);
+                //}
+
+                returnData.Data = "";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_udnoectc = new List<object[]>();
+                List<object[]> list_udnoectc_replace = new List<object[]>();
+                string GUID = udnoectc.GUID;
+                list_udnoectc = sQLControl_udnoectc.GetRowsByDefult(null, (int)enum_udnoectc.GUID, GUID);
+                if (list_udnoectc.Count > 0)
+                {
+                    list_udnoectc[0][(int)enum_udnoectc.調劑藥師] = returnData.Value;
+                    list_udnoectc[0][(int)enum_udnoectc.調劑完成時間] = DateTime.Now.ToDateTimeString();
+                    list_udnoectc_replace.Add(list_udnoectc[0]);
+                }
+                if (list_udnoectc_replace.Count > 0) sQLControl_udnoectc.UpdateByDefulteExtra(null, list_udnoectc_replace);
+                returnData.Result = $"更新資料成功!共<{list_udnoectc_replace.Count}>筆資料!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = null;
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 更新備藥通知處方,調劑完成藥師
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "cheom",
+        ///     "ServerType" : "癌症備藥機",
+        ///     "Value" : "[藥師姓名]",
+        ///     "Data": 
+        ///     {
+        ///         [List(udnoectc_orders)]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("update_udnoectc_check_ph")]
+        [HttpPost]
+        public string POST_update_udnoectc_check_ph(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_udnoectc_check_ph";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                udnoectc udnoectc = returnData.Data.ObjToClass<udnoectc>();
+                if (udnoectc == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料結構錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                //if (returnData.Value.StringIsEmpty())
+                //{
+                //    returnData.Code = -200;
+                //    returnData.Result = $"returnData.Value 空白!";
+                //    return returnData.JsonSerializationt(true);
+                //}
+
+                returnData.Data = "";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_udnoectc = new SQLControl(Server, DB, "udnoectc", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_orders = new SQLControl(Server, DB, "udnoectc_orders", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_udnoectc = new List<object[]>();
+                List<object[]> list_udnoectc_replace = new List<object[]>();
+                string GUID = udnoectc.GUID;
+                list_udnoectc = sQLControl_udnoectc.GetRowsByDefult(null, (int)enum_udnoectc.GUID, GUID);
+                if (list_udnoectc.Count > 0)
+                {
+                    list_udnoectc[0][(int)enum_udnoectc.核對藥師] = returnData.Value;
+                    list_udnoectc[0][(int)enum_udnoectc.核對時間] = DateTime.Now.ToDateTimeString();
+                    list_udnoectc_replace.Add(list_udnoectc[0]);
+                }
+                if (list_udnoectc_replace.Count > 0) sQLControl_udnoectc.UpdateByDefulteExtra(null, list_udnoectc_replace);
+                returnData.Result = $"更新資料成功!共<{list_udnoectc_replace.Count}>筆資料!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = null;
+                returnData.Code = 200;
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
 
         /// <summary>
         /// 初始化領藥通知資料庫

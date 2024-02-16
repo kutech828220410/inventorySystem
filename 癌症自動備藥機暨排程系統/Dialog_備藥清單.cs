@@ -16,6 +16,7 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Dialog_備藥清單 : Form
     {
+        private string _login_name = "";
         public static Form form;
         public DialogResult ShowDialog()
         {
@@ -36,7 +37,7 @@ namespace 癌症自動備藥機暨排程系統
 
         private string GUID = "";
         private udnoectc udnoectc = null;
-        public Dialog_備藥清單(string guid)
+        public Dialog_備藥清單(string guid , string login_name)
         {
             InitializeComponent();
 
@@ -65,8 +66,9 @@ namespace 癌症自動備藥機暨排程系統
                     this.DialogResult = DialogResult.No;
                 }));
             }
+            this._login_name = login_name;
             udnoectc = udnoectcs[0];
-            this.uc_備藥通知內容.Init(udnoectc);
+            this.uc_備藥通知內容.Init(udnoectc , login_name, false);
 
 
         }
@@ -97,7 +99,7 @@ namespace 癌症自動備藥機暨排程系統
             returnData returnData = new returnData();
             returnData.ServerName = "cheom";
             returnData.ServerType = "癌症備藥機";
-            returnData.Value = "TEST";
+            returnData.Value = this._login_name;
 
             List<object[]> list_value = this.uc_備藥通知內容.GetSelectedRows();
             if (list_value.Count == 0)

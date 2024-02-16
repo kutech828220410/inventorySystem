@@ -794,7 +794,6 @@ C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\TCP.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\ZealTechUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\zxing.dll
-C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送系統.exe.config
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送系統.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\勤務傳送系統.pdb
@@ -1054,3 +1053,4 @@ C:\Users\HS\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\PopupControl.dll

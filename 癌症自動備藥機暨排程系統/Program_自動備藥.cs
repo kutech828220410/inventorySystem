@@ -271,7 +271,7 @@ namespace 癌症自動備藥機暨排程系統
             string GUID = list_value[0][(int)enum_udnoectc.GUID].ObjectToString();
             this.Invoke(new Action(delegate 
             {
-                Dialog_備藥清單 dialog_備藥清單 = new Dialog_備藥清單(GUID);
+                Dialog_備藥清單 dialog_備藥清單 = new Dialog_備藥清單(GUID , 登入者名稱);
                 dialog_備藥清單.ShowDialog();
             }));           
         }
