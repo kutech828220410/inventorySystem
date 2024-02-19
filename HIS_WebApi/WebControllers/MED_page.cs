@@ -106,7 +106,6 @@ namespace HIS_WebApi
         ///  --------------------------------------------<br/> 
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
-
         [Route("get_by_apiserver")]
         [HttpPost]
         public string POST_get_by_apiserver([FromBody] returnData returnData)
@@ -198,6 +197,8 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                    ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
+
                     serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
@@ -210,14 +211,67 @@ namespace HIS_WebApi
                         returnData.Result = $"找無Server資料!";
                         return returnData.JsonSerializationt();
                     }
+                    //取得雲端藥檔資料
+                   
+                    MED_pageController mED_PageController = new MED_pageController();
+                    returnData returnData_med = new returnData();
+                    returnData_med.ServerName = "Main";
+                    returnData_med.ServerType = "網頁";
+                    returnData_med.Server = serverSettingClasses_med.Server;
+                    returnData_med.DbName = serverSettingClasses_med.DBName;
+                    returnData_med.TableName = "medicine_page_cloud";
+                    returnData_med.UserName = serverSettingClasses_med.User;
+                    returnData_med.Password = serverSettingClasses_med.Password;
+                    returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
+                    returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
+                    List<medClass> medClasses_cloud = returnData_med.Data.ObjToListClass<medClass>();
+                    List<medClass> medClasses_cloud_buf = new List<medClass>();
+
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = sQLControl_med.GetAllRows(null);
+                    List<object[]> list_med_buf = new List<object[]>();
+                    List<object[]> list_med_add = new List<object[]>();
+          
+                    deviceController _deviceController = new deviceController();
+                    string json_devices = _deviceController.POST_all(returnData);
+                    returnData returnData_devices = json_devices.JsonDeserializet<returnData>();
+                    List<H_Pannel_lib.DeviceBasic> deviceBasics = returnData_devices.Data.ObjToClass<List<H_Pannel_lib.DeviceBasic>>();
+                    List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
 
-                    returnData.Data = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                    string 藥碼 = "";
+                    for (int i = 0; i < medClasses_cloud.Count; i++)
+                    {
+                        藥碼 = medClasses_cloud[i].藥品碼;
+                        list_med_buf = list_med.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
+                        if(list_med_buf.Count == 0)
+                        {
+                            list_med_add.Add(medClasses_cloud[i].ClassToSQL<medClass, enum_藥品資料_藥檔資料>());
+                        }
+                    }
+                    sQLControl_med.AddRows(null, list_med_add);
+                    list_med.LockAdd(list_med_add);
+                    for (int i = 0; i < list_med.Count; i++)
+                    {
+                        藥碼 = list_med[i][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
+                        deviceBasics_buf = (from temp in deviceBasics
+                                            where temp.Code == 藥碼
+                                            select temp).ToList();
+                        int inventory = 0;
+                        for (int k = 0; k < deviceBasics_buf.Count; k++)
+                        {
+                            inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                        }
+                        list_med[i][(int)enum_藥品資料_藥檔資料.庫存] = inventory.ToString();
+                    }
+
+
+                    List<medClass> medClasses = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                    returnData.Data = medClasses;
                     returnData.Code = 200;
-                    returnData.Result = "調劑台藥檔取得成功!";
+                    returnData.Result = $"本地藥檔取得成功!新增<{list_med_add.Count}>筆資料!";
                     returnData.TimeTaken = myTimerBasic.ToString();
-                    return returnData.JsonSerializationt(true);
+                    string json_out = returnData.JsonSerializationt(false);
+                    return json_out;
                 }
 
                 returnData.Code = -200;
@@ -737,9 +791,9 @@ namespace HIS_WebApi
                 table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
                 table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
                 table.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-                table.AddColumnList("中文名稱", Table.StringType.VARCHAR, 300, Table.IndexType.INDEX);
-                table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 300, Table.IndexType.INDEX);
-                table.AddColumnList("藥品學名", Table.StringType.VARCHAR, 300, Table.IndexType.INDEX);
+                table.AddColumnList("中文名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 300, Table.IndexType.None);
+                table.AddColumnList("藥品學名", Table.StringType.VARCHAR, 300, Table.IndexType.None);
                 table.AddColumnList("藥品群組", Table.StringType.VARCHAR, 300, Table.IndexType.None);
                 table.AddColumnList("健保碼", Table.StringType.VARCHAR, 50, Table.IndexType.None);
                 table.AddColumnList("藥品條碼", Table.StringType.VARCHAR, 20, Table.IndexType.None);

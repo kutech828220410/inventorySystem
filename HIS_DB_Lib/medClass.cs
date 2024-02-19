@@ -65,6 +65,8 @@ namespace HIS_DB_Lib
         public string 管制級別 { get; set; }
         [JsonPropertyName("TOLTAL_QTY")]
         public string 總庫存 { get; set; }
+        [JsonPropertyName("QTY")]
+        public string 庫存 { get; set; }
         [JsonPropertyName("REF_QTY")]
         public string 基準量 { get; set; }
         [JsonPropertyName("SAFE_QTY")]

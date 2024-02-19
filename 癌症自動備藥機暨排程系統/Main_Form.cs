@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-
+using H_Pannel_lib;
 namespace 癌症自動備藥機暨排程系統
 {
     public partial class Main_Form : Form
@@ -46,6 +46,8 @@ namespace 癌症自動備藥機暨排程系統
             private SQL_DataGridView.ConnentionClass dB_order_list = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_tradding = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_Storagelist = new SQL_DataGridView.ConnentionClass();
+
             private bool _主機模式 = false;
             private string web_URL = "";
             private string api_URL = "";
@@ -57,8 +59,8 @@ namespace 癌症自動備藥機暨排程系統
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
 
-
-
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_Storagelist { get => dB_Storagelist; set => dB_Storagelist = value; }
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             [JsonIgnore]
@@ -177,7 +179,15 @@ namespace 癌症自動備藥機暨排程系統
                 dBConfigClass.DB_person_page.UserName = serverSettingClass.User;
                 dBConfigClass.DB_person_page.Password = serverSettingClass.Password;
             }
-
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.癌症備藥機, "儲位資料");
+            if (serverSettingClass != null)
+            {
+                dBConfigClass.DB_Storagelist.IP = serverSettingClass.Server;
+                dBConfigClass.DB_Storagelist.Port = (uint)(serverSettingClass.Port.StringToInt32());
+                dBConfigClass.DB_Storagelist.DataBaseName = serverSettingClass.DBName;
+                dBConfigClass.DB_Storagelist.UserName = serverSettingClass.User;
+                dBConfigClass.DB_Storagelist.Password = serverSettingClass.Password;
+            }
             API_Server = dBConfigClass.Api_Server;
         }
         #endregion
@@ -221,11 +231,27 @@ namespace 癌症自動備藥機暨排程系統
             Program_工程模式_Init();
             Program_自動備藥_Init();
             Program_調配排程_Init();
+            Program_出入庫作業_Init();
+            Program_交易紀錄_Init();
 
-            sqL_DataGridView_出入庫作業.Init();
+            plC_ScreenPage_main.TabChangeEvent += PlC_ScreenPage_main_TabChangeEvent;
         }
 
-      
+        private void PlC_ScreenPage_main_TabChangeEvent(string PageText)
+        {
+            if (PageText == "出入庫作業")
+            {
+                List<Storage> storages = Function_取得本地儲位();
+
+            }
+            if (PageText == "儲位設定")
+            {
+                PlC_RJ_Button_儲位設定_儲位列表_重新整理_MouseDownEvent(null);
+                comboBox_儲位設定_儲位列表_亮燈顏色.SelectedIndex = 0;
+            }
+        }
+
+
 
         #region PLC_Method
         PLC_Device PLC_Device_Method = new PLC_Device("");

@@ -28,7 +28,7 @@ namespace 癌症自動備藥機暨排程系統
     {
         public void Program_系統_Init()
         {
-            this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic);
+
             this.plC_UI_Init.Add_Method(Program_系統);
         }
         public void Program_系統()

@@ -39,6 +39,8 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Program_儲位設定_Init()
         {
+            this.storageUI_EPD_266.Init(dBConfigClass.DB_Storagelist);
+
             this.plC_ScreenPage_main.TabChangeEvent += PlC_ScreenPage_main_TabChangeEvent;
             sqL_DataGridView_儲位設定_藥品搜尋.Init(sqL_DataGridView_藥檔資料);
             sqL_DataGridView_儲位設定_藥品搜尋.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
@@ -169,14 +171,7 @@ namespace 癌症自動備藥機暨排程系統
         #region Function
         #endregion
         #region Event
-        private void PlC_ScreenPage_main_TabChangeEvent(string PageText)
-        {
-            if (PageText == "儲位設定")
-            {
-                PlC_RJ_Button_儲位設定_儲位列表_重新整理_MouseDownEvent(null);
-                comboBox_儲位設定_儲位列表_亮燈顏色.SelectedIndex = 0;
-            }
-        }
+
 
         private void SqL_DataGridView_儲位列表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
@@ -371,7 +366,7 @@ namespace 癌症自動備藥機暨排程系統
             }
             string GUID = list_儲位列表[0][(int)enum_儲位列表.GUID].ObjectToString();
             string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
-            string 藥碼 = list_儲位列表[0][(int)enum_儲位列表.藥碼].ObjectToString();
+            string 藥碼 = list_藥品搜尋[0][(int)enum_雲端藥檔.藥品碼].ObjectToString();
             string 藥名 = list_藥品搜尋[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
             string 單位 = list_藥品搜尋[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
             string 包裝量 = list_藥品搜尋[0][(int)enum_雲端藥檔.包裝數量].ObjectToString();
