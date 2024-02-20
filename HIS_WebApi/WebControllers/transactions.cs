@@ -51,6 +51,57 @@ namespace HIS_WebApi
             }
 
         }
+        [Route("add")]
+        [HttpPost]
+        public string POST_add([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "add";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                transactionsClass transactionsClass = returnData.Data.ObjToClass<transactionsClass>();
+             
+                if (transactionsClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料異常!";
+                    return returnData.JsonSerializationt();
+                }
+                transactionsClass.GUID = Guid.NewGuid().ToString();
+                string TableName = "trading";
+                SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                object[] value = transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
+                sQLControl_trading.AddRow(null, value);
+                returnData.Code = 200;
+                returnData.Result = $"新增交易紀錄成功!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClass;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+
+
+        }
         [Route("serch_med_information_by_code")]
         [HttpPost]
         public string POST_serch_med_information_by_code([FromBody] returnData returnData)

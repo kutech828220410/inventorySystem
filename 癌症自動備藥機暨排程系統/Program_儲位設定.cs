@@ -171,8 +171,6 @@ namespace 癌症自動備藥機暨排程系統
         #region Function
         #endregion
         #region Event
-
-
         private void SqL_DataGridView_儲位列表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             RowsList.Sort(new ICP_儲位列表());
@@ -261,7 +259,6 @@ namespace 癌症自動備藥機暨排程系統
             Task.WhenAll(tasks).Wait();
             LoadingForm.CloseLoadingForm();
         }
-
         private void PlC_RJ_Button_儲位設定_儲位列表_清除燈號_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_儲位列表 = sqL_DataGridView_儲位列表.Get_All_Select_RowsValues();
@@ -430,7 +427,6 @@ namespace 癌症自動備藥機暨排程系統
             }
             sqL_DataGridView_儲位設定_藥品搜尋.RefreshGrid(list_value);
         }
-
         private void PlC_RJ_Button_儲位設定_儲位列表_重新整理_MouseDownEvent(MouseEventArgs mevent)
         {
             List<Storage> storages = storageUI_EPD_266.SQL_GetAllStorage();

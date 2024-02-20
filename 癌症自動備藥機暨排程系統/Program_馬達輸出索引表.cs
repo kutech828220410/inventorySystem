@@ -87,9 +87,12 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_馬達輸出索引表_匯出.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_匯出_MouseDownEvent;
             this.plC_RJ_Button_馬達輸出索引表_匯入.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_匯入_MouseDownEvent;
             this.plC_RJ_Button_馬達輸出索引表_出料一次.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_出料一次_MouseDownEvent;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_出料測試_MouseDownEvent;
             this.plC_UI_Init.Add_Method(Program_馬達輸出索引表);
         }
-   
+
+      
+
         private void Program_馬達輸出索引表()
         {
             if (dBConfigClass.主機模式 == false) return;
@@ -361,6 +364,65 @@ namespace 癌症自動備藥機暨排程系統
                 MyMessageBox.ShowDialog("匯入完成!");
 
             }));
+        }
+        private void PlC_RJ_Button_馬達輸出索引表_出料測試_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_儲位列表 = sqL_DataGridView_馬達輸出索引表.Get_All_Select_RowsValues();
+
+            Dialog_AlarmForm dialog_AlarmForm;
+            if (list_儲位列表.Count == 0)
+            {
+                dialog_AlarmForm = new Dialog_AlarmForm("未選擇儲位", 2000, 0, -200, Color.DarkRed);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            LoadingForm.ShowLoadingForm();
+            if (plC_NumBox_馬達輸出索引表_出料測試次數.Value < 0) plC_NumBox_馬達輸出索引表_出料測試次數.Value = 1;
+            int cnt = 0;
+            int temp = 0;
+            string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
+            Storage storage = List_本地儲位.SortByIP(IP);
+            while (true)
+            {
+                if (cnt == 0)
+                {
+                    if (temp >= plC_NumBox_馬達輸出索引表_出料測試次數.Value) break;
+                    cnt++;
+                }
+                if (cnt == 1)
+                {
+ 
+                   
+                    int ms = list_儲位列表[0][(int)enum_CMPM_StorageConfig.出料馬達輸入延遲時間].StringToInt32();
+                    storageUI_EPD_266.Set_ADCMotorTrigger(storage, ms);
+                    Console.WriteLine($"第{temp}次,[出料馬達輸出] {storage.IP} ({storage.Code}){storage.Name} {DateTime.Now.ToDateTimeString()}");
+                    cnt++;
+                }
+                if (cnt == 2)
+                {
+                    bool flag_output = storageUI_EPD_266.Get_OutputPIN(storage);
+                    if (flag_output)
+                    {
+                        cnt++;
+                    }
+
+                }
+                if (cnt == 3)
+                {
+                    bool flag_output = storageUI_EPD_266.Get_OutputPIN(storage);
+                    if (!flag_output)
+                    {
+                        temp++;
+                        cnt++;
+                    }
+
+                }
+
+
+                System.Threading.Thread.Sleep(10);
+            }
+
+            LoadingForm.CloseLoadingForm();
         }
         private void PlC_RJ_Button_馬達輸出索引表_出料一次_MouseDownEvent(MouseEventArgs mevent)
         {

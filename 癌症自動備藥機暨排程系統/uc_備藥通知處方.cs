@@ -55,9 +55,11 @@ namespace 癌症自動備藥機暨排程系統
 
             this.sqL_DataGridView_備藥通知.DataGridRowsChangeRefEvent += SqL_DataGridView_備藥通知_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_備藥通知.RowPostPaintingEvent += SqL_DataGridView_備藥通知_RowPostPaintingEvent;
-
             ToolStripMenuItem_取得即時備藥通知.Click += ToolStripMenuItem_取得即時備藥通知_Click;
-        } 
+        }
+
+     
+
         public List<object[]> GetSelectedRows()
         {
             List<object[]> list_value = this.sqL_DataGridView_備藥通知.Get_All_Select_RowsValues();
@@ -87,61 +89,85 @@ namespace 癌症自動備藥機暨排程系統
             }
             return list_udnoectc;
         }
-
+  
         private void SqL_DataGridView_備藥通知_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             RowsList.Sort(new ICP_備藥通知());
+
+            List<object[]> RowsList_已調劑完成 = new List<object[]>();
+            List<object[]> RowsList_未調劑完成 = new List<object[]>();
+            List<object[]> RowsList_buf = new List<object[]>();
+
+            RowsList_已調劑完成 = (from temp in RowsList
+                              where temp[(int)enum_udnoectc.調劑藥師].ObjectToString().StringIsEmpty() == false
+                              select temp).ToList();
+            RowsList_未調劑完成 = (from temp in RowsList
+                              where temp[(int)enum_udnoectc.調劑藥師].ObjectToString().StringIsEmpty() == true
+                              select temp).ToList();
+
+            RowsList_buf.LockAdd(RowsList_未調劑完成);
+            RowsList_buf.LockAdd(RowsList_已調劑完成);
+            RowsList = RowsList_buf;
         }
         private void SqL_DataGridView_備藥通知_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
         {
-            using (Brush brush = new SolidBrush(Color.White))
+            Color row_Backcolor = Color.White;
+            Color row_Forecolor = Color.Black;
+
+            
+            object[] value = this.sqL_DataGridView_備藥通知.GetRowsList()[e.RowIndex];
+            udnoectc udnoectc = value.SQLToClass<udnoectc, enum_udnoectc>();
+            if (udnoectc.調劑藥師.StringIsEmpty() == false)
             {
-                int x = e.RowBounds.Left;
-                int y = e.RowBounds.Top;
-                int width = e.RowBounds.Width;
-                int height = e.RowBounds.Height;
-                e.Graphics.FillRectangle(brush, e.RowBounds);
-                DrawingClass.Draw.DrawRoundShadow(e.Graphics, new RectangleF(x - 1, y - 1, width, height), Color.DarkGray, 5, 5);
-
-                object[] value = this.sqL_DataGridView_備藥通知.GetRowsList()[e.RowIndex];
-                udnoectc udnoectc = value.SQLToClass<udnoectc, enum_udnoectc>();
-                string 序號 = $"{e.RowIndex + 1}.";
-                string 加入時間 = $"{udnoectc.加入時間}";
-                string 診別 = "【住院】";
-                string 病床號 = $"{udnoectc.病房}-{udnoectc.床號}";
-                if (udnoectc.病房.ToUpper().Contains("OPD"))
-                {
-                    診別 = "【門診】";
-                    病床號 = "-------";
-                }
-
-                string 病人姓名 = $"{udnoectc.病人姓名}";
-                string 病歷號 = $"{udnoectc.病歷號}";
-                string 生日 = $"生日:{udnoectc.生日}";
-                string 性別 = $"{udnoectc.性別}";
-                string 身高 = $"身高:{udnoectc.身高}cm";
-                string 體重 = $"體重:{udnoectc.體重}kg";
-
-                string 診斷 = $"診斷:{udnoectc.診斷}";
-                string 科別 = $"{udnoectc.科別}";
-                string 開立醫師 = $"開立醫師:{udnoectc.開立醫師}";
-
-                DrawingClass.Draw.文字左上繪製(序號, new PointF(10, y + 10), new Font("標楷體", 16), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(診別, new PointF(40, y + 10), new Font("標楷體", 16), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(加入時間, new PointF(150, y + 10), new Font("標楷體", 16, FontStyle.Italic), Color.Black, e.Graphics);
-
-                DrawingClass.Draw.文字左上繪製(病人姓名, 300, new PointF(20, y + 50), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(病歷號, new PointF(180, y + 50), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(病床號, new PointF(280, y + 50), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(生日, new PointF(420, y + 50), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(性別, new PointF(640, y + 50), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(身高, new PointF(690, y + 50), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(體重, new PointF(840, y + 50), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-
-                DrawingClass.Draw.文字左上繪製(診斷, new PointF(20, y + 100), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(科別, new PointF(600, y + 100), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(開立醫師, new PointF(840, y + 100), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
+                row_Backcolor = Color.Silver;
+                row_Forecolor = Color.White;
             }
+            Brush brush = new SolidBrush(row_Backcolor);
+            int x = e.RowBounds.Left;
+            int y = e.RowBounds.Top;
+            int width = e.RowBounds.Width;
+            int height = e.RowBounds.Height;
+            e.Graphics.FillRectangle(brush, e.RowBounds);
+            DrawingClass.Draw.DrawRoundShadow(e.Graphics, new RectangleF(x - 1, y - 1, width, height), Color.DarkGray, 5, 5);
+
+
+            string 序號 = $"{e.RowIndex + 1}.";
+            string 加入時間 = $"{udnoectc.加入時間}";
+            string 診別 = "【住院】";
+            string 病床號 = $"{udnoectc.病房}-{udnoectc.床號}";
+            if (udnoectc.病房.ToUpper().Contains("OPD"))
+            {
+                診別 = "【門診】";
+                病床號 = "-------";
+            }
+
+            string 病人姓名 = $"{udnoectc.病人姓名}";
+            string 病歷號 = $"{udnoectc.病歷號}";
+            string 生日 = $"生日:{udnoectc.生日}";
+            string 性別 = $"{udnoectc.性別}";
+            string 身高 = $"身高:{udnoectc.身高}cm";
+            string 體重 = $"體重:{udnoectc.體重}kg";
+
+            string 診斷 = $"診斷:{udnoectc.診斷}";
+            string 科別 = $"{udnoectc.科別}";
+            string 開立醫師 = $"開立醫師:{udnoectc.開立醫師}";
+
+            DrawingClass.Draw.文字左上繪製(序號, new PointF(10, y + 10), new Font("標楷體", 16), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(診別, new PointF(40, y + 10), new Font("標楷體", 16), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(加入時間, new PointF(150, y + 10), new Font("標楷體", 16, FontStyle.Italic), row_Forecolor, e.Graphics);
+
+            DrawingClass.Draw.文字左上繪製(病人姓名, 300, new PointF(20, y + 50), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(病歷號, new PointF(180, y + 50), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(病床號, new PointF(280, y + 50), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(生日, new PointF(420, y + 50), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(性別, new PointF(640, y + 50), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(身高, new PointF(690, y + 50), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(體重, new PointF(840, y + 50), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+
+            DrawingClass.Draw.文字左上繪製(診斷, new PointF(20, y + 100), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(科別, new PointF(600, y + 100), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            DrawingClass.Draw.文字左上繪製(開立醫師, new PointF(840, y + 100), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+            brush.Dispose();
         }
         private void ToolStripMenuItem_取得即時備藥通知_Click(object sender, EventArgs e)
         {

@@ -38,7 +38,7 @@ namespace 癌症自動備藥機暨排程系統
         public Dialog_備藥通知處方選擇()
         {
             InitializeComponent();
-
+            this.TopMost = true;
             this.dateTimeIntervelPicker_備藥通知時間範圍.SureClick += DateTimeIntervelPicker_備藥通知時間範圍_SureClick;
 
             this.button_重新整理.Click += Button_重新整理_Click;

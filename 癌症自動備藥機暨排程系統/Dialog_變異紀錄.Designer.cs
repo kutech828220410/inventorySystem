@@ -47,7 +47,7 @@ namespace 癌症自動備藥機暨排程系統
             // plC_RJ_Button_返回
             // 
             this.plC_RJ_Button_返回.AutoResetState = false;
-            this.plC_RJ_Button_返回.BackgroundColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_返回.BackgroundColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button_返回.Bool = false;
             this.plC_RJ_Button_返回.BorderColor = System.Drawing.Color.Thistle;
             this.plC_RJ_Button_返回.BorderRadius = 20;
@@ -65,12 +65,12 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_返回.OFF_文字內容 = "返回";
             this.plC_RJ_Button_返回.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_返回.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_返回.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_返回.OFF_背景顏色 = System.Drawing.Color.Gray;
             this.plC_RJ_Button_返回.ON_BorderSize = 5;
             this.plC_RJ_Button_返回.ON_文字內容 = "返回";
             this.plC_RJ_Button_返回.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_返回.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_返回.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_返回.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_返回.ON_背景顏色 = System.Drawing.Color.Gray;
             this.plC_RJ_Button_返回.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_返回.ShadowSize = 3;
             this.plC_RJ_Button_返回.ShowLoadingForm = false;

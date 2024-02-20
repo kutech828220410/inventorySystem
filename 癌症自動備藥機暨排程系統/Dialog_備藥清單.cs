@@ -40,7 +40,7 @@ namespace 癌症自動備藥機暨排程系統
         public Dialog_備藥清單(string guid , string login_name)
         {
             InitializeComponent();
-
+            this.TopMost = true;
             this.GUID = guid;
             string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_GUID";
             returnData returnData = new returnData();

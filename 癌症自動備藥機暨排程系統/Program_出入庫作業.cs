@@ -147,7 +147,18 @@ namespace 癌症自動備藥機暨排程系統
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
+            List<object[]> list_value = sqL_DataGridView_出入庫作業.Get_All_Select_RowsValues();
 
+            if (list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string 藥碼 = list_value[0][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
+            string 藥品名稱 = list_value[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
+            Dialog_入出庫作業 Dialog_入出庫作業 = new Dialog_入出庫作業(藥碼, 藥品名稱, storageUI_EPD_266);
+            Dialog_入出庫作業.ShowDialog();
         }
         #endregion
     }

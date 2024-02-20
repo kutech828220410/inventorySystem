@@ -241,6 +241,18 @@
     <Compile Include="Dialog_備藥通知處方選擇.Designer.cs">
       <DependentUpon>Dialog_備藥通知處方選擇.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_儲位選擇.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_儲位選擇.Designer.cs">
+      <DependentUpon>Dialog_儲位選擇.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_入出庫作業.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_入出庫作業.Designer.cs">
+      <DependentUpon>Dialog_入出庫作業.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_變異紀錄.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,9 +288,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_工程模式.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Program_庫存查詢.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_登入權限資料.cs">
@@ -318,11 +327,23 @@
     <Compile Include="uc_備藥通知處方內容.Designer.cs">
       <DependentUpon>uc_備藥通知處方內容.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC_儲位選擇.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_儲位選擇.Designer.cs">
+      <DependentUpon>UC_儲位選擇.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dialog_備藥清單.resx">
       <DependentUpon>Dialog_備藥清單.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_備藥通知處方選擇.resx">
       <DependentUpon>Dialog_備藥通知處方選擇.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_儲位選擇.resx">
+      <DependentUpon>Dialog_儲位選擇.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_入出庫作業.resx">
+      <DependentUpon>Dialog_入出庫作業.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_變異紀錄.resx">
       <DependentUpon>Dialog_變異紀錄.cs</DependentUpon>
@@ -348,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="uc_備藥通知處方內容.resx">
       <DependentUpon>uc_備藥通知處方內容.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_儲位選擇.resx">
+      <DependentUpon>UC_儲位選擇.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
