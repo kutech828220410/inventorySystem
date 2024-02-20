@@ -1518,3 +1518,4 @@ C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\PopupControl.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll

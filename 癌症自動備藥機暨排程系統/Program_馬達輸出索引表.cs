@@ -382,6 +382,7 @@ namespace 癌症自動備藥機暨排程系統
             int temp = 0;
             string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
             Storage storage = List_本地儲位.SortByIP(IP);
+            MyTimer myTimer = new MyTimer();
             while (true)
             {
                 if (cnt == 0)
@@ -394,14 +395,17 @@ namespace 癌症自動備藥機暨排程系統
  
                    
                     int ms = list_儲位列表[0][(int)enum_CMPM_StorageConfig.出料馬達輸入延遲時間].StringToInt32();
-                    storageUI_EPD_266.Set_ADCMotorTrigger(storage, ms);
+                    if (!storageUI_EPD_266.Set_ADCMotorTrigger(storage, ms))
+                    {
+                        break;
+                    }
                     Console.WriteLine($"第{temp}次,[出料馬達輸出] {storage.IP} ({storage.Code}){storage.Name} {DateTime.Now.ToDateTimeString()}");
-                    cnt++;
+                    myTimer.StartTickTime(200);
+                     cnt++;
                 }
                 if (cnt == 2)
                 {
-                    bool flag_output = storageUI_EPD_266.Get_OutputPIN(storage);
-                    if (flag_output)
+                    if (myTimer.IsTimeOut())
                     {
                         cnt++;
                     }
@@ -413,7 +417,7 @@ namespace 癌症自動備藥機暨排程系統
                     if (!flag_output)
                     {
                         temp++;
-                        cnt++;
+                        cnt = 0;
                     }
 
                 }
