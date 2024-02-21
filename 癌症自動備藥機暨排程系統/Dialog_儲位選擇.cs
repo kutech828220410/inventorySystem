@@ -59,7 +59,10 @@ namespace 癌症自動備藥機暨排程系統
 
             this.sqL_DataGridView_儲位選擇.RowsHeight = 50;
             this.sqL_DataGridView_儲位選擇.Init(table);
+            this.sqL_DataGridView_儲位選擇.Set_ColumnWidth(sqL_DataGridView_儲位選擇.Width - 20, DataGridViewContentAlignment.MiddleLeft, "GUID");
+
             this.sqL_DataGridView_儲位選擇.RowPostPaintingEvent += SqL_DataGridView_儲位選擇_RowPostPaintingEvent;
+            this.sqL_DataGridView_儲位選擇.RowClickEvent += SqL_DataGridView_儲位選擇_RowClickEvent;
 
             List<Storage> storages = storageUI_EPD_266.SQL_GetAllStorage();
 
@@ -75,8 +78,12 @@ namespace 癌症自動備藥機暨排程系統
                 list_value.Add(new object[] { json });
             }
             this.sqL_DataGridView_儲位選擇.RefreshGrid(list_value);
+            this.sqL_DataGridView_儲位選擇.SetSelectRow(0);
             this.rJ_Button_確認選擇.MouseDownEvent += RJ_Button_確認選擇_MouseDownEvent;
         }
+
+       
+
         private void Dialog_儲位選擇_Load(object sender, EventArgs e)
         {
         
@@ -103,12 +110,31 @@ namespace 癌症自動備藥機暨排程系統
                 string 序號 = $"{e.RowIndex + 1}.";
                 string IP = $"({storage.IP})";
                 string 儲位名稱 = $"[{storage.StorageName}]";
-
+                string 庫存 = $"庫存:{storage.Inventory}";
+              
                 DrawingClass.Draw.文字左上繪製(序號, new PointF(10, y + 10), new Font("標楷體", 16), Color.Black, e.Graphics);
                 DrawingClass.Draw.文字左上繪製(IP, new PointF(50, y + 10), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
                 DrawingClass.Draw.文字左上繪製(儲位名稱, new PointF(250, y + 10), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
 
+                size = 庫存.MeasureText(new Font("標楷體", 16, FontStyle.Bold));
+                DrawingClass.Draw.文字左上繪製(庫存, new PointF(e.RowBounds.Width - size.Width - 10, y + 10), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
+
             }
+        }
+        private void SqL_DataGridView_儲位選擇_RowClickEvent(object[] RowValue)
+        {
+            Storage storage;
+            List<object[]> list_value = this.sqL_DataGridView_儲位選擇.GetAllRows();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                storage = list_value[i][0].ObjectToString().JsonDeserializet<Storage>();
+
+                _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+
+            }
+
+            storage = RowValue[0].ObjectToString().JsonDeserializet<Storage>();
+            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Blue);
         }
         private void RJ_Button_確認選擇_MouseDownEvent(MouseEventArgs mevent)
         {

@@ -1632,6 +1632,83 @@
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
         </member>
+        <member name="M:HIS_WebApi.transactionsController.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增單筆交易紀錄
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   [transactionsClass]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.transactionsController.POST_get_by_op_time_st_end(HIS_DB_Lib.returnData)">
+            <summary>
+            指定操作時間範圍取得交易紀錄
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   [transactionsClass]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.transactionsController.POST_get_by_rx_time_st_end(HIS_DB_Lib.returnData)">
+            <summary>
+            指定開方時間範圍取得交易紀錄
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   [transactionsClass]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.transactionsController.POST_get_stock_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            取得指定藥碼,效期批號資訊
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "Value" : "[藥碼]"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data][StockClass]</returns>
+        </member>
         <member name="T:HIS_WebApi.ChemotherapyRxScheduling">
             <summary>
             化療藥局癌症排程處方系統

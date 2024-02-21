@@ -29,8 +29,44 @@ namespace 癌症自動備藥機暨排程系統
     {
         private List<Storage> Function_取得本地儲位()
         {
-            return this.List_本地儲位 = storageUI_EPD_266.SQL_GetAllStorage();
+            return List_EPD266_本地資料 = storageUI_EPD_266.SQL_GetAllStorage();
         }
+        static public int Function_從SQL取得庫存(string 藥品碼)
+        {
+            int 庫存 = 0;
+            List<object> list_value = Function_從SQL取得儲位到本地資料(藥品碼);
+            for (int i = 0; i < list_value.Count; i++)
+            {
+
+                if (list_value[i] is Device)
+                {
+                    Device device = list_value[i] as Device;
+                    if (device != null)
+                    {
+                        庫存 += device.Inventory.StringToInt32();
+                    }
+                }
+
+            }
+            return 庫存;
+        }
+        static public List<object> Function_從SQL取得儲位到本地資料(string 藥品碼)
+        {
+            List<object> list_value = new List<object>();
+            List<Storage> storages = List_EPD266_本地資料.SortByCode(藥品碼);
+           
+
+           
+            for (int i = 0; i < storages.Count; i++)
+            {
+                Storage storage = _storageUI_EPD_266.SQL_GetStorage(storages[i]);
+                List_EPD266_本地資料.Add_NewStorage(storage);
+                list_value.Add(storage);
+            }
+           
+            return list_value;
+        }
+
         private List<medClass> Function_取得藥檔資料()
         {
             string url = $"{API_Server}/api/MED_page/get_by_apiserver";
@@ -51,10 +87,13 @@ namespace 癌症自動備藥機暨排程系統
             List<medClass> medClasses_buf = new List<medClass>();
             List<medClass> medClasses_result = new List<medClass>();
             List<Storage> storages = Function_取得本地儲位();
-            for (int i = 0; i < storages.Count; i++)
+            storages.Sort(new Icp_Storage());
+            List<string> codes = (from temp in storages
+                                  select temp.Code).Distinct().ToList();
+            for (int i = 0; i < codes.Count; i++)
             {
                 medClasses_buf = (from temp in medClasses
-                                  where temp.藥品碼 == storages[i].Code
+                                  where temp.藥品碼 == codes[i]
                                   select temp).ToList();
                 if(medClasses_buf.Count > 0)
                 {
@@ -63,6 +102,16 @@ namespace 癌症自動備藥機暨排程系統
             }
 
             return medClasses_result;
+        }
+
+        public class Icp_Storage : IComparer<Storage>
+        {
+            public int Compare(Storage x, Storage y)
+            {
+                string 藥品碼_0 = x.Code;
+                string 藥品碼_1 = y.Code;
+                return 藥品碼_0.CompareTo(藥品碼_1);
+            }
         }
     }
 }

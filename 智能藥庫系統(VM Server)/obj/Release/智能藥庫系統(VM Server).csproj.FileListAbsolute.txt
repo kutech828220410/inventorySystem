@@ -914,4 +914,3 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Ser
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).exe
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).pdb
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\PopupControl.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\stdole.dll

@@ -26,7 +26,8 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Main_Form : Form
     {
-        private List<Storage> List_本地儲位 = new List<Storage>();
+        static private StorageUI_EPD_266 _storageUI_EPD_266;
+        static private List<Storage> List_EPD266_本地資料 = new List<Storage>();
         public enum enum_儲位列表
         {
             GUID,
@@ -40,7 +41,7 @@ namespace 癌症自動備藥機暨排程系統
         private void Program_儲位設定_Init()
         {
             this.storageUI_EPD_266.Init(dBConfigClass.DB_Storagelist);
-
+            _storageUI_EPD_266 = this.storageUI_EPD_266;
             this.plC_ScreenPage_main.TabChangeEvent += PlC_ScreenPage_main_TabChangeEvent;
             sqL_DataGridView_儲位設定_藥品搜尋.Init(sqL_DataGridView_藥檔資料);
             sqL_DataGridView_儲位設定_藥品搜尋.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());

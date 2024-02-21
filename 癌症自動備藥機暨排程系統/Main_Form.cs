@@ -242,6 +242,7 @@ namespace 癌症自動備藥機暨排程系統
             if (PageText == "出入庫作業")
             {
                 List<Storage> storages = Function_取得本地儲位();
+                PlC_RJ_Button_出入庫作業_入庫_MouseDownEvent(null);
 
             }
             if (PageText == "儲位設定")

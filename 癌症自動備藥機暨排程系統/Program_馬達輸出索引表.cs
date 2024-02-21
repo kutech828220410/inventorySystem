@@ -245,7 +245,7 @@ namespace 癌症自動備藥機暨排程系統
             {
                 string IP = list_value[i][(int)enum_CMPM_StorageConfig.IP].ObjectToString();
                 string 馬達輸出 = list_value[i][(int)enum_CMPM_StorageConfig.出料馬達輸出索引].ObjectToString();
-                Storage storage = List_本地儲位.SortByIP(IP);
+                Storage storage = List_EPD266_本地資料.SortByIP(IP);
                 if (storage == null) continue;
                 bool flag_output = storageUI_EPD_266.Get_OutputPIN(storage);
                 PLC_Device pLC_Device = new PLC_Device($"{馬達輸出}");
@@ -262,7 +262,7 @@ namespace 癌症自動備藥機暨排程系統
                 string IP = list_value[i][(int)enum_CMPM_StorageConfig.IP].ObjectToString();
                 string 出料馬達輸出觸發 = list_value[i][(int)enum_CMPM_StorageConfig.出料馬達輸出觸發].ObjectToString();
                 if (出料馬達輸出觸發 != true.ToString()) continue;
-                Storage storage = List_本地儲位.SortByIP(IP);
+                Storage storage = List_EPD266_本地資料.SortByIP(IP);
                 int ms = list_value[0][(int)enum_CMPM_StorageConfig.出料馬達輸入延遲時間].StringToInt32();
                 if (ms < 0) ms = 0;
                 tasks.Add(Task.Run(new Action(delegate
@@ -381,7 +381,7 @@ namespace 癌症自動備藥機暨排程系統
             int cnt = 0;
             int temp = 0;
             string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
-            Storage storage = List_本地儲位.SortByIP(IP);
+            Storage storage = List_EPD266_本地資料.SortByIP(IP);
             MyTimer myTimer = new MyTimer();
             while (true)
             {

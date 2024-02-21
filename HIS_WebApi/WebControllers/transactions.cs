@@ -51,6 +51,23 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 新增單筆交易紀錄
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [transactionsClass]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
         [Route("add")]
         [HttpPost]
         public string POST_add([FromBody] returnData returnData)
@@ -101,6 +118,286 @@ namespace HIS_WebApi
             }
 
 
+        }
+        /// <summary>
+        /// 指定操作時間範圍取得交易紀錄
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [transactionsClass]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
+        [Route("get_by_op_time_st_end")]
+        [HttpPost]
+        public string POST_get_by_op_time_st_end([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_op_time_st_end";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                string[] date_ary = returnData.Value.Split(',');
+                if (date_ary.Length != 2)
+                {
+                    returnData.Code = -5;
+                    returnData.Result = "輸入日期格式錯誤!";
+                    return returnData.JsonSerializationt();
+                }
+                else
+                {
+                    if (!date_ary[0].Check_Date_String() || !date_ary[1].Check_Date_String())
+                    {
+                        returnData.Code = -5;
+                        returnData.Result = "輸入日期格式錯誤!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                DateTime date_st = date_ary[0].StringToDateTime();
+                DateTime date_end = date_ary[1].StringToDateTime();
+
+
+                string TableName = "trading";
+                SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.操作時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
+                list_value.Sort(new ICP_交易記錄查詢());
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass , enum_交易記錄查詢資料>();
+                returnData.Code = 200;
+                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+        /// <summary>
+        /// 指定開方時間範圍取得交易紀錄
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [transactionsClass]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為盤點單結構</returns>
+        [Route("get_by_rx_time_st_end")]
+        [HttpPost]
+        public string POST_get_by_rx_time_st_end([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_by_rx_time_st_end";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                string[] date_ary = returnData.Value.Split(',');
+                if (date_ary.Length != 2)
+                {
+                    returnData.Code = -5;
+                    returnData.Result = "輸入日期格式錯誤!";
+                    return returnData.JsonSerializationt();
+                }
+                else
+                {
+                    if (!date_ary[0].Check_Date_String() || !date_ary[1].Check_Date_String())
+                    {
+                        returnData.Code = -5;
+                        returnData.Result = "輸入日期格式錯誤!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                DateTime date_st = date_ary[0].StringToDateTime();
+                DateTime date_end = date_ary[1].StringToDateTime();
+
+
+                string TableName = "trading";
+                SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.開方時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
+                list_value.Sort(new ICP_交易記錄查詢());
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
+                returnData.Code = 200;
+                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+        /// <summary>
+        /// 取得指定藥碼,效期批號資訊
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "Value" : "[藥碼]"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data][StockClass]</returns>
+        [Route("get_stock_by_code")]
+        [HttpPost]
+        public string POST_get_stock_by_code([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_stock_by_code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                if (returnData.Value.StringIsEmpty() == true)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入參數異常!";
+                    return returnData.JsonSerializationt();
+                }
+
+
+
+                string TableName = "trading";
+                SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥品碼, returnData.Value);
+                List<string> list_效期 = new List<string>();
+                List<string> list_批號 = new List<string>();
+                List<string> list_效期_buf = new List<string>();
+                List<string> list_操作時間 = new List<string>();
+                string 備註 = "";
+                string 操作時間 = "";
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    備註 = list_value[i][(int)enum_交易記錄查詢資料.備註].ObjectToString();
+                    string[] temp_ary = 備註.Split('\n');
+                    for (int k = 0; k < temp_ary.Length; k++)
+                    {
+                        string 效期 = temp_ary[k].GetTextValue("效期");
+                        string 批號 = temp_ary[k].GetTextValue("批號");
+                        操作時間 = list_value[i][(int)enum_交易記錄查詢資料.操作時間].ToDateTimeString();
+                        if (效期.StringIsEmpty() == true) continue;
+                        list_效期_buf = (from temp in list_效期
+                                       where temp == 效期
+                                       select temp).ToList();
+                        if (list_效期_buf.Count > 0) continue;
+                        list_效期.Add(效期);
+                        list_批號.Add(批號);
+                        list_操作時間.Add(操作時間);
+                    }
+                }
+                // 組合效期、批號和操作時間
+                List<Tuple<string, string, DateTime>> combinedList = new List<Tuple<string, string, DateTime>>();
+                for (int i = 0; i < list_效期.Count; i++)
+                {
+                    combinedList.Add(new Tuple<string, string, DateTime>(list_效期[i], list_批號[i], DateTime.Parse(list_操作時間[i])));
+                }
+
+                // 根據操作時間排序
+                combinedList.Sort((x, y) => DateTime.Compare(y.Item3, x.Item3));
+
+                // 更新list_效期、list_批號和list_操作時間
+                list_效期.Clear();
+                list_批號.Clear();
+                list_操作時間.Clear();
+                foreach (var item in combinedList)
+                {
+                    list_效期.Add(item.Item1);
+                    list_批號.Add(item.Item2);
+                    list_操作時間.Add(item.Item3.ToString());
+                }
+                List<StockClass> stockClasses = new List<StockClass>();
+                for (int i = 0; i < list_效期.Count; i++)
+                {
+                    StockClass stockClass = new StockClass();
+                    stockClass.Code = returnData.Value;
+                    stockClass.Validity_period = list_效期[i];
+                    stockClass.Lot_number = list_批號[i];
+                    stockClass.Qty = "0";
+                    stockClasses.Add(stockClass);
+
+                }
+
+
+                returnData.Code = 200;
+                returnData.Result = $"({returnData.Value})取得效期成功!共<{stockClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = stockClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
         }
         [Route("serch_med_information_by_code")]
         [HttpPost]
@@ -460,6 +757,30 @@ namespace HIS_WebApi
             return table.JsonSerializationt(true);
         }
 
+        public class ICP_交易記錄查詢 : IComparer<object[]>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(object[] x, object[] y)
+            {
+                DateTime datetime1 = x[(int)enum_交易記錄查詢資料.操作時間].ToDateTimeString_6().StringToDateTime();
+                DateTime datetime2 = y[(int)enum_交易記錄查詢資料.操作時間].ToDateTimeString_6().StringToDateTime();
+                int compare = DateTime.Compare(datetime1, datetime2);
+                if (compare != 0) return compare;
+                int 結存量1 = x[(int)enum_交易記錄查詢資料.結存量].StringToInt32();
+                int 結存量2 = y[(int)enum_交易記錄查詢資料.結存量].StringToInt32();
+                if (結存量1 > 結存量2)
+                {
+                    return -1;
+                }
+                else if (結存量1 < 結存量2)
+                {
+                    return 1;
+                }
+                else if (結存量1 == 結存量2) return 0;
+                return 0;
 
+            }
+        }
     }
 }

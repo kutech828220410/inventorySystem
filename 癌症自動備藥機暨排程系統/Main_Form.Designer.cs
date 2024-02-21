@@ -114,6 +114,10 @@ namespace 癌症自動備藥機暨排程系統
             this.交易紀錄 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_交易記錄查詢 = new SQLUI.SQL_DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.dateTimeIntervelPicker_交易紀錄查詢_操作時間 = new MyUI.DateTimeIntervelPicker();
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋 = new MyUI.PLC_RJ_Button();
+            this.rJ_Lable5 = new MyUI.RJ_Lable();
             this.儲位設定 = new System.Windows.Forms.TabPage();
             this.rJ_Pannel14 = new MyUI.RJ_Pannel();
             this.sqL_DataGridView_儲位列表 = new SQLUI.SQL_DataGridView();
@@ -197,6 +201,10 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_UI_Init = new MyUI.PLC_UI_Init();
             this.lowerMachine_Panel = new LadderUI.LowerMachine_Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.plC_RJ_Button_馬達輸出索引表_出料測試 = new MyUI.PLC_RJ_Button();
+            this.label131 = new System.Windows.Forms.Label();
+            this.plC_NumBox_馬達輸出索引表_出料測試次數 = new MyUI.PLC_NumBox();
             this.plC_RJ_Button_馬達輸出索引表_出料一次 = new MyUI.PLC_RJ_Button();
             this.plC_Button34 = new MyUI.PLC_Button();
             this.plC_Button33 = new MyUI.PLC_Button();
@@ -716,10 +724,6 @@ namespace 癌症自動備藥機暨排程系統
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.plC_NumBox_馬達輸出索引表_出料測試次數 = new MyUI.PLC_NumBox();
-            this.label131 = new System.Windows.Forms.Label();
-            this.plC_RJ_Button_馬達輸出索引表_出料測試 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_main.SuspendLayout();
             this.自動備藥.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -747,6 +751,8 @@ namespace 癌症自動備藥機暨排程系統
             this.panel29.SuspendLayout();
             this.panel30.SuspendLayout();
             this.交易紀錄.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.儲位設定.SuspendLayout();
             this.rJ_Pannel14.SuspendLayout();
             this.panel39.SuspendLayout();
@@ -763,6 +769,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_ScreenPage_系統.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.rJ_Pannel8.SuspendLayout();
             this.rJ_Pannel7.SuspendLayout();
@@ -800,7 +807,6 @@ namespace 癌症自動備藥機暨排程系統
             this.panel25.SuspendLayout();
             this.panel_main02.SuspendLayout();
             this.panel_main01.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // plC_ScreenPage_main
@@ -2687,11 +2693,98 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel9
             // 
+            this.panel9.Controls.Add(this.panel11);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel9.Location = new System.Drawing.Point(0, 1424);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1056, 310);
             this.panel9.TabIndex = 9;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.dateTimeIntervelPicker_交易紀錄查詢_操作時間);
+            this.panel11.Controls.Add(this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋);
+            this.panel11.Controls.Add(this.rJ_Lable5);
+            this.panel11.Location = new System.Drawing.Point(11, 18);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(803, 87);
+            this.panel11.TabIndex = 55;
+            // 
+            // dateTimeIntervelPicker_交易紀錄查詢_操作時間
+            // 
+            this.dateTimeIntervelPicker_交易紀錄查詢_操作時間.BackColor = System.Drawing.Color.Transparent;
+            this.dateTimeIntervelPicker_交易紀錄查詢_操作時間.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dateTimeIntervelPicker_交易紀錄查詢_操作時間.Location = new System.Drawing.Point(167, 4);
+            this.dateTimeIntervelPicker_交易紀錄查詢_操作時間.Name = "dateTimeIntervelPicker_交易紀錄查詢_操作時間";
+            this.dateTimeIntervelPicker_交易紀錄查詢_操作時間.Size = new System.Drawing.Size(316, 80);
+            this.dateTimeIntervelPicker_交易紀錄查詢_操作時間.TabIndex = 51;
+            // 
+            // plC_RJ_Button_交易紀錄查詢_操作時間_搜尋
+            // 
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.AutoResetState = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.Bool = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.BorderRadius = 20;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.BorderSize = 0;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.but_press = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.GUID = "";
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.Location = new System.Drawing.Point(489, 17);
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.Name = "plC_RJ_Button_交易紀錄查詢_操作時間_搜尋";
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.OFF_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.ON_BorderSize = 2;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.ON_文字內容 = "搜尋";
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.ShadowSize = 3;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.ShowLoadingForm = true;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.Size = new System.Drawing.Size(72, 54);
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.State = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.TabIndex = 50;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.Text = "搜尋";
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.Texts = "搜尋";
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.字型鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.文字鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.讀取位元反向 = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.音效 = true;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.顯示 = false;
+            this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.顯示狀態 = false;
+            // 
+            // rJ_Lable5
+            // 
+            this.rJ_Lable5.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable5.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable5.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable5.BorderRadius = 10;
+            this.rJ_Lable5.BorderSize = 0;
+            this.rJ_Lable5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable5.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable5.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable5.GUID = "";
+            this.rJ_Lable5.Location = new System.Drawing.Point(4, 17);
+            this.rJ_Lable5.Name = "rJ_Lable5";
+            this.rJ_Lable5.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable5.ShadowSize = 3;
+            this.rJ_Lable5.Size = new System.Drawing.Size(157, 54);
+            this.rJ_Lable5.TabIndex = 49;
+            this.rJ_Lable5.Text = "操作時間";
+            this.rJ_Lable5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable5.TextColor = System.Drawing.Color.White;
             // 
             // 儲位設定
             // 
@@ -5042,6 +5135,92 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage2.Size = new System.Drawing.Size(1048, 1618);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "馬達輸出索引表";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.plC_RJ_Button_馬達輸出索引表_出料測試);
+            this.groupBox1.Controls.Add(this.label131);
+            this.groupBox1.Controls.Add(this.plC_NumBox_馬達輸出索引表_出料測試次數);
+            this.groupBox1.Location = new System.Drawing.Point(348, 1424);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(210, 76);
+            this.groupBox1.TabIndex = 85;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "出料測試";
+            // 
+            // plC_RJ_Button_馬達輸出索引表_出料測試
+            // 
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.AutoResetState = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.BackgroundColor = System.Drawing.SystemColors.ControlDark;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.Bool = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.BorderRadius = 20;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.BorderSize = 0;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.but_press = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.GUID = "";
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.Location = new System.Drawing.Point(107, 17);
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.Name = "plC_RJ_Button_馬達輸出索引表_出料測試";
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.OFF_文字內容 = "動作";
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.OFF_背景顏色 = System.Drawing.SystemColors.ControlDark;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_BorderSize = 2;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_文字內容 = "動作";
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_背景顏色 = System.Drawing.SystemColors.ControlDark;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.ShadowSize = 3;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.ShowLoadingForm = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.Size = new System.Drawing.Size(97, 50);
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.State = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.TabIndex = 85;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.Text = "動作";
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.Texts = "動作";
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.字型鎖住 = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.文字鎖住 = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.讀取位元反向 = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.讀寫鎖住 = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.音效 = true;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.顯示 = false;
+            this.plC_RJ_Button_馬達輸出索引表_出料測試.顯示狀態 = false;
+            // 
+            // label131
+            // 
+            this.label131.AutoSize = true;
+            this.label131.Location = new System.Drawing.Point(83, 41);
+            this.label131.Name = "label131";
+            this.label131.Size = new System.Drawing.Size(17, 12);
+            this.label131.TabIndex = 1;
+            this.label131.Text = "次";
+            // 
+            // plC_NumBox_馬達輸出索引表_出料測試次數
+            // 
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.Location = new System.Drawing.Point(15, 31);
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.Name = "plC_NumBox_馬達輸出索引表_出料測試次數";
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.ReadOnly = false;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.Size = new System.Drawing.Size(62, 31);
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.TabIndex = 0;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.Value = 0;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.密碼欄位 = false;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.小數點位置 = 0;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.微調數值 = 1;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.音效 = true;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.顯示微調按鈕 = false;
+            this.plC_NumBox_馬達輸出索引表_出料測試次數.顯示螢幕小鍵盤 = true;
             // 
             // plC_RJ_Button_馬達輸出索引表_出料一次
             // 
@@ -18515,92 +18694,6 @@ namespace 癌症自動備藥機暨排程系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.plC_RJ_Button_馬達輸出索引表_出料測試);
-            this.groupBox1.Controls.Add(this.label131);
-            this.groupBox1.Controls.Add(this.plC_NumBox_馬達輸出索引表_出料測試次數);
-            this.groupBox1.Location = new System.Drawing.Point(348, 1424);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(210, 76);
-            this.groupBox1.TabIndex = 85;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "出料測試";
-            // 
-            // plC_NumBox_馬達輸出索引表_出料測試次數
-            // 
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.Location = new System.Drawing.Point(15, 31);
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.Name = "plC_NumBox_馬達輸出索引表_出料測試次數";
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.ReadOnly = false;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.Size = new System.Drawing.Size(62, 31);
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.TabIndex = 0;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.Value = 0;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.密碼欄位 = false;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.小數點位置 = 0;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.微調數值 = 1;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.音效 = true;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.顯示微調按鈕 = false;
-            this.plC_NumBox_馬達輸出索引表_出料測試次數.顯示螢幕小鍵盤 = true;
-            // 
-            // label131
-            // 
-            this.label131.AutoSize = true;
-            this.label131.Location = new System.Drawing.Point(83, 41);
-            this.label131.Name = "label131";
-            this.label131.Size = new System.Drawing.Size(17, 12);
-            this.label131.TabIndex = 1;
-            this.label131.Text = "次";
-            // 
-            // plC_RJ_Button_馬達輸出索引表_出料測試
-            // 
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.AutoResetState = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.BackgroundColor = System.Drawing.SystemColors.ControlDark;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.Bool = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.BorderRadius = 20;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.BorderSize = 0;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.but_press = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.GUID = "";
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.Location = new System.Drawing.Point(107, 17);
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.Name = "plC_RJ_Button_馬達輸出索引表_出料測試";
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.OFF_文字內容 = "動作";
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.OFF_背景顏色 = System.Drawing.SystemColors.ControlDark;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_BorderSize = 2;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_文字內容 = "動作";
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.ON_背景顏色 = System.Drawing.SystemColors.ControlDark;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.ShadowSize = 3;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.ShowLoadingForm = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.Size = new System.Drawing.Size(97, 50);
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.State = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.TabIndex = 85;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.Text = "動作";
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.Texts = "動作";
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.字型鎖住 = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.文字鎖住 = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.讀取位元反向 = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.讀寫鎖住 = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.音效 = true;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.顯示 = false;
-            this.plC_RJ_Button_馬達輸出索引表_出料測試.顯示狀態 = false;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -18643,6 +18736,8 @@ namespace 癌症自動備藥機暨排程系統
             this.panel29.ResumeLayout(false);
             this.panel30.ResumeLayout(false);
             this.交易紀錄.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
             this.儲位設定.ResumeLayout(false);
             this.rJ_Pannel14.ResumeLayout(false);
             this.panel39.ResumeLayout(false);
@@ -18660,6 +18755,8 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_ScreenPage_系統.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.rJ_Pannel8.ResumeLayout(false);
             this.rJ_Pannel8.PerformLayout();
@@ -18715,8 +18812,6 @@ namespace 癌症自動備藥機暨排程系統
             this.panel25.ResumeLayout(false);
             this.panel_main02.ResumeLayout(false);
             this.panel_main01.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -19412,6 +19507,10 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_RJ_Button plC_RJ_Button_馬達輸出索引表_出料測試;
         private System.Windows.Forms.Label label131;
         private MyUI.PLC_NumBox plC_NumBox_馬達輸出索引表_出料測試次數;
+        private System.Windows.Forms.Panel panel11;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_交易紀錄查詢_操作時間_搜尋;
+        private MyUI.RJ_Lable rJ_Lable5;
+        private MyUI.DateTimeIntervelPicker dateTimeIntervelPicker_交易紀錄查詢_操作時間;
     }
 }
 

@@ -52,7 +52,7 @@ namespace 癌症自動備藥機暨排程系統
             // plC_RJ_Button_變異紀錄
             // 
             this.plC_RJ_Button_變異紀錄.AutoResetState = false;
-            this.plC_RJ_Button_變異紀錄.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_變異紀錄.BackgroundColor = System.Drawing.Color.DarkGray;
             this.plC_RJ_Button_變異紀錄.Bool = false;
             this.plC_RJ_Button_變異紀錄.BorderColor = System.Drawing.Color.Thistle;
             this.plC_RJ_Button_變異紀錄.BorderRadius = 20;
@@ -70,12 +70,12 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_變異紀錄.OFF_文字內容 = "變異紀錄";
             this.plC_RJ_Button_變異紀錄.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_變異紀錄.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_變異紀錄.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_變異紀錄.OFF_背景顏色 = System.Drawing.Color.DarkGray;
             this.plC_RJ_Button_變異紀錄.ON_BorderSize = 5;
             this.plC_RJ_Button_變異紀錄.ON_文字內容 = "變異紀錄";
             this.plC_RJ_Button_變異紀錄.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_變異紀錄.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_變異紀錄.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_變異紀錄.ON_背景顏色 = System.Drawing.Color.DarkGray;
             this.plC_RJ_Button_變異紀錄.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_變異紀錄.ShadowSize = 3;
             this.plC_RJ_Button_變異紀錄.ShowLoadingForm = false;
@@ -99,7 +99,7 @@ namespace 癌症自動備藥機暨排程系統
             // plC_RJ_Button_返回
             // 
             this.plC_RJ_Button_返回.AutoResetState = false;
-            this.plC_RJ_Button_返回.BackgroundColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_返回.BackgroundColor = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_返回.Bool = false;
             this.plC_RJ_Button_返回.BorderColor = System.Drawing.Color.Thistle;
             this.plC_RJ_Button_返回.BorderRadius = 20;
@@ -155,7 +155,7 @@ namespace 癌症自動備藥機暨排程系統
             // plC_RJ_Button_確認
             // 
             this.plC_RJ_Button_確認.AutoResetState = false;
-            this.plC_RJ_Button_確認.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_確認.BackgroundColor = System.Drawing.SystemColors.Control;
             this.plC_RJ_Button_確認.Bool = false;
             this.plC_RJ_Button_確認.BorderColor = System.Drawing.Color.Thistle;
             this.plC_RJ_Button_確認.BorderRadius = 20;

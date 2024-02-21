@@ -264,7 +264,7 @@ namespace HIS_WebApi
                         list_med[i][(int)enum_藥品資料_藥檔資料.庫存] = inventory.ToString();
                     }
 
-
+                    list_med.Sort(new Icp_藥品資料_藥檔資料());
                     List<medClass> medClasses = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
                     returnData.Data = medClasses;
                     returnData.Code = 200;
@@ -823,6 +823,16 @@ namespace HIS_WebApi
 
 
             return table.JsonSerializationt(true);
+        }
+
+        public class Icp_藥品資料_藥檔資料 : IComparer<object[]>
+        {
+            public int Compare(object[] x, object[] y)
+            {
+                string 藥品碼_0 = x[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
+                string 藥品碼_1 = y[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
+                return 藥品碼_0.CompareTo(藥品碼_1);
+            }
         }
     }
 }

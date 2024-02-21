@@ -157,8 +157,20 @@ namespace 癌症自動備藥機暨排程系統
             }
             string 藥碼 = list_value[0][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
             string 藥品名稱 = list_value[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-            Dialog_入出庫作業 Dialog_入出庫作業 = new Dialog_入出庫作業(藥碼, 藥品名稱, storageUI_EPD_266);
-            Dialog_入出庫作業.ShowDialog();
+            Dialog_入出庫作業.enum_type enum_Type = new Dialog_入出庫作業.enum_type();
+            if (plC_RJ_Button_出入庫作業_入庫.Bool) enum_Type = Dialog_入出庫作業.enum_type.入庫;
+            if (plC_RJ_Button_出入庫作業_出庫.Bool) enum_Type = Dialog_入出庫作業.enum_type.出庫;
+            Dialog_入出庫作業 dialog_入出庫作業 = new Dialog_入出庫作業(enum_Type ,this.登入者名稱, 藥碼, 藥品名稱, storageUI_EPD_266);
+            dialog_入出庫作業.ShowDialog();
+
+            List<medClass> medClasses = Function_取得有儲位藥檔資料();
+            List<object[]> list_medClasses = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+            List<object[]> list_medClasses_buf = new List<object[]>();
+            list_medClasses_buf = list_medClasses.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
+            if(list_medClasses_buf.Count > 0)
+            {
+                this.sqL_DataGridView_出入庫作業.ReplaceExtra(list_medClasses_buf[0], true);
+            }
         }
         #endregion
     }
