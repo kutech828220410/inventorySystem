@@ -594,7 +594,7 @@
             // openFileDialog_LoadExcel
             // 
             this.openFileDialog_LoadExcel.DefaultExt = "xlsx";
-            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
+            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
             // 
             // panel_Main
             // 
@@ -620,7 +620,7 @@
             // plC_RJ_Button_登入畫面_登出
             // 
             this.plC_RJ_Button_登入畫面_登出.AutoResetState = false;
-            this.plC_RJ_Button_登入畫面_登出.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_登入畫面_登出.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_登入畫面_登出.Bool = false;
             this.plC_RJ_Button_登入畫面_登出.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_登入畫面_登出.BorderRadius = 5;
@@ -1393,7 +1393,7 @@
             // plC_RJ_Button_登入畫面_登入
             // 
             this.plC_RJ_Button_登入畫面_登入.AutoResetState = false;
-            this.plC_RJ_Button_登入畫面_登入.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_登入畫面_登入.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_登入畫面_登入.Bool = false;
             this.plC_RJ_Button_登入畫面_登入.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_登入畫面_登入.BorderRadius = 20;
@@ -2003,7 +2003,7 @@
             // plC_RJ_Button_勤務取藥_條碼刷入區_清除
             // 
             this.plC_RJ_Button_勤務取藥_條碼刷入區_清除.AutoResetState = false;
-            this.plC_RJ_Button_勤務取藥_條碼刷入區_清除.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_勤務取藥_條碼刷入區_清除.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_勤務取藥_條碼刷入區_清除.Bool = false;
             this.plC_RJ_Button_勤務取藥_條碼刷入區_清除.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_勤務取藥_條碼刷入區_清除.BorderRadius = 20;
@@ -2318,7 +2318,7 @@
             // plC_RJ_Button_櫃體狀態_重置設備
             // 
             this.plC_RJ_Button_櫃體狀態_重置設備.AutoResetState = false;
-            this.plC_RJ_Button_櫃體狀態_重置設備.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_櫃體狀態_重置設備.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_櫃體狀態_重置設備.Bool = false;
             this.plC_RJ_Button_櫃體狀態_重置設備.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_櫃體狀態_重置設備.BorderRadius = 20;
@@ -3160,7 +3160,7 @@
             // plC_RJ_Button_醫令資料_設為未調劑
             // 
             this.plC_RJ_Button_醫令資料_設為未調劑.AutoResetState = false;
-            this.plC_RJ_Button_醫令資料_設為未調劑.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_設為未調劑.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_醫令資料_設為未調劑.Bool = false;
             this.plC_RJ_Button_醫令資料_設為未調劑.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_醫令資料_設為未調劑.BorderRadius = 5;
@@ -3266,7 +3266,7 @@
             // plC_RJ_Button_醫令資料_顯示全部
             // 
             this.plC_RJ_Button_醫令資料_顯示全部.AutoResetState = false;
-            this.plC_RJ_Button_醫令資料_顯示全部.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_醫令資料_顯示全部.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_醫令資料_顯示全部.Bool = false;
             this.plC_RJ_Button_醫令資料_顯示全部.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_醫令資料_顯示全部.BorderRadius = 20;
@@ -3541,7 +3541,7 @@
             // plC_RJ_Button_交易記錄查詢_匯出
             // 
             this.plC_RJ_Button_交易記錄查詢_匯出.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_匯出.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_匯出.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_匯出.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_匯出.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_匯出.BorderRadius = 20;
@@ -3658,7 +3658,7 @@
             // plC_RJ_Button_交易記錄查詢_病房號_搜尋
             // 
             this.plC_RJ_Button_交易記錄查詢_病房號_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_病房號_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_病房號_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_病房號_搜尋.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_病房號_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_病房號_搜尋.BorderRadius = 20;
@@ -3749,7 +3749,7 @@
             // plC_RJ_Button_交易記錄查詢_病歷號_搜尋
             // 
             this.plC_RJ_Button_交易記錄查詢_病歷號_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_病歷號_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_病歷號_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_病歷號_搜尋.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_病歷號_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_病歷號_搜尋.BorderRadius = 20;
@@ -3840,7 +3840,7 @@
             // plC_RJ_Button_交易記錄查詢_刪除資料
             // 
             this.plC_RJ_Button_交易記錄查詢_刪除資料.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_刪除資料.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_刪除資料.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_刪除資料.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_刪除資料.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_刪除資料.BorderRadius = 20;
@@ -3887,7 +3887,7 @@
             // plC_RJ_Button_交易記錄查詢_領用時間_搜尋
             // 
             this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_領用時間_搜尋.BorderRadius = 5;
@@ -3992,7 +3992,7 @@
             // plC_RJ_Button_交易記錄查詢_開方時間_搜尋
             // 
             this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_開方時間_搜尋.BorderRadius = 5;
@@ -4097,7 +4097,7 @@
             // plC_RJ_Button_交易記錄查詢_操作時間_搜尋
             // 
             this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_操作時間_搜尋.BorderRadius = 5;
@@ -4202,7 +4202,7 @@
             // plC_RJ_Button_交易記錄查詢_領用人_搜尋
             // 
             this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_領用人_搜尋.BorderRadius = 20;
@@ -4293,7 +4293,7 @@
             // plC_RJ_Button__交易記錄查詢_調劑人_搜尋
             // 
             this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.AutoResetState = false;
-            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.Bool = false;
             this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button__交易記錄查詢_調劑人_搜尋.BorderRadius = 20;
@@ -4384,7 +4384,7 @@
             // plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋
             // 
             this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_藥品名稱_搜尋.BorderRadius = 20;
@@ -4475,7 +4475,7 @@
             // plC_RJ_Button_交易記錄查詢_藥品碼_搜尋
             // 
             this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_藥品碼_搜尋.BorderRadius = 20;
@@ -4566,7 +4566,7 @@
             // plC_RJ_Button_交易記錄查詢_顯示全部
             // 
             this.plC_RJ_Button_交易記錄查詢_顯示全部.AutoResetState = false;
-            this.plC_RJ_Button_交易記錄查詢_顯示全部.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易記錄查詢_顯示全部.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.Bool = false;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_交易記錄查詢_顯示全部.BorderRadius = 20;
@@ -4719,7 +4719,7 @@
             // plC_RJ_Button_藥品資料_HIS下載全部藥檔
             // 
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.Bool = false;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.BorderRadius = 5;
@@ -4766,7 +4766,7 @@
             // plC_RJ_Button_藥品資料_HIS填入
             // 
             this.plC_RJ_Button_藥品資料_HIS填入.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_HIS填入.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_HIS填入.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_HIS填入.Bool = false;
             this.plC_RJ_Button_藥品資料_HIS填入.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_HIS填入.BorderRadius = 5;
@@ -4812,7 +4812,7 @@
             // plC_RJ_Button_藥品資料_刪除
             // 
             this.plC_RJ_Button_藥品資料_刪除.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_刪除.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_刪除.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_刪除.Bool = false;
             this.plC_RJ_Button_藥品資料_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_刪除.BorderRadius = 5;
@@ -4858,7 +4858,7 @@
             // plC_RJ_Button_藥品資料_更新藥櫃資料
             // 
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_更新藥櫃資料.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_更新藥櫃資料.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.Bool = false;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.BorderRadius = 5;
@@ -5169,7 +5169,7 @@
             // plC_RJ_Button_藥品資料_條碼管理
             // 
             this.plC_RJ_Button_藥品資料_條碼管理.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_條碼管理.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_條碼管理.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_條碼管理.Bool = false;
             this.plC_RJ_Button_藥品資料_條碼管理.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_條碼管理.BorderRadius = 5;
@@ -5914,7 +5914,7 @@
             // plC_RJ_Button_藥品資料_登錄
             // 
             this.plC_RJ_Button_藥品資料_登錄.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_登錄.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_登錄.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_登錄.Bool = false;
             this.plC_RJ_Button_藥品資料_登錄.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_登錄.BorderRadius = 5;
@@ -6026,7 +6026,7 @@
             // plC_RJ_Button_藥品資料_高價藥品_搜尋
             // 
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_高價藥品_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_高價藥品_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.Bool = false;
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.BorderRadius = 5;
@@ -6138,7 +6138,7 @@
             // plC_RJ_Button_藥品資料_管制級別_搜尋
             // 
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_管制級別_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_管制級別_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.Bool = false;
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.BorderRadius = 5;
@@ -6224,7 +6224,7 @@
             // plC_RJ_Button_藥品資料_商品名_搜尋
             // 
             this.plC_RJ_Button_藥品資料_商品名_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_商品名_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_商品名_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_商品名_搜尋.Bool = false;
             this.plC_RJ_Button_藥品資料_商品名_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_商品名_搜尋.BorderRadius = 5;
@@ -6315,7 +6315,7 @@
             // plC_RJ_Button__藥品資料_藥檔資料_顯示全部
             // 
             this.plC_RJ_Button__藥品資料_藥檔資料_顯示全部.AutoResetState = false;
-            this.plC_RJ_Button__藥品資料_藥檔資料_顯示全部.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button__藥品資料_藥檔資料_顯示全部.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button__藥品資料_藥檔資料_顯示全部.Bool = false;
             this.plC_RJ_Button__藥品資料_藥檔資料_顯示全部.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button__藥品資料_藥檔資料_顯示全部.BorderRadius = 5;
@@ -6380,7 +6380,7 @@
             // plC_RJ_Button_藥品資料_中文名_搜尋
             // 
             this.plC_RJ_Button_藥品資料_中文名_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_中文名_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_中文名_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_中文名_搜尋.Bool = false;
             this.plC_RJ_Button_藥品資料_中文名_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_中文名_搜尋.BorderRadius = 5;
@@ -6535,7 +6535,7 @@
             // plC_RJ_Button_藥品資料_藥品條碼_搜尋
             // 
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.Bool = false;
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_藥品條碼_搜尋.BorderRadius = 5;
@@ -6645,7 +6645,7 @@
             // plC_RJ_Button_藥品資料_藥品名稱_搜尋
             // 
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.Bool = false;
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_藥品名稱_搜尋.BorderRadius = 5;
@@ -6755,7 +6755,7 @@
             // plC_RJ_Button_藥品資料_藥品碼_搜尋
             // 
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.AutoResetState = false;
-            this.plC_RJ_Button_藥品資料_藥品碼_搜尋.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_藥品資料_藥品碼_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.Bool = false;
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_藥品資料_藥品碼_搜尋.BorderRadius = 5;
@@ -6952,7 +6952,7 @@
             // plC_RJ_Button_人員資料_顯示全部
             // 
             this.plC_RJ_Button_人員資料_顯示全部.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_顯示全部.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_顯示全部.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_顯示全部.Bool = false;
             this.plC_RJ_Button_人員資料_顯示全部.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_顯示全部.BorderRadius = 5;
@@ -7017,7 +7017,7 @@
             // plC_RJ_Button_人員資料_資料查詢_一維條碼
             // 
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.AutoResetState = true;
-            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_一維條碼.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.Bool = false;
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_資料查詢_一維條碼.BorderRadius = 5;
@@ -7127,7 +7127,7 @@
             // plC_RJ_Button_人員資料_資料查詢_卡號
             // 
             this.plC_RJ_Button_人員資料_資料查詢_卡號.AutoResetState = true;
-            this.plC_RJ_Button_人員資料_資料查詢_卡號.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_卡號.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_資料查詢_卡號.Bool = false;
             this.plC_RJ_Button_人員資料_資料查詢_卡號.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_資料查詢_卡號.BorderRadius = 5;
@@ -7237,7 +7237,7 @@
             // plC_RJ_Button_人員資料_資料查詢_姓名
             // 
             this.plC_RJ_Button_人員資料_資料查詢_姓名.AutoResetState = true;
-            this.plC_RJ_Button_人員資料_資料查詢_姓名.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_姓名.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_資料查詢_姓名.Bool = false;
             this.plC_RJ_Button_人員資料_資料查詢_姓名.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_資料查詢_姓名.BorderRadius = 5;
@@ -7347,7 +7347,7 @@
             // plC_RJ_Button_人員資料_資料查詢_ID
             // 
             this.plC_RJ_Button_人員資料_資料查詢_ID.AutoResetState = true;
-            this.plC_RJ_Button_人員資料_資料查詢_ID.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_資料查詢_ID.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_資料查詢_ID.Bool = false;
             this.plC_RJ_Button_人員資料_資料查詢_ID.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_資料查詢_ID.BorderRadius = 5;
@@ -8104,7 +8104,7 @@
             // plC_Button_權限設定_設定至Server
             // 
             this.plC_Button_權限設定_設定至Server.AutoResetState = false;
-            this.plC_Button_權限設定_設定至Server.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_Button_權限設定_設定至Server.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_Button_權限設定_設定至Server.Bool = false;
             this.plC_Button_權限設定_設定至Server.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_Button_權限設定_設定至Server.BorderRadius = 5;
@@ -8345,7 +8345,7 @@
             // plC_RJ_Button_人員資料_開門權限全關
             // 
             this.plC_RJ_Button_人員資料_開門權限全關.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_開門權限全關.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_開門權限全關.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_開門權限全關.Bool = false;
             this.plC_RJ_Button_人員資料_開門權限全關.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_開門權限全關.BorderRadius = 5;
@@ -8392,7 +8392,7 @@
             // plC_RJ_Button_人員資料_開門權限全開
             // 
             this.plC_RJ_Button_人員資料_開門權限全開.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_開門權限全開.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_開門權限全開.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_開門權限全開.Bool = false;
             this.plC_RJ_Button_人員資料_開門權限全開.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_開門權限全開.BorderRadius = 5;
@@ -8439,7 +8439,7 @@
             // plC_RJ_Button_人員資料_清除內容
             // 
             this.plC_RJ_Button_人員資料_清除內容.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_清除內容.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_清除內容.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_清除內容.Bool = false;
             this.plC_RJ_Button_人員資料_清除內容.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_清除內容.BorderRadius = 5;
@@ -8485,7 +8485,7 @@
             // plC_RJ_Button_人員資料_刪除
             // 
             this.plC_RJ_Button_人員資料_刪除.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_刪除.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_刪除.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_刪除.Bool = false;
             this.plC_RJ_Button_人員資料_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_刪除.BorderRadius = 5;
@@ -8531,7 +8531,7 @@
             // plC_RJ_Button_人員資料_登錄
             // 
             this.plC_RJ_Button_人員資料_登錄.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_登錄.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_登錄.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_登錄.Bool = false;
             this.plC_RJ_Button_人員資料_登錄.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_登錄.BorderRadius = 5;
@@ -8577,7 +8577,7 @@
             // plC_RJ_Button_人員資料_匯入
             // 
             this.plC_RJ_Button_人員資料_匯入.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_匯入.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_匯入.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_匯入.Bool = false;
             this.plC_RJ_Button_人員資料_匯入.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_匯入.BorderRadius = 5;
@@ -8623,7 +8623,7 @@
             // plC_RJ_Button_人員資料_匯出
             // 
             this.plC_RJ_Button_人員資料_匯出.AutoResetState = false;
-            this.plC_RJ_Button_人員資料_匯出.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_人員資料_匯出.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_人員資料_匯出.Bool = false;
             this.plC_RJ_Button_人員資料_匯出.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_人員資料_匯出.BorderRadius = 5;
@@ -9131,7 +9131,7 @@
             // plC_RJ_Button_檢查病房有藥未調劑
             // 
             this.plC_RJ_Button_檢查病房有藥未調劑.AutoResetState = false;
-            this.plC_RJ_Button_檢查病房有藥未調劑.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_檢查病房有藥未調劑.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_檢查病房有藥未調劑.Bool = false;
             this.plC_RJ_Button_檢查病房有藥未調劑.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_檢查病房有藥未調劑.BorderRadius = 5;
@@ -9413,7 +9413,7 @@
             // plC_RJ_Button_Box_Index_Table_刪除
             // 
             this.plC_RJ_Button_Box_Index_Table_刪除.AutoResetState = false;
-            this.plC_RJ_Button_Box_Index_Table_刪除.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_Box_Index_Table_刪除.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_Box_Index_Table_刪除.Bool = false;
             this.plC_RJ_Button_Box_Index_Table_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_Box_Index_Table_刪除.BorderRadius = 5;
@@ -9459,7 +9459,7 @@
             // plC_RJ_Button_Box_Index_Table_更新
             // 
             this.plC_RJ_Button_Box_Index_Table_更新.AutoResetState = false;
-            this.plC_RJ_Button_Box_Index_Table_更新.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_Box_Index_Table_更新.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_Box_Index_Table_更新.Bool = false;
             this.plC_RJ_Button_Box_Index_Table_更新.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_Box_Index_Table_更新.BorderRadius = 5;
@@ -9505,7 +9505,7 @@
             // plC_RJ_Button_Box_Index_Table_匯入
             // 
             this.plC_RJ_Button_Box_Index_Table_匯入.AutoResetState = false;
-            this.plC_RJ_Button_Box_Index_Table_匯入.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_Box_Index_Table_匯入.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_Box_Index_Table_匯入.Bool = false;
             this.plC_RJ_Button_Box_Index_Table_匯入.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_Box_Index_Table_匯入.BorderRadius = 5;
@@ -9551,7 +9551,7 @@
             // plC_RJ_Button_Box_Index_Table_匯出
             // 
             this.plC_RJ_Button_Box_Index_Table_匯出.AutoResetState = false;
-            this.plC_RJ_Button_Box_Index_Table_匯出.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_Box_Index_Table_匯出.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_Box_Index_Table_匯出.Bool = false;
             this.plC_RJ_Button_Box_Index_Table_匯出.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_Box_Index_Table_匯出.BorderRadius = 5;
