@@ -495,3 +495,6 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Rel
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\PopupControl.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\CSkin.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
