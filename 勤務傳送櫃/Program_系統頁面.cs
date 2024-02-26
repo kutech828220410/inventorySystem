@@ -60,10 +60,18 @@ namespace 勤務傳送櫃
 
         private void Program_系統頁面_Init()
         {
+            Table table = new Table("box_index_table");
+            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+            table.AddColumnList("Number", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("IP", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("Lock_output_num", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("Lock_input_num", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("Sensor_input_num", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("Led_output_num", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("EPD_IP", Table.StringType.VARCHAR, 50, Table.IndexType.None);
 
-         
 
-            this.sqL_DataGridView_Box_Index_Table.Init();
+            this.sqL_DataGridView_Box_Index_Table.Init(table);
             if (!this.sqL_DataGridView_Box_Index_Table.SQL_IsTableCreat())
             {
                 this.sqL_DataGridView_Box_Index_Table.SQL_CreateTable();

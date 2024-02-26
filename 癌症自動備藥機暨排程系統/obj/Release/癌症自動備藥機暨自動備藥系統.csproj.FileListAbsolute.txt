@@ -678,7 +678,6 @@ C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排�
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_備藥通知處方選擇.resources
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_入出庫作業.resources
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_儲位選擇.resources
-C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_效期批號選擇.resources
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Microsoft.mshtml.dll

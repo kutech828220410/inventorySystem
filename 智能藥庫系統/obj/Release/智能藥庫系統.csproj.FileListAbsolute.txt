@@ -1083,3 +1083,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Re
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.mshtml.dll
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\stdole.dll
