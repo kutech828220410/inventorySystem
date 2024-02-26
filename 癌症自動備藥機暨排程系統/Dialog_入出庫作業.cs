@@ -69,6 +69,7 @@ namespace 癌症自動備藥機暨排程系統
             this._操作人 = 操作人;
             this._storageUI_EPD_266 = storageUI_EPD_266;
             this.Shown += Dialog_入出庫作業_Shown;
+            this.LoadFinishedEvent += Dialog_入出庫作業_LoadFinishedEvent;
             this.plC_RJ_Button_確認完成.MouseDownEvent += PlC_RJ_Button_確認完成_MouseDownEvent;
             this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
             this.rJ_Lable_藥品資訊.Text = $"({this._藥碼 }) {this._藥名 }";
@@ -76,9 +77,7 @@ namespace 癌症自動備藥機暨排程系統
          
         }
 
-       
-
-        private void Dialog_入出庫作業_Shown(object sender, EventArgs e)
+        private void Dialog_入出庫作業_LoadFinishedEvent(EventArgs e)
         {
             System.Windows.Forms.Screen[] screen = System.Windows.Forms.Screen.AllScreens;
             if (_enum_type == enum_type.出庫)
@@ -96,9 +95,9 @@ namespace 癌症自動備藥機暨排程系統
                 dialog_NumPannel.X_Visible = false;
                 while (true)
                 {
-                 
+
                     dialog_NumPannel.ShowDialog();
-                    if(dialog_NumPannel.Value > storage.Inventory.StringToInt32())
+                    if (dialog_NumPannel.Value > storage.Inventory.StringToInt32())
                     {
                         Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("輸入數值大於庫存", 1500);
                         dialog_AlarmForm.ShowDialog();
@@ -108,7 +107,7 @@ namespace 癌症自動備藥機暨排程系統
                         break;
                     }
                 }
-               
+
                 rJ_Lable_數量.Text = $"數量 : {dialog_NumPannel.Value}";
                 this.stepViewer1.Next();
 
@@ -150,6 +149,11 @@ namespace 癌症自動備藥機暨排程系統
 
                 this.plC_RJ_Button_確認完成.Visible = true;
             }
+        }
+
+        private void Dialog_入出庫作業_Shown(object sender, EventArgs e)
+        {
+          
         }
 
         private void Dialog_入出庫作業_Load(object sender, EventArgs e)

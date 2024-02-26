@@ -29,23 +29,7 @@ namespace 調劑台管理系統
             領藥,
             退藥,
         }
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-        }
+       
         public List<object[]> Value = new List<object[]>();
         private SQL_DataGridView sQL_DataGridView_藥品資料_buf;
         private Form1 form1_buf;
@@ -53,6 +37,8 @@ namespace 調劑台管理系統
         public Dialog_手動作業(Form1 form1, SQL_DataGridView sQL_DataGridView_藥品資料 , enum_狀態 enum_狀態)
         {
             InitializeComponent();
+    
+
             this.sQL_DataGridView_藥品資料_buf = sQL_DataGridView_藥品資料;
             this.form1_buf = form1;
             this._enum_狀態 = enum_狀態;
@@ -95,6 +81,7 @@ namespace 調劑台管理系統
                 }
             }));
             this.sqL_DataGridView_藥品資料.SQL_GetAllRows(true);
+
         }
         #region Event
         private void SqL_DataGridView_選擇藥品_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)

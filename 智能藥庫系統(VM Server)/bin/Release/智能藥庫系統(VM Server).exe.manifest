@@ -330,14 +330,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyUI.dll" size="1871872">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MyUI.dll" size="1872384">
       <assemblyIdentity name="MyUI" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>C0C49sCeguhDaZeVEhKoZnhFLMz3fnQcL3sOe0q9VeM=</dsig:DigestValue>
+        <dsig:DigestValue>Zutooq0uL7wa6dh2kbDFBa6hQv6jglAL+d0vSCyUNwg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -589,7 +589,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hDE7QFglJ2XjWhXIAIFHbMJvReZkuODfv7gAs7TvU6c=</dsig:DigestValue>
+        <dsig:DigestValue>SwJ5Hj4BFoRRrb/cCWlM5IGOB3r7oaFCXt0tsA6mmJI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
