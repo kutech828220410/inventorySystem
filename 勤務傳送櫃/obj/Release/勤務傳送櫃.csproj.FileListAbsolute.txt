@@ -1056,4 +1056,3 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.mshtml.dll
-C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll

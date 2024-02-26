@@ -55,7 +55,7 @@ namespace 癌症自動備藥機暨排程系統
         int cnt_Program_自動備藥_測試處方 = 65534;
         void sub_Program_自動備藥_測試處方()
         {
-            if (dBConfigClass.主機模式 == false) return;
+            if (myConfigClass.主機模式 == false) return;
             if (cnt_Program_自動備藥_測試處方 == 65534)
             {
                 this.MyTimer_自動備藥_測試處方_結束延遲.StartTickTime(50);

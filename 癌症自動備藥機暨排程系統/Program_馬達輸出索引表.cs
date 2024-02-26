@@ -95,7 +95,7 @@ namespace 癌症自動備藥機暨排程系統
 
         private void Program_馬達輸出索引表()
         {
-            if (dBConfigClass.主機模式 == false) return;
+            if (myConfigClass.主機模式 == false) return;
             sub_Program_馬達輸出索引表_檢查輸入輸出狀態();
             sub_Program_馬達輸出索引表_檢查馬達輸出();
         }

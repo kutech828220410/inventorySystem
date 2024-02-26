@@ -52,7 +52,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_出入庫作業_入庫.MouseDownEvent += PlC_RJ_Button_出入庫作業_入庫_MouseDownEvent;
             this.plC_RJ_Button_出入庫作業_出庫.MouseDownEvent += PlC_RJ_Button_出入庫作業_出庫_MouseDownEvent;
             this.plC_RJ_Button_出入庫作業_確認選擇.MouseDownEvent += PlC_RJ_Button_出入庫作業_確認選擇_MouseDownEvent;
-
+            this.plC_RJ_Button_出入庫作業_條碼建置.MouseDownEvent += PlC_RJ_Button_出入庫作業_條碼建置_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_出入庫作業);
         }
 
@@ -113,7 +113,21 @@ namespace 癌症自動備藥機暨排程系統
             plC_RJ_Button_出入庫作業_入庫.Bool = true;
             plC_RJ_Button_出入庫作業_出庫.Bool = false;
         }
+        private void PlC_RJ_Button_出入庫作業_條碼建置_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = sqL_DataGridView_出入庫作業.Get_All_Select_RowsValues();
 
+            if (list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string 藥碼 = list_value[0][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
+            Dialog_條碼管理 dialog_條碼管理 = new Dialog_條碼管理(藥碼);
+            dialog_條碼管理.ShowDialog();
+
+        }
         private void PlC_RJ_Button_出入庫作業_藥名搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             LoadingForm.ShowLoadingForm();

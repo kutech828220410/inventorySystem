@@ -54,16 +54,16 @@ namespace 癌症自動備藥機暨排程系統
         {
             List<object> list_value = new List<object>();
             List<Storage> storages = List_EPD266_本地資料.SortByCode(藥品碼);
-           
 
-           
+
+
             for (int i = 0; i < storages.Count; i++)
             {
                 Storage storage = _storageUI_EPD_266.SQL_GetStorage(storages[i]);
                 List_EPD266_本地資料.Add_NewStorage(storage);
                 list_value.Add(storage);
             }
-           
+
             return list_value;
         }
 
@@ -95,7 +95,7 @@ namespace 癌症自動備藥機暨排程系統
                 medClasses_buf = (from temp in medClasses
                                   where temp.藥品碼 == codes[i]
                                   select temp).ToList();
-                if(medClasses_buf.Count > 0)
+                if (medClasses_buf.Count > 0)
                 {
                     medClasses_result.Add(medClasses_buf[0]);
                 }
@@ -104,14 +104,41 @@ namespace 癌症自動備藥機暨排程系統
             return medClasses_result;
         }
 
-        public class Icp_Storage : IComparer<Storage>
+
+        static public string Function_ReadBacodeScanner01()
         {
-            public int Compare(Storage x, Storage y)
-            {
-                string 藥品碼_0 = x.Code;
-                string 藥品碼_1 = y.Code;
-                return 藥品碼_0.CompareTo(藥品碼_1);
-            }
+            string text = MySerialPort_Scanner01.ReadString();
+            if (text == null) return null;
+            text = text.Replace("\0", "");
+            if (text.StringIsEmpty()) return null;
+            if (text.Length <= 2 || text.Length > 200) return null;
+            if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            MySerialPort_Scanner01.ClearReadByte();
+            text = text.Replace("\r\n", "");
+            return text;
+        }
+        static public string Function_ReadBacodeScanner02()
+        {
+            string text = MySerialPort_Scanner01.ReadString();
+            if (text == null) return null;
+            text = text.Replace("\0", "");
+            if (text.StringIsEmpty()) return null;
+            if (text.Length <= 2 || text.Length > 200) return null;
+            if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            MySerialPort_Scanner02.ClearReadByte();
+            text = text.Replace("\r\n", "");
+            return text;
         }
     }
+
+    public class Icp_Storage : IComparer<Storage>
+    {
+        public int Compare(Storage x, Storage y)
+        {
+            string 藥品碼_0 = x.Code;
+            string 藥品碼_1 = y.Code;
+            return 藥品碼_0.CompareTo(藥品碼_1);
+        }
+    }
+
 }

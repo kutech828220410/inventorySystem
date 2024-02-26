@@ -88,7 +88,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Program_儲位設定()
         {
-            if (dBConfigClass.主機模式 == false) return;
+            if (myConfigClass.主機模式 == false) return;
             sub_Program_儲位設定_出料一次();
         }
         #region PLC_儲位設定_出料一次

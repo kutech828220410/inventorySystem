@@ -80,7 +80,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Program_工程模式()
         {
-            if (dBConfigClass.主機模式 == false) return;
+            if (myConfigClass.主機模式 == false) return;
             sub_Program_冷藏區藥盒輸送至左方();
             sub_Program_冷藏區藥盒輸送至右方();
             sub_Program_冷藏區藥盒輸送至中間();

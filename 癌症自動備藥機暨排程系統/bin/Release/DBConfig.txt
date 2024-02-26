@@ -1,6 +1,5 @@
 {
   "Name": "cheom",
   "Api_Server": "http://127.0.0.1:4433",
-  "Med_Update_ApiURL": "",
-  "¥D¾÷¼Ò¦¡": false
+  "Med_Update_ApiURL": ""
 }

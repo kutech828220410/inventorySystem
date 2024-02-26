@@ -1520,4 +1520,3 @@ C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
-C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll

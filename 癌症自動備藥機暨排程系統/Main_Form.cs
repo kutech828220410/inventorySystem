@@ -48,7 +48,6 @@ namespace 癌症自動備藥機暨排程系統
             private SQL_DataGridView.ConnentionClass dB_Medicine_Cloud = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_Storagelist = new SQL_DataGridView.ConnentionClass();
 
-            private bool _主機模式 = false;
             private string web_URL = "";
             private string api_URL = "";
             private string login_URL = "";
@@ -85,7 +84,6 @@ namespace 癌症自動備藥機暨排程系統
 
 
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
-            public bool 主機模式 { get => _主機模式; set => _主機模式 = value; }
         }
         private void LoadDBConfig()
         {
@@ -118,6 +116,56 @@ namespace 癌症自動備藥機暨排程系統
                 }
 
             }
+        }
+        #endregion
+        #region MyConfigClass
+        private static string MyConfigFileName = $@"{currentDirectory}\MyConfig.txt";
+        public MyConfigClass myConfigClass = new MyConfigClass();
+        public class MyConfigClass
+        {
+
+            private bool _掃碼槍COM通訊 = true;
+            private bool _主機模式 = false;
+            private string rFID_COMPort = "COM1";
+            private string scanner01_COMPort = "COM2";
+            private string scanner02_COMPort = "COM3";
+  
+
+            public string Scanner01_COMPort { get => scanner01_COMPort; set => scanner01_COMPort = value; }
+            public string Scanner02_COMPort { get => scanner02_COMPort; set => scanner02_COMPort = value; }
+            public bool 掃碼槍COM通訊 { get => _掃碼槍COM通訊; set => _掃碼槍COM通訊 = value; }
+            public bool 主機模式 { get => _主機模式; set => _主機模式 = value; }
+            public string RFID_COMPort { get => rFID_COMPort; set => rFID_COMPort = value; }
+        }
+        private void LoadMyConfig()
+        {
+            string jsonstr = MyFileStream.LoadFileAllText($"{MyConfigFileName}");
+            if (jsonstr.StringIsEmpty())
+            {
+                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
+                }
+                MyMessageBox.ShowDialog($"未建立參數文件!請至子目錄設定{MyConfigFileName}");
+                Application.Exit();
+            }
+            else
+            {
+                myConfigClass = Basic.Net.JsonDeserializet<MyConfigClass>(jsonstr);
+
+                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
+                }
+
+            }
+
         }
         #endregion
         #region Function
@@ -215,8 +263,8 @@ namespace 癌症自動備藥機暨排程系統
             this.WindowState = FormWindowState.Maximized;
             PLC = this.lowerMachine_Panel.GetlowerMachine().properties;
             LoadDBConfig();
+            LoadMyConfig();
             ApiServerSetting();
-            LoadingForm.form = this.FindForm();
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main01, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main02, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
@@ -233,7 +281,7 @@ namespace 癌症自動備藥機暨排程系統
             Program_調配排程_Init();
             Program_出入庫作業_Init();
             Program_交易紀錄_Init();
-
+            Program_Scanner_RS232_Init();
             plC_ScreenPage_main.TabChangeEvent += PlC_ScreenPage_main_TabChangeEvent;
         }
 

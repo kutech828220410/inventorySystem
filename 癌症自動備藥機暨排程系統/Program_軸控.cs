@@ -61,7 +61,7 @@ namespace 癌症自動備藥機暨排程系統
         MySerialPort mySerialPort_delta_進出盒區_Y軸 = new MySerialPort();
         private void Program_軸控_Init()
         {
-            if (dBConfigClass.主機模式)
+            if (myConfigClass.主機模式)
             {
                 mySerialPort_delta_冷藏區_X軸.BufferSize = 2048;
                 mySerialPort_delta_冷藏區_X軸.Init("COM2", 38400, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
@@ -230,7 +230,7 @@ namespace 癌症自動備藥機暨排程系統
 
         private void Program_軸控()
         {
-            if (dBConfigClass.主機模式 == false) return;
+            if (myConfigClass.主機模式 == false) return;
 
             PLC.Device.Set_Device(plC_RJ_Button_冷藏區X軸_ServoON.讀取元件位置, DeltaMotor485_port_冷藏區_X軸[1].SON);
             DeltaMotor485_port_冷藏區_X軸[1].Read485_Enable = true;

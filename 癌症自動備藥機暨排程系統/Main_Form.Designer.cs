@@ -732,6 +732,7 @@ namespace 癌症自動備藥機暨排程系統
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.plC_RJ_Button_出入庫作業_條碼建置 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_main.SuspendLayout();
             this.自動備藥.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -852,7 +853,7 @@ namespace 癌症自動備藥機暨排程系統
             this.自動備藥.Controls.Add(this.panel2);
             this.自動備藥.Location = new System.Drawing.Point(4, 25);
             this.自動備藥.Name = "自動備藥";
-            this.自動備藥.Size = new System.Drawing.Size(1056, 914);
+            this.自動備藥.Size = new System.Drawing.Size(1056, 1734);
             this.自動備藥.TabIndex = 0;
             this.自動備藥.Text = "自動備藥";
             // 
@@ -865,7 +866,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 286);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1056, 628);
+            this.panel6.Size = new System.Drawing.Size(1056, 1448);
             this.panel6.TabIndex = 3;
             // 
             // uc_備藥通知處方
@@ -873,7 +874,7 @@ namespace 癌症自動備藥機暨排程系統
             this.uc_備藥通知處方.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uc_備藥通知處方.Location = new System.Drawing.Point(0, 698);
             this.uc_備藥通知處方.Name = "uc_備藥通知處方";
-            this.uc_備藥通知處方.Size = new System.Drawing.Size(1056, 0);
+            this.uc_備藥通知處方.Size = new System.Drawing.Size(1056, 608);
             this.uc_備藥通知處方.TabIndex = 6;
             // 
             // rJ_Lable_備藥狀態
@@ -903,7 +904,7 @@ namespace 癌症自動備藥機暨排程系統
             // 
             this.panel7.Controls.Add(this.plC_RJ_Button_開始備藥);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 486);
+            this.panel7.Location = new System.Drawing.Point(0, 1306);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1056, 142);
             this.panel7.TabIndex = 2;
@@ -1319,7 +1320,7 @@ namespace 癌症自動備藥機暨排程系統
             this.出入庫作業.Controls.Add(this.rJ_Lable35);
             this.出入庫作業.Location = new System.Drawing.Point(4, 25);
             this.出入庫作業.Name = "出入庫作業";
-            this.出入庫作業.Size = new System.Drawing.Size(1056, 914);
+            this.出入庫作業.Size = new System.Drawing.Size(1056, 1734);
             this.出入庫作業.TabIndex = 3;
             this.出入庫作業.Text = "出入庫作業";
             // 
@@ -1354,7 +1355,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_出入庫作業.RowsHeight = 80;
             this.sqL_DataGridView_出入庫作業.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_出入庫作業.Server = "127.0.0.0";
-            this.sqL_DataGridView_出入庫作業.Size = new System.Drawing.Size(1056, 116);
+            this.sqL_DataGridView_出入庫作業.Size = new System.Drawing.Size(1056, 936);
             this.sqL_DataGridView_出入庫作業.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_出入庫作業.TabIndex = 15;
             this.sqL_DataGridView_出入庫作業.UserName = "root";
@@ -1372,12 +1373,13 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel14
             // 
+            this.panel14.Controls.Add(this.plC_RJ_Button_出入庫作業_條碼建置);
             this.panel14.Controls.Add(this.plC_RJ_Button_出入庫作業_藥名搜尋);
             this.panel14.Controls.Add(this.plC_RJ_Button_出入庫作業_藥碼搜尋);
             this.panel14.Controls.Add(this.rJ_TextBox_出入庫作業_藥名搜尋);
             this.panel14.Controls.Add(this.rJ_TextBox_出入庫作業_藥碼搜尋);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel14.Location = new System.Drawing.Point(0, 488);
+            this.panel14.Location = new System.Drawing.Point(0, 1308);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(1056, 249);
             this.panel14.TabIndex = 14;
@@ -1538,7 +1540,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_出入庫作業_確認選擇.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_出入庫作業_確認選擇.GUID = "";
             this.plC_RJ_Button_出入庫作業_確認選擇.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_出入庫作業_確認選擇.Location = new System.Drawing.Point(0, 737);
+            this.plC_RJ_Button_出入庫作業_確認選擇.Location = new System.Drawing.Point(0, 1557);
             this.plC_RJ_Button_出入庫作業_確認選擇.Name = "plC_RJ_Button_出入庫作業_確認選擇";
             this.plC_RJ_Button_出入庫作業_確認選擇.OFF_文字內容 = "確 認 選 擇";
             this.plC_RJ_Button_出入庫作業_確認選擇.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -2651,7 +2653,7 @@ namespace 癌症自動備藥機暨排程系統
             this.交易紀錄.Controls.Add(this.panel9);
             this.交易紀錄.Location = new System.Drawing.Point(4, 25);
             this.交易紀錄.Name = "交易紀錄";
-            this.交易紀錄.Size = new System.Drawing.Size(1056, 914);
+            this.交易紀錄.Size = new System.Drawing.Size(1056, 1734);
             this.交易紀錄.TabIndex = 8;
             this.交易紀錄.Text = "交易紀錄";
             // 
@@ -2686,7 +2688,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_交易記錄查詢.RowsHeight = 80;
             this.sqL_DataGridView_交易記錄查詢.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_交易記錄查詢.Server = "127.0.0.0";
-            this.sqL_DataGridView_交易記錄查詢.Size = new System.Drawing.Size(1056, 604);
+            this.sqL_DataGridView_交易記錄查詢.Size = new System.Drawing.Size(1056, 1424);
             this.sqL_DataGridView_交易記錄查詢.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_交易記錄查詢.TabIndex = 8;
             this.sqL_DataGridView_交易記錄查詢.UserName = "root";
@@ -2708,7 +2710,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel9.Controls.Add(this.panel44);
             this.panel9.Controls.Add(this.panel11);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel9.Location = new System.Drawing.Point(0, 604);
+            this.panel9.Location = new System.Drawing.Point(0, 1424);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1056, 310);
             this.panel9.TabIndex = 9;
@@ -3011,7 +3013,7 @@ namespace 癌症自動備藥機暨排程系統
             this.儲位設定.Controls.Add(this.rJ_Pannel13);
             this.儲位設定.Location = new System.Drawing.Point(4, 25);
             this.儲位設定.Name = "儲位設定";
-            this.儲位設定.Size = new System.Drawing.Size(1056, 914);
+            this.儲位設定.Size = new System.Drawing.Size(1056, 1734);
             this.儲位設定.TabIndex = 5;
             this.儲位設定.Text = "儲位設定";
             // 
@@ -3032,7 +3034,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Pannel14.Padding = new System.Windows.Forms.Padding(10);
             this.rJ_Pannel14.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel14.ShadowSize = 3;
-            this.rJ_Pannel14.Size = new System.Drawing.Size(1056, 352);
+            this.rJ_Pannel14.Size = new System.Drawing.Size(1056, 1172);
             this.rJ_Pannel14.TabIndex = 1;
             // 
             // sqL_DataGridView_儲位列表
@@ -3066,7 +3068,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_儲位列表.RowsHeight = 40;
             this.sqL_DataGridView_儲位列表.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_儲位列表.Server = "127.0.0.0";
-            this.sqL_DataGridView_儲位列表.Size = new System.Drawing.Size(1036, 162);
+            this.sqL_DataGridView_儲位列表.Size = new System.Drawing.Size(1036, 982);
             this.sqL_DataGridView_儲位列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_儲位列表.TabIndex = 9;
             this.sqL_DataGridView_儲位列表.UserName = "root";
@@ -3759,7 +3761,7 @@ namespace 癌症自動備藥機暨排程系統
             this.工程模式.Controls.Add(this.rJ_Pannel15);
             this.工程模式.Location = new System.Drawing.Point(4, 25);
             this.工程模式.Name = "工程模式";
-            this.工程模式.Size = new System.Drawing.Size(1056, 914);
+            this.工程模式.Size = new System.Drawing.Size(1056, 1734);
             this.工程模式.TabIndex = 7;
             this.工程模式.Text = "工程模式";
             // 
@@ -5271,7 +5273,7 @@ namespace 癌症自動備藥機暨排程系統
             this.系統.Controls.Add(this.panel_系統);
             this.系統.Location = new System.Drawing.Point(4, 25);
             this.系統.Name = "系統";
-            this.系統.Size = new System.Drawing.Size(1056, 914);
+            this.系統.Size = new System.Drawing.Size(1056, 1734);
             this.系統.TabIndex = 1;
             this.系統.Text = "系統";
             // 
@@ -5295,7 +5297,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_ScreenPage_系統.Location = new System.Drawing.Point(0, 87);
             this.plC_ScreenPage_系統.Name = "plC_ScreenPage_系統";
             this.plC_ScreenPage_系統.SelectedIndex = 0;
-            this.plC_ScreenPage_系統.Size = new System.Drawing.Size(1056, 827);
+            this.plC_ScreenPage_系統.Size = new System.Drawing.Size(1056, 1647);
             this.plC_ScreenPage_系統.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage_系統.TabIndex = 1;
             this.plC_ScreenPage_系統.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -5308,7 +5310,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage1.Controls.Add(this.lowerMachine_Panel);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1048, 798);
+            this.tabPage1.Size = new System.Drawing.Size(1048, 1618);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "PLC";
             // 
@@ -18912,6 +18914,52 @@ namespace 癌症自動備藥機暨排程系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
             // 
+            // plC_RJ_Button_出入庫作業_條碼建置
+            // 
+            this.plC_RJ_Button_出入庫作業_條碼建置.AutoResetState = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_出入庫作業_條碼建置.Bool = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_出入庫作業_條碼建置.BorderRadius = 20;
+            this.plC_RJ_Button_出入庫作業_條碼建置.BorderSize = 0;
+            this.plC_RJ_Button_出入庫作業_條碼建置.but_press = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_出入庫作業_條碼建置.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_出入庫作業_條碼建置.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_出入庫作業_條碼建置.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_出入庫作業_條碼建置.GUID = "";
+            this.plC_RJ_Button_出入庫作業_條碼建置.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_出入庫作業_條碼建置.Location = new System.Drawing.Point(529, 15);
+            this.plC_RJ_Button_出入庫作業_條碼建置.Name = "plC_RJ_Button_出入庫作業_條碼建置";
+            this.plC_RJ_Button_出入庫作業_條碼建置.OFF_文字內容 = "條碼建置";
+            this.plC_RJ_Button_出入庫作業_條碼建置.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_出入庫作業_條碼建置.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_出入庫作業_條碼建置.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_出入庫作業_條碼建置.ON_BorderSize = 5;
+            this.plC_RJ_Button_出入庫作業_條碼建置.ON_文字內容 = "條碼建置";
+            this.plC_RJ_Button_出入庫作業_條碼建置.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_出入庫作業_條碼建置.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_出入庫作業_條碼建置.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_出入庫作業_條碼建置.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_出入庫作業_條碼建置.ShadowSize = 3;
+            this.plC_RJ_Button_出入庫作業_條碼建置.ShowLoadingForm = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.Size = new System.Drawing.Size(141, 67);
+            this.plC_RJ_Button_出入庫作業_條碼建置.State = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.TabIndex = 11;
+            this.plC_RJ_Button_出入庫作業_條碼建置.Text = "條碼建置";
+            this.plC_RJ_Button_出入庫作業_條碼建置.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_出入庫作業_條碼建置.Texts = "條碼建置";
+            this.plC_RJ_Button_出入庫作業_條碼建置.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.字型鎖住 = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_出入庫作業_條碼建置.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_出入庫作業_條碼建置.文字鎖住 = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.讀取位元反向 = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.讀寫鎖住 = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.音效 = true;
+            this.plC_RJ_Button_出入庫作業_條碼建置.顯示 = false;
+            this.plC_RJ_Button_出入庫作業_條碼建置.顯示狀態 = false;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -19740,6 +19788,7 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.RJ_Lable rJ_Lable7;
         private MyUI.RJ_TextBox rJ_TextBox_交易紀錄查詢_藥碼搜尋;
         private MyUI.RJ_Lable rJ_Lable6;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_出入庫作業_條碼建置;
     }
 }
 

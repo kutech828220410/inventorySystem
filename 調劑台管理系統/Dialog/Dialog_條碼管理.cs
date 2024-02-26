@@ -12,7 +12,7 @@ using Basic;
 using MyUI;
 namespace 調劑台管理系統
 {
-    public partial class Dialog_條碼管理 : Form
+    public partial class Dialog_條碼管理 : MyDialog
     {
         public static bool IsShown = false;
         private MyThread MyThread_program;

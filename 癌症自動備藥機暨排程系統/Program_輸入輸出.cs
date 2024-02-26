@@ -31,7 +31,7 @@ namespace 癌症自動備藥機暨排程系統
         MySerialPort mySerial_IO = new MySerialPort();
         public void Program_輸入輸出_Init()
         {
-            if(dBConfigClass.主機模式)
+            if(myConfigClass.主機模式)
             {
                 mySerial_IO.BufferSize = 2048;
                 mySerial_IO.Init("COM1", 115200, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.Two);
