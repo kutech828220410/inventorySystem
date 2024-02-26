@@ -1651,6 +1651,46 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為盤點單結構</returns>
         </member>
+        <member name="M:HIS_WebApi.transactionsController.POST_get_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥碼搜尋交易紀錄
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "Value" : "[藥碼]"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.transactionsController.POST_get_by_name(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥名搜尋交易紀錄
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "Value" : "[藥名]"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為盤點單結構</returns>
+        </member>
         <member name="M:HIS_WebApi.transactionsController.POST_get_by_op_time_st_end(HIS_DB_Lib.returnData)">
             <summary>
             指定操作時間範圍取得交易紀錄
@@ -1662,8 +1702,9 @@
               {
                 "Data": 
                 {
-                   [transactionsClass]
-                }
+                   
+                },
+                "Value" : "[起始時間],[結束時間]"
               }
             </code>
             </remarks>
@@ -1681,8 +1722,9 @@
               {
                 "Data": 
                 {
-                   [transactionsClass]
-                }
+                  
+                },
+                "Value" : "[起始時間],[結束時間]"
               }
             </code>
             </remarks>

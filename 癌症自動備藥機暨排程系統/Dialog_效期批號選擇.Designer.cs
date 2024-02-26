@@ -56,11 +56,11 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable1.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable1.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable1.GUID = "";
-            this.rJ_Lable1.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable1.Location = new System.Drawing.Point(4, 28);
             this.rJ_Lable1.Name = "rJ_Lable1";
             this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable1.ShadowSize = 3;
-            this.rJ_Lable1.Size = new System.Drawing.Size(852, 108);
+            this.rJ_Lable1.Size = new System.Drawing.Size(844, 108);
             this.rJ_Lable1.TabIndex = 1;
             this.rJ_Lable1.Text = "效期批號輸入";
             this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -73,10 +73,10 @@ namespace 癌症自動備藥機暨排程系統
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.rJ_Lable2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 108);
+            this.panel1.Location = new System.Drawing.Point(4, 136);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(852, 54);
+            this.panel1.Size = new System.Drawing.Size(844, 54);
             this.panel1.TabIndex = 2;
             // 
             // rJ_TextBox_批號
@@ -173,9 +173,9 @@ namespace 癌症自動備藥機暨排程系統
             // 
             this.panel2.Controls.Add(this.rJ_Button_確認選擇);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 532);
+            this.panel2.Location = new System.Drawing.Point(4, 528);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(852, 116);
+            this.panel2.Size = new System.Drawing.Size(844, 116);
             this.panel2.TabIndex = 9;
             // 
             // rJ_Button_確認選擇
@@ -198,7 +198,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Button_確認選擇.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_確認選擇.ShadowSize = 3;
             this.rJ_Button_確認選擇.ShowLoadingForm = false;
-            this.rJ_Button_確認選擇.Size = new System.Drawing.Size(852, 116);
+            this.rJ_Button_確認選擇.Size = new System.Drawing.Size(844, 116);
             this.rJ_Button_確認選擇.State = false;
             this.rJ_Button_確認選擇.TabIndex = 0;
             this.rJ_Button_確認選擇.Text = "確 認";
@@ -224,7 +224,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_效期批號.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_效期批號.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_效期批號.ImageBox = false;
-            this.sqL_DataGridView_效期批號.Location = new System.Drawing.Point(0, 162);
+            this.sqL_DataGridView_效期批號.Location = new System.Drawing.Point(4, 190);
             this.sqL_DataGridView_效期批號.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.sqL_DataGridView_效期批號.Name = "sqL_DataGridView_效期批號";
             this.sqL_DataGridView_效期批號.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
@@ -236,7 +236,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_效期批號.RowsHeight = 80;
             this.sqL_DataGridView_效期批號.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_效期批號.Server = "127.0.0.0";
-            this.sqL_DataGridView_效期批號.Size = new System.Drawing.Size(852, 370);
+            this.sqL_DataGridView_效期批號.Size = new System.Drawing.Size(844, 338);
             this.sqL_DataGridView_效期批號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_效期批號.TabIndex = 18;
             this.sqL_DataGridView_效期批號.UserName = "root";
@@ -258,13 +258,13 @@ namespace 癌症自動備藥機暨排程系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(852, 648);
-            this.ControlBox = false;
             this.Controls.Add(this.sqL_DataGridView_效期批號);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.rJ_Lable1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_效期批號選擇";
+            this.Special_Time = 100;
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

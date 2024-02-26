@@ -56,14 +56,14 @@ namespace 調劑台管理系統
             // 
             this.panel1.Controls.Add(this.rJ_Lable_Title);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(4, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(743, 83);
+            this.panel1.Size = new System.Drawing.Size(735, 83);
             this.panel1.TabIndex = 0;
             // 
             // rJ_Lable_Title
             // 
-            this.rJ_Lable_Title.BackColor = System.Drawing.Color.Navy;
+            this.rJ_Lable_Title.BackColor = System.Drawing.Color.White;
             this.rJ_Lable_Title.BackgroundColor = System.Drawing.Color.Navy;
             this.rJ_Lable_Title.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable_Title.BorderRadius = 12;
@@ -75,7 +75,9 @@ namespace 調劑台管理系統
             this.rJ_Lable_Title.GUID = "";
             this.rJ_Lable_Title.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable_Title.Name = "rJ_Lable_Title";
-            this.rJ_Lable_Title.Size = new System.Drawing.Size(743, 83);
+            this.rJ_Lable_Title.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_Title.ShadowSize = 0;
+            this.rJ_Lable_Title.Size = new System.Drawing.Size(735, 83);
             this.rJ_Lable_Title.TabIndex = 2;
             this.rJ_Lable_Title.Text = "雙人覆核";
             this.rJ_Lable_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -85,14 +87,14 @@ namespace 調劑台管理系統
             // 
             this.panel2.Controls.Add(this.rJ_Lable_藥名);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 83);
+            this.panel2.Location = new System.Drawing.Point(4, 111);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(743, 70);
+            this.panel2.Size = new System.Drawing.Size(735, 70);
             this.panel2.TabIndex = 2;
             // 
             // rJ_Lable_藥名
             // 
-            this.rJ_Lable_藥名.BackColor = System.Drawing.Color.DodgerBlue;
+            this.rJ_Lable_藥名.BackColor = System.Drawing.Color.White;
             this.rJ_Lable_藥名.BackgroundColor = System.Drawing.Color.DodgerBlue;
             this.rJ_Lable_藥名.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable_藥名.BorderRadius = 12;
@@ -104,7 +106,9 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥名.GUID = "";
             this.rJ_Lable_藥名.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable_藥名.Name = "rJ_Lable_藥名";
-            this.rJ_Lable_藥名.Size = new System.Drawing.Size(743, 70);
+            this.rJ_Lable_藥名.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_藥名.ShadowSize = 0;
+            this.rJ_Lable_藥名.Size = new System.Drawing.Size(735, 70);
             this.rJ_Lable_藥名.TabIndex = 2;
             this.rJ_Lable_藥名.Text = "藥名 : XXXXXXXX";
             this.rJ_Lable_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -115,7 +119,7 @@ namespace 調劑台管理系統
             this.panel185.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel185.Controls.Add(this.textBox_帳號);
             this.panel185.Controls.Add(this.panel186);
-            this.panel185.Location = new System.Drawing.Point(36, 178);
+            this.panel185.Location = new System.Drawing.Point(36, 192);
             this.panel185.Name = "panel185";
             this.panel185.Size = new System.Drawing.Size(369, 67);
             this.panel185.TabIndex = 32;
@@ -143,7 +147,7 @@ namespace 調劑台管理系統
             this.panel183.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel183.Controls.Add(this.textBox_密碼);
             this.panel183.Controls.Add(this.panel184);
-            this.panel183.Location = new System.Drawing.Point(36, 251);
+            this.panel183.Location = new System.Drawing.Point(36, 265);
             this.panel183.Name = "panel183";
             this.panel183.Size = new System.Drawing.Size(369, 67);
             this.panel183.TabIndex = 33;
@@ -173,18 +177,18 @@ namespace 調劑台管理系統
             this.panel3.Controls.Add(this.plC_RJ_Button_確認);
             this.panel3.Controls.Add(this.rJ_Lable1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 355);
+            this.panel3.Location = new System.Drawing.Point(4, 351);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(743, 72);
+            this.panel3.Size = new System.Drawing.Size(735, 72);
             this.panel3.TabIndex = 35;
             // 
             // plC_RJ_Button_取消
             // 
             this.plC_RJ_Button_取消.AutoResetState = false;
-            this.plC_RJ_Button_取消.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.plC_RJ_Button_取消.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_取消.Bool = false;
             this.plC_RJ_Button_取消.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_取消.BorderRadius = 5;
+            this.plC_RJ_Button_取消.BorderRadius = 20;
             this.plC_RJ_Button_取消.BorderSize = 0;
             this.plC_RJ_Button_取消.but_press = false;
             this.plC_RJ_Button_取消.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -199,13 +203,16 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_取消.OFF_文字內容 = "取消";
             this.plC_RJ_Button_取消.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_取消.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_取消.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_取消.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_取消.ON_BorderSize = 5;
             this.plC_RJ_Button_取消.ON_文字內容 = "取消";
             this.plC_RJ_Button_取消.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.plC_RJ_Button_取消.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_取消.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_取消.Size = new System.Drawing.Size(114, 72);
+            this.plC_RJ_Button_取消.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_取消.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_取消.ShadowSize = 3;
+            this.plC_RJ_Button_取消.ShowLoadingForm = false;
+            this.plC_RJ_Button_取消.Size = new System.Drawing.Size(106, 72);
             this.plC_RJ_Button_取消.State = false;
             this.plC_RJ_Button_取消.TabIndex = 36;
             this.plC_RJ_Button_取消.Text = "取消";
@@ -227,7 +234,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_確認.Bool = false;
             this.plC_RJ_Button_確認.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_確認.BorderRadius = 5;
+            this.plC_RJ_Button_確認.BorderRadius = 20;
             this.plC_RJ_Button_確認.BorderSize = 0;
             this.plC_RJ_Button_確認.but_press = false;
             this.plC_RJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -242,12 +249,15 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認.OFF_文字內容 = "確認";
             this.plC_RJ_Button_確認.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_確認.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_確認.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_確認.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_確認.ON_BorderSize = 5;
             this.plC_RJ_Button_確認.ON_文字內容 = "確認";
             this.plC_RJ_Button_確認.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.plC_RJ_Button_確認.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_確認.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_確認.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_確認.ShadowSize = 3;
+            this.plC_RJ_Button_確認.ShowLoadingForm = false;
             this.plC_RJ_Button_確認.Size = new System.Drawing.Size(114, 72);
             this.plC_RJ_Button_確認.State = false;
             this.plC_RJ_Button_確認.TabIndex = 35;
@@ -266,7 +276,7 @@ namespace 調劑台管理系統
             // 
             // rJ_Lable1
             // 
-            this.rJ_Lable1.BackColor = System.Drawing.Color.Black;
+            this.rJ_Lable1.BackColor = System.Drawing.Color.White;
             this.rJ_Lable1.BackgroundColor = System.Drawing.Color.Black;
             this.rJ_Lable1.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable1.BorderRadius = 12;
@@ -278,6 +288,8 @@ namespace 調劑台管理系統
             this.rJ_Lable1.GUID = "";
             this.rJ_Lable1.Location = new System.Drawing.Point(0, 0);
             this.rJ_Lable1.Name = "rJ_Lable1";
+            this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable1.ShadowSize = 0;
             this.rJ_Lable1.Size = new System.Drawing.Size(515, 72);
             this.rJ_Lable1.TabIndex = 0;
             this.rJ_Lable1.Text = "※ 請刷卡登入或感應卡片";
@@ -290,7 +302,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_登入.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_登入.Bool = false;
             this.plC_RJ_Button_登入.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_登入.BorderRadius = 5;
+            this.plC_RJ_Button_登入.BorderRadius = 20;
             this.plC_RJ_Button_登入.BorderSize = 0;
             this.plC_RJ_Button_登入.but_press = false;
             this.plC_RJ_Button_登入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -299,17 +311,20 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_登入.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_登入.GUID = "";
             this.plC_RJ_Button_登入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_登入.Location = new System.Drawing.Point(434, 178);
+            this.plC_RJ_Button_登入.Location = new System.Drawing.Point(434, 192);
             this.plC_RJ_Button_登入.Name = "plC_RJ_Button_登入";
             this.plC_RJ_Button_登入.OFF_文字內容 = "登入";
             this.plC_RJ_Button_登入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_登入.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_登入.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_登入.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_登入.ON_BorderSize = 5;
             this.plC_RJ_Button_登入.ON_文字內容 = "登入";
             this.plC_RJ_Button_登入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 21.75F);
             this.plC_RJ_Button_登入.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_登入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_登入.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_登入.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_登入.ShadowSize = 3;
+            this.plC_RJ_Button_登入.ShowLoadingForm = false;
             this.plC_RJ_Button_登入.Size = new System.Drawing.Size(280, 140);
             this.plC_RJ_Button_登入.State = false;
             this.plC_RJ_Button_登入.TabIndex = 34;
@@ -332,7 +347,6 @@ namespace 調劑台管理系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(743, 427);
-            this.ControlBox = false;
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.plC_RJ_Button_登入);
             this.Controls.Add(this.panel185);
@@ -341,8 +355,8 @@ namespace 調劑台管理系統
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_使用者登入";
+            this.ShadowWidth = 15;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.TopMost = true;
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel185.ResumeLayout(false);

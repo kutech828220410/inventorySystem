@@ -11,29 +11,12 @@ using Basic;
 using SQLUI;
 using HIS_DB_Lib;
 using H_Pannel_lib;
+using MyUI;
 namespace 調劑台管理系統
 {
-    public partial class Dialog_使用者登入 : Form
+    public partial class Dialog_使用者登入 : MyDialog
     {
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-
-
-        }
+ 
         private MyThread MyThread_program;
         public static bool IsShown = false;
         private bool _flag_已登入 = false;

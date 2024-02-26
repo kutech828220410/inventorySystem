@@ -2838,3 +2838,5 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj
 C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_錯誤提示.resources
 C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_新藥建置.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\PopupControl.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\CSkin.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.mshtml.dll

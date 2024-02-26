@@ -15,7 +15,7 @@ using DrawingClass;
 using H_Pannel_lib;
 namespace 癌症自動備藥機暨排程系統
 {
-    public partial class Dialog_入出庫作業 : Form
+    public partial class Dialog_入出庫作業 : MyDialog
     {
         public enum enum_type
         {
@@ -31,29 +31,12 @@ namespace 癌症自動備藥機暨排程系統
         private string _藥名;
         private string _操作人;
         private enum_type _enum_type;
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-        }
+        
 
         public Dialog_入出庫作業(enum_type _enum_type ,string 操作人, string 藥碼 ,string 藥名, StorageUI_EPD_266 storageUI_EPD_266)
         {
             InitializeComponent();
-            this.TopMost = true;
-            Dialog_入出庫作業.form = this.ParentForm;
+
             this.Load += Dialog_入出庫作業_Load;
 
             if(_enum_type == enum_type.出庫)

@@ -39,6 +39,7 @@ namespace 癌症自動備藥機暨排程系統
             {
                 this.Invoke(new Action(delegate
                 {
+                    Basic.Reflection.MakeDoubleBuffered(this, true);
                     this.panel_功能表.Visible = show_func_panel;
 
                     rJ_Pannel_處方內容.Paint += RJ_Pannel_處方內容_Paint;
@@ -61,7 +62,7 @@ namespace 癌症自動備藥機暨排程系統
                 }));
 
             }
-
+        
 
             refresh_UI();
 
@@ -84,6 +85,9 @@ namespace 癌症自動備藥機暨排程系統
 
         private void refresh_UI()
         {
+
+
+
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < udnoectc.藥囑資料.Count; i++)
             {
@@ -130,6 +134,16 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Uc_備藥通知內容_Load(object sender, EventArgs e)
         {
+            this.Invoke(new Action(delegate
+            {
+                System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromControl(this);
+                if (screen.Bounds.Width > 1080)
+                {
+                    panel_病人資訊.Dock = DockStyle.Left;
+                    panel_病人資訊.Width = 900;
+                }
+
+            }));
             this.panel_醫囑確認.Width = this.Width / 3;
             this.panel_調配完成.Width = this.Width / 3;
             this.panel_處方核對.Width = this.Width / 3;
@@ -235,7 +249,20 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void RJ_Pannel_備藥內容_Paint(object sender, PaintEventArgs e)
         {
-            this.rJ_Pannel_備藥內容.Height = ((udnoectc.labdatas.Count / 3) * 40) + 90 + 50;
+            this.Invoke(new Action(delegate
+            {
+                System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromControl(this);
+                if (screen.Bounds.Width <= 1080)
+                {
+                    int height  = ((udnoectc.labdatas.Count / 3) * 40) + 90 + 50;
+                    this.panel_病人資訊.Height = height + rJ_Pannel_處方內容.Height;
+                }
+            }));
+
+            e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+
             int y = 0;
             string RegimenName = $"RegimenName : {udnoectc.RegimenName}";
             string 天數順序 = $"天數順序 : {udnoectc.天數順序}";
@@ -278,6 +305,10 @@ namespace 癌症自動備藥機暨排程系統
             string 診斷 = $"診斷:{udnoectc.診斷}";
             string 科別 = $"{udnoectc.科別}";
             string 開立醫師 = $"開立醫師:{udnoectc.開立醫師}";
+
+            e.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
 
             DrawingClass.Draw.文字左上繪製(診別, new PointF(10, y + 10), new Font("標楷體", 14), Color.Black, e.Graphics);
             DrawingClass.Draw.文字左上繪製(加入時間, new PointF(130, y + 10), new Font("標楷體", 14, FontStyle.Italic), Color.Black, e.Graphics);

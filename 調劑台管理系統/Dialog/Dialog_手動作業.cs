@@ -22,7 +22,7 @@ namespace 調劑台管理系統
         交易量,
         病房號,
     }
-    public partial class Dialog_手動作業 : Form
+    public partial class Dialog_手動作業 : MyDialog
     {
         public enum enum_狀態
         {

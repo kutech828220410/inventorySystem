@@ -1004,6 +1004,11 @@ namespace 調劑台管理系統
                                 cnt = 65500;
                                 return;
                             }
+                            if (text.StringIsEmpty())
+                            {
+                                cnt = 65500;
+                                return;
+                            }
                             List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
                             if (list_人員資料.Count > 0)
                             {

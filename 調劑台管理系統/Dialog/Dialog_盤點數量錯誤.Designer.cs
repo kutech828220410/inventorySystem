@@ -36,7 +36,7 @@ namespace 調劑台管理系統
             // 
             // rJ_Lable_Title
             // 
-            this.rJ_Lable_Title.BackColor = System.Drawing.Color.Navy;
+            this.rJ_Lable_Title.BackColor = System.Drawing.Color.White;
             this.rJ_Lable_Title.BackgroundColor = System.Drawing.Color.Navy;
             this.rJ_Lable_Title.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable_Title.BorderRadius = 12;
@@ -46,9 +46,11 @@ namespace 調劑台管理系統
             this.rJ_Lable_Title.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable_Title.ForeColor = System.Drawing.Color.White;
             this.rJ_Lable_Title.GUID = "";
-            this.rJ_Lable_Title.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable_Title.Location = new System.Drawing.Point(4, 28);
             this.rJ_Lable_Title.Name = "rJ_Lable_Title";
-            this.rJ_Lable_Title.Size = new System.Drawing.Size(830, 112);
+            this.rJ_Lable_Title.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_Title.ShadowSize = 0;
+            this.rJ_Lable_Title.Size = new System.Drawing.Size(822, 112);
             this.rJ_Lable_Title.TabIndex = 3;
             this.rJ_Lable_Title.Text = "盤點數量錯誤,重新盤點?";
             this.rJ_Lable_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -57,10 +59,10 @@ namespace 調劑台管理系統
             // rJ_Button_是
             // 
             this.rJ_Button_是.AutoResetState = false;
-            this.rJ_Button_是.BackColor = System.Drawing.Color.YellowGreen;
+            this.rJ_Button_是.BackColor = System.Drawing.Color.Transparent;
             this.rJ_Button_是.BackgroundColor = System.Drawing.Color.YellowGreen;
             this.rJ_Button_是.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_是.BorderRadius = 116;
+            this.rJ_Button_是.BorderRadius = 40;
             this.rJ_Button_是.BorderSize = 0;
             this.rJ_Button_是.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_是.FlatAppearance.BorderSize = 0;
@@ -68,8 +70,11 @@ namespace 調劑台管理系統
             this.rJ_Button_是.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_是.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_是.GUID = "";
-            this.rJ_Button_是.Location = new System.Drawing.Point(492, 127);
+            this.rJ_Button_是.Location = new System.Drawing.Point(492, 148);
             this.rJ_Button_是.Name = "rJ_Button_是";
+            this.rJ_Button_是.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_是.ShadowSize = 3;
+            this.rJ_Button_是.ShowLoadingForm = false;
             this.rJ_Button_是.Size = new System.Drawing.Size(210, 116);
             this.rJ_Button_是.State = false;
             this.rJ_Button_是.TabIndex = 4;
@@ -80,10 +85,10 @@ namespace 調劑台管理系統
             // rJ_Button_否
             // 
             this.rJ_Button_否.AutoResetState = false;
-            this.rJ_Button_否.BackColor = System.Drawing.Color.Crimson;
+            this.rJ_Button_否.BackColor = System.Drawing.Color.Transparent;
             this.rJ_Button_否.BackgroundColor = System.Drawing.Color.Crimson;
             this.rJ_Button_否.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_否.BorderRadius = 116;
+            this.rJ_Button_否.BorderRadius = 40;
             this.rJ_Button_否.BorderSize = 0;
             this.rJ_Button_否.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_否.FlatAppearance.BorderSize = 0;
@@ -91,8 +96,11 @@ namespace 調劑台管理系統
             this.rJ_Button_否.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_否.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_否.GUID = "";
-            this.rJ_Button_否.Location = new System.Drawing.Point(118, 127);
+            this.rJ_Button_否.Location = new System.Drawing.Point(118, 148);
             this.rJ_Button_否.Name = "rJ_Button_否";
+            this.rJ_Button_否.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_否.ShadowSize = 3;
+            this.rJ_Button_否.ShowLoadingForm = false;
             this.rJ_Button_否.Size = new System.Drawing.Size(210, 116);
             this.rJ_Button_否.State = false;
             this.rJ_Button_否.TabIndex = 5;
@@ -105,13 +113,13 @@ namespace 調劑台管理系統
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(830, 259);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(830, 282);
             this.Controls.Add(this.rJ_Button_否);
             this.Controls.Add(this.rJ_Button_是);
             this.Controls.Add(this.rJ_Lable_Title);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_盤點數量錯誤";
+            this.ShadowWidth = 15;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ResumeLayout(false);
 

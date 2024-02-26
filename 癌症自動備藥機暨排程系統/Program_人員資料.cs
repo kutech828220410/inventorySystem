@@ -46,17 +46,21 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_人員資料.Password = table.Password;
             this.sqL_DataGridView_人員資料.Port = table.Port.StringToUInt32();
             this.sqL_DataGridView_人員資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_人員資料.顯示首列 = false;
+            this.sqL_DataGridView_人員資料.顯示首行 = false;
+            this.sqL_DataGridView_人員資料.RowsHeight = 60;
             this.sqL_DataGridView_人員資料.Init(table);
             this.sqL_DataGridView_人員資料.Set_ColumnVisible(false, new enum_人員資料().GetEnumNames());
-            this.sqL_DataGridView_人員資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.ID);
-            this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.姓名);
-            this.sqL_DataGridView_人員資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.性別);
-            this.sqL_DataGridView_人員資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.權限等級);
-            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.卡號);
-            this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.一維條碼);
+            this.sqL_DataGridView_人員資料.Set_ColumnWidth(sqL_DataGridView_人員資料.Width - 20, DataGridViewContentAlignment.MiddleLeft, "GUID");
+            //this.sqL_DataGridView_人員資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.ID);
+            //this.sqL_DataGridView_人員資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.姓名);
+            //this.sqL_DataGridView_人員資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.性別);
+            //this.sqL_DataGridView_人員資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_人員資料.權限等級);
+            //this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.卡號);
+            //this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.一維條碼);
             this.sqL_DataGridView_人員資料.MouseDown += SqL_DataGridView_人員資料_MouseDown;
             this.sqL_DataGridView_人員資料.RowDoubleClickEvent += SqL_DataGridView_人員資料_RowDoubleClickEvent;
-
+            this.sqL_DataGridView_人員資料.RowPostPaintingEvent += SqL_DataGridView_人員資料_RowPostPaintingEvent;
 
             this.plC_RJ_Button_人員資料_資料搜尋_姓名.MouseDownEvent += PlC_RJ_Button_人員資料_資料搜尋_姓名_MouseDownEvent;
             this.plC_RJ_Button_人員資料_資料搜尋_ID.MouseDownEvent += PlC_RJ_Button_人員資料_資料搜尋_ID_MouseDownEvent;
@@ -82,6 +86,39 @@ namespace 癌症自動備藥機暨排程系統
 
         #endregion
         #region Event
+        private void SqL_DataGridView_人員資料_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
+        {
+            Color row_Backcolor = Color.White;
+            Color row_Forecolor = Color.Black;
+            using (Brush brush = new SolidBrush(row_Backcolor))
+            {
+                int x = e.RowBounds.Left;
+                int y = e.RowBounds.Top;
+                int width = e.RowBounds.Width;
+                int height = e.RowBounds.Height;
+                e.Graphics.FillRectangle(brush, e.RowBounds);
+                DrawingClass.Draw.DrawRoundShadow(e.Graphics, new RectangleF(x - 1, y - 1, width, height), Color.DarkGray, 5, 5);
+                int tempX = 0;
+                Size size = new Size();
+                PointF pointF = new PointF();
+                object[] value = this.sqL_DataGridView_人員資料.GetRowsList()[e.RowIndex];
+
+                string 序號 = $"{e.RowIndex + 1}.";
+                string 姓名 = $"{value[(int)enum_人員資料.姓名]}";
+                string ID = $"{value[(int)enum_人員資料.ID]}";
+                string 權限等級 = $"權限等級:{value[(int)enum_人員資料.權限等級]}";
+                string 卡號 = $"卡號:{(value[(int)enum_人員資料.卡號].ObjectToString().StringIsEmpty() ? "未註冊" : $"{value[(int)enum_人員資料.卡號]}")}";
+
+
+
+                DrawingClass.Draw.文字左上繪製(序號, new PointF(10, y + 10), new Font("標楷體", 14), Color.Black, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(姓名, new PointF(50, y + 10), new Font("標楷體", 14, FontStyle.Regular), Color.Black, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(ID, new PointF(150, y + 10), new Font("標楷體", 14, FontStyle.Regular), Color.Black, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(權限等級, new PointF(300, y + 10), new Font("標楷體", 14, FontStyle.Regular), Color.Black, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(卡號, new PointF(450, y + 10), new Font("標楷體", 14, FontStyle.Regular), Color.Black, e.Graphics);
+
+            }
+        }
         private void SqL_DataGridView_人員資料_MouseDown(object sender, MouseEventArgs e)
         {
             //this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);

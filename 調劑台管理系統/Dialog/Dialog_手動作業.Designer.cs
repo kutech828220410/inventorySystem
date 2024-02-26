@@ -66,14 +66,14 @@
             this.panel1.Controls.Add(this.rJ_Button_退出);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 868);
+            this.panel1.Location = new System.Drawing.Point(4, 864);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1425, 86);
+            this.panel1.Size = new System.Drawing.Size(1417, 86);
             this.panel1.TabIndex = 0;
             // 
             // rJ_Lable_領退藥狀態
             // 
-            this.rJ_Lable_領退藥狀態.BackColor = System.Drawing.Color.Red;
+            this.rJ_Lable_領退藥狀態.BackColor = System.Drawing.Color.White;
             this.rJ_Lable_領退藥狀態.BackgroundColor = System.Drawing.Color.Red;
             this.rJ_Lable_領退藥狀態.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable_領退藥狀態.BorderRadius = 12;
@@ -85,6 +85,8 @@
             this.rJ_Lable_領退藥狀態.GUID = "";
             this.rJ_Lable_領退藥狀態.Location = new System.Drawing.Point(25, 0);
             this.rJ_Lable_領退藥狀態.Name = "rJ_Lable_領退藥狀態";
+            this.rJ_Lable_領退藥狀態.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_領退藥狀態.ShadowSize = 0;
             this.rJ_Lable_領退藥狀態.Size = new System.Drawing.Size(160, 86);
             this.rJ_Lable_領退藥狀態.TabIndex = 30;
             this.rJ_Lable_領退藥狀態.Text = "領藥";
@@ -106,8 +108,11 @@
             this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.rJ_Button_確認.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_確認.GUID = "";
-            this.rJ_Button_確認.Location = new System.Drawing.Point(1095, 0);
+            this.rJ_Button_確認.Location = new System.Drawing.Point(1087, 0);
             this.rJ_Button_確認.Name = "rJ_Button_確認";
+            this.rJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_確認.ShadowSize = 3;
+            this.rJ_Button_確認.ShowLoadingForm = false;
             this.rJ_Button_確認.Size = new System.Drawing.Size(165, 86);
             this.rJ_Button_確認.State = false;
             this.rJ_Button_確認.TabIndex = 29;
@@ -130,8 +135,11 @@
             this.rJ_Button_退出.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_退出.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_退出.GUID = "";
-            this.rJ_Button_退出.Location = new System.Drawing.Point(1260, 0);
+            this.rJ_Button_退出.Location = new System.Drawing.Point(1252, 0);
             this.rJ_Button_退出.Name = "rJ_Button_退出";
+            this.rJ_Button_退出.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_退出.ShadowSize = 3;
+            this.rJ_Button_退出.ShowLoadingForm = false;
             this.rJ_Button_退出.Size = new System.Drawing.Size(165, 86);
             this.rJ_Button_退出.State = false;
             this.rJ_Button_退出.TabIndex = 19;
@@ -153,6 +161,7 @@
             // rJ_GroupBox2.ContentsPanel
             // 
             this.rJ_GroupBox2.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox2.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
             this.rJ_GroupBox2.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox2.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox2.ContentsPanel.BorderSize = 2;
@@ -164,17 +173,19 @@
             this.rJ_GroupBox2.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox2.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox2.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.rJ_GroupBox2.ContentsPanel.Size = new System.Drawing.Size(773, 831);
+            this.rJ_GroupBox2.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_GroupBox2.ContentsPanel.ShadowSize = 0;
+            this.rJ_GroupBox2.ContentsPanel.Size = new System.Drawing.Size(765, 799);
             this.rJ_GroupBox2.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_GroupBox2.GUID = "";
-            this.rJ_GroupBox2.Location = new System.Drawing.Point(652, 0);
+            this.rJ_GroupBox2.Location = new System.Drawing.Point(656, 28);
             this.rJ_GroupBox2.Name = "rJ_GroupBox2";
             this.rJ_GroupBox2.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox2.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox2.PannelBorderRadius = 5;
             this.rJ_GroupBox2.PannelBorderSize = 2;
-            this.rJ_GroupBox2.Size = new System.Drawing.Size(773, 868);
+            this.rJ_GroupBox2.Size = new System.Drawing.Size(765, 836);
             this.rJ_GroupBox2.TabIndex = 2;
             this.rJ_GroupBox2.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox2.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -222,7 +233,7 @@
             this.sqL_DataGridView_選擇藥品.RowsHeight = 50;
             this.sqL_DataGridView_選擇藥品.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_選擇藥品.Server = "localhost";
-            this.sqL_DataGridView_選擇藥品.Size = new System.Drawing.Size(763, 706);
+            this.sqL_DataGridView_選擇藥品.Size = new System.Drawing.Size(755, 674);
             this.sqL_DataGridView_選擇藥品.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_選擇藥品.TabIndex = 116;
             this.sqL_DataGridView_選擇藥品.UserName = "root";
@@ -242,18 +253,18 @@
             // 
             this.panel3.Controls.Add(this.rJ_Button1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(5, 711);
+            this.panel3.Location = new System.Drawing.Point(5, 679);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(763, 115);
+            this.panel3.Size = new System.Drawing.Size(755, 115);
             this.panel3.TabIndex = 0;
             // 
             // rJ_Button1
             // 
             this.rJ_Button1.AutoResetState = false;
-            this.rJ_Button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button1.BackColor = System.Drawing.Color.Transparent;
             this.rJ_Button1.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button1.BorderRadius = 5;
+            this.rJ_Button1.BorderRadius = 20;
             this.rJ_Button1.BorderSize = 0;
             this.rJ_Button1.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button1.FlatAppearance.BorderSize = 0;
@@ -263,6 +274,9 @@
             this.rJ_Button1.GUID = "";
             this.rJ_Button1.Location = new System.Drawing.Point(530, 12);
             this.rJ_Button1.Name = "rJ_Button1";
+            this.rJ_Button1.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button1.ShadowSize = 3;
+            this.rJ_Button1.ShowLoadingForm = false;
             this.rJ_Button1.Size = new System.Drawing.Size(213, 88);
             this.rJ_Button1.State = false;
             this.rJ_Button1.TabIndex = 53;
@@ -276,6 +290,7 @@
             // rJ_GroupBox1.ContentsPanel
             // 
             this.rJ_GroupBox1.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.rJ_GroupBox1.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
             this.rJ_GroupBox1.ContentsPanel.BorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox1.ContentsPanel.BorderRadius = 5;
             this.rJ_GroupBox1.ContentsPanel.BorderSize = 2;
@@ -287,17 +302,19 @@
             this.rJ_GroupBox1.ContentsPanel.Location = new System.Drawing.Point(0, 37);
             this.rJ_GroupBox1.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox1.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
-            this.rJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(652, 831);
+            this.rJ_GroupBox1.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_GroupBox1.ContentsPanel.ShadowSize = 0;
+            this.rJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(652, 799);
             this.rJ_GroupBox1.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.rJ_GroupBox1.GUID = "";
-            this.rJ_GroupBox1.Location = new System.Drawing.Point(0, 0);
+            this.rJ_GroupBox1.Location = new System.Drawing.Point(4, 28);
             this.rJ_GroupBox1.Name = "rJ_GroupBox1";
             this.rJ_GroupBox1.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox1.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox1.PannelBorderRadius = 5;
             this.rJ_GroupBox1.PannelBorderSize = 2;
-            this.rJ_GroupBox1.Size = new System.Drawing.Size(652, 868);
+            this.rJ_GroupBox1.Size = new System.Drawing.Size(652, 836);
             this.rJ_GroupBox1.TabIndex = 1;
             this.rJ_GroupBox1.TitleBackColor = System.Drawing.Color.DeepSkyBlue;
             this.rJ_GroupBox1.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -340,7 +357,7 @@
             this.sqL_DataGridView_藥品資料.RowsHeight = 50;
             this.sqL_DataGridView_藥品資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_藥品資料.Server = "localhost";
-            this.sqL_DataGridView_藥品資料.Size = new System.Drawing.Size(642, 633);
+            this.sqL_DataGridView_藥品資料.Size = new System.Drawing.Size(642, 601);
             this.sqL_DataGridView_藥品資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_藥品資料.TabIndex = 115;
             this.sqL_DataGridView_藥品資料.UserName = "root";
@@ -368,7 +385,7 @@
             this.panel2.Controls.Add(this.rJ_Lable26);
             this.panel2.Controls.Add(this.rJ_Button_藥品資料_藥品碼_搜尋);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(5, 638);
+            this.panel2.Location = new System.Drawing.Point(5, 606);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(642, 188);
             this.panel2.TabIndex = 116;
@@ -399,7 +416,7 @@
             // 
             // rJ_Lable2
             // 
-            this.rJ_Lable2.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable2.BackColor = System.Drawing.Color.White;
             this.rJ_Lable2.BackgroundColor = System.Drawing.Color.SkyBlue;
             this.rJ_Lable2.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable2.BorderRadius = 8;
@@ -410,6 +427,8 @@
             this.rJ_Lable2.GUID = "";
             this.rJ_Lable2.Location = new System.Drawing.Point(7, 108);
             this.rJ_Lable2.Name = "rJ_Lable2";
+            this.rJ_Lable2.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable2.ShadowSize = 0;
             this.rJ_Lable2.Size = new System.Drawing.Size(122, 46);
             this.rJ_Lable2.TabIndex = 53;
             this.rJ_Lable2.Text = "病房號";
@@ -419,10 +438,10 @@
             // rJ_Button_藥品資料_選擇藥品
             // 
             this.rJ_Button_藥品資料_選擇藥品.AutoResetState = false;
-            this.rJ_Button_藥品資料_選擇藥品.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_藥品資料_選擇藥品.BackColor = System.Drawing.Color.Transparent;
             this.rJ_Button_藥品資料_選擇藥品.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_藥品資料_選擇藥品.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_藥品資料_選擇藥品.BorderRadius = 5;
+            this.rJ_Button_藥品資料_選擇藥品.BorderRadius = 20;
             this.rJ_Button_藥品資料_選擇藥品.BorderSize = 0;
             this.rJ_Button_藥品資料_選擇藥品.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_藥品資料_選擇藥品.FlatAppearance.BorderSize = 0;
@@ -432,6 +451,9 @@
             this.rJ_Button_藥品資料_選擇藥品.GUID = "";
             this.rJ_Button_藥品資料_選擇藥品.Location = new System.Drawing.Point(475, 12);
             this.rJ_Button_藥品資料_選擇藥品.Name = "rJ_Button_藥品資料_選擇藥品";
+            this.rJ_Button_藥品資料_選擇藥品.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_藥品資料_選擇藥品.ShadowSize = 3;
+            this.rJ_Button_藥品資料_選擇藥品.ShowLoadingForm = false;
             this.rJ_Button_藥品資料_選擇藥品.Size = new System.Drawing.Size(152, 88);
             this.rJ_Button_藥品資料_選擇藥品.State = false;
             this.rJ_Button_藥品資料_選擇藥品.TabIndex = 52;
@@ -489,7 +511,7 @@
             // 
             // rJ_Lable1
             // 
-            this.rJ_Lable1.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable1.BackColor = System.Drawing.Color.White;
             this.rJ_Lable1.BackgroundColor = System.Drawing.Color.SkyBlue;
             this.rJ_Lable1.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable1.BorderRadius = 8;
@@ -500,6 +522,8 @@
             this.rJ_Lable1.GUID = "";
             this.rJ_Lable1.Location = new System.Drawing.Point(7, 59);
             this.rJ_Lable1.Name = "rJ_Lable1";
+            this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable1.ShadowSize = 0;
             this.rJ_Lable1.Size = new System.Drawing.Size(122, 46);
             this.rJ_Lable1.TabIndex = 48;
             this.rJ_Lable1.Text = "藥品名稱";
@@ -509,10 +533,10 @@
             // rJ_Button_藥品資料_藥品名稱_搜尋
             // 
             this.rJ_Button_藥品資料_藥品名稱_搜尋.AutoResetState = false;
-            this.rJ_Button_藥品資料_藥品名稱_搜尋.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.BackColor = System.Drawing.Color.Transparent;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_藥品資料_藥品名稱_搜尋.BorderRadius = 5;
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.BorderRadius = 20;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.BorderSize = 0;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.FlatAppearance.BorderSize = 0;
@@ -522,6 +546,9 @@
             this.rJ_Button_藥品資料_藥品名稱_搜尋.GUID = "";
             this.rJ_Button_藥品資料_藥品名稱_搜尋.Location = new System.Drawing.Point(290, 59);
             this.rJ_Button_藥品資料_藥品名稱_搜尋.Name = "rJ_Button_藥品資料_藥品名稱_搜尋";
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.ShadowSize = 3;
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.ShowLoadingForm = false;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.Size = new System.Drawing.Size(106, 46);
             this.rJ_Button_藥品資料_藥品名稱_搜尋.State = false;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.TabIndex = 47;
@@ -531,7 +558,7 @@
             // 
             // rJ_Lable26
             // 
-            this.rJ_Lable26.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable26.BackColor = System.Drawing.Color.White;
             this.rJ_Lable26.BackgroundColor = System.Drawing.Color.SkyBlue;
             this.rJ_Lable26.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable26.BorderRadius = 8;
@@ -542,6 +569,8 @@
             this.rJ_Lable26.GUID = "";
             this.rJ_Lable26.Location = new System.Drawing.Point(7, 7);
             this.rJ_Lable26.Name = "rJ_Lable26";
+            this.rJ_Lable26.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable26.ShadowSize = 0;
             this.rJ_Lable26.Size = new System.Drawing.Size(122, 46);
             this.rJ_Lable26.TabIndex = 45;
             this.rJ_Lable26.Text = "藥品碼";
@@ -551,10 +580,10 @@
             // rJ_Button_藥品資料_藥品碼_搜尋
             // 
             this.rJ_Button_藥品資料_藥品碼_搜尋.AutoResetState = false;
-            this.rJ_Button_藥品資料_藥品碼_搜尋.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_藥品資料_藥品碼_搜尋.BackColor = System.Drawing.Color.Transparent;
             this.rJ_Button_藥品資料_藥品碼_搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_藥品資料_藥品碼_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_藥品資料_藥品碼_搜尋.BorderRadius = 5;
+            this.rJ_Button_藥品資料_藥品碼_搜尋.BorderRadius = 20;
             this.rJ_Button_藥品資料_藥品碼_搜尋.BorderSize = 0;
             this.rJ_Button_藥品資料_藥品碼_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_藥品資料_藥品碼_搜尋.FlatAppearance.BorderSize = 0;
@@ -564,6 +593,9 @@
             this.rJ_Button_藥品資料_藥品碼_搜尋.GUID = "";
             this.rJ_Button_藥品資料_藥品碼_搜尋.Location = new System.Drawing.Point(290, 7);
             this.rJ_Button_藥品資料_藥品碼_搜尋.Name = "rJ_Button_藥品資料_藥品碼_搜尋";
+            this.rJ_Button_藥品資料_藥品碼_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_藥品資料_藥品碼_搜尋.ShadowSize = 3;
+            this.rJ_Button_藥品資料_藥品碼_搜尋.ShowLoadingForm = false;
             this.rJ_Button_藥品資料_藥品碼_搜尋.Size = new System.Drawing.Size(106, 46);
             this.rJ_Button_藥品資料_藥品碼_搜尋.State = false;
             this.rJ_Button_藥品資料_藥品碼_搜尋.TabIndex = 30;
@@ -577,13 +609,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1425, 954);
-            this.ControlBox = false;
             this.Controls.Add(this.rJ_GroupBox2);
             this.Controls.Add(this.rJ_GroupBox1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_手動作業";
-            this.ShowIcon = false;
+            this.ShadowWidth = 15;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Dialog_手動作業_Load);

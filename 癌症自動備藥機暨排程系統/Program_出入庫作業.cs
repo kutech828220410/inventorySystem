@@ -116,6 +116,7 @@ namespace 癌症自動備藥機暨排程系統
 
         private void PlC_RJ_Button_出入庫作業_藥名搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
+            LoadingForm.ShowLoadingForm();
             List<medClass> medClasses = Function_取得有儲位藥檔資料();
             List<object[]> list_value = medClasses.ClassToSQL<medClass , enum_藥品資料_藥檔資料>();
             string 藥名 = rJ_TextBox_出入庫作業_藥名搜尋.Texts;
@@ -125,10 +126,11 @@ namespace 癌症自動備藥機暨排程系統
             }
 
             this.sqL_DataGridView_出入庫作業.RefreshGrid(list_value);
-
+            LoadingForm.CloseLoadingForm();
         }
         private void PlC_RJ_Button_出入庫作業_藥碼搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
+            LoadingForm.ShowLoadingForm();
             List<medClass> medClasses = Function_取得有儲位藥檔資料();
             List<object[]> list_value = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
             string 藥品碼 = rJ_TextBox_出入庫作業_藥碼搜尋.Texts;
@@ -138,6 +140,7 @@ namespace 癌症自動備藥機暨排程系統
             }
 
             this.sqL_DataGridView_出入庫作業.RefreshGrid(list_value);
+            LoadingForm.CloseLoadingForm();
         }
         private void PlC_RJ_Button_出入庫作業_確認選擇_MouseDownEvent(MouseEventArgs mevent)
         {

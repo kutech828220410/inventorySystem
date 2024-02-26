@@ -18,7 +18,17 @@ namespace HIS_DB_Lib
         loginTime,
         verifyTime,
     }
-
+    public class PermissionsClass
+    {
+        [JsonPropertyName("name")]
+        public string 名稱 { get; set; }
+        [JsonPropertyName("index")]
+        public int 索引 { get; set; }
+        [JsonPropertyName("type")]
+        public string 類別 { get; set; }
+        [JsonPropertyName("state")]
+        public bool 狀態 { get; set; }
+    }
     public class sessionClass
     {
         [JsonPropertyName("GUID")]
@@ -48,8 +58,8 @@ namespace HIS_DB_Lib
         [JsonPropertyName("license")]
         public string license { get; set; }
 
-        public List<string> Permissions { get => permissions; set => permissions = value; }
-        private List<string> permissions = new List<string>();
+        public List<PermissionsClass> Permissions { get => permissions; set => permissions = value; }
+        private List<PermissionsClass> permissions = new List<PermissionsClass>();
 
 
     }

@@ -419,13 +419,13 @@ namespace HIS_WebApi
            
         }
 
-        private List<string> GetPermissions(int level)
+        private List<PermissionsClass> GetPermissions(int level)
         {
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
             serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
             if (serverSettingClasses.Count == 0)
             {
-                return new List<string>();
+                return new List<PermissionsClass>();
             }
             string IP = serverSettingClasses[0].Server;
             string DataBaseName = serverSettingClasses[0].DBName;
@@ -433,7 +433,7 @@ namespace HIS_WebApi
             string Password = serverSettingClasses[0].Password;
             uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
-            List<string> result = new List<string>();
+            List<PermissionsClass> result = new List<PermissionsClass>();
             SQLControl sQLControl_login_data_index = new SQLControl(IP, DataBaseName, "login_data_index", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_login_data = new SQLControl(IP, DataBaseName, "login_data", UserName, Password, Port, SSLMode);
             List<MySQL_Login.LoginDataWebAPI.Class_login_data> list_class_login_data = MySQL_Login.LoginDataWebAPI.Get_login_data(sQLControl_login_data);
@@ -455,21 +455,34 @@ namespace HIS_WebApi
                 list_class_login_data = (from value in list_class_login_data
                                          where value.level.StringToInt32().ToString() == level.StringToInt32().ToString()
                                          select value).ToList();
-                if (list_class_login_data.Count == 0) return new List<string>();
+                if (list_class_login_data.Count == 0) return new List<PermissionsClass>();
                 for (int i = 0; i < list_class_login_data[0].data.Count; i++)
                 {
+                    login_data_index_buf = login_data_index.GetRows((int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.索引, i.ToString("00"));
                     if (list_class_login_data[0].data[i])
                     {
-                        login_data_index_buf = login_data_index.GetRows((int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.索引, i.ToString("00"));
+                        
                         if (login_data_index_buf.Count > 0)
                         {
-                            string Name = login_data_index_buf[0][(int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.Name].ObjectToString();
-                            result.Add(Name);
+                            PermissionsClass permissionsClass = new PermissionsClass();
+                            permissionsClass.名稱 = login_data_index_buf[0][(int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.Name].ObjectToString();
+                            permissionsClass.類別 = login_data_index_buf[0][(int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.Type].ObjectToString();
+                            permissionsClass.索引 = i;
+                            permissionsClass.狀態 = true;
+                            result.Add(permissionsClass);
                         }
                     }
                     else
                     {
-                        result.Add("None");
+                        if (login_data_index_buf.Count > 0)
+                        {
+                            PermissionsClass permissionsClass = new PermissionsClass();
+                            permissionsClass.名稱 = login_data_index_buf[0][(int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.Name].ObjectToString();
+                            permissionsClass.類別 = login_data_index_buf[0][(int)MySQL_Login.LoginDataWebAPI.enum_login_data_index.Type].ObjectToString();
+                            permissionsClass.索引 = i;
+                            permissionsClass.狀態 = false;
+                            result.Add(permissionsClass);
+                        }
                     }
 
                 }
@@ -491,7 +504,6 @@ namespace HIS_WebApi
             uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
             SQLControl sQLControl_login_session = new SQLControl(IP, DataBaseName, "login_session", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_person_page = new SQLControl(IP, DataBaseName, "person_page", UserName, Password, Port, SSLMode);
 
             if (sQLControl_login_session.IsTableCreat() == false)
             {

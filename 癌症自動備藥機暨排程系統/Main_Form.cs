@@ -216,7 +216,7 @@ namespace 癌症自動備藥機暨排程系統
             PLC = this.lowerMachine_Panel.GetlowerMachine().properties;
             LoadDBConfig();
             ApiServerSetting();
-
+            LoadingForm.form = this.FindForm();
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main01, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main02, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);

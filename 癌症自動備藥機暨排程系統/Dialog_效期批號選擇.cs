@@ -16,35 +16,17 @@ using H_Pannel_lib;
 
 namespace 癌症自動備藥機暨排程系統
 {
-    public partial class Dialog_效期批號選擇 : Form
+    public partial class Dialog_效期批號選擇 : MyDialog
     {
         public string 效期 = "";
         public string 批號 = "";
         private string _藥碼;
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-        }
-
+   
         public Dialog_效期批號選擇(string 藥碼)
         {
             InitializeComponent();
 
-            this.TopMost = true;
-            Dialog_儲位選擇.form = this.ParentForm;
+    
             this._藥碼 = 藥碼;
 
             Table table = new Table("");

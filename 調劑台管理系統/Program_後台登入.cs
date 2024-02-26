@@ -83,7 +83,7 @@ namespace 調劑台管理系統
             }
         }
         private string 登入者藥師證字號 = "";
-        private List<string> 登入者權限 = new List<string>();
+        private List<PermissionsClass> 登入者權限 = new List<PermissionsClass>();
         
         private void Program_後台登入_Init()
         {

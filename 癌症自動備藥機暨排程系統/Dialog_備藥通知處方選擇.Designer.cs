@@ -44,9 +44,9 @@ namespace 癌症自動備藥機暨排程系統
             this.panel1.Controls.Add(this.dateTimeIntervelPicker_備藥通知時間範圍);
             this.panel1.Controls.Add(this.plC_RJ_Button_返回);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(4, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1044, 99);
+            this.panel1.Size = new System.Drawing.Size(1036, 99);
             this.panel1.TabIndex = 2;
             // 
             // button_重新整理
@@ -84,7 +84,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_返回.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_返回.GUID = "";
             this.plC_RJ_Button_返回.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_返回.Location = new System.Drawing.Point(883, 0);
+            this.plC_RJ_Button_返回.Location = new System.Drawing.Point(875, 0);
             this.plC_RJ_Button_返回.Name = "plC_RJ_Button_返回";
             this.plC_RJ_Button_返回.OFF_文字內容 = "返回";
             this.plC_RJ_Button_返回.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -131,7 +131,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_確認.GUID = "";
             this.plC_RJ_Button_確認.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_確認.Location = new System.Drawing.Point(0, 1259);
+            this.plC_RJ_Button_確認.Location = new System.Drawing.Point(4, 1255);
             this.plC_RJ_Button_確認.Name = "plC_RJ_Button_確認";
             this.plC_RJ_Button_確認.OFF_文字內容 = "確    認";
             this.plC_RJ_Button_確認.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -145,7 +145,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_確認.ShadowSize = 3;
             this.plC_RJ_Button_確認.ShowLoadingForm = false;
-            this.plC_RJ_Button_確認.Size = new System.Drawing.Size(1044, 110);
+            this.plC_RJ_Button_確認.Size = new System.Drawing.Size(1036, 110);
             this.plC_RJ_Button_確認.State = false;
             this.plC_RJ_Button_確認.TabIndex = 13;
             this.plC_RJ_Button_確認.Text = "確    認";
@@ -165,9 +165,9 @@ namespace 癌症自動備藥機暨排程系統
             // uc_備藥通知處方
             // 
             this.uc_備藥通知處方.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uc_備藥通知處方.Location = new System.Drawing.Point(0, 99);
+            this.uc_備藥通知處方.Location = new System.Drawing.Point(4, 127);
             this.uc_備藥通知處方.Name = "uc_備藥通知處方";
-            this.uc_備藥通知處方.Size = new System.Drawing.Size(1044, 1160);
+            this.uc_備藥通知處方.Size = new System.Drawing.Size(1036, 1128);
             this.uc_備藥通知處方.TabIndex = 14;
             // 
             // Dialog_備藥通知處方選擇
@@ -176,13 +176,12 @@ namespace 癌症自動備藥機暨排程系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1044, 1369);
-            this.ControlBox = false;
             this.Controls.Add(this.uc_備藥通知處方);
             this.Controls.Add(this.plC_RJ_Button_確認);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Dialog_備藥通知處方選擇";
-            this.ShowIcon = false;
+            this.Special_Time = 100;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

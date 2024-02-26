@@ -139,7 +139,7 @@ namespace 智能藥庫系統
                 {
                     this.List_class_Login_Data = this.loginUI.Get_login_data();
                     this.List_class_Login_Data_index = this.loginUI.Get_login_data_index();
-                    this.loginIndex_Pannel.Set_Login_Data_Index(this.List_class_Login_Data_index, enum_login_data_type.group02);
+                    this.loginIndex_Pannel.Set_Login_Data_Index(this.List_class_Login_Data_index, enum_login_data_type.藥庫);
                     this.loginIndex_Pannel.Set_Login_Data(this.List_class_Login_Data[0]);
 
 

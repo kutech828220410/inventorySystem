@@ -39,9 +39,9 @@ namespace 癌症自動備藥機暨排程系統
             // 
             this.panel1.Controls.Add(this.plC_RJ_Button_返回);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(5, 5);
+            this.panel1.Location = new System.Drawing.Point(9, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(790, 88);
+            this.panel1.Size = new System.Drawing.Size(782, 88);
             this.panel1.TabIndex = 1;
             // 
             // plC_RJ_Button_返回
@@ -60,7 +60,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_返回.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_返回.GUID = "";
             this.plC_RJ_Button_返回.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_返回.Location = new System.Drawing.Point(629, 0);
+            this.plC_RJ_Button_返回.Location = new System.Drawing.Point(621, 0);
             this.plC_RJ_Button_返回.Name = "plC_RJ_Button_返回";
             this.plC_RJ_Button_返回.OFF_文字內容 = "返回";
             this.plC_RJ_Button_返回.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -110,7 +110,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_變異紀錄.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_變異紀錄.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_變異紀錄.ImageBox = false;
-            this.sqL_DataGridView_變異紀錄.Location = new System.Drawing.Point(5, 93);
+            this.sqL_DataGridView_變異紀錄.Location = new System.Drawing.Point(9, 121);
             this.sqL_DataGridView_變異紀錄.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.sqL_DataGridView_變異紀錄.Name = "sqL_DataGridView_變異紀錄";
             this.sqL_DataGridView_變異紀錄.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
@@ -122,7 +122,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_變異紀錄.RowsHeight = 80;
             this.sqL_DataGridView_變異紀錄.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_變異紀錄.Server = "127.0.0.0";
-            this.sqL_DataGridView_變異紀錄.Size = new System.Drawing.Size(790, 868);
+            this.sqL_DataGridView_變異紀錄.Size = new System.Drawing.Size(782, 836);
             this.sqL_DataGridView_變異紀錄.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_變異紀錄.TabIndex = 14;
             this.sqL_DataGridView_變異紀錄.UserName = "root";
@@ -144,13 +144,12 @@ namespace 癌症自動備藥機暨排程系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 966);
-            this.ControlBox = false;
             this.Controls.Add(this.sqL_DataGridView_變異紀錄);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_變異紀錄";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.ShowIcon = false;
+            this.Special_Time = 100;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

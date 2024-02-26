@@ -65,11 +65,12 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_交易記錄查詢.RowPostPaintingEvent += SqL_DataGridView_交易記錄查詢_RowPostPaintingEvent;
 
             this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_操作時間_搜尋_MouseDownEvent;
-
+            this.plC_RJ_Button_交易紀錄查詢_藥碼搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_藥碼搜尋_MouseDownEvent;
+            this.plC_RJ_Button_交易紀錄查詢_藥名搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_藥名搜尋_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_交易紀錄);
         }
 
-       
+      
 
         private void Program_交易紀錄()
         {
@@ -156,6 +157,46 @@ namespace 癌症自動備藥機暨排程系統
             returnData returnData_result = json.JsonDeserializet<returnData>();
             List<transactionsClass> transactionsClasses = returnData_result.Data.ObjToClass<List<transactionsClass>>();
             List<object[]> list_value = transactionsClasses.ClassToSQL<transactionsClass,enum_交易記錄查詢資料>();
+            this.sqL_DataGridView_交易記錄查詢.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_交易紀錄查詢_藥名搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if(rJ_TextBox_交易紀錄查詢_藥名搜尋.Texts.StringIsEmpty() == true)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未輸入藥名", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string url = $"{API_Server}/api/transactions/get_by_name";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.癌症備藥機.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            returnData.Value = $"{rJ_TextBox_交易紀錄查詢_藥名搜尋.Texts}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            returnData returnData_result = json.JsonDeserializet<returnData>();
+            List<transactionsClass> transactionsClasses = returnData_result.Data.ObjToClass<List<transactionsClass>>();
+            List<object[]> list_value = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
+            this.sqL_DataGridView_交易記錄查詢.RefreshGrid(list_value);
+        }
+        private void PlC_RJ_Button_交易紀錄查詢_藥碼搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (rJ_TextBox_交易紀錄查詢_藥碼搜尋.Texts.StringIsEmpty() == true)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未輸入藥碼", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string url = $"{API_Server}/api/transactions/get_by_code";
+            returnData returnData = new returnData();
+            returnData.ServerType = enum_ServerSetting_Type.癌症備藥機.GetEnumName();
+            returnData.ServerName = $"{dBConfigClass.Name}";
+            returnData.Value = $"{rJ_TextBox_交易紀錄查詢_藥碼搜尋.Texts}";
+            string json_in = returnData.JsonSerializationt();
+            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            returnData returnData_result = json.JsonDeserializet<returnData>();
+            List<transactionsClass> transactionsClasses = returnData_result.Data.ObjToClass<List<transactionsClass>>();
+            List<object[]> list_value = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
             this.sqL_DataGridView_交易記錄查詢.RefreshGrid(list_value);
         }
         #endregion

@@ -44,9 +44,9 @@ namespace 癌症自動備藥機暨排程系統
             this.panel1.Controls.Add(this.plC_RJ_Button_變異紀錄);
             this.panel1.Controls.Add(this.plC_RJ_Button_返回);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(4, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(954, 88);
+            this.panel1.Size = new System.Drawing.Size(946, 88);
             this.panel1.TabIndex = 0;
             // 
             // plC_RJ_Button_變異紀錄
@@ -112,7 +112,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_返回.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_返回.GUID = "";
             this.plC_RJ_Button_返回.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_返回.Location = new System.Drawing.Point(793, 0);
+            this.plC_RJ_Button_返回.Location = new System.Drawing.Point(785, 0);
             this.plC_RJ_Button_返回.Name = "plC_RJ_Button_返回";
             this.plC_RJ_Button_返回.OFF_文字內容 = "返回";
             this.plC_RJ_Button_返回.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -147,9 +147,9 @@ namespace 癌症自動備藥機暨排程系統
             // 
             this.panel2.Controls.Add(this.plC_RJ_Button_確認);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 1684);
+            this.panel2.Location = new System.Drawing.Point(4, 1680);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(954, 110);
+            this.panel2.Size = new System.Drawing.Size(946, 110);
             this.panel2.TabIndex = 12;
             // 
             // plC_RJ_Button_確認
@@ -182,7 +182,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_確認.ShadowSize = 3;
             this.plC_RJ_Button_確認.ShowLoadingForm = false;
-            this.plC_RJ_Button_確認.Size = new System.Drawing.Size(954, 110);
+            this.plC_RJ_Button_確認.Size = new System.Drawing.Size(946, 110);
             this.plC_RJ_Button_確認.State = false;
             this.plC_RJ_Button_確認.TabIndex = 12;
             this.plC_RJ_Button_確認.Text = "確    認";
@@ -202,9 +202,9 @@ namespace 癌症自動備藥機暨排程系統
             // uc_備藥通知內容
             // 
             this.uc_備藥通知內容.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uc_備藥通知內容.Location = new System.Drawing.Point(0, 88);
+            this.uc_備藥通知內容.Location = new System.Drawing.Point(4, 116);
             this.uc_備藥通知內容.Name = "uc_備藥通知內容";
-            this.uc_備藥通知內容.Size = new System.Drawing.Size(954, 1596);
+            this.uc_備藥通知內容.Size = new System.Drawing.Size(946, 1564);
             this.uc_備藥通知內容.TabIndex = 13;
             // 
             // Dialog_備藥清單
@@ -213,12 +213,12 @@ namespace 癌症自動備藥機暨排程系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(954, 1794);
-            this.ControlBox = false;
             this.Controls.Add(this.uc_備藥通知內容);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_備藥清單";
+            this.Special_Time = 100;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

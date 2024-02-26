@@ -197,7 +197,7 @@ namespace 調劑台管理系統
                 {
                     this.List_class_Login_Data = this.loginUI.Get_login_data();
                     this.List_class_Login_Data_index = this.loginUI.Get_login_data_index();
-                    this.loginIndex_Pannel.Set_Login_Data_Index(this.List_class_Login_Data_index, enum_login_data_type.group01);
+                    this.loginIndex_Pannel.Set_Login_Data_Index(this.List_class_Login_Data_index, enum_login_data_type.調劑台);
                     this.loginIndex_Pannel.Set_Login_Data(this.List_class_Login_Data[0]);
 
 
@@ -682,18 +682,21 @@ namespace 調劑台管理系統
             }
             return false;
         }
-        private void Function_登入權限資料_取得權限(List<string> Permissions)
+        private void Function_登入權限資料_取得權限(List<PermissionsClass> Permissions)
         {
-            for(int i = 0; i < Permissions.Count; i++)
+            Permissions = (from temp in Permissions
+                           where temp.類別.Contains("調劑台")
+                           select temp).ToList();
+            for (int i = 0; i < Permissions.Count; i++)
             {
-                string Name = Permissions[i];
-                if(Name != "None")
+               
+                if(Permissions[i].狀態)
                 {
-                    this.List_PLC_Device_權限管理[i].Bool = true;
+                    this.List_PLC_Device_權限管理[Permissions[i].索引].Bool = true;
                 }
                 else
                 {
-                    this.List_PLC_Device_權限管理[i].Bool = false;
+                    this.List_PLC_Device_權限管理[Permissions[i].索引].Bool = false;
                 }
 
             }

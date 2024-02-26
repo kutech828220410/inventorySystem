@@ -15,25 +15,10 @@ using DrawingClass;
 
 namespace 癌症自動備藥機暨排程系統
 {
-    public partial class Dialog_變異紀錄 : Form
+    public partial class Dialog_變異紀錄 : MyDialog
     {
         public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-        }
+ 
         private string GUID = "";
         private udnoectc udnoectc = null;
         public Dialog_變異紀錄(string guid)
