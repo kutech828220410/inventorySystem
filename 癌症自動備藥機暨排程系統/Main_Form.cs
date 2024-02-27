@@ -31,10 +31,17 @@ namespace 癌症自動備藥機暨排程系統
         public static string API_Server = "";
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public LadderConnection.Properties PLC;
-        public string 登入者名稱 = "王曉明";
+        public string 登入者名稱
+        {
+            get
+            {
+                if (sessionClass_自動備藥 != null) return sessionClass_自動備藥.Name;
+                return "";
+            }
+        }
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
-        public DBConfigClass dBConfigClass = new DBConfigClass();
+        static public DBConfigClass dBConfigClass = new DBConfigClass();
         public class DBConfigClass
         {
 
@@ -237,6 +244,9 @@ namespace 癌症自動備藥機暨排程系統
                 dBConfigClass.DB_Storagelist.Password = serverSettingClass.Password;
             }
             API_Server = dBConfigClass.Api_Server;
+
+            serverSettingClass = serverSettingClasses.MyFind("Main", enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.API_Login);
+            if (serverSettingClass != null) dBConfigClass.Login_URL = serverSettingClass.Server;
         }
         #endregion
         public Main_Form()

@@ -53,6 +53,7 @@ namespace 癌症自動備藥機暨排程系統
     }
     public partial class Main_Form : Form
     {
+        private static SQL_DataGridView _sqL_DataGridView_馬達輸出索引表;
         private void Program_馬達輸出索引表_Init()
         {
             string url = $"{API_Server}/api/CPMP_StorageConfig/init";
@@ -83,15 +84,18 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.藥盒方位);
             this.sqL_DataGridView_馬達輸出索引表.Set_ColumnWidth(80, enum_CMPM_StorageConfig.區域);
             this.sqL_DataGridView_馬達輸出索引表.DataGridRowsChangeRefEvent += SqL_DataGridView_馬達輸出索引表_DataGridRowsChangeRefEvent;
+            _sqL_DataGridView_馬達輸出索引表 = this.sqL_DataGridView_馬達輸出索引表;
+
 
             this.plC_RJ_Button_馬達輸出索引表_匯出.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_匯出_MouseDownEvent;
             this.plC_RJ_Button_馬達輸出索引表_匯入.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_匯入_MouseDownEvent;
             this.plC_RJ_Button_馬達輸出索引表_出料一次.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_出料一次_MouseDownEvent;
             this.plC_RJ_Button_馬達輸出索引表_出料測試.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_出料測試_MouseDownEvent;
+            this.plC_RJ_Button_馬達輸出索引表_刪除.MouseDownEvent += PlC_RJ_Button_馬達輸出索引表_刪除_MouseDownEvent;
             this.plC_UI_Init.Add_Method(Program_馬達輸出索引表);
         }
 
-      
+     
 
         private void Program_馬達輸出索引表()
         {
@@ -364,6 +368,19 @@ namespace 癌症自動備藥機暨排程系統
                 MyMessageBox.ShowDialog("匯入完成!");
 
             }));
+        }
+        private void PlC_RJ_Button_馬達輸出索引表_刪除_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = sqL_DataGridView_馬達輸出索引表.Get_All_Select_RowsValues();
+            if (list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            sqL_DataGridView_馬達輸出索引表.SQL_DeleteExtra(list_value, false);
+            sqL_DataGridView_馬達輸出索引表.DeleteExtra(list_value, true);
+
         }
         private void PlC_RJ_Button_馬達輸出索引表_出料測試_MouseDownEvent(MouseEventArgs mevent)
         {

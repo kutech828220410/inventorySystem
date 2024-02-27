@@ -108,9 +108,11 @@ namespace HIS_DB_Lib
     }
     public class StockClass
     {
- 
+
         [JsonPropertyName("code")]
         public string Code { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
         [JsonPropertyName("validity_period")]
         public string Validity_period { get; set; }
         [JsonPropertyName("lot_number")]

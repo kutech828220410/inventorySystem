@@ -259,6 +259,12 @@
     <Compile Include="Dialog_入出庫作業.Designer.cs">
       <DependentUpon>Dialog_入出庫作業.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_手動選擇備藥品.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_手動選擇備藥品.Designer.cs">
+      <DependentUpon>Dialog_手動選擇備藥品.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_效期批號選擇.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -359,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_入出庫作業.resx">
       <DependentUpon>Dialog_入出庫作業.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_手動選擇備藥品.resx">
+      <DependentUpon>Dialog_手動選擇備藥品.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_效期批號選擇.resx">
       <DependentUpon>Dialog_效期批號選擇.cs</DependentUpon>

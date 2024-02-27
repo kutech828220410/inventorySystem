@@ -303,7 +303,6 @@ namespace 癌症自動備藥機暨排程系統
             this.Padding = new System.Windows.Forms.Padding(15, 5, 5, 5);
             this.ShadowColor = System.Drawing.Color.DarkRed;
             this.ShadowWidth = 50;
-            this.Special_Time = 100;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
