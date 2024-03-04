@@ -29,6 +29,7 @@ namespace 癌症自動備藥機暨排程系統
     public partial class Main_Form : Form
     {
         MyThread myThread_開始備藥;
+        public PLC_Device PLC_Device_自動備藥_已登入 = new PLC_Device();
         static public sessionClass SessionClass_自動備藥;
         public sessionClass sessionClass_自動備藥
         {
@@ -38,7 +39,11 @@ namespace 癌症自動備藥機暨排程系統
             }
             set
             {
-                plC_RJ_Button_自動備藥_手動選擇備藥.Enabled = (value != null);
+                this.Invoke(new Action(delegate
+                {
+                    plC_RJ_Button_自動備藥_手動選擇備藥.Enabled = (value != null);
+                }));
+             
                 SessionClass_自動備藥 = value;
             }
         }
@@ -66,6 +71,7 @@ namespace 癌症自動備藥機暨排程系統
         private void Program_自動備藥()
         {
             sub_Program_自動備藥_開始備藥();
+            sub_Program_自動備藥_RFID登入();
         }
         private void Function_出料一次(string IP)
         {
@@ -87,6 +93,116 @@ namespace 癌症自動備藥機暨排程系統
                 System.Threading.Thread.Sleep(1);
             }
         }
+        #region PLC_自動備藥_RFID登入
+        PLC_Device PLC_Device_自動備藥_RFID登入 = new PLC_Device("");
+        int cnt_Program_自動備藥_RFID登入 = 65534;
+        void sub_Program_自動備藥_RFID登入()
+        {
+            if (this.plC_ScreenPage_main.PageText == "自動備藥")
+            {
+                PLC_Device_自動備藥_RFID登入.Bool = true;
+            }
+            else
+            {
+                PLC_Device_自動備藥_RFID登入.Bool = false;
+            }
+            if (cnt_Program_自動備藥_RFID登入 == 65534)
+            {
+                PLC_Device_自動備藥_RFID登入.SetComment("PLC_自動備藥_RFID登入");
+                PLC_Device_自動備藥_RFID登入.Bool = false;
+                cnt_Program_自動備藥_RFID登入 = 65535;
+            }
+            if (cnt_Program_自動備藥_RFID登入 == 65535) cnt_Program_自動備藥_RFID登入 = 1;
+            if (cnt_Program_自動備藥_RFID登入 == 1) cnt_Program_自動備藥_RFID登入_檢查按下(ref cnt_Program_自動備藥_RFID登入);
+            if (cnt_Program_自動備藥_RFID登入 == 2) cnt_Program_自動備藥_RFID登入_初始化(ref cnt_Program_自動備藥_RFID登入);
+            if (cnt_Program_自動備藥_RFID登入 == 3) cnt_Program_自動備藥_RFID登入_檢查權限登入(ref cnt_Program_自動備藥_RFID登入);
+            if (cnt_Program_自動備藥_RFID登入 == 4) cnt_Program_自動備藥_RFID登入_外部設備資料(ref cnt_Program_自動備藥_RFID登入);
+            if (cnt_Program_自動備藥_RFID登入 == 5) cnt_Program_自動備藥_RFID登入_開始登入(ref cnt_Program_自動備藥_RFID登入);
+            if (cnt_Program_自動備藥_RFID登入 == 6) cnt_Program_自動備藥_RFID登入_等待登入完成(ref cnt_Program_自動備藥_RFID登入);
+            if (cnt_Program_自動備藥_RFID登入 == 7) cnt_Program_自動備藥_RFID登入 = 65500;
+            if (cnt_Program_自動備藥_RFID登入 > 1) cnt_Program_自動備藥_RFID登入_檢查放開(ref cnt_Program_自動備藥_RFID登入);
+
+            if (cnt_Program_自動備藥_RFID登入 == 65500)
+            {
+                PLC_Device_自動備藥_RFID登入.Bool = false;
+                cnt_Program_自動備藥_RFID登入 = 65535;
+            }
+        }
+        void cnt_Program_自動備藥_RFID登入_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_自動備藥_RFID登入.Bool) cnt++;
+        }
+        void cnt_Program_自動備藥_RFID登入_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_自動備藥_RFID登入.Bool) cnt = 65500;
+        }
+        void cnt_Program_自動備藥_RFID登入_初始化(ref int cnt)
+        {
+
+            cnt++;
+        }
+        void cnt_Program_自動備藥_RFID登入_檢查權限登入(ref int cnt)
+        {
+            if (!this.PLC_Device_自動備藥_已登入.Bool)
+            {
+                cnt++;
+                return;
+            }
+            else
+            {
+                cnt = 65500;
+                return;
+            }
+
+        }
+        void cnt_Program_自動備藥_RFID登入_外部設備資料(ref int cnt)
+        {
+            string RFID = "0";
+            List<RFID_FX600lib.RFID_FX600_UI.RFID_Device> list_RFID = this.rfiD_FX600_UI.Get_RFID();
+
+   
+            if (list_RFID.Count != 0)
+            {
+                if (list_RFID[0].UID.StringToInt32() != 0)
+                {
+                    RFID = list_RFID[0].UID;
+                }
+            }
+            if (RFID.StringToInt32() == 0 || RFID.StringIsEmpty())
+            {
+                cnt = 65500;
+                return;
+            }
+
+            List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), RFID, false);
+            if (list_人員資料.Count > 0)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    this.textBox_自動備藥_帳號.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+                    this.textBox_自動備藥_密碼.Text = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
+                }));
+                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.RFID登入, list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString(), "自動備藥");
+            }
+            else
+            {
+                MyMessageBox.ShowDialog(string.Format("查無此卡帳號! {0}", RFID));
+                cnt = 65500;
+                return;
+            }
+
+            cnt++;
+        }
+        void cnt_Program_自動備藥_RFID登入_開始登入(ref int cnt)
+        {
+            Function_自動備藥_登入();
+            cnt++;
+        }
+        void cnt_Program_自動備藥_RFID登入_等待登入完成(ref int cnt)
+        {
+            cnt++;
+        }
+        #endregion
         #region PLC_自動備藥_開始備藥
         List<object[]> list_自動備藥_開始備藥_常溫 = new List<object[]>();
         List<object[]> list_自動備藥_開始備藥_冷藏 = new List<object[]>();
@@ -445,6 +561,7 @@ namespace 癌症自動備藥機暨排程系統
                     this.plC_RJ_Button_自動備藥_登入.Refresh();
                     Application.DoEvents();
                 }));
+                PLC_Device_自動備藥_已登入.Bool = true;
                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"登入成功 {sessionClass_自動備藥.Name}", 1500, Color.Green);
                 dialog_AlarmForm.ShowDialog();
                 return;
@@ -472,7 +589,7 @@ namespace 癌症自動備藥機暨排程系統
                 this.plC_RJ_Button_自動備藥_登入.Refresh();
                 Application.DoEvents();
             }));
-
+            PLC_Device_自動備藥_已登入.Bool = false;
         }
         #endregion
         #region Event

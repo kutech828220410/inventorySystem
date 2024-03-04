@@ -26,6 +26,7 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Main_Form : Form
     {
+        public static string 人員資料_UID = "";
         private void Program_人員資料_Init()
         {
             string url = $"{API_Server}/api/person_page/init";
@@ -69,12 +70,12 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_人員資料_存檔.MouseDownEvent += PlC_RJ_Button_人員資料_存檔_MouseDownEvent;
             this.plC_RJ_Button_人員資料_顯示全部.MouseDownEvent += PlC_RJ_Button_人員資料_顯示全部_MouseDownEvent;
             this.plC_RJ_Button_人員資料_刪除.MouseDownEvent += PlC_RJ_Button_人員資料_刪除_MouseDownEvent;
-
+            this.plC_RJ_Button_人員資料_卡號建置.MouseDownEventEx += PlC_RJ_Button_人員資料_卡號建置_MouseDownEventEx;
 
             plC_UI_Init.Add_Method(Program_人員資料);
         }
 
-       
+      
 
         private void Program_人員資料()
         {
@@ -122,6 +123,40 @@ namespace 癌症自動備藥機暨排程系統
         private void SqL_DataGridView_人員資料_MouseDown(object sender, MouseEventArgs e)
         {
             //this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
+        }
+        private void PlC_RJ_Button_人員資料_卡號建置_MouseDownEventEx(RJ_Button rJ_Button, MouseEventArgs mevent)
+        {
+            try
+            {
+                if (rJ_TextBox_人員資料_ID.Text.StringIsEmpty())
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選擇人員", 1500, 0, 0);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                人員資料_UID = "";
+                Dialog_等待RFID感應 dialog_等待RFID感應 = new Dialog_等待RFID感應(this.rfiD_FX600_UI);
+                if (dialog_等待RFID感應.ShowDialog() != DialogResult.Yes) return;
+                string UID = dialog_等待RFID感應.Value;
+                List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.ID, rJ_TextBox_人員資料_ID.Text, false);
+                if (list_value.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無人員資料", 1500, 0, 0);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                list_value[0][(int)enum_人員資料.卡號] = UID;
+                rJ_TextBox_人員資料_卡號.Text = UID;
+                this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(list_value[0], false);
+                this.sqL_DataGridView_人員資料.ReplaceExtra(list_value[0], true);
+                Dialog_AlarmForm _dialog_AlarmForm = new Dialog_AlarmForm("成功", 1500, 0, 0, Color.Green);
+                _dialog_AlarmForm.ShowDialog();
+
+            }
+            finally
+            {
+            
+            }
         }
         private void PlC_RJ_Button_人員資料_刪除_MouseDownEvent(MouseEventArgs mevent)
         {

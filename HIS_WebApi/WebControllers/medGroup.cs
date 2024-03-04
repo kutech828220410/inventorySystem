@@ -48,7 +48,6 @@ namespace HIS_WebApi
                 IgnoreReadOnlyProperties = false,
             };
             string jsonString = JsonSerializer.Serialize<object>(medGroupClass, options);
-
             return jsonString;
         }
 

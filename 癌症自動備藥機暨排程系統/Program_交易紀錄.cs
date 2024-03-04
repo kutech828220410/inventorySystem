@@ -76,7 +76,27 @@ namespace 癌症自動備藥機暨排程系統
         {
             
         }
+        #region Function
+        private void Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作 enum_交易記錄查詢動作, string 操作人, string 備註)
+        {
+            if (操作人.StringIsEmpty()) return;
 
+            transactionsClass transactionsClass = new transactionsClass();
+            transactionsClass.GUID = Guid.NewGuid().ToString();
+            transactionsClass.動作 = enum_交易記錄查詢動作.GetEnumName();
+            transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+            transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
+            string url = $"{Main_Form.API_Server}/api/transactions/add";
+            returnData returnData = new returnData();
+            returnData.ServerName = "cheom";
+            returnData.ServerType = "癌症備藥機";
+            returnData.Data = transactionsClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+
+         
+        }
+        #endregion
         #region Event
         private void SqL_DataGridView_交易記錄查詢_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
         {

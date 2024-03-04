@@ -262,26 +262,59 @@ namespace 癌症自動備藥機暨排程系統
 
         static public string Function_ReadBacodeScanner01()
         {
-            string text = MySerialPort_Scanner01.ReadString();
+            string text = "";
+            string text_buf = "";
+            text = MySerialPort_Scanner01.ReadString();
             if (text == null) return null;
+
+            while(true)
+            {
+                System.Threading.Thread.Sleep(30);
+                text_buf = MySerialPort_Scanner01.ReadString();
+                if(text.Length == text_buf.Length)
+                {
+                    break;
+                }
+                text = text_buf;
+            }
+
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
-            if (text.Length <= 2 || text.Length > 200) return null;
-            if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            if (text.Length <= 2 || text.Length > 300) return null;
+
+
             MySerialPort_Scanner01.ClearReadByte();
             text = text.Replace("\r\n", "");
+            text = text.Replace("\r", "");
+            text = text.Replace("\n", "");
+            Console.WriteLine($"[Scanner01]接收資料:{text}");
             return text;
         }
         static public string Function_ReadBacodeScanner02()
         {
-            string text = MySerialPort_Scanner01.ReadString();
+            string text = "";
+            string text_buf = "";
+            text = MySerialPort_Scanner02.ReadString();
             if (text == null) return null;
+
+            while (true)
+            {
+                System.Threading.Thread.Sleep(30);
+                text_buf = MySerialPort_Scanner02.ReadString();
+                if (text.Length == text_buf.Length)
+                {
+                    break;
+                }
+                text = text_buf;
+            }
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
-            if (text.Length <= 2 || text.Length > 200) return null;
-            if (text.Substring(text.Length - 2, 2) != "\r\n") return null;
+            if (text.Length <= 2 || text.Length > 300) return null;
             MySerialPort_Scanner02.ClearReadByte();
             text = text.Replace("\r\n", "");
+            text = text.Replace("\r", "");
+            text = text.Replace("\n", "");
+            Console.WriteLine($"[Scanner02]接收資料:{text}");
             return text;
         }
 
