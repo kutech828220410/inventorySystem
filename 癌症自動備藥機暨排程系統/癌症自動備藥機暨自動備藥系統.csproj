@@ -425,6 +425,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\人員資料-removebg-preview.png" />
+    <None Include="Resources\出入庫作業-removebg-preview1.png" />
+    <None Include="Resources\工程模式-removebg-preview.png" />
+    <None Include="Resources\儲位設定-removebg-preview.png" />
+    <None Include="Resources\系統-removebg-preview.png" />
+    <None Include="Resources\交易紀錄-removebg-preview.png" />
+    <None Include="Resources\人員資料.png" />
+    <None Include="Resources\出入庫作業-removebg-preview.png" />
+    <None Include="Resources\調配排程-removebg-preview.png" />
+    <None Include="Resources\自動備藥-removebg-preview.png" />
+    <None Include="Resources\自動備藥.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />

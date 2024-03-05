@@ -276,7 +276,6 @@ namespace 癌症自動備藥機暨排程系統
             LoadMyConfig();
             ApiServerSetting();
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main01, this.plC_ScreenPage_main);
-            PLC_UI_Init.Set_PLC_ScreenPage(panel_main02, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
             Program_系統_Init();
             Program_輸入輸出_Init();
@@ -378,8 +377,12 @@ namespace 癌症自動備藥機暨排程系統
 
 
 
+
         #endregion
 
+        private void panel53_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }
