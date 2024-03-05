@@ -81,14 +81,18 @@ namespace 癌症自動備藥機暨排程系統
             {
                 if (cnt == 0)
                 {
-                    if (PLC_Device_出料一次.Bool) return;
+                    if (PLC_Device_出料一次.Bool) continue;
                     PLC_Device_出料一次.Bool = true;
                     cnt++;
                 }
-                if (cnt == 0)
+                if (cnt == 1)
                 {
-                    if (PLC_Device_出料一次.Bool) return;
+                    if (PLC_Device_出料一次.Bool) continue;
                     cnt++;
+                }
+                if (cnt == 2)
+                {
+                    break;
                 }
                 System.Threading.Thread.Sleep(1);
             }
@@ -228,16 +232,16 @@ namespace 癌症自動備藥機暨排程系統
             if (cnt_Program_自動備藥_開始備藥 == 2) cnt_Program_自動備藥_開始備藥_初始化(ref cnt_Program_自動備藥_開始備藥);
             if (cnt_Program_自動備藥_開始備藥 == 3) cnt_Program_自動備藥_開始備藥_藥盒從進出盒區傳送至常溫區(ref cnt_Program_自動備藥_開始備藥);
             if (cnt_Program_自動備藥_開始備藥 == 4) cnt_Program_自動備藥_開始備藥_等待藥盒從進出盒區傳送至常溫區完成(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 6) cnt_Program_自動備藥_開始備藥_常溫區_出料一次(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 7) cnt_Program_自動備藥_開始備藥_藥盒從常溫區傳送至冷藏區(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 8) cnt_Program_自動備藥_開始備藥_等待藥盒從常溫區傳送至冷藏區完成(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 9) cnt_Program_自動備藥_開始備藥_冷藏區_出料一次(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 10) cnt_Program_自動備藥_開始備藥_藥盒從冷藏區傳接至常溫區(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 11) cnt_Program_自動備藥_開始備藥_等待藥盒從冷藏區傳接至常溫區_已到傳接位置(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 12) cnt_Program_自動備藥_開始備藥_等待藥盒從冷藏區傳接至常溫區_已到結束待命位置(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 13) cnt_Program_自動備藥_開始備藥_藥盒從常溫區傳接至進出盒區(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 14) cnt_Program_自動備藥_開始備藥_等待藥盒從常溫區傳接至進出盒區完成(ref cnt_Program_自動備藥_開始備藥);
-            if (cnt_Program_自動備藥_開始備藥 == 15) cnt_Program_自動備藥_開始備藥 = 65500;
+            if (cnt_Program_自動備藥_開始備藥 == 5) cnt_Program_自動備藥_開始備藥_常溫區_出料一次(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 6) cnt_Program_自動備藥_開始備藥_藥盒從常溫區傳送至冷藏區(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 7) cnt_Program_自動備藥_開始備藥_等待藥盒從常溫區傳送至冷藏區完成(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 8) cnt_Program_自動備藥_開始備藥_冷藏區_出料一次(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 9) cnt_Program_自動備藥_開始備藥_藥盒從冷藏區傳接至常溫區(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 10) cnt_Program_自動備藥_開始備藥_等待藥盒從冷藏區傳接至常溫區_已到傳接位置(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 11) cnt_Program_自動備藥_開始備藥_等待藥盒從冷藏區傳接至常溫區_已到結束待命位置(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 12) cnt_Program_自動備藥_開始備藥_藥盒從常溫區傳接至進出盒區(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 13) cnt_Program_自動備藥_開始備藥_等待藥盒從常溫區傳接至進出盒區完成(ref cnt_Program_自動備藥_開始備藥);
+            if (cnt_Program_自動備藥_開始備藥 == 14) cnt_Program_自動備藥_開始備藥 = 65500;
             if (cnt_Program_自動備藥_開始備藥 > 1) cnt_Program_自動備藥_開始備藥_檢查放開(ref cnt_Program_自動備藥_開始備藥);
 
             if (cnt_Program_自動備藥_開始備藥 == 65500)
@@ -345,11 +349,13 @@ namespace 癌症自動備藥機暨排程系統
                 int 數量 = list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.異動量].StringToInt32();
                 Storage storage = (Storage)list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.Value];
                 int 原有庫存 = Main_Form.Function_從SQL取得庫存(storage.Code);
-                if (數量 < 0) 數量 = 數量 * -1;
-                for (int k = 0; k < 數量; k++)
+                int temp = 數量;
+                if (temp < 0) temp = temp * -1;
+                for (int k = 0; k < temp; k++)
                 {
                     Function_出料一次(IP);
                 }
+                if (數量 > 0) 數量 = 數量 * -1;
                 Function_庫存異動至本地資料(list_自動備藥_開始備藥_常溫[i], true);
                
                 string url = $"{Main_Form.API_Server}/api/transactions/add";
@@ -422,11 +428,13 @@ namespace 癌症自動備藥機暨排程系統
                 int 數量 = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.異動量].StringToInt32();
                 Storage storage = (Storage)list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.Value];
                 int 原有庫存 = Main_Form.Function_從SQL取得庫存(storage.Code);
-                if (數量 < 0) 數量 = 數量 * -1;
-                for (int k = 0; k < 數量; k++)
+                int temp = 數量;
+                if (temp < 0) temp = temp * -1;
+                for (int k = 0; k < temp; k++)
                 {
                     Function_出料一次(IP);
                 }
+                if (數量 > 0) 數量 = 數量 * -1; 
                 Function_庫存異動至本地資料(list_自動備藥_開始備藥_冷藏[i], true);
 
                 string url = $"{Main_Form.API_Server}/api/transactions/add";

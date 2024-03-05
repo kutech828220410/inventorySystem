@@ -855,12 +855,12 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // 登入畫面
             // 
+            this.登入畫面.BackColor = System.Drawing.Color.White;
             this.登入畫面.Location = new System.Drawing.Point(4, 25);
             this.登入畫面.Name = "登入畫面";
             this.登入畫面.Size = new System.Drawing.Size(1076, 1739);
             this.登入畫面.TabIndex = 9;
             this.登入畫面.Text = "登入畫面";
-            this.登入畫面.UseVisualStyleBackColor = true;
             // 
             // 自動備藥
             // 
@@ -5615,7 +5615,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage2.Controls.Add(this.sqL_DataGridView_馬達輸出索引表);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage2.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "馬達輸出索引表";
             // 
@@ -6022,7 +6022,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage3.Controls.Add(this.rJ_Pannel6);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage3.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "輸入/輸出";
             // 
@@ -9971,7 +9971,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage4.Controls.Add(this.panel15);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage4.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "冷藏區";
             // 
@@ -12908,7 +12908,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage6.Controls.Add(this.panel19);
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage6.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "常溫區";
             // 
@@ -16000,7 +16000,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage10.Controls.Add(this.panel36);
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage10.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "進出盒區";
             // 
@@ -17085,7 +17085,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage5.Controls.Add(this.c90161);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage5.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "9016";
             // 
@@ -18418,7 +18418,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage7.Controls.Add(this.storageUI_EPD_266);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage7.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "EPD266";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -18456,7 +18456,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage8.Controls.Add(this.sqL_DataGridView_藥檔資料);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage8.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "藥檔資料";
             // 
@@ -18512,7 +18512,7 @@ namespace 癌症自動備藥機暨排程系統
             this.tabPage9.Controls.Add(this.loginUI);
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1068, 803);
+            this.tabPage9.Size = new System.Drawing.Size(1068, 1623);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "權限資料";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -19058,6 +19058,7 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel_main01
             // 
+            this.panel_main01.BackColor = System.Drawing.Color.White;
             this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx6);
             this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx4);
             this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx7);

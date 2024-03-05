@@ -1,7 +1,7 @@
 {
-  "Scanner01_COMPort": "COM10",
-  "Scanner02_COMPort": "COM1",
-  "掃碼槍COM通訊": true,
-  "主機模式": false,
-  "RFID_COMPort": "COM3"
+  "Scanner01_COMPort": "COM8",
+  "Scanner02_COMPort": "",
+  "掃碼槍COM通訊": false,
+  "主機模式": true,
+  "RFID_COMPort": "COM7"
 }
