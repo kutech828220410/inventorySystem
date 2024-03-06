@@ -40,14 +40,7 @@ namespace 癌症自動備藥機暨排程系統
         public static string API_Server = "";
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public LadderConnection.Properties PLC;
-        public string 登入者名稱
-        {
-            get
-            {
-                if (sessionClass_自動備藥 != null) return sessionClass_自動備藥.Name;
-                return "";
-            }
-        }
+      
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         static public DBConfigClass dBConfigClass = new DBConfigClass();

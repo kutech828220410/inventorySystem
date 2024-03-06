@@ -32,6 +32,18 @@ namespace 癌症自動備藥機暨排程系統
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.plC_ScreenPage_main = new MyUI.PLC_ScreenPage();
             this.登入畫面 = new System.Windows.Forms.TabPage();
+            this.panel_登入畫面 = new System.Windows.Forms.Panel();
+            this.rJ_Lable2 = new MyUI.RJ_Lable();
+            this.panel_登入系統 = new System.Windows.Forms.Panel();
+            this.rJ_Lable_登入畫面_登入狀態 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_登入畫面_登入 = new MyUI.PLC_RJ_Button();
+            this.panel185 = new System.Windows.Forms.Panel();
+            this.textBox_登入畫面_帳號 = new System.Windows.Forms.TextBox();
+            this.panel186 = new System.Windows.Forms.Panel();
+            this.panel183 = new System.Windows.Forms.Panel();
+            this.textBox_登入畫面_密碼 = new System.Windows.Forms.TextBox();
+            this.panel184 = new System.Windows.Forms.Panel();
+            this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.自動備藥 = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel_備藥狀態 = new System.Windows.Forms.Panel();
@@ -45,16 +57,6 @@ namespace 癌症自動備藥機暨排程系統
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_自動備藥_手動選擇備藥 = new MyUI.PLC_RJ_Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.rJ_Lable_自動備藥_登入狀態 = new MyUI.RJ_Lable();
-            this.plC_RJ_Button_自動備藥_登入 = new MyUI.PLC_RJ_Button();
-            this.panel185 = new System.Windows.Forms.Panel();
-            this.textBox_自動備藥_帳號 = new System.Windows.Forms.TextBox();
-            this.panel186 = new System.Windows.Forms.Panel();
-            this.panel183 = new System.Windows.Forms.Panel();
-            this.textBox_自動備藥_密碼 = new System.Windows.Forms.TextBox();
-            this.panel184 = new System.Windows.Forms.Panel();
-            this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.panel2 = new System.Windows.Forms.Panel();
             this.調配排程 = new System.Windows.Forms.TabPage();
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
@@ -725,8 +727,8 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_ScreenButton5 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton9 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButtonEx9 = new MyUI.PLC_RJ_ScreenButtonEx();
-            this.plC_RJ_ScreenButtonEx5 = new MyUI.PLC_RJ_ScreenButtonEx();
-            this.plC_RJ_ScreenButtonEx4 = new MyUI.PLC_RJ_ScreenButtonEx();
+            this.plC_RJ_ScreenButtonEx_儲位設定 = new MyUI.PLC_RJ_ScreenButtonEx();
+            this.plC_RJ_ScreenButtonEx_工程模式 = new MyUI.PLC_RJ_ScreenButtonEx();
             this.panel25 = new System.Windows.Forms.Panel();
             this.panel_main01 = new System.Windows.Forms.Panel();
             this.panel47 = new System.Windows.Forms.Panel();
@@ -739,26 +741,30 @@ namespace 癌症自動備藥機暨排程系統
             this.panel49 = new System.Windows.Forms.Panel();
             this.panel52 = new System.Windows.Forms.Panel();
             this.panel46 = new System.Windows.Forms.Panel();
-            this.plC_RJ_ScreenButtonEx6 = new MyUI.PLC_RJ_ScreenButtonEx();
-            this.plC_RJ_ScreenButtonEx7 = new MyUI.PLC_RJ_ScreenButtonEx();
-            this.plC_RJ_ScreenButtonEx8 = new MyUI.PLC_RJ_ScreenButtonEx();
-            this.plC_RJ_ScreenButtonEx3 = new MyUI.PLC_RJ_ScreenButtonEx();
-            this.plC_RJ_ScreenButtonEx2 = new MyUI.PLC_RJ_ScreenButtonEx();
-            this.plC_RJ_ScreenButtonEx1 = new MyUI.PLC_RJ_ScreenButtonEx();
+            this.plC_RJ_ScreenButtonEx_系統 = new MyUI.PLC_RJ_ScreenButtonEx();
+            this.plC_RJ_ScreenButtonEx_交易紀錄 = new MyUI.PLC_RJ_ScreenButtonEx();
+            this.plC_RJ_ScreenButtonEx_人員資料 = new MyUI.PLC_RJ_ScreenButtonEx();
+            this.plC_RJ_ScreenButtonEx_出入庫作業 = new MyUI.PLC_RJ_ScreenButtonEx();
+            this.plC_RJ_ScreenButtonEx_調配排程 = new MyUI.PLC_RJ_ScreenButtonEx();
+            this.plC_RJ_ScreenButtonEx_自動備藥 = new MyUI.PLC_RJ_ScreenButtonEx();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.textBox_自動備藥_密碼 = new System.Windows.Forms.TextBox();
+            this.textBox_帳號 = new System.Windows.Forms.TextBox();
             this.plC_ScreenPage_main.SuspendLayout();
+            this.登入畫面.SuspendLayout();
+            this.panel_登入畫面.SuspendLayout();
+            this.panel_登入系統.SuspendLayout();
+            this.panel185.SuspendLayout();
+            this.panel183.SuspendLayout();
             this.自動備藥.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel_備藥狀態.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel185.SuspendLayout();
-            this.panel183.SuspendLayout();
             this.調配排程.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -868,11 +874,203 @@ namespace 癌症自動備藥機暨排程系統
             // 登入畫面
             // 
             this.登入畫面.BackColor = System.Drawing.Color.White;
+            this.登入畫面.Controls.Add(this.panel_登入畫面);
             this.登入畫面.Location = new System.Drawing.Point(4, 25);
             this.登入畫面.Name = "登入畫面";
             this.登入畫面.Size = new System.Drawing.Size(1076, 919);
             this.登入畫面.TabIndex = 9;
             this.登入畫面.Text = "登入畫面";
+            // 
+            // panel_登入畫面
+            // 
+            this.panel_登入畫面.Controls.Add(this.rJ_Lable2);
+            this.panel_登入畫面.Controls.Add(this.panel_登入系統);
+            this.panel_登入畫面.Location = new System.Drawing.Point(44, 138);
+            this.panel_登入畫面.Name = "panel_登入畫面";
+            this.panel_登入畫面.Size = new System.Drawing.Size(968, 393);
+            this.panel_登入畫面.TabIndex = 12;
+            this.panel_登入畫面.Visible = false;
+            // 
+            // rJ_Lable2
+            // 
+            this.rJ_Lable2.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable2.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable2.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable2.BorderRadius = 10;
+            this.rJ_Lable2.BorderSize = 0;
+            this.rJ_Lable2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable2.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable2.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable2.GUID = "";
+            this.rJ_Lable2.Location = new System.Drawing.Point(19, 11);
+            this.rJ_Lable2.Name = "rJ_Lable2";
+            this.rJ_Lable2.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable2.ShadowSize = 3;
+            this.rJ_Lable2.Size = new System.Drawing.Size(932, 101);
+            this.rJ_Lable2.TabIndex = 11;
+            this.rJ_Lable2.Text = "癌 症 備 藥 暨 處 方 排 程 系 統";
+            this.rJ_Lable2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable2.TextColor = System.Drawing.Color.White;
+            // 
+            // panel_登入系統
+            // 
+            this.panel_登入系統.Controls.Add(this.rJ_Lable_登入畫面_登入狀態);
+            this.panel_登入系統.Controls.Add(this.plC_RJ_Button_登入畫面_登入);
+            this.panel_登入系統.Controls.Add(this.panel185);
+            this.panel_登入系統.Controls.Add(this.panel183);
+            this.panel_登入系統.Controls.Add(this.rJ_Lable1);
+            this.panel_登入系統.Location = new System.Drawing.Point(227, 139);
+            this.panel_登入系統.Name = "panel_登入系統";
+            this.panel_登入系統.Size = new System.Drawing.Size(516, 236);
+            this.panel_登入系統.TabIndex = 1;
+            // 
+            // rJ_Lable_登入畫面_登入狀態
+            // 
+            this.rJ_Lable_登入畫面_登入狀態.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable_登入畫面_登入狀態.BackgroundColor = System.Drawing.Color.White;
+            this.rJ_Lable_登入畫面_登入狀態.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_登入畫面_登入狀態.BorderRadius = 10;
+            this.rJ_Lable_登入畫面_登入狀態.BorderSize = 0;
+            this.rJ_Lable_登入畫面_登入狀態.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable_登入畫面_登入狀態.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_登入畫面_登入狀態.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_登入畫面_登入狀態.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_登入畫面_登入狀態.GUID = "";
+            this.rJ_Lable_登入畫面_登入狀態.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable_登入畫面_登入狀態.Name = "rJ_Lable_登入畫面_登入狀態";
+            this.rJ_Lable_登入畫面_登入狀態.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_登入畫面_登入狀態.ShadowSize = 3;
+            this.rJ_Lable_登入畫面_登入狀態.Size = new System.Drawing.Size(516, 64);
+            this.rJ_Lable_登入畫面_登入狀態.TabIndex = 9;
+            this.rJ_Lable_登入畫面_登入狀態.Text = "請登入系統...";
+            this.rJ_Lable_登入畫面_登入狀態.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable_登入畫面_登入狀態.TextColor = System.Drawing.Color.Black;
+            // 
+            // plC_RJ_Button_登入畫面_登入
+            // 
+            this.plC_RJ_Button_登入畫面_登入.AutoResetState = false;
+            this.plC_RJ_Button_登入畫面_登入.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_登入畫面_登入.Bool = false;
+            this.plC_RJ_Button_登入畫面_登入.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_登入畫面_登入.BorderRadius = 20;
+            this.plC_RJ_Button_登入畫面_登入.BorderSize = 0;
+            this.plC_RJ_Button_登入畫面_登入.but_press = false;
+            this.plC_RJ_Button_登入畫面_登入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_登入畫面_登入.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_登入畫面_登入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_登入畫面_登入.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_登入畫面_登入.GUID = "";
+            this.plC_RJ_Button_登入畫面_登入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_登入畫面_登入.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_登入畫面_登入.Location = new System.Drawing.Point(394, 77);
+            this.plC_RJ_Button_登入畫面_登入.Name = "plC_RJ_Button_登入畫面_登入";
+            this.plC_RJ_Button_登入畫面_登入.OFF_文字內容 = "登入";
+            this.plC_RJ_Button_登入畫面_登入.OFF_文字字體 = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_登入畫面_登入.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_登入畫面_登入.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_登入畫面_登入.ON_BorderSize = 5;
+            this.plC_RJ_Button_登入畫面_登入.ON_文字內容 = "登入";
+            this.plC_RJ_Button_登入畫面_登入.ON_文字字體 = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_登入畫面_登入.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_登入畫面_登入.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_登入畫面_登入.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_登入畫面_登入.ShadowSize = 3;
+            this.plC_RJ_Button_登入畫面_登入.ShowLoadingForm = false;
+            this.plC_RJ_Button_登入畫面_登入.Size = new System.Drawing.Size(104, 140);
+            this.plC_RJ_Button_登入畫面_登入.State = false;
+            this.plC_RJ_Button_登入畫面_登入.TabIndex = 8;
+            this.plC_RJ_Button_登入畫面_登入.Text = "登入";
+            this.plC_RJ_Button_登入畫面_登入.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_登入畫面_登入.TextHeight = 0;
+            this.plC_RJ_Button_登入畫面_登入.Texts = "登入";
+            this.plC_RJ_Button_登入畫面_登入.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_登入畫面_登入.字型鎖住 = false;
+            this.plC_RJ_Button_登入畫面_登入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_登入畫面_登入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_登入畫面_登入.文字鎖住 = false;
+            this.plC_RJ_Button_登入畫面_登入.讀取位元反向 = false;
+            this.plC_RJ_Button_登入畫面_登入.讀寫鎖住 = false;
+            this.plC_RJ_Button_登入畫面_登入.音效 = true;
+            this.plC_RJ_Button_登入畫面_登入.顯示 = false;
+            this.plC_RJ_Button_登入畫面_登入.顯示狀態 = false;
+            // 
+            // panel185
+            // 
+            this.panel185.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel185.Controls.Add(this.textBox_登入畫面_帳號);
+            this.panel185.Controls.Add(this.panel186);
+            this.panel185.Location = new System.Drawing.Point(19, 77);
+            this.panel185.Name = "panel185";
+            this.panel185.Size = new System.Drawing.Size(369, 67);
+            this.panel185.TabIndex = 6;
+            // 
+            // textBox_登入畫面_帳號
+            // 
+            this.textBox_登入畫面_帳號.Font = new System.Drawing.Font("新細明體", 12F);
+            this.textBox_登入畫面_帳號.Location = new System.Drawing.Point(82, 23);
+            this.textBox_登入畫面_帳號.Name = "textBox_登入畫面_帳號";
+            this.textBox_登入畫面_帳號.Size = new System.Drawing.Size(260, 27);
+            this.textBox_登入畫面_帳號.TabIndex = 1;
+            // 
+            // panel186
+            // 
+            this.panel186.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel186.BackgroundImage")));
+            this.panel186.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel186.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel186.Location = new System.Drawing.Point(14, 10);
+            this.panel186.Name = "panel186";
+            this.panel186.Size = new System.Drawing.Size(51, 47);
+            this.panel186.TabIndex = 0;
+            // 
+            // panel183
+            // 
+            this.panel183.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel183.Controls.Add(this.textBox_登入畫面_密碼);
+            this.panel183.Controls.Add(this.panel184);
+            this.panel183.Location = new System.Drawing.Point(19, 150);
+            this.panel183.Name = "panel183";
+            this.panel183.Size = new System.Drawing.Size(369, 67);
+            this.panel183.TabIndex = 7;
+            // 
+            // textBox_登入畫面_密碼
+            // 
+            this.textBox_登入畫面_密碼.Font = new System.Drawing.Font("新細明體", 12F);
+            this.textBox_登入畫面_密碼.Location = new System.Drawing.Point(82, 22);
+            this.textBox_登入畫面_密碼.Name = "textBox_登入畫面_密碼";
+            this.textBox_登入畫面_密碼.Size = new System.Drawing.Size(260, 27);
+            this.textBox_登入畫面_密碼.TabIndex = 2;
+            this.textBox_登入畫面_密碼.UseSystemPasswordChar = true;
+            // 
+            // panel184
+            // 
+            this.panel184.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel184.BackgroundImage")));
+            this.panel184.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel184.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel184.Location = new System.Drawing.Point(14, 10);
+            this.panel184.Name = "panel184";
+            this.panel184.Size = new System.Drawing.Size(51, 47);
+            this.panel184.TabIndex = 0;
+            // 
+            // rJ_Lable1
+            // 
+            this.rJ_Lable1.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable1.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable1.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable1.BorderRadius = 10;
+            this.rJ_Lable1.BorderSize = 0;
+            this.rJ_Lable1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_Lable1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable1.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable1.GUID = "";
+            this.rJ_Lable1.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable1.Name = "rJ_Lable1";
+            this.rJ_Lable1.Padding = new System.Windows.Forms.Padding(10);
+            this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable1.ShadowSize = 3;
+            this.rJ_Lable1.Size = new System.Drawing.Size(516, 236);
+            this.rJ_Lable1.TabIndex = 0;
+            this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable1.TextColor = System.Drawing.Color.White;
             // 
             // 自動備藥
             // 
@@ -894,9 +1092,9 @@ namespace 癌症自動備藥機暨排程系統
             this.panel6.Controls.Add(this.panel7);
             this.panel6.Controls.Add(this.rJ_Lable4);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 307);
+            this.panel6.Location = new System.Drawing.Point(0, 154);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1076, 612);
+            this.panel6.Size = new System.Drawing.Size(1076, 765);
             this.panel6.TabIndex = 3;
             // 
             // panel_備藥狀態
@@ -981,14 +1179,14 @@ namespace 癌症自動備藥機暨排程系統
             this.uc_備藥通知處方.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uc_備藥通知處方.Location = new System.Drawing.Point(0, 110);
             this.uc_備藥通知處方.Name = "uc_備藥通知處方";
-            this.uc_備藥通知處方.Size = new System.Drawing.Size(1076, 360);
+            this.uc_備藥通知處方.Size = new System.Drawing.Size(1076, 513);
             this.uc_備藥通知處方.TabIndex = 6;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.plC_RJ_Button_開始備藥);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(0, 470);
+            this.panel7.Location = new System.Drawing.Point(0, 623);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1076, 142);
             this.panel7.TabIndex = 2;
@@ -1067,7 +1265,7 @@ namespace 癌症自動備藥機暨排程系統
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 280);
+            this.panel5.Location = new System.Drawing.Point(0, 127);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1076, 27);
             this.panel5.TabIndex = 2;
@@ -1075,11 +1273,10 @@ namespace 癌症自動備藥機暨排程系統
             // panel3
             // 
             this.panel3.Controls.Add(this.plC_RJ_Button_自動備藥_手動選擇備藥);
-            this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 33);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1076, 247);
+            this.panel3.Size = new System.Drawing.Size(1076, 94);
             this.panel3.TabIndex = 1;
             // 
             // plC_RJ_Button_自動備藥_手動選擇備藥
@@ -1092,14 +1289,13 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_自動備藥_手動選擇備藥.BorderSize = 0;
             this.plC_RJ_Button_自動備藥_手動選擇備藥.but_press = false;
             this.plC_RJ_Button_自動備藥_手動選擇備藥.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_自動備藥_手動選擇備藥.Enabled = false;
             this.plC_RJ_Button_自動備藥_手動選擇備藥.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_自動備藥_手動選擇備藥.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_自動備藥_手動選擇備藥.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_自動備藥_手動選擇備藥.GUID = "";
             this.plC_RJ_Button_自動備藥_手動選擇備藥.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_自動備藥_手動選擇備藥.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_自動備藥_手動選擇備藥.Location = new System.Drawing.Point(528, 6);
+            this.plC_RJ_Button_自動備藥_手動選擇備藥.Location = new System.Drawing.Point(8, 6);
             this.plC_RJ_Button_自動備藥_手動選擇備藥.Name = "plC_RJ_Button_自動備藥_手動選擇備藥";
             this.plC_RJ_Button_自動備藥_手動選擇備藥.OFF_文字內容 = "手動選擇備藥";
             this.plC_RJ_Button_自動備藥_手動選擇備藥.OFF_文字字體 = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -1130,167 +1326,6 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_自動備藥_手動選擇備藥.音效 = true;
             this.plC_RJ_Button_自動備藥_手動選擇備藥.顯示 = false;
             this.plC_RJ_Button_自動備藥_手動選擇備藥.顯示狀態 = false;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.rJ_Lable_自動備藥_登入狀態);
-            this.panel4.Controls.Add(this.plC_RJ_Button_自動備藥_登入);
-            this.panel4.Controls.Add(this.panel185);
-            this.panel4.Controls.Add(this.panel183);
-            this.panel4.Controls.Add(this.rJ_Lable1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(522, 247);
-            this.panel4.TabIndex = 0;
-            // 
-            // rJ_Lable_自動備藥_登入狀態
-            // 
-            this.rJ_Lable_自動備藥_登入狀態.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable_自動備藥_登入狀態.BackgroundColor = System.Drawing.Color.White;
-            this.rJ_Lable_自動備藥_登入狀態.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable_自動備藥_登入狀態.BorderRadius = 10;
-            this.rJ_Lable_自動備藥_登入狀態.BorderSize = 0;
-            this.rJ_Lable_自動備藥_登入狀態.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable_自動備藥_登入狀態.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_自動備藥_登入狀態.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable_自動備藥_登入狀態.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable_自動備藥_登入狀態.GUID = "";
-            this.rJ_Lable_自動備藥_登入狀態.Location = new System.Drawing.Point(0, 0);
-            this.rJ_Lable_自動備藥_登入狀態.Name = "rJ_Lable_自動備藥_登入狀態";
-            this.rJ_Lable_自動備藥_登入狀態.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable_自動備藥_登入狀態.ShadowSize = 3;
-            this.rJ_Lable_自動備藥_登入狀態.Size = new System.Drawing.Size(522, 64);
-            this.rJ_Lable_自動備藥_登入狀態.TabIndex = 9;
-            this.rJ_Lable_自動備藥_登入狀態.Text = "請登入系統...";
-            this.rJ_Lable_自動備藥_登入狀態.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable_自動備藥_登入狀態.TextColor = System.Drawing.Color.Black;
-            // 
-            // plC_RJ_Button_自動備藥_登入
-            // 
-            this.plC_RJ_Button_自動備藥_登入.AutoResetState = false;
-            this.plC_RJ_Button_自動備藥_登入.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_自動備藥_登入.Bool = false;
-            this.plC_RJ_Button_自動備藥_登入.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_自動備藥_登入.BorderRadius = 20;
-            this.plC_RJ_Button_自動備藥_登入.BorderSize = 0;
-            this.plC_RJ_Button_自動備藥_登入.but_press = false;
-            this.plC_RJ_Button_自動備藥_登入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_自動備藥_登入.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_自動備藥_登入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_自動備藥_登入.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_自動備藥_登入.GUID = "";
-            this.plC_RJ_Button_自動備藥_登入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_自動備藥_登入.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_自動備藥_登入.Location = new System.Drawing.Point(394, 77);
-            this.plC_RJ_Button_自動備藥_登入.Name = "plC_RJ_Button_自動備藥_登入";
-            this.plC_RJ_Button_自動備藥_登入.OFF_文字內容 = "登入";
-            this.plC_RJ_Button_自動備藥_登入.OFF_文字字體 = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_自動備藥_登入.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_自動備藥_登入.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_自動備藥_登入.ON_BorderSize = 5;
-            this.plC_RJ_Button_自動備藥_登入.ON_文字內容 = "登入";
-            this.plC_RJ_Button_自動備藥_登入.ON_文字字體 = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_自動備藥_登入.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_自動備藥_登入.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_自動備藥_登入.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_自動備藥_登入.ShadowSize = 3;
-            this.plC_RJ_Button_自動備藥_登入.ShowLoadingForm = false;
-            this.plC_RJ_Button_自動備藥_登入.Size = new System.Drawing.Size(104, 140);
-            this.plC_RJ_Button_自動備藥_登入.State = false;
-            this.plC_RJ_Button_自動備藥_登入.TabIndex = 8;
-            this.plC_RJ_Button_自動備藥_登入.Text = "登入";
-            this.plC_RJ_Button_自動備藥_登入.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_自動備藥_登入.TextHeight = 0;
-            this.plC_RJ_Button_自動備藥_登入.Texts = "登入";
-            this.plC_RJ_Button_自動備藥_登入.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_自動備藥_登入.字型鎖住 = false;
-            this.plC_RJ_Button_自動備藥_登入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_自動備藥_登入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_自動備藥_登入.文字鎖住 = false;
-            this.plC_RJ_Button_自動備藥_登入.讀取位元反向 = false;
-            this.plC_RJ_Button_自動備藥_登入.讀寫鎖住 = false;
-            this.plC_RJ_Button_自動備藥_登入.音效 = true;
-            this.plC_RJ_Button_自動備藥_登入.顯示 = false;
-            this.plC_RJ_Button_自動備藥_登入.顯示狀態 = false;
-            // 
-            // panel185
-            // 
-            this.panel185.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel185.Controls.Add(this.textBox_自動備藥_帳號);
-            this.panel185.Controls.Add(this.panel186);
-            this.panel185.Location = new System.Drawing.Point(19, 77);
-            this.panel185.Name = "panel185";
-            this.panel185.Size = new System.Drawing.Size(369, 67);
-            this.panel185.TabIndex = 6;
-            // 
-            // textBox_自動備藥_帳號
-            // 
-            this.textBox_自動備藥_帳號.Font = new System.Drawing.Font("新細明體", 12F);
-            this.textBox_自動備藥_帳號.Location = new System.Drawing.Point(82, 23);
-            this.textBox_自動備藥_帳號.Name = "textBox_自動備藥_帳號";
-            this.textBox_自動備藥_帳號.Size = new System.Drawing.Size(260, 27);
-            this.textBox_自動備藥_帳號.TabIndex = 1;
-            // 
-            // panel186
-            // 
-            this.panel186.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel186.BackgroundImage")));
-            this.panel186.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel186.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel186.Location = new System.Drawing.Point(14, 10);
-            this.panel186.Name = "panel186";
-            this.panel186.Size = new System.Drawing.Size(51, 47);
-            this.panel186.TabIndex = 0;
-            // 
-            // panel183
-            // 
-            this.panel183.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel183.Controls.Add(this.textBox_自動備藥_密碼);
-            this.panel183.Controls.Add(this.panel184);
-            this.panel183.Location = new System.Drawing.Point(19, 150);
-            this.panel183.Name = "panel183";
-            this.panel183.Size = new System.Drawing.Size(369, 67);
-            this.panel183.TabIndex = 7;
-            // 
-            // textBox_自動備藥_密碼
-            // 
-            this.textBox_自動備藥_密碼.Font = new System.Drawing.Font("新細明體", 12F);
-            this.textBox_自動備藥_密碼.Location = new System.Drawing.Point(82, 22);
-            this.textBox_自動備藥_密碼.Name = "textBox_自動備藥_密碼";
-            this.textBox_自動備藥_密碼.Size = new System.Drawing.Size(260, 27);
-            this.textBox_自動備藥_密碼.TabIndex = 2;
-            this.textBox_自動備藥_密碼.UseSystemPasswordChar = true;
-            // 
-            // panel184
-            // 
-            this.panel184.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel184.BackgroundImage")));
-            this.panel184.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel184.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel184.Location = new System.Drawing.Point(14, 10);
-            this.panel184.Name = "panel184";
-            this.panel184.Size = new System.Drawing.Size(51, 47);
-            this.panel184.TabIndex = 0;
-            // 
-            // rJ_Lable1
-            // 
-            this.rJ_Lable1.BackColor = System.Drawing.Color.White;
-            this.rJ_Lable1.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable1.BorderRadius = 10;
-            this.rJ_Lable1.BorderSize = 0;
-            this.rJ_Lable1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_Lable1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable1.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable1.GUID = "";
-            this.rJ_Lable1.Location = new System.Drawing.Point(0, 0);
-            this.rJ_Lable1.Name = "rJ_Lable1";
-            this.rJ_Lable1.Padding = new System.Windows.Forms.Padding(10);
-            this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable1.ShadowSize = 3;
-            this.rJ_Lable1.Size = new System.Drawing.Size(522, 247);
-            this.rJ_Lable1.TabIndex = 0;
-            this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable1.TextColor = System.Drawing.Color.White;
             // 
             // panel2
             // 
@@ -19002,117 +19037,119 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_ScreenButtonEx9.顯示狀態 = false;
             this.plC_RJ_ScreenButtonEx9.顯示讀取位置 = "";
             // 
-            // plC_RJ_ScreenButtonEx5
+            // plC_RJ_ScreenButtonEx_儲位設定
             // 
-            this.plC_RJ_ScreenButtonEx5.AutoResetState = false;
-            this.plC_RJ_ScreenButtonEx5.BackColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_ScreenButtonEx5.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx5.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.儲位設定_removebg_preview;
-            this.plC_RJ_ScreenButtonEx5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.plC_RJ_ScreenButtonEx5.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_ScreenButtonEx5.BorderRadius = 10;
-            this.plC_RJ_ScreenButtonEx5.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx5.but_press = false;
-            this.plC_RJ_ScreenButtonEx5.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.plC_RJ_ScreenButtonEx5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButtonEx5.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_ScreenButtonEx5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx5.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx5.GUID = "";
-            this.plC_RJ_ScreenButtonEx5.Image_padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_ScreenButtonEx5.Location = new System.Drawing.Point(364, 0);
-            this.plC_RJ_ScreenButtonEx5.Name = "plC_RJ_ScreenButtonEx5";
-            this.plC_RJ_ScreenButtonEx5.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx5.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx5.OffIconColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx5.OffText = "iConText";
-            this.plC_RJ_ScreenButtonEx5.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx5.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx5.OnIconColor = System.Drawing.Color.LemonChiffon;
-            this.plC_RJ_ScreenButtonEx5.OnText = "iConText";
-            this.plC_RJ_ScreenButtonEx5.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_ScreenButtonEx5.ShadowSize = 0;
-            this.plC_RJ_ScreenButtonEx5.ShowLoadingForm = false;
-            this.plC_RJ_ScreenButtonEx5.Size = new System.Drawing.Size(88, 110);
-            this.plC_RJ_ScreenButtonEx5.State = false;
-            this.plC_RJ_ScreenButtonEx5.TabIndex = 23;
-            this.plC_RJ_ScreenButtonEx5.Text = "儲位設定";
-            this.plC_RJ_ScreenButtonEx5.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx5.TextHeight = 25;
-            this.plC_RJ_ScreenButtonEx5.UseVisualStyleBackColor = false;
-            this.plC_RJ_ScreenButtonEx5.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButtonEx5.寫入位置註解 = "";
-            this.plC_RJ_ScreenButtonEx5.寫入元件位置 = "";
-            this.plC_RJ_ScreenButtonEx5.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
-            this.plC_RJ_ScreenButtonEx5.控制位址 = "D0";
-            this.plC_RJ_ScreenButtonEx5.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx5.致能讀取位置 = "";
-            this.plC_RJ_ScreenButtonEx5.讀取位元反向 = false;
-            this.plC_RJ_ScreenButtonEx5.讀取位置註解 = "";
-            this.plC_RJ_ScreenButtonEx5.讀取元件位置 = "";
-            this.plC_RJ_ScreenButtonEx5.音效 = true;
-            this.plC_RJ_ScreenButtonEx5.頁面名稱 = "儲位設定";
-            this.plC_RJ_ScreenButtonEx5.頁面編號 = 0;
-            this.plC_RJ_ScreenButtonEx5.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButtonEx5.顯示狀態 = false;
-            this.plC_RJ_ScreenButtonEx5.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_儲位設定.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx_儲位設定.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx_儲位設定.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_儲位設定.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.儲位設定_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_儲位設定.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx_儲位設定.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_ScreenButtonEx_儲位設定.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx_儲位設定.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_儲位設定.but_press = false;
+            this.plC_RJ_ScreenButtonEx_儲位設定.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx_儲位設定.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButtonEx_儲位設定.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_儲位設定.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx_儲位設定.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_儲位設定.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_儲位設定.GUID = "";
+            this.plC_RJ_ScreenButtonEx_儲位設定.Image_padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_ScreenButtonEx_儲位設定.Location = new System.Drawing.Point(364, 0);
+            this.plC_RJ_ScreenButtonEx_儲位設定.Name = "plC_RJ_ScreenButtonEx_儲位設定";
+            this.plC_RJ_ScreenButtonEx_儲位設定.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_儲位設定.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_儲位設定.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_儲位設定.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx_儲位設定.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_儲位設定.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_儲位設定.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx_儲位設定.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx_儲位設定.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx_儲位設定.ShadowSize = 0;
+            this.plC_RJ_ScreenButtonEx_儲位設定.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx_儲位設定.Size = new System.Drawing.Size(88, 110);
+            this.plC_RJ_ScreenButtonEx_儲位設定.State = false;
+            this.plC_RJ_ScreenButtonEx_儲位設定.TabIndex = 23;
+            this.plC_RJ_ScreenButtonEx_儲位設定.Text = "儲位設定";
+            this.plC_RJ_ScreenButtonEx_儲位設定.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_儲位設定.TextHeight = 25;
+            this.plC_RJ_ScreenButtonEx_儲位設定.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx_儲位設定.Visible = false;
+            this.plC_RJ_ScreenButtonEx_儲位設定.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx_儲位設定.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_儲位設定.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_儲位設定.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx_儲位設定.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx_儲位設定.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx_儲位設定.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_儲位設定.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx_儲位設定.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_儲位設定.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_儲位設定.音效 = true;
+            this.plC_RJ_ScreenButtonEx_儲位設定.頁面名稱 = "儲位設定";
+            this.plC_RJ_ScreenButtonEx_儲位設定.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx_儲位設定.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx_儲位設定.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx_儲位設定.顯示讀取位置 = "";
             // 
-            // plC_RJ_ScreenButtonEx4
+            // plC_RJ_ScreenButtonEx_工程模式
             // 
-            this.plC_RJ_ScreenButtonEx4.AutoResetState = false;
-            this.plC_RJ_ScreenButtonEx4.BackColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_ScreenButtonEx4.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx4.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.工程模式_removebg_preview;
-            this.plC_RJ_ScreenButtonEx4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.plC_RJ_ScreenButtonEx4.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_ScreenButtonEx4.BorderRadius = 10;
-            this.plC_RJ_ScreenButtonEx4.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx4.but_press = false;
-            this.plC_RJ_ScreenButtonEx4.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.plC_RJ_ScreenButtonEx4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButtonEx4.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_ScreenButtonEx4.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx4.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx4.GUID = "";
-            this.plC_RJ_ScreenButtonEx4.Image_padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_ScreenButtonEx4.Location = new System.Drawing.Point(540, 0);
-            this.plC_RJ_ScreenButtonEx4.Name = "plC_RJ_ScreenButtonEx4";
-            this.plC_RJ_ScreenButtonEx4.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx4.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx4.OffIconColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx4.OffText = "iConText";
-            this.plC_RJ_ScreenButtonEx4.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx4.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx4.OnIconColor = System.Drawing.Color.LemonChiffon;
-            this.plC_RJ_ScreenButtonEx4.OnText = "iConText";
-            this.plC_RJ_ScreenButtonEx4.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_ScreenButtonEx4.ShadowSize = 0;
-            this.plC_RJ_ScreenButtonEx4.ShowLoadingForm = false;
-            this.plC_RJ_ScreenButtonEx4.Size = new System.Drawing.Size(88, 110);
-            this.plC_RJ_ScreenButtonEx4.State = false;
-            this.plC_RJ_ScreenButtonEx4.TabIndex = 23;
-            this.plC_RJ_ScreenButtonEx4.Text = "工程模式";
-            this.plC_RJ_ScreenButtonEx4.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx4.TextHeight = 25;
-            this.plC_RJ_ScreenButtonEx4.UseVisualStyleBackColor = false;
-            this.plC_RJ_ScreenButtonEx4.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButtonEx4.寫入位置註解 = "";
-            this.plC_RJ_ScreenButtonEx4.寫入元件位置 = "";
-            this.plC_RJ_ScreenButtonEx4.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
-            this.plC_RJ_ScreenButtonEx4.控制位址 = "D0";
-            this.plC_RJ_ScreenButtonEx4.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx4.致能讀取位置 = "";
-            this.plC_RJ_ScreenButtonEx4.讀取位元反向 = false;
-            this.plC_RJ_ScreenButtonEx4.讀取位置註解 = "";
-            this.plC_RJ_ScreenButtonEx4.讀取元件位置 = "";
-            this.plC_RJ_ScreenButtonEx4.音效 = true;
-            this.plC_RJ_ScreenButtonEx4.頁面名稱 = "工程模式";
-            this.plC_RJ_ScreenButtonEx4.頁面編號 = 0;
-            this.plC_RJ_ScreenButtonEx4.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButtonEx4.顯示狀態 = false;
-            this.plC_RJ_ScreenButtonEx4.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_工程模式.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx_工程模式.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx_工程模式.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_工程模式.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.工程模式_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_工程模式.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx_工程模式.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_ScreenButtonEx_工程模式.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx_工程模式.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_工程模式.but_press = false;
+            this.plC_RJ_ScreenButtonEx_工程模式.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx_工程模式.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButtonEx_工程模式.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_工程模式.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx_工程模式.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_工程模式.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_工程模式.GUID = "";
+            this.plC_RJ_ScreenButtonEx_工程模式.Image_padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_ScreenButtonEx_工程模式.Location = new System.Drawing.Point(540, 0);
+            this.plC_RJ_ScreenButtonEx_工程模式.Name = "plC_RJ_ScreenButtonEx_工程模式";
+            this.plC_RJ_ScreenButtonEx_工程模式.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_工程模式.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_工程模式.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_工程模式.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx_工程模式.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_工程模式.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_工程模式.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx_工程模式.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx_工程模式.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx_工程模式.ShadowSize = 0;
+            this.plC_RJ_ScreenButtonEx_工程模式.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx_工程模式.Size = new System.Drawing.Size(88, 110);
+            this.plC_RJ_ScreenButtonEx_工程模式.State = false;
+            this.plC_RJ_ScreenButtonEx_工程模式.TabIndex = 23;
+            this.plC_RJ_ScreenButtonEx_工程模式.Text = "工程模式";
+            this.plC_RJ_ScreenButtonEx_工程模式.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_工程模式.TextHeight = 25;
+            this.plC_RJ_ScreenButtonEx_工程模式.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx_工程模式.Visible = false;
+            this.plC_RJ_ScreenButtonEx_工程模式.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx_工程模式.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_工程模式.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_工程模式.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx_工程模式.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx_工程模式.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx_工程模式.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_工程模式.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx_工程模式.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_工程模式.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_工程模式.音效 = true;
+            this.plC_RJ_ScreenButtonEx_工程模式.頁面名稱 = "工程模式";
+            this.plC_RJ_ScreenButtonEx_工程模式.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx_工程模式.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx_工程模式.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx_工程模式.顯示讀取位置 = "";
             // 
             // panel25
             // 
@@ -19130,14 +19167,14 @@ namespace 癌症自動備藥機暨排程系統
             this.panel_main01.Controls.Add(this.panel47);
             this.panel_main01.Controls.Add(this.panel46);
             this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx9);
-            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx6);
-            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx4);
-            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx7);
-            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx5);
-            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx8);
-            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx3);
-            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx2);
-            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx1);
+            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx_系統);
+            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx_工程模式);
+            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx_交易紀錄);
+            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx_儲位設定);
+            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx_人員資料);
+            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx_出入庫作業);
+            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx_調配排程);
+            this.panel_main01.Controls.Add(this.plC_RJ_ScreenButtonEx_自動備藥);
             this.panel_main01.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_main01.Location = new System.Drawing.Point(0, 0);
             this.panel_main01.Name = "panel_main01";
@@ -19147,6 +19184,7 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel47
             // 
+            this.panel47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel47.Controls.Add(this.plC_RJ_Button_登出);
             this.panel47.Controls.Add(this.panel50);
             this.panel47.Controls.Add(this.panel48);
@@ -19168,6 +19206,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_登出.but_press = false;
             this.plC_RJ_Button_登出.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_登出.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_Button_登出.Enabled = false;
             this.plC_RJ_Button_登出.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_登出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_登出.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold);
@@ -19188,7 +19227,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_登出.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_登出.ShadowSize = 0;
             this.plC_RJ_Button_登出.ShowLoadingForm = false;
-            this.plC_RJ_Button_登出.Size = new System.Drawing.Size(128, 44);
+            this.plC_RJ_Button_登出.Size = new System.Drawing.Size(126, 42);
             this.plC_RJ_Button_登出.State = false;
             this.plC_RJ_Button_登出.TabIndex = 0;
             this.plC_RJ_Button_登出.Text = "登出";
@@ -19214,7 +19253,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel50.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel50.Location = new System.Drawing.Point(60, 33);
             this.panel50.Name = "panel50";
-            this.panel50.Size = new System.Drawing.Size(128, 33);
+            this.panel50.Size = new System.Drawing.Size(126, 33);
             this.panel50.TabIndex = 2;
             // 
             // rJ_Lable_使用者姓名
@@ -19233,7 +19272,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable_使用者姓名.Name = "rJ_Lable_使用者姓名";
             this.rJ_Lable_使用者姓名.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_使用者姓名.ShadowSize = 0;
-            this.rJ_Lable_使用者姓名.Size = new System.Drawing.Size(118, 33);
+            this.rJ_Lable_使用者姓名.Size = new System.Drawing.Size(116, 33);
             this.rJ_Lable_使用者姓名.TabIndex = 2;
             this.rJ_Lable_使用者姓名.Text = "------------";
             this.rJ_Lable_使用者姓名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -19254,7 +19293,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel48.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel48.Location = new System.Drawing.Point(60, 0);
             this.panel48.Name = "panel48";
-            this.panel48.Size = new System.Drawing.Size(128, 33);
+            this.panel48.Size = new System.Drawing.Size(126, 33);
             this.panel48.TabIndex = 1;
             // 
             // rJ_Lable_使用者ID
@@ -19273,7 +19312,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable_使用者ID.Name = "rJ_Lable_使用者ID";
             this.rJ_Lable_使用者ID.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_使用者ID.ShadowSize = 0;
-            this.rJ_Lable_使用者ID.Size = new System.Drawing.Size(118, 33);
+            this.rJ_Lable_使用者ID.Size = new System.Drawing.Size(116, 33);
             this.rJ_Lable_使用者ID.TabIndex = 2;
             this.rJ_Lable_使用者ID.Text = "------------";
             this.rJ_Lable_使用者ID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -19294,7 +19333,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel52.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel52.Location = new System.Drawing.Point(0, 0);
             this.panel52.Name = "panel52";
-            this.panel52.Size = new System.Drawing.Size(60, 110);
+            this.panel52.Size = new System.Drawing.Size(60, 108);
             this.panel52.TabIndex = 0;
             // 
             // panel46
@@ -19305,341 +19344,347 @@ namespace 癌症自動備藥機暨排程系統
             this.panel46.Size = new System.Drawing.Size(10, 110);
             this.panel46.TabIndex = 42;
             // 
-            // plC_RJ_ScreenButtonEx6
+            // plC_RJ_ScreenButtonEx_系統
             // 
-            this.plC_RJ_ScreenButtonEx6.AutoResetState = false;
-            this.plC_RJ_ScreenButtonEx6.BackColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_ScreenButtonEx6.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx6.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.系統_removebg_preview;
-            this.plC_RJ_ScreenButtonEx6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.plC_RJ_ScreenButtonEx6.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_ScreenButtonEx6.BorderRadius = 10;
-            this.plC_RJ_ScreenButtonEx6.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx6.but_press = false;
-            this.plC_RJ_ScreenButtonEx6.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.plC_RJ_ScreenButtonEx6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButtonEx6.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_ScreenButtonEx6.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx6.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx6.GUID = "";
-            this.plC_RJ_ScreenButtonEx6.Image_padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_ScreenButtonEx6.Location = new System.Drawing.Point(628, 0);
-            this.plC_RJ_ScreenButtonEx6.Name = "plC_RJ_ScreenButtonEx6";
-            this.plC_RJ_ScreenButtonEx6.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx6.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx6.OffIconColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx6.OffText = "iConText";
-            this.plC_RJ_ScreenButtonEx6.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx6.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx6.OnIconColor = System.Drawing.Color.LemonChiffon;
-            this.plC_RJ_ScreenButtonEx6.OnText = "iConText";
-            this.plC_RJ_ScreenButtonEx6.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_ScreenButtonEx6.ShadowSize = 0;
-            this.plC_RJ_ScreenButtonEx6.ShowLoadingForm = false;
-            this.plC_RJ_ScreenButtonEx6.Size = new System.Drawing.Size(88, 110);
-            this.plC_RJ_ScreenButtonEx6.State = false;
-            this.plC_RJ_ScreenButtonEx6.TabIndex = 40;
-            this.plC_RJ_ScreenButtonEx6.Text = "系統";
-            this.plC_RJ_ScreenButtonEx6.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx6.TextHeight = 25;
-            this.plC_RJ_ScreenButtonEx6.UseVisualStyleBackColor = false;
-            this.plC_RJ_ScreenButtonEx6.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButtonEx6.寫入位置註解 = "";
-            this.plC_RJ_ScreenButtonEx6.寫入元件位置 = "";
-            this.plC_RJ_ScreenButtonEx6.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
-            this.plC_RJ_ScreenButtonEx6.控制位址 = "D0";
-            this.plC_RJ_ScreenButtonEx6.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx6.致能讀取位置 = "";
-            this.plC_RJ_ScreenButtonEx6.讀取位元反向 = false;
-            this.plC_RJ_ScreenButtonEx6.讀取位置註解 = "";
-            this.plC_RJ_ScreenButtonEx6.讀取元件位置 = "";
-            this.plC_RJ_ScreenButtonEx6.音效 = true;
-            this.plC_RJ_ScreenButtonEx6.頁面名稱 = "系統";
-            this.plC_RJ_ScreenButtonEx6.頁面編號 = 0;
-            this.plC_RJ_ScreenButtonEx6.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButtonEx6.顯示狀態 = false;
-            this.plC_RJ_ScreenButtonEx6.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_系統.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx_系統.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx_系統.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_系統.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.系統_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_系統.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx_系統.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_ScreenButtonEx_系統.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx_系統.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_系統.but_press = false;
+            this.plC_RJ_ScreenButtonEx_系統.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx_系統.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButtonEx_系統.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_系統.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx_系統.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_系統.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_系統.GUID = "";
+            this.plC_RJ_ScreenButtonEx_系統.Image_padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_ScreenButtonEx_系統.Location = new System.Drawing.Point(628, 0);
+            this.plC_RJ_ScreenButtonEx_系統.Name = "plC_RJ_ScreenButtonEx_系統";
+            this.plC_RJ_ScreenButtonEx_系統.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_系統.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_系統.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_系統.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx_系統.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_系統.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_系統.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx_系統.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx_系統.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx_系統.ShadowSize = 0;
+            this.plC_RJ_ScreenButtonEx_系統.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx_系統.Size = new System.Drawing.Size(88, 110);
+            this.plC_RJ_ScreenButtonEx_系統.State = false;
+            this.plC_RJ_ScreenButtonEx_系統.TabIndex = 40;
+            this.plC_RJ_ScreenButtonEx_系統.Text = "系統";
+            this.plC_RJ_ScreenButtonEx_系統.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_系統.TextHeight = 25;
+            this.plC_RJ_ScreenButtonEx_系統.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx_系統.Visible = false;
+            this.plC_RJ_ScreenButtonEx_系統.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx_系統.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_系統.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_系統.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx_系統.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx_系統.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx_系統.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_系統.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx_系統.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_系統.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_系統.音效 = true;
+            this.plC_RJ_ScreenButtonEx_系統.頁面名稱 = "系統";
+            this.plC_RJ_ScreenButtonEx_系統.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx_系統.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx_系統.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx_系統.顯示讀取位置 = "";
             // 
-            // plC_RJ_ScreenButtonEx7
+            // plC_RJ_ScreenButtonEx_交易紀錄
             // 
-            this.plC_RJ_ScreenButtonEx7.AutoResetState = false;
-            this.plC_RJ_ScreenButtonEx7.BackColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_ScreenButtonEx7.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx7.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.交易紀錄_removebg_preview;
-            this.plC_RJ_ScreenButtonEx7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.plC_RJ_ScreenButtonEx7.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_ScreenButtonEx7.BorderRadius = 10;
-            this.plC_RJ_ScreenButtonEx7.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx7.but_press = false;
-            this.plC_RJ_ScreenButtonEx7.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.plC_RJ_ScreenButtonEx7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButtonEx7.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_ScreenButtonEx7.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx7.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx7.GUID = "";
-            this.plC_RJ_ScreenButtonEx7.Image_padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_ScreenButtonEx7.Location = new System.Drawing.Point(452, 0);
-            this.plC_RJ_ScreenButtonEx7.Name = "plC_RJ_ScreenButtonEx7";
-            this.plC_RJ_ScreenButtonEx7.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx7.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx7.OffIconColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx7.OffText = "iConText";
-            this.plC_RJ_ScreenButtonEx7.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx7.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx7.OnIconColor = System.Drawing.Color.LemonChiffon;
-            this.plC_RJ_ScreenButtonEx7.OnText = "iConText";
-            this.plC_RJ_ScreenButtonEx7.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_ScreenButtonEx7.ShadowSize = 0;
-            this.plC_RJ_ScreenButtonEx7.ShowLoadingForm = false;
-            this.plC_RJ_ScreenButtonEx7.Size = new System.Drawing.Size(88, 110);
-            this.plC_RJ_ScreenButtonEx7.State = false;
-            this.plC_RJ_ScreenButtonEx7.TabIndex = 39;
-            this.plC_RJ_ScreenButtonEx7.Text = "交易紀錄";
-            this.plC_RJ_ScreenButtonEx7.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx7.TextHeight = 25;
-            this.plC_RJ_ScreenButtonEx7.UseVisualStyleBackColor = false;
-            this.plC_RJ_ScreenButtonEx7.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButtonEx7.寫入位置註解 = "";
-            this.plC_RJ_ScreenButtonEx7.寫入元件位置 = "";
-            this.plC_RJ_ScreenButtonEx7.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
-            this.plC_RJ_ScreenButtonEx7.控制位址 = "D0";
-            this.plC_RJ_ScreenButtonEx7.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx7.致能讀取位置 = "";
-            this.plC_RJ_ScreenButtonEx7.讀取位元反向 = false;
-            this.plC_RJ_ScreenButtonEx7.讀取位置註解 = "";
-            this.plC_RJ_ScreenButtonEx7.讀取元件位置 = "";
-            this.plC_RJ_ScreenButtonEx7.音效 = true;
-            this.plC_RJ_ScreenButtonEx7.頁面名稱 = "交易紀錄";
-            this.plC_RJ_ScreenButtonEx7.頁面編號 = 0;
-            this.plC_RJ_ScreenButtonEx7.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButtonEx7.顯示狀態 = false;
-            this.plC_RJ_ScreenButtonEx7.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.交易紀錄_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.but_press = false;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_交易紀錄.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.GUID = "";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.Image_padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_ScreenButtonEx_交易紀錄.Location = new System.Drawing.Point(452, 0);
+            this.plC_RJ_ScreenButtonEx_交易紀錄.Name = "plC_RJ_ScreenButtonEx_交易紀錄";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_交易紀錄.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_交易紀錄.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.ShadowSize = 0;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.Size = new System.Drawing.Size(88, 110);
+            this.plC_RJ_ScreenButtonEx_交易紀錄.State = false;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.TabIndex = 39;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.Text = "交易紀錄";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.TextHeight = 25;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.Visible = false;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.音效 = true;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.頁面名稱 = "交易紀錄";
+            this.plC_RJ_ScreenButtonEx_交易紀錄.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx_交易紀錄.顯示讀取位置 = "";
             // 
-            // plC_RJ_ScreenButtonEx8
+            // plC_RJ_ScreenButtonEx_人員資料
             // 
-            this.plC_RJ_ScreenButtonEx8.AutoResetState = false;
-            this.plC_RJ_ScreenButtonEx8.BackColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_ScreenButtonEx8.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx8.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.人員資料_removebg_preview;
-            this.plC_RJ_ScreenButtonEx8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.plC_RJ_ScreenButtonEx8.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_ScreenButtonEx8.BorderRadius = 10;
-            this.plC_RJ_ScreenButtonEx8.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx8.but_press = false;
-            this.plC_RJ_ScreenButtonEx8.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.plC_RJ_ScreenButtonEx8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButtonEx8.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_ScreenButtonEx8.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx8.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx8.GUID = "";
-            this.plC_RJ_ScreenButtonEx8.Image_padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_ScreenButtonEx8.Location = new System.Drawing.Point(276, 0);
-            this.plC_RJ_ScreenButtonEx8.Name = "plC_RJ_ScreenButtonEx8";
-            this.plC_RJ_ScreenButtonEx8.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx8.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx8.OffIconColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx8.OffText = "iConText";
-            this.plC_RJ_ScreenButtonEx8.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx8.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx8.OnIconColor = System.Drawing.Color.LemonChiffon;
-            this.plC_RJ_ScreenButtonEx8.OnText = "iConText";
-            this.plC_RJ_ScreenButtonEx8.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_ScreenButtonEx8.ShadowSize = 0;
-            this.plC_RJ_ScreenButtonEx8.ShowLoadingForm = false;
-            this.plC_RJ_ScreenButtonEx8.Size = new System.Drawing.Size(88, 110);
-            this.plC_RJ_ScreenButtonEx8.State = false;
-            this.plC_RJ_ScreenButtonEx8.TabIndex = 38;
-            this.plC_RJ_ScreenButtonEx8.Text = "人員資料";
-            this.plC_RJ_ScreenButtonEx8.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx8.TextHeight = 25;
-            this.plC_RJ_ScreenButtonEx8.UseVisualStyleBackColor = false;
-            this.plC_RJ_ScreenButtonEx8.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButtonEx8.寫入位置註解 = "";
-            this.plC_RJ_ScreenButtonEx8.寫入元件位置 = "";
-            this.plC_RJ_ScreenButtonEx8.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
-            this.plC_RJ_ScreenButtonEx8.控制位址 = "D0";
-            this.plC_RJ_ScreenButtonEx8.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx8.致能讀取位置 = "";
-            this.plC_RJ_ScreenButtonEx8.讀取位元反向 = false;
-            this.plC_RJ_ScreenButtonEx8.讀取位置註解 = "";
-            this.plC_RJ_ScreenButtonEx8.讀取元件位置 = "";
-            this.plC_RJ_ScreenButtonEx8.音效 = true;
-            this.plC_RJ_ScreenButtonEx8.頁面名稱 = "人員資料";
-            this.plC_RJ_ScreenButtonEx8.頁面編號 = 0;
-            this.plC_RJ_ScreenButtonEx8.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButtonEx8.顯示狀態 = false;
-            this.plC_RJ_ScreenButtonEx8.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_人員資料.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx_人員資料.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx_人員資料.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_人員資料.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.人員資料_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_人員資料.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx_人員資料.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_ScreenButtonEx_人員資料.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx_人員資料.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_人員資料.but_press = false;
+            this.plC_RJ_ScreenButtonEx_人員資料.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx_人員資料.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButtonEx_人員資料.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_人員資料.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx_人員資料.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_人員資料.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_人員資料.GUID = "";
+            this.plC_RJ_ScreenButtonEx_人員資料.Image_padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_ScreenButtonEx_人員資料.Location = new System.Drawing.Point(276, 0);
+            this.plC_RJ_ScreenButtonEx_人員資料.Name = "plC_RJ_ScreenButtonEx_人員資料";
+            this.plC_RJ_ScreenButtonEx_人員資料.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_人員資料.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_人員資料.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_人員資料.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx_人員資料.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_人員資料.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_人員資料.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx_人員資料.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx_人員資料.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx_人員資料.ShadowSize = 0;
+            this.plC_RJ_ScreenButtonEx_人員資料.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx_人員資料.Size = new System.Drawing.Size(88, 110);
+            this.plC_RJ_ScreenButtonEx_人員資料.State = false;
+            this.plC_RJ_ScreenButtonEx_人員資料.TabIndex = 38;
+            this.plC_RJ_ScreenButtonEx_人員資料.Text = "人員資料";
+            this.plC_RJ_ScreenButtonEx_人員資料.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_人員資料.TextHeight = 25;
+            this.plC_RJ_ScreenButtonEx_人員資料.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx_人員資料.Visible = false;
+            this.plC_RJ_ScreenButtonEx_人員資料.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx_人員資料.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_人員資料.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_人員資料.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx_人員資料.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx_人員資料.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx_人員資料.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_人員資料.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx_人員資料.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_人員資料.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_人員資料.音效 = true;
+            this.plC_RJ_ScreenButtonEx_人員資料.頁面名稱 = "人員資料";
+            this.plC_RJ_ScreenButtonEx_人員資料.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx_人員資料.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx_人員資料.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx_人員資料.顯示讀取位置 = "";
             // 
-            // plC_RJ_ScreenButtonEx3
+            // plC_RJ_ScreenButtonEx_出入庫作業
             // 
-            this.plC_RJ_ScreenButtonEx3.AutoResetState = false;
-            this.plC_RJ_ScreenButtonEx3.BackColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_ScreenButtonEx3.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx3.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.出入庫作業_removebg_preview1;
-            this.plC_RJ_ScreenButtonEx3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.plC_RJ_ScreenButtonEx3.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_ScreenButtonEx3.BorderRadius = 10;
-            this.plC_RJ_ScreenButtonEx3.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx3.but_press = false;
-            this.plC_RJ_ScreenButtonEx3.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.plC_RJ_ScreenButtonEx3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButtonEx3.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_ScreenButtonEx3.Font = new System.Drawing.Font("微軟正黑體", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_ScreenButtonEx3.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx3.GUID = "";
-            this.plC_RJ_ScreenButtonEx3.Image_padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_ScreenButtonEx3.Location = new System.Drawing.Point(181, 0);
-            this.plC_RJ_ScreenButtonEx3.Name = "plC_RJ_ScreenButtonEx3";
-            this.plC_RJ_ScreenButtonEx3.OffFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx3.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx3.OffIconColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx3.OffText = "iConText";
-            this.plC_RJ_ScreenButtonEx3.OnFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx3.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx3.OnIconColor = System.Drawing.Color.LemonChiffon;
-            this.plC_RJ_ScreenButtonEx3.OnText = "iConText";
-            this.plC_RJ_ScreenButtonEx3.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_ScreenButtonEx3.ShadowSize = 0;
-            this.plC_RJ_ScreenButtonEx3.ShowLoadingForm = false;
-            this.plC_RJ_ScreenButtonEx3.Size = new System.Drawing.Size(95, 110);
-            this.plC_RJ_ScreenButtonEx3.State = false;
-            this.plC_RJ_ScreenButtonEx3.TabIndex = 37;
-            this.plC_RJ_ScreenButtonEx3.Text = "出入庫作業";
-            this.plC_RJ_ScreenButtonEx3.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx3.TextHeight = 25;
-            this.plC_RJ_ScreenButtonEx3.UseVisualStyleBackColor = false;
-            this.plC_RJ_ScreenButtonEx3.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButtonEx3.寫入位置註解 = "";
-            this.plC_RJ_ScreenButtonEx3.寫入元件位置 = "";
-            this.plC_RJ_ScreenButtonEx3.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
-            this.plC_RJ_ScreenButtonEx3.控制位址 = "D0";
-            this.plC_RJ_ScreenButtonEx3.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx3.致能讀取位置 = "";
-            this.plC_RJ_ScreenButtonEx3.讀取位元反向 = false;
-            this.plC_RJ_ScreenButtonEx3.讀取位置註解 = "";
-            this.plC_RJ_ScreenButtonEx3.讀取元件位置 = "";
-            this.plC_RJ_ScreenButtonEx3.音效 = true;
-            this.plC_RJ_ScreenButtonEx3.頁面名稱 = "出入庫作業";
-            this.plC_RJ_ScreenButtonEx3.頁面編號 = 0;
-            this.plC_RJ_ScreenButtonEx3.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButtonEx3.顯示狀態 = false;
-            this.plC_RJ_ScreenButtonEx3.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.出入庫作業_removebg_preview1;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.but_press = false;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.Font = new System.Drawing.Font("微軟正黑體", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_ScreenButtonEx_出入庫作業.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.GUID = "";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.Image_padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_ScreenButtonEx_出入庫作業.Location = new System.Drawing.Point(181, 0);
+            this.plC_RJ_ScreenButtonEx_出入庫作業.Name = "plC_RJ_ScreenButtonEx_出入庫作業";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.OffFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_出入庫作業.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.OnFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_出入庫作業.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.ShadowSize = 0;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.Size = new System.Drawing.Size(95, 110);
+            this.plC_RJ_ScreenButtonEx_出入庫作業.State = false;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.TabIndex = 37;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.Text = "出入庫作業";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.TextHeight = 25;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.Visible = false;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.音效 = true;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.頁面名稱 = "出入庫作業";
+            this.plC_RJ_ScreenButtonEx_出入庫作業.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx_出入庫作業.顯示讀取位置 = "";
             // 
-            // plC_RJ_ScreenButtonEx2
+            // plC_RJ_ScreenButtonEx_調配排程
             // 
-            this.plC_RJ_ScreenButtonEx2.AutoResetState = false;
-            this.plC_RJ_ScreenButtonEx2.BackColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_ScreenButtonEx2.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx2.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.調配排程_removebg_preview;
-            this.plC_RJ_ScreenButtonEx2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.plC_RJ_ScreenButtonEx2.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_ScreenButtonEx2.BorderRadius = 10;
-            this.plC_RJ_ScreenButtonEx2.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx2.but_press = false;
-            this.plC_RJ_ScreenButtonEx2.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.plC_RJ_ScreenButtonEx2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButtonEx2.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_ScreenButtonEx2.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx2.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx2.GUID = "";
-            this.plC_RJ_ScreenButtonEx2.Image_padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_ScreenButtonEx2.Location = new System.Drawing.Point(93, 0);
-            this.plC_RJ_ScreenButtonEx2.Name = "plC_RJ_ScreenButtonEx2";
-            this.plC_RJ_ScreenButtonEx2.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx2.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx2.OffIconColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx2.OffText = "iConText";
-            this.plC_RJ_ScreenButtonEx2.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButtonEx2.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx2.OnIconColor = System.Drawing.Color.LemonChiffon;
-            this.plC_RJ_ScreenButtonEx2.OnText = "iConText";
-            this.plC_RJ_ScreenButtonEx2.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_ScreenButtonEx2.ShadowSize = 0;
-            this.plC_RJ_ScreenButtonEx2.ShowLoadingForm = false;
-            this.plC_RJ_ScreenButtonEx2.Size = new System.Drawing.Size(88, 110);
-            this.plC_RJ_ScreenButtonEx2.State = false;
-            this.plC_RJ_ScreenButtonEx2.TabIndex = 36;
-            this.plC_RJ_ScreenButtonEx2.Text = "調配排程";
-            this.plC_RJ_ScreenButtonEx2.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx2.TextHeight = 25;
-            this.plC_RJ_ScreenButtonEx2.UseVisualStyleBackColor = false;
-            this.plC_RJ_ScreenButtonEx2.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButtonEx2.寫入位置註解 = "";
-            this.plC_RJ_ScreenButtonEx2.寫入元件位置 = "";
-            this.plC_RJ_ScreenButtonEx2.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
-            this.plC_RJ_ScreenButtonEx2.控制位址 = "D0";
-            this.plC_RJ_ScreenButtonEx2.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx2.致能讀取位置 = "";
-            this.plC_RJ_ScreenButtonEx2.讀取位元反向 = false;
-            this.plC_RJ_ScreenButtonEx2.讀取位置註解 = "";
-            this.plC_RJ_ScreenButtonEx2.讀取元件位置 = "";
-            this.plC_RJ_ScreenButtonEx2.音效 = true;
-            this.plC_RJ_ScreenButtonEx2.頁面名稱 = "調配排程";
-            this.plC_RJ_ScreenButtonEx2.頁面編號 = 0;
-            this.plC_RJ_ScreenButtonEx2.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButtonEx2.顯示狀態 = false;
-            this.plC_RJ_ScreenButtonEx2.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_調配排程.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx_調配排程.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx_調配排程.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_調配排程.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.調配排程_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_調配排程.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx_調配排程.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_ScreenButtonEx_調配排程.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx_調配排程.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_調配排程.but_press = false;
+            this.plC_RJ_ScreenButtonEx_調配排程.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx_調配排程.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButtonEx_調配排程.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_調配排程.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx_調配排程.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_調配排程.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_調配排程.GUID = "";
+            this.plC_RJ_ScreenButtonEx_調配排程.Image_padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_ScreenButtonEx_調配排程.Location = new System.Drawing.Point(93, 0);
+            this.plC_RJ_ScreenButtonEx_調配排程.Name = "plC_RJ_ScreenButtonEx_調配排程";
+            this.plC_RJ_ScreenButtonEx_調配排程.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_調配排程.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_調配排程.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_調配排程.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx_調配排程.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx_調配排程.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_調配排程.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx_調配排程.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx_調配排程.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx_調配排程.ShadowSize = 0;
+            this.plC_RJ_ScreenButtonEx_調配排程.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx_調配排程.Size = new System.Drawing.Size(88, 110);
+            this.plC_RJ_ScreenButtonEx_調配排程.State = false;
+            this.plC_RJ_ScreenButtonEx_調配排程.TabIndex = 36;
+            this.plC_RJ_ScreenButtonEx_調配排程.Text = "調配排程";
+            this.plC_RJ_ScreenButtonEx_調配排程.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_調配排程.TextHeight = 25;
+            this.plC_RJ_ScreenButtonEx_調配排程.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx_調配排程.Visible = false;
+            this.plC_RJ_ScreenButtonEx_調配排程.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx_調配排程.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_調配排程.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_調配排程.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx_調配排程.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx_調配排程.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx_調配排程.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_調配排程.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx_調配排程.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_調配排程.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_調配排程.音效 = true;
+            this.plC_RJ_ScreenButtonEx_調配排程.頁面名稱 = "調配排程";
+            this.plC_RJ_ScreenButtonEx_調配排程.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx_調配排程.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx_調配排程.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx_調配排程.顯示讀取位置 = "";
             // 
-            // plC_RJ_ScreenButtonEx1
+            // plC_RJ_ScreenButtonEx_自動備藥
             // 
-            this.plC_RJ_ScreenButtonEx1.AutoResetState = false;
-            this.plC_RJ_ScreenButtonEx1.BackColor = System.Drawing.Color.Transparent;
-            this.plC_RJ_ScreenButtonEx1.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx1.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.自動備藥_removebg_preview;
-            this.plC_RJ_ScreenButtonEx1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.plC_RJ_ScreenButtonEx1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_ScreenButtonEx1.BorderRadius = 10;
-            this.plC_RJ_ScreenButtonEx1.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx1.but_press = false;
-            this.plC_RJ_ScreenButtonEx1.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.plC_RJ_ScreenButtonEx1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButtonEx1.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_ScreenButtonEx1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_ScreenButtonEx1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_ScreenButtonEx1.ForeColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx1.GUID = "";
-            this.plC_RJ_ScreenButtonEx1.Image_padding = new System.Windows.Forms.Padding(5);
-            this.plC_RJ_ScreenButtonEx1.Location = new System.Drawing.Point(5, 0);
-            this.plC_RJ_ScreenButtonEx1.Name = "plC_RJ_ScreenButtonEx1";
-            this.plC_RJ_ScreenButtonEx1.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plC_RJ_ScreenButtonEx1.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx1.OffIconColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx1.OffText = "iConText";
-            this.plC_RJ_ScreenButtonEx1.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_ScreenButtonEx1.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx1.OnIconColor = System.Drawing.Color.LemonChiffon;
-            this.plC_RJ_ScreenButtonEx1.OnText = "iConText";
-            this.plC_RJ_ScreenButtonEx1.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_ScreenButtonEx1.ShadowSize = 0;
-            this.plC_RJ_ScreenButtonEx1.ShowLoadingForm = false;
-            this.plC_RJ_ScreenButtonEx1.Size = new System.Drawing.Size(88, 110);
-            this.plC_RJ_ScreenButtonEx1.State = false;
-            this.plC_RJ_ScreenButtonEx1.TabIndex = 24;
-            this.plC_RJ_ScreenButtonEx1.Text = "自動備藥";
-            this.plC_RJ_ScreenButtonEx1.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButtonEx1.TextHeight = 25;
-            this.plC_RJ_ScreenButtonEx1.UseVisualStyleBackColor = false;
-            this.plC_RJ_ScreenButtonEx1.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButtonEx1.寫入位置註解 = "";
-            this.plC_RJ_ScreenButtonEx1.寫入元件位置 = "";
-            this.plC_RJ_ScreenButtonEx1.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
-            this.plC_RJ_ScreenButtonEx1.控制位址 = "D0";
-            this.plC_RJ_ScreenButtonEx1.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx1.致能讀取位置 = "";
-            this.plC_RJ_ScreenButtonEx1.讀取位元反向 = false;
-            this.plC_RJ_ScreenButtonEx1.讀取位置註解 = "";
-            this.plC_RJ_ScreenButtonEx1.讀取元件位置 = "";
-            this.plC_RJ_ScreenButtonEx1.音效 = true;
-            this.plC_RJ_ScreenButtonEx1.頁面名稱 = "自動備藥";
-            this.plC_RJ_ScreenButtonEx1.頁面編號 = 0;
-            this.plC_RJ_ScreenButtonEx1.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButtonEx1.顯示狀態 = false;
-            this.plC_RJ_ScreenButtonEx1.顯示讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_自動備藥.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx_自動備藥.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx_自動備藥.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_自動備藥.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources.自動備藥_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_自動備藥.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx_自動備藥.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.plC_RJ_ScreenButtonEx_自動備藥.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx_自動備藥.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_自動備藥.but_press = false;
+            this.plC_RJ_ScreenButtonEx_自動備藥.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx_自動備藥.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButtonEx_自動備藥.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx_自動備藥.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx_自動備藥.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_ScreenButtonEx_自動備藥.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_自動備藥.GUID = "";
+            this.plC_RJ_ScreenButtonEx_自動備藥.Image_padding = new System.Windows.Forms.Padding(5);
+            this.plC_RJ_ScreenButtonEx_自動備藥.Location = new System.Drawing.Point(5, 0);
+            this.plC_RJ_ScreenButtonEx_自動備藥.Name = "plC_RJ_ScreenButtonEx_自動備藥";
+            this.plC_RJ_ScreenButtonEx_自動備藥.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.plC_RJ_ScreenButtonEx_自動備藥.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_自動備藥.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_自動備藥.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx_自動備藥.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_ScreenButtonEx_自動備藥.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx_自動備藥.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx_自動備藥.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx_自動備藥.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx_自動備藥.ShadowSize = 0;
+            this.plC_RJ_ScreenButtonEx_自動備藥.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx_自動備藥.Size = new System.Drawing.Size(88, 110);
+            this.plC_RJ_ScreenButtonEx_自動備藥.State = false;
+            this.plC_RJ_ScreenButtonEx_自動備藥.TabIndex = 24;
+            this.plC_RJ_ScreenButtonEx_自動備藥.Text = "自動備藥";
+            this.plC_RJ_ScreenButtonEx_自動備藥.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx_自動備藥.TextHeight = 25;
+            this.plC_RJ_ScreenButtonEx_自動備藥.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx_自動備藥.Visible = false;
+            this.plC_RJ_ScreenButtonEx_自動備藥.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx_自動備藥.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_自動備藥.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_自動備藥.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx_自動備藥.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx_自動備藥.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx_自動備藥.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx_自動備藥.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx_自動備藥.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx_自動備藥.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx_自動備藥.音效 = true;
+            this.plC_RJ_ScreenButtonEx_自動備藥.頁面名稱 = "自動備藥";
+            this.plC_RJ_ScreenButtonEx_自動備藥.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx_自動備藥.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx_自動備藥.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx_自動備藥.顯示讀取位置 = "";
             // 
             // openFileDialog_LoadExcel
             // 
@@ -19650,6 +19695,23 @@ namespace 癌症自動備藥機暨排程系統
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|Excel File (*.xls)|*.xls|txt File (*.txt)|*.txt;";
+            // 
+            // textBox_自動備藥_密碼
+            // 
+            this.textBox_自動備藥_密碼.Font = new System.Drawing.Font("新細明體", 12F);
+            this.textBox_自動備藥_密碼.Location = new System.Drawing.Point(82, 22);
+            this.textBox_自動備藥_密碼.Name = "textBox_自動備藥_密碼";
+            this.textBox_自動備藥_密碼.Size = new System.Drawing.Size(260, 27);
+            this.textBox_自動備藥_密碼.TabIndex = 2;
+            this.textBox_自動備藥_密碼.UseSystemPasswordChar = true;
+            // 
+            // textBox_帳號
+            // 
+            this.textBox_帳號.Font = new System.Drawing.Font("新細明體", 12F);
+            this.textBox_帳號.Location = new System.Drawing.Point(82, 23);
+            this.textBox_帳號.Name = "textBox_帳號";
+            this.textBox_帳號.Size = new System.Drawing.Size(260, 27);
+            this.textBox_帳號.TabIndex = 1;
             // 
             // Main_Form
             // 
@@ -19666,16 +19728,18 @@ namespace 癌症自動備藥機暨排程系統
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.plC_ScreenPage_main.ResumeLayout(false);
+            this.登入畫面.ResumeLayout(false);
+            this.panel_登入畫面.ResumeLayout(false);
+            this.panel_登入系統.ResumeLayout(false);
+            this.panel185.ResumeLayout(false);
+            this.panel185.PerformLayout();
+            this.panel183.ResumeLayout(false);
+            this.panel183.PerformLayout();
             this.自動備藥.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel_備藥狀態.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel185.ResumeLayout(false);
-            this.panel185.PerformLayout();
-            this.panel183.ResumeLayout(false);
-            this.panel183.PerformLayout();
             this.調配排程.ResumeLayout(false);
             this.rJ_Pannel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -19783,19 +19847,10 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_ScreenPage plC_ScreenPage_main;
         private System.Windows.Forms.TabPage 自動備藥;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabPage 系統;
         private System.Windows.Forms.TabPage 調配排程;
         private System.Windows.Forms.TabPage 出入庫作業;
-        private System.Windows.Forms.Panel panel185;
-        private System.Windows.Forms.TextBox textBox_自動備藥_帳號;
-        private System.Windows.Forms.Panel panel186;
-        private System.Windows.Forms.Panel panel183;
-        private System.Windows.Forms.TextBox textBox_自動備藥_密碼;
-        private System.Windows.Forms.Panel panel184;
-        private MyUI.RJ_Lable rJ_Lable1;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_自動備藥_登入;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private MyUI.PLC_RJ_Button plC_RJ_Button_開始備藥;
@@ -20472,7 +20527,6 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.RJ_Lable rJ_Lable6;
         private MyUI.PLC_RJ_Button plC_RJ_Button_出入庫作業_條碼建置;
         private RFID_FX600lib.RFID_FX600_UI rfiD_FX600_UI;
-        private MyUI.RJ_Lable rJ_Lable_自動備藥_登入狀態;
         private MyUI.PLC_RJ_Button plC_RJ_Button_自動備藥_手動選擇備藥;
         private MyUI.PLC_RJ_Button plC_RJ_Button_馬達輸出索引表_刪除;
         private System.Windows.Forms.Panel panel_備藥狀態;
@@ -20481,14 +20535,14 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.RJ_Lable rJ_Lable_備藥狀態_常溫;
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_卡號建置;
         private System.Windows.Forms.TabPage 登入畫面;
-        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx5;
-        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx4;
-        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx6;
-        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx7;
-        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx8;
-        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx3;
-        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx2;
-        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx1;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_儲位設定;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_工程模式;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_系統;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_交易紀錄;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_人員資料;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_出入庫作業;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_調配排程;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_自動備藥;
         private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx9;
         private System.Windows.Forms.Panel panel47;
         private MyUI.PLC_RJ_Button plC_RJ_Button_登出;
@@ -20500,6 +20554,20 @@ namespace 癌症自動備藥機暨排程系統
         private System.Windows.Forms.Panel panel49;
         private System.Windows.Forms.Panel panel52;
         private System.Windows.Forms.Panel panel46;
+        private System.Windows.Forms.Panel panel_登入畫面;
+        private MyUI.RJ_Lable rJ_Lable2;
+        private System.Windows.Forms.Panel panel_登入系統;
+        private MyUI.RJ_Lable rJ_Lable_登入畫面_登入狀態;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_登入畫面_登入;
+        private System.Windows.Forms.Panel panel185;
+        private System.Windows.Forms.TextBox textBox_登入畫面_帳號;
+        private System.Windows.Forms.Panel panel186;
+        private System.Windows.Forms.Panel panel183;
+        private System.Windows.Forms.TextBox textBox_登入畫面_密碼;
+        private System.Windows.Forms.Panel panel184;
+        private MyUI.RJ_Lable rJ_Lable1;
+        private System.Windows.Forms.TextBox textBox_自動備藥_密碼;
+        private System.Windows.Forms.TextBox textBox_帳號;
     }
 }
 
