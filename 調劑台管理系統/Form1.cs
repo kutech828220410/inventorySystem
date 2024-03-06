@@ -365,6 +365,7 @@ namespace 調劑台管理系統
         {
             if (this.DesignMode == false)
             {
+                LoadingForm.form = this.FindForm();
                 MyMessageBox.form = this.FindForm();
                 Dialog_交易紀錄明細.form = this.FindForm();
                 Dialog_NumPannel.form = this.FindForm();

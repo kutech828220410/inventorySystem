@@ -51,8 +51,7 @@ namespace 癌症自動備藥機暨排程系統
                 }));
             }
             this._login_name = login_name;
-            udnoectc = udnoectcs[0];
-            this.uc_備藥通知內容.Init(udnoectc , login_name, false);
+            this.udnoectc = udnoectcs[0];
 
 
         }
@@ -61,7 +60,8 @@ namespace 癌症自動備藥機暨排程系統
 
         private void Dialog_備藥清單_Load(object sender, EventArgs e)
         {
-    
+          
+            this.uc_備藥通知內容.Init(udnoectc, _login_name, false);
             this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
             this.plC_RJ_Button_確認.MouseDownEvent += PlC_RJ_Button_確認_MouseDownEvent;
             this.plC_RJ_Button_變異紀錄.MouseDownEvent += PlC_RJ_Button_變異紀錄_MouseDownEvent;

@@ -188,6 +188,7 @@ namespace 癌症自動備藥機暨排程系統
                 storage = _storageUI_EPD_266.SQL_GetStorage(storage);
                 storage.效期庫存異動(效期, 批號, 數量.ToString());
                 _storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                _storageUI_EPD_266.DrawToEpd_UDP(storage);
             }
             if (_enum_type == enum_type.出庫)
             {
@@ -224,6 +225,7 @@ namespace 癌症自動備藥機暨排程系統
 
               
                 _storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                _storageUI_EPD_266.DrawToEpd_UDP(storage);
             }
 
             List<Storage> storages = _storageUI_EPD_266.SQL_GetAllStorage();

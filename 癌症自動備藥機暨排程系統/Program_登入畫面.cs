@@ -28,7 +28,7 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Main_Form : Form
     {
-        public string 登入者名稱
+        static public string 登入者名稱
         {
             get
             {
@@ -233,11 +233,11 @@ namespace 癌症自動備藥機暨排程系統
             {
                 this.Invoke(new Action(delegate
                 {
-                    this.plC_RJ_Button_登入畫面_登入.SetBackgroundColor(Color.DarkRed);
-                    this.plC_RJ_Button_登入畫面_登入.Texts = "登出";
+                    //this.plC_RJ_Button_登入畫面_登入.SetBackgroundColor(Color.DarkRed);
+                    //this.plC_RJ_Button_登入畫面_登入.Texts = "登出";
                     this.rJ_Lable_登入畫面_登入狀態.TextColor = Color.White;
-                    this.rJ_Lable_登入畫面_登入狀態.Text = $"[{sessionClass_登入畫面.Name}] 已登入";
-                    this.rJ_Lable_登入畫面_登入狀態.BackgroundColor = Color.Green;
+                    //this.rJ_Lable_登入畫面_登入狀態.Text = $"[{sessionClass_登入畫面.Name}] 已登入";
+                    //this.rJ_Lable_登入畫面_登入狀態.BackgroundColor = Color.Green;
                     this.textBox_登入畫面_帳號.Enabled = false;
                     this.textBox_登入畫面_密碼.Enabled = false;
                     this.plC_RJ_Button_登入畫面_登入.Refresh();
@@ -282,14 +282,15 @@ namespace 癌症自動備藥機暨排程系統
         {
             this.Invoke(new Action(delegate 
             {
-                plC_RJ_ScreenButtonEx_自動備藥.Visible = true;
-                plC_RJ_ScreenButtonEx_調配排程.Visible = true;
-                plC_RJ_ScreenButtonEx_出入庫作業.Visible = true;
-                plC_RJ_ScreenButtonEx_人員資料.Visible = true;
-                plC_RJ_ScreenButtonEx_儲位設定.Visible = true;
-                plC_RJ_ScreenButtonEx_交易紀錄.Visible = true;
-                plC_RJ_ScreenButtonEx_工程模式.Visible = true;
                 plC_RJ_ScreenButtonEx_系統.Visible = true;
+                plC_RJ_ScreenButtonEx_工程模式.Visible = true;
+                plC_RJ_ScreenButtonEx_交易紀錄.Visible = true;
+                plC_RJ_ScreenButtonEx_儲位設定.Visible = true;
+                plC_RJ_ScreenButtonEx_人員資料.Visible = true;
+                plC_RJ_ScreenButtonEx_出入庫作業.Visible = true;
+                plC_RJ_ScreenButtonEx_調配排程.Visible = true;
+                plC_RJ_ScreenButtonEx_自動備藥.Visible = true;
+
             }));
         }
         private void Function_登入畫面_權限登出()

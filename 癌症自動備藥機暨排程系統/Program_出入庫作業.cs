@@ -177,7 +177,7 @@ namespace 癌症自動備藥機暨排程系統
             Dialog_入出庫作業.enum_type enum_Type = new Dialog_入出庫作業.enum_type();
             if (plC_RJ_Button_出入庫作業_入庫.Bool) enum_Type = Dialog_入出庫作業.enum_type.入庫;
             if (plC_RJ_Button_出入庫作業_出庫.Bool) enum_Type = Dialog_入出庫作業.enum_type.出庫;
-            Dialog_入出庫作業 dialog_入出庫作業 = new Dialog_入出庫作業(enum_Type ,this.登入者名稱, 藥碼, 藥品名稱, storageUI_EPD_266);
+            Dialog_入出庫作業 dialog_入出庫作業 = new Dialog_入出庫作業(enum_Type ,登入者名稱, 藥碼, 藥品名稱, storageUI_EPD_266);
             dialog_入出庫作業.ShowDialog();
 
             List<medClass> medClasses = Function_取得有儲位藥檔資料();

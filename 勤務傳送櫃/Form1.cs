@@ -182,6 +182,7 @@ namespace 勤務傳送櫃
         {
             if (this.DesignMode == false)
             {
+                LoadingForm.form = this.FindForm();
                 MyMessageBox.form = this.FindForm();
                 Dialog_修改密碼.form = this.FindForm();
                 Dialog_更改病房名稱.form = this.FindForm();

@@ -106,21 +106,7 @@ namespace HIS_DB_Lib
         盤存盈虧,
         None,
     }
-    public class StockClass
-    {
-
-        [JsonPropertyName("code")]
-        public string Code { get; set; }
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-        [JsonPropertyName("validity_period")]
-        public string Validity_period { get; set; }
-        [JsonPropertyName("lot_number")]
-        public string Lot_number { get; set; }
-        [JsonPropertyName("qty")]
-        public string Qty { get; set; }
-
-    }
+ 
 
     public class transactionsClass
     {

@@ -82,10 +82,14 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_儲位設定_儲位列表_上傳面板.MouseDownEvent += PlC_RJ_Button_儲位設定_儲位列表_上傳面板_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_儲位列表_清除燈號.MouseDownEvent += PlC_RJ_Button_儲位設定_儲位列表_清除燈號_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_儲位列表_亮燈.MouseDownEvent += PlC_RJ_Button_儲位設定_儲位列表_亮燈_MouseDownEvent;
+            this.plC_RJ_Button_儲位設定_效期批號修正.MouseDownEvent += PlC_RJ_Button_儲位設定_效期批號修正_MouseDownEvent;
 
             Function_取得本地儲位();
             plC_UI_Init.Add_Method(Program_儲位設定);
         }
+
+      
+
         private void Program_儲位設定()
         {
             if (myConfigClass.主機模式 == false) return;
@@ -170,6 +174,31 @@ namespace 癌症自動備藥機暨排程系統
 
         #endregion
         #region Function
+        private void Function_儲位設定_重新整理()
+        {
+            List<Storage> storages = storageUI_EPD_266.SQL_GetAllStorage();
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < storages.Count; i++)
+            {
+                string GUID = storages[i].GUID;
+                string IP = storages[i].IP;
+                string 藥碼 = storages[i].Code;
+                string 藥名 = storages[i].Name;
+                string 單位 = storages[i].Package;
+                string 包裝量 = storages[i].Min_Package_Num;
+                string 庫存 = storages[i].Inventory;
+                object[] value = new object[new enum_儲位列表().GetLength()];
+                value[(int)enum_儲位列表.GUID] = GUID;
+                value[(int)enum_儲位列表.IP] = IP;
+                value[(int)enum_儲位列表.藥碼] = 藥碼;
+                value[(int)enum_儲位列表.藥名] = 藥名;
+                value[(int)enum_儲位列表.單位] = 單位;
+                value[(int)enum_儲位列表.包裝量] = 包裝量;
+                value[(int)enum_儲位列表.庫存] = 庫存;
+                list_value.Add(value);
+            }
+            sqL_DataGridView_儲位列表.RefreshGrid(list_value);
+        }
         #endregion
         #region Event
         private void SqL_DataGridView_儲位列表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
@@ -341,9 +370,10 @@ namespace 癌症自動備藥機暨排程系統
                 value[(int)enum_儲位列表.庫存] = "0";
                 sqL_DataGridView_儲位列表.ReplaceExtra(value, true);
             }
-            LoadingForm.CloseLoadingForm();
+            
             dialog_AlarmForm = new Dialog_AlarmForm("設定完成", 1000, 0, -200, Color.DarkRed);
             dialog_AlarmForm.ShowDialog();
+            LoadingForm.CloseLoadingForm();
         }
         private void PlC_RJ_Button_儲位設定_藥品搜尋_填入至儲位_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -430,31 +460,27 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void PlC_RJ_Button_儲位設定_儲位列表_重新整理_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<Storage> storages = storageUI_EPD_266.SQL_GetAllStorage();
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < storages.Count; i++)
+            Function_儲位設定_重新整理();
+        }
+        private void PlC_RJ_Button_儲位設定_效期批號修正_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_儲位列表 = sqL_DataGridView_儲位列表.Get_All_Select_RowsValues();
+            Dialog_AlarmForm dialog_AlarmForm;
+            if (list_儲位列表.Count == 0)
             {
-                string GUID = storages[i].GUID;
-                string IP = storages[i].IP;
-                string 藥碼 = storages[i].Code;
-                string 藥名 = storages[i].Name;
-                string 單位 = storages[i].Package;
-                string 包裝量 = storages[i].Min_Package_Num;
-                string 庫存 = storages[i].Inventory;
-                object[] value = new object[new enum_儲位列表().GetLength()];
-                value[(int)enum_儲位列表.GUID] = GUID;
-                value[(int)enum_儲位列表.IP] = IP;
-                value[(int)enum_儲位列表.藥碼] = 藥碼;
-                value[(int)enum_儲位列表.藥名] = 藥名;
-                value[(int)enum_儲位列表.單位] = 單位;
-                value[(int)enum_儲位列表.包裝量] = 包裝量;
-                value[(int)enum_儲位列表.庫存] = 庫存;
-                list_value.Add(value);
+                dialog_AlarmForm = new Dialog_AlarmForm("未選擇儲位", 2000, 0, -200, Color.DarkRed);
+                dialog_AlarmForm.ShowDialog();
+                return;
             }
-            sqL_DataGridView_儲位列表.RefreshGrid(list_value);
+            string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
+            Storage storage = storageUI_EPD_266.SQL_GetStorage(IP);
+            Dialog_效期批號修改 dialog_效期批號修改 = new Dialog_效期批號修改(storage, storageUI_EPD_266);
+            dialog_效期批號修改.ShowDialog();
+
+            Function_儲位設定_重新整理();
         }
         #endregion
-       
+
 
 
         private class ICP_儲位列表 : IComparer<object[]>

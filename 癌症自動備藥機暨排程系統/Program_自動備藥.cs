@@ -36,7 +36,7 @@ namespace 癌症自動備藥機暨排程系統
           
             plC_RJ_Button_開始備藥.MouseDownEvent += PlC_RJ_Button_開始備藥_MouseDownEvent;
             plC_RJ_Button_自動備藥_手動選擇備藥.MouseDownEvent += PlC_RJ_Button_自動備藥_手動選擇備藥_MouseDownEvent;
- 
+            plC_RJ_Button_自動備藥_重新整理.MouseDownEvent += PlC_RJ_Button_自動備藥_重新整理_MouseDownEvent;
             this.uc_備藥通知處方.Init();
 
 
@@ -49,7 +49,7 @@ namespace 癌症自動備藥機暨排程系統
             //plC_UI_Init.Add_Method(Program_自動備藥);
         }
 
-     
+      
 
         private void Program_自動備藥()
         {
@@ -240,7 +240,7 @@ namespace 癌症自動備藥機暨排程系統
                 transactionsClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
                 transactionsClass.藥品碼 = storage.Code;
                 transactionsClass.藥品名稱 = storage.Name;
-                transactionsClass.操作人 = this.登入者名稱;
+                transactionsClass.操作人 = 登入者名稱;
                 transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.庫存量 = 原有庫存.ToString(); ;
@@ -319,7 +319,7 @@ namespace 癌症自動備藥機暨排程系統
                 transactionsClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
                 transactionsClass.藥品碼 = storage.Code;
                 transactionsClass.藥品名稱 = storage.Name;
-                transactionsClass.操作人 = this.登入者名稱;
+                transactionsClass.操作人 = 登入者名稱;
                 transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
                 transactionsClass.庫存量 = 原有庫存.ToString(); ;
@@ -396,9 +396,7 @@ namespace 癌症自動備藥機暨排程系統
         #region Function
     
         #endregion
-        #region Event
-     
-     
+        #region Event    
         private void PlC_RJ_Button_開始備藥_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.uc_備藥通知處方.GetSelectedRows();
@@ -414,6 +412,12 @@ namespace 癌症自動備藥機暨排程系統
                 Dialog_備藥清單 dialog_備藥清單 = new Dialog_備藥清單(GUID , 登入者名稱);
                 dialog_備藥清單.ShowDialog();
             }));           
+        }
+        private void PlC_RJ_Button_自動備藥_重新整理_MouseDownEvent(MouseEventArgs mevent)
+        {
+            LoadingForm.ShowLoadingForm();
+            this.uc_備藥通知處方.RefreshGrid();
+            LoadingForm.CloseLoadingForm();
         }
         private void PlC_RJ_Button_自動備藥_手動選擇備藥_MouseDownEvent(MouseEventArgs mevent)
         {

@@ -58,18 +58,29 @@ namespace 癌症自動備藥機暨排程系統
             ToolStripMenuItem_取得即時備藥通知.Click += ToolStripMenuItem_取得即時備藥通知_Click;
         }
 
-     
+
+        public void RefreshGrid()
+        {
+            this.Function_取得備藥通知(DateTime.Now.AddDays(-1), DateTime.Now, true);
+        }
 
         public List<object[]> GetSelectedRows()
         {
             List<object[]> list_value = this.sqL_DataGridView_備藥通知.Get_All_Select_RowsValues();
             return list_value;
         }
-        public List<object[]> Function_取得備藥通知(DateTime dt_start, DateTime dt_end)
+
+        public List<object[]> Function_取得備藥通知(DateTime dt_start, DateTime dt_end, bool flag_refresh_grid)
         {
-            return Function_取得備藥通知(dt_start, dt_end, false);
+            List<object[]> list_udnoectc = Function_取得備藥通知(dt_start, dt_end);
+
+            if (flag_refresh_grid)
+            {
+                this.sqL_DataGridView_備藥通知.RefreshGrid(list_udnoectc);
+            }
+            return list_udnoectc;
         }
-        public List<object[]> Function_取得備藥通知(DateTime dt_start, DateTime dt_end , bool flag_refresh_grid)
+        static public List<object[]> Function_取得備藥通知(DateTime dt_start, DateTime dt_end)
         {
             string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_ctdate_st_end";
             returnData returnData = new returnData();
@@ -83,10 +94,6 @@ namespace 癌症自動備藥機暨排程系統
             List<udnoectc> udnoectcs = returnData.Data.ObjToListClass<udnoectc>();
             List<object[]> list_udnoectc = udnoectcs.ClassToSQL<udnoectc, enum_udnoectc>();
 
-            if(flag_refresh_grid)
-            {
-                this.sqL_DataGridView_備藥通知.RefreshGrid(list_udnoectc);
-            }
             return list_udnoectc;
         }
   
@@ -171,7 +178,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void ToolStripMenuItem_取得即時備藥通知_Click(object sender, EventArgs e)
         {
-            this.Function_取得備藥通知(DateTime.Now.AddDays(-12), DateTime.Now, true); 
+            this.Function_取得備藥通知(DateTime.Now.AddDays(-30), DateTime.Now, true); 
         }
 
         public class ICP_備藥通知 : IComparer<object[]>
