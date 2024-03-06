@@ -28,6 +28,7 @@ namespace 調劑台管理系統
 
     public partial class Form1 : Form
     {
+   
         public bool ControlMode = false;
         private bool flag_Init = false;
         public static string ServerName = "";

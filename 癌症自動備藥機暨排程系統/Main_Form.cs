@@ -26,6 +26,15 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Main_Form : Form
     {
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
         public static string ServerName = "";
         public static string ServerType = enum_ServerSetting_Type.癌症備藥機.GetEnumName();
         public static string API_Server = "";
@@ -277,6 +286,7 @@ namespace 癌症自動備藥機暨排程系統
             ApiServerSetting();
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main01, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
+            Program_登入畫面_Init();
             Program_系統_Init();
             Program_輸入輸出_Init();
             Program_軸控_Init();

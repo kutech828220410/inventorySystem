@@ -29,7 +29,7 @@ namespace 癌症自動備藥機暨排程系統
     public partial class Main_Form : Form
     {
         MyThread myThread_開始備藥;
-        public PLC_Device PLC_Device_自動備藥_已登入 = new PLC_Device();
+
         static public sessionClass SessionClass_自動備藥;
         public sessionClass sessionClass_自動備藥
         {

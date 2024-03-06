@@ -103,6 +103,16 @@ namespace 癌症自動備藥機暨排程系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap 使用者資訊 {
+            get {
+                object obj = ResourceManager.GetObject("使用者資訊", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap 儲位設定_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("儲位設定-removebg-preview", resourceCulture);
@@ -176,6 +186,16 @@ namespace 癌症自動備藥機暨排程系統.Properties {
         internal static System.Drawing.Bitmap 調配排程_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("調配排程-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 退出程式 {
+            get {
+                object obj = ResourceManager.GetObject("退出程式", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -326,6 +326,9 @@
     <Compile Include="Program_登入權限資料.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_登入畫面.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_系統.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -425,6 +428,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\使用者資訊.png" />
+    <None Include="Resources\退出程式.png" />
     <None Include="Resources\人員資料-removebg-preview.png" />
     <None Include="Resources\出入庫作業-removebg-preview1.png" />
     <None Include="Resources\工程模式-removebg-preview.png" />
