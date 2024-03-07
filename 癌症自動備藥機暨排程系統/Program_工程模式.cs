@@ -2044,6 +2044,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (出料一次_區域 == "常溫")
                 {
                     if (PLC_Device_常溫區輸送帶後退.Bool) return;
@@ -2075,6 +2080,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (出料一次_區域 == "常溫")
                 {
                     if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
@@ -2115,6 +2125,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (出料一次_區域 == "常溫")
                 {
                     if (PLC_Device_常溫區X軸_絕對位置移動.Bool) return;
@@ -2147,6 +2162,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (出料一次_區域 == "常溫")
                 {
                     if (出料一次_藥盒方位 == "左")
@@ -2212,6 +2232,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (出料一次_區域 == "常溫")
                 {
                     if (PLC_Device_常溫區輸送帶前進.Bool) return;
@@ -2244,6 +2269,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (出料一次_區域 == "常溫")
                 {
                     if (PLC_Device_常溫區輸送帶前進.Bool) return;
@@ -2274,6 +2304,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 string IP = 出料一次_IP;
                 List<object[]> list_replace = new List<object[]>();
                 List<object[]> list_馬達輸出索引表 = this.sqL_DataGridView_馬達輸出索引表.SQL_GetRows((int)enum_CMPM_StorageConfig.IP, IP, false);
@@ -2307,6 +2342,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (MyTimer_出料一次_觸發出料一次延遲.IsTimeOut())
                 {
                     flag_OK = true;
@@ -2329,6 +2369,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 string IP = 出料一次_IP;
                 List<object[]> list_馬達輸出索引表 = this.sqL_DataGridView_馬達輸出索引表.SQL_GetRows((int)enum_CMPM_StorageConfig.IP, IP, false);
                 if (list_馬達輸出索引表.Count == 0)
@@ -2365,6 +2410,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (MyTimer_出料一次_出料後延遲.IsTimeOut())
                 {
                     flag_OK = true;
@@ -2387,6 +2437,11 @@ namespace 癌症自動備藥機暨排程系統
             bool flag_OK = false;
             try
             {
+                if (!Function_檢查軸控Alarm())
+                {
+                    cnt = 65500;
+                    return;
+                }
                 if (出料一次_區域 == "常溫")
                 {
                     if (PLC_Device_常溫區輸送帶後退.Bool) return;

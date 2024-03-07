@@ -149,6 +149,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_初始化(ref int cnt)
         {
+            if(!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             this.Invoke(new Action(delegate
             {
                 panel_備藥狀態.Visible = true;
@@ -191,6 +196,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_藥盒從進出盒區傳送至常溫區(ref int cnt)
         {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             this.Invoke(new Action(delegate
             {
                 rJ_Lable_備藥狀態_常溫.Text = $"【常溫】({cnt_自動備藥_開始備藥_常溫_已完成}/{list_自動備藥_開始備藥_常溫.Count })";
@@ -204,11 +214,21 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_等待藥盒從進出盒區傳送至常溫區完成(ref int cnt)
         {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             if (PLC_Device_將藥盒從進出盒區傳接至常溫區.Bool) return;
             cnt++;
         }
         void cnt_Program_自動備藥_開始備藥_常溫區_出料一次(ref int cnt)
         {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             for (int i = 0; i < list_自動備藥_開始備藥_常溫.Count; i++)
             {
                 this.Invoke(new Action(delegate
@@ -256,7 +276,12 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_藥盒從常溫區傳送至冷藏區(ref int cnt)
         {
-            if(list_自動備藥_開始備藥_冷藏.Count == 0)
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
+            if (list_自動備藥_開始備藥_冷藏.Count == 0)
             {
                 cnt++;
                 return;
@@ -273,6 +298,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_等待藥盒從常溫區傳送至冷藏區完成(ref int cnt)
         {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             if (list_自動備藥_開始備藥_冷藏.Count == 0)
             {
                 cnt++;
@@ -283,6 +313,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_冷藏區_出料一次(ref int cnt)
         {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             if (list_自動備藥_開始備藥_冷藏.Count == 0)
             {
                 cnt++;
@@ -335,6 +370,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_藥盒從冷藏區傳接至常溫區(ref int cnt)
         {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             if (list_自動備藥_開始備藥_冷藏.Count == 0)
             {
                 cnt++;
@@ -354,6 +394,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_等待藥盒從冷藏區傳接至常溫區_已到傳接位置(ref int cnt)
         {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             if (list_自動備藥_開始備藥_冷藏.Count == 0)
             {
                 cnt++;
@@ -376,6 +421,11 @@ namespace 癌症自動備藥機暨排程系統
         }
         void cnt_Program_自動備藥_開始備藥_藥盒從常溫區傳接至進出盒區(ref int cnt)
         {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
             this.Invoke(new Action(delegate
             {
                 rJ_Lable_備藥狀態_常溫.Text = $"【常溫】({cnt_自動備藥_開始備藥_常溫_已完成}/{list_自動備藥_開始備藥_常溫.Count })";

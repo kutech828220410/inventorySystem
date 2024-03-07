@@ -37,14 +37,45 @@ namespace 癌症自動備藥機暨排程系統
         PLC_Device PLC_IO_冷藏區X軸_現在位置 = new PLC_Device("R5000");
         PLC_Device PLC_IO_冷藏區Z軸_解剎車 = new PLC_Device("Y13");
 
-
-
-
-
         PLC_Device PLC_IO_常溫區X軸_現在位置 = new PLC_Device("R5200");
         PLC_Device PLC_IO_常溫區Z軸_解剎車 = new PLC_Device("Y12");
 
+        PLC_Device PLC_IO_常溫區X軸_Alarm = new PLC_Device("X125");
+        PLC_Device PLC_IO_常溫區Z軸_Alarm = new PLC_Device("X135");
+        PLC_Device PLC_IO_冷藏區X軸_Alarm = new PLC_Device("X105");
+        PLC_Device PLC_IO_冷藏區Z軸_Alarm = new PLC_Device("X115");
+        PLC_Device PLC_IO_進出盒區_Y軸_Alarm = new PLC_Device("X145");
 
+        private bool Function_檢查軸控Alarm()
+        {
+            string msg = "";
+            if (PLC_IO_常溫區X軸_Alarm.Bool)
+            {
+                msg += "常溫區X軸電機異常\n";
+            }
+            if (PLC_IO_常溫區Z軸_Alarm.Bool)
+            {
+                msg += "常溫區Z軸電機異常\n";
+            }
+            if (PLC_IO_冷藏區X軸_Alarm.Bool)
+            {
+                msg += "冷藏區X軸電機異常\n";
+            }
+            if (PLC_IO_冷藏區Z軸_Alarm.Bool)
+            {
+                msg += "冷藏區Z軸電機異常\n";
+            }
+            if (PLC_IO_進出盒區_Y軸_Alarm.Bool)
+            {
+                msg += "進出盒區Y軸電機異常\n";
+            }
+            if (msg.StringIsEmpty()) return true;
+            else
+            {
+                MyMessageBox.ShowDialog(msg);
+                return false;
+            }
+        }
 
 
         DeltaMotor485.Port DeltaMotor485_port_冷藏區_X軸 = new DeltaMotor485.Port();
