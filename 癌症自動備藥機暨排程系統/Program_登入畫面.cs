@@ -67,6 +67,7 @@ namespace 癌症自動備藥機暨排程系統
         public PLC_Device PLC_Device_登入畫面_未登入 = new PLC_Device("S4001");
         private void Program_登入畫面_Init()
         {
+            PLC_Device_登入畫面_已登入.Bool = false;
             plC_RJ_Button_登入畫面_登入.MouseClickEvent += PlC_RJ_Button_登入畫面_登入_MouseClickEvent;
             plC_RJ_Button_登出.MouseDownEvent += PlC_RJ_Button_登出_MouseDownEvent;
             textBox_登入畫面_帳號.KeyPress += TextBox_登入畫面_帳號_KeyPress;
@@ -81,6 +82,14 @@ namespace 癌症自動備藥機暨排程系統
         private void Program_登入畫面()
         {
             PLC_Device_登入畫面_未登入.Bool = (!PLC_Device_登入畫面_已登入.Bool);
+            
+            //if(plC_RJ_Button_登出.Enabled != PLC_Device_登入畫面_已登入.Bool)
+            //{
+            //    this.Invoke(new Action(delegate 
+            //    {
+            //        plC_RJ_Button_登出.Enabled = PLC_Device_登入畫面_已登入.Bool;
+            //    }));
+            //}
             sub_Program_登入畫面_RFID登入();
         }
         #region PLC_登入畫面_RFID登入
@@ -247,7 +256,8 @@ namespace 癌症自動備藥機暨排程系統
                 Function_登入畫面_權限登入();
                 //Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"登入成功 {sessionClass_登入畫面.Name}", 1500, Color.Green);
                 //dialog_AlarmForm.ShowDialog();
-                this.plC_ScreenPage_main.SelecteTabText("自動備藥");
+                if (myConfigClass.主機模式 == true) this.plC_ScreenPage_main.SelecteTabText("自動備藥");
+                if (myConfigClass.主機模式 == false) this.plC_ScreenPage_main.SelecteTabText("調配排程");
                 return;
             }
             else
@@ -283,13 +293,13 @@ namespace 癌症自動備藥機暨排程系統
             this.Invoke(new Action(delegate 
             {
                 plC_RJ_ScreenButtonEx_系統.Visible = true;
-                plC_RJ_ScreenButtonEx_工程模式.Visible = true;
+                if (myConfigClass.主機模式 == true) plC_RJ_ScreenButtonEx_工程模式.Visible = true;
                 plC_RJ_ScreenButtonEx_交易紀錄.Visible = true;
                 plC_RJ_ScreenButtonEx_儲位設定.Visible = true;
                 plC_RJ_ScreenButtonEx_人員資料.Visible = true;
                 plC_RJ_ScreenButtonEx_出入庫作業.Visible = true;
                 plC_RJ_ScreenButtonEx_調配排程.Visible = true;
-                plC_RJ_ScreenButtonEx_自動備藥.Visible = true;
+                if (myConfigClass.主機模式 == true) plC_RJ_ScreenButtonEx_自動備藥.Visible = true;
 
             }));
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj": {}
+    "C:\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj": {
+    "C:\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj",
+        "projectUniqueName": "C:\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj",
         "projectName": "勤務傳送櫃",
-        "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj",
+        "projectPath": "C:\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\obj\\",
+        "outputPath": "C:\\inventorySystem\\勤務傳送櫃\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
