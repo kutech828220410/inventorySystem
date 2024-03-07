@@ -949,6 +949,9 @@ namespace 勤務傳送櫃
         {
             bool flag = this.rFID_UI.GetOutput(this.IP, this.Led_output_num);
             this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, !flag);
+
+            if (flag && (LightCheck == false)) PharmacyLightOff();
+            if (!flag && (LightCheck == false)) PharmacyLightOn();
         }
         private void 電子紙設定ToolStripMenuItem_Click(object sender, EventArgs e)
         {
