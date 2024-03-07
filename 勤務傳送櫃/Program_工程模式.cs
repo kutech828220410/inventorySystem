@@ -16,6 +16,7 @@ namespace 勤務傳送櫃
   
         private void Program_工程模式_Init()
         {
+            Pannel_Box.LightCheck = !plC_CheckBox_不檢查處方亮燈.Bool;
             this.plC_UI_Init.Add_Method(Program_蜂鳴警報檢查);
         }
         #region PLC_蜂鳴警報檢查

@@ -26,7 +26,7 @@ namespace 勤務傳送櫃
         public static int PharLightOnTime = 5000;
         public static int InitDelay = 2000;
         public static bool flag_Run = false;
-
+        public static bool LightCheck = true;
         public static List<string> GetAllWardName()
         {
             List<string> list_temp = new List<string>();
@@ -82,6 +82,7 @@ namespace 勤務傳送櫃
         }
         public static void PanelLightOnCheck(List<string> wardNames)
         {
+            if (LightCheck == false) return ;
             for (int i = 0; i < Panels.Count; i++)
             {
                 if (Panels[i].list_serchName.Count == 0) continue;
@@ -97,6 +98,7 @@ namespace 勤務傳送櫃
         }
         public static void H_COST_LightOnCheck(List<string> wardNames)
         {
+            if (LightCheck == false) return;
             for (int i = 0; i < Panels.Count; i++)
             {
                 if (Panels[i].list_serchName.Count == 0) continue;
@@ -594,7 +596,7 @@ namespace 勤務傳送櫃
                 myTimer_opendoor_delayTime.StartTickTime(500);
                 if (myTimer_pharlightOn_time.IsTimeOut() && flag_pharlightOn_time)
                 {
-                    PharmacyLightOff();
+                    if (LightCheck == true) PharmacyLightOff();
                     flag_pharlightOn_time = false;
                 }
             }
@@ -634,7 +636,7 @@ namespace 勤務傳送櫃
                 {
                     bool flag = this.rFID_UI.GetOutput(this.IP, this.Led_output_num);
                     if (!flag) this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, true);
-
+                    if (LightCheck == false) PharmacyLightOn();
                     this.Invoke(new Action(delegate
                     {
                         this.label_sensor.BackColor = Color.Lime;
@@ -652,17 +654,23 @@ namespace 勤務傳送櫃
             if(flag_lock_input != flag_lockinput_State)
             {
                 this.flag_lockinput_State = flag_lock_input;
-                if (this.flag_lockinput_State)
+                if(LightCheck == false)
                 {
-                    //bool flag = this.rFID_UI.GetOutput(this.IP, this.Led_output_num);
-                    //if (flag) this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, false);
-                }
-                else
-                {
-                    //bool flag = this.rFID_UI.GetOutput(this.IP, this.Led_output_num);
-                    //if (!flag) this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, true);
+                    if (this.flag_lockinput_State)
+                    {
+                        bool flag = this.rFID_UI.GetOutput(this.IP, this.Led_output_num);
+                        if (flag) this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, false);
+                        if (LightCheck == false) PharmacyLightOff();
+                    }
+                    else
+                    {
+                        bool flag = this.rFID_UI.GetOutput(this.IP, this.Led_output_num);
+                        if (!flag) this.rFID_UI.Set_OutputPIN(IP, Port, this.Led_output_num, true);
+                        if (LightCheck == false) PharmacyLightOn();
 
+                    }
                 }
+            
             }
 
   
@@ -876,9 +884,10 @@ namespace 勤務傳送櫃
 
         public bool CheckWardName(string WardName)
         {
-            for(int i = 0; i < this.list_serchName.Count; i++)
+            if (LightCheck == false) return true;
+            for (int i = 0; i < this.list_serchName.Count; i++)
             {
-                if(WardName.ToUpper() == this.list_serchName[i].ToUpper())
+                if (WardName.ToUpper() == this.list_serchName[i].ToUpper())
                 {
                     return true;
                 }
@@ -887,6 +896,7 @@ namespace 勤務傳送櫃
         }
         public bool CheckWardName(List<string> WardNames)
         {
+            if (LightCheck == false) return true;
             for (int i = 0; i < WardNames.Count; i++)
             {
                 if (this.CheckWardName(WardNames[i])) return true;
