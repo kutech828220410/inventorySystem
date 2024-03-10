@@ -35,62 +35,51 @@ namespace 調劑台管理系統
             this.stepViewer1.ListDataSource = list;
 
             this.LoadFinishedEvent += Dialog_指紋建置_LoadFinishedEvent;
-
+            this.plC_RJ_Button_清除指紋.MouseDownEvent += PlC_RJ_Button_清除指紋_MouseDownEvent;
             this.plC_RJ_Button_確認完成.MouseDownEvent += PlC_RJ_Button_確認完成_MouseDownEvent;
             this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
         }
 
+ 
+
         #region Event
         private void Dialog_指紋建置_LoadFinishedEvent(EventArgs e)
         {
-            this.rJ_Lable_姓名.Text = $"姓名 : {_name}";
-            this.rJ_Lable_ID.Text = $"ID : {_id}";
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            myTimerBasic.StartTickTime(2000);
-            if (Main_Form.fpMatchSoket.StateCode != stateCode.READY)
+            try
             {
-                if (Main_Form.fpMatchSoket.Open() == false)
+                this.rJ_Lable_姓名.Text = $"姓名 : {_name}";
+                this.rJ_Lable_ID.Text = $"ID : {_id}";
+                if (Main_Form.Function_指紋辨識初始化() == false)
                 {
                     this.Invoke(new Action(delegate
                     {
-                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("指紋模組未啟用", 2000);
-                        dialog_AlarmForm.ShowDialog();
+                        this.DialogResult = DialogResult.No;
                         this.Close();
-             
                     }));
-                    return;
                 }
-            }
-
-            while (true)
-            {
-                if (Main_Form.fpMatchSoket.IsOpen == true) break;
-                if (myTimerBasic.IsTimeOut())
+                Task task = Task.Run(new Action(delegate
                 {
+                    Value = Main_Form.fpMatchSoket.Enroll();
                     this.Invoke(new Action(delegate
                     {
-                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("指紋模組未啟用", 2000);
-                        dialog_AlarmForm.ShowDialog();
-                        this.Close();
-                
+                        plC_RJ_Button_確認完成.Visible = true;
                     }));
-                    return;
-                }
-                System.Threading.Thread.Sleep(10);
-            }
-            Task task = Task.Run(new Action(delegate 
-            {
-                Value = Main_Form.fpMatchSoket.Enroll();
-                this.Invoke(new Action(delegate
-                {
-                    plC_RJ_Button_確認完成.Visible = true;
                 }));
-            }));
-           
-            myThread.AutoRun(true);
-            myThread.SetSleepTime(50);
-            myThread.Add_Method(sub_program);
-            myThread.Trigger();
+
+                myThread.AutoRun(true);
+                myThread.SetSleepTime(50);
+                myThread.Add_Method(sub_program);
+                myThread.Trigger();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+          
         }
         bool flag_init = false;
         private void sub_program()
@@ -147,6 +136,17 @@ namespace 調劑台管理系統
                 }
             }
                 
+        }
+        private void PlC_RJ_Button_清除指紋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (MyMessageBox.ShowDialog("確認清除指紋並存檔?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            this.Invoke(new Action(delegate
+            {
+                Main_Form.fpMatchSoket.Abort();
+                this.Value = new FpMatchClass();
+                this.DialogResult = DialogResult.Yes;
+                this.Close();
+            }));
         }
         private void PlC_RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)
         {

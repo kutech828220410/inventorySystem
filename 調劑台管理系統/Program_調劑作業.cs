@@ -169,6 +169,7 @@ namespace 調劑台管理系統
             Program_調劑作業_領藥台_03_Init();
             Program_調劑作業_領藥台_04_Init();
 
+            this.plC_RJ_Button_調劑作業_指紋登入.MouseDownEvent += PlC_RJ_Button_調劑作業_指紋登入_MouseDownEvent;
 
             this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
@@ -184,7 +185,9 @@ namespace 調劑台管理系統
             this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(100);
             this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
         }
-    
+
+
+
         private void sub_Program_領藥台_01()
         {
             if (this.plC_ScreenPage_Main.PageText == "調劑作業")
@@ -608,6 +611,7 @@ namespace 調劑台管理系統
         List<object[]> 領藥台_01_領藥儲位資訊 = new List<object[]>();
         List<string[]> 領藥台_01_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_01_登出 = new PLC_Device();
+        FpMatchLib.FpMatchClass FpMatchClass_領藥台_01_指紋資訊;
         PLC_Device PLC_Device_領藥台_01_已登入 = new PLC_Device("S100");
         PLC_Device PLC_Device_領藥台_01_單醫令模式 = new PLC_Device("S110");
 
@@ -866,7 +870,54 @@ namespace 調劑台管理系統
                 cnt++;
                 return;
             }
+            else if (FpMatchClass_領藥台_01_指紋資訊 != null)
+            {
+                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                object[] value = null;
+                for (int i = 0; i < list_人員資料.Count; i++)
+                {
+                    string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                    if (fpMatchSoket.Match(FpMatchClass_領藥台_01_指紋資訊.feature, feature))
+                    {
+                        value = list_人員資料[i];
+                        break;
+                    }
+                }
+                FpMatchClass_領藥台_01_指紋資訊 = null;
+                if (value == null)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                    dialog_AlarmForm.ShowDialog();
+                    cnt = 65500;
+                    return;
+                }
+                if (!PLC_Device_領藥台_01_已登入.Bool)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        textBox_領藥台_01_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                        textBox_領藥台_01_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                        this.PlC_RJ_Button_領藥台_01_登入_MouseDownEvent(null);
+                    }));
 
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 領藥台_01_登入者姓名, "01.號使用者");
+                }
+                else
+                {
+                    if (領藥台_01_ID != value[(int)enum_人員資料.ID].ObjectToString())
+                    {
+                        this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(null);
+
+                        this.Invoke(new Action(delegate
+                        {
+                            textBox_領藥台_01_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                            textBox_領藥台_01_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                            this.PlC_RJ_Button_領藥台_01_登入_MouseDownEvent(null);
+                        }));
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 領藥台_01_登入者姓名, "01.號使用者");
+                    }
+                }
+            }
             cnt = 65500;
             return;
 
@@ -984,6 +1035,11 @@ namespace 調劑台管理系統
                         {
                             string text = 領藥台_01_醫令條碼.Replace("\n", "");
                             text = text.Replace("\r", "");
+                            if (text.StringIsEmpty())
+                            {
+                                cnt = 65500;
+                                return;
+                            }
                             Console.WriteLine($"{text}");
                             if(text == QR_Code_醫令模式切換)
                             {
@@ -2691,6 +2747,7 @@ namespace 調劑台管理系統
         List<object[]> 領藥台_02_領藥儲位資訊 = new List<object[]>();
         List<string[]> 領藥台_02_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_02_登出 = new PLC_Device();
+        FpMatchLib.FpMatchClass FpMatchClass_領藥台_02_指紋資訊;
         PLC_Device PLC_Device_領藥台_02_已登入 = new PLC_Device("S200");
         PLC_Device PLC_Device_領藥台_02_單醫令模式 = new PLC_Device("S210");
         PLC_Device PLC_Device_領藥台_02_狀態顯示_等待登入 = new PLC_Device("M5000");
@@ -2947,7 +3004,54 @@ namespace 調劑台管理系統
                 cnt++;
                 return;
             }
+            else if (FpMatchClass_領藥台_02_指紋資訊 != null)
+            {
+                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                object[] value = null;
+                for (int i = 0; i < list_人員資料.Count; i++)
+                {
+                    string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                    if (fpMatchSoket.Match(FpMatchClass_領藥台_02_指紋資訊.feature, feature))
+                    {
+                        value = list_人員資料[i];
+                        break;
+                    }
+                }
+                FpMatchClass_領藥台_02_指紋資訊 = null;
+                if (value == null)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                    dialog_AlarmForm.ShowDialog();
+                    cnt = 65500;
+                    return;
+                }
+                if (!PLC_Device_領藥台_02_已登入.Bool)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        textBox_領藥台_02_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                        textBox_領藥台_02_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                        this.PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(null);
+                    }));
 
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 領藥台_02_登入者姓名, "01.號使用者");
+                }
+                else
+                {
+                    if (領藥台_02_ID != value[(int)enum_人員資料.ID].ObjectToString())
+                    {
+                        this.PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(null);
+
+                        this.Invoke(new Action(delegate
+                        {
+                            textBox_領藥台_02_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                            textBox_領藥台_02_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                            this.PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(null);
+                        }));
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 領藥台_02_登入者姓名, "01.號使用者");
+                    }
+                }
+            }
             cnt = 65500;
             return;
 
@@ -3065,7 +3169,11 @@ namespace 調劑台管理系統
                         string text = 領藥台_02_醫令條碼.Replace("\n", "");
                         text = text.Replace("\r", "");
                         Console.WriteLine($"{text}");
-
+                        if (text.StringIsEmpty())
+                        {
+                            cnt = 65500;
+                            return;
+                        }
                         if (text == QR_Code_醫令模式切換)
                         {
                             PLC_Device_領藥台_02_單醫令模式.Bool = !PLC_Device_領藥台_02_單醫令模式.Bool;
@@ -4737,6 +4845,7 @@ namespace 調劑台管理系統
         List<object[]> 領藥台_03_領藥儲位資訊 = new List<object[]>();
         List<string[]> 領藥台_03_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_03_登出 = new PLC_Device();
+        FpMatchLib.FpMatchClass FpMatchClass_領藥台_03_指紋資訊;
         PLC_Device PLC_Device_領藥台_03_已登入 = new PLC_Device("S250");
         PLC_Device PLC_Device_領藥台_03_單醫令模式 = new PLC_Device("S260");
         PLC_Device PLC_Device_領藥台_03_狀態顯示_等待登入 = new PLC_Device("M5000");
@@ -4993,7 +5102,54 @@ namespace 調劑台管理系統
                 cnt++;
                 return;
             }
+            else if (FpMatchClass_領藥台_03_指紋資訊 != null)
+            {
+                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                object[] value = null;
+                for (int i = 0; i < list_人員資料.Count; i++)
+                {
+                    string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                    if (fpMatchSoket.Match(FpMatchClass_領藥台_03_指紋資訊.feature, feature))
+                    {
+                        value = list_人員資料[i];
+                        break;
+                    }
+                }
+                FpMatchClass_領藥台_03_指紋資訊 = null;
+                if (value == null)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                    dialog_AlarmForm.ShowDialog();
+                    cnt = 65500;
+                    return;
+                }
+                if (!PLC_Device_領藥台_03_已登入.Bool)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        textBox_領藥台_03_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                        textBox_領藥台_03_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                        this.PlC_RJ_Button_領藥台_03_登入_MouseDownEvent(null);
+                    }));
 
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 領藥台_03_登入者姓名, "01.號使用者");
+                }
+                else
+                {
+                    if (領藥台_03_ID != value[(int)enum_人員資料.ID].ObjectToString())
+                    {
+                        this.PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(null);
+
+                        this.Invoke(new Action(delegate
+                        {
+                            textBox_領藥台_03_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                            textBox_領藥台_03_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                            this.PlC_RJ_Button_領藥台_03_登入_MouseDownEvent(null);
+                        }));
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 領藥台_03_登入者姓名, "01.號使用者");
+                    }
+                }
+            }
             cnt = 65500;
             return;
 
@@ -5109,7 +5265,13 @@ namespace 調劑台管理系統
                     {
                         string text = 領藥台_03_醫令條碼.Replace("\n", "");
                         text = text.Replace("\r", "");
+                        if (text.StringIsEmpty())
+                        {
+                            cnt = 65500;
+                            return;
+                        }
                         Console.WriteLine($"{text}");
+                      
                         if (text == QR_Code_醫令模式切換)
                         {
                             PLC_Device_領藥台_03_單醫令模式.Bool = !PLC_Device_領藥台_03_單醫令模式.Bool;
@@ -6778,6 +6940,7 @@ namespace 調劑台管理系統
         List<object[]> 領藥台_04_領藥儲位資訊 = new List<object[]>();
         List<string[]> 領藥台_04_掃描BUFFER = new List<string[]>();
         PLC_Device PLC_Device_領藥台_04_登出 = new PLC_Device();
+        FpMatchLib.FpMatchClass FpMatchClass_領藥台_04_指紋資訊;
         PLC_Device PLC_Device_領藥台_04_已登入 = new PLC_Device("S400");
         PLC_Device PLC_Device_領藥台_04_單醫令模式 = new PLC_Device("S410");
         PLC_Device PLC_Device_領藥台_04_狀態顯示_等待登入 = new PLC_Device("M5000");
@@ -7034,7 +7197,54 @@ namespace 調劑台管理系統
                 cnt++;
                 return;
             }
+            else if (FpMatchClass_領藥台_04_指紋資訊 != null)
+            {
+                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                object[] value = null;
+                for (int i = 0; i < list_人員資料.Count; i++)
+                {
+                    string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                    if (fpMatchSoket.Match(FpMatchClass_領藥台_04_指紋資訊.feature, feature))
+                    {
+                        value = list_人員資料[i];
+                        break;
+                    }
+                }
+                FpMatchClass_領藥台_04_指紋資訊 = null;
+                if (value == null)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                    dialog_AlarmForm.ShowDialog();
+                    cnt = 65500;
+                    return;
+                }
+                if (!PLC_Device_領藥台_04_已登入.Bool)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        textBox_領藥台_04_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                        textBox_領藥台_04_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                        this.PlC_RJ_Button_領藥台_04_登入_MouseDownEvent(null);
+                    }));
 
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 領藥台_04_登入者姓名, "01.號使用者");
+                }
+                else
+                {
+                    if (領藥台_04_ID != value[(int)enum_人員資料.ID].ObjectToString())
+                    {
+                        this.PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(null);
+
+                        this.Invoke(new Action(delegate
+                        {
+                            textBox_領藥台_04_帳號.Texts = value[(int)enum_人員資料.ID].ObjectToString();
+                            textBox_領藥台_04_密碼.Texts = value[(int)enum_人員資料.密碼].ObjectToString();
+                            this.PlC_RJ_Button_領藥台_04_登入_MouseDownEvent(null);
+                        }));
+                        Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, 領藥台_04_登入者姓名, "01.號使用者");
+                    }
+                }
+            }
             cnt = 65500;
             return;
 
@@ -7150,7 +7360,13 @@ namespace 調劑台管理系統
                     {
                         string text = 領藥台_04_醫令條碼.Replace("\n", "");
                         text = text.Replace("\r", "");
+                        if (text.StringIsEmpty())
+                        {
+                            cnt = 65500;
+                            return;
+                        }
                         Console.WriteLine($"{text}");
+                     
                         if (text == QR_Code_醫令模式切換)
                         {
                             PLC_Device_領藥台_04_單醫令模式.Bool = !PLC_Device_領藥台_04_單醫令模式.Bool;
@@ -9048,6 +9264,23 @@ namespace 調劑台管理系統
 
         #endregion
 
+        private void PlC_RJ_Button_調劑作業_指紋登入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_AlarmForm dialog_AlarmForm;
+            if (fpMatchSoket.IsOpen == false && flag_指紋辨識_Init == false)
+            {
+                dialog_AlarmForm = new Dialog_AlarmForm("指紋模組未初始化", 2000);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            Dialog_指紋登入 dialog_指紋登入 = new Dialog_指紋登入();
+            if (dialog_指紋登入.ShowDialog() != DialogResult.Yes) return;
+            if (dialog_指紋登入.台號 == 1) FpMatchClass_領藥台_01_指紋資訊 = dialog_指紋登入.Value;
+            if (dialog_指紋登入.台號 == 2) FpMatchClass_領藥台_02_指紋資訊 = dialog_指紋登入.Value;
+            if (dialog_指紋登入.台號 == 3) FpMatchClass_領藥台_03_指紋資訊 = dialog_指紋登入.Value;
+            if (dialog_指紋登入.台號 == 4) FpMatchClass_領藥台_04_指紋資訊 = dialog_指紋登入.Value;
+
+        }
         private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
         {
             List<object[]> list_value_buf = new List<object[]>();

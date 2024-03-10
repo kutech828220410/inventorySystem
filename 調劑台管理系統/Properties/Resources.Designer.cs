@@ -233,6 +233,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap RFID感應 {
+            get {
+                object obj = ResourceManager.GetObject("RFID感應", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap right_arrow_icon {
             get {
                 object obj = ResourceManager.GetObject("right_arrow_icon", resourceCulture);
@@ -296,6 +306,56 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap user {
             get {
                 object obj = ResourceManager.GetObject("user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 手輸領藥 {
+            get {
+                object obj = ResourceManager.GetObject("手輸領藥", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 指紋辨識登入 {
+            get {
+                object obj = ResourceManager.GetObject("指紋辨識登入", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 指紋辨識註冊_ {
+            get {
+                object obj = ResourceManager.GetObject("指紋辨識註冊 ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 條碼感應 {
+            get {
+                object obj = ResourceManager.GetObject("條碼感應", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 病歷號 {
+            get {
+                object obj = ResourceManager.GetObject("病歷號", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

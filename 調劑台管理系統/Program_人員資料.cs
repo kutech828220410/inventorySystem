@@ -62,11 +62,11 @@ namespace 調劑台管理系統
         private List<LoginDataWebAPI.Class_login_data_index> List_class_Login_Data_index = new List<LoginDataWebAPI.Class_login_data_index>();
         public static string 人員資料_UID = "";
         public static string 人員資料_BarCode = "";
-
+        public static SQL_DataGridView _sqL_DataGridView_人員資料;
 
         private void Program_人員資料_Init()
         {
-
+            _sqL_DataGridView_人員資料 = this.sqL_DataGridView_人員資料;
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_人員資料, dBConfigClass.DB_person_page);
 
             this.loginUI.Set_login_data_DB(dBConfigClass.DB_person_page);
@@ -163,14 +163,12 @@ namespace 調劑台管理系統
 
             this.plC_RJ_Button_人員資料_顯示全部.MouseDownEvent += PlC_RJ_Button_人員資料_顯示全部_MouseDownEvent;
 
-            this.plC_Button_人員資料_RFID感應.btnClick += PlC_Button_人員資料_RFID感應_btnClick;
-            this.plC_Button_人員資料_條碼掃描.btnClick += PlC_Button_人員資料_條碼掃描_btnClick;
-            this.plC_Button_人員資料_指紋輸入.btnClick += PlC_Button_人員資料_指紋輸入_btnClick;
-
+            this.plC_RJ_Button_人員資料_RFID註冊.MouseDownEvent += PlC_RJ_Button_人員資料_RFID註冊_MouseDownEvent;
+            this.plC_RJ_Button_人員資料_條碼註冊.MouseDownEvent += PlC_RJ_Button_人員資料_條碼註冊_MouseDownEvent;
+ 
+            this.plC_Button_人員資料_指紋註冊.MouseDownEvent += PlC_Button_人員資料_指紋註冊_MouseDownEvent;
             this.plC_UI_Init.Add_Method(this.sub_Program_人員資料);
         }
-
-  
 
         bool flag_人員資料_資料維護_頁面更新 = false;
         bool flag_人員資料_權限管理_頁面更新 = false;
@@ -322,22 +320,6 @@ namespace 調劑台管理系統
             }
             cnt++;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         #endregion
@@ -974,12 +956,13 @@ namespace 調劑台管理系統
         {
             this.sqL_DataGridView_人員資料.SQL_GetAllRows(true);
         }
-        private void PlC_Button_人員資料_指紋輸入_btnClick(object sender, EventArgs e)
+        private void PlC_Button_人員資料_指紋註冊_MouseDownEvent(MouseEventArgs mevent)
         {
+            Dialog_AlarmForm dialog_AlarmForm;
             List<object[]> list_value = this.sqL_DataGridView_人員資料.Get_All_Select_RowsValues();
-            if(list_value.Count == 0)
+            if (list_value.Count == 0)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 2000);
+                dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 2000);
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
@@ -987,7 +970,7 @@ namespace 調劑台管理系統
             string id = list_value[0][(int)enum_人員資料.ID].ObjectToString();
             if (fpMatchSoket.IsOpen == false && flag_指紋辨識_Init == false)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("指紋模組未初始化", 2000);
+                dialog_AlarmForm = new Dialog_AlarmForm("指紋模組未初始化", 2000);
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
@@ -996,71 +979,70 @@ namespace 調劑台管理系統
             list_value[0][(int)enum_人員資料.指紋辨識] = dialog_指紋建置.Value.feature;
 
             this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(list_value[0], false);
+            dialog_AlarmForm = new Dialog_AlarmForm("設定完成", 1500, Color.Green);
+            dialog_AlarmForm.ShowDialog();
         }
-        private void PlC_Button_人員資料_條碼掃描_btnClick(object sender, EventArgs e)
+        private void PlC_RJ_Button_人員資料_條碼註冊_MouseDownEvent(MouseEventArgs mevent)
         {
-
             try
             {
-                if (rJ_TextBox_人員資料_ID.Text.StringIsEmpty())
+                Dialog_AlarmForm dialog_AlarmForm;
+                List<object[]> list_value = this.sqL_DataGridView_人員資料.Get_All_Select_RowsValues();
+                if (list_value.Count == 0)
                 {
-                    MyMessageBox.ShowDialog("未選擇人員!");
+                    dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 2000);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 人員資料_BarCode = "";
                 Dialog_等待條碼刷入 dialog_等待條碼刷入 = new Dialog_等待條碼刷入();
                 if (dialog_等待條碼刷入.ShowDialog() != DialogResult.Yes) return;
                 string UID = dialog_等待條碼刷入.Value;
-                List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.ID, rJ_TextBox_人員資料_ID.Text, false);
-                if (list_value.Count == 0)
-                {
-                    MyMessageBox.ShowDialog("找無人員資料!");
-                    return;
-                }
+
                 list_value[0][(int)enum_人員資料.一維條碼] = UID;
                 rJ_TextBox_人員資料_一維條碼.Text = UID;
                 this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(list_value[0], false);
                 this.sqL_DataGridView_人員資料.ReplaceExtra(list_value[0], true);
-                MyMessageBox.ShowDialog("完成!");
+                dialog_AlarmForm = new Dialog_AlarmForm("設定完成", 1500, Color.Green);
+                dialog_AlarmForm.ShowDialog();
 
+               
             }
             finally
             {
-                ((PLC_Button)sender).Bool = false;
+
             }
         }
-        private void PlC_Button_人員資料_RFID感應_btnClick(object sender, EventArgs e)
+        private void PlC_RJ_Button_人員資料_RFID註冊_MouseDownEvent(MouseEventArgs mevent)
         {
             try
             {
-                if (rJ_TextBox_人員資料_ID.Text.StringIsEmpty())
+                Dialog_AlarmForm dialog_AlarmForm;
+                List<object[]> list_value = this.sqL_DataGridView_人員資料.Get_All_Select_RowsValues();
+                if (list_value.Count == 0)
                 {
-                    MyMessageBox.ShowDialog("未選擇人員!");
+                    dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 2000);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 人員資料_UID = "";
                 Dialog_等待RFID感應 dialog_等待RFID感應 = new Dialog_等待RFID感應();
                 if (dialog_等待RFID感應.ShowDialog() != DialogResult.Yes) return;
                 string UID = dialog_等待RFID感應.Value;
-                List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.ID, rJ_TextBox_人員資料_ID.Text, false);
-                if(list_value.Count == 0)
-                {
-                    MyMessageBox.ShowDialog("找無人員資料!");
-                    return;
-                }
+
                 list_value[0][(int)enum_人員資料.卡號] = UID;
-                rJ_TextBox_人員資料_卡號.Text = UID;
                 this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(list_value[0], false);
                 this.sqL_DataGridView_人員資料.ReplaceExtra(list_value[0], true);
-                MyMessageBox.ShowDialog("完成!");
+                dialog_AlarmForm = new Dialog_AlarmForm("設定完成", 1500, Color.Green);
+                dialog_AlarmForm.ShowDialog();
+
 
             }
             finally
             {
-                ((PLC_Button)sender).Bool = false;
             }
-         
         }
+
         #endregion
     }
 }

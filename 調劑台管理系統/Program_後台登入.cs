@@ -141,6 +141,7 @@ namespace 調劑台管理系統
 
             this.sub_Program_後台登入_RFID登入();
             this.sub_Program_後台登入_一維碼登入();
+            this.sub_Program_後台登入_指紋登入();
 
 
         }
@@ -391,6 +392,140 @@ namespace 調劑台管理系統
             cnt++;
         }
         #endregion
+        #region PLC_後台登入_指紋登入
+        PLC_Device PLC_Device_後台登入_指紋登入 = new PLC_Device("");
+        int cnt_Program_後台登入_指紋登入 = 65534;
+        void sub_Program_後台登入_指紋登入()
+        {
+            if (this.plC_ScreenPage_Main.PageText == "後台登入")
+            {
+                PLC_Device_後台登入_指紋登入.Bool = true;
+            }
+            else
+            {
+                PLC_Device_後台登入_指紋登入.Bool = false;
+            }
+            if (cnt_Program_後台登入_指紋登入 == 65534)
+            {
+                PLC_Device_後台登入_指紋登入.SetComment("PLC_後台登入_指紋登入");
+                PLC_Device_後台登入_指紋登入.Bool = false;
+                cnt_Program_後台登入_指紋登入 = 65535;
+            }
+            if (cnt_Program_後台登入_指紋登入 == 65535) cnt_Program_後台登入_指紋登入 = 1;
+            if (cnt_Program_後台登入_指紋登入 == 1) cnt_Program_後台登入_指紋登入_檢查按下(ref cnt_Program_後台登入_指紋登入);
+            if (cnt_Program_後台登入_指紋登入 == 2) cnt_Program_後台登入_指紋登入_初始化(ref cnt_Program_後台登入_指紋登入);
+            if (cnt_Program_後台登入_指紋登入 == 3) cnt_Program_後台登入_指紋登入_檢查權限登入(ref cnt_Program_後台登入_指紋登入);
+            if (cnt_Program_後台登入_指紋登入 == 4) cnt_Program_後台登入_指紋登入_讀取指紋(ref cnt_Program_後台登入_指紋登入);
+            if (cnt_Program_後台登入_指紋登入 == 5) cnt_Program_後台登入_指紋登入_開始登入(ref cnt_Program_後台登入_指紋登入);
+            if (cnt_Program_後台登入_指紋登入 == 6) cnt_Program_後台登入_指紋登入_等待登入完成(ref cnt_Program_後台登入_指紋登入);
+            if (cnt_Program_後台登入_指紋登入 == 7) cnt_Program_後台登入_指紋登入 = 65500;
+            if (cnt_Program_後台登入_指紋登入 > 1) cnt_Program_後台登入_指紋登入_檢查放開(ref cnt_Program_後台登入_指紋登入);
+
+            if (cnt_Program_後台登入_指紋登入 == 65500)
+            {
+                PLC_Device_後台登入_指紋登入.Bool = false;
+                cnt_Program_後台登入_指紋登入 = 65535;
+            }
+        }
+        void cnt_Program_後台登入_指紋登入_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_後台登入_指紋登入.Bool) cnt++;
+        }
+        void cnt_Program_後台登入_指紋登入_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_後台登入_指紋登入.Bool) cnt = 65500;
+        }
+        void cnt_Program_後台登入_指紋登入_初始化(ref int cnt)
+        {
+
+            cnt++;
+        }
+        void cnt_Program_後台登入_指紋登入_檢查權限登入(ref int cnt)
+        {
+            if (this.plC_ScreenPage_Main.PageText != "後台登入")
+            {
+                cnt = 65500;
+                return;
+            }
+            if (!this.PLC_Device_已登入.Bool)
+            {
+                if (Function_指紋辨識初始化(false) == false)
+                {
+                    cnt = 65500;
+                    return;
+                }
+                cnt++;
+                return;
+            }
+            else
+            {
+                cnt = 65500;
+                return;
+            }
+
+        }
+        void cnt_Program_後台登入_指紋登入_讀取指紋(ref int cnt)
+        {
+            if (this.plC_ScreenPage_Main.PageText != "後台登入")
+            {
+                cnt = 65500;
+                return;
+            }
+            string ID = "";
+            FpMatchLib.FpMatchClass fpMatchClass = fpMatchSoket.GetFeatureOnce();
+            List<object[]> list_人員資料 = new List<object[]>();
+            object[] value = null;
+            if(fpMatchClass == null)
+            {
+                return;
+            }
+            if (fpMatchClass.featureLen == 768)
+            {
+                list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+
+                for (int i = 0; i < list_人員資料.Count; i++)
+                {
+                    string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                    if (Main_Form.fpMatchSoket.Match(fpMatchClass.feature, feature))
+                    {
+                        value = list_人員資料[i];
+                    }
+                }
+                if (value == null)
+                {
+                    return;
+                }
+            }
+            ID = value[(int)enum_人員資料.ID].ObjectToString();
+            list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.ID.GetEnumName(), ID, false);
+            if (list_人員資料.Count > 0)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    this.textBox_後台登入_帳號.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+                    this.textBox_後台登入_密碼.Text = list_人員資料[0][(int)enum_人員資料.密碼].ObjectToString();
+                }));
+                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.指紋登入, list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString(), "後台登入");
+            }
+            else
+            {
+                MyMessageBox.ShowDialog(string.Format("查無此指紋帳號! {0}", ID));
+                cnt = 65500;
+                return;
+            }
+
+            cnt++;
+        }
+        void cnt_Program_後台登入_指紋登入_開始登入(ref int cnt)
+        {
+            Function_登入();
+            cnt++;
+        }
+        void cnt_Program_後台登入_指紋登入_等待登入完成(ref int cnt)
+        {
+            cnt++;
+        }
+        #endregion
 
         #region Function
         private bool Function_登入()
@@ -429,7 +564,7 @@ namespace 調劑台管理系統
                         pLC_Device_最高權限.Bool = true;
                         this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
                         this.pannel_Locker_Design.ShowControlPannel = true;
-
+                        this.rJ_GroupBox_後台登入_帳密輸入.Visible = false;
                         this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
                         this.PLC_Device_已登入.Bool = true;
                     }
@@ -446,6 +581,7 @@ namespace 調劑台管理系統
                         }
                         Function_登入權限資料_取得權限(this.登入者權限);
                         this.Text = $"{this.FormText}         [登入者名稱 : {登入者名稱}] [登入者ID : {登入者ID}]";
+                        this.rJ_GroupBox_後台登入_帳密輸入.Visible = false;
                         this.rJ_Pannel_後台登入_歡迎登入.Visible = true;
                         this.PLC_Device_已登入.Bool = true;
                     }
@@ -463,30 +599,41 @@ namespace 調劑台管理系統
         }
         private void Function_登出()
         {
-            Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, this.登入者名稱, "後台登入");
-            this.Invoke(new Action(delegate
+            try
             {
-                this.登入者名稱 = "";
-                this.登入者ID = "";
-                this.登入者顏色 = "";
-                this.登入者藥師證字號 = "";
-                this.textBox_後台登入_帳號.Text = "";
-                this.textBox_後台登入_密碼.Text = "";
+                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.登出, this.登入者名稱, "後台登入");
+                this.Invoke(new Action(delegate
+                {
+                    this.登入者名稱 = "";
+                    this.登入者ID = "";
+                    this.登入者顏色 = "";
+                    this.登入者藥師證字號 = "";
+                    this.textBox_後台登入_帳號.Text = "";
+                    this.textBox_後台登入_密碼.Text = "";
+
+                    this.Function_登入權限資料_清除權限();
+
+                    this.Text = $"{this.FormText}";
+                    this.pannel_Locker_Design.ShowControlPannel = false;
+                    this.rJ_GroupBox_後台登入_帳密輸入.Visible =true;
+                    this.rJ_Pannel_後台登入_歡迎登入.Visible = false;
+                }));
+                if (this.plC_ScreenPage_Main.PageText == "調劑作業") return;
+                //if (this.plC_ScreenPage_Main.PageText == "管制抽屜") return;
+
+                if (plC_RJ_ScreenButton_調劑作業.Visible) this.plC_ScreenPage_Main.SelecteTabText("調劑作業");
+                else if (plC_RJ_ScreenButton_管制抽屜.Visible) this.plC_ScreenPage_Main.SelecteTabText("管制抽屜");
+                else this.plC_ScreenPage_Main.SelecteTabText("後台登入");
+            }
+            catch
+            {
+
+            }
+            finally
+            {
                 this.PLC_Device_已登入.Bool = false;
-                this.Function_登入權限資料_清除權限();
-
-                this.Text = $"{this.FormText}";
-                this.pannel_Locker_Design.ShowControlPannel = false;
-                this.rJ_Pannel_後台登入_歡迎登入.Visible = false;
-            }));
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業") return;
-            //if (this.plC_ScreenPage_Main.PageText == "管制抽屜") return;
-
-            if (plC_RJ_ScreenButton_調劑作業.Visible) this.plC_ScreenPage_Main.SelecteTabText("調劑作業");
-            else if (plC_RJ_ScreenButton_管制抽屜.Visible) this.plC_ScreenPage_Main.SelecteTabText("管制抽屜");
-            else this.plC_ScreenPage_Main.SelecteTabText("後台登入");
-         
-            //this.PLC_Device_主頁面頁碼.Value = 0;
+            }
+ 
         }
         #endregion
         #region Event

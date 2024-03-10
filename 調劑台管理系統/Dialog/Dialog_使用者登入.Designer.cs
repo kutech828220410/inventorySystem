@@ -126,6 +126,7 @@ namespace 調劑台管理系統
             // 
             // textBox_帳號
             // 
+            this.textBox_帳號.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox_帳號.Font = new System.Drawing.Font("新細明體", 12F);
             this.textBox_帳號.Location = new System.Drawing.Point(82, 23);
             this.textBox_帳號.Name = "textBox_帳號";
@@ -154,6 +155,7 @@ namespace 調劑台管理系統
             // 
             // textBox_密碼
             // 
+            this.textBox_密碼.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox_密碼.Font = new System.Drawing.Font("新細明體", 12F);
             this.textBox_密碼.Location = new System.Drawing.Point(82, 22);
             this.textBox_密碼.Name = "textBox_密碼";
@@ -198,6 +200,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_取消.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_取消.GUID = "";
             this.plC_RJ_Button_取消.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_取消.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_取消.Location = new System.Drawing.Point(629, 0);
             this.plC_RJ_Button_取消.Name = "plC_RJ_Button_取消";
             this.plC_RJ_Button_取消.OFF_文字內容 = "取消";
@@ -217,11 +220,13 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_取消.TabIndex = 36;
             this.plC_RJ_Button_取消.Text = "取消";
             this.plC_RJ_Button_取消.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_取消.TextHeight = 0;
             this.plC_RJ_Button_取消.UseVisualStyleBackColor = false;
             this.plC_RJ_Button_取消.字型鎖住 = false;
             this.plC_RJ_Button_取消.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_取消.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_取消.文字鎖住 = false;
+            this.plC_RJ_Button_取消.背景圖片 = null;
             this.plC_RJ_Button_取消.讀取位元反向 = false;
             this.plC_RJ_Button_取消.讀寫鎖住 = false;
             this.plC_RJ_Button_取消.音效 = true;
@@ -244,6 +249,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_確認.GUID = "";
             this.plC_RJ_Button_確認.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_確認.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_確認.Location = new System.Drawing.Point(515, 0);
             this.plC_RJ_Button_確認.Name = "plC_RJ_Button_確認";
             this.plC_RJ_Button_確認.OFF_文字內容 = "確認";
@@ -263,11 +269,13 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認.TabIndex = 35;
             this.plC_RJ_Button_確認.Text = "確認";
             this.plC_RJ_Button_確認.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_確認.TextHeight = 0;
             this.plC_RJ_Button_確認.UseVisualStyleBackColor = false;
             this.plC_RJ_Button_確認.字型鎖住 = false;
             this.plC_RJ_Button_確認.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_確認.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_確認.文字鎖住 = false;
+            this.plC_RJ_Button_確認.背景圖片 = null;
             this.plC_RJ_Button_確認.讀取位元反向 = false;
             this.plC_RJ_Button_確認.讀寫鎖住 = false;
             this.plC_RJ_Button_確認.音效 = true;
@@ -292,7 +300,7 @@ namespace 調劑台管理系統
             this.rJ_Lable1.ShadowSize = 0;
             this.rJ_Lable1.Size = new System.Drawing.Size(515, 72);
             this.rJ_Lable1.TabIndex = 0;
-            this.rJ_Lable1.Text = "※ 請刷卡登入或感應卡片";
+            this.rJ_Lable1.Text = "※ 請刷卡或感應卡片";
             this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable1.TextColor = System.Drawing.Color.White;
             // 
@@ -311,6 +319,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_登入.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_登入.GUID = "";
             this.plC_RJ_Button_登入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_登入.Image_padding = new System.Windows.Forms.Padding(0);
             this.plC_RJ_Button_登入.Location = new System.Drawing.Point(434, 192);
             this.plC_RJ_Button_登入.Name = "plC_RJ_Button_登入";
             this.plC_RJ_Button_登入.OFF_文字內容 = "登入";
@@ -330,11 +339,13 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_登入.TabIndex = 34;
             this.plC_RJ_Button_登入.Text = "登入";
             this.plC_RJ_Button_登入.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_登入.TextHeight = 0;
             this.plC_RJ_Button_登入.UseVisualStyleBackColor = false;
             this.plC_RJ_Button_登入.字型鎖住 = false;
             this.plC_RJ_Button_登入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_登入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_登入.文字鎖住 = false;
+            this.plC_RJ_Button_登入.背景圖片 = null;
             this.plC_RJ_Button_登入.讀取位元反向 = false;
             this.plC_RJ_Button_登入.讀寫鎖住 = false;
             this.plC_RJ_Button_登入.音效 = true;
@@ -353,9 +364,7 @@ namespace 調劑台管理系統
             this.Controls.Add(this.panel183);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_使用者登入";
-            this.ShadowWidth = 15;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

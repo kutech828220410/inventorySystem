@@ -12,6 +12,7 @@ using SQLUI;
 using HIS_DB_Lib;
 using H_Pannel_lib;
 using MyUI;
+using FpMatchLib;
 namespace 調劑台管理系統
 {
     public partial class Dialog_使用者登入 : MyDialog
@@ -56,7 +57,12 @@ namespace 調劑台管理系統
             this.已登入ID = _已登入ID;
             this.rFID_FX600_UI = _rFID_FX600_UI;
 
+            this.LoadFinishedEvent += Dialog_使用者登入_LoadFinishedEvent;
+
         }
+
+      
+
         private void sub_program()
         {
             if (Main_Form.領藥台_01_一維碼.StringIsEmpty() == false && this.IsHandleCreated)
@@ -110,36 +116,81 @@ namespace 調劑台管理系統
                 }));
             }
         }
-        private void Function_登入(string ID , string PWD)
+        private void Dialog_使用者登入_LoadFinishedEvent(EventArgs e)
         {
+            if (Main_Form.Function_指紋辨識初始化())
+            {
+                Task task = Task.Run(new Action(delegate
+                {
+                    while(true)
+                    {
+                        FpMatchClass fpMatchClass = Main_Form.fpMatchSoket.GetFeature();
+                        if (fpMatchClass.featureLen == 768)
+                        {
+
+                            List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                            object[] value = null;
+                            for (int i = 0; i < list_人員資料.Count; i++)
+                            {
+                                string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                                if (Main_Form.fpMatchSoket.Match(fpMatchClass.feature, feature))
+                                {
+                                    value = list_人員資料[i];
+
+                                }
+                            }
+                            if (value != null)
+                            {
+                                string ID = value[(int)enum_人員資料.ID].ObjectToString();
+                                string PWD = value[(int)enum_人員資料.密碼].ObjectToString();
+                                if(Function_登入(ID, PWD) == true) break;
+
+                            }
+                            else
+                            {
+                                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                                dialog_AlarmForm.ShowDialog();
+                             
+                            }
+                        }
+                        System.Threading.Thread.Sleep(50);
+                    }
+               
+                }));
+            }
+        }
+        private bool Function_登入(string ID , string PWD)
+        {
+            if (ID.ToUpper() == this.已登入ID.ToUpper())
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此ID已登入", 2000);
+                dialog_AlarmForm.ShowDialog();
+                return false;
+            }
+            List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
+            List<object[]> list_人員資料_buf = new List<object[]>();
+            list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.ID, ID);
+            if (list_人員資料_buf.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無此帳號", 2000);
+                dialog_AlarmForm.ShowDialog();
+                return false;
+            }
+            string pwd = list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString();
+            if (PWD != pwd)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("密碼錯誤", 2000);
+                dialog_AlarmForm.ShowDialog();
+                return false;
+            }
+            _flag_已登入 = true;
+            UserName = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
+            UserID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
             this.Invoke(new Action(delegate
             {
-
-                if (ID.ToUpper() == this.已登入ID.ToUpper())
-                {
-                    MyMessageBox.ShowDialog("此ID已登入");
-                    return;
-                }
-                List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
-                List<object[]> list_人員資料_buf = new List<object[]>();
-                list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.ID, ID);
-                if (list_人員資料_buf.Count == 0)
-                {
-                    MyMessageBox.ShowDialog("查無此帳號!");
-                    return;
-                }
-                string pwd = list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString();
-                if (PWD != pwd)
-                {
-                    MyMessageBox.ShowDialog("密碼錯誤!");
-                    return;
-                }
-                _flag_已登入 = true;
-                UserName = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
-                UserID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
-
                 rJ_Lable_Title.Text = $"雙人覆核 [已登入] {UserName}";
             }));
+            return true;
         }
         #region Event
         private void PlC_RJ_Button_取消_MouseDownEventEx(MyUI.RJ_Button rJ_Button, MouseEventArgs mevent)
@@ -148,6 +199,7 @@ namespace 調劑台管理系統
             {
                 if (MyMessageBox.ShowDialog("確認取消領用此藥品?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                 {
+                    Main_Form.fpMatchSoket.Abort();
                     this.DialogResult = DialogResult.No;
                     this.Close();
                     return;

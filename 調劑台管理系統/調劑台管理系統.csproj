@@ -83,7 +83,7 @@
     </Reference>
     <Reference Include="FpMatchLib, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\FpMatchLib\0.DLL\FpMatchLib.dll</HintPath>
+      <HintPath>..\0.DLL\FpMatchLib.dll</HintPath>
     </Reference>
     <Reference Include="HCGUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -229,6 +229,12 @@
     </Compile>
     <Compile Include="Dialog\Dialog_共用區設置.Designer.cs">
       <DependentUpon>Dialog_共用區設置.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\Dialog_指紋登入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_指紋登入.Designer.cs">
+      <DependentUpon>Dialog_指紋登入.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_收支原因選擇.cs">
       <SubType>Form</SubType>
@@ -542,6 +548,9 @@
     <EmbeddedResource Include="Dialog\Dialog_共用區設置.resx">
       <DependentUpon>Dialog_共用區設置.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_指紋登入.resx">
+      <DependentUpon>Dialog_指紋登入.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_收支原因選擇.resx">
       <DependentUpon>Dialog_收支原因選擇.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -713,6 +722,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\病歷號.png" />
+    <None Include="Resources\指紋辨識登入.png" />
+    <None Include="Resources\手輸領藥.png" />
+    <None Include="Resources\RFID感應.png" />
+    <None Include="Resources\條碼感應.png" />
+    <None Include="Resources\指紋辨識註冊 .png" />
     <None Include="Resources\up_arrow_icon.png" />
     <None Include="Resources\down_arrow_icon.png" />
     <None Include="Resources\right_arrow_icon.png" />

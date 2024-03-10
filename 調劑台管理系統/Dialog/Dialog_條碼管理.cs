@@ -17,25 +17,6 @@ namespace 調劑台管理系統
         public static bool IsShown = false;
         private MyThread MyThread_program;
         public medClass Value = null;
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-
-
-        }
         private string 藥品碼 = "";
         public Dialog_條碼管理(string 藥品碼)
         {

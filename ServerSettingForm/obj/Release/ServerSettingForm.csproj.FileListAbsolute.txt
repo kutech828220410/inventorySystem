@@ -731,3 +731,6 @@ C:\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CoreCo
 C:\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
+C:\Users\User\source\repos\inventorySystem\ServerSettingForm\bin\Release\PopupControl.dll
+C:\Users\User\source\repos\inventorySystem\ServerSettingForm\bin\Release\CSkin.dll
+C:\Users\User\source\repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll

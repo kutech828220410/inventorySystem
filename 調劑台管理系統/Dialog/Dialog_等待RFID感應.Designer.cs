@@ -38,6 +38,7 @@ namespace 調劑台管理系統
             // rJ_Pannel1
             // 
             this.rJ_Pannel1.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel1.BackgroundColor = System.Drawing.Color.Transparent;
             this.rJ_Pannel1.BorderColor = System.Drawing.Color.Red;
             this.rJ_Pannel1.BorderRadius = 5;
             this.rJ_Pannel1.BorderSize = 5;
@@ -46,10 +47,12 @@ namespace 調劑台管理系統
             this.rJ_Pannel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Pannel1.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel1.IsSelected = false;
-            this.rJ_Pannel1.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Pannel1.Location = new System.Drawing.Point(4, 28);
             this.rJ_Pannel1.Name = "rJ_Pannel1";
             this.rJ_Pannel1.Padding = new System.Windows.Forms.Padding(10);
-            this.rJ_Pannel1.Size = new System.Drawing.Size(689, 129);
+            this.rJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Pannel1.ShadowSize = 0;
+            this.rJ_Pannel1.Size = new System.Drawing.Size(681, 97);
             this.rJ_Pannel1.TabIndex = 0;
             // 
             // label_state
@@ -61,7 +64,7 @@ namespace 調劑台管理系統
             this.label_state.Location = new System.Drawing.Point(10, 10);
             this.label_state.Margin = new System.Windows.Forms.Padding(0);
             this.label_state.Name = "label_state";
-            this.label_state.Size = new System.Drawing.Size(519, 109);
+            this.label_state.Size = new System.Drawing.Size(511, 77);
             this.label_state.TabIndex = 24;
             this.label_state.Text = "請刷入RFID感應卡...";
             this.label_state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -81,14 +84,19 @@ namespace 調劑台管理系統
             this.rJ_Button_退出.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_退出.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_退出.GUID = "";
-            this.rJ_Button_退出.Location = new System.Drawing.Point(529, 10);
+            this.rJ_Button_退出.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.rJ_Button_退出.Location = new System.Drawing.Point(521, 10);
             this.rJ_Button_退出.Margin = new System.Windows.Forms.Padding(0);
             this.rJ_Button_退出.Name = "rJ_Button_退出";
-            this.rJ_Button_退出.Size = new System.Drawing.Size(150, 109);
+            this.rJ_Button_退出.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_退出.ShadowSize = 0;
+            this.rJ_Button_退出.ShowLoadingForm = false;
+            this.rJ_Button_退出.Size = new System.Drawing.Size(150, 77);
             this.rJ_Button_退出.State = false;
             this.rJ_Button_退出.TabIndex = 23;
             this.rJ_Button_退出.Text = "退出";
             this.rJ_Button_退出.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_退出.TextHeight = 0;
             this.rJ_Button_退出.UseVisualStyleBackColor = false;
             // 
             // Dialog_等待RFID感應
@@ -97,11 +105,8 @@ namespace 調劑台管理系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(689, 129);
-            this.ControlBox = false;
             this.Controls.Add(this.rJ_Pannel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Dialog_等待RFID感應";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.rJ_Pannel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

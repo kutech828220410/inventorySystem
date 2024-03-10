@@ -31,11 +31,12 @@ namespace 調劑台管理系統
         {
             this.stepViewer1 = new MyUI.StepViewer();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button_確認完成 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_返回 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable_姓名 = new MyUI.RJ_Lable();
             this.rJ_Lable_ID = new MyUI.RJ_Lable();
             this.rJ_Lable_離開辨識機顯示 = new MyUI.RJ_Lable();
+            this.plC_RJ_Button_清除指紋 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_確認完成 = new MyUI.PLC_RJ_Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,62 +57,13 @@ namespace 調劑台管理系統
             // panel1
             // 
             this.panel1.Controls.Add(this.plC_RJ_Button_確認完成);
+            this.panel1.Controls.Add(this.plC_RJ_Button_清除指紋);
             this.panel1.Controls.Add(this.plC_RJ_Button_返回);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(4, 347);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(965, 88);
             this.panel1.TabIndex = 5;
-            // 
-            // plC_RJ_Button_確認完成
-            // 
-            this.plC_RJ_Button_確認完成.AutoResetState = false;
-            this.plC_RJ_Button_確認完成.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_確認完成.Bool = false;
-            this.plC_RJ_Button_確認完成.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_確認完成.BorderRadius = 20;
-            this.plC_RJ_Button_確認完成.BorderSize = 0;
-            this.plC_RJ_Button_確認完成.but_press = false;
-            this.plC_RJ_Button_確認完成.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_確認完成.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_RJ_Button_確認完成.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_確認完成.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_確認完成.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_確認完成.GUID = "";
-            this.plC_RJ_Button_確認完成.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_確認完成.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_確認完成.Location = new System.Drawing.Point(0, 0);
-            this.plC_RJ_Button_確認完成.Name = "plC_RJ_Button_確認完成";
-            this.plC_RJ_Button_確認完成.OFF_文字內容 = "確認完成";
-            this.plC_RJ_Button_確認完成.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_RJ_Button_確認完成.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_確認完成.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_確認完成.ON_BorderSize = 5;
-            this.plC_RJ_Button_確認完成.ON_文字內容 = "確認完成";
-            this.plC_RJ_Button_確認完成.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_確認完成.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_確認完成.ON_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_確認完成.ShadowColor = System.Drawing.Color.DarkGray;
-            this.plC_RJ_Button_確認完成.ShadowSize = 3;
-            this.plC_RJ_Button_確認完成.ShowLoadingForm = false;
-            this.plC_RJ_Button_確認完成.Size = new System.Drawing.Size(804, 88);
-            this.plC_RJ_Button_確認完成.State = false;
-            this.plC_RJ_Button_確認完成.TabIndex = 11;
-            this.plC_RJ_Button_確認完成.Text = "確認完成";
-            this.plC_RJ_Button_確認完成.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_確認完成.TextHeight = 0;
-            this.plC_RJ_Button_確認完成.Texts = "確認完成";
-            this.plC_RJ_Button_確認完成.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_確認完成.Visible = false;
-            this.plC_RJ_Button_確認完成.字型鎖住 = false;
-            this.plC_RJ_Button_確認完成.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_確認完成.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_確認完成.文字鎖住 = false;
-            this.plC_RJ_Button_確認完成.讀取位元反向 = false;
-            this.plC_RJ_Button_確認完成.讀寫鎖住 = false;
-            this.plC_RJ_Button_確認完成.音效 = false;
-            this.plC_RJ_Button_確認完成.顯示 = false;
-            this.plC_RJ_Button_確認完成.顯示狀態 = false;
             // 
             // plC_RJ_Button_返回
             // 
@@ -156,6 +108,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_返回.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_返回.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_返回.文字鎖住 = false;
+            this.plC_RJ_Button_返回.背景圖片 = null;
             this.plC_RJ_Button_返回.讀取位元反向 = false;
             this.plC_RJ_Button_返回.讀寫鎖住 = false;
             this.plC_RJ_Button_返回.音效 = false;
@@ -228,6 +181,107 @@ namespace 調劑台管理系統
             this.rJ_Lable_離開辨識機顯示.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable_離開辨識機顯示.TextColor = System.Drawing.Color.PaleVioletRed;
             // 
+            // plC_RJ_Button_清除指紋
+            // 
+            this.plC_RJ_Button_清除指紋.AutoResetState = false;
+            this.plC_RJ_Button_清除指紋.BackgroundColor = System.Drawing.Color.Maroon;
+            this.plC_RJ_Button_清除指紋.Bool = false;
+            this.plC_RJ_Button_清除指紋.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_清除指紋.BorderRadius = 20;
+            this.plC_RJ_Button_清除指紋.BorderSize = 0;
+            this.plC_RJ_Button_清除指紋.but_press = false;
+            this.plC_RJ_Button_清除指紋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_清除指紋.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_RJ_Button_清除指紋.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_清除指紋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_清除指紋.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_清除指紋.GUID = "";
+            this.plC_RJ_Button_清除指紋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_清除指紋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_清除指紋.Location = new System.Drawing.Point(643, 0);
+            this.plC_RJ_Button_清除指紋.Name = "plC_RJ_Button_清除指紋";
+            this.plC_RJ_Button_清除指紋.OFF_文字內容 = "清除指紋";
+            this.plC_RJ_Button_清除指紋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_清除指紋.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_清除指紋.OFF_背景顏色 = System.Drawing.Color.Maroon;
+            this.plC_RJ_Button_清除指紋.ON_BorderSize = 5;
+            this.plC_RJ_Button_清除指紋.ON_文字內容 = "清除指紋";
+            this.plC_RJ_Button_清除指紋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_清除指紋.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_清除指紋.ON_背景顏色 = System.Drawing.Color.Maroon;
+            this.plC_RJ_Button_清除指紋.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_清除指紋.ShadowSize = 3;
+            this.plC_RJ_Button_清除指紋.ShowLoadingForm = false;
+            this.plC_RJ_Button_清除指紋.Size = new System.Drawing.Size(161, 88);
+            this.plC_RJ_Button_清除指紋.State = false;
+            this.plC_RJ_Button_清除指紋.TabIndex = 12;
+            this.plC_RJ_Button_清除指紋.Text = "清除指紋";
+            this.plC_RJ_Button_清除指紋.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_清除指紋.TextHeight = 0;
+            this.plC_RJ_Button_清除指紋.Texts = "清除指紋";
+            this.plC_RJ_Button_清除指紋.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_清除指紋.字型鎖住 = false;
+            this.plC_RJ_Button_清除指紋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_清除指紋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_清除指紋.文字鎖住 = false;
+            this.plC_RJ_Button_清除指紋.背景圖片 = null;
+            this.plC_RJ_Button_清除指紋.讀取位元反向 = false;
+            this.plC_RJ_Button_清除指紋.讀寫鎖住 = false;
+            this.plC_RJ_Button_清除指紋.音效 = false;
+            this.plC_RJ_Button_清除指紋.顯示 = false;
+            this.plC_RJ_Button_清除指紋.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_確認完成
+            // 
+            this.plC_RJ_Button_確認完成.AutoResetState = false;
+            this.plC_RJ_Button_確認完成.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_確認完成.Bool = false;
+            this.plC_RJ_Button_確認完成.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_確認完成.BorderRadius = 20;
+            this.plC_RJ_Button_確認完成.BorderSize = 0;
+            this.plC_RJ_Button_確認完成.but_press = false;
+            this.plC_RJ_Button_確認完成.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_確認完成.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_RJ_Button_確認完成.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_確認完成.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_確認完成.Font = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_確認完成.GUID = "";
+            this.plC_RJ_Button_確認完成.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_確認完成.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_確認完成.Location = new System.Drawing.Point(0, 0);
+            this.plC_RJ_Button_確認完成.Name = "plC_RJ_Button_確認完成";
+            this.plC_RJ_Button_確認完成.OFF_文字內容 = "確認完成";
+            this.plC_RJ_Button_確認完成.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_確認完成.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_確認完成.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_確認完成.ON_BorderSize = 5;
+            this.plC_RJ_Button_確認完成.ON_文字內容 = "確認完成";
+            this.plC_RJ_Button_確認完成.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 24F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_確認完成.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_確認完成.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_確認完成.ShadowColor = System.Drawing.Color.DarkGray;
+            this.plC_RJ_Button_確認完成.ShadowSize = 3;
+            this.plC_RJ_Button_確認完成.ShowLoadingForm = false;
+            this.plC_RJ_Button_確認完成.Size = new System.Drawing.Size(643, 88);
+            this.plC_RJ_Button_確認完成.State = false;
+            this.plC_RJ_Button_確認完成.TabIndex = 13;
+            this.plC_RJ_Button_確認完成.Text = "確認完成";
+            this.plC_RJ_Button_確認完成.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_確認完成.TextHeight = 0;
+            this.plC_RJ_Button_確認完成.Texts = "確認完成";
+            this.plC_RJ_Button_確認完成.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_確認完成.Visible = false;
+            this.plC_RJ_Button_確認完成.字型鎖住 = false;
+            this.plC_RJ_Button_確認完成.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_確認完成.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_確認完成.文字鎖住 = false;
+            this.plC_RJ_Button_確認完成.背景圖片 = null;
+            this.plC_RJ_Button_確認完成.讀取位元反向 = false;
+            this.plC_RJ_Button_確認完成.讀寫鎖住 = false;
+            this.plC_RJ_Button_確認完成.音效 = false;
+            this.plC_RJ_Button_確認完成.顯示 = false;
+            this.plC_RJ_Button_確認完成.顯示狀態 = false;
+            // 
             // Dialog_指紋建置
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -249,10 +303,11 @@ namespace 調劑台管理系統
 
         private MyUI.StepViewer stepViewer1;
         private System.Windows.Forms.Panel panel1;
-        private MyUI.PLC_RJ_Button plC_RJ_Button_確認完成;
         private MyUI.PLC_RJ_Button plC_RJ_Button_返回;
         private MyUI.RJ_Lable rJ_Lable_姓名;
         private MyUI.RJ_Lable rJ_Lable_ID;
         private MyUI.RJ_Lable rJ_Lable_離開辨識機顯示;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_確認完成;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_清除指紋;
     }
 }

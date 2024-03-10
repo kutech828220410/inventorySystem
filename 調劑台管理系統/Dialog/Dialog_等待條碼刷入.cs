@@ -13,28 +13,11 @@ using MyUI;
 
 namespace 調劑台管理系統
 {
-    public partial class Dialog_等待條碼刷入 : Form
+    public partial class Dialog_等待條碼刷入 : MyDialog
     {
         public string Value = "";
         private MyThread MyThread_program;
 
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-        }
 
         public Dialog_等待條碼刷入()
         {

@@ -176,7 +176,7 @@ namespace 調劑台管理系統
         #endregion
         #region MyConfigClass
         private static string MyConfigFileName = $@"{currentDirectory}\MyConfig.txt";
-        public MyConfigClass myConfigClass = new MyConfigClass();
+        static public MyConfigClass myConfigClass = new MyConfigClass();
         public class MyConfigClass
         {
 
@@ -365,6 +365,7 @@ namespace 調劑台管理系統
         {
             if (this.DesignMode == false)
             {
+                MyDialog.form = this.FindForm();
                 LoadingForm.form = this.FindForm();
                 MyMessageBox.form = this.FindForm();
                 Dialog_交易紀錄明細.form = this.FindForm();
@@ -400,10 +401,11 @@ namespace 調劑台管理系統
                 
                 this.FormText = this.Text;
                 this.WindowState = FormWindowState.Maximized;
-
-                this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
                 this.plC_UI_Init.音效 = false;
                 this.plC_UI_Init.全螢幕顯示 = true;
+
+                this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
+              
 
                 Basic.Keyboard.Hook.KeyDown += Hook_KeyDown;
                 Basic.Keyboard.Hook.MouseDown += Hook_MouseDown;
@@ -892,9 +894,10 @@ namespace 調劑台管理系統
 
 
 
+
+
+
         #endregion
-
-
 
 
     }
