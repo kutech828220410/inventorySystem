@@ -20,7 +20,7 @@ namespace 調劑台管理系統
             mutex = new System.Threading.Mutex(true, "OnlyRun");
             if (mutex.WaitOne(0, false))
             {
-                Application.Run(new Form1());
+                Application.Run(new Main_Form());
             }
             else
             {

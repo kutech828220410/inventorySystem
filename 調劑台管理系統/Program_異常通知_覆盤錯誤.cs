@@ -20,7 +20,7 @@ using SQLUI;
 
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         PLC_Device PLC_Device_異常通知_覆盤錯誤 = new PLC_Device("S800");
         private void Program_異常通知_覆盤錯誤_Init()

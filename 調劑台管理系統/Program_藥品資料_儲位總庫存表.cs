@@ -15,7 +15,7 @@ using System.Reflection;//記得取用 Assembly繼承
 
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         public enum enum_儲位總庫存表_儲位型式 : int
         {

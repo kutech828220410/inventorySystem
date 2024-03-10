@@ -26,7 +26,7 @@ using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
 
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
    
         public bool ControlMode = false;
@@ -258,7 +258,7 @@ namespace 調劑台管理系統
         #endregion
         
 
-        public Form1()
+        public Main_Form()
         {
             InitializeComponent();
             #region PLC_MultiStateDisplay
@@ -361,7 +361,7 @@ namespace 調劑台管理系統
             #endregion
         }
         
-        private void Form1_Load(object sender, EventArgs e)
+        private void Main_Form_Load(object sender, EventArgs e)
         {
             if (this.DesignMode == false)
             {
@@ -550,7 +550,8 @@ namespace 調劑台管理系統
             this.Program_取藥堆疊資料_Init();
             if (!this.ControlMode) this.Program_輸出入檢查_Init();
             this.Program_收支作業_Init();
-            this.plC_UI_Init.Add_Method(this.sub_Program_Scanner_RS232);
+            this.Program_指紋辨識_Init();
+
 
             this.Program_異常通知_覆盤錯誤_Init();
 
@@ -616,7 +617,7 @@ namespace 調劑台管理系統
             this.DBConfigInit();
             MyMessageBox.ShowDialog("切換完成!");
         }
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void Main_Form_FormClosed(object sender, FormClosedEventArgs e)
         {
             System.Environment.Exit(0);
         }
@@ -679,7 +680,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品設定表.SQL_Reset();
             this.sqL_DataGridView_雲端藥檔.SQL_Reset();
             this.sqL_DataGridView_交易記錄查詢.SQL_Reset();
-
+            
             this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);

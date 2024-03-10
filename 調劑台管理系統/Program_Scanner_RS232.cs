@@ -15,7 +15,7 @@ using HIS_DB_Lib;
 
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         static MySerialPort MySerialPort_Scanner01 = new MySerialPort();
         static MySerialPort MySerialPort_Scanner02 = new MySerialPort();

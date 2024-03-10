@@ -72,10 +72,10 @@ namespace 調劑台管理系統
 
         
 
-            string url = $"{Form1.API_Server}/api/medShiftConfig/get_all";
+            string url = $"{Main_Form.API_Server}/api/medShiftConfig/get_all";
             returnData returnData = new returnData();
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Form1.ServerName}";
+            returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson($"{url}", json_in);
@@ -105,17 +105,17 @@ namespace 調劑台管理系統
         private void Dialog_交班藥品選擇_Load(object sender, EventArgs e)
         {
  
-            string url = $"{Form1.API_Server}/api/MED_page/init";
+            string url = $"{Main_Form.API_Server}/api/MED_page/init";
             returnData returnData = new returnData();
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Form1.ServerName}";
+            returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             Table table = json.JsonDeserializet<Table>();
             if (table == null)
             {
-                MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{Form1.API_Server}");
+                MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{Main_Form.API_Server}");
                 return;
             }
 
@@ -152,10 +152,10 @@ namespace 調劑台管理系統
                 medShiftConfigClass.是否交班 = false.ToString();
                 medShiftConfigClasses.Add(medShiftConfigClass);
             }
-            string url = $"{Form1.API_Server}/api/medShiftConfig/update_by_code";
+            string url = $"{Main_Form.API_Server}/api/medShiftConfig/update_by_code";
             returnData returnData = new returnData();
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Form1.ServerName}";
+            returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.Data = medShiftConfigClasses;
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson($"{url}", json_in);
@@ -231,10 +231,10 @@ namespace 調劑台管理系統
                 medShiftConfigClass.是否交班 = true.ToString();
                 medShiftConfigClasses.Add(medShiftConfigClass);
             }
-            string url = $"{Form1.API_Server}/api/medShiftConfig/update_by_code";
+            string url = $"{Main_Form.API_Server}/api/medShiftConfig/update_by_code";
             returnData returnData = new returnData();
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Form1.ServerName}";
+            returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.Data = medShiftConfigClasses;
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson($"{url}", json_in);

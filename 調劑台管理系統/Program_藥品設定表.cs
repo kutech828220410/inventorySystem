@@ -29,7 +29,7 @@ using SQLUI;
 namespace 調劑台管理系統
 {
   
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         private void Program_藥品設定表_Init()
         {

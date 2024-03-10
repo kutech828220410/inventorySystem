@@ -18,7 +18,7 @@ using HIS_DB_Lib;
 
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         private List<Drawer> List_EPD583_本地資料 = new List<Drawer>();
         private List<Drawer> List_EPD583_雲端資料 = new List<Drawer>();

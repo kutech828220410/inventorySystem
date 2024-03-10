@@ -28,7 +28,7 @@ namespace 調劑台管理系統
         異動量,
         Value,
     }
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         public void Function_從SQL取得儲位到入賬資料(string 藥品碼)
         {

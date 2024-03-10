@@ -16,7 +16,7 @@ using MySQL_Login;
 using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
   
         public enum enum_人員資料_匯出
@@ -976,7 +976,26 @@ namespace 調劑台管理系統
         }
         private void PlC_Button_人員資料_指紋輸入_btnClick(object sender, EventArgs e)
         {
-           
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.Get_All_Select_RowsValues();
+            if(list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 2000);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string name = list_value[0][(int)enum_人員資料.姓名].ObjectToString();
+            string id = list_value[0][(int)enum_人員資料.ID].ObjectToString();
+            if (fpMatchSoket.IsOpen == false && flag_指紋辨識_Init == false)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("指紋模組未初始化", 2000);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            Dialog_指紋建置 dialog_指紋建置 = new Dialog_指紋建置(name, id);
+            if (dialog_指紋建置.ShowDialog() != DialogResult.Yes) return;
+            list_value[0][(int)enum_人員資料.指紋辨識] = dialog_指紋建置.Value.feature;
+
+            this.sqL_DataGridView_人員資料.SQL_ReplaceExtra(list_value[0], false);
         }
         private void PlC_Button_人員資料_條碼掃描_btnClick(object sender, EventArgs e)
         {

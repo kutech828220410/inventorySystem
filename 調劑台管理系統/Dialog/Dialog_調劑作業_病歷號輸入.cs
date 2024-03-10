@@ -54,7 +54,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("病歷號空白!");
                 return;
             }
-            string order_url = Form1.Order_URL.ToLower().Replace("?barcode=", "");
+            string order_url = Main_Form.Order_URL.ToLower().Replace("?barcode=", "");
             if (order_url.Substring(order_url.Length - 1, 1) == "/")
             {
                 order_url = order_url.Substring(0, order_url.Length - 1);
@@ -105,16 +105,16 @@ namespace 調劑台管理系統
         }
         private void Dialog_調劑作業_病歷號輸入_Load(object sender, EventArgs e)
         {
-            string url = $"{Form1.API_Server}/api/order/init";
+            string url = $"{Main_Form.API_Server}/api/order/init";
             returnData returnData = new returnData();
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Form1.ServerName}";
+            returnData.ServerName = $"{Main_Form.ServerName}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             Table table = json.JsonDeserializet<Table>();
             if (table == null)
             {
-                MyMessageBox.ShowDialog($"醫令資料表單建立失敗!! Api_URL:{Form1.API_Server}");
+                MyMessageBox.ShowDialog($"醫令資料表單建立失敗!! Api_URL:{Main_Form.API_Server}");
                 return;
             }
 

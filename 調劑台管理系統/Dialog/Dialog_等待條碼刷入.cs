@@ -45,11 +45,11 @@ namespace 調劑台管理系統
         }
         private void sub_program()
         {
-            if (Form1.人員資料_BarCode.StringIsEmpty() == false && this.IsHandleCreated)
+            if (Main_Form.人員資料_BarCode.StringIsEmpty() == false && this.IsHandleCreated)
             {
                 this.Invoke(new Action(delegate
                 {
-                    Value = Form1.人員資料_BarCode;
+                    Value = Main_Form.人員資料_BarCode;
                     this.label_state.Text = $"成功刷入!{Value}";
                     this.label_state.BackColor = Color.GreenYellow;
                     Application.DoEvents();

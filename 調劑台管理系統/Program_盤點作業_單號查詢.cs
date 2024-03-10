@@ -19,7 +19,7 @@ using System.Net.Http;
 namespace 調劑台管理系統
 {
 
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         private enum enum_盤點作業_單號查詢_盤點藥品內容
         {

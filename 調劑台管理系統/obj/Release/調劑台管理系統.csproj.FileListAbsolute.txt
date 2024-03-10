@@ -2050,7 +2050,6 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Re
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_選擇效期.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_輸入輸出設定.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_新增容器設定.resources
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Form1.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Form_Buffer.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Pannel_Locker.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Properties.Resources.resources
@@ -2843,7 +2842,6 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Re
 C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\調劑台管理系統\bin\Release\PopupControl.dll
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll
 C:\inventorySystem\調劑台管理系統\bin\Release\調劑台管理系統.exe.config
 C:\inventorySystem\調劑台管理系統\bin\Release\調劑台管理系統.exe
 C:\inventorySystem\調劑台管理系統\bin\Release\調劑台管理系統.pdb
@@ -2943,3 +2941,6 @@ C:\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.cspro
 C:\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\FpMatchLib.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_指紋建置.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Main_Form.resources

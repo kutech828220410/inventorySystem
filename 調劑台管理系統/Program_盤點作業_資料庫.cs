@@ -16,7 +16,7 @@ using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
 
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         private void sub_Program_盤點作業_資料庫_Init()
         {

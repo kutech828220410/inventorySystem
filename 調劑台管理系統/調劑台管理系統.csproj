@@ -81,6 +81,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="FpMatchLib, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\FpMatchLib\0.DLL\FpMatchLib.dll</HintPath>
+    </Reference>
     <Reference Include="HCGUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\HCGUI.dll</HintPath>
@@ -364,6 +368,12 @@
     <Compile Include="Dialog\Dialog_錯誤提示.Designer.cs">
       <DependentUpon>Dialog_錯誤提示.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_指紋建置.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_指紋建置.Designer.cs">
+      <DependentUpon>Dialog_指紋建置.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -392,6 +402,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_共用區.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_指紋辨識.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_異常通知_覆盤錯誤.cs">
@@ -596,6 +609,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_錯誤提示.resx">
       <DependentUpon>Dialog_錯誤提示.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_指紋建置.resx">
+      <DependentUpon>Dialog_指紋建置.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

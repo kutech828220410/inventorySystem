@@ -59,16 +59,16 @@ namespace 調劑台管理系統
         }
         private void sub_program()
         {
-            if (Form1.領藥台_01_一維碼.StringIsEmpty() == false && this.IsHandleCreated)
+            if (Main_Form.領藥台_01_一維碼.StringIsEmpty() == false && this.IsHandleCreated)
             {
                 this.Invoke(new Action(delegate
                 {
-                    Console.WriteLine($"接收到領藥台01[一維碼] {Form1.領藥台_01_一維碼}");
+                    Console.WriteLine($"接收到領藥台01[一維碼] {Main_Form.領藥台_01_一維碼}");
       
                     List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
                     List<object[]> list_人員資料_buf = new List<object[]>();
-                    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.一維條碼, Form1.領藥台_01_一維碼);
-                    Form1.領藥台_01_一維碼 = "";
+                    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.一維條碼, Main_Form.領藥台_01_一維碼);
+                    Main_Form.領藥台_01_一維碼 = "";
                     if (list_人員資料_buf.Count == 0) return;
                     string id = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
                     string pwd = list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString();
@@ -190,7 +190,7 @@ namespace 調劑台管理系統
                 base.Location = this.location;
             }
             this.textBox_密碼.KeyPress += TextBox_密碼_KeyPress;
-            Form1.領藥台_01_卡號 = "";
+            Main_Form.領藥台_01_卡號 = "";
             MyThread_program = new MyThread();
             MyThread_program.Add_Method(sub_program);
             MyThread_program.AutoRun(true);

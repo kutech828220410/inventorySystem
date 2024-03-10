@@ -17,7 +17,7 @@ using HIS_DB_Lib;
 using MyOffice;
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         public enum enum_交班對點_管制結存_紀錄顯示
         {

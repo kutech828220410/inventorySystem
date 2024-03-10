@@ -8,9 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Basic;
+using MyUI;
 namespace 調劑台管理系統
 {
-    public partial class Dialog_輸入效期 : Form
+    public partial class Dialog_輸入效期 : MyDialog
     {
         public string Value
         {
@@ -29,23 +30,7 @@ namespace 調劑台管理系統
                 return string.Format("{0}/{1}/{2}", Year, Month, Day).ToDateString("/");
             }
         }
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-        }
+   
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == System.Windows.Forms.Keys.Enter)

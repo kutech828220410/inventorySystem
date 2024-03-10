@@ -16,7 +16,7 @@ using HIS_DB_Lib;
 
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         private List<RFIDClass> List_RFID_本地資料 = new List<RFIDClass>();
         private List<RFIDClass> List_RFID_雲端資料 = new List<RFIDClass>();

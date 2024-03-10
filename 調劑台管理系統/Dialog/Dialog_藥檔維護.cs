@@ -66,17 +66,17 @@ namespace 調劑台管理系統
         }
         private void Function_雲端藥檔_Init()
         {
-            string url = $"{Form1.API_Server}/api/MED_page/init";
+            string url = $"{Main_Form.API_Server}/api/MED_page/init";
             returnData returnData = new returnData();
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Form1.ServerName}";
+            returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page_cloud";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             Table table = json.JsonDeserializet<Table>();
             if (table == null)
             {
-                MyMessageBox.ShowDialog($"雲端藥檔表單建立失敗!! Api_URL:{Form1.API_Server}");
+                MyMessageBox.ShowDialog($"雲端藥檔表單建立失敗!! Api_URL:{Main_Form.API_Server}");
                 return;
             }
 
@@ -94,17 +94,17 @@ namespace 調劑台管理系統
         }
         private void Function_本地藥檔_Init()
         {
-            string url = $"{Form1.API_Server}/api/MED_page/init";
+            string url = $"{Main_Form.API_Server}/api/MED_page/init";
             returnData returnData = new returnData();
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Form1.ServerName}";
+            returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             Table table = json.JsonDeserializet<Table>();
             if (table == null)
             {
-                MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{Form1.API_Server}");
+                MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{Main_Form.API_Server}");
                 return;
             }
 
@@ -159,7 +159,7 @@ namespace 調劑台管理系統
         }
         private void Dialog_藥檔維護_Load(object sender, EventArgs e)
         {
-            string json_result = Basic.Net.WEBApiGet($"{Form1.API_Server}/api/ServerSetting");
+            string json_result = Basic.Net.WEBApiGet($"{Main_Form.API_Server}/api/ServerSetting");
             if (json_result.StringIsEmpty())
             {
                 MyMessageBox.ShowDialog("API Server 連結失敗!");
@@ -170,7 +170,7 @@ namespace 調劑台管理系統
             List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
             HIS_DB_Lib.ServerSettingClass serverSettingClass;
 
-            serverSettingClass = serverSettingClasses.MyFind(Form1.ServerName, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
+            serverSettingClass = serverSettingClasses.MyFind(Main_Form.ServerName, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
             if (serverSettingClass != null)
             {
                 SQLUI.SQL_DataGridView.ConnentionClass connentionClass = new SQL_DataGridView.ConnentionClass();
@@ -182,7 +182,7 @@ namespace 調劑台管理系統
                 SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_本地藥檔, connentionClass);
                 this.sqL_DataGridView_本地藥檔.SQL_Reset();
             }
-            serverSettingClass = serverSettingClasses.MyFind(Form1.ServerName, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.藥檔資料);
+            serverSettingClass = serverSettingClasses.MyFind(Main_Form.ServerName, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.藥檔資料);
             if (serverSettingClass != null)
             {
                 SQLUI.SQL_DataGridView.ConnentionClass connentionClass = new SQL_DataGridView.ConnentionClass();
@@ -297,7 +297,17 @@ namespace 調劑台管理系統
             }
         }
 
-    
+
         #endregion
+
+        private void plC_RJ_Button_取消_MouseDownEvent_1(MouseEventArgs mevent)
+        {
+
+        }
+
+        private void plC_RJ_Button_顯示全部_MouseDownEvent_1(MouseEventArgs mevent)
+        {
+
+        }
     }
 }

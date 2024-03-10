@@ -18,7 +18,7 @@ using MyOffice;
 using MyPrinterlib;
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         public enum ContextMenuStrip_交班作業_交班表_設定
         {
@@ -80,10 +80,10 @@ namespace 調劑台管理系統
 
 
 
-            string url = $"{Form1.API_Server}/api/medShiftConfig/get_all";
+            string url = $"{Main_Form.API_Server}/api/medShiftConfig/get_all";
             returnData returnData = new returnData();
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{Form1.ServerName}";
+            returnData.ServerName = $"{Main_Form.ServerName}";
             returnData.TableName = "medicine_page";
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson($"{url}", json_in);

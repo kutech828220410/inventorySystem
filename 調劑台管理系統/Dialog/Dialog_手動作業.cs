@@ -32,15 +32,15 @@ namespace 調劑台管理系統
        
         public List<object[]> Value = new List<object[]>();
         private SQL_DataGridView sQL_DataGridView_藥品資料_buf;
-        private Form1 form1_buf;
+        private Main_Form Main_Form_buf;
         private enum_狀態 _enum_狀態;
-        public Dialog_手動作業(Form1 form1, SQL_DataGridView sQL_DataGridView_藥品資料 , enum_狀態 enum_狀態)
+        public Dialog_手動作業(Main_Form Main_Form, SQL_DataGridView sQL_DataGridView_藥品資料 , enum_狀態 enum_狀態)
         {
             InitializeComponent();
     
 
             this.sQL_DataGridView_藥品資料_buf = sQL_DataGridView_藥品資料;
-            this.form1_buf = form1;
+            this.Main_Form_buf = Main_Form;
             this._enum_狀態 = enum_狀態;
         }
 
@@ -90,12 +90,12 @@ namespace 調劑台管理系統
         }
         private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
-            this.form1_buf.Function_從SQL取得儲位到本地資料();
+            this.Main_Form_buf.Function_從SQL取得儲位到本地資料();
             List<object[]> RowsList_buf = new List<object[]>();
             Parallel.ForEach(RowsList, value =>
             {
                 string 藥品碼 = value[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
-                int 庫存 = this.form1_buf.Function_從本地資料取得庫存(藥品碼);
+                int 庫存 = this.Main_Form_buf.Function_從本地資料取得庫存(藥品碼);
                 value[(int)enum_藥品資料_藥檔資料.庫存] = 庫存;
                 if (庫存 != -999)
                 {

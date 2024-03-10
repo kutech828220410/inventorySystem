@@ -108,7 +108,7 @@ namespace 調劑台管理系統
         群組名稱,
     }
 
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         private DeviceBasicClass DeviceBasicClass_儲位庫存 = new DeviceBasicClass();
 

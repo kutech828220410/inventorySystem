@@ -17,7 +17,7 @@ using HIS_DB_Lib;
 using H_Pannel_lib;
 namespace 調劑台管理系統
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
         private string QR_Code_醫令模式切換 = "%%001";
         MyTimer myTimer_領藥台_01_Logout = new MyTimer(5000);
@@ -2310,7 +2310,7 @@ namespace 調劑台管理系統
                 {
                     enum_狀態 = Dialog_手動作業.enum_狀態.退藥;
                 }
-                Dialog_手動作業 dialog_手動作業 = new Dialog_手動作業((Form1)this.FindForm(), this.sqL_DataGridView_藥品資料_藥檔資料, enum_狀態);
+                Dialog_手動作業 dialog_手動作業 = new Dialog_手動作業((Main_Form)this.FindForm(), this.sqL_DataGridView_藥品資料_藥檔資料, enum_狀態);
                 dialog_手動作業.ShowDialog();
                 List<object[]> list_value = dialog_手動作業.Value;
                 if (list_value.Count == 0) return;
@@ -4382,7 +4382,7 @@ namespace 調劑台管理系統
                 {
                     enum_狀態 = Dialog_手動作業.enum_狀態.退藥;
                 }
-                Dialog_手動作業 dialog_手動作業 = new Dialog_手動作業((Form1)this.FindForm(), this.sqL_DataGridView_藥品資料_藥檔資料, enum_狀態);
+                Dialog_手動作業 dialog_手動作業 = new Dialog_手動作業((Main_Form)this.FindForm(), this.sqL_DataGridView_藥品資料_藥檔資料, enum_狀態);
                 dialog_手動作業.ShowDialog();
                 List<object[]> list_value = dialog_手動作業.Value;
                 if (list_value.Count == 0) return;
@@ -6424,7 +6424,7 @@ namespace 調劑台管理系統
                 {
                     enum_狀態 = Dialog_手動作業.enum_狀態.退藥;
                 }
-                Dialog_手動作業 dialog_手動作業 = new Dialog_手動作業((Form1)this.FindForm(), this.sqL_DataGridView_藥品資料_藥檔資料, enum_狀態);
+                Dialog_手動作業 dialog_手動作業 = new Dialog_手動作業((Main_Form)this.FindForm(), this.sqL_DataGridView_藥品資料_藥檔資料, enum_狀態);
                 dialog_手動作業.ShowDialog();
                 List<object[]> list_value = dialog_手動作業.Value;
                 if (list_value.Count == 0) return;
@@ -8465,7 +8465,7 @@ namespace 調劑台管理系統
                 {
                     enum_狀態 = Dialog_手動作業.enum_狀態.退藥;
                 }
-                Dialog_手動作業 dialog_手動作業 = new Dialog_手動作業((Form1)this.FindForm(), this.sqL_DataGridView_藥品資料_藥檔資料, enum_狀態);
+                Dialog_手動作業 dialog_手動作業 = new Dialog_手動作業((Main_Form)this.FindForm(), this.sqL_DataGridView_藥品資料_藥檔資料, enum_狀態);
                 dialog_手動作業.ShowDialog();
                 List<object[]> list_value = dialog_手動作業.Value;
                 if (list_value.Count == 0) return;

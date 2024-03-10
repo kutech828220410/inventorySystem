@@ -58,7 +58,7 @@ namespace 調劑台管理系統
             this.Load += Dialog_共用區設置_Load;
             this.plC_RJ_Button_確認.MouseDownEvent += PlC_RJ_Button_確認_MouseDownEvent;
             this.plC_RJ_Button_取消.MouseDownEvent += PlC_RJ_Button_取消_MouseDownEvent;
-            api_server = 調劑台管理系統.Form1.API_Server;
+            api_server = 調劑台管理系統.Main_Form.API_Server;
             this.table_共用區 = table_共用區;
         }
         private void Dialog_共用區設置_Load(object sender, EventArgs e)

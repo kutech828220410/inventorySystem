@@ -7,28 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MyUI;
 namespace 調劑台管理系統
 {
-    public partial class Dialog_輸入批號 : Form
+    public partial class Dialog_輸入批號 : MyDialog
     {
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-        }
+    
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == System.Windows.Forms.Keys.Enter)

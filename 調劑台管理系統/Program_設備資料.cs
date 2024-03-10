@@ -25,7 +25,7 @@ namespace 調劑台管理系統
         顏色,
         備註,
     }
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
 
         private void Program_設備資料_Init()

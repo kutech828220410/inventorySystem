@@ -1523,7 +1523,6 @@ C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\PopupControl.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
-C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll
 C:\inventorySystem\E-UpdateVersion\bin\Release\E-UpdateVersion.exe.config
 C:\inventorySystem\E-UpdateVersion\bin\Release\E-UpdateVersion.exe
 C:\inventorySystem\E-UpdateVersion\bin\Release\E-UpdateVersion.pdb

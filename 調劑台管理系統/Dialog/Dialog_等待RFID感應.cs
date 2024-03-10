@@ -48,11 +48,11 @@ namespace 調劑台管理系統
      
         private void sub_program()
         {
-            if(Form1.人員資料_UID.StringIsEmpty() == false && this.IsHandleCreated)
+            if(Main_Form.人員資料_UID.StringIsEmpty() == false && this.IsHandleCreated)
             {
                 this.Invoke(new Action(delegate
                 {
-                    Value = Form1.人員資料_UID;
+                    Value = Main_Form.人員資料_UID;
                     this.label_state.Text = $"成功刷入!{Value}";
                     this.label_state.BackColor = Color.GreenYellow;
                     Application.DoEvents();

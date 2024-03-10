@@ -138,9 +138,9 @@ namespace 調劑台管理系統
         private void Dialog_條碼管理_Load(object sender, EventArgs e)
         {
             IsShown = true;
-            returnData returnData = new returnData($"{Form1.API_Server}/api/MED_page/get_by_code");
-            returnData.ServerName = Form1.ServerName;
-            returnData.ServerType = Form1.ServerType;
+            returnData returnData = new returnData($"{Main_Form.API_Server}/api/MED_page/get_by_code");
+            returnData.ServerName = Main_Form.ServerName;
+            returnData.ServerType = Main_Form.ServerType;
             returnData.TableName = "medicine_page_cloud";
             returnData.Value = 藥品碼;
             string json = returnData.ApiPostJson();
@@ -166,9 +166,9 @@ namespace 調劑台管理系統
         {
             if (MyMessageBox.ShowDialog("是否刪除國際條碼?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             Value.Delete_BarCode(rJ_Button.GUID);
-            returnData returnData = new returnData($"{Form1.API_Server}/api/MED_page/upadte_by_guid");
-            returnData.ServerName = Form1.ServerName;
-            returnData.ServerType = Form1.ServerType;
+            returnData returnData = new returnData($"{Main_Form.API_Server}/api/MED_page/upadte_by_guid");
+            returnData.ServerName = Main_Form.ServerName;
+            returnData.ServerType = Main_Form.ServerType;
             returnData.TableName = "medicine_page_cloud";
             returnData.Data = Value;
             string json = returnData.ApiPostJson();
@@ -186,9 +186,9 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog($"國際條碼 空白!");
                 return;
             }
-            returnData returnData = new returnData($"{Form1.API_Server}/api/MED_page/serch_by_BarCode");
-            returnData.ServerName = Form1.ServerName;
-            returnData.ServerType = Form1.ServerType;
+            returnData returnData = new returnData($"{Main_Form.API_Server}/api/MED_page/serch_by_BarCode");
+            returnData.ServerName = Main_Form.ServerName;
+            returnData.ServerType = Main_Form.ServerType;
             returnData.TableName = "medicine_page_cloud";
             returnData.Value = BarCode;
             string json = returnData.ApiPostJson();
@@ -204,9 +204,9 @@ namespace 調劑台管理系統
                 return;
             }
             Value.Add_BarCode(BarCode);
-            returnData = new returnData($"{Form1.API_Server}/api/MED_page/upadte_by_guid");
-            returnData.ServerName = Form1.ServerName;
-            returnData.ServerType = Form1.ServerType;
+            returnData = new returnData($"{Main_Form.API_Server}/api/MED_page/upadte_by_guid");
+            returnData.ServerName = Main_Form.ServerName;
+            returnData.ServerType = Main_Form.ServerType;
             returnData.TableName = "medicine_page_cloud";
             returnData.Data = Value;
             json = returnData.ApiPostJson();
@@ -226,8 +226,8 @@ namespace 調劑台管理系統
         }
         private void sub_program()
         {
-            string text01 = Form1.Function_ReadBacodeScanner01();
-            string text02 = Form1.Function_ReadBacodeScanner02();
+            string text01 = Main_Form.Function_ReadBacodeScanner01();
+            string text02 = Main_Form.Function_ReadBacodeScanner02();
             if (text01 != null)
             {
                 this.Invoke(new Action(delegate 
