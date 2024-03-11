@@ -42,7 +42,7 @@ namespace 調劑台管理系統
             plC_RJ_Button_2號.MouseDownEvent += PlC_RJ_Button_2號_MouseDownEvent;
             plC_RJ_Button_3號.MouseDownEvent += PlC_RJ_Button_3號_MouseDownEvent;
             plC_RJ_Button_4號.MouseDownEvent += PlC_RJ_Button_4號_MouseDownEvent;
-
+            
         }
 
 
@@ -132,6 +132,7 @@ namespace 調劑台管理系統
                     this.DialogResult = DialogResult.No;
                     this.Close();
                 }));
+                return;
             }
             this.stepViewer1.Next();
             myThread.AutoRun(true);

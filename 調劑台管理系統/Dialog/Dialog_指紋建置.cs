@@ -56,6 +56,7 @@ namespace 調劑台管理系統
                         this.DialogResult = DialogResult.No;
                         this.Close();
                     }));
+                    return;
                 }
                 Task task = Task.Run(new Action(delegate
                 {

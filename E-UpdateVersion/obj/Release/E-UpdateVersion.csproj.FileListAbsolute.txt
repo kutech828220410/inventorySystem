@@ -1864,3 +1864,4 @@ C:\Users\User\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateV
 C:\Users\User\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.csproj.CopyComplete
 C:\Users\User\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.exe
 C:\Users\User\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.pdb
+C:\Users\user\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll

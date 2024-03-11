@@ -3045,3 +3045,4 @@ C:\Users\User\source\repos\inventorySystem\調劑台管理系統\obj\Release\調
 C:\Users\User\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
 C:\Users\User\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_指紋登入.resources
 C:\Users\User\source\repos\inventorySystem\調劑台管理系統\bin\Release\FpMatchLib.dll
+C:\Users\user\source\repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll
