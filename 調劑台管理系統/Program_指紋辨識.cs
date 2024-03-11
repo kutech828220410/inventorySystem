@@ -57,7 +57,7 @@ namespace 調劑台管理系統
             if (flag_指紋辨識_Init == false) return false;
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(2000);
-            if (Main_Form.fpMatchSoket.StateCode != stateCode.READY)
+            if (Main_Form.fpMatchSoket.StateCode != stateCode.READY && Main_Form.fpMatchSoket.StateCode != stateCode.NONE)
             {
                 if (Main_Form.fpMatchSoket.Open() == false)
                 {

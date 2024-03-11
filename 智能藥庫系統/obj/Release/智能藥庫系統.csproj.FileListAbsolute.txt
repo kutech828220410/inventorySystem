@@ -1243,3 +1243,4 @@ C:\Users\User\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能
 C:\Users\User\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.CopyComplete
 C:\Users\User\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe
 C:\Users\User\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
+C:\Users\user\source\repos\inventorySystem\智能藥庫系統\bin\Release\stdole.dll

@@ -3045,4 +3045,8 @@ C:\Users\User\source\repos\inventorySystem\調劑台管理系統\obj\Release\調
 C:\Users\User\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
 C:\Users\User\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_指紋登入.resources
 C:\Users\User\source\repos\inventorySystem\調劑台管理系統\bin\Release\FpMatchLib.dll
+<<<<<<< HEAD
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_指紋登入.resources
+=======
+C:\Users\user\source\repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll
+>>>>>>> 53ef592eb5aa50fdd5dbcafb6be69681ac56cc6e
