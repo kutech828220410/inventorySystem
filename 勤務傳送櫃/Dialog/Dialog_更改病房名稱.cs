@@ -113,7 +113,11 @@ namespace 勤務傳送櫃
             this._修改名稱 = name;
             if (WardNames == null) WardNames = new List<string>();
             this._病房名稱 = WardNames;
+            this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
+            this.rJ_Button_取消.MouseDownEvent += RJ_Button_取消_MouseDownEvent;
         }
+
+  
 
         private void Dialog_更改病房名稱_Load(object sender, EventArgs e)
         {
@@ -137,19 +141,22 @@ namespace 勤務傳送櫃
                 this.rJ_TextBox_修改名稱.Texts = _修改名稱;
             }));
         }
-
-        private void rJ_Button_確認_Click(object sender, EventArgs e)
+        private void RJ_Button_取消_MouseDownEvent(MouseEventArgs mevent)
         {
-            Enum_Type = enum_Type.OK;
-            this.Close();
+            this.Invoke(new Action(delegate 
+            {
+                Enum_Type = enum_Type.Cancel;
+                this.Close();
+            }));
         }
-
-        private void rJ_Button_取消_Click(object sender, EventArgs e)
+        private void RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
         {
-            Enum_Type = enum_Type.Cancel;
-            this.Close();
+            this.Invoke(new Action(delegate
+            {
+                Enum_Type = enum_Type.OK;
+                this.Close();
+            }));
         }
-
         private void Dialog_更改病房名稱_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar == (char)Keys.Enter)
@@ -158,7 +165,6 @@ namespace 勤務傳送櫃
                 this.Close();
             }
         }
-
         private void rJ_TextBox_修改名稱_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -167,7 +173,6 @@ namespace 勤務傳送櫃
                 this.Close();
             }
         }
-
         private void Dialog_更改病房名稱_FormClosed(object sender, FormClosedEventArgs e)
         {
   

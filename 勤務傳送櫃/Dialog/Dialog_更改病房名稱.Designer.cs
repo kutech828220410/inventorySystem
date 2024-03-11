@@ -49,7 +49,7 @@
             // 
             // rJ_Lable1
             // 
-            this.rJ_Lable1.BackColor = System.Drawing.Color.MediumBlue;
+            this.rJ_Lable1.BackColor = System.Drawing.SystemColors.Window;
             this.rJ_Lable1.BackgroundColor = System.Drawing.Color.MediumBlue;
             this.rJ_Lable1.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable1.BorderRadius = 5;
@@ -60,6 +60,8 @@
             this.rJ_Lable1.GUID = "";
             this.rJ_Lable1.Location = new System.Drawing.Point(12, 22);
             this.rJ_Lable1.Name = "rJ_Lable1";
+            this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable1.ShadowSize = 0;
             this.rJ_Lable1.Size = new System.Drawing.Size(135, 40);
             this.rJ_Lable1.TabIndex = 0;
             this.rJ_Lable1.Text = "原始顯示名稱";
@@ -93,7 +95,7 @@
             // 
             // rJ_Lable2
             // 
-            this.rJ_Lable2.BackColor = System.Drawing.Color.MediumBlue;
+            this.rJ_Lable2.BackColor = System.Drawing.SystemColors.Window;
             this.rJ_Lable2.BackgroundColor = System.Drawing.Color.MediumBlue;
             this.rJ_Lable2.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable2.BorderRadius = 5;
@@ -104,6 +106,8 @@
             this.rJ_Lable2.GUID = "";
             this.rJ_Lable2.Location = new System.Drawing.Point(12, 75);
             this.rJ_Lable2.Name = "rJ_Lable2";
+            this.rJ_Lable2.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable2.ShadowSize = 0;
             this.rJ_Lable2.Size = new System.Drawing.Size(135, 40);
             this.rJ_Lable2.TabIndex = 2;
             this.rJ_Lable2.Text = "修改顯示名稱";
@@ -141,7 +145,7 @@
             this.rJ_Button_確認.BackColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_確認.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_確認.BorderRadius = 5;
+            this.rJ_Button_確認.BorderRadius = 10;
             this.rJ_Button_確認.BorderSize = 0;
             this.rJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_確認.FlatAppearance.BorderSize = 0;
@@ -149,15 +153,19 @@
             this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_確認.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_確認.GUID = "";
+            this.rJ_Button_確認.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.rJ_Button_確認.Location = new System.Drawing.Point(470, 264);
             this.rJ_Button_確認.Name = "rJ_Button_確認";
+            this.rJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_確認.ShadowSize = 3;
+            this.rJ_Button_確認.ShowLoadingForm = false;
             this.rJ_Button_確認.Size = new System.Drawing.Size(120, 57);
             this.rJ_Button_確認.State = false;
             this.rJ_Button_確認.TabIndex = 4;
             this.rJ_Button_確認.Text = "確認";
             this.rJ_Button_確認.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_確認.TextHeight = 0;
             this.rJ_Button_確認.UseVisualStyleBackColor = false;
-            this.rJ_Button_確認.Click += new System.EventHandler(this.rJ_Button_確認_Click);
             // 
             // rJ_Button_取消
             // 
@@ -165,7 +173,7 @@
             this.rJ_Button_取消.BackColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_取消.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_取消.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_取消.BorderRadius = 5;
+            this.rJ_Button_取消.BorderRadius = 10;
             this.rJ_Button_取消.BorderSize = 0;
             this.rJ_Button_取消.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_取消.FlatAppearance.BorderSize = 0;
@@ -173,15 +181,19 @@
             this.rJ_Button_取消.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_取消.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_取消.GUID = "";
+            this.rJ_Button_取消.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.rJ_Button_取消.Location = new System.Drawing.Point(470, 329);
             this.rJ_Button_取消.Name = "rJ_Button_取消";
+            this.rJ_Button_取消.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_取消.ShadowSize = 3;
+            this.rJ_Button_取消.ShowLoadingForm = false;
             this.rJ_Button_取消.Size = new System.Drawing.Size(120, 57);
             this.rJ_Button_取消.State = false;
             this.rJ_Button_取消.TabIndex = 5;
             this.rJ_Button_取消.Text = "取消";
             this.rJ_Button_取消.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_取消.TextHeight = 0;
             this.rJ_Button_取消.UseVisualStyleBackColor = false;
-            this.rJ_Button_取消.Click += new System.EventHandler(this.rJ_Button_取消_Click);
             // 
             // rJ_TextBox_病房01名稱
             // 
@@ -425,7 +437,7 @@
             // 
             // rJ_Lable3
             // 
-            this.rJ_Lable3.BackColor = System.Drawing.Color.MediumBlue;
+            this.rJ_Lable3.BackColor = System.Drawing.SystemColors.Window;
             this.rJ_Lable3.BackgroundColor = System.Drawing.Color.MediumBlue;
             this.rJ_Lable3.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable3.BorderRadius = 5;
@@ -436,6 +448,8 @@
             this.rJ_Lable3.GUID = "";
             this.rJ_Lable3.Location = new System.Drawing.Point(35, 139);
             this.rJ_Lable3.Name = "rJ_Lable3";
+            this.rJ_Lable3.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable3.ShadowSize = 0;
             this.rJ_Lable3.Size = new System.Drawing.Size(364, 40);
             this.rJ_Lable3.TabIndex = 16;
             this.rJ_Lable3.Text = "搜索病房名";

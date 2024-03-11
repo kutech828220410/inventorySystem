@@ -341,6 +341,11 @@ namespace 勤務傳送櫃
                         MyOffice.ExcelClass.NPOI_SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
                         MyMessageBox.ShowDialog("匯出完成!");
                     }
+                    else if (Extension == ".csv")
+                    {
+                        CSVHelper.SaveFile(datatable, this.saveFileDialog_SaveExcel.FileName);
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
                 }));
 
             }
