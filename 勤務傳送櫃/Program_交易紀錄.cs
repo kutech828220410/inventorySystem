@@ -246,8 +246,25 @@ namespace 勤務傳送櫃
                     string filename = this.saveFileDialog_SaveExcel.FileName;
                     DataTable dataTable = list_value.ToDataTable(new enum_交易記錄查詢資料());
                     dataTable = dataTable.ReorderTable(new enum_交易記錄查詢資料_匯出().GetEnumNames());
-                    MyOffice.ExcelClass.SaveFile(dataTable, filename);
-                    MyMessageBox.ShowDialog("資料匯出完成!");
+
+                    LoadingForm.ShowLoadingForm();
+                    string Extension = System.IO.Path.GetExtension(this.saveFileDialog_SaveExcel.FileName);
+                    if (Extension == ".txt")
+                    {
+                        CSVHelper.SaveFile(dataTable, this.saveFileDialog_SaveExcel.FileName);
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
+                    else if (Extension == ".xls" || Extension == ".xlsx")
+                    {
+                        MyOffice.ExcelClass.NPOI_SaveFile(dataTable, this.saveFileDialog_SaveExcel.FileName);
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
+                    else if (Extension == ".csv")
+                    {
+                        CSVHelper.SaveFile(dataTable, this.saveFileDialog_SaveExcel.FileName);
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
+                    LoadingForm.CloseLoadingForm();
                 }
             }));
         }
