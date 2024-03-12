@@ -168,7 +168,7 @@ namespace 調劑台管理系統
             Program_調劑作業_領藥台_02_Init();
             Program_調劑作業_領藥台_03_Init();
             Program_調劑作業_領藥台_04_Init();
-
+            Dialog_使用者登入.myTimerBasic_覆核完成.StartTickTime(1);
             this.plC_RJ_Button_調劑作業_指紋登入.MouseDownEvent += PlC_RJ_Button_調劑作業_指紋登入_MouseDownEvent;
 
             this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
@@ -786,7 +786,7 @@ namespace 調劑台管理系統
                 return;
             }
             string UID = this.rfiD_FX600_UI.Get_RFID_UID(領藥台_01_RFID站號);
-            if (!UID.StringIsEmpty() && UID.StringToInt32() != 0)
+            if (!UID.StringIsEmpty() && UID.StringToInt32() != 0 && Dialog_使用者登入.myTimerBasic_覆核完成.IsTimeOut())
             {
                 Console.WriteLine($"成功讀取RFID  {UID}");
                 領藥台_01_卡號 = UID;
@@ -2552,9 +2552,11 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_01.TitleForeColor = Color.Black;
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
+            MySerialPort_Scanner01.ClearReadByte();
             this.voice.SpeakOnTask("使用者登入完成");
             PLC_Device_Scanner01_讀取藥單資料.Bool = false;
-
+            PLC_Device_Scanner01_讀取藥單資料_OK.Bool = false;
+            領藥台_01_醫令條碼 = "";
         }
         private void PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(MouseEventArgs mevent)
         {

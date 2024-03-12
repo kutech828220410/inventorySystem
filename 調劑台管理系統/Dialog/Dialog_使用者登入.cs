@@ -17,7 +17,7 @@ namespace 調劑台管理系統
 {
     public partial class Dialog_使用者登入 : MyDialog
     {
- 
+        static public MyTimerBasic myTimerBasic_覆核完成 = new MyTimerBasic();
         private MyThread MyThread_program;
         public static bool IsShown = false;
         private bool _flag_已登入 = false;
@@ -116,15 +116,22 @@ namespace 調劑台管理系統
                 }));
             }
         }
+        Task task;
         private void Dialog_使用者登入_LoadFinishedEvent(EventArgs e)
         {
             if (Main_Form.Function_指紋辨識初始化())
             {
-                Task task = Task.Run(new Action(delegate
+                task = Task.Run(new Action(delegate
                 {
                     while(true)
                     {
-                        FpMatchClass fpMatchClass = Main_Form.fpMatchSoket.GetFeature();
+                        if (IsShown == false)
+                        {
+                            Main_Form.fpMatchSoket.Open();
+                            break;
+                        }
+                        FpMatchClass fpMatchClass = Main_Form.fpMatchSoket.GetFeatureOnce();
+                        if (fpMatchClass == null) continue;
                         if (fpMatchClass.featureLen == 768)
                         {
 
@@ -189,6 +196,21 @@ namespace 調劑台管理系統
             this.Invoke(new Action(delegate
             {
                 rJ_Lable_Title.Text = $"雙人覆核 [已登入] {UserName}";
+                int cnt = 0;
+                while(true)
+                {
+                    string UID_01 = this.rFID_FX600_UI.Get_RFID_UID(1);
+                    string UID_02 = this.rFID_FX600_UI.Get_RFID_UID(2);
+                    if (cnt >= 3) break;
+                    if ((UID_01.StringIsEmpty() == true || UID_01.StringToInt32() == 0) && (UID_02.StringIsEmpty() == true || UID_02.StringToInt32() == 0))
+                    {
+                        Console.WriteLine($"UID_01 {UID_01} ");
+                        Console.WriteLine($"UID_02 {UID_02} ");
+                        cnt++;
+                    }
+                    System.Threading.Thread.Sleep(100);
+                }
+                PlC_RJ_Button_確認_MouseDownEventEx(null, null);
             }));
             return true;
         }
@@ -216,6 +238,8 @@ namespace 調劑台管理系統
                     MyMessageBox.ShowDialog("未登入!無法完成!");
                     return;
                 }
+                myTimerBasic_覆核完成.TickStop();
+                myTimerBasic_覆核完成.StartTickTime(5000);
                 this.DialogResult = DialogResult.Yes;
                 this.Close();
             }));
@@ -241,6 +265,7 @@ namespace 調劑台管理系統
                 this.StartPosition = FormStartPosition.WindowsDefaultLocation;
                 base.Location = this.location;
             }
+            IsShown = true;
             this.textBox_密碼.KeyPress += TextBox_密碼_KeyPress;
             Main_Form.領藥台_01_卡號 = "";
             MyThread_program = new MyThread();
@@ -248,9 +273,6 @@ namespace 調劑台管理系統
             MyThread_program.AutoRun(true);
             MyThread_program.SetSleepTime(10);
             MyThread_program.Trigger();
-
-            IsShown = true;
-
         }
 
         private void TextBox_密碼_KeyPress(object sender, KeyPressEventArgs e)
