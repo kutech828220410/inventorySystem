@@ -57,18 +57,23 @@ namespace 調劑台管理系統
             plC_RJ_Button_2號.Run();
             plC_RJ_Button_3號.Run();
             plC_RJ_Button_4號.Run();
-            if (Main_Form.myConfigClass.Scanner01_COMPort.StringIsEmpty() == false)
+            if(flag_init == false)
             {
-                if (Main_Form.myConfigClass.Scanner02_COMPort.StringIsEmpty() == true
-                && Main_Form.myConfigClass.Scanner03_COMPort.StringIsEmpty() == true
-                && Main_Form.myConfigClass.Scanner04_COMPort.StringIsEmpty() == true)
+                if (Main_Form.myConfigClass.Scanner01_COMPort.StringIsEmpty() == false)
                 {
-                    this.Invoke(new Action(delegate
+                    if (Main_Form.myConfigClass.Scanner02_COMPort.StringIsEmpty() == true
+                    && Main_Form.myConfigClass.Scanner03_COMPort.StringIsEmpty() == true
+                    && Main_Form.myConfigClass.Scanner04_COMPort.StringIsEmpty() == true)
                     {
-                        plC_RJ_Button_1號.Bool = true;
-                    }));
+                        this.Invoke(new Action(delegate
+                        {
+                            plC_RJ_Button_1號.Bool = true;
+                        }));
+                    }
                 }
+                flag_init = true;
             }
+          
             if(plC_RJ_Button_1號.Bool || plC_RJ_Button_2號.Bool || plC_RJ_Button_3號.Bool || plC_RJ_Button_4號.Bool)
             {
                 if(flag_step_2 == false)

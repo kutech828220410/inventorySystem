@@ -734,3 +734,8 @@ C:\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
 C:\Users\User\source\repos\inventorySystem\ServerSettingForm\bin\Release\PopupControl.dll
 C:\Users\User\source\repos\inventorySystem\ServerSettingForm\bin\Release\CSkin.dll
 C:\Users\User\source\repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
+C:\Users\useradmin\source\repos\inventorySystem\ServerSettingForm\bin\Release\PopupControl.dll
+C:\Users\useradmin\source\repos\inventorySystem\ServerSettingForm\bin\Release\CSkin.dll
+C:\Users\useradmin\source\repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
+C:\Users\useradmin\source\repos\inventorySystem\ServerSettingForm\bin\Release\HIS_DB_Lib.xml
+C:\Users\useradmin\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_癌症備藥機.resources

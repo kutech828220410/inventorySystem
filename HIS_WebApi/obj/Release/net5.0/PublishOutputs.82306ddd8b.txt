@@ -166,7 +166,9 @@ C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\Pu
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\SQLUI.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\System.Management.dll
+C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\zxing.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OOXML.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OpenXml4Net.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\NPOI.OpenXmlFormats.dll
+C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_DB_Lib.xml
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\HIS_WebApi.xml

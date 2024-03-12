@@ -975,9 +975,6 @@ C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\SQLU
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\TCP.dll
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\ZealTechUI.dll
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\zxing.dll
-C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.Office.Interop.Excel.dll
-C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\office.dll
-C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.AssemblyReference.cache
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.Dialog_EPDPanel.resources
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.Form1.resources
@@ -1189,3 +1186,7 @@ C:\Users\User\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳
 C:\Users\User\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.exe
 C:\Users\User\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.pdb
 C:\Users\user\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll
+C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\PopupControl.dll
+C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\CSkin.dll
+C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.mshtml.dll
+C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml

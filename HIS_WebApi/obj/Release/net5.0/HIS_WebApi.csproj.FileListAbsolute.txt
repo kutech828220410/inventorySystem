@@ -2644,3 +2644,5 @@ C:\Users\User\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_Web
 C:\Users\User\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CopyComplete
 C:\Users\User\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\User\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\zxing.dll
+C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_DB_Lib.xml
