@@ -250,7 +250,7 @@ namespace 調劑台管理系統
                         }
                     }));
 
-                    this.Function_登出();
+                    //this.Function_登出();
 
                     this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_01_換頁 = true;
@@ -273,7 +273,7 @@ namespace 調劑台管理系統
         }
         private void sub_Program_領藥台_02()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 this.Invoke(new Action(delegate
                 {
@@ -356,7 +356,7 @@ namespace 調劑台管理系統
                     }));
                     this.Function_登出();
 
-                    this.PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
+                    //this.PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_02_換頁 = true;
                 }
 
@@ -365,7 +365,7 @@ namespace 調劑台管理系統
             {
                 if (this.flag_Program_領藥台_02_換頁)
                 {
-                    this.PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
+                    //this.PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_02_換頁 = false;
                 }
             }
@@ -377,7 +377,7 @@ namespace 調劑台管理系統
         }
         private void sub_Program_領藥台_03()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 this.Invoke(new Action(delegate
                 {
@@ -460,7 +460,7 @@ namespace 調劑台管理系統
                     }));
                     this.Function_登出();
 
-                    this.PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
+                    //this.PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_03_換頁 = true;
                 }
 
@@ -469,7 +469,7 @@ namespace 調劑台管理系統
             {
                 if (this.flag_Program_領藥台_03_換頁)
                 {
-                    this.PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
+                    //this.PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_03_換頁 = false;
                 }
             }
@@ -481,7 +481,7 @@ namespace 調劑台管理系統
         }
         private void sub_Program_領藥台_04()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 this.Invoke(new Action(delegate
                 {
@@ -564,7 +564,7 @@ namespace 調劑台管理系統
                     }));
                     this.Function_登出();
 
-                    this.PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
+                    //this.PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_04_換頁 = true;
                 }
 
@@ -573,7 +573,7 @@ namespace 調劑台管理系統
             {
                 if (this.flag_Program_領藥台_04_換頁)
                 {
-                    this.PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
+                    //this.PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_04_換頁 = false;
                 }
             }
@@ -2552,7 +2552,7 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_01.TitleForeColor = Color.Black;
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
-            MySerialPort_Scanner01.ClearReadByte();
+            //MySerialPort_Scanner01.ClearReadByte();
             this.voice.SpeakOnTask("使用者登入完成");
             PLC_Device_Scanner01_讀取藥單資料.Bool = false;
             PLC_Device_Scanner01_讀取藥單資料_OK.Bool = false;
@@ -2803,7 +2803,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_02_狀態顯示 = 65534;
         void sub_Program_領藥台_02_狀態顯示()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 PLC_Device_領藥台_02_狀態顯示.Bool = true;
             }
@@ -3070,7 +3070,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_02_檢查輸入資料 = 65534;
         void sub_Program_領藥台_02_檢查輸入資料()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業" && PLC_Device_領藥台_02_已登入.Bool)
+            if ((this.plC_ScreenPage_Main.PageText == "調劑作業" || true )&& PLC_Device_領藥台_02_已登入.Bool)
             {
                 PLC_Device_領藥台_02_檢查輸入資料.Bool = true;
             }
@@ -3261,7 +3261,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_02_刷新領藥內容 = 65534;
         void sub_Program_領藥台_02_刷新領藥內容()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if ((this.plC_ScreenPage_Main.PageText == "調劑作業" || true))
             {
                 PLC_Device_領藥台_02_刷新領藥內容.Bool = true;
             }
@@ -4901,7 +4901,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_03_狀態顯示 = 65534;
         void sub_Program_領藥台_03_狀態顯示()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 PLC_Device_領藥台_03_狀態顯示.Bool = true;
             }
@@ -4967,7 +4967,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_03_檢查登入 = 65534;
         void sub_Program_領藥台_03_檢查登入()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業") PLC_Device_領藥台_03_檢查登入.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true) PLC_Device_領藥台_03_檢查登入.Bool = true;
             else PLC_Device_領藥台_03_檢查登入.Bool = false;
             if (cnt_Program_領藥台_03_檢查登入 == 65534)
             {
@@ -5168,7 +5168,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_03_檢查輸入資料 = 65534;
         void sub_Program_領藥台_03_檢查輸入資料()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業" && PLC_Device_領藥台_03_已登入.Bool)
+            if ((this.plC_ScreenPage_Main.PageText == "調劑作業" || true) && PLC_Device_領藥台_03_已登入.Bool)
             {
                 PLC_Device_領藥台_03_檢查輸入資料.Bool = true;
             }
@@ -5357,7 +5357,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_03_刷新領藥內容 = 65534;
         void sub_Program_領藥台_03_刷新領藥內容()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 PLC_Device_領藥台_03_刷新領藥內容.Bool = true;
             }
@@ -6996,7 +6996,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_04_狀態顯示 = 65534;
         void sub_Program_領藥台_04_狀態顯示()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 PLC_Device_領藥台_04_狀態顯示.Bool = true;
             }
@@ -7062,7 +7062,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_04_檢查登入 = 65534;
         void sub_Program_領藥台_04_檢查登入()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業") PLC_Device_領藥台_04_檢查登入.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true) PLC_Device_領藥台_04_檢查登入.Bool = true;
             else PLC_Device_領藥台_04_檢查登入.Bool = false;
             if (cnt_Program_領藥台_04_檢查登入 == 65534)
             {
@@ -7452,7 +7452,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_04_刷新領藥內容 = 65534;
         void sub_Program_領藥台_04_刷新領藥內容()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            if ((this.plC_ScreenPage_Main.PageText == "調劑作業" || true))
             {
                 PLC_Device_領藥台_04_刷新領藥內容.Bool = true;
             }

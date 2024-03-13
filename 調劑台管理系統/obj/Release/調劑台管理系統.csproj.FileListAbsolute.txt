@@ -200,3 +200,4 @@ C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Releas
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_人員資料.resources

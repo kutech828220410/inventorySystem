@@ -302,22 +302,22 @@ namespace 調劑台管理系統
                     rJ_TextBox_人員資料_資料查詢_一維條碼.Text = 人員資料_BarCode;
                 }));
             }
-            if (MySerialPort_Scanner02.ReadByte() != null)
-            {
-                System.Threading.Thread.Sleep(50);
-                string text = MySerialPort_Scanner02.ReadString();
-                MySerialPort_Scanner02.ClearReadByte();
-                if (text == null) return;
-                text = text.Replace("\0", "");
-                if (text.Length <= 2 || text.Length > 30) return;
-                if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                text = text.Replace("\r\n", "");
-                this.Invoke(new Action(delegate
-                {
-                    人員資料_BarCode = text;
-                    rJ_TextBox_人員資料_資料查詢_一維條碼.Text = 人員資料_BarCode;
-                }));
-            }
+            //if (MySerialPort_Scanner02.ReadByte() != null)
+            //{
+            //    System.Threading.Thread.Sleep(50);
+            //    string text = MySerialPort_Scanner02.ReadString();
+            //    MySerialPort_Scanner02.ClearReadByte();
+            //    if (text == null) return;
+            //    text = text.Replace("\0", "");
+            //    if (text.Length <= 2 || text.Length > 30) return;
+            //    if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+            //    text = text.Replace("\r\n", "");
+            //    this.Invoke(new Action(delegate
+            //    {
+            //        人員資料_BarCode = text;
+            //        rJ_TextBox_人員資料_資料查詢_一維條碼.Text = 人員資料_BarCode;
+            //    }));
+            //}
             cnt++;
         }
 

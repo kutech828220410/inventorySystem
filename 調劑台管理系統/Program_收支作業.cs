@@ -98,7 +98,7 @@ namespace 調劑台管理系統
             if (this.plC_ScreenPage_Main.PageText == "收支作業")
             {
                 string bacode01 = Function_ReadBacodeScanner01();
-                string bacode02 = Function_ReadBacodeScanner02();
+                //string bacode02 = Function_ReadBacodeScanner02();
                 if (bacode01.StringIsEmpty() == false)
                 {
                     this.Invoke(new Action(delegate 
@@ -108,14 +108,14 @@ namespace 調劑台管理系統
                     }));
                  
                 }
-                else if (bacode02.StringIsEmpty() == false)
-                {
-                    this.Invoke(new Action(delegate
-                    {
-                        this.rJ_TextBox_收支作業_單品入庫_藥品條碼.Texts = bacode02;
-                        PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent(null);
-                    }));
-                }
+                //else if (bacode02.StringIsEmpty() == false)
+                //{
+                //    this.Invoke(new Action(delegate
+                //    {
+                //        this.rJ_TextBox_收支作業_單品入庫_藥品條碼.Texts = bacode02;
+                //        PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent(null);
+                //    }));
+                //}
 
                 if (this.plC_RJ_Button_收支作業_入庫.Bool)
                 {

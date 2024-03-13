@@ -14449,9 +14449,9 @@
             this.panel80.Controls.Add(this.plC_RJ_Button_人員資料_條碼註冊);
             this.panel80.Controls.Add(this.rJ_TextBox_人員資料_識別圖案);
             this.panel80.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel80.Location = new System.Drawing.Point(465, 549);
+            this.panel80.Location = new System.Drawing.Point(465, 559);
             this.panel80.Name = "panel80";
-            this.panel80.Size = new System.Drawing.Size(170, 373);
+            this.panel80.Size = new System.Drawing.Size(132, 363);
             this.panel80.TabIndex = 141;
             // 
             // plC_Button_人員資料_指紋註冊
@@ -14460,7 +14460,7 @@
             this.plC_Button_人員資料_指紋註冊.BackgroundColor = System.Drawing.Color.White;
             this.plC_Button_人員資料_指紋註冊.Bool = false;
             this.plC_Button_人員資料_指紋註冊.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_Button_人員資料_指紋註冊.BorderRadius = 20;
+            this.plC_Button_人員資料_指紋註冊.BorderRadius = 10;
             this.plC_Button_人員資料_指紋註冊.BorderSize = 0;
             this.plC_Button_人員資料_指紋註冊.but_press = false;
             this.plC_Button_人員資料_指紋註冊.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -14509,7 +14509,7 @@
             this.plC_RJ_Button_人員資料_RFID註冊.BackgroundColor = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_RFID註冊.Bool = false;
             this.plC_RJ_Button_人員資料_RFID註冊.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_人員資料_RFID註冊.BorderRadius = 20;
+            this.plC_RJ_Button_人員資料_RFID註冊.BorderRadius = 10;
             this.plC_RJ_Button_人員資料_RFID註冊.BorderSize = 0;
             this.plC_RJ_Button_人員資料_RFID註冊.but_press = false;
             this.plC_RJ_Button_人員資料_RFID註冊.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -14558,7 +14558,7 @@
             this.plC_RJ_Button_人員資料_條碼註冊.BackgroundColor = System.Drawing.Color.White;
             this.plC_RJ_Button_人員資料_條碼註冊.Bool = false;
             this.plC_RJ_Button_人員資料_條碼註冊.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_人員資料_條碼註冊.BorderRadius = 20;
+            this.plC_RJ_Button_人員資料_條碼註冊.BorderRadius = 10;
             this.plC_RJ_Button_人員資料_條碼註冊.BorderSize = 0;
             this.plC_RJ_Button_人員資料_條碼註冊.but_press = false;
             this.plC_RJ_Button_人員資料_條碼註冊.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
@@ -14648,17 +14648,17 @@
             this.rJ_GroupBox16.ContentsPanel.Name = "ContentsPanel";
             this.rJ_GroupBox16.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox16.ContentsPanel.ShadowSize = 0;
-            this.rJ_GroupBox16.ContentsPanel.Size = new System.Drawing.Size(436, 336);
+            this.rJ_GroupBox16.ContentsPanel.Size = new System.Drawing.Size(436, 326);
             this.rJ_GroupBox16.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox16.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_GroupBox16.GUID = "";
-            this.rJ_GroupBox16.Location = new System.Drawing.Point(651, 549);
+            this.rJ_GroupBox16.Location = new System.Drawing.Point(651, 559);
             this.rJ_GroupBox16.Name = "rJ_GroupBox16";
             this.rJ_GroupBox16.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox16.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox16.PannelBorderRadius = 2;
             this.rJ_GroupBox16.PannelBorderSize = 2;
-            this.rJ_GroupBox16.Size = new System.Drawing.Size(436, 373);
+            this.rJ_GroupBox16.Size = new System.Drawing.Size(436, 363);
             this.rJ_GroupBox16.TabIndex = 140;
             this.rJ_GroupBox16.TitleBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox16.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -15195,17 +15195,17 @@
             this.plC_RJ_GroupBox24.ContentsPanel.Padding = new System.Windows.Forms.Padding(5);
             this.plC_RJ_GroupBox24.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_GroupBox24.ContentsPanel.ShadowSize = 0;
-            this.plC_RJ_GroupBox24.ContentsPanel.Size = new System.Drawing.Size(571, 336);
+            this.plC_RJ_GroupBox24.ContentsPanel.Size = new System.Drawing.Size(571, 326);
             this.plC_RJ_GroupBox24.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox24.Dock = System.Windows.Forms.DockStyle.Right;
             this.plC_RJ_GroupBox24.GUID = "";
-            this.plC_RJ_GroupBox24.Location = new System.Drawing.Point(1087, 549);
+            this.plC_RJ_GroupBox24.Location = new System.Drawing.Point(1087, 559);
             this.plC_RJ_GroupBox24.Name = "plC_RJ_GroupBox24";
             this.plC_RJ_GroupBox24.PannelBackColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox24.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.plC_RJ_GroupBox24.PannelBorderRadius = 5;
             this.plC_RJ_GroupBox24.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox24.Size = new System.Drawing.Size(571, 373);
+            this.plC_RJ_GroupBox24.Size = new System.Drawing.Size(571, 363);
             this.plC_RJ_GroupBox24.TabIndex = 139;
             this.plC_RJ_GroupBox24.TitleBackColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox24.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -15223,7 +15223,7 @@
             this.panel_人員資料_管制抽屜開鎖權限.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_人員資料_管制抽屜開鎖權限.Location = new System.Drawing.Point(5, 5);
             this.panel_人員資料_管制抽屜開鎖權限.Name = "panel_人員資料_管制抽屜開鎖權限";
-            this.panel_人員資料_管制抽屜開鎖權限.Size = new System.Drawing.Size(561, 326);
+            this.panel_人員資料_管制抽屜開鎖權限.Size = new System.Drawing.Size(561, 316);
             this.panel_人員資料_管制抽屜開鎖權限.TabIndex = 0;
             // 
             // plC_CheckBox5
@@ -15252,9 +15252,9 @@
             this.panel4.Controls.Add(this.plC_RJ_Button_人員資料_清除內容);
             this.panel4.Controls.Add(this.plC_RJ_Button_人員資料_登錄);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(340, 549);
+            this.panel4.Location = new System.Drawing.Point(340, 559);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(125, 373);
+            this.panel4.Size = new System.Drawing.Size(125, 363);
             this.panel4.TabIndex = 138;
             // 
             // plC_RJ_Button_人員資料_匯出
@@ -15526,18 +15526,18 @@
             this.rJ_GroupBox15.ContentsPanel.Padding = new System.Windows.Forms.Padding(3);
             this.rJ_GroupBox15.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_GroupBox15.ContentsPanel.ShadowSize = 0;
-            this.rJ_GroupBox15.ContentsPanel.Size = new System.Drawing.Size(340, 336);
+            this.rJ_GroupBox15.ContentsPanel.Size = new System.Drawing.Size(340, 326);
             this.rJ_GroupBox15.ContentsPanel.TabIndex = 2;
             this.rJ_GroupBox15.Dock = System.Windows.Forms.DockStyle.Left;
             this.rJ_GroupBox15.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_GroupBox15.GUID = "";
-            this.rJ_GroupBox15.Location = new System.Drawing.Point(0, 549);
+            this.rJ_GroupBox15.Location = new System.Drawing.Point(0, 559);
             this.rJ_GroupBox15.Name = "rJ_GroupBox15";
             this.rJ_GroupBox15.PannelBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox15.PannelBorderColor = System.Drawing.Color.SkyBlue;
             this.rJ_GroupBox15.PannelBorderRadius = 2;
             this.rJ_GroupBox15.PannelBorderSize = 2;
-            this.rJ_GroupBox15.Size = new System.Drawing.Size(340, 373);
+            this.rJ_GroupBox15.Size = new System.Drawing.Size(340, 363);
             this.rJ_GroupBox15.TabIndex = 108;
             this.rJ_GroupBox15.TitleBackColor = System.Drawing.Color.White;
             this.rJ_GroupBox15.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -16011,7 +16011,7 @@
             this.sqL_DataGridView_人員資料.AutoSelectToDeep = false;
             this.sqL_DataGridView_人員資料.backColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_人員資料.BorderColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_人員資料.BorderRadius = 10;
+            this.sqL_DataGridView_人員資料.BorderRadius = 0;
             this.sqL_DataGridView_人員資料.BorderSize = 2;
             this.sqL_DataGridView_人員資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_人員資料.cellStylBackColor = System.Drawing.Color.LightBlue;
@@ -16020,7 +16020,7 @@
             this.sqL_DataGridView_人員資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_人員資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_人員資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_人員資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_人員資料.columnHeadersHeight = 15;
             this.sqL_DataGridView_人員資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_人員資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_人員資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -16037,7 +16037,7 @@
             this.sqL_DataGridView_人員資料.RowsHeight = 50;
             this.sqL_DataGridView_人員資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_人員資料.Server = "localhost";
-            this.sqL_DataGridView_人員資料.Size = new System.Drawing.Size(1658, 549);
+            this.sqL_DataGridView_人員資料.Size = new System.Drawing.Size(1658, 559);
             this.sqL_DataGridView_人員資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_人員資料.TabIndex = 21;
             this.sqL_DataGridView_人員資料.TableName = "person_page";
