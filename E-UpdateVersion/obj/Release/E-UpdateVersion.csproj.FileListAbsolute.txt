@@ -827,8 +827,6 @@ C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-Upd
 C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.exe
 C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.pdb
-C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
-C:\Users\HS\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\hsonds01\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\kwok\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
@@ -1866,3 +1864,6 @@ C:\Users\useradmin\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Popu
 C:\Users\useradmin\source\repos\inventorySystem\E-UpdateVersion\bin\Release\CSkin.dll
 C:\Users\useradmin\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
 C:\Users\useradmin\source\repos\inventorySystem\E-UpdateVersion\bin\Release\HIS_DB_Lib.xml
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\PopupControl.dll
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\CSkin.dll
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll

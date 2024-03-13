@@ -226,6 +226,9 @@ namespace 調劑台管理系統
                         if (MyTimer_領藥台_01_入賬完成時間.IsTimeOut())
                         {
                             PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent(null);
+                            rJ_ProgressBar_領藥台_01_入賬完成時間條.Value = 0;
+                            MyTimer_領藥台_01_入賬完成時間.TickStop();
+                            MyTimer_領藥台_01_入賬完成時間.StartTickTime();
                         }
                     }
                     else
@@ -331,6 +334,9 @@ namespace 調劑台管理系統
                             if (MyTimer_領藥台_02_入賬完成時間.IsTimeOut())
                             {
                                 PlC_RJ_Button_領藥台_02_取消作業_MouseDownEvent(null);
+                                rJ_ProgressBar_領藥台_02_入賬完成時間條.Value = 0;
+                                MyTimer_領藥台_02_入賬完成時間.TickStop();
+                                MyTimer_領藥台_02_入賬完成時間.StartTickTime();
                             }
                         }
                         else
@@ -435,6 +441,9 @@ namespace 調劑台管理系統
                             if (MyTimer_領藥台_03_入賬完成時間.IsTimeOut())
                             {
                                 PlC_RJ_Button_領藥台_03_取消作業_MouseDownEvent(null);
+                                rJ_ProgressBar_領藥台_03_入賬完成時間條.Value = 0;
+                                MyTimer_領藥台_03_入賬完成時間.TickStop();
+                                MyTimer_領藥台_03_入賬完成時間.StartTickTime();
                             }
                         }
                         else
@@ -539,6 +548,9 @@ namespace 調劑台管理系統
                             if (MyTimer_領藥台_04_入賬完成時間.IsTimeOut())
                             {
                                 PlC_RJ_Button_領藥台_04_取消作業_MouseDownEvent(null);
+                                rJ_ProgressBar_領藥台_04_入賬完成時間條.Value = 0;
+                                MyTimer_領藥台_04_入賬完成時間.TickStop();
+                                MyTimer_領藥台_04_入賬完成時間.StartTickTime();
                             }
                         }
                         else
@@ -740,6 +752,7 @@ namespace 調劑台管理系統
                 PLC_Device_領藥台_01_檢查登入.SetComment("PLC_領藥台_01_檢查登入");
                 PLC_Device_領藥台_01_檢查登入_OK.SetComment("PLC_Device_領藥台_01_檢查登入_OK");
                 PLC_Device_領藥台_01_檢查登入.Bool = false;
+                PLC_Device_領藥台_01_已登入.Bool = false;
                 cnt_Program_領藥台_01_檢查登入 = 65535;
             }
             if (cnt_Program_領藥台_01_檢查登入 == 65535) cnt_Program_領藥台_01_檢查登入 = 1;
@@ -2875,6 +2888,7 @@ namespace 調劑台管理系統
             {
                 PLC_Device_領藥台_02_檢查登入.SetComment("PLC_領藥台_02_檢查登入");
                 PLC_Device_領藥台_02_檢查登入_OK.SetComment("PLC_Device_領藥台_02_檢查登入_OK");
+                PLC_Device_領藥台_02_已登入.Bool = false;
                 PLC_Device_領藥台_02_檢查登入.Bool = false;
                 cnt_Program_領藥台_02_檢查登入 = 65535;
             }
@@ -4967,13 +4981,14 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_03_檢查登入 = 65534;
         void sub_Program_領藥台_03_檢查登入()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true) PLC_Device_領藥台_03_檢查登入.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業") PLC_Device_領藥台_03_檢查登入.Bool = true;
             else PLC_Device_領藥台_03_檢查登入.Bool = false;
             if (cnt_Program_領藥台_03_檢查登入 == 65534)
             {
                 PLC_Device_領藥台_03_檢查登入.SetComment("PLC_領藥台_03_檢查登入");
                 PLC_Device_領藥台_03_檢查登入_OK.SetComment("PLC_Device_領藥台_03_檢查登入_OK");
                 PLC_Device_領藥台_03_檢查登入.Bool = false;
+                PLC_Device_領藥台_03_已登入.Bool = false;
                 cnt_Program_領藥台_03_檢查登入 = 65535;
             }
             if (cnt_Program_領藥台_03_檢查登入 == 65535) cnt_Program_領藥台_03_檢查登入 = 1;
@@ -7062,13 +7077,14 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_04_檢查登入 = 65534;
         void sub_Program_領藥台_04_檢查登入()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true) PLC_Device_領藥台_04_檢查登入.Bool = true;
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業") PLC_Device_領藥台_04_檢查登入.Bool = true;
             else PLC_Device_領藥台_04_檢查登入.Bool = false;
             if (cnt_Program_領藥台_04_檢查登入 == 65534)
             {
                 PLC_Device_領藥台_04_檢查登入.SetComment("PLC_領藥台_04_檢查登入");
                 PLC_Device_領藥台_04_檢查登入_OK.SetComment("PLC_Device_領藥台_04_檢查登入_OK");
                 PLC_Device_領藥台_04_檢查登入.Bool = false;
+                PLC_Device_領藥台_04_已登入.Bool = false;
                 cnt_Program_領藥台_04_檢查登入 = 65535;
             }
             if (cnt_Program_領藥台_04_檢查登入 == 65535) cnt_Program_領藥台_04_檢查登入 = 1;
@@ -7263,7 +7279,7 @@ namespace 調劑台管理系統
         int cnt_Program_領藥台_04_檢查輸入資料 = 65534;
         void sub_Program_領藥台_04_檢查輸入資料()
         {
-            if (this.plC_ScreenPage_Main.PageText == "調劑作業" && PLC_Device_領藥台_04_已登入.Bool)
+            if ((this.plC_ScreenPage_Main.PageText == "調劑作業" || true) && PLC_Device_領藥台_04_已登入.Bool)
             {
                 PLC_Device_領藥台_04_檢查輸入資料.Bool = true;
             }

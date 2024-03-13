@@ -681,8 +681,6 @@ C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統\obj\Release\�
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
 C:\Users\kwok\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
@@ -1245,3 +1243,6 @@ C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\bin\Release\C
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\bin\Release\PopupControl.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\CSkin.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.mshtml.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\PopupControl.dll

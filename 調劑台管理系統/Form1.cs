@@ -518,7 +518,7 @@ namespace 調劑台管理系統
             this.Program_儲位管理_RFID_Init();
             this.Program_儲位管理_Pannel35_Init();
 
-
+            this.Program_取藥堆疊資料_Init();
             if (!this.ControlMode) this.Program_調劑作業_Init();
 
          
@@ -549,7 +549,7 @@ namespace 調劑台管理系統
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();
-            this.Program_取藥堆疊資料_Init();
+    
             if (!this.ControlMode) this.Program_輸出入檢查_Init();
             this.Program_收支作業_Init();
             this.Program_指紋辨識_Init();

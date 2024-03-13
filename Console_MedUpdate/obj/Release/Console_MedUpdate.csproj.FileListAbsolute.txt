@@ -608,3 +608,6 @@ C:\Users\useradmin\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Po
 C:\Users\useradmin\source\repos\inventorySystem\Console_MedUpdate\bin\Release\CSkin.dll
 C:\Users\useradmin\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
 C:\Users\useradmin\source\repos\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\PopupControl.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\CSkin.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll

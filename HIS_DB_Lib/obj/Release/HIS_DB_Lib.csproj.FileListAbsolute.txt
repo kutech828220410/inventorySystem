@@ -569,3 +569,6 @@ C:\Users\User\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\PopupControl.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\CSkin.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.mshtml.dll
+C:\Users\HS\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\PopupControl.dll
+C:\Users\HS\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\CSkin.dll
+C:\Users\HS\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.mshtml.dll

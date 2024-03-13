@@ -1238,3 +1238,16 @@ C:\Users\useradmin\source\repos\inventorySystem\癌症自動備藥機暨排程�
 C:\Users\useradmin\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨自動備藥系統.csproj.CopyComplete
 C:\Users\useradmin\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.exe
 C:\Users\useradmin\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.pdb
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\CSkin.dll
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Microsoft.mshtml.dll
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_備藥清單.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_備藥通知處方選擇.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_儲位選擇.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_入出庫作業.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_手動選擇備藥品.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_效期批號修改.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_效期批號選擇.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_條碼管理.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_變異紀錄.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.uc_備藥通知處方.resources
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.uc_備藥通知處方內容.resources

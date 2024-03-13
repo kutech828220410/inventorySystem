@@ -626,8 +626,6 @@ C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).exe
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).pdb
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Office.Interop.Excel.dll
-C:\Users\HS\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\office.dll
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\hsonds01\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\ICSharpCode.SharpZipLib.dll
@@ -990,3 +988,6 @@ C:\Users\user\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Rel
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\CSkin.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.mshtml.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\PopupControl.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\CSkin.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.mshtml.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\PopupControl.dll
