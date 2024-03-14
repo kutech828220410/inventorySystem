@@ -20,6 +20,10 @@ namespace 調劑台管理系統
         public Dialog_人員資料()
         {
             InitializeComponent();
+
         }
+        #region Event
+
+        #endregion
     }
 }

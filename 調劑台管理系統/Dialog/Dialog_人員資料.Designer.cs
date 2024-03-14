@@ -29,19 +29,45 @@ namespace 調劑台管理系統
         /// </summary>
         private void InitializeComponent()
         {
+            this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.SuspendLayout();
+            // 
+            // rJ_Lable1
+            // 
+            this.rJ_Lable1.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable1.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.rJ_Lable1.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable1.BorderRadius = 10;
+            this.rJ_Lable1.BorderSize = 0;
+            this.rJ_Lable1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable1.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable1.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable1.GUID = "";
+            this.rJ_Lable1.Location = new System.Drawing.Point(4, 28);
+            this.rJ_Lable1.Name = "rJ_Lable1";
+            this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable1.ShadowSize = 3;
+            this.rJ_Lable1.Size = new System.Drawing.Size(633, 84);
+            this.rJ_Lable1.TabIndex = 2;
+            this.rJ_Lable1.Text = "人員資料";
+            this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable1.TextColor = System.Drawing.Color.White;
             // 
             // Dialog_人員資料
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(641, 734);
+            this.Controls.Add(this.rJ_Lable1);
             this.Name = "Dialog_人員資料";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private MyUI.RJ_Lable rJ_Lable1;
     }
 }
