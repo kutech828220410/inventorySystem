@@ -650,6 +650,7 @@
             this.rJ_Lable4 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表 = new SQLUI.SQL_DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋 = new System.Windows.Forms.ComboBox();
             this.plC_RJ_Button_儲位管理_EPD583_全部解鎖 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD583_全部上鎖 = new MyUI.PLC_RJ_Button();
             this.plC_CheckBox_儲位管理_EPD583_顯示為條碼 = new MyUI.PLC_CheckBox();
@@ -666,7 +667,6 @@
             this.plC_RJ_Button_儲位管理_EPD583_開鎖 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼 = new MyUI.RJ_TextBox();
-            this.rJ_Lable25 = new MyUI.RJ_Lable();
             this.rJ_Pannel6 = new MyUI.RJ_Pannel();
             this.rJ_RatioButton_儲位管理_EPD583_單格亮燈_紅 = new MyUI.RJ_RatioButton();
             this.rJ_RatioButton_儲位管理_EPD583_單格亮燈_白 = new MyUI.RJ_RatioButton();
@@ -740,6 +740,7 @@
             this.rJ_Lable53 = new MyUI.RJ_Lable();
             this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋 = new System.Windows.Forms.ComboBox();
             this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_匯入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_匯出 = new MyUI.PLC_RJ_Button();
@@ -751,7 +752,6 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_上傳至面板 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼 = new MyUI.RJ_TextBox();
-            this.rJ_Lable54 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_儲位管理_EPD266_刪除儲位 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_EPD266_清除燈號 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel7 = new MyUI.RJ_Pannel();
@@ -968,6 +968,7 @@
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料 = new SQLUI.SQL_DataGridView();
             this.plC_RJ_GroupBox10 = new MyUI.PLC_RJ_GroupBox();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋 = new System.Windows.Forms.ComboBox();
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_RowsLED_匯入 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位管理_RowsLED_匯出 = new MyUI.PLC_RJ_Button();
@@ -977,7 +978,6 @@
             this.plC_RJ_Button_儲位管理_RowsLED_寫入 = new MyUI.PLC_RJ_Button();
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號 = new MyUI.PLC_RJ_Button();
-            this.rJ_Lable74 = new MyUI.RJ_Lable();
             this.rJ_TextBox_儲位管理_RowsLED_層架列表_儲位名稱 = new MyUI.RJ_TextBox();
             this.rJ_TextBox_儲位管理_RowsLED_層架列表_IP = new MyUI.RJ_TextBox();
             this.rJ_Lable62 = new MyUI.RJ_Lable();
@@ -16020,7 +16020,7 @@
             this.sqL_DataGridView_人員資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_人員資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_人員資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_人員資料.columnHeadersHeight = 15;
+            this.sqL_DataGridView_人員資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_人員資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_人員資料.DataBaseName = "Dispensing_000";
             this.sqL_DataGridView_人員資料.Dock = System.Windows.Forms.DockStyle.Top;
@@ -18283,6 +18283,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋);
             this.groupBox3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_全部解鎖);
             this.groupBox3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_全部上鎖);
             this.groupBox3.Controls.Add(this.plC_CheckBox_儲位管理_EPD583_顯示為條碼);
@@ -18293,7 +18294,6 @@
             this.groupBox3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_開鎖);
             this.groupBox3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋);
             this.groupBox3.Controls.Add(this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼);
-            this.groupBox3.Controls.Add(this.rJ_Lable25);
             this.groupBox3.Controls.Add(this.rJ_Pannel6);
             this.groupBox3.Controls.Add(this.plC_RJ_Button_儲位管理_EPD583_單格亮燈);
             this.groupBox3.Controls.Add(this.plC_RJ_GroupBox4);
@@ -18308,6 +18308,20 @@
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "面板資訊";
+            // 
+            // comboBox_儲位管理_EPD583_儲位內容_儲位搜尋
+            // 
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.FormattingEnabled = true;
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.Items.AddRange(new object[] {
+            "藥碼",
+            "藥名",
+            "商品名"});
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.Location = new System.Drawing.Point(256, 605);
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.Name = "comboBox_儲位管理_EPD583_儲位內容_儲位搜尋";
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.Size = new System.Drawing.Size(92, 32);
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.TabIndex = 153;
             // 
             // plC_RJ_Button_儲位管理_EPD583_全部解鎖
             // 
@@ -18803,25 +18817,25 @@
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Location = new System.Drawing.Point(489, 598);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Location = new System.Drawing.Point(489, 597);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Name = "plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋";
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.OFF_文字內容 = "搜尋";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_BorderSize = 5;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_文字內容 = "搜尋";
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ShadowSize = 3;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(62, 39);
+            this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Size = new System.Drawing.Size(78, 49);
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.TabIndex = 133;
             this.plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋.Text = "搜尋";
@@ -18849,39 +18863,19 @@
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Location = new System.Drawing.Point(354, 601);
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Location = new System.Drawing.Point(354, 606);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Name = "rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.PassWordChar = false;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.PlaceholderText = "請輸入藥品碼";
+            this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.PlaceholderText = "儲位搜尋...";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.ShowTouchPannel = false;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Size = new System.Drawing.Size(129, 30);
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.TabIndex = 132;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Texts = "";
             this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.UnderlineStyle = false;
-            // 
-            // rJ_Lable25
-            // 
-            this.rJ_Lable25.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_Lable25.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_Lable25.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable25.BorderRadius = 12;
-            this.rJ_Lable25.BorderSize = 0;
-            this.rJ_Lable25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable25.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable25.GUID = "";
-            this.rJ_Lable25.Location = new System.Drawing.Point(232, 601);
-            this.rJ_Lable25.Name = "rJ_Lable25";
-            this.rJ_Lable25.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable25.ShadowSize = 0;
-            this.rJ_Lable25.Size = new System.Drawing.Size(116, 30);
-            this.rJ_Lable25.TabIndex = 131;
-            this.rJ_Lable25.Text = "儲位搜尋";
-            this.rJ_Lable25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable25.TextColor = System.Drawing.Color.White;
             // 
             // rJ_Pannel6
             // 
@@ -20909,6 +20903,7 @@
             // 
             // panel11
             // 
+            this.panel11.Controls.Add(this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯入);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯出);
@@ -20920,7 +20915,6 @@
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_上傳至面板);
             this.panel11.Controls.Add(this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼);
-            this.panel11.Controls.Add(this.rJ_Lable54);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_刪除儲位);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_清除燈號);
             this.panel11.Controls.Add(this.rJ_Pannel7);
@@ -20932,6 +20926,20 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(916, 500);
             this.panel11.TabIndex = 130;
+            // 
+            // comboBox_儲位管理_EPD266_儲位內容_儲位搜尋
+            // 
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.FormattingEnabled = true;
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.Items.AddRange(new object[] {
+            "藥碼",
+            "藥名",
+            "商品名"});
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.Location = new System.Drawing.Point(9, 458);
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.Name = "comboBox_儲位管理_EPD266_儲位內容_儲位搜尋";
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.Size = new System.Drawing.Size(92, 32);
+            this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋.TabIndex = 154;
             // 
             // plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱
             // 
@@ -21092,7 +21100,7 @@
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.Bool = false;
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.Font = new System.Drawing.Font("新細明體", 9F);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.Location = new System.Drawing.Point(230, 448);
+            this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.Location = new System.Drawing.Point(230, 423);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.Name = "plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位";
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.Size = new System.Drawing.Size(96, 16);
             this.plC_CheckBox_儲位管理_EPD266_儲位內容_顯示空白儲位.TabIndex = 142;
@@ -21306,31 +21314,31 @@
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Bool = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.BorderRadius = 20;
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.BorderRadius = 10;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.BorderSize = 0;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.but_press = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.GUID = "";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Location = new System.Drawing.Point(267, 468);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Location = new System.Drawing.Point(242, 454);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Name = "plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋";
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.OFF_文字內容 = "搜尋";
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_BorderSize = 5;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字內容 = "搜尋";
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ShadowSize = 3;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Size = new System.Drawing.Size(62, 30);
+            this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Size = new System.Drawing.Size(87, 40);
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.State = false;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.TabIndex = 137;
             this.plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋.Text = "搜尋";
@@ -21403,42 +21411,22 @@
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.BorderFocusColor = System.Drawing.Color.HotPink;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.BorderRadius = 2;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.BorderSize = 1;
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Font = new System.Drawing.Font("新細明體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.GUID = "";
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Location = new System.Drawing.Point(132, 468);
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Location = new System.Drawing.Point(107, 459);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Name = "rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.PassWordChar = false;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.PlaceholderText = "請輸入藥品碼";
+            this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.PlaceholderText = "儲位搜尋...";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.ShowTouchPannel = false;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Size = new System.Drawing.Size(129, 30);
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.TabIndex = 136;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.Texts = "";
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼.UnderlineStyle = false;
-            // 
-            // rJ_Lable54
-            // 
-            this.rJ_Lable54.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_Lable54.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_Lable54.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable54.BorderRadius = 12;
-            this.rJ_Lable54.BorderSize = 0;
-            this.rJ_Lable54.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable54.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable54.GUID = "";
-            this.rJ_Lable54.Location = new System.Drawing.Point(10, 468);
-            this.rJ_Lable54.Name = "rJ_Lable54";
-            this.rJ_Lable54.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable54.ShadowSize = 0;
-            this.rJ_Lable54.Size = new System.Drawing.Size(116, 30);
-            this.rJ_Lable54.TabIndex = 135;
-            this.rJ_Lable54.Text = "儲位搜尋";
-            this.rJ_Lable54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable54.TextColor = System.Drawing.Color.White;
             // 
             // plC_RJ_Button_儲位管理_EPD266_刪除儲位
             // 
@@ -27378,6 +27366,7 @@
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋);
             this.panel8.Controls.Add(this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱);
             this.panel8.Controls.Add(this.plC_RJ_Button_儲位管理_RowsLED_匯入);
             this.panel8.Controls.Add(this.plC_RJ_Button_儲位管理_RowsLED_匯出);
@@ -27387,7 +27376,6 @@
             this.panel8.Controls.Add(this.plC_RJ_Button_儲位管理_RowsLED_寫入);
             this.panel8.Controls.Add(this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼);
             this.panel8.Controls.Add(this.plC_RJ_Button_儲位管理_RowsLED_清除燈號);
-            this.panel8.Controls.Add(this.rJ_Lable74);
             this.panel8.Controls.Add(this.rJ_TextBox_儲位管理_RowsLED_層架列表_儲位名稱);
             this.panel8.Controls.Add(this.rJ_TextBox_儲位管理_RowsLED_層架列表_IP);
             this.panel8.Controls.Add(this.rJ_Lable62);
@@ -27397,6 +27385,20 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(339, 245);
             this.panel8.TabIndex = 44;
+            // 
+            // comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋
+            // 
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.FormattingEnabled = true;
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.Items.AddRange(new object[] {
+            "藥碼",
+            "藥名",
+            "商品名"});
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.Location = new System.Drawing.Point(23, 151);
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.Name = "comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋";
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.Size = new System.Drawing.Size(92, 32);
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.TabIndex = 155;
             // 
             // plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱
             // 
@@ -27414,7 +27416,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.GUID = "";
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.Location = new System.Drawing.Point(226, 186);
+            this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.Location = new System.Drawing.Point(226, 192);
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.Name = "plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱";
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.OFF_文字內容 = "自動填入\n儲位名稱";
             this.plC_RJ_Button_儲位管理_RowsLED_自動填入儲位名稱.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
@@ -27465,7 +27467,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.GUID = "";
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_RowsLED_匯入.Location = new System.Drawing.Point(126, 186);
+            this.plC_RJ_Button_儲位管理_RowsLED_匯入.Location = new System.Drawing.Point(126, 192);
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.Name = "plC_RJ_Button_儲位管理_RowsLED_匯入";
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.OFF_文字內容 = "匯入";
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
@@ -27516,7 +27518,7 @@
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.GUID = "";
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_RowsLED_匯出.Location = new System.Drawing.Point(23, 186);
+            this.plC_RJ_Button_儲位管理_RowsLED_匯出.Location = new System.Drawing.Point(23, 192);
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.Name = "plC_RJ_Button_儲位管理_RowsLED_匯出";
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.OFF_文字內容 = "匯出";
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
@@ -27655,31 +27657,31 @@
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Bool = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.BorderRadius = 20;
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.BorderRadius = 10;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.BorderSize = 0;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.but_press = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.GUID = "";
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Location = new System.Drawing.Point(272, 146);
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Location = new System.Drawing.Point(260, 146);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Name = "plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋";
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.OFF_文字內容 = "搜尋";
-            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.OFF_文字顏色 = System.Drawing.Color.White;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.OFF_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_BorderSize = 5;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字內容 = "搜尋";
-            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 10F);
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ShadowSize = 3;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Size = new System.Drawing.Size(62, 41);
+            this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Size = new System.Drawing.Size(74, 42);
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.State = false;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.TabIndex = 142;
             this.plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋.Text = "搜尋";
@@ -27755,13 +27757,13 @@
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.GUID = "";
-            this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Location = new System.Drawing.Point(137, 153);
+            this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Location = new System.Drawing.Point(124, 152);
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Multiline = false;
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Name = "rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼";
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.PassWordChar = false;
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.PlaceholderText = "請輸入藥品碼";
+            this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.PlaceholderText = "儲位搜尋...";
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.ShowTouchPannel = false;
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Size = new System.Drawing.Size(129, 30);
             this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.TabIndex = 141;
@@ -27816,26 +27818,6 @@
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.音效 = true;
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.顯示 = false;
             this.plC_RJ_Button_儲位管理_RowsLED_清除燈號.顯示狀態 = false;
-            // 
-            // rJ_Lable74
-            // 
-            this.rJ_Lable74.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_Lable74.BackgroundColor = System.Drawing.Color.CornflowerBlue;
-            this.rJ_Lable74.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable74.BorderRadius = 12;
-            this.rJ_Lable74.BorderSize = 0;
-            this.rJ_Lable74.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable74.ForeColor = System.Drawing.Color.White;
-            this.rJ_Lable74.GUID = "";
-            this.rJ_Lable74.Location = new System.Drawing.Point(15, 153);
-            this.rJ_Lable74.Name = "rJ_Lable74";
-            this.rJ_Lable74.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable74.ShadowSize = 0;
-            this.rJ_Lable74.Size = new System.Drawing.Size(116, 30);
-            this.rJ_Lable74.TabIndex = 140;
-            this.rJ_Lable74.Text = "儲位搜尋";
-            this.rJ_Lable74.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable74.TextColor = System.Drawing.Color.White;
             // 
             // rJ_TextBox_儲位管理_RowsLED_層架列表_儲位名稱
             // 
@@ -43659,7 +43641,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_單格亮燈;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋;
         private MyUI.RJ_TextBox rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼;
-        private MyUI.RJ_Lable rJ_Lable25;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_開鎖;
         private H_Pannel_lib.EPD_266_Pannel epD_266_Pannel;
         private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox6;
@@ -43726,7 +43707,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD266_刪除儲位;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼搜尋;
         private MyUI.RJ_TextBox rJ_TextBox_儲位管理_EPD266_儲位內容_儲位搜尋_藥品碼;
-        private MyUI.RJ_Lable rJ_Lable54;
         private MyUI.RJ_GroupBox rJ_GroupBox14;
         private LeadShineUI.IOC1280 ioC1280;
         private MyUI.PLC_CheckBox plC_CheckBox3;
@@ -43797,7 +43777,6 @@
         private MyUI.RJ_TextBox rJ_TextBox_儲位管理_RowsLED_層架列表_儲位名稱;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋;
         private MyUI.RJ_TextBox rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼;
-        private MyUI.RJ_Lable rJ_Lable74;
  
         private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox9;
         private SQLUI.SQL_DataGridView sqL_DataGridView_Locker_Index_Table;
@@ -44929,6 +44908,9 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_條碼註冊;
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料_RFID註冊;
         private MyUI.PLC_RJ_Button plC_RJ_Button_調劑作業_指紋登入;
+        private System.Windows.Forms.ComboBox comboBox_儲位管理_EPD583_儲位內容_儲位搜尋;
+        private System.Windows.Forms.ComboBox comboBox_儲位管理_EPD266_儲位內容_儲位搜尋;
+        private System.Windows.Forms.ComboBox comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋;
     }
 }
 

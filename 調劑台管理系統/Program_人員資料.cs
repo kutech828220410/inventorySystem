@@ -98,6 +98,11 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.卡號);
             this.sqL_DataGridView_人員資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_人員資料.一維條碼);
 
+            this.sqL_DataGridView_人員資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_人員資料.ID);
+            this.sqL_DataGridView_人員資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_人員資料.姓名);
+            this.sqL_DataGridView_人員資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_人員資料.藥師證字號);
+            this.sqL_DataGridView_人員資料.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_人員資料.單位);
+
 
             this.sqL_DataGridView_人員資料.DataGridRefreshEvent += SqL_DataGridView_人員資料_DataGridRefreshEvent;
             this.sqL_DataGridView_人員資料.RowEnterEvent += SqL_DataGridView_人員資料_RowEnterEvent;
@@ -899,7 +904,11 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("搜尋條件空白!");
                 return;
             }
-            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.一維條碼, rJ_TextBox_人員資料_資料查詢_一維條碼.Text, false);
+            string text = rJ_TextBox_人員資料_資料查詢_一維條碼.Text;
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+            list_value = (from temp in list_value
+                          where temp[(int)enum_人員資料.一維條碼].ObjectToString().ToUpper().Contains(text.ToUpper())
+                          select temp).ToList();
             if(list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料!");
@@ -914,7 +923,11 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("搜尋條件空白!");
                 return;
             }
-            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRows((int)enum_人員資料.卡號, rJ_TextBox_人員資料_資料查詢_卡號.Text, false);
+            string text = rJ_TextBox_人員資料_資料查詢_卡號.Text;
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+            list_value = (from temp in list_value
+                          where temp[(int)enum_人員資料.卡號].ObjectToString().ToUpper().Contains(text.ToUpper())
+                          select temp).ToList();
             if (list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料!");
@@ -929,7 +942,11 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("搜尋條件空白!");
                 return;
             }
-            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRowsByLike((int)enum_人員資料.姓名, rJ_TextBox_人員資料_資料查詢_姓名.Text, false);
+            string text = rJ_TextBox_人員資料_資料查詢_姓名.Text;
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+            list_value = (from temp in list_value
+                          where temp[(int)enum_人員資料.姓名].ObjectToString().ToUpper().Contains(text.ToUpper())
+                          select temp).ToList();
             if (list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料!");
@@ -944,7 +961,13 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("搜尋條件空白!");
                 return;
             }
-            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetRowsByLike((int)enum_人員資料.ID, rJ_TextBox_人員資料_資料查詢_ID.Text, false);
+            string text = rJ_TextBox_人員資料_資料查詢_ID.Text;
+
+            List<object[]> list_value = this.sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+            list_value = (from temp in list_value
+                          where temp[(int)enum_人員資料.ID].ObjectToString().ToUpper().Contains(text.ToUpper())
+                          select temp).ToList();
+
             if (list_value.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無資料!");

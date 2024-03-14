@@ -20,9 +20,9 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
-        private List<Drawer> List_EPD583_本地資料 = new List<Drawer>();
-        private List<Drawer> List_EPD583_雲端資料 = new List<Drawer>();
-        private List<Drawer> List_EPD583_入賬資料 = new List<Drawer>();
+        static public List<Drawer> List_EPD583_本地資料 = new List<Drawer>();
+        static public List<Drawer> List_EPD583_雲端資料 = new List<Drawer>();
+        static public List<Drawer> List_EPD583_入賬資料 = new List<Drawer>();
         private Drawer EPD583_Drawer_Copy;
         private Box EPD583_Box_Copy;
         private enum enum_儲位管理_EPD583_效期及庫存
@@ -109,6 +109,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱.MouseDownEvent += PlC_RJ_Button_儲位管理_EPD583_自動填入儲位名稱_MouseDownEvent;
             this.plC_CheckBox_儲位管理_EPD583_警報.CheckStateChanged += PlC_CheckBox_儲位管理_EPD583_警報_CheckStateChanged;
 
+            this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.SelectedIndex = 0;
+
             this.epD_583_Pannel.Init(this.drawerUI_EPD_583.List_UDP_Local);
             this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
             this.epD_583_Pannel.MouseDownEvent += EpD_583_Pannel_MouseDownEvent;
@@ -182,7 +184,7 @@ namespace 調劑台管理系統
             MyTimer_TickTime.TickStop();
             MyTimer_TickTime.StartTickTime(50000);
             List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < this.List_EPD583_本地資料.Count; i++)
+            for (int i = 0; i < List_EPD583_本地資料.Count; i++)
             {
                 object[] value = new object[new enum_儲位管理_EPD583_抽屜列表().GetLength()];
                 value[(int)enum_儲位管理_EPD583_抽屜列表.IP] = List_EPD583_本地資料[i].IP;
@@ -225,9 +227,9 @@ namespace 調劑台管理系統
             string 形狀相似_buf = "";
             string 發音相似_buf = "";
             string 管制級別_buf = "";
-            for (int i = 0; i < this.List_EPD583_本地資料.Count; i++)
+            for (int i = 0; i < List_EPD583_本地資料.Count; i++)
             {
-                string IP = this.List_EPD583_本地資料[i].IP;
+                string IP = List_EPD583_本地資料[i].IP;
                 List<Box> boxes = List_EPD583_本地資料[i].GetAllBoxes();
                 bool Is_Replace = false;
                 for (int k = 0; k < boxes.Count; k++)
@@ -304,12 +306,12 @@ namespace 調劑台管理系統
                 }
                 if (Is_Replace)
                 {
-                    list_replaceValue.Add(this.List_EPD583_本地資料[i]);
+                    list_replaceValue.Add(List_EPD583_本地資料[i]);
                 }
             }
             for(int i = 0; i < list_replaceValue.Count; i++)
             {
-                this.List_EPD583_本地資料.Add_NewDrawer(list_replaceValue[i]);
+                List_EPD583_本地資料.Add_NewDrawer(list_replaceValue[i]);
             }
        
             this.drawerUI_EPD_583.SQL_ReplaceDrawer(list_replaceValue);
@@ -368,7 +370,7 @@ namespace 調劑台管理系統
                 rJ_TextBox_儲位管理_EPD583_抽屜列表_IP.Texts = IP;
                 rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Texts = 儲位名稱;
                 Drawer drawer = this.drawerUI_EPD_583.SQL_GetDrawer(IP);
-                this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                List_EPD583_本地資料.Add_NewDrawer(drawer);
                 rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Texts = drawer.Speaker;
                 if (drawer != null)
                 {
@@ -505,7 +507,7 @@ namespace 調劑台管理系統
                 {
                     drawer.IsAllLight = plC_CheckBox_儲位管理_EPD583_隔板亮燈.Checked;
                     this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
-                    this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                    List_EPD583_本地資料.Add_NewDrawer(drawer);
                     this.epD_583_Pannel.CurrentDrawer = drawer;
                     this.Function_設定雲端資料更新();
                 }
@@ -521,7 +523,7 @@ namespace 調劑台管理系統
                 {
                     drawer.AlarmEnable = plC_CheckBox_儲位管理_EPD583_警報.Checked;
                     this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
-                    this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                    List_EPD583_本地資料.Add_NewDrawer(drawer);
                     this.epD_583_Pannel.CurrentDrawer = drawer;
                     this.Function_設定雲端資料更新();
                     flag_Program_輸出入檢查_輸出刷新_Init = false;
@@ -586,7 +588,7 @@ namespace 調劑台管理系統
             {
                 drawer.Speaker = rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Text;
                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
-                this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                List_EPD583_本地資料.Add_NewDrawer(drawer);
                 sqL_DataGridView_儲位管理_EPD583_抽屜列表.Replace(new object[] { drawer.IP, drawer.Name }, true);
                 sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
                 this.Function_設定雲端資料更新();
@@ -706,7 +708,7 @@ namespace 調劑台管理系統
                 drawer.Name = rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Text;
                 drawer.Speaker = rJ_TextBox_儲位管理_EPD583_抽屜列表_語音.Text;
                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
-                this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                List_EPD583_本地資料.Add_NewDrawer(drawer);
                 sqL_DataGridView_儲位管理_EPD583_抽屜列表.Replace(new object[] { drawer.IP, drawer.Name }, true);
                 sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
                 this.Function_設定雲端資料更新();
@@ -772,21 +774,21 @@ namespace 調劑台管理系統
             if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked) this.epD_583_Pannel.DrawToPictureBox(this.epD_583_Pannel.CurrentDrawer);
             else this.epD_583_Pannel.DrawBarCodeToPictureBox(this.epD_583_Pannel.CurrentDrawer);
             this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
-            this.List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
+            List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
             this.Function_設定雲端資料更新();
         }
         private void PlC_RJ_Button_儲位管理_EPD583_分割儲位_MouseDownEvent(MouseEventArgs mevent)
         {
             this.epD_583_Pannel.SeparateBoxes();
             this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
-            this.List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
+            List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
             this.Function_設定雲端資料更新();
         }
         private void PlC_RJ_Button_儲位管理_EPD583_合併儲位_MouseDownEvent(MouseEventArgs mevent)
         {
             this.epD_583_Pannel.CombineBoxes();
             this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
-            this.List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
+            List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
             this.Function_設定雲端資料更新();
         }
         private void PlC_RJ_Button_儲位管理_EPD583_初始化儲位_MouseDownEvent(MouseEventArgs mevent)
@@ -796,7 +798,7 @@ namespace 調劑台管理系統
             {
                 this.epD_583_Pannel.InitBoxes();
                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
-                this.List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
+                List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
                 this.Function_設定雲端資料更新();
             }
         }
@@ -806,7 +808,7 @@ namespace 調劑台管理系統
             {
                 this.epD_583_Pannel.ClearBoxes();
                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
-                this.List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
+                List_EPD583_本地資料.Add_NewDrawer(this.epD_583_Pannel.CurrentDrawer);
                 this.Function_設定雲端資料更新();
             }
         }
@@ -1030,7 +1032,7 @@ namespace 調劑台管理系統
                 int 修正庫存 = boxes[0].取得庫存();
                 epD_583_Pannel.CurrentDrawer.ReplaceBox(boxes[0]);
                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(epD_583_Pannel.CurrentDrawer);
-                this.List_EPD583_本地資料.Add_NewDrawer(epD_583_Pannel.CurrentDrawer);
+                List_EPD583_本地資料.Add_NewDrawer(epD_583_Pannel.CurrentDrawer);
 
                 string GUID = Guid.NewGuid().ToString();
                 string 動作 = enum_交易記錄查詢動作.效期庫存異動.GetEnumName();
@@ -1172,7 +1174,7 @@ namespace 調劑台管理系統
 
                 boxes[0].修正批號(效期, 新批號);
                 epD_583_Pannel.CurrentDrawer.ReplaceBox(boxes[0]);
-                this.List_EPD583_本地資料.Add_NewDrawer(epD_583_Pannel.CurrentDrawer);
+                List_EPD583_本地資料.Add_NewDrawer(epD_583_Pannel.CurrentDrawer);
                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(epD_583_Pannel.CurrentDrawer);
 
                 string GUID = Guid.NewGuid().ToString();
@@ -1242,10 +1244,39 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD583_儲位內容_藥品碼_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            string Code = this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Text;
-            if (Code.StringIsEmpty()) return;
+            string text = "";
+            string comboBox_text = "";
+            this.Invoke(new Action(delegate
+            {
+                text = this.rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼.Text;
+                comboBox_text = this.comboBox_儲位管理_EPD583_儲位內容_儲位搜尋.Text;
+            }));
+           
+            if (text.StringIsEmpty()) return;
+            List<Box> list_boxes = new List<Box>();
             int select_index = -1;
-            List<Box> list_boxes = List_EPD583_本地資料.SortLikeByCode(Code);
+            if (comboBox_text == "藥碼")
+            {
+                list_boxes = List_EPD583_本地資料.SortLikeByCode(text.ToUpper());
+            }
+            if (comboBox_text == "藥名")
+            {
+                List<Box> list_boxes_buf = List_EPD583_本地資料.GetAllBoxes();
+                list_boxes_buf = (from temp in list_boxes_buf
+                                  where temp.Name.ToUpper().Contains(text.ToUpper())
+                                  select temp).ToList();
+                list_boxes = list_boxes_buf;
+            }
+            if (comboBox_text == "商品名")
+            {
+                List<Box> list_boxes_buf = List_EPD583_本地資料.GetAllBoxes();
+                list_boxes_buf = (from temp in list_boxes_buf
+                                  where temp.Scientific_Name.ToUpper().Contains(text.ToUpper())
+                                  select temp).ToList();
+                list_boxes = list_boxes_buf;
+            }
+
+
             if (list_boxes.Count == 0)
             {
                 MyMessageBox.ShowDialog("抽屜欄位無此藥品!!");
@@ -1396,7 +1427,7 @@ namespace 調劑台管理系統
             Drawer drawer = EPD583_Drawer_Copy.DeepClone();
             drawer.ReplaceIP(IP);
             this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
-            this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+            List_EPD583_本地資料.Add_NewDrawer(drawer);
             sqL_DataGridView_儲位管理_EPD583_抽屜列表.Replace(new object[] { drawer.IP, drawer.Name }, true);
             sqL_DataGridView_儲位管理_EPD583_抽屜列表.On_RowEnter();
             this.Function_設定雲端資料更新();
@@ -1438,9 +1469,9 @@ namespace 調劑台管理系統
             {
                 boxes[i].PasteFormat(EPD583_Box_Copy);
             }
-            Drawer drawer = this.List_EPD583_本地資料.SortByIP(boxes[0].IP);
+            Drawer drawer = List_EPD583_本地資料.SortByIP(boxes[0].IP);
             for (int i = 0; i < boxes.Count; i++) drawer.ReplaceBox(boxes[i]);
-            this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+            List_EPD583_本地資料.Add_NewDrawer(drawer);
             this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
             this.Function_設定雲端資料更新();
             if (!plC_CheckBox_儲位管理_EPD583_顯示為條碼.Checked) this.epD_583_Pannel.DrawToPictureBox(this.epD_583_Pannel.CurrentDrawer);
@@ -1598,7 +1629,7 @@ namespace 調劑台管理系統
             for (int i = 0; i < sheetClasses.Count; i++)
             {
                 string 儲位名稱 = sheetClasses[i].Name;
-                Drawer drawer = this.List_EPD583_本地資料.SortByName(儲位名稱);
+                Drawer drawer = List_EPD583_本地資料.SortByName(儲位名稱);
                 if (drawer == null) continue;
                 //drawer = this.epD_583_Pannel.SeparateBoxesAll(drawer);
                 for (int k = 0; k < sheetClasses[i].CellValues.Count; k++)
@@ -1627,7 +1658,7 @@ namespace 調劑台管理系統
                    
                 }
                 this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
-                this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                List_EPD583_本地資料.Add_NewDrawer(drawer);
                 this.epD_583_Pannel.DrawToPictureBox(drawer);
             }
             List<object[]> list_抽屜列表 = this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Get_All_Select_RowsValues();
@@ -1640,7 +1671,7 @@ namespace 調劑台管理系統
             if (list_抽屜列表.Count > 0)
             {
                 string IP = list_抽屜列表[0][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
-                Drawer drawer = this.List_EPD583_本地資料.SortByIP(IP);
+                Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                 if (drawer != null) this.epD_583_Pannel.DrawToPictureBox(drawer);
             }
             this.Function_設定雲端資料更新();
@@ -1655,14 +1686,14 @@ namespace 調劑台管理系統
             for (int i = 0; i < list_儲位列表.Count; i++)
             {
                 string IP = list_儲位列表[i][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
-                Drawer drawer = this.List_EPD583_本地資料.SortByIP(IP);
+                Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                 if (drawer == null) continue;
                 drawer.Name = $"{i / 4 + 1}-{index}";
                 index++;
-                this.List_EPD583_本地資料.Add_NewDrawer(drawer);
+                List_EPD583_本地資料.Add_NewDrawer(drawer);
                 if (index == 5) index = 1;
             }
-            this.drawerUI_EPD_583.SQL_ReplaceDrawer(this.List_EPD583_本地資料);
+            this.drawerUI_EPD_583.SQL_ReplaceDrawer(List_EPD583_本地資料);
             this.Function_設定雲端資料更新();
             PLC_Device_儲位管理_EPD583_資料更新.Bool = true;
             while (true)

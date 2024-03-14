@@ -536,7 +536,7 @@ namespace 調劑台管理系統
             returnData returnData = new returnData();
             sessionClass _sessionClass = new sessionClass();
             _sessionClass.ID = this.textBox_後台登入_帳號.Text.ToUpper();
-            _sessionClass.Password = this.textBox_後台登入_密碼.Text.ToUpper();
+            _sessionClass.Password = this.textBox_後台登入_密碼.Text;
             returnData.Data = _sessionClass;
             json_in = returnData.JsonSerializationt();
             json_result = Net.WEBApiPostJson(dBConfigClass.Login_URL, json_in);

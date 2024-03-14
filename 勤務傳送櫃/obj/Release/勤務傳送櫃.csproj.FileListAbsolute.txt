@@ -1190,3 +1190,4 @@ C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Popu
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\CSkin.dll
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.mshtml.dll
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll

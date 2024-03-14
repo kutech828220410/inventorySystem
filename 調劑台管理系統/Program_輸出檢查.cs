@@ -103,7 +103,7 @@ namespace 調劑台管理系統
                         storage.ActionDone = true;
                         if (plC_Button_同藥碼全亮.Bool) return;
                  
-                        //this.List_EPD266_雲端資料.Add_NewStorage(storage);
+                        //List_EPD266_雲端資料.Add_NewStorage(storage);
                         this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                     }
                     else if (storage.DeviceType == DeviceType.Pannel35 || storage.DeviceType == DeviceType.Pannel35_lock)
@@ -112,7 +112,7 @@ namespace 調劑台管理系統
                         storage.ActionDone = true;
                         if (plC_Button_同藥碼全亮.Bool) return;
               
-                        //this.List_Pannel35_雲端資料.Add_NewStorage(storage);
+                        //List_Pannel35_雲端資料.Add_NewStorage(storage);
                         this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                     }
            
@@ -134,7 +134,7 @@ namespace 調劑台管理系統
                          
                             if (plC_Button_同藥碼全亮.Bool) return;
                          
-                            //this.List_EPD583_雲端資料.Add_NewDrawer(drawer);
+                            //List_EPD583_雲端資料.Add_NewDrawer(drawer);
                             this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                         }
                         if (boxes[0].DeviceType == DeviceType.EPD1020 || boxes[0].DeviceType == DeviceType.EPD1020_lock)
@@ -226,7 +226,7 @@ namespace 調劑台管理系統
 
                         taskList.Add(Task.Run(() =>
                         {
-                            Drawer drawer = this.List_EPD583_雲端資料.SortByIP(IP);
+                            Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                             if (drawer != null)
                             {
                                 this.drawerUI_EPD_583.Set_LockOpen(drawer);
@@ -242,7 +242,7 @@ namespace 調劑台管理系統
                         }));
                         taskList.Add(Task.Run(() =>
                         {
-                            Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
+                            Storage storage = List_EPD266_雲端資料.SortByIP(IP);
                             if (storage != null)
                             {
                                 this.storageUI_EPD_266.Set_LockOpen(storage);
@@ -250,7 +250,7 @@ namespace 調劑台管理系統
                         }));
                         taskList.Add(Task.Run(() =>
                         {
-                            Storage pannel35 = this.List_Pannel35_雲端資料.SortByIP(IP);
+                            Storage pannel35 = List_Pannel35_雲端資料.SortByIP(IP);
                             if (pannel35 != null)
                             {
                                 this.storageUI_WT32.Set_LockOpen(pannel35);
@@ -380,7 +380,7 @@ namespace 調劑台管理系統
                 int Num = list_locker_table_value_buf[i][(int)enum_Locker_Index_Table.Num].ObjectToString().StringToInt32();
                 bool AlarmEnable = false;
                 if (Input.StringIsEmpty()) continue;
-                Drawer drawer = this.List_EPD583_雲端資料.SortByIP(IP);
+                Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                 if (drawer != null)
                 {
                     flag_state = this.drawerUI_EPD_583.GetInput(drawer.IP);
@@ -396,7 +396,7 @@ namespace 調劑台管理系統
                
                     AlarmEnable = drawer_1020.AlarmEnable;
                 }
-                Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
+                Storage storage = List_EPD266_雲端資料.SortByIP(IP);
                 if (storage != null)
                 {
                     if(storage.DeviceType == DeviceType.EPD266_lock || storage.DeviceType == DeviceType.EPD290_lock)
@@ -409,7 +409,7 @@ namespace 調劑台管理系統
                     }
                
                 }
-                Storage pannel35 = this.List_Pannel35_雲端資料.SortByIP(IP);
+                Storage pannel35 = List_Pannel35_雲端資料.SortByIP(IP);
                 if (pannel35 != null)
                 {
                     if(pannel35.DeviceType == DeviceType.Pannel35_lock)

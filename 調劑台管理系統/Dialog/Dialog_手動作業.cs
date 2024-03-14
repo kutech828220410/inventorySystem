@@ -24,12 +24,13 @@ namespace 調劑台管理系統
     }
     public partial class Dialog_手動作業 : MyDialog
     {
+        public static bool IsShown = false;
         public enum enum_狀態
         {
             領藥,
             退藥,
         }
-       
+        private MyThread MyThread_program;
         public List<object[]> Value = new List<object[]>();
         private SQL_DataGridView sQL_DataGridView_藥品資料_buf;
         private Main_Form Main_Form_buf;
@@ -37,12 +38,14 @@ namespace 調劑台管理系統
         public Dialog_手動作業(Main_Form Main_Form, SQL_DataGridView sQL_DataGridView_藥品資料 , enum_狀態 enum_狀態)
         {
             InitializeComponent();
-    
 
+            this.FormClosing += Dialog_手動作業_FormClosing;
             this.sQL_DataGridView_藥品資料_buf = sQL_DataGridView_藥品資料;
             this.Main_Form_buf = Main_Form;
             this._enum_狀態 = enum_狀態;
         }
+
+     
 
         private void Dialog_手動作業_Load(object sender, EventArgs e)
         {
@@ -81,8 +84,102 @@ namespace 調劑台管理系統
                 }
             }));
             this.sqL_DataGridView_藥品資料.SQL_GetAllRows(true);
+            MyThread_program = new MyThread();
+            MyThread_program.Add_Method(sub_program);
+            MyThread_program.AutoRun(true);
+            MyThread_program.SetSleepTime(10);
+            MyThread_program.Trigger();
+            IsShown = true;
 
         }
+        private void sub_program()
+        {
+            string text = "";
+            text = Main_Form.Function_ReadBacodeScanner01();
+            if (text.StringIsEmpty() == false)
+            {
+                List<medClass> medClasses = Main_Form.Function_搜尋Barcode(text);
+                if (medClasses.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("條碼查無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    this.Function_選擇藥品(medClasses[0].藥品碼, medClasses[0].藥品名稱);
+                }
+            }
+            text = Main_Form.Function_ReadBacodeScanner02();
+            if (text.StringIsEmpty() == false)
+            {
+                List<medClass> medClasses = Main_Form.Function_搜尋Barcode(text);
+                if (medClasses.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("條碼查無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    this.Function_選擇藥品(medClasses[0].藥品碼, medClasses[0].藥品名稱);
+                }
+            }
+            text = Main_Form.Function_ReadBacodeScanner03();
+            if (text.StringIsEmpty() == false)
+            {
+                List<medClass> medClasses = Main_Form.Function_搜尋Barcode(text);
+                if (medClasses.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("條碼查無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    this.Function_選擇藥品(medClasses[0].藥品碼, medClasses[0].藥品名稱);
+                }
+            }
+            text = Main_Form.Function_ReadBacodeScanner04();
+            if (text.StringIsEmpty() == false)
+            {
+                List<medClass> medClasses = Main_Form.Function_搜尋Barcode(text);
+                if (medClasses.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("條碼查無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                else
+                {
+                    this.Function_選擇藥品(medClasses[0].藥品碼, medClasses[0].藥品名稱);
+                }
+            }
+        }
+        #region Function
+        private bool Function_選擇藥品(string 藥碼 ,string 藥名)
+        {
+            Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入數量");
+            if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return false;
+            int 交易量 = dialog_NumPannel.Value;
+            if (交易量 == 0)
+            {
+                if (MyMessageBox.ShowDialog("交易量為（0） ,確定選擇此藥品?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
+                {
+                    return false;
+                }
+            }
+            if (_enum_狀態 == enum_狀態.領藥) 交易量 *= -1;
+            object[] value = new object[new enum_選擇藥品().GetLength()];
+            value[(int)enum_選擇藥品.GUID] = Guid.NewGuid().ToString();
+            value[(int)enum_選擇藥品.藥品碼] = 藥碼;
+            value[(int)enum_選擇藥品.藥品名稱] = 藥名;
+            value[(int)enum_選擇藥品.交易量] = 交易量;
+            value[(int)enum_選擇藥品.病房號] = rJ_TextBox_病房號.Text;
+            this.sqL_DataGridView_選擇藥品.AddRow(value, true);
+            return true;
+        }
+        #endregion
         #region Event
         private void SqL_DataGridView_選擇藥品_RowEndEditEvent(object[] RowValue, int rowIndex, int colIndex, string value)
         {
@@ -132,26 +229,9 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("未選取資料!");
                 return;
             }
-            Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入數量");
-            if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
-            int 交易量 = dialog_NumPannel.Value;
-            if (交易量 == 0)
-            {
-                if (MyMessageBox.ShowDialog("交易量為（0） ,確定選擇此藥品?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
-                {
-                    return;
-                }
-            }
-            if (_enum_狀態 == enum_狀態.領藥) 交易量 *= -1;
             string 藥品碼 = list_value[0][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
             string 藥品名稱 = list_value[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
-            object[] value = new object[new enum_選擇藥品().GetLength()];
-            value[(int)enum_選擇藥品.GUID] = Guid.NewGuid().ToString();
-            value[(int)enum_選擇藥品.藥品碼] = 藥品碼;
-            value[(int)enum_選擇藥品.藥品名稱] = 藥品名稱;
-            value[(int)enum_選擇藥品.交易量] = 交易量;
-            value[(int)enum_選擇藥品.病房號] = rJ_TextBox_病房號.Text;
-            this.sqL_DataGridView_選擇藥品.AddRow(value, true);
+            this.Function_選擇藥品(藥品碼, 藥品名稱);
         }
         private void RJ_TextBox_藥品資料_藥品名稱_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -215,6 +295,15 @@ namespace 調劑台管理系統
                 this.DialogResult = DialogResult.No;
                 this.Close();
             }));
+        }
+        private void Dialog_手動作業_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MyThread_program != null)
+            {
+                MyThread_program.Abort();
+                MyThread_program = null;
+            }
+            IsShown = false;
         }
         #endregion
 

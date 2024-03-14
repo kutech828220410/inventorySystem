@@ -91,6 +91,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.MouseDownEvent += PlC_RJ_Button_儲位管理_RowsLED_匯出_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.MouseDownEvent += PlC_RJ_Button_儲位管理_RowsLED_匯入_MouseDownEvent;
 
+
+            this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.SelectedIndex = 0;
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_RowsLED);
         }
 
@@ -873,14 +875,47 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            string 藥品碼 = this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Texts;
-            List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortLikeByCode(藥品碼);
+            string text = "";
+            string comboBox_text = "";
+            this.Invoke(new Action(delegate
+            {
+                text = this.rJ_TextBox_儲位管理_RowsLED_儲位內容_儲位搜尋_藥品碼.Text;
+                comboBox_text = this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.Text;
+            }));
+
+            if (text.StringIsEmpty()) return;
+            List<RowsDevice> rowsDevices = new List<RowsDevice>();
+            int select_index = -1;
+            if (comboBox_text == "藥碼")
+            {
+                List<RowsDevice> rowsDevices_buf = List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                where temp.Code.ToUpper().Contains(text.ToUpper())
+                                select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+            if (comboBox_text == "藥名")
+            {
+                List<RowsDevice> rowsDevices_buf = List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                   where temp.Code.ToUpper().Contains(text.ToUpper())
+                                   select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+            if (comboBox_text == "商品名")
+            {
+                List<RowsDevice> rowsDevices_buf = List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                   where temp.Code.ToUpper().Contains(text.ToUpper())
+                                   select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+
             if(rowsDevices.Count == 0)
             {
                 MyMessageBox.ShowDialog("查無無此藥品!!");
                 return;
             }
-            int select_index = -1;
             string IP = "0.0.0.0";
             int index = 0;
             if (this.rowsLED_Pannel.CurrentRowsLED != null)

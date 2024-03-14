@@ -254,7 +254,6 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\De
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_新增容器設定.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_調劑作業_病歷號輸入.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_交班藥品選擇.resources
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Form1.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Form_Buffer.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Pannel_Locker.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Properties.Resources.resources
@@ -365,3 +364,11 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\De
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_藥檔維護.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_錯誤提示.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_新藥建置.resources
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Debug\CSkin.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Debug\FpMatchLib.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Debug\Microsoft.mshtml.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Debug\PopupControl.dll
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_人員資料.resources
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_指紋登入.resources
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_指紋建置.resources
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Main_Form.resources

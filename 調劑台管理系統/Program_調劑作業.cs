@@ -780,6 +780,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_檢查登入_外部設備資料或帳號密碼登入(ref int cnt)
         {
+            if(Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (Dialog_使用者登入.IsShown)
             {
                 if (MySerialPort_Scanner01.ReadByte() != null)
@@ -995,6 +1000,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_檢查輸入資料_設定開始掃描(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
                 if (!PLC_Device_Scanner01_讀取藥單資料.Bool)
@@ -1106,6 +1116,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_01_檢查輸入資料_檢查醫令資料及寫入(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
                 if (plC_Button_領藥台_01_領.Bool)
@@ -2917,6 +2932,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_02_檢查登入_外部設備資料或帳號密碼登入(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (Dialog_使用者登入.IsShown)
             {
                 if (MySerialPort_Scanner02.ReadByte() != null)
@@ -3132,6 +3152,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_02_檢查輸入資料_設定開始掃描(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
                 if (!PLC_Device_Scanner02_讀取藥單資料.Bool)
@@ -3155,6 +3180,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_02_檢查輸入資料_等待掃描結束(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
                 if (!PLC_Device_Scanner02_讀取藥單資料.Bool || PLC_Device_Scanner02_讀取藥單資料_OK.Bool)
@@ -5018,6 +5048,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_03_檢查登入_外部設備資料或帳號密碼登入(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (Dialog_使用者登入.IsShown)
             {
                 if (MySerialPort_Scanner03.ReadByte() != null)
@@ -5233,6 +5268,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_03_檢查輸入資料_設定開始掃描(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
                 if (!PLC_Device_Scanner03_讀取藥單資料.Bool)
@@ -5256,6 +5296,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_03_檢查輸入資料_等待掃描結束(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
                 if (!PLC_Device_Scanner03_讀取藥單資料.Bool || PLC_Device_Scanner03_讀取藥單資料_OK.Bool)
@@ -7116,6 +7161,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_04_檢查登入_外部設備資料或帳號密碼登入(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (Dialog_使用者登入.IsShown)
             {
                 if (MySerialPort_Scanner04.ReadByte() != null)
@@ -7331,6 +7381,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_04_檢查輸入資料_設定開始掃描(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
                 if (!PLC_Device_Scanner04_讀取藥單資料.Bool)
@@ -7354,6 +7409,11 @@ namespace 調劑台管理系統
         }
         void cnt_Program_領藥台_04_檢查輸入資料_等待掃描結束(ref int cnt)
         {
+            if (Dialog_手動作業.IsShown)
+            {
+                cnt = 65500;
+                return;
+            }
             if (plC_CheckBox_QRcode_Mode.Bool)
             {
                 if (!PLC_Device_Scanner04_讀取藥單資料.Bool || PLC_Device_Scanner04_讀取藥單資料_OK.Bool)

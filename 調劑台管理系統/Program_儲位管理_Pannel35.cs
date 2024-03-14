@@ -20,9 +20,9 @@ namespace 調劑台管理系統
     public partial class Main_Form : Form
     {
         private Storage WT32_Storage_Copy;
-        private List<Storage> List_Pannel35_本地資料 = new List<Storage>();
-        private List<Storage> List_Pannel35_雲端資料 = new List<Storage>();
-        private List<Storage> List_Pannel35_入賬資料 = new List<Storage>();
+        static public List<Storage> List_Pannel35_本地資料 = new List<Storage>();
+        static public List<Storage> List_Pannel35_雲端資料 = new List<Storage>();
+        static public List<Storage> List_Pannel35_入賬資料 = new List<Storage>();
         private Storage Pannel35_Storage_Copy;
         private enum enum_儲位管理_Pannel35_效期及庫存
         {
@@ -170,10 +170,10 @@ namespace 調劑台管理系統
             string BarCode_buf = "";
             string 包裝單位_buf = "";
             string 警訊藥品_buf = "";
-            for (int i = 0; i < this.List_Pannel35_本地資料.Count; i++)
+            for (int i = 0; i < List_Pannel35_本地資料.Count; i++)
             {
-                if (this.List_Pannel35_本地資料 == null) continue;
-                string IP = this.List_Pannel35_本地資料[i].IP;
+                if (List_Pannel35_本地資料 == null) continue;
+                string IP = List_Pannel35_本地資料[i].IP;
                 Storage storage = List_Pannel35_本地資料[i];
                 bool Is_Replace = false;
                 藥品碼 = storage.GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
@@ -243,7 +243,7 @@ namespace 調劑台管理系統
             MyTimer_TickTime.TickStop();
             MyTimer_TickTime.StartTickTime(50000);
             List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < this.List_Pannel35_本地資料.Count; i++)
+            for (int i = 0; i < List_Pannel35_本地資料.Count; i++)
             {
                 object[] value = new object[new enum_儲位管理_Pannel35_儲位資料().GetLength()];
                 value[(int)enum_儲位管理_Pannel35_儲位資料.IP] = List_Pannel35_本地資料[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString(); ;
@@ -319,7 +319,7 @@ namespace 調劑台管理系統
         }
         private void Pannel35_Pannel_EditFinishedEvent(Storage storage)
         {
-            this.List_Pannel35_本地資料.Add_NewStorage(storage);
+            List_Pannel35_本地資料.Add_NewStorage(storage);
             this.storageUI_WT32.SQL_ReplaceStorage(storage);
         }
         private void PlC_RJ_Button_儲位管理_Pannel35_警報_CheckStateChanged(object sender, EventArgs e)
@@ -329,7 +329,7 @@ namespace 調劑台管理系統
                 Storage storage = this.pannel35_Pannel.CurrentStorage;
                 if (storage == null) return;
                 storage.AlarmEnable = plC_RJ_Button_儲位管理_Pannel35_警報.Checked;
-                this.List_Pannel35_本地資料.Add_NewStorage(storage);
+                List_Pannel35_本地資料.Add_NewStorage(storage);
                 this.storageUI_WT32.SQL_ReplaceStorage(storage);
                 this.Function_設定雲端資料更新();
                 flag_Program_輸出入檢查_輸出刷新_Init = false;
@@ -451,7 +451,7 @@ namespace 調劑台管理系統
                 return;
             }
             List<Task> taskList = new List<Task>();
-            List<Storage> storages = this.List_Pannel35_本地資料;
+            List<Storage> storages = List_Pannel35_本地資料;
             try
             {
                 for (int i = 0; i < list_value.Count; i++)
@@ -494,7 +494,7 @@ namespace 調劑台管理系統
                 return;
             }
             List<Task> taskList = new List<Task>();
-            List<Storage> storages = this.List_Pannel35_本地資料;
+            List<Storage> storages = List_Pannel35_本地資料;
             for (int i = 0; i < list_value.Count; i++)
             {
                 List<Storage> storages_buf = (from value in storages
@@ -529,7 +529,7 @@ namespace 調劑台管理系統
                 return;
             }
             List<Task> taskList = new List<Task>();
-            List<Storage> storages = this.List_Pannel35_本地資料;
+            List<Storage> storages = List_Pannel35_本地資料;
             for (int i = 0; i < list_value.Count; i++)
             {
                 List<Storage> storages_buf = (from value in storages
@@ -561,7 +561,7 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_value.Count; i++)
                 {
                     IP = list_value[i][(int)enum_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
-                    Storage storage = this.List_Pannel35_本地資料.SortByIP(IP);
+                    Storage storage = List_Pannel35_本地資料.SortByIP(IP);
                     if (storage == null) return;
                     storage.ClearStorage();
                     this.storageUI_WT32.SQL_ReplaceStorage(storage);
@@ -610,7 +610,7 @@ namespace 調劑台管理系統
             for (int i = 0; i < storages_replaceValue.Count; i++)
             {
                 storages_replaceValue[i].PasteFormat(this.WT32_Storage_Copy);
-                this.List_Pannel35_本地資料.Add_NewStorage(storages_replaceValue[i]);
+                List_Pannel35_本地資料.Add_NewStorage(storages_replaceValue[i]);
             }
 
             this.storageUI_WT32.SQL_ReplaceStorage(storages_replaceValue);
@@ -654,7 +654,7 @@ namespace 調劑台管理系統
                 return;
             }
             List<Task> taskList = new List<Task>();
-            List<Storage> storages = this.List_Pannel35_本地資料;
+            List<Storage> storages = List_Pannel35_本地資料;
             try
             {
                 for (int i = 0; i < list_value.Count; i++)
@@ -712,7 +712,7 @@ namespace 調劑台管理系統
 
 
                 storage.修正批號(效期, 新批號);
-                this.List_Pannel35_本地資料.Add_NewStorage(storage);
+                List_Pannel35_本地資料.Add_NewStorage(storage);
                 this.storageUI_WT32.SQL_ReplaceStorage(storage);
 
 
@@ -803,7 +803,7 @@ namespace 調劑台管理系統
                 storage.效期庫存覆蓋(效期, 數量);
                 int 修正庫存 = storage.取得庫存();
                 this.storageUI_WT32.SQL_ReplaceStorage(storage);
-                this.List_Pannel35_本地資料.Add_NewStorage(storage);
+                List_Pannel35_本地資料.Add_NewStorage(storage);
                 Task.Run(new Action(delegate
                 {
                     this.storageUI_WT32.Set_DrawPannelJEPG(storage);

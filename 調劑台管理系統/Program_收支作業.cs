@@ -464,7 +464,7 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_收支作業_單品入庫_藥品條碼輸入_MouseDownEvent(MouseEventArgs mevent)
         {
             string BarCode = this.rJ_TextBox_收支作業_單品入庫_藥品條碼.Texts;
-            List<medClass> medClasses = this.Function_搜尋Barcode(BarCode);
+            List<medClass> medClasses = Main_Form.Function_搜尋Barcode(BarCode);
             if(medClasses.Count == 0)
             {
                 MyMessageBox.ShowDialog("找無此國際條碼!");

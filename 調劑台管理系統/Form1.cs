@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.30")]
-[assembly: AssemblyFileVersion("1.2.1.30")]
+[assembly: AssemblyVersion("1.2.1.31")]
+[assembly: AssemblyFileVersion("1.2.1.31")]
 namespace 調劑台管理系統
 {
 
@@ -88,7 +88,7 @@ namespace 調劑台管理系統
 
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
-        public DBConfigClass dBConfigClass = new DBConfigClass();
+        static public DBConfigClass dBConfigClass = new DBConfigClass();
         public class DBConfigClass
         {
 
@@ -256,7 +256,37 @@ namespace 調劑台管理系統
 
         }
         #endregion
-        
+        #region MyParameter
+        private static string MyParameterFileName = $@"{currentDirectory}\parameter.txt";
+        static public MyParameter myParameter = new MyParameter();
+        public class MyParameter
+        {
+
+            private List<string> _交班開鎖抽屜 = new List<string>();
+
+            public List<string> 交班開鎖抽屜 { get => _交班開鎖抽屜; set => _交班開鎖抽屜 = value; }
+        }
+        static public void SaveMyParameter()
+        {
+            string jsonstr = myParameter.JsonSerializationt();
+            if (!MyFileStream.SaveFile($"{MyParameterFileName}", jsonstr))
+            {
+                MyMessageBox.ShowDialog($"建立{MyParameterFileName}檔案失敗!");
+
+            }
+        }
+        static public void LoadMyParameter()
+        {
+            string jsonstr = MyFileStream.LoadFileAllText($"{MyParameterFileName}");
+            myParameter = jsonstr.JsonDeserializet<MyParameter>();
+            if (myParameter == null)
+            {
+                myParameter = new MyParameter();
+                SaveMyParameter();
+            }
+       
+        }
+        #endregion
 
         public Main_Form()
         {

@@ -548,18 +548,45 @@ namespace 調劑台管理系統
             }
             if (plC_RJ_Button_交班作業_對點作業_開始交班.Bool == true)
             {
-                if (MyMessageBox.ShowDialog("確認交班,彈開所有抽屜?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-                Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_當班交接人_ID.Text}],當班交接人");
-                if(!this.plC_CheckBox_單人交班.Bool)Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_被交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_被交接人_ID.Text}],被交接人");
-                List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
-                for (int i = 0; i < list_locker_table_value.Count; i++)
+                try
                 {
-                    list_locker_table_value[i][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                    Dialog_抽屜選擇 dialog_抽屜選擇 = new Dialog_抽屜選擇();
+                    if (dialog_抽屜選擇.ShowDialog() != DialogResult.Yes) return;
+                    //if (MyMessageBox.ShowDialog("確認交班,彈開所有抽屜?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+                    Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_當班交接人_ID.Text}],當班交接人");
+                    if (!this.plC_CheckBox_單人交班.Bool) Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.交班對點, rJ_Lable_交班作業_對點作業_被交接人_姓名.Text, $"ID[{ rJ_Lable_交班作業_對點作業_被交接人_ID.Text}],被交接人");
+                    List<object[]> list_locker_table_value = this.sqL_DataGridView_Locker_Index_Table.SQL_GetAllRows(false);
+                    List<object[]> list_locker_table_value_buf = new List<object[]>();
+                    List<object[]> list_locker_table_value_result = new List<object[]>();
+
+                    for (int i = 0; i < dialog_抽屜選擇.Value.Count; i++)
+                    {
+                        list_locker_table_value_buf = list_locker_table_value.GetRows((int)enum_Locker_Index_Table.IP, dialog_抽屜選擇.Value[i]);
+                        if (list_locker_table_value_buf.Count > 0)
+                        {
+                            list_locker_table_value_result.Add(list_locker_table_value_buf[0]);
+                        }
+                    }
+                    for (int i = 0; i < list_locker_table_value_result.Count; i++)
+                    {
+                        list_locker_table_value_result[i][(int)enum_Locker_Index_Table.輸出狀態] = true.ToString();
+                    }
+                    this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value_result, false);
                 }
-                this.sqL_DataGridView_Locker_Index_Table.SQL_ReplaceExtra(list_locker_table_value, false);
-                PlC_RJ_Button_交班作業_對點作業_取消作業_MouseDownEvent(null);
-                plC_RJ_Button_交班作業_對點作業_開始交班.Bool = false;
+                catch
+                {
+
+                }
+                finally
+                {
+                    PlC_RJ_Button_交班作業_對點作業_取消作業_MouseDownEvent(null);
+                    plC_RJ_Button_交班作業_對點作業_開始交班.Bool = false;
+                }
+             
+
             }
+           
+       
         }
         #endregion
     }

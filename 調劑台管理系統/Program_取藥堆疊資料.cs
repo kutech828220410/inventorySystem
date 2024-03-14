@@ -397,7 +397,7 @@ namespace 調劑台管理系統
 
             if (device_Type == DeviceType.EPD266.GetEnumName() || device_Type == DeviceType.EPD266_lock.GetEnumName() || device_Type == DeviceType.EPD290.GetEnumName() || device_Type == DeviceType.EPD290_lock.GetEnumName())
             {
-                Storage storage = this.List_EPD266_雲端資料.SortByIP(IP);
+                Storage storage = List_EPD266_雲端資料.SortByIP(IP);
                 if (storage != null && storage.Speaker.StringIsEmpty() == false)
                 {
                     Task.Run(() =>
@@ -408,7 +408,7 @@ namespace 調劑台管理系統
             }
             else if (device_Type == DeviceType.Pannel35.GetEnumName() || device_Type == DeviceType.Pannel35_lock.GetEnumName())
             {
-                Storage storage = this.List_Pannel35_雲端資料.SortByIP(IP);
+                Storage storage = List_Pannel35_雲端資料.SortByIP(IP);
                 if (storage != null && storage.Speaker.StringIsEmpty() == false)
                 {
                     Task.Run(() =>
@@ -420,7 +420,7 @@ namespace 調劑台管理系統
             }
             else if (device_Type == DeviceType.EPD583.GetEnumName() || device_Type == DeviceType.EPD583_lock.GetEnumName())
             {
-                Drawer drawer = this.List_EPD583_雲端資料.SortByIP(IP);
+                Drawer drawer = List_EPD583_雲端資料.SortByIP(IP);
                 if (drawer != null && drawer.Speaker.StringIsEmpty() == false)
                 {
                     Task.Run(() =>
@@ -758,7 +758,7 @@ namespace 調劑台管理系統
             string 批號 = 堆疊子資料[(int)enum_取藥堆疊子資料.批號].ObjectToString();
             if (str_TYPE == DeviceType.EPD583.GetEnumName() || str_TYPE == DeviceType.EPD583_lock.GetEnumName())
             {
-                List<Box> boxes = this.List_EPD583_入賬資料.SortByCode(藥品碼);
+                List<Box> boxes = List_EPD583_入賬資料.SortByCode(藥品碼);
                 for (int i = 0; i < boxes.Count; i++)
                 {
                     if (boxes[i].IP != IP) continue;
@@ -771,8 +771,8 @@ namespace 調劑台管理系統
                         List<string> list_異動量 = new List<string>();
                         boxes[i].庫存異動(異動量, out list_效期, out list_批號);
 
-                        Drawer drawer = this.List_EPD583_入賬資料.ReplaceBox(boxes[i]);
-                        this.List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
+                        Drawer drawer = List_EPD583_入賬資料.ReplaceBox(boxes[i]);
+                        List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
                         this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
                         break;
                     }
@@ -780,16 +780,16 @@ namespace 調劑台管理系統
                     {
                         boxes[i].效期庫存異動(效期, 異動量);
                         批號 = boxes[i].取得批號(效期);
-                        Drawer drawer = this.List_EPD583_入賬資料.ReplaceBox(boxes[i]);
-                        this.List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
+                        Drawer drawer = List_EPD583_入賬資料.ReplaceBox(boxes[i]);
+                        List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
                         this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
                         break;
                     }
                     else if ((儲位庫存) == -1)
                     {
                         boxes[i].新增效期(效期, 批號, 異動量.ToString());
-                        Drawer drawer = this.List_EPD583_入賬資料.ReplaceBox(boxes[i]);
-                        this.List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
+                        Drawer drawer = List_EPD583_入賬資料.ReplaceBox(boxes[i]);
+                        List_EPD583_入賬資料.Add_NewDrawer(boxes[i]);
                         this.drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
                         break;
                     }
@@ -835,7 +835,7 @@ namespace 調劑台管理系統
             }
             else if (str_TYPE == DeviceType.EPD266.GetEnumName() || str_TYPE == DeviceType.EPD266_lock.GetEnumName() || str_TYPE == DeviceType.EPD290.GetEnumName() || str_TYPE == DeviceType.EPD290_lock.GetEnumName())
             {
-                Storage storage = this.List_EPD266_入賬資料.SortByIP(IP);
+                Storage storage = List_EPD266_入賬資料.SortByIP(IP);
                 storage = this.storageUI_EPD_266.SQL_GetStorage(storage);
                 儲位庫存 = storage.取得庫存(效期);
                 if (儲位庫存 + 異動量 < 0)
@@ -845,26 +845,26 @@ namespace 調劑台管理系統
                     List<string> list_異動量 = new List<string>();
                     storage.庫存異動(異動量, out list_效期, out list_批號);
 
-                    this.List_EPD266_入賬資料.Add_NewStorage(storage);
+                    List_EPD266_入賬資料.Add_NewStorage(storage);
                     this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                 }
                 else if ((儲位庫存) >= 0)
                 {
                     storage.效期庫存異動(效期, 異動量);
-                    this.List_EPD266_入賬資料.Add_NewStorage(storage);
+                    List_EPD266_入賬資料.Add_NewStorage(storage);
                     this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
 
                 }
                 else if ((儲位庫存) == -1)
                 {
                     storage.新增效期(效期, 批號, 異動量.ToString());
-                    this.List_EPD266_入賬資料.Add_NewStorage(storage);
+                    List_EPD266_入賬資料.Add_NewStorage(storage);
                     this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                 }
             }
             else if (str_TYPE == DeviceType.Pannel35_lock.GetEnumName() || str_TYPE == DeviceType.Pannel35.GetEnumName())
             {
-                Storage storage = this.List_Pannel35_入賬資料.SortByIP(IP);
+                Storage storage = List_Pannel35_入賬資料.SortByIP(IP);
                 storage = this.storageUI_WT32.SQL_GetStorage(storage);
                 儲位庫存 = storage.取得庫存(效期);
                 if (儲位庫存 + 異動量 < 0)
@@ -874,13 +874,13 @@ namespace 調劑台管理系統
                     List<string> list_異動量 = new List<string>();
                     storage.庫存異動(異動量, out list_效期, out list_批號);
 
-                    this.List_Pannel35_入賬資料.Add_NewStorage(storage);
+                    List_Pannel35_入賬資料.Add_NewStorage(storage);
                     this.storageUI_WT32.SQL_ReplaceStorage(storage);
                 }
                 else if ((儲位庫存) >= 0)
                 {
                     storage.效期庫存異動(效期, 異動量);
-                    this.List_Pannel35_入賬資料.Add_NewStorage(storage);
+                    List_Pannel35_入賬資料.Add_NewStorage(storage);
                     this.storageUI_WT32.SQL_ReplaceStorage(storage);
                     if (!plC_CheckBox_測試模式.Checked)
                     {
@@ -895,7 +895,7 @@ namespace 調劑台管理系統
                 else if ((儲位庫存) == -1)
                 {
                     storage.新增效期(效期, 批號, 異動量.ToString());
-                    this.List_Pannel35_入賬資料.Add_NewStorage(storage);
+                    List_Pannel35_入賬資料.Add_NewStorage(storage);
                     this.storageUI_WT32.SQL_ReplaceStorage(storage);
                 }
             }
@@ -2046,7 +2046,7 @@ namespace 調劑台管理系統
                                     if (storage.IP != IP) continue;
                                 }
                                 storage.新增效期(效期, 批號, "00");
-                                this.List_EPD266_雲端資料.Add_NewStorage(storage);
+                                List_EPD266_雲端資料.Add_NewStorage(storage);
                                 //this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                                 break;
                             }
@@ -2063,7 +2063,7 @@ namespace 調劑台管理系統
                                     if (storage.IP != IP) continue;
                                 }
                                 storage.新增效期(效期, 批號, "00");
-                                this.List_Pannel35_雲端資料.Add_NewStorage(storage);
+                                List_Pannel35_雲端資料.Add_NewStorage(storage);
                                 //this.storageUI_WT32.SQL_ReplaceStorage(storage);
                                 break;
                             }
@@ -2265,7 +2265,7 @@ namespace 調劑台管理系統
                                 if (storage.IP != IP) continue;
                             }
                             storage.新增效期(效期, 批號, "100000");
-                            this.List_EPD266_雲端資料.Add_NewStorage(storage);
+                            List_EPD266_雲端資料.Add_NewStorage(storage);
                             this.storageUI_EPD_266.SQL_ReplaceStorage(storage);
                             break;
 
@@ -2279,7 +2279,7 @@ namespace 調劑台管理系統
                                 if (storage.IP != IP) continue;
                             }
                             storage.新增效期(效期, 批號, "100000");
-                            this.List_Pannel35_雲端資料.Add_NewStorage(storage);
+                            List_Pannel35_雲端資料.Add_NewStorage(storage);
                             this.storageUI_WT32.SQL_ReplaceStorage(storage);
                             break;
 

@@ -44,6 +44,7 @@ namespace 調劑台管理系統
         public Dialog_使用者登入(string _已登入ID ,string _藥名,SQL_DataGridView _sQL_DataGridView_人員資料, RFID_FX600lib.RFID_FX600_UI _rFID_FX600_UI)
         {
             InitializeComponent();
+            Basic.Reflection.MakeDoubleBuffered(this, true);
             this.Load += Dialog_使用者登入_Load;
             this.FormClosed += Dialog_使用者登入_FormClosed;
             this.plC_RJ_Button_登入.MouseDownEventEx += PlC_RJ_Button_登入_MouseDownEventEx;

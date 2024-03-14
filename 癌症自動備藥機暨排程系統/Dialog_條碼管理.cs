@@ -223,6 +223,7 @@ namespace 癌症自動備藥機暨排程系統
         {
             this.Invoke(new Action(delegate
             {
+                this.DialogResult = DialogResult.Yes;
                 this.Close();
             }));
         }
