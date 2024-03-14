@@ -17,6 +17,7 @@ namespace 調劑台管理系統
 {
     public partial class Dialog_使用者登入 : MyDialog
     {
+        public object[] Value;
         static public MyTimerBasic myTimerBasic_覆核完成 = new MyTimerBasic();
         private MyThread MyThread_program;
         public static bool IsShown = false;
@@ -45,6 +46,7 @@ namespace 調劑台管理系統
         {
             InitializeComponent();
             Basic.Reflection.MakeDoubleBuffered(this, true);
+         
             this.Load += Dialog_使用者登入_Load;
             this.FormClosed += Dialog_使用者登入_FormClosed;
             this.plC_RJ_Button_登入.MouseDownEventEx += PlC_RJ_Button_登入_MouseDownEventEx;
@@ -66,16 +68,33 @@ namespace 調劑台管理系統
 
         private void sub_program()
         {
-            if (Main_Form.領藥台_01_一維碼.StringIsEmpty() == false && this.IsHandleCreated)
+            string text = Main_Form.Function_ReadBacodeScanner01();
+            if (text.StringIsEmpty() == false)
             {
                 this.Invoke(new Action(delegate
                 {
-                    Console.WriteLine($"接收到領藥台01[一維碼] {Main_Form.領藥台_01_一維碼}");
+                    Console.WriteLine($"接收到領藥台01[一維碼] {text}");
       
                     List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
                     List<object[]> list_人員資料_buf = new List<object[]>();
-                    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.一維條碼, Main_Form.領藥台_01_一維碼);
-                    Main_Form.領藥台_01_一維碼 = "";
+                    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.一維條碼, text);
+                    if (list_人員資料_buf.Count == 0) return;
+                    string id = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
+                    string pwd = list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString();
+                    Function_登入(id, pwd);
+                }));
+
+            }
+            text = Main_Form.Function_ReadBacodeScanner02();
+            if (text.StringIsEmpty() == false)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    Console.WriteLine($"接收到領藥台02[一維碼] {text}");
+
+                    List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
+                    List<object[]> list_人員資料_buf = new List<object[]>();
+                    list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.一維條碼, text);
                     if (list_人員資料_buf.Count == 0) return;
                     string id = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
                     string pwd = list_人員資料_buf[0][(int)enum_人員資料.密碼].ObjectToString();
@@ -194,9 +213,10 @@ namespace 調劑台管理系統
             _flag_已登入 = true;
             UserName = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
             UserID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
+            Value = list_人員資料_buf[0];
             this.Invoke(new Action(delegate
             {
-                rJ_Lable_Title.Text = $"雙人覆核 [已登入] {UserName}";
+                rJ_Lable_Title.Text = $"[已登入] {UserName}";
                 int cnt = 0;
                 while(true)
                 {
@@ -220,7 +240,7 @@ namespace 調劑台管理系統
         {
             this.Invoke(new Action(delegate
             {
-                if (MyMessageBox.ShowDialog("確認取消領用此藥品?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                if (MyMessageBox.ShowDialog("確認取消?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                 {
                     Main_Form.fpMatchSoket.Abort();
                     this.DialogResult = DialogResult.No;
@@ -257,9 +277,21 @@ namespace 調劑台管理系統
         }
         private void Dialog_使用者登入_Load(object sender, EventArgs e)
         {
+
             this.Invoke(new Action(delegate
             {
-                this.rJ_Lable_藥名.Text = $" 藥名 : { this.藥名}";
+                if (藥名.StringIsEmpty() == true)
+                {
+                    this.rJ_Lable_Title.Text = "使用者登入";
+                    this.rJ_Lable_藥名.Text = "";
+                    this.rJ_Lable_藥名.Visible = false;
+                }
+                else
+                {
+                    this.rJ_Lable_藥名.Text = $" 藥名 : { this.藥名}";
+                    this.rJ_Lable_藥名.Visible = true;
+                }
+                
             }));
             if (this.location.X != 0 && this.location.Y != 0)
             {

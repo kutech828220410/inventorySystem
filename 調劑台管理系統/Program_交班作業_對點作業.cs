@@ -54,8 +54,8 @@ namespace 調劑台管理系統
             {
                 flag_人交班作業_對點作業_頁面更新 = false;
             }
-            sub_Program_當班交接人_感應刷卡();
-            sub_Program_被交接人_感應刷卡();
+            //sub_Program_當班交接人_感應刷卡();
+            //sub_Program_被交接人_感應刷卡();
             sub_Program_開始交班();
         }
 
@@ -263,13 +263,64 @@ namespace 調劑台管理系統
         #region Event
         private void PlC_Button_交班作業_對點作業_當班交接人_等待刷卡_btnClick(object sender, EventArgs e)
         {
-            if (rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text != "等待登入") plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
-            if (plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool) plC_Button_交班作業_對點作業_被交接人_等待刷卡.Bool = false;
+            try
+            {
+                if (rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text == "等待登入")
+                {
+                    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_被交接人_ID.Text, "", this.sqL_DataGridView_人員資料, rfiD_FX600_UI);
+                    if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
+                    this.Invoke(new Action(delegate
+                    {
+                        rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString();
+                        rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString();
+                        rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
+                        rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
+
+                        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
+                    }));
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
+            }
+          
+         
         }
         private void PlC_Button_交班作業_對點作業_被交接人_等待刷卡_btnClick(object sender, EventArgs e)
         {
-            if (rJ_Lable_交班作業_對點作業_被交接人_狀態.Text != "等待登入") plC_Button_交班作業_對點作業_被交接人_等待刷卡.Bool = false;
-            if (plC_Button_交班作業_對點作業_被交接人_等待刷卡.Bool) plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
+            try
+            {
+                if (rJ_Lable_交班作業_對點作業_被交接人_狀態.Text != "等待登入")
+                {
+                    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_被交接人_ID.Text, "", this.sqL_DataGridView_人員資料, rfiD_FX600_UI);
+                    if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
+                    this.Invoke(new Action(delegate
+                    {
+                        rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString();
+                        rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString();
+                        rJ_Lable_交班作業_對點作業_被交接人_狀態.Text = "登入成功";
+                        rJ_Lable_交班作業_對點作業_被交接人_狀態.BackColor = Color.YellowGreen;
+
+                        plC_Button_交班作業_對點作業_被交接人_等待刷卡.Enabled = false;
+                    }));
+
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                plC_Button_交班作業_對點作業_被交接人_等待刷卡.Bool = false;
+            }
+      
+       
         }
         
         private void PlC_RJ_Button_交班作業_對點作業_當班交接人_感應刷卡_MouseDownEvent(MouseEventArgs mevent)
@@ -283,109 +334,121 @@ namespace 調劑台管理系統
                 UID_01 = this.rJ_TextBox_交班作業_對點作業_測試UID.Text;
                 plC_RJ_Button_交班作業_對點作業_測試登入.Bool = false;
             }
-            if (!UID_01.StringIsEmpty() && UID_01.StringToInt32() != 0)
-            {
-                Console.WriteLine($"成功讀取RFID  {UID_01}");
-                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), UID_01, false);
-                if (list_人員資料.Count == 0) return;
-                Console.WriteLine($"取得人員資料完成!");
-                this.Invoke(new Action(delegate
-                {
-                    if (rJ_Lable_交班作業_對點作業_被交接人_ID.Text == list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
-                    {
-                        MyMessageBox.ShowDialog("重複登入!");
-                        return;
-                    }
-                    rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString();
-                    rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
-                    rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
-                    rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
-                    plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
-                    plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
-                }));
+            Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_被交接人_ID.Text, "", this.sqL_DataGridView_人員資料, rfiD_FX600_UI);
+            if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
+            this.Invoke(new Action(delegate
+            {     
+                rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = dialog_使用者登入.Value[(int)enum_人員資料.姓名].ObjectToString();
+                rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = dialog_使用者登入.Value[(int)enum_人員資料.ID].ObjectToString();
+                rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
+                rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
+                plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
+                plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
+            }));
 
-            }
-            else if(!UID_02.StringIsEmpty() && UID_02.StringToInt32() != 0)
-            {
-                Console.WriteLine($"成功讀取RFID  {UID_02}");
-                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), UID_02, false);
-                if (list_人員資料.Count == 0) return;
-                Console.WriteLine($"取得人員資料完成!");
-                this.Invoke(new Action(delegate
-                {
-                    if (rJ_Lable_交班作業_對點作業_被交接人_ID.Text == list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
-                    {
-                        MyMessageBox.ShowDialog("重複登入!");
-                        return;
-                    }
-                    rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString();
-                    rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
-                    rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
-                    rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
-                    plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
-                    plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
-                }));
+            //if (!UID_01.StringIsEmpty() && UID_01.StringToInt32() != 0)
+            //{
+            //    Console.WriteLine($"成功讀取RFID  {UID_01}");
+            //    List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), UID_01, false);
+            //    if (list_人員資料.Count == 0) return;
+            //    Console.WriteLine($"取得人員資料完成!");
+            //    this.Invoke(new Action(delegate
+            //    {
+            //        if (rJ_Lable_交班作業_對點作業_被交接人_ID.Text == list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
+            //        {
+            //            MyMessageBox.ShowDialog("重複登入!");
+            //            return;
+            //        }
+            //        rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString();
+            //        rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+            //        rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
+            //        rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
+            //        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
+            //        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
+            //    }));
 
-            }
-            else if (MySerialPort_Scanner01.ReadByte() != null)
-            {
-                string text = MySerialPort_Scanner01.ReadString();
-                if (text == null) return;
-                if (text.Length <= 2 || text.Length > 30) return;
-                if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                MySerialPort_Scanner01.ClearReadByte();
-                text = text.Replace("\r\n", "");
-                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
-                if (list_人員資料.Count == 0)
-                {
-                    this.voice.SpeakOnTask("查無此一維碼");
-                    return;
-                }
-                this.Invoke(new Action(delegate
-                {
-                    if (rJ_Lable_交班作業_對點作業_被交接人_ID.Text == list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
-                    {
-                        MyMessageBox.ShowDialog("重複登入!");
-                        return;
-                    }
-                    rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString();
-                    rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
-                    rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
-                    rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
-                    plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
-                    plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
-                }));
-            }
-            else if (MySerialPort_Scanner02.ReadByte() != null)
-            {
-                string text = MySerialPort_Scanner02.ReadString();
-                if (text == null) return;
-                if (text.Length <= 2 || text.Length > 30) return;
-                if (text.Substring(text.Length - 2, 2) != "\r\n") return;
-                MySerialPort_Scanner02.ClearReadByte();
-                text = text.Replace("\r\n", "");
-                List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
-                if (list_人員資料.Count == 0)
-                {
-                    this.voice.SpeakOnTask("查無此一維碼");
-                    return;
-                }
-                this.Invoke(new Action(delegate
-                {
-                    if (rJ_Lable_交班作業_對點作業_被交接人_ID.Text == list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
-                    {
-                        MyMessageBox.ShowDialog("重複登入!");
-                        return;
-                    }
-                    rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString();
-                    rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
-                    rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
-                    rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
-                    plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
-                    plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
+            //}
+            //else if(!UID_02.StringIsEmpty() && UID_02.StringToInt32() != 0)
+            //{
+            //    Console.WriteLine($"成功讀取RFID  {UID_02}");
+            //    List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.卡號.GetEnumName(), UID_02, false);
+            //    if (list_人員資料.Count == 0) return;
+            //    Console.WriteLine($"取得人員資料完成!");
+            //    this.Invoke(new Action(delegate
+            //    {
+            //        if (rJ_Lable_交班作業_對點作業_被交接人_ID.Text == list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
+            //        {
+            //            MyMessageBox.ShowDialog("重複登入!");
+            //            return;
+            //        }
+            //        rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString();
+            //        rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+            //        rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
+            //        rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
+            //        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
+            //        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
+            //    }));
 
-                }));
-            }
+            //}
+            //else if (MySerialPort_Scanner01.ReadByte() != null)
+            //{
+            //    string text = MySerialPort_Scanner01.ReadString();
+            //    if (text == null) return;
+            //    if (text.Length <= 2 || text.Length > 30) return;
+            //    if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+            //    MySerialPort_Scanner01.ClearReadByte();
+            //    text = text.Replace("\r\n", "");
+            //    List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
+            //    if (list_人員資料.Count == 0)
+            //    {
+            //        this.voice.SpeakOnTask("查無此一維碼");
+            //        return;
+            //    }
+            //    this.Invoke(new Action(delegate
+            //    {
+            //        if (rJ_Lable_交班作業_對點作業_被交接人_ID.Text == list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
+            //        {
+            //            MyMessageBox.ShowDialog("重複登入!");
+            //            return;
+            //        }
+            //        rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString();
+            //        rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+            //        rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
+            //        rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
+            //        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
+            //        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
+            //    }));
+            //}
+            //else if (MySerialPort_Scanner02.ReadByte() != null)
+            //{
+            //    string text = MySerialPort_Scanner02.ReadString();
+            //    if (text == null) return;
+            //    if (text.Length <= 2 || text.Length > 30) return;
+            //    if (text.Substring(text.Length - 2, 2) != "\r\n") return;
+            //    MySerialPort_Scanner02.ClearReadByte();
+            //    text = text.Replace("\r\n", "");
+            //    List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), text, false);
+            //    if (list_人員資料.Count == 0)
+            //    {
+            //        this.voice.SpeakOnTask("查無此一維碼");
+            //        return;
+            //    }
+            //    this.Invoke(new Action(delegate
+            //    {
+            //        if (rJ_Lable_交班作業_對點作業_被交接人_ID.Text == list_人員資料[0][(int)enum_人員資料.ID].ObjectToString())
+            //        {
+            //            MyMessageBox.ShowDialog("重複登入!");
+            //            return;
+            //        }
+            //        rJ_Lable_交班作業_對點作業_當班交接人_姓名.Text = list_人員資料[0][(int)enum_人員資料.姓名].ObjectToString();
+            //        rJ_Lable_交班作業_對點作業_當班交接人_ID.Text = list_人員資料[0][(int)enum_人員資料.ID].ObjectToString();
+            //        rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text = "登入成功";
+            //        rJ_Lable_交班作業_對點作業_當班交接人_狀態.BackColor = Color.YellowGreen;
+            //        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Bool = false;
+            //        plC_Button_交班作業_對點作業_當班交接人_等待刷卡.Enabled = false;
+
+            //    }));
+            //}
         }
         private void PlC_RJ_Button_交班作業_對點作業_被交接人_感應刷卡_MouseDownEvent(MouseEventArgs mevent)
         {

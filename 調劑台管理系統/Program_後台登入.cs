@@ -341,7 +341,7 @@ namespace 調劑台管理系統
             string 一維碼 = "";
             if (MySerialPort_Scanner01.ReadByte() != null)
             {
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(100);
                 string text = MySerialPort_Scanner01.ReadString();
                 MySerialPort_Scanner01.ClearReadByte();
                 if (text == null) return;

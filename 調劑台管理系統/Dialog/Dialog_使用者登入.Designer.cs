@@ -35,16 +35,16 @@ namespace 調劑台管理系統
             this.panel2 = new System.Windows.Forms.Panel();
             this.rJ_Lable_藥名 = new MyUI.RJ_Lable();
             this.panel185 = new System.Windows.Forms.Panel();
+            this.textBox_帳號 = new MyUI.RJ_TextBox();
             this.panel186 = new System.Windows.Forms.Panel();
             this.panel183 = new System.Windows.Forms.Panel();
+            this.textBox_密碼 = new MyUI.RJ_TextBox();
             this.panel184 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_取消 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_確認 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.plC_RJ_Button_登入 = new MyUI.PLC_RJ_Button();
-            this.textBox_帳號 = new MyUI.RJ_TextBox();
-            this.textBox_密碼 = new MyUI.RJ_TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel185.SuspendLayout();
@@ -113,6 +113,7 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥名.Text = "藥名 : XXXXXXXX";
             this.rJ_Lable_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable_藥名.TextColor = System.Drawing.Color.White;
+            this.rJ_Lable_藥名.Visible = false;
             // 
             // panel185
             // 
@@ -123,6 +124,30 @@ namespace 調劑台管理系統
             this.panel185.Name = "panel185";
             this.panel185.Size = new System.Drawing.Size(369, 67);
             this.panel185.TabIndex = 32;
+            // 
+            // textBox_帳號
+            // 
+            this.textBox_帳號.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_帳號.BorderColor = System.Drawing.Color.Black;
+            this.textBox_帳號.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_帳號.BorderRadius = 0;
+            this.textBox_帳號.BorderSize = 2;
+            this.textBox_帳號.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_帳號.ForeColor = System.Drawing.Color.DimGray;
+            this.textBox_帳號.GUID = "";
+            this.textBox_帳號.Location = new System.Drawing.Point(80, 18);
+            this.textBox_帳號.Multiline = false;
+            this.textBox_帳號.Name = "textBox_帳號";
+            this.textBox_帳號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_帳號.PassWordChar = false;
+            this.textBox_帳號.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.textBox_帳號.PlaceholderText = "";
+            this.textBox_帳號.ShowTouchPannel = false;
+            this.textBox_帳號.Size = new System.Drawing.Size(256, 34);
+            this.textBox_帳號.TabIndex = 1;
+            this.textBox_帳號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_帳號.Texts = "";
+            this.textBox_帳號.UnderlineStyle = false;
             // 
             // panel186
             // 
@@ -143,6 +168,30 @@ namespace 調劑台管理系統
             this.panel183.Name = "panel183";
             this.panel183.Size = new System.Drawing.Size(369, 67);
             this.panel183.TabIndex = 33;
+            // 
+            // textBox_密碼
+            // 
+            this.textBox_密碼.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_密碼.BorderColor = System.Drawing.Color.Black;
+            this.textBox_密碼.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_密碼.BorderRadius = 0;
+            this.textBox_密碼.BorderSize = 2;
+            this.textBox_密碼.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_密碼.ForeColor = System.Drawing.Color.DimGray;
+            this.textBox_密碼.GUID = "";
+            this.textBox_密碼.Location = new System.Drawing.Point(80, 15);
+            this.textBox_密碼.Multiline = false;
+            this.textBox_密碼.Name = "textBox_密碼";
+            this.textBox_密碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_密碼.PassWordChar = false;
+            this.textBox_密碼.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.textBox_密碼.PlaceholderText = "";
+            this.textBox_密碼.ShowTouchPannel = false;
+            this.textBox_密碼.Size = new System.Drawing.Size(256, 34);
+            this.textBox_密碼.TabIndex = 2;
+            this.textBox_密碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_密碼.Texts = "";
+            this.textBox_密碼.UnderlineStyle = false;
             // 
             // panel184
             // 
@@ -332,54 +381,6 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_登入.音效 = true;
             this.plC_RJ_Button_登入.顯示 = false;
             this.plC_RJ_Button_登入.顯示狀態 = false;
-            // 
-            // textBox_帳號
-            // 
-            this.textBox_帳號.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_帳號.BorderColor = System.Drawing.Color.Black;
-            this.textBox_帳號.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.textBox_帳號.BorderRadius = 0;
-            this.textBox_帳號.BorderSize = 2;
-            this.textBox_帳號.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_帳號.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox_帳號.GUID = "";
-            this.textBox_帳號.Location = new System.Drawing.Point(80, 18);
-            this.textBox_帳號.Multiline = false;
-            this.textBox_帳號.Name = "textBox_帳號";
-            this.textBox_帳號.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.textBox_帳號.PassWordChar = false;
-            this.textBox_帳號.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.textBox_帳號.PlaceholderText = "";
-            this.textBox_帳號.ShowTouchPannel = false;
-            this.textBox_帳號.Size = new System.Drawing.Size(256, 34);
-            this.textBox_帳號.TabIndex = 1;
-            this.textBox_帳號.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBox_帳號.Texts = "";
-            this.textBox_帳號.UnderlineStyle = false;
-            // 
-            // textBox_密碼
-            // 
-            this.textBox_密碼.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_密碼.BorderColor = System.Drawing.Color.Black;
-            this.textBox_密碼.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.textBox_密碼.BorderRadius = 0;
-            this.textBox_密碼.BorderSize = 2;
-            this.textBox_密碼.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_密碼.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox_密碼.GUID = "";
-            this.textBox_密碼.Location = new System.Drawing.Point(80, 15);
-            this.textBox_密碼.Multiline = false;
-            this.textBox_密碼.Name = "textBox_密碼";
-            this.textBox_密碼.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.textBox_密碼.PassWordChar = false;
-            this.textBox_密碼.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.textBox_密碼.PlaceholderText = "";
-            this.textBox_密碼.ShowTouchPannel = false;
-            this.textBox_密碼.Size = new System.Drawing.Size(256, 34);
-            this.textBox_密碼.TabIndex = 2;
-            this.textBox_密碼.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBox_密碼.Texts = "";
-            this.textBox_密碼.UnderlineStyle = false;
             // 
             // Dialog_使用者登入
             // 
