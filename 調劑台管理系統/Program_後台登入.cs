@@ -100,8 +100,8 @@ namespace 調劑台管理系統
 
         }
 
-  
 
+        bool flag_後台登入_頁面更新_離開頁面 = false;
         private void sub_Program_後台登入()
         {
             if (this.plC_ScreenPage_Main.PageText == "後台登入")
@@ -115,9 +115,14 @@ namespace 調劑台管理系統
                     }));
                     this.flag_後台登入_頁面更新 = true;
                 }
+                flag_後台登入_頁面更新_離開頁面 = false;
             }
             else
             {
+                if(flag_後台登入_頁面更新_離開頁面 == false)
+                {
+                    flag_後台登入_頁面更新_離開頁面 = true;
+                }
                 this.flag_後台登入_頁面更新 = false;
             }
 

@@ -184,8 +184,26 @@ namespace 調劑台管理系統
             this.MyThread_領藥_RFID_入出庫資料檢查.AutoStop(false);
             this.MyThread_領藥_RFID_入出庫資料檢查.SetSleepTime(100);
             this.MyThread_領藥_RFID_入出庫資料檢查.Trigger();
-        }
 
+            this.plC_UI_Init.Add_Method(Program_調劑作業);
+        }
+        bool flag_調劑作業_頁面更新 = false;
+        private void Program_調劑作業()
+        {
+            if (this.plC_ScreenPage_Main.PageText == "調劑作業")
+            {
+                if (!this.flag_調劑作業_頁面更新)
+                {
+                    if (PLC_Device_已登入.Bool) Function_登出();
+                    this.flag_調劑作業_頁面更新 = true;
+                }
+            }
+            else
+            {
+
+                this.flag_調劑作業_頁面更新 = false;
+            }
+        }
 
 
         private void sub_Program_領藥台_01()
@@ -357,7 +375,7 @@ namespace 調劑台管理系統
                             //plC_RJ_Button_領藥台_02_手輸醫令.Visible = true;
                         }
                     }));
-                    this.Function_登出();
+               
 
                     //this.PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_02_換頁 = true;
@@ -464,8 +482,6 @@ namespace 調劑台管理系統
                             //plC_RJ_Button_領藥台_03_手輸醫令.Visible = true;
                         }
                     }));
-                    this.Function_登出();
-
                     //this.PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_03_換頁 = true;
                 }
@@ -571,7 +587,6 @@ namespace 調劑台管理系統
                             //plC_RJ_Button_領藥台_04_手輸醫令.Visible = true;
                         }
                     }));
-                    this.Function_登出();
 
                     //this.PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
                     this.flag_Program_領藥台_04_換頁 = true;
