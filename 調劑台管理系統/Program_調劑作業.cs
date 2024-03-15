@@ -868,7 +868,7 @@ namespace 調劑台管理系統
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), 領藥台_01_一維碼, false);
                 if (list_人員資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("查無此一維碼");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\查無此一維碼.wav");
                     return;
                 }
                 if (!PLC_Device_領藥台_01_已登入.Bool)
@@ -1442,7 +1442,7 @@ namespace 調劑台管理系統
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
                 int 結存量 = 0;
-                voice.SpeakOnTask("請輸入盲盤數量");
+                Voice.MediaPlayAsync($@"{currentDirectory}\請輸入盲盤數量.wav");;
                 while (true)
                 {
                     //if (try_error == 1)
@@ -1497,7 +1497,7 @@ namespace 調劑台管理系統
                         list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
                         break;
                     }
-                    voice.SpeakOnTask("盲盤數量錯誤");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\盲盤數量錯誤.wav");
                     if(retry == 0)
                     {
                         Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("請再次覆盤", 2000);
@@ -1538,7 +1538,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 string 結存量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
-                voice.SpeakOnTask("請輸入複盤數量");
+                Voice.MediaPlayAsync($@"{currentDirectory}\請輸入複盤數量.wav");
                 while (true)
                 {
                     if (try_error == 1)
@@ -1592,7 +1592,7 @@ namespace 調劑台管理系統
                         list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
                         break;
                     }
-                    voice.SpeakOnTask("複盤數量錯誤");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\複盤數量錯誤.wav");
                     try_error++;
 
                 }
@@ -1815,8 +1815,8 @@ namespace 調劑台管理系統
         private void Function_領藥台_01_醫令領藥(string BarCode)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
-
             bool flag_OK = true;
+
             MyTimer myTimer_total = new MyTimer();
             myTimer_total.StartTickTime(50000);
             int daynum = plC_ComboBox_醫令檢查範圍.GetValue();
@@ -1860,18 +1860,21 @@ namespace 調劑台管理系統
                 }
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
-                //list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 list_醫令資料 = (from temp in list_醫令資料
                              where Basic.TypeConvert.IsInDate(temp[(int)enum_醫囑資料.開方日期].StringToDateTime(), dateTime_start, dateTime_end)
                              || Basic.TypeConvert.IsInDate(temp[(int)enum_醫囑資料.展藥時間].StringToDateTime(), dateTime_start, dateTime_end)
                              select temp).ToList();
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單已過期");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -1880,7 +1883,9 @@ namespace 調劑台管理系統
 
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單無未過帳資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -1892,7 +1897,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("未搜尋到儲位");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -1901,6 +1908,8 @@ namespace 調劑台管理系統
                 bool flag_雙人覆核 = false;
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
+
+
 
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
@@ -1927,7 +1936,7 @@ namespace 調劑台管理系統
                     string 病人姓名 = list_醫令資料[i][(int)enum_醫囑資料.病人姓名].ObjectToString();
                     string 床號 = "";
                     string 開方時間 = list_醫令資料[i][(int)enum_醫囑資料.開方日期].ToDateTimeString_6();
-                    if(開方時間.StringIsEmpty()) 開方時間 = list_醫令資料[i][(int)enum_醫囑資料.開方日期].ObjectToString();
+                    if (開方時間.StringIsEmpty()) 開方時間 = list_醫令資料[i][(int)enum_醫囑資料.開方日期].ObjectToString();
                     string ID = 領藥台_01_ID;
                     string 操作人 = 領藥台_01_登入者姓名;
                     string 藥師證字號 = 領藥台_01_藥師證字號;
@@ -1936,13 +1945,15 @@ namespace 調劑台管理系統
                     string 效期 = "";
                     string 收支原因 = "";
 
+
+
                     list_堆疊資料_buf = (from temp in list_堆疊資料
                                      where temp[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == 藥品碼
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != "刷新面板"
                                      where temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() != 調劑台名稱
                                      where temp[(int)enum_取藥堆疊母資料.操作人].ObjectToString() != 操作人
                                      select temp).ToList();
-                  
+
 
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -1957,8 +1968,6 @@ namespace 調劑台管理系統
                     if (list_堆疊資料_buf.Count > 0)
                     {
                         takeMedicineStackClass.顏色 = Color.Purple.ToColorString();
-                      
-
                     }
                     takeMedicineStackClass.藥品名稱 = 藥品名稱;
                     takeMedicineStackClass.藥袋序號 = 藥袋序號;
@@ -1978,6 +1987,7 @@ namespace 調劑台管理系統
                         {
                             takeMedicineStackClass.狀態 = enum_取藥堆疊母資料_狀態.已領用過;
                         }
+
                     }
                     if (flag_雙人覆核)
                     {
@@ -1994,11 +2004,10 @@ namespace 調劑台管理系統
             taskList.Add(Task_取得醫令);
             Task.WhenAll(taskList).Wait();
 
-
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
-            if (flag_OK )this.voice.SpeakOnTask("掃碼成功");
+            if (flag_OK) Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
         private void Function_領藥台_01_醫令退藥(string BarCode)
         {
@@ -2025,13 +2034,17 @@ namespace 調劑台管理系統
                 list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, 手輸數量);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼已過期");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
 
@@ -2089,7 +2102,7 @@ namespace 調劑台管理系統
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-                this.voice.SpeakOnTask("掃碼成功");
+                Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
             else
             {
@@ -2098,7 +2111,9 @@ namespace 調劑台管理系統
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 List<object[]> list_醫令資料_remove = new List<object[]>();
@@ -2106,7 +2121,9 @@ namespace 調劑台管理系統
                 if (pLC_Device.Bool == false) list_醫令資料 = list_醫令資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單無已過帳資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無已過帳資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無已過帳資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 for (int i = 0; i < list_醫令資料.Count; i++)
@@ -2124,7 +2141,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單沒有儲位");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
 
@@ -2181,7 +2200,7 @@ namespace 調劑台管理系統
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-                this.voice.SpeakOnTask("掃碼成功");
+                Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
 
         }
@@ -2281,7 +2300,7 @@ namespace 調劑台管理系統
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
         private void Function_領藥台_01_QRCode退藥(string[] Scanner01_讀取藥單資料_Array)
         {
@@ -2366,7 +2385,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
 
         private void Fuction_領藥台_01_時間重置()
@@ -2422,14 +2441,15 @@ namespace 調劑台管理系統
                     string 調劑台名稱 = this.領藥台_01名稱;
 
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
-                    string 床號 = list_value[i][(int)enum_選擇藥品.病房號].ObjectToString();
+                    string 床號 = dialog_手動作業.transactionsClass.病房號;
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
                     if (list_藥品資料_buf.Count == 0) continue;
                     string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
                     string 藥袋序號 = "";
                     string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
-                    string 病歷號 = "";
-                    string 病人姓名 = "";
+                    string 病歷號 = dialog_手動作業.transactionsClass.病歷號;
+                    string 領藥號 = dialog_手動作業.transactionsClass.領藥號;
+                    string 病人姓名 = dialog_手動作業.transactionsClass.病人姓名;
                     string 開方時間 = DateTime.Now.ToDateTimeString_6();
                     string ID = 領藥台_01_ID;
                     string 操作人 = 領藥台_01_登入者姓名;
@@ -2447,23 +2467,6 @@ namespace 調劑台管理系統
                         動作 = enum_交易記錄查詢動作.手輸退藥;
                     }
 
-                    //if (Function_藥品設定表_取得是否自訂義(list_藥品設定表, 藥品碼))
-                    //{
-                    //    flag_雙人覆核 = Function_藥品設定表_取得管制方式(list_藥品設定表, enum_藥品設定表.雙人覆核, 藥品碼);
-                    //}
-                    //else
-                    //{
-                    //    string 管制級別 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
-                    //    string 警訊藥品 = (list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.警訊藥品].ObjectToString() == true.ToString()) ? "警訊" : "";
-                    //    flag_雙人覆核 = (Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, 管制級別) || Function_藥品管制方式設定_取得管制方式(list_藥品管制方式設定, enum_藥品管制方式設定.雙人覆核, 警訊藥品));
-                    //}
-                    //if (flag_雙人覆核)
-                    //{
-                    //    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(藥品名稱, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
-                    //    if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) continue;
-                    //    收支原因 = $"覆核:{dialog_使用者登入.UserName}";
-
-                    //}
 
                     string 效期 = "";
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -2477,6 +2480,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.單位 = 單位;
                     takeMedicineStackClass.病歷號 = 病歷號;
                     takeMedicineStackClass.床號 = 床號;
+                    takeMedicineStackClass.領藥號 = 領藥號;
                     takeMedicineStackClass.病人姓名 = 病人姓名;
                     takeMedicineStackClass.開方時間 = 開方時間;
                     takeMedicineStackClass.操作人 = 操作人;
@@ -2593,7 +2597,8 @@ namespace 調劑台管理系統
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
             //MySerialPort_Scanner01.ClearReadByte();
-            this.voice.SpeakOnTask("使用者登入完成");
+            Voice.MediaPlayAsync($@"{currentDirectory}\登入成功.wav");
+
             PLC_Device_Scanner01_讀取藥單資料.Bool = false;
             PLC_Device_Scanner01_讀取藥單資料_OK.Bool = false;
             領藥台_01_醫令條碼 = "";
@@ -3020,7 +3025,7 @@ namespace 調劑台管理系統
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), 領藥台_02_一維碼, false);
                 if (list_人員資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("查無此一維碼");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\查無此一維碼.wav");
                     return;
                 }
                 if (!PLC_Device_領藥台_02_已登入.Bool)
@@ -3583,7 +3588,7 @@ namespace 調劑台管理系統
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
                 int 結存量 = 0;
-                voice.SpeakOnTask("請輸入盲盤數量");
+                Voice.MediaPlayAsync($@"{currentDirectory}\請輸入盲盤數量.wav");;
                 while (true)
                 {
                     //if (try_error == 1)
@@ -3638,7 +3643,7 @@ namespace 調劑台管理系統
                         list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
                         break;
                     }
-                    voice.SpeakOnTask("盲盤數量錯誤");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\盲盤數量錯誤.wav");
                     if (retry == 0)
                     {
                         Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("請再次覆盤", 2000);
@@ -3679,7 +3684,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 string 結存量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
-                voice.SpeakOnTask("請輸入複盤數量");
+                Voice.MediaPlayAsync($@"{currentDirectory}\請輸入複盤數量.wav");
                 while (true)
                 {
                     if (try_error == 1)
@@ -3733,7 +3738,7 @@ namespace 調劑台管理系統
                         list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
                         break;
                     }
-                    voice.SpeakOnTask("複盤數量錯誤");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\複盤數量錯誤.wav");
                     try_error++;
 
                 }
@@ -4001,7 +4006,9 @@ namespace 調劑台管理系統
                 }
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -4011,7 +4018,9 @@ namespace 調劑台管理系統
                              select temp).ToList();
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單已過期");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -4020,7 +4029,9 @@ namespace 調劑台管理系統
 
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單無未過帳資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -4032,7 +4043,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("未搜尋到儲位");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -4042,7 +4055,7 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
-      
+
 
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
@@ -4087,7 +4100,7 @@ namespace 調劑台管理系統
                                      where temp[(int)enum_取藥堆疊母資料.操作人].ObjectToString() != 操作人
                                      select temp).ToList();
 
-             
+
 
                     takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
                     takeMedicineStackClass.GUID = GUID;
@@ -4140,7 +4153,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
-            if (flag_OK) this.voice.SpeakOnTask("掃碼成功");
+            if (flag_OK) Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
         private void Function_領藥台_02_醫令退藥(string BarCode)
         {
@@ -4167,13 +4180,17 @@ namespace 調劑台管理系統
                 list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, 手輸數量);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼已過期");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
 
@@ -4231,7 +4248,7 @@ namespace 調劑台管理系統
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-                this.voice.SpeakOnTask("掃碼成功");
+                Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
             else
             {
@@ -4240,7 +4257,9 @@ namespace 調劑台管理系統
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 List<object[]> list_醫令資料_remove = new List<object[]>();
@@ -4248,7 +4267,9 @@ namespace 調劑台管理系統
                 if (pLC_Device.Bool == false) list_醫令資料 = list_醫令資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單無已過帳資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無已過帳資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無已過帳資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 for (int i = 0; i < list_醫令資料.Count; i++)
@@ -4266,7 +4287,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單沒有儲位");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
 
@@ -4323,7 +4346,7 @@ namespace 調劑台管理系統
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-                this.voice.SpeakOnTask("掃碼成功");
+                Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
 
         }
@@ -4423,7 +4446,7 @@ namespace 調劑台管理系統
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
         private void Function_領藥台_02_QRCode退藥(string[] Scanner02_讀取藥單資料_Array)
         {
@@ -4508,7 +4531,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
 
         private void Fuction_領藥台_02_時間重置()
@@ -4564,19 +4587,20 @@ namespace 調劑台管理系統
                     string 調劑台名稱 = this.領藥台_02名稱;
 
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
-                    string 床號 = list_value[i][(int)enum_選擇藥品.病房號].ObjectToString();
+                    string 床號 = dialog_手動作業.transactionsClass.病房號;
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
                     if (list_藥品資料_buf.Count == 0) continue;
                     string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
                     string 藥袋序號 = "";
                     string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
-                    string 病歷號 = "";
-                    string 病人姓名 = "";
+                    string 病歷號 = dialog_手動作業.transactionsClass.病歷號;
+                    string 領藥號 = dialog_手動作業.transactionsClass.領藥號;
+                    string 病人姓名 = dialog_手動作業.transactionsClass.病人姓名;
                     string 開方時間 = DateTime.Now.ToDateTimeString_6();
-                    string ID = 領藥台_02_ID;
-                    string 操作人 = 領藥台_02_登入者姓名;
-                    string 藥師證字號 = 領藥台_02_藥師證字號;
-                    string 顏色 = 領藥台_02_顏色;
+                    string ID = 領藥台_03_ID;
+                    string 操作人 = 領藥台_03_登入者姓名;
+                    string 藥師證字號 = 領藥台_03_藥師證字號;
+                    string 顏色 = 領藥台_03_顏色;
                     string 收支原因 = "";
                     int 總異動量 = list_value[i][(int)enum_選擇藥品.交易量].ObjectToString().StringToInt32();
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
@@ -4716,7 +4740,7 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_02.TitleForeColor = Color.Black;
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
-            this.voice.SpeakOnTask("使用者登入完成");
+            Voice.MediaPlayAsync($@"{currentDirectory}\登入成功.wav");
             PLC_Device_Scanner02_讀取藥單資料.Bool = false;
             PLC_Device_Scanner02_讀取藥單資料_OK.Bool = false;
             領藥台_02_醫令條碼 = "";
@@ -5136,7 +5160,7 @@ namespace 調劑台管理系統
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), 領藥台_03_一維碼, false);
                 if (list_人員資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("查無此一維碼");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\查無此一維碼.wav");
                     return;
                 }
                 if (!PLC_Device_領藥台_03_已登入.Bool)
@@ -5697,7 +5721,7 @@ namespace 調劑台管理系統
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
                 int 結存量 = 0;
-                voice.SpeakOnTask("請輸入盲盤數量");
+                Voice.MediaPlayAsync($@"{currentDirectory}\請輸入盲盤數量.wav");;
                 while (true)
                 {
                     //if (try_error == 1)
@@ -5752,7 +5776,7 @@ namespace 調劑台管理系統
                         list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
                         break;
                     }
-                    voice.SpeakOnTask("盲盤數量錯誤");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\盲盤數量錯誤.wav");
                     if (retry == 0)
                     {
                         Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("請再次覆盤", 2000);
@@ -5793,7 +5817,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 string 結存量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
-                voice.SpeakOnTask("請輸入複盤數量");
+                Voice.MediaPlayAsync($@"{currentDirectory}\請輸入複盤數量.wav");
                 while (true)
                 {
                     if (try_error == 1)
@@ -5847,7 +5871,7 @@ namespace 調劑台管理系統
                         list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
                         break;
                     }
-                    voice.SpeakOnTask("複盤數量錯誤");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\複盤數量錯誤.wav");
                     try_error++;
 
                 }
@@ -6067,6 +6091,7 @@ namespace 調劑台管理系統
         #endregion
 
         #region Function
+
         private void Function_領藥台_03_醫令領藥(string BarCode)
         {
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
@@ -6115,7 +6140,9 @@ namespace 調劑台管理系統
                 }
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -6125,7 +6152,9 @@ namespace 調劑台管理系統
                              select temp).ToList();
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單已過期");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -6134,7 +6163,9 @@ namespace 調劑台管理系統
 
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單無未過帳資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -6146,7 +6177,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("未搜尋到儲位");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -6254,7 +6287,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
-            if (flag_OK) this.voice.SpeakOnTask("掃碼成功");
+            if (flag_OK) Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
         private void Function_領藥台_03_醫令退藥(string BarCode)
         {
@@ -6281,13 +6314,17 @@ namespace 調劑台管理系統
                 list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, 手輸數量);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼已過期");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
 
@@ -6345,7 +6382,7 @@ namespace 調劑台管理系統
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-                this.voice.SpeakOnTask("掃碼成功");
+                Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
             else
             {
@@ -6354,7 +6391,9 @@ namespace 調劑台管理系統
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 List<object[]> list_醫令資料_remove = new List<object[]>();
@@ -6362,7 +6401,9 @@ namespace 調劑台管理系統
                 if (pLC_Device.Bool == false) list_醫令資料 = list_醫令資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單無已過帳資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無已過帳資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無已過帳資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 for (int i = 0; i < list_醫令資料.Count; i++)
@@ -6380,7 +6421,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單沒有儲位");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
 
@@ -6437,7 +6480,7 @@ namespace 調劑台管理系統
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-                this.voice.SpeakOnTask("掃碼成功");
+                Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
 
         }
@@ -6537,7 +6580,7 @@ namespace 調劑台管理系統
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
         private void Function_領藥台_03_QRCode退藥(string[] Scanner03_讀取藥單資料_Array)
         {
@@ -6622,7 +6665,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
 
         private void Fuction_領藥台_03_時間重置()
@@ -6678,14 +6721,15 @@ namespace 調劑台管理系統
                     string 調劑台名稱 = this.領藥台_03名稱;
 
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
-                    string 床號 = list_value[i][(int)enum_選擇藥品.病房號].ObjectToString();
+                    string 床號 = dialog_手動作業.transactionsClass.病房號;
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
                     if (list_藥品資料_buf.Count == 0) continue;
                     string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
                     string 藥袋序號 = "";
                     string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
-                    string 病歷號 = "";
-                    string 病人姓名 = "";
+                    string 病歷號 = dialog_手動作業.transactionsClass.病歷號;
+                    string 領藥號 = dialog_手動作業.transactionsClass.領藥號;
+                    string 病人姓名 = dialog_手動作業.transactionsClass.病人姓名;
                     string 開方時間 = DateTime.Now.ToDateTimeString_6();
                     string ID = 領藥台_03_ID;
                     string 操作人 = 領藥台_03_登入者姓名;
@@ -6830,7 +6874,7 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_03.TitleForeColor = Color.Black;
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
-            this.voice.SpeakOnTask("使用者登入完成");
+            Voice.MediaPlayAsync($@"{currentDirectory}\登入成功.wav");
             PLC_Device_Scanner03_讀取藥單資料.Bool = false;
             PLC_Device_Scanner03_讀取藥單資料_OK.Bool = false;
             領藥台_03_醫令條碼 = "";
@@ -7249,7 +7293,7 @@ namespace 調劑台管理系統
                 List<object[]> list_人員資料 = this.sqL_DataGridView_人員資料.SQL_GetRows(enum_人員資料.一維條碼.GetEnumName(), 領藥台_04_一維碼, false);
                 if (list_人員資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("查無此一維碼");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\查無此一維碼.wav");
                     return;
                 }
                 if (!PLC_Device_領藥台_04_已登入.Bool)
@@ -7810,7 +7854,7 @@ namespace 調劑台管理系統
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 int 總異動量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.總異動量].StringToInt32();
                 int 結存量 = 0;
-                voice.SpeakOnTask("請輸入盲盤數量");
+                Voice.MediaPlayAsync($@"{currentDirectory}\請輸入盲盤數量.wav");;
                 while (true)
                 {
                     //if (try_error == 1)
@@ -7865,7 +7909,7 @@ namespace 調劑台管理系統
                         list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
                         break;
                     }
-                    voice.SpeakOnTask("盲盤數量錯誤");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\盲盤數量錯誤.wav");
                     if (retry == 0)
                     {
                         Dialog_錯誤提示 dialog_錯誤提示 = new Dialog_錯誤提示("請再次覆盤", 2000);
@@ -7906,7 +7950,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 string 結存量 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
-                voice.SpeakOnTask("請輸入複盤數量");
+                Voice.MediaPlayAsync($@"{currentDirectory}\請輸入複盤數量.wav");
                 while (true)
                 {
                     if (try_error == 1)
@@ -7960,7 +8004,7 @@ namespace 調劑台管理系統
                         list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
                         break;
                     }
-                    voice.SpeakOnTask("複盤數量錯誤");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\複盤數量錯誤.wav");
                     try_error++;
 
                 }
@@ -8228,7 +8272,9 @@ namespace 調劑台管理系統
                 }
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -8238,7 +8284,9 @@ namespace 調劑台管理系統
                              select temp).ToList();
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單已過期");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -8247,7 +8295,9 @@ namespace 調劑台管理系統
 
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單無未過帳資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -8259,7 +8309,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("未搜尋到儲位");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     flag_OK = false;
                     return;
                 }
@@ -8367,7 +8419,7 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
-            if (flag_OK) this.voice.SpeakOnTask("掃碼成功");
+            if (flag_OK) Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
         private void Function_領藥台_04_醫令退藥(string BarCode)
         {
@@ -8394,13 +8446,17 @@ namespace 調劑台管理系統
                 list_醫令資料 = this.Function_醫令資料_API呼叫(BarCode, 手輸數量);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼已過期");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單已過期.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單已過期", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
 
@@ -8458,7 +8514,7 @@ namespace 調劑台管理系統
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-                this.voice.SpeakOnTask("掃碼成功");
+                Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
             else
             {
@@ -8467,7 +8523,9 @@ namespace 調劑台管理系統
                 list_醫令資料 = list_醫令資料.GetRowsInDate((int)enum_醫囑資料.開方日期, dateTime_start, dateTime_end);
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單碼無資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 List<object[]> list_醫令資料_remove = new List<object[]>();
@@ -8475,7 +8533,9 @@ namespace 調劑台管理系統
                 if (pLC_Device.Bool == false) list_醫令資料 = list_醫令資料.GetRows((int)enum_醫囑資料.狀態, enum_醫囑資料_狀態.已過帳.GetEnumName());
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單無已過帳資料");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\藥單無已過帳資料.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("藥單無已過帳資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
                 for (int i = 0; i < list_醫令資料.Count; i++)
@@ -8493,7 +8553,9 @@ namespace 調劑台管理系統
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
                 if (list_醫令資料.Count == 0)
                 {
-                    this.voice.SpeakOnTask("此藥單沒有儲位");
+                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                    dialog_AlarmForm.ShowDialog();
                     return;
                 }
 
@@ -8550,7 +8612,7 @@ namespace 調劑台管理系統
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-                this.voice.SpeakOnTask("掃碼成功");
+                Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
             }
 
         }
@@ -8650,7 +8712,7 @@ namespace 調劑台管理系統
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
         private void Function_領藥台_04_QRCode退藥(string[] Scanner04_讀取藥單資料_Array)
         {
@@ -8735,7 +8797,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.效期 = 效期;
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
-            this.voice.SpeakOnTask("掃碼成功");
+            Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
         }
 
         private void Fuction_領藥台_04_時間重置()
@@ -8791,19 +8853,20 @@ namespace 調劑台管理系統
                     string 調劑台名稱 = this.領藥台_04名稱;
 
                     string 藥品碼 = list_value[i][(int)enum_選擇藥品.藥品碼].ObjectToString();
-                    string 床號 = list_value[i][(int)enum_選擇藥品.病房號].ObjectToString();
+                    string 床號 = dialog_手動作業.transactionsClass.病房號;
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
                     if (list_藥品資料_buf.Count == 0) continue;
                     string 藥品名稱 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
                     string 藥袋序號 = "";
                     string 單位 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString();
-                    string 病歷號 = "";
-                    string 病人姓名 = "";
+                    string 病歷號 = dialog_手動作業.transactionsClass.病歷號;
+                    string 領藥號 = dialog_手動作業.transactionsClass.領藥號;
+                    string 病人姓名 = dialog_手動作業.transactionsClass.病人姓名;
                     string 開方時間 = DateTime.Now.ToDateTimeString_6();
-                    string ID = 領藥台_04_ID;
-                    string 操作人 = 領藥台_04_登入者姓名;
-                    string 藥師證字號 = 領藥台_04_藥師證字號;
-                    string 顏色 = 領藥台_04_顏色;
+                    string ID = 領藥台_03_ID;
+                    string 操作人 = 領藥台_03_登入者姓名;
+                    string 藥師證字號 = 領藥台_03_藥師證字號;
+                    string 顏色 = 領藥台_03_顏色;
                     string 收支原因 = "";
                     int 總異動量 = list_value[i][(int)enum_選擇藥品.交易量].ObjectToString().StringToInt32();
                     enum_交易記錄查詢動作 動作 = enum_交易記錄查詢動作.掃碼領藥;
@@ -8828,6 +8891,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.藥袋序號 = 藥袋序號;
                     takeMedicineStackClass.單位 = 單位;
                     takeMedicineStackClass.病歷號 = 病歷號;
+                    takeMedicineStackClass.領藥號 = 領藥號;
                     takeMedicineStackClass.床號 = 床號;
                     takeMedicineStackClass.病人姓名 = 病人姓名;
                     takeMedicineStackClass.開方時間 = 開方時間;
@@ -8943,7 +9007,7 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_04.TitleForeColor = Color.Black;
             }));
             this.commonSapceClasses = Function_取得共用區所有儲位();
-            this.voice.SpeakOnTask("使用者登入完成");
+            Voice.MediaPlayAsync($@"{currentDirectory}\登入成功.wav");
             PLC_Device_Scanner04_讀取藥單資料.Bool = false;
             PLC_Device_Scanner04_讀取藥單資料_OK.Bool = false;
             領藥台_04_醫令條碼 = "";

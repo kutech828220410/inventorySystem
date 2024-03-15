@@ -16,27 +16,10 @@ using SQLUI;
 
 namespace 調劑台管理系統
 {
-    public partial class Dialog_調劑作業_病歷號輸入 : Form
+    public partial class Dialog_調劑作業_病歷號輸入 : MyDialog
     {
         public List<OrderClass> Value = new List<OrderClass>();
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-
-        }
+   
         private SQLUI.SQL_DataGridView sQL_DataGridView_藥檔資料 = null;
         public Dialog_調劑作業_病歷號輸入(SQL_DataGridView _sQL_DataGridView_藥檔資料)
         {

@@ -13,28 +13,11 @@ using HIS_DB_Lib;
 using SQLUI;
 namespace 調劑台管理系統
 {
-    public partial class Dialog_醫令退藥 : Form
+    public partial class Dialog_醫令退藥 : MyDialog
     {
         private List<object[]> list_醫令資料_buf = new List<object[]>();
         private SQL_DataGridView _sqL_DataGridView_醫令資料;
-        public static Form form;
-        public DialogResult ShowDialog()
-        {
-            if (form == null)
-            {
-                base.ShowDialog();
-            }
-            else
-            {
-                form.Invoke(new Action(delegate
-                {
-                    base.ShowDialog();
-                }));
-            }
-
-            return this.DialogResult;
-
-        }
+  
         private object[] value;
         public object[] Value
         {

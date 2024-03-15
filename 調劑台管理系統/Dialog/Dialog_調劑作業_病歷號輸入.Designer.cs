@@ -36,11 +36,11 @@ namespace 調劑台管理系統
             this.rJ_TextBox_病歷號 = new MyUI.RJ_TextBox();
             this.rJ_Lable26 = new MyUI.RJ_Lable();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.sqL_DataGridView_醫令資料 = new SQLUI.SQL_DataGridView();
             this.rJ_Button_選取處方 = new MyUI.RJ_Button();
+            this.sqL_DataGridView_醫令資料 = new SQLUI.SQL_DataGridView();
             this.plC_RJ_GroupBox1 = new MyUI.PLC_RJ_GroupBox();
-            this.sqL_DataGridView_醫令資料_已選取處方 = new SQLUI.SQL_DataGridView();
             this.rJ_Button_刪除 = new MyUI.RJ_Button();
+            this.sqL_DataGridView_醫令資料_已選取處方 = new SQLUI.SQL_DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.plC_RJ_GroupBox1.ContentsPanel.SuspendLayout();
@@ -55,18 +55,18 @@ namespace 調劑台管理系統
             this.panel1.Controls.Add(this.rJ_TextBox_病歷號);
             this.panel1.Controls.Add(this.rJ_Lable26);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(4, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1684, 81);
+            this.panel1.Size = new System.Drawing.Size(1676, 81);
             this.panel1.TabIndex = 0;
             // 
             // rJ_Button_確認
             // 
             this.rJ_Button_確認.AutoResetState = false;
-            this.rJ_Button_確認.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_確認.BackColor = System.Drawing.Color.White;
             this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_確認.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_確認.BorderRadius = 5;
+            this.rJ_Button_確認.BorderRadius = 10;
             this.rJ_Button_確認.BorderSize = 0;
             this.rJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_確認.FlatAppearance.BorderSize = 0;
@@ -74,13 +74,18 @@ namespace 調劑台管理系統
             this.rJ_Button_確認.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.rJ_Button_確認.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_確認.GUID = "";
+            this.rJ_Button_確認.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.rJ_Button_確認.Location = new System.Drawing.Point(1426, 8);
             this.rJ_Button_確認.Name = "rJ_Button_確認";
+            this.rJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_確認.ShadowSize = 3;
+            this.rJ_Button_確認.ShowLoadingForm = false;
             this.rJ_Button_確認.Size = new System.Drawing.Size(120, 65);
             this.rJ_Button_確認.State = false;
             this.rJ_Button_確認.TabIndex = 57;
             this.rJ_Button_確認.Text = "確認";
             this.rJ_Button_確認.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_確認.TextHeight = 0;
             this.rJ_Button_確認.UseVisualStyleBackColor = false;
             // 
             // rJ_Button_取消
@@ -89,7 +94,7 @@ namespace 調劑台管理系統
             this.rJ_Button_取消.BackColor = System.Drawing.Color.Gray;
             this.rJ_Button_取消.BackgroundColor = System.Drawing.Color.Gray;
             this.rJ_Button_取消.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_取消.BorderRadius = 5;
+            this.rJ_Button_取消.BorderRadius = 10;
             this.rJ_Button_取消.BorderSize = 0;
             this.rJ_Button_取消.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_取消.FlatAppearance.BorderSize = 0;
@@ -97,22 +102,27 @@ namespace 調劑台管理系統
             this.rJ_Button_取消.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_取消.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_取消.GUID = "";
+            this.rJ_Button_取消.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.rJ_Button_取消.Location = new System.Drawing.Point(1552, 7);
             this.rJ_Button_取消.Name = "rJ_Button_取消";
+            this.rJ_Button_取消.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_取消.ShadowSize = 3;
+            this.rJ_Button_取消.ShowLoadingForm = false;
             this.rJ_Button_取消.Size = new System.Drawing.Size(120, 65);
             this.rJ_Button_取消.State = false;
             this.rJ_Button_取消.TabIndex = 56;
             this.rJ_Button_取消.Text = "取消";
             this.rJ_Button_取消.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_取消.TextHeight = 0;
             this.rJ_Button_取消.UseVisualStyleBackColor = false;
             // 
             // rJ_Button_輸入
             // 
             this.rJ_Button_輸入.AutoResetState = false;
-            this.rJ_Button_輸入.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_輸入.BackColor = System.Drawing.Color.White;
             this.rJ_Button_輸入.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_輸入.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_輸入.BorderRadius = 5;
+            this.rJ_Button_輸入.BorderRadius = 10;
             this.rJ_Button_輸入.BorderSize = 0;
             this.rJ_Button_輸入.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_輸入.FlatAppearance.BorderSize = 0;
@@ -120,13 +130,18 @@ namespace 調劑台管理系統
             this.rJ_Button_輸入.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.rJ_Button_輸入.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_輸入.GUID = "";
+            this.rJ_Button_輸入.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.rJ_Button_輸入.Location = new System.Drawing.Point(582, 8);
             this.rJ_Button_輸入.Name = "rJ_Button_輸入";
+            this.rJ_Button_輸入.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_輸入.ShadowSize = 3;
+            this.rJ_Button_輸入.ShowLoadingForm = false;
             this.rJ_Button_輸入.Size = new System.Drawing.Size(120, 65);
             this.rJ_Button_輸入.State = false;
             this.rJ_Button_輸入.TabIndex = 55;
             this.rJ_Button_輸入.Text = "輸入";
             this.rJ_Button_輸入.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_輸入.TextHeight = 0;
             this.rJ_Button_輸入.UseVisualStyleBackColor = false;
             // 
             // rJ_TextBox_病歷號
@@ -155,7 +170,7 @@ namespace 調劑台管理系統
             // 
             // rJ_Lable26
             // 
-            this.rJ_Lable26.BackColor = System.Drawing.Color.SkyBlue;
+            this.rJ_Lable26.BackColor = System.Drawing.Color.White;
             this.rJ_Lable26.BackgroundColor = System.Drawing.Color.SkyBlue;
             this.rJ_Lable26.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Lable26.BorderRadius = 8;
@@ -166,6 +181,8 @@ namespace 調劑台管理系統
             this.rJ_Lable26.GUID = "";
             this.rJ_Lable26.Location = new System.Drawing.Point(12, 9);
             this.rJ_Lable26.Name = "rJ_Lable26";
+            this.rJ_Lable26.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable26.ShadowSize = 0;
             this.rJ_Lable26.Size = new System.Drawing.Size(147, 63);
             this.rJ_Lable26.TabIndex = 53;
             this.rJ_Lable26.Text = "病歷號";
@@ -177,10 +194,39 @@ namespace 調劑台管理系統
             this.panel2.Controls.Add(this.rJ_Button_選取處方);
             this.panel2.Controls.Add(this.sqL_DataGridView_醫令資料);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 81);
+            this.panel2.Location = new System.Drawing.Point(4, 109);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(950, 903);
+            this.panel2.Size = new System.Drawing.Size(950, 871);
             this.panel2.TabIndex = 8;
+            // 
+            // rJ_Button_選取處方
+            // 
+            this.rJ_Button_選取處方.AutoResetState = false;
+            this.rJ_Button_選取處方.BackColor = System.Drawing.Color.White;
+            this.rJ_Button_選取處方.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_選取處方.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_選取處方.BorderRadius = 20;
+            this.rJ_Button_選取處方.BorderSize = 0;
+            this.rJ_Button_選取處方.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_選取處方.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_Button_選取處方.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_選取處方.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_選取處方.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_選取處方.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_選取處方.GUID = "";
+            this.rJ_Button_選取處方.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.rJ_Button_選取處方.Location = new System.Drawing.Point(0, 774);
+            this.rJ_Button_選取處方.Name = "rJ_Button_選取處方";
+            this.rJ_Button_選取處方.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_選取處方.ShadowSize = 3;
+            this.rJ_Button_選取處方.ShowLoadingForm = false;
+            this.rJ_Button_選取處方.Size = new System.Drawing.Size(950, 97);
+            this.rJ_Button_選取處方.State = false;
+            this.rJ_Button_選取處方.TabIndex = 56;
+            this.rJ_Button_選取處方.Text = "選取處方";
+            this.rJ_Button_選取處方.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_選取處方.TextHeight = 0;
+            this.rJ_Button_選取處方.UseVisualStyleBackColor = false;
             // 
             // sqL_DataGridView_醫令資料
             // 
@@ -212,7 +258,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.RowsHeight = 50;
             this.sqL_DataGridView_醫令資料.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_醫令資料.Server = "127.0.0.0";
-            this.sqL_DataGridView_醫令資料.Size = new System.Drawing.Size(950, 796);
+            this.sqL_DataGridView_醫令資料.Size = new System.Drawing.Size(950, 774);
             this.sqL_DataGridView_醫令資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_醫令資料.TabIndex = 8;
             this.sqL_DataGridView_醫令資料.TableName = "order_list";
@@ -229,36 +275,13 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_醫令資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
-            // rJ_Button_選取處方
-            // 
-            this.rJ_Button_選取處方.AutoResetState = false;
-            this.rJ_Button_選取處方.BackColor = System.Drawing.Color.RoyalBlue;
-            this.rJ_Button_選取處方.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.rJ_Button_選取處方.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_選取處方.BorderRadius = 20;
-            this.rJ_Button_選取處方.BorderSize = 0;
-            this.rJ_Button_選取處方.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_選取處方.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_Button_選取處方.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_選取處方.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_選取處方.Font = new System.Drawing.Font("微軟正黑體", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_選取處方.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_選取處方.GUID = "";
-            this.rJ_Button_選取處方.Location = new System.Drawing.Point(0, 796);
-            this.rJ_Button_選取處方.Name = "rJ_Button_選取處方";
-            this.rJ_Button_選取處方.Size = new System.Drawing.Size(950, 107);
-            this.rJ_Button_選取處方.State = false;
-            this.rJ_Button_選取處方.TabIndex = 56;
-            this.rJ_Button_選取處方.Text = "選取處方";
-            this.rJ_Button_選取處方.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_選取處方.UseVisualStyleBackColor = false;
-            // 
             // plC_RJ_GroupBox1
             // 
             // 
             // plC_RJ_GroupBox1.ContentsPanel
             // 
             this.plC_RJ_GroupBox1.ContentsPanel.BackColor = System.Drawing.Color.White;
+            this.plC_RJ_GroupBox1.ContentsPanel.BackgroundColor = System.Drawing.Color.Transparent;
             this.plC_RJ_GroupBox1.ContentsPanel.BorderColor = System.Drawing.Color.DarkSlateBlue;
             this.plC_RJ_GroupBox1.ContentsPanel.BorderRadius = 2;
             this.plC_RJ_GroupBox1.ContentsPanel.BorderSize = 2;
@@ -270,17 +293,19 @@ namespace 調劑台管理系統
             this.plC_RJ_GroupBox1.ContentsPanel.Location = new System.Drawing.Point(0, 50);
             this.plC_RJ_GroupBox1.ContentsPanel.Name = "ContentsPanel";
             this.plC_RJ_GroupBox1.ContentsPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.plC_RJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(734, 853);
+            this.plC_RJ_GroupBox1.ContentsPanel.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_GroupBox1.ContentsPanel.ShadowSize = 0;
+            this.plC_RJ_GroupBox1.ContentsPanel.Size = new System.Drawing.Size(726, 821);
             this.plC_RJ_GroupBox1.ContentsPanel.TabIndex = 2;
             this.plC_RJ_GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_GroupBox1.GUID = "";
-            this.plC_RJ_GroupBox1.Location = new System.Drawing.Point(950, 81);
+            this.plC_RJ_GroupBox1.Location = new System.Drawing.Point(954, 109);
             this.plC_RJ_GroupBox1.Name = "plC_RJ_GroupBox1";
             this.plC_RJ_GroupBox1.PannelBackColor = System.Drawing.Color.White;
             this.plC_RJ_GroupBox1.PannelBorderColor = System.Drawing.Color.DarkSlateBlue;
             this.plC_RJ_GroupBox1.PannelBorderRadius = 2;
             this.plC_RJ_GroupBox1.PannelBorderSize = 2;
-            this.plC_RJ_GroupBox1.Size = new System.Drawing.Size(734, 903);
+            this.plC_RJ_GroupBox1.Size = new System.Drawing.Size(726, 871);
             this.plC_RJ_GroupBox1.TabIndex = 9;
             this.plC_RJ_GroupBox1.TitleBackColor = System.Drawing.Color.DarkSlateBlue;
             this.plC_RJ_GroupBox1.TitleBorderColor = System.Drawing.Color.PaleVioletRed;
@@ -291,6 +316,34 @@ namespace 調劑台管理系統
             this.plC_RJ_GroupBox1.TitleHeight = 50;
             this.plC_RJ_GroupBox1.TitleTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.plC_RJ_GroupBox1.TitleTexts = "已選取處方";
+            // 
+            // rJ_Button_刪除
+            // 
+            this.rJ_Button_刪除.AutoResetState = false;
+            this.rJ_Button_刪除.BackColor = System.Drawing.Color.White;
+            this.rJ_Button_刪除.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_刪除.BorderRadius = 10;
+            this.rJ_Button_刪除.BorderSize = 0;
+            this.rJ_Button_刪除.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_刪除.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_刪除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_刪除.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.rJ_Button_刪除.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_刪除.GUID = "";
+            this.rJ_Button_刪除.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.rJ_Button_刪除.Location = new System.Drawing.Point(596, 752);
+            this.rJ_Button_刪除.Name = "rJ_Button_刪除";
+            this.rJ_Button_刪除.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_刪除.ShadowSize = 3;
+            this.rJ_Button_刪除.ShowLoadingForm = false;
+            this.rJ_Button_刪除.Size = new System.Drawing.Size(120, 65);
+            this.rJ_Button_刪除.State = false;
+            this.rJ_Button_刪除.TabIndex = 58;
+            this.rJ_Button_刪除.Text = "刪除";
+            this.rJ_Button_刪除.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_刪除.TextHeight = 0;
+            this.rJ_Button_刪除.UseVisualStyleBackColor = false;
             // 
             // sqL_DataGridView_醫令資料_已選取處方
             // 
@@ -322,7 +375,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料_已選取處方.RowsHeight = 50;
             this.sqL_DataGridView_醫令資料_已選取處方.SaveFileName = "SQL_DataGridView";
             this.sqL_DataGridView_醫令資料_已選取處方.Server = "127.0.0.0";
-            this.sqL_DataGridView_醫令資料_已選取處方.Size = new System.Drawing.Size(714, 736);
+            this.sqL_DataGridView_醫令資料_已選取處方.Size = new System.Drawing.Size(706, 736);
             this.sqL_DataGridView_醫令資料_已選取處方.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_醫令資料_已選取處方.TabIndex = 9;
             this.sqL_DataGridView_醫令資料_已選取處方.TableName = "order_list";
@@ -339,36 +392,12 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料_已選取處方.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_醫令資料_已選取處方.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             // 
-            // rJ_Button_刪除
-            // 
-            this.rJ_Button_刪除.AutoResetState = false;
-            this.rJ_Button_刪除.BackColor = System.Drawing.Color.RoyalBlue;
-            this.rJ_Button_刪除.BackgroundColor = System.Drawing.Color.RoyalBlue;
-            this.rJ_Button_刪除.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_刪除.BorderRadius = 5;
-            this.rJ_Button_刪除.BorderSize = 0;
-            this.rJ_Button_刪除.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_刪除.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_刪除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_刪除.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.rJ_Button_刪除.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_刪除.GUID = "";
-            this.rJ_Button_刪除.Location = new System.Drawing.Point(602, 773);
-            this.rJ_Button_刪除.Name = "rJ_Button_刪除";
-            this.rJ_Button_刪除.Size = new System.Drawing.Size(120, 65);
-            this.rJ_Button_刪除.State = false;
-            this.rJ_Button_刪除.TabIndex = 58;
-            this.rJ_Button_刪除.Text = "刪除";
-            this.rJ_Button_刪除.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_刪除.UseVisualStyleBackColor = false;
-            // 
             // Dialog_調劑作業_病歷號輸入
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1684, 984);
-            this.ControlBox = false;
             this.Controls.Add(this.plC_RJ_GroupBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

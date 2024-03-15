@@ -52,12 +52,12 @@ namespace 調劑台管理系統
 
         }
         #region Function
-        static public bool Function_指紋辨識初始化(bool show_error_message)
+        static public bool Function_指紋辨識初始化(bool show_error_message , bool openSoket)
         {
             if (flag_指紋辨識_Init == false) return false;
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(2000);
-            if (Main_Form.fpMatchSoket.StateCode != stateCode.READY && Main_Form.fpMatchSoket.StateCode != stateCode.NONE)
+            if (Main_Form.fpMatchSoket.StateCode != stateCode.READY && Main_Form.fpMatchSoket.StateCode != stateCode.NONE || Main_Form.fpMatchSoket.IsOpen == false || openSoket == true)
             {
                 if (Main_Form.fpMatchSoket.Open() == false)
                 {
@@ -89,7 +89,7 @@ namespace 調劑台管理系統
         }
         static public bool Function_指紋辨識初始化()
         {
-            return Function_指紋辨識初始化(true);
+            return Function_指紋辨識初始化(true , true);
         }
         #endregion
     }

@@ -454,7 +454,7 @@ namespace 調劑台管理系統
             }
             if (!this.PLC_Device_已登入.Bool)
             {
-                if (Function_指紋辨識初始化(false) == false)
+                if (Function_指紋辨識初始化(false , false) == false)
                 {
                     cnt = 65500;
                     return;
@@ -491,6 +491,7 @@ namespace 調劑台管理系統
                 for (int i = 0; i < list_人員資料.Count; i++)
                 {
                     string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                    if (feature.StringIsEmpty()) continue;
                     if (Main_Form.fpMatchSoket.Match(fpMatchClass.feature, feature))
                     {
                         value = list_人員資料[i];

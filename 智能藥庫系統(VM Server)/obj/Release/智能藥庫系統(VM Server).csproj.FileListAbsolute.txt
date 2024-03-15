@@ -984,7 +984,6 @@ C:\Users\User\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Rel
 C:\Users\User\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).csproj.CopyComplete
 C:\Users\User\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).exe
 C:\Users\User\source\repos\inventorySystem\智能藥庫系統(VM Server)\obj\Release\智能藥庫系統(VM Server).pdb
-C:\Users\user\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\stdole.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\CSkin.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.mshtml.dll
 C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\PopupControl.dll

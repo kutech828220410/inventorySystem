@@ -20,10 +20,28 @@ namespace 調劑台管理系統
         藥品碼,
         藥品名稱,
         交易量,
-        病房號,
     }
     public partial class Dialog_手動作業 : MyDialog
     {
+        private transactionsClass _transactionsClass = new transactionsClass();
+        public transactionsClass transactionsClass
+        {
+            set
+            {
+                _transactionsClass = value;
+                this.Invoke(new Action(delegate 
+                {
+                    rJ_Lable_病歷號.Text = $"病歷號:{_transactionsClass.病歷號}";
+                    rJ_Lable_病人姓名.Text = $"病人姓名:{_transactionsClass.病人姓名}";
+                    rJ_Lable_領藥號.Text = $"領藥號:{_transactionsClass.領藥號}";
+                    rJ_Lable_病房號.Text = $"病房號:{_transactionsClass.病房號}";
+                }));
+            }
+            get
+            {
+                return _transactionsClass;
+            }
+        }
         public static bool IsShown = false;
         public enum enum_狀態
         {
@@ -49,8 +67,19 @@ namespace 調劑台管理系統
 
         private void Dialog_手動作業_Load(object sender, EventArgs e)
         {
-            this.sqL_DataGridView_選擇藥品.Init();
+            Table table = new Table("");
+            table.AddColumnList("GUID", Table.StringType.VARCHAR, Table.IndexType.None);
+            table.AddColumnList("藥品碼", Table.StringType.VARCHAR, Table.IndexType.None);
+            table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, Table.IndexType.None);
+            table.AddColumnList("交易量", Table.StringType.VARCHAR, Table.IndexType.None);
+            this.sqL_DataGridView_選擇藥品.Init(table);
+            this.sqL_DataGridView_選擇藥品.Set_ColumnVisible(false, new enum_選擇藥品().GetEnumNames());
+            this.sqL_DataGridView_選擇藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_選擇藥品.藥品碼);
+            this.sqL_DataGridView_選擇藥品.Set_ColumnWidth(520, DataGridViewContentAlignment.MiddleLeft, enum_選擇藥品.藥品名稱);
+            this.sqL_DataGridView_選擇藥品.Set_ColumnWidth(80, enum_選擇藥品.交易量);
+ 
             this.sqL_DataGridView_選擇藥品.RowEndEditEvent += SqL_DataGridView_選擇藥品_RowEndEditEvent;
+          
 
             this.sqL_DataGridView_藥品資料.Init(this.sQL_DataGridView_藥品資料_buf);
             this.sqL_DataGridView_藥品資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
@@ -66,6 +95,8 @@ namespace 調劑台管理系統
             this.rJ_Button_藥品資料_藥品碼_搜尋.MouseDownEvent += RJ_Button_藥品資料_藥品碼_搜尋_MouseDownEvent;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.MouseDownEvent += RJ_Button_藥品資料_藥品名稱_搜尋_MouseDownEvent;
             this.rJ_Button_藥品資料_選擇藥品.MouseDownEvent += RJ_Button_藥品資料_選擇藥品_MouseDownEvent;
+            this.rJ_Button_處方資訊填寫.MouseDownEvent += RJ_Button_處方資訊填寫_MouseDownEvent;
+
             this.rJ_Button1.MouseDownEvent += RJ_Button_選擇藥品_刪除選取資料_MouseDownEvent;
 
             this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
@@ -92,6 +123,9 @@ namespace 調劑台管理系統
             IsShown = true;
 
         }
+
+    
+
         private void sub_program()
         {
             string text = "";
@@ -175,7 +209,6 @@ namespace 調劑台管理系統
             value[(int)enum_選擇藥品.藥品碼] = 藥碼;
             value[(int)enum_選擇藥品.藥品名稱] = 藥名;
             value[(int)enum_選擇藥品.交易量] = 交易量;
-            value[(int)enum_選擇藥品.病房號] = rJ_TextBox_病房號.Text;
             this.sqL_DataGridView_選擇藥品.AddRow(value, true);
             return true;
         }
@@ -206,6 +239,13 @@ namespace 調劑台管理系統
         private void SqL_DataGridView_藥品資料_RowDoubleClickEvent(object[] RowValue)
         {
             this.RJ_Button_藥品資料_選擇藥品_MouseDownEvent(null);
+        }
+        private void RJ_Button_處方資訊填寫_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_處方資訊填寫 dialog_處方資訊填寫 = new Dialog_處方資訊填寫(transactionsClass);
+            if (dialog_處方資訊填寫.ShowDialog() != DialogResult.Yes) return;
+            this.transactionsClass = dialog_處方資訊填寫.transactionsClass;
+
         }
         private void RJ_Button_選擇藥品_刪除選取資料_MouseDownEvent(MouseEventArgs mevent)
         {

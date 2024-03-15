@@ -1185,7 +1185,6 @@ C:\Users\User\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳
 C:\Users\User\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CopyComplete
 C:\Users\User\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.exe
 C:\Users\User\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.pdb
-C:\Users\user\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\PopupControl.dll
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\CSkin.dll
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.mshtml.dll

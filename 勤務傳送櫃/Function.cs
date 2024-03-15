@@ -20,6 +20,23 @@ namespace 勤務傳送櫃
 {
     public partial class Form1 : Form
     {
+        static public void MediaPlay(string fileName)
+        {
+            try
+            {
+                using (System.Media.SoundPlayer sp = new System.Media.SoundPlayer($@"{fileName}"))
+                {
+                    sp.Stop();
+                    sp.Play();
+                    sp.PlaySync();
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"{DateTime.Now.ToDateTimeString()} : [{System.Reflection.MethodBase.GetCurrentMethod().Name}] Exception:{e.Message}");
+            }
+    
+        }
         public string Function_藥品碼檢查(string Code)
         {
 
