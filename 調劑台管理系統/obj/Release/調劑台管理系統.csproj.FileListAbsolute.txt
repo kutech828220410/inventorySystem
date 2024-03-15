@@ -304,5 +304,4 @@ C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調�
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
-C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_抽屜選擇.resources
