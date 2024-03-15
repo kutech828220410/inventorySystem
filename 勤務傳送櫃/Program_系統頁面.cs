@@ -64,7 +64,7 @@ namespace 勤務傳送櫃
             table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
             table.AddColumnList("Number", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("IP", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("RFID_num", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("RFID_Num", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("Lock_output_num", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("Lock_input_num", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("Sensor_input_num", Table.StringType.VARCHAR, 50, Table.IndexType.None);

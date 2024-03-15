@@ -212,7 +212,7 @@ namespace 勤務傳送櫃
             string IP = "";
             int RFID_Num = -1;
             string 卡號 = "";
-          
+
             List<object[]> list_人員資料_buf = new List<object[]>();
             List<object[]> list_locker_table_value = this.sqL_DataGridView_Box_Index_Table.SQL_GetAllRows(false);
             List<object[]> list_locker_table_value_buf = new List<object[]>();
@@ -272,7 +272,79 @@ namespace 勤務傳送櫃
 
 
         #endregion
+        #region PLC_櫃體狀態_重置設備
+        PLC_Device PLC_Device_櫃體狀態_重置設備 = new PLC_Device("");
+        PLC_Device PLC_Device_櫃體狀態_重置設備_重置 = new PLC_Device("");
+        int cnt_Program_櫃體狀態_重置設備 = 65534;
+        void Program_櫃體狀態_重置設備()
+        {
+            PLC_Device_櫃體狀態_重置設備.Bool = true;
+            if (cnt_Program_櫃體狀態_重置設備 == 65534)
+            {
+                PLC_Device_櫃體狀態_重置設備.SetComment("PLC_櫃體狀態_重置設備");
+                PLC_Device_櫃體狀態_重置設備.Bool = false;
+                cnt_Program_櫃體狀態_重置設備 = 65535;
+            }
+            if (cnt_Program_櫃體狀態_重置設備 == 65535) cnt_Program_櫃體狀態_重置設備 = 1;
+            if (cnt_Program_櫃體狀態_重置設備 == 1) cnt_Program_櫃體狀態_重置設備_檢查按下(ref cnt_Program_櫃體狀態_重置設備);
+            if (cnt_Program_櫃體狀態_重置設備 == 2) cnt_Program_櫃體狀態_重置設備_初始化(ref cnt_Program_櫃體狀態_重置設備);
+            if (cnt_Program_櫃體狀態_重置設備 == 3) cnt_Program_櫃體狀態_重置設備 = 65500;
+            if (cnt_Program_櫃體狀態_重置設備 > 1) cnt_Program_櫃體狀態_重置設備_檢查放開(ref cnt_Program_櫃體狀態_重置設備);
 
+            if (cnt_Program_櫃體狀態_重置設備 == 65500)
+            {
+                PLC_Device_櫃體狀態_重置設備.Bool = false;
+                cnt_Program_櫃體狀態_重置設備 = 65535;
+            }
+        }
+        void cnt_Program_櫃體狀態_重置設備_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_櫃體狀態_重置設備.Bool) cnt++;
+        }
+        void cnt_Program_櫃體狀態_重置設備_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_櫃體狀態_重置設備.Bool) cnt = 65500;
+        }
+        void cnt_Program_櫃體狀態_重置設備_初始化(ref int cnt)
+        {
+            int cur_hour = DateTime.Now.Hour;
+            int cur_min = DateTime.Now.Minute;
+            int cur_sec = DateTime.Now.Second;
+            if (cur_hour == 01 && (cur_min >= 00 && cur_min <= 15)) PLC_Device_櫃體狀態_重置設備_重置.Bool = true;
+            if (PLC_Device_櫃體狀態_重置設備_重置.Bool == false) return;
+            if (cur_hour == 01 && (cur_min >= 20 && cur_min <= 40))
+            {
+                PlC_RJ_Button_櫃體狀態_重置設備_MouseDownEvent(null);
+                PLC_Device_櫃體狀態_重置設備_重置.Bool = false;
+            }
+
+            cnt++;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #endregion
         private void PlC_RJ_Button_櫃體狀態_重置設備_MouseDownEvent(MouseEventArgs mevent)
         {
             UDP_Class uDP_Class = new UDP_Class("0.0.0.0", 29005);
