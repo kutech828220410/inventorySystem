@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Basic.dll" size="208384">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Basic.dll" size="209920">
       <assemblyIdentity name="Basic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>azXq5Qx7BftJfoqzWaI9ES1NDs6VcprjX5Y+FlAWaFQ=</dsig:DigestValue>
+        <dsig:DigestValue>XU87p0ZoUtJCY26zf+H54FXXMwLHmVGQlKZoVjJO0eI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

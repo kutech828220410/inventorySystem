@@ -35,12 +35,19 @@ namespace 調劑台管理系統
             this.stepViewer1.ListDataSource = list;
 
             this.LoadFinishedEvent += Dialog_指紋建置_LoadFinishedEvent;
+            this.FormClosing += Dialog_指紋建置_FormClosing;
             this.plC_RJ_Button_清除指紋.MouseDownEvent += PlC_RJ_Button_清除指紋_MouseDownEvent;
             this.plC_RJ_Button_確認完成.MouseDownEvent += PlC_RJ_Button_確認完成_MouseDownEvent;
             this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
         }
 
- 
+        private void Dialog_指紋建置_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            myThread.Abort();
+            myThread.Stop();
+        }
+
+
 
         #region Event
         private void Dialog_指紋建置_LoadFinishedEvent(EventArgs e)
@@ -70,6 +77,7 @@ namespace 調劑台管理系統
                 myThread.AutoRun(true);
                 myThread.SetSleepTime(50);
                 myThread.Add_Method(sub_program);
+                myThread.AutoStop(true);
                 myThread.Trigger();
             }
             catch

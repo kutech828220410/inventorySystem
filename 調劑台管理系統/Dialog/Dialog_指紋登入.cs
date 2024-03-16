@@ -19,6 +19,7 @@ namespace 調劑台管理系統
         private MyThread myThread = new MyThread();
         public FpMatchClass Value;
         public int 台號 = -1;
+        private bool about = false;
         public Dialog_指紋登入()
         {
             InitializeComponent();
@@ -42,10 +43,16 @@ namespace 調劑台管理系統
             plC_RJ_Button_2號.MouseDownEvent += PlC_RJ_Button_2號_MouseDownEvent;
             plC_RJ_Button_3號.MouseDownEvent += PlC_RJ_Button_3號_MouseDownEvent;
             plC_RJ_Button_4號.MouseDownEvent += PlC_RJ_Button_4號_MouseDownEvent;
+
+            this.FormClosing += Dialog_指紋登入_FormClosing;
             
         }
 
-
+        private void Dialog_指紋登入_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            myThread.Abort();
+            myThread.Stop();
+        }
 
         bool flag_init = false;
         bool flag_step_2 = false;
@@ -83,35 +90,33 @@ namespace 調劑台管理系統
                 }
                
             }
-            if (this.stepViewer1.CurrentStep == 3 && flag_step_3 == false)
+            if (this.stepViewer1.CurrentStep == 3)
             {
                 flag_step_3 = true;
-                Task task = Task.Run(new Action(delegate
+                Value = Main_Form.fpMatchSoket.GetFeatureOnce();
+                if (Value == null) return;
+                if (Value.featureLen == 768)
                 {
-                    Value = Main_Form.fpMatchSoket.GetFeature();
-                    if (Value.featureLen == 768)
+
+                    List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                    object[] value = null;
+                    for (int i = 0; i < list_人員資料.Count; i++)
                     {
-                        
-                        List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
-                        object[] value = null;
-                        for (int i = 0; i < list_人員資料.Count; i++)
+                        string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                        if (Main_Form.fpMatchSoket.Match(Value.feature, feature))
                         {
-                            string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
-                            if (Main_Form.fpMatchSoket.Match(Value.feature, feature))
-                            {
-                                value = list_人員資料[i];
-                             
-                            }
-                        }
-                        if (value != null) this.stepViewer1.Next();
-                        else
-                        {
-                            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
-                            dialog_AlarmForm.ShowDialog();
-                            flag_step_3 = false;
+                            value = list_人員資料[i];
+
                         }
                     }
-                }));
+                    if (value != null) this.stepViewer1.Next();
+                    else
+                    {
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                        dialog_AlarmForm.ShowDialog();
+                        flag_step_3 = false;
+                    }
+                }
             }
             if(this.stepViewer1.CurrentStep == 4 && flag_step_4 == false)
             {
@@ -143,6 +148,7 @@ namespace 調劑台管理系統
             myThread.AutoRun(true);
             myThread.SetSleepTime(50);
             myThread.Add_Method(sub_program);
+            myThread.AutoStop(true);
             myThread.Trigger();
         }
         private void PlC_RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)
