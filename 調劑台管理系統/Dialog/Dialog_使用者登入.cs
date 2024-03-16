@@ -171,7 +171,7 @@ namespace 調劑台管理系統
         Task task;
         private void Dialog_使用者登入_LoadFinishedEvent(EventArgs e)
         {
-            Main_Form.Function_指紋辨識初始化();
+            Main_Form.Function_指紋辨識初始化(true,false);
             MyThread_program = new MyThread();
             MyThread_program.Add_Method(sub_program);
             MyThread_program.AutoRun(true);

@@ -59,7 +59,7 @@ namespace 調劑台管理系統
             myTimerBasic.StartTickTime(2000);
             if (Main_Form.fpMatchSoket.StateCode != stateCode.READY && Main_Form.fpMatchSoket.StateCode != stateCode.NONE || Main_Form.fpMatchSoket.IsOpen == false || openSoket == true)
             {
-                if (Main_Form.fpMatchSoket.Open() == false)
+                if (Main_Form.fpMatchSoket.Open(true) == false)
                 {
                     if(show_error_message)
                     {

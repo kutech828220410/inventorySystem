@@ -1471,7 +1471,6 @@ C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS
 C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
 C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\hsonds01\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
-C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\excel_MedShift.txt
 C:\Users\WPC\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.dll
 C:\Users\WPC\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
@@ -2646,3 +2645,4 @@ C:\Users\User\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_Web
 C:\Users\User\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\zxing.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_DB_Lib.xml
+C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache

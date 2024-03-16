@@ -160,7 +160,7 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate 
-            {
+            {             
                 Main_Form.fpMatchSoket.Abort();
                 this.DialogResult = DialogResult.No;
                 this.Close();

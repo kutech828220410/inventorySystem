@@ -66,6 +66,16 @@ namespace 調劑台管理系統
             plC_RJ_Button_4號.Run();
             if(flag_init == false)
             {
+                if (Main_Form.Function_指紋辨識初始化(true,false) == false)
+                {
+                    this.Invoke(new Action(delegate
+                    {
+                        this.DialogResult = DialogResult.No;
+                        this.Close();
+                    }));
+                    return;
+                }
+                this.stepViewer1.Next();
                 if (Main_Form.myConfigClass.Scanner01_COMPort.StringIsEmpty() == false)
                 {
                     if (Main_Form.myConfigClass.Scanner02_COMPort.StringIsEmpty() == true
@@ -78,6 +88,11 @@ namespace 調劑台管理系統
                         }));
                     }
                 }
+                this.Invoke(new Action(delegate
+                {
+                    this.plC_RJ_Button_返回.Enabled = true;
+                }));
+              
                 flag_init = true;
             }
           
@@ -135,16 +150,8 @@ namespace 調劑台管理系統
         #region Event
         private void Dialog_指紋登入_LoadFinishedEvent(EventArgs e)
         {
-            if (Main_Form.Function_指紋辨識初始化() == false)
-            {
-                this.Invoke(new Action(delegate
-                {
-                    this.DialogResult = DialogResult.No;
-                    this.Close();
-                }));
-                return;
-            }
-            this.stepViewer1.Next();
+          
+
             myThread.AutoRun(true);
             myThread.SetSleepTime(50);
             myThread.Add_Method(sub_program);
