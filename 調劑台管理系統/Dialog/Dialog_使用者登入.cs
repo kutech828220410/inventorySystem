@@ -135,56 +135,49 @@ namespace 調劑台管理系統
                     Function_登入(id, pwd);
                 }));
             }
+     
+            FpMatchClass fpMatchClass = Main_Form.fpMatchSoket.GetFeatureOnce();
+            if (fpMatchClass == null) return;
+            if (fpMatchClass.featureLen == 768)
+            {
+
+                List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                object[] value = null;
+                for (int i = 0; i < list_人員資料.Count; i++)
+                {
+                    string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                    if (Main_Form.fpMatchSoket.Match(fpMatchClass.feature, feature))
+                    {
+                        value = list_人員資料[i];
+
+                    }
+                }
+                if (value != null)
+                {
+                    string ID = value[(int)enum_人員資料.ID].ObjectToString();
+                    string PWD = value[(int)enum_人員資料.密碼].ObjectToString();
+                    if (Function_登入(ID, PWD) == true) return;
+
+                }
+                else
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                    dialog_AlarmForm.ShowDialog();
+
+                }
+            }
+
         }
         Task task;
         private void Dialog_使用者登入_LoadFinishedEvent(EventArgs e)
         {
-            if (Main_Form.Function_指紋辨識初始化())
-            {
-                task = Task.Run(new Action(delegate
-                {
-                    while(true)
-                    {
-                        if (IsShown == false)
-                        {
-                            Main_Form.fpMatchSoket.Open();
-                            break;
-                        }
-                        FpMatchClass fpMatchClass = Main_Form.fpMatchSoket.GetFeatureOnce();
-                        if (fpMatchClass == null) continue;
-                        if (fpMatchClass.featureLen == 768)
-                        {
-
-                            List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
-                            object[] value = null;
-                            for (int i = 0; i < list_人員資料.Count; i++)
-                            {
-                                string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
-                                if (Main_Form.fpMatchSoket.Match(fpMatchClass.feature, feature))
-                                {
-                                    value = list_人員資料[i];
-
-                                }
-                            }
-                            if (value != null)
-                            {
-                                string ID = value[(int)enum_人員資料.ID].ObjectToString();
-                                string PWD = value[(int)enum_人員資料.密碼].ObjectToString();
-                                if(Function_登入(ID, PWD) == true) break;
-
-                            }
-                            else
-                            {
-                                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
-                                dialog_AlarmForm.ShowDialog();
-                             
-                            }
-                        }
-                        System.Threading.Thread.Sleep(50);
-                    }
-               
-                }));
-            }
+            Main_Form.Function_指紋辨識初始化();
+            MyThread_program = new MyThread();
+            MyThread_program.Add_Method(sub_program);
+            MyThread_program.AutoRun(true);
+            MyThread_program.SetSleepTime(10);
+            MyThread_program.Trigger();
+         
         }
         private bool Function_登入(string ID , string PWD)
         {
@@ -301,11 +294,7 @@ namespace 調劑台管理系統
             IsShown = true;
             this.textBox_密碼.KeyPress += TextBox_密碼_KeyPress;
             Main_Form.領藥台_01_卡號 = "";
-            MyThread_program = new MyThread();
-            MyThread_program.Add_Method(sub_program);
-            MyThread_program.AutoRun(true);
-            MyThread_program.SetSleepTime(10);
-            MyThread_program.Trigger();
+
         }
 
         private void TextBox_密碼_KeyPress(object sender, KeyPressEventArgs e)
@@ -320,6 +309,7 @@ namespace 調劑台管理系統
             if (MyThread_program != null)
             {
                 MyThread_program.Abort();
+                MyThread_program.Stop();
                 MyThread_program = null;
             }
             IsShown = false;
