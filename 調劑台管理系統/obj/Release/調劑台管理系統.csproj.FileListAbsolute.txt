@@ -412,3 +412,6 @@ C:\Users\User\source\repos\inventorySystem\調劑台管理系統\obj\Release\調
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_人員資料.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_抽屜選擇.resources
 C:\Users\useradmin\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_處方資訊填寫.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_處方資訊填寫.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\SunnyUI.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\SunnyUI.Common.dll

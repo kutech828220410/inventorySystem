@@ -990,4 +990,3 @@ C:\Users\useradmin\source\repos\inventorySystem\智能藥庫系統(VM Server)\bi
 C:\Users\HS\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\CSkin.dll
 C:\Users\HS\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.mshtml.dll
 C:\Users\HS\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\PopupControl.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\stdole.dll

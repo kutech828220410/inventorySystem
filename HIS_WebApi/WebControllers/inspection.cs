@@ -1725,6 +1725,11 @@ namespace HIS_WebApi
                         content.藥品碼 = medClasses_buf[0].藥品碼;
                         content.料號 = medClasses_buf[0].料號;
                     }
+                    else
+                    {
+                        content.藥品碼 = "無";
+                        content.料號 = "無";
+                    }
                     content.藥品名稱 = list_value[i][(int)enum_驗收單匯入.名稱].ObjectToString();
                     content.廠牌 = list_value[i][(int)enum_驗收單匯入.供應商名稱].ObjectToString();
                     content.請購單號 = list_value[i][(int)enum_驗收單匯入.請購單號].ObjectToString();
