@@ -217,7 +217,7 @@ namespace HIS_WebApi
             table.AddColumnList("卡號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("一維條碼", Table.StringType.VARCHAR, 50, Table.IndexType.None);
             table.AddColumnList("識別圖案", Table.StringType.TEXT, 50, Table.IndexType.None);
-            table.AddColumnList("指紋辨識", Table.StringType.VARCHAR, 500, Table.IndexType.None);
+            table.AddColumnList("指紋辨識", Table.StringType.VARCHAR, 1000, Table.IndexType.None);
             table.AddColumnList("指紋ID", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("開門權限", Table.StringType.VARCHAR, 300, Table.IndexType.None);
 

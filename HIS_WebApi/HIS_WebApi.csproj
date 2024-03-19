@@ -122,6 +122,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="WebControllers\" />
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)\0.DLL&quot;" />
   </Target>

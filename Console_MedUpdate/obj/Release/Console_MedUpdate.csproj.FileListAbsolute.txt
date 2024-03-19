@@ -611,3 +611,5 @@ C:\Users\useradmin\source\repos\inventorySystem\Console_MedUpdate\bin\Release\HI
 C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\PopupControl.dll
 C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\CSkin.dll
 C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.Common.dll

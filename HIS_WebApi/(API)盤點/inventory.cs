@@ -2319,7 +2319,6 @@ namespace HIS_WebApi
             Stream stream = new MemoryStream(excelData);
             return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_盤點表.xlsx"));
         }
-
         /// <summary>
         /// 取得盤點上傳表頭
         /// </summary>
@@ -2345,7 +2344,6 @@ namespace HIS_WebApi
 
 
         }
-
         /// <summary>
         /// 以盤點單號上傳
         /// </summary>

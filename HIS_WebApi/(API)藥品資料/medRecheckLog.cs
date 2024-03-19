@@ -24,6 +24,9 @@ using System.Text;
 
 namespace HIS_WebApi
 {
+    /// <summary>
+    /// 覆盤異常LOG
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class MedRecheckLog: Controller

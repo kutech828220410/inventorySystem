@@ -130,6 +130,7 @@ namespace HIS_WebApi
         [HttpPost]
         public string Post([FromBody] returnData returnData)
         {
+            string result = "";
             try
             {
                 string json = returnData.Data.JsonSerializationt();
@@ -137,50 +138,71 @@ namespace HIS_WebApi
 
                 if (data == null)
                 {
-                    return "-1";
+                    result = "-1";
                 }
                 if (data.Count == 0)
                 {
-                    return "-1";
+                    result = "-1";
                 }
                 if (data.Count == 1)
                 {
-                    return single_med_take(returnData.ServerName, data);
+                    result = single_med_take(returnData.ServerName, data);
                 }
                 else
                 {
-                    return mul_med_take(returnData.ServerName, data);
+                    result = mul_med_take(returnData.ServerName, data);
                 }
             }
             catch (Exception e)
             {
-                returnData.Code = -200;
-                returnData.Result = e.Message;
-                return returnData.JsonSerializationt();
+                result = e.Message;
             }
+            finally
+            {
+                string json_out = returnData.JsonSerializationt(true);
+                Logger.LogAddLine($"OutTakeMed");
+                Logger.Log($"OutTakeMed", $"result : {result} \n{json_out}");
+                Logger.LogAddLine($"OutTakeMed");
+            }
+            return result;
         }
         [Route("{value}")]
         [HttpPost]
         public string Post([FromBody] List<class_OutTakeMed_data> data, string value)
         {
+            string result = "";
+            try
+            {
+                if (data == null)
+                {
+                    result = "-1";
+                }
+                if (data.Count == 0)
+                {
+                    result = "-1";
+                }
+                if (data.Count == 1)
+                {
+                    result = single_med_take(value, data);
+                }
+                else
+                {
+                    result = mul_med_take(value, data);
+                }
+            }
+            catch(Exception e)
+            {
+                result = e.Message;
+            }
+            finally
+            {
+                string json_out = data.JsonSerializationt(true);
+                Logger.LogAddLine($"OutTakeMed");
+                Logger.Log($"OutTakeMed", $"value : {value} , result : {result} \n{json_out}");
+                Logger.LogAddLine($"OutTakeMed");
+            }
 
-
-            if (data == null)
-            {
-                return "-1";
-            }
-            if (data.Count == 0)
-            {
-                return "-1";
-            }
-            if (data.Count == 1)
-            {
-                return single_med_take(value, data);
-            }
-            else
-            {
-                return mul_med_take(value, data);
-            }
+            return result;
 
         }
         [Route("light_on")]

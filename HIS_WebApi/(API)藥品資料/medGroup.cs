@@ -21,6 +21,9 @@ using HIS_DB_Lib;
 
 namespace HIS_WebApi
 {
+    /// <summary>
+    /// 藥品群組
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class medGroupController : Controller
