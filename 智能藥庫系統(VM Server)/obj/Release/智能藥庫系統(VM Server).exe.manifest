@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Basic.dll" size="210432">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Basic.dll" size="210944">
       <assemblyIdentity name="Basic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+vJ3FtxnFliUuWTI3acKkTnwWI83UNtNT+xyxT0QFl4=</dsig:DigestValue>
+        <dsig:DigestValue>QTjeJt4J2tIKbeTMf3dlIUVmjG2Wrb97yriXK1TDW68=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -102,14 +102,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="763904">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="764416">
       <assemblyIdentity name="H_Pannel_lib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>p/c6dVFpBfO/wRLxoYHZdGE34B2k5kiv9TG8M23pUTQ=</dsig:DigestValue>
+        <dsig:DigestValue>W5RoacZrirduMcpgwbLe6DFvBFWbBheLOfaD2svMVDE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -445,7 +445,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>FqW9GJXDZ3StKHDptZb+jTGdijTJthhZhh7YzMOjqlE=</dsig:DigestValue>
+        <dsig:DigestValue>j32UO0cSkDRaiWriX/ivRKS3ynaH8XrKLnS64FF4HDE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -613,7 +613,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>SwJ5Hj4BFoRRrb/cCWlM5IGOB3r7oaFCXt0tsA6mmJI=</dsig:DigestValue>
+        <dsig:DigestValue>Vv/WxhaxR6bO+vNF4Si0IMMnOfnXGTT/71GguYep+fc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

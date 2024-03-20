@@ -59,6 +59,7 @@ namespace HIS_DB_Lib
         public uint Port { get => _port; set => _port = value; }
         public string UserName { get => _userName; set => _userName = value; }
         public string Password { get => _password; set => _password = value; }
+        public List<string> ValueAry { get; set; }
 
         [JsonIgnore]
         public string Url = "";

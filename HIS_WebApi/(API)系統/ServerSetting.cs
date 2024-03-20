@@ -169,5 +169,15 @@ namespace HIS_WebApi
             }
             return table.JsonSerializationt(true);
         }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public List<ServerSettingClass> GetAllServerSetting()
+        {
+            SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+            List<object[]> list_value = sQLControl.GetAllRows(null);
+
+            List<ServerSettingClass> serverSettingClasses = list_value.SQLToClass<ServerSettingClass, enum_ServerSetting>();
+            return serverSettingClasses;
+        }
     }
 }

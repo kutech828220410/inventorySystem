@@ -18,8 +18,7 @@ namespace HIS_DB_Lib
         結存報表,
         雙人覆核,
     }
-  
-    public class medClass
+    public class medClassBasic
     {
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
@@ -52,14 +51,14 @@ namespace HIS_DB_Lib
         [JsonPropertyName("BARCODE2")]
         public string 藥品條碼2 { get; set; }
         [JsonPropertyName("IS_WARRING")]
-        public string 警訊藥品 { get; set; }   
+        public string 警訊藥品 { get; set; }
         [JsonPropertyName("IS_H_COST")]
         public string 高價藥品 { get; set; }
         [JsonPropertyName("IS_BIO")]
         public string 生物製劑 { get; set; }
-        [JsonPropertyName("DRUG_QTY")]
-        public string 藥局庫存 { get; set; }
         [JsonPropertyName("PHAR_QTY")]
+        public string 藥局庫存 { get; set; }
+        [JsonPropertyName("DRUG_QTY")]
         public string 藥庫庫存 { get; set; }
         [JsonPropertyName("DRUGKIND")]
         public string 管制級別 { get; set; }
@@ -77,6 +76,10 @@ namespace HIS_DB_Lib
         public string 藥品許可證號 { get; set; }
         [JsonPropertyName("FILE_STATUS")]
         public string 開檔狀態 { get; set; }
+    }
+    public class medClass : medClassBasic
+    {
+      
 
         //[JsonPropertyName("BARCODE")]
         //public string Barcode_Json
@@ -95,7 +98,6 @@ namespace HIS_DB_Lib
         {
           // PropertyNameCaseInsensitive = true,
         };
-
         [JsonPropertyName("BARCODE")]
         public List<string> Barcode
         {
@@ -103,7 +105,7 @@ namespace HIS_DB_Lib
             {
                 if (藥品條碼2.StringIsEmpty()) return new List<string>(); ;
                 List<string> temp = JsonSerializer.Deserialize<List<string>>(藥品條碼2, jsonSerializerOptions);
-    
+
 
                 List<string> temp_buf = new List<string>();
                 for (int i = 0; i < temp.Count; i++)

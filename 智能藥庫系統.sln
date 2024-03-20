@@ -25,6 +25,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "癌症自動備藥機暨自
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital_Call_Light_System", "Hospital_Call_Light_System\Hospital_Call_Light_System.csproj", "{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "batch", "batch", "{A26FB20E-1042-41C8-BA46-0CB7E82757E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "藥庫", "藥庫", "{178BB82E-8C58-4627-B537-1E5457A7AB7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "藥局", "藥局", "{BED408C5-A664-4417-812E-6486B776D33E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_ds_stockRecord", "batch_ds_stockRecord\batch_ds_stockRecord.csproj", "{FAC2761D-D70B-40F1-9812-F0BEFB56B601}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,9 +83,18 @@ Global
 		{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD8E147E-4BA3-4A60-8D77-E3D95CADF798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC2761D-D70B-40F1-9812-F0BEFB56B601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC2761D-D70B-40F1-9812-F0BEFB56B601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC2761D-D70B-40F1-9812-F0BEFB56B601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC2761D-D70B-40F1-9812-F0BEFB56B601}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{178BB82E-8C58-4627-B537-1E5457A7AB7C} = {A26FB20E-1042-41C8-BA46-0CB7E82757E8}
+		{BED408C5-A664-4417-812E-6486B776D33E} = {A26FB20E-1042-41C8-BA46-0CB7E82757E8}
+		{FAC2761D-D70B-40F1-9812-F0BEFB56B601} = {178BB82E-8C58-4627-B537-1E5457A7AB7C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B921A9E-6909-4DAB-8E4C-5F9D26A5CEDE}

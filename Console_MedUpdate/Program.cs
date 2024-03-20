@@ -14,10 +14,8 @@ namespace Console_MedUpdate
 {
     class Program
     {
-        public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
+        static public  string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         static private string DBConfigFileName = $"{currentDirectory}//DBConfig.txt";
-  
         public class DBConfigClass
         {
             private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();

@@ -95,7 +95,7 @@ namespace HIS_DB_Lib
             if (serverSettingClasses == null) return null;
             List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
                                                                  where value.類別 == Type
-                                                                 where value.設備名稱 == Name
+                                                                 where value.設備名稱.ToUpper() == Name.ToUpper()
                                                                  where value.內容 == Content
                                                                  select value).ToList();
             return serverSettingClasses_buf;
@@ -105,7 +105,7 @@ namespace HIS_DB_Lib
             if (serverSettingClasses == null) return null;
             List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
                                                                  where value.類別 == Type
-                                                                 where value.設備名稱 == Name
+                                                                 where value.設備名稱.ToUpper() == Name.ToUpper()
                                                                  select value).ToList();
             return serverSettingClasses_buf;
         }
@@ -115,7 +115,7 @@ namespace HIS_DB_Lib
             if (serverSettingClasses == null) return null;
             List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
                                                                  where value.類別 == _enum_ServerSetting_Type.GetEnumName()
-                                                                 where value.設備名稱 == Name
+                                                                 where value.設備名稱.ToUpper() == Name.ToUpper()
                                                                  where value.內容 == enum_ServerSetting_網頁.GetEnumName()
                                                                  select value).ToList();
             if (serverSettingClasses_buf.Count > 0)
@@ -132,7 +132,7 @@ namespace HIS_DB_Lib
             if (serverSettingClasses == null) return null;
             List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
                                                                  where value.類別 == _enum_ServerSetting_Type.GetEnumName()
-                                                                 where value.設備名稱 == Name
+                                                                 where value.設備名稱.ToUpper() == Name.ToUpper()
                                                                  where value.內容 == _enum_ServerSetting_調劑台.GetEnumName()
                                                                  select value).ToList();
             if (serverSettingClasses_buf.Count > 0)
@@ -149,7 +149,7 @@ namespace HIS_DB_Lib
             if (serverSettingClasses == null) return null;
             List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
                                                                  where value.類別 == _enum_ServerSetting_Type.GetEnumName()
-                                                                 where value.設備名稱 == Name
+                                                                 where value.設備名稱.ToUpper() == Name.ToUpper()
                                                                  where value.內容 == _enum_ServerSetting_藥庫.GetEnumName()
                                                                  select value).ToList();
             if (serverSettingClasses_buf.Count > 0)
@@ -167,7 +167,7 @@ namespace HIS_DB_Lib
             if (serverSettingClasses == null) return null;
             List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
                                                                  where value.類別 == _enum_ServerSetting_Type.GetEnumName()
-                                                                 where value.設備名稱 == Name
+                                                                 where value.設備名稱.ToUpper() == Name.ToUpper()
                                                                  where value.內容 == Content
                                                                  select value).ToList();
             if (serverSettingClasses_buf.Count > 0)
@@ -184,7 +184,7 @@ namespace HIS_DB_Lib
         {
             if (serverSettingClasses == null) return new List<ServerSettingClass>();
             List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
-                                                                 where value.設備名稱 == Name
+                                                                 where value.設備名稱.ToUpper() == Name.ToUpper()
                                                                  where value.類別 == _enum_ServerSetting_Type.GetEnumName()
                                                                  select value).ToList();
             return serverSettingClasses_buf;

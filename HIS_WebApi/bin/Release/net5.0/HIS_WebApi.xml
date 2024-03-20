@@ -123,12 +123,12 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data][StockClass]</returns>
         </member>
-        <member name="T:HIS_WebApi.stockRecord">
+        <member name="T:HIS_WebApi.stockRecordController">
             <summary>
             庫存紀錄
             </summary>
         </member>
-        <member name="M:HIS_WebApi.stockRecord.GET_init(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.stockRecordController.POST_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化庫存紀錄資料庫
             </summary>
@@ -146,6 +146,126 @@
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.stockRecordController.POST_add_record(HIS_DB_Lib.returnData)">
+            <summary>
+            紀錄庫存資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",  
+                "Data": 
+                {
+                    [medClass]
+                },
+                "ValueAry" : 
+                [
+                   "庫別",
+                   "名稱"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.stockRecordController.POST_get_all_record_menu(HIS_DB_Lib.returnData)">
+            <summary>
+            取得全部庫存列表
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",  
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.stockRecordController.POST_get_all_record(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有庫存紀錄(含細節)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",  
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                  
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.stockRecordController.POST_delete_record_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID刪除庫存紀錄
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",  
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                  "GUID"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.stockRecordController.POST_get_record_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID取得庫存紀錄
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",  
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                  "GUID"
+                ]
+                
+              }
+            </code>
+            </remarks>
             <returns></returns>
         </member>
         <member name="T:HIS_WebApi.ChemotherapyRxScheduling">
@@ -1600,18 +1720,56 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_med_cloud(HIS_DB_Lib.returnData)">
+             <summary>
+             取得雲端藥檔資料
+             </summary>
+             <remarks>
+             以下為範例JSON範例
+             <code>
+             {
+                 "Data": 
+                 {
+                    
+                 },
+                 "ValueAry" : 
+                 [
+            
+                 ]
+                 
+             }
+             </code>
+             </remarks>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.MED_pageController.POST_get_by_apiserver(HIS_DB_Lib.returnData)">
-            <summary>
-            查詢藥品資料JSON格式範例
-            </summary>
-            <remarks>
-            [必要輸入參數說明]<br/> 
-             1.[returnData.ServerName] : 填入記憶的伺服器名稱(medicine_page_cloud可預設為"Main")<br/> 
-             2.[returnData.ServerType] : 填入記憶的種類(medicine_page_cloud可預設為"網頁")<br/> 
-             3.[returnData.TableName] : 選擇其中一種資料表名稱:medicine_page_cloud、medicine_page_firstclass、medicine_page_phar、medicine_page<br/> 
-             --------------------------------------------<br/> 
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
+             <summary>
+             查詢藥品資料JSON格式範例
+             </summary>
+             <remarks>
+             [必要輸入參數說明]<br/> 
+              1.[returnData.ServerName] : 填入記憶的伺服器名稱(medicine_page_cloud可預設為"Main")<br/> 
+              2.[returnData.ServerType] : 填入記憶的種類(medicine_page_cloud可預設為"網頁")<br/> 
+              3.[returnData.TableName] : 選擇其中一種資料表名稱:medicine_page_cloud、medicine_page_firstclass、medicine_page_phar、medicine_page<br/> 
+              --------------------------------------------
+             <code>
+             {
+                 "ServerName" : "Main",
+                 "ServerType" : "網頁",  
+                 "TableName" : "medicine_page_cloud",  
+                 "Data": 
+                 {
+                     
+                 },
+                 "ValueAry" : 
+                 [
+            
+                 ]
+                 
+             }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
         </member>
         <member name="M:HIS_WebApi.inspectionController.GET_init(HIS_DB_Lib.returnData)">
             <summary>

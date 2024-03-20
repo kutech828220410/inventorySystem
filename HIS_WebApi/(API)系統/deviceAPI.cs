@@ -112,7 +112,7 @@ namespace HIS_WebApi
             try
             {
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.儲位資料);
                 if(serverSettingClass == null)
                 {
@@ -160,7 +160,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
                 if (serverSettingClasses.Count == 0)
@@ -189,7 +189,7 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_light_web(returnData returnData)
         {
-            //List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            //List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             //serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API02");
 
             //if (serverSettingClasses.Count == 0)
@@ -207,7 +207,7 @@ namespace HIS_WebApi
             try
             {
                 List<object[]> list_add = new List<object[]>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -264,7 +264,7 @@ namespace HIS_WebApi
             returnData.Method = "light";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -345,7 +345,7 @@ namespace HIS_WebApi
             try
             {
                 List<object[]> list_add = new List<object[]>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -403,7 +403,7 @@ namespace HIS_WebApi
             try
             {
                 List<object[]> list_add = new List<object[]>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -459,22 +459,22 @@ namespace HIS_WebApi
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
-        public List<DeviceBasic> Function_Get_device()
+        static public List<DeviceBasic> Function_Get_device()
         {
             return Function_Get_device(device_Server, device_DB, device_TableName, UserName, Password, Port);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        public List<DeviceBasic> Function_Get_device(returnData returnData)
+        static public List<DeviceBasic> Function_Get_device(returnData returnData)
         {
             return Function_Get_device(returnData.Server, returnData.DbName, returnData.TableName, returnData.UserName, returnData.Password, returnData.Port);
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass)
+        static public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass)
         {
             return Function_Get_device(serverSettingClass, "");
         }
         [ApiExplorerSettings(IgnoreApi = true)]
-        public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass , string TableName)
+        static public List<DeviceBasic> Function_Get_device(ServerSettingClass serverSettingClass , string TableName)
         {
             string Server = serverSettingClass.Server;
             string DBName = serverSettingClass.DBName;
@@ -482,7 +482,7 @@ namespace HIS_WebApi
             string Password = serverSettingClass.Password;
             uint Port = (uint)serverSettingClass.Port.StringToInt32();
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
-            if (serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "medicine_page_phar"))
+            if (serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
             {
                 SQLControl sQLControl_device = new SQLControl(Server, DBName, TableName, UserName, Password, Port, SSLMode);
                 deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceBasic(sQLControl_device);
@@ -495,7 +495,26 @@ namespace HIS_WebApi
        
             return deviceBasics;
         }
-        private List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName, string UserName, string Password, uint Port)
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public List<DeviceSimple> Function_Get_deviceSimple(ServerSettingClass serverSettingClass, string TableName)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            string Server = serverSettingClass.Server;
+            string DBName = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            List<DeviceSimple> deviceBasics = new List<DeviceSimple>();
+            if (serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
+            {
+                SQLControl sQLControl_device = new SQLControl(Server, DBName, TableName, UserName, Password, Port, SSLMode);
+                deviceBasics = DeviceBasicMethod.SQL_GetAllDeviceSimple(sQLControl_device);
+                Console.WriteLine($"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 類別 : {serverSettingClass.類別} , TableName {TableName} , {myTimerBasic.ToString()}");
+            }
+            return deviceBasics;
+        }
+
+        static private List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName, string UserName, string Password, uint Port)
         {
             SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
@@ -510,7 +529,7 @@ namespace HIS_WebApi
 
             return deviceBasics;
         }
-        private List<DeviceBasic> Function_Get_device_by_ip(ServerSettingClass serverSettingClass, string storageIP)
+        static private List<DeviceBasic> Function_Get_device_by_ip(ServerSettingClass serverSettingClass, string storageIP)
         {
             string IP = serverSettingClass.Server;
             string DBName = serverSettingClass.DBName;
@@ -523,7 +542,7 @@ namespace HIS_WebApi
             return deviceBasics;
         }
 
-        private List<DeviceBasic> Function_讀取儲位_by_ip(string IP, string DBName, string UserName, string Password, uint Port, string storageIP)
+        static private List<DeviceBasic> Function_讀取儲位_by_ip(string IP, string DBName, string UserName, string Password, uint Port, string storageIP)
         {
             SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
@@ -575,7 +594,7 @@ namespace HIS_WebApi
 
             return deviceBasics_buf;
         }
-        private List<DeviceBasic> Function_讀取儲位(string IP, string DBName, string UserName, string Password, uint Port)
+        static private List<DeviceBasic> Function_讀取儲位(string IP, string DBName, string UserName, string Password, uint Port)
         {
     
             SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
