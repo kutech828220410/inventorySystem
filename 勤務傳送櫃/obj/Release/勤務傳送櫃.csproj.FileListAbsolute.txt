@@ -1191,3 +1191,5 @@ C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Micr
 C:\Users\useradmin\source\repos\inventorySystem\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\SunnyUI.Common.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\SunnyUI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\SunnyUI.Common.dll

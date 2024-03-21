@@ -1247,3 +1247,5 @@ C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsof
 C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.Common.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\SunnyUI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\SunnyUI.Common.dll

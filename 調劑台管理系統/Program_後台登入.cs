@@ -442,7 +442,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_後台登入_指紋登入_初始化(ref int cnt)
         {
-
+            if (flag_指紋辨識_Init == false) return;
             cnt++;
         }
         void cnt_Program_後台登入_指紋登入_檢查權限登入(ref int cnt)

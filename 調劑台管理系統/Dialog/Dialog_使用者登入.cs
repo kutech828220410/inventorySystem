@@ -135,37 +135,40 @@ namespace 調劑台管理系統
                     Function_登入(id, pwd);
                 }));
             }
-     
-            FpMatchClass fpMatchClass = Main_Form.fpMatchSoket.GetFeatureOnce();
-            if (fpMatchClass == null) return;
-            if (fpMatchClass.featureLen == 768)
+            if (Main_Form.flag_指紋辨識_Init)
             {
-
-                List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
-                object[] value = null;
-                for (int i = 0; i < list_人員資料.Count; i++)
+                FpMatchClass fpMatchClass = Main_Form.fpMatchSoket.GetFeatureOnce();
+                if (fpMatchClass == null) return;
+                if (fpMatchClass.featureLen == 768)
                 {
-                    string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
-                    if (Main_Form.fpMatchSoket.Match(fpMatchClass.feature, feature))
+
+                    List<object[]> list_人員資料 = Main_Form._sqL_DataGridView_人員資料.SQL_GetAllRows(false);
+                    object[] value = null;
+                    for (int i = 0; i < list_人員資料.Count; i++)
                     {
-                        value = list_人員資料[i];
+                        string feature = list_人員資料[i][(int)enum_人員資料.指紋辨識].ObjectToString();
+                        if (Main_Form.fpMatchSoket.Match(fpMatchClass.feature, feature))
+                        {
+                            value = list_人員資料[i];
+
+                        }
+                    }
+                    if (value != null)
+                    {
+                        string ID = value[(int)enum_人員資料.ID].ObjectToString();
+                        string PWD = value[(int)enum_人員資料.密碼].ObjectToString();
+                        if (Function_登入(ID, PWD) == true) return;
+
+                    }
+                    else
+                    {
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
+                        dialog_AlarmForm.ShowDialog();
 
                     }
                 }
-                if (value != null)
-                {
-                    string ID = value[(int)enum_人員資料.ID].ObjectToString();
-                    string PWD = value[(int)enum_人員資料.密碼].ObjectToString();
-                    if (Function_登入(ID, PWD) == true) return;
-
-                }
-                else
-                {
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找無符合指紋資訊", 2000);
-                    dialog_AlarmForm.ShowDialog();
-
-                }
             }
+       
 
         }
         Task task;

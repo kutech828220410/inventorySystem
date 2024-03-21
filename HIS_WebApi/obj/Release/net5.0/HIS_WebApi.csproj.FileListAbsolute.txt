@@ -2646,3 +2646,4 @@ C:\Users\User\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_Web
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\zxing.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\HIS_DB_Lib.xml
 C:\Users\useradmin\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\bin\Release\net5.0\zxing.dll

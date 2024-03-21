@@ -744,3 +744,5 @@ C:\Users\HS\source\repos\inventorySystem\ServerSettingForm\bin\Release\CSkin.dll
 C:\Users\HS\source\repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\SunnyUI.Common.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\bin\Release\SunnyUI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\bin\Release\SunnyUI.Common.dll

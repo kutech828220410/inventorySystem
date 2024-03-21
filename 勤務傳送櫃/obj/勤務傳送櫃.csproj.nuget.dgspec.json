@@ -1,21 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj": {}
+    "C:\\Users\\hsonds01\\source\\repos\\inventorySystem20231119\\勤務傳送櫃\\勤務傳送櫃.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj": {
+    "C:\\Users\\hsonds01\\source\\repos\\inventorySystem20231119\\勤務傳送櫃\\勤務傳送櫃.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj",
+        "projectUniqueName": "C:\\Users\\hsonds01\\source\\repos\\inventorySystem20231119\\勤務傳送櫃\\勤務傳送櫃.csproj",
         "projectName": "勤務傳送櫃",
-        "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\勤務傳送櫃.csproj",
-        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\勤務傳送櫃\\obj\\",
+        "projectPath": "C:\\Users\\hsonds01\\source\\repos\\inventorySystem20231119\\勤務傳送櫃\\勤務傳送櫃.csproj",
+        "packagesPath": "C:\\Users\\hsonds01\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hsonds01\\source\\repos\\inventorySystem20231119\\勤務傳送櫃\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [
-          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hsonds01\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

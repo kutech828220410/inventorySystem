@@ -1868,3 +1868,5 @@ C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\CSkin.dll
 C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.Common.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\SunnyUI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\SunnyUI.Common.dll

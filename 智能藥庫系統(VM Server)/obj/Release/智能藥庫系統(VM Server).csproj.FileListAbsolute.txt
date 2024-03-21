@@ -992,3 +992,5 @@ C:\Users\HS\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Relea
 C:\Users\HS\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\SunnyUI.Common.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Release\SunnyUI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Release\SunnyUI.Common.dll

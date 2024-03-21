@@ -1253,3 +1253,7 @@ C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\ob
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\SunnyUI.Common.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\bin\Release\SunnyUI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\bin\Release\SunnyUI.Common.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_手動選擇備藥品.resources
+C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Dialog_效期批號修改.resources
