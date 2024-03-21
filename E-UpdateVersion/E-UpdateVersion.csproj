@@ -236,6 +236,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="atfz6-wxjju-001.ico" />
+    <None Include="Resources\勤務傳送櫃.png" />
+    <None Include="Resources\癌症備藥機.png" />
+    <None Include="Resources\候藥系統.png" />
+    <None Include="Resources\智能藥庫系統.png" />
+    <None Include="Resources\智慧調劑台系統.png" />
+    <None Include="Resources\PNG.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />

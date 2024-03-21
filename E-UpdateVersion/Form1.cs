@@ -20,8 +20,8 @@ using System.Text.Json.Serialization;
 using Basic;
 using IWshRuntimeLibrary;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.0.11.0")]
-[assembly: AssemblyFileVersion("1.0.11.0")]
+[assembly: AssemblyVersion("1.0.12.0")]
+[assembly: AssemblyFileVersion("1.0.12.0")]
 namespace E_UpdateVersion
 {
     public partial class Form1 : Form
@@ -130,9 +130,10 @@ namespace E_UpdateVersion
             this.rJ_Button_智能藥庫系統.MouseDownEvent += RJ_Button_智能藥庫系統_MouseDownEvent;
             this.rJ_Button_中心叫號系統.MouseDownEvent += RJ_Button_中心叫號系統_MouseDownEvent;
             this.rJ_Button_勤務傳送系統.MouseDownEvent += RJ_Button_勤務傳送系統_MouseDownEvent;
+            this.rJ_Button_癌症備藥機.MouseDownEvent += RJ_Button_癌症備藥機_MouseDownEvent;
         }
 
-  
+
 
         #region Event
         private void 後台設定ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -200,6 +201,20 @@ namespace E_UpdateVersion
                 MyMessageBox.ShowDialog("取得更新資訊失敗!");
             }
         }
+        private void RJ_Button_癌症備藥機_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string 調劑台名稱 = computerConfigClass.GetValue("癌症備藥機", "系統名稱");
+            string 控制中心 = computerConfigClass.GetValue("癌症備藥機", "控制中心");
+            if (調劑台名稱.StringIsEmpty())
+            {
+                MyMessageBox.ShowDialog("指定勤務傳送名稱空白,請聯繫管理員至後台設定!");
+            }
+            string arguments = $"{ApiServer} {調劑台名稱} {控制中心}";
+            if (Download("傳送櫃", "癌症備藥機", arguments) == false)
+            {
+                MyMessageBox.ShowDialog("取得更新資訊失敗!");
+            }
+        }
         private void RJ_Button_離開_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
@@ -214,8 +229,6 @@ namespace E_UpdateVersion
             if ((computerConfigClass.GetValue("調劑台管理系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_智慧調劑台系統.Enabled = true;
-                rJ_Button_智慧調劑台系統.BackColor = Color.RoyalBlue;
-                rJ_Button_智慧調劑台系統.ForeColor = Color.White;
                 if (myConfigClass.Default_program == "調劑台管理系統")
                 {
                     RJ_Button_智慧調劑台系統_MouseDownEvent(null);
@@ -223,39 +236,27 @@ namespace E_UpdateVersion
             }
             else
             {
-                rJ_Button_智慧調劑台系統.Enabled = false;
-                rJ_Button_智慧調劑台系統.ForeColor = Color.White;
-                rJ_Button_智慧調劑台系統.BackColor = Color.LightGray;          
+                rJ_Button_智慧調劑台系統.Enabled = false;   
             }
             if ((computerConfigClass.GetValue("智能藥庫系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_智能藥庫系統.Enabled = true;
-                rJ_Button_智能藥庫系統.BackColor = Color.RoyalBlue;
-                rJ_Button_智能藥庫系統.ForeColor = Color.White;
             }
             else
             {
                 rJ_Button_智能藥庫系統.Enabled = false;
-                rJ_Button_智能藥庫系統.ForeColor = Color.White;
-                rJ_Button_智能藥庫系統.BackColor = Color.LightGray;
             }
             if ((computerConfigClass.GetValue("中心叫號系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_中心叫號系統.Enabled = true;
-                rJ_Button_中心叫號系統.BackColor = Color.RoyalBlue;
-                rJ_Button_中心叫號系統.ForeColor = Color.White;
             }
             else
             {
                 rJ_Button_中心叫號系統.Enabled = false;
-                rJ_Button_中心叫號系統.ForeColor = Color.White;
-                rJ_Button_中心叫號系統.BackColor = Color.LightGray;
             }
             if ((computerConfigClass.GetValue("勤務傳送系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_勤務傳送系統.Enabled = true;
-                rJ_Button_勤務傳送系統.BackColor = Color.RoyalBlue;
-                rJ_Button_勤務傳送系統.ForeColor = Color.White;
                 if (myConfigClass.Default_program == "勤務傳送系統")
                 {
                     RJ_Button_勤務傳送系統_MouseDownEvent(null);
@@ -264,8 +265,18 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_勤務傳送系統.Enabled = false;
-                rJ_Button_勤務傳送系統.ForeColor = Color.White;
-                rJ_Button_勤務傳送系統.BackColor = Color.LightGray;
+            }
+            if ((computerConfigClass.GetValue("癌症備藥機", "程式致能") == true.ToString()))
+            {
+                rJ_Button_癌症備藥機.Enabled = true;
+                if (myConfigClass.Default_program == "癌症備藥機")
+                {
+                    RJ_Button_癌症備藥機_MouseDownEvent(null);
+                }
+            }
+            else
+            {
+                rJ_Button_癌症備藥機.Enabled = false;
             }
         }
         private string GetVersion(string program_name)
