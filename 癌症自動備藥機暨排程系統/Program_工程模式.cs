@@ -2332,7 +2332,7 @@ namespace 癌症自動備藥機暨排程系統
             finally
             {
                 MyTimer_出料一次_觸發出料一次延遲.TickStop();
-                MyTimer_出料一次_觸發出料一次延遲.StartTickTime(200);
+                MyTimer_出料一次_觸發出料一次延遲.StartTickTime(300);
                 if (flag_OK) Console.WriteLine($"[出料一次] 觸發出料一次 Done! {DateTime.Now.ToDateTimeString()}");
             }
 
