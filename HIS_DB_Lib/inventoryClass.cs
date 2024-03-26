@@ -219,9 +219,37 @@ namespace HIS_DB_Lib
             [JsonPropertyName("STATE")]
             public string 狀態 { get; set; }
             [JsonPropertyName("NOTE")]
-            public string 備註 { get; set; }
+            public string 備註 { get; set; }     
+        }
 
-         
+        static public List<inventoryClass.creat> creat_get_by_CT_TIME_ST_END(string API_Server, DateTime start, DateTime end)
+        {
+            string url = $"{API_Server}/api/inventory/creat_get_by_CT_TIME_ST_END";
+            returnData returnData = new returnData();
+            returnData.Value = $"{start.ToDateString()},{end.ToDateString()}";
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null)
+            {
+                return null;
+            }
+            List<inventoryClass.creat> creats = returnData.Data.ObjToClass<List<inventoryClass.creat>>();
+            if (creats == null)
+            {
+                return null;
+            }
+            return creats;
+        }
+        static public returnData creat_delete_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inventory/creat_delete_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = IC_SN;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            return returnData;
         }
     }
 

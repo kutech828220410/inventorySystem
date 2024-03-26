@@ -36,7 +36,7 @@ namespace HIS_WebApi
             public string Name = "";
             public List<object[]> list_value = new List<object[]>();
         }
-        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
+        static public string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         /// <summary>
@@ -2623,7 +2623,7 @@ namespace HIS_WebApi
             return returnData;
         }
 
-        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        static private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
 
             string Server = serverSettingClass.Server;
@@ -2694,7 +2694,11 @@ namespace HIS_WebApi
 
             return tables.JsonSerializationt(true);
         }
-
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public string init(returnData returnData)
+        {
+            return this.GET_init(returnData);
+        }
         private class ICP_creat_by_CT_TIME : IComparer<inventoryClass.creat>
         {
             public int Compare(inventoryClass.creat x, inventoryClass.creat y)
