@@ -35,5 +35,12 @@ namespace HIS_WebApi
             if (num >= 1) return "OK";
             else return "NG";
         }
+        [Route("time")]
+        [HttpGet()]
+        public string Get_time()
+        {
+            return DateTime.Now.ToDateTimeString();
+        }
+
     }
 }

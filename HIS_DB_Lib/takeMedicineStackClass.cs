@@ -55,6 +55,7 @@ namespace HIS_DB_Lib
         作業模式,
         藥袋序號,
         領藥號,
+        病房號,
         類別,
         藥品碼,
         藥品名稱,
@@ -115,6 +116,8 @@ namespace HIS_DB_Lib
         public string 藥品碼 { get; set; }
         [JsonPropertyName("MED_BAG_NUM")]
         public string 領藥號 { get; set; }
+        [JsonPropertyName("WARD_NAME")]
+        public string 病房號 { get; set; }
         [JsonPropertyName("OD_type")]
         public string 類別 { get; set; }
         [JsonPropertyName("bed_code")]
@@ -157,6 +160,7 @@ namespace HIS_DB_Lib
         public string 作業模式 { get; set; }
         public string 藥袋序號 { get; set; }
         public string 領藥號 { get; set; }
+        public string 病房號 { get; set; }
         public string 類別 { get; set; }
         public string 藥品碼 { get; set; }
         public string 藥品名稱 { get; set; }

@@ -3391,6 +3391,7 @@ namespace 調劑台管理系統
             string 批號 = "";
             string 顏色 = "";
             string 領藥號 = "";
+            string 病房號 = "";
             string 醫令_GUID = "";
             string 交易紀錄_GUID = "";
 
@@ -3423,7 +3424,7 @@ namespace 調劑台管理系統
                 盤點量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.盤點量].ObjectToString();
                 顏色 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.顏色].ObjectToString();
                 領藥號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
-
+                病房號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.病房號].ObjectToString();
                 病人姓名 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.病人姓名].ObjectToString();
                 床號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.床號].ObjectToString();
                 頻次 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.頻次].ObjectToString();
@@ -3473,6 +3474,7 @@ namespace 調劑台管理系統
                 value_trading[(int)enum_交易記錄查詢資料.藥袋序號] = 藥袋序號;
                 value_trading[(int)enum_交易記錄查詢資料.藥師證字號] = 藥師證字號;
                 value_trading[(int)enum_交易記錄查詢資料.領藥號] = 領藥號;
+                value_trading[(int)enum_交易記錄查詢資料.病房號] = 病房號;
                 value_trading[(int)enum_交易記錄查詢資料.類別] = 類別;
                 value_trading[(int)enum_交易記錄查詢資料.庫存量] = 庫存量;
                 value_trading[(int)enum_交易記錄查詢資料.交易量] = 交易量;
