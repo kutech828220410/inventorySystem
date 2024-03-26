@@ -684,6 +684,9 @@ namespace HIS_WebApi
                     string 床號 = data[i].床號;
                     string 領藥號 = data[i].領藥號;
                     string 收支原因 = data[i].收支原因;
+                    string 效期 = data[i].效期;
+                    string 批號 = data[i].批號;
+                    if (效期.Check_Date_String() == false) 效期 = "";
                     if (收支原因.StringIsEmpty() == false) 收支原因 += "\n";
                     if (data[i].加退藥來源.StringIsEmpty() == false) 收支原因 += $"[加退藥來源]:{data[i].加退藥來源}\n";
                     if (data[i].護理站.StringIsEmpty() == false) 收支原因 += $"[護理站]:{data[i].護理站}";
@@ -717,6 +720,8 @@ namespace HIS_WebApi
                     takeMedicineStack.床號 = 床號;
                     takeMedicineStack.領藥號 = 領藥號;
                     takeMedicineStack.收支原因 = 收支原因;
+                    takeMedicineStack.效期 = 效期;
+                    takeMedicineStack.批號 = 批號;
                     takeMedicineStackClasses.Add(takeMedicineStack);
                 }
                 if (data[i].功能類型 == "5" || data[i].功能類型 == "-5")
@@ -755,7 +760,7 @@ namespace HIS_WebApi
                     string 收支原因 = data[i].收支原因;
                     string 效期 = data[i].效期;
                     string 批號 = data[i].批號;
-              
+                    if (效期.Check_Date_String() == false) 效期 = "";
                     if (藥品名稱 != null) 藥品名稱 = 藥品名稱.Trim();
                     if (單位 != null) 單位 = 單位.Trim();
                     if (病歷號 != null) 病歷號 = 病歷號.Trim();
@@ -824,6 +829,9 @@ namespace HIS_WebApi
                     string 床號 = data[i].床號;
                     string 領藥號 = data[i].領藥號;
                     string 收支原因 = data[i].收支原因;
+                    string 效期 = data[i].效期;
+                    string 批號 = data[i].批號;
+                    if (效期.Check_Date_String() == false) 效期 = "";
                     if (收支原因.StringIsEmpty() == false) 收支原因 += "\n";
                     if (data[i].來源庫別.StringIsEmpty() == false) 收支原因 += $"[來源庫別]:{data[i].來源庫別}";
                     if (藥品名稱 != null) 藥品名稱 = 藥品名稱.Trim();
@@ -856,6 +864,8 @@ namespace HIS_WebApi
                     takeMedicineStack.床號 = 床號;
                     takeMedicineStack.領藥號 = 領藥號;
                     takeMedicineStack.收支原因 = 收支原因;
+                    takeMedicineStack.效期 = 效期;
+                    takeMedicineStack.批號 = 批號;
                     takeMedicineStackClasses.Add(takeMedicineStack);
                 }
                 if (data[i].功能類型 == "-8" || data[i].功能類型 == "-9")
@@ -892,6 +902,9 @@ namespace HIS_WebApi
                     string 床號 = data[i].床號;
                     string 領藥號 = data[i].領藥號;
                     string 收支原因 = data[i].收支原因;
+                    string 效期 = data[i].效期;
+                    string 批號 = data[i].批號;
+                    if (效期.Check_Date_String() == false) 效期 = "";
                     if (收支原因.StringIsEmpty() == false) 收支原因 += "\n";
                     if (data[i].來源庫別.StringIsEmpty() == false) 收支原因 += $"[來源庫別]:{data[i].來源庫別}";
                     if (藥品名稱 != null) 藥品名稱 = 藥品名稱.Trim();
@@ -924,6 +937,8 @@ namespace HIS_WebApi
                     takeMedicineStack.床號 = 床號;
                     takeMedicineStack.領藥號 = 領藥號;
                     takeMedicineStack.收支原因 = 收支原因;
+                    takeMedicineStack.效期 = 效期;
+                    takeMedicineStack.批號 = 批號;
                     takeMedicineStackClasses.Add(takeMedicineStack);
                 }
             }
