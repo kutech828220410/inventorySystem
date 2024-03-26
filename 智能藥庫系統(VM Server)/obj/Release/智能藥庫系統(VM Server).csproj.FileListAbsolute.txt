@@ -813,13 +813,10 @@ C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Relea
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\CallBackUI.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\MeasureSystemFunction.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.dll
-C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OOXML.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\ICSharpCode.SharpZipLib.dll
-C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\office.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\NPOI.OpenXmlFormats.dll
-C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\stdole.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Buffers.xml
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\System.Memory.xml
@@ -994,3 +991,8 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\SunnyUI.Common.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Release\SunnyUI.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統(VM Server)\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\CSkin.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Microsoft.mshtml.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\PopupControl.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\SunnyUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統(VM Server)\bin\Release\SunnyUI.Common.dll

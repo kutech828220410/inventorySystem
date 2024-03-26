@@ -1306,13 +1306,10 @@ C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\MVSDKUI.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\SLDUI.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\PortControlUI.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\ZealTechUI.dll
-C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OOXML.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\MVSDK.dll
-C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXmlFormats.dll
-C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\DotNetZip.pdb
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\DotNetZip.xml
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
@@ -1870,3 +1867,9 @@ C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.Common.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\SunnyUI.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\PopupControl.dll
+C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.dll
+C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\CSkin.dll
+C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
+C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\HIS_DB_Lib.xml

@@ -746,3 +746,10 @@ C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Releas
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\SunnyUI.Common.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\bin\Release\SunnyUI.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\PopupControl.dll
+C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\SunnyUI.dll
+C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\CSkin.dll
+C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
+C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\HIS_DB_Lib.xml
+C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_癌症備藥機.resources

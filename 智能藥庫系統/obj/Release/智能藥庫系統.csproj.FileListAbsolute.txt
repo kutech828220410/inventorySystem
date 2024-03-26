@@ -962,12 +962,9 @@ C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\ZealTech
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\Interop.SpeechLib.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\zxing.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\MeasureSystemFunction.dll
-C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\NPOI.OOXML.dll
-C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\office.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\NPOI.OpenXmlFormats.dll
-C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\stdole.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\ICSharpCode.SharpZipLib.xml
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\System.Buffers.xml
@@ -1249,3 +1246,9 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.Common.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\SunnyUI.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\CSkin.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\Microsoft.mshtml.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\PopupControl.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_Lib.xml

@@ -141,6 +141,8 @@ namespace HIS_DB_Lib
         public string 日期 { get; set; }
         [JsonPropertyName("time")]
         public string 時間 { get; set; }
+        [JsonPropertyName("RSN")]
+        public string 收支原因 { get; set; }
     }
     public class takeMedicineStackClass
     {

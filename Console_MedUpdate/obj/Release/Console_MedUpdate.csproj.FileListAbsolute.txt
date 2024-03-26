@@ -615,3 +615,9 @@ C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Releas
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.Common.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\SunnyUI.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\PopupControl.dll
+C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.dll
+C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\CSkin.dll
+C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.Common.dll
+C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
+C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
