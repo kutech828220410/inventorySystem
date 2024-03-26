@@ -1422,6 +1422,14 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為合併單結構</returns>
         </member>
+        <member name="M:HIS_WebApi.OutTakeMedController.mul_med_take(System.String,System.Collections.Generic.List{HIS_DB_Lib.class_OutTakeMed_data})">
+            <summary>
+            op_type : 1(取藥亮燈) -1(取藥扣帳) -3(加藥) -4(退藥) -5(入庫扣帳) -6(撥入) -7(撥出) -8(調入) -9(調出)
+            </summary>
+            <param name="name"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
         <member name="T:HIS_WebApi.medGroupController">
             <summary>
             藥品群組

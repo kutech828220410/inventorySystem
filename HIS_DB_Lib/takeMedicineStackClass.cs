@@ -109,7 +109,7 @@ namespace HIS_DB_Lib
         public string 來源庫別 { get; set; }
         [JsonPropertyName("nursingstation")]
         public string 護理站 { get; set; }
-        [JsonPropertyName("src_oper_ns")]
+        [JsonPropertyName("src_oper")]
         public string 加退藥來源 { get; set; }
         [JsonPropertyName("code")]
         public string 藥品碼 { get; set; }

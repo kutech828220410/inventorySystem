@@ -661,13 +661,13 @@ namespace 調劑台管理系統
                     {
                         if (box.IP != IP) continue;
                     }
+                    value_device = box;
                     if (box.取得庫存(效期) == -1)
                     {
                         box.新增效期(效期, 批號, "00");
                         Drawer drawer = List_EPD583_雲端資料.SortByIP(box.IP);
                         drawer.ReplaceBox(box);
-                        List_EPD583_雲端資料.Add_NewDrawer(drawer);
-                        value_device = box;
+                        List_EPD583_雲端資料.Add_NewDrawer(drawer);               
                         Type_str = TYPE[k];
                         break;
                     }
@@ -679,13 +679,13 @@ namespace 調劑台管理系統
                     {
                         if (box.IP != IP) continue;
                     }
+                    value_device = box;
                     if (box.取得庫存(效期) == -1)
                     {
                         box.新增效期(效期, 批號, "00");
                         Drawer drawer = List_EPD1020_雲端資料.SortByIP(box.IP);
                         drawer.ReplaceByGUID(box);
                         List_EPD1020_雲端資料.Add_NewDrawer(drawer);
-                        value_device = box;
                         Type_str = TYPE[k];
                         break;
                     }
@@ -697,13 +697,13 @@ namespace 調劑台管理系統
                     {
                         if (rowsDevice.IP != IP) continue;
                     }
+                    value_device = rowsDevice;
                     if (rowsDevice.取得庫存(效期) == -1)
                     {
                         rowsDevice.新增效期(效期, 批號, 異動量.ToString());
                         RowsLED rowsLED = List_RowsLED_雲端資料.SortByIP(rowsDevice.IP);
                         rowsLED.ReplaceRowsDevice(rowsDevice);
-                        List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);
-                        value_device = rowsDevice;
+                        List_RowsLED_雲端資料.Add_NewRowsLED(rowsDevice);      
                         Type_str = TYPE[k];
                         break;
                     }
@@ -715,13 +715,13 @@ namespace 調劑台管理系統
                     {
                         if (rFIDDevice.IP != IP) continue;
                     }
+                    value_device = rFIDDevice;
                     if (rFIDDevice.取得庫存(效期) == -1)
                     {
                         rFIDDevice.新增效期(效期, 批號, 異動量.ToString());
                         RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(rFIDDevice.IP);
                         rFIDClass.ReplaceRFIDDevice(rFIDDevice);
-                        List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);
-                        value_device = rFIDDevice;
+                        List_RFID_雲端資料.Add_NewRFIDClass(rFIDDevice);            
                         Type_str = TYPE[k];
                         break;
                     }

@@ -140,7 +140,12 @@ namespace 調劑台管理系統
 
         private List<object[]> Function_取藥堆疊資料_取得母資料()
         {
-            return this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+            List<object[]> list_value = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+            if(list_value.Count > 0)
+            {
+
+            }
+            return list_value;
         }
         private List<object[]> Function_取藥堆疊資料_取得子資料()
         {
@@ -2842,7 +2847,8 @@ namespace 調劑台管理系統
                         else if (Function_取藥堆疊資料_取得作業模式(_list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.盲盤)) 狀態_buf = enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName();
                         else 狀態_buf = enum_取藥堆疊母資料_狀態.等待作業.GetEnumName();
                     }
-                    if (_list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString() == enum_交易記錄查詢動作.系統領藥.GetEnumName() || _list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString() == enum_交易記錄查詢動作.系統入庫.GetEnumName())
+                    if (_list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString().Contains("系統"))
+
                     {
                         if (狀態_buf == enum_取藥堆疊母資料_狀態.作業完成.GetEnumName())
                         {
@@ -3483,10 +3489,10 @@ namespace 調劑台管理系統
                 if (開方時間.StringIsEmpty()) 開方時間 = DateTime.Now.ToDateTimeString_6();
                 value_trading[(int)enum_交易記錄查詢資料.開方時間] = 開方時間;
                 value_trading[(int)enum_交易記錄查詢資料.備註] = 備註;
-                收支原因 = $"[{動作.GetEnumName()}]{收支原因}";
+                收支原因 = $"{收支原因}";
                 value_trading[(int)enum_交易記錄查詢資料.收支原因] = 收支原因;
 
-                if ((動作 == enum_交易記錄查詢動作.系統領藥.GetEnumName() || 動作 == enum_交易記錄查詢動作.系統入庫.GetEnumName()))
+                if ((動作.Contains("系統")))
                 {
                     if (總異動量 == 0)
                     {
