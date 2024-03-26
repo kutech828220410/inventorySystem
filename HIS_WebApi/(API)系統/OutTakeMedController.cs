@@ -134,8 +134,7 @@ namespace HIS_WebApi
             try
             {
                 string json = returnData.Data.JsonSerializationt();
-                List<class_OutTakeMed_data> data = json.JsonDeserializet<List<class_OutTakeMed_data>>();
-
+                List<class_OutTakeMed_data> data = returnData.Data.ObjToClass<List<class_OutTakeMed_data>>();
                 if (data == null)
                 {
                     result = "-1";
