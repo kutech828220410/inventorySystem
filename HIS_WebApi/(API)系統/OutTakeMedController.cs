@@ -145,8 +145,8 @@ namespace HIS_WebApi
                     result = "-1";
                 }
                 if (data.Count == 1)
-                {
-                    result = single_med_take(returnData.ServerName, data);
+                {                    
+                    result = mul_med_take(returnData.ServerName, data);
                 }
                 else
                 {
