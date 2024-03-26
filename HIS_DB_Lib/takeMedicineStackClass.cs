@@ -107,6 +107,10 @@ namespace HIS_DB_Lib
         public string 成本中心 { get; set; }
         [JsonPropertyName("src_storehouse")]
         public string 來源庫別 { get; set; }
+        [JsonPropertyName("nursingstation")]
+        public string 護理站 { get; set; }
+        [JsonPropertyName("src_oper_ns")]
+        public string 加退藥來源 { get; set; }
         [JsonPropertyName("code")]
         public string 藥品碼 { get; set; }
         [JsonPropertyName("MED_BAG_NUM")]
@@ -133,6 +137,10 @@ namespace HIS_DB_Lib
         public string 效期 { get; set; }
         [JsonPropertyName("LOT")]
         public string 批號 { get; set; }
+        [JsonPropertyName("date")]
+        public string 日期 { get; set; }
+        [JsonPropertyName("time")]
+        public string 時間 { get; set; }
     }
     public class takeMedicineStackClass
     {
