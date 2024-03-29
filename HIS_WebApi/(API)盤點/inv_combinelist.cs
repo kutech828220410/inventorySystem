@@ -208,9 +208,15 @@ namespace HIS_WebApi
             List<object[]> list_inv_sub_combinelist_buf = new List<object[]>();
             if (inv_CombinelistClass.合併單號.StringIsEmpty() == true)
             {
-                returnData.Code = -200;
-                returnData.Result = "inv_CombinelistClass.合併單號, 空白,請輸入合併單號!";
-                return returnData.JsonSerializationt();
+                returnData returnData_buf = new returnData();
+                returnData_buf = GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
+                if(returnData_buf.Code != 200)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "inv_CombinelistClass.合併單號, 空白,請輸入合併單號!";
+                    return returnData.JsonSerializationt();
+                }
+                inv_CombinelistClass.合併單號 = returnData.Value;
             }
             if (inv_CombinelistClass == null)
             {

@@ -68,6 +68,112 @@ namespace HIS_DB_Lib
         [JsonPropertyName("records_Ary")]
         public List<inv_sub_combinelistClass> Records_Ary { get => records_Ary; set => records_Ary = value; }
         private List<inv_sub_combinelistClass> records_Ary = new List<inv_sub_combinelistClass>();
+
+
+        static public List<inv_records_Class> get_all_records(string API_Server)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/get_all_records";
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<inv_records_Class> inv_Records_Classes = returnData.Data.ObjToClass<List<inv_records_Class>>();
+            if (inv_Records_Classes == null) return null;
+            if (inv_Records_Classes.Count == 0) return null;
+            return inv_Records_Classes;
+        }
+        static public inv_combinelistClass get_all_inv(string API_Server, string SN)
+        {
+            List<inv_combinelistClass> inv_CombinelistClasses = get_all_inv(API_Server);
+            inv_CombinelistClasses = (from temp in inv_CombinelistClasses
+                                      where temp.合併單號 == SN
+                                      select temp).ToList();
+            if (inv_CombinelistClasses.Count == 0) return null;
+            return inv_CombinelistClasses[0];
+        }
+        static public List<inv_combinelistClass> get_all_inv(string API_Server, DateTime dateTime_st, DateTime dateTime_end)
+        {
+            List<inv_combinelistClass> inv_CombinelistClasses = get_all_inv(API_Server);
+            inv_CombinelistClasses = (from temp in inv_CombinelistClasses
+                                      where (temp.建表時間.StringToDateTime() >= dateTime_st) && temp.建表時間.StringToDateTime() <= dateTime_end
+                                      select temp).ToList();
+            return inv_CombinelistClasses;
+        }
+        static public List<inv_combinelistClass> get_all_inv(string API_Server)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/get_all_inv";
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<inv_combinelistClass> inv_CombinelistClasses = returnData.Data.ObjToClass<List<inv_combinelistClass>>();
+            if (inv_CombinelistClasses == null) return null;
+            if (inv_CombinelistClasses.Count == 0) return null;
+            return inv_CombinelistClasses;
+        }
+        static public inv_combinelistClass inv_creat_update(string API_Server, inv_combinelistClass inv_CombinelistClass)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/inv_creat_update";
+            returnData returnData = new returnData();
+            returnData.Data = inv_CombinelistClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+            if (inv_CombinelistClass == null) return null;
+            return inv_CombinelistClass;
+        }
+        static public List<inventoryClass.content> get_full_inv_by_SN(string API_Server , string SN)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/get_full_inv_by_SN";
+            returnData returnData = new returnData();
+            returnData.Value = SN;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<inventoryClass.content> contents = returnData.Data.ObjToClass<List<inventoryClass.content>>();
+            if (contents == null) return null;
+            if (contents.Count == 0) return null;
+            return contents;
+        }
+
+        
     }
     /// <summary>
     /// 合併單明細

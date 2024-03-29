@@ -234,6 +234,14 @@ namespace HIS_DB_Lib
             {
                 return null;
             }
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
             List<inventoryClass.creat> creats = returnData.Data.ObjToClass<List<inventoryClass.creat>>();
             if (creats == null)
             {
@@ -241,7 +249,7 @@ namespace HIS_DB_Lib
             }
             return creats;
         }
-        static public returnData creat_delete_by_IC_SN(string API_Server, string IC_SN)
+        static public void creat_delete_by_IC_SN(string API_Server, string IC_SN)
         {
             string url = $"{API_Server}/api/inventory/creat_delete_by_IC_SN";
             returnData returnData = new returnData();
@@ -249,8 +257,133 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
-            return returnData;
+
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+            }
         }
+        static public List<string> creat_get_default_op_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inventory/creat_get_default_op_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = IC_SN;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<string> list_op = new List<string>();
+            creat creat = returnData.Data.ObjToClass<creat>();
+            if (creat == null) return list_op;
+            string[] temp_ary = creat.預設盤點人.Split(',');
+            for (int i = 0; i < temp_ary.Length; i++)
+            {
+                list_op.Add(temp_ary[i]);
+            }
+            return list_op;
+        }
+        static public void creat_update_default_op_by_IC_SN(string API_Server, string IC_SN , List<string> list_op)
+        {
+            string url = $"{API_Server}/api/inventory/creat_update_default_op_by_IC_SN";
+            creat creat = new creat();
+            string str = "";
+            for (int i = 0; i < list_op.Count; i++)
+            {
+                str += list_op[i];
+                if (i != list_op.Count - 1) str += ",";
+            }
+            creat.預設盤點人 = str;
+            returnData returnData = new returnData();
+            returnData.Value = IC_SN;
+            returnData.Data = creat;
+            if (returnData == null) return;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return;
+            }
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);      
+        }
+        static public creat creat_get_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inventory/creat_get_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = IC_SN;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<creat> creats = returnData.Data.ObjToClass<List<creat>>();
+            if (creats == null) return null;
+            if (creats.Count == 0) return null;
+            return creats[0];
+        }
+        static public byte[] download_excel_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inventory/download_excel_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = IC_SN;
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
+        }
+        
+        static public void contents_delete_by_GUID(string API_Server, string GUID)
+        {
+            List<content> contents = new List<content>();
+            content content = new content();
+            content.GUID = GUID;
+            contents.Add(content);
+            contents_delete_by_GUID(API_Server, contents);
+        }
+        static public void contents_delete_by_GUID(string API_Server, content content)
+        {
+            List<content> contents = new List<content>();
+            contents.Add(content);
+            contents_delete_by_GUID(API_Server, contents);
+        }
+        static public void contents_delete_by_GUID(string API_Server, List<content> contents)
+        {
+            string url = $"{API_Server}/api/inventory/contents_delete_by_GUID";
+            returnData returnData = new returnData();
+            returnData.Data = contents;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return;
+            }
+        }
+
     }
 
     public enum enum_inv_combinelist
