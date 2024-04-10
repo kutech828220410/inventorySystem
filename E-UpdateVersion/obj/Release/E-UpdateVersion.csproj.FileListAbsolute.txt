@@ -1873,3 +1873,6 @@ C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\CSkin.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.Common.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
 C:\Users\vendors\Desktop\inventorySystem\E-UpdateVersion\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll

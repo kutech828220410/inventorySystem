@@ -5,25 +5,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
+using System.ComponentModel;
 namespace HIS_DB_Lib
 {
+    [EnumDescription("inv_combinelist")]
     public enum enum_合併總單
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("合併單名稱,VARCHAR,200,None")]
         合併單名稱,
+        [Description("合併單號,VARCHAR,30,INDEX")]
         合併單號,
+        [Description("盤點日庫存單號,VARCHAR,30,None")]
+        盤點日庫存單號,
+        [Description("建表人,VARCHAR,30,None")]
         建表人,
+        [Description("建表時間,DATETIME,50,INDEX")]
         建表時間,
+        [Description("備註,VARCHAR,200,None")]
         備註,
     }
+    [EnumDescription("inv_sub_combinelist")]
     public enum enum_合併單明細
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("合併單號,VARCHAR,30,INDEX")]
         合併單號,
+        [Description("單號,VARCHAR,30,INDEX")]
         單號,
+        [Description("類型,VARCHAR,50,None")]
         類型,
+        [Description("新增時間,DATETIME,200,None")]
         新增時間,
+        [Description("備註,VARCHAR,200,None")]
         備註,
     }
     /// <summary>
@@ -66,9 +84,32 @@ namespace HIS_DB_Lib
         /// 合併單明細
         /// </summary>
         [JsonPropertyName("records_Ary")]
-        public List<inv_sub_combinelistClass> Records_Ary { get => records_Ary; set => records_Ary = value; }
-        private List<inv_sub_combinelistClass> records_Ary = new List<inv_sub_combinelistClass>();
+        public List<inv_records_Class> Records_Ary { get => records_Ary; set => records_Ary = value; }
+        private List<inv_records_Class> records_Ary = new List<inv_records_Class>();
 
+        public void AddRecord(inventoryClass.creat creat)
+        {
+   
+            List<inv_records_Class> records_Ary_buf = (from temp in records_Ary
+                                                       where temp.單號 == creat.盤點單號
+                                                       select temp).ToList();
+            if(records_Ary_buf.Count == 0)
+            {
+                inv_records_Class inv_Records_Class = new inv_records_Class();
+                inv_Records_Class.GUID = Guid.NewGuid().ToString();
+                inv_Records_Class.名稱 = creat.盤點名稱;
+                inv_Records_Class.單號 = creat.盤點單號;
+                inv_Records_Class.類型 = "盤點單";
+                records_Ary.Add(inv_Records_Class);
+            }
+        }
+        public void DeleteRecord(string SN)
+        {
+            List<inv_records_Class> records_Ary_buf = (from temp in records_Ary
+                                                       where temp.單號 != SN
+                                                       select temp).ToList();
+            records_Ary = records_Ary_buf;
+        }
 
         static public List<inv_records_Class> get_all_records(string API_Server)
         {
@@ -172,60 +213,23 @@ namespace HIS_DB_Lib
             if (contents.Count == 0) return null;
             return contents;
         }
+        static public byte[] get_full_inv_Excel_by_SN(string API_Server, string SN , params string[] remove_col_name)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/get_full_inv_Excel_by_SN";
+            returnData returnData = new returnData();
+            returnData.Value = SN;
+            if(remove_col_name != null) returnData.ValueAry = remove_col_name.ToList();
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
+        }
 
-        
     }
+
+  
     /// <summary>
     /// 合併單明細
     /// </summary>
-    public class inv_sub_combinelistClass
-    {
-        /// <summary>
-        /// 唯一KEY
-        /// </summary>
-        [JsonPropertyName("GUID")]
-        public string GUID { get; set; }
-        /// <summary>
-        /// 唯一KEY
-        /// </summary>
-        [JsonPropertyName("Master_GUID")]
-        public string Master_GUID { get; set; }
-        /// <summary>
-        /// REF_GUID
-        /// </summary>
-        [JsonPropertyName("REF_GUID")]
-        public string REF_GUID { get; set; }
-        /// <summary>
-        /// 合併單號
-        /// </summary>
-        [JsonPropertyName("INV_SN")]
-        public string 合併單號 { get; set; }
-        /// <summary>
-        /// 單號
-        /// </summary>
-        [JsonPropertyName("SN")]
-        public string 單號 { get; set; }
-        /// <summary>
-        /// 名稱
-        /// </summary>
-        [JsonPropertyName("NAME")]
-        public string 名稱 { get; set; }
-        /// <summary>
-        /// 類型
-        /// </summary>
-        [JsonPropertyName("TYPE")]
-        public string 類型 { get; set; }
-        /// <summary>
-        /// 新增時間
-        /// </summary>
-        [JsonPropertyName("ADD_TIME")]
-        public string 新增時間 { get; set; }
-        /// <summary>
-        /// 備註
-        /// </summary>
-        [JsonPropertyName("NOTE")]
-        public string 備註 { get; set; }
-    }
     public class inv_records_Class
     {
         /// <summary>

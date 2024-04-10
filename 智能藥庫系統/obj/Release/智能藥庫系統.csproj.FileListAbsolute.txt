@@ -1252,3 +1252,6 @@ C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\PopupCon
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.Common.dll
 C:\Users\vendors\Desktop\inventorySystem\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\stdole.dll

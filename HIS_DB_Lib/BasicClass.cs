@@ -226,4 +226,5 @@ namespace HIS_DB_Lib
             return list_T.ClassToSQL<T, E>();
         }
     }
+
 }

@@ -220,6 +220,30 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.stockRecordController.POST_get_all_record_simple(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有庫存紀錄(不含細節)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "管藥",
+                "ServerType" : "調劑台",  
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                  
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.stockRecordController.POST_delete_record_by_guid(HIS_DB_Lib.returnData)">
             <summary>
             以GUID刪除庫存紀錄

@@ -1259,3 +1259,6 @@ C:\Users\vendors\Desktop\inventorySystem\勤務傳送櫃\obj\Release\勤務傳�
 C:\Users\vendors\Desktop\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CopyComplete
 C:\Users\vendors\Desktop\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.exe
 C:\Users\vendors\Desktop\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\office.dll
+C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll

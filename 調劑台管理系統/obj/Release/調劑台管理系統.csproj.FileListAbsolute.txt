@@ -627,3 +627,6 @@ C:\Users\vendors\Desktop\inventorySystem\調劑台管理系統\obj\Release\調�
 C:\Users\vendors\Desktop\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\Users\vendors\Desktop\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\vendors\Desktop\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\office.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll

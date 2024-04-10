@@ -86,7 +86,7 @@ namespace E_UpdateVersion
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(691, 88);
+            this.label1.Size = new System.Drawing.Size(687, 88);
             this.label1.TabIndex = 4;
             this.label1.Text = "次世代智慧藥局整合平台";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -110,9 +110,9 @@ namespace E_UpdateVersion
             this.label2.BackColor = System.Drawing.Color.Gainsboro;
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(0, 605);
+            this.label2.Location = new System.Drawing.Point(0, 601);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(691, 36);
+            this.label2.Size = new System.Drawing.Size(687, 36);
             this.label2.TabIndex = 23;
             this.label2.Text = "Copyright ©2023 鴻森整合機電有限公司";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -121,9 +121,9 @@ namespace E_UpdateVersion
             // 
             this.label_version.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label_version.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_version.Location = new System.Drawing.Point(0, 591);
+            this.label_version.Location = new System.Drawing.Point(0, 587);
             this.label_version.Name = "label_version";
-            this.label_version.Size = new System.Drawing.Size(691, 14);
+            this.label_version.Size = new System.Drawing.Size(687, 14);
             this.label_version.TabIndex = 24;
             this.label_version.Text = "Ver 0.0.0.0";
             // 
@@ -133,7 +133,7 @@ namespace E_UpdateVersion
             this.label_info.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_info.Location = new System.Drawing.Point(0, 88);
             this.label_info.Name = "label_info";
-            this.label_info.Size = new System.Drawing.Size(691, 16);
+            this.label_info.Size = new System.Drawing.Size(687, 16);
             this.label_info.TabIndex = 26;
             this.label_info.Text = "XXXXXXXX";
             this.label_info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -155,7 +155,7 @@ namespace E_UpdateVersion
             this.rJ_Button_癌症備藥機.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.rJ_Button_癌症備藥機.ForeColor = System.Drawing.Color.Black;
             this.rJ_Button_癌症備藥機.GUID = "";
-            this.rJ_Button_癌症備藥機.Image_padding = new System.Windows.Forms.Padding(10, 10, 16, 0);
+            this.rJ_Button_癌症備藥機.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
             this.rJ_Button_癌症備藥機.Location = new System.Drawing.Point(254, 329);
             this.rJ_Button_癌症備藥機.Name = "rJ_Button_癌症備藥機";
             this.rJ_Button_癌症備藥機.ProhibitionBorderLineWidth = 1;
@@ -189,7 +189,7 @@ namespace E_UpdateVersion
             this.rJ_Button_勤務傳送系統.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.rJ_Button_勤務傳送系統.ForeColor = System.Drawing.Color.Black;
             this.rJ_Button_勤務傳送系統.GUID = "";
-            this.rJ_Button_勤務傳送系統.Image_padding = new System.Windows.Forms.Padding(10, 10, 16, 0);
+            this.rJ_Button_勤務傳送系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
             this.rJ_Button_勤務傳送系統.Location = new System.Drawing.Point(46, 329);
             this.rJ_Button_勤務傳送系統.Name = "rJ_Button_勤務傳送系統";
             this.rJ_Button_勤務傳送系統.ProhibitionBorderLineWidth = 1;
@@ -223,7 +223,7 @@ namespace E_UpdateVersion
             this.rJ_Button_中心叫號系統.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.rJ_Button_中心叫號系統.ForeColor = System.Drawing.Color.Black;
             this.rJ_Button_中心叫號系統.GUID = "";
-            this.rJ_Button_中心叫號系統.Image_padding = new System.Windows.Forms.Padding(10, 10, 16, 0);
+            this.rJ_Button_中心叫號系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
             this.rJ_Button_中心叫號系統.Location = new System.Drawing.Point(462, 124);
             this.rJ_Button_中心叫號系統.Name = "rJ_Button_中心叫號系統";
             this.rJ_Button_中心叫號系統.ProhibitionBorderLineWidth = 1;
@@ -257,7 +257,7 @@ namespace E_UpdateVersion
             this.rJ_Button_智能藥庫系統.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.rJ_Button_智能藥庫系統.ForeColor = System.Drawing.Color.Black;
             this.rJ_Button_智能藥庫系統.GUID = "";
-            this.rJ_Button_智能藥庫系統.Image_padding = new System.Windows.Forms.Padding(10, 10, 16, 0);
+            this.rJ_Button_智能藥庫系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
             this.rJ_Button_智能藥庫系統.Location = new System.Drawing.Point(254, 124);
             this.rJ_Button_智能藥庫系統.Name = "rJ_Button_智能藥庫系統";
             this.rJ_Button_智能藥庫系統.ProhibitionBorderLineWidth = 1;
@@ -291,7 +291,7 @@ namespace E_UpdateVersion
             this.rJ_Button_智慧調劑台系統.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
             this.rJ_Button_智慧調劑台系統.ForeColor = System.Drawing.Color.Black;
             this.rJ_Button_智慧調劑台系統.GUID = "";
-            this.rJ_Button_智慧調劑台系統.Image_padding = new System.Windows.Forms.Padding(10, 10, 16, 0);
+            this.rJ_Button_智慧調劑台系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
             this.rJ_Button_智慧調劑台系統.Location = new System.Drawing.Point(46, 124);
             this.rJ_Button_智慧調劑台系統.Name = "rJ_Button_智慧調劑台系統";
             this.rJ_Button_智慧調劑台系統.ProhibitionBorderLineWidth = 1;
@@ -313,7 +313,7 @@ namespace E_UpdateVersion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(691, 641);
+            this.ClientSize = new System.Drawing.Size(687, 637);
             this.ControlBox = false;
             this.Controls.Add(this.rJ_Button_癌症備藥機);
             this.Controls.Add(this.rJ_Button_勤務傳送系統);

@@ -36,7 +36,7 @@ namespace 調劑台管理系統
         public static string API_Server = "";
         public static string Order_URL = "";
         public static string OrderByCodeApi_URL = "";
-        public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         public string 領藥台_01名稱
         {
             get
@@ -78,7 +78,7 @@ namespace 調劑台管理系統
         private Stopwatch stopwatch = new Stopwatch();
         List<Pannel_Locker> List_Locker = new List<Pannel_Locker>();
         Basic.MyConvert myConvert = new Basic.MyConvert();
-
+     
 
         PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
@@ -600,6 +600,11 @@ namespace 調劑台管理系統
                 if (!this.ControlMode) Function_從SQL取得儲位到本地資料();
             }));
             if (!this.ControlMode) this.plC_ScreenPage_Main.SelecteTabText("調劑作業");
+
+
+            RFID_Iint();
+
+
             flag_Init = true;
         }
         #region Event
@@ -654,6 +659,49 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Function
+        private void RFID_Iint()
+        {
+            Task.Run(new Action(delegate
+            {
+                MyTimer MyTimer_rfiD_FX600_UI_Init = new MyTimer();
+                bool flag_rfiD_FX600_UI_Init = false;
+                MyTimer_rfiD_FX600_UI_Init.TickStop();
+                MyTimer_rfiD_FX600_UI_Init.StartTickTime(5000);
+                while (true)
+                {
+                    if (myConfigClass.RFID使用 == false) break;
+                    
+                    if (MyTimer_rfiD_FX600_UI_Init.IsTimeOut() && !flag_rfiD_FX600_UI_Init)
+                    {
+                        if (myConfigClass.RFID使用)
+                        {
+                            int num = 1;
+                            if (myConfigClass.Scanner01_COMPort.StringIsEmpty() == false)
+                            {
+                                num++;
+                            }
+                            if (myConfigClass.Scanner02_COMPort.StringIsEmpty() == false)
+                            {
+                                num++;
+                            }
+                            if (myConfigClass.Scanner03_COMPort.StringIsEmpty() == false)
+                            {
+                                num++;
+                            }
+                            if (myConfigClass.Scanner04_COMPort.StringIsEmpty() == false)
+                            {
+                                num++;
+                            }
+                            this.rfiD_FX600_UI.Init(RFID_FX600lib.RFID_FX600_UI.Baudrate._9600, num, myConfigClass.RFID_COMPort);
+                        }
+                        flag_rfiD_FX600_UI_Init = true;
+                        break;
+
+                    }
+                    System.Threading.Thread.Sleep(100);
+                }
+            }));
+        }
         private void LoadcommandLineArgs()
         {
             string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");

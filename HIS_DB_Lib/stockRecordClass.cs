@@ -55,8 +55,61 @@ namespace HIS_DB_Lib
         [JsonPropertyName("contents")]
         public List<stockRecord_content> Contents { get => contents; set => contents = value; }
         private List<stockRecord_content> contents = new List<stockRecord_content>();
-        
 
+        static public List<stockRecord> POST_get_all_record(string API_Server)
+        {
+            return POST_get_all_record(API_Server, "ds01", "藥庫");
+        }
+        static public List<stockRecord> POST_get_all_record(string API_Server, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/stockRecord/get_all_record";
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<stockRecord> stockRecords = returnData.Data.ObjToClass<List<stockRecord>>();
+            if (stockRecords == null) return null;
+            if (stockRecords.Count == 0) return null;
+            return stockRecords;
+        }
+        static public List<stockRecord> POST_get_all_record_simple(string API_Server)
+        {
+            return POST_get_all_record_simple(API_Server, "ds01", "藥庫");
+        }
+        static public List<stockRecord> POST_get_all_record_simple(string API_Server, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/stockRecord/get_all_record_simple";
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            List<stockRecord> stockRecords = returnData.Data.ObjToClass<List<stockRecord>>();
+            if (stockRecords == null) return null;
+            if (stockRecords.Count == 0) return null;
+            return stockRecords;
+        }
     }
     public class stockRecord_content
     {

@@ -194,7 +194,10 @@ namespace 調劑台管理系統
         private bool Function_選擇藥品(string 藥碼 ,string 藥名)
         {
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入數量");
-            if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return false;
+            if (dialog_NumPannel.ShowDialog() != DialogResult.Yes)
+            {
+                return false;
+            }
             int 交易量 = dialog_NumPannel.Value;
             if (交易量 == 0)
             {

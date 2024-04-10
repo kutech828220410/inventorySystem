@@ -336,8 +336,8 @@ namespace HIS_WebApi
                 list_inv_combinelist_buf = list_inv_combinelist.GetRows((int)enum_合併總單.合併單號, 合併單號);
                 list_inv_sub_combinelist_buf = list_inv_sub_combinelist.GetRows((int)enum_合併單明細.合併單號, 合併單號);
                 inv_combinelistClass inv_CombinelistClass = list_inv_combinelist_buf[0].SQLToClass<inv_combinelistClass, enum_合併總單>();
-                List<inv_sub_combinelistClass> inv_Sub_CombinelistClasses = list_inv_sub_combinelist_buf.SQLToClass<inv_sub_combinelistClass, enum_合併單明細>();
-                List<inv_sub_combinelistClass> inv_Sub_CombinelistClasses_buf = new List<inv_sub_combinelistClass>();
+                List<inv_records_Class> inv_Sub_CombinelistClasses = list_inv_sub_combinelist_buf.SQLToClass<inv_records_Class, enum_合併單明細>();
+                List<inv_records_Class> inv_Sub_CombinelistClasses_buf = new List<inv_records_Class>();
                 for (int k = 0; k < inv_Sub_CombinelistClasses.Count; k++)
                 {
                     string 單號 = inv_Sub_CombinelistClasses[k].單號;
@@ -658,8 +658,6 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
             GET_init(returnData);
 
-            GET_init(returnData);
-
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API01");
             if (serverSettingClasses.Count == 0)
@@ -703,6 +701,7 @@ namespace HIS_WebApi
                 returnData.Result = $"找無此合併單號! {returnData.Value} ";
                 return null;
             }
+          
             inv_combinelistClass inv_CombinelistClass = inv_CombinelistClasses_buf[0];
             List<inventoryClass.creat> creats = new List<inventoryClass.creat>();
             for (int i = 0; i < inv_CombinelistClass.Records_Ary.Count; i++)
@@ -762,7 +761,6 @@ namespace HIS_WebApi
                         contents_buf[0].盤點量 = (creats[i].Contents[k].盤點量.StringToInt32() + contents_buf[0].盤點量.StringToInt32()).ToString();
                     }
                 }
-      
                 dataTable_buf = list_creat_buf.ToDataTable(new enum_盤點定盤_Excel());
                 dataTable_buf.TableName = $"{creats[i].盤點名稱}";
                 dataTables_creat.Add(dataTable_buf);
@@ -798,22 +796,53 @@ namespace HIS_WebApi
             {
                 dataTables.Add(dataTables_creat[i]);
             }
-            //sheetClass = dataTable.NPOI_GetSheetClass(new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
-            //,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
-            //,(int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
-            //sheetClass.Name = "盤點總表";
-          
+            if(returnData.ValueAry != null)
+            {
+                for (int i = 0; i < returnData.ValueAry.Count; i++)
+                {
+                    foreach (System.Data.DataTable dt in dataTables)
+                    {
+                        dt.Columns.Remove(returnData.ValueAry[i]);
+                    }
+                }
+            }
+  
 
             Console.WriteLine($"NewCell_Webapi_Buffer_Caculate {myTimer.ToString()}");
 
             string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             string xls_command = "application/vnd.ms-excel";
-            byte[] excelData =   ExcelClass.NPOI_GetBytes(dataTables, new int[] {(int)enum_盤點定盤_Excel.庫存量, (int)enum_盤點定盤_Excel.盤點量, (int)enum_盤點定盤_Excel.單價
-            ,(int)enum_盤點定盤_Excel.庫存差異量, (int)enum_盤點定盤_Excel.庫存金額, (int)enum_盤點定盤_Excel.消耗量, (int)enum_盤點定盤_Excel.異動後結存量
-            ,(int)enum_盤點定盤_Excel.結存金額 , (int)enum_盤點定盤_Excel.誤差量 , (int)enum_盤點定盤_Excel.誤差金額 });
+
+            List<int> int_col_ary = new List<int>();
+            if (dataTables.Count != 0)
+            {
+                int index = 0;
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.庫存量.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.盤點量.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.單價.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.庫存差異量.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.庫存金額.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.消耗量.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.異動後結存量.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.結存金額.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.誤差量.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+                index = dataTables[0].GetColumnIndex(enum_盤點定盤_Excel.誤差金額.GetEnumName());
+                if (index > 0) int_col_ary.Add(index);
+          
+            }
+            byte[] excelData =   ExcelClass.NPOI_GetBytes(dataTables, Excel_Type.xlsx, int_col_ary.ToArray());
            
             Stream stream = new MemoryStream(excelData);
-            return await Task.FromResult(File(stream, xlsx_command, $"{returnData.Value}_合併總表.xls"));
+            return await Task.FromResult(File(stream, xlsx_command, $"{returnData.Value}_合併總表.xlsx"));
         }
         /// <summary>
         /// 以單號取得(盤點單/消耗單)Excel
@@ -919,57 +948,65 @@ namespace HIS_WebApi
             return await Task.FromResult(File(stream, xlsx_command, $"{單號}_盤點單.xls"));
         }
 
-
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
 
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-            SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inv_sub_combinelist = new SQLControl(Server, DB, "inv_sub_combinelist", UserName, Password, Port, SSLMode);
 
             List<Table> tables = new List<Table>();
-            Table table_inv_combinelist;        
-            table_inv_combinelist = new Table("inv_combinelist");
-            table_inv_combinelist.Server = Server;
-            table_inv_combinelist.DBName = DB;
-            table_inv_combinelist.Username = UserName;
-            table_inv_combinelist.Password = Password;
-            table_inv_combinelist.Port = Port.ToString();
-            table_inv_combinelist.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inv_combinelist.AddColumnList("合併單名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table_inv_combinelist.AddColumnList("合併單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inv_combinelist.AddColumnList("建表人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inv_combinelist.AddColumnList("建表時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
-            table_inv_combinelist.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            if (!sQLControl_inv_combinelist.IsTableCreat()) sQLControl_inv_combinelist.CreatTable(table_inv_combinelist);
-            else sQLControl_inv_combinelist.CheckAllColumnName(table_inv_combinelist, true);
-            tables.Add(table_inv_combinelist);
-
-            Table table_inv_sub_combinelist;
-            table_inv_sub_combinelist = new Table("inv_sub_combinelist");
-            table_inv_sub_combinelist.Server = Server;
-            table_inv_sub_combinelist.DBName = DB;
-            table_inv_sub_combinelist.Username = UserName;
-            table_inv_sub_combinelist.Password = Password;
-            table_inv_sub_combinelist.Port = Port.ToString();
-            table_inv_sub_combinelist.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inv_sub_combinelist.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table_inv_sub_combinelist.AddColumnList("合併單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inv_sub_combinelist.AddColumnList("單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inv_sub_combinelist.AddColumnList("類型", Table.StringType.VARCHAR, 50, Table.IndexType.None);    
-            table_inv_sub_combinelist.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
-            table_inv_sub_combinelist.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            if (!sQLControl_inv_sub_combinelist.IsTableCreat()) sQLControl_inv_sub_combinelist.CreatTable(table_inv_sub_combinelist);
-            else sQLControl_inv_sub_combinelist.CheckAllColumnName(table_inv_sub_combinelist, true);
-            tables.Add(table_inv_sub_combinelist);
-
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_合併總單()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_合併單明細()));
             return tables.JsonSerializationt(true);
-
         }
+        //private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        //{
+
+        //    string Server = serverSettingClass.Server;
+        //    string DB = serverSettingClass.DBName;
+        //    string UserName = serverSettingClass.User;
+        //    string Password = serverSettingClass.Password;
+        //    uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+        //    SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+        //    SQLControl sQLControl_inv_sub_combinelist = new SQLControl(Server, DB, "inv_sub_combinelist", UserName, Password, Port, SSLMode);
+
+        //    List<Table> tables = new List<Table>();
+        //    Table table_inv_combinelist;        
+        //    table_inv_combinelist = new Table("inv_combinelist");
+        //    table_inv_combinelist.Server = Server;
+        //    table_inv_combinelist.DBName = DB;
+        //    table_inv_combinelist.Username = UserName;
+        //    table_inv_combinelist.Password = Password;
+        //    table_inv_combinelist.Port = Port.ToString();
+        //    table_inv_combinelist.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+        //    table_inv_combinelist.AddColumnList("合併單名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+        //    table_inv_combinelist.AddColumnList("合併單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+        //    table_inv_combinelist.AddColumnList("建表人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
+        //    table_inv_combinelist.AddColumnList("建表時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
+        //    table_inv_combinelist.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+        //    if (!sQLControl_inv_combinelist.IsTableCreat()) sQLControl_inv_combinelist.CreatTable(table_inv_combinelist);
+        //    else sQLControl_inv_combinelist.CheckAllColumnName(table_inv_combinelist, true);
+        //    tables.Add(table_inv_combinelist);
+
+        //    Table table_inv_sub_combinelist;
+        //    table_inv_sub_combinelist = new Table("inv_sub_combinelist");
+        //    table_inv_sub_combinelist.Server = Server;
+        //    table_inv_sub_combinelist.DBName = DB;
+        //    table_inv_sub_combinelist.Username = UserName;
+        //    table_inv_sub_combinelist.Password = Password;
+        //    table_inv_sub_combinelist.Port = Port.ToString();
+        //    table_inv_sub_combinelist.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
+        //    table_inv_sub_combinelist.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
+        //    table_inv_sub_combinelist.AddColumnList("合併單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+        //    table_inv_sub_combinelist.AddColumnList("單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
+        //    table_inv_sub_combinelist.AddColumnList("類型", Table.StringType.VARCHAR, 50, Table.IndexType.None);    
+        //    table_inv_sub_combinelist.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
+        //    table_inv_sub_combinelist.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
+        //    if (!sQLControl_inv_sub_combinelist.IsTableCreat()) sQLControl_inv_sub_combinelist.CreatTable(table_inv_sub_combinelist);
+        //    else sQLControl_inv_sub_combinelist.CheckAllColumnName(table_inv_sub_combinelist, true);
+        //    tables.Add(table_inv_sub_combinelist);
+
+        //    return tables.JsonSerializationt(true);
+
+        //}
     }
 }

@@ -105,7 +105,7 @@ namespace 調劑台管理系統
             if (!this.sqL_DataGridView_特殊輸出表.SQL_IsTableCreat()) this.sqL_DataGridView_特殊輸出表.SQL_CreateTable();
             this.sqL_DataGridView_特殊輸出表.MouseDown += SqL_DataGridView_特殊輸出表_MouseDown;
 
-            MyTimer_rfiD_FX600_UI_Init.StartTickTime(5000);
+        
 
             this.plC_RJ_Button_檢查頁面不顯示.MouseDownEvent += PlC_RJ_Button_檢查頁面不顯示_MouseDownEvent;
             this.plC_UI_Init.Add_Method(this.sub_Program_系統);
@@ -115,40 +115,10 @@ namespace 調劑台管理系統
 
         private bool flag_sub_Program_系統_設定06 = false;
         private bool flag_sub_Program_系統_設定03 = false;
-        MyTimer MyTimer_rfiD_FX600_UI_Init = new MyTimer();
-        bool flag_rfiD_FX600_UI_Init = false;
+
         private void sub_Program_系統()
         {
-            if(MyTimer_rfiD_FX600_UI_Init.IsTimeOut() && !flag_rfiD_FX600_UI_Init)
-            {
-                this.Invoke(new Action(delegate 
-                {
-                    if (myConfigClass.RFID使用)
-                    {
-                        int num = 1;
-                        if (myConfigClass.Scanner01_COMPort.StringIsEmpty() == false)
-                        {
-                            num++;
-                        }
-                        if (myConfigClass.Scanner02_COMPort.StringIsEmpty() == false)
-                        {
-                            num++;
-                        }
-                        if (myConfigClass.Scanner03_COMPort.StringIsEmpty() == false)
-                        {
-                            num++;
-                        }
-                        if (myConfigClass.Scanner04_COMPort.StringIsEmpty() == false)
-                        {
-                            num++;
-                        }
-                        this.rfiD_FX600_UI.Init(RFID_FX600lib.RFID_FX600_UI.Baudrate._9600, num, myConfigClass.RFID_COMPort);
-                    }
-                }));
-                flag_rfiD_FX600_UI_Init = true;
-
-
-            }
+           
            
             if (plC_ScreenPage_Main.PageText == "系統" && plC_ScreenPage_系統.PageText == "設定03")
             {

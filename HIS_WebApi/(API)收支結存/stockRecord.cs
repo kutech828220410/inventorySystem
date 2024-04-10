@@ -360,6 +360,90 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 取得所有庫存紀錄(不含細節)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "管藥",
+        ///     "ServerType" : "調劑台",  
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_all_record_simple")]
+        [HttpPost]
+        public string POST_get_all_record_simple(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_all_record_simple";
+            string temp = "";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+
+
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                CheckCreatTable(serverSettingClass);
+
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+                SQLControl sQLControl_stockRecord = new SQLControl(Server, DB, new enum_stockRecord().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_stockRecord_content = new SQLControl(Server, DB, new enum_stockRecord_content().GetEnumDescription(), UserName, Password, Port, SSLMode);
+
+                List<object[]> list_stockRecord = sQLControl_stockRecord.GetAllRows(null);
+                List<object[]> list_stockRecord_content = sQLControl_stockRecord_content.GetAllRows(null);
+                List<object[]> list_stockRecord_content_buf = new List<object[]>();
+                List<stockRecord> stockRecords = list_stockRecord.SQLToClass<stockRecord, enum_stockRecord>();
+                if (stockRecords.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+            
+                returnData.Data = stockRecords;
+                returnData.Result = $"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 成功取得<{stockRecords.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Code = 200;
+                Logger.LogAddLine($"stockRecord");
+                Logger.Log($"stockRecord", $"{ returnData.JsonSerializationt(true)}");
+                Logger.LogAddLine($"stockRecord");
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"stockRecord", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         /// 以GUID刪除庫存紀錄
         /// </summary>
         /// <remarks>
@@ -554,33 +638,10 @@ namespace HIS_WebApi
   
 
             List<Table> tables = new List<Table>();
-
-            tables.Add(checkCreatTable(serverSettingClass, new enum_stockRecord()));
-            tables.Add(checkCreatTable(serverSettingClass, new enum_stockRecord_content()));
-
-
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_stockRecord()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_stockRecord_content()));
             return tables.JsonSerializationt(true);
         }
-        private Table checkCreatTable(ServerSettingClass serverSettingClass ,Enum Enum)
-        {
-            Table table = new Table(Enum);
-
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-            table.Server = Server;
-            table.DBName = DB;
-            table.Username = UserName;
-            table.Password = Password;
-            table.Port = Port.ToString();
-
-            SQLControl sQLControl = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
-
-            if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
-            else sQLControl.CheckAllColumnName(table, true);
-            return table;
-        }
+      
     }
 }
