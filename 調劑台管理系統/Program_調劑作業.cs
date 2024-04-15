@@ -1752,7 +1752,7 @@ namespace 調劑台管理系統
                                select value
                                 ).ToList();
 
-            if (list_取藥堆疊資料.Count == 0)
+            if (list_取藥堆疊資料.Count == 0 && plC_Button_多醫令模式.Bool == false)
             {
                 MyTimer_領藥台_01_閒置登出時間.TickStop();
                 MyTimer_領藥台_01_閒置登出時間.StartTickTime();
@@ -1762,7 +1762,7 @@ namespace 調劑台管理系統
             }
             else
             {
-                if (list_取藥堆疊資料_buf.Count > 0 && plC_Button_多醫令模式.Bool == false)
+                if (list_取藥堆疊資料_buf.Count > 0)
                 {
                     MyTimer_領藥台_01_閒置登出時間.TickStop();
                     MyTimer_領藥台_01_閒置登出時間.StartTickTime();

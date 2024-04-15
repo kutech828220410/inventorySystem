@@ -227,6 +227,7 @@ namespace E_UpdateVersion
             if ((computerConfigClass.GetValue("調劑台管理系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_智慧調劑台系統.Enabled = true;
+                rJ_Button_智慧調劑台系統.Visible = true;
                 if (myConfigClass.Default_program == "調劑台管理系統")
                 {
                     RJ_Button_智慧調劑台系統_MouseDownEvent(null);
@@ -234,27 +235,36 @@ namespace E_UpdateVersion
             }
             else
             {
-                rJ_Button_智慧調劑台系統.Enabled = false;   
+                rJ_Button_智慧調劑台系統.Enabled = false;
+                rJ_Button_智慧調劑台系統.Visible = false;
+
             }
             if ((computerConfigClass.GetValue("智能藥庫系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_智能藥庫系統.Enabled = true;
+                rJ_Button_智能藥庫系統.Visible = false;
+
             }
             else
             {
                 rJ_Button_智能藥庫系統.Enabled = false;
+                rJ_Button_智能藥庫系統.Visible = false;
+
             }
             if ((computerConfigClass.GetValue("中心叫號系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_中心叫號系統.Enabled = true;
+                rJ_Button_中心叫號系統.Visible = true;
             }
             else
             {
                 rJ_Button_中心叫號系統.Enabled = false;
+                rJ_Button_中心叫號系統.Visible = false;
             }
             if ((computerConfigClass.GetValue("勤務傳送系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_勤務傳送系統.Enabled = true;
+                rJ_Button_勤務傳送系統.Visible = true;
                 if (myConfigClass.Default_program == "勤務傳送系統")
                 {
                     RJ_Button_勤務傳送系統_MouseDownEvent(null);
@@ -263,10 +273,12 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_勤務傳送系統.Enabled = false;
+                rJ_Button_勤務傳送系統.Visible = false;
             }
             if ((computerConfigClass.GetValue("癌症備藥機", "程式致能") == true.ToString()))
             {
                 rJ_Button_癌症備藥機.Enabled = true;
+                rJ_Button_癌症備藥機.Visible = true;
                 if (myConfigClass.Default_program == "癌症備藥機")
                 {
                     RJ_Button_癌症備藥機_MouseDownEvent(null);
@@ -275,6 +287,7 @@ namespace E_UpdateVersion
             else
             {
                 rJ_Button_癌症備藥機.Enabled = false;
+                rJ_Button_癌症備藥機.Visible = false;
             }
         }
         private string GetVersion(string program_name)

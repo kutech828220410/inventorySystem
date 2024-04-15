@@ -33,16 +33,21 @@ namespace 調劑台管理系統
             FpMatchSoket.ConsoleWrite = true;
             Task.Run(new Action(delegate 
             {
-                flag_指紋辨識_Init = fpMatchSoket.Open();
-                if (flag_指紋辨識_Init)
+                if(this.ControlMode == false)
                 {
-                    this.Invoke(new Action(delegate
+                    flag_指紋辨識_Init = fpMatchSoket.Open();
+                    if (flag_指紋辨識_Init)
                     {
-                        plC_RJ_Button_調劑作業_指紋登入.Visible = true;
-                        plC_Button_人員資料_指紋註冊.Visible = true;
-                    }));
-               
+                        this.Invoke(new Action(delegate
+                        {
+                            plC_RJ_Button_調劑作業_指紋登入.Visible = true;
+                            plC_Button_人員資料_指紋註冊.Visible = true;
+                        }));
+
+                    }
+
                 }
+             
             }));
 
             this.plC_UI_Init.Add_Method(Program_指紋辨識);

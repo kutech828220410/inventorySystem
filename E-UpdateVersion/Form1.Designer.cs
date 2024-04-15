@@ -38,12 +38,16 @@ namespace E_UpdateVersion
             this.label2 = new System.Windows.Forms.Label();
             this.label_version = new System.Windows.Forms.Label();
             this.label_info = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.rJ_Button_智能藥庫系統 = new MyUI.RJ_Button();
+            this.rJ_Button_智慧調劑台系統 = new MyUI.RJ_Button();
             this.rJ_Button_癌症備藥機 = new MyUI.RJ_Button();
             this.rJ_Button_勤務傳送系統 = new MyUI.RJ_Button();
             this.rJ_Button_中心叫號系統 = new MyUI.RJ_Button();
-            this.rJ_Button_智能藥庫系統 = new MyUI.RJ_Button();
-            this.rJ_Button_智慧調劑台系統 = new MyUI.RJ_Button();
             this.contextMenuStrip.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // rJ_Button_離開
@@ -56,13 +60,14 @@ namespace E_UpdateVersion
             this.rJ_Button_離開.BorderSize = 0;
             this.rJ_Button_離開.buttonType = MyUI.RJ_Button.ButtonType.Push;
             this.rJ_Button_離開.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_離開.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_Button_離開.FlatAppearance.BorderSize = 0;
             this.rJ_Button_離開.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_離開.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Button_離開.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_離開.GUID = "";
             this.rJ_Button_離開.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_離開.Location = new System.Drawing.Point(525, 514);
+            this.rJ_Button_離開.Location = new System.Drawing.Point(529, 0);
             this.rJ_Button_離開.Name = "rJ_Button_離開";
             this.rJ_Button_離開.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_離開.ProhibitionLineWidth = 4;
@@ -70,7 +75,7 @@ namespace E_UpdateVersion
             this.rJ_Button_離開.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_離開.ShadowSize = 3;
             this.rJ_Button_離開.ShowLoadingForm = false;
-            this.rJ_Button_離開.Size = new System.Drawing.Size(154, 74);
+            this.rJ_Button_離開.Size = new System.Drawing.Size(154, 63);
             this.rJ_Button_離開.State = false;
             this.rJ_Button_離開.TabIndex = 1;
             this.rJ_Button_離開.Text = "離開";
@@ -86,7 +91,7 @@ namespace E_UpdateVersion
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(687, 88);
+            this.label1.Size = new System.Drawing.Size(683, 88);
             this.label1.TabIndex = 4;
             this.label1.Text = "次世代智慧藥局整合平台";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -110,9 +115,9 @@ namespace E_UpdateVersion
             this.label2.BackColor = System.Drawing.Color.Gainsboro;
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(0, 601);
+            this.label2.Location = new System.Drawing.Point(0, 597);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(687, 36);
+            this.label2.Size = new System.Drawing.Size(683, 36);
             this.label2.TabIndex = 23;
             this.label2.Text = "Copyright ©2023 鴻森整合機電有限公司";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -121,9 +126,9 @@ namespace E_UpdateVersion
             // 
             this.label_version.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label_version.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_version.Location = new System.Drawing.Point(0, 587);
+            this.label_version.Location = new System.Drawing.Point(0, 583);
             this.label_version.Name = "label_version";
-            this.label_version.Size = new System.Drawing.Size(687, 14);
+            this.label_version.Size = new System.Drawing.Size(683, 14);
             this.label_version.TabIndex = 24;
             this.label_version.Text = "Ver 0.0.0.0";
             // 
@@ -133,112 +138,32 @@ namespace E_UpdateVersion
             this.label_info.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_info.Location = new System.Drawing.Point(0, 88);
             this.label_info.Name = "label_info";
-            this.label_info.Size = new System.Drawing.Size(687, 16);
+            this.label_info.Size = new System.Drawing.Size(683, 16);
             this.label_info.TabIndex = 26;
             this.label_info.Text = "XXXXXXXX";
             this.label_info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // rJ_Button_癌症備藥機
+            // panel1
             // 
-            this.rJ_Button_癌症備藥機.AutoResetState = false;
-            this.rJ_Button_癌症備藥機.BackColor = System.Drawing.Color.White;
-            this.rJ_Button_癌症備藥機.BackgroundColor = System.Drawing.Color.White;
-            this.rJ_Button_癌症備藥機.BackgroundImage = global::E_UpdateVersion.Properties.Resources.癌症備藥機;
-            this.rJ_Button_癌症備藥機.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Button_癌症備藥機.BorderRadius = 12;
-            this.rJ_Button_癌症備藥機.BorderSize = 1;
-            this.rJ_Button_癌症備藥機.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_癌症備藥機.DisenableColor = System.Drawing.Color.WhiteSmoke;
-            this.rJ_Button_癌症備藥機.Enabled = false;
-            this.rJ_Button_癌症備藥機.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_癌症備藥機.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_癌症備藥機.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            this.rJ_Button_癌症備藥機.ForeColor = System.Drawing.Color.Black;
-            this.rJ_Button_癌症備藥機.GUID = "";
-            this.rJ_Button_癌症備藥機.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
-            this.rJ_Button_癌症備藥機.Location = new System.Drawing.Point(254, 329);
-            this.rJ_Button_癌症備藥機.Name = "rJ_Button_癌症備藥機";
-            this.rJ_Button_癌症備藥機.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_癌症備藥機.ProhibitionLineWidth = 10;
-            this.rJ_Button_癌症備藥機.ProhibitionSymbolSize = 60;
-            this.rJ_Button_癌症備藥機.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_癌症備藥機.ShadowSize = 3;
-            this.rJ_Button_癌症備藥機.ShowLoadingForm = false;
-            this.rJ_Button_癌症備藥機.Size = new System.Drawing.Size(191, 189);
-            this.rJ_Button_癌症備藥機.State = false;
-            this.rJ_Button_癌症備藥機.TabIndex = 29;
-            this.rJ_Button_癌症備藥機.Text = "癌症備藥系統";
-            this.rJ_Button_癌症備藥機.TextColor = System.Drawing.Color.Black;
-            this.rJ_Button_癌症備藥機.TextHeight = 40;
-            this.rJ_Button_癌症備藥機.UseVisualStyleBackColor = false;
+            this.panel1.Controls.Add(this.rJ_Button_離開);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 520);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(683, 63);
+            this.panel1.TabIndex = 27;
             // 
-            // rJ_Button_勤務傳送系統
+            // flowLayoutPanel1
             // 
-            this.rJ_Button_勤務傳送系統.AutoResetState = false;
-            this.rJ_Button_勤務傳送系統.BackColor = System.Drawing.Color.White;
-            this.rJ_Button_勤務傳送系統.BackgroundColor = System.Drawing.Color.White;
-            this.rJ_Button_勤務傳送系統.BackgroundImage = global::E_UpdateVersion.Properties.Resources.勤務傳送櫃;
-            this.rJ_Button_勤務傳送系統.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Button_勤務傳送系統.BorderRadius = 12;
-            this.rJ_Button_勤務傳送系統.BorderSize = 1;
-            this.rJ_Button_勤務傳送系統.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_勤務傳送系統.DisenableColor = System.Drawing.Color.WhiteSmoke;
-            this.rJ_Button_勤務傳送系統.Enabled = false;
-            this.rJ_Button_勤務傳送系統.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_勤務傳送系統.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_勤務傳送系統.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            this.rJ_Button_勤務傳送系統.ForeColor = System.Drawing.Color.Black;
-            this.rJ_Button_勤務傳送系統.GUID = "";
-            this.rJ_Button_勤務傳送系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
-            this.rJ_Button_勤務傳送系統.Location = new System.Drawing.Point(46, 329);
-            this.rJ_Button_勤務傳送系統.Name = "rJ_Button_勤務傳送系統";
-            this.rJ_Button_勤務傳送系統.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_勤務傳送系統.ProhibitionLineWidth = 10;
-            this.rJ_Button_勤務傳送系統.ProhibitionSymbolSize = 60;
-            this.rJ_Button_勤務傳送系統.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_勤務傳送系統.ShadowSize = 3;
-            this.rJ_Button_勤務傳送系統.ShowLoadingForm = false;
-            this.rJ_Button_勤務傳送系統.Size = new System.Drawing.Size(191, 189);
-            this.rJ_Button_勤務傳送系統.State = false;
-            this.rJ_Button_勤務傳送系統.TabIndex = 28;
-            this.rJ_Button_勤務傳送系統.Text = "勤務傳送系統";
-            this.rJ_Button_勤務傳送系統.TextColor = System.Drawing.Color.Black;
-            this.rJ_Button_勤務傳送系統.TextHeight = 40;
-            this.rJ_Button_勤務傳送系統.UseVisualStyleBackColor = false;
-            // 
-            // rJ_Button_中心叫號系統
-            // 
-            this.rJ_Button_中心叫號系統.AutoResetState = false;
-            this.rJ_Button_中心叫號系統.BackColor = System.Drawing.Color.White;
-            this.rJ_Button_中心叫號系統.BackgroundColor = System.Drawing.Color.White;
-            this.rJ_Button_中心叫號系統.BackgroundImage = global::E_UpdateVersion.Properties.Resources.候藥系統;
-            this.rJ_Button_中心叫號系統.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Button_中心叫號系統.BorderRadius = 12;
-            this.rJ_Button_中心叫號系統.BorderSize = 1;
-            this.rJ_Button_中心叫號系統.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_中心叫號系統.DisenableColor = System.Drawing.Color.WhiteSmoke;
-            this.rJ_Button_中心叫號系統.Enabled = false;
-            this.rJ_Button_中心叫號系統.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_中心叫號系統.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_中心叫號系統.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            this.rJ_Button_中心叫號系統.ForeColor = System.Drawing.Color.Black;
-            this.rJ_Button_中心叫號系統.GUID = "";
-            this.rJ_Button_中心叫號系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
-            this.rJ_Button_中心叫號系統.Location = new System.Drawing.Point(462, 124);
-            this.rJ_Button_中心叫號系統.Name = "rJ_Button_中心叫號系統";
-            this.rJ_Button_中心叫號系統.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_中心叫號系統.ProhibitionLineWidth = 10;
-            this.rJ_Button_中心叫號系統.ProhibitionSymbolSize = 60;
-            this.rJ_Button_中心叫號系統.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_中心叫號系統.ShadowSize = 3;
-            this.rJ_Button_中心叫號系統.ShowLoadingForm = false;
-            this.rJ_Button_中心叫號系統.Size = new System.Drawing.Size(191, 189);
-            this.rJ_Button_中心叫號系統.State = false;
-            this.rJ_Button_中心叫號系統.TabIndex = 27;
-            this.rJ_Button_中心叫號系統.Text = "中心叫號系統";
-            this.rJ_Button_中心叫號系統.TextColor = System.Drawing.Color.Black;
-            this.rJ_Button_中心叫號系統.TextHeight = 40;
-            this.rJ_Button_中心叫號系統.UseVisualStyleBackColor = false;
+            this.flowLayoutPanel1.Controls.Add(this.rJ_Button_智能藥庫系統);
+            this.flowLayoutPanel1.Controls.Add(this.rJ_Button_智慧調劑台系統);
+            this.flowLayoutPanel1.Controls.Add(this.rJ_Button_癌症備藥機);
+            this.flowLayoutPanel1.Controls.Add(this.rJ_Button_勤務傳送系統);
+            this.flowLayoutPanel1.Controls.Add(this.rJ_Button_中心叫號系統);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 104);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(683, 416);
+            this.flowLayoutPanel1.TabIndex = 31;
             // 
             // rJ_Button_智能藥庫系統
             // 
@@ -258,7 +183,7 @@ namespace E_UpdateVersion
             this.rJ_Button_智能藥庫系統.ForeColor = System.Drawing.Color.Black;
             this.rJ_Button_智能藥庫系統.GUID = "";
             this.rJ_Button_智能藥庫系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
-            this.rJ_Button_智能藥庫系統.Location = new System.Drawing.Point(254, 124);
+            this.rJ_Button_智能藥庫系統.Location = new System.Drawing.Point(3, 3);
             this.rJ_Button_智能藥庫系統.Name = "rJ_Button_智能藥庫系統";
             this.rJ_Button_智能藥庫系統.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_智能藥庫系統.ProhibitionLineWidth = 10;
@@ -268,11 +193,12 @@ namespace E_UpdateVersion
             this.rJ_Button_智能藥庫系統.ShowLoadingForm = false;
             this.rJ_Button_智能藥庫系統.Size = new System.Drawing.Size(191, 189);
             this.rJ_Button_智能藥庫系統.State = false;
-            this.rJ_Button_智能藥庫系統.TabIndex = 3;
+            this.rJ_Button_智能藥庫系統.TabIndex = 31;
             this.rJ_Button_智能藥庫系統.Text = "智能藥庫系統";
             this.rJ_Button_智能藥庫系統.TextColor = System.Drawing.Color.Black;
             this.rJ_Button_智能藥庫系統.TextHeight = 40;
             this.rJ_Button_智能藥庫系統.UseVisualStyleBackColor = false;
+            this.rJ_Button_智能藥庫系統.Visible = false;
             // 
             // rJ_Button_智慧調劑台系統
             // 
@@ -292,7 +218,7 @@ namespace E_UpdateVersion
             this.rJ_Button_智慧調劑台系統.ForeColor = System.Drawing.Color.Black;
             this.rJ_Button_智慧調劑台系統.GUID = "";
             this.rJ_Button_智慧調劑台系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
-            this.rJ_Button_智慧調劑台系統.Location = new System.Drawing.Point(46, 124);
+            this.rJ_Button_智慧調劑台系統.Location = new System.Drawing.Point(200, 3);
             this.rJ_Button_智慧調劑台系統.Name = "rJ_Button_智慧調劑台系統";
             this.rJ_Button_智慧調劑台系統.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_智慧調劑台系統.ProhibitionLineWidth = 10;
@@ -302,29 +228,131 @@ namespace E_UpdateVersion
             this.rJ_Button_智慧調劑台系統.ShowLoadingForm = false;
             this.rJ_Button_智慧調劑台系統.Size = new System.Drawing.Size(191, 189);
             this.rJ_Button_智慧調劑台系統.State = false;
-            this.rJ_Button_智慧調劑台系統.TabIndex = 2;
+            this.rJ_Button_智慧調劑台系統.TabIndex = 30;
             this.rJ_Button_智慧調劑台系統.Text = "智慧調劑台系統";
             this.rJ_Button_智慧調劑台系統.TextColor = System.Drawing.Color.Black;
             this.rJ_Button_智慧調劑台系統.TextHeight = 40;
             this.rJ_Button_智慧調劑台系統.UseVisualStyleBackColor = false;
+            this.rJ_Button_智慧調劑台系統.Visible = false;
+            // 
+            // rJ_Button_癌症備藥機
+            // 
+            this.rJ_Button_癌症備藥機.AutoResetState = false;
+            this.rJ_Button_癌症備藥機.BackColor = System.Drawing.Color.White;
+            this.rJ_Button_癌症備藥機.BackgroundColor = System.Drawing.Color.White;
+            this.rJ_Button_癌症備藥機.BackgroundImage = global::E_UpdateVersion.Properties.Resources.癌症備藥機;
+            this.rJ_Button_癌症備藥機.BorderColor = System.Drawing.Color.Black;
+            this.rJ_Button_癌症備藥機.BorderRadius = 12;
+            this.rJ_Button_癌症備藥機.BorderSize = 1;
+            this.rJ_Button_癌症備藥機.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_癌症備藥機.DisenableColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Button_癌症備藥機.Enabled = false;
+            this.rJ_Button_癌症備藥機.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_癌症備藥機.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_癌症備藥機.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.rJ_Button_癌症備藥機.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Button_癌症備藥機.GUID = "";
+            this.rJ_Button_癌症備藥機.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
+            this.rJ_Button_癌症備藥機.Location = new System.Drawing.Point(397, 3);
+            this.rJ_Button_癌症備藥機.Name = "rJ_Button_癌症備藥機";
+            this.rJ_Button_癌症備藥機.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_癌症備藥機.ProhibitionLineWidth = 10;
+            this.rJ_Button_癌症備藥機.ProhibitionSymbolSize = 60;
+            this.rJ_Button_癌症備藥機.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_癌症備藥機.ShadowSize = 3;
+            this.rJ_Button_癌症備藥機.ShowLoadingForm = false;
+            this.rJ_Button_癌症備藥機.Size = new System.Drawing.Size(191, 189);
+            this.rJ_Button_癌症備藥機.State = false;
+            this.rJ_Button_癌症備藥機.TabIndex = 35;
+            this.rJ_Button_癌症備藥機.Text = "癌症備藥系統";
+            this.rJ_Button_癌症備藥機.TextColor = System.Drawing.Color.Black;
+            this.rJ_Button_癌症備藥機.TextHeight = 40;
+            this.rJ_Button_癌症備藥機.UseVisualStyleBackColor = false;
+            this.rJ_Button_癌症備藥機.Visible = false;
+            // 
+            // rJ_Button_勤務傳送系統
+            // 
+            this.rJ_Button_勤務傳送系統.AutoResetState = false;
+            this.rJ_Button_勤務傳送系統.BackColor = System.Drawing.Color.White;
+            this.rJ_Button_勤務傳送系統.BackgroundColor = System.Drawing.Color.White;
+            this.rJ_Button_勤務傳送系統.BackgroundImage = global::E_UpdateVersion.Properties.Resources.勤務傳送櫃;
+            this.rJ_Button_勤務傳送系統.BorderColor = System.Drawing.Color.Black;
+            this.rJ_Button_勤務傳送系統.BorderRadius = 12;
+            this.rJ_Button_勤務傳送系統.BorderSize = 1;
+            this.rJ_Button_勤務傳送系統.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_勤務傳送系統.DisenableColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Button_勤務傳送系統.Enabled = false;
+            this.rJ_Button_勤務傳送系統.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_勤務傳送系統.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_勤務傳送系統.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.rJ_Button_勤務傳送系統.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Button_勤務傳送系統.GUID = "";
+            this.rJ_Button_勤務傳送系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
+            this.rJ_Button_勤務傳送系統.Location = new System.Drawing.Point(3, 198);
+            this.rJ_Button_勤務傳送系統.Name = "rJ_Button_勤務傳送系統";
+            this.rJ_Button_勤務傳送系統.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_勤務傳送系統.ProhibitionLineWidth = 10;
+            this.rJ_Button_勤務傳送系統.ProhibitionSymbolSize = 60;
+            this.rJ_Button_勤務傳送系統.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_勤務傳送系統.ShadowSize = 3;
+            this.rJ_Button_勤務傳送系統.ShowLoadingForm = false;
+            this.rJ_Button_勤務傳送系統.Size = new System.Drawing.Size(191, 189);
+            this.rJ_Button_勤務傳送系統.State = false;
+            this.rJ_Button_勤務傳送系統.TabIndex = 36;
+            this.rJ_Button_勤務傳送系統.Text = "勤務傳送系統";
+            this.rJ_Button_勤務傳送系統.TextColor = System.Drawing.Color.Black;
+            this.rJ_Button_勤務傳送系統.TextHeight = 40;
+            this.rJ_Button_勤務傳送系統.UseVisualStyleBackColor = false;
+            this.rJ_Button_勤務傳送系統.Visible = false;
+            // 
+            // rJ_Button_中心叫號系統
+            // 
+            this.rJ_Button_中心叫號系統.AutoResetState = false;
+            this.rJ_Button_中心叫號系統.BackColor = System.Drawing.Color.White;
+            this.rJ_Button_中心叫號系統.BackgroundColor = System.Drawing.Color.White;
+            this.rJ_Button_中心叫號系統.BackgroundImage = global::E_UpdateVersion.Properties.Resources.候藥系統;
+            this.rJ_Button_中心叫號系統.BorderColor = System.Drawing.Color.Black;
+            this.rJ_Button_中心叫號系統.BorderRadius = 12;
+            this.rJ_Button_中心叫號系統.BorderSize = 1;
+            this.rJ_Button_中心叫號系統.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_中心叫號系統.DisenableColor = System.Drawing.Color.WhiteSmoke;
+            this.rJ_Button_中心叫號系統.Enabled = false;
+            this.rJ_Button_中心叫號系統.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_中心叫號系統.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_中心叫號系統.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
+            this.rJ_Button_中心叫號系統.ForeColor = System.Drawing.Color.Black;
+            this.rJ_Button_中心叫號系統.GUID = "";
+            this.rJ_Button_中心叫號系統.Image_padding = new System.Windows.Forms.Padding(16, 10, 22, 0);
+            this.rJ_Button_中心叫號系統.Location = new System.Drawing.Point(200, 198);
+            this.rJ_Button_中心叫號系統.Name = "rJ_Button_中心叫號系統";
+            this.rJ_Button_中心叫號系統.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_中心叫號系統.ProhibitionLineWidth = 10;
+            this.rJ_Button_中心叫號系統.ProhibitionSymbolSize = 60;
+            this.rJ_Button_中心叫號系統.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_中心叫號系統.ShadowSize = 3;
+            this.rJ_Button_中心叫號系統.ShowLoadingForm = false;
+            this.rJ_Button_中心叫號系統.Size = new System.Drawing.Size(191, 189);
+            this.rJ_Button_中心叫號系統.State = false;
+            this.rJ_Button_中心叫號系統.TabIndex = 37;
+            this.rJ_Button_中心叫號系統.Text = "中心叫號系統";
+            this.rJ_Button_中心叫號系統.TextColor = System.Drawing.Color.Black;
+            this.rJ_Button_中心叫號系統.TextHeight = 40;
+            this.rJ_Button_中心叫號系統.UseVisualStyleBackColor = false;
+            this.rJ_Button_中心叫號系統.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(687, 637);
+            this.ClientSize = new System.Drawing.Size(683, 633);
             this.ControlBox = false;
-            this.Controls.Add(this.rJ_Button_癌症備藥機);
-            this.Controls.Add(this.rJ_Button_勤務傳送系統);
-            this.Controls.Add(this.rJ_Button_中心叫號系統);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label_info);
             this.Controls.Add(this.label_version);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.rJ_Button_智能藥庫系統);
-            this.Controls.Add(this.rJ_Button_智慧調劑台系統);
-            this.Controls.Add(this.rJ_Button_離開);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -334,6 +362,8 @@ namespace E_UpdateVersion
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -341,17 +371,19 @@ namespace E_UpdateVersion
         #endregion
 
         private MyUI.RJ_Button rJ_Button_離開;
-        private MyUI.RJ_Button rJ_Button_智慧調劑台系統;
-        private MyUI.RJ_Button rJ_Button_智能藥庫系統;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem 後台設定ToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_version;
         private System.Windows.Forms.Label label_info;
-        private MyUI.RJ_Button rJ_Button_中心叫號系統;
-        private MyUI.RJ_Button rJ_Button_勤務傳送系統;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private MyUI.RJ_Button rJ_Button_智能藥庫系統;
+        private MyUI.RJ_Button rJ_Button_智慧調劑台系統;
         private MyUI.RJ_Button rJ_Button_癌症備藥機;
+        private MyUI.RJ_Button rJ_Button_勤務傳送系統;
+        private MyUI.RJ_Button rJ_Button_中心叫號系統;
     }
 }
 
