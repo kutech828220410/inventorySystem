@@ -133,8 +133,6 @@ namespace E_UpdateVersion
             this.rJ_Button_癌症備藥機.MouseDownEvent += RJ_Button_癌症備藥機_MouseDownEvent;
         }
 
-
-
         #region Event
         private void 後台設定ToolStripMenuItem_Click(object sender, EventArgs e)
         {

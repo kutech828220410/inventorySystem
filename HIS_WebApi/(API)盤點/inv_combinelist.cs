@@ -210,7 +210,7 @@ namespace HIS_WebApi
             {
                 returnData returnData_buf = new returnData();
                 returnData_buf = GET_new_IC_SN(returnData).JsonDeserializet<returnData>();
-                if(returnData_buf.Code != 200)
+                if (returnData_buf.Code != 200)
                 {
                     returnData.Code = -200;
                     returnData.Result = "inv_CombinelistClass.合併單號, 空白,請輸入合併單號!";
@@ -271,6 +271,114 @@ namespace HIS_WebApi
 
             returnData.Result = $"成功加入新合併單! 共{list_inv_sub_combinelist_add.Count}筆明細資料";
             return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
+        /// 以GUID更新 盤點日庫存單號
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  1.[returnData.Value] : 合併單名稱 <br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "GUID",
+        ///       "StockRecord_GUID"
+        ///       "StockRecord_ServerName"
+        ///       "StockRecord_ServerType"
+        ///     ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [Route("inv_stockrecord_update_by_GUID")]
+        [HttpPost]
+        public string POST_inv_stockrecord_update_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            try
+            {
+                GET_init(returnData);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 4)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[GUID],[StockRecord_GUID],[StockRecord_ServerName],[StockRecord_ServerType]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+                string StockRecord_GUID = returnData.ValueAry[1];
+                string StockRecord_ServerName = returnData.ValueAry[2];
+                string StockRecord_ServerType = returnData.ValueAry[3];
+                if (GUID.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value [GUID]不得為空白";
+                    return returnData.JsonSerializationt(true);
+                }
+     
+
+
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_inv_combinelist = sQLControl_inv_combinelist.GetRowsByDefult(null, (int)enum_合併總單.GUID, GUID);
+                if(list_inv_combinelist.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<object[]> list_inv_combinelist_buf = new List<object[]>();
+
+
+                object[] value;
+                value = list_inv_combinelist[0];
+                value[(int)enum_合併總單.StockRecord_GUID] = StockRecord_GUID;
+                value[(int)enum_合併總單.StockRecord_ServerName] = StockRecord_ServerName;
+                value[(int)enum_合併總單.StockRecord_ServerType] = StockRecord_ServerType;
+
+                sQLControl_inv_combinelist.UpdateByDefulteExtra(null, value);
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "inv_stockrecord_update_by_GUID";
+                returnData.Result = $"更新盤點日庫存單號成功!";
+                return returnData.JsonSerializationt(true);
+            }
+            catch(Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            
         }
         /// <summary>
         /// 取得所有合併單資料
@@ -957,56 +1065,6 @@ namespace HIS_WebApi
             tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_合併單明細()));
             return tables.JsonSerializationt(true);
         }
-        //private string CheckCreatTable(ServerSettingClass serverSettingClass)
-        //{
-
-        //    string Server = serverSettingClass.Server;
-        //    string DB = serverSettingClass.DBName;
-        //    string UserName = serverSettingClass.User;
-        //    string Password = serverSettingClass.Password;
-        //    uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-        //    SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
-        //    SQLControl sQLControl_inv_sub_combinelist = new SQLControl(Server, DB, "inv_sub_combinelist", UserName, Password, Port, SSLMode);
-
-        //    List<Table> tables = new List<Table>();
-        //    Table table_inv_combinelist;        
-        //    table_inv_combinelist = new Table("inv_combinelist");
-        //    table_inv_combinelist.Server = Server;
-        //    table_inv_combinelist.DBName = DB;
-        //    table_inv_combinelist.Username = UserName;
-        //    table_inv_combinelist.Password = Password;
-        //    table_inv_combinelist.Port = Port.ToString();
-        //    table_inv_combinelist.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-        //    table_inv_combinelist.AddColumnList("合併單名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-        //    table_inv_combinelist.AddColumnList("合併單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-        //    table_inv_combinelist.AddColumnList("建表人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-        //    table_inv_combinelist.AddColumnList("建表時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
-        //    table_inv_combinelist.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-        //    if (!sQLControl_inv_combinelist.IsTableCreat()) sQLControl_inv_combinelist.CreatTable(table_inv_combinelist);
-        //    else sQLControl_inv_combinelist.CheckAllColumnName(table_inv_combinelist, true);
-        //    tables.Add(table_inv_combinelist);
-
-        //    Table table_inv_sub_combinelist;
-        //    table_inv_sub_combinelist = new Table("inv_sub_combinelist");
-        //    table_inv_sub_combinelist.Server = Server;
-        //    table_inv_sub_combinelist.DBName = DB;
-        //    table_inv_sub_combinelist.Username = UserName;
-        //    table_inv_sub_combinelist.Password = Password;
-        //    table_inv_sub_combinelist.Port = Port.ToString();
-        //    table_inv_sub_combinelist.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-        //    table_inv_sub_combinelist.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-        //    table_inv_sub_combinelist.AddColumnList("合併單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-        //    table_inv_sub_combinelist.AddColumnList("單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-        //    table_inv_sub_combinelist.AddColumnList("類型", Table.StringType.VARCHAR, 50, Table.IndexType.None);    
-        //    table_inv_sub_combinelist.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
-        //    table_inv_sub_combinelist.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-        //    if (!sQLControl_inv_sub_combinelist.IsTableCreat()) sQLControl_inv_sub_combinelist.CreatTable(table_inv_sub_combinelist);
-        //    else sQLControl_inv_sub_combinelist.CheckAllColumnName(table_inv_sub_combinelist, true);
-        //    tables.Add(table_inv_sub_combinelist);
-
-        //    return tables.JsonSerializationt(true);
-
-        //}
+      
     }
 }

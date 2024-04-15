@@ -307,6 +307,8 @@ namespace HIS_DB_Lib
             returnData returnData = new returnData();
             returnData.Value = IC_SN;
             returnData.Data = creat;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
             if (returnData == null) return;
             if (returnData.Code != 200)
             {
@@ -316,8 +318,7 @@ namespace HIS_DB_Lib
                 Console.WriteLine($"-----------------------------------------------");
                 return;
             }
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);      
+
         }
         static public creat creat_get_by_IC_SN(string API_Server, string IC_SN)
         {

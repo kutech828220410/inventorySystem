@@ -44,6 +44,21 @@
             備註
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.StockRecord_GUID">
+            <summary>
+            StockRecord_GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.StockRecord_ServerName">
+            <summary>
+            StockRecord_ServerName
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.StockRecord_ServerType">
+            <summary>
+            StockRecord_ServerType
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.inv_combinelistClass.Records_Ary">
             <summary>
             合併單明細

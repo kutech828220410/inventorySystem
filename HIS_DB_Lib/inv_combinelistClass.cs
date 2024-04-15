@@ -17,8 +17,12 @@ namespace HIS_DB_Lib
         合併單名稱,
         [Description("合併單號,VARCHAR,30,INDEX")]
         合併單號,
-        [Description("盤點日庫存單號,VARCHAR,30,None")]
-        盤點日庫存單號,
+        [Description("StockRecord_GUID,VARCHAR,50,None")]
+        StockRecord_GUID,
+        [Description("StockRecord_ServerName,VARCHAR,30,None")]
+        StockRecord_ServerName,
+        [Description("StockRecord_ServerType,VARCHAR,30,None")]
+        StockRecord_ServerType,
         [Description("建表人,VARCHAR,30,None")]
         建表人,
         [Description("建表時間,DATETIME,50,INDEX")]
@@ -79,6 +83,22 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("NOTE")]
         public string 備註 { get; set; }
+        /// <summary>
+        /// StockRecord_GUID
+        /// </summary>
+        [JsonPropertyName("StockRecord_GUID")]
+        public string StockRecord_GUID { get; set; }
+        /// <summary>
+        /// StockRecord_ServerName
+        /// </summary>
+        [JsonPropertyName("StockRecord_ServerName")]
+        public string StockRecord_ServerName { get; set; }
+        /// <summary>
+        /// StockRecord_ServerType
+        /// </summary>
+        [JsonPropertyName("StockRecord_ServerType")]
+        public string StockRecord_ServerType { get; set; }
+
 
         /// <summary>
         /// 合併單明細
@@ -223,7 +243,28 @@ namespace HIS_DB_Lib
             byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
             return bytes;
         }
+        static public void inv_stockrecord_update_by_GUID(string API_Server, string GUID, string StockRecord_GUID, string StockRecord_ServerName, string StockRecord_ServerType)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/inv_stockrecord_update_by_GUID";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+            returnData.ValueAry.Add(StockRecord_GUID);
+            returnData.ValueAry.Add(StockRecord_ServerName);
+            returnData.ValueAry.Add(StockRecord_ServerType);
 
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return;
+            }
+        }
     }
 
   

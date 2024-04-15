@@ -110,6 +110,36 @@ namespace HIS_DB_Lib
             if (stockRecords.Count == 0) return null;
             return stockRecords;
         }
+
+        static public stockRecord POST_get_record_by_guid(string API_Server, string GUID)
+        {
+            return POST_get_record_by_guid(API_Server, GUID, "ds01", "藥庫");
+        }
+        static public stockRecord POST_get_record_by_guid(string API_Server, string GUID, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/stockRecord/get_record_by_guid";
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.ValueAry.Add(GUID);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return null;
+            }
+            stockRecord stockRecord = returnData.Data.ObjToClass<stockRecord>();
+            if (stockRecord == null) return null;
+            return stockRecord;
+        }
+
+
     }
     public class stockRecord_content
     {

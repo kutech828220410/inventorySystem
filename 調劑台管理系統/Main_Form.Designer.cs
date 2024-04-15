@@ -34401,7 +34401,7 @@
             this.plC_RJ_Button_共用區亮燈範圍設置.GUID = "";
             this.plC_RJ_Button_共用區亮燈範圍設置.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_共用區亮燈範圍設置.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_共用區亮燈範圍設置.Location = new System.Drawing.Point(316, 12);
+            this.plC_RJ_Button_共用區亮燈範圍設置.Location = new System.Drawing.Point(327, 12);
             this.plC_RJ_Button_共用區亮燈範圍設置.Name = "plC_RJ_Button_共用區亮燈範圍設置";
             this.plC_RJ_Button_共用區亮燈範圍設置.OFF_文字內容 = "共用區亮燈\n範圍設置";
             this.plC_RJ_Button_共用區亮燈範圍設置.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -34443,7 +34443,7 @@
             this.plC_CheckBox_關閉抽屜不滅燈.Bool = false;
             this.plC_CheckBox_關閉抽屜不滅燈.Font = new System.Drawing.Font("新細明體", 12F);
             this.plC_CheckBox_關閉抽屜不滅燈.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_關閉抽屜不滅燈.Location = new System.Drawing.Point(163, 86);
+            this.plC_CheckBox_關閉抽屜不滅燈.Location = new System.Drawing.Point(333, 115);
             this.plC_CheckBox_關閉抽屜不滅燈.Name = "plC_CheckBox_關閉抽屜不滅燈";
             this.plC_CheckBox_關閉抽屜不滅燈.Size = new System.Drawing.Size(139, 20);
             this.plC_CheckBox_關閉抽屜不滅燈.TabIndex = 133;
@@ -34461,7 +34461,7 @@
             // 
             this.groupBox38.Controls.Add(this.label32);
             this.groupBox38.Controls.Add(this.plC_NumBox_亮燈亮度);
-            this.groupBox38.Location = new System.Drawing.Point(11, 81);
+            this.groupBox38.Location = new System.Drawing.Point(333, 144);
             this.groupBox38.Name = "groupBox38";
             this.groupBox38.Size = new System.Drawing.Size(146, 54);
             this.groupBox38.TabIndex = 131;
