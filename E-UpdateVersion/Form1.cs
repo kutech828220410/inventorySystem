@@ -242,7 +242,7 @@ namespace E_UpdateVersion
             if ((computerConfigClass.GetValue("智能藥庫系統", "程式致能") == true.ToString()))
             {
                 rJ_Button_智能藥庫系統.Enabled = true;
-                rJ_Button_智能藥庫系統.Visible = false;
+                rJ_Button_智能藥庫系統.Visible = true;
 
             }
             else
