@@ -753,3 +753,4 @@ C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\SunnyUI.C
 C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
 C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\HIS_DB_Lib.xml
 C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_癌症備藥機.resources
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Newtonsoft.Json.dll

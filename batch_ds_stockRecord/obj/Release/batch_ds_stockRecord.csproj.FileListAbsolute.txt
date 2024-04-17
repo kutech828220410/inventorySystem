@@ -163,3 +163,4 @@ C:\Users\vendors\Desktop\inventorySystem\batch_ds_stockRecord\obj\Release\batch_
 C:\Users\vendors\Desktop\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.exe
 C:\Users\vendors\Desktop\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.pdb
 C:\Users\vendors\Desktop\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\Newtonsoft.Json.dll
