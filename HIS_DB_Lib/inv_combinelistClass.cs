@@ -27,6 +27,10 @@ namespace HIS_DB_Lib
         建表人,
         [Description("建表時間,DATETIME,50,INDEX")]
         建表時間,
+        [Description("消耗量起始時間,DATETIME,50,None")]
+        消耗量起始時間,
+        [Description("消耗量結束時間,DATETIME,50,None")]
+        消耗量結束時間,
         [Description("備註,VARCHAR,200,None")]
         備註,
     }
@@ -98,7 +102,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("StockRecord_ServerType")]
         public string StockRecord_ServerType { get; set; }
-
+        /// <summary>
+        /// 消耗量起始時間
+        /// </summary>
+        [JsonPropertyName("consumption_startTime")]
+        public string 消耗量起始時間 { get; set; }
+        /// <summary>
+        /// 消耗量起始時間
+        /// </summary>
+        [JsonPropertyName("consumption_endTime")]
+        public string 消耗量結束時間 { get; set; }
 
         /// <summary>
         /// 合併單明細
@@ -251,6 +264,46 @@ namespace HIS_DB_Lib
             returnData.ValueAry.Add(StockRecord_GUID);
             returnData.ValueAry.Add(StockRecord_ServerName);
             returnData.ValueAry.Add(StockRecord_ServerType);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return;
+            }
+        }
+        static public void inv_consumption_time_update_by_GUID(string API_Server, string GUID, DateTime dateTime_start , DateTime dateTime_end)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/inv_consumption_time_update_by_GUID";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+            returnData.ValueAry.Add(dateTime_start.ToDateTimeString_6());
+            returnData.ValueAry.Add(dateTime_end.ToDateTimeString_6());
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return;
+            if (returnData.Code != 200)
+            {
+                Console.WriteLine($"-----------------------------------------------");
+                Console.WriteLine($"url : {url}");
+                Console.WriteLine($"Result : {returnData.Result}");
+                Console.WriteLine($"-----------------------------------------------");
+                return;
+            }
+        }
+        static public void inv_delete_by_SN(string API_Server, string SN)
+        {
+            string url = $"{API_Server}/api/inv_combinelist/inv_delete_by_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{SN}";
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);

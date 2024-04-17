@@ -59,6 +59,16 @@
             StockRecord_ServerType
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.消耗量起始時間">
+            <summary>
+            消耗量起始時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.消耗量結束時間">
+            <summary>
+            消耗量起始時間
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.inv_combinelistClass.Records_Ary">
             <summary>
             合併單明細

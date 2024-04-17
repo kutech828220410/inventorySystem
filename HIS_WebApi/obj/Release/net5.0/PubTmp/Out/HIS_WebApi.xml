@@ -1325,7 +1325,6 @@
             </summary>
             <remarks>
             [必要輸入參數說明]<br/> 
-             1.[returnData.Value] : 合併單名稱 <br/> 
              --------------------------------------------<br/> 
             以下為範例JSON範例
             <code>
@@ -1340,6 +1339,32 @@
                   "StockRecord_GUID"
                   "StockRecord_ServerName"
                   "StockRecord_ServerType"
+                ]
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為合併單結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.inv_combinelist.POST_inv_consumption_time_update_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID更新 消耗量計算起始及結束日期
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+             
+                },
+                "ValueAry" : 
+                [
+                  "GUID",
+                  "startTime"
+                  "endTime"
                 ]
             }
             </code>

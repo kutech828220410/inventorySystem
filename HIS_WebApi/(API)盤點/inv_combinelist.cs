@@ -277,7 +277,6 @@ namespace HIS_WebApi
         /// </summary>
         /// <remarks>
         /// [必要輸入參數說明]<br/> 
-        ///  1.[returnData.Value] : 合併單名稱 <br/> 
         ///  --------------------------------------------<br/> 
         /// 以下為範例JSON範例
         /// <code>
@@ -379,6 +378,115 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
             
+        }
+        /// <summary>
+        /// 以GUID更新 消耗量計算起始及結束日期
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "GUID",
+        ///       "startTime"
+        ///       "endTime"
+        ///     ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為合併單結構</returns>
+        [Route("inv_consumption_time_update_by_GUID")]
+        [HttpPost]
+        public string POST_inv_consumption_time_update_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            try
+            {
+                GET_init(returnData);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[GUID],[startTime],[endTime]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+                string startTime = returnData.ValueAry[1];
+                string endTime = returnData.ValueAry[2];
+                if (GUID.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value [GUID]不得為空白";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (startTime.Check_Date_String() == false || endTime.Check_Date_String() == false)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value [startTime]或[endTime] 日期格式錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+
+
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_inv_combinelist = new SQLControl(Server, DB, "inv_combinelist", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_inv_combinelist = sQLControl_inv_combinelist.GetRowsByDefult(null, (int)enum_合併總單.GUID, GUID);
+                if (list_inv_combinelist.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<object[]> list_inv_combinelist_buf = new List<object[]>();
+
+
+                object[] value;
+                value = list_inv_combinelist[0];
+                value[(int)enum_合併總單.消耗量起始時間] = startTime;
+                value[(int)enum_合併總單.消耗量結束時間] = endTime;
+
+                sQLControl_inv_combinelist.UpdateByDefulteExtra(null, value);
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "inv_stockrecord_update_by_GUID";
+                returnData.Result = $"更新消耗量計算起始及結束日期成功! 起始時間[{startTime}] 結束時間[{endTime}]";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
         }
         /// <summary>
         /// 取得所有合併單資料
