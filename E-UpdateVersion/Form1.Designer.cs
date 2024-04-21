@@ -67,7 +67,7 @@ namespace E_UpdateVersion
             this.rJ_Button_離開.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_離開.GUID = "";
             this.rJ_Button_離開.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_離開.Location = new System.Drawing.Point(529, 0);
+            this.rJ_Button_離開.Location = new System.Drawing.Point(525, 0);
             this.rJ_Button_離開.Name = "rJ_Button_離開";
             this.rJ_Button_離開.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_離開.ProhibitionLineWidth = 4;
@@ -91,9 +91,9 @@ namespace E_UpdateVersion
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(683, 88);
+            this.label1.Size = new System.Drawing.Size(679, 88);
             this.label1.TabIndex = 4;
-            this.label1.Text = "次世代智慧藥局整合平台";
+            this.label1.Text = "智慧藥局整合平台";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // contextMenuStrip
@@ -115,9 +115,9 @@ namespace E_UpdateVersion
             this.label2.BackColor = System.Drawing.Color.Gainsboro;
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(0, 597);
+            this.label2.Location = new System.Drawing.Point(0, 593);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(683, 36);
+            this.label2.Size = new System.Drawing.Size(679, 36);
             this.label2.TabIndex = 23;
             this.label2.Text = "Copyright ©2023 鴻森整合機電有限公司";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -126,9 +126,9 @@ namespace E_UpdateVersion
             // 
             this.label_version.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label_version.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_version.Location = new System.Drawing.Point(0, 583);
+            this.label_version.Location = new System.Drawing.Point(0, 579);
             this.label_version.Name = "label_version";
-            this.label_version.Size = new System.Drawing.Size(683, 14);
+            this.label_version.Size = new System.Drawing.Size(679, 14);
             this.label_version.TabIndex = 24;
             this.label_version.Text = "Ver 0.0.0.0";
             // 
@@ -138,7 +138,7 @@ namespace E_UpdateVersion
             this.label_info.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_info.Location = new System.Drawing.Point(0, 88);
             this.label_info.Name = "label_info";
-            this.label_info.Size = new System.Drawing.Size(683, 16);
+            this.label_info.Size = new System.Drawing.Size(679, 16);
             this.label_info.TabIndex = 26;
             this.label_info.Text = "XXXXXXXX";
             this.label_info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,9 +147,9 @@ namespace E_UpdateVersion
             // 
             this.panel1.Controls.Add(this.rJ_Button_離開);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 520);
+            this.panel1.Location = new System.Drawing.Point(0, 516);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(683, 63);
+            this.panel1.Size = new System.Drawing.Size(679, 63);
             this.panel1.TabIndex = 27;
             // 
             // flowLayoutPanel1
@@ -162,7 +162,7 @@ namespace E_UpdateVersion
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 104);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(683, 416);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(679, 412);
             this.flowLayoutPanel1.TabIndex = 31;
             // 
             // rJ_Button_智能藥庫系統
@@ -345,7 +345,7 @@ namespace E_UpdateVersion
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(683, 633);
+            this.ClientSize = new System.Drawing.Size(679, 629);
             this.ControlBox = false;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
