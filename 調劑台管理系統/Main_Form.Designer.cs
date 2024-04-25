@@ -18652,6 +18652,7 @@
             this.rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Font = new System.Drawing.Font("新細明體", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.GUID = "";
+            this.rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Location = new System.Drawing.Point(94, 45);
             this.rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Multiline = false;
             this.rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱.Name = "rJ_TextBox_儲位管理_EPD583_抽屜列表_儲位名稱";

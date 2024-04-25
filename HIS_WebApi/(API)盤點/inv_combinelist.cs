@@ -1167,7 +1167,6 @@ namespace HIS_WebApi
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
 
-
             List<Table> tables = new List<Table>();
             tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_合併總單()));
             tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_合併單明細()));

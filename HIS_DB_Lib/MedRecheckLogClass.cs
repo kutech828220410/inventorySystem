@@ -32,6 +32,7 @@ namespace HIS_DB_Lib
     }
     public class MedRecheckLogClass
     {
+        
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
         [JsonPropertyName("CODE")]

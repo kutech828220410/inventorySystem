@@ -188,15 +188,15 @@ namespace 調劑台管理系統
                 if(Dialog_條碼管理.IsShown == false)
                 {
                     string bacode01 = Function_ReadBacodeScanner01();
-                    //string bacode02 = Function_ReadBacodeScanner02();
+                    string bacode02 = Function_ReadBacodeScanner02();
                     if (bacode01.StringIsEmpty() == false)
                     {
                         Function_藥品資料_藥檔資料_搜尋BarCode(bacode01);
                     }
-                    //else if (bacode02.StringIsEmpty() == false)
-                    //{
-                    //    Function_藥品資料_藥檔資料_搜尋BarCode(bacode02);
-                    //}
+                    else if (bacode02.StringIsEmpty() == false)
+                    {
+                        Function_藥品資料_藥檔資料_搜尋BarCode(bacode02);
+                    }
                 }
             
                 if (this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.Checked)

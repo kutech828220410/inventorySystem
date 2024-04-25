@@ -15,22 +15,19 @@ using System.Configuration;
 using IBM.Data.DB2.Core;
 using MyOffice;
 using NPOI;
+using HIS_DB_Lib;
 namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
     public class MedPriceController : ControllerBase
     {
-        public class class_MedPrice
-        {
-            public string 藥品碼 { get; set; }
-            public string 售價 { get; set; }
-            public string 成本價 { get; set; }
-            public string 最近一次售價 { get; set; }
-            public string 最近一次成本價 { get; set; }
 
-        }
-
+        /// <summary>
+        /// (屏榮)取得藥品採購資料
+        /// </summary>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [HttpGet]
         public string Get()
         {
@@ -49,10 +46,10 @@ namespace HIS_WebApi
                 string name = reader.GetName(i);
                 list_colname_UDDRGVWA.Add(name);
             }
-            List<class_MedPrice> class_MedPrices = new List<class_MedPrice>();
+            List<medPriceClass> class_MedPrices = new List<medPriceClass>();
             while (reader.Read())
             {
-                class_MedPrice class_MedPrice = new class_MedPrice();
+                medPriceClass class_MedPrice = new medPriceClass();
                 class_MedPrice.藥品碼 = reader["UDDRGNO"].ToString();
                 class_MedPrice.售價 = reader["UDPRICE"].ToString();
                 class_MedPrice.成本價 = reader["UDWCOST"].ToString();

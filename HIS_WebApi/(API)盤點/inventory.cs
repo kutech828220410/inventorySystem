@@ -2504,6 +2504,7 @@ namespace HIS_WebApi
 
             
         }
+
         private returnData Function_Get_inventory_creat(ServerSettingClass serverSettingClass, string MED_TableName, List<object[]> list_inventory_creat)
         {
             return Function_Get_inventory_creat(serverSettingClass, MED_TableName, list_inventory_creat, true);
