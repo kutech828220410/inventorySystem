@@ -94,6 +94,7 @@
     <Compile Include="IncomeReasonsClass.cs" />
     <Compile Include="inspectionClass.cs" />
     <Compile Include="inventoryClass.cs" />
+    <Compile Include="inventoryResultClass.cs" />
     <Compile Include="inv_combinelistClass.cs" />
     <Compile Include="lockerIndexClass.cs" />
     <Compile Include="medClass.cs" />

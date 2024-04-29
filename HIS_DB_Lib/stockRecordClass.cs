@@ -54,6 +54,14 @@ namespace HIS_DB_Lib
         public List<stockRecord_content> Contents { get => contents; set => contents = value; }
         private List<stockRecord_content> contents = new List<stockRecord_content>();
 
+        public stockRecord_content this[string code]
+        {
+            get
+            {
+                return contents.FirstOrDefault(temp => temp.藥碼 == code);
+            }
+        }
+
         static public List<stockRecord> POST_get_all_record(string API_Server)
         {
             return POST_get_all_record(API_Server, "ds01", "藥庫");
@@ -139,6 +147,7 @@ namespace HIS_DB_Lib
 
 
     }
+
     public class stockRecord_content
     {
         [JsonPropertyName("GUID")]

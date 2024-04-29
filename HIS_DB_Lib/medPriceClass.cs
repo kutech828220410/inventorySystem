@@ -29,6 +29,8 @@ namespace HIS_DB_Lib
         健保價,
         [Description("ATC,VARCHAR,20,NONE")]
         ATC,
+        [Description("加入時間,DATETIME,20,NONE")]
+        加入時間,
     }
     public class medPriceClass
     {
@@ -48,5 +50,7 @@ namespace HIS_DB_Lib
         public string 健保價 { get; set; }
         [JsonPropertyName("ATC")]
         public string ATC { get; set; }
+        [JsonPropertyName("add_time")]
+        public string 加入時間 { get; set; }
     }
 }

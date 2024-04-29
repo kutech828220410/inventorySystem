@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PYiHegU/MbzCKA/AMJZ41C60RLkCkuBFPissxCss4Zg=</dsig:DigestValue>
+        <dsig:DigestValue>4/vhiOVciPYNMo2zAaNYkC+otOiFXQ++tOBop2mqYsI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

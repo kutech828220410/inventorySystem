@@ -1248,6 +1248,95 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.inventoryResult.POST_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "ds01",
+                "ServerType" : "藥庫",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryResult.POST_get_inventoryResult(HIS_DB_Lib.returnData)">
+            <summary>
+            取得盤點結果
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "ds01",
+                "ServerType" : "藥庫",
+                "ValueAry" : 
+                [
+                    "[StartDateTime]",
+                    "[EndDateTime]"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryResult.POST_add_inventoryResult(HIS_DB_Lib.returnData)">
+            <summary>
+            紀錄盤點結果
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "ds01",
+                "ServerType" : "藥庫",
+                "Data": 
+                {
+                    [inventoryResultClass]
+                },
+                "ValueAry" : 
+                [
+                
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.inventoryResult.POST_delete_inventoryResult_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            刪除盤點結果
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "ds01",
+                "ServerType" : "藥庫",
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                   "GUID"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.inv_combinelist.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化合併單資料庫
@@ -1501,7 +1590,7 @@
         </member>
         <member name="M:HIS_WebApi.OutTakeMedController.mul_med_take(System.String,System.Collections.Generic.List{HIS_DB_Lib.class_OutTakeMed_data})">
             <summary>
-            op_type : 1(取藥亮燈) -1(取藥扣帳) -3(加藥) -4(退藥) -5(入庫扣帳) -6(撥入) -7(撥出) -8(調入) -9(調出)
+            op_type : 1(取藥亮燈) -1(取藥扣帳) 2(取藥亮燈並扣帳) -3(加藥) -4(退藥) -5(入庫扣帳) -6(撥入) -7(撥出) -8(調入) -9(調出)
             </summary>
             <param name="name"></param>
             <param name="data"></param>
@@ -1688,6 +1777,26 @@
                  [
                    (medPrice)
                  ]
+               }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data] : medPriceClass</returns>
+        </member>
+        <member name="M:HIS_WebApi.medPirce.POST_get_all(HIS_DB_Lib.returnData)">
+            <summary>
+            取得所有藥品價格資訊
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {      
+               
                }
             }
             </code>

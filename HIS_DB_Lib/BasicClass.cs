@@ -25,7 +25,7 @@ namespace HIS_DB_Lib
         private string _serverName = "";
         private string _serverType = "";
         private string _serverContent = "";
-
+        private string _RequestUrl = "";
 
         public object Data
         {
@@ -59,6 +59,7 @@ namespace HIS_DB_Lib
         public uint Port { get => _port; set => _port = value; }
         public string UserName { get => _userName; set => _userName = value; }
         public string Password { get => _password; set => _password = value; }
+        public string RequestUrl { get => _RequestUrl; set => _RequestUrl = value; }
         private List<string> valueAry = new List<string>();
         public List<string> ValueAry 
         { 
@@ -116,6 +117,8 @@ namespace HIS_DB_Lib
                 resultData = value;
             }
         }
+
+
         public returnData()
         {
         }
@@ -239,4 +242,95 @@ namespace HIS_DB_Lib
         }
     }
 
+    public class ValidityClass
+    {
+        private List<validity> _validitys = new List<validity>();
+
+        public List<validity> Validitys { get => _validitys; set => _validitys = value; }
+
+
+        public void AddValidity(string validity_period, string lot)
+        {
+            validity _validity = new validity(validity_period, lot);
+            if(_validity.Check()) _validitys.Add(_validity);
+        }
+        public string Value
+        {
+            set
+            {
+                _validitys.Clear();
+                string[] text_ary = value.Split('\n');
+                for (int i = 0; i < text_ary.Length; i++)
+                {
+                    validity _validity = new validity();
+                    _validity.Value = text_ary[i];
+                    if (_validity.Check()) _validitys.Add(_validity);
+                }         
+            }
+            get
+            {
+                return this.ToString();
+            }
+        }
+        public override string ToString()
+        {
+            string text = "";
+            for (int i = 0; i < _validitys.Count; i++)
+            {
+                text += _validitys[i].ToString();
+                if (i != _validitys.Count) text += "\n";
+            }
+            return text;
+        }
+
+        public class validity
+        {
+            [JsonPropertyName("validity_period")]
+            public string Validity_period { get; set; }
+            [JsonPropertyName("lot_number")]
+            public string Lot_number { get; set; }
+
+            public validity(string validity_period, string lot)
+            {
+                if (validity_period.Check_Date_String())
+                {
+                    this.Validity_period = validity_period;
+                    this.Lot_number = lot;
+                }
+            }
+            public validity()
+            {
+
+            }
+
+            public bool Check()
+            {
+                return Validity_period.Check_Date_String();
+            }
+            public string Value
+            {
+                set
+                {
+                    string 效期 = value.GetTextValue("效期");
+                    string 批號 = value.GetTextValue("批號");
+                    if(效期.Check_Date_String())
+                    {
+                        this.Validity_period = 效期;
+                        this.Lot_number = 批號;
+                    }
+                }
+                get
+                {
+                    return this.ToString();
+                }
+            }
+
+            public override string ToString()
+            {
+                if (Lot_number.StringIsEmpty()) Lot_number = "無";
+                return $"[效期]:{Validity_period},[批號]:{Lot_number}";
+            }
+        }
+    }
+  
 }
