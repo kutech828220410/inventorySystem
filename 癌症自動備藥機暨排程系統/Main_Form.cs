@@ -22,6 +22,8 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]
 namespace 癌症自動備藥機暨排程系統
 {
     public partial class Main_Form : Form
@@ -278,10 +280,11 @@ namespace 癌症自動備藥機暨排程系統
             Program_輸入輸出_Init();
             Program_軸控_Init();
             Program_藥檔資料_Init();
+            Program_儲位設定_Init();
             Program_馬達輸出索引表_Init();
             Program_登入權限資料_Init();
             Program_人員資料_Init();
-            Program_儲位設定_Init();
+          
             Program_工程模式_Init();
             Program_自動備藥_Init();
             Program_調配排程_Init();
