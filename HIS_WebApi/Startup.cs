@@ -10,12 +10,9 @@ using Microsoft.OpenApi.Models; // 导入 OpenApiInfo 和 OpenApiContact 类
 using System;
 using System.IO;
 using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Configuration;
-using Microsoft.AspNetCore.SignalR;
-using H_Pannel_lib;
+
+using IGeekFan.AspNetCore.Knife4jUI;
+using Microsoft.AspNetCore.Mvc.Controllers;
 namespace HIS_WebApi
 {
     public class Startup
@@ -70,13 +67,12 @@ namespace HIS_WebApi
                     Version = "v1",
                     Title = "Pharmacy Sysytem API",
                     Description = "Pharmacy Sysytem API",
-                    //TermsOfService = new Uri("https://igouist.github.io/"),
-                    //Contact = new OpenApiContact
-                    //{
-                    //    Name = "Igouist",
-                    //    Email = string.Empty,
-                    //    Url = new Uri("https://igouist.github.io/about/"),
-                    //}
+                    License = new OpenApiLicense { Name = "鴻森智能科技有限公司 版權所有" }
+                });
+                c.CustomOperationIds(apiDesc =>
+                {
+                    var controllerAction = apiDesc.ActionDescriptor as ControllerActionDescriptor;
+                    return controllerAction.ControllerName + "-" + controllerAction.ActionName;
                 });
 
                 // 讀取 XML 檔案產生 API 說明
@@ -120,6 +116,16 @@ namespace HIS_WebApi
             app.UseSwaggerUI(c =>
             {
                 //c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+            app.UseKnife4UI(c =>
+            {
+                c.RoutePrefix = string.Empty;
+                c.SwaggerEndpoint($"/swagger/v1/swagger.json", "h.swagger.webapi v1");
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapSwagger("{documentName}/swagger.json");
             });
         }
     }

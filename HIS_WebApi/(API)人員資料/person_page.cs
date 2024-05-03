@@ -23,12 +23,21 @@ namespace HIS_WebApi
  
     [Route("api/[controller]")]
     [ApiController]
-    public class person_pageController : ControllerBase
+    public class person_page : ControllerBase
     {
 
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
-  
+
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(personPageClass))]
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        /// 
         [Route("init")]
         [HttpPost]
         public string POST_init(returnData returnData)
@@ -36,7 +45,7 @@ namespace HIS_WebApi
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -57,14 +66,56 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 取得全部人員資料
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data][personPageClass陣列]</returns>
         [HttpPost]
-        public string Get(returnData returnData)
+        public string Get([FromBody] returnData returnData)
         {
+            return get_all(returnData);
+        }
+        /// <summary>
+        /// 取得全部人員資料
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data][personPageClass陣列]</returns>
+        [Route("get_all")]
+        [HttpPost] 
+        public string get_all([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_all";
             try
             {
-                MyTimerBasic myTimerBasic = new MyTimerBasic();
+
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -91,18 +142,36 @@ namespace HIS_WebApi
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
             }
-
-
         }
+        /// <summary>
+        /// 以ID搜尋人員資料
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "Value" : "[ID]"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]</returns>
         [Route("serch_by_id")]
         [HttpPost]
         public string POST_serch_by_id([FromBody] returnData returnData)
         {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "serch_by_id";
             try
             {
-                MyTimerBasic myTimerBasic = new MyTimerBasic();
+             
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -137,15 +206,35 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 新增及修改人員資料
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [personPageClass陣列]
+        ///     },
+        ///     "Value" : "[ID]"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]</returns>
         [Route("add")]
         [HttpPost]
         public string POST_add([FromBody] returnData returnData)
         {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "serch_by_add";
             try
             {
-                MyTimerBasic myTimerBasic = new MyTimerBasic();
+                
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "人員資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
