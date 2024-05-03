@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[3.1.0.600, )"
             },
+            "IGeekFan.AspNetCore.Knife4jUI": {
+              "target": "Package",
+              "version": "[0.0.16, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.29, )"

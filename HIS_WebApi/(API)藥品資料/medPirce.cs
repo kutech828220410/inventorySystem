@@ -30,6 +30,7 @@ namespace HIS_WebApi
         static public string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(medConfigClass))]
         /// <summary>
         /// 初始化資料庫
         /// </summary>

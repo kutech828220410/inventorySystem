@@ -21,9 +21,12 @@ using H_Pannel_lib;
 using HIS_DB_Lib;
 namespace HIS_WebApi
 {
+    /// <summary>
+    /// 交易紀錄
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class transactionsController : Controller
+    public class transactions : Controller
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
@@ -95,7 +98,7 @@ namespace HIS_WebApi
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
                 transactionsClass transactionsClass = returnData.Data.ObjToClass<transactionsClass>();
-             
+
                 if (transactionsClass == null)
                 {
                     returnData.Code = -200;
@@ -327,7 +330,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_value = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.操作時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
                 list_value.Sort(new ICP_交易記錄查詢());
-                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass , enum_交易記錄查詢資料>();
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
                 returnData.Code = 200;
                 returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
@@ -569,7 +572,7 @@ namespace HIS_WebApi
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
-                if (returnData.Value .StringIsEmpty())
+                if (returnData.Value.StringIsEmpty())
                 {
                     returnData.Code = -200;
                     returnData.Result = "輸入資訊不得為空白!";
@@ -591,7 +594,7 @@ namespace HIS_WebApi
                 medClasses_buf = (from value in medClasses
                                   where value.藥品碼.ToUpper() == 藥品碼.ToUpper()
                                   select value).ToList();
-                if(medClasses_buf.Count == 0)
+                if (medClasses_buf.Count == 0)
                 {
                     if (returnData.Value.StringIsEmpty())
                     {
@@ -613,7 +616,7 @@ namespace HIS_WebApi
 
             }
 
-     
+
         }
         [Route("serch")]
         [HttpPost]
@@ -639,14 +642,14 @@ namespace HIS_WebApi
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
 
                 string[] input_value = returnData.Value.Split(",");
-                if(input_value.Length == 0)
+                if (input_value.Length == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "輸入資訊錯誤!";
                     returnData.Data = "";
                     return returnData.JsonSerializationt();
                 }
-                if(input_value.Length == 1)
+                if (input_value.Length == 1)
                 {
                     string 藥品碼 = input_value[0];
                     List<object[]> list_value = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥品碼, 藥品碼);
@@ -688,18 +691,18 @@ namespace HIS_WebApi
                     returnData.Data = transactionsClasses;
                     return returnData.JsonSerializationt(true);
                 }
-              
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 returnData.Code = -200;
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
 
             }
- 
 
-        }    
+
+        }
         [Route("get_sheet_by_serch")]
         [HttpPost]
         public string POST_get_sheet_by_serch([FromBody] returnData returnData)
@@ -812,25 +815,25 @@ namespace HIS_WebApi
                     sheetClass.AddNewCell_Webapi(NumOfRow + 5, 11, $"{transactionsClasses[i].備註}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                     NumOfRow++;
                 }
-                for(int i = 0; i < sheetClasses.Count; i++)
+                for (int i = 0; i < sheetClasses.Count; i++)
                 {
                     sheetClasses[i].ReplaceCell(1, 5, $"{消耗量}");
                 }
- 
+
 
                 Console.WriteLine($"寫入Sheet {myTimer.ToString()}");
                 returnData.Code = 200;
-                returnData.Result ="Sheet取得成功!";
+                returnData.Result = "Sheet取得成功!";
                 returnData.Data = sheetClasses;
                 return returnData.JsonSerializationt();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 returnData.Code = -200;
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
             }
-          
+
         }
         [Route("download_excel_by_serch")]
         [HttpPost]
@@ -842,7 +845,7 @@ namespace HIS_WebApi
                 myTimer.StartTickTime(50000);
 
                 returnData = POST_get_sheet_by_serch(returnData).JsonDeserializet<returnData>();
-                if(returnData.Code != 200)
+                if (returnData.Code != 200)
                 {
                     return null;
                 }
@@ -861,7 +864,7 @@ namespace HIS_WebApi
             {
                 return null;
             }
-          
+
         }
 
         /// <summary>
@@ -893,7 +896,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
                 List<transactionsClass> transactionsClasses = returnData.Data.ObjToClass<List<transactionsClass>>();
- 
+
                 List<object[]> list_transactionsClasses = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
                 System.Data.DataTable dataTable = list_transactionsClasses.ToDataTable(new enum_交易記錄查詢資料());
                 dataTable = dataTable.ReorderTable(new enum_交易記錄查詢資料_匯出());
@@ -1068,7 +1071,7 @@ namespace HIS_WebApi
                 returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
                 List<medClass> medClasses_buf = new List<medClass>();
-            
+
                 medClasses_buf = (from value in medClasses
                                   where value.藥品碼.ToUpper() == 藥碼.ToUpper()
                                   select value).ToList();
@@ -1192,7 +1195,7 @@ namespace HIS_WebApi
                 string 藥碼 = returnData.ValueAry[0];
                 string[] ServerNames = returnData.ValueAry[1].Split(',');
                 string[] ServerTypes = returnData.ValueAry[2].Split(',');
-                if(ServerNames.Length != ServerTypes.Length)
+                if (ServerNames.Length != ServerTypes.Length)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"ServerNames及ServerTypes長度不同";
@@ -1202,7 +1205,7 @@ namespace HIS_WebApi
                 {
                     string serverName = ServerNames[i];
                     string serverType = ServerTypes[i];
-                    tasks.Add(Task.Run(new Action(delegate 
+                    tasks.Add(Task.Run(new Action(delegate
                     {
                         List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
                         if (_serverSettingClasses.Count == 0) return;
@@ -1214,10 +1217,12 @@ namespace HIS_WebApi
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥品碼, 藥碼);
+                        list_value_buf = tradingData(list_value_buf);
+
                         list_value.LockAdd(list_value_buf);
 
                     })));
-                   
+
 
 
                 }
@@ -1309,8 +1314,9 @@ namespace HIS_WebApi
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.藥品名稱, $"%{returnData.Value}%");
+                        list_value_buf = tradingData(list_value_buf);
 
-                      
+
                         list_value.LockAdd(list_value_buf);
 
                     })));
@@ -1387,7 +1393,7 @@ namespace HIS_WebApi
                 string[] ServerNames = returnData.ValueAry[2].Split(',');
                 string[] ServerTypes = returnData.ValueAry[3].Split(',');
 
- 
+
                 if (!起始時間.Check_Date_String() || !結束時間.Check_Date_String())
                 {
                     returnData.Code = -5;
@@ -1419,6 +1425,8 @@ namespace HIS_WebApi
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.操作時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
+                        list_value_buf = tradingData(list_value_buf);
+
                         list_value.LockAdd(list_value_buf);
 
                     })));
@@ -1484,7 +1492,7 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
-     
+
                 if (returnData.ValueAry.Count != 4)
                 {
                     returnData.Code = -200;
@@ -1528,6 +1536,9 @@ namespace HIS_WebApi
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.開方時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
+
+                        list_value_buf = tradingData(list_value_buf);
+
                         list_value.LockAdd(list_value_buf);
 
                     })));
@@ -1552,7 +1563,35 @@ namespace HIS_WebApi
 
             }
         }
-
+        private List<object[]> tradingData(List<object[]> list_value)
+        {
+            list_value = (from temp in list_value
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.自動過帳.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.掃碼領藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.手輸領藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.批次領藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.重複領藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統領藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.盤點調整.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.掃碼退藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.手輸退藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統入庫.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統加藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統退藥.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統調入.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統調出.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統撥入.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統撥出.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.入庫作業.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.出庫作業.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.撥入作業.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.撥出作業.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.調入作業.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.調出作業.GetEnumNames()
+                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.效期庫存異動.GetEnumNames()
+                          select temp).ToList();
+            return list_value;
+        }
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
 

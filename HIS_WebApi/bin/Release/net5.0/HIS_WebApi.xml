@@ -152,7 +152,12 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[SheetClass]陣列結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_add(HIS_DB_Lib.returnData)">
+        <member name="T:HIS_WebApi.transactions">
+            <summary>
+            交易紀錄
+            </summary>
+        </member>
+        <member name="M:HIS_WebApi.transactions.POST_add(HIS_DB_Lib.returnData)">
             <summary>
             新增單筆交易紀錄
             </summary>
@@ -173,7 +178,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_by_code(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_by_code(HIS_DB_Lib.returnData)">
             <summary>
             以藥碼搜尋交易紀錄
             </summary>
@@ -195,7 +200,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_by_name(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_by_name(HIS_DB_Lib.returnData)">
             <summary>
             以藥名搜尋交易紀錄
             </summary>
@@ -217,7 +222,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_by_op_time_st_end(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_by_op_time_st_end(HIS_DB_Lib.returnData)">
             <summary>
             指定操作時間範圍取得交易紀錄
             </summary>
@@ -239,7 +244,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_by_rx_time_st_end(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_by_rx_time_st_end(HIS_DB_Lib.returnData)">
             <summary>
             指定開方時間範圍取得交易紀錄
             </summary>
@@ -261,7 +266,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_stock_by_code(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_stock_by_code(HIS_DB_Lib.returnData)">
             <summary>
             取得指定藥碼,效期批號資訊
             </summary>
@@ -283,7 +288,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data][StockClass]</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.Post_download_datas_excel(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.Post_download_datas_excel(HIS_DB_Lib.returnData)">
             <summary>
             取得交易紀錄明細(Excel)(多台合併)
             </summary>
@@ -305,7 +310,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.Post_download_cdmis_datas_excel(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.Post_download_cdmis_datas_excel(HIS_DB_Lib.returnData)">
             <summary>
             取得收支結存報表(Excel)(多台合併)
             </summary>
@@ -332,7 +337,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_datas_sheet(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_datas_sheet(HIS_DB_Lib.returnData)">
             <summary>
             取得收支結存報表(SheetClass)JSON(多台合併)
             </summary>
@@ -359,7 +364,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_datas_by_code(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_datas_by_code(HIS_DB_Lib.returnData)">
             <summary>
             以藥碼搜尋交易紀錄(多台合併)
             </summary>
@@ -384,7 +389,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_datas_by_name(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_datas_by_name(HIS_DB_Lib.returnData)">
             <summary>
             以藥名搜尋交易紀錄(多台合併)
             </summary>
@@ -409,7 +414,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_datas_by_op_time_st_end(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_datas_by_op_time_st_end(HIS_DB_Lib.returnData)">
             <summary>
             指定操作時間範圍取得交易紀錄(多台合併)
             </summary>
@@ -435,7 +440,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
         </member>
-        <member name="M:HIS_WebApi.transactionsController.POST_get_datas_by_rx_time_st_end(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.transactions.POST_get_datas_by_rx_time_st_end(HIS_DB_Lib.returnData)">
             <summary>
             指定開方時間範圍取得交易紀錄(多台合併)
             </summary>
@@ -460,6 +465,84 @@
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為交易紀錄結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.person_page.Get(HIS_DB_Lib.returnData)">
+            <summary>
+            取得全部人員資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data][personPageClass陣列]</returns>
+        </member>
+        <member name="M:HIS_WebApi.person_page.get_all(HIS_DB_Lib.returnData)">
+            <summary>
+            取得全部人員資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data][personPageClass陣列]</returns>
+        </member>
+        <member name="M:HIS_WebApi.person_page.POST_serch_by_id(HIS_DB_Lib.returnData)">
+            <summary>
+            以ID搜尋人員資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "Value" : "[ID]"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.person_page.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增及修改人員資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   [personPageClass陣列]
+                },
+                "Value" : "[ID]"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
         </member>
         <member name="T:HIS_WebApi.stockRecordController">
             <summary>
@@ -2028,6 +2111,63 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.medConfigController.get_all(HIS_DB_Lib.returnData)">
+            <summary>
+            取得全部藥品設定
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medConfigController.add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增或修改藥品設定
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   [medConfigClass陣列]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medConfigController.delete_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID刪除藥品設定
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                },
+                "ValueAry" : 
+                [
+                  "[GUID]"
+                ] 
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="T:HIS_WebApi.medGroupController">
             <summary>
             藥品群組
@@ -2170,24 +2310,6 @@
                 "ServerName": "",
                 "ServerType": "",
                 "TimeTaken": ""
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.medPirce.GET_init(HIS_DB_Lib.returnData)">
-            <summary>
-            初始化資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "Data": 
-                {
-                
-                }
               }
             </code>
             </remarks>

@@ -99,6 +99,181 @@
             類型
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.藥品碼">
+            <summary>
+            藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.效期管理">
+            <summary>
+            效期管理
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.盲盤">
+            <summary>
+            盲盤
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.複盤">
+            <summary>
+            複盤
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.結存報表">
+            <summary>
+            結存報表
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.雙人覆核">
+            <summary>
+            雙人覆核
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.麻醉藥品">
+            <summary>
+            麻醉藥品
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.形狀相似">
+            <summary>
+            形狀相似
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.發音相似">
+            <summary>
+            發音相似
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medConfigClass.自定義">
+            <summary>
+            自定義
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.GUID">
+            <summary>
+            GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.藥品碼">
+            <summary>
+            藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.售價">
+            <summary>
+            售價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.成本價">
+            <summary>
+            成本價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.最近一次售價">
+            <summary>
+            最近一次售價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.最近一次成本價">
+            <summary>
+            最近一次成本價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.健保價">
+            <summary>
+            健保價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.ATC">
+            <summary>
+            ATC
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPriceClass.加入時間">
+            <summary>
+            加入時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.姓名">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.性別">
+            <summary>
+            性別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.密碼">
+            <summary>
+            密碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.單位">
+            <summary>
+            單位
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.藥師證字號">
+            <summary>
+            藥師證字號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.權限等級">
+            <summary>
+            權限等級
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.顏色">
+            <summary>
+            顏色
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.卡號">
+            <summary>
+            卡號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.一維條碼">
+            <summary>
+            一維條碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.識別圖案">
+            <summary>
+            識別圖案
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.指紋辨識">
+            <summary>
+            指紋辨識
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.指紋ID">
+            <summary>
+            指紋ID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.personPageClass.開門權限">
+            <summary>
+            開門權限
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.transactionsClass.GUID">
             <summary>
             唯一KEY

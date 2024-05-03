@@ -2650,3 +2650,4 @@ C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_W
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\IGeekFan.AspNetCore.Knife4jUI.dll

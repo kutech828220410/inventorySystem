@@ -45,6 +45,18 @@
           "buildTransitive/IBM.Data.DB2.Core.targets": {}
         }
       },
+      "IGeekFan.AspNetCore.Knife4jUI/0.0.16": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/IGeekFan.AspNetCore.Knife4jUI.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/IGeekFan.AspNetCore.Knife4jUI.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "K4os.Compression.LZ4/1.2.6": {
         "type": "package",
         "dependencies": {
@@ -576,6 +588,29 @@
         "ibm.data.db2.core.nuspec",
         "lib/netstandard2.1/IBM.Data.DB2.Core.dll",
         "notices.txt"
+      ]
+    },
+    "IGeekFan.AspNetCore.Knife4jUI/0.0.16": {
+      "sha512": "bJjSJWP+FCkH0vweZq+evqOZ4OO2lSR13O19MpjiX49SRNarsM9DqJsqkYqKr17zzF1dgd/pzREdBbJDBRWUjA==",
+      "type": "package",
+      "path": "igeekfan.aspnetcore.knife4jui/0.0.16",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "igeekfan.aspnetcore.knife4jui.0.0.16.nupkg.sha512",
+        "igeekfan.aspnetcore.knife4jui.nuspec",
+        "lib/net6.0/IGeekFan.AspNetCore.Knife4jUI.dll",
+        "lib/net6.0/IGeekFan.AspNetCore.Knife4jUI.pdb",
+        "lib/net6.0/IGeekFan.AspNetCore.Knife4jUI.xml",
+        "lib/net7.0/IGeekFan.AspNetCore.Knife4jUI.dll",
+        "lib/net7.0/IGeekFan.AspNetCore.Knife4jUI.pdb",
+        "lib/net7.0/IGeekFan.AspNetCore.Knife4jUI.xml",
+        "lib/netcoreapp3.1/IGeekFan.AspNetCore.Knife4jUI.dll",
+        "lib/netcoreapp3.1/IGeekFan.AspNetCore.Knife4jUI.pdb",
+        "lib/netcoreapp3.1/IGeekFan.AspNetCore.Knife4jUI.xml",
+        "lib/netstandard2.0/IGeekFan.AspNetCore.Knife4jUI.dll",
+        "lib/netstandard2.0/IGeekFan.AspNetCore.Knife4jUI.pdb",
+        "lib/netstandard2.0/IGeekFan.AspNetCore.Knife4jUI.xml"
       ]
     },
     "K4os.Compression.LZ4/1.2.6": {
@@ -1502,6 +1537,7 @@
     "net5.0": [
       "DotNetZip >= 1.16.0",
       "IBM.Data.DB2.Core >= 3.1.0.600",
+      "IGeekFan.AspNetCore.Knife4jUI >= 0.0.16",
       "MySql.Data >= 8.0.29",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "Swashbuckle.AspNetCore.Annotations >= 6.5.0",
@@ -1556,6 +1592,10 @@
           "IBM.Data.DB2.Core": {
             "target": "Package",
             "version": "[3.1.0.600, )"
+          },
+          "IGeekFan.AspNetCore.Knife4jUI": {
+            "target": "Package",
+            "version": "[0.0.16, )"
           },
           "MySql.Data": {
             "target": "Package",

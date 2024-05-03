@@ -136,6 +136,7 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\DotNetZip.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Google.Protobuf.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\IBM.Data.DB2.Core.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\IGeekFan.AspNetCore.Knife4jUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\K4os.Compression.LZ4.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\K4os.Compression.LZ4.Streams.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\K4os.Hash.xxHash.dll
