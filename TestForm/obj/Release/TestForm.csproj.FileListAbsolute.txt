@@ -60,3 +60,5 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\System.
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\System.Text.Json.xml
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\System.ValueTuple.xml
+C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\MyOffice.dll
+C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Microsoft.Office.Interop.Excel.dll

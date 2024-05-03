@@ -13,7 +13,8 @@ namespace HIS_DB_Lib
         藥品碼,
         藥品名稱,
         交易量,
-        結存量
+        結存量,
+        庫存量,
     }
 
     public class consumptionClass
@@ -25,6 +26,8 @@ namespace HIS_DB_Lib
         [JsonPropertyName("TXN_QTY")]
         public string 交易量 { get; set; }
         [JsonPropertyName("EBQ_QTY")]
-        public string 結存量 { get; set; }   
+        public string 結存量 { get; set; }
+        [JsonPropertyName("INV_QTY")]
+        public string 庫存量 { get; set; }
     }
 }

@@ -1,31 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using SQLUI;
-using Basic;
-using System.Text.Json;
-using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
-using System.Configuration;
-using HIS_DB_Lib;
+using Basic;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace HIS_DB_Lib
 {
+    [EnumDescription("ServerSetting")]
     public enum enum_ServerSetting
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("單位,VARCHAR,200,None")]
         單位,
+        [Description("設備名稱,VARCHAR,200,None")]
         設備名稱,
+        [Description("類別,VARCHAR,200,None")]
         類別,
+        [Description("程式類別,VARCHAR,200,INDEX")]
         程式類別,
+        [Description("內容,VARCHAR,200,INDEX")]
         內容,
+        [Description("Server,VARCHAR,200,None")]
         Server,
+        [Description("Port,VARCHAR,200,None")]
         Port,
+        [Description("DBName,VARCHAR,200,None")]
         DBName,
+        [Description("TableName,VARCHAR,200,None")]
         TableName,
+        [Description("User,VARCHAR,200,None")]
         User,
+        [Description("Password,VARCHAR,200,None")]
         Password,
+        [Description("Value,TEXT,65535,None")]
         Value,
     }
     public enum enum_ServerSetting_Type

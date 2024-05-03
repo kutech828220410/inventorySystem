@@ -754,3 +754,12 @@ C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\Microsoft
 C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\bin\Release\HIS_DB_Lib.xml
 C:\Users\vendors\Desktop\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_癌症備藥機.resources
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\MyOffice.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\NPOI.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\NPOI.OOXML.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\office.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\stdole.dll

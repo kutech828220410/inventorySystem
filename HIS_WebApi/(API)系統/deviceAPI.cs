@@ -154,6 +154,27 @@ namespace HIS_WebApi
             returnData.Data = deviceBasics;
             return returnData.JsonSerializationt(true);
         }
+
+
+        /// <summary>
+        /// 查詢儲位資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "口服2",
+        ///     "ServerType" : "調劑台",
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     }
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         [Route("all")]
         [HttpPost]
         public string POST_all(returnData returnData)

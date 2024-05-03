@@ -137,5 +137,39 @@ namespace HIS_DB_Lib
             Barcode = barcodes;
         }
 
+        static public System.Collections.Generic.Dictionary<string, List<medClass>> CoverToDictionaryByCode(List<medClass> medClasses)
+        {
+            Dictionary<string, List<medClass>> dictionary = new Dictionary<string, List<medClass>>();
+
+            foreach (var item in medClasses)
+            {
+                string key = item.藥品碼;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<medClass> values = new List<medClass> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<medClass> SortDictionaryByCode(System.Collections.Generic.Dictionary<string, List<medClass>> dictionary, string code)
+        {
+            if (dictionary.ContainsKey(code))
+            {
+                return dictionary[code];
+            }
+            return new List<medClass>();
+        }
+
     }
+
+
 }

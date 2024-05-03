@@ -24,149 +24,354 @@ namespace HIS_WebApi
         static private string DB = "dbvm";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
+        /// <summary>
+        /// 取得所有連線資訊
+        /// </summary>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpGet]
+        public string GET()
+        {
+            returnData returnData = new returnData();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "get";
+
+            try
+            {
+                this.CheckCreatTable();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetAllRows(null);
+
+                List<ServerSettingClass> serverSettingClasses = list_value.SQLToClass<ServerSettingClass, enum_ServerSetting>();
+
+                returnData.Code = 200;
+                returnData.Data = serverSettingClasses;
+                returnData.Result = $"取得伺服器設定成功!共<{serverSettingClasses.Count}>筆";
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        /// 
         [Route("init")]
         [HttpGet]
         public string GET_init()
         {
+            returnData returnData = new returnData();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "GET_init";
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+
             try
             {
                 return CheckCreatTable();
             }
             catch (Exception e)
             {
-                string msg = "";
-                msg += $"Message: {e.Message}\n";
-                msg += $"Server: {Server}\n";
-                msg += $"Port: {Port}\n";
-                msg += $"UserName: {UserName}\n";
-                msg += $"Password: {Password}\n";
-                msg += $"DB: {DB}\n";
-
-                return msg;
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt();
             }
 
         }
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("post_init")]
+        [HttpPost]
+        public string POST_init([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                returnData.Method = "POST_init";
+         
+                return CheckCreatTable();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 取得Type(調劑台、藥庫...)
+        /// </summary>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("type")]
         [HttpGet]
         public string GET_type()
         {
             return new enum_ServerSetting_Type().GetEnumNames().JsonSerializationt();
         }
+        /// <summary>
+        /// 取得程式類別(SQLServer、API、WEB...)
+        /// </summary>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("program")]
         [HttpGet]
         public string GET_program()
         {
             return new enum_ServerSetting_ProgramType().GetEnumNames().JsonSerializationt();
         }
-        [HttpGet]
-        public string GET()
-        {
-            this.CheckCreatTable();
-            SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
-            List<object[]> list_value = sQLControl.GetAllRows(null);
-
-            List<ServerSettingClass> serverSettingClasses = list_value.SQLToClass<ServerSettingClass, enum_ServerSetting>();
-            returnData returnData = new returnData();
-            returnData.Code = 200;
-            returnData.Data = serverSettingClasses;
-            returnData.Result = "取得伺服器設定成功!";
-            return returnData.JsonSerializationt(true);
-        }
+        /// <summary>
+        /// 新增連線資訊
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [List<serverSettingClasses>]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("add")]
         [HttpPost]
         public string POST_add([FromBody] returnData returnData)
         {
-            this.CheckCreatTable();
-            SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
-            List<object[]> list_value = sQLControl.GetAllRows(null);
-            List<object[]> list_value_returnData = new List<object[]>();
-            List<object[]> list_value_add = new List<object[]>();
-            List<object[]> list_value_replace = new List<object[]>();
-            List<object[]> list_value_buf = new List<object[]>();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
             returnData.Method = "add";
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            list_value_returnData = serverSettingClasses.ClassToSQL<ServerSettingClass, enum_ServerSetting>();
-            for (int i = 0; i < list_value_returnData.Count; i++)
+            try
             {
-                string 名稱 = list_value_returnData[i][(int)enum_ServerSetting.設備名稱].ObjectToString();
-                string 類別 = list_value_returnData[i][(int)enum_ServerSetting.類別].ObjectToString();
-                string 程式類別 = list_value_returnData[i][(int)enum_ServerSetting.程式類別].ObjectToString();
-                string 內容 = list_value_returnData[i][(int)enum_ServerSetting.內容].ObjectToString();
+                this.CheckCreatTable();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetAllRows(null);
+                List<object[]> list_value_returnData = new List<object[]>();
+                List<object[]> list_value_add = new List<object[]>();
+                List<object[]> list_value_replace = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
+      
+                List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+                list_value_returnData = serverSettingClasses.ClassToSQL<ServerSettingClass, enum_ServerSetting>();
+                for (int i = 0; i < list_value_returnData.Count; i++)
+                {
+                    string 名稱 = list_value_returnData[i][(int)enum_ServerSetting.設備名稱].ObjectToString();
+                    string 類別 = list_value_returnData[i][(int)enum_ServerSetting.類別].ObjectToString();
+                    string 程式類別 = list_value_returnData[i][(int)enum_ServerSetting.程式類別].ObjectToString();
+                    string 內容 = list_value_returnData[i][(int)enum_ServerSetting.內容].ObjectToString();
 
-                list_value_buf = list_value.GetRows((int)enum_ServerSetting.設備名稱, 名稱);
-                list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.類別, 類別);
-                list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.程式類別, 程式類別);
-                list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.內容, 內容);
-                if (list_value_buf.Count == 0)
-                {
-                    object[] value = list_value_returnData[i];
-                    value[(int)enum_ServerSetting.GUID] = Guid.NewGuid().ToString();
-                    list_value_add.Add(value);
+                    list_value_buf = list_value.GetRows((int)enum_ServerSetting.設備名稱, 名稱);
+                    list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.類別, 類別);
+                    list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.程式類別, 程式類別);
+                    list_value_buf = list_value_buf.GetRows((int)enum_ServerSetting.內容, 內容);
+                    if (list_value_buf.Count == 0)
+                    {
+                        object[] value = list_value_returnData[i];
+                        value[(int)enum_ServerSetting.GUID] = Guid.NewGuid().ToString();
+                        list_value_add.Add(value);
+                    }
+                    else
+                    {
+                        object[] value = list_value_returnData[i];
+                        value[(int)enum_ServerSetting.GUID] = list_value_buf[0][(int)enum_ServerSetting.GUID].ObjectToString();
+                        list_value_replace.Add(value);
+                    }
                 }
-                else
-                {
-                    object[] value = list_value_returnData[i];
-                    value[(int)enum_ServerSetting.GUID] = list_value_buf[0][(int)enum_ServerSetting.GUID].ObjectToString();
-                    list_value_replace.Add(value);
-                }
+                sQLControl.AddRows(null, list_value_add);
+                sQLControl.UpdateByDefulteExtra(null, list_value_replace);
+
+                returnData.Code = 200;
+                returnData.Result = "新增伺服器資料成功!";
+                returnData.Data = serverSettingClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt();
             }
-            sQLControl.AddRows(null, list_value_add);
-            sQLControl.UpdateByDefulteExtra(null, list_value_replace);
-
-            returnData.Code = 200;
-            returnData.Result = "新增伺服器資料成功!";
-            returnData.Data = serverSettingClasses;
-            return returnData.JsonSerializationt();
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            
         }
+        /// <summary>
+        /// 刪除連線資訊
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [List<serverSettingClasses>]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("delete")]
         [HttpPost]
         public string POST_delete([FromBody] returnData returnData)
         {
-            this.CheckCreatTable();
-            SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
-            List<object[]> list_value = sQLControl.GetAllRows(null);
-            List<object[]> list_value_returnData = new List<object[]>();
-            List<object[]> list_value_add = new List<object[]>();
-            List<object[]> list_value_replace = new List<object[]>();
-            List<object[]> list_value_buf = new List<object[]>();
-            returnData.Method = "add";
-            List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
-            list_value_returnData = serverSettingClasses.ClassToSQL<ServerSettingClass, enum_ServerSetting>();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "delete";
+            try
+            {
+                this.CheckCreatTable();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetAllRows(null);
+                List<object[]> list_value_returnData = new List<object[]>();
+                List<object[]> list_value_add = new List<object[]>();
+                List<object[]> list_value_replace = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
+                List<ServerSettingClass> serverSettingClasses = returnData.Data.ObjToListClass<ServerSettingClass>();
+                list_value_returnData = serverSettingClasses.ClassToSQL<ServerSettingClass, enum_ServerSetting>();
 
-            sQLControl.DeleteExtra(null, list_value_returnData);
+                sQLControl.DeleteExtra(null, list_value_returnData);
 
-            returnData.Code = 200;
-            returnData.Result = "刪除伺服器資料成功!";
-            returnData.Data = serverSettingClasses;
-            return returnData.JsonSerializationt();
+                returnData.Code = 200;
+                returnData.Result = "刪除伺服器資料成功!";
+                returnData.Data = serverSettingClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }      
         }
+        /// <summary>
+        /// 以Type取得連線資訊(調劑台、藥庫...)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_serversetting_by_type")]
+        [HttpPost]
+        public string POST_get_serversetting_by_type([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "get_serversetting_by_type";
+            try
+            {
+                this.CheckCreatTable();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetAllRows(null);
+                List<object[]> list_value_returnData = new List<object[]>();
+                List<object[]> list_value_add = new List<object[]>();
+                List<object[]> list_value_replace = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[Type]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Type = returnData.ValueAry[0];
+
+                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
+                serverSettingClasses = (from temp in serverSettingClasses
+                                        where temp.類別 == Type
+                                        where temp.內容 == "一般資料"
+                                        select temp).ToList();
+        
+
+                returnData.Code = 200;
+                returnData.Result = $"取得連線資訊,共<{serverSettingClasses.Count}>筆";
+                returnData.Data = serverSettingClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+
+
+
         private string CheckCreatTable()
         {
-            SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
-            Table table = new Table("ServerSetting");
-            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("單位", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("設備名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("類別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("程式類別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("內容", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("Server", Table.StringType.VARCHAR, 300, Table.IndexType.None);
-            table.AddColumnList("Port", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("DBName", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("TableName", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("User", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("Password", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("Value", Table.StringType.TEXT, 65535, Table.IndexType.None);
+            ServerSettingClass serverSettingClass = new ServerSettingClass();
+            serverSettingClass.Server = Server;
+            serverSettingClass.Port = Port.ToString();
+            serverSettingClass.User = UserName;
+            serverSettingClass.Password = Password;
+            serverSettingClass.DBName = DB;
 
-
-            if (!sQLControl.IsTableCreat())
-            {
-                sQLControl.CreatTable(table);
-            }
-            else
-            {
-                sQLControl.CheckAllColumnName(table, true);
-            }
+            return CheckCreatTable(serverSettingClass);
+        }
+        private string CheckCreatTable(ServerSettingClass serverSettingClass)
+        {
+            Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_ServerSetting());
             return table.JsonSerializationt(true);
         }
 

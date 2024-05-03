@@ -53,14 +53,21 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_init([FromBody] returnData returnData)
         {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+
             try
             {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            
+                returnData.Method = "POST_init";
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"找無Server資料!";
+                    returnData.TimeTaken = $"{myTimerBasic}";
                     return returnData.JsonSerializationt();
                 }
                 return CheckCreatTable(serverSettingClasses[0]);
@@ -69,6 +76,7 @@ namespace HIS_WebApi
             {
                 returnData.Code = -200;
                 returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
                 return returnData.JsonSerializationt();
             }
         }

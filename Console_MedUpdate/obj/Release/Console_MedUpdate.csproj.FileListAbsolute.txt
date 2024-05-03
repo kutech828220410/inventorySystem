@@ -622,3 +622,12 @@ C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.C
 C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
 C:\Users\vendors\Desktop\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\MyOffice.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.OOXML.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\office.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.OpenXml4Net.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.OpenXmlFormats.dll
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\stdole.dll

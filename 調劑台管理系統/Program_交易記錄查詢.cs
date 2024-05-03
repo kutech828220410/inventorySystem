@@ -20,28 +20,7 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
-        public enum enum_交易記錄查詢資料_匯出
-        {
-            動作,
-            藥品碼,
-            藥品名稱,
-            藥袋序號,
-            領藥號,
-            類別,
-            庫存量,
-            交易量,
-            結存量,
-            盤點量,
-            操作人,
-            藥師證字號,
-            病人姓名,
-            床號,
-            病歷號,
-            操作時間,
-            開方時間,
-            收支原因,
-            備註,
-        }
+
         private void Program_交易記錄查詢_Init()
         {
             this.sqL_DataGridView_交易紀錄_結存量.Init();

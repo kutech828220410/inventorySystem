@@ -143,6 +143,7 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\MySql.Data.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Ubiety.Dns.Core.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\ZstdNet.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
