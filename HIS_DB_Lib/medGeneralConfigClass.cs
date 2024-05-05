@@ -10,13 +10,13 @@ using System.Reflection;
 
 namespace HIS_DB_Lib
 {
-    [EnumDescription("med_config")]
-    public enum enum_藥品設定表
+    [EnumDescription("med_controlled_config")]
+    public enum enum_medGeneralConfig
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
-        [Description("藥碼,VARCHAR,50,INDEX")]
-        藥碼,
+        [Description("代號,VARCHAR,50,INDEX")]
+        代號,
         [Description("效期管理,VARCHAR,15,NONE")]
         效期管理,
         [Description("盲盤,VARCHAR,15,NONE")]
@@ -27,17 +27,9 @@ namespace HIS_DB_Lib
         結存報表,
         [Description("雙人覆核,VARCHAR,15,NONE")]
         雙人覆核,
-        [Description("麻醉藥品,VARCHAR,15,NONE")]
-        麻醉藥品,
-        [Description("形狀相似,VARCHAR,15,NONE")]
-        形狀相似,
-        [Description("發音相似,VARCHAR,15,NONE")]
-        發音相似,
-        [Description("自定義,VARCHAR,15,NONE")]
-        自定義,
+       
     }
-
-    public class medConfigClass
+    public class medGeneralConfigClass
     {
         /// <summary>
         /// 唯一KEY
@@ -45,10 +37,10 @@ namespace HIS_DB_Lib
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
         /// <summary>
-        /// 藥碼
+        /// 代號
         /// </summary>
-        [JsonPropertyName("CODE")]
-        public string 藥碼 { get; set; }
+        [JsonPropertyName("code")]
+        public string 代號 { get; set; }
         /// <summary>
         /// 效期管理
         /// </summary>
@@ -74,40 +66,18 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dual_verification")]
         public string 雙人覆核 { get; set; }
-        /// <summary>
-        /// 麻醉藥品
-        /// </summary>
-        [JsonPropertyName("isAnesthetic")]
-        public string 麻醉藥品 { get; set; }
-        /// <summary>
-        /// 形狀相似
-        /// </summary>
-        [JsonPropertyName("isShapeSimilar")]
-        public string 形狀相似 { get; set; }
-        /// <summary>
-        /// 發音相似
-        /// </summary>
-        [JsonPropertyName("isSoundSimilar")]
-        public string 發音相似 { get; set; }
-        /// <summary>
-        /// 自定義
-        /// </summary>
-        [JsonPropertyName("customVar")]
-        public string 自定義 { get; set; }
-
 
         static public SQLUI.Table init(string API_Server)
         {
-            string url = $"{API_Server}/api/medconfig/init";
+            string url = $"{API_Server}/api/medGeneralConfig/init";
 
             returnData returnData = new returnData();
             string json_in = returnData.JsonSerializationt();
-            string json_out = Net.WEBApiPostJson(url, json_in);
+            string json_out = Net.WEBApiPostJson(url, json_in);    
             List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
-            SQLUI.Table table = SQLUI.TableMethod.GetTable(tables, new enum_藥品設定表());
+            SQLUI.Table table = SQLUI.TableMethod.GetTable(tables, new enum_medGeneralConfig());
             return table;
         }
+
     }
-
-
 }

@@ -9,6 +9,41 @@
             回傳結果碼
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medGeneralConfigClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medGeneralConfigClass.代號">
+            <summary>
+            代號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medGeneralConfigClass.效期管理">
+            <summary>
+            效期管理
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medGeneralConfigClass.盲盤">
+            <summary>
+            盲盤
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medGeneralConfigClass.複盤">
+            <summary>
+            複盤
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medGeneralConfigClass.結存報表">
+            <summary>
+            結存報表
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medGeneralConfigClass.雙人覆核">
+            <summary>
+            雙人覆核
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.inv_combinelistClass">
             <summary>
             合併總單
@@ -104,9 +139,9 @@
             唯一KEY
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medConfigClass.藥品碼">
+        <member name="P:HIS_DB_Lib.medConfigClass.藥碼">
             <summary>
-            藥品碼
+            藥碼
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medConfigClass.效期管理">

@@ -2111,7 +2111,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.medConfigController.get_all(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.medConfig.get_all(HIS_DB_Lib.returnData)">
             <summary>
             取得全部藥品設定
             </summary>
@@ -2129,7 +2129,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.medConfigController.add(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.medConfig.add(HIS_DB_Lib.returnData)">
             <summary>
             新增或修改藥品設定
             </summary>
@@ -2147,7 +2147,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.medConfigController.delete_by_guid(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.medConfig.delete_by_guid(HIS_DB_Lib.returnData)">
             <summary>
             以GUID刪除藥品設定
             </summary>
@@ -2162,6 +2162,61 @@
                 [
                   "[GUID]"
                 ] 
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medGeneralConfig.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:HIS_WebApi.medGeneralConfig.get_all(HIS_DB_Lib.returnData)">
+            <summary>
+            取得全部藥品通用設定
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medGeneralConfig.update(HIS_DB_Lib.returnData)">
+            <summary>
+            更新藥品通用設定
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   [medGeneralConfigClass陣列]
+                }
               }
             </code>
             </remarks>
@@ -2310,6 +2365,24 @@
                 "ServerName": "",
                 "ServerType": "",
                 "TimeTaken": ""
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medPirce.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
               }
             </code>
             </remarks>

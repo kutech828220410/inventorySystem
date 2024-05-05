@@ -16,13 +16,20 @@ using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using H_Pannel_lib;
 using HIS_DB_Lib;
-
+using SQLUI;
 namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
         private void Program_藥品資料_管藥設定_Init()
         {
+            Table table = medGeneralConfigClass.init(API_Server);
+            if (table == null)
+            {
+                MyMessageBox.ShowDialog($"[管藥設定表]建立失敗");
+                return;
+            }
+            sqL_DataGridView_藥品管制方式設定.Init(table);
 
             this.comboBox_藥品資料_管藥設定_類型.SelectedIndexChanged += ComboBox_藥品資料_管藥設定_類型_SelectedIndexChanged;
 
@@ -102,14 +109,14 @@ namespace 調劑台管理系統
             string 代號 = this.Function_藥品資料_管藥設定_取得代號(類型);
 
             List<object[]> list_value = this.sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
-            list_value = list_value.GetRows((int)enum_藥品管制方式設定.代號, 代號);
+            list_value = list_value.GetRows((int)enum_medGeneralConfig.代號, 代號);
             if (list_value.Count > 0)
             {
-                this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Checked = (list_value[0][(int)enum_藥品管制方式設定.效期管理].ObjectToString() == true.ToString());
-                this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked = (list_value[0][(int)enum_藥品管制方式設定.複盤].ObjectToString() == true.ToString());
-                this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked = (list_value[0][(int)enum_藥品管制方式設定.盲盤].ObjectToString() == true.ToString());
-                this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked = (list_value[0][(int)enum_藥品管制方式設定.結存報表].ObjectToString() == true.ToString());
-                this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked = (list_value[0][(int)enum_藥品管制方式設定.雙人覆核].ObjectToString() == true.ToString()); 
+                this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Checked = (list_value[0][(int)enum_medGeneralConfig.效期管理].ObjectToString().ToUpper() == true.ToString().ToUpper());
+                this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked = (list_value[0][(int)enum_medGeneralConfig.複盤].ObjectToString().ToUpper() == true.ToString().ToUpper());
+                this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked = (list_value[0][(int)enum_medGeneralConfig.盲盤].ObjectToString().ToUpper() == true.ToString().ToUpper());
+                this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked = (list_value[0][(int)enum_medGeneralConfig.結存報表].ObjectToString().ToUpper() == true.ToString().ToUpper());
+                this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked = (list_value[0][(int)enum_medGeneralConfig.雙人覆核].ObjectToString().ToUpper() == true.ToString().ToUpper()); 
             }
         }
         private void PlC_RJ_ChechBox_藥品資料_管藥設定_複盤_CheckedChanged(object sender, EventArgs e)
@@ -144,27 +151,27 @@ namespace 調劑台管理系統
            
             string 代號 = this.Function_藥品資料_管藥設定_取得代號(類型);
             List<object[]> list_value = this.sqL_DataGridView_藥品管制方式設定.SQL_GetAllRows(false);
-            list_value = list_value.GetRows((int)enum_藥品管制方式設定.代號, 代號);
+            list_value = list_value.GetRows((int)enum_medGeneralConfig.代號, 代號);
             if (list_value.Count > 0)
             {
                 object[] value = list_value[0];
-                value[(int)enum_藥品管制方式設定.效期管理] = this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Checked.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked.ToString();
-                value[(int)enum_藥品管制方式設定.雙人覆核] = this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked.ToString();
+                value[(int)enum_medGeneralConfig.效期管理] = this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Checked.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked.ToString();
+                value[(int)enum_medGeneralConfig.雙人覆核] = this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked.ToString();
                 this.sqL_DataGridView_藥品管制方式設定.SQL_ReplaceExtra(value, false);
             }
             else
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = 代號;
-                value[(int)enum_藥品管制方式設定.效期管理] = this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Checked.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked.ToString();
-                value[(int)enum_藥品管制方式設定.雙人覆核] = this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = 代號;
+                value[(int)enum_medGeneralConfig.效期管理] = this.plC_RJ_ChechBox_藥品資料_管藥設定_效期管理.Checked.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_複盤.Checked.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = this.plC_RJ_ChechBox_藥品資料_管藥設定_盲盤.Checked.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = this.plC_RJ_ChechBox_藥品資料_管藥設定_結存報表.Checked.ToString();
+                value[(int)enum_medGeneralConfig.雙人覆核] = this.plC_RJ_ChechBox_藥品資料_管藥設定_雙人覆核.Checked.ToString();
                 this.sqL_DataGridView_藥品管制方式設定.SQL_AddRow(value, false);
             }
             MyMessageBox.ShowDialog("上傳完成!");

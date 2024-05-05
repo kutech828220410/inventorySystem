@@ -106,7 +106,7 @@
     <Compile Include="computerConfigClass.cs" />
     <Compile Include="consumptionClass.cs" />
     <Compile Include="ctclistClass.cs" />
-    <Compile Include="drugControlConfigClass.cs" />
+    <Compile Include="medGeneralConfigClass.cs" />
     <Compile Include="IncomeReasonsClass.cs" />
     <Compile Include="inspectionClass.cs" />
     <Compile Include="inventoryClass.cs" />

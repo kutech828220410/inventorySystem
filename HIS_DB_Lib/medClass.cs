@@ -8,16 +8,7 @@ using Basic;
 using System.Text.Json;
 namespace HIS_DB_Lib
 {
-    public enum enum_藥品管制方式設定
-    {
-        GUID,
-        代號,
-        效期管理,
-        盲盤,
-        複盤,
-        結存報表,
-        雙人覆核,
-    }
+
     public class medClassBasic
     {
         [JsonPropertyName("GUID")]

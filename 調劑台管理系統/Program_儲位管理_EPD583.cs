@@ -237,7 +237,7 @@ namespace 調劑台管理系統
                     藥品碼 = boxes[k].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
                     if (藥品碼.StringIsEmpty()) continue;
                     list_藥品資料_藥檔資料_buf = list_藥品資料_藥檔資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥品碼);
-                    list_藥品設定表_buf = list_藥品設定表.GetRows((int)enum_藥品設定表.藥品碼, 藥品碼);
+                    list_藥品設定表_buf = list_藥品設定表.GetRows((int)enum_藥品設定表.藥碼, 藥品碼);
                     if (list_藥品資料_藥檔資料_buf.Count == 0)
                     {
                         boxes[k].Clear();

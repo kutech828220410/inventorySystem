@@ -209,6 +209,7 @@ namespace HIS_DB_Lib
             }
             return list_value;
         }
+
         static public List<T> SQLToClass<T, E>(this List<object[]> values) where E : Enum, new()
         {
             List<T> list_value = new List<T>();

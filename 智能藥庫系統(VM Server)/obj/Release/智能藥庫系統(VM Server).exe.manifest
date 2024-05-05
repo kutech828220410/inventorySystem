@@ -462,14 +462,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="146432">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="146944">
       <assemblyIdentity name="SQLUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>D9CIjcZG5NW+ODGHq2wNWKSryvOMgkMW3hjxjqYHVi0=</dsig:DigestValue>
+        <dsig:DigestValue>Cw41qaL7kAkCnxrdcXNswDOAjw/8kouo7FG0DlC9MFY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

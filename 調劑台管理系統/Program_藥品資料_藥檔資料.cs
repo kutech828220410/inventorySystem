@@ -501,13 +501,13 @@ namespace 調劑台管理系統
         }
         private object[] Function_藥品資料_藥檔資料_檢查藥品設定表(string 藥品碼)
         {
-            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetRows((int)enum_藥品設定表.藥品碼, 藥品碼, false);
+            List<object[]> list_藥品設定表 = this.sqL_DataGridView_藥品設定表.SQL_GetRows((int)enum_藥品設定表.藥碼, 藥品碼, false);
             object[] value;
             if (list_藥品設定表.Count == 0)
             {
                 value = new object[new enum_藥品設定表().GetLength()];
                 value[(int)enum_藥品設定表.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品設定表.藥品碼] = 藥品碼;
+                value[(int)enum_藥品設定表.藥碼] = 藥品碼;
                 value[(int)enum_藥品設定表.效期管理] = false.ToString();
                 value[(int)enum_藥品設定表.盲盤] = false.ToString();
                 value[(int)enum_藥品設定表.複盤] = false.ToString();

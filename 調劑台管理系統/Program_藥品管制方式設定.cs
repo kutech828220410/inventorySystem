@@ -46,108 +46,108 @@ namespace 調劑台管理系統
             List<object[]> list_value_delete = new List<object[]>();
             List<object[]> list_value_add = new List<object[]>();
             list_value_delete = (from value in list_value
-                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "N"
-                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "1"
-                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "2"
-                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "3"
-                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "4"
-                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "警訊"
-                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "高價"
-                                 where value[(int)enum_藥品管制方式設定.代號].ObjectToString() != "生物製劑"
+                                 where value[(int)enum_medGeneralConfig.代號].ObjectToString() != "N"
+                                 where value[(int)enum_medGeneralConfig.代號].ObjectToString() != "1"
+                                 where value[(int)enum_medGeneralConfig.代號].ObjectToString() != "2"
+                                 where value[(int)enum_medGeneralConfig.代號].ObjectToString() != "3"
+                                 where value[(int)enum_medGeneralConfig.代號].ObjectToString() != "4"
+                                 where value[(int)enum_medGeneralConfig.代號].ObjectToString() != "警訊"
+                                 where value[(int)enum_medGeneralConfig.代號].ObjectToString() != "高價"
+                                 where value[(int)enum_medGeneralConfig.代號].ObjectToString() != "生物製劑"
                                  select value).ToList();
-            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "N");
+            list_value_buf = list_value.GetRows((int)enum_medGeneralConfig.代號, "N");
             if(list_value_buf.Count == 0)
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = "N";
-                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = "N";
+                value[(int)enum_medGeneralConfig.效期管理] = false.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
-            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "1");
+            list_value_buf = list_value.GetRows((int)enum_medGeneralConfig.代號, "1");
             if (list_value_buf.Count == 0)
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = "1";
-                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = "1";
+                value[(int)enum_medGeneralConfig.效期管理] = false.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
-            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "2");
+            list_value_buf = list_value.GetRows((int)enum_medGeneralConfig.代號, "2");
             if (list_value_buf.Count == 0)
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = "2";
-                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = "2";
+                value[(int)enum_medGeneralConfig.效期管理] = false.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
-            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "3");
+            list_value_buf = list_value.GetRows((int)enum_medGeneralConfig.代號, "3");
             if (list_value_buf.Count == 0)
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = "3";
-                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = "3";
+                value[(int)enum_medGeneralConfig.效期管理] = false.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = false.ToString();
                 list_value_add.Add(value);
             }
-            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "4");
+            list_value_buf = list_value.GetRows((int)enum_medGeneralConfig.代號, "4");
             if (list_value_buf.Count == 0)
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = "4";
-                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = "4";
+                value[(int)enum_medGeneralConfig.效期管理] = false.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
-            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "警訊");
+            list_value_buf = list_value.GetRows((int)enum_medGeneralConfig.代號, "警訊");
             if (list_value_buf.Count == 0)
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = "警訊";
-                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = "警訊";
+                value[(int)enum_medGeneralConfig.效期管理] = false.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
-            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "高價");
+            list_value_buf = list_value.GetRows((int)enum_medGeneralConfig.代號, "高價");
             if (list_value_buf.Count == 0)
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = "高價";
-                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = "高價";
+                value[(int)enum_medGeneralConfig.效期管理] = false.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
-            list_value_buf = list_value.GetRows((int)enum_藥品管制方式設定.代號, "生物製劑");
+            list_value_buf = list_value.GetRows((int)enum_medGeneralConfig.代號, "生物製劑");
             if (list_value_buf.Count == 0)
             {
-                object[] value = new object[new enum_藥品管制方式設定().GetLength()];
-                value[(int)enum_藥品管制方式設定.GUID] = Guid.NewGuid().ToString();
-                value[(int)enum_藥品管制方式設定.代號] = "生物製劑";
-                value[(int)enum_藥品管制方式設定.效期管理] = false.ToString();
-                value[(int)enum_藥品管制方式設定.盲盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.複盤] = false.ToString();
-                value[(int)enum_藥品管制方式設定.結存報表] = false.ToString();
+                object[] value = new object[new enum_medGeneralConfig().GetLength()];
+                value[(int)enum_medGeneralConfig.GUID] = Guid.NewGuid().ToString();
+                value[(int)enum_medGeneralConfig.代號] = "生物製劑";
+                value[(int)enum_medGeneralConfig.效期管理] = false.ToString();
+                value[(int)enum_medGeneralConfig.盲盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.複盤] = false.ToString();
+                value[(int)enum_medGeneralConfig.結存報表] = false.ToString();
                 list_value_add.Add(value);
             }
             this.sqL_DataGridView_藥品管制方式設定.SQL_DeleteExtra(list_value_delete, false);
@@ -155,11 +155,11 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Event
-        private bool Function_藥品管制方式設定_取得管制方式(List<object[]> list_藥品管制方式設定, enum_藥品管制方式設定 _enum_藥品管制方式設定, string 代號)
+        private bool Function_藥品管制方式設定_取得管制方式(List<object[]> list_藥品管制方式設定, enum_medGeneralConfig _enum_medGeneralConfig, string 代號)
         {
-            List<object[]> list_value = list_藥品管制方式設定.GetRows((int)enum_藥品管制方式設定.代號, 代號);
+            List<object[]> list_value = list_藥品管制方式設定.GetRows((int)enum_medGeneralConfig.代號, 代號);
             if (list_value.Count == 0) return false;
-            string 管制方式 = list_value[0][(int)_enum_藥品管制方式設定].ObjectToString();
+            string 管制方式 = list_value[0][(int)_enum_medGeneralConfig].ObjectToString();
             return (管制方式 == true.ToString());
         }
         #endregion
