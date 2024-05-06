@@ -23,7 +23,15 @@ namespace 調劑台管理系統
 
         private void Program_交易記錄查詢_Init()
         {
-            this.sqL_DataGridView_交易紀錄_結存量.Init();
+            Table table = new Table(new enum_consumption());
+            this.sqL_DataGridView_交易紀錄_結存量.Init(table);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnVisible(false, new enum_consumption().GetEnumNames());
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.藥品碼);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_consumption.藥品名稱);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.交易量);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.庫存量);
+            this.sqL_DataGridView_交易紀錄_結存量.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_consumption.結存量);
+
             this.plC_RJ_Button_交易紀錄_結存量_顯示全部.MouseDownEvent += PlC_RJ_Button_交易紀錄_結存量_顯示全部_MouseDownEvent;
             this.plC_RJ_Button_交易紀錄_結存量_匯出資料.MouseDownEvent += PlC_RJ_Button_交易紀錄_結存量_匯出資料_MouseDownEvent;
 
@@ -34,7 +42,7 @@ namespace 調劑台管理系統
             returnData.ServerName = $"{dBConfigClass.Name}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
-            Table table = json.JsonDeserializet<Table>();
+            table = json.JsonDeserializet<Table>();
             if (table == null)
             {
                 MyMessageBox.ShowDialog($"交易紀錄表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");

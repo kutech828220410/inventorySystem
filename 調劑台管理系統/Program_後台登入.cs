@@ -110,6 +110,7 @@ namespace 調劑台管理系統
                 {
                     this.Invoke(new Action(delegate
                     {
+                      
                         this.textBox_後台登入_帳號.Text = "";
                         this.textBox_後台登入_密碼.Text = "";
                     }));

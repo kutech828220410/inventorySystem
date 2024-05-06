@@ -29,8 +29,19 @@ namespace 調劑台管理系統
         private PrinterClass printerClass_交班表 = new PrinterClass();
         private void Program_交班作業_交班表_Init()
         {
-
-            this.sqL_DataGridView_交班作業_交班表_交班明細.Init();
+            SQLUI.Table table = new SQLUI.Table(new enum_medShiftList());
+            this.sqL_DataGridView_交班作業_交班表_交班明細.RowsHeight = 40;
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Init(table);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnVisible(false, new enum_medShiftList().GetEnumNames());
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_medShiftList.藥碼);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(600, DataGridViewContentAlignment.MiddleLeft, enum_medShiftList.藥名);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_medShiftList.現有庫存);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_medShiftList.處方支出);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_medShiftList.處方數量);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_medShiftList.實際庫存);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(220, DataGridViewContentAlignment.MiddleCenter, enum_medShiftList.起始時間);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(220, DataGridViewContentAlignment.MiddleCenter, enum_medShiftList.結束時間);
+            this.sqL_DataGridView_交班作業_交班表_交班明細.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_medShiftList.管制級別);
 
             this.plC_RJ_Button_交班作業_交班表_生成明細.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_生成明細_MouseDownEvent;
             this.plC_RJ_Button_交班作業_交班表_處方檢視.MouseDownEvent += PlC_RJ_Button_交班作業_交班表_班別_處方檢視_MouseDownEvent;
@@ -201,7 +212,7 @@ namespace 調劑台管理系統
                     list_藥品資料_buf = list_藥品資料.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
                     if (list_藥品資料_buf.Count > 0)
                     {
-                        object[] value = new object[new enum_交班表_交班明細().GetLength()];
+                        object[] value = new object[new enum_medShiftList().GetLength()];
                         string 藥名 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString();
                         string 管制級別 = list_藥品資料_buf[0][(int)enum_藥品資料_藥檔資料.管制級別].ObjectToString();
                         list_交易紀錄_buf = list_交易紀錄.GetRows((int)enum_交易記錄查詢資料.藥品碼, 藥碼);
@@ -226,14 +237,14 @@ namespace 調劑台管理系統
                                 處方支出 += 交易量;
                             }
                         }
-                        value[(int)enum_交班表_交班明細.藥碼] = 藥碼;
-                        value[(int)enum_交班表_交班明細.藥名] = 藥名;
-                        value[(int)enum_交班表_交班明細.處方支出] = 處方支出;
-                        value[(int)enum_交班表_交班明細.處方數量] = 處方數量;
-                        value[(int)enum_交班表_交班明細.現有庫存] = 現有庫存;
-                        value[(int)enum_交班表_交班明細.起始時間] = dateTime_st.ToDateTimeString();
-                        value[(int)enum_交班表_交班明細.結束時間] = dateTime_end.ToDateTimeString();
-                        value[(int)enum_交班表_交班明細.管制級別] = 管制級別;
+                        value[(int)enum_medShiftList.藥碼] = 藥碼;
+                        value[(int)enum_medShiftList.藥名] = 藥名;
+                        value[(int)enum_medShiftList.處方支出] = 處方支出;
+                        value[(int)enum_medShiftList.處方數量] = 處方數量;
+                        value[(int)enum_medShiftList.現有庫存] = 現有庫存;
+                        value[(int)enum_medShiftList.起始時間] = dateTime_st.ToDateTimeString();
+                        value[(int)enum_medShiftList.結束時間] = dateTime_end.ToDateTimeString();
+                        value[(int)enum_medShiftList.管制級別] = 管制級別;
 
                         list_value.Add(value);
                     }
@@ -255,10 +266,10 @@ namespace 調劑台管理系統
                     MyMessageBox.ShowDialog("未選擇資料!");
                     return;
                 }
-                string 藥碼 = list_交班明細[0][(int)enum_交班表_交班明細.藥碼].ObjectToString();
-                string 藥名 = list_交班明細[0][(int)enum_交班表_交班明細.藥名].ObjectToString();
-                string 起始時間 = list_交班明細[0][(int)enum_交班表_交班明細.起始時間].ObjectToString();
-                string 結束時間 = list_交班明細[0][(int)enum_交班表_交班明細.結束時間].ObjectToString();
+                string 藥碼 = list_交班明細[0][(int)enum_medShiftList.藥碼].ObjectToString();
+                string 藥名 = list_交班明細[0][(int)enum_medShiftList.藥名].ObjectToString();
+                string 起始時間 = list_交班明細[0][(int)enum_medShiftList.起始時間].ObjectToString();
+                string 結束時間 = list_交班明細[0][(int)enum_medShiftList.結束時間].ObjectToString();
                 List<object[]> list_交易紀錄_buf_buf = new List<object[]>();
                 List<object[]> list_交易紀錄 = this.sqL_DataGridView_交易記錄查詢.SQL_GetRowsByBetween((int)enum_交易記錄查詢資料.操作時間, 起始時間, 結束時間, false);
                 List<object[]> list_交易紀錄_buf = list_交易紀錄.GetRows((int)enum_交易記錄查詢資料.藥品碼, 藥碼);
@@ -276,7 +287,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("未產生交班明細資料!");
                 return;
             }
-            List<medShiftListClass> medShiftListClasses = list_交班明細.SQLToClass<medShiftListClass, enum_交班表_交班明細>();
+            List<medShiftListClass> medShiftListClasses = list_交班明細.SQLToClass<medShiftListClass, enum_medShiftList>();
             returnData returnData = new returnData();
             returnData.ServerName = dBConfigClass.Name;
             returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
@@ -307,13 +318,13 @@ namespace 調劑台管理系統
         {
             public int Compare(object[] x, object[] y)
             {
-                string 管制級別_0 = x[(int)enum_交班表_交班明細.管制級別].ObjectToString();
-                string 管制級別_1 = y[(int)enum_交班表_交班明細.管制級別].ObjectToString();
+                string 管制級別_0 = x[(int)enum_medShiftList.管制級別].ObjectToString();
+                string 管制級別_1 = y[(int)enum_medShiftList.管制級別].ObjectToString();
                 int temp0 = 管制級別_0.CompareTo(管制級別_1);
                 if(temp0 == 0)
                 {
-                    string 藥品碼_0 = x[(int)enum_交班表_交班明細.藥碼].ObjectToString();
-                    string 藥品碼_1 = y[(int)enum_交班表_交班明細.藥碼].ObjectToString();
+                    string 藥品碼_0 = x[(int)enum_medShiftList.藥碼].ObjectToString();
+                    string 藥品碼_1 = y[(int)enum_medShiftList.藥碼].ObjectToString();
                     return 藥品碼_0.CompareTo(藥品碼_1);
                 }
                 else

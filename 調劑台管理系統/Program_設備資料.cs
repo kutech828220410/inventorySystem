@@ -18,11 +18,16 @@ using System.Text.Json.Serialization;
 
 namespace 調劑台管理系統
 {
+    [EnumDescription("devicelist")]
     public enum enum_設備資料
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("名稱,VARCHAR,100,NONE")]
         名稱,
+        [Description("顏色,VARCHAR,20,NONE")]
         顏色,
+        [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
     public partial class Main_Form : Form
@@ -30,7 +35,8 @@ namespace 調劑台管理系統
 
         private void Program_設備資料_Init()
         {
-            this.sqL_DataGridView_設備資料.Init();
+            SQLUI.Table table = new SQLUI.Table(new enum_設備資料());
+            this.sqL_DataGridView_設備資料.Init(table);
             if (!sqL_DataGridView_設備資料.SQL_IsTableCreat())
             {
                 sqL_DataGridView_設備資料.SQL_CreateTable();

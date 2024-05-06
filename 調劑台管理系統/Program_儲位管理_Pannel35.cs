@@ -24,24 +24,41 @@ namespace 調劑台管理系統
         static public List<Storage> List_Pannel35_雲端資料 = new List<Storage>();
         static public List<Storage> List_Pannel35_入賬資料 = new List<Storage>();
         private Storage Pannel35_Storage_Copy;
+
+        [EnumDescription("")]
         private enum enum_儲位管理_Pannel35_效期及庫存
         {
+            [Description("效期,VARCHAR,300,NONE")]
             效期,
+            [Description("批號,VARCHAR,300,NONE")]
             批號,
+            [Description("庫存,VARCHAR,300,NONE")]
             庫存,
         }
+        [EnumDescription("")]
         private enum enum_儲位管理_Pannel35_儲位資料
         {
+            [Description("IP,VARCHAR,300,NONE")]
             IP,
+            [Description("儲位名稱,VARCHAR,300,NONE")]
             儲位名稱,
+            [Description("藥品碼,VARCHAR,300,NONE")]
             藥品碼,
+            [Description("藥品名稱,VARCHAR,300,NONE")]
             藥品名稱,
+            [Description("藥品學名,VARCHAR,300,NONE")]
             藥品學名,
+            [Description("中文名稱,VARCHAR,300,NONE")]
             中文名稱,
+            [Description("包裝單位,VARCHAR,300,NONE")]
             包裝單位,
+            [Description("藥品條碼,VARCHAR,300,NONE")]
             藥品條碼,
+            [Description("庫存,VARCHAR,300,NONE")]
             庫存,
+            [Description("警訊藥品,VARCHAR,300,NONE")]
             警訊藥品,
+            [Description("鎖控,VARCHAR,300,NONE")]
             鎖控,
         }
 
@@ -55,10 +72,28 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
             this.sqL_DataGridView_儲位管理_Pannel35_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.中文名稱, enum_藥品資料_藥檔資料.包裝單位);
 
-            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Init();
+            SQLUI.Table table = new SQLUI.Table("");
+            table = new SQLUI.Table(new enum_儲位管理_Pannel35_儲位資料());
+            this.sqL_DataGridView_儲位管理_EPD266_儲位資料.RowsHeight = 40;
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Init(table);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnVisible(false, new enum_儲位管理_Pannel35_儲位資料().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_Pannel35_儲位資料.IP);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_Pannel35_儲位資料.儲位名稱);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_Pannel35_儲位資料.藥品碼);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnWidth(900, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_Pannel35_儲位資料.藥品名稱);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_Pannel35_儲位資料.包裝單位);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_Pannel35_儲位資料.庫存);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_Pannel35_儲位資料.警訊藥品);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_Pannel35_儲位資料.鎖控);
+
             this.sqL_DataGridView_儲位管理_Pannel35_儲位資料.RowEnterEvent += SqL_DataGridView_儲位管理_Pannel35_儲位資料_RowEnterEvent;
 
-            this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.Init();
+            table = new SQLUI.Table(new enum_儲位管理_Pannel35_效期及庫存());
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.Init(table);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.Set_ColumnVisible(false, new enum_儲位管理_EPD266_效期及庫存().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_Pannel35_效期及庫存.效期);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_Pannel35_效期及庫存.批號);
+            this.sqL_DataGridView_儲位管理_Pannel35_儲位內容_效期及庫存.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_Pannel35_效期及庫存.庫存);
 
 
             this.plC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋.MouseDownEvent += PlC_RJ_Button_儲位管理_Pannel35_藥品搜尋_藥品碼_搜尋_MouseDownEvent;

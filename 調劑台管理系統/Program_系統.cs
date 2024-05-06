@@ -54,13 +54,20 @@ namespace 調劑台管理系統
         }
         #endregion
         #region 特殊輸出表
+        [EnumDescription("special_output_table")]
         public enum enum_特殊輸出表
         {
+            [Description("GUID,VARCHAR,50,PRIMARY")]
             GUID,
+            [Description("Name,VARCHAR,100,NONE")]
             Name,
+            [Description("IP,VARCHAR,20,NONE")]
             IP,
+            [Description("Num,VARCHAR,20,NONE")]
             Num,
+            [Description("輸出位置,VARCHAR,20,NONE")]
             輸出位置,
+            [Description("輸出狀態,VARCHAR,20,NONE")]
             輸出狀態
         }
         enum enum_特殊輸出表_匯出
@@ -92,16 +99,20 @@ namespace 調劑台管理系統
 
         private void Program_系統_Init()
         {
+            Table table = new Table("");
+            table = new Table(new enum_Locker_Index_Table());
+            this.sqL_DataGridView_Locker_Index_Table.Init(table);
 
-            this.sqL_DataGridView_Locker_Index_Table.Init();
+
+
             if (!this.sqL_DataGridView_Locker_Index_Table.SQL_IsTableCreat()) this.sqL_DataGridView_Locker_Index_Table.SQL_CreateTable();
             else this.sqL_DataGridView_Locker_Index_Table.SQL_CheckAllColumnName(true);
 
             this.sqL_DataGridView_Locker_Index_Table.MouseDown += SqL_DataGridView_Locker_Index_Table_MouseDown;
             this.sqL_DataGridView_Locker_Index_Table.DataGridRowsChangeEvent += SqL_DataGridView_Locker_Index_Table_DataGridRowsChangeEvent;
 
-
-            this.sqL_DataGridView_特殊輸出表.Init();
+            table = new Table(new enum_特殊輸出表());
+            this.sqL_DataGridView_特殊輸出表.Init(table);
             if (!this.sqL_DataGridView_特殊輸出表.SQL_IsTableCreat()) this.sqL_DataGridView_特殊輸出表.SQL_CreateTable();
             this.sqL_DataGridView_特殊輸出表.MouseDown += SqL_DataGridView_特殊輸出表_MouseDown;
 

@@ -2111,7 +2111,16 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.medConfigController.get_all(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.medConfig.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medConfig.get_all(HIS_DB_Lib.returnData)">
             <summary>
             取得全部藥品設定
             </summary>
@@ -2129,7 +2138,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.medConfigController.add(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.medConfig.add(HIS_DB_Lib.returnData)">
             <summary>
             新增或修改藥品設定
             </summary>
@@ -2147,7 +2156,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.medConfigController.delete_by_guid(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.medConfig.delete_by_guid(HIS_DB_Lib.returnData)">
             <summary>
             以GUID刪除藥品設定
             </summary>

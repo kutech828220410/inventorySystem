@@ -19,16 +19,26 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        [EnumDescription("")]
         public enum enum_收支作業_單品入庫_儲位搜尋 : int
         {
+            [Description("GUID,VARCHAR,50,PRIMARY")]
             GUID,
+            [Description("IP,VARCHAR,300,NONE")]
             IP,
+            [Description("藥品碼,VARCHAR,300,NONE")]
             藥品碼,
+            [Description("藥品名稱,VARCHAR,300,NONE")]
             藥品名稱,
+            [Description("中文名稱,VARCHAR,300,NONE")]
             中文名稱,
+            [Description("儲位名稱,VARCHAR,300,NONE")]
             儲位名稱,
+            [Description("儲位型式,VARCHAR,300,NONE")]
             儲位型式,
-            庫存,        
+            [Description("庫存,VARCHAR,300,NONE")]
+            庫存,
+            [Description("Value,VARCHAR,300,NONE")]
             Value,
         }
         #region Function
@@ -45,7 +55,15 @@ namespace 調劑台管理系統
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
             SQLUI.Table tables = json.JsonDeserializet<SQLUI.Table>();
 
-            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Init();
+            SQLUI.Table table = new SQLUI.Table(new enum_收支作業_單品入庫_儲位搜尋());
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Init(table);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnVisible(false, new enum_收支作業_單品入庫_儲位搜尋().GetEnumNames());
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.藥品碼);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.藥品名稱);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位名稱);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位型式);
+            this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.庫存);
+
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RowDoubleClickEvent += SqL_DataGridView_收支作業_單品入庫_儲位搜尋_RowDoubleClickEvent;
 
             this.sqL_DataGridView_收支作業_入庫狀態.Init(this.sqL_DataGridView_取藥堆疊母資料);

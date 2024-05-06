@@ -25,15 +25,23 @@ namespace 調劑台管理系統
         static public List<Drawer> List_EPD583_入賬資料 = new List<Drawer>();
         private Drawer EPD583_Drawer_Copy;
         private Box EPD583_Box_Copy;
+
+        [EnumDescription("")]
         private enum enum_儲位管理_EPD583_效期及庫存
         {
+            [Description("效期,VARCHAR,300,NONE")]
             效期,
+            [Description("批號,VARCHAR,300,NONE")]
             批號,
+            [Description("庫存,VARCHAR,300,NONE")]
             庫存,
         }
+        [EnumDescription("")]
         private enum enum_儲位管理_EPD583_抽屜列表
         {
+            [Description("IP,VARCHAR,300,NONE")]
             IP,
+            [Description("名稱,VARCHAR,300,NONE")]
             名稱,
         }
 
@@ -42,8 +50,20 @@ namespace 調劑台管理系統
         {
 
             this.drawerUI_EPD_583.DrawerChangeEvent += DrawerUI_EPD_583_DrawerChangeEvent;
-            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Init();
-            this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Init();
+
+            SQLUI.Table table = new SQLUI.Table(new enum_儲位管理_EPD583_效期及庫存());
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Init(table);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Set_ColumnVisible(false, new enum_儲位管理_EPD583_效期及庫存().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD583_效期及庫存.效期);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD583_效期及庫存.批號);
+            this.sqL_DataGridView_儲位管理_EPD583_儲位內容_效期及庫存.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_EPD583_效期及庫存.庫存);
+
+            table = new SQLUI.Table(new enum_儲位管理_EPD583_抽屜列表());
+            this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Init(table);
+            this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Set_ColumnVisible(false, new enum_儲位管理_EPD583_抽屜列表().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD583_抽屜列表.IP);
+            this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_EPD583_抽屜列表.名稱);
+
             this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.RowEnterEvent += SqL_DataGridView_儲位管理_EPD583_抽屜列表_RowEnterEvent;
 
             this.sqL_DataGridView_儲位管理_EPD583_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);

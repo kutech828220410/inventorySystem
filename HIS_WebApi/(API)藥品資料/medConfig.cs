@@ -27,7 +27,6 @@ namespace HIS_WebApi
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(medConfigClass))]
         /// <summary>
         /// 初始化資料庫
         /// </summary>
@@ -35,7 +34,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-        /// 
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(medConfigClass))]
         [Route("init")]
         [HttpPost]
         public string GET_init([FromBody] returnData returnData)

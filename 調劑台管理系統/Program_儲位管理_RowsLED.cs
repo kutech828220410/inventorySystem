@@ -20,24 +20,38 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        [EnumDescription("")]
         private enum enum_儲位管理_RowsLED_層架列表
         {
+            [Description("IP,VARCHAR,300,NONE")]
             IP,
+            [Description("名稱,VARCHAR,300,NONE")]
             名稱,
         }
+        [EnumDescription("")]
         private enum enum_儲位管理_RowsLED_效期及庫存
         {
+            [Description("效期,VARCHAR,300,NONE")]
             效期,
+            [Description("批號,VARCHAR,300,NONE")]
             批號,
+            [Description("庫存,VARCHAR,300,NONE")]
             庫存,
         }
+        [EnumDescription("")]
         private enum enum_儲位管理_RowsLED_儲位資料
         {
+            [Description("GUID,VARCHAR,300,NONE")]
             GUID,
+            [Description("編號,VARCHAR,300,NONE")]
             編號,
+            [Description("儲位名稱,VARCHAR,300,NONE")]
             儲位名稱,
+            [Description("藥品碼,VARCHAR,300,NONE")]
             藥品碼,
+            [Description("藥品名稱,VARCHAR,300,NONE")]
             藥品名稱,
+            [Description("庫存,VARCHAR,300,NONE")]
             庫存,
         }
         private List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
@@ -54,12 +68,33 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
             this.sqL_DataGridView_儲位管理_RowsLED_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥品資料_藥檔資料.藥品碼, enum_藥品資料_藥檔資料.藥品名稱, enum_藥品資料_藥檔資料.藥品學名, enum_藥品資料_藥檔資料.中文名稱, enum_藥品資料_藥檔資料.包裝單位);
 
-            this.sqL_DataGridView_儲位管理_RowsLED_層架列表.Init();
+            SQLUI.Table table = new SQLUI.Table("");
+            table = new SQLUI.Table(new enum_儲位管理_RowsLED_層架列表());
+            this.sqL_DataGridView_儲位管理_RowsLED_層架列表.Init(table);
+            this.sqL_DataGridView_儲位管理_RowsLED_層架列表.Set_ColumnVisible(false, new enum_儲位管理_RowsLED_層架列表().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_RowsLED_層架列表.IP);
+            this.sqL_DataGridView_儲位管理_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_RowsLED_層架列表.名稱);
+
+
+
+            table = new SQLUI.Table(new enum_儲位管理_RowsLED_效期及庫存());
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.Init(table);
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.Set_ColumnVisible(false, new enum_儲位管理_RowsLED_效期及庫存().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_RowsLED_效期及庫存.效期);
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_RowsLED_效期及庫存.批號);
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_RowsLED_效期及庫存.庫存);
+
+            table = new SQLUI.Table(new enum_儲位管理_RowsLED_儲位資料());
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Init(table);
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Set_ColumnVisible(false, new enum_儲位管理_RowsLED_儲位資料().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_RowsLED_儲位資料.編號);
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_RowsLED_儲位資料.儲位名稱);
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_RowsLED_儲位資料.藥品碼);
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_儲位管理_RowsLED_儲位資料.藥品名稱);
+            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_儲位管理_RowsLED_儲位資料.庫存);
+
+
             this.sqL_DataGridView_儲位管理_RowsLED_層架列表.RowEnterEvent += SqL_DataGridView_儲位管理_RowsLED_層架列表_RowEnterEvent;
-
-            this.sqL_DataGridView_儲位管理_RowsLED_儲位內容_效期及庫存.Init();
-
-            this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.Init();
             this.sqL_DataGridView_儲位管理_RowsLED_儲位資料.RowEnterEvent += SqL_DataGridView_儲位管理_RowsLED_儲位資料_RowEnterEvent;
 
             this.rJ_RatioButton_儲位管理_RowsLED_儲位資料_紅.CheckedChanged += RJ_RatioButton_儲位管理_RowsLED_儲位資料_紅_CheckedChanged;

@@ -19,15 +19,24 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        [EnumDescription("")]
         public enum enum_交班對點_管制結存_紀錄顯示
         {
+            [Description("日期時間,VARCHAR,50,None")]
             日期時間,
+            [Description("床號,VARCHAR,50,None")]
             床號,
+            [Description("病人姓名,VARCHAR,50,None")]
             病人姓名,
+            [Description("病歷號,VARCHAR,50,None")]
             病歷號,
+            [Description("調劑人,VARCHAR,50,None")]
             調劑人,
+            [Description("交易量,VARCHAR,50,None")]
             交易量,
+            [Description("結存量,VARCHAR,50,None")]
             結存量,
+            [Description("盤點量,VARCHAR,50,None")]
             盤點量,
         }
         private int _交班對點_管制結存_現在頁面 = 0;
@@ -56,7 +65,18 @@ namespace 調劑台管理系統
             this.button_交班對點_管制結存_預覽列印.Click += Button_交班對點_管制結存_預覽列印_Click;
             this.button_交班對點_管制結存_匯出資料.Click += Button_交班對點_管制結存_匯出資料_Click;
 
-            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Init();
+
+            SQLUI.Table table = new SQLUI.Table(new enum_交班對點_管制結存_紀錄顯示());
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Init(table);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnVisible(false, new enum_交班對點_管制結存_紀錄顯示().GetEnumNames());
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_交班對點_管制結存_紀錄顯示.日期時間);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_交班對點_管制結存_紀錄顯示.床號);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.病人姓名);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.病歷號);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.調劑人);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.交易量);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.結存量);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.盤點量);
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.DataGridRefreshEvent += SqL_DataGridView_交班對點_管制結存_紀錄顯示_DataGridRefreshEvent;
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.DataGridRowsChangeRefEvent += SqL_DataGridView_交班對點_管制結存_紀錄顯示_DataGridRowsChangeRefEvent;
             this.plC_UI_Init.Add_Method(this.sub_Program_交班作業_管制結存);

@@ -5,15 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
-
+using System.ComponentModel;
+using System.Reflection;
 namespace HIS_DB_Lib
 {
+    [EnumDescription("consumption")]
     public enum enum_consumption
     {
+        [Description("藥品碼,VARCHAR,20,INDEX")]
         藥品碼,
+        [Description("藥品名稱,VARCHAR,300,NONE")]
         藥品名稱,
+        [Description("交易量,VARCHAR,20,NONE")]
         交易量,
+        [Description("結存量,VARCHAR,20,NONE")]
         結存量,
+        [Description("庫存量,VARCHAR,20,NONE")]
         庫存量,
     }
 

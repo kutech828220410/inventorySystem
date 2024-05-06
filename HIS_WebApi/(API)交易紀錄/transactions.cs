@@ -1566,32 +1566,40 @@ namespace HIS_WebApi
         private List<object[]> tradingData(List<object[]> list_value)
         {
             list_value = (from temp in list_value
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.自動過帳.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.掃碼領藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.手輸領藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.批次領藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.重複領藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統領藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.盤點調整.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.掃碼退藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.手輸退藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統入庫.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統加藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統退藥.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統調入.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統調出.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統撥入.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.系統撥出.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.入庫作業.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.出庫作業.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.撥入作業.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.撥出作業.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.調入作業.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.調出作業.GetEnumNames()
-                          where temp[(int)enum_交易記錄查詢資料.動作] == enum_交易記錄查詢動作.效期庫存異動.GetEnumNames()
+                          where FilterByAction(temp)
                           select temp).ToList();
             return list_value;
         }
+
+        private bool FilterByAction(object[] temp)
+        {
+            string str_action = temp[(int)enum_交易記錄查詢資料.動作].ObjectToString();
+            if (str_action == enum_交易記錄查詢動作.自動過帳.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.掃碼領藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.手輸領藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.批次領藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.重複領藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.系統領藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.盤點調整.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.掃碼退藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.手輸退藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.系統入庫.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.系統加藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.系統退藥.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.系統調入.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.系統調出.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.系統撥入.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.系統撥出.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.入庫作業.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.出庫作業.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.撥入作業.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.撥出作業.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.調入作業.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.調出作業.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.效期庫存異動.GetEnumName()) return true;
+            return false;
+        }
+
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
 

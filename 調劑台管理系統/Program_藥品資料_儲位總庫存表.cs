@@ -12,6 +12,7 @@ using Basic;
 using H_Pannel_lib;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
+using SQLUI;
 
 namespace 調劑台管理系統
 {
@@ -24,19 +25,37 @@ namespace 調劑台管理系統
             面板層架,
             LED層架,
         }
+        [EnumDescription("")]
         public enum enum_儲位總庫存表 : int
         {
+            [Description("儲位名稱,VARCHAR,300,NONE")]
             儲位名稱,
+            [Description("藥品碼,VARCHAR,300,NONE")]
             藥品碼,
+            [Description("藥品名稱,VARCHAR,300,NONE")]
             藥品名稱,
+            [Description("單位,VARCHAR,300,NONE")]
             單位,
+            [Description("庫存,VARCHAR,300,NONE")]
             庫存,
+            [Description("儲位型式,VARCHAR,300,NONE")]
             儲位型式,
+            [Description("IP,VARCHAR,300,NONE")]
             IP,
         }
 
         private void Program_藥品資料_儲位總庫存表_Init()
         {
+            Table table = new Table(new enum_儲位總庫存表());
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Init(table);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnVisible(false, new enum_儲位總庫存表().GetEnumNames());
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位總庫存表.儲位名稱);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位總庫存表.藥品碼);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_儲位總庫存表.藥品名稱);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_儲位總庫存表.單位);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_儲位總庫存表.庫存);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位總庫存表.儲位型式);
+
             this.sqL_DataGridView_藥品資料_儲位總庫存表.Init();
             this.sqL_DataGridView_藥品資料_儲位總庫存表.DataGridRowsChangeRefEvent += SqL_DataGridView_藥品資料_儲位總庫存表_DataGridRowsChangeRefEvent;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.MouseDownEvent += PlC_RJ_Button_藥品資料_儲位總庫存表_匯出資料_MouseDownEvent;

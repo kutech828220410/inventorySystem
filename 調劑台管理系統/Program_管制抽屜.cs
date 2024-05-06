@@ -17,19 +17,27 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        [EnumDescription("locker_data")]
         public enum enum_管制抽屜權限
         {
+            [Description("GUID,VARCHAR,50,PRIMARY")]
             GUID,
+            [Description("Master_GUID,VARCHAR,50,INDEX")]
             Master_GUID,
+            [Description("LockerType,VARCHAR,20,NONE")]
             LockerType,
+            [Description("IP,VARCHAR,20,NONE")]
             IP,
+            [Description("Num,VARCHAR,20,NONE")]
             Num,
+            [Description("開鎖權限,VARCHAR,20,NONE")]
             開鎖權限,
         }
-        
+
         private void Program_管制抽屜_Init()
         {
-            this.sqL_DataGridView_管制抽屜權限資料.Init();
+            SQLUI.Table table = new SQLUI.Table(new enum_管制抽屜權限());
+            this.sqL_DataGridView_管制抽屜權限資料.Init(table);
             if (!this.sqL_DataGridView_管制抽屜權限資料.SQL_IsTableCreat()) this.sqL_DataGridView_管制抽屜權限資料.SQL_CreateTable();
 
             this.pannel_Locker_Design.MouseDownEvent += Pannel_Locker_Design_MouseDownEvent;

@@ -15,6 +15,7 @@ using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using HIS_DB_Lib;
 using H_Pannel_lib;
+using SQLUI;
 namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
@@ -37,27 +38,56 @@ namespace 調劑台管理系統
         private bool flag_Program_領藥台_04_換頁 = false;
         private bool flag_Program_領藥_RFID_換頁 = false;
 
-        enum enum_領藥內容
+        [EnumDescription("")]
+        private enum enum_領藥內容
         {
+            [Description("GUID,VARCHAR,50,PRIMARY")]
             GUID,
+            [Description("序號,VARCHAR,50,None")]
             序號,
+            [Description("動作,VARCHAR,50,None")]
             動作,
+            [Description("藥袋序號,VARCHAR,50,None")]
             藥袋序號,
+            [Description("藥品碼,VARCHAR,50,None")]
             藥品碼,
+            [Description("藥品名稱,VARCHAR,50,None")]
             藥品名稱,
+            [Description("病歷號,VARCHAR,50,None")]
             病歷號,
+            [Description("床號,VARCHAR,50,None")]
             床號,
+            [Description("操作時間,VARCHAR,50,None")]
             操作時間,
+            [Description("開方時間,VARCHAR,50,None")]
             開方時間,
+            [Description("儲位總量,VARCHAR,50,None")]
             儲位總量,
+            [Description("異動量,VARCHAR,50,None")]
             異動量,
+            [Description("結存量,VARCHAR,50,None")]
             結存量,
+            [Description("單位,VARCHAR,50,None")]
             單位,
+            [Description("狀態,VARCHAR,50,None")]
             狀態,
         }
         private void Program_調劑作業_領藥台_01_Init()
         {
-            this.sqL_DataGridView_領藥台_01_領藥內容.Init();
+            Table table = new Table(new enum_領藥內容());
+            this.sqL_DataGridView_領藥台_01_領藥內容.Init(table);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnVisible(false, new enum_領藥內容().GetEnumNames());
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleCenter, enum_領藥內容.序號);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.動作);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.藥品碼);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.藥品名稱);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.儲位總量);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(55, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.異動量);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.結存量);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.單位);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_領藥內容.狀態);
+
+
             this.sqL_DataGridView_領藥台_01_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_領藥台_01_領藥內容.DataGridRefreshEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridRefreshEvent;
 
@@ -83,7 +113,20 @@ namespace 調劑台管理系統
         }
         private void Program_調劑作業_領藥台_02_Init()
         {
-            this.sqL_DataGridView_領藥台_02_領藥內容.Init();
+
+            Table table = new Table(new enum_領藥內容());
+            this.sqL_DataGridView_領藥台_02_領藥內容.Init(table);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnVisible(false, new enum_領藥內容().GetEnumNames());
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleCenter, enum_領藥內容.序號);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.動作);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.藥品碼);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.藥品名稱);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.儲位總量);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(55, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.異動量);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.結存量);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.單位);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_領藥內容.狀態);
+
             this.sqL_DataGridView_領藥台_02_領藥內容.DataGridRefreshEvent += SqL_DataGridView_領藥台_02_領藥內容_DataGridRefreshEvent;
             this.sqL_DataGridView_領藥台_02_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_02_領藥內容_DataGridRowsChangeRefEvent;
 
@@ -110,7 +153,19 @@ namespace 調劑台管理系統
         }
         private void Program_調劑作業_領藥台_03_Init()
         {
-            this.sqL_DataGridView_領藥台_03_領藥內容.Init();
+
+            Table table = new Table(new enum_領藥內容());
+            this.sqL_DataGridView_領藥台_03_領藥內容.Init(table);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnVisible(false, new enum_領藥內容().GetEnumNames());
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleCenter, enum_領藥內容.序號);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.動作);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.藥品碼);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.藥品名稱);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.儲位總量);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(55, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.異動量);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.結存量);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.單位);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_領藥內容.狀態);
             this.sqL_DataGridView_領藥台_03_領藥內容.DataGridRefreshEvent += SqL_DataGridView_領藥台_03_領藥內容_DataGridRefreshEvent;
             this.sqL_DataGridView_領藥台_03_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_03_領藥內容_DataGridRowsChangeRefEvent;
 
@@ -137,7 +192,18 @@ namespace 調劑台管理系統
         }
         private void Program_調劑作業_領藥台_04_Init()
         {
-            this.sqL_DataGridView_領藥台_04_領藥內容.Init();
+            Table table = new Table(new enum_領藥內容());
+            this.sqL_DataGridView_領藥台_04_領藥內容.Init(table);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnVisible(false, new enum_領藥內容().GetEnumNames());
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleCenter, enum_領藥內容.序號);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.動作);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.藥品碼);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_領藥內容.藥品名稱);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.儲位總量);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(55, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.異動量);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.結存量);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleRight, enum_領藥內容.單位);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_領藥內容.狀態);
             this.sqL_DataGridView_領藥台_04_領藥內容.DataGridRefreshEvent += SqL_DataGridView_領藥台_04_領藥內容_DataGridRefreshEvent;
             this.sqL_DataGridView_領藥台_04_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_04_領藥內容_DataGridRowsChangeRefEvent;
 

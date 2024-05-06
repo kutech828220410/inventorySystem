@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.44")]
-[assembly: AssemblyFileVersion("1.2.1.44")]
+[assembly: AssemblyVersion("1.2.1.45")]
+[assembly: AssemblyFileVersion("1.2.1.45")]
 namespace 調劑台管理系統
 {
 
@@ -450,20 +450,30 @@ namespace 調劑台管理系統
                 printerClass.Init();
                 printerClass.PrintPageEvent += PrinterClass_PrintPageEvent;
 
-               
-
+                this.plC_ScreenPage_Main.TabChangeEvent += PlC_ScreenPage_Main_TabChangeEvent;
             }
 
+        }
+
+
+
+        #region Event
+        private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
+        {
+            if (this.plC_ScreenPage_Main.PageText == "後台登入")
+            {
+                panel_主畫面登入.Location = new Point((後台登入.Width - panel_主畫面登入.Width) / 2, (後台登入.Height - panel_主畫面登入.Height) / 2);
+            }
         }
         private void PlC_UI_Init_UI_Finished_Event()
         {
             this.PLC = this.lowerMachine_Panel.GetlowerMachine();
-            
+
             PLC_Device_主機輸出模式.Bool = myConfigClass.主機輸出模式;
             PLC_Device_主機扣賬模式.Bool = myConfigClass.主機扣帳模式;
             PLC_Device_掃碼槍COM通訊.Bool = myConfigClass.掃碼槍COM通訊;
             PLC_Device_藥物辨識圖片顯示.Bool = myConfigClass.藥物辨識圖片顯示;
-       
+
 
 
             if (myConfigClass.Scanner01_COMPort.StringIsEmpty())
@@ -482,7 +492,7 @@ namespace 調劑台管理系統
             {
                 rJ_GroupBox_領藥台_04.Visible = false;
             }
-            if(myConfigClass.Scanner03_COMPort.StringIsEmpty() && myConfigClass.Scanner04_COMPort.StringIsEmpty())
+            if (myConfigClass.Scanner03_COMPort.StringIsEmpty() && myConfigClass.Scanner04_COMPort.StringIsEmpty())
             {
                 panel_領藥台_03_04.Visible = false;
             }
@@ -522,7 +532,7 @@ namespace 調劑台管理系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_人員資料, this.plC_ScreenPage_人員資料);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_盤點作業, this.plC_ScreenPage_盤點作業);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_交易紀錄查詢, this.plC_ScreenPage_交易紀錄查詢);
-                        
+
             this.plC_RJ_ScreenButton_EPD583.Visible = myConfigClass.EPD583_Enable;
             this.plC_RJ_ScreenButton_EPD266.Visible = myConfigClass.EPD266_Enable;
             this.plC_RJ_ScreenButton_EPD1020.Visible = myConfigClass.EPD1020_Enable;
@@ -536,7 +546,7 @@ namespace 調劑台管理系統
 
             this.Program_Scanner_RS232_Init();
             this.Program_系統_Init();
-          
+
             this.Program_醫令資料_Init();
             this.Program_藥品資料_藥檔資料_Init();
 
@@ -550,7 +560,7 @@ namespace 調劑台管理系統
             this.Program_取藥堆疊資料_Init();
             if (!this.ControlMode) this.Program_調劑作業_Init();
 
-         
+
             this.Program_藥品資料_儲位總庫存表_Init();
             this.Program_藥品資料_儲位效期表_Init();
             this.Program_藥品資料_管藥設定_Init();
@@ -560,7 +570,7 @@ namespace 調劑台管理系統
             this.Program_工程模式_Init();
             this.Program_交易記錄查詢_Init();
             this.Program_效期管理_Init();
-      
+
             this.Program_後台登入_Init();
             this.Program_批次領藥_Init();
 
@@ -578,7 +588,7 @@ namespace 調劑台管理系統
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();
-    
+
             if (!this.ControlMode) this.Program_輸出入檢查_Init();
             this.Program_收支作業_Init();
             this.Program_指紋辨識_Init();
@@ -607,7 +617,6 @@ namespace 調劑台管理系統
 
             flag_Init = true;
         }
-        #region Event
         private void PrinterClass_PrintPageEvent(object sender, Graphics g, int width, int height, int page_num)
         {
             Rectangle rectangle = new Rectangle(0, 0, width, height);
