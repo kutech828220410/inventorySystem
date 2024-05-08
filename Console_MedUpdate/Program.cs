@@ -10,10 +10,13 @@ using Basic;
 using MyUI;
 using System.IO;
 using System.Reflection;
+
 namespace Console_MedUpdate
 {
     class Program
     {
+        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
+
         static public  string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         static private string DBConfigFileName = $"{currentDirectory}//DBConfig.txt";
         public class DBConfigClass

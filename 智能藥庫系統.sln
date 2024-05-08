@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForm", "TestForm\TestFo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "中藥調劑系統", "中藥調劑系統\中藥調劑系統.csproj", "{6EDA3008-6761-4EB1-B7AD-81F32715BCF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_dps_medUpdate", "batch_dps_medUpdate\batch_dps_medUpdate.csproj", "{89223B5D-E6E9-40DF-82AB-462048E6BEC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{6EDA3008-6761-4EB1-B7AD-81F32715BCF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EDA3008-6761-4EB1-B7AD-81F32715BCF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EDA3008-6761-4EB1-B7AD-81F32715BCF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89223B5D-E6E9-40DF-82AB-462048E6BEC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89223B5D-E6E9-40DF-82AB-462048E6BEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89223B5D-E6E9-40DF-82AB-462048E6BEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89223B5D-E6E9-40DF-82AB-462048E6BEC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{BED408C5-A664-4417-812E-6486B776D33E} = {A26FB20E-1042-41C8-BA46-0CB7E82757E8}
 		{FAC2761D-D70B-40F1-9812-F0BEFB56B601} = {178BB82E-8C58-4627-B537-1E5457A7AB7C}
 		{E617E12B-9021-4311-8DAA-E6E3CFE5047F} = {A26FB20E-1042-41C8-BA46-0CB7E82757E8}
+		{89223B5D-E6E9-40DF-82AB-462048E6BEC7} = {BED408C5-A664-4417-812E-6486B776D33E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B921A9E-6909-4DAB-8E4C-5F9D26A5CEDE}
