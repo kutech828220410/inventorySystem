@@ -1138,7 +1138,7 @@ namespace HIS_WebApi
             table.AddColumnList("藥師證字號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("動作", Table.StringType.VARCHAR, 30, Table.IndexType.None);
             table.AddColumnList("作業模式", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("藥袋序號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
+            table.AddColumnList("藥袋序號", Table.StringType.VARCHAR, 200, Table.IndexType.None);
             table.AddColumnList("領藥號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("病房號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
             table.AddColumnList("類別", Table.StringType.VARCHAR, 20, Table.IndexType.None);

@@ -652,7 +652,33 @@ namespace 智能藥庫管理系統
             this.Invoke(new Action(delegate
             {
                 Dialog_效期批號輸入 dialog_效期批號輸入 = new Dialog_效期批號輸入(藥碼);
-                dialog_效期批號輸入.ShowDialog();
+                if (dialog_效期批號輸入.ShowDialog() != DialogResult.Yes) return;
+                string 效期 = dialog_效期批號輸入.效期;
+                string 批號 = dialog_效期批號輸入.批號;
+
+                List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
+                if (deviceBasics.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"找無儲位資訊", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                if (deviceBasics[0].取得庫存(效期) > 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"效期:{效期}已存在,無法新增", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+
+                Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel("請輸入數量");
+                if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
+                int Value = dialog_NumPannel.Value;
+                if (Value <= 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("數量不得小於\"1\"", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
             }));
    
 
