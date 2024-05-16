@@ -217,6 +217,12 @@
     <Compile Include="Dialog_庫存查詢.Designer.cs">
       <DependentUpon>Dialog_庫存查詢.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_效期批號輸入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_效期批號輸入.Designer.cs">
+      <DependentUpon>Dialog_效期批號輸入.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dialog_庫存查詢.resx">
       <DependentUpon>Dialog_庫存查詢.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_效期批號輸入.resx">
+      <DependentUpon>Dialog_效期批號輸入.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>

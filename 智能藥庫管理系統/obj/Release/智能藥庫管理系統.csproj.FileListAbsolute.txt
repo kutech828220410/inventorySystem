@@ -169,3 +169,4 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_庫存查詢.resources
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\MySql.Data.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Main_Form.resources
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_效期批號輸入.resources

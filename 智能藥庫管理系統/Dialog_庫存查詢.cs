@@ -85,9 +85,10 @@ namespace 智能藥庫管理系統
 
         private void Dialog_庫存查詢_Resize(object sender, EventArgs e)
         {
-            int width = this.Width / 2;
-            this.sqL_DataGridView_藥庫_效期及批號.Width = width;
-            this.sqL_DataGridView_藥局_效期及批號.Width = width;
+            int width = 0;
+            width = (this.Width - this.panel_效期及批號.Padding.Horizontal - 5) / 2;
+            this.panel_藥庫_效期及批號.Width = width;
+            this.panel_藥局_效期及批號.Width = width;
         }
         private void Dialog_庫存查詢_Load(object sender, EventArgs e)
         {
@@ -125,10 +126,7 @@ namespace 智能藥庫管理系統
             sqL_DataGridView_藥庫_效期及批號.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_效期及批號.庫存);
             sqL_DataGridView_藥庫_效期及批號.RowHeaderPostPaintingEvent += SqL_DataGridView_藥庫_效期及批號_RowHeaderPostPaintingEvent;
 
-            int width = 0;
-            width = this.Width / 2;
-            this.sqL_DataGridView_藥庫_效期及批號.Width = width;
-            this.sqL_DataGridView_藥局_效期及批號.Width = width;
+        
 
 
             table = new Table(new enum_效期及批號());
@@ -139,12 +137,17 @@ namespace 智能藥庫管理系統
             sqL_DataGridView_藥局_效期及批號.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_效期及批號.庫存);
             sqL_DataGridView_藥局_效期及批號.RowHeaderPostPaintingEvent += SqL_DataGridView_藥局_效期及批號_RowHeaderPostPaintingEvent;
 
-            width = this.Width / 2;
-            this.sqL_DataGridView_藥局_效期及批號.Width = width;
-            this.sqL_DataGridView_藥局_效期及批號.Width = width;
+            int width = 0;
+            width = (this.Width - this.panel_效期及批號.Padding.Horizontal - 5) / 2;
+            this.panel_藥庫_效期及批號.Width = width;
+            this.panel_藥局_效期及批號.Width = width;
+
+            this.plC_RJ_Button_藥庫_效期及批號_新增.MouseDownEvent += PlC_RJ_Button_藥庫_效期及批號_新增_MouseDownEvent;
 
             IsShown = true;
         }
+
+
 
         #region Function
         private List<object[]> Function_取得庫存查詢列表()
@@ -212,6 +215,7 @@ namespace 智能藥庫管理系統
                 {
                     value[(int)enum_庫存查詢.藥名] = medClasses_buf[0].藥品名稱;
                     value[(int)enum_庫存查詢.中文名] = medClasses_buf[0].中文名稱;
+                    if (medClasses_buf[0].包裝單位.StringIsEmpty()) medClasses_buf[0].包裝單位 = "-";
                     value[(int)enum_庫存查詢.單位] = medClasses_buf[0].包裝單位;
 
                     value[(int)enum_庫存查詢.藥庫庫存] = "-";
@@ -634,6 +638,24 @@ namespace 智能藥庫管理系統
 
             sqL_DataGridView_庫存查詢.RefreshGrid(list_value);
             LoadingForm.CloseLoadingForm();
+        }
+        private void PlC_RJ_Button_藥庫_效期及批號_新增_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_庫存查詢 = sqL_DataGridView_庫存查詢.Get_All_Select_RowsValues();
+            if (list_庫存查詢.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string 藥碼 = list_庫存查詢[0][(int)enum_庫存查詢.藥碼].ObjectToString();
+            this.Invoke(new Action(delegate
+            {
+                Dialog_效期批號輸入 dialog_效期批號輸入 = new Dialog_效期批號輸入(藥碼);
+                dialog_效期批號輸入.ShowDialog();
+            }));
+   
+
         }
         #endregion
 
