@@ -21,13 +21,21 @@ namespace HIS_WebApi
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
+
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("init")]
         [HttpPost]
         public string POST_init([FromBody] returnData returnData)
         {
             try
             {
-         
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
                 return CheckCreatTable(returnData);
             }
             catch (Exception e)
@@ -121,6 +129,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "get_med_cloud";
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -197,6 +206,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             string TableName = returnData.TableName;
             returnData.Method = "get_by_apiserver";
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
             try
             {        
                 if (TableName == "medicine_page_cloud")
@@ -437,7 +447,9 @@ namespace HIS_WebApi
                         list_med_buf = list_med.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
                         if(list_med_buf.Count == 0)
                         {
-                            list_med_add.Add(medClasses_cloud[i].ClassToSQL<medClass, enum_藥品資料_藥檔資料>());
+                            object[] value = medClasses_cloud[i].ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                            value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
+                            list_med_add.Add(value);
                         }
                     }
                     sQLControl_med.AddRows(null, list_med_add);
@@ -639,7 +651,7 @@ namespace HIS_WebApi
                 if (TableName == "medicine_page_cloud")
                 {
                     List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                    serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "藥檔資料");
+                    serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
                     string Server = serverSettingClasses[0].Server;
                     string DB = serverSettingClasses[0].DBName;
                     string UserName = serverSettingClasses[0].User;
@@ -654,10 +666,33 @@ namespace HIS_WebApi
 
                     CheckCreatTable(returnData);
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                    List<object[]> list_replace = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
-                    sQLControl_med.UpdateByDefulteExtra(null, list_replace);
+                    List<object[]> list_value = sQLControl_med.GetAllRows(null);
+                    List<object[]> list_value_buf = new List<object[]>();
+                    List<object[]> list_value_add = new List<object[]>();
+                    List<object[]> list_value_replace = new List<object[]>();
+                    for (int i = 0; i < medClasses.Count; i++)
+                    {
+                        string Code = medClasses[i].藥品碼;
+                        list_value_buf = list_value.GetRows((int)enum_雲端藥檔.藥品碼, Code);
+                        if(list_value_buf.Count == 0)
+                        {
+                            object[] value = medClasses[i].ClassToSQL<medClass, enum_雲端藥檔>();
+                            value[(int)enum_雲端藥檔.GUID] = Guid.NewGuid().ToString();
+                            list_value_add.Add(value);
+                        }
+                        else
+                        {
+                            object[] value = medClasses[i].ClassToSQL<medClass, enum_雲端藥檔>();
+                            value[(int)enum_雲端藥檔.GUID] = list_value_buf[0][(int)enum_雲端藥檔.GUID].ObjectToString();
+                            list_value_replace.Add(value);
+                        }    
+
+                    }
+
+                    sQLControl_med.UpdateByDefulteExtra(null, list_value_replace);
+                    sQLControl_med.AddRows(null, list_value_add);
                     returnData.Code = 200;
-                    returnData.Result = "雲端藥檔更新成功!";
+                    returnData.Result = $"雲端藥檔更新成功!新增<{list_value_add.Count}>筆,修改<{list_value_replace.Count}>筆";
                     returnData.TimeTaken = myTimerBasic.ToString();
                     return returnData.JsonSerializationt(true);
                 }

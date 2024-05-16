@@ -591,3 +591,5 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Micro
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\ICSharpCode.SharpZipLib.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\stdole.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\H_Pannel_lib.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\zxing.dll

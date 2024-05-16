@@ -523,6 +523,33 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
 
         }
+        static public List<H_Pannel_lib.StockClass> get_stock_by_code(string API_Server, string 藥碼, string serverName, string serverType)
+        {
+            string url = $"{API_Server}/api/transactions/get_stock_by_code";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+            returnData.Value = 藥碼;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result == null)
+            {
+                return null;
+            }
+            if (returnData_result.Data == null)
+            {
+                return null;
+            }
+            List<H_Pannel_lib.StockClass> stockClasses = returnData_result.Data.ObjToClass<List<H_Pannel_lib.StockClass>>();
+
+            Console.WriteLine($"{returnData_result}");
+
+            return stockClasses;
+        }
 
 
 

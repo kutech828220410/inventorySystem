@@ -178,14 +178,14 @@ namespace HIS_WebApi
                         object[] value = new object[new enum_藥品設定表().GetLength()];
                         medConfigClasses[i].GUID = list_med_config_buf[0][(int)enum_藥品設定表.GUID].ObjectToString();
                         value = medConfigClasses[i].ClassToSQL<medConfigClass, enum_藥品設定表>();
-                        list_med_config_add.Add(value);
+                        list_med_config_replace.Add(value);
                     }
                     else
                     {
                         object[] value = new object[new enum_藥品設定表().GetLength()];
                         medConfigClasses[i].GUID = Guid.NewGuid().ToString();
                         value = medConfigClasses[i].ClassToSQL<medConfigClass, enum_藥品設定表>();
-                        list_med_config_replace.Add(value);
+                        list_med_config_add.Add(value);
                     }
                 }
                 sQLControl_med_config.AddRows(null, list_med_config_add);

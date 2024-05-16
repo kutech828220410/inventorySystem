@@ -643,8 +643,6 @@ namespace HIS_WebApi
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
-  
-
             List<Table> tables = new List<Table>();
             tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_stockRecord()));
             tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_stockRecord_content()));

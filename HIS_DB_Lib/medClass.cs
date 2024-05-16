@@ -68,10 +68,16 @@ namespace HIS_DB_Lib
         [JsonPropertyName("FILE_STATUS")]
         public string 開檔狀態 { get; set; }
     }
+
+  
     public class medClass : medClassBasic
     {
-      
-
+        public enum StoreType
+        {
+            藥庫,
+            藥局,
+            調劑台
+        }
         //[JsonPropertyName("BARCODE")]
         //public string Barcode_Json
         //{
@@ -127,6 +133,83 @@ namespace HIS_DB_Lib
             barcodes.Remove(barcode);
             Barcode = barcodes;
         }
+
+        static public SQLUI.Table init(string API_Server, string ServerName, string ServerType , StoreType storeType)
+        {
+            string url = $"{API_Server}/api/MED_page/init";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string tableName = "";
+            if (storeType == StoreType.藥庫)
+            {
+                tableName = "medicine_page_firstclass";
+            }
+            if (storeType == StoreType.藥局)
+            {
+                tableName = "medicine_page_phar";
+            }
+            if (storeType == StoreType.調劑台)
+            {
+                tableName = "medicine_page";
+            }
+            returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
+            return table;
+        }
+        static public List<medClass> get_med_cloud(string API_Server)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_med_cloud";
+
+            returnData returnData = new returnData();
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        static public List<medClass> get_by_apiserver(string API_Server, string ServerName, string ServerType, StoreType storeType)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_by_apiserver";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string tableName = "";
+            if (storeType == StoreType.藥庫)
+            {
+                tableName = "medicine_page_firstclass";
+            }
+            if (storeType == StoreType.藥局)
+            {
+                tableName = "medicine_page_phar";
+            }
+            if (storeType == StoreType.調劑台)
+            {
+                tableName = "medicine_page";
+            }
+            returnData.TableName = tableName;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+
 
         static public System.Collections.Generic.Dictionary<string, List<medClass>> CoverToDictionaryByCode(List<medClass> medClasses)
         {

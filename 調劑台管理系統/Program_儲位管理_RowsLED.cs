@@ -1147,6 +1147,7 @@ namespace 調劑台管理系統
                 rowsLED.RowsDevices.Clear();
                 for (int k = 0; k < sheetClasses[i].Rows.Count; k++ )
                 {
+                    if (sheetClasses[i].Rows[k].Cell.Count != 4) continue;
                     string Name = sheetClasses[i].Rows[k].Cell[0].Text;
                     string Code = sheetClasses[i].Rows[k].Cell[1].Text;
                     int RowsLEDStart = sheetClasses[i].Rows[k].Cell[2].Text.StringToInt32();
@@ -1165,6 +1166,8 @@ namespace 調劑台管理系統
             {
                 if (PLC_Device_儲位管理_RowsLED_資料更新.Bool == false) break;
             }
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("匯入完成", 1500, Color.Green);
+            dialog_AlarmForm.ShowDialog();
         }
         #endregion
 

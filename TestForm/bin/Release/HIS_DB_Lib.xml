@@ -4,9 +4,94 @@
         <name>HIS_DB_Lib</name>
     </assembly>
     <members>
+        <member name="P:HIS_DB_Lib.returnData.Data">
+            <summary>
+            資料內容回傳或傳入,內容可為任意資料結構JSON格式,依據API自定義
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.returnData.Code">
             <summary>
             回傳結果碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.Method">
+            <summary>
+            執行函式名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.Result">
+            <summary>
+            回傳結果說明
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.Value">
+            <summary>
+            傳入參數(string)由API自定義
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.ValueAry">
+            <summary>
+            傳入參數(stringAry)由API自定義
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.TimeTaken">
+            <summary>
+            執行花費時長
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.Token">
+            <summary>
+            傳入API驗證token碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.Server">
+            <summary>
+            傳入Database Server參數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.DbName">
+            <summary>
+            傳入Database DbName參數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.TableName">
+            <summary>
+            傳入Database TableName參數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.Port">
+            <summary>
+            傳入Database Port參數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.UserName">
+            <summary>
+            傳入Database UserName參數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.Password">
+            <summary>
+            傳入Database Password參數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.ServerType">
+            <summary>
+            傳入伺服器 ServerType參數(網頁、調劑台、藥庫....)
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.ServerName">
+            <summary>
+            傳入伺服器 ServerName參數(dps01、ds01...)
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.ServerContent">
+            <summary>
+            傳入伺服器 ServerContent參數(人員資料、藥品資料、一般資料...)
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.returnData.RequestUrl">
+            <summary>
+            回傳觸發請求網址
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medGeneralConfigClass.GUID">

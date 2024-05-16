@@ -179,6 +179,10 @@ namespace HIS_WebApi
         [HttpPost]
         public string POST_all(returnData returnData)
         {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "all";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -192,10 +196,14 @@ namespace HIS_WebApi
                 }
 
                 List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClasses[0], returnData.TableName);
+                returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Code = 200;
-                returnData.Result = $"Device取得成功!TableName : {returnData.TableName}";
+                returnData.Result = $"Device取得成功!,共<{deviceBasics.Count}>筆資料,TableName : {returnData.TableName}";
                 returnData.Data = deviceBasics;
-                return returnData.JsonSerializationt();
+    
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
             }
             catch (Exception e)
             {
@@ -206,6 +214,89 @@ namespace HIS_WebApi
 
 
         }
+        /// <summary>
+        /// 查詢儲位資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "口服2",
+        ///     "ServerType" : "調劑台",
+        ///     "ValueAry" : 
+        ///     [
+        ///       "藥碼1,藥碼2,藥碼3"
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        [Route("get_by_code")]
+        [HttpPost]
+        public string POST_get_by_code(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "get_by_code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if(returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼1,藥碼2,藥碼3]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string[] Codes = returnData.ValueAry[0].Split(",");
+                List<DeviceBasic> deviceBasics = Function_Get_device(serverSettingClasses[0], returnData.TableName);
+                Dictionary<string, List<DeviceBasic>> keyValuePairs = deviceBasics.CoverToDictionaryByCode();
+
+
+                List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
+                List<DeviceBasic> deviceBasics_result = new List<DeviceBasic>();
+
+                for (int i = 0; i < Codes.Length; i++)
+                {
+                    deviceBasics_buf = keyValuePairs.SortDictionaryByCode(Codes[i]);
+                    if (deviceBasics_buf.Count > 0)
+                    {
+                        deviceBasics_result.LockAdd(deviceBasics_buf);
+                    }
+                }
+
+
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = $"Device取得成功!,共<{deviceBasics_result.Count}>筆資料,TableName : {returnData.TableName}";
+                returnData.Data = deviceBasics_result;
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
+
+
         [Route("light_web")]
         [HttpPost]
         public string POST_light_web(returnData returnData)

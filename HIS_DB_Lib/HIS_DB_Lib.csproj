@@ -39,6 +39,9 @@
     <Reference Include="Basic">
       <HintPath>..\0.DLL\Basic.dll</HintPath>
     </Reference>
+    <Reference Include="H_Pannel_lib">
+      <HintPath>..\0.DLL\H_Pannel_lib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -106,6 +109,7 @@
     <Compile Include="computerConfigClass.cs" />
     <Compile Include="consumptionClass.cs" />
     <Compile Include="ctclistClass.cs" />
+    <Compile Include="deviceApiClass.cs" />
     <Compile Include="medGeneralConfigClass.cs" />
     <Compile Include="IncomeReasonsClass.cs" />
     <Compile Include="inspectionClass.cs" />
@@ -125,7 +129,7 @@
     <Compile Include="medSMDSClass.cs" />
     <Compile Include="orderClass.cs" />
     <Compile Include="personClass.cs" />
-    <Compile Include="pharmacyDistributionClass.cs" />
+    <Compile Include="drugstotreDistributionClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="protalClass.cs" />
     <Compile Include="ServerSettingClass.cs" />

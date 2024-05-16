@@ -536,12 +536,13 @@ namespace HIS_WebApi
                     stockClasses.Add(stockClass);
 
                 }
+                List<StockClass> sortedStockClasses = stockClasses.OrderBy(s => DateTime.Parse(s.Validity_period)).ToList();
 
 
                 returnData.Code = 200;
                 returnData.Result = $"({returnData.Value})取得效期成功!共<{stockClasses.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
-                returnData.Data = stockClasses;
+                returnData.Data = sortedStockClasses;
                 return returnData.JsonSerializationt();
             }
             catch (Exception e)
@@ -984,7 +985,7 @@ namespace HIS_WebApi
         ///     },
         ///     "ValueAry" : 
         ///     [
-        ///       "藥碼",
+        ///       "藥碼1,藥碼2,藥碼3",
         ///       "起始時間",
         ///       "結束時間",
         ///       "口服1,口服2",
@@ -1017,7 +1018,7 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[藥碼][起始時間][結束時間][ServerName1,ServerName2][ServerType1,ServerType2]";
                     return returnData.JsonSerializationt(true);
                 }
-                string 藥碼 = returnData.ValueAry[0];
+                string[] 藥碼Ary = returnData.ValueAry[0].Split(",");
                 string 起始時間 = returnData.ValueAry[1];
                 string 結束時間 = returnData.ValueAry[2];
                 string serverName = returnData.ValueAry[3];
@@ -1025,7 +1026,13 @@ namespace HIS_WebApi
 
                 string[] ServerNames = serverName.Split(',');
                 string[] ServerTypes = serverType.Split(',');
+                if (藥碼Ary.Length == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"[藥碼] 欄位異常 ,請用','分隔需搜尋藥碼";
+                    return returnData.JsonSerializationt(true);
 
+                }
                 if (起始時間.Check_Date_String() == false)
                 {
                     returnData.Code = -200;
@@ -1044,18 +1051,8 @@ namespace HIS_WebApi
                     returnData.Result = $"ServerNames及ServerTypes長度不同";
                     return returnData.JsonSerializationt(true);
                 }
-                returnData returnData_get_datas_by_code = new returnData();
-                returnData_get_datas_by_code.ValueAry.Add(藥碼);
-                returnData_get_datas_by_code.ValueAry.Add(serverName);
-                returnData_get_datas_by_code.ValueAry.Add(serverType);
-                string json_get_datas_by_code = POST_get_datas_by_code(returnData_get_datas_by_code);
-                returnData_get_datas_by_code = json_get_datas_by_code.JsonDeserializet<returnData>();
-                if (returnData_get_datas_by_code.Code != 200)
-                {
-                    return returnData_get_datas_by_code.JsonSerializationt(true);
-                }
-
-                List<transactionsClass> transactionsClasses = returnData_get_datas_by_code.Data.ObjToListClass<transactionsClass>();
+                DateTime dateTime_st = 起始時間.StringToDateTime();
+                DateTime dateTime_end = 結束時間.StringToDateTime();
                 ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
 
                 MED_pageController mED_PageController = new MED_pageController();
@@ -1070,68 +1067,104 @@ namespace HIS_WebApi
                 returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
                 returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
-                List<medClass> medClasses_buf = new List<medClass>();
 
-                medClasses_buf = (from value in medClasses
-                                  where value.藥品碼.ToUpper() == 藥碼.ToUpper()
-                                  select value).ToList();
-                if (medClasses_buf.Count == 0)
-                {
-                    if (returnData.Value.StringIsEmpty())
-                    {
-                        return null;
-                    }
-                }
-
-                string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
-                Console.WriteLine($"取得creats {myTimerBasic.ToString()}");
-                int row_max = 50;
                 List<SheetClass> sheetClasses = new List<SheetClass>();
-                SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
-
-
-                int 消耗量 = 0;
-                int NumOfRow = -1;
-                for (int i = 0; i < transactionsClasses.Count; i++)
+                List<List<transactionsClass>> list_transactionsClasses = new List<List<transactionsClass>>();
+                for (int k = 0; k < 藥碼Ary.Length; k++)
                 {
-                    if (NumOfRow >= row_max || NumOfRow == -1)
+                    string 藥碼 = 藥碼Ary[k];
+                    returnData returnData_get_datas_by_code = new returnData();
+                    returnData_get_datas_by_code.ValueAry.Add(藥碼Ary[k]);
+                    returnData_get_datas_by_code.ValueAry.Add(serverName);
+                    returnData_get_datas_by_code.ValueAry.Add(serverType);
+                    string json_get_datas_by_code = POST_get_datas_by_code(returnData_get_datas_by_code);
+                    returnData_get_datas_by_code = json_get_datas_by_code.JsonDeserializet<returnData>();
+                    if (returnData_get_datas_by_code.Code != 200)
                     {
-                        sheetClass = loadText.JsonDeserializet<SheetClass>();
-                        sheetClass.Name = $"{i}";
-                        sheetClass.ReplaceCell(1, 1, $"{medClasses_buf[0].藥品碼}");
-                        sheetClass.ReplaceCell(1, 3, $"{medClasses_buf[0].包裝單位}");
-                        sheetClass.ReplaceCell(1, 7, $"{medClasses_buf[0].管制級別}");
-                        sheetClass.ReplaceCell(1, 10, $"{起始時間}");
-
-                        sheetClass.ReplaceCell(2, 1, $"{medClasses_buf[0].藥品名稱}");
-                        sheetClass.ReplaceCell(2, 7, $"{medClasses_buf[0].藥品許可證號}");
-                        sheetClass.ReplaceCell(2, 10, $"{結束時間}");
-
-                        sheetClass.ReplaceCell(3, 1, $"{medClasses_buf[0].藥品學名}");
-                        sheetClass.ReplaceCell(3, 7, $"{medClasses_buf[0].廠牌}");
-                        sheetClasses.Add(sheetClass);
-                        NumOfRow = 0;
+                        return returnData_get_datas_by_code.JsonSerializationt(true);
                     }
 
-                    消耗量 += transactionsClasses[i].交易量.StringToInt32();
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 0, $"{i + 1}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 1, $"{transactionsClasses[i].操作時間}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 2, $"{transactionsClasses[i].床號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 3, $"{transactionsClasses[i].類別}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 4, $"{transactionsClasses[i].病人姓名}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 5, $"{transactionsClasses[i].病歷號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 6, $"{transactionsClasses[i].操作人}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 7, $"{transactionsClasses[i].藥師證字號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 8, $"{transactionsClasses[i].交易量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 9, $"{transactionsClasses[i].結存量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 10, $"{transactionsClasses[i].收支原因}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(NumOfRow + 5, 11, $"{transactionsClasses[i].備註}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    NumOfRow++;
+                    List<transactionsClass> transactionsClasses = returnData_get_datas_by_code.Data.ObjToListClass<transactionsClass>();
+
+                    transactionsClasses = (from temp in transactionsClasses
+                                           where temp.操作時間.StringToDateTime() >= dateTime_st
+                                           where temp.操作時間.StringToDateTime() <= dateTime_end
+                                           select temp).ToList();
+
+                    List<medClass> medClasses_buf = new List<medClass>();
+
+                    medClasses_buf = (from value in medClasses
+                                      where value.藥品碼.ToUpper() == 藥碼.ToUpper()
+                                      select value).ToList();
+                    if (medClasses_buf.Count == 0)
+                    {
+                        if (returnData.Value.StringIsEmpty())
+                        {
+                            return null;
+                        }
+                    }
+
+                    string loadText = Basic.MyFileStream.LoadFileAllText(@"./excel_emg_tradding.txt", "utf-8");
+                    Console.WriteLine($"取得creats {myTimerBasic.ToString()}");
+                    int row_max = 60000;
+       
+                    SheetClass sheetClass = loadText.JsonDeserializet<SheetClass>();
+
+                    int 消耗量 = 0;
+                    int NumOfRow = -1;
+                    for (int i = 0; i < transactionsClasses.Count; i++)
+                    {
+                        if (NumOfRow >= row_max || NumOfRow == -1)
+                        {
+                            sheetClass = loadText.JsonDeserializet<SheetClass>();
+                            sheetClass.Name = $"{藥碼}";
+                            sheetClass.ReplaceCell(1, 1, $"{medClasses_buf[0].藥品碼}");
+                            sheetClass.ReplaceCell(1, 3, $"{medClasses_buf[0].包裝單位}");
+                            sheetClass.ReplaceCell(1, 7, $"{medClasses_buf[0].管制級別}");
+                            sheetClass.ReplaceCell(1, 10, $"{起始時間}");
+
+                            sheetClass.ReplaceCell(2, 1, $"{medClasses_buf[0].藥品名稱}");
+                            sheetClass.ReplaceCell(2, 7, $"{medClasses_buf[0].藥品許可證號}");
+                            sheetClass.ReplaceCell(2, 10, $"{結束時間}");
+
+                            sheetClass.ReplaceCell(3, 1, $"{medClasses_buf[0].藥品學名}");
+                            sheetClass.ReplaceCell(3, 7, $"{medClasses_buf[0].廠牌}");
+                            sheetClasses.Add(sheetClass);
+                            NumOfRow = 0;
+                        }
+
+                        消耗量 += transactionsClasses[i].交易量.StringToInt32();
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 0, $"{i + 1}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 1, $"{transactionsClasses[i].操作時間}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 2, $"{transactionsClasses[i].床號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 3, $"{transactionsClasses[i].類別}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 4, $"{transactionsClasses[i].病人姓名}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 5, $"{transactionsClasses[i].病歷號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 6, $"{transactionsClasses[i].操作人}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 7, $"{transactionsClasses[i].藥師證字號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 8, $"{transactionsClasses[i].交易量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 9, $"{transactionsClasses[i].結存量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 10, $"{transactionsClasses[i].收支原因}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        sheetClass.AddNewCell_Webapi(NumOfRow + 5, 11, $"{transactionsClasses[i].備註}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                        NumOfRow++;
+                    }
+                    for (int i = 0; i < sheetClasses.Count; i++)
+                    {
+                        sheetClasses[i].ReplaceCell(1, 5, $"{消耗量}");
+                    }
+
                 }
-                for (int i = 0; i < sheetClasses.Count; i++)
-                {
-                    sheetClasses[i].ReplaceCell(1, 5, $"{消耗量}");
-                }
+          
+
+
+
+
+                
+
+            
+
+
+             
 
                 returnData.Code = 200;
                 returnData.Result = "Sheet取得成功!";

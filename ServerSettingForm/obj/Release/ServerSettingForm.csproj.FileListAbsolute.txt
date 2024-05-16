@@ -763,3 +763,5 @@ C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Releas
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\stdole.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\H_Pannel_lib.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\zxing.dll
