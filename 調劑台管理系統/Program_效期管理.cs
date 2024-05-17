@@ -50,13 +50,13 @@ namespace 調劑台管理系統
         }
         private void Program_效期管理_Init()
         {
-            this.sqL_DataGridView_效期管理.Init();
-            if (!this.sqL_DataGridView_效期管理.SQL_IsTableCreat())
-            {
-                this.sqL_DataGridView_效期管理.SQL_CreateTable();
-            }
+            //this.sqL_DataGridView_效期管理.Init();
+            //if (!this.sqL_DataGridView_效期管理.SQL_IsTableCreat())
+            //{
+            //    this.sqL_DataGridView_效期管理.SQL_CreateTable();
+            //}
 
-            this.plC_UI_Init.Add_Method(this.sub_Program_效期管理);
+            //this.plC_UI_Init.Add_Method(this.sub_Program_效期管理);
         }
 
         #region Function

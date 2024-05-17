@@ -732,11 +732,28 @@ namespace 智能藥庫管理系統
         }
         private void PlC_RJ_Button_藥庫_效期及批號_修改_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.Invoke(new Action(delegate 
+            List<object[]> list_庫存查詢 = sqL_DataGridView_庫存查詢.Get_All_Select_RowsValues();
+            List<object[]> list_效期及批號 = sqL_DataGridView_藥庫_效期及批號.Get_All_Select_RowsValues();
+            if(list_庫存查詢.Count == 0)
             {
-                Dialog_批號數量修改 dialog_批號數量修改 = new Dialog_批號數量修改();
-                dialog_批號數量修改.ShowDialog();
-            }));
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"未選取藥品", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            if (list_效期及批號.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"未選取效期", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+
+            string 藥碼 = "";
+
+            //this.Invoke(new Action(delegate 
+            //{
+            //    Dialog_批號數量修改 dialog_批號數量修改 = new Dialog_批號數量修改();
+            //    dialog_批號數量修改.ShowDialog();
+            //}));
         }
         #endregion
 

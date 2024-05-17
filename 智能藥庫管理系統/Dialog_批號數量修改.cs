@@ -18,11 +18,35 @@ namespace 智能藥庫管理系統
 {
     public partial class Dialog_批號數量修改 : MyDialog
     {
-        public Dialog_批號數量修改()
+        private string _藥碼 = "";
+        private string _藥名 = "";
+        private string _效期 = "";
+        private string _批號 = "";
+        private int _數量 = 0;
+
+
+        public Dialog_批號數量修改(string 藥碼, string 藥名, string 效期, string 批號, int 數量)
         {
             InitializeComponent();
 
+            this.Load += Dialog_批號數量修改_Load;
+
             this.rJ_Button_確認選擇.MouseDownEvent += RJ_Button_確認選擇_MouseDownEvent;
+            _藥碼 = 藥碼;
+            _藥名 = 藥名;
+
+            _效期 = 效期;
+            _批號 = 批號;
+            _數量 = 數量;
+        }
+
+        private void Dialog_批號數量修改_Load(object sender, EventArgs e)
+        {
+            this.rJ_Lable_藥品資訊.Text = $"({_藥碼}){_藥名}";
+            this.rJ_TextBox_效期.Texts = $"{_效期}";
+            this.rJ_TextBox_批號.Texts = $"{_批號}";
+            this.rJ_TextBox_數量.Texts = $"{_數量}";
+
         }
 
         private void RJ_Button_確認選擇_MouseDownEvent(MouseEventArgs mevent)
