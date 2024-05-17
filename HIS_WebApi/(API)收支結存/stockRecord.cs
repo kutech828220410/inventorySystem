@@ -59,7 +59,7 @@ namespace HIS_WebApi
             try
             {
                 returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
-            
+
                 returnData.Method = "POST_init";
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
@@ -150,7 +150,7 @@ namespace HIS_WebApi
                 SQLControl sQLControl_stockRecord = new SQLControl(Server, DB, new enum_stockRecord().GetEnumDescription(), UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_stockRecord_content = new SQLControl(Server, DB, new enum_stockRecord_content().GetEnumDescription(), UserName, Password, Port, SSLMode);
                 List<medClass> medClasses = returnData.Data.ObjToClass<List<medClass>>();
-                if(medClasses == null)
+                if (medClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"[retuen.Data] 須為[List<medClass>]";
@@ -251,13 +251,13 @@ namespace HIS_WebApi
                 string Password = serverSettingClass.Password;
                 uint Port = (uint)serverSettingClass.Port.StringToInt32();
 
-              
+
 
                 SQLControl sQLControl_stockRecord = new SQLControl(Server, DB, new enum_stockRecord().GetEnumDescription(), UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_stockRecord_content = new SQLControl(Server, DB, new enum_stockRecord_content().GetEnumDescription(), UserName, Password, Port, SSLMode);
 
                 List<object[]> list_stockRecord = sQLControl_stockRecord.GetAllRows(null);
-                List<stockRecord> stockRecords = list_stockRecord.SQLToClass<stockRecord , enum_stockRecord>();
+                List<stockRecord> stockRecords = list_stockRecord.SQLToClass<stockRecord, enum_stockRecord>();
 
                 returnData.Data = stockRecords;
                 returnData.Result = $"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 成功取得<{stockRecords.Count}>筆資料";
@@ -318,7 +318,7 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-   
+
 
                 ServerSettingClass serverSettingClass = serverSettingClasses[0];
                 CheckCreatTable(serverSettingClass);
@@ -348,7 +348,7 @@ namespace HIS_WebApi
                     List<stockRecord_content> stockRecord_Contents = list_stockRecord_content_buf.SQLToClass<stockRecord_content, enum_stockRecord_content>();
                     stockRecords[i].Contents = stockRecord_Contents;
                 }
-             
+
                 returnData.Data = stockRecords;
                 returnData.Result = $"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 成功取得<{stockRecords.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
@@ -432,7 +432,7 @@ namespace HIS_WebApi
                     returnData.Result = $"查無資料";
                     return returnData.JsonSerializationt(true);
                 }
-            
+
                 returnData.Data = stockRecords;
                 returnData.Result = $"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 成功取得<{stockRecords.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
@@ -484,7 +484,7 @@ namespace HIS_WebApi
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-              
+
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -639,7 +639,213 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 以GUID取得庫存紀錄(SheetClass)(多台合併)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "GUID1,GUID2",
+        ///       "ds01,ds01",
+        ///       "藥庫,藥庫"
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_datas_record_by_guid")]
+        [HttpPost]
+        public string POST_get_datas_record_by_guid(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_datas_record_by_guid";
+            try
+            {
+                List<stockRecord> StockRecords = new List<stockRecord>();
+                List<Task> tasks = new List<Task>();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
 
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[GUID1,GUID2..][ds01,ds01..][藥庫,藥局..]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string[] GUIDs = returnData.ValueAry[0].Split(",");
+                string[] serverNames = returnData.ValueAry[1].Split(",");
+                string[] serverTypes = returnData.ValueAry[2].Split(",");
+                int temp = GUIDs.Length;
+                if ((GUIDs.Length != temp) && (serverNames.Length != temp) && (serverTypes.Length != temp))
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容長度異常";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
+
+                Dictionary<string, List<medClass>> keyValuePairs_medClass = medClass.CoverToDictionaryByCode(medClasses);
+                for (int i = 0; i < serverNames.Length; i++)
+                {
+                    string serverName = serverNames[i];
+                    string serverType = serverTypes[i];
+                    string GUID = GUIDs[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "一般資料");
+                        if (_serverSettingClasses.Count == 0) return;
+                        string Server = _serverSettingClasses[0].Server;
+                        string DB = _serverSettingClasses[0].DBName;
+                        string UserName = _serverSettingClasses[0].User;
+                        string Password = _serverSettingClasses[0].Password;
+                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+
+                        SQLControl sQLControl_stockRecord = new SQLControl(Server, DB, new enum_stockRecord().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                        SQLControl sQLControl_stockRecord_content = new SQLControl(Server, DB, new enum_stockRecord_content().GetEnumDescription(), UserName, Password, Port, SSLMode);
+
+                        List<object[]> list_stockRecord = sQLControl_stockRecord.GetRowsByDefult(null, (int)enum_stockRecord.GUID, GUID);
+                        List<object[]> list_stockRecord_content = sQLControl_stockRecord_content.GetRowsByDefult(null, (int)enum_stockRecord_content.Master_GUID, GUID);
+                        List<stockRecord> stockRecords = list_stockRecord.SQLToClass<stockRecord, enum_stockRecord>();
+                        if (stockRecords.Count == 0)
+                        {
+                            return;
+                        }
+
+                        List<stockRecord_content> stockRecord_Contents = list_stockRecord_content.SQLToClass<stockRecord_content, enum_stockRecord_content>();
+                        List<medClass> medClasses_buf = new List<medClass>();
+                        for (int i = 1; i < stockRecord_Contents.Count; i++)
+                        {
+                            medClasses_buf = medClass.SortDictionaryByCode(keyValuePairs_medClass, stockRecord_Contents[i].藥碼);
+                            if (medClasses_buf.Count != 0)
+                            {
+                                stockRecord_Contents[i].藥名 = medClasses_buf[0].藥品名稱;
+                            }
+                        }
+
+                        stockRecords[0].Contents = stockRecord_Contents;
+                        StockRecords.LockAdd(stockRecords[0]);
+
+                    })));
+                }
+                Task.WhenAll(tasks).Wait();
+                returnData.Data = StockRecords;
+                returnData.Result = $"成功取得庫存紀錄, 共<{StockRecords.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Code = 200;
+                Logger.LogAddLine($"stockRecord");
+                Logger.Log($"stockRecord", $"{ returnData.JsonSerializationt(true)}");
+                Logger.LogAddLine($"stockRecord");
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"stockRecord", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 以GUID取得庫存紀錄(Excel)(多台合併)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "GUID1,GUID2",
+        ///       "ds01,ds01",
+        ///       "藥庫,藥庫"
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("download_excel_datas_record_by_guid")]
+        [HttpPost]
+        public async Task<ActionResult> POST_download_excel_datas_record_by_guid(returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                returnData = POST_get_datas_record_by_guid(returnData).JsonDeserializet<returnData>();
+                if (returnData.Code != 200)
+                {
+                    return null;
+                }
+                string jsondata = returnData.Data.JsonSerializationt();
+
+                List<stockRecord> stockRecords = jsondata.JsonDeserializet<List<stockRecord>>();
+
+
+                List<string> colNames = new List<string>();
+                colNames.Add("藥碼");
+                colNames.Add("藥名");
+                for (int i = 0; i < stockRecords.Count; i++)
+                {
+                    colNames.Add($"{stockRecords[i].庫別}庫存");
+                }
+                List<object[]> list_rows = new List<object[]>();
+                List<object[]> list_rows_buf = new List<object[]>();
+                for (int i = 0; i < stockRecords.Count; i++)
+                {
+                    for (int k = 0; k < stockRecords[i].Contents.Count; k++)
+                    {
+                        list_rows_buf = list_rows.GetRows(0, stockRecords[i].Contents[k].藥碼);
+                        if(list_rows_buf.Count == 0)
+                        {
+                            object[] value = new object[colNames.Count];
+                            value[0] = stockRecords[i].Contents[k].藥碼;
+                            value[1] = stockRecords[i].Contents[k].藥名;
+                            value[i + 2] = stockRecords[i].Contents[k].庫存;
+                            list_rows.Add(value);
+                        }
+                        else
+                        {
+                            object[] value = list_rows_buf[0];
+                            value[i + 2] = stockRecords[i].Contents[k].庫存;
+                        }
+                    }
+                }
+
+                System.Data.DataTable dataTable = list_rows.ToDataTable(colNames.ToArray());
+
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+
+                byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_庫存紀錄.xlsx"));
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {

@@ -48,6 +48,34 @@ namespace HIS_DB_Lib
             List<DeviceBasic> deviceBasics = returnData_result.Data.ObjToClass<List<DeviceBasic>>();
             return deviceBasics;
         }
+        static public void SetDeviceBasics(string API_Server, string ServerName, string ServerType, StoreType storeType , List<DeviceBasic> deviceBasics)
+        {
+            string url = $"{API_Server}/api/device/update_device";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string tableName = "";
+            if (storeType == StoreType.藥庫)
+            {
+                tableName = "firstclass_device_jsonstring";
+            }
+            if (storeType == StoreType.藥局)
+            {
+                tableName = "sd0_device_jsonstring";
+            }
+            returnData.Data = deviceBasics;
+            returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return;
+            }
+            Console.WriteLine($"{returnData_result}");
+        }
         static public List<DeviceBasic> GetDeviceBasicsByCode(string API_Server, string ServerName, string ServerType, string Code, StoreType storeType)
         {
             List<string> Codes = new List<string>();

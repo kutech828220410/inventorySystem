@@ -40,6 +40,8 @@ namespace 智能藥庫管理系統
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
+            MyMessageBox.音效 = false;
+
             LoadingForm.form = this.FindForm();
             MyDialog.form = this.FindForm();
 

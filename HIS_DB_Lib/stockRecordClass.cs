@@ -156,6 +156,8 @@ namespace HIS_DB_Lib
         public string Master_GUID { get; set; }
         [JsonPropertyName("code")]
         public string 藥碼 { get; set; }
+        [JsonPropertyName("name")]
+        public string 藥名 { get; set; }
         [JsonPropertyName("stock_qty")]
         public string 庫存 { get; set; }
         [JsonPropertyName("add_time")]

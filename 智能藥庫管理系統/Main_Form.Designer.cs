@@ -100,7 +100,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button6.GUID = "";
             this.plC_RJ_Button6.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button6.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button6.Location = new System.Drawing.Point(331, 190);
+            this.plC_RJ_Button6.Location = new System.Drawing.Point(309, 163);
             this.plC_RJ_Button6.Name = "plC_RJ_Button6";
             this.plC_RJ_Button6.OFF_文字內容 = "儲位管理";
             this.plC_RJ_Button6.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
@@ -153,7 +153,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button5.GUID = "";
             this.plC_RJ_Button5.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button5.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button5.Location = new System.Drawing.Point(901, 44);
+            this.plC_RJ_Button5.Location = new System.Drawing.Point(793, 17);
             this.plC_RJ_Button5.Name = "plC_RJ_Button5";
             this.plC_RJ_Button5.OFF_文字內容 = "人員資料";
             this.plC_RJ_Button5.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
@@ -206,7 +206,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button4.GUID = "";
             this.plC_RJ_Button4.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button4.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button4.Location = new System.Drawing.Point(670, 44);
+            this.plC_RJ_Button4.Location = new System.Drawing.Point(648, 17);
             this.plC_RJ_Button4.Name = "plC_RJ_Button4";
             this.plC_RJ_Button4.OFF_文字內容 = "驗收管理";
             this.plC_RJ_Button4.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
@@ -259,7 +259,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button3.GUID = "";
             this.plC_RJ_Button3.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button3.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button3.Location = new System.Drawing.Point(525, 44);
+            this.plC_RJ_Button3.Location = new System.Drawing.Point(503, 17);
             this.plC_RJ_Button3.Name = "plC_RJ_Button3";
             this.plC_RJ_Button3.OFF_文字內容 = "盤點管理";
             this.plC_RJ_Button3.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
@@ -312,7 +312,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button2.GUID = "";
             this.plC_RJ_Button2.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button2.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button2.Location = new System.Drawing.Point(331, 44);
+            this.plC_RJ_Button2.Location = new System.Drawing.Point(309, 17);
             this.plC_RJ_Button2.Name = "plC_RJ_Button2";
             this.plC_RJ_Button2.OFF_文字內容 = "交易紀錄";
             this.plC_RJ_Button2.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
@@ -365,7 +365,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button1.GUID = "";
             this.plC_RJ_Button1.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button1.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button1.Location = new System.Drawing.Point(186, 44);
+            this.plC_RJ_Button1.Location = new System.Drawing.Point(164, 17);
             this.plC_RJ_Button1.Name = "plC_RJ_Button1";
             this.plC_RJ_Button1.OFF_文字內容 = "庫存管理";
             this.plC_RJ_Button1.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
@@ -418,7 +418,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_庫存查詢.GUID = "";
             this.plC_RJ_Button_庫存查詢.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button_庫存查詢.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
-            this.plC_RJ_Button_庫存查詢.Location = new System.Drawing.Point(41, 44);
+            this.plC_RJ_Button_庫存查詢.Location = new System.Drawing.Point(19, 17);
             this.plC_RJ_Button_庫存查詢.Name = "plC_RJ_Button_庫存查詢";
             this.plC_RJ_Button_庫存查詢.OFF_文字內容 = "庫存查詢";
             this.plC_RJ_Button_庫存查詢.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);

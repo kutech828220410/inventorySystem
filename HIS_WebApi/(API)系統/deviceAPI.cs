@@ -295,7 +295,71 @@ namespace HIS_WebApi
 
 
         }
+        /// <summary>
+        /// 設定儲位資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "ds01",
+        ///     "ServerType" : "藥庫",
+        ///     "ValueAry" : 
+        ///     [
+        ///       [deviceBasic陣列]
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        [Route("update_device")]
+        [HttpPost]
+        public string POST_update_device(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "update_device";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                List<DeviceBasic> deviceBasics = returnData.Data.ObjToClass<List<DeviceBasic>>();
+
+                if (deviceBasics == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"Data資料錯誤";
+                    return returnData.JsonSerializationt();
+                }
+
+                Function_Set_device(serverSettingClasses[0], returnData.TableName, deviceBasics);
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = $"Device取得成功!,共<{deviceBasics.Count}>筆資料,TableName : {returnData.TableName}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
 
         [Route("light_web")]
         [HttpPost]
@@ -625,7 +689,22 @@ namespace HIS_WebApi
             }
             return deviceBasics;
         }
-
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public void Function_Set_device(ServerSettingClass serverSettingClass, string TableName , List<DeviceBasic> deviceBasics)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            string Server = serverSettingClass.Server;
+            string DBName = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            if (serverSettingClass.類別 == "藥庫" && (TableName == "firstclass_device_jsonstring" || TableName == "sd0_device_jsonstring"))
+            {
+                SQLControl sQLControl_device = new SQLControl(Server, DBName, TableName, UserName, Password, Port, SSLMode);
+                DeviceBasicMethod.SQL_ReplaceDeviceBasic(sQLControl_device , deviceBasics);
+                Console.WriteLine($"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 類別 : {serverSettingClass.類別} , TableName {TableName} , {myTimerBasic.ToString()}");
+            }
+        }
         static private List<DeviceBasic> Function_Get_device(string IP, string DBName, string TableName, string UserName, string Password, uint Port)
         {
             SQLControl sQLControl_device = new SQLControl(IP, DBName, TableName, UserName, Password, Port, SSLMode);

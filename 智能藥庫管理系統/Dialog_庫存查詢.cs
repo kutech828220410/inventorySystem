@@ -143,9 +143,14 @@ namespace 智能藥庫管理系統
             this.panel_藥局_效期及批號.Width = width;
 
             this.plC_RJ_Button_藥庫_效期及批號_新增.MouseDownEvent += PlC_RJ_Button_藥庫_效期及批號_新增_MouseDownEvent;
-
+            this.plC_RJ_Button_藥庫_效期及批號_刪除.MouseDownEvent += PlC_RJ_Button_藥庫_效期及批號_刪除_MouseDownEvent;
+            this.plC_RJ_Button_藥庫_效期及批號_修改.MouseDownEvent += PlC_RJ_Button_藥庫_效期及批號_修改_MouseDownEvent;
             IsShown = true;
         }
+
+ 
+
+
 
 
 
@@ -456,8 +461,6 @@ namespace 智能藥庫管理系統
         {
             Task.Run(new Action(delegate
             {
-
-
                 List<object[]> list_value = new List<object[]>();
                 string 藥碼 = RowValue[(int)enum_庫存查詢.藥碼].ObjectToString();
                 List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
@@ -679,9 +682,61 @@ namespace 智能藥庫管理系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
-            }));
-   
 
+                deviceBasics[0].新增效期(效期, 批號, Value.ToString());
+                deviceApiClass.SetDeviceBasics(Main_Form.API_Server, "ds01", "藥庫", deviceApiClass.StoreType.藥庫, deviceBasics);
+                LoadingForm.ShowLoadingForm();
+                sqL_DataGridView_庫存查詢.RefreshGrid(Function_取得庫存查詢列表());
+                sqL_DataGridView_庫存查詢.On_RowEnter();
+                LoadingForm.CloseLoadingForm();
+            }));
+        }
+        private void PlC_RJ_Button_藥庫_效期及批號_刪除_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (MyMessageBox.ShowDialog("是否刪除選取效期?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            List<object[]> list_庫存查詢 = sqL_DataGridView_庫存查詢.Get_All_Select_RowsValues();
+            if (list_庫存查詢.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string 藥碼 = list_庫存查詢[0][(int)enum_庫存查詢.藥碼].ObjectToString();
+            List<object[]> list_效期及批號 = sqL_DataGridView_藥庫_效期及批號.Get_All_Select_RowsValues();
+            if (list_效期及批號.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string 效期 = list_效期及批號[0][(int)enum_效期及批號.效期].ObjectToString();
+
+            this.Invoke(new Action(delegate
+            {
+                List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
+                if (deviceBasics.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"找無儲位資訊", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }          
+
+                deviceBasics[0].清除效期(效期);
+
+                deviceApiClass.SetDeviceBasics(Main_Form.API_Server, "ds01", "藥庫", deviceApiClass.StoreType.藥庫, deviceBasics);
+                LoadingForm.ShowLoadingForm();
+                sqL_DataGridView_庫存查詢.RefreshGrid(Function_取得庫存查詢列表());
+                sqL_DataGridView_庫存查詢.On_RowEnter();
+                LoadingForm.CloseLoadingForm();
+            }));
+        }
+        private void PlC_RJ_Button_藥庫_效期及批號_修改_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate 
+            {
+                Dialog_批號數量修改 dialog_批號數量修改 = new Dialog_批號數量修改();
+                dialog_批號數量修改.ShowDialog();
+            }));
         }
         #endregion
 
