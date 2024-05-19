@@ -61,7 +61,7 @@ namespace 智能藥庫管理系統
             this.plC_ScreenPage1.Location = new System.Drawing.Point(0, 0);
             this.plC_ScreenPage1.Name = "plC_ScreenPage1";
             this.plC_ScreenPage1.SelectedIndex = 0;
-            this.plC_ScreenPage1.Size = new System.Drawing.Size(1904, 1061);
+            this.plC_ScreenPage1.Size = new System.Drawing.Size(1804, 1061);
             this.plC_ScreenPage1.TabBackColor = System.Drawing.Color.White;
             this.plC_ScreenPage1.TabIndex = 0;
             this.plC_ScreenPage1.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
@@ -79,7 +79,7 @@ namespace 智能藥庫管理系統
             this.登入畫面.Controls.Add(this.plC_RJ_Button_庫存查詢);
             this.登入畫面.Location = new System.Drawing.Point(4, 25);
             this.登入畫面.Name = "登入畫面";
-            this.登入畫面.Size = new System.Drawing.Size(1896, 1032);
+            this.登入畫面.Size = new System.Drawing.Size(1796, 1032);
             this.登入畫面.TabIndex = 0;
             this.登入畫面.Text = "登入畫面";
             // 
@@ -505,7 +505,7 @@ namespace 智能藥庫管理系統
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1904, 1061);
+            this.ClientSize = new System.Drawing.Size(1804, 1061);
             this.Controls.Add(this.plC_ScreenPage1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main_Form";

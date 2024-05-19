@@ -65,6 +65,8 @@ namespace HIS_DB_Lib
         public string 廠牌 { get; set; }
         [JsonPropertyName("LICENSE")]
         public string 藥品許可證號 { get; set; }
+        [JsonPropertyName("TYPE")]
+        public string 類別 { get; set; }
         [JsonPropertyName("FILE_STATUS")]
         public string 開檔狀態 { get; set; }
     }

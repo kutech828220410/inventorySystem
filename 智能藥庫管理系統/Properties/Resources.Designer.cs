@@ -93,6 +93,16 @@ namespace 智能藥庫管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap inspection {
+            get {
+                object obj = ResourceManager.GetObject("inspection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap inventory_management {
             get {
                 object obj = ResourceManager.GetObject("inventory-management", resourceCulture);
@@ -136,6 +146,16 @@ namespace 智能藥庫管理系統.Properties {
         internal static System.Drawing.Bitmap panel_storage_location_setup {
             get {
                 object obj = ResourceManager.GetObject("panel-storage-location-setup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap serach_document_512 {
+            get {
+                object obj = ResourceManager.GetObject("serach_document-512", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

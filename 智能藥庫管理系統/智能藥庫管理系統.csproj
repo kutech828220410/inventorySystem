@@ -319,6 +319,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\inspection.png" />
+    <None Include="Resources\serach_document-512.png" />
     <None Include="Resources\EDIT.png" />
     <None Include="Resources\trash-512.png" />
     <None Include="Resources\add-new-plus-512.png" />

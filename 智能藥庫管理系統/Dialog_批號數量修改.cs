@@ -24,7 +24,7 @@ namespace 智能藥庫管理系統
         private string _批號 = "";
         private int _數量 = 0;
 
-
+        public StockClass Value = new StockClass();
         public Dialog_批號數量修改(string 藥碼, string 藥名, string 效期, string 批號, int 數量)
         {
             InitializeComponent();
@@ -51,8 +51,19 @@ namespace 智能藥庫管理系統
 
         private void RJ_Button_確認選擇_MouseDownEvent(MouseEventArgs mevent)
         {
+            if (this.rJ_TextBox_數量.Texts.StringIsInt32() == false)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"數量格式錯誤", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
             this.Invoke(new Action(delegate
-            {  
+            {
+                Value.Code = _藥碼;
+                Value.Name = _藥名;
+                Value.Validity_period = this.rJ_TextBox_效期.Texts;
+                Value.Lot_number = this.rJ_TextBox_批號.Texts;
+                Value.Qty = this.rJ_TextBox_數量.Texts.ToString();
                 this.Close();
                 this.DialogResult = DialogResult.Yes;
             }));

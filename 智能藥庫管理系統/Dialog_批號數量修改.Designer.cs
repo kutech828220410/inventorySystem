@@ -203,10 +203,10 @@ namespace 智能藥庫管理系統
             this.rJ_TextBox_數量.BorderFocusColor = System.Drawing.Color.HotPink;
             this.rJ_TextBox_數量.BorderRadius = 0;
             this.rJ_TextBox_數量.BorderSize = 2;
-            this.rJ_TextBox_數量.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_數量.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_數量.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_數量.GUID = "";
-            this.rJ_TextBox_數量.Location = new System.Drawing.Point(194, 245);
+            this.rJ_TextBox_數量.Location = new System.Drawing.Point(194, 239);
             this.rJ_TextBox_數量.Multiline = false;
             this.rJ_TextBox_數量.Name = "rJ_TextBox_數量";
             this.rJ_TextBox_數量.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -214,9 +214,9 @@ namespace 智能藥庫管理系統
             this.rJ_TextBox_數量.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_數量.PlaceholderText = "";
             this.rJ_TextBox_數量.ShowTouchPannel = false;
-            this.rJ_TextBox_數量.Size = new System.Drawing.Size(111, 40);
+            this.rJ_TextBox_數量.Size = new System.Drawing.Size(111, 53);
             this.rJ_TextBox_數量.TabIndex = 18;
-            this.rJ_TextBox_數量.TextAlgin = System.Windows.Forms.HorizontalAlignment.Right;
+            this.rJ_TextBox_數量.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_數量.Texts = "";
             this.rJ_TextBox_數量.UnderlineStyle = false;
             // 

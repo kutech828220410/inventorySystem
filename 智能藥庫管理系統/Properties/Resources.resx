@@ -118,8 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Files_and_Folders_file_export_arrow-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Files_and_Folders_file_export_arrow-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="panel-storage-location-setup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\panel-storage-location-setup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="order-receipt-management" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\order-receipt-management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="medication-inventory-inquiry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\medication-inventory-inquiry.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trash-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trash-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="transaction-records" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transaction-records.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="traded_big_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\traded_big_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EDIT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EDIT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="staff_big_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\staff_big_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="inventory-management" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inventory-management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -127,31 +148,16 @@
   <data name="medication-inventory-management" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\medication-inventory-management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="order-receipt-management" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\order-receipt-management.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="serach_document-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\serach_document-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add-new-plus-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add-new-plus-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="transaction-records" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\transaction-records.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Files_and_Folders_file_export_arrow-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Files_and_Folders_file_export_arrow-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="trash-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\trash-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="panel-storage-location-setup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\panel-storage-location-setup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="traded_big_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\traded_big_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="medication-inventory-inquiry" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\medication-inventory-inquiry.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="staff_big_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\staff_big_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="EDIT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EDIT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="inspection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inspection.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
