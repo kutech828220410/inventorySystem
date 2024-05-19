@@ -631,3 +631,4 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Re
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_中西藥選擇.resources

@@ -1203,7 +1203,19 @@ namespace 調劑台管理系統
         private void PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("是否下載全部藥檔?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
-            List<object[]> list_雲端藥檔 = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
+            Dialog_中西藥選擇 dialog_中西藥選擇 = new Dialog_中西藥選擇();
+            if (dialog_中西藥選擇.ShowDialog() != DialogResult.Yes) return;
+
+
+            List<object[]> list_雲端藥檔_all = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
+            List<object[]> list_雲端藥檔_中藥 = list_雲端藥檔_all.GetRows((int)enum_雲端藥檔.類別, "中藥");
+            List<object[]> list_雲端藥檔_西藥 = list_雲端藥檔_all.GetRows((int)enum_雲端藥檔.類別, "西藥");
+            List<object[]> list_雲端藥檔 = new List<object[]>();
+            list_雲端藥檔.LockAdd(list_雲端藥檔_中藥);
+            list_雲端藥檔.LockAdd(list_雲端藥檔_西藥);
+
+            Console.WriteLine($"取得西藥藥品<{list_雲端藥檔_西藥.Count}>筆,中藥藥品<{list_雲端藥檔_中藥.Count}>筆");
+
             List<object[]> list_雲端藥檔_buf = new List<object[]>();
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
             List<object[]> list_藥品資料_buf = new List<object[]>();
