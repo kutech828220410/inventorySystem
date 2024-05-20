@@ -56,10 +56,14 @@ namespace HIS_WebApi
                 List<object[]> list_login_session_add = new List<object[]>();
                 List<object[]> list_login_session_replace = new List<object[]>();
                 sessionClass sessionClass = new sessionClass();
-                if (data.ID.ToUpper() == "admin".ToUpper() && data.Password.ToUpper() == "66437068")
+                if (data.ID.StringIsEmpty() == false && data.Password.StringIsEmpty() == false)
                 {
-                    flag_admin = true;
+                    if (data.ID.ToUpper() == "admin".ToUpper() && data.Password.ToUpper() == "66437068")
+                    {
+                        flag_admin = true;
+                    }
                 }
+            
                 if (flag_admin == false)
                 {
                     if (data.UID.StringIsEmpty() == false)

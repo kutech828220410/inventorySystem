@@ -2783,6 +2783,42 @@
              </remarks>
              <param name="returnData">共用傳遞資料結構</param>
         </member>
+        <member name="M:HIS_WebApi.order.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.orderT.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.inspectionController.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化驗收單資料庫

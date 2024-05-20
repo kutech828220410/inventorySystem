@@ -44,7 +44,20 @@
   <ItemGroup>
     <Reference Include="Basic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="CallBackUI, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="CSkin, Version=10.23.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\0.DLL\CSkin.dll</HintPath>
+    </Reference>
     <Reference Include="DrawingClass, Version=1.0.0.5, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="ExcelScaleLib">
+      <HintPath>..\..\ExcelScaleLib\0.DLL\ExcelScaleLib.dll</HintPath>
+    </Reference>
+    <Reference Include="HIS_DB_Lib">
+      <HintPath>..\0.DLL\HIS_DB_Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="H_Pannel_lib">
+      <HintPath>..\0.DLL\H_Pannel_lib.dll</HintPath>
+    </Reference>
     <Reference Include="LadderUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\0.DLL\LadderUI.dll</HintPath>
@@ -58,6 +71,9 @@
     </Reference>
     <Reference Include="MyUI">
       <HintPath>..\0.DLL\MyUI.dll</HintPath>
+    </Reference>
+    <Reference Include="RFID_FX600lib">
+      <HintPath>..\0.DLL\RFID_FX600lib.dll</HintPath>
     </Reference>
     <Reference Include="SQLUI">
       <HintPath>..\0.DLL\SQLUI.dll</HintPath>
@@ -101,25 +117,43 @@
     <Reference Include="TCP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog_系統登入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_系統登入.Designer.cs">
+      <DependentUpon>Dialog_系統登入.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_buffer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_buffer.Designer.cs">
       <DependentUpon>Form_buffer.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Main_Form.Designer.cs">
+      <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Program_RFID.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Program_RS232_EXCELL_SCALE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_調劑畫面.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Dialog_系統登入.resx">
+      <DependentUpon>Dialog_系統登入.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_buffer.resx">
       <DependentUpon>Form_buffer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Main_Form.resx">
+      <DependentUpon>Main_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -156,6 +190,9 @@
     <None Include="Resources\設定-removebg-preview.png" />
     <None Include="Resources\系統-removebg-preview.png" />
     <None Include="Resources\退出程式.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\568362.png" />
+    <None Include="Resources\key-512.png" />
     <Content Include="中藥調劑系統ICON.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,6 +26,10 @@ namespace ServerSettingForm
             Dialog_藥庫.form = this.FindForm();
             Dialog_更新資訊.form = this.FindForm();
             Dialog_網頁.form = this.FindForm();
+            Dialog_中藥調劑系統.form = this.FindForm();
+            Dialog_中心叫號系統.form = this.FindForm();
+            Dialog_設定.form = this.FindForm();
+
 
             this.button_網頁.Click += Button_網頁_Click;
             this.button_調劑台.Click += Button_調劑台_Click;
@@ -33,8 +37,22 @@ namespace ServerSettingForm
             this.button_傳送櫃.Click += Button_傳送櫃_Click;
             this.button_更新資訊.Click += Button_更新資訊_Click;
             this.button_癌症備藥機.Click += Button_癌症備藥機_Click;
+            this.button_中藥調劑系統.Click += Button_中藥調劑系統_Click;
+            this.button_中心叫號系統.Click += Button_中心叫號系統_Click;
+            this.button_設定.Click += Button_設定_Click;
+
         }
 
+        private void Button_設定_Click(object sender, EventArgs e)
+        {
+            Dialog_設定 dialog_設定 = new Dialog_設定();
+            dialog_設定.ShowDialog();
+        }
+        private void Button_中心叫號系統_Click(object sender, EventArgs e)
+        {
+            Dialog_中心叫號系統 dialog_中心叫號系統 = new Dialog_中心叫號系統();
+            dialog_中心叫號系統.ShowDialog();
+        }
         private void Button_癌症備藥機_Click(object sender, EventArgs e)
         {
             Dialog_癌症備藥機 dialog_癌症備藥機 = new Dialog_癌症備藥機();
@@ -61,7 +79,11 @@ namespace ServerSettingForm
             Dialog_傳送櫃 dialog_傳送櫃 = new Dialog_傳送櫃();
             dialog_傳送櫃.ShowDialog();
         }
-
+        private void Button_中藥調劑系統_Click(object sender, EventArgs e)
+        {
+            Dialog_中藥調劑系統 dialog_中藥調劑系統 = new Dialog_中藥調劑系統();
+            dialog_中藥調劑系統.ShowDialog();
+        }
         private void Button_更新資訊_Click(object sender, EventArgs e)
         {
             Dialog_更新資訊 dialog_更新資訊 = new Dialog_更新資訊();

@@ -550,9 +550,6 @@ namespace HIS_DB_Lib
 
             return stockClasses;
         }
-
-
-
         static public System.Collections.Generic.Dictionary<string, List<transactionsClass>> CoverToDictionaryByCode(List<transactionsClass> transactionsClasses)
         {
             Dictionary<string, List<transactionsClass>> dictionary = new Dictionary<string, List<transactionsClass>>();

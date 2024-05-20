@@ -236,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="atfz6-wxjju-001.ico" />
+    <None Include="Resources\中藥調劑系統ICON.png" />
     <None Include="Resources\勤務傳送櫃.png" />
     <None Include="Resources\癌症備藥機.png" />
     <None Include="Resources\候藥系統.png" />

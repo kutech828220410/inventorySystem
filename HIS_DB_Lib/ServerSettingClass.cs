@@ -44,9 +44,11 @@ namespace HIS_DB_Lib
     {
         網頁,
         調劑台,
+        中藥調劑系統,
         藥庫,
         傳送櫃,
         癌症備藥機,
+        中心叫號系統,
         更新資訊,
     }
     public enum enum_ServerSetting_ProgramType
@@ -102,6 +104,17 @@ namespace HIS_DB_Lib
     }
     public static class ServerSettingClassMethod
     {
+        public static ServerSettingClass myFind(this List<ServerSettingClass> serverSettingClasses, string Name, string Type, string Content)
+        {
+            if (serverSettingClasses == null) return null;
+            List<ServerSettingClass> serverSettingClasses_buf = (from value in serverSettingClasses
+                                                                 where value.類別 == Type
+                                                                 where value.設備名稱.ToUpper() == Name.ToUpper()
+                                                                 where value.內容 == Content
+                                                                 select value).ToList();
+            if (serverSettingClasses_buf.Count == 0) return null;
+            return serverSettingClasses_buf[0];
+        }
         public static List<ServerSettingClass> MyFind(this List<ServerSettingClass> serverSettingClasses, string Name, string Type, string Content)
         {
             if (serverSettingClasses == null) return null;

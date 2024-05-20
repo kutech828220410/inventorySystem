@@ -61,6 +61,108 @@ namespace HIS_DB_Lib
         public List<PermissionsClass> Permissions { get => permissions; set => permissions = value; }
         private List<PermissionsClass> permissions = new List<PermissionsClass>();
 
+        static public returnData LoginByUID(string API_Server, string UID)
+        {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API_Login");
+            if (serverSettingClasses.Count == 0)
+            {
+                Console.WriteLine($"{DateTime.Now.ToDateTimeString()} Login失敗,查無API網址,請檢查[API_Login]網址是否設定");
+                return null;
+            }
+            string url = $"{serverSettingClasses[0].Server}";
 
+            returnData returnData = new returnData();
+            sessionClass _sessionClass = new sessionClass();
+
+            _sessionClass.UID = UID;
+            returnData.Data = _sessionClass;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result == null)
+            {
+                return null;
+            }
+            if (returnData_result.Data == null)
+            {
+                return null;
+            }
+
+            Console.WriteLine($"{returnData_result}");
+
+            return returnData_result;
+
+        }
+        static public returnData LoginByBarCode(string API_Server, string BARCODE)
+        {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API_Login");
+            if (serverSettingClasses.Count == 0)
+            {
+                Console.WriteLine($"{DateTime.Now.ToDateTimeString()} Login失敗,查無API網址,請檢查[API_Login]網址是否設定");
+                return null;
+            }
+            string url = $"{serverSettingClasses[0].Server}";
+
+            returnData returnData = new returnData();
+            sessionClass _sessionClass = new sessionClass();
+
+            _sessionClass.BARCODE = BARCODE;
+            returnData.Data = _sessionClass;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result == null)
+            {
+                return null;
+            }
+            if (returnData_result.Data == null)
+            {
+                return null;
+            }
+
+            Console.WriteLine($"{returnData_result}");
+
+            return returnData_result;
+
+        }
+        static public returnData LoginByID(string API_Server, string userID, string password)
+        {
+            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API_Login");
+            if (serverSettingClasses.Count == 0)
+            {
+                Console.WriteLine($"{DateTime.Now.ToDateTimeString()} Login失敗,查無API網址,請檢查[API_Login]網址是否設定");
+                return null;
+            }
+            string url = $"{serverSettingClasses[0].Server}";
+
+            returnData returnData = new returnData();
+            sessionClass _sessionClass = new sessionClass();
+
+            _sessionClass.ID = userID;
+            _sessionClass.Password = password;
+            returnData.Data = _sessionClass;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result == null)
+            {
+                return null;
+            }
+            if (returnData_result.Data == null)
+            {
+                return null;
+            }
+
+            Console.WriteLine($"{returnData_result}");
+
+            return returnData_result;
+
+        }
     }
 }

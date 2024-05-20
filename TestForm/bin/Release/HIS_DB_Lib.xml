@@ -319,6 +319,11 @@
             加入時間
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.OrderTClass">
+            <summary>
+            中藥醫令資料
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.personPageClass.GUID">
             <summary>
             唯一KEY

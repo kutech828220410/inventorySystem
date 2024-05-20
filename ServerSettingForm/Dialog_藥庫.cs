@@ -127,7 +127,8 @@ namespace ServerSettingForm
             Panel_SQLContent.SaveAll(this.FindForm(), ref serverSettingClasses);
             Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.藥庫);
             Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
-
+            Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.藥庫);
+            Panel_CheckBox.SaveAll(this.FindForm(), ref serverSettingClasses);
 
             ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
             if (serverSettingClass != null)
@@ -199,6 +200,9 @@ namespace ServerSettingForm
 
             Panel_API_URL.SetValue(this.FindForm(), DataName, enum_ServerSetting_Type.藥庫);
             Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
+
+            Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.藥庫);
+            Panel_CheckBox.LoadAll(this.FindForm(), serverSettingClasses);
 
             ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
             if (serverSettingClass != null)

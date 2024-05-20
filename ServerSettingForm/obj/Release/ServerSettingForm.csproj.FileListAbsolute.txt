@@ -765,3 +765,7 @@ C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Releas
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\H_Pannel_lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\zxing.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_中藥調劑系統.resources
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_CheckBox.resources
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_中心叫號系統.resources
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_設定.resources

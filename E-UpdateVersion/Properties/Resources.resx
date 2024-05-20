@@ -121,9 +121,6 @@
   <data name="癌症備藥機" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\癌症備藥機.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="智能藥庫系統" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\智能藥庫系統.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="智慧調劑台系統" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\智慧調劑台系統.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,5 +132,11 @@
   </data>
   <data name="勤務傳送櫃" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\勤務傳送櫃.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="智能藥庫系統" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\智能藥庫系統.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="中藥調劑系統ICON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\中藥調劑系統ICON.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

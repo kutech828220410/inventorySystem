@@ -49,7 +49,7 @@ namespace ServerSettingForm
             // checkBox_致能
             // 
             this.checkBox_致能.AutoSize = true;
-            this.checkBox_致能.Location = new System.Drawing.Point(1010, 65);
+            this.checkBox_致能.Location = new System.Drawing.Point(451, 65);
             this.checkBox_致能.Name = "checkBox_致能";
             this.checkBox_致能.Size = new System.Drawing.Size(48, 16);
             this.checkBox_致能.TabIndex = 11;
@@ -58,7 +58,7 @@ namespace ServerSettingForm
             // 
             // button_上傳
             // 
-            this.button_上傳.Location = new System.Drawing.Point(777, 54);
+            this.button_上傳.Location = new System.Drawing.Point(281, 104);
             this.button_上傳.Name = "button_上傳";
             this.button_上傳.Size = new System.Drawing.Size(72, 41);
             this.button_上傳.TabIndex = 10;
@@ -67,7 +67,7 @@ namespace ServerSettingForm
             // 
             // button_瀏覽
             // 
-            this.button_瀏覽.Location = new System.Drawing.Point(699, 54);
+            this.button_瀏覽.Location = new System.Drawing.Point(203, 104);
             this.button_瀏覽.Name = "button_瀏覽";
             this.button_瀏覽.Size = new System.Drawing.Size(72, 41);
             this.button_瀏覽.TabIndex = 9;
@@ -76,16 +76,16 @@ namespace ServerSettingForm
             // 
             // textBox_filepath
             // 
-            this.textBox_filepath.Location = new System.Drawing.Point(104, 63);
+            this.textBox_filepath.Location = new System.Drawing.Point(95, 62);
             this.textBox_filepath.Name = "textBox_filepath";
-            this.textBox_filepath.Size = new System.Drawing.Size(405, 22);
+            this.textBox_filepath.Size = new System.Drawing.Size(350, 22);
             this.textBox_filepath.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Black;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(22, 53);
+            this.label2.Location = new System.Drawing.Point(13, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 43);
             this.label2.TabIndex = 7;
@@ -96,7 +96,7 @@ namespace ServerSettingForm
             // 
             this.label1.BackColor = System.Drawing.Color.Black;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(515, 51);
+            this.label1.Location = new System.Drawing.Point(13, 103);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 43);
             this.label1.TabIndex = 13;
@@ -105,9 +105,9 @@ namespace ServerSettingForm
             // 
             // textBox_version
             // 
-            this.textBox_version.Location = new System.Drawing.Point(597, 64);
+            this.textBox_version.Location = new System.Drawing.Point(95, 113);
             this.textBox_version.Name = "textBox_version";
-            this.textBox_version.Size = new System.Drawing.Size(96, 22);
+            this.textBox_version.Size = new System.Drawing.Size(102, 22);
             this.textBox_version.TabIndex = 14;
             // 
             // panel1
@@ -117,7 +117,7 @@ namespace ServerSettingForm
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1065, 37);
+            this.panel1.Size = new System.Drawing.Size(526, 37);
             this.panel1.TabIndex = 15;
             // 
             // label_更新時間
@@ -125,9 +125,9 @@ namespace ServerSettingForm
             this.label_更新時間.BackColor = System.Drawing.SystemColors.Window;
             this.label_更新時間.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label_更新時間.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_更新時間.Location = new System.Drawing.Point(707, 0);
+            this.label_更新時間.Location = new System.Drawing.Point(350, 0);
             this.label_更新時間.Name = "label_更新時間";
-            this.label_更新時間.Size = new System.Drawing.Size(358, 37);
+            this.label_更新時間.Size = new System.Drawing.Size(176, 37);
             this.label_更新時間.TabIndex = 14;
             this.label_更新時間.Text = "0000/00/00 00:00:00";
             this.label_更新時間.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -140,14 +140,14 @@ namespace ServerSettingForm
             this.label_標題.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label_標題.Location = new System.Drawing.Point(0, 0);
             this.label_標題.Name = "label_標題";
-            this.label_標題.Size = new System.Drawing.Size(707, 37);
+            this.label_標題.Size = new System.Drawing.Size(350, 37);
             this.label_標題.TabIndex = 13;
             this.label_標題.Text = "標題";
             this.label_標題.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button_下載檔案
             // 
-            this.button_下載檔案.Location = new System.Drawing.Point(854, 54);
+            this.button_下載檔案.Location = new System.Drawing.Point(358, 104);
             this.button_下載檔案.Name = "button_下載檔案";
             this.button_下載檔案.Size = new System.Drawing.Size(72, 41);
             this.button_下載檔案.TabIndex = 16;
@@ -156,7 +156,7 @@ namespace ServerSettingForm
             // 
             // button_刪除
             // 
-            this.button_刪除.Location = new System.Drawing.Point(932, 54);
+            this.button_刪除.Location = new System.Drawing.Point(436, 104);
             this.button_刪除.Name = "button_刪除";
             this.button_刪除.Size = new System.Drawing.Size(72, 41);
             this.button_刪除.TabIndex = 17;
@@ -179,7 +179,7 @@ namespace ServerSettingForm
             this.Controls.Add(this.textBox_filepath);
             this.Controls.Add(this.label2);
             this.Name = "Panel_UpdateVersion";
-            this.Size = new System.Drawing.Size(1065, 106);
+            this.Size = new System.Drawing.Size(526, 160);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

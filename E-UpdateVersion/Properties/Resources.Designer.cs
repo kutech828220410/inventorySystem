@@ -73,6 +73,16 @@ namespace E_UpdateVersion.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap 中藥調劑系統ICON {
+            get {
+                object obj = ResourceManager.GetObject("中藥調劑系統ICON", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap 候藥系統 {
             get {
                 object obj = ResourceManager.GetObject("候藥系統", resourceCulture);

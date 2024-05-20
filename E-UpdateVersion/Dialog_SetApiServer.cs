@@ -56,11 +56,9 @@ namespace E_UpdateVersion
             }
             else
             {
-                MyMessageBox.ShowDialog("連線失敗");
+                MyMessageBox.ShowDialog("連線失敗\n※網路異常,請檢查網路與院內連線是否正常");
                 return;
             }
-
-
         }
     }
 }

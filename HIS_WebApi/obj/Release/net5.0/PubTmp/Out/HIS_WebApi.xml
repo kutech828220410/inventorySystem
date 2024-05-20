@@ -756,6 +756,54 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.stockRecordController.POST_get_datas_record_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID取得庫存紀錄(SheetClass)(多台合併)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                  "GUID1,GUID2",
+                  "ds01,ds01",
+                  "藥庫,藥庫"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.stockRecordController.POST_download_excel_datas_record_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID取得庫存紀錄(Excel)(多台合併)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                  "GUID1,GUID2",
+                  "ds01,ds01",
+                  "藥庫,藥庫"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
         <member name="T:HIS_WebApi.ChemotherapyRxScheduling">
             <summary>
             化療藥局癌症排程處方系統
@@ -2734,6 +2782,42 @@
              </code>
              </remarks>
              <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi.order.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.orderT.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
         </member>
         <member name="M:HIS_WebApi.inspectionController.GET_init(HIS_DB_Lib.returnData)">
             <summary>

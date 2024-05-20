@@ -107,7 +107,8 @@ namespace ServerSettingForm
             Panel_SQLContent.SaveAll(this.FindForm(), ref serverSettingClasses);
             Panel_API_URL.SetValue(this.FindForm(), Name, enum_ServerSetting_Type.癌症備藥機);
             Panel_API_URL.SaveAll(this.FindForm(), ref serverSettingClasses);
-
+            Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.癌症備藥機);
+            Panel_CheckBox.SaveAll(this.FindForm(), ref serverSettingClasses);
             returnData.Data = serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
             Console.WriteLine(json_in);
@@ -152,6 +153,9 @@ namespace ServerSettingForm
 
             Panel_API_URL.SetValue(this.FindForm(), comboBox_名稱.Text, enum_ServerSetting_Type.癌症備藥機);
             Panel_API_URL.LoadAll(this.FindForm(), serverSettingClasses);
+
+            Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.癌症備藥機);
+            Panel_CheckBox.LoadAll(this.FindForm(), serverSettingClasses);
         }
         private void Button_刪除_Click(object sender, EventArgs e)
         {
