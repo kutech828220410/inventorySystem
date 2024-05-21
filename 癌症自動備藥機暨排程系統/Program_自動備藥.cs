@@ -257,7 +257,7 @@ namespace 癌症自動備藥機暨排程系統
                 returnData.ServerName = "cheom";
                 returnData.ServerType = "癌症備藥機";
                 transactionsClass transactionsClass = new transactionsClass();
-                transactionsClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
+                transactionsClass.動作 = enum_交易記錄查詢動作.系統領藥.GetEnumName();
                 transactionsClass.藥品碼 = storage.Code;
                 transactionsClass.藥品名稱 = storage.Name;
                 transactionsClass.操作人 = 登入者名稱;
@@ -351,7 +351,7 @@ namespace 癌症自動備藥機暨排程系統
                 returnData.ServerName = "cheom";
                 returnData.ServerType = "癌症備藥機";
                 transactionsClass transactionsClass = new transactionsClass();
-                transactionsClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
+                transactionsClass.動作 = enum_交易記錄查詢動作.系統領藥.GetEnumName();
                 transactionsClass.藥品碼 = storage.Code;
                 transactionsClass.藥品名稱 = storage.Name;
                 transactionsClass.操作人 = 登入者名稱;

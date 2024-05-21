@@ -292,8 +292,11 @@ namespace 癌症自動備藥機暨排程系統
             Program_交易紀錄_Init();
             Program_Scanner_RS232_Init();
 
+
             plC_ScreenPage_main.TabChangeEvent += PlC_ScreenPage_main_TabChangeEvent;
         }
+
+ 
 
         private void PlC_ScreenPage_main_TabChangeEvent(string PageText)
         {

@@ -40,42 +40,46 @@ namespace 癌症自動備藥機暨排程系統
                 MyMessageBox.ShowDialog($"交易紀錄表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");
                 return;
             }
-            this.sqL_DataGridView_交易記錄查詢.顯示首列 = false;
-            this.sqL_DataGridView_交易記錄查詢.顯示首行 = false;
+            SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_交易記錄查詢, dBConfigClass.DB_Basic);
+
+            this.sqL_DataGridView_交易記錄查詢.顯示首列 = true;
+            this.sqL_DataGridView_交易記錄查詢.顯示首行 = true;
             this.sqL_DataGridView_交易記錄查詢.Init(table);
             
             this.sqL_DataGridView_交易記錄查詢.Set_ColumnVisible(false, new enum_交易記錄查詢資料().GetEnumNames());
-            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(sqL_DataGridView_交易記錄查詢.Width - 20, DataGridViewContentAlignment.MiddleLeft, "GUID");
+            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(sqL_DataGridView_交易記錄查詢.Width - 20, DataGridViewContentAlignment.MiddleLeft, "GUID");
 
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.動作);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.動作);
             //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.診別);
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.藥品碼);
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.藥品名稱);
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.庫存量);
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.交易量);
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.結存量);
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.操作人);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.藥品碼);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.藥品名稱);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.庫存量);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.交易量);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_交易記錄查詢資料.結存量);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.操作人);
             //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.病人姓名);
             ////this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.頻次);
             ////this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.床號);
             //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.病歷號);
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.操作時間);
-            //this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.備註);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_交易記錄查詢資料.操作時間);
+            this.sqL_DataGridView_交易記錄查詢.Set_ColumnWidth(250, DataGridViewContentAlignment.MiddleLeft, enum_交易記錄查詢資料.備註);
 
-            this.sqL_DataGridView_交易記錄查詢.RowPostPaintingEvent += SqL_DataGridView_交易記錄查詢_RowPostPaintingEvent;
+            //this.sqL_DataGridView_交易記錄查詢.RowPostPaintingEvent += SqL_DataGridView_交易記錄查詢_RowPostPaintingEvent;
+            this.sqL_DataGridView_交易記錄查詢.DataGridRowsChangeRefEvent += SqL_DataGridView_交易記錄查詢_DataGridRowsChangeRefEvent;
+
 
             this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_操作時間_搜尋_MouseDownEvent;
             this.plC_RJ_Button_交易紀錄查詢_藥碼搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_藥碼搜尋_MouseDownEvent;
             this.plC_RJ_Button_交易紀錄查詢_藥名搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_藥名搜尋_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_交易紀錄);
         }
-
-      
-
+   
         private void Program_交易紀錄()
         {
             
         }
+
+
         #region Function
         private void Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作 enum_交易記錄查詢動作, string 操作人, string 備註)
         {
@@ -98,6 +102,43 @@ namespace 癌症自動備藥機暨排程系統
         }
         #endregion
         #region Event
+        private void SqL_DataGridView_交易記錄查詢_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
+        {
+            List<object[]> list_value_buf = new List<object[]>();
+            List<object[]> list_temp = new List<object[]>();
+            if (this.checkBox_交易紀錄_領藥.Checked)
+            {
+                list_temp = (from temp in RowsList
+                             where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString().Contains("領藥")
+                             select temp).ToList();
+
+                list_value_buf.LockAdd(list_temp);
+            }
+            if (this.checkBox_交易紀錄_入庫.Checked)
+            {
+                list_temp = (from temp in RowsList
+                             where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString().Contains("入庫")
+                             select temp).ToList();
+                list_value_buf.LockAdd(list_temp);
+            }
+            if (this.checkBox_交易紀錄_庫存修正.Checked)
+            {
+                list_temp = (from temp in RowsList
+                             where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString().Contains("修正")
+                             select temp).ToList();
+                list_value_buf.LockAdd(list_temp);
+            }
+            if (this.checkBox_交易紀錄_一般操作.Checked)
+            {
+                list_temp = (from temp in RowsList
+                             where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString().Contains("登入")
+                             where temp[(int)enum_交易記錄查詢資料.動作].ObjectToString().Contains("登出")
+                             select temp).ToList();
+                list_value_buf.LockAdd(list_temp);
+            }
+            
+            RowsList = list_value_buf;
+        }
         private void SqL_DataGridView_交易記錄查詢_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
         {
             Color row_Backcolor = Color.White;

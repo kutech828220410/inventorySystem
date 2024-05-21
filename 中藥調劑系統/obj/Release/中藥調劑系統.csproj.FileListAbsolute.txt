@@ -49,7 +49,6 @@ C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\System.ValueTuple.xml
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Form_buffer.resources
-C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\ExcelScaleLib.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\HIS_DB_Lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\H_Pannel_lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\MyOffice.dll
