@@ -100,6 +100,7 @@ namespace 中藥調劑系統
             private string scanner02_COMPort = "COM3";
             private string scanner03_COMPort = "";
             private string scanner04_COMPort = "";
+            private string sCALE_COMPort = "COM4";
 
             public bool 主機模式 { get => _主機模式; set => _主機模式 = value; }
             public bool 主機輸出模式 { get => _主機輸出模式; set => _主機輸出模式 = value; }
@@ -108,6 +109,7 @@ namespace 中藥調劑系統
             public string Scanner02_COMPort { get => scanner02_COMPort; set => scanner02_COMPort = value; }
             public string Scanner03_COMPort { get => scanner03_COMPort; set => scanner03_COMPort = value; }
             public string Scanner04_COMPort { get => scanner04_COMPort; set => scanner04_COMPort = value; }
+            public string SCALE_COMPort { get => sCALE_COMPort; set => sCALE_COMPort = value; }
         }
         private void LoadMyConfig()
         {
@@ -154,7 +156,6 @@ namespace 中藥調劑系統
 
             ApiServerSetting(dBConfigClass.Name);
 
-
             plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
             plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
         }
@@ -163,16 +164,16 @@ namespace 中藥調劑系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
             PLC_Device_已登入.Bool = false;
 
-
-       
-
             Program_調劑畫面_Init();
             Program_RS232_EXCELL_SCALE_Init();
+            Program_RS232_Scanner_Init();
             Program_RFID_Init();
         }
 
         private void ApiServerSetting(string Name)
         {
+            this.Text = $"中藥調劑系統 Ver{this.ProductVersion}";
+
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
             ServerSettingClass serverSettingClass_一般資料 = serverSettingClasses.myFind(Name, "中藥調劑系統", "一般資料");
             ServerSettingClass serverSettingClass_VM端 = serverSettingClasses.myFind(Name, "中藥調劑系統", "VM端");

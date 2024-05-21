@@ -197,6 +197,251 @@ namespace HIS_DB_Lib
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
+        static public List<OrderTClass> get_by_rx_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end)
+        {
+            string url = $"{API_Server}/api/orderT/get_by_rx_time_st_end";
 
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(dateTime_st.ToDateTimeString_6());
+            returnData.ValueAry.Add(dateTime_end.ToDateTimeString_6());
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
+            return orderTClasses;
+        }
+        static public List<OrderTClass> get_by_post_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end)
+        {
+            string url = $"{API_Server}/api/orderT/get_by_post_time_st_end";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(dateTime_st.ToDateTimeString_6());
+            returnData.ValueAry.Add(dateTime_end.ToDateTimeString_6());
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
+            return orderTClasses;
+        }
+        static public List<OrderTClass> get_by_pri_key(string API_Server, string PRI_KEY)
+        {
+            string url = $"{API_Server}/api/orderT/get_by_pri_key";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(PRI_KEY);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
+            return orderTClasses;
+        }
+        static public OrderTClass get_by_guid(string API_Server, string GUID)
+        {
+            string url = $"{API_Server}/api/orderT/get_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(GUID);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            OrderTClass orderTClass = returnData_out.Data.ObjToClass<OrderTClass>();
+            return orderTClass;
+        }
+
+        static public void updete_by_guid(string API_Server, OrderTClass orderTClass)
+        {
+            List<OrderTClass> orderTClasse = new List<OrderTClass>();
+            orderTClasse.Add(orderTClass);
+            updete_by_guid(API_Server, orderTClasse);
+        }
+        static public void updete_by_guid(string API_Server, List<OrderTClass> orderTClasses)
+        {
+            string url = $"{API_Server}/api/orderT/updete_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.Data = orderTClasses;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+             
+            }
+            if (returnData_out.Data == null)
+            {
+                
+            }
+            Console.WriteLine($"{returnData_out}");
+            OrderTClass orderTClass = returnData_out.Data.ObjToClass<OrderTClass>();
+      
+        }
+    }
+
+
+
+
+    static public class OrderTClassMethod
+    {
+        public enum SortType
+        {
+            批序,
+            開方日期,
+            產出時間,
+            領藥號
+        }
+
+        static public void sort(this List<OrderTClass> orderTClasses, SortType sortType)
+        {
+            if (sortType == SortType.開方日期)
+            {
+                orderTClasses.Sort(new ICP_By_rx_time());
+            }
+            if (sortType == SortType.產出時間)
+            {
+                orderTClasses.Sort(new ICP_By_op_time());
+            }
+            if (sortType == SortType.領藥號)
+            {
+                orderTClasses.Sort(new ICP_By_MED_BAG_NUM());
+            }
+            if (sortType == SortType.批序)
+            {
+                orderTClasses.Sort(new ICP_By_DOS());
+            }
+        }
+
+        public class ICP_By_rx_time : IComparer<OrderTClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderTClass x, OrderTClass y)
+            {
+                DateTime datetime1 = x.開方日期.StringToDateTime();
+                DateTime datetime2 = y.開方日期.StringToDateTime();
+                int compare = DateTime.Compare(datetime1, datetime2);
+                return compare;
+
+            }
+        }
+        public class ICP_By_op_time : IComparer<OrderTClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderTClass x, OrderTClass y)
+            {
+                DateTime datetime1 = x.產出時間.StringToDateTime();
+                DateTime datetime2 = y.產出時間.StringToDateTime();
+                int compare = DateTime.Compare(datetime1, datetime2);
+                return compare;
+
+            }
+        }
+        public class ICP_By_MED_BAG_NUM : IComparer<OrderTClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderTClass x, OrderTClass y)
+            {
+                string temp0 = x.領藥號;
+                string temp1 = y.領藥號;
+                int compare = temp0.CompareTo(temp1);
+                return compare;
+
+            }
+        }
+        public class ICP_By_DOS : IComparer<OrderTClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderTClass x, OrderTClass y)
+            {
+                string temp0 = x.批序;
+                string temp1 = y.批序;
+                int compare = temp0.CompareTo(temp1);
+                return compare;
+
+            }
+        }
+
+
+        static public System.Collections.Generic.Dictionary<string, List<OrderTClass>> CoverToDictionaryBy_PRI_KEY(this List<OrderTClass> orderTClasses)
+        {
+            Dictionary<string, List<OrderTClass>> dictionary = new Dictionary<string, List<OrderTClass>>();
+
+            foreach (var item in orderTClasses)
+            {
+                string key = item.PRI_KEY;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<OrderTClass> values = new List<OrderTClass> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<OrderTClass> SortDictionaryBy_PRI_KEY(this System.Collections.Generic.Dictionary<string, List<OrderTClass>> dictionary, string value)
+        {
+            if (dictionary.ContainsKey(value))
+            {
+                return dictionary[value];
+            }
+            return new List<OrderTClass>();
+        }
     }
 }
+
+

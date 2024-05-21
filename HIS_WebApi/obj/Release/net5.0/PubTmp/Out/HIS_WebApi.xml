@@ -2819,6 +2819,118 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.orderT.POST_get_by_rx_time_st_end(HIS_DB_Lib.returnData)">
+            <summary>
+            以開方時間取得中藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                },
+                "ValueAry" : 
+                [
+                  "起始時間",
+                  "結束時間"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.orderT.POST_get_by_op_time_st_end(HIS_DB_Lib.returnData)">
+            <summary>
+            以過帳時間取得中藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                },
+                "ValueAry" : 
+                [
+                  "起始時間",
+                  "結束時間"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.orderT.POST_get_by_pri_key(HIS_DB_Lib.returnData)">
+            <summary>
+            以PRI_KEY取得中藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                },
+                "ValueAry" : 
+                [
+                  "PRI_KEY",
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.orderT.POST_get_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID取得中藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                },
+                "ValueAry" : 
+                [
+                  "GUID",
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.orderT.POST_updete_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID取得中藥醫令
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                  [OrderTClass(陣列)]
+                },
+                "ValueAry" : 
+                [
+                
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.inspectionController.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化驗收單資料庫

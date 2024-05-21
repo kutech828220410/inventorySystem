@@ -129,6 +129,11 @@ namespace 癌症自動備藥機暨排程系統
                 row_Backcolor = Color.Silver;
                 row_Forecolor = Color.White;
             }
+            if (this.sqL_DataGridView_備藥通知.dataGridView.Rows[e.RowIndex].Selected)
+            {
+                row_Backcolor = Color.Blue;
+                row_Forecolor = Color.White;
+            }
             Brush brush = new SolidBrush(row_Backcolor);
             int x = e.RowBounds.Left;
             int y = e.RowBounds.Top;
