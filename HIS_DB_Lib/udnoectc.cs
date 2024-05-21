@@ -393,6 +393,39 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("check_time")]
         public string 核對時間 { get; set; }
+
+
+        static public System.Collections.Generic.Dictionary<string, List<udnoectc_orders>> CoverToDictionaryByMGUID(List<udnoectc_orders> udnoectc_Orders)
+        {
+            Dictionary<string, List<udnoectc_orders>> dictionary = new Dictionary<string, List<udnoectc_orders>>();
+
+            foreach (var item in udnoectc_Orders)
+            {
+                string key = item.Master_GUID;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<udnoectc_orders> values = new List<udnoectc_orders> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<udnoectc_orders> SortDictionaryByMGUID(System.Collections.Generic.Dictionary<string, List<udnoectc_orders>> dictionary, string Master_GUID)
+        {
+            if (dictionary.ContainsKey(Master_GUID))
+            {
+                return dictionary[Master_GUID];
+            }
+            return new List<udnoectc_orders>();
+        }
     }
 
 
@@ -405,6 +438,8 @@ namespace HIS_DB_Lib
         變異原因,
         變異內容,
         說明,
+
+
     }
     [Serializable]
     /// <summary>
@@ -447,5 +482,37 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("vardata")]
         public string 說明 { get; set; }
+
+        static public System.Collections.Generic.Dictionary<string, List<udnoectc_ctcvars>> CoverToDictionaryByMGUID(List<udnoectc_ctcvars> udnoectc_Ctcvars)
+        {
+            Dictionary<string, List<udnoectc_ctcvars>> dictionary = new Dictionary<string, List<udnoectc_ctcvars>>();
+
+            foreach (var item in udnoectc_Ctcvars)
+            {
+                string key = item.Master_GUID;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<udnoectc_ctcvars> values = new List<udnoectc_ctcvars> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<udnoectc_ctcvars> SortDictionaryByMGUID(System.Collections.Generic.Dictionary<string, List<udnoectc_ctcvars>> dictionary, string Master_GUID)
+        {
+            if (dictionary.ContainsKey(Master_GUID))
+            {
+                return dictionary[Master_GUID];
+            }
+            return new List<udnoectc_ctcvars>();
+        }
     }
 }

@@ -56,6 +56,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable4 = new MyUI.RJ_Lable();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_強制出盒 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_自動備藥_重新整理 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_自動備藥_手動選擇備藥 = new MyUI.PLC_RJ_Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -123,6 +124,7 @@ namespace 癌症自動備藥機暨排程系統
             this.交易紀錄 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_交易記錄查詢 = new SQLUI.SQL_DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.checkBox_交易紀錄_庫存修正 = new System.Windows.Forms.CheckBox();
             this.checkBox_交易紀錄_一般操作 = new System.Windows.Forms.CheckBox();
             this.checkBox_交易紀錄_入庫 = new System.Windows.Forms.CheckBox();
             this.checkBox_交易紀錄_領藥 = new System.Windows.Forms.CheckBox();
@@ -761,7 +763,6 @@ namespace 癌症自動備藥機暨排程系統
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.textBox_自動備藥_密碼 = new System.Windows.Forms.TextBox();
             this.textBox_帳號 = new System.Windows.Forms.TextBox();
-            this.checkBox_交易紀錄_庫存修正 = new System.Windows.Forms.CheckBox();
             this.plC_ScreenPage_main.SuspendLayout();
             this.登入畫面.SuspendLayout();
             this.panel_登入畫面.SuspendLayout();
@@ -1293,6 +1294,7 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.plC_RJ_Button_強制出盒);
             this.panel3.Controls.Add(this.plC_RJ_Button_自動備藥_重新整理);
             this.panel3.Controls.Add(this.plC_RJ_Button_自動備藥_手動選擇備藥);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -1300,6 +1302,61 @@ namespace 癌症自動備藥機暨排程系統
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1076, 94);
             this.panel3.TabIndex = 1;
+            // 
+            // plC_RJ_Button_強制出盒
+            // 
+            this.plC_RJ_Button_強制出盒.AutoResetState = false;
+            this.plC_RJ_Button_強制出盒.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_強制出盒.Bool = false;
+            this.plC_RJ_Button_強制出盒.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_強制出盒.BorderRadius = 20;
+            this.plC_RJ_Button_強制出盒.BorderSize = 0;
+            this.plC_RJ_Button_強制出盒.but_press = false;
+            this.plC_RJ_Button_強制出盒.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_強制出盒.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_強制出盒.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_強制出盒.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_強制出盒.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_強制出盒.GUID = "";
+            this.plC_RJ_Button_強制出盒.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_強制出盒.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_強制出盒.Location = new System.Drawing.Point(869, 6);
+            this.plC_RJ_Button_強制出盒.Name = "plC_RJ_Button_強制出盒";
+            this.plC_RJ_Button_強制出盒.OFF_文字內容 = "強制出盒";
+            this.plC_RJ_Button_強制出盒.OFF_文字字體 = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_強制出盒.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_強制出盒.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_強制出盒.ON_BorderSize = 5;
+            this.plC_RJ_Button_強制出盒.ON_文字內容 = "強制出盒";
+            this.plC_RJ_Button_強制出盒.ON_文字字體 = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_強制出盒.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_強制出盒.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_強制出盒.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_強制出盒.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_強制出盒.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_強制出盒.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_強制出盒.ShadowSize = 3;
+            this.plC_RJ_Button_強制出盒.ShowLoadingForm = false;
+            this.plC_RJ_Button_強制出盒.Size = new System.Drawing.Size(199, 80);
+            this.plC_RJ_Button_強制出盒.State = false;
+            this.plC_RJ_Button_強制出盒.TabIndex = 11;
+            this.plC_RJ_Button_強制出盒.Text = "強制出盒";
+            this.plC_RJ_Button_強制出盒.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_強制出盒.TextHeight = 0;
+            this.plC_RJ_Button_強制出盒.Texts = "強制出盒";
+            this.plC_RJ_Button_強制出盒.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_強制出盒.字型鎖住 = false;
+            this.plC_RJ_Button_強制出盒.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_強制出盒.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_強制出盒.文字鎖住 = false;
+            this.plC_RJ_Button_強制出盒.背景圖片 = null;
+            this.plC_RJ_Button_強制出盒.讀取位元反向 = false;
+            this.plC_RJ_Button_強制出盒.讀取元件位置 = "M30100";
+            this.plC_RJ_Button_強制出盒.讀寫鎖住 = false;
+            this.plC_RJ_Button_強制出盒.音效 = true;
+            this.plC_RJ_Button_強制出盒.顯示 = false;
+            this.plC_RJ_Button_強制出盒.顯示狀態 = false;
+            this.plC_RJ_Button_強制出盒.顯示讀取位置 = "M30100";
             // 
             // plC_RJ_Button_自動備藥_重新整理
             // 
@@ -3169,6 +3226,17 @@ namespace 癌症自動備藥機暨排程系統
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1076, 310);
             this.panel9.TabIndex = 9;
+            // 
+            // checkBox_交易紀錄_庫存修正
+            // 
+            this.checkBox_交易紀錄_庫存修正.AutoSize = true;
+            this.checkBox_交易紀錄_庫存修正.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_交易紀錄_庫存修正.Location = new System.Drawing.Point(776, 23);
+            this.checkBox_交易紀錄_庫存修正.Name = "checkBox_交易紀錄_庫存修正";
+            this.checkBox_交易紀錄_庫存修正.Size = new System.Drawing.Size(115, 30);
+            this.checkBox_交易紀錄_庫存修正.TabIndex = 61;
+            this.checkBox_交易紀錄_庫存修正.Text = "庫存修正";
+            this.checkBox_交易紀錄_庫存修正.UseVisualStyleBackColor = true;
             // 
             // checkBox_交易紀錄_一般操作
             // 
@@ -20321,17 +20389,6 @@ namespace 癌症自動備藥機暨排程系統
             this.textBox_帳號.Size = new System.Drawing.Size(260, 27);
             this.textBox_帳號.TabIndex = 1;
             // 
-            // checkBox_交易紀錄_庫存修正
-            // 
-            this.checkBox_交易紀錄_庫存修正.AutoSize = true;
-            this.checkBox_交易紀錄_庫存修正.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkBox_交易紀錄_庫存修正.Location = new System.Drawing.Point(776, 23);
-            this.checkBox_交易紀錄_庫存修正.Name = "checkBox_交易紀錄_庫存修正";
-            this.checkBox_交易紀錄_庫存修正.Size = new System.Drawing.Size(115, 30);
-            this.checkBox_交易紀錄_庫存修正.TabIndex = 61;
-            this.checkBox_交易紀錄_庫存修正.Text = "庫存修正";
-            this.checkBox_交易紀錄_庫存修正.UseVisualStyleBackColor = true;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -21198,6 +21255,7 @@ namespace 癌症自動備藥機暨排程系統
         private System.Windows.Forms.CheckBox checkBox_交易紀錄_入庫;
         private System.Windows.Forms.CheckBox checkBox_交易紀錄_領藥;
         private System.Windows.Forms.CheckBox checkBox_交易紀錄_庫存修正;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_強制出盒;
     }
 }
 

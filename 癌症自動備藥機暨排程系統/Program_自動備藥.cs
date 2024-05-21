@@ -48,13 +48,13 @@ namespace 癌症自動備藥機暨排程系統
 
             //plC_UI_Init.Add_Method(Program_自動備藥);
         }
-
-      
-
+     
         private void Program_自動備藥()
         {
             sub_Program_自動備藥_開始備藥();
-     
+            sub_Program_強制出盒();
+
+
         }
         private void Function_出料一次(string IP)
         {
@@ -442,9 +442,168 @@ namespace 癌症自動備藥機暨排程系統
             cnt++;
         }
         #endregion
+        #region PLC_強制出盒
+        PLC_Device PLC_Device_強制出盒 = new PLC_Device("M30100");
+        PLC_Device PLC_Device_強制出盒_OK = new PLC_Device("");
+        MyTimer MyTimer_強制出盒_結束延遲 = new MyTimer();
+        int cnt_Program_強制出盒 = 65534;
+        void sub_Program_強制出盒()
+        {
+            if (myConfigClass.主機模式 == false) return;
+            if (cnt_Program_強制出盒 == 65534)
+            {
+                this.MyTimer_強制出盒_結束延遲.StartTickTime(50);
+                PLC_Device_強制出盒.SetComment("PLC_強制出盒");
+                PLC_Device_強制出盒_OK.SetComment("PLC_強制出盒_OK");
+                PLC_Device_強制出盒.Bool = false;
+                cnt_Program_強制出盒 = 65535;
+            }
+            if (cnt_Program_強制出盒 == 65535) cnt_Program_強制出盒 = 1;
+            if (cnt_Program_強制出盒 == 1) cnt_Program_強制出盒_檢查按下(ref cnt_Program_強制出盒);
+            if (cnt_Program_強制出盒 == 2) cnt_Program_強制出盒_初始化(ref cnt_Program_強制出盒);
+            if (cnt_Program_強制出盒 == 3) cnt_Program_強制出盒 = 65500;
+
+            if (cnt_Program_強制出盒 == 100) cnt_Program_強制出盒_藥盒從冷藏區傳接至常溫區(ref cnt_Program_強制出盒);
+            if (cnt_Program_強制出盒 == 101) cnt_Program_強制出盒_等待藥盒從冷藏區傳接至常溫區_已到傳接位置(ref cnt_Program_強制出盒);
+            if (cnt_Program_強制出盒 == 102) cnt_Program_強制出盒 = 200;
+
+            if (cnt_Program_強制出盒 == 200) cnt_Program_強制出盒_藥盒從常溫區傳接至進出盒區(ref cnt_Program_強制出盒);
+            if (cnt_Program_強制出盒 == 201) cnt_Program_強制出盒_等待藥盒從常溫區傳接至進出盒區完成(ref cnt_Program_強制出盒);
+            if (cnt_Program_強制出盒 == 202) cnt_Program_強制出盒 = 65500;
+            if (cnt_Program_強制出盒 > 1) cnt_Program_強制出盒_檢查放開(ref cnt_Program_強制出盒);
+
+            if (cnt_Program_強制出盒 == 65500)
+            {
+                this.MyTimer_強制出盒_結束延遲.TickStop();
+                this.MyTimer_強制出盒_結束延遲.StartTickTime(50);
+                PLC_Device_強制出盒.Bool = false;
+                PLC_Device_強制出盒_OK.Bool = false;
+
+                PLC_Device_出料一次.Bool = false;
+                PLC_Device_將藥盒從進出盒區傳接至常溫區.Bool = false;
+                PLC_Device_將藥盒從常溫區傳接至冷藏區.Bool = false;
+                PLC_Device_將藥盒從冷藏區傳接至常溫區.Bool = false;
+                PLC_Device_將藥盒從常溫區傳接至進出盒區.Bool = false;
+                this.Invoke(new Action(delegate
+                {
+                    panel_備藥狀態.Visible = false;
+                }));
+
+                cnt_Program_強制出盒 = 65535;
+            }
+        }
+        void cnt_Program_強制出盒_檢查按下(ref int cnt)
+        {
+            if (PLC_Device_強制出盒.Bool) cnt++;
+        }
+        void cnt_Program_強制出盒_檢查放開(ref int cnt)
+        {
+            if (!PLC_Device_強制出盒.Bool) cnt = 65500;
+        }
+        void cnt_Program_強制出盒_初始化(ref int cnt)
+        {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
+            this.Invoke(new Action(delegate
+            {
+                panel_備藥狀態.Visible = true;
+            }));
+            if (PLC_IO_進出盒區_藥盒到位感應.Bool)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("出藥盒區域有盒子,請取出", 1500);
+                dialog_AlarmForm.ShowDialog();
+                cnt = 65500;
+                return;
+            }
+
+            if (PLC_IO_常溫區_藥盒左感應.Bool
+             || PLC_IO_常溫區_藥盒中感應.Bool
+             || PLC_IO_常溫區_藥盒右感應.Bool)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    rJ_Lable_備藥狀態.Text = "排出常溫區藥盒";
+                }));
+                cnt = 200;
+                return;
+            }
+            if ( PLC_IO_冷藏區_藥盒左感應.Bool
+             || PLC_IO_冷藏區_藥盒中感應.Bool
+             || PLC_IO_冷藏區_藥盒右感應.Bool)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    rJ_Lable_備藥狀態.Text = "排出冷藏區藥盒";
+                }));
+                cnt = 100;
+                return;
+            }
+
+
+            cnt++;
+        }
+ 
+       
+        void cnt_Program_強制出盒_藥盒從冷藏區傳接至常溫區(ref int cnt)
+        {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
+     
+            this.Invoke(new Action(delegate
+            {
+                rJ_Lable_備藥狀態.Text = "傳送回常溫區出貨";
+            }));
+            if (PLC_Device_將藥盒從冷藏區傳接至常溫區.Bool) return;
+            PLC_Device_將藥盒從冷藏區傳接至常溫區.Bool = true;
+            PLC_Device_將藥盒從冷藏區傳接至常溫區_已到傳接位置.Bool = false;
+            PLC_Device_將藥盒從冷藏區傳接至常溫區_已到結束待命位置.Bool = false;
+            cnt++;
+        }
+        void cnt_Program_強制出盒_等待藥盒從冷藏區傳接至常溫區_已到傳接位置(ref int cnt)
+        {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
+
+            if (!PLC_Device_將藥盒從冷藏區傳接至常溫區_已到傳接位置.Bool) return;
+            if (PLC_Device_常溫區輸送門開啟.Bool) return;
+            PLC_Device_常溫區輸送門開啟.Bool = true;
+            cnt++;
+        }
+  
+        void cnt_Program_強制出盒_藥盒從常溫區傳接至進出盒區(ref int cnt)
+        {
+            if (!Function_檢查軸控Alarm())
+            {
+                cnt = 65500;
+                return;
+            }
+            this.Invoke(new Action(delegate
+            {
+                rJ_Lable_備藥狀態.Text = "傳送回出貨區";
+            }));
+            if (PLC_Device_將藥盒從常溫區傳接至進出盒區.Bool) return;
+            PLC_Device_將藥盒從常溫區傳接至進出盒區.Bool = true;
+            cnt++;
+        }
+        void cnt_Program_強制出盒_等待藥盒從常溫區傳接至進出盒區完成(ref int cnt)
+        {
+            if (PLC_Device_將藥盒從常溫區傳接至進出盒區.Bool) return;
+            cnt++;
+        }
+        #endregion
+
 
         #region Function
-    
+
         #endregion
         #region Event    
         private void PlC_RJ_Button_開始備藥_MouseDownEvent(MouseEventArgs mevent)

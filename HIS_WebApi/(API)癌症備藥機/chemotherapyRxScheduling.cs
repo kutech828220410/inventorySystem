@@ -455,16 +455,24 @@ namespace HIS_WebApi
                 SQLControl sQLControl_udnoectc_ctcvars = new SQLControl(Server, DB, "udnoectc_ctcvars", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_udnoectc = sQLControl_udnoectc.GetRowsByBetween(null, (int)enum_udnoectc.加入時間, dateTimes[0], dateTimes[1]);
-                List<object[]> list_udnoectc_orders = new List<object[]>();
-                List<object[]> list_udnoectc_ctcvars = new List<object[]>();
+                List<object[]> list_udnoectc_orders = sQLControl_udnoectc_orders.GetAllRows(null);
+                List<object[]> list_udnoectc_ctcvars = sQLControl_udnoectc_ctcvars.GetAllRows(null);
                 List<udnoectc> udnoectcs = list_udnoectc.SQLToClass<udnoectc, enum_udnoectc>();
+                List<udnoectc_orders> ordersAry = list_udnoectc_orders.SQLToClass<udnoectc_orders, enum_udnoectc_orders>();
+                List<udnoectc_ctcvars> ctcvarsAry = list_udnoectc_ctcvars.SQLToClass<udnoectc_ctcvars, enum_udnoectc_ctcvars>();
+                Dictionary<string, List<udnoectc_orders>> keys_ordersAry = udnoectc_orders.CoverToDictionaryByMGUID(ordersAry);
+                Dictionary<string, List<udnoectc_ctcvars>> keys_ctcvarsAry = udnoectc_ctcvars.CoverToDictionaryByMGUID(ctcvarsAry);
                 for (int i = 0; i < udnoectcs.Count; i++)
                 {
                     string Master_GUID = udnoectcs[i].GUID;
-                    list_udnoectc_orders = sQLControl_udnoectc_orders.GetRowsByDefult(null, (int)enum_udnoectc_orders.Master_GUID, Master_GUID);
-                    udnoectcs[i].ordersAry = list_udnoectc_orders.SQLToClass<udnoectc_orders, enum_udnoectc_orders>();
-                    list_udnoectc_ctcvars = sQLControl_udnoectc_ctcvars.GetRowsByDefult(null, (int)enum_udnoectc_ctcvars.Master_GUID, Master_GUID);
-                    udnoectcs[i].ctcvarsAry = list_udnoectc_ctcvars.SQLToClass<udnoectc_ctcvars, enum_udnoectc_ctcvars>();
+
+                    udnoectcs[i].ordersAry = udnoectc_orders.SortDictionaryByMGUID(keys_ordersAry, Master_GUID);
+                    udnoectcs[i].ctcvarsAry = udnoectc_ctcvars.SortDictionaryByMGUID(keys_ctcvarsAry, Master_GUID);
+
+                    //list_udnoectc_orders = sQLControl_udnoectc_orders.GetRowsByDefult(null, (int)enum_udnoectc_orders.Master_GUID, Master_GUID);
+                    //udnoectcs[i].ordersAry = list_udnoectc_orders.SQLToClass<udnoectc_orders, enum_udnoectc_orders>();
+                    //list_udnoectc_ctcvars = sQLControl_udnoectc_ctcvars.GetRowsByDefult(null, (int)enum_udnoectc_ctcvars.Master_GUID, Master_GUID);
+                    //udnoectcs[i].ctcvarsAry = list_udnoectc_ctcvars.SQLToClass<udnoectc_ctcvars, enum_udnoectc_ctcvars>();
                 }
 
                 returnData.Result = $"取得資料成功!共<{udnoectcs.Count}>筆資料!";

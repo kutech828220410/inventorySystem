@@ -272,7 +272,6 @@ namespace ServerSettingForm
             this.Name = "Dialog_設定";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "設定";
             this.ResumeLayout(false);
             this.PerformLayout();
 
