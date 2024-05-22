@@ -593,3 +593,4 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\offic
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\H_Pannel_lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\zxing.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.xml

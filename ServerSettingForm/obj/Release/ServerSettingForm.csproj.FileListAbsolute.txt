@@ -769,3 +769,4 @@ C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Releas
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Panel_CheckBox.resources
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_中心叫號系統.resources
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_設定.resources
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Basic.xml

@@ -1301,3 +1301,4 @@ C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.csproj.CopyComplete
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.exe
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.pdb
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.xml

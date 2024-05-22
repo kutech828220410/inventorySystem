@@ -40,9 +40,17 @@ namespace 中藥調劑系統
             [Description("PRI_KEY,VARCHAR,15,NONE")]
             PRI_KEY,
             [Description("領藥號,VARCHAR,15,NONE")]
-            領藥號,
+            領藥號,    
             [Description("姓名,VARCHAR,15,NONE")]
             姓名,
+            [Description("年齡,VARCHAR,15,NONE")]
+            年齡,
+            [Description("性別,VARCHAR,15,NONE")]
+            性別,
+            [Description("病歷號,VARCHAR,15,NONE")]
+            病歷號,
+            [Description("處方日期,VARCHAR,15,NONE")]
+            處方日期,
         }
         public static sessionClass sessionClass = new sessionClass();
         private void Program_調劑畫面_Init()
@@ -64,7 +72,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_病患資訊.Set_ColumnVisible(false, new enum_病患資訊().GetEnumNames());
             this.sqL_DataGridView_病患資訊.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, "領藥號");
             this.sqL_DataGridView_病患資訊.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, "姓名");
-
+            this.sqL_DataGridView_病患資訊.DataGridClearGridEvent += SqL_DataGridView_病患資訊_DataGridClearGridEvent;
             this.sqL_DataGridView_病患資訊.RowEnterEvent += SqL_DataGridView_病患資訊_RowEnterEvent;
 
             this.plC_RJ_Button_登入.MouseDownEvent += PlC_RJ_Button_登入_MouseDownEvent;
@@ -82,7 +90,7 @@ namespace 中藥調劑系統
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
 
-
+    
 
         private void sub_Progran_更新處方()
         {
@@ -110,6 +118,10 @@ namespace 中藥調劑系統
                             value[(int)enum_病患資訊.PRI_KEY] = orderTClasses_buf[k].PRI_KEY;
                             value[(int)enum_病患資訊.領藥號] = orderTClasses_buf[k].領藥號;
                             value[(int)enum_病患資訊.姓名] = orderTClasses_buf[k].病人姓名;
+                            value[(int)enum_病患資訊.年齡] = orderTClasses_buf[k].年齡;
+                            value[(int)enum_病患資訊.性別] = orderTClasses_buf[k].性別;
+                            value[(int)enum_病患資訊.病歷號] = orderTClasses_buf[k].病歷號;
+                            value[(int)enum_病患資訊.處方日期] = orderTClasses_buf[k].開方日期.StringToDateTime().ToDateString();
 
                             list_value.Add(value);
                             break;
@@ -126,10 +138,22 @@ namespace 中藥調劑系統
             {
                 string text = MySerialPort_Scanner01.ReadString();
                 if (text.StringIsEmpty()) return;
-                text.Replace("\0", "");
-                text.Replace("\n", "");
-                text.Replace("\r", "");
-                Funtion_醫令資料_API呼叫(text);
+                System.Threading.Thread.Sleep(200);
+                text = MySerialPort_Scanner01.ReadString();
+                MySerialPort_Scanner01.ClearReadByte();
+                text = text.Replace("\0", "");
+                text = text.Replace("\n", "");
+                text = text.Replace("\r", "");
+                List<OrderClass> orderClasses = Funtion_醫令資料_API呼叫(text);
+                if (orderClasses.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("", 1500);
+                }
+                if (orderClasses.Count > 0)
+                {
+                    string PRI_KEY = orderClasses[0].PRI_KEY;
+                    this.sqL_DataGridView_病患資訊.SetSelectRow(enum_病患資訊.PRI_KEY.GetEnumName(), PRI_KEY);
+                }
             }
 
         }
@@ -143,22 +167,7 @@ namespace 中藥調劑系統
                 sqL_DataGridView_處方內容.ClearGrid();
             }));
         }
-        private void SqL_DataGridView_處方內容_DataGridClearGridEvent()
-        {
-            rJ_Lable_處方藥品.Text = $"-------------------";
-            rJ_Lable_領藥號.Text = $"----";
-            rJ_Lable_處方資訊_姓名_性別_病歷號.Text = $"-------(-) -----------";
-            rJ_Lable_處方資訊_處方日期.Text = $"----/--/--";
-            rJ_Lable_處方資訊_年齡.Text = $"--歲";
-            rJ_Lable_處方資訊_單筆包數.Text = $"-包";
-            rJ_Lable_處方資訊_單筆處方天數.Text = $"--天";
-            rJ_Lable_處方資訊_單包重.Text = $"--.-- 克/包";
-            rJ_Lable_處方資訊_單筆總重.Text = $"總重:---克";
-            rJ_Lable_總包數.Text = $"--包";
-            rJ_Lable_應調.Text = $"-.--";
-            rJ_Lable_醫師代號.Text = $"醫師代號 : ------------";
-            rJ_Lable_處方時間.Text = $"處方時間 : --:--:--";
-        }
+   
         public void Function_更新處方UI(OrderTClass orderTClass , double 總重)
         {
             string 包數 = "";
@@ -249,9 +258,53 @@ namespace 中藥調劑系統
         }
         #endregion
         #region Event
+        private void SqL_DataGridView_處方內容_DataGridClearGridEvent()
+        {
+            this.Invoke(new Action(delegate
+            {
+                rJ_Lable_處方藥品.Text = $"-------------------";
+                rJ_Lable_處方資訊_單筆包數.Text = $"-包";
+                rJ_Lable_處方資訊_單筆處方天數.Text = $"--天";
+                rJ_Lable_處方資訊_單包重.Text = $"--.-- 克/包";
+                rJ_Lable_處方資訊_單筆總重.Text = $"總重:---克";
+                rJ_Lable_總包數.Text = $"--包";
+                rJ_Lable_應調.Text = $"-.--";
+                rJ_Lable_醫師代號.Text = $"醫師代號 : ------------";
+                rJ_Lable_處方時間.Text = $"處方時間 : --:--:--";
+            }));
+
+        }
+        private void SqL_DataGridView_病患資訊_DataGridClearGridEvent()
+        {
+            this.Invoke(new Action(delegate
+            {
+                rJ_Lable_領藥號.Text = $"----";
+                rJ_Lable_處方資訊_姓名_性別_病歷號.Text = $"-------(-) -----------";
+                rJ_Lable_處方資訊_處方日期.Text = $"----/--/--";
+                rJ_Lable_處方資訊_年齡.Text = $"--歲";
+                
+            }));
+
+        }
         private void SqL_DataGridView_病患資訊_RowEnterEvent(object[] RowValue)
         {
             string PRI_KEY = RowValue[(int)enum_病患資訊.PRI_KEY].ObjectToString();
+            string 領藥號 = RowValue[(int)enum_病患資訊.領藥號].ObjectToString();
+            string 姓名 = RowValue[(int)enum_病患資訊.姓名].ObjectToString();
+            string 性別 = RowValue[(int)enum_病患資訊.性別].ObjectToString();
+            string 病歷號 = RowValue[(int)enum_病患資訊.病歷號].ObjectToString();
+            string 年齡 = RowValue[(int)enum_病患資訊.年齡].ObjectToString();
+            string 處方日期 = RowValue[(int)enum_病患資訊.處方日期].ObjectToString();
+
+            this.Invoke(new Action(delegate
+            {
+                rJ_Lable_領藥號.Text = $"{領藥號}";
+                rJ_Lable_處方資訊_姓名_性別_病歷號.Text = $"{姓名}({性別}) {病歷號}";
+                rJ_Lable_處方資訊_處方日期.Text = $"{處方日期}";
+                rJ_Lable_處方資訊_年齡.Text = $"{年齡}歲";
+            }));
+        
+
             List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < orderTClasses.Count; i++)
