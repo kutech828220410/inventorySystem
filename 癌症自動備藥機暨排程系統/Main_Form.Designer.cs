@@ -167,6 +167,14 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_TextBox_儲位設定_藥品搜尋_藥碼 = new MyUI.RJ_TextBox();
             this.rJ_Lable84 = new MyUI.RJ_Lable();
             this.工程模式 = new System.Windows.Forms.TabPage();
+            this.panel53 = new System.Windows.Forms.Panel();
+            this.rJ_Lable9 = new MyUI.RJ_Lable();
+            this.label133 = new System.Windows.Forms.Label();
+            this.plC_NumBox15 = new MyUI.PLC_NumBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.rJ_Lable3 = new MyUI.RJ_Lable();
+            this.label132 = new System.Windows.Forms.Label();
+            this.plC_NumBox13 = new MyUI.PLC_NumBox();
             this.plC_Button72 = new MyUI.PLC_Button();
             this.rJ_Pannel17 = new MyUI.RJ_Pannel();
             this.plC_Button71 = new MyUI.PLC_Button();
@@ -805,6 +813,8 @@ namespace 癌症自動備藥機暨排程系統
             this.panel38.SuspendLayout();
             this.panel37.SuspendLayout();
             this.工程模式.SuspendLayout();
+            this.panel53.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.rJ_Pannel17.SuspendLayout();
             this.panel40.SuspendLayout();
             this.rJ_Pannel16.SuspendLayout();
@@ -1346,7 +1356,8 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_強制出盒.Texts = "強制出盒";
             this.plC_RJ_Button_強制出盒.UseVisualStyleBackColor = false;
             this.plC_RJ_Button_強制出盒.字型鎖住 = false;
-            this.plC_RJ_Button_強制出盒.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_強制出盒.寫入元件位置 = "M30100";
+            this.plC_RJ_Button_強制出盒.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
             this.plC_RJ_Button_強制出盒.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_強制出盒.文字鎖住 = false;
             this.plC_RJ_Button_強制出盒.背景圖片 = null;
@@ -1356,7 +1367,6 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_強制出盒.音效 = true;
             this.plC_RJ_Button_強制出盒.顯示 = false;
             this.plC_RJ_Button_強制出盒.顯示狀態 = false;
-            this.plC_RJ_Button_強制出盒.顯示讀取位置 = "M30100";
             // 
             // plC_RJ_Button_自動備藥_重新整理
             // 
@@ -4446,6 +4456,8 @@ namespace 癌症自動備藥機暨排程系統
             // 工程模式
             // 
             this.工程模式.BackColor = System.Drawing.Color.White;
+            this.工程模式.Controls.Add(this.panel53);
+            this.工程模式.Controls.Add(this.panel4);
             this.工程模式.Controls.Add(this.plC_Button72);
             this.工程模式.Controls.Add(this.rJ_Pannel17);
             this.工程模式.Controls.Add(this.label130);
@@ -4471,6 +4483,134 @@ namespace 癌症自動備藥機暨排程系統
             this.工程模式.Size = new System.Drawing.Size(1076, 1434);
             this.工程模式.TabIndex = 7;
             this.工程模式.Text = "工程模式";
+            // 
+            // panel53
+            // 
+            this.panel53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel53.Controls.Add(this.rJ_Lable9);
+            this.panel53.Controls.Add(this.label133);
+            this.panel53.Controls.Add(this.plC_NumBox15);
+            this.panel53.Location = new System.Drawing.Point(775, 804);
+            this.panel53.Name = "panel53";
+            this.panel53.Size = new System.Drawing.Size(198, 81);
+            this.panel53.TabIndex = 117;
+            // 
+            // rJ_Lable9
+            // 
+            this.rJ_Lable9.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable9.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable9.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable9.BorderRadius = 10;
+            this.rJ_Lable9.BorderSize = 0;
+            this.rJ_Lable9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable9.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable9.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable9.GUID = "";
+            this.rJ_Lable9.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable9.Name = "rJ_Lable9";
+            this.rJ_Lable9.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable9.ShadowSize = 3;
+            this.rJ_Lable9.Size = new System.Drawing.Size(196, 38);
+            this.rJ_Lable9.TabIndex = 106;
+            this.rJ_Lable9.Text = "冷藏區藥盒 中感應延遲";
+            this.rJ_Lable9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable9.TextColor = System.Drawing.Color.White;
+            // 
+            // label133
+            // 
+            this.label133.AutoSize = true;
+            this.label133.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label133.Location = new System.Drawing.Point(138, 49);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(19, 24);
+            this.label133.TabIndex = 107;
+            this.label133.Text = "s";
+            // 
+            // plC_NumBox15
+            // 
+            this.plC_NumBox15.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox15.Location = new System.Drawing.Point(7, 41);
+            this.plC_NumBox15.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox15.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox15.Name = "plC_NumBox15";
+            this.plC_NumBox15.ReadOnly = false;
+            this.plC_NumBox15.Size = new System.Drawing.Size(125, 38);
+            this.plC_NumBox15.TabIndex = 105;
+            this.plC_NumBox15.Value = 0;
+            this.plC_NumBox15.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox15.密碼欄位 = false;
+            this.plC_NumBox15.寫入元件位置 = "R12101";
+            this.plC_NumBox15.小數點位置 = 3;
+            this.plC_NumBox15.微調數值 = 1;
+            this.plC_NumBox15.讀取元件位置 = "R12101";
+            this.plC_NumBox15.音效 = true;
+            this.plC_NumBox15.顯示微調按鈕 = false;
+            this.plC_NumBox15.顯示螢幕小鍵盤 = true;
+            // 
+            // panel4
+            // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.rJ_Lable3);
+            this.panel4.Controls.Add(this.label132);
+            this.panel4.Controls.Add(this.plC_NumBox13);
+            this.panel4.Location = new System.Drawing.Point(775, 717);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(198, 81);
+            this.panel4.TabIndex = 116;
+            // 
+            // rJ_Lable3
+            // 
+            this.rJ_Lable3.BackColor = System.Drawing.Color.White;
+            this.rJ_Lable3.BackgroundColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable3.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable3.BorderRadius = 10;
+            this.rJ_Lable3.BorderSize = 0;
+            this.rJ_Lable3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable3.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable3.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable3.GUID = "";
+            this.rJ_Lable3.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Lable3.Name = "rJ_Lable3";
+            this.rJ_Lable3.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable3.ShadowSize = 3;
+            this.rJ_Lable3.Size = new System.Drawing.Size(196, 38);
+            this.rJ_Lable3.TabIndex = 106;
+            this.rJ_Lable3.Text = "常溫區藥盒 中感應延遲";
+            this.rJ_Lable3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable3.TextColor = System.Drawing.Color.White;
+            // 
+            // label132
+            // 
+            this.label132.AutoSize = true;
+            this.label132.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label132.Location = new System.Drawing.Point(138, 49);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(19, 24);
+            this.label132.TabIndex = 107;
+            this.label132.Text = "s";
+            // 
+            // plC_NumBox13
+            // 
+            this.plC_NumBox13.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox13.Location = new System.Drawing.Point(7, 41);
+            this.plC_NumBox13.mBackColor = System.Drawing.SystemColors.HighlightText;
+            this.plC_NumBox13.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox13.Name = "plC_NumBox13";
+            this.plC_NumBox13.ReadOnly = false;
+            this.plC_NumBox13.Size = new System.Drawing.Size(125, 38);
+            this.plC_NumBox13.TabIndex = 105;
+            this.plC_NumBox13.Value = 0;
+            this.plC_NumBox13.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox13.密碼欄位 = false;
+            this.plC_NumBox13.寫入元件位置 = "R12111";
+            this.plC_NumBox13.小數點位置 = 3;
+            this.plC_NumBox13.微調數值 = 1;
+            this.plC_NumBox13.讀取元件位置 = "R12111";
+            this.plC_NumBox13.音效 = true;
+            this.plC_NumBox13.顯示微調按鈕 = false;
+            this.plC_NumBox13.顯示螢幕小鍵盤 = true;
             // 
             // plC_Button72
             // 
@@ -4793,6 +4933,7 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // panel40
             // 
+            this.panel40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel40.Controls.Add(this.rJ_Lable95);
             this.panel40.Controls.Add(this.label122);
             this.panel40.Controls.Add(this.plC_NumBox_出料後延遲);
@@ -20448,6 +20589,10 @@ namespace 癌症自動備藥機暨排程系統
             this.panel38.ResumeLayout(false);
             this.panel37.ResumeLayout(false);
             this.工程模式.ResumeLayout(false);
+            this.panel53.ResumeLayout(false);
+            this.panel53.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.rJ_Pannel17.ResumeLayout(false);
             this.panel40.ResumeLayout(false);
             this.panel40.PerformLayout();
@@ -21256,6 +21401,14 @@ namespace 癌症自動備藥機暨排程系統
         private System.Windows.Forms.CheckBox checkBox_交易紀錄_領藥;
         private System.Windows.Forms.CheckBox checkBox_交易紀錄_庫存修正;
         private MyUI.PLC_RJ_Button plC_RJ_Button_強制出盒;
+        private System.Windows.Forms.Panel panel53;
+        private MyUI.RJ_Lable rJ_Lable9;
+        private System.Windows.Forms.Label label133;
+        private MyUI.PLC_NumBox plC_NumBox15;
+        private System.Windows.Forms.Panel panel4;
+        private MyUI.RJ_Lable rJ_Lable3;
+        private System.Windows.Forms.Label label132;
+        private MyUI.PLC_NumBox plC_NumBox13;
     }
 }
 

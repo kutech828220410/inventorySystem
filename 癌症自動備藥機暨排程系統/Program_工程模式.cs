@@ -42,8 +42,12 @@ namespace 癌症自動備藥機暨排程系統
 
         PLC_Device PLC_IO_冷藏區_輸送帶啟動 = new PLC_Device("Y2");
         PLC_Device PLC_IO_冷藏區_輸送帶反轉 = new PLC_Device("Y3");
+
+        MyTimer MyTimer_冷藏區_藥盒中感應延遲 = new MyTimer("R12101");
+        PLC_Device PLC_IO_冷藏區_藥盒中感應_Input = new PLC_Device("X01");
+        PLC_Device PLC_IO_冷藏區_藥盒中感應 = new PLC_Device("S12101");
+
         PLC_Device PLC_IO_冷藏區_藥盒左感應 = new PLC_Device("X02");
-        PLC_Device PLC_IO_冷藏區_藥盒中感應 = new PLC_Device("X01");
         PLC_Device PLC_IO_冷藏區_藥盒右感應 = new PLC_Device("X00");
 
 
@@ -63,8 +67,12 @@ namespace 癌症自動備藥機暨排程系統
 
         PLC_Device PLC_IO_常溫區_輸送帶啟動 = new PLC_Device("Y0");
         PLC_Device PLC_IO_常溫區_輸送帶反轉 = new PLC_Device("Y1");
+
+        MyTimer MyTimer_常溫區_藥盒中感應延遲 = new MyTimer("R12111");
+        PLC_Device PLC_IO_常溫區_藥盒中感應_Input = new PLC_Device("X11");
+        PLC_Device PLC_IO_常溫區_藥盒中感應 = new PLC_Device("S12111");
+
         PLC_Device PLC_IO_常溫區_藥盒左感應 = new PLC_Device("X10");
-        PLC_Device PLC_IO_常溫區_藥盒中感應 = new PLC_Device("X11");
         PLC_Device PLC_IO_常溫區_藥盒右感應 = new PLC_Device("X12");
 
         PLC_Device PLC_IO_進出盒區_輸送帶啟動 = new PLC_Device("Y4");
@@ -80,6 +88,34 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Program_工程模式()
         {
+            if(PLC_IO_冷藏區_藥盒中感應_Input.Bool)
+            {
+                if(MyTimer_冷藏區_藥盒中感應延遲.IsTimeOut())
+                {
+                    PLC_IO_冷藏區_藥盒中感應.Bool = true;
+                }
+            }
+            else
+            {
+                PLC_IO_冷藏區_藥盒中感應.Bool = false;
+                MyTimer_冷藏區_藥盒中感應延遲.TickStop();
+                MyTimer_冷藏區_藥盒中感應延遲.StartTickTime();
+            }
+
+            if (PLC_IO_常溫區_藥盒中感應_Input.Bool)
+            {
+                if (MyTimer_常溫區_藥盒中感應延遲.IsTimeOut())
+                {
+                    PLC_IO_常溫區_藥盒中感應.Bool = true;
+                }
+            }
+            else
+            {
+                PLC_IO_常溫區_藥盒中感應.Bool = false;
+                MyTimer_常溫區_藥盒中感應延遲.TickStop();
+                MyTimer_常溫區_藥盒中感應延遲.StartTickTime();
+            }
+
             if (myConfigClass.主機模式 == false) return;
             sub_Program_冷藏區藥盒輸送至左方();
             sub_Program_冷藏區藥盒輸送至右方();

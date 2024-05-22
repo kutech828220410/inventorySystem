@@ -69,6 +69,13 @@ namespace 癌症自動備藥機暨排程系統
                
                 Color row_Backcolor = Color.White;
                 Color row_Forecolor = Color.Black;
+
+                if (this.sqL_DataGridView_藥品選擇.dataGridView.Rows[e.RowIndex].Selected)
+                {
+                    row_Backcolor = Color.Blue;
+                    row_Forecolor = Color.White;
+                }
+
                 using (Brush brush = new SolidBrush(row_Backcolor))
                 {
                     int x = e.RowBounds.Left;
@@ -108,6 +115,13 @@ namespace 癌症自動備藥機暨排程系統
                 if (stockClass == null) return;
                 Color row_Backcolor = Color.White;
                 Color row_Forecolor = Color.Black;
+
+                if (this.sqL_DataGridView_已選藥品.dataGridView.Rows[e.RowIndex].Selected)
+                {
+                    row_Backcolor = Color.Blue;
+                    row_Forecolor = Color.White;
+                }
+
                 using (Brush brush = new SolidBrush(row_Backcolor))
                 {
                     int x = e.RowBounds.Left;
