@@ -67,5 +67,4 @@ C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Relea
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\RFID_FX600lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Basic.xml
-C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\ExcelScaleLib.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Dialog_處方查詢.resources

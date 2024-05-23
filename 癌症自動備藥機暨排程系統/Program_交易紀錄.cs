@@ -71,9 +71,13 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_操作時間_搜尋_MouseDownEvent;
             this.plC_RJ_Button_交易紀錄查詢_藥碼搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_藥碼搜尋_MouseDownEvent;
             this.plC_RJ_Button_交易紀錄查詢_藥名搜尋.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_藥名搜尋_MouseDownEvent;
+
+            this.plC_RJ_Button_交易紀錄查詢_匯出.MouseDownEvent += PlC_RJ_Button_交易紀錄查詢_匯出_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_交易紀錄);
         }
-   
+
+      
+
         private void Program_交易紀錄()
         {
             
@@ -136,8 +140,10 @@ namespace 癌症自動備藥機暨排程系統
                              select temp).ToList();
                 list_value_buf.LockAdd(list_temp);
             }
-            
+            list_value_buf.Sort(new ICP_交易記錄查詢());
             RowsList = list_value_buf;
+
+        
         }
         private void SqL_DataGridView_交易記錄查詢_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
         {
@@ -260,6 +266,53 @@ namespace 癌症自動備藥機暨排程系統
             List<object[]> list_value = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
             this.sqL_DataGridView_交易記錄查詢.RefreshGrid(list_value);
         }
+        private void PlC_RJ_Button_交易紀錄查詢_匯出_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Dialog_AlarmForm dialog_AlarmForm;
+                if (saveFileDialog_SaveExcel.ShowDialog() != DialogResult.OK) return;
+                List<object[]> list_value = this.sqL_DataGridView_交易記錄查詢.GetAllRows();
+                if (list_value.Count == 0)
+                {
+                    dialog_AlarmForm = new Dialog_AlarmForm("無資料可匯出", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                DataTable dataTable = list_value.ToDataTable(new enum_交易記錄查詢資料());
+                MyOffice.ExcelClass.NPOI_SaveFile(dataTable, this.saveFileDialog_SaveExcel.FileName);
+                dialog_AlarmForm = new Dialog_AlarmForm("匯出成功", 1500, Color.Green);
+                dialog_AlarmForm.ShowDialog();
+            }));
+          
+
+        }
         #endregion
+
+        public class ICP_交易記錄查詢 : IComparer<object[]>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(object[] x, object[] y)
+            {
+                DateTime datetime1 = x[(int)enum_交易記錄查詢資料.操作時間].StringToDateTime();
+                DateTime datetime2 = y[(int)enum_交易記錄查詢資料.操作時間].StringToDateTime();
+                int compare = DateTime.Compare(datetime1, datetime2);
+                if (compare != 0) return compare;
+                int 結存量1 = x[(int)enum_交易記錄查詢資料.結存量].StringToInt32();
+                int 結存量2 = y[(int)enum_交易記錄查詢資料.結存量].StringToInt32();
+                if (結存量1 > 結存量2)
+                {
+                    return -1;
+                }
+                else if (結存量1 < 結存量2)
+                {
+                    return 1;
+                }
+                else if (結存量1 == 結存量2) return 0;
+                return 0;
+
+            }
+        }
     }
 }
