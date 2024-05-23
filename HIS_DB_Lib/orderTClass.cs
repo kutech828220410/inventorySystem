@@ -268,12 +268,12 @@ namespace HIS_DB_Lib
             List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
             return orderTClasses;
         }
-        static public OrderTClass get_by_guid(string API_Server, string GUID)
+        static public OrderTClass get_by_guid(string API_Server, string value)
         {
             string url = $"{API_Server}/api/orderT/get_by_guid";
 
             returnData returnData = new returnData();
-            returnData.ValueAry.Add(GUID);
+            returnData.ValueAry.Add(value);
 
 
             string json_in = returnData.JsonSerializationt();
@@ -291,6 +291,77 @@ namespace HIS_DB_Lib
             OrderTClass orderTClass = returnData_out.Data.ObjToClass<OrderTClass>();
             return orderTClass;
         }
+        static public List<OrderTClass> get_by_MED_BAG_NUM(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/orderT/get_by_MED_BAG_NUM";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
+            return orderTClasses;
+        }
+        static public List<OrderTClass> get_by_PATCODE(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/orderT/get_by_PATCODE";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
+            return orderTClasses;
+        }
+        static public List<OrderTClass> get_by_PATNAME(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/orderT/get_by_PATNAME";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
+            return orderTClasses;
+        }
+      
+
 
         static public void updete_by_guid(string API_Server, OrderTClass orderTClass)
         {
@@ -338,6 +409,7 @@ namespace HIS_DB_Lib
 
         static public void sort(this List<OrderTClass> orderTClasses, SortType sortType)
         {
+            if (orderTClasses == null) return;
             if (sortType == SortType.開方日期)
             {
                 orderTClasses.Sort(new ICP_By_rx_time());

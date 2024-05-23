@@ -85,8 +85,10 @@ namespace 中藥調劑系統
             myThread_更新處方.SetSleepTime(500);
             myThread_更新處方.Trigger();
 
+            this.plC_RJ_Button_完成調劑.MouseDownEvent += PlC_RJ_Button_完成調劑_MouseDownEvent;
             this.ToolStripMenuItem_處方內容_調劑完成.Click += ToolStripMenuItem_處方內容_調劑完成_Click;
 
+     
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
 
@@ -371,6 +373,21 @@ namespace 中藥調劑系統
                 return;
             }
         }
+        private void PlC_RJ_Button_完成調劑_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_病患資訊.Get_All_Select_RowsValues();
+            if(list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取病患資訊", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            if (MyMessageBox.ShowDialog("確定將所有處方設為調劑完成?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            string PRI_KEY = list_value[0][(int)enum_病患資訊.PRI_KEY].ObjectToString();
+            List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
+
+        }
+   
         private void ToolStripMenuItem_處方內容_調劑完成_Click(object sender, EventArgs e)
         {
             List<object[]> list_value = this.sqL_DataGridView_處方內容.Get_All_Select_RowsValues();

@@ -52,8 +52,6 @@ namespace 中藥調劑系統
             
         }
 
-     
-
         private void sub_program()
         {
             if (Main_Form.RFID_UID_01.StringIsEmpty() == false)

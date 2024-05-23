@@ -145,6 +145,7 @@ namespace 中藥調劑系統
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            LoadingForm.form = this.FindForm();
             Dialog_AlarmForm.form = this.FindForm();
             MyDialog.form = this.FindForm();
             MyMessageBox.form = this.FindForm();
@@ -165,6 +166,7 @@ namespace 中藥調劑系統
             PLC_Device_已登入.Bool = false;
 
             Program_調劑畫面_Init();
+            Program_處方搜尋_Init();
             Program_RS232_EXCELL_SCALE_Init();
             Program_RS232_Scanner_Init();
             Program_RFID_Init();
