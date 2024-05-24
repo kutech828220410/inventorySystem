@@ -113,6 +113,9 @@ namespace 中藥調劑系統
             this.處方搜尋 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_處方搜尋 = new SQLUI.SQL_DataGridView();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.comboBox_處方搜尋_搜尋條件 = new System.Windows.Forms.ComboBox();
+            this.rJ_Button_處方搜尋_搜尋 = new MyUI.RJ_Button();
+            this.textBox_處方搜尋_搜尋內容 = new MyUI.RJ_TextBox();
             this.panel18 = new System.Windows.Forms.Panel();
             this.rJ_Lable6 = new MyUI.RJ_Lable();
             this.dateTimeIntervelPicker_處方搜尋_開方時間 = new MyUI.DateTimeIntervelPicker();
@@ -120,9 +123,8 @@ namespace 中藥調劑系統
             this.rfiD_FX600_UI = new RFID_FX600lib.RFID_FX600_UI();
             this.plC_UI_Init = new MyUI.PLC_UI_Init();
             this.lowerMachine_Panel = new LadderUI.LowerMachine_Panel();
-            this.textBox_處方搜尋_搜尋內容 = new MyUI.RJ_TextBox();
-            this.rJ_Button_處方搜尋_搜尋 = new MyUI.RJ_Button();
-            this.comboBox_處方搜尋_搜尋條件 = new System.Windows.Forms.ComboBox();
+            this.checkBox_處方搜尋_未調劑 = new System.Windows.Forms.CheckBox();
+            this.checkBox_處方搜尋_已調劑 = new System.Windows.Forms.CheckBox();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
@@ -2015,6 +2017,8 @@ namespace 中藥調劑系統
             // 
             // panel17
             // 
+            this.panel17.Controls.Add(this.checkBox_處方搜尋_已調劑);
+            this.panel17.Controls.Add(this.checkBox_處方搜尋_未調劑);
             this.panel17.Controls.Add(this.comboBox_處方搜尋_搜尋條件);
             this.panel17.Controls.Add(this.rJ_Button_處方搜尋_搜尋);
             this.panel17.Controls.Add(this.textBox_處方搜尋_搜尋內容);
@@ -2024,6 +2028,76 @@ namespace 中藥調劑系統
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(1256, 130);
             this.panel17.TabIndex = 1;
+            // 
+            // comboBox_處方搜尋_搜尋條件
+            // 
+            this.comboBox_處方搜尋_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_處方搜尋_搜尋條件.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_處方搜尋_搜尋條件.FormattingEnabled = true;
+            this.comboBox_處方搜尋_搜尋條件.Items.AddRange(new object[] {
+            "領藥號",
+            "病歷號",
+            "病人姓名"});
+            this.comboBox_處方搜尋_搜尋條件.Location = new System.Drawing.Point(328, 24);
+            this.comboBox_處方搜尋_搜尋條件.Name = "comboBox_處方搜尋_搜尋條件";
+            this.comboBox_處方搜尋_搜尋條件.Size = new System.Drawing.Size(121, 32);
+            this.comboBox_處方搜尋_搜尋條件.TabIndex = 30;
+            // 
+            // rJ_Button_處方搜尋_搜尋
+            // 
+            this.rJ_Button_處方搜尋_搜尋.AutoResetState = false;
+            this.rJ_Button_處方搜尋_搜尋.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_處方搜尋_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_處方搜尋_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_處方搜尋_搜尋.BorderRadius = 20;
+            this.rJ_Button_處方搜尋_搜尋.BorderSize = 0;
+            this.rJ_Button_處方搜尋_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_處方搜尋_搜尋.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_處方搜尋_搜尋.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_處方搜尋_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_處方搜尋_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_處方搜尋_搜尋.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_處方搜尋_搜尋.GUID = "";
+            this.rJ_Button_處方搜尋_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_處方搜尋_搜尋.Location = new System.Drawing.Point(699, 9);
+            this.rJ_Button_處方搜尋_搜尋.Name = "rJ_Button_處方搜尋_搜尋";
+            this.rJ_Button_處方搜尋_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_處方搜尋_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_處方搜尋_搜尋.ProhibitionSymbolSize = 30;
+            this.rJ_Button_處方搜尋_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_處方搜尋_搜尋.ShadowSize = 3;
+            this.rJ_Button_處方搜尋_搜尋.ShowLoadingForm = false;
+            this.rJ_Button_處方搜尋_搜尋.Size = new System.Drawing.Size(135, 63);
+            this.rJ_Button_處方搜尋_搜尋.State = false;
+            this.rJ_Button_處方搜尋_搜尋.TabIndex = 29;
+            this.rJ_Button_處方搜尋_搜尋.Text = "搜尋";
+            this.rJ_Button_處方搜尋_搜尋.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_處方搜尋_搜尋.TextHeight = 0;
+            this.rJ_Button_處方搜尋_搜尋.UseVisualStyleBackColor = false;
+            // 
+            // textBox_處方搜尋_搜尋內容
+            // 
+            this.textBox_處方搜尋_搜尋內容.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_處方搜尋_搜尋內容.BorderColor = System.Drawing.Color.Black;
+            this.textBox_處方搜尋_搜尋內容.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_處方搜尋_搜尋內容.BorderRadius = 0;
+            this.textBox_處方搜尋_搜尋內容.BorderSize = 2;
+            this.textBox_處方搜尋_搜尋內容.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_處方搜尋_搜尋內容.ForeColor = System.Drawing.Color.DimGray;
+            this.textBox_處方搜尋_搜尋內容.GUID = "";
+            this.textBox_處方搜尋_搜尋內容.Location = new System.Drawing.Point(462, 22);
+            this.textBox_處方搜尋_搜尋內容.Multiline = false;
+            this.textBox_處方搜尋_搜尋內容.Name = "textBox_處方搜尋_搜尋內容";
+            this.textBox_處方搜尋_搜尋內容.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_處方搜尋_搜尋內容.PassWordChar = false;
+            this.textBox_處方搜尋_搜尋內容.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.textBox_處方搜尋_搜尋內容.PlaceholderText = "";
+            this.textBox_處方搜尋_搜尋內容.ShowTouchPannel = false;
+            this.textBox_處方搜尋_搜尋內容.Size = new System.Drawing.Size(227, 37);
+            this.textBox_處方搜尋_搜尋內容.TabIndex = 3;
+            this.textBox_處方搜尋_搜尋內容.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_處方搜尋_搜尋內容.Texts = "";
+            this.textBox_處方搜尋_搜尋內容.UnderlineStyle = false;
             // 
             // panel18
             // 
@@ -2116,75 +2190,31 @@ namespace 中藥調劑系統
             this.lowerMachine_Panel.TabIndex = 0;
             this.lowerMachine_Panel.掃描速度 = 200;
             // 
-            // textBox_處方搜尋_搜尋內容
+            // checkBox_處方搜尋_未調劑
             // 
-            this.textBox_處方搜尋_搜尋內容.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_處方搜尋_搜尋內容.BorderColor = System.Drawing.Color.Black;
-            this.textBox_處方搜尋_搜尋內容.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.textBox_處方搜尋_搜尋內容.BorderRadius = 0;
-            this.textBox_處方搜尋_搜尋內容.BorderSize = 2;
-            this.textBox_處方搜尋_搜尋內容.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_處方搜尋_搜尋內容.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox_處方搜尋_搜尋內容.GUID = "";
-            this.textBox_處方搜尋_搜尋內容.Location = new System.Drawing.Point(462, 22);
-            this.textBox_處方搜尋_搜尋內容.Multiline = false;
-            this.textBox_處方搜尋_搜尋內容.Name = "textBox_處方搜尋_搜尋內容";
-            this.textBox_處方搜尋_搜尋內容.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.textBox_處方搜尋_搜尋內容.PassWordChar = false;
-            this.textBox_處方搜尋_搜尋內容.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.textBox_處方搜尋_搜尋內容.PlaceholderText = "";
-            this.textBox_處方搜尋_搜尋內容.ShowTouchPannel = false;
-            this.textBox_處方搜尋_搜尋內容.Size = new System.Drawing.Size(227, 37);
-            this.textBox_處方搜尋_搜尋內容.TabIndex = 3;
-            this.textBox_處方搜尋_搜尋內容.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBox_處方搜尋_搜尋內容.Texts = "";
-            this.textBox_處方搜尋_搜尋內容.UnderlineStyle = false;
+            this.checkBox_處方搜尋_未調劑.AutoSize = true;
+            this.checkBox_處方搜尋_未調劑.Checked = true;
+            this.checkBox_處方搜尋_未調劑.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_處方搜尋_未調劑.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_處方搜尋_未調劑.Location = new System.Drawing.Point(851, 24);
+            this.checkBox_處方搜尋_未調劑.Name = "checkBox_處方搜尋_未調劑";
+            this.checkBox_處方搜尋_未調劑.Size = new System.Drawing.Size(85, 23);
+            this.checkBox_處方搜尋_未調劑.TabIndex = 31;
+            this.checkBox_處方搜尋_未調劑.Text = "未調劑";
+            this.checkBox_處方搜尋_未調劑.UseVisualStyleBackColor = true;
             // 
-            // rJ_Button_處方搜尋_搜尋
+            // checkBox_處方搜尋_已調劑
             // 
-            this.rJ_Button_處方搜尋_搜尋.AutoResetState = false;
-            this.rJ_Button_處方搜尋_搜尋.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_處方搜尋_搜尋.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_處方搜尋_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_處方搜尋_搜尋.BorderRadius = 10;
-            this.rJ_Button_處方搜尋_搜尋.BorderSize = 0;
-            this.rJ_Button_處方搜尋_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_處方搜尋_搜尋.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_處方搜尋_搜尋.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_處方搜尋_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_處方搜尋_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_處方搜尋_搜尋.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_處方搜尋_搜尋.GUID = "";
-            this.rJ_Button_處方搜尋_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_處方搜尋_搜尋.Location = new System.Drawing.Point(699, 9);
-            this.rJ_Button_處方搜尋_搜尋.Name = "rJ_Button_處方搜尋_搜尋";
-            this.rJ_Button_處方搜尋_搜尋.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_處方搜尋_搜尋.ProhibitionLineWidth = 4;
-            this.rJ_Button_處方搜尋_搜尋.ProhibitionSymbolSize = 30;
-            this.rJ_Button_處方搜尋_搜尋.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_處方搜尋_搜尋.ShadowSize = 3;
-            this.rJ_Button_處方搜尋_搜尋.ShowLoadingForm = false;
-            this.rJ_Button_處方搜尋_搜尋.Size = new System.Drawing.Size(135, 63);
-            this.rJ_Button_處方搜尋_搜尋.State = false;
-            this.rJ_Button_處方搜尋_搜尋.TabIndex = 29;
-            this.rJ_Button_處方搜尋_搜尋.Text = "搜尋";
-            this.rJ_Button_處方搜尋_搜尋.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_處方搜尋_搜尋.TextHeight = 0;
-            this.rJ_Button_處方搜尋_搜尋.UseVisualStyleBackColor = false;
-            // 
-            // comboBox_處方搜尋_搜尋條件
-            // 
-            this.comboBox_處方搜尋_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_處方搜尋_搜尋條件.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBox_處方搜尋_搜尋條件.FormattingEnabled = true;
-            this.comboBox_處方搜尋_搜尋條件.Items.AddRange(new object[] {
-            "領藥號",
-            "病歷號",
-            "病人姓名"});
-            this.comboBox_處方搜尋_搜尋條件.Location = new System.Drawing.Point(328, 24);
-            this.comboBox_處方搜尋_搜尋條件.Name = "comboBox_處方搜尋_搜尋條件";
-            this.comboBox_處方搜尋_搜尋條件.Size = new System.Drawing.Size(121, 32);
-            this.comboBox_處方搜尋_搜尋條件.TabIndex = 30;
+            this.checkBox_處方搜尋_已調劑.AutoSize = true;
+            this.checkBox_處方搜尋_已調劑.Checked = true;
+            this.checkBox_處方搜尋_已調劑.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_處方搜尋_已調劑.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkBox_處方搜尋_已調劑.Location = new System.Drawing.Point(942, 24);
+            this.checkBox_處方搜尋_已調劑.Name = "checkBox_處方搜尋_已調劑";
+            this.checkBox_處方搜尋_已調劑.Size = new System.Drawing.Size(85, 23);
+            this.checkBox_處方搜尋_已調劑.TabIndex = 32;
+            this.checkBox_處方搜尋_已調劑.Text = "已調劑";
+            this.checkBox_處方搜尋_已調劑.UseVisualStyleBackColor = true;
             // 
             // Main_Form
             // 
@@ -2222,6 +2252,7 @@ namespace 中藥調劑系統
             this.panel9.ResumeLayout(false);
             this.處方搜尋.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
             this.panel18.ResumeLayout(false);
             this.系統.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -2322,6 +2353,8 @@ namespace 中藥調劑系統
         private System.Windows.Forms.ComboBox comboBox_處方搜尋_搜尋條件;
         private MyUI.RJ_Button rJ_Button_處方搜尋_搜尋;
         private MyUI.RJ_TextBox textBox_處方搜尋_搜尋內容;
+        private System.Windows.Forms.CheckBox checkBox_處方搜尋_已調劑;
+        private System.Windows.Forms.CheckBox checkBox_處方搜尋_未調劑;
     }
 }
 

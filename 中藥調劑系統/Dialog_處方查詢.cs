@@ -81,6 +81,8 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "實調");
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "天");
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "單位");
+
+            this.sqL_DataGridView_處方查詢.DataGridRefreshEvent += SqL_DataGridView_處方內容_DataGridRefreshEvent;
         }
         private void Dialog_處方查詢_LoadFinishedEvent(EventArgs e)
         {
@@ -115,7 +117,6 @@ namespace 中藥調劑系統
                     this.sqL_DataGridView_處方查詢.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.YellowGreen;
                     this.sqL_DataGridView_處方查詢.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
-
             }
         }
         private void RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)

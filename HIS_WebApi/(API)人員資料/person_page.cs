@@ -252,8 +252,7 @@ namespace HIS_WebApi
                 List<object[]> list_src = returnData.Data.ObjToListSQL<personPageClass, enum_人員資料>();
                 List<object[]> list_add = new List<object[]>();
                 List<object[]> list_replace = new List<object[]>();
-
-                for(int i = 0; i < list_src.Count; i++)
+                for (int i = 0; i < list_src.Count; i++)
                 {
                     string ID = list_src[i][(int)enum_人員資料.ID].ObjectToString();
                     list_value_buf = list_value.GetRows((int)enum_人員資料.ID, ID);

@@ -114,7 +114,7 @@ namespace 中藥調劑系統
                     list_value_buf = list_value.GetRows((int)enum_病患資訊.PRI_KEY, list_PRI_KEY[i]);
                     if(list_value_buf.Count == 0)
                     {
-                        if (orderTClasses_buf[k].藥師ID.StringIsEmpty())
+                        if (orderTClasses_buf[k].實際調劑量.StringIsDouble())
                         {
                             object[] value = new object[new enum_病患資訊().GetLength()];
                             value[(int)enum_病患資訊.PRI_KEY] = orderTClasses_buf[k].PRI_KEY;
@@ -376,7 +376,8 @@ namespace 中藥調劑系統
         private void PlC_RJ_Button_完成調劑_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_病患資訊.Get_All_Select_RowsValues();
-            if(list_value.Count == 0)
+            List<object[]> list_value_buf = new List<object[]>();
+            if (list_value.Count == 0)
             {
                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取病患資訊", 1500);
                 dialog_AlarmForm.ShowDialog();
@@ -385,7 +386,20 @@ namespace 中藥調劑系統
             if (MyMessageBox.ShowDialog("確定將所有處方設為調劑完成?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             string PRI_KEY = list_value[0][(int)enum_病患資訊.PRI_KEY].ObjectToString();
             List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
-
+            for (int i = 0; i < orderTClasses.Count; i++)
+            {
+                OrderTClass orderTClass = orderTClasses[i];
+                orderTClass.實際調劑量 = (orderTClass.交易量.StringToDouble() * -1).ToString("0.00");
+                orderTClass.藥師姓名 = sessionClass.Name;
+                orderTClass.藥師ID = sessionClass.ID;
+                orderTClass.過帳時間 = DateTime.Now.ToDateTimeString_6();
+                object[] value = Funtion_orderTClassesToObject(orderTClass);
+                OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClass);
+                list_value_buf.Add(value);
+            }
+         
+            this.sqL_DataGridView_處方內容.ClearSelection();
+            this.sqL_DataGridView_處方內容.ReplaceExtra(list_value_buf, true);
         }
    
         private void ToolStripMenuItem_處方內容_調劑完成_Click(object sender, EventArgs e)

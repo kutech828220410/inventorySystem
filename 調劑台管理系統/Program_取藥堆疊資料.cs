@@ -274,7 +274,7 @@ namespace 調劑台管理系統
             for (int i = 0; i < list_藥品碼.Count; i++)
             {
                 string 藥品碼 = list_藥品碼[i];
-                if (藥品碼.StringIsEmpty()) return;
+                if (藥品碼.StringIsEmpty()) continue;
                 takeMedicineStackClasses_buf = (from temp in takeMedicineStackClasses
                                                 where temp.藥品碼 == 藥品碼
                                                 select temp).ToList();
