@@ -262,7 +262,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\癌症自動備藥機暨排�
 C:\Users\Administrator\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\System.Xml.XmlSerializer.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\System.Xml.XPath.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\System.Xml.XPath.XDocument.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Basic.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\CallBackUI.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\cjwdev.windowsapi.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\DrawingClass.dll
@@ -1439,4 +1438,5 @@ C:\Users\vendors\Desktop\inventorySystem\癌症自動備藥機暨排程系統\ob
 C:\Users\vendors\Desktop\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨自動備藥系統.csproj.CopyComplete
 C:\Users\vendors\Desktop\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.exe
 C:\Users\vendors\Desktop\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.pdb
-C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\PopupControl.dll
+C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Basic.dll

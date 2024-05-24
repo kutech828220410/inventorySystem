@@ -59,7 +59,6 @@ C:\Users\Administrator\Downloads\Hospital_Call_Light_System-master\Hospital_Call
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Hospital_Call_Light_System.exe.config
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Hospital_Call_Light_System.exe
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Hospital_Call_Light_System.pdb
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\CallBackUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\DrawingClass.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\FontAwesome.Sharp.dll
@@ -1301,4 +1300,4 @@ C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.csproj.CopyComplete
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.exe
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.pdb
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.dll

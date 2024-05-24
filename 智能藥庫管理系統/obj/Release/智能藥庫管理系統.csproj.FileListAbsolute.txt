@@ -97,7 +97,6 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\System.Xml.XmlSerializer.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\System.Xml.XPath.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\System.Xml.XPath.XDocument.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\CallBackUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\cjwdev.windowsapi.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\CSkin.dll
@@ -171,4 +170,4 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Main_Form.resources
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_效期批號輸入.resources
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_批號數量修改.resources
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\Basic.dll

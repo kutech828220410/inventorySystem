@@ -2,6 +2,46 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- 停用自動生成的 AssemblyInfo -->
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <!-- 主要版本號，次版本號和修訂號 -->
+    <TempVersionFile>$(MSBuildThisFileDirectory)temp_version.txt</TempVersionFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="GenerateBuildRevision" BeforeTargets="BeforeBuild">
+    <!-- 使用 Exec 任务运行 PowerShell 脚本生成版本号 -->
+    <Exec Command="powershell -NoProfile -Command &quot;(Get-Date).ToString('yyyyMMddHHmmss') | Out-File -FilePath $(TempVersionFile) -Encoding UTF8&quot;" />
+
+    <!-- 读取生成的版本号 -->
+    <ReadLinesFromFile File="$(TempVersionFile)">
+      <Output TaskParameter="Lines" ItemName="BuildRevisionLines" />
+    </ReadLinesFromFile>
+
+    <PropertyGroup>
+      <BuildRevision>@(BuildRevisionLines->'%(Identity)')</BuildRevision>
+      <AssemblyVersion>$(VersionPrefix).$(BuildRevision)</AssemblyVersion>
+      <FileVersion>$(VersionPrefix).$(BuildRevision)</FileVersion>
+      <InformationalVersion>$(VersionPrefix).$(BuildRevision)</InformationalVersion>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="UpdateAssemblyInfo" AfterTargets="GenerateBuildRevision">
+    <WriteLinesToFile File="Properties\AssemblyInfo.cs" Lines=
+    "            
+        [assembly: System.Reflection.AssemblyInformationalVersion(&quot;$(InformationalVersion)&quot;)]
+      " Overwrite="true" />
+  </Target>
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
     <StartupObject>HIS_WebApi.Program</StartupObject>
     <AssemblyName>HIS_WebApi</AssemblyName>
   </PropertyGroup>

@@ -760,7 +760,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Release\MySql.Data.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CopyComplete
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.AssemblyReference.cache
-C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\CallBackUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\cjwdev.windowsapi.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\DrawingClass.dll

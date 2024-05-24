@@ -595,7 +595,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\System.Xml.XmlSerializer.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\System.Xml.XPath.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\System.Xml.XPath.XDocument.dll
-C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\CallBackUI.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\cjwdev.windowsapi.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\DotNetZip.dll
@@ -1877,4 +1876,4 @@ C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Newtonsoft.Json.dll
-C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.dll

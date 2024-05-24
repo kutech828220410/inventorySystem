@@ -5,7 +5,6 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\obj\Rel
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.exe
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.pdb
-C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\HIS_DB_Lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\H_Pannel_lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\MySql.Data.dll

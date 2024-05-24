@@ -27,10 +27,17 @@ namespace HIS_WebApi
     [ApiController]
     public class testController : ControllerBase
     {
-        static string Version = "Ver1.0.0.2";
         [HttpGet]
         public string Get()
         {
+            // 取得當前組件
+            Assembly assembly = Assembly.GetExecutingAssembly();
+
+            // 取得 AssemblyInformationalVersion 屬性
+            var version = assembly
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+                .InformationalVersion;
+
             var localIpAddress = HttpContext.Connection.LocalIpAddress?.ToString();
             var localPort = HttpContext.Connection.LocalPort;
             var protocol = HttpContext.Request.IsHttps ? "https" : "http";
@@ -49,7 +56,7 @@ namespace HIS_WebApi
             strs.Add($"VM Server : {VM_Server}");
             strs.Add($"VM Database : {VM_DB}");
             //strs.Add($"uDP_Class PORT: {Startup.uDP_Class.Port}");
-            strs.Add($"Version : {Version}");
+            strs.Add($"Version : {version}");
 
 
             returnData.Data = strs;

@@ -93,7 +93,6 @@ C:\Users\Administrator\source\repos\inventorySystem20230517\HIS_DB_Lib\obj\Relea
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.dll.config
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.pdb
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\MyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\SQLUI.dll

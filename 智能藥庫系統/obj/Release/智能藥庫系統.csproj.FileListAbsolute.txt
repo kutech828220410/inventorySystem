@@ -315,7 +315,6 @@ C:\Users\Administrator\source\repos\inventorySystem20230517\智能藥庫系統\b
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\智能藥庫系統.exe.config
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\智能藥庫系統.exe
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\智能藥庫系統.pdb
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\CallBackUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\DrawingClass.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\FontAwesome.Sharp.dll

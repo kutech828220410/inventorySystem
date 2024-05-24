@@ -706,14 +706,11 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.GenerateResource.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.AssemblyInfoInputs.cache
-C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.AssemblyInfo.cs
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\staticwebassets\HIS_WebApi.StaticWebAssets.Manifest.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\staticwebassets\HIS_WebApi.StaticWebAssets.xml
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\scopedcss\bundle\HIS_WebApi.styles.css
-C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.RazorTargetAssemblyInfo.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CopyComplete
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll

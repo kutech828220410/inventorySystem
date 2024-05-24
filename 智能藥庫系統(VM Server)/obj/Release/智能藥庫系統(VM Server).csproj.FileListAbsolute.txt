@@ -299,7 +299,6 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\智能藥庫系統(VM Server).application
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\智能藥庫系統(VM Server).exe
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\智能藥庫系統(VM Server).pdb
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\DrawingClass.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\FontAwesome.Sharp.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統(VM Server)\bin\Release\HCGUI.dll

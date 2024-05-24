@@ -233,7 +233,6 @@ C:\Users\useradmin\source\repos\inventorySystem\ServerSettingForm\obj\Release\Se
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\ServerSettingForm.exe.config
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\ServerSettingForm.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\ServerSettingForm.pdb
-C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\Basic.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\HIS_DB_Lib.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\MySql.Data.dll
