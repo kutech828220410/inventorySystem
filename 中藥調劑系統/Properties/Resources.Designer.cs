@@ -93,6 +93,16 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap adjusted_system_removebg_preview1 {
+            get {
+                object obj = ResourceManager.GetObject("adjusted_system-removebg-preview1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap cancel_action_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("cancel-action-removebg-preview", resourceCulture);

@@ -1255,4 +1255,4 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Newtonsoft.Json.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Basic.dll

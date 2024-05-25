@@ -137,6 +137,12 @@
     <Reference Include="TCP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog_儲位設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_儲位設定.Designer.cs">
+      <DependentUpon>Dialog_儲位設定.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_系統登入.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     <Compile Include="Program_調劑畫面.cs">
       <SubType>Form</SubType>
     </Compile>
+    <EmbeddedResource Include="Dialog_儲位設定.resx">
+      <DependentUpon>Dialog_儲位設定.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog_系統登入.resx">
       <DependentUpon>Dialog_系統登入.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +240,7 @@
     <None Include="Resources\logout.png" />
     <None Include="Resources\568362.png" />
     <None Include="Resources\key-512.png" />
+    <None Include="Resources\adjusted_system-removebg-preview1.png" />
     <Content Include="中藥調劑系統ICON.ico" />
   </ItemGroup>
   <ItemGroup>

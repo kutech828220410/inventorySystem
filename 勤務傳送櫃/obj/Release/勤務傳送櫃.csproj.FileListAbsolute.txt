@@ -1262,4 +1262,4 @@ C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Newtonsoft.Json.dll
-C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Basic.dll

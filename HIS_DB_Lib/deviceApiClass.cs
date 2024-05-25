@@ -18,6 +18,72 @@ namespace HIS_DB_Lib
             藥局,
             調劑台
         }
+        public enum DeviceType
+        {
+            WT32,
+            EPD266,
+            EPD290,
+        }
+        static public List<RowsLED> GetRowsLED(string API_Server, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/device/get_rowLED";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string tableName = "RowsLED_Jsonstring";
+
+            returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            string jsonStr = returnData_result.Value;
+            List<RowsLED> rowsLEDs = jsonStr.JsonDeserializet<List<RowsLED>>();
+            return rowsLEDs;
+        }
+        static public List<Device> GetDevice(string API_Server, string ServerName, string ServerType, DeviceType deviceType)
+        {
+            string url = $"{API_Server}/api/device/get_device";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string tableName = "";
+
+            if (deviceType == DeviceType.WT32)
+            {
+                tableName = "WT32_Jsonstring";
+            }
+            if (deviceType == DeviceType.EPD266)
+            {
+                tableName = "EPD266_Jsonstring";
+            }
+            if (deviceType == DeviceType.EPD290)
+            {
+                tableName = "EPD290_Jsonstring";
+            }
+            returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_result}");
+            List<Device> devices = returnData_result.Data.ObjToClass<List<Device>>();
+            return devices;
+        }
+
+
         static public List<DeviceBasic> GetDeviceBasics(string API_Server, string ServerName, string ServerType, StoreType storeType)
         {
             string url = $"{API_Server}/api/device/all";
@@ -50,7 +116,7 @@ namespace HIS_DB_Lib
         }
         static public void SetDeviceBasics(string API_Server, string ServerName, string ServerType, StoreType storeType , List<DeviceBasic> deviceBasics)
         {
-            string url = $"{API_Server}/api/device/update_device";
+            string url = $"{API_Server}/api/device/update_deviceBasic";
 
             returnData returnData = new returnData();
             returnData.ServerName = ServerName;

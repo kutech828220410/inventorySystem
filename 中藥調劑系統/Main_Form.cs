@@ -157,8 +157,20 @@ namespace 中藥調劑系統
 
             ApiServerSetting(dBConfigClass.Name);
 
+            this.plC_RJ_Button_儲位設定.MouseDownEvent += PlC_RJ_Button_儲位設定_MouseDownEvent;
+
             plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
             plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
+        }
+
+        private void PlC_RJ_Button_儲位設定_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate 
+            {
+                Dialog_儲位設定 dialog_儲位設定 = new Dialog_儲位設定();
+                dialog_儲位設定.ShowDialog();
+            }));
+  
         }
         private void PlC_UI_Init_UI_Finished_Event()
         {
@@ -170,6 +182,10 @@ namespace 中藥調劑系統
             Program_RS232_EXCELL_SCALE_Init();
             Program_RS232_Scanner_Init();
             Program_RFID_Init();
+
+
+            this.rowsLEDUI.Init(dBConfigClass.DB_Basic);
+
         }
 
         private void ApiServerSetting(string Name)
@@ -192,11 +208,11 @@ namespace 中藥調劑系統
             }
             if (serverSettingClass_VM端 != null)
             {
-                dBConfigClass.DB_Basic.IP = serverSettingClass_VM端.Server;
-                dBConfigClass.DB_Basic.Port = (uint)(serverSettingClass_VM端.Port.StringToInt32());
-                dBConfigClass.DB_Basic.DataBaseName = serverSettingClass_VM端.DBName;
-                dBConfigClass.DB_Basic.UserName = serverSettingClass_VM端.User;
-                dBConfigClass.DB_Basic.Password = serverSettingClass_VM端.Password;
+                dBConfigClass.DB_VM.IP = serverSettingClass_VM端.Server;
+                dBConfigClass.DB_VM.Port = (uint)(serverSettingClass_VM端.Port.StringToInt32());
+                dBConfigClass.DB_VM.DataBaseName = serverSettingClass_VM端.DBName;
+                dBConfigClass.DB_VM.UserName = serverSettingClass_VM端.User;
+                dBConfigClass.DB_VM.Password = serverSettingClass_VM端.Password;
             }
 
             if (serverSettingClass_Order_API != null) dBConfigClass.OrderApiURL = serverSettingClass_Order_API.Server;

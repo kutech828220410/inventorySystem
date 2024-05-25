@@ -2123,7 +2123,7 @@
         </member>
         <member name="M:HIS_WebApi.deviceController.POST_get_by_code(HIS_DB_Lib.returnData)">
             <summary>
-            查詢儲位資料
+            以Code查詢儲位資料
             </summary>
             <remarks>
             以下為範例JSON範例
@@ -2142,7 +2142,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         </member>
-        <member name="M:HIS_WebApi.deviceController.POST_update_device(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.deviceController.POST_update_deviceBasic(HIS_DB_Lib.returnData)">
             <summary>
             設定儲位資料
             </summary>
@@ -2162,6 +2162,50 @@
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_get_device(HIS_DB_Lib.returnData)">
+            <summary>
+            取得儲位資料(Device)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "",
+                "ServerType" : "",
+                "TableName" : "";
+                "ValueAry" : 
+                [
+                  
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[Device]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_get_rowLED(HIS_DB_Lib.returnData)">
+            <summary>
+            取得儲位資料(RowLED)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "",
+                "ServerType" : "",
+                "TableName" : "";
+                "ValueAry" : 
+                [
+                  
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[Device]陣列結構</returns>
         </member>
         <member name="M:HIS_WebApi.OutTakeMedController.mul_med_take(System.String,System.Collections.Generic.List{HIS_DB_Lib.class_OutTakeMed_data})">
             <summary>
