@@ -103,7 +103,7 @@ namespace 中藥調劑系統
             List<OrderTClass> orderTClasses_buf = new List<OrderTClass>();
             orderTClasses.sort(OrderTClassMethod.SortType.領藥號);
             List<string> list_PRI_KEY = (from temp in orderTClasses
-                                         select temp.PRI_KEY).ToList();
+                                         select temp.PRI_KEY).Distinct().ToList();
             var keyValuePairs = orderTClasses.CoverToDictionaryBy_PRI_KEY();
 
             for (int i = 0; i < list_PRI_KEY.Count; i++)
@@ -111,10 +111,11 @@ namespace 中藥調劑系統
                 orderTClasses_buf = keyValuePairs.SortDictionaryBy_PRI_KEY(list_PRI_KEY[i]);
                 for (int k = 0; k < orderTClasses_buf.Count; k++)
                 {
-                    list_value_buf = list_value.GetRows((int)enum_病患資訊.PRI_KEY, list_PRI_KEY[i]);
+                    string PRI_KEY = list_PRI_KEY[i];
+                    list_value_buf = list_value.GetRows((int)enum_病患資訊.PRI_KEY, PRI_KEY);
                     if(list_value_buf.Count == 0)
                     {
-                        if (orderTClasses_buf[k].實際調劑量.StringIsDouble())
+                        if (orderTClasses_buf[k].實際調劑量.StringIsDouble() == false)
                         {
                             object[] value = new object[new enum_病患資訊().GetLength()];
                             value[(int)enum_病患資訊.PRI_KEY] = orderTClasses_buf[k].PRI_KEY;

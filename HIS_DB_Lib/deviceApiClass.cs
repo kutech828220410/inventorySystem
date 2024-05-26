@@ -46,6 +46,7 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_result}");
             string jsonStr = returnData_result.Value;
             List<RowsLED> rowsLEDs = jsonStr.JsonDeserializet<List<RowsLED>>();
+            rowsLEDs.Sort(new RowsLED.ICP_SortByIP());
             return rowsLEDs;
         }
         static public List<Device> GetDevice(string API_Server, string ServerName, string ServerType, DeviceType deviceType)

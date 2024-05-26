@@ -78,7 +78,7 @@ namespace HIS_DB_Lib
         {
             藥庫,
             藥局,
-            調劑台
+            調劑台,
         }
         //[JsonPropertyName("BARCODE")]
         //public string Barcode_Json
@@ -134,6 +134,23 @@ namespace HIS_DB_Lib
             if (barcodes == null) barcodes = new List<string>();
             barcodes.Remove(barcode);
             Barcode = barcodes;
+        }
+
+        static public SQLUI.Table Init(string API_Server)
+        {
+            string url = $"{API_Server}/api/MED_page/init";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "Main";
+            returnData.ServerType = "網頁";
+            string tableName = "medicine_page_cloud";
+    
+            returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
+            return table;
         }
 
         static public SQLUI.Table init(string API_Server, string ServerName, string ServerType , StoreType storeType)

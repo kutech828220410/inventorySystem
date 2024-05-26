@@ -296,7 +296,7 @@ namespace HIS_WebApi
 
         }
         /// <summary>
-        /// 設定儲位資料
+        /// 設定儲位資料(DeviceBasic)
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例

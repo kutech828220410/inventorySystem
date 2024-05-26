@@ -2144,7 +2144,7 @@
         </member>
         <member name="M:HIS_WebApi.deviceController.POST_update_deviceBasic(HIS_DB_Lib.returnData)">
             <summary>
-            設定儲位資料
+            設定儲位資料(DeviceBasic)
             </summary>
             <remarks>
             以下為範例JSON範例

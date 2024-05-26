@@ -20,6 +20,8 @@ namespace 中藥調劑系統
     public partial class Main_Form : Form
     {
         public static string API_Server = "http://127.0.0.1:4433";
+        public static string ServerType = "中藥調劑系統";
+        public static string ServerName = "http://127.0.0.1:4433";
         public PLC_Device PLC_Device_已登入 = new PLC_Device("S4000");
         public static string Order_URL = "";
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -38,6 +40,7 @@ namespace 中藥調劑系統
         {
             private SQL_DataGridView.ConnentionClass dB_Basic = new SQL_DataGridView.ConnentionClass();
             private SQL_DataGridView.ConnentionClass dB_VM = new SQL_DataGridView.ConnentionClass();
+            private SQL_DataGridView.ConnentionClass dB_儲位資料 = new SQL_DataGridView.ConnentionClass();
             private string name = "";
             private string api_Server = "";
             private string orderApiURL = "";
@@ -49,6 +52,8 @@ namespace 中藥調劑系統
             public SQL_DataGridView.ConnentionClass DB_Basic { get => dB_Basic; set => dB_Basic = value; }
             [JsonIgnore]
             public SQL_DataGridView.ConnentionClass DB_VM { get => dB_VM; set => dB_VM = value; }
+            [JsonIgnore]
+            public SQL_DataGridView.ConnentionClass DB_儲位資料 { get => dB_儲位資料; set => dB_儲位資料 = value; }
             [JsonIgnore]
             public string OrderApiURL { get => orderApiURL; set => orderApiURL = value; }
 
@@ -184,16 +189,17 @@ namespace 中藥調劑系統
             Program_RFID_Init();
 
 
-            this.rowsLEDUI.Init(dBConfigClass.DB_Basic);
+            this.rowsLEDUI.Init(dBConfigClass.DB_儲位資料);
 
         }
 
         private void ApiServerSetting(string Name)
         {
             this.Text = $"中藥調劑系統 Ver{this.ProductVersion}";
-
+            ServerName = Name;
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
             ServerSettingClass serverSettingClass_一般資料 = serverSettingClasses.myFind(Name, "中藥調劑系統", "一般資料");
+            ServerSettingClass serverSettingClass_儲位資料 = serverSettingClasses.myFind(Name, "中藥調劑系統", "儲位資料");
             ServerSettingClass serverSettingClass_VM端 = serverSettingClasses.myFind(Name, "中藥調劑系統", "VM端");
             ServerSettingClass serverSettingClass_Order_API = serverSettingClasses.myFind(Name, "中藥調劑系統", "Order_API");
 
@@ -214,7 +220,14 @@ namespace 中藥調劑系統
                 dBConfigClass.DB_VM.UserName = serverSettingClass_VM端.User;
                 dBConfigClass.DB_VM.Password = serverSettingClass_VM端.Password;
             }
-
+            if (serverSettingClass_儲位資料 != null)
+            {
+                dBConfigClass.DB_儲位資料.IP = serverSettingClass_儲位資料.Server;
+                dBConfigClass.DB_儲位資料.Port = (uint)(serverSettingClass_儲位資料.Port.StringToInt32());
+                dBConfigClass.DB_儲位資料.DataBaseName = serverSettingClass_儲位資料.DBName;
+                dBConfigClass.DB_儲位資料.UserName = serverSettingClass_儲位資料.User;
+                dBConfigClass.DB_儲位資料.Password = serverSettingClass_儲位資料.Password;
+            }
             if (serverSettingClass_Order_API != null) dBConfigClass.OrderApiURL = serverSettingClass_Order_API.Server;
         }
     }
