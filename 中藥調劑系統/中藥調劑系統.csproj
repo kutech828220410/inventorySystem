@@ -177,6 +177,9 @@
     <Compile Include="Program_RS232_Scanner.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_交易紀錄.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_處方搜尋.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +244,10 @@
     <None Include="Resources\568362.png" />
     <None Include="Resources\key-512.png" />
     <None Include="Resources\adjusted_system-removebg-preview1.png" />
+    <None Include="Resources\add-new-plus-512.png" />
+    <None Include="Resources\trash-512.png" />
+    <None Include="Resources\EDIT.png" />
+    <None Include="Resources\病歷號.png" />
     <Content Include="中藥調劑系統ICON.ico" />
   </ItemGroup>
   <ItemGroup>

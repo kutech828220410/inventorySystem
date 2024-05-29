@@ -31,6 +31,22 @@ namespace HIS_WebApi
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
+        /// <summary>
+        /// 初始化資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [Route("init")]
         [SwaggerResponse(1, "", typeof(transactionsClass))]
         [HttpPost]
@@ -114,6 +130,79 @@ namespace HIS_WebApi
                 returnData.Result = $"新增交易紀錄成功!";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Data = transactionsClass;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+
+
+        }
+        /// <summary>
+        /// 新增單筆交易紀錄
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "口服2",
+        ///     "ServerType" : "調劑台",
+        ///     "Data": 
+        ///     {
+        ///        [transactionsClass陣列]
+        ///     }
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]</returns>
+        [Route("add_datas")]
+        [HttpPost]
+        public string add_datas([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "add_datas";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                List<transactionsClass> transactionsClasses = returnData.Data.ObjToClass<List<transactionsClass>>();
+
+                if (transactionsClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料異常!";
+                    return returnData.JsonSerializationt();
+                }
+                for (int i = 0; i < transactionsClasses.Count; i++)
+                {
+                    transactionsClasses[i].GUID = Guid.NewGuid().ToString();
+                }
+                string TableName = "trading";
+                SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
+                sQLControl_trading.AddRows(null, list_value);
+                returnData.Code = 200;
+                returnData.Result = $"新增交易紀錄成功!共<{list_value.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
                 return returnData.JsonSerializationt();
             }
             catch (Exception e)
@@ -1322,7 +1411,7 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[藥碼][ServerName1,ServerName2][ServerType1,ServerType2]";
                     return returnData.JsonSerializationt(true);
                 }
-                string 藥碼 = returnData.ValueAry[0];
+                string serchValue = returnData.ValueAry[0];
                 string[] ServerNames = returnData.ValueAry[1].Split(',');
                 string[] ServerTypes = returnData.ValueAry[2].Split(',');
                 if (ServerNames.Length != ServerTypes.Length)
@@ -1346,7 +1435,399 @@ namespace HIS_WebApi
                         uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
-                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.藥品名稱, $"%{returnData.Value}%");
+                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.藥品名稱, $"%{serchValue}%");
+                        list_value_buf = tradingData(list_value_buf);
+
+
+                        list_value.LockAdd(list_value_buf);
+
+                    })));
+
+
+
+                }
+                Task.WhenAll(tasks).Wait();
+                list_value.Sort(new ICP_交易記錄查詢());
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
+                returnData.Code = 200;
+                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+        /// <summary>
+        /// 以病歷號搜尋交易紀錄(多台合併)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "病歷號",
+        ///       "口服1,口服2",
+        ///       "調劑台,調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("get_datas_by_mrn")]
+        [HttpPost]
+        public string POST_get_datas_by_mrn([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_datas_by_mrn";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<Task> tasks = new List<Task>();
+                List<object[]> list_value = new List<object[]>();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[病歷號][ServerName1,ServerName2][ServerType1,ServerType2]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string serchValue = returnData.ValueAry[0];
+                string[] ServerNames = returnData.ValueAry[1].Split(',');
+                string[] ServerTypes = returnData.ValueAry[2].Split(',');
+                if (ServerNames.Length != ServerTypes.Length)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ServerNames及ServerTypes長度不同";
+                    return returnData.JsonSerializationt(true);
+                }
+                for (int i = 0; i < ServerNames.Length; i++)
+                {
+                    string serverName = ServerNames[i];
+                    string serverType = ServerTypes[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_serverSettingClasses.Count == 0) return;
+                        string Server = _serverSettingClasses[0].Server;
+                        string DB = _serverSettingClasses[0].DBName;
+                        string UserName = _serverSettingClasses[0].User;
+                        string Password = _serverSettingClasses[0].Password;
+                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        string TableName = "trading";
+                        SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.病歷號, $"%{serchValue}%");
+                        list_value_buf = tradingData(list_value_buf);
+
+
+                        list_value.LockAdd(list_value_buf);
+
+                    })));
+
+
+
+                }
+                Task.WhenAll(tasks).Wait();
+                list_value.Sort(new ICP_交易記錄查詢());
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
+                returnData.Code = 200;
+                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+        /// <summary>
+        /// 以操作人搜尋交易紀錄(多台合併)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "操作人",
+        ///       "口服1,口服2",
+        ///       "調劑台,調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("get_datas_by_op")]
+        [HttpPost]
+        public string POST_get_datas_by_op([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_datas_by_op";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<Task> tasks = new List<Task>();
+                List<object[]> list_value = new List<object[]>();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[操作人][ServerName1,ServerName2][ServerType1,ServerType2]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string serchValue = returnData.ValueAry[0];
+                string[] ServerNames = returnData.ValueAry[1].Split(',');
+                string[] ServerTypes = returnData.ValueAry[2].Split(',');
+                if (ServerNames.Length != ServerTypes.Length)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ServerNames及ServerTypes長度不同";
+                    return returnData.JsonSerializationt(true);
+                }
+                for (int i = 0; i < ServerNames.Length; i++)
+                {
+                    string serverName = ServerNames[i];
+                    string serverType = ServerTypes[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_serverSettingClasses.Count == 0) return;
+                        string Server = _serverSettingClasses[0].Server;
+                        string DB = _serverSettingClasses[0].DBName;
+                        string UserName = _serverSettingClasses[0].User;
+                        string Password = _serverSettingClasses[0].Password;
+                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        string TableName = "trading";
+                        SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.操作人, $"%{serchValue}%");
+                        list_value_buf = tradingData(list_value_buf);
+
+
+                        list_value.LockAdd(list_value_buf);
+
+                    })));
+
+
+
+                }
+                Task.WhenAll(tasks).Wait();
+                list_value.Sort(new ICP_交易記錄查詢());
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
+                returnData.Code = 200;
+                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+        /// <summary>
+        /// 以領藥號搜尋交易紀錄(多台合併)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "領藥號",
+        ///       "口服1,口服2",
+        ///       "調劑台,調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("get_datas_by_med_bag_num")]
+        [HttpPost]
+        public string POST_get_datas_by_med_bag_num([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_datas_by_med_bag_num";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<Task> tasks = new List<Task>();
+                List<object[]> list_value = new List<object[]>();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[操作人][ServerName1,ServerName2][ServerType1,ServerType2]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string serchValue = returnData.ValueAry[0];
+                string[] ServerNames = returnData.ValueAry[1].Split(',');
+                string[] ServerTypes = returnData.ValueAry[2].Split(',');
+                if (ServerNames.Length != ServerTypes.Length)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ServerNames及ServerTypes長度不同";
+                    return returnData.JsonSerializationt(true);
+                }
+                for (int i = 0; i < ServerNames.Length; i++)
+                {
+                    string serverName = ServerNames[i];
+                    string serverType = ServerTypes[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_serverSettingClasses.Count == 0) return;
+                        string Server = _serverSettingClasses[0].Server;
+                        string DB = _serverSettingClasses[0].DBName;
+                        string UserName = _serverSettingClasses[0].User;
+                        string Password = _serverSettingClasses[0].Password;
+                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        string TableName = "trading";
+                        SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.領藥號, $"%{serchValue}%");
+                        list_value_buf = tradingData(list_value_buf);
+
+
+                        list_value.LockAdd(list_value_buf);
+
+                    })));
+
+
+
+                }
+                Task.WhenAll(tasks).Wait();
+                list_value.Sort(new ICP_交易記錄查詢());
+                List<transactionsClass> transactionsClasses = list_value.SQLToClass<transactionsClass, enum_交易記錄查詢資料>();
+                returnData.Code = 200;
+                returnData.Result = $"取得交易紀錄成功!共<{transactionsClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = transactionsClasses;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+
+            }
+        }
+        /// <summary>
+        /// 以領藥號搜尋交易紀錄(多台合併)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "病人姓名",
+        ///       "口服1,口服2",
+        ///       "調劑台,調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("get_datas_by_pat")]
+        [HttpPost]
+        public string POST_get_datas_by_pat([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_datas_by_pat";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<Task> tasks = new List<Task>();
+                List<object[]> list_value = new List<object[]>();
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[操作人][ServerName1,ServerName2][ServerType1,ServerType2]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string serchValue = returnData.ValueAry[0];
+                string[] ServerNames = returnData.ValueAry[1].Split(',');
+                string[] ServerTypes = returnData.ValueAry[2].Split(',');
+                if (ServerNames.Length != ServerTypes.Length)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"ServerNames及ServerTypes長度不同";
+                    return returnData.JsonSerializationt(true);
+                }
+                for (int i = 0; i < ServerNames.Length; i++)
+                {
+                    string serverName = ServerNames[i];
+                    string serverType = ServerTypes[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "交易紀錄資料");
+                        if (_serverSettingClasses.Count == 0) return;
+                        string Server = _serverSettingClasses[0].Server;
+                        string DB = _serverSettingClasses[0].DBName;
+                        string UserName = _serverSettingClasses[0].User;
+                        string Password = _serverSettingClasses[0].Password;
+                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        string TableName = "trading";
+                        SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                        List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.病人姓名, $"%{serchValue}%");
                         list_value_buf = tradingData(list_value_buf);
 
 

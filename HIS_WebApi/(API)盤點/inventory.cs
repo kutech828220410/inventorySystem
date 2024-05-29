@@ -926,7 +926,7 @@ namespace HIS_WebApi
                 deviceController deviceController = new deviceController();
                 serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
 
-                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0], returnData.TableName);
+                //List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClasses_buf[0], returnData.TableName);
 
                 inventoryClass.creat creat = returnData.Data.ObjToClass<inventoryClass.creat>();
                 creat.盤點單號 = str_IC_SN;
@@ -941,15 +941,15 @@ namespace HIS_WebApi
                     content.藥品條碼2 = medClasses[i].藥品條碼2;
                     content.包裝單位 = medClasses[i].包裝單位;
                     content.理論值 = "0";
-                    List<DeviceBasic> deviceBasic_buf = deviceBasics.SortByCode(content.藥品碼);
-                    if (deviceBasic_buf.Count > 0)
-                    {
-                        content.理論值 = deviceBasic_buf[0].Inventory;
-                        if (deviceBasic_buf[0].Inventory.StringToInt32() > 0)
-                        {
+                    //List<DeviceBasic> deviceBasic_buf = deviceBasics.SortByCode(content.藥品碼);
+                    //if (deviceBasic_buf.Count > 0)
+                    //{
+                    //    content.理論值 = deviceBasic_buf[0].Inventory;
+                    //    if (deviceBasic_buf[0].Inventory.StringToInt32() > 0)
+                    //    {
 
-                        }
-                    }
+                    //    }
+                    //}
 
 
 

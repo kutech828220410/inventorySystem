@@ -304,10 +304,10 @@ namespace HIS_WebApi
         ///   {
         ///     "ServerName" : "ds01",
         ///     "ServerType" : "藥庫",
-        ///     "ValueAry" : 
-        ///     [
+        ///     "Data" : 
+        ///     {
         ///       [deviceBasic陣列]
-        ///     ]
+        ///     }
         ///     
         ///   }
         /// </code>
@@ -435,8 +435,8 @@ namespace HIS_WebApi
         /// 以下為範例JSON範例
         /// <code>
         ///   {
-        ///     "ServerName" : "",
-        ///     "ServerType" : "",
+        ///     "ServerName": "中藥台",
+        ///     "ServerType": "中藥調劑系統",
         ///     "TableName" : "";
         ///     "ValueAry" : 
         ///     [
@@ -475,11 +475,11 @@ namespace HIS_WebApi
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
                 SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
-                string jsonStr = RowsLEDMethod.SQL_GetAllRowsLED_JsonStr(sQLControl_device);
+                List<RowsLED> rowsLEDs = RowsLEDMethod.SQL_GetAllRowsLED(sQLControl_device);
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Code = 200;
-                returnData.Value = jsonStr;
-                returnData.Result = $"jsonStr取得成功!,TableName : {returnData.TableName}";
+                returnData.Data = rowsLEDs;
+                returnData.Result = $"rowsLEDs 取得成功!,共<{rowsLEDs.Count}>筆資料,TableName : {returnData.TableName}";
 
                 string json_out = returnData.JsonSerializationt();
 
@@ -495,6 +495,179 @@ namespace HIS_WebApi
             {
 
             }
+        }
+        /// <summary>
+        /// 以IP取得儲位資料(RowLED)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "中藥台",
+        ///     "ServerType": "中藥調劑系統",
+        ///     "TableName" : "";
+        ///     "ValueAry" : 
+        ///     [
+        ///        "IP",
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_rowLED_ByIP")]
+        [HttpPost]
+        public string POST_get_rowLED_ByIP(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_rowLED_ByIP";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[IP]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string IP = returnData.ValueAry[0];
+                string tableName = returnData.TableName;
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<RowsLED> rowsLEDs = RowsLEDMethod.SQL_GetAllRowsLED(sQLControl_device);
+
+                RowsLED rowsLED = rowsLEDs.SortByIP(IP);
+                if (rowsLED == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = rowsLED;
+                returnData.Result = $"jsonStr取得成功!,TableName : {returnData.TableName} , IP : {IP}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
+        /// 更新儲位資料(rowsLED)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "中藥台",
+        ///     "ServerType": "中藥調劑系統",
+        ///     "Data" : 
+        ///     {
+        ///       [rowsLED陣列]
+        ///     }
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        [Route("update_rowsLEDs")]
+        [HttpPost]
+        public string POST_update_rowsLED(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "update_rowsLED";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string tableName = returnData.TableName;
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                List<RowsLED> rowsLEDs = returnData.Data.ObjToClass<List<RowsLED>>();
+                if (rowsLEDs.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data無資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (rowsLEDs == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料錯誤";
+                    return returnData.JsonSerializationt();
+                }
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_device.GetAllRows(null);
+                List<object[]> list_value_buf = new List<object[]>();
+                List<object[]> list_replace = new List<object[]>();
+                for (int i = 0; i < rowsLEDs.Count; i++)
+                {
+                    string IP = rowsLEDs[i].IP;
+                    list_value_buf = list_value.GetRows((int)enum_DeviceTable.IP, IP);
+                    if(list_value_buf.Count > 0)
+                    {
+                        list_value_buf[0][(int)enum_DeviceTable.Value] = rowsLEDs[i].JsonSerializationt();
+                        list_replace.Add(list_value_buf[0]);
+                    }
+                }
+
+                sQLControl_device.UpdateByDefulteExtra(null, list_replace);
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = $"更新rowsLED成功!,共<{list_replace.Count}>筆資料,TableName : {returnData.TableName}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
+
         }
 
         [Route("light_web")]

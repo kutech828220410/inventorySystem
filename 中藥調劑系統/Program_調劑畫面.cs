@@ -387,6 +387,7 @@ namespace 中藥調劑系統
             if (MyMessageBox.ShowDialog("確定將所有處方設為調劑完成?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             string PRI_KEY = list_value[0][(int)enum_病患資訊.PRI_KEY].ObjectToString();
             List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
+            List<transactionsClass> transactionsClasses = new List<transactionsClass>();
             for (int i = 0; i < orderTClasses.Count; i++)
             {
                 OrderTClass orderTClass = orderTClasses[i];
@@ -396,9 +397,27 @@ namespace 中藥調劑系統
                 orderTClass.過帳時間 = DateTime.Now.ToDateTimeString_6();
                 object[] value = Funtion_orderTClassesToObject(orderTClass);
                 OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClass);
+
+                transactionsClass transactionsClass = new transactionsClass();
+                transactionsClass.藥品碼 = orderTClass.藥品碼;
+                transactionsClass.藥品名稱 = orderTClass.藥品名稱;
+                transactionsClass.交易量 = orderTClass.交易量;
+                transactionsClass.操作人 = orderTClass.藥師姓名;
+                transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                transactionsClass.盤點量 = "0";
+                transactionsClass.結存量 = "0";
+                transactionsClass.領藥號 = orderTClass.領藥號;
+                transactionsClass.頻次 = orderTClass.頻次;
+                transactionsClass.動作 = enum_交易記錄查詢動作.掃碼領藥.GetEnumName();
+                transactionsClass.開方時間 = orderTClass.開方日期;
+                transactionsClass.病人姓名 = orderTClass.病人姓名;
+                transactionsClass.病歷號 = orderTClass.病歷號;
+                transactionsClass.藥袋序號 = PRI_KEY;
+                transactionsClasses.Add(transactionsClass);
+
                 list_value_buf.Add(value);
             }
-         
+            transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
             this.sqL_DataGridView_處方內容.ClearSelection();
             this.sqL_DataGridView_處方內容.ReplaceExtra(list_value_buf, true);
         }
@@ -419,6 +438,24 @@ namespace 中藥調劑系統
             orderTClass.過帳時間 = DateTime.Now.ToDateTimeString_6();
 
             OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClass);
+
+            transactionsClass transactionsClass = new transactionsClass();
+            transactionsClass.藥品碼 = orderTClass.藥品碼;
+            transactionsClass.藥品名稱 = orderTClass.藥品名稱;
+            transactionsClass.交易量 = orderTClass.交易量.StringToDouble().ToString("0.00");
+            transactionsClass.操作人 = orderTClass.藥師姓名;
+            transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+            transactionsClass.盤點量 = "0";
+            transactionsClass.結存量 = "0";
+            transactionsClass.領藥號 = orderTClass.領藥號;
+            transactionsClass.頻次 = orderTClass.頻次;
+            transactionsClass.動作 = enum_交易記錄查詢動作.掃碼領藥.GetEnumName();
+            transactionsClass.開方時間 = orderTClass.開方日期;
+            transactionsClass.病人姓名 = orderTClass.病人姓名;
+            transactionsClass.病歷號 = orderTClass.病歷號;
+            transactionsClass.藥袋序號 = orderTClass.PRI_KEY;
+            transactionsClass.add(Main_Form.API_Server, transactionsClass, Main_Form.ServerName, Main_Form.ServerType);
+
 
             object[] value = Funtion_orderTClassesToObject(orderTClass);
             this.sqL_DataGridView_處方內容.ClearSelection();

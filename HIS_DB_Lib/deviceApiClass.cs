@@ -44,10 +44,62 @@ namespace HIS_DB_Lib
             }
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             Console.WriteLine($"{returnData_result}");
-            string jsonStr = returnData_result.Value;
-            List<RowsLED> rowsLEDs = jsonStr.JsonDeserializet<List<RowsLED>>();
+            List<RowsLED> rowsLEDs = returnData_result.Data.ObjToClass<List<RowsLED>>();
             rowsLEDs.Sort(new RowsLED.ICP_SortByIP());
             return rowsLEDs;
+        }
+        static public RowsLED GetRowsLED_ByIP(string API_Server, string ServerName, string ServerType , string IP)
+        {
+            string url = $"{API_Server}/api/device/get_rowLED_ByIP";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.ValueAry.Add(IP);
+            string tableName = "RowsLED_Jsonstring";
+
+            returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            string jsonStr = returnData_result.Value;
+            RowsLED rowsLED = returnData_result.Data.ObjToClass<RowsLED>();
+            return rowsLED;
+        }
+        static public void ReplaceRowsLED(string API_Server, string ServerName, string ServerType, RowsLED rowsLED)
+        {
+            List<RowsLED> rowsLEDs = new List<RowsLED>();
+            rowsLEDs.Add(rowsLED);
+            ReplaceRowsLED(API_Server, ServerName, ServerType, rowsLEDs);
+        }
+        static public void ReplaceRowsLED(string API_Server, string ServerName, string ServerType, List<RowsLED> rowsLEDs)
+        {
+            string url = $"{API_Server}/api/device/update_rowsLEDs";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.Data = rowsLEDs;
+            string tableName = "RowsLED_Jsonstring";
+
+            returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return;
+            }
+            Console.WriteLine($"{returnData_result}");
+
         }
         static public List<Device> GetDevice(string API_Server, string ServerName, string ServerType, DeviceType deviceType)
         {

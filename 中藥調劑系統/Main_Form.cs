@@ -13,6 +13,7 @@ using SQLUI;
 using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
+using H_Pannel_lib;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 namespace 中藥調劑系統
@@ -25,6 +26,9 @@ namespace 中藥調劑系統
         public PLC_Device PLC_Device_已登入 = new PLC_Device("S4000");
         public static string Order_URL = "";
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+        public static RowsLEDUI _rowsLEDUI = null;
+
         public Main_Form()
         {
             InitializeComponent();
@@ -184,13 +188,13 @@ namespace 中藥調劑系統
 
             Program_調劑畫面_Init();
             Program_處方搜尋_Init();
+            Program_交易紀錄_Init();
             Program_RS232_EXCELL_SCALE_Init();
             Program_RS232_Scanner_Init();
             Program_RFID_Init();
 
-
+            _rowsLEDUI = this.rowsLEDUI;
             this.rowsLEDUI.Init(dBConfigClass.DB_儲位資料);
-
         }
 
         private void ApiServerSetting(string Name)

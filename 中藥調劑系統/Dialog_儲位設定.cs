@@ -16,12 +16,36 @@ using H_Pannel_lib;
 
 namespace 中藥調劑系統
 {
-    public enum enum_儲位列表
+    public enum enum_儲位總表
     {
         [Description("IP,VARCHAR,15,NONE")]
         IP,
         [Description("名稱,VARCHAR,15,NONE")]
         名稱,
+    }
+    public enum enum_儲位列表
+    {
+        [Description("GUID,VARCHAR,15,NONE")]
+        GUID,
+        [Description("編號,VARCHAR,15,NONE")]
+        編號,
+        [Description("儲位名稱,VARCHAR,15,NONE")]
+        儲位名稱,
+        [Description("藥碼,VARCHAR,15,NONE")]
+        藥碼,
+        [Description("藥名,VARCHAR,15,NONE")]
+        藥名,
+        [Description("庫存,VARCHAR,15,NONE")]
+        庫存,
+    }
+    public enum enum_效期及批號
+    {
+        [Description("效期,VARCHAR,15,NONE")]
+        效期,
+        [Description("批號,VARCHAR,15,NONE")]
+        批號,
+        [Description("庫存,VARCHAR,15,NONE")]
+        庫存,
     }
     public partial class Dialog_儲位設定 : MyDialog
     {
@@ -37,36 +61,63 @@ namespace 中藥調劑系統
             comboBox_藥品資料_搜尋條件.SelectedIndex = 0;
             this.Refresh();
         }
-
         private void Dialog_儲位設定_Load(object sender, EventArgs e)
         {
-         
-
+            this.rowsLED_Pannel.Init(Main_Form._rowsLEDUI.List_UDP_Local);
+            this.rowsLED_Pannel.AutoWrite = true;
             Table table_藥品資料 = medClass.Init(Main_Form.API_Server);
-            this.sqL_DataGridView_藥品資料.RowsHeight = 40;
-            this.sqL_DataGridView_藥品資料.Init(table_藥品資料);
-            this.sqL_DataGridView_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
-            this.sqL_DataGridView_藥品資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.藥品碼);
-            this.sqL_DataGridView_藥品資料.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
-            this.sqL_DataGridView_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
-            this.sqL_DataGridView_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
-            this.sqL_DataGridView_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
-            this.sqL_DataGridView_藥品資料.Set_ColumnText("單位", enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_RowsLED_藥品資料.RowsHeight = 40;
+            this.sqL_DataGridView_RowsLED_藥品資料.Init(table_藥品資料);
+            this.sqL_DataGridView_RowsLED_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
+            this.sqL_DataGridView_RowsLED_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_RowsLED_藥品資料.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_RowsLED_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_RowsLED_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_RowsLED_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_RowsLED_藥品資料.Set_ColumnText("單位", enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_RowsLED_藥品資料.RowDoubleClickEvent += SqL_DataGridView_RowsLED_藥品資料_RowDoubleClickEvent;
+
+
+            Table table_儲位總表 = new Table(new enum_儲位總表());
+            this.sqL_DataGridView_RowsLED_層架列表.RowsHeight = 40;
+            this.sqL_DataGridView_RowsLED_層架列表.Init(table_儲位總表);
+            this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnVisible(false, new enum_儲位總表().GetEnumNames());
+            this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_儲位總表.IP);
+            this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_儲位總表.名稱);
+            this.sqL_DataGridView_RowsLED_層架列表.RowEnterEvent += SqL_DataGridView_RowsLED_層架列表_RowEnterEvent;
 
             Table table_儲位列表 = new Table(new enum_儲位列表());
-            this.sqL_DataGridView_層架列表.RowsHeight = 40;
-            this.sqL_DataGridView_層架列表.Init(table_儲位列表);
-            this.sqL_DataGridView_層架列表.Set_ColumnVisible(false, new enum_儲位列表().GetEnumNames());
-            this.sqL_DataGridView_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.IP);
-            this.sqL_DataGridView_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.名稱);
-            this.sqL_DataGridView_層架列表.MouseDown += SqL_DataGridView_層架列表_MouseDown;
+            this.sqL_DataGridView_RowsLED_儲位資料.RowsHeight = 40;
+            this.sqL_DataGridView_RowsLED_儲位資料.Init(table_儲位列表);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnVisible(false, new enum_儲位列表().GetEnumNames());
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.編號);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.藥碼);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(370, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.藥名);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.庫存);
+            this.sqL_DataGridView_RowsLED_儲位資料.RowEnterEvent += SqL_DataGridView_RowsLED_儲位資料_RowEnterEvent;
+
+
+            Table table_效期及批號 = new Table(new enum_效期及批號());
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.RowsHeight = 40;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Init(table_效期及批號);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Set_ColumnVisible(false, new enum_效期及批號().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_效期及批號.效期);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_效期及批號.批號);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_效期及批號.庫存);
 
             this.rJ_Button_藥品資料_搜尋.MouseDownEvent += RJ_Button_藥品資料_搜尋_MouseDownEvent;
+            this.rJ_Button_RowsLED_新增儲位.MouseDownEvent += RJ_Button_RowsLED_新增儲位_MouseDownEvent;
+            this.rJ_Button_RowsLED_刪除儲位.MouseDownEvent += RJ_Button_RowsLED_刪除儲位_MouseDownEvent;
+            this.rJ_Button_RowsLED_填入儲位.MouseDownEvent += RJ_Button_RowsLED_填入儲位_MouseDownEvent;
+            this.rJ_Button_RowsLED_清除燈號.MouseDownEvent += RJ_Button_RowsLED_清除燈號_MouseDownEvent;
+
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_新增_MouseDownEvent;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_刪除_MouseDownEvent;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_修改_MouseDownEvent;
 
             this.Function_層架列表_Refresh();
         }
 
-  
         #region Function
         private void Function_層架列表_Refresh()
         {
@@ -74,18 +125,158 @@ namespace 中藥調劑系統
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < rowsLEDs.Count; i++)
             {
-                object[] value = new object[new enum_儲位列表().GetLength()];
-                value[(int)enum_儲位列表.IP] = rowsLEDs[i].IP;
-                value[(int)enum_儲位列表.名稱] = rowsLEDs[i].Name;
+                object[] value = new object[new enum_儲位總表().GetLength()];
+                value[(int)enum_儲位總表.IP] = rowsLEDs[i].IP;
+                value[(int)enum_儲位總表.名稱] = rowsLEDs[i].Name;
                 list_value.Add(value);
             }
-            this.sqL_DataGridView_層架列表.RefreshGrid(list_value);
+            this.sqL_DataGridView_RowsLED_層架列表.RefreshGrid(list_value);
         }
         #endregion
         #region Event
-        private void SqL_DataGridView_層架列表_MouseDown(object sender, MouseEventArgs e)
+        private void SqL_DataGridView_RowsLED_藥品資料_RowDoubleClickEvent(object[] RowValue)
         {
-            Function_層架列表_Refresh();
+            RJ_Button_RowsLED_填入儲位_MouseDownEvent(null);
+        }
+        private void SqL_DataGridView_RowsLED_儲位資料_RowEnterEvent(object[] RowValue)
+        {
+            if (this.rowsLED_Pannel.CurrentRowsLED != null) deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this.rowsLED_Pannel.CurrentRowsLED);
+            string GUID = RowValue[(int)enum_儲位列表.GUID].ObjectToString();
+            RowsLED rowsLED = this.rowsLED_Pannel.CurrentRowsLED;
+            RowsDevice rowsDevice = rowsLED.SortByGUID(GUID);
+            if (rowsDevice == null) return;
+            this.rowsLED_Pannel.RowsDeviceGUID = GUID;
+
+            if (rJ_RatioButton_儲位資料_RowsLED_紅.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Red;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_藍.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Blue;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_綠.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Lime;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_白.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.White;
+            }
+
+            sqL_DataGridView_儲位管理_RowsLED_效期及批號.ClearGrid();
+
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < rowsDevice.List_Validity_period.Count; i++)
+            {
+                object[] value = new object[new enum_效期及批號().GetLength()];
+                value[(int)enum_效期及批號.效期] = rowsDevice.List_Validity_period[i];
+                value[(int)enum_效期及批號.批號] = rowsDevice.List_Lot_number[i];
+                value[(int)enum_效期及批號.庫存] = rowsDevice.List_Inventory[i];
+                list_value.Add(value);
+            }
+
+            sqL_DataGridView_儲位管理_RowsLED_效期及批號.RefreshGrid(list_value);
+        }
+        private void SqL_DataGridView_RowsLED_層架列表_RowEnterEvent(object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲位總表.IP].ObjectToString();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+            this.rowsLED_Pannel.CurrentRowsLED = rowsLED;
+            rowsLED_Pannel.Maximum = rowsLED.Maximum;
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < rowsLED.RowsDevices.Count; i++)
+            {
+                object[] value = new object[new enum_儲位列表().GetLength()];
+                value[(int)enum_儲位列表.GUID] = rowsLED.RowsDevices[i].GUID;
+                value[(int)enum_儲位列表.編號] = rowsLED.RowsDevices[i].Index;
+                value[(int)enum_儲位列表.藥碼] = rowsLED.RowsDevices[i].Code;
+                value[(int)enum_儲位列表.藥名] = rowsLED.RowsDevices[i].Name;
+                value[(int)enum_儲位列表.儲位名稱] = rowsLED.RowsDevices[i].StorageName;
+                value[(int)enum_儲位列表.庫存] = rowsLED.RowsDevices[i].Inventory;
+                list_value.Add(value);
+            }
+
+            this.sqL_DataGridView_RowsLED_儲位資料.RefreshGrid(list_value);
+        }
+        private void RJ_Button_RowsLED_新增儲位_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_RowsLED_層架列表.Get_All_Select_RowsValues();
+            if(list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string IP = list_value[0][(int)enum_儲位總表.IP].ObjectToString();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+            rowsLED.Add(0, 8);
+            deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, rowsLED);
+            this.sqL_DataGridView_RowsLED_層架列表.On_RowEnter();
+        }
+        private void RJ_Button_RowsLED_刪除儲位_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (MyMessageBox.ShowDialog("是否刪除儲位?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            List<object[]> list_層架列表 = this.sqL_DataGridView_RowsLED_層架列表.Get_All_Select_RowsValues();
+            List<object[]> list_儲位資料 = this.sqL_DataGridView_RowsLED_儲位資料.Get_All_Select_RowsValues();
+            if (list_儲位資料.Count == 0 || list_層架列表.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string IP = list_層架列表[0][(int)enum_儲位總表.IP].ObjectToString();
+            int index = list_儲位資料[0][(int)enum_儲位列表.編號].StringToInt32();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+            rowsLED.Delete(index);
+
+            deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, rowsLED);
+            this.sqL_DataGridView_RowsLED_層架列表.On_RowEnter();
+        }
+        private void RJ_Button_RowsLED_填入儲位_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_RowsLED_藥品資料.Get_All_Select_RowsValues();
+            List<object[]> list_層架列表 = this.sqL_DataGridView_RowsLED_層架列表.Get_All_Select_RowsValues();
+            List<object[]> list_儲位資料 = this.sqL_DataGridView_RowsLED_儲位資料.Get_All_Select_RowsValues();
+
+            if (list_藥品資料.Count == 0 || list_儲位資料.Count == 0 || list_層架列表.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string IP = list_層架列表[0][(int)enum_儲位總表.IP].ObjectToString();
+            string GUID = list_儲位資料[0][(int)enum_儲位列表.GUID].ObjectToString();
+            string 藥碼 = list_藥品資料[0][(int)enum_雲端藥檔.藥品碼].ObjectToString();
+            string 藥名 = list_藥品資料[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
+            string 包裝數量 = list_藥品資料[0][(int)enum_雲端藥檔.包裝數量].ObjectToString();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+
+            RowsDevice rowsDevice = rowsLED.SortByGUID(GUID);
+            rowsDevice.Code = 藥碼;
+            rowsDevice.Name = 藥名;
+            rowsDevice.Package = 包裝數量;
+            rowsLED.ReplaceRowsDevice(rowsDevice);
+
+            deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, rowsLED);
+            this.sqL_DataGridView_RowsLED_層架列表.On_RowEnter();
+        }
+        private void PlC_RJ_Button_RowLED_儲位設定_效期及批號_修改_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+        private void PlC_RJ_Button_RowLED_儲位設定_效期及批號_刪除_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+        private void PlC_RJ_Button_RowLED_儲位設定_效期及批號_新增_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+        private void RJ_Button_RowsLED_清除燈號_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (this.rowsLED_Pannel.CurrentRowsLED == null) return;
+            Main_Form._rowsLEDUI.Set_Rows_LED_Clear_UDP(this.rowsLED_Pannel.CurrentRowsLED);          
         }
         private void RJ_Button_藥品資料_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -109,7 +300,7 @@ namespace 中藥調劑系統
                         return;
                     }
                     List<object[]> list_value = medClasses_buf.ClassToSQL<medClass, enum_雲端藥檔>();
-                    this.sqL_DataGridView_藥品資料.RefreshGrid(list_value);
+                    this.sqL_DataGridView_RowsLED_藥品資料.RefreshGrid(list_value);
 
                 }
                 if (cmb_text == "藥名")
@@ -124,7 +315,7 @@ namespace 中藥調劑系統
                         return;
                     }
                     List<object[]> list_value = medClasses_buf.ClassToSQL<medClass, enum_雲端藥檔>();
-                    this.sqL_DataGridView_藥品資料.RefreshGrid(list_value);
+                    this.sqL_DataGridView_RowsLED_藥品資料.RefreshGrid(list_value);
                 }
                 if (cmb_text == "中文名")
                 {
@@ -138,7 +329,7 @@ namespace 中藥調劑系統
                         return;
                     }
                     List<object[]> list_value = medClasses_buf.ClassToSQL<medClass, enum_雲端藥檔>();
-                    this.sqL_DataGridView_藥品資料.RefreshGrid(list_value);
+                    this.sqL_DataGridView_RowsLED_藥品資料.RefreshGrid(list_value);
                 }
             }
             catch

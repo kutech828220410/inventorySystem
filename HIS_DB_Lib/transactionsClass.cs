@@ -351,6 +351,14 @@ namespace HIS_DB_Lib
             List<MyOffice.SheetClass> sheetClasses = returnData_out.Data.ObjToClass<List<MyOffice.SheetClass>>();
             return sheetClasses;
         }
+        static public List<transactionsClass> get_datas_by_code(string API_Server, string 藥碼, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_code(API_Server, 藥碼, serverNames, serverTypes);
+        }
         static public List<transactionsClass> get_datas_by_code(string API_Server, string 藥碼, List<string> serverNames, List<string> serverTypes)
         {
             string url = $"{API_Server}/api/transactions/get_datas_by_code";
@@ -386,6 +394,14 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
             return transactionsClasses;
+        }
+        static public List<transactionsClass> get_datas_by_name(string API_Server, string 藥名, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_name(API_Server, 藥名, serverNames, serverTypes);
         }
         static public List<transactionsClass> get_datas_by_name(string API_Server, string 藥名, List<string> serverNames, List<string> serverTypes)
         {
@@ -423,6 +439,190 @@ namespace HIS_DB_Lib
             List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
             return transactionsClasses;
         }
+        static public List<transactionsClass> get_datas_by_mrn(string API_Server, string 病歷號, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_mrn(API_Server, 病歷號, serverNames, serverTypes);
+        }
+        static public List<transactionsClass> get_datas_by_mrn(string API_Server, string 病歷號, List<string> serverNames, List<string> serverTypes)
+        {
+            string url = $"{API_Server}/api/transactions/get_datas_by_mrn";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+            for (int i = 0; i < serverNames.Count; i++)
+            {
+                str_serverNames += serverNames[i];
+                if (i != serverNames.Count - 1) str_serverNames += ",";
+            }
+            for (int i = 0; i < serverTypes.Count; i++)
+            {
+                str_serverTypes += serverTypes[i];
+                if (i != serverTypes.Count - 1) str_serverTypes += ",";
+            }
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(病歷號);
+            returnData.ValueAry.Add(str_serverNames);
+            returnData.ValueAry.Add(str_serverTypes);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
+            return transactionsClasses;
+        }
+        static public List<transactionsClass> get_datas_by_pat(string API_Server, string 病人姓名, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_pat(API_Server, 病人姓名, serverNames, serverTypes);
+        }
+        static public List<transactionsClass> get_datas_by_pat(string API_Server, string 病人姓名, List<string> serverNames, List<string> serverTypes)
+        {
+            string url = $"{API_Server}/api/transactions/get_datas_by_pat";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+            for (int i = 0; i < serverNames.Count; i++)
+            {
+                str_serverNames += serverNames[i];
+                if (i != serverNames.Count - 1) str_serverNames += ",";
+            }
+            for (int i = 0; i < serverTypes.Count; i++)
+            {
+                str_serverTypes += serverTypes[i];
+                if (i != serverTypes.Count - 1) str_serverTypes += ",";
+            }
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(病人姓名);
+            returnData.ValueAry.Add(str_serverNames);
+            returnData.ValueAry.Add(str_serverTypes);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
+            return transactionsClasses;
+        }
+        static public List<transactionsClass> get_datas_by_med_bag_num(string API_Server, string 領藥號, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_med_bag_num(API_Server, 領藥號, serverNames, serverTypes);
+        }
+        static public List<transactionsClass> get_datas_by_med_bag_num(string API_Server, string 領藥號, List<string> serverNames, List<string> serverTypes)
+        {
+            string url = $"{API_Server}/api/transactions/get_datas_by_med_bag_num";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+            for (int i = 0; i < serverNames.Count; i++)
+            {
+                str_serverNames += serverNames[i];
+                if (i != serverNames.Count - 1) str_serverNames += ",";
+            }
+            for (int i = 0; i < serverTypes.Count; i++)
+            {
+                str_serverTypes += serverTypes[i];
+                if (i != serverTypes.Count - 1) str_serverTypes += ",";
+            }
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(領藥號);
+            returnData.ValueAry.Add(str_serverNames);
+            returnData.ValueAry.Add(str_serverTypes);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
+            return transactionsClasses;
+        }
+        static public List<transactionsClass> get_datas_by_op(string API_Server, string 操作人, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_op(API_Server, 操作人, serverNames, serverTypes);
+        }
+        static public List<transactionsClass> get_datas_by_op(string API_Server, string 操作人, List<string> serverNames, List<string> serverTypes)
+        {
+            string url = $"{API_Server}/api/transactions/get_datas_by_op";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+            for (int i = 0; i < serverNames.Count; i++)
+            {
+                str_serverNames += serverNames[i];
+                if (i != serverNames.Count - 1) str_serverNames += ",";
+            }
+            for (int i = 0; i < serverTypes.Count; i++)
+            {
+                str_serverTypes += serverTypes[i];
+                if (i != serverTypes.Count - 1) str_serverTypes += ",";
+            }
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(操作人);
+            returnData.ValueAry.Add(str_serverNames);
+            returnData.ValueAry.Add(str_serverTypes);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
+            return transactionsClasses;
+        }
+        static public List<transactionsClass> get_datas_by_op_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_op_time_st_end(API_Server, dateTime_st, dateTime_end, serverNames, serverTypes);
+        }
         static public List<transactionsClass> get_datas_by_op_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end, List<string> serverNames, List<string> serverTypes)
         {
             string url = $"{API_Server}/api/transactions/get_datas_by_op_time_st_end";
@@ -459,6 +659,14 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
             return transactionsClasses;
+        }
+        static public List<transactionsClass> get_datas_by_rx_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end, string serverName, string serverType)
+        {
+            List<string> serverNames = new List<string>();
+            List<string> serverTypes = new List<string>();
+            serverNames.Add(serverName);
+            serverTypes.Add(serverType);
+            return get_datas_by_rx_time_st_end(API_Server, dateTime_st, dateTime_end, serverNames, serverTypes);
         }
         static public List<transactionsClass> get_datas_by_rx_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end, List<string> serverNames, List<string> serverTypes)
         {
@@ -507,6 +715,32 @@ namespace HIS_DB_Lib
             returnData.ServerName = serverName;
             returnData.ServerType = serverType;
             returnData.Data = transactionsClass;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+        }
+        static public void add(string API_Server, List<transactionsClass> transactionsClasses, string serverName, string serverType)
+        {
+            string url = $"{API_Server}/api/transactions/add_datas";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+            returnData.Data = transactionsClasses;
 
 
             string json_in = returnData.JsonSerializationt();
@@ -581,6 +815,22 @@ namespace HIS_DB_Lib
             }
             return new List<transactionsClass>();
         }
+
+        static public SQLUI.Table Init(string API_Server ,string ServerName ,string ServerType)
+        {
+            string url = $"{API_Server}/api/transactions/init";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
+            return table;
+        }
+
+
 
         public class ICP_By_OP_Time : IComparer<object[]>
         {

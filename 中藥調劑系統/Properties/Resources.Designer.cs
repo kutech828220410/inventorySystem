@@ -73,6 +73,16 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap add_new_plus_512 {
+            get {
+                object obj = ResourceManager.GetObject("add-new-plus-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap adjusted_checkmark_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("adjusted_checkmark-removebg-preview", resourceCulture);
@@ -123,6 +133,16 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap EDIT {
+            get {
+                object obj = ResourceManager.GetObject("EDIT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap key_512 {
             get {
                 object obj = ResourceManager.GetObject("key-512", resourceCulture);
@@ -153,6 +173,16 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap trash_512 {
+            get {
+                object obj = ResourceManager.GetObject("trash-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap 手輸領藥 {
             get {
                 object obj = ResourceManager.GetObject("手輸領藥", resourceCulture);
@@ -166,6 +196,16 @@ namespace 中藥調劑系統.Properties {
         internal static System.Drawing.Bitmap 搜尋 {
             get {
                 object obj = ResourceManager.GetObject("搜尋", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 病歷號 {
+            get {
+                object obj = ResourceManager.GetObject("病歷號", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>hwBAq6GBvcpXL4JVii12GRXqldruVKUZRNB2PS6bNgQ=</dsig:DigestValue>
+        <dsig:DigestValue>ooUqbTLZnq56LRLQRlqHvp3l4zS/HUXRUeC3UxZu0qQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -102,14 +102,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="774144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="775680">
       <assemblyIdentity name="H_Pannel_lib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9fXDlE2iKbpKWhtKidia3jCAtP6EyH82dt8F/NHVL9g=</dsig:DigestValue>
+        <dsig:DigestValue>g4sRuBcYPzPtSiKpgGtr9xFYKOvS4NQ9cL+YHUVvdnw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -469,7 +469,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HRXFvw0DqNlxe/aG0tJTJClyWqaoQJ7eiwIFFuf3YT0=</dsig:DigestValue>
+        <dsig:DigestValue>KJiwvIhcO7UCrBEy76I8b3/6fcjZfBDIUHG7sB2lA5I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
