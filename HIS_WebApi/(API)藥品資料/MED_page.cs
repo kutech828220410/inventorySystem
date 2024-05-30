@@ -796,11 +796,11 @@ namespace HIS_WebApi
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
                 List<medClass> medClasses = returnData.Data.ObjToListClass<medClass>();
-                if (medClasses == null)
+                if (medClasses == null || medClasses.Count == 0)
                 {
-                    string json_result = POST_get_by_apiserver(returnData);
-                    returnData = json_result.JsonDeserializet<returnData>();
-                    medClasses = returnData.Data.ObjToListClass<medClass>();
+                    List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                    ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
+                    medClasses = Get_med_cloud(serverSettingClasses_med);
                 }
 
                 returnData.Method = "serch_by_BarCode";
@@ -834,6 +834,12 @@ namespace HIS_WebApi
                             continue;
                         }
                     }
+                }
+                if(medClasses_buf.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "查無資料";
+                    return returnData.JsonSerializationt();
                 }
                 returnData.Data = medClasses_buf;
                 returnData.Code = 200;

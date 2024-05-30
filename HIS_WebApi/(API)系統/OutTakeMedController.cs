@@ -541,7 +541,7 @@ namespace HIS_WebApi
 
             SQLControl sQLControl_trading = new SQLControl(IP, DataBaseName, "trading", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_take_medicine_stack = new SQLControl(IP, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_devicelist = new SQLControl(devicelist_IP, devicelist_database, "devicelist", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_devicelist = new SQLControl(devicelist_IP, devicelist_database, "devicelist", UserName, Password, serverSettingClass_人員資料.Port.StringToUInt32(), SSLMode);
 
             List<object[]> list_devicelist = sQLControl_devicelist.GetAllRows(null);
             List<object[]> list_devicelist_buf = new List<object[]>();
@@ -585,7 +585,7 @@ namespace HIS_WebApi
                     returnData.Result = $"清除指定電腦名稱資料(滅燈)成功";
                     return returnData.JsonSerializationt(true);
                 }
-                if (data[i].功能類型 == "1" || data[i].功能類型 == "-1")
+                if (data[i].功能類型 == "1" || data[i].功能類型 == "-1" || data[0].功能類型 == "2")
                 {
                     if (data[i].PRI_KEY.StringIsEmpty()) data[i].PRI_KEY = Guid.NewGuid().ToString();
                     string PRI_KEY = data[i].PRI_KEY;
@@ -988,11 +988,11 @@ namespace HIS_WebApi
             Console.WriteLine($"從SQL取得所有儲位資料,耗時{myTimer.ToString()}ms");
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
             List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
-            deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD1020));
-            deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD583));
-            deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_EPD266));
-            deviceBasics.LockAdd(RowsLEDMethod.GetAllDeviceBasic(list_RowsLED));
-            deviceBasics.LockAdd(RFIDMethod.GetAllDeviceBasic(list_RFID_Device));
+            if (list_EPD1020.Count > 0) deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD1020));
+            if (list_EPD583.Count > 0) deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD583));
+            if (list_EPD266.Count > 0) deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_EPD266));
+            if (list_RowsLED.Count > 0) deviceBasics.LockAdd(RowsLEDMethod.GetAllDeviceBasic(list_RowsLED));
+            if (list_RFID_Device.Count > 0) deviceBasics.LockAdd(RFIDMethod.GetAllDeviceBasic(list_RFID_Device));
             Console.WriteLine($"反編譯取得所有儲位資料,耗時{myTimer.ToString()}ms");
             deviceBasics_buf = (from value in deviceBasics
                                 where value.Code.StringIsEmpty() == false

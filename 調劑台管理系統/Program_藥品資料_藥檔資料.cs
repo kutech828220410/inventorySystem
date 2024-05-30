@@ -114,15 +114,15 @@ namespace 調劑台管理系統
 
         private void Program_藥品資料_藥檔資料_Init()
         {
-
-            string url = $"{dBConfigClass.Api_URL}/api/MED_page/init";
-            returnData returnData = new returnData();
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.ServerName = $"{dBConfigClass.Name}";
-            returnData.TableName = "medicine_page";
-            string json_in = returnData.JsonSerializationt();
-            string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
-            Table table = json.JsonDeserializet<Table>();
+            Table table = medClass.init(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.StoreType.調劑台);
+            //string url = $"{dBConfigClass.Api_URL}/api/MED_page/init";
+            //returnData returnData = new returnData();
+            //returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
+            //returnData.ServerName = $"{dBConfigClass.Name}";
+            //returnData.TableName = "medicine_page";
+            //string json_in = returnData.JsonSerializationt();
+            //string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
+            //Table table = json.JsonDeserializet<Table>();
             if (table == null)
             {
                 MyMessageBox.ShowDialog($"本地藥檔表單建立失敗!! Api_URL:{dBConfigClass.Api_URL}");

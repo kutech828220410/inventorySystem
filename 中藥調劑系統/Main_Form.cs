@@ -167,11 +167,20 @@ namespace 中藥調劑系統
             ApiServerSetting(dBConfigClass.Name);
 
             this.plC_RJ_Button_儲位設定.MouseDownEvent += PlC_RJ_Button_儲位設定_MouseDownEvent;
+            this.plC_RJ_Button_人員資料.MouseDownEvent += PlC_RJ_Button_人員資料_MouseDownEvent;
 
             plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
             plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
         }
 
+        private void PlC_RJ_Button_人員資料_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Dialog_人員資料 dialog_人員資料 = new Dialog_人員資料();
+                dialog_人員資料.ShowDialog();
+            }));
+        }
         private void PlC_RJ_Button_儲位設定_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate 

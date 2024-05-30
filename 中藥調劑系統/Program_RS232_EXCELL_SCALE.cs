@@ -16,6 +16,7 @@ namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
     {
+        private Port.enum_unit_type enum_Unit_Type = Port.enum_unit_type.g;
         private MyThread myThread_RS232_EXCELL_SCALE_Init;
         private ExcelScaleLib.Port ExcelScaleLib_Port = new Port();
         private void Program_RS232_EXCELL_SCALE_Init()
@@ -46,10 +47,20 @@ namespace 中藥調劑系統
         }
         private void Program_RS232_EXCELL_SCALE()
         {
-            double? weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.g);
+            double? weight = ExcelScaleLib_Port.get_weight(enum_Unit_Type);
             if (weight == null) return;
             this.Invoke(new Action(delegate 
             {
+                if(enum_Unit_Type == Port.enum_unit_type.g)
+                {
+                    rJ_Lable_應調單位.Text = "克";
+                    rJ_Lable_實調單位.Text = "克";
+                }
+                else if (enum_Unit_Type == Port.enum_unit_type.dwt)
+                {
+                    rJ_Lable_應調單位.Text = "錢";
+                    rJ_Lable_實調單位.Text = "錢";
+                }
                 double temp = (double)weight;
                 rJ_Lable_實調.Text = temp.ToString("0.00");
             }));

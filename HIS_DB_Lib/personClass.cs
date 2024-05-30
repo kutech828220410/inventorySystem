@@ -102,5 +102,79 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("open_access")]
         public string 開門權限 { get; set; }
+
+        static public List<personPageClass> get_all(string API_Server)
+        {
+            string url = $"{API_Server}/api/person_page/get_all";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "";
+            returnData.ServerType = "";
+            returnData.Data = null;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            List<personPageClass> personPageClasses = returnData_out.Data.ObjToClass<List<personPageClass>>();
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return personPageClasses;
+        }
+        static public personPageClass serch_by_id(string API_Server , string ID)
+        {
+            string url = $"{API_Server}/api/person_page/serch_by_id";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "";
+            returnData.ServerType = "";
+            returnData.Data = null;
+            returnData.Value = ID;
+            if (ID.StringIsEmpty()) return null;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            if (returnData_out.Code != 200) return null;
+            personPageClass personPageClass = returnData_out.Data.ObjToClass<personPageClass>();
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return personPageClass;
+        }
+
+        static public SQLUI.Table Init(string API_Server)
+        {
+            string url = $"{API_Server}/api/person_page/init";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "";
+            returnData.ServerType = "";
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
+            return table;
+        }
     }
 }

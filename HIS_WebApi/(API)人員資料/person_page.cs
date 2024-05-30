@@ -175,7 +175,7 @@ namespace HIS_WebApi
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
+                    returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
                 string ID = returnData.Value;
@@ -193,6 +193,12 @@ namespace HIS_WebApi
                 if(list_value.Count > 0)
                 {
                     returnData.Data = list_value[0].SQLToClass<personPageClass, enum_人員資料>();
+                }
+                else
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
                 }
                 returnData.Code = 200;
                 returnData.Result = $"搜尋人員資料成功";

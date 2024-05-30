@@ -45,9 +45,9 @@ namespace 中藥調劑系統
             }
             if (returnData.Code != 200)
             {
-                Dialog_AlarmForm dialog_錯誤提示 = new Dialog_AlarmForm($"{returnData.Result}", 2000);
-                dialog_錯誤提示.ShowDialog();
-                return new List<OrderClass>();
+                //Dialog_AlarmForm dialog_錯誤提示 = new Dialog_AlarmForm($"{returnData.Result}", 2000);
+                //dialog_錯誤提示.ShowDialog();
+                return null;
 
             }
             orderClasses = returnData.Data.ObjToListClass<OrderClass>();

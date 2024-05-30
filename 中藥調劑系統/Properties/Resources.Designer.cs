@@ -163,6 +163,16 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap personnel_information_and_permission_levels {
+            get {
+                object obj = ResourceManager.GetObject("personnel-information-and-permission-levels", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap searching_data_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("searching-data-removebg-preview", resourceCulture);

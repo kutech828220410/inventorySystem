@@ -228,7 +228,24 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
+        static public List<medClass> serch_by_BarCode(string API_Server ,string barcode)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/serch_by_BarCode";
 
+            returnData returnData = new returnData();
+            returnData.Value = barcode;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+
+        
 
         static public System.Collections.Generic.Dictionary<string, List<medClass>> CoverToDictionaryByCode(List<medClass> medClasses)
         {

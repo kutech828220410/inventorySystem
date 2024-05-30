@@ -22,6 +22,8 @@ namespace 中藥調劑系統
         {
             [Description("GUID,VARCHAR,15,NONE")]
             GUID,
+            [Description("藥碼,VARCHAR,15,NONE")]
+            藥碼,
             [Description("藥名,VARCHAR,15,NONE")]
             藥名,
             [Description("應調,VARCHAR,15,NONE")]
@@ -58,6 +60,7 @@ namespace 中藥調劑系統
             Table table_處方內容 = new Table(new enum_處方內容());
             this.sqL_DataGridView_處方內容.Init(table_處方內容);
             this.sqL_DataGridView_處方內容.Set_ColumnVisible(false, new enum_處方內容().GetEnumNames());
+            //this.sqL_DataGridView_處方內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, "藥碼");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, "藥名");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "應調");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "實調");
@@ -92,14 +95,12 @@ namespace 中藥調劑系統
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
 
-    
-
         private void sub_Progran_更新處方()
         {
             if (PLC_Device_已登入.Bool == false) return;
             List<object[]> list_value = new List<object[]>();
             List<object[]> list_value_buf = new List<object[]>();
-            List<OrderTClass> orderTClasses = OrderTClass.get_by_rx_time_st_end(Main_Form.API_Server, "2024-05-09 00:00:00".StringToDateTime(), "2024-05-09 23:59:59".StringToDateTime());
+            List<OrderTClass> orderTClasses = OrderTClass.get_by_rx_time_st_end(Main_Form.API_Server, DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
             List<OrderTClass> orderTClasses_buf = new List<OrderTClass>();
             orderTClasses.sort(OrderTClassMethod.SortType.領藥號);
             List<string> list_PRI_KEY = (from temp in orderTClasses
@@ -137,26 +138,107 @@ namespace 中藥調劑系統
 
         private void Program_調劑畫面()
         {
-            if(MySerialPort_Scanner01.IsConnected)
+            if(MySerialPort_Scanner01.IsConnected && plC_ScreenPage_main.PageText == "調劑畫面" && PLC_Device_已登入.Bool)
             {
-                string text = MySerialPort_Scanner01.ReadString();
-                if (text.StringIsEmpty()) return;
-                System.Threading.Thread.Sleep(200);
-                text = MySerialPort_Scanner01.ReadString();
-                MySerialPort_Scanner01.ClearReadByte();
-                text = text.Replace("\0", "");
-                text = text.Replace("\n", "");
-                text = text.Replace("\r", "");
-                List<OrderClass> orderClasses = Funtion_醫令資料_API呼叫(text);
-                if (orderClasses.Count == 0)
+     
+                try
                 {
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("", 1500);
+                    string text = MySerialPort_Scanner01.ReadString();
+                    if (text.StringIsEmpty()) return;
+                    System.Threading.Thread.Sleep(200);
+                    text = MySerialPort_Scanner01.ReadString();
+                    MySerialPort_Scanner01.ClearReadByte();
+                    text = text.Replace("\0", "");
+                    text = text.Replace("\n", "");
+                    text = text.Replace("\r", "");
+                    List<OrderClass> orderClasses = Funtion_醫令資料_API呼叫(text);
+                    if (orderClasses != null)
+                    {
+                        if (orderClasses.Count > 0)
+                        {
+                            string PRI_KEY = orderClasses[0].PRI_KEY;
+                            this.sqL_DataGridView_病患資訊.SetSelectRow(enum_病患資訊.PRI_KEY.GetEnumName(), PRI_KEY);
+                        }
+                    }
+                    else
+                    {
+                        List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, text);
+                        if (medClasses.Count > 0)
+                        {
+                            string 藥碼 = medClasses[0].藥品碼;
+                            List<object[]> list_處方內容 = this.sqL_DataGridView_處方內容.GetAllRows();
+                            List<object[]> list_處方內容_selected = this.sqL_DataGridView_處方內容.Get_All_Select_RowsValues();
+                            List<object[]> list_處方內容_buf = (from temp in list_處方內容
+                                                            where temp[(int)enum_處方內容.藥碼].ObjectToString() == 藥碼
+                                                            select temp).ToList();
+                
+                            if (list_處方內容_buf.Count == 0)
+                            {
+                                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方無此條碼藥品", 1500);
+                                dialog_AlarmForm.ShowDialog();
+                                return;
+                            }
+                            if(list_處方內容_selected.Count == 0)
+                            {
+                                if (list_處方內容_buf[0][(int)enum_處方內容.實調].ObjectToString().StringIsDouble())
+                                {
+                                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此藥品已調劑", 1500);
+                                    dialog_AlarmForm.ShowDialog();
+                                    return;
+                                }
+                                string 單位 = list_處方內容_buf[0][(int)enum_處方內容.單位].ObjectToString();
+                                if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.dwt;
+                                else enum_Unit_Type = Port.enum_unit_type.g;
+
+                                ExcelScaleLib_Port.set_sub_current_weight();
+                                this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
+                            }
+                            else if(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString() == list_處方內容_buf[0][(int)enum_處方內容.GUID].ObjectToString())
+                            {
+                                double 應調 = list_處方內容_selected[0][(int)enum_處方內容.應調].StringToDouble();
+                                double 實調 = rJ_Lable_實調.Text.StringToDouble();
+                                double 應調_L = 應調 * 0.9;
+                                double 應調_H = 應調 * 1.1;
+                                if (實調 <= 應調_L || 實調 >= 應調_H)
+                                {
+                                    if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                                    {
+                                        ToolStripMenuItem_處方內容_調劑完成_Click(null, null);
+                                    }
+                                }
+                                else
+                                {
+                                    ToolStripMenuItem_處方內容_調劑完成_Click(null, null);
+                                }
+
+
+                            }
+                            else
+                            {
+                                if (list_處方內容_buf[0][(int)enum_處方內容.實調].ObjectToString().StringIsDouble())
+                                {
+                                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此藥品已調劑", 1500);
+                                    dialog_AlarmForm.ShowDialog();
+                                    return;
+                                }
+                                string 單位 = list_處方內容_buf[0][(int)enum_處方內容.單位].ObjectToString();
+                                if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.dwt;
+                                else enum_Unit_Type = Port.enum_unit_type.g;
+
+                                ExcelScaleLib_Port.set_sub_current_weight();
+                                this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
+                            }
+                         
+                        }
+                    }
                 }
-                if (orderClasses.Count > 0)
+                catch
                 {
-                    string PRI_KEY = orderClasses[0].PRI_KEY;
-                    this.sqL_DataGridView_病患資訊.SetSelectRow(enum_病患資訊.PRI_KEY.GetEnumName(), PRI_KEY);
+
                 }
+               
+
+
             }
 
         }
@@ -251,6 +333,7 @@ namespace 中藥調劑系統
             }
             if (orderTClass.實際調劑量.StringIsEmpty()) orderTClass.實際調劑量 = "-";
             value[(int)enum_處方內容.GUID] = orderTClass.GUID;
+            value[(int)enum_處方內容.藥碼] = orderTClass.藥品碼;
             value[(int)enum_處方內容.藥名] = orderTClass.藥品名稱;
             value[(int)enum_處方內容.應調] = orderTClass.交易量;
             value[(int)enum_處方內容.實調] = orderTClass.實際調劑量;
@@ -418,10 +501,13 @@ namespace 中藥調劑系統
                 list_value_buf.Add(value);
             }
             transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
-            this.sqL_DataGridView_處方內容.ClearSelection();
-            this.sqL_DataGridView_處方內容.ReplaceExtra(list_value_buf, true);
+            //this.sqL_DataGridView_處方內容.ClearSelection();
+            //this.sqL_DataGridView_處方內容.ReplaceExtra(list_value_buf, true);
+
+            this.sqL_DataGridView_處方內容.ClearGrid();
+
         }
-   
+
         private void ToolStripMenuItem_處方內容_調劑完成_Click(object sender, EventArgs e)
         {
             List<object[]> list_value = this.sqL_DataGridView_處方內容.Get_All_Select_RowsValues();
