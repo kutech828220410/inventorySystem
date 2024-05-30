@@ -45,8 +45,24 @@ namespace 中藥調劑系統
             }));
   
         }
+        private void EXCELL_set_sub_current_weight()
+        {
+            flag_EXCELL_set_sub_current_weight = true;
+            while(true)
+            {
+                if (flag_EXCELL_set_sub_current_weight == false) return;
+                System.Threading.Thread.Sleep(100);
+            }
+        }
+        bool flag_EXCELL_set_sub_current_weight = false;
         private void Program_RS232_EXCELL_SCALE()
         {
+            if(flag_EXCELL_set_sub_current_weight)
+            {
+                System.Threading.Thread.Sleep(100);
+                ExcelScaleLib_Port.set_sub_current_weight();
+                flag_EXCELL_set_sub_current_weight = false;
+            }
             double? weight = ExcelScaleLib_Port.get_weight(enum_Unit_Type);
             if (weight == null) return;
             this.Invoke(new Action(delegate 

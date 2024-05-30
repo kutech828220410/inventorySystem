@@ -135,6 +135,7 @@ namespace 中藥調劑系統
             this.rJ_Lable7 = new MyUI.RJ_Lable();
             this.dateTimeIntervelPicker_交易紀錄_操作時間 = new MyUI.DateTimeIntervelPicker();
             this.設定 = new System.Windows.Forms.TabPage();
+            this.plC_RJ_Button_人員資料 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_儲位設定 = new MyUI.PLC_RJ_Button();
             this.系統 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -144,7 +145,8 @@ namespace 中藥調劑系統
             this.lowerMachine_Panel = new LadderUI.LowerMachine_Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.rowsLEDUI = new H_Pannel_lib.RowsLEDUI();
-            this.plC_RJ_Button_人員資料 = new MyUI.PLC_RJ_Button();
+            this.rJ_Button_磅秤扣重 = new MyUI.RJ_Button();
+            this.rJ_Button_磅秤歸零 = new MyUI.RJ_Button();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
@@ -2494,6 +2496,8 @@ namespace 中藥調劑系統
             // 設定
             // 
             this.設定.BackColor = System.Drawing.Color.White;
+            this.設定.Controls.Add(this.rJ_Button_磅秤歸零);
+            this.設定.Controls.Add(this.rJ_Button_磅秤扣重);
             this.設定.Controls.Add(this.plC_RJ_Button_人員資料);
             this.設定.Controls.Add(this.plC_RJ_Button_儲位設定);
             this.設定.Location = new System.Drawing.Point(4, 25);
@@ -2501,6 +2505,59 @@ namespace 中藥調劑系統
             this.設定.Size = new System.Drawing.Size(1256, 732);
             this.設定.TabIndex = 3;
             this.設定.Text = "設定";
+            // 
+            // plC_RJ_Button_人員資料
+            // 
+            this.plC_RJ_Button_人員資料.AutoResetState = false;
+            this.plC_RJ_Button_人員資料.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料.Bool = false;
+            this.plC_RJ_Button_人員資料.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料.BorderRadius = 10;
+            this.plC_RJ_Button_人員資料.BorderSize = 1;
+            this.plC_RJ_Button_人員資料.but_press = false;
+            this.plC_RJ_Button_人員資料.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_人員資料.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_人員資料.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_人員資料.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_人員資料.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_人員資料.GUID = "";
+            this.plC_RJ_Button_人員資料.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_人員資料.Image_padding = new System.Windows.Forms.Padding(15, 5, 22, 5);
+            this.plC_RJ_Button_人員資料.Location = new System.Drawing.Point(110, 3);
+            this.plC_RJ_Button_人員資料.Name = "plC_RJ_Button_人員資料";
+            this.plC_RJ_Button_人員資料.OFF_文字內容 = "人員資料";
+            this.plC_RJ_Button_人員資料.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_人員資料.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料.ON_BorderSize = 1;
+            this.plC_RJ_Button_人員資料.ON_文字內容 = "人員資料";
+            this.plC_RJ_Button_人員資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_人員資料.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_人員資料.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_人員資料.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_人員資料.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_人員資料.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_人員資料.ShadowSize = 3;
+            this.plC_RJ_Button_人員資料.ShowLoadingForm = false;
+            this.plC_RJ_Button_人員資料.Size = new System.Drawing.Size(97, 100);
+            this.plC_RJ_Button_人員資料.State = false;
+            this.plC_RJ_Button_人員資料.TabIndex = 156;
+            this.plC_RJ_Button_人員資料.Text = "人員資料";
+            this.plC_RJ_Button_人員資料.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_人員資料.TextHeight = 35;
+            this.plC_RJ_Button_人員資料.Texts = "人員資料";
+            this.plC_RJ_Button_人員資料.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_人員資料.字型鎖住 = false;
+            this.plC_RJ_Button_人員資料.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_人員資料.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_人員資料.文字鎖住 = false;
+            this.plC_RJ_Button_人員資料.背景圖片 = global::中藥調劑系統.Properties.Resources.personnel_information_and_permission_levels;
+            this.plC_RJ_Button_人員資料.讀取位元反向 = false;
+            this.plC_RJ_Button_人員資料.讀寫鎖住 = false;
+            this.plC_RJ_Button_人員資料.音效 = false;
+            this.plC_RJ_Button_人員資料.顯示 = false;
+            this.plC_RJ_Button_人員資料.顯示狀態 = false;
             // 
             // plC_RJ_Button_儲位設定
             // 
@@ -2665,58 +2722,69 @@ namespace 中藥調劑系統
             this.rowsLEDUI.UDP_ServerPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("rowsLEDUI.UDP_ServerPorts")));
             this.rowsLEDUI.UserName = "root";
             // 
-            // plC_RJ_Button_人員資料
+            // rJ_Button_磅秤扣重
             // 
-            this.plC_RJ_Button_人員資料.AutoResetState = false;
-            this.plC_RJ_Button_人員資料.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_人員資料.Bool = false;
-            this.plC_RJ_Button_人員資料.BorderColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_人員資料.BorderRadius = 10;
-            this.plC_RJ_Button_人員資料.BorderSize = 1;
-            this.plC_RJ_Button_人員資料.but_press = false;
-            this.plC_RJ_Button_人員資料.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_人員資料.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_人員資料.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_人員資料.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_人員資料.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_人員資料.GUID = "";
-            this.plC_RJ_Button_人員資料.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_人員資料.Image_padding = new System.Windows.Forms.Padding(15, 5, 22, 5);
-            this.plC_RJ_Button_人員資料.Location = new System.Drawing.Point(110, 3);
-            this.plC_RJ_Button_人員資料.Name = "plC_RJ_Button_人員資料";
-            this.plC_RJ_Button_人員資料.OFF_文字內容 = "人員資料";
-            this.plC_RJ_Button_人員資料.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_人員資料.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_人員資料.OFF_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_人員資料.ON_BorderSize = 1;
-            this.plC_RJ_Button_人員資料.ON_文字內容 = "人員資料";
-            this.plC_RJ_Button_人員資料.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_Button_人員資料.ON_文字顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_人員資料.ON_背景顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_人員資料.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_人員資料.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_人員資料.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_人員資料.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_人員資料.ShadowSize = 3;
-            this.plC_RJ_Button_人員資料.ShowLoadingForm = false;
-            this.plC_RJ_Button_人員資料.Size = new System.Drawing.Size(97, 100);
-            this.plC_RJ_Button_人員資料.State = false;
-            this.plC_RJ_Button_人員資料.TabIndex = 156;
-            this.plC_RJ_Button_人員資料.Text = "人員資料";
-            this.plC_RJ_Button_人員資料.TextColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_人員資料.TextHeight = 35;
-            this.plC_RJ_Button_人員資料.Texts = "人員資料";
-            this.plC_RJ_Button_人員資料.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_人員資料.字型鎖住 = false;
-            this.plC_RJ_Button_人員資料.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_人員資料.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_人員資料.文字鎖住 = false;
-            this.plC_RJ_Button_人員資料.背景圖片 = global::中藥調劑系統.Properties.Resources.personnel_information_and_permission_levels;
-            this.plC_RJ_Button_人員資料.讀取位元反向 = false;
-            this.plC_RJ_Button_人員資料.讀寫鎖住 = false;
-            this.plC_RJ_Button_人員資料.音效 = false;
-            this.plC_RJ_Button_人員資料.顯示 = false;
-            this.plC_RJ_Button_人員資料.顯示狀態 = false;
+            this.rJ_Button_磅秤扣重.AutoResetState = false;
+            this.rJ_Button_磅秤扣重.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_磅秤扣重.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_磅秤扣重.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_磅秤扣重.BorderRadius = 10;
+            this.rJ_Button_磅秤扣重.BorderSize = 0;
+            this.rJ_Button_磅秤扣重.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_磅秤扣重.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_磅秤扣重.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_磅秤扣重.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_磅秤扣重.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_磅秤扣重.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_磅秤扣重.GUID = "";
+            this.rJ_Button_磅秤扣重.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_磅秤扣重.Location = new System.Drawing.Point(1113, 17);
+            this.rJ_Button_磅秤扣重.Name = "rJ_Button_磅秤扣重";
+            this.rJ_Button_磅秤扣重.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_磅秤扣重.ProhibitionLineWidth = 4;
+            this.rJ_Button_磅秤扣重.ProhibitionSymbolSize = 30;
+            this.rJ_Button_磅秤扣重.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_磅秤扣重.ShadowSize = 3;
+            this.rJ_Button_磅秤扣重.ShowLoadingForm = false;
+            this.rJ_Button_磅秤扣重.Size = new System.Drawing.Size(135, 63);
+            this.rJ_Button_磅秤扣重.State = false;
+            this.rJ_Button_磅秤扣重.TabIndex = 157;
+            this.rJ_Button_磅秤扣重.Text = "磅秤扣重";
+            this.rJ_Button_磅秤扣重.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_磅秤扣重.TextHeight = 0;
+            this.rJ_Button_磅秤扣重.UseVisualStyleBackColor = false;
+            // 
+            // rJ_Button_磅秤歸零
+            // 
+            this.rJ_Button_磅秤歸零.AutoResetState = false;
+            this.rJ_Button_磅秤歸零.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_磅秤歸零.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_磅秤歸零.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_磅秤歸零.BorderRadius = 10;
+            this.rJ_Button_磅秤歸零.BorderSize = 0;
+            this.rJ_Button_磅秤歸零.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_磅秤歸零.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_磅秤歸零.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_磅秤歸零.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_磅秤歸零.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_磅秤歸零.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_磅秤歸零.GUID = "";
+            this.rJ_Button_磅秤歸零.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_磅秤歸零.Location = new System.Drawing.Point(963, 17);
+            this.rJ_Button_磅秤歸零.Name = "rJ_Button_磅秤歸零";
+            this.rJ_Button_磅秤歸零.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_磅秤歸零.ProhibitionLineWidth = 4;
+            this.rJ_Button_磅秤歸零.ProhibitionSymbolSize = 30;
+            this.rJ_Button_磅秤歸零.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_磅秤歸零.ShadowSize = 3;
+            this.rJ_Button_磅秤歸零.ShowLoadingForm = false;
+            this.rJ_Button_磅秤歸零.Size = new System.Drawing.Size(135, 63);
+            this.rJ_Button_磅秤歸零.State = false;
+            this.rJ_Button_磅秤歸零.TabIndex = 158;
+            this.rJ_Button_磅秤歸零.Text = "磅秤歸零";
+            this.rJ_Button_磅秤歸零.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_磅秤歸零.TextHeight = 0;
+            this.rJ_Button_磅秤歸零.UseVisualStyleBackColor = false;
             // 
             // Main_Form
             // 
@@ -2885,6 +2953,8 @@ namespace 中藥調劑系統
         private MyUI.RJ_Lable rJ_Lable8;
         private MyUI.DateTimeIntervelPicker dateTimeIntervelPicker_交易紀錄_開方時間;
         private MyUI.PLC_RJ_Button plC_RJ_Button_人員資料;
+        private MyUI.RJ_Button rJ_Button_磅秤歸零;
+        private MyUI.RJ_Button rJ_Button_磅秤扣重;
     }
 }
 

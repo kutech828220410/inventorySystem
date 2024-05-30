@@ -190,7 +190,7 @@ namespace 中藥調劑系統
                                 if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.dwt;
                                 else enum_Unit_Type = Port.enum_unit_type.g;
 
-                                ExcelScaleLib_Port.set_sub_current_weight();
+                                EXCELL_set_sub_current_weight();
                                 this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
                             }
                             else if(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString() == list_處方內容_buf[0][(int)enum_處方內容.GUID].ObjectToString())
@@ -225,7 +225,7 @@ namespace 中藥調劑系統
                                 if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.dwt;
                                 else enum_Unit_Type = Port.enum_unit_type.g;
 
-                                ExcelScaleLib_Port.set_sub_current_weight();
+                                EXCELL_set_sub_current_weight();
                                 this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
                             }
                          

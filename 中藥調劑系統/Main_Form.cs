@@ -33,8 +33,18 @@ namespace 中藥調劑系統
         {
             InitializeComponent();
             this.Load += MainForm_Load;
- 
 
+            this.rJ_Button_磅秤扣重.MouseDownEvent += RJ_Button_磅秤扣重_MouseDownEvent;
+            this.rJ_Button_磅秤歸零.MouseDownEvent += RJ_Button_磅秤歸零_MouseDownEvent;
+        }
+
+        private void RJ_Button_磅秤歸零_MouseDownEvent(MouseEventArgs mevent)
+        {
+            ExcelScaleLib_Port.set_to_zero();
+        }
+        private void RJ_Button_磅秤扣重_MouseDownEvent(MouseEventArgs mevent)
+        {
+            EXCELL_set_sub_current_weight();
         }
 
         #region DBConfigClass
@@ -67,6 +77,10 @@ namespace 中藥調劑系統
 
             //this.LoadcommandLineArgs();
             string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
+
+            Console.WriteLine($"[LoadDBConfig] path : {MyConfigFileName} ");
+            Console.WriteLine($"[LoadDBConfig] jsonstr : {jsonstr} ");
+
             if (jsonstr.StringIsEmpty())
             {
 
@@ -123,6 +137,7 @@ namespace 中藥調劑系統
         private void LoadMyConfig()
         {
             string jsonstr = MyFileStream.LoadFileAllText($"{MyConfigFileName}");
+     
             if (jsonstr.StringIsEmpty())
             {
                 jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
@@ -161,10 +176,7 @@ namespace 中藥調劑系統
             MyMessageBox.音效 = false;
             this.plC_UI_Init.音效 = false;
 
-            LoadDBConfig();
-            LoadMyConfig();
-
-            ApiServerSetting(dBConfigClass.Name);
+          
 
             this.plC_RJ_Button_儲位設定.MouseDownEvent += PlC_RJ_Button_儲位設定_MouseDownEvent;
             this.plC_RJ_Button_人員資料.MouseDownEvent += PlC_RJ_Button_人員資料_MouseDownEvent;
@@ -192,6 +204,11 @@ namespace 中藥調劑系統
         }
         private void PlC_UI_Init_UI_Finished_Event()
         {
+            LoadDBConfig();
+            LoadMyConfig();
+
+            ApiServerSetting(dBConfigClass.Name);
+
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
             PLC_Device_已登入.Bool = false;
 
@@ -208,9 +225,16 @@ namespace 中藥調劑系統
 
         private void ApiServerSetting(string Name)
         {
+            API_Server = dBConfigClass.Api_Server;
+            Console.WriteLine($"[ApiServerSetting] url : {dBConfigClass.Api_Server}");
+            Console.WriteLine($"[ApiServerSetting] name : {dBConfigClass.Name}");
+
             this.Text = $"中藥調劑系統 Ver{this.ProductVersion}";
             ServerName = Name;
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
+            Console.WriteLine($"[ServerSettingClassMethod.WebApiGet] url : {API_Server}/api/serversetting");
+            Console.WriteLine($"[ServerSettingClassMethod.WebApiGet] 取得<{serverSettingClasses.Count}>筆資料");
+
             ServerSettingClass serverSettingClass_一般資料 = serverSettingClasses.myFind(Name, "中藥調劑系統", "一般資料");
             ServerSettingClass serverSettingClass_儲位資料 = serverSettingClasses.myFind(Name, "中藥調劑系統", "儲位資料");
             ServerSettingClass serverSettingClass_VM端 = serverSettingClasses.myFind(Name, "中藥調劑系統", "VM端");
