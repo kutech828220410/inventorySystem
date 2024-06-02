@@ -1340,7 +1340,10 @@ namespace HIS_WebApi
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByDefult(null, (int)enum_交易記錄查詢資料.藥品碼, 藥碼);
                         list_value_buf = tradingData(list_value_buf);
-
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
                         list_value.LockAdd(list_value_buf);
 
                     })));
@@ -1438,7 +1441,10 @@ namespace HIS_WebApi
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.藥品名稱, $"%{serchValue}%");
                         list_value_buf = tradingData(list_value_buf);
 
-
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
                         list_value.LockAdd(list_value_buf);
 
                     })));
@@ -1535,7 +1541,10 @@ namespace HIS_WebApi
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.病歷號, $"%{serchValue}%");
                         list_value_buf = tradingData(list_value_buf);
-
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
 
                         list_value.LockAdd(list_value_buf);
 
@@ -1633,7 +1642,10 @@ namespace HIS_WebApi
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.操作人, $"%{serchValue}%");
                         list_value_buf = tradingData(list_value_buf);
-
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
 
                         list_value.LockAdd(list_value_buf);
 
@@ -1730,6 +1742,12 @@ namespace HIS_WebApi
                         string TableName = "trading";
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.領藥號, $"%{serchValue}%");
+
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
+
                         list_value_buf = tradingData(list_value_buf);
 
 
@@ -1830,7 +1848,10 @@ namespace HIS_WebApi
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByLike(null, (int)enum_交易記錄查詢資料.病人姓名, $"%{serchValue}%");
                         list_value_buf = tradingData(list_value_buf);
 
-
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
                         list_value.LockAdd(list_value_buf);
 
                     })));
@@ -1940,7 +1961,10 @@ namespace HIS_WebApi
                         SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.操作時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
                         list_value_buf = tradingData(list_value_buf);
-
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
                         list_value.LockAdd(list_value_buf);
 
                     })));
@@ -2052,7 +2076,10 @@ namespace HIS_WebApi
                         List<object[]> list_value_buf = sQLControl_trading.GetRowsByBetween(null, (int)enum_交易記錄查詢資料.開方時間, date_st.ToDateTimeString(), date_end.ToDateTimeString());
 
                         list_value_buf = tradingData(list_value_buf);
-
+                        for (int i = 0; i < list_value_buf.Count; i++)
+                        {
+                            list_value_buf[i][(int)enum_交易記錄查詢資料.庫別] = serverName;
+                        }
                         list_value.LockAdd(list_value_buf);
 
                     })));

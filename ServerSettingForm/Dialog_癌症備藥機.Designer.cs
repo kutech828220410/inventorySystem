@@ -45,13 +45,15 @@ namespace ServerSettingForm
             this.comboBox_名稱 = new System.Windows.Forms.ComboBox();
             this.button_新增 = new System.Windows.Forms.Button();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox_單位 = new System.Windows.Forms.ComboBox();
+            this.panel_SQLContent7 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_SQLContent6 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_SQLContent5 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_SQLContent4 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent3 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent2 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
-            this.panel_SQLContent4 = new ServerSettingForm.Panel_SQLContent();
-            this.panel_SQLContent5 = new ServerSettingForm.Panel_SQLContent();
-            this.panel_SQLContent6 = new ServerSettingForm.Panel_SQLContent();
-            this.panel_SQLContent7 = new ServerSettingForm.Panel_SQLContent();
             this.SuspendLayout();
             // 
             // button_讀取
@@ -153,12 +155,31 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_Server.Texts = "";
             this.rJ_TextBox_API_Server.UnderlineStyle = false;
             // 
-            // panel_SQLContent3
+            // label2
             // 
-            this.panel_SQLContent3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_SQLContent3.Content = "藥檔資料";
-            this.panel_SQLContent3.Location = new System.Drawing.Point(649, 79);
-            this.panel_SQLContent3.Name = "panel_SQLContent3";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(522, 76);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 27);
+            this.label2.TabIndex = 70;
+            this.label2.Text = "單位 :";
+            // 
+            // comboBox_單位
+            // 
+            this.comboBox_單位.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.comboBox_單位.FormattingEnabled = true;
+            this.comboBox_單位.Location = new System.Drawing.Point(592, 73);
+            this.comboBox_單位.Name = "comboBox_單位";
+            this.comboBox_單位.Size = new System.Drawing.Size(168, 32);
+            this.comboBox_單位.TabIndex = 71;
+            // 
+            // panel_SQLContent7
+            // 
+            this.panel_SQLContent7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent7.Content = "交易紀錄資料";
+            this.panel_SQLContent7.Location = new System.Drawing.Point(664, 461);
+            this.panel_SQLContent7.Name = "panel_SQLContent7";
             serverSettingClass1.DBName = "";
             serverSettingClass1.GUID = null;
             serverSettingClass1.Password = "";
@@ -167,22 +188,22 @@ namespace ServerSettingForm
             serverSettingClass1.TableName = null;
             serverSettingClass1.User = "";
             serverSettingClass1.Value = null;
-            serverSettingClass1.內容 = "藥檔資料";
+            serverSettingClass1.內容 = "交易紀錄資料";
             serverSettingClass1.單位 = null;
             serverSettingClass1.程式類別 = null;
             serverSettingClass1.設備名稱 = "";
             serverSettingClass1.類別 = "癌症備藥機";
-            this.panel_SQLContent3.ServerSetting = serverSettingClass1;
-            this.panel_SQLContent3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_SQLContent3.Size = new System.Drawing.Size(175, 309);
-            this.panel_SQLContent3.TabIndex = 65;
+            this.panel_SQLContent7.ServerSetting = serverSettingClass1;
+            this.panel_SQLContent7.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent7.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent7.TabIndex = 69;
             // 
-            // panel_SQLContent2
+            // panel_SQLContent6
             // 
-            this.panel_SQLContent2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_SQLContent2.Content = "一般資料";
-            this.panel_SQLContent2.Location = new System.Drawing.Point(468, 79);
-            this.panel_SQLContent2.Name = "panel_SQLContent2";
+            this.panel_SQLContent6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent6.Content = "儲位資料";
+            this.panel_SQLContent6.Location = new System.Drawing.Point(845, 461);
+            this.panel_SQLContent6.Name = "panel_SQLContent6";
             serverSettingClass2.DBName = "";
             serverSettingClass2.GUID = null;
             serverSettingClass2.Password = "";
@@ -191,22 +212,22 @@ namespace ServerSettingForm
             serverSettingClass2.TableName = null;
             serverSettingClass2.User = "";
             serverSettingClass2.Value = null;
-            serverSettingClass2.內容 = "一般資料";
+            serverSettingClass2.內容 = "儲位資料";
             serverSettingClass2.單位 = null;
             serverSettingClass2.程式類別 = null;
             serverSettingClass2.設備名稱 = "";
             serverSettingClass2.類別 = "癌症備藥機";
-            this.panel_SQLContent2.ServerSetting = serverSettingClass2;
-            this.panel_SQLContent2.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_SQLContent2.Size = new System.Drawing.Size(175, 309);
-            this.panel_SQLContent2.TabIndex = 64;
+            this.panel_SQLContent6.ServerSetting = serverSettingClass2;
+            this.panel_SQLContent6.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent6.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent6.TabIndex = 68;
             // 
-            // panel_SQLContent1
+            // panel_SQLContent5
             // 
-            this.panel_SQLContent1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_SQLContent1.Content = "排程醫令資料";
-            this.panel_SQLContent1.Location = new System.Drawing.Point(193, 79);
-            this.panel_SQLContent1.Name = "panel_SQLContent1";
+            this.panel_SQLContent5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent5.Content = "本地端";
+            this.panel_SQLContent5.Location = new System.Drawing.Point(27, 146);
+            this.panel_SQLContent5.Name = "panel_SQLContent5";
             serverSettingClass3.DBName = "";
             serverSettingClass3.GUID = null;
             serverSettingClass3.Password = "";
@@ -215,21 +236,21 @@ namespace ServerSettingForm
             serverSettingClass3.TableName = null;
             serverSettingClass3.User = "";
             serverSettingClass3.Value = null;
-            serverSettingClass3.內容 = "排程醫令資料";
+            serverSettingClass3.內容 = "本地端";
             serverSettingClass3.單位 = null;
             serverSettingClass3.程式類別 = null;
             serverSettingClass3.設備名稱 = "";
             serverSettingClass3.類別 = "癌症備藥機";
-            this.panel_SQLContent1.ServerSetting = serverSettingClass3;
-            this.panel_SQLContent1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
-            this.panel_SQLContent1.TabIndex = 62;
+            this.panel_SQLContent5.ServerSetting = serverSettingClass3;
+            this.panel_SQLContent5.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent5.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent5.TabIndex = 67;
             // 
             // panel_SQLContent4
             // 
             this.panel_SQLContent4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_SQLContent4.Content = "人員資料";
-            this.panel_SQLContent4.Location = new System.Drawing.Point(830, 79);
+            this.panel_SQLContent4.Location = new System.Drawing.Point(845, 146);
             this.panel_SQLContent4.Name = "panel_SQLContent4";
             serverSettingClass4.DBName = "";
             serverSettingClass4.GUID = null;
@@ -249,12 +270,12 @@ namespace ServerSettingForm
             this.panel_SQLContent4.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent4.TabIndex = 66;
             // 
-            // panel_SQLContent5
+            // panel_SQLContent3
             // 
-            this.panel_SQLContent5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_SQLContent5.Content = "本地端";
-            this.panel_SQLContent5.Location = new System.Drawing.Point(12, 79);
-            this.panel_SQLContent5.Name = "panel_SQLContent5";
+            this.panel_SQLContent3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent3.Content = "藥檔資料";
+            this.panel_SQLContent3.Location = new System.Drawing.Point(664, 146);
+            this.panel_SQLContent3.Name = "panel_SQLContent3";
             serverSettingClass5.DBName = "";
             serverSettingClass5.GUID = null;
             serverSettingClass5.Password = "";
@@ -263,22 +284,22 @@ namespace ServerSettingForm
             serverSettingClass5.TableName = null;
             serverSettingClass5.User = "";
             serverSettingClass5.Value = null;
-            serverSettingClass5.內容 = "本地端";
+            serverSettingClass5.內容 = "藥檔資料";
             serverSettingClass5.單位 = null;
             serverSettingClass5.程式類別 = null;
             serverSettingClass5.設備名稱 = "";
             serverSettingClass5.類別 = "癌症備藥機";
-            this.panel_SQLContent5.ServerSetting = serverSettingClass5;
-            this.panel_SQLContent5.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_SQLContent5.Size = new System.Drawing.Size(175, 309);
-            this.panel_SQLContent5.TabIndex = 67;
+            this.panel_SQLContent3.ServerSetting = serverSettingClass5;
+            this.panel_SQLContent3.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent3.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent3.TabIndex = 65;
             // 
-            // panel_SQLContent6
+            // panel_SQLContent2
             // 
-            this.panel_SQLContent6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_SQLContent6.Content = "儲位資料";
-            this.panel_SQLContent6.Location = new System.Drawing.Point(830, 394);
-            this.panel_SQLContent6.Name = "panel_SQLContent6";
+            this.panel_SQLContent2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent2.Content = "一般資料";
+            this.panel_SQLContent2.Location = new System.Drawing.Point(483, 146);
+            this.panel_SQLContent2.Name = "panel_SQLContent2";
             serverSettingClass6.DBName = "";
             serverSettingClass6.GUID = null;
             serverSettingClass6.Password = "";
@@ -287,22 +308,22 @@ namespace ServerSettingForm
             serverSettingClass6.TableName = null;
             serverSettingClass6.User = "";
             serverSettingClass6.Value = null;
-            serverSettingClass6.內容 = "儲位資料";
+            serverSettingClass6.內容 = "一般資料";
             serverSettingClass6.單位 = null;
             serverSettingClass6.程式類別 = null;
             serverSettingClass6.設備名稱 = "";
             serverSettingClass6.類別 = "癌症備藥機";
-            this.panel_SQLContent6.ServerSetting = serverSettingClass6;
-            this.panel_SQLContent6.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_SQLContent6.Size = new System.Drawing.Size(175, 309);
-            this.panel_SQLContent6.TabIndex = 68;
+            this.panel_SQLContent2.ServerSetting = serverSettingClass6;
+            this.panel_SQLContent2.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent2.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent2.TabIndex = 64;
             // 
-            // panel_SQLContent7
+            // panel_SQLContent1
             // 
-            this.panel_SQLContent7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_SQLContent7.Content = "交易紀錄資料";
-            this.panel_SQLContent7.Location = new System.Drawing.Point(649, 394);
-            this.panel_SQLContent7.Name = "panel_SQLContent7";
+            this.panel_SQLContent1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_SQLContent1.Content = "排程醫令資料";
+            this.panel_SQLContent1.Location = new System.Drawing.Point(208, 146);
+            this.panel_SQLContent1.Name = "panel_SQLContent1";
             serverSettingClass7.DBName = "";
             serverSettingClass7.GUID = null;
             serverSettingClass7.Password = "";
@@ -311,21 +332,23 @@ namespace ServerSettingForm
             serverSettingClass7.TableName = null;
             serverSettingClass7.User = "";
             serverSettingClass7.Value = null;
-            serverSettingClass7.內容 = "交易紀錄資料";
+            serverSettingClass7.內容 = "排程醫令資料";
             serverSettingClass7.單位 = null;
             serverSettingClass7.程式類別 = null;
             serverSettingClass7.設備名稱 = "";
             serverSettingClass7.類別 = "癌症備藥機";
-            this.panel_SQLContent7.ServerSetting = serverSettingClass7;
-            this.panel_SQLContent7.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
-            this.panel_SQLContent7.Size = new System.Drawing.Size(175, 309);
-            this.panel_SQLContent7.TabIndex = 69;
+            this.panel_SQLContent1.ServerSetting = serverSettingClass7;
+            this.panel_SQLContent1.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.癌症備藥機;
+            this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
+            this.panel_SQLContent1.TabIndex = 62;
             // 
             // Dialog_癌症備藥機
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 970);
+            this.Controls.Add(this.comboBox_單位);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel_SQLContent7);
             this.Controls.Add(this.panel_SQLContent6);
             this.Controls.Add(this.panel_SQLContent5);
@@ -368,5 +391,7 @@ namespace ServerSettingForm
         private Panel_SQLContent panel_SQLContent5;
         private Panel_SQLContent panel_SQLContent6;
         private Panel_SQLContent panel_SQLContent7;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox_單位;
     }
 }

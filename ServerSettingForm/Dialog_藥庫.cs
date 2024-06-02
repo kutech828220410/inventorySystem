@@ -130,6 +130,8 @@ namespace ServerSettingForm
             Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.藥庫);
             Panel_CheckBox.SaveAll(this.FindForm(), ref serverSettingClasses);
 
+            serverSettingClasses.Set_department_type(comboBox_單位.Text);
+
             ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
             if (serverSettingClass != null)
             {
@@ -204,7 +206,11 @@ namespace ServerSettingForm
             Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.藥庫);
             Panel_CheckBox.LoadAll(this.FindForm(), serverSettingClasses);
 
-            ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
+            this.comboBox_單位.DataSource = serverSettingClasses.Get_department_types();
+            ServerSettingClass serverSettingClass = serverSettingClasses.myFind("DS01", enum_ServerSetting_Type.藥庫.GetEnumName(), "一般資料");
+            this.comboBox_單位.Text = serverSettingClass.單位;
+
+            serverSettingClass = serverSettingClasses.MyFind(DataName, enum_ServerSetting_Type.藥庫, enum_ServerSetting_藥庫.功能);
             if (serverSettingClass != null)
             {
                 List<string> list_value = serverSettingClass.Value.JsonDeserializet<List<string>>();

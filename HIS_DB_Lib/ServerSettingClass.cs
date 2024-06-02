@@ -263,12 +263,29 @@ namespace HIS_DB_Lib
             return serverSettingClasses;
         }
 
+        public static void Set_department_type(this List<ServerSettingClass> serverSettingClasses , string department_type)
+        {
+            for (int i = 0; i < serverSettingClasses.Count; i++)
+            {
+                serverSettingClasses[i].單位 = department_type;
+            }
+        }
+        public static List<string> Get_department_types(this List<ServerSettingClass> serverSettingClasses)
+        {
+            List<string> department_types = (from temp in serverSettingClasses
+                                             select temp.單位).Distinct().ToList();
+            department_types.Remove(null);
+            department_types.Remove("");
+
+            return department_types;
+        }
+
     }
     public class ServerSettingClass
     {
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
-        [JsonPropertyName("Employer")]
+        [JsonPropertyName("department_type ")]
         public string 單位 { get; set; }    
         [JsonPropertyName("name")]
         public string 設備名稱 { get; set; }
