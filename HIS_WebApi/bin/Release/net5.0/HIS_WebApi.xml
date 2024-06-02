@@ -2470,6 +2470,50 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.ServerSettingController.POST_gget_department_type(HIS_DB_Lib.returnData)">
+            <summary>
+            取得指定Type(調劑台、藥庫...)伺服器資訊的服務單位
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                  "調劑台"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ServerSettingController.POST_get_serversetting_by_department_type(HIS_DB_Lib.returnData)">
+            <summary>
+            以單位別取得連線資訊(門診、急診、住院、藥庫...)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                  "門診"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.medConfig.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化資料庫

@@ -356,6 +356,82 @@ namespace HIS_DB_Lib
             this.User = User;
             this.Password = Password;
         }
-        
+
+
+        static public List<string> get_department_type(string API_Server)
+        {
+            string url = $"{API_Server}/api/ServerSetting/get_department_type";
+
+            returnData returnData = new returnData();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            List<string> strs = returnData_out.Data.ObjToClass<List<string>>();
+            return strs;
+        }
+        static public List<ServerSettingClass> get_serversetting_by_department_type(string API_Server ,string 單位)
+        {
+            string url = $"{API_Server}/api/ServerSetting/get_serversetting_by_department_type";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(單位);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            List<ServerSettingClass> value = returnData_out.Data.ObjToClass<List<ServerSettingClass>>();
+            return value;
+        }
+        static public List<ServerSettingClass> get_serversetting_by_type(string API_Server, string 類別)
+        {
+            string url = $"{API_Server}/api/ServerSetting/get_serversetting_by_type";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(類別);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            List<ServerSettingClass> value = returnData_out.Data.ObjToClass<List<ServerSettingClass>>();
+            return value;
+        }
+        static public SQLUI.Table Init(string API_Server)
+        {
+            string url = $"{API_Server}/api/ServerSetting/init";
+
+            returnData returnData = new returnData();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
+            return table;
+        }
+
     }
 }

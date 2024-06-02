@@ -1,6 +1,6 @@
 ﻿namespace 調劑台管理系統
 {
-    partial class Dialog_手動作業
+    partial class Dialog_手輸醫令
     {
         /// <summary>
         /// Required designer variable.

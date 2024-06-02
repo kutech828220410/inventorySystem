@@ -11,7 +11,7 @@ using Basic;
 
 namespace 調劑台管理系統
 {
-    public partial class Dialog_手輸醫令 : Form
+    public partial class Dialog_條碼輸入 : Form
     {
         public static Form form;
         public DialogResult ShowDialog()
@@ -37,7 +37,7 @@ namespace 調劑台管理系統
                 return rJ_TextBox_條碼號.Text;
             }
         }
-        public Dialog_手輸醫令()
+        public Dialog_條碼輸入()
         {
             InitializeComponent();
         }

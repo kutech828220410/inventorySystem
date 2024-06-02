@@ -403,7 +403,7 @@ namespace 調劑台管理系統
                 Dialog_輸入批號.form = this.FindForm();
                 Dialog_輸入效期.form = this.FindForm();
                 Dialog_輸入藥品碼.form = this.FindForm();
-                Dialog_手輸醫令.form = this.FindForm();
+                Dialog_條碼輸入.form = this.FindForm();
                 Dialog_醫令退藥.form = this.FindForm();
                 Dialog_設定產出時間.form = this.FindForm();
                 Dialog_RFID領退藥頁面.form = this.FindForm();
@@ -421,6 +421,8 @@ namespace 調劑台管理系統
                 Dialog_錯誤提示.form = this.FindForm();
                 Dialog_共用區設置.form = this.FindForm();
                 Dialog_AlarmForm.form = this.FindForm();
+                Dialog_調劑作業_調出.form = this.FindForm();
+
 
                 LoadDBConfig();
                 LoadMyConfig();

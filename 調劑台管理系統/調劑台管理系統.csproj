@@ -278,17 +278,17 @@
     <Compile Include="Dialog\Dialog_輸入批號.Designer.cs">
       <DependentUpon>Dialog_輸入批號.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_手動作業.cs">
+    <Compile Include="Dialog\Dialog_手輸醫令.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_手動作業.Designer.cs">
-      <DependentUpon>Dialog_手動作業.cs</DependentUpon>
+    <Compile Include="Dialog\Dialog_手輸醫令.Designer.cs">
+      <DependentUpon>Dialog_手輸醫令.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_手輸醫囑.cs">
+    <Compile Include="Dialog\Dialog_條碼輸入.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_手輸醫囑.Designer.cs">
-      <DependentUpon>Dialog_手輸醫囑.cs</DependentUpon>
+    <Compile Include="Dialog\Dialog_條碼輸入.Designer.cs">
+      <DependentUpon>Dialog_條碼輸入.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_收支原因設定.cs">
       <SubType>Form</SubType>
@@ -403,6 +403,12 @@
     </Compile>
     <Compile Include="Dialog\Dialog_下載藥檔範圍選擇.Designer.cs">
       <DependentUpon>Dialog_下載藥檔範圍選擇.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\Dialog_調劑作業_調出.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_調劑作業_調出.Designer.cs">
+      <DependentUpon>Dialog_調劑作業_調出.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
@@ -606,6 +612,9 @@
     <EmbeddedResource Include="Dialog\Dialog_設定開鎖權限.resx">
       <DependentUpon>Dialog_設定開鎖權限.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_調劑作業_調出.resx">
+      <DependentUpon>Dialog_調劑作業_調出.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_輸入批號.resx">
       <DependentUpon>Dialog_輸入批號.cs</DependentUpon>
     </EmbeddedResource>
@@ -618,11 +627,11 @@
     <EmbeddedResource Include="Dialog\Dialog_RFID領退藥頁面.resx">
       <DependentUpon>Dialog_RFID領退藥頁面.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_手動作業.resx">
-      <DependentUpon>Dialog_手動作業.cs</DependentUpon>
+    <EmbeddedResource Include="Dialog\Dialog_手輸醫令.resx">
+      <DependentUpon>Dialog_手輸醫令.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_手輸醫囑.resx">
-      <DependentUpon>Dialog_手輸醫囑.cs</DependentUpon>
+    <EmbeddedResource Include="Dialog\Dialog_條碼輸入.resx">
+      <DependentUpon>Dialog_條碼輸入.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_收支原因設定.resx">
       <DependentUpon>Dialog_收支原因設定.cs</DependentUpon>
@@ -758,6 +767,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\arrow-right.png" />
+    <None Include="Resources\transfer-medication-to-dispensing-counter-removebg-preview.png" />
     <None Include="Resources\病歷號.png" />
     <None Include="Resources\指紋辨識登入.png" />
     <None Include="Resources\手輸領藥.png" />
