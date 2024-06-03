@@ -1341,6 +1341,7 @@ namespace 調劑台管理系統
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
                                     this.storageUI_EPD_266.DrawToEpd_UDP(storage);
+                                    this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                                 }                        
                             }));
                             Task allTask = Task.WhenAll(taskList);

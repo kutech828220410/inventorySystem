@@ -448,13 +448,13 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為[Device]陣列結構</returns>
-        [Route("get_rowLED")]
+        [Route("get_rowLEDs")]
         [HttpPost]
-        public string POST_get_rowLED(returnData returnData)
+        public string POST_get_rowLEDs(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
-            returnData.Method = "get_rowLED";
+            returnData.Method = "get_rowLEDs";
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -467,7 +467,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
 
-                string tableName = returnData.TableName;
+                string tableName = "RowsLED_Jsonstring";
                 string Server = serverSettingClasses[0].Server;
                 string DB = serverSettingClasses[0].DBName;
                 string UserName = serverSettingClasses[0].User;
@@ -541,7 +541,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt(true);
                 }
                 string IP = returnData.ValueAry[0];
-                string tableName = returnData.TableName;
+                string tableName = "RowsLED_Jsonstring";
                 string Server = serverSettingClasses[0].Server;
                 string DB = serverSettingClasses[0].DBName;
                 string UserName = serverSettingClasses[0].User;
@@ -616,7 +616,7 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
-                string tableName = returnData.TableName;
+                string tableName = "RowsLED_Jsonstring";
                 string Server = serverSettingClasses[0].Server;
                 string DB = serverSettingClasses[0].DBName;
                 string UserName = serverSettingClasses[0].User;
@@ -669,6 +669,76 @@ namespace HIS_WebApi
 
 
         }
+
+        /// <summary>
+        /// 取得儲位資料(Drawer)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "口服2",
+        ///     "ServerType": "調劑台",
+        ///     "TableName" : "";
+        ///     "ValueAry" : 
+        ///     [
+        ///       
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_Drawers")]
+        [HttpPost]
+        public string POST_get_Drawers(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_Drawers";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                string tableName = returnData.TableName;
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<RowsLED> rowsLEDs = RowsLEDMethod.SQL_GetAllRowsLED(sQLControl_device);
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = rowsLEDs;
+                returnData.Result = $"rowsLEDs 取得成功!,共<{rowsLEDs.Count}>筆資料,TableName : {returnData.TableName}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+
 
         [Route("light_web")]
         [HttpPost]

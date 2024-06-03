@@ -26,7 +26,7 @@ namespace HIS_DB_Lib
         }
         static public List<RowsLED> GetRowsLED(string API_Server, string ServerName, string ServerType)
         {
-            string url = $"{API_Server}/api/device/get_rowLED";
+            string url = $"{API_Server}/api/device/get_rowLEDs";
 
             returnData returnData = new returnData();
             returnData.ServerName = ServerName;
@@ -101,6 +101,7 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_result}");
 
         }
+
         static public List<Device> GetDevice(string API_Server, string ServerName, string ServerType, DeviceType deviceType)
         {
             string url = $"{API_Server}/api/device/get_device";

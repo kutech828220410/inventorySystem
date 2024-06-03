@@ -1665,30 +1665,7 @@ namespace 調劑台管理系統
           
                             list_IP.Add(IP);
                         }
-                    }
-                    else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
-                    {
-    
-                    }
-                    else if (device.DeviceType == DeviceType.EPD1020 || device.DeviceType == DeviceType.EPD1020_lock)
-                    {
-                        //Box box = list_Device[i] as Box;
-                        //if (box != null)
-                        //{
-                        //    taskList.Add(Task.Run(() =>
-                        //    {
-                        //        Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
-                        //        List<Box> boxes = drawer.SortByCode(藥品碼);
-                        //        if (!plC_CheckBox_測試模式.Checked)
-                        //        {
-                        //            this.drawerUI_EPD_1020.Set_Pannel_LED_UDP(drawer, color);
-                        //        }
-
-                        //    }));
-  
-                        //    list_IP.Add(IP);
-                        //}
-                    }
+                    }            
                     else if (device.DeviceType == DeviceType.Pannel35)
                     {
                         Storage storage = list_Device[i] as Storage;

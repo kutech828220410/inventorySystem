@@ -44,7 +44,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_庫儲藥品 = new SQLUI.SQL_DataGridView();
             this.comboBox_庫儲藥品_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.rJ_TextBox1 = new MyUI.RJ_TextBox();
-            this.rJ_Button1 = new MyUI.RJ_Button();
+            this.rJ_Button_庫儲藥品_搜尋 = new MyUI.RJ_Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
@@ -245,7 +245,7 @@ namespace 調劑台管理系統
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.rJ_Button1);
+            this.panel4.Controls.Add(this.rJ_Button_庫儲藥品_搜尋);
             this.panel4.Controls.Add(this.rJ_TextBox1);
             this.panel4.Controls.Add(this.comboBox_庫儲藥品_搜尋條件);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -270,7 +270,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_庫儲藥品.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_庫儲藥品.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_庫儲藥品.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.sqL_DataGridView_庫儲藥品.columnHeadersHeight = 18;
+            this.sqL_DataGridView_庫儲藥品.columnHeadersHeight = 15;
             this.sqL_DataGridView_庫儲藥品.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_庫儲藥品.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sqL_DataGridView_庫儲藥品.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -346,37 +346,37 @@ namespace 調劑台管理系統
             this.rJ_TextBox1.Texts = "";
             this.rJ_TextBox1.UnderlineStyle = false;
             // 
-            // rJ_Button1
+            // rJ_Button_庫儲藥品_搜尋
             // 
-            this.rJ_Button1.AutoResetState = false;
-            this.rJ_Button1.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button1.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button1.BorderRadius = 10;
-            this.rJ_Button1.BorderSize = 0;
-            this.rJ_Button1.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button1.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button1.FlatAppearance.BorderSize = 0;
-            this.rJ_Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button1.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button1.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button1.GUID = "";
-            this.rJ_Button1.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button1.Location = new System.Drawing.Point(408, 15);
-            this.rJ_Button1.Name = "rJ_Button1";
-            this.rJ_Button1.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button1.ProhibitionLineWidth = 4;
-            this.rJ_Button1.ProhibitionSymbolSize = 30;
-            this.rJ_Button1.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button1.ShadowSize = 3;
-            this.rJ_Button1.ShowLoadingForm = false;
-            this.rJ_Button1.Size = new System.Drawing.Size(103, 70);
-            this.rJ_Button1.State = false;
-            this.rJ_Button1.TabIndex = 3;
-            this.rJ_Button1.Text = "搜尋";
-            this.rJ_Button1.TextColor = System.Drawing.Color.White;
-            this.rJ_Button1.TextHeight = 0;
-            this.rJ_Button1.UseVisualStyleBackColor = false;
+            this.rJ_Button_庫儲藥品_搜尋.AutoResetState = false;
+            this.rJ_Button_庫儲藥品_搜尋.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_庫儲藥品_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_庫儲藥品_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_庫儲藥品_搜尋.BorderRadius = 10;
+            this.rJ_Button_庫儲藥品_搜尋.BorderSize = 0;
+            this.rJ_Button_庫儲藥品_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_庫儲藥品_搜尋.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_庫儲藥品_搜尋.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_庫儲藥品_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_庫儲藥品_搜尋.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_庫儲藥品_搜尋.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_庫儲藥品_搜尋.GUID = "";
+            this.rJ_Button_庫儲藥品_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_庫儲藥品_搜尋.Location = new System.Drawing.Point(408, 15);
+            this.rJ_Button_庫儲藥品_搜尋.Name = "rJ_Button_庫儲藥品_搜尋";
+            this.rJ_Button_庫儲藥品_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_庫儲藥品_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_庫儲藥品_搜尋.ProhibitionSymbolSize = 30;
+            this.rJ_Button_庫儲藥品_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_庫儲藥品_搜尋.ShadowSize = 3;
+            this.rJ_Button_庫儲藥品_搜尋.ShowLoadingForm = false;
+            this.rJ_Button_庫儲藥品_搜尋.Size = new System.Drawing.Size(103, 70);
+            this.rJ_Button_庫儲藥品_搜尋.State = false;
+            this.rJ_Button_庫儲藥品_搜尋.TabIndex = 3;
+            this.rJ_Button_庫儲藥品_搜尋.Text = "搜尋";
+            this.rJ_Button_庫儲藥品_搜尋.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_庫儲藥品_搜尋.TextHeight = 0;
+            this.rJ_Button_庫儲藥品_搜尋.UseVisualStyleBackColor = false;
             // 
             // Dialog_調劑作業_調出
             // 
@@ -414,7 +414,7 @@ namespace 調劑台管理系統
         private SQLUI.SQL_DataGridView sqL_DataGridView_庫儲藥品;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ComboBox comboBox_庫儲藥品_搜尋條件;
-        private MyUI.RJ_Button rJ_Button1;
+        private MyUI.RJ_Button rJ_Button_庫儲藥品_搜尋;
         private MyUI.RJ_TextBox rJ_TextBox1;
     }
 }
