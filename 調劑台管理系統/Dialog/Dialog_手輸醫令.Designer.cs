@@ -211,12 +211,13 @@
             // rJ_Button_確認
             // 
             this.rJ_Button_確認.AutoResetState = false;
-            this.rJ_Button_確認.BackColor = System.Drawing.Color.RoyalBlue;
+            this.rJ_Button_確認.BackColor = System.Drawing.Color.White;
             this.rJ_Button_確認.BackgroundColor = System.Drawing.Color.RoyalBlue;
             this.rJ_Button_確認.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Button_確認.BorderRadius = 10;
             this.rJ_Button_確認.BorderSize = 0;
             this.rJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_確認.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_確認.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_Button_確認.FlatAppearance.BorderSize = 0;
             this.rJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -226,6 +227,9 @@
             this.rJ_Button_確認.Image_padding = new System.Windows.Forms.Padding(0);
             this.rJ_Button_確認.Location = new System.Drawing.Point(1087, 0);
             this.rJ_Button_確認.Name = "rJ_Button_確認";
+            this.rJ_Button_確認.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_確認.ProhibitionLineWidth = 4;
+            this.rJ_Button_確認.ProhibitionSymbolSize = 30;
             this.rJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_確認.ShadowSize = 3;
             this.rJ_Button_確認.ShowLoadingForm = false;
@@ -240,12 +244,13 @@
             // rJ_Button_退出
             // 
             this.rJ_Button_退出.AutoResetState = false;
-            this.rJ_Button_退出.BackColor = System.Drawing.Color.Gray;
+            this.rJ_Button_退出.BackColor = System.Drawing.Color.White;
             this.rJ_Button_退出.BackgroundColor = System.Drawing.Color.Gray;
             this.rJ_Button_退出.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.rJ_Button_退出.BorderRadius = 10;
             this.rJ_Button_退出.BorderSize = 0;
             this.rJ_Button_退出.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_退出.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_退出.Dock = System.Windows.Forms.DockStyle.Right;
             this.rJ_Button_退出.FlatAppearance.BorderSize = 0;
             this.rJ_Button_退出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -255,6 +260,9 @@
             this.rJ_Button_退出.Image_padding = new System.Windows.Forms.Padding(0);
             this.rJ_Button_退出.Location = new System.Drawing.Point(1252, 0);
             this.rJ_Button_退出.Name = "rJ_Button_退出";
+            this.rJ_Button_退出.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_退出.ProhibitionLineWidth = 4;
+            this.rJ_Button_退出.ProhibitionSymbolSize = 30;
             this.rJ_Button_退出.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_退出.ShadowSize = 3;
             this.rJ_Button_退出.ShowLoadingForm = false;
@@ -323,15 +331,18 @@
             this.sqL_DataGridView_選擇藥品.BorderColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_選擇藥品.BorderRadius = 0;
             this.sqL_DataGridView_選擇藥品.BorderSize = 2;
+            this.sqL_DataGridView_選擇藥品.CellBorderColor = System.Drawing.Color.White;
             this.sqL_DataGridView_選擇藥品.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_選擇藥品.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_選擇藥品.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_選擇藥品.cellStylForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_選擇藥品.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_選擇藥品.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_選擇藥品.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_選擇藥品.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_選擇藥品.columnHeadersHeight = 18;
             this.sqL_DataGridView_選擇藥品.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_選擇藥品.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sqL_DataGridView_選擇藥品.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_選擇藥品.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_選擇藥品.ImageBox = false;
@@ -346,6 +357,10 @@
             this.sqL_DataGridView_選擇藥品.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_選擇藥品.RowsHeight = 50;
             this.sqL_DataGridView_選擇藥品.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_選擇藥品.selectedBorderSize = 0;
+            this.sqL_DataGridView_選擇藥品.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_選擇藥品.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_選擇藥品.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_選擇藥品.Server = "localhost";
             this.sqL_DataGridView_選擇藥品.Size = new System.Drawing.Size(755, 674);
             this.sqL_DataGridView_選擇藥品.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
@@ -381,6 +396,7 @@
             this.rJ_Button1.BorderRadius = 20;
             this.rJ_Button1.BorderSize = 0;
             this.rJ_Button1.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button1.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button1.FlatAppearance.BorderSize = 0;
             this.rJ_Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button1.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
@@ -389,6 +405,9 @@
             this.rJ_Button1.Image_padding = new System.Windows.Forms.Padding(0);
             this.rJ_Button1.Location = new System.Drawing.Point(530, 12);
             this.rJ_Button1.Name = "rJ_Button1";
+            this.rJ_Button1.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button1.ProhibitionLineWidth = 4;
+            this.rJ_Button1.ProhibitionSymbolSize = 30;
             this.rJ_Button1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button1.ShadowSize = 3;
             this.rJ_Button1.ShowLoadingForm = false;
@@ -449,15 +468,18 @@
             this.sqL_DataGridView_藥品資料.BorderColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_藥品資料.BorderRadius = 0;
             this.sqL_DataGridView_藥品資料.BorderSize = 2;
+            this.sqL_DataGridView_藥品資料.CellBorderColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_藥品資料.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_藥品資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥品資料.cellStylForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_藥品資料.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_藥品資料.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sqL_DataGridView_藥品資料.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_藥品資料.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_藥品資料.ImageBox = false;
@@ -472,6 +494,10 @@
             this.sqL_DataGridView_藥品資料.RowsColor = System.Drawing.SystemColors.ButtonHighlight;
             this.sqL_DataGridView_藥品資料.RowsHeight = 50;
             this.sqL_DataGridView_藥品資料.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_藥品資料.selectedBorderSize = 0;
+            this.sqL_DataGridView_藥品資料.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_藥品資料.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_藥品資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_藥品資料.Server = "localhost";
             this.sqL_DataGridView_藥品資料.Size = new System.Drawing.Size(642, 601);
             this.sqL_DataGridView_藥品資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
@@ -514,6 +540,7 @@
             this.rJ_Button_處方資訊填寫.BorderRadius = 20;
             this.rJ_Button_處方資訊填寫.BorderSize = 0;
             this.rJ_Button_處方資訊填寫.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_處方資訊填寫.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_處方資訊填寫.FlatAppearance.BorderSize = 0;
             this.rJ_Button_處方資訊填寫.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_處方資訊填寫.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
@@ -522,6 +549,9 @@
             this.rJ_Button_處方資訊填寫.Image_padding = new System.Windows.Forms.Padding(0);
             this.rJ_Button_處方資訊填寫.Location = new System.Drawing.Point(460, 99);
             this.rJ_Button_處方資訊填寫.Name = "rJ_Button_處方資訊填寫";
+            this.rJ_Button_處方資訊填寫.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_處方資訊填寫.ProhibitionLineWidth = 4;
+            this.rJ_Button_處方資訊填寫.ProhibitionSymbolSize = 30;
             this.rJ_Button_處方資訊填寫.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_處方資訊填寫.ShadowSize = 3;
             this.rJ_Button_處方資訊填寫.ShowLoadingForm = false;
@@ -542,6 +572,7 @@
             this.rJ_Button_藥品資料_選擇藥品.BorderRadius = 20;
             this.rJ_Button_藥品資料_選擇藥品.BorderSize = 0;
             this.rJ_Button_藥品資料_選擇藥品.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_藥品資料_選擇藥品.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_藥品資料_選擇藥品.FlatAppearance.BorderSize = 0;
             this.rJ_Button_藥品資料_選擇藥品.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_藥品資料_選擇藥品.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
@@ -550,6 +581,9 @@
             this.rJ_Button_藥品資料_選擇藥品.Image_padding = new System.Windows.Forms.Padding(0);
             this.rJ_Button_藥品資料_選擇藥品.Location = new System.Drawing.Point(460, 7);
             this.rJ_Button_藥品資料_選擇藥品.Name = "rJ_Button_藥品資料_選擇藥品";
+            this.rJ_Button_藥品資料_選擇藥品.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_藥品資料_選擇藥品.ProhibitionLineWidth = 4;
+            this.rJ_Button_藥品資料_選擇藥品.ProhibitionSymbolSize = 30;
             this.rJ_Button_藥品資料_選擇藥品.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_藥品資料_選擇藥品.ShadowSize = 3;
             this.rJ_Button_藥品資料_選擇藥品.ShowLoadingForm = false;
@@ -639,6 +673,7 @@
             this.rJ_Button_藥品資料_藥品名稱_搜尋.BorderRadius = 20;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.BorderSize = 0;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.FlatAppearance.BorderSize = 0;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
@@ -647,6 +682,9 @@
             this.rJ_Button_藥品資料_藥品名稱_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
             this.rJ_Button_藥品資料_藥品名稱_搜尋.Location = new System.Drawing.Point(290, 59);
             this.rJ_Button_藥品資料_藥品名稱_搜尋.Name = "rJ_Button_藥品資料_藥品名稱_搜尋";
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_藥品資料_藥品名稱_搜尋.ProhibitionSymbolSize = 30;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.ShadowSize = 3;
             this.rJ_Button_藥品資料_藥品名稱_搜尋.ShowLoadingForm = false;
@@ -688,6 +726,7 @@
             this.rJ_Button_藥品資料_藥品碼_搜尋.BorderRadius = 20;
             this.rJ_Button_藥品資料_藥品碼_搜尋.BorderSize = 0;
             this.rJ_Button_藥品資料_藥品碼_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_藥品資料_藥品碼_搜尋.DisenableColor = System.Drawing.Color.Gray;
             this.rJ_Button_藥品資料_藥品碼_搜尋.FlatAppearance.BorderSize = 0;
             this.rJ_Button_藥品資料_藥品碼_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rJ_Button_藥品資料_藥品碼_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
@@ -696,6 +735,9 @@
             this.rJ_Button_藥品資料_藥品碼_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
             this.rJ_Button_藥品資料_藥品碼_搜尋.Location = new System.Drawing.Point(290, 7);
             this.rJ_Button_藥品資料_藥品碼_搜尋.Name = "rJ_Button_藥品資料_藥品碼_搜尋";
+            this.rJ_Button_藥品資料_藥品碼_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_藥品資料_藥品碼_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_藥品資料_藥品碼_搜尋.ProhibitionSymbolSize = 30;
             this.rJ_Button_藥品資料_藥品碼_搜尋.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Button_藥品資料_藥品碼_搜尋.ShadowSize = 3;
             this.rJ_Button_藥品資料_藥品碼_搜尋.ShowLoadingForm = false;
@@ -707,7 +749,7 @@
             this.rJ_Button_藥品資料_藥品碼_搜尋.TextHeight = 0;
             this.rJ_Button_藥品資料_藥品碼_搜尋.UseVisualStyleBackColor = false;
             // 
-            // Dialog_手動作業
+            // Dialog_手輸醫令
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -716,7 +758,7 @@
             this.Controls.Add(this.rJ_GroupBox2);
             this.Controls.Add(this.rJ_GroupBox1);
             this.Controls.Add(this.panel1);
-            this.Name = "Dialog_手動作業";
+            this.Name = "Dialog_手輸醫令";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Dialog_手動作業_Load);
             this.panel1.ResumeLayout(false);

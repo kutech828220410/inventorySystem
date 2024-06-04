@@ -20,6 +20,20 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        static public string[] LoginUsers
+        {
+            get
+            {
+                string[] loginUsers = new string[4];
+
+                loginUsers[0] = 領藥台_01_登入者姓名;
+                loginUsers[1] = 領藥台_02_登入者姓名;
+                loginUsers[2] = 領藥台_03_登入者姓名;
+                loginUsers[3] = 領藥台_04_登入者姓名;
+
+                return loginUsers;
+            }
+        }
         private string QR_Code_醫令模式切換 = "%%001";
         MyTimer myTimer_領藥台_01_Logout = new MyTimer(5000);
         MyTimer myTimer_領藥台_02_Logout = new MyTimer(5000);

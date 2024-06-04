@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace HIS_DB_Lib
 {
-    [EnumDescription("pharmacyDistribution")]
+    [EnumDescription("drugstotreDistribution")]
     public enum enum_drugstotreDistribution
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]

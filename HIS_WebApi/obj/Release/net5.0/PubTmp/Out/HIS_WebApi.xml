@@ -683,6 +683,47 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]</returns>
         </member>
+        <member name="M:HIS_WebApi.drugDispatch.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "A5",
+                "ServerType" : "調劑台",
+                "Data": 
+                { 
+                    
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.drugDispatch.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增調撥資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "A5",
+                "ServerType" : "調劑台",
+                "Data": 
+                {
+                   [drugDispatchClass]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
         <member name="M:HIS_WebApi.drugstotreDistribution.POST_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化紀錄資料庫
@@ -2312,7 +2353,7 @@
               {
                 "ServerName" : "",
                 "ServerType" : "",
-                "TableName" : "";
+                "TableName" : "",
                 "ValueAry" : 
                 [
                   
@@ -2334,7 +2375,7 @@
               {
                 "ServerName": "中藥台",
                 "ServerType": "中藥調劑系統",
-                "TableName" : "";
+                "TableName" : "",
                 "ValueAry" : 
                 [
                   
@@ -2356,7 +2397,7 @@
               {
                 "ServerName": "中藥台",
                 "ServerType": "中藥調劑系統",
-                "TableName" : "";
+                "TableName" : "",
                 "ValueAry" : 
                 [
                    "IP",
@@ -2389,7 +2430,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         </member>
-        <member name="M:HIS_WebApi.deviceController.POST_get_Drawers(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.deviceController.POST_get_epd583_Drawers(HIS_DB_Lib.returnData)">
             <summary>
             取得儲位資料(Drawer)
             </summary>
@@ -2399,7 +2440,7 @@
               {
                 "ServerName": "口服2",
                 "ServerType": "調劑台",
-                "TableName" : "";
+                "TableName" : "",
                 "ValueAry" : 
                 [
                   
@@ -2410,6 +2451,114 @@
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[Device]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_get_epd583_Drawer_ByIP(HIS_DB_Lib.returnData)">
+            <summary>
+            以IP取得儲位資料(Drawer)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName": "口服2",
+                "ServerType": "調劑台",
+                "TableName" : "",
+                "ValueAry" : 
+                [
+                  
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[Device]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_update_epd583_Drawers(HIS_DB_Lib.returnData)">
+            <summary>
+            更新儲位資料(Drawers)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName": "口服2",
+                "ServerType": "調劑台",
+                "Data" : 
+                {
+                  [rowsLED陣列]
+                }
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_get_epd266_storage(HIS_DB_Lib.returnData)">
+            <summary>
+            取得儲位資料(EPD266)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName": "口服2",
+                "ServerType": "調劑台",
+                "TableName" : "",
+                "ValueAry" : 
+                [
+                  
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[Device]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_get_epd266_storage_ByIP(HIS_DB_Lib.returnData)">
+            <summary>
+            以IP取得儲位資料(EPD266)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName": "口服2",
+                "ServerType": "調劑台",
+                "TableName" : "",
+                "ValueAry" : 
+                [
+                  
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[Device]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_update_epd266_storages(HIS_DB_Lib.returnData)">
+            <summary>
+            更新儲位資料(Drawers)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName": "口服2",
+                "ServerType": "調劑台",
+                "Data" : 
+                {
+                  [rowsLED陣列]
+                }
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         </member>
         <member name="M:HIS_WebApi.OutTakeMedController.mul_med_take(System.String,System.Collections.Generic.List{HIS_DB_Lib.class_OutTakeMed_data})">
             <summary>
@@ -3047,33 +3196,77 @@
              <returns></returns>
         </member>
         <member name="M:HIS_WebApi.MED_pageController.POST_get_by_apiserver(HIS_DB_Lib.returnData)">
-             <summary>
-             查詢藥品資料JSON格式範例
-             </summary>
-             <remarks>
-             [必要輸入參數說明]<br/> 
-              1.[returnData.ServerName] : 填入記憶的伺服器名稱(medicine_page_cloud可預設為"Main")<br/> 
-              2.[returnData.ServerType] : 填入記憶的種類(medicine_page_cloud可預設為"網頁")<br/> 
-              3.[returnData.TableName] : 選擇其中一種資料表名稱:medicine_page_cloud、medicine_page_firstclass、medicine_page_phar、medicine_page<br/> 
-              --------------------------------------------
-             <code>
-             {
-                 "ServerName" : "Main",
-                 "ServerType" : "網頁",  
-                 "TableName" : "medicine_page_cloud",  
-                 "Data": 
-                 {
-                     
-                 },
-                 "ValueAry" : 
-                 [
-            
-                 ]
-                 
-             }
-             </code>
-             </remarks>
-             <param name="returnData">共用傳遞資料結構</param>
+            <summary>
+            查詢藥品資料JSON格式範例
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             1.[returnData.ServerName] : 填入記憶的伺服器名稱(medicine_page_cloud可預設為"Main")<br/> 
+             2.[returnData.ServerType] : 填入記憶的種類(medicine_page_cloud可預設為"網頁")<br/> 
+             3.[returnData.TableName] : 選擇其中一種資料表名稱:medicine_page_cloud、medicine_page_firstclass、medicine_page_phar、medicine_page<br/> 
+             --------------------------------------------
+            <code>
+            {
+                "ServerName" : "Main",
+                "ServerType" : "網頁",  
+                "TableName" : "medicine_page_cloud",  
+                "Data": 
+                {
+                    
+                },
+                "ValueAry" : 
+                [
+                
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_dps_medclass(HIS_DB_Lib.returnData)">
+            <summary>
+            取得[調劑台藥檔]
+            </summary>
+            <remarks>
+            <code>
+            {
+                "ServerName" : "A5",
+                "Data": 
+                {
+                    
+                },
+                "ValueAry" : 
+                [
+                   
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_dps_medClass_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥碼搜尋[調劑台藥檔]
+            </summary>
+            <remarks>
+            <code>
+            {
+                "ServerName" : "A5",
+                "Data": 
+                {
+                    
+                },
+                "ValueAry" : 
+                [
+                   [藥碼1,藥碼2,藥碼3]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
         </member>
         <member name="M:HIS_WebApi.order.GET_init(HIS_DB_Lib.returnData)">
             <summary>

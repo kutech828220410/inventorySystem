@@ -11,6 +11,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
 using System.Configuration;
 using HIS_DB_Lib;
+using H_Pannel_lib;
 namespace HIS_WebApi
 {
 
@@ -192,7 +193,7 @@ namespace HIS_WebApi
         ///     },
         ///     "ValueAry" : 
         ///     [
-        ///
+        ///     
         ///     ]
         ///     
         /// }
@@ -409,27 +410,36 @@ namespace HIS_WebApi
                     //取得雲端藥檔資料
                     List<medClass> medClasses_cloud = new List<medClass>();
                     List<medClass> medClasses_cloud_buf = new List<medClass>();
+                    List<medClass> medClasses_src = new List<medClass>();
+                    List<medClass> medClasses_src_buf = new List<medClass>();
+                    Dictionary<string, List<medClass>> keyValuePairs_medClasses_src = new Dictionary<string, List<medClass>>();
+                    Dictionary<string, List<medClass>> keyValuePairs_medClasses_cloud = new Dictionary<string, List<medClass>>();
 
                     SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                     List<object[]> list_med = new List<object[]>();
-                    List<object[]> list_med_buf = new List<object[]>();
                     List<object[]> list_med_add = new List<object[]>();
 
                     List<H_Pannel_lib.DeviceBasic> deviceBasics = new List<H_Pannel_lib.DeviceBasic>();
                     List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
 
+                    Dictionary<string, List<DeviceBasic>> keyValuePairs_deviceBasics = new Dictionary<string, List<DeviceBasic>>();
+
                     List<Task> tasks = new List<Task>();
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         medClasses_cloud = Get_med_cloud(serverSettingClasses_med);
+                        keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
                     })));
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         list_med = sQLControl_med.GetAllRows(null);
+                        medClasses_src = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                        keyValuePairs_medClasses_src = medClasses_src.CoverToDictionaryByCode();
                     })));
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         deviceBasics = deviceController.Function_Get_device(serverSettingClasses[0]);
+                        keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
                     })));
                     tasks.Add(Task.Run(new Action(delegate
                     {
@@ -438,14 +448,14 @@ namespace HIS_WebApi
                     })));
                     Task.WhenAll(tasks).Wait();
 
-     
+
 
                     string 藥碼 = "";
                     for (int i = 0; i < medClasses_cloud.Count; i++)
                     {
                         藥碼 = medClasses_cloud[i].藥品碼;
-                        list_med_buf = list_med.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
-                        if(list_med_buf.Count == 0)
+                        medClasses_src = keyValuePairs_medClasses_src.SortDictionaryByCode(藥碼);
+                        if (medClasses_src.Count == 0)
                         {
                             object[] value = medClasses_cloud[i].ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
                             value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
@@ -454,22 +464,23 @@ namespace HIS_WebApi
                     }
                     sQLControl_med.AddRows(null, list_med_add);
                     list_med.LockAdd(list_med_add);
-                    for (int i = 0; i < list_med.Count; i++)
+                    list_med.Sort(new Icp_藥品資料_藥檔資料());
+                    List<medClass> medClasses = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                    for (int i = 0; i < medClasses.Count; i++)
                     {
-                        藥碼 = list_med[i][(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
-                        deviceBasics_buf = (from temp in deviceBasics
-                                            where temp.Code == 藥碼
-                                            select temp).ToList();
+                        藥碼 = medClasses[i].藥品碼;
+                        deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
                         int inventory = 0;
+                        medClasses[i].DeviceBasics = deviceBasics_buf;
                         for (int k = 0; k < deviceBasics_buf.Count; k++)
                         {
                             inventory += deviceBasics_buf[k].Inventory.StringToInt32();
                         }
-                        list_med[i][(int)enum_藥品資料_藥檔資料.庫存] = inventory.ToString();
+                        medClasses[i].庫存 = inventory.ToString();
                     }
 
-                    list_med.Sort(new Icp_藥品資料_藥檔資料());
-                    List<medClass> medClasses = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+               
+          
                     returnData.Data = medClasses;
                     returnData.Code = 200;
                     returnData.Result = $"調劑台藥檔取得成功!新增<{list_med_add.Count}>筆資料!";
@@ -490,6 +501,283 @@ namespace HIS_WebApi
             }
           
         }
+        /// <summary>
+        /// 取得[調劑台藥檔]
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        /// {
+        ///     "ServerName" : "A5",
+        ///     "Data": 
+        ///     {
+        ///         
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        [Route("get_dps_medClass")]
+        [HttpPost]
+        public string POST_get_dps_medclass([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            string TableName = "medicine_page";
+            returnData.ServerType = "調劑台";
+            returnData.Method = "get_dps_medclass";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
+
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                //取得雲端藥檔資料
+                List<medClass> medClasses_cloud = new List<medClass>();
+                List<medClass> medClasses_cloud_buf = new List<medClass>();
+                List<medClass> medClasses_src = new List<medClass>();
+                List<medClass> medClasses_src_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_src = new Dictionary<string, List<medClass>>();
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_cloud = new Dictionary<string, List<medClass>>();
+
+                SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_med = new List<object[]>();
+                List<object[]> list_med_add = new List<object[]>();
+
+                List<H_Pannel_lib.DeviceBasic> deviceBasics = new List<H_Pannel_lib.DeviceBasic>();
+                List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
+
+                Dictionary<string, List<DeviceBasic>> keyValuePairs_deviceBasics = new Dictionary<string, List<DeviceBasic>>();
+
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    medClasses_cloud = Get_med_cloud(serverSettingClasses_med);
+                    keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    list_med = sQLControl_med.GetAllRows(null);
+                    medClasses_src = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                    keyValuePairs_medClasses_src = medClasses_src.CoverToDictionaryByCode();
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    deviceBasics = deviceController.Function_Get_device(serverSettingClasses[0]);
+                    keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+
+
+                })));
+                Task.WhenAll(tasks).Wait();
+
+
+
+                string 藥碼 = "";
+                for (int i = 0; i < medClasses_cloud.Count; i++)
+                {
+                    藥碼 = medClasses_cloud[i].藥品碼;
+                    medClasses_src = keyValuePairs_medClasses_src.SortDictionaryByCode(藥碼);
+                    if (medClasses_src.Count == 0)
+                    {
+                        object[] value = medClasses_cloud[i].ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                        value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
+                        list_med_add.Add(value);
+                    }
+                }
+                sQLControl_med.AddRows(null, list_med_add);
+                list_med.LockAdd(list_med_add);
+                list_med.Sort(new Icp_藥品資料_藥檔資料());
+                List<medClass> medClasses = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                for (int i = 0; i < medClasses.Count; i++)
+                {
+                    藥碼 = medClasses[i].藥品碼;
+                    deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
+                    int inventory = 0;
+                    medClasses[i].DeviceBasics = deviceBasics_buf;
+                    for (int k = 0; k < deviceBasics_buf.Count; k++)
+                    {
+                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                    }
+                    medClasses[i].庫存 = inventory.ToString();
+                }
+
+
+
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = $"[調劑台]藥檔取得成功!新增<{list_med_add.Count}>筆資料!";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                string json_out = returnData.JsonSerializationt(false);
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+        /// <summary>
+        /// 以藥碼搜尋[調劑台藥檔]
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        /// {
+        ///     "ServerName" : "A5",
+        ///     "Data": 
+        ///     {
+        ///         
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        [藥碼1,藥碼2,藥碼3]
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        [Route("get_dps_medClass_by_code")]
+        [HttpPost]
+        public string POST_get_dps_medClass_by_code([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            string TableName = "medicine_page";
+            returnData.ServerType = "調劑台";
+            returnData.Method = "get_dps_medClass_by_code";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
+
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼1,藥碼2,藥碼3]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                //取得雲端藥檔資料
+                List<medClass> medClasses_cloud = new List<medClass>();
+                List<medClass> medClasses_cloud_buf = new List<medClass>();
+                List<medClass> medClasses_src = new List<medClass>();
+                List<medClass> medClasses_src_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_src = new Dictionary<string, List<medClass>>();
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_cloud = new Dictionary<string, List<medClass>>();
+
+                SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_med_src = new List<object[]>();
+                List<object[]> list_med = new List<object[]>();
+                List<object[]> list_med_buf = new List<object[]>();
+
+                List<H_Pannel_lib.DeviceBasic> deviceBasics = new List<H_Pannel_lib.DeviceBasic>();
+                List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
+
+                Dictionary<string, List<DeviceBasic>> keyValuePairs_deviceBasics = new Dictionary<string, List<DeviceBasic>>();
+
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    medClasses_cloud = Get_med_cloud(serverSettingClasses_med);
+                    keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    list_med_src = sQLControl_med.GetAllRows(null);
+
+                    string[] Codes = returnData.ValueAry[0].Split(",");
+                    for (int i = 0; i < Codes.Length; i++)
+                    {
+                        list_med_buf = list_med_src.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
+                        if (list_med_buf.Count > 0)
+                        {
+                            list_med.Add(list_med_buf[0]);
+                        }
+                    }
+                    medClasses_src = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                    keyValuePairs_medClasses_src = medClasses_src.CoverToDictionaryByCode();
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    deviceBasics = deviceController.Function_Get_device(serverSettingClasses[0]);
+                    keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+
+
+                })));
+                Task.WhenAll(tasks).Wait();
+
+
+
+                string 藥碼 = "";
+                list_med.Sort(new Icp_藥品資料_藥檔資料());
+                List<medClass> medClasses = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+                for (int i = 0; i < medClasses.Count; i++)
+                {
+                    藥碼 = medClasses[i].藥品碼;
+                    deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
+                    int inventory = 0;
+                    medClasses[i].DeviceBasics = deviceBasics_buf;
+                    for (int k = 0; k < deviceBasics_buf.Count; k++)
+                    {
+                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                    }
+                    medClasses[i].庫存 = inventory.ToString();
+                }
+
+
+
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = $"[調劑台] ServerName : {returnData.ServerName} , 藥碼 : {returnData.ValueAry[0]} ,藥檔取得成功";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                string json_out = returnData.JsonSerializationt(false);
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+
+
 
         [Route("get_by_code")]
         [HttpPost]
@@ -619,7 +907,6 @@ namespace HIS_WebApi
             }
 
         }
-
         [Route("upadte_by_guid")]
         [HttpPost]
         public string POST_upadte_by_guid([FromBody] returnData returnData)

@@ -642,6 +642,7 @@ namespace HIS_WebApi
 
             }
         }
+
         [Route("serch_med_information_by_code")]
         [HttpPost]
         public string POST_serch_med_information_by_code([FromBody] returnData returnData)

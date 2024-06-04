@@ -170,6 +170,7 @@ namespace HIS_WebApi
                 Logger.Log($"inventoryResult", $"{ returnData.JsonSerializationt(true)}");
                 Logger.LogAddLine($"inventoryResult");
                 return returnData.JsonSerializationt(true);
+                
             }
             catch (Exception e)
             {

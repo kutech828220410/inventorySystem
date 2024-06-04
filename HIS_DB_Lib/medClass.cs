@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
 using System.Text.Json;
+using H_Pannel_lib;
 namespace HIS_DB_Lib
 {
 
@@ -69,6 +70,11 @@ namespace HIS_DB_Lib
         public string 類別 { get; set; }
         [JsonPropertyName("FILE_STATUS")]
         public string 開檔狀態 { get; set; }
+
+
+        [JsonPropertyName("DeviceBasics")]
+        public List<DeviceBasic> DeviceBasics { get => deviceBasics; set => deviceBasics = value; }
+        private List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
     }
 
   
@@ -136,7 +142,7 @@ namespace HIS_DB_Lib
             Barcode = barcodes;
         }
 
-        static public SQLUI.Table Init(string API_Server)
+        static public SQLUI.Table init(string API_Server)
         {
             string url = $"{API_Server}/api/MED_page/init";
 
@@ -194,6 +200,7 @@ namespace HIS_DB_Lib
             if (returnData.Code != 200) return null;
             medClasses = returnData.Data.ObjToClass<List<medClass>>();
             Console.WriteLine($"{returnData}");
+            medClasses.Sort(new ICP_By_Code());
             return medClasses;
         }
         static public List<medClass> get_by_apiserver(string API_Server, string ServerName, string ServerType, StoreType storeType)
@@ -225,9 +232,63 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData.Code != 200) return null;
             medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
+        static public List<medClass> get_dps_medClass(string API_Server, string ServerName)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_dps_medClass";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+   
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        static public List<medClass> get_dps_medClass_by_code(string API_Server, string ServerName, string Code)
+        {
+            List<string> Codes = new List<string>();
+            Codes.Add(Code);
+            return get_dps_medClass_by_code(API_Server, ServerName, Codes);
+        }
+        static public List<medClass> get_dps_medClass_by_code(string API_Server, string ServerName ,List<string> Codes)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_dps_medClass_by_code";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+
+            if (Codes.Count == 0) return new List<medClass>();
+
+            string str = "";
+
+            for (int i = 0; i < Codes.Count; i++)
+            {
+                str += Codes[i];
+                if (i != Codes.Count - 1) str += ",";
+            }
+            returnData.ValueAry.Add(str);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        
         static public List<medClass> serch_by_BarCode(string API_Server ,string barcode)
         {
             List<medClass> medClasses = new List<medClass>();
@@ -245,8 +306,7 @@ namespace HIS_DB_Lib
             return medClasses;
         }
 
-        
-
+    
         static public System.Collections.Generic.Dictionary<string, List<medClass>> CoverToDictionaryByCode(List<medClass> medClasses)
         {
             Dictionary<string, List<medClass>> dictionary = new Dictionary<string, List<medClass>>();
@@ -280,6 +340,48 @@ namespace HIS_DB_Lib
         }
 
     }
+    public static class medClassMethod
+    {
+        static public System.Collections.Generic.Dictionary<string, List<medClass>> CoverToDictionaryByCode(this List<medClass> medClasses)
+        {
+            Dictionary<string, List<medClass>> dictionary = new Dictionary<string, List<medClass>>();
 
+            foreach (var item in medClasses)
+            {
+                string key = item.藥品碼;
 
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<medClass> values = new List<medClass> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<medClass> SortDictionaryByCode(this System.Collections.Generic.Dictionary<string, List<medClass>> dictionary, string code)
+        {
+            if (dictionary.ContainsKey(code))
+            {
+                return dictionary[code];
+            }
+            return new List<medClass>();
+        }
+    }
+    public class ICP_By_Code : IComparer<medClass>
+    {
+        //實作Compare方法
+        //依Speed由小排到大。
+        public int Compare(medClass x, medClass y)
+        {
+            return x.藥品碼.CompareTo(y.藥品碼);
+      
+        }
+    }
 }

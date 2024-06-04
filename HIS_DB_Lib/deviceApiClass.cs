@@ -24,7 +24,7 @@ namespace HIS_DB_Lib
             EPD266,
             EPD290,
         }
-        static public List<RowsLED> GetRowsLED(string API_Server, string ServerName, string ServerType)
+        static public List<RowsLED> GetRowsLEDs(string API_Server, string ServerName, string ServerType)
         {
             string url = $"{API_Server}/api/device/get_rowLEDs";
 
@@ -90,6 +90,148 @@ namespace HIS_DB_Lib
             string tableName = "RowsLED_Jsonstring";
 
             returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return;
+            }
+            Console.WriteLine($"{returnData_result}");
+
+        }
+
+        static public List<Drawer> Get_EPD583_Drawers(string API_Server, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/device/get_epd583_Drawers";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            List<Drawer> drawers = returnData_result.Data.ObjToClass<List<Drawer>>();
+            return drawers;
+        }
+        static public Drawer Get_EPD583_Drawer_ByIP(string API_Server, string ServerName, string ServerType, string IP)
+        {
+            string url = $"{API_Server}/api/device/get_epd583_Drawer_ByIP";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.ValueAry.Add(IP);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            string jsonStr = returnData_result.Value;
+            Drawer drawer = returnData_result.Data.ObjToClass<Drawer>();
+            return drawer;
+        }
+        static public void Replace_EPD583_Drawers(string API_Server, string ServerName, string ServerType, Drawer drawer)
+        {
+            List<Drawer> drawers = new List<Drawer>();
+            drawers.Add(drawer);
+            Replace_EPD583_Drawers(API_Server, ServerName, ServerType, drawers);
+        }
+        static public void Replace_EPD583_Drawers(string API_Server, string ServerName, string ServerType, List<Drawer> drawers)
+        {
+            string url = $"{API_Server}/api/device/update_epd583_Drawers";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.Data = drawers;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return;
+            }
+            Console.WriteLine($"{returnData_result}");
+
+        }
+
+        static public List<Storage> Get_EPD266_Storage(string API_Server, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/device/get_epd266_storage";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            List<Storage> storages = returnData_result.Data.ObjToClass<List<Storage>>();
+            return storages;
+        }
+        static public Storage Get_EPD266_Storage_ByIP(string API_Server, string ServerName, string ServerType, string IP)
+        {
+            string url = $"{API_Server}/api/device/get_epd266_storage_ByIP";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.ValueAry.Add(IP);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            string jsonStr = returnData_result.Value;
+            Storage storage = returnData_result.Data.ObjToClass<Storage>();
+            return storage;
+        }
+        static public void Replace_EPD266_Storage(string API_Server, string ServerName, string ServerType, Storage storage)
+        {
+            List<Storage> storages = new List<Storage>();
+            storages.Add(storage);
+            Replace_EPD266_Storage(API_Server, ServerName, ServerType, storages);
+        }
+        static public void Replace_EPD266_Storage(string API_Server, string ServerName, string ServerType, List<Storage> storages)
+        {
+            string url = $"{API_Server}/api/device/update_epd266_storages";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.Data = storages;
+
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
