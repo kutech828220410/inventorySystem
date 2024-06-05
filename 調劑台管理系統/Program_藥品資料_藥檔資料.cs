@@ -476,7 +476,7 @@ namespace 調劑台管理系統
         }
         private void Function_藥品資料_藥檔資料_搜尋BarCode(string BarCode)
         {
-            List<medClass> medClasses = Function_搜尋Barcode(BarCode);
+            List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, BarCode);
             List<object[]> list_藥檔資料 = new List<object[]>();
             for (int i = 0; i < medClasses.Count; i++)
             {

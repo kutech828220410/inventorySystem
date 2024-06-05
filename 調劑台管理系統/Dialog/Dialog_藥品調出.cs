@@ -16,11 +16,11 @@ using H_Pannel_lib;
 
 namespace 調劑台管理系統
 {
-    public partial class Dialog_調劑作業_調出 : MyDialog
+    public partial class Dialog_藥品調出 : MyDialog
     {
 
 
-        public Dialog_調劑作業_調出()
+        public Dialog_藥品調出()
         {
             form.Invoke(new Action(delegate 
             {
@@ -39,12 +39,12 @@ namespace 調劑台管理系統
                 sqL_DataGridView_已選藥品.Set_ColumnVisible(false, new enum_drugDispatch().GetEnumNames());
                 sqL_DataGridView_已選藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_drugDispatch.藥碼);
                 sqL_DataGridView_已選藥品.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_drugDispatch.藥名);
-                sqL_DataGridView_已選藥品.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_drugDispatch.調出庫存);
-                sqL_DataGridView_已選藥品.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_drugDispatch.調出量);
-                sqL_DataGridView_已選藥品.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_drugDispatch.調入庫存);
-
-                this.Load += Dialog_調劑作業_調出_Load;
-                this.LoadFinishedEvent += Dialog_調劑作業_調出_LoadFinishedEvent;
+                sqL_DataGridView_已選藥品.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_drugDispatch.出庫庫存);
+                sqL_DataGridView_已選藥品.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_drugDispatch.出庫量);
+                sqL_DataGridView_已選藥品.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleCenter, enum_drugDispatch.入庫庫存);
+                sqL_DataGridView_已選藥品.Set_ColumnText("目的庫存", enum_drugDispatch.入庫庫存.GetEnumName());
+                this.Load += Dialog_藥品調出_Load; 
+                this.LoadFinishedEvent += Dialog_藥品調出_LoadFinishedEvent;
 
                 this.rJ_Button_庫儲藥品_搜尋.MouseDownEvent += RJ_Button_庫儲藥品_搜尋_MouseDownEvent;
                 this.rJ_Button_選擇藥品.MouseDownEvent += RJ_Button_選擇藥品_MouseDownEvent;
@@ -65,13 +65,13 @@ namespace 調劑台管理系統
         {
             RJ_Button_選擇藥品_MouseDownEvent(null);
         }
-        private void Dialog_調劑作業_調出_LoadFinishedEvent(EventArgs e)
+        private void Dialog_藥品調出_LoadFinishedEvent(EventArgs e)
         {
             comboBox_目的調劑台名稱.SelectedIndex = 0;
             comboBox_庫儲藥品_搜尋條件.SelectedIndex = 0;
             comboBox_目的調劑台名稱.Refresh();
         }
-        private void Dialog_調劑作業_調出_Load(object sender, EventArgs e)
+        private void Dialog_藥品調出_Load(object sender, EventArgs e)
         {
             rJ_Lable_來源調劑台名稱.Text = Main_Form.ServerName;
             List<ServerSettingClass> serverSettingClasses = ServerSettingClass.get_serversetting_by_type(Main_Form.API_Server, "調劑台");
@@ -135,7 +135,7 @@ namespace 調劑台管理系統
             
             while(true)
             {
-                dialog_NumPannel = new Dialog_NumPannel($"({medClasses[0].藥品碼}) {medClasses[0].藥品名稱}", $"可調出庫存 : {調出庫存量} , 調入庫存量 : {medClasses[0].庫存}");
+                dialog_NumPannel = new Dialog_NumPannel($"({medClasses[0].藥品碼}) {medClasses[0].藥品名稱}", $"可出庫庫存 : {調出庫存量} , 目的庫存量 : {medClasses[0].庫存}");
                 dialog_NumPannel.ShowDialog();
                 if (dialog_NumPannel.Value > 調出庫存量.StringToInt32())
                 {
@@ -155,17 +155,17 @@ namespace 調劑台管理系統
                 value[(int)enum_drugDispatch.藥碼] = medClasses[0].藥品碼;
                 value[(int)enum_drugDispatch.藥名] = medClasses[0].藥品名稱;
                 value[(int)enum_drugDispatch.單位] = medClasses[0].包裝單位;
-                value[(int)enum_drugDispatch.調出庫存] = 調出庫存量;
-                value[(int)enum_drugDispatch.調出量] = 調出數量;
-                value[(int)enum_drugDispatch.調入庫存] = 調入庫存量;
-                value[(int)enum_drugDispatch.調入庫別] = 調入庫別;
-                value[(int)enum_drugDispatch.調出庫別] = 調出庫別;
+                value[(int)enum_drugDispatch.出庫庫存] = 調出庫存量;
+                value[(int)enum_drugDispatch.出庫量] = 調出數量;
+                value[(int)enum_drugDispatch.入庫庫存] = 調入庫存量;
+                value[(int)enum_drugDispatch.入庫庫別] = 調入庫別;
+                value[(int)enum_drugDispatch.出庫庫別] = 調出庫別;
                 sqL_DataGridView_已選藥品.AddRow(value, true);
             }
             else
             {
                 object[] value = list_已選藥品_buf[0];
-                value[(int)enum_drugDispatch.調出量] = 調出數量;
+                value[(int)enum_drugDispatch.出庫量] = 調出數量;
                 sqL_DataGridView_已選藥品.ReplaceExtra(value, true);
             }
 
@@ -238,20 +238,15 @@ namespace 調劑台管理系統
             }
             LoadingForm.ShowLoadingForm();
 
-            List<drugDispatchClass> drugDispatchClasses = new List<drugDispatchClass>();
+            List<drugDispatchClass> drugDispatchClasses = list_value.SQLToClass<drugDispatchClass, enum_drugDispatch>();
 
-            for (int i = 0; i < list_value.Count; i++)
+            for (int i = 0; i < drugDispatchClasses.Count; i++)
             {
-                drugDispatchClass drugDispatchClass = new drugDispatchClass();
-                drugDispatchClass.調出人員 = Main_Form.LoginUsers[0];
-                drugDispatchClass.調入庫別 = list_value[i][(int)enum_drugDispatch.調入庫別].ObjectToString();
-                drugDispatchClass.調出庫別 = list_value[i][(int)enum_drugDispatch.調出庫別].ObjectToString();
-                drugDispatchClass.調出量 = list_value[i][(int)enum_drugDispatch.調出量].ObjectToString();
-                drugDispatchClass.藥碼 = list_value[i][(int)enum_drugDispatch.藥碼].ObjectToString();
-                drugDispatchClass.藥名 = list_value[i][(int)enum_drugDispatch.藥名].ObjectToString();
-                drugDispatchClass.單位 = list_value[i][(int)enum_drugDispatch.單位].ObjectToString();
-                drugDispatchClasses.Add(drugDispatchClass);
+                drugDispatchClasses[i].出庫人員 = Main_Form.LoginUsers[0];
+
             }
+
+
             drugDispatchClass.add(Main_Form.API_Server, drugDispatchClasses);
             sqL_DataGridView_已選藥品.ClearGrid();
             LoadingForm.CloseLoadingForm();

@@ -240,7 +240,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_調劑作業_條碼輸入.MouseDownEvent += PlC_RJ_Button_調劑作業_條碼輸入_MouseDownEvent;
             this.plC_RJ_Button_調劑作業_病歷號輸入.MouseDownEvent += PlC_RJ_Button_調劑作業_病歷號輸入_MouseDownEvent;
             this.plC_RJ_Button_調劑作業_藥品調出.MouseDownEvent += PlC_RJ_Button_調劑作業_藥品調出_MouseDownEvent;
-
+            this.plC_RJ_Button_調劑作業_藥品調入.MouseDownEvent += PlC_RJ_Button_調劑作業_藥品調入_MouseDownEvent;
 
             this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
@@ -259,7 +259,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(Program_調劑作業);
         }
 
- 
+
 
         bool flag_調劑作業_頁面更新 = false;
         private void Program_調劑作業()
@@ -9039,10 +9039,14 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_調劑作業_藥品調出_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_調劑作業_調出 dialog_調劑作業_調出 = new Dialog_調劑作業_調出();
-            dialog_調劑作業_調出.ShowDialog();
+            Dialog_藥品調出 dialog_藥品調出 = new Dialog_藥品調出();
+            dialog_藥品調出.ShowDialog();
         }
-
+        private void PlC_RJ_Button_調劑作業_藥品調入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_藥品調入 dialog_藥品調入 = new Dialog_藥品調入();
+            dialog_藥品調入.ShowDialog();
+        }
         private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
         {
             List<object[]> list_value_buf = new List<object[]>();

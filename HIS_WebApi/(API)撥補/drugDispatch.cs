@@ -136,10 +136,10 @@ namespace HIS_WebApi
                     drugDispatchClasses[i].GUID = Guid.NewGuid().ToString();
                     drugDispatchClasses[i].產出時間 = DateTime.Now.ToDateTimeString();
                     drugDispatchClasses[i].過帳時間 = DateTime.MinValue.ToDateTimeString();
-                    drugDispatchClasses[i].調入庫存 = "";
-                    drugDispatchClasses[i].調出庫存 = "";
-                    drugDispatchClasses[i].調入結存 = "";
-                    drugDispatchClasses[i].調出結存 = "";
+                    drugDispatchClasses[i].出庫庫存 = "";
+                    drugDispatchClasses[i].入庫庫存 = "";
+                    drugDispatchClasses[i].出庫結存 = "";
+                    drugDispatchClasses[i].入庫結存 = "";
                     drugDispatchClasses[i].狀態 = "等待過帳";
                     drugDispatchClasses_buf.Add(drugDispatchClasses[i]);
                 }

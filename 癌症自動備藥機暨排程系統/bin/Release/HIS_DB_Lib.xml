@@ -109,6 +109,11 @@
             藥碼
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.drugDispatchClass.動作類別">
+            <summary>
+            動作類別
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.drugDispatchClass.藥名">
             <summary>
             藥名
@@ -119,49 +124,54 @@
             單位
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調出人員">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.出庫人員">
             <summary>
-            調出人員
+            出庫人員
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調入人員">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.入庫人員">
             <summary>
-            調入人員
+            入庫人員
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調出庫別">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.出庫庫別">
             <summary>
-            調出庫別
+            出庫庫別
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調入庫別">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.入庫庫別">
             <summary>
-            調入庫別
+            入庫庫別
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調出庫存">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.出庫庫存">
             <summary>
-            調出庫存
+            出庫庫存
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調出結存">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.出庫量">
             <summary>
-            調出結存
+            出庫量
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調出量">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.出庫結存">
             <summary>
-            調出量
+            出庫結存
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調入庫存">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.入庫庫存">
             <summary>
-            調入庫存
+            入庫庫存
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.drugDispatchClass.調入結存">
+        <member name="P:HIS_DB_Lib.drugDispatchClass.入庫量">
             <summary>
-            調入結存
+            入庫量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugDispatchClass.入庫結存">
+            <summary>
+            入庫結存
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.drugDispatchClass.產出時間">

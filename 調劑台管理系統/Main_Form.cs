@@ -421,7 +421,7 @@ namespace 調劑台管理系統
                 Dialog_錯誤提示.form = this.FindForm();
                 Dialog_共用區設置.form = this.FindForm();
                 Dialog_AlarmForm.form = this.FindForm();
-                Dialog_調劑作業_調出.form = this.FindForm();
+                Dialog_藥品調出.form = this.FindForm();
 
 
                 LoadDBConfig();

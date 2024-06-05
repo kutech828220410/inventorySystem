@@ -404,11 +404,17 @@
     <Compile Include="Dialog\Dialog_下載藥檔範圍選擇.Designer.cs">
       <DependentUpon>Dialog_下載藥檔範圍選擇.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_調劑作業_調出.cs">
+    <Compile Include="Dialog\Dialog_藥品調出.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_調劑作業_調出.Designer.cs">
-      <DependentUpon>Dialog_調劑作業_調出.cs</DependentUpon>
+    <Compile Include="Dialog\Dialog_藥品調出.Designer.cs">
+      <DependentUpon>Dialog_藥品調出.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\Dialog_藥品調入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_藥品調入.Designer.cs">
+      <DependentUpon>Dialog_藥品調入.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
@@ -612,8 +618,8 @@
     <EmbeddedResource Include="Dialog\Dialog_設定開鎖權限.resx">
       <DependentUpon>Dialog_設定開鎖權限.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_調劑作業_調出.resx">
-      <DependentUpon>Dialog_調劑作業_調出.cs</DependentUpon>
+    <EmbeddedResource Include="Dialog\Dialog_藥品調出.resx">
+      <DependentUpon>Dialog_藥品調出.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_輸入批號.resx">
       <DependentUpon>Dialog_輸入批號.cs</DependentUpon>
@@ -666,6 +672,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_處方資訊填寫.resx">
       <DependentUpon>Dialog_處方資訊填寫.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_藥品調入.resx">
+      <DependentUpon>Dialog_藥品調入.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
@@ -767,6 +776,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\medication-transfer-to-dispensing-counter-with-arr-removebg-preview.png" />
+    <None Include="Resources\transfer-medication-take-in-to-dispensing-counter-removebg-preview.png" />
+    <None Include="Resources\drug-inventory-approval-removebg-preview.png" />
     <None Include="Resources\arrow-right.png" />
     <None Include="Resources\transfer-medication-to-dispensing-counter-removebg-preview.png" />
     <None Include="Resources\病歷號.png" />

@@ -17,30 +17,34 @@ namespace HIS_DB_Lib
         GUID,
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("動作類別,VARCHAR,50,INDEX")]
+        動作類別,
         [Description("藥碼,VARCHAR,50,INDEX")]
         藥碼,
         [Description("藥名,VARCHAR,50,NONE")]
         藥名,
         [Description("單位,VARCHAR,50,NONE")]
         單位,
-        [Description("調出人員,VARCHAR,50,INDEX")]
-        調出人員,
-        [Description("調入人員,VARCHAR,50,INDEX")]
-        調入人員,
-        [Description("調出庫別,VARCHAR,15,NONE")]
-        調出庫別,
-        [Description("調入庫別,VARCHAR,15,NONE")]
-        調入庫別,
-        [Description("調出庫存,VARCHAR,15,NONE")]
-        調出庫存,
-        [Description("調出結存,VARCHAR,15,NONE")]
-        調出結存,
-        [Description("調出量,VARCHAR,15,NONE")]
-        調出量,
-        [Description("調入庫存,VARCHAR,15,NONE")]
-        調入庫存,
-        [Description("調入結存,VARCHAR,15,NONE")]
-        調入結存,
+        [Description("出庫人員,VARCHAR,50,INDEX")]
+        出庫人員,
+        [Description("入庫人員,VARCHAR,50,INDEX")]
+        入庫人員,
+        [Description("出庫庫別,VARCHAR,15,NONE")]
+        出庫庫別,
+        [Description("入庫庫別,VARCHAR,15,NONE")]
+        入庫庫別,
+        [Description("出庫庫存,VARCHAR,15,NONE")]
+        出庫庫存,
+        [Description("出庫量,VARCHAR,15,NONE")]
+        出庫量,
+        [Description("出庫結存,VARCHAR,15,NONE")]
+        出庫結存,    
+        [Description("入庫庫存,VARCHAR,15,NONE")]
+        入庫庫存,
+        [Description("入庫量,VARCHAR,15,NONE")]
+        入庫量,
+        [Description("入庫結存,VARCHAR,15,NONE")]
+        入庫結存,
         [Description("產出時間,DATETIME,50,INDEX")]
         產出時間,
         [Description("過帳時間,DATETIME,50,INDEX")]
@@ -70,6 +74,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("CODE")]
         public string 藥碼 { get; set; }
         /// <summary>
+        /// 動作類別
+        /// </summary>
+        [JsonPropertyName("ACTION")]
+        public string 動作類別 { get; set; }
+        /// <summary>
         /// 藥名
         /// </summary>
         [JsonPropertyName("NAME")]
@@ -80,50 +89,55 @@ namespace HIS_DB_Lib
         [JsonPropertyName("PAKAGE")]
         public string 單位 { get; set; }
         /// <summary>
-        /// 調出人員
+        /// 出庫人員
         /// </summary>
         [JsonPropertyName("DISPATCHER")]
-        public string 調出人員 { get; set; }
+        public string 出庫人員 { get; set; }
         /// <summary>
-        /// 調入人員
+        /// 入庫人員
         /// </summary>
         [JsonPropertyName("RECEIVER")]
-        public string 調入人員 { get; set; }
+        public string 入庫人員 { get; set; }
         /// <summary>
-        /// 調出庫別
+        /// 出庫庫別
         /// </summary>
         [JsonPropertyName("SOURCE_STORE")]
-        public string 調出庫別 { get; set; }
+        public string 出庫庫別 { get; set; }
         /// <summary>
-        /// 調入庫別
+        /// 入庫庫別
         /// </summary>
         [JsonPropertyName("DESTINATION_STORE")]
-        public string 調入庫別 { get; set; }
+        public string 入庫庫別 { get; set; }
         /// <summary>
-        /// 調出庫存
+        /// 出庫庫存
         /// </summary>
         [JsonPropertyName("SOURCE_INVENTORY")]
-        public string 調出庫存 { get; set; }
+        public string 出庫庫存 { get; set; }
         /// <summary>
-        /// 調出結存
-        /// </summary>
-        [JsonPropertyName("SOURCE_END_INV")]
-        public string 調出結存 { get; set; }
-        /// <summary>
-        /// 調出量
+        /// 出庫量
         /// </summary>
         [JsonPropertyName("DISPATCHED_QTY")]
-        public string 調出量 { get; set; }
+        public string 出庫量 { get; set; }
         /// <summary>
-        /// 調入庫存
+        /// 出庫結存
+        /// </summary>
+        [JsonPropertyName("SOURCE_END_INV")]
+        public string 出庫結存 { get; set; }
+        /// <summary>
+        /// 入庫庫存
         /// </summary>
         [JsonPropertyName("DESTINATION_INVENTORY")]
-        public string 調入庫存 { get; set; }
+        public string 入庫庫存 { get; set; }
         /// <summary>
-        /// 調入結存
+        /// 入庫量
+        /// </summary>
+        [JsonPropertyName("RECEIVED_QTY")]
+        public string 入庫量 { get; set; }
+        /// <summary>
+        /// 入庫結存
         /// </summary>
         [JsonPropertyName("DESTINATION_END_INV")]
-        public string 調入結存 { get; set; }
+        public string 入庫結存 { get; set; }
         /// <summary>
         /// 產出時間
         /// </summary>

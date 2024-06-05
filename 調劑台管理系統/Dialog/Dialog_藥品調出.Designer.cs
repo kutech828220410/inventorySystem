@@ -1,7 +1,7 @@
 ﻿
 namespace 調劑台管理系統
 {
-    partial class Dialog_調劑作業_調出
+    partial class Dialog_藥品調出
     {
         /// <summary>
         /// Required designer variable.
@@ -561,7 +561,7 @@ namespace 調劑台管理系統
             this.rJ_Button_已選藥品_送出.TextHeight = 0;
             this.rJ_Button_已選藥品_送出.UseVisualStyleBackColor = false;
             // 
-            // Dialog_調劑作業_調出
+            // Dialog_藥品調出
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -570,7 +570,7 @@ namespace 調劑台管理系統
             this.Controls.Add(this.rJ_Pannel2);
             this.Controls.Add(this.rJ_Pannel1);
             this.Controls.Add(this.panel3);
-            this.Name = "Dialog_調劑作業_調出";
+            this.Name = "Dialog_藥品調出";
             this.Text = "調出";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
