@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.52")]
-[assembly: AssemblyFileVersion("1.2.1.52")]
+[assembly: AssemblyVersion("1.2.1.53")]
+[assembly: AssemblyFileVersion("1.2.1.53")]
 namespace 調劑台管理系統
 {
 
@@ -435,6 +435,7 @@ namespace 調劑台管理系統
                 this.FormText = this.Text;
                 this.plC_UI_Init.音效 = false;
                 this.plC_UI_Init.全螢幕顯示 = myConfigClass.全螢幕顯示;
+           
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
                 this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
 
@@ -470,6 +471,11 @@ namespace 調劑台管理系統
         }
         private void PlC_UI_Init_UI_Finished_Event()
         {
+            if (myConfigClass.全螢幕顯示 == false)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+
             this.PLC = this.lowerMachine_Panel.GetlowerMachine();
 
             PLC_Device_主機輸出模式.Bool = myConfigClass.主機輸出模式;
