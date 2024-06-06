@@ -3031,7 +3031,6 @@
             this.plC_RJ_Button_調劑作業_藥品調入.TextHeight = 35;
             this.plC_RJ_Button_調劑作業_藥品調入.Texts = "藥品調入";
             this.plC_RJ_Button_調劑作業_藥品調入.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_調劑作業_藥品調入.Visible = false;
             this.plC_RJ_Button_調劑作業_藥品調入.字型鎖住 = false;
             this.plC_RJ_Button_調劑作業_藥品調入.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_調劑作業_藥品調入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
@@ -3086,7 +3085,6 @@
             this.plC_RJ_Button_收支確認.TextHeight = 35;
             this.plC_RJ_Button_收支確認.Texts = "收支確認";
             this.plC_RJ_Button_收支確認.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_收支確認.Visible = false;
             this.plC_RJ_Button_收支確認.字型鎖住 = false;
             this.plC_RJ_Button_收支確認.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_收支確認.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
@@ -3141,7 +3139,6 @@
             this.plC_RJ_Button_調劑作業_藥品調出.TextHeight = 35;
             this.plC_RJ_Button_調劑作業_藥品調出.Texts = "藥品調出";
             this.plC_RJ_Button_調劑作業_藥品調出.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_調劑作業_藥品調出.Visible = false;
             this.plC_RJ_Button_調劑作業_藥品調出.字型鎖住 = false;
             this.plC_RJ_Button_調劑作業_藥品調出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_調劑作業_藥品調出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;

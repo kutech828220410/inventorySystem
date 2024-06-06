@@ -497,6 +497,168 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 以藥碼取得儲位資料(RowLED)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "中藥台",
+        ///     "ServerType": "中藥調劑系統",
+        ///     "TableName" : "",
+        ///     "ValueAry" : 
+        ///     [
+        ///        "藥碼"
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_rowLED_By_Code")]
+        [HttpPost]
+        public string POST_get_rowLED_By_Code(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_rowLED_By_Code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Code = returnData.ValueAry[0];
+                string tableName = "RowsLED_Jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<RowsLED> rowsLEDs = RowsLEDMethod.SQL_GetRowsLEDByCode(sQLControl_device, Code);
+
+                if (rowsLEDs == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = rowsLEDs;
+                returnData.Result = $"取得成功共<{rowsLEDs.Count}>筆資料!,TableName : {returnData.TableName} , Code : {Code}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
+        /// 以藥碼取得儲位資料(RowLED.DeviceBasics)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "中藥台",
+        ///     "ServerType": "中藥調劑系統",
+        ///     "TableName" : "",
+        ///     "ValueAry" : 
+        ///     [
+        ///        "藥碼"
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_rowLED_DeviceBasics_By_Code")]
+        [HttpPost]
+        public string POST_get_rowLED_DeviceBasics_By_Code(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_rowLED_DeviceBasics_By_Code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Code = returnData.ValueAry[0];
+                string tableName = "RowsLED_Jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<DeviceBasic> deviceBasics = RowsLEDMethod.GetDeviceBasicByCode(sQLControl_device, Code);
+
+                if (deviceBasics == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = deviceBasics;
+                returnData.Result = $"取得成功共<{deviceBasics.Count}>筆資料!,TableName : {returnData.TableName} , Code : {Code}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
         /// 以IP取得儲位資料(RowLED)
         /// </summary>
         /// <remarks>
@@ -722,6 +884,166 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.Data = drawers;
                 returnData.Result = $"drawers 取得成功!,共<{drawers.Count}>筆資料,TableName : {returnData.TableName}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
+        /// 以藥碼取得儲位資料(Drawer)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "口服2",
+        ///     "ServerType": "調劑台",
+        ///     "TableName" : "",
+        ///     "ValueAry" : 
+        ///     [
+        ///       [藥碼]
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_epd583_Drawer_By_Code")]
+        [HttpPost]
+        public string POST_get_epd583_Drawer_By_Code(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "epd583_Drawer_By_Code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Code = returnData.ValueAry[0];
+                string tableName = "epd583_jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<Drawer> drawers = DrawerMethod.SQL_GetDrawersByCode(sQLControl_device, Code);
+                if (drawers.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = drawers;
+                returnData.Result = $"取得成功共<{drawers.Count}>筆資料!,TableName : {returnData.TableName} , Code : {Code}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
+        /// 以藥碼取得儲位資料(Drawer.DeviceBasics)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "口服2",
+        ///     "ServerType": "調劑台",
+        ///     "TableName" : "",
+        ///     "ValueAry" : 
+        ///     [
+        ///       [藥碼]
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_epd583_DeviceBasics_By_Code")]
+        [HttpPost]
+        public string POST_get_epd583_DeviceBasics_By_Code(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_epd583_DeviceBasics_By_Code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Code = returnData.ValueAry[0];
+                string tableName = "epd583_jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<DeviceBasic> deviceBasics = DrawerMethod.GetDeviceBasicByCode(sQLControl_device, Code);
+                if (deviceBasics.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = deviceBasics;
+                returnData.Result = $"取得成功共<{deviceBasics.Count}>筆資料!,TableName : {returnData.TableName} , Code : {Code}";
 
                 string json_out = returnData.JsonSerializationt();
 
@@ -979,6 +1301,166 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 以藥碼取得儲位資料(EPD266)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "口服2",
+        ///     "ServerType": "調劑台",
+        ///     "TableName" : "",
+        ///     "ValueAry" : 
+        ///     [
+        ///        [藥碼]
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_epd266_storage_By_Code")]
+        [HttpPost]
+        public string POST_get_epd266_storage_By_Code(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_epd266_storage_By_Code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Code = returnData.ValueAry[0];
+                string tableName = "epd266_jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<Storage> storages = StorageMethod.SQL_GetStorageByCode(sQLControl_device, Code);
+                if (storages == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = storages;
+                returnData.Result = $"已取得資料共<{storages.Count}>筆!,TableName : {returnData.TableName} , Code : {Code}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
+        /// 以藥碼取得儲位資料(EPD266.DeviceBasics)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "口服2",
+        ///     "ServerType": "調劑台",
+        ///     "TableName" : "",
+        ///     "ValueAry" : 
+        ///     [
+        ///        [藥碼]
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_epd266_DeviceBasics_By_Code")]
+        [HttpPost]
+        public string POST_get_epd266_DeviceBasics_By_Code(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_epd266_storage_By_Code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Code = returnData.ValueAry[0];
+                string tableName = "epd266_jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<DeviceBasic> deviceBasics = StorageMethod.GetDeviceBasicByCode(sQLControl_device, Code);
+                if (deviceBasics == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = deviceBasics;
+                returnData.Result = $"已取得資料共<{deviceBasics.Count}>筆!,TableName : {returnData.TableName} , Code : {Code}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
         /// 以IP取得儲位資料(EPD266)
         /// </summary>
         /// <remarks>
@@ -1059,7 +1541,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 更新儲位資料(Drawers)
+        /// 更新儲位資料(EPD266)
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -1134,7 +1616,7 @@ namespace HIS_WebApi
                 sQLControl_device.UpdateByDefulteExtra(null, list_replace);
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Code = 200;
-                returnData.Result = $"更新Drawers成功!,共<{list_replace.Count}>筆資料,TableName : {returnData.TableName}";
+                returnData.Result = $"更新storages成功!,共<{list_replace.Count}>筆資料,TableName : {returnData.TableName}";
 
                 string json_out = returnData.JsonSerializationt();
 
@@ -1150,6 +1632,246 @@ namespace HIS_WebApi
 
         }
 
+
+        /// <summary>
+        /// 取得儲位資料(Panel35)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "口服2",
+        ///     "ServerType": "調劑台",
+        ///     "TableName" : "",
+        ///     "ValueAry" : 
+        ///     [
+        ///       
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_panel35_storage")]
+        [HttpPost]
+        public string POST_get_panel35_storage(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_panel35_storage";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                string tableName = "wt32_jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<Storage> storages = StorageMethod.SQL_GetAllStorage(sQLControl_device);
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = storages;
+                returnData.Result = $"storages 取得成功!,共<{storages.Count}>筆資料,TableName : {returnData.TableName}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
+        /// 以IP取得儲位資料(Panel35)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "口服2",
+        ///     "ServerType": "調劑台",
+        ///     "TableName" : "",
+        ///     "ValueAry" : 
+        ///     [
+        ///       
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[Device]陣列結構</returns>
+        [Route("get_panel35_storage_ByIP")]
+        [HttpPost]
+        public string POST_get_panel35_storage_ByIP(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_panel35_storage_ByIP";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[IP]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string IP = returnData.ValueAry[0];
+                string tableName = "wt32_jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                Storage storage = StorageMethod.SQL_GetStorageByIP(sQLControl_device, IP);
+                if (storage == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Data = storage;
+                returnData.Result = $"jsonStr取得成功!,TableName : {returnData.TableName} , IP : {IP}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+            finally
+            {
+
+            }
+        }
+        /// <summary>
+        /// 更新儲位資料(Panel35)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "口服2",
+        ///     "ServerType": "調劑台",
+        ///     "Data" : 
+        ///     {
+        ///       [rowsLED陣列]
+        ///     }
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        [Route("update_panel35_storages")]
+        [HttpPost]
+        public string POST_update_panel35_storages(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            returnData.Method = "update_panel35_storages";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string tableName = "wt32_jsonstring";
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                List<Storage> storages = returnData.Data.ObjToClass<List<Storage>>();
+                if (storages.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data無資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (storages == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料錯誤";
+                    return returnData.JsonSerializationt();
+                }
+                SQLControl sQLControl_device = new SQLControl(Server, DB, tableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_device.GetAllRows(null);
+                List<object[]> list_value_buf = new List<object[]>();
+                List<object[]> list_replace = new List<object[]>();
+                for (int i = 0; i < storages.Count; i++)
+                {
+                    string IP = storages[i].IP;
+                    list_value_buf = list_value.GetRows((int)enum_DeviceTable.IP, IP);
+                    if (list_value_buf.Count > 0)
+                    {
+                        list_value_buf[0][(int)enum_DeviceTable.Value] = storages[i].JsonSerializationt();
+                        list_replace.Add(list_value_buf[0]);
+                    }
+                }
+
+                sQLControl_device.UpdateByDefulteExtra(null, list_replace);
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = $"更新storages成功!,共<{list_replace.Count}>筆資料,TableName : {returnData.TableName}";
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
 
         [Route("light_web")]
         [HttpPost]

@@ -73,6 +73,52 @@ namespace HIS_DB_Lib
             RowsLED rowsLED = returnData_result.Data.ObjToClass<RowsLED>();
             return rowsLED;
         }
+        static public List<RowsLED> GetRowsLED_By_Code(string API_Server, string ServerName, string ServerType, string Code)
+        {
+            string url = $"{API_Server}/api/device/get_rowLED_By_Code";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.ValueAry.Add(Code);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            string jsonStr = returnData_result.Value;
+            List<RowsLED> rowsLEDs = returnData_result.Data.ObjToClass<List<RowsLED>>();
+            return rowsLEDs;
+        }
+        static public List<DeviceBasic> GetRowsLED_DeviceBasic_By_Code(string API_Server, string ServerName, string ServerType, string Code)
+        {
+            string url = $"{API_Server}/api/device/get_rowLED_DeviceBasics_By_Code";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.ValueAry.Add(Code);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            string jsonStr = returnData_result.Value;
+            List<DeviceBasic> deviceBasics = returnData_result.Data.ObjToClass<List<DeviceBasic>>();
+            return deviceBasics;
+        }
         static public void ReplaceRowsLED(string API_Server, string ServerName, string ServerType, RowsLED rowsLED)
         {
             List<RowsLED> rowsLEDs = new List<RowsLED>();
@@ -226,6 +272,77 @@ namespace HIS_DB_Lib
         static public void Replace_EPD266_Storage(string API_Server, string ServerName, string ServerType, List<Storage> storages)
         {
             string url = $"{API_Server}/api/device/update_epd266_storages";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.Data = storages;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return;
+            }
+            Console.WriteLine($"{returnData_result}");
+
+        }
+
+        static public List<Storage> Get_Panel35_Storage(string API_Server, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/device/get_Panel35_storage";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            List<Storage> storages = returnData_result.Data.ObjToClass<List<Storage>>();
+            return storages;
+        }
+        static public Storage Get_Panel35_Storage_ByIP(string API_Server, string ServerName, string ServerType, string IP)
+        {
+            string url = $"{API_Server}/api/device/get_Panel35_storage_ByIP";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.ValueAry.Add(IP);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return null;
+            }
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            Console.WriteLine($"{returnData_result}");
+            string jsonStr = returnData_result.Value;
+            Storage storage = returnData_result.Data.ObjToClass<Storage>();
+            return storage;
+        }
+        static public void Replace_Panel35_Storage(string API_Server, string ServerName, string ServerType, Storage storage)
+        {
+            List<Storage> storages = new List<Storage>();
+            storages.Add(storage);
+            Replace_Panel35_Storage(API_Server, ServerName, ServerType, storages);
+        }
+        static public void Replace_Panel35_Storage(string API_Server, string ServerName, string ServerType, List<Storage> storages)
+        {
+            string url = $"{API_Server}/api/device/update_Panel35_storages";
 
             returnData returnData = new returnData();
             returnData.ServerName = ServerName;
