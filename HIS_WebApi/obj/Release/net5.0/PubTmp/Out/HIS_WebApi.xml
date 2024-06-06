@@ -2301,9 +2301,9 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         </member>
-        <member name="M:HIS_WebApi.deviceController.POST_get_by_code(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.deviceController.POST_get_form_storehouse_by_codes(HIS_DB_Lib.returnData)">
             <summary>
-            以Code查詢儲位資料
+            以Code查詢庫儲系統儲位資料
             </summary>
             <remarks>
             以下為範例JSON範例
@@ -2314,6 +2314,27 @@
                 "ValueAry" : 
                 [
                   "藥碼1,藥碼2,藥碼3"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_get_from_pharma_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            以Code查詢藥局系統儲位資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "口服2",
+                "ServerType" : "調劑台",
+                "ValueAry" : 
+                [
+                  "藥碼1"
                 ]
                 
               }
@@ -2706,6 +2727,50 @@
                 "ValueAry" : 
                 [
                   
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[Device]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_get_Panel35_storage_By_Code(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥碼取得儲位資料(Panel35)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName": "口服2",
+                "ServerType": "調劑台",
+                "TableName" : "",
+                "ValueAry" : 
+                [
+                   [藥碼]
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[Device]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.deviceController.POST_get_Panel35_DeviceBasics_By_Code(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥碼取得儲位資料(Panel35.DeviceBasics)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName": "口服2",
+                "ServerType": "調劑台",
+                "TableName" : "",
+                "ValueAry" : 
+                [
+                   [藥碼]
                 ]
                 
               }

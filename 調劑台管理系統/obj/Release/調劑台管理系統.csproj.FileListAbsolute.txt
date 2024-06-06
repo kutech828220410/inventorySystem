@@ -57,7 +57,6 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Re
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\System.Text.Json.xml
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\System.ValueTuple.xml
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_交易紀錄明細.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_使用者登入.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog.Dialog_收支作業_儲位選擇.resources
@@ -634,3 +633,4 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Re
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_手輸醫令.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_藥品調入.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_藥品調出.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.AssemblyReference.cache

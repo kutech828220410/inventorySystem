@@ -215,7 +215,7 @@ namespace HIS_WebApi
 
         }
         /// <summary>
-        /// 以Code查詢儲位資料
+        /// 以Code查詢庫儲系統儲位資料
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -233,14 +233,21 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
-        [Route("get_by_code")]
+        [Route("get_form_storehouse_by_codes")]
         [HttpPost]
-        public string POST_get_by_code(returnData returnData)
+        public string POST_get_form_storehouse_by_codes(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
-            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
-            returnData.Method = "get_by_code";
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+                returnData.Method = "get_form_storehouse_by_codes";
+            }
             try
             {
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
@@ -252,7 +259,7 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                if(returnData.ValueAry.Count != 1)
+                if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 內容應為[藥碼1,藥碼2,藥碼3]";
@@ -281,6 +288,84 @@ namespace HIS_WebApi
                 returnData.Code = 200;
                 returnData.Result = $"Device取得成功!,共<{deviceBasics_result.Count}>筆資料,TableName : {returnData.TableName}";
                 returnData.Data = deviceBasics_result;
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
+
+        }
+        /// <summary>
+        /// 以Code查詢藥局系統儲位資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "口服2",
+        ///     "ServerType" : "調劑台",
+        ///     "ValueAry" : 
+        ///     [
+        ///       "藥碼1"
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        [Route("get_from_pharma_by_code")]
+        [HttpPost]
+        public string POST_get_from_pharma_by_code(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
+         
+            returnData.Method = "get_from_pharma_by_code";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if(returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼1]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Code = returnData.ValueAry[0];
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                List<DeviceBasic> deviceBasics = Function_讀取儲位_By_Code(Server, DB, UserName, Password, Port, Code);
+              
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = $"Device取得成功!,共<{deviceBasics.Count}>筆資料,TableName : {returnData.TableName}";
+                returnData.Data = deviceBasics;
 
                 string json_out = returnData.JsonSerializationt();
 
@@ -2029,8 +2114,6 @@ namespace HIS_WebApi
                 returnData.Value = $"{e.Message}";
                 return returnData.JsonSerializationt();
             }
-
-
         }
 
         [Route("light_web")]
@@ -2503,6 +2586,59 @@ namespace HIS_WebApi
             {
                 if (sQLControl_WT32_serialize.IsTableCreat()) list_WT32 = sQLControl_WT32_serialize.GetAllRows(null);
                 deviceBasics_WT32 = StorageMethod.GetAllDeviceBasic(list_WT32);
+            }));
+            Task allTask = Task.WhenAll(taskList);
+            allTask.Wait();
+            List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+            List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
+            deviceBasics.LockAdd(deviceBasics_EPD583);
+            deviceBasics.LockAdd(deviceBasics_EPD266);
+            deviceBasics.LockAdd(deviceBasics_RowsLED);
+            deviceBasics.LockAdd(deviceBasics_RFID_Device);
+            deviceBasics.LockAdd(deviceBasics_WT32);
+
+            deviceBasics_buf = deviceBasics;
+            //deviceBasics_buf = (from value in deviceBasics
+            //                    where value.Code.StringIsEmpty() == false
+            //                    select value).ToList();
+
+            return deviceBasics_buf;
+        }
+
+        static private List<DeviceBasic> Function_讀取儲位_By_Code(string IP, string DBName, string UserName, string Password, uint Port , string Code)
+        {
+            SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_RowsLED_serialize = new SQLControl(IP, DBName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_RFID_Device_serialize = new SQLControl(IP, DBName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_WT32_serialize = new SQLControl(IP, DBName, "WT32_Jsonstring", UserName, Password, Port, SSLMode);
+
+            List<DeviceBasic> deviceBasics_EPD583 = new List<DeviceBasic>();
+            List<DeviceBasic> deviceBasics_EPD266 = new List<DeviceBasic>();
+            List<DeviceBasic> deviceBasics_RowsLED = new List<DeviceBasic>();
+            List<DeviceBasic> deviceBasics_RFID_Device = new List<DeviceBasic>();
+            List<DeviceBasic> deviceBasics_WT32 = new List<DeviceBasic>();
+
+            List<Task> taskList = new List<Task>();
+            taskList.Add(Task.Run(() =>
+            {
+                deviceBasics_EPD583 = DrawerMethod.GetDeviceBasicByCode(sQLControl_EPD583_serialize, Code);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+                deviceBasics_EPD266 = StorageMethod.GetDeviceBasicByCode(sQLControl_EPD266_serialize, Code);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+                deviceBasics_RowsLED = RowsLEDMethod.GetDeviceBasicByCode(sQLControl_RowsLED_serialize, Code);
+            }));
+            taskList.Add(Task.Run(() =>
+            {
+                //deviceBasics_RFID_Device = DrawerMethod.GetDeviceBasicByCode(sQLControl_RFID_Device_serialize, Code);
+            }));
+            taskList.Add(Task.Run(() =>
+            {          
+                deviceBasics_WT32 = StorageMethod.GetDeviceBasicByCode(sQLControl_WT32_serialize, Code);
             }));
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();

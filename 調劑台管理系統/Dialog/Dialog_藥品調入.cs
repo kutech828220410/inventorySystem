@@ -369,21 +369,24 @@ namespace 調劑台管理系統
         }
         private void RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)
         {
-            this.Invoke(new Action(delegate
+            List<object[]> list_value = sqL_DataGridView_已選藥品.GetAllRows();
+
+            if (list_value.Count == 0)
             {
-                List<object[]> list_value = sqL_DataGridView_已選藥品.GetAllRows();
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("無資料可送出", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            LoadingForm.ShowLoadingForm();
 
-                if (list_value.Count == 0)
-                {
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("無資料可送出", 1500);
-                    dialog_AlarmForm.ShowDialog();
-                    return;
-                }
-                LoadingForm.ShowLoadingForm();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                string 藥碼 = list_value[i][(int)enum_drugDispatch.藥碼].ObjectToString();
+                List<DeviceBasic> deviceBasics = deviceApiClass.Get_Pharma_DeviceBasicsByCode(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
+            }
 
-                LoadingForm.CloseLoadingForm();
-                this.Close();
-            }));
+            LoadingForm.CloseLoadingForm();
+            this.Close();
         }
         private void RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)
         {
