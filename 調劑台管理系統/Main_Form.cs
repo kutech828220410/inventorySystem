@@ -28,7 +28,7 @@ namespace 調劑台管理系統
 
     public partial class Main_Form : Form
     {
-   
+
         public bool ControlMode = false;
         private bool flag_Init = false;
         public static string ServerName = "";
@@ -41,7 +41,7 @@ namespace 調劑台管理系統
         {
             get
             {
-                if(this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
+                if (this.PLC_Device_主機扣賬模式.Bool == true) return $"{this.textBox_工程模式_領藥台_名稱.Text}_01";
                 else return $"{this.textBox_工程模式_領藥台_名稱.Text}_S01";
 
             }
@@ -78,7 +78,7 @@ namespace 調劑台管理系統
         private Stopwatch stopwatch = new Stopwatch();
         List<Pannel_Locker> List_Locker = new List<Pannel_Locker>();
         Basic.MyConvert myConvert = new Basic.MyConvert();
-     
+
 
         PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
@@ -132,7 +132,7 @@ namespace 調劑台管理系統
             [JsonIgnore]
             public string Api_URL { get => api_URL; set => api_URL = value; }
             [JsonIgnore]
-            public string Web_URL { get => web_URL; set => web_URL = value; } 
+            public string Web_URL { get => web_URL; set => web_URL = value; }
             [JsonIgnore]
             public string Login_URL { get => login_URL; set => login_URL = value; }
 
@@ -143,7 +143,7 @@ namespace 調劑台管理系統
         }
         private void LoadDBConfig()
         {
-            
+
             this.LoadcommandLineArgs();
             string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
             if (jsonstr.StringIsEmpty())
@@ -194,6 +194,7 @@ namespace 調劑台管理系統
             private bool pannel35_Enable = true;
             private bool _帳密登入_Enable = true;
             private bool _外部輸出 = false;
+            private bool _全螢幕顯示 = true;
 
             private string rFID_COMPort = "COM1";
             private string scanner01_COMPort = "COM2";
@@ -201,7 +202,7 @@ namespace 調劑台管理系統
             private string scanner03_COMPort = "";
             private string scanner04_COMPort = "";
             private string _藥物辨識網址 = "";
-    
+
 
             public bool 主機扣帳模式 { get => _主機扣帳模式; set => _主機扣帳模式 = value; }
             public bool 主機輸出模式 { get => _主機輸出模式; set => _主機輸出模式 = value; }
@@ -223,7 +224,7 @@ namespace 調劑台管理系統
             public bool 外部輸出 { get => _外部輸出; set => _外部輸出 = value; }
             public bool 系統取藥模式 { get => _系統取藥模式; set => _系統取藥模式 = value; }
             public bool EPD1020_Enable { get => ePD1020_Enable; set => ePD1020_Enable = value; }
-   
+            public bool 全螢幕顯示 { get => _全螢幕顯示; set => _全螢幕顯示 = value; }
         }
         private void LoadMyConfig()
         {
@@ -284,7 +285,7 @@ namespace 調劑台管理系統
                 myParameter = new MyParameter();
                 SaveMyParameter();
             }
-       
+
         }
         #endregion
 
@@ -390,7 +391,7 @@ namespace 調劑台管理系統
             //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue12);
             #endregion
         }
-        
+
         private void Main_Form_Load(object sender, EventArgs e)
         {
             if (this.DesignMode == false)
@@ -430,10 +431,10 @@ namespace 調劑台管理系統
                 ApiServerSetting();
 
                 this.stopwatch.Start();
-                
+
                 this.FormText = this.Text;
                 this.plC_UI_Init.音效 = false;
-                this.plC_UI_Init.全螢幕顯示 = true;
+                this.plC_UI_Init.全螢幕顯示 = myConfigClass.全螢幕顯示;
                 this.plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
                 this.plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
 
@@ -655,7 +656,7 @@ namespace 調劑台管理系統
         private void Button_調劑台切換_Click(object sender, EventArgs e)
         {
             string DPS_Name = this.comboBox_調劑台名稱.Text;
-            if(DPS_Name.StringIsEmpty())
+            if (DPS_Name.StringIsEmpty())
             {
                 MyMessageBox.ShowDialog("未選擇調劑台!");
                 return;
@@ -681,7 +682,7 @@ namespace 調劑台管理系統
                 while (true)
                 {
                     if (myConfigClass.RFID使用 == false) break;
-                    
+
                     if (MyTimer_rfiD_FX600_UI_Init.IsTimeOut() && !flag_rfiD_FX600_UI_Init)
                     {
                         if (myConfigClass.RFID使用)
@@ -770,14 +771,14 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品設定表.SQL_Reset();
             this.sqL_DataGridView_雲端藥檔.SQL_Reset();
             this.sqL_DataGridView_交易記錄查詢.SQL_Reset();
-            
+
             this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
             this.storageUI_WT32.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            if(flag_DBConfigInit == true)
+            if (flag_DBConfigInit == true)
             {
                 this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
                 this.sqL_DataGridView_儲位管理_EPD1020_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
@@ -792,7 +793,7 @@ namespace 調劑台管理系統
         }
         private void ApiServerSetting()
         {
-            if(ControlMode)
+            if (ControlMode)
             {
                 this.ApiServerSetting(dBConfigClass.Name, "一般資料");
             }
@@ -800,7 +801,7 @@ namespace 調劑台管理系統
             {
                 this.ApiServerSetting(dBConfigClass.Name, "一般資料(LAN)");
             }
-       
+
         }
         private void ApiServerSetting(string Name, string basicName)
         {
@@ -888,7 +889,7 @@ namespace 調劑台管理系統
 
             OrderByCodeApi_URL = dBConfigClass.OrderByCodeApiURL;
             Order_URL = dBConfigClass.OrderApiURL;
-            if(OrderByCodeApi_URL.StringIsEmpty())
+            if (OrderByCodeApi_URL.StringIsEmpty())
             {
                 OrderByCodeApi_URL = Order_URL;
             }
