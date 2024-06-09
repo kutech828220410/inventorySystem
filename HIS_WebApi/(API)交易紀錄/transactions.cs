@@ -54,7 +54,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -99,7 +99,8 @@ namespace HIS_WebApi
             returnData.Method = "add";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                GET_init(returnData);
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -122,6 +123,7 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
                 transactionsClass.GUID = Guid.NewGuid().ToString();
+                transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
                 string TableName = "trading";
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
                 object[] value = transactionsClass.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
@@ -143,7 +145,7 @@ namespace HIS_WebApi
 
         }
         /// <summary>
-        /// 新增單筆交易紀錄
+        /// 新增多筆交易紀錄
         /// </summary>
         /// <remarks>
         ///  --------------------------------------------<br/> 
@@ -165,11 +167,12 @@ namespace HIS_WebApi
         [HttpPost]
         public string add_datas([FromBody] returnData returnData)
         {
+            GET_init(returnData);
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             returnData.Method = "add_datas";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -194,6 +197,7 @@ namespace HIS_WebApi
                 for (int i = 0; i < transactionsClasses.Count; i++)
                 {
                     transactionsClasses[i].GUID = Guid.NewGuid().ToString();
+                    transactionsClasses[i].操作時間 = DateTime.Now.ToDateTimeString_6();
                 }
                 string TableName = "trading";
                 SQLControl sQLControl_trading = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
@@ -243,7 +247,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -312,7 +316,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_name";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -381,7 +385,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_op_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -462,7 +466,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_rx_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -543,7 +547,7 @@ namespace HIS_WebApi
             returnData.Method = "get_stock_by_code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -649,7 +653,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -715,7 +719,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -802,7 +806,7 @@ namespace HIS_WebApi
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -1094,7 +1098,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_sheet";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
 
                 if (returnData.ValueAry == null)
                 {
@@ -1300,7 +1304,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_code";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1400,7 +1404,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_name";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1501,7 +1505,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_mrn";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1602,7 +1606,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_op";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1703,7 +1707,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_med_bag_num";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1807,7 +1811,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_pat";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -1909,7 +1913,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_op_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)
@@ -2022,7 +2026,7 @@ namespace HIS_WebApi
             returnData.Method = "get_datas_by_rx_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<Task> tasks = new List<Task>();
                 List<object[]> list_value = new List<object[]>();
                 if (returnData.ValueAry == null)

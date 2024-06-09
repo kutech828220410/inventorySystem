@@ -2604,8 +2604,18 @@ namespace HIS_WebApi
 
             return deviceBasics_buf;
         }
-
-        static private List<DeviceBasic> Function_讀取儲位_By_Code(string IP, string DBName, string UserName, string Password, uint Port , string Code)
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public List<DeviceBasic> Function_讀取儲位_By_Code(ServerSettingClass serverSettingClass, string Code)
+        {
+            string IP = serverSettingClass.Server;
+            string DBName = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+            return Function_讀取儲位_By_Code(IP, DBName, UserName, Password, Port, Code);
+        }
+        [ApiExplorerSettings(IgnoreApi = true)]
+        static public List<DeviceBasic> Function_讀取儲位_By_Code(string IP, string DBName, string UserName, string Password, uint Port , string Code)
         {
             SQLControl sQLControl_EPD583_serialize = new SQLControl(IP, DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_EPD266_serialize = new SQLControl(IP, DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);

@@ -198,7 +198,7 @@
         </member>
         <member name="M:HIS_WebApi.transactions.add_datas(HIS_DB_Lib.returnData)">
             <summary>
-            新增單筆交易紀錄
+            新增多筆交易紀錄
             </summary>
             <remarks>
              --------------------------------------------<br/> 
@@ -705,7 +705,28 @@
         </member>
         <member name="M:HIS_WebApi.drugDispatch.POST_add(HIS_DB_Lib.returnData)">
             <summary>
-            新增調撥資料
+            新增資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "A5",
+                "ServerType" : "調劑台",
+                "Data": 
+                {
+                   [drugDispatchClass]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.drugDispatch.POST_datas_posting(HIS_DB_Lib.returnData)">
+            <summary>
+            新增過帳資料集
             </summary>
             <remarks>
              --------------------------------------------<br/> 

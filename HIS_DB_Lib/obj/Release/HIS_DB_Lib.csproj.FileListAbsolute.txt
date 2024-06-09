@@ -592,3 +592,4 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\stdol
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\H_Pannel_lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache

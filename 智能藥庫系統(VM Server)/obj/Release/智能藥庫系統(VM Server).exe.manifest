@@ -102,14 +102,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="781312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="H_Pannel_lib.dll" size="763904">
       <assemblyIdentity name="H_Pannel_lib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vKhVU3vX40yAJfzXV+keKxWS01wB1FIHGjuiLvtifpM=</dsig:DigestValue>
+        <dsig:DigestValue>ZkgDLSf51Z+WPhAK4Ng6fNGHkSawzvlk/BqFw0P2wcY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -268,8 +268,12 @@ namespace 癌症自動備藥機暨排程系統
         {
             this.WindowState = FormWindowState.Maximized;
             PLC = this.lowerMachine_Panel.GetlowerMachine().properties;
+            Console.WriteLine($"LoadDBConfig .....");
             LoadDBConfig();
+            Console.WriteLine($"Done .....");
+            Console.WriteLine($"LoadMyConfig .....");
             LoadMyConfig();
+            Console.WriteLine($"Done .....");
             ApiServerSetting();
 
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main01, this.plC_ScreenPage_main);

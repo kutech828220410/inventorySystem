@@ -33,6 +33,7 @@ namespace 調劑台管理系統
             {
                 InitializeComponent();
                 this.LoadFinishedEvent += Dialog_藥品調入_LoadFinishedEvent;
+                this.rJ_Button_搜尋.MouseDownEvent += RJ_Button_搜尋_MouseDownEvent;
                 this.rJ_Button_返回.MouseDownEvent += RJ_Button_返回_MouseDownEvent;
                 this.rJ_Button_確認送出.MouseDownEvent += RJ_Button_確認送出_MouseDownEvent;
                 this.FormClosing += Dialog_藥品調入_FormClosing;
@@ -55,7 +56,7 @@ namespace 調劑台管理系統
             }));
         }
 
-
+     
 
         public void Function_SerchByBarCode(string barCode)
         {
@@ -323,6 +324,7 @@ namespace 調劑台管理系統
                                     調出量 = dialog_NumPannel.Value;
                                     drugDispatchClass drugDispatchClass = new drugDispatchClass();
                                     drugDispatchClass.GUID = Guid.NewGuid().ToString();
+                                    drugDispatchClass.動作類別 = enum_交易記錄查詢動作.調入作業.GetEnumName();
                                     drugDispatchClass.出庫庫別 = this.Selected_ServerName;
                                     drugDispatchClass.出庫庫存 = 庫存.ToString();
                                     drugDispatchClass.出庫量 = 調出量.ToString();
@@ -367,25 +369,31 @@ namespace 調劑台管理系統
             MyThread_program.Trigger();
        
         }
+        private void RJ_Button_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_藥品搜尋 dialog_藥品搜尋 = new Dialog_藥品搜尋();
+            dialog_藥品搜尋.ShowDialog();
+        }
         private void RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = sqL_DataGridView_已選藥品.GetAllRows();
-
+            Dialog_AlarmForm dialog_AlarmForm;
             if (list_value.Count == 0)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("無資料可送出", 1500);
+                dialog_AlarmForm = new Dialog_AlarmForm("無資料可送出", 1500);
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
             LoadingForm.ShowLoadingForm();
 
-            for (int i = 0; i < list_value.Count; i++)
-            {
-                string 藥碼 = list_value[i][(int)enum_drugDispatch.藥碼].ObjectToString();
-                List<DeviceBasic> deviceBasics = deviceApiClass.Get_Pharma_DeviceBasicsByCode(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
-            }
+            List<drugDispatchClass> drugDispatchClasses = list_value.SQLToClass<drugDispatchClass, enum_drugDispatch>();
+
+            drugDispatchClass.datas_posting(Main_Form.API_Server, drugDispatchClasses);
+
 
             LoadingForm.CloseLoadingForm();
+            dialog_AlarmForm = new Dialog_AlarmForm("調入完成", 1500, Color.Green);
+            dialog_AlarmForm.ShowDialog();
             this.Close();
         }
         private void RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)

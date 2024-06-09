@@ -203,5 +203,35 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             return;
         }
+        static public void datas_posting(string API_Server, List<drugDispatchClass> drugDispatchClasses)
+        {
+            string url = $"{API_Server}/api/drugDispatch/datas_posting";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "";
+            returnData.ServerType = "";
+            returnData.Data = drugDispatchClasses;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            if (returnData_out.Code != 200) return;
+            personPageClass personPageClass = returnData_out.Data.ObjToClass<personPageClass>();
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return;
+        }
+
+        
     }
 }
