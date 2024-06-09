@@ -10,8 +10,8 @@ using System.Reflection;
 
 namespace HIS_DB_Lib
 {
-    [EnumDescription("drugstotreDistribution")]
-    public enum enum_drugstotreDistribution
+    [EnumDescription("drug_stotre_Distribution")]
+    public enum enum_drugStotreDistribution
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
@@ -43,7 +43,7 @@ namespace HIS_DB_Lib
         備註,
 
     }
-    public class drugstotreDistributionClass
+    public class drugStotreDistributionClass
     {
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }

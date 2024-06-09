@@ -197,6 +197,7 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
             if (returnData.Code != 200) return null;
             medClasses = returnData.Data.ObjToClass<List<medClass>>();
             Console.WriteLine($"{returnData}");
@@ -230,6 +231,7 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
             if (returnData.Code != 200) return null;
             medClasses = returnData.Data.ObjToClass<List<medClass>>();
             medClasses.Sort(new ICP_By_Code());
@@ -249,6 +251,7 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
             if (returnData.Code != 200) return null;
             medClasses = returnData.Data.ObjToClass<List<medClass>>();
             medClasses.Sort(new ICP_By_Code());
@@ -282,12 +285,109 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
             if (returnData.Code != 200) return null;
             medClasses = returnData.Data.ObjToClass<List<medClass>>();
             medClasses.Sort(new ICP_By_Code());
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
+
+
+
+        static public List<medClass> get_ds_pharma_med(string API_Server, string ServerName)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_ds_pharma_med";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        static public void update_ds_pharma_by_guid(string API_Server, string ServerName, medClass medClass)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            medClasses.Add(medClass);
+            update_ds_pharma_by_guid(API_Server, ServerName, medClasses);
+        }
+        static public void update_ds_pharma_by_guid(string API_Server, string ServerName, List<medClass> medClasses)
+        {
+            string url = $"{API_Server}/api/MED_page/update_ds_pharma_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.Data = medClasses;
+            if (medClasses.Count == 0) return;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+        }
+        
+        static public medClass get_med_clouds_by_code(string API_Server, string Code)
+        {
+            List<string> Codes = new List<string>();
+            Codes.Add(Code);
+            List<medClass> medClasses = get_med_clouds_by_codes(API_Server, Codes);
+            if (medClasses == null) return null;
+            if (medClasses.Count == 0) return null;
+            return medClasses[0];
+        }
+        static public List<medClass> get_med_clouds_by_codes(string API_Server, List<string> Codes)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_med_clouds_by_codes";
+
+            returnData returnData = new returnData();
+
+            if (Codes.Count == 0) return new List<medClass>();
+
+            string str = "";
+
+            for (int i = 0; i < Codes.Count; i++)
+            {
+                str += Codes[i];
+                if (i != Codes.Count - 1) str += ",";
+            }
+            returnData.ValueAry.Add(str);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        static public void update_med_clouds_by_guid(string API_Server, medClass medClass)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            medClasses.Add(medClass);
+            update_med_clouds_by_guid(API_Server, medClasses);
+        }
+        static public void update_med_clouds_by_guid(string API_Server, List<medClass> medClasses)
+        {
+            string url = $"{API_Server}/api/MED_page/update_med_clouds_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.Data = medClasses;
+            if (medClasses.Count == 0) return;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+        }
+
         
         static public List<medClass> serch_by_BarCode(string API_Server ,string barcode)
         {
@@ -300,6 +400,7 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
             if (returnData.Code != 200) return new List<medClass>();
             medClasses = returnData.Data.ObjToClass<List<medClass>>();
             Console.WriteLine($"{returnData}");
@@ -373,6 +474,7 @@ namespace HIS_DB_Lib
             }
             return new List<medClass>();
         }
+
     }
     public class ICP_By_Code : IComparer<medClass>
     {

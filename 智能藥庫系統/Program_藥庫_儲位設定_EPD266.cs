@@ -51,8 +51,8 @@ namespace 智能藥庫系統
             this.epD_266_Pannel.Init(this.storageUI_EPD_266.List_UDP_Local);
 
             this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
-            this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_藥庫_藥品資料().GetEnumNames());
-            this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_藥庫_藥品資料.藥品碼, enum_藥庫_藥品資料.藥品名稱, enum_藥庫_藥品資料.中文名稱, enum_藥庫_藥品資料.包裝單位);
+            this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(false, new enum_medDrugstore().GetEnumNames());
+            this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.Set_ColumnVisible(true, enum_medDrugstore.藥品碼, enum_medDrugstore.藥品名稱, enum_medDrugstore.中文名稱, enum_medDrugstore.包裝單位);
             this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.RowDoubleClickEvent += SqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料_RowDoubleClickEvent;
            
 
@@ -205,7 +205,7 @@ namespace 智能藥庫系統
                 bool Is_Replace = false;
                 藥品碼 = storage.GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
                 if (藥品碼.StringIsEmpty()) return;
-                list_藥品資料_藥檔資料_buf = list_藥品資料_藥檔資料.GetRows((int)enum_藥庫_藥品資料.藥品碼, 藥品碼);
+                list_藥品資料_藥檔資料_buf = list_藥品資料_藥檔資料.GetRows((int)enum_medDrugstore.藥品碼, 藥品碼);
                 if (list_藥品資料_藥檔資料_buf.Count == 0)
                 {
                     storage.Clear();
@@ -213,16 +213,16 @@ namespace 智能藥庫系統
                 }
                 else
                 {
-                    藥品碼_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
-                    藥品名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品名稱].ObjectToString();
-                    藥品學名_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品學名].ObjectToString();
-                    BarCode_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
-                    包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.包裝單位].ObjectToString();
-                    //警訊藥品_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.警訊藥品].ObjectToString().ToUpper();
-                    料號_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.料號].ObjectToString();
-                    BarCode1_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
-                    BarCode2_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
-                    中文名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.中文名稱].ObjectToString();
+                    藥品碼_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品碼].ObjectToString();
+                    藥品名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品名稱].ObjectToString();
+                    藥品學名_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品學名].ObjectToString();
+                    BarCode_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品條碼1].ObjectToString();
+                    包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.包裝單位].ObjectToString();
+                    //警訊藥品_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.警訊藥品].ObjectToString().ToUpper();
+                    料號_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.料號].ObjectToString();
+                    BarCode1_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品條碼1].ObjectToString();
+                    BarCode2_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品條碼2].ObjectToString();
+                    中文名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.中文名稱].ObjectToString();
 
 
 
@@ -446,11 +446,11 @@ namespace 智能藥庫系統
             List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.SQL_GetAllRows(false);
             if (rJ_RatioButton_藥庫_儲位管理_EPD266_藥品搜尋_前綴.Checked)
             {
-                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.藥品名稱, rJ_TextBox_藥庫_儲位管理_EPD266_藥品搜尋_藥品名稱.Text);
+                list_value = list_value.GetRowsStartWithByLike((int)enum_medDrugstore.藥品名稱, rJ_TextBox_藥庫_儲位管理_EPD266_藥品搜尋_藥品名稱.Text);
             }
             else if (rJ_RatioButton_藥庫_儲位管理_EPD266_藥品搜尋_模糊.Checked)
             {
-                list_value = list_value.GetRowsByLike((int)enum_藥庫_藥品資料.藥品名稱, rJ_TextBox_藥庫_儲位管理_EPD266_藥品搜尋_藥品名稱.Text);
+                list_value = list_value.GetRowsByLike((int)enum_medDrugstore.藥品名稱, rJ_TextBox_藥庫_儲位管理_EPD266_藥品搜尋_藥品名稱.Text);
             }
 
             this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.RefreshGrid(list_value);
@@ -459,7 +459,7 @@ namespace 智能藥庫系統
         {
             if (rJ_TextBox_藥庫_儲位管理_EPD266_藥品搜尋_藥品碼.Text.StringIsEmpty()) return;
             List<object[]> list_value = this.sqL_DataGridView_藥庫_藥品資料.SQL_GetAllRows(false);
-            list_value = list_value.GetRowsByLike((int)enum_藥庫_藥品資料.藥品碼, rJ_TextBox_藥庫_儲位管理_EPD266_藥品搜尋_藥品碼.Text);
+            list_value = list_value.GetRowsByLike((int)enum_medDrugstore.藥品碼, rJ_TextBox_藥庫_儲位管理_EPD266_藥品搜尋_藥品碼.Text);
             this.sqL_DataGridView_藥庫_儲位管理_EPD266_藥品資料_藥檔資料.RefreshGrid(list_value);
         }
         private void PlC_RJ_Button_藥庫_儲位管理_EPD266_藥品搜尋_填入資料_MouseDownEvent(MouseEventArgs mevent)
@@ -469,13 +469,13 @@ namespace 智能藥庫系統
             Storage storage = this.epD_266_Pannel.CurrentStorage;
             if (storage == null) return;
             storage.Clear();
-            storage.SetValue(Device.ValueName.藥品碼, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.藥品碼]);
-            storage.SetValue(Device.ValueName.藥品名稱, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.藥品名稱]);
-            storage.SetValue(Device.ValueName.藥品學名, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.藥品學名]);
-            storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.中文名稱]);
-            storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.包裝單位]);
-            storage.SetValue(Device.ValueName.BarCode, Device.ValueType.Value, value[(int)enum_藥庫_藥品資料.藥品條碼1]);
-            //if (value[(int)enum_藥庫_藥品資料.警訊藥品].ObjectToString().ToUpper() == true.ToString().ToUpper())
+            storage.SetValue(Device.ValueName.藥品碼, Device.ValueType.Value, value[(int)enum_medDrugstore.藥品碼]);
+            storage.SetValue(Device.ValueName.藥品名稱, Device.ValueType.Value, value[(int)enum_medDrugstore.藥品名稱]);
+            storage.SetValue(Device.ValueName.藥品學名, Device.ValueType.Value, value[(int)enum_medDrugstore.藥品學名]);
+            storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Value, value[(int)enum_medDrugstore.中文名稱]);
+            storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Value, value[(int)enum_medDrugstore.包裝單位]);
+            storage.SetValue(Device.ValueName.BarCode, Device.ValueType.Value, value[(int)enum_medDrugstore.藥品條碼1]);
+            //if (value[(int)enum_medDrugstore.警訊藥品].ObjectToString().ToUpper() == true.ToString().ToUpper())
             //{
             //    storage.BackColor = Color.Red;
             //    storage.ForeColor = Color.White;

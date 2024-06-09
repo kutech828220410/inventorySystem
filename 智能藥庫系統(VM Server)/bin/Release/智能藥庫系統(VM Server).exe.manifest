@@ -462,14 +462,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="151552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SQLUI.dll" size="153088">
       <assemblyIdentity name="SQLUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>02s7t9MyaJib4HDpnKvWfKVjmvz4AzGbv4xpLbvxyBA=</dsig:DigestValue>
+        <dsig:DigestValue>L6iAEY38u+Zx6smo6tay1zlUoCcpsfvDt2BOC0YjVeI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -642,14 +642,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="智能藥庫系統(VM Server).exe" size="828928">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="智能藥庫系統(VM Server).exe" size="837120">
       <assemblyIdentity name="智能藥庫系統(VM Server)" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nfXUU4mb2sPRcTaTdi0y3hgOWb0FrjY9Lm0T224LbVk=</dsig:DigestValue>
+        <dsig:DigestValue>N6/G96z6bEDmHES9i3XJo6/dhuEbz9/zQiTSOtjvlR8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

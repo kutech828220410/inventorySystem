@@ -23,7 +23,7 @@ namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class drugstotreDistribution : ControllerBase
+    public class drugStotreDistribution : ControllerBase
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
@@ -88,7 +88,7 @@ namespace HIS_WebApi
         ///     "ServerType" : "藥庫",
         ///     "Data": 
         ///     {
-        ///         [drugstotreDistributionClass]
+        ///         [drugStotreDistributionClass]
         ///     },
         ///     "ValueAry" : 
         ///     [
@@ -123,16 +123,16 @@ namespace HIS_WebApi
                 string Password = serverSettingClass.Password;
                 uint Port = (uint)serverSettingClass.Port.StringToInt32();
 
-                List<drugstotreDistribution> drugstotreDistributions = returnData.Data.ObjToClass<List<drugstotreDistribution>>();
+                List<drugStotreDistributionClass> drugstotreDistributions = returnData.Data.ObjToClass<List<drugStotreDistributionClass>>();
 
-                SQLControl sQLControl_drugstotreDistribution = new SQLControl(Server, DB, new enum_drugstotreDistribution().GetEnumDescription(), UserName, Password, Port, SSLMode);
-                List<object[]> list_drugstotreDistributions = drugstotreDistributions.ClassToSQL<drugstotreDistribution, enum_drugstotreDistribution>();
+                SQLControl sQLControl_drugstotreDistribution = new SQLControl(Server, DB, new enum_drugStotreDistribution().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                List<object[]> list_drugstotreDistributions = drugstotreDistributions.ClassToSQL<drugStotreDistributionClass, enum_drugStotreDistribution>();
                 for (int i = 0; i < list_drugstotreDistributions.Count; i++)
                 {
-                    list_drugstotreDistributions[i][(int)enum_drugstotreDistribution.GUID] = Guid.NewGuid().ToString();
-                    list_drugstotreDistributions[i][(int)enum_drugstotreDistribution.加入時間] = DateTime.Now.ToDateTimeString_6();
-                    list_drugstotreDistributions[i][(int)enum_drugstotreDistribution.報表生成時間] = DateTime.MinValue.ToDateTimeString_6();
-                    list_drugstotreDistributions[i][(int)enum_drugstotreDistribution.撥發時間] = DateTime.MinValue.ToDateTimeString_6();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.GUID] = Guid.NewGuid().ToString();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.加入時間] = DateTime.Now.ToDateTimeString_6();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.報表生成時間] = DateTime.MinValue.ToDateTimeString_6();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.撥發時間] = DateTime.MinValue.ToDateTimeString_6();
                 }
 
 
@@ -140,7 +140,7 @@ namespace HIS_WebApi
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
                 Logger.LogAddLine($"drugstotreDistribution");
-                Logger.Log($"stockRecord", $"{ returnData.JsonSerializationt(true)}");
+                Logger.Log($"drugstotreDistribution", $"{ returnData.JsonSerializationt(true)}");
                 Logger.LogAddLine($"drugstotreDistribution");
                 return returnData.JsonSerializationt(true);
             }
@@ -158,7 +158,7 @@ namespace HIS_WebApi
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
             List<Table> tables = new List<Table>();
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_drugstotreDistribution()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_drugStotreDistribution()));
             return tables.JsonSerializationt(true);
         }
     }

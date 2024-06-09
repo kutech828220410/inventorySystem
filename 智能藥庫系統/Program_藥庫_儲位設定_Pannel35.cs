@@ -51,8 +51,8 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_效期及庫存.Init();
 
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
-            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Set_ColumnVisible(false, new enum_藥庫_藥品資料().GetEnumNames());
-            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Set_ColumnVisible(true, enum_藥庫_藥品資料.藥品碼, enum_藥庫_藥品資料.藥品名稱, enum_藥庫_藥品資料.中文名稱, enum_藥庫_藥品資料.包裝單位);
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Set_ColumnVisible(false, new enum_medDrugstore().GetEnumNames());
+            this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.Set_ColumnVisible(true, enum_medDrugstore.藥品碼, enum_medDrugstore.藥品名稱, enum_medDrugstore.中文名稱, enum_medDrugstore.包裝單位);
 
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.RowEnterEvent += SqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料_RowEnterEvent;
 
@@ -180,7 +180,7 @@ namespace 智能藥庫系統
                 bool Is_Replace = false;
                 藥品碼 = storage.GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
                 if (藥品碼.StringIsEmpty()) continue;
-                list_藥品資料_藥檔資料_buf = list_藥品資料_藥檔資料.GetRows((int)enum_藥庫_藥品資料.藥品碼, 藥品碼);
+                list_藥品資料_藥檔資料_buf = list_藥品資料_藥檔資料.GetRows((int)enum_medDrugstore.藥品碼, 藥品碼);
                 if (list_藥品資料_藥檔資料_buf.Count == 0)
                 {
                     storage.Clear();
@@ -188,14 +188,14 @@ namespace 智能藥庫系統
                 }
                 else
                 {
-                    藥品碼_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
-                    藥品名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品名稱].ObjectToString();
-                    藥品中文名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.中文名稱].ObjectToString();
-                    藥品學名_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品學名].ObjectToString();
-                    BarCode_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
-                    包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.包裝單位].ObjectToString();
-                    最小包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.最小包裝單位].ObjectToString();
-                    最小包裝數量_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_藥庫_藥品資料.最小包裝數量].ObjectToString();
+                    藥品碼_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品碼].ObjectToString();
+                    藥品名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品名稱].ObjectToString();
+                    藥品中文名稱_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.中文名稱].ObjectToString();
+                    藥品學名_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品學名].ObjectToString();
+                    BarCode_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.藥品條碼1].ObjectToString();
+                    包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.包裝單位].ObjectToString();
+                    最小包裝單位_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.最小包裝單位].ObjectToString();
+                    最小包裝數量_buf = list_藥品資料_藥檔資料_buf[0][(int)enum_medDrugstore.最小包裝數量].ObjectToString();
 
                     if(BarCode_buf.StringIsEmpty())
                     {
@@ -326,7 +326,7 @@ namespace 智能藥庫系統
                 return;
             }
             List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.SQL_GetAllRows(false);
-            list_value = list_value.GetRowsByLike((int)enum_藥庫_藥品資料.藥品碼, rJ_TextBox_藥庫_儲位管理_Pannel35_藥品搜尋_藥品碼.Texts);
+            list_value = list_value.GetRowsByLike((int)enum_medDrugstore.藥品碼, rJ_TextBox_藥庫_儲位管理_Pannel35_藥品搜尋_藥品碼.Texts);
 
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.RefreshGrid(list_value);
         }
@@ -337,7 +337,7 @@ namespace 智能藥庫系統
                 return;
             }
             List<object[]> list_value = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.SQL_GetAllRows(false);
-            list_value = list_value.GetRowsByLike((int)enum_藥庫_藥品資料.藥品名稱, rJ_TextBox_藥庫_儲位管理_Pannel35_藥品搜尋_藥品名稱.Texts);
+            list_value = list_value.GetRowsByLike((int)enum_medDrugstore.藥品名稱, rJ_TextBox_藥庫_儲位管理_Pannel35_藥品搜尋_藥品名稱.Texts);
 
             this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.RefreshGrid(list_value);
         }
@@ -364,7 +364,7 @@ namespace 智能藥庫系統
             string IP = list_儲位資料[0][(int)enum_藥庫_儲位管理_Pannel35_儲位資料.IP].ObjectToString();
             Storage storage = this.storageUI_WT32.SQL_GetStorage(IP);
             if (storage == null) return;
-            storage.Code = list_藥品資料[0][(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
+            storage.Code = list_藥品資料[0][(int)enum_medDrugstore.藥品碼].ObjectToString();
             this.storageUI_WT32.SQL_ReplaceStorage(storage);
             this.PLC_Device_藥庫_儲位管理_Pannel35_資料更新.Bool = true;
         }
@@ -1068,8 +1068,8 @@ namespace 智能藥庫系統
         {
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_藥品資料.SQL_GetAllRows(false);
             list_藥品資料 = (from value in list_藥品資料
-                         where value[(int)enum_藥庫_藥品資料.基準量].ObjectToString().StringToInt32() > 0
-                         where value[(int)enum_藥庫_藥品資料.安全庫存].ObjectToString().StringToInt32() > 0
+                         where value[(int)enum_medDrugstore.基準量].ObjectToString().StringToInt32() > 0
+                         where value[(int)enum_medDrugstore.安全庫存].ObjectToString().StringToInt32() > 0
                          select value).ToList();
             List<object[]> list_儲位資料 = this.sqL_DataGridView_藥庫_儲位管理_Pannel35_儲位資料.GetAllRows();
             list_儲位資料.Sort(new ICP_藥庫_儲位管理_Pannel35_抽屜列表());
@@ -1086,7 +1086,7 @@ namespace 智能藥庫系統
                 if (storage == null) continue;
                 if (i >= list_藥品資料.Count) continue;
                 storage.清除所有庫存資料();
-                storage.Code = list_藥品資料[i][(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
+                storage.Code = list_藥品資料[i][(int)enum_medDrugstore.藥品碼].ObjectToString();
                 storage.效期庫存覆蓋("1990/01/01", "10");
                 storage.效期庫存覆蓋(DateTime.Now.ToDateString(), "100000");
                 storages_Add.Add(storage);

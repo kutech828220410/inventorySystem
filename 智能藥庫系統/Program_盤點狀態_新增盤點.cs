@@ -39,8 +39,8 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_盤點作業_盤點藥品清單.Paint += SqL_DataGridView_盤點作業_盤點藥品清單_Paint;
 
             this.sqL_DataGridView_盤點作業_藥品資料.Init(this.sqL_DataGridView_藥庫_藥品資料);
-            this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(false, new enum_藥庫_藥品資料().GetEnumNames());
-            this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(true, enum_藥庫_藥品資料.藥品碼, enum_藥庫_藥品資料.藥品名稱, enum_藥庫_藥品資料.料號, enum_藥庫_藥品資料.中文名稱, enum_藥庫_藥品資料.包裝單位, enum_藥庫_藥品資料.藥庫庫存);
+            this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(false, new enum_medDrugstore().GetEnumNames());
+            this.sqL_DataGridView_盤點作業_藥品資料.Set_ColumnVisible(true, enum_medDrugstore.藥品碼, enum_medDrugstore.藥品名稱, enum_medDrugstore.料號, enum_medDrugstore.中文名稱, enum_medDrugstore.包裝單位, enum_medDrugstore.藥庫庫存);
             this.sqL_DataGridView_盤點作業_藥品資料.RowDoubleClickEvent += SqL_DataGridView_盤點作業_藥品資料_RowDoubleClickEvent;
             this.sqL_DataGridView_盤點作業_藥品資料.DataGridRowsChangeRefEvent += SqL_DataGridView_盤點作業_藥品資料_DataGridRowsChangeRefEvent;
 
@@ -102,12 +102,12 @@ namespace 智能藥庫系統
         private void SqL_DataGridView_盤點作業_藥品資料_RowDoubleClickEvent(object[] RowValue)
         {
 
-            string 藥品碼 = RowValue[(int)enum_藥庫_藥品資料.藥品碼].ObjectToString();
-            string 料號 = RowValue[(int)enum_藥庫_藥品資料.料號].ObjectToString();
-            string 藥品名稱 = RowValue[(int)enum_藥庫_藥品資料.藥品名稱].ObjectToString();
-            string 藥品條碼1 = RowValue[(int)enum_藥庫_藥品資料.藥品條碼1].ObjectToString();
-            string 藥品條碼2 = RowValue[(int)enum_藥庫_藥品資料.藥品條碼2].ObjectToString();
-            string 理論值 = RowValue[(int)enum_藥庫_藥品資料.藥庫庫存].ObjectToString();
+            string 藥品碼 = RowValue[(int)enum_medDrugstore.藥品碼].ObjectToString();
+            string 料號 = RowValue[(int)enum_medDrugstore.料號].ObjectToString();
+            string 藥品名稱 = RowValue[(int)enum_medDrugstore.藥品名稱].ObjectToString();
+            string 藥品條碼1 = RowValue[(int)enum_medDrugstore.藥品條碼1].ObjectToString();
+            string 藥品條碼2 = RowValue[(int)enum_medDrugstore.藥品條碼2].ObjectToString();
+            string 理論值 = RowValue[(int)enum_medDrugstore.藥庫庫存].ObjectToString();
             List<object[]> list_盤點藥品清單 = this.sqL_DataGridView_盤點作業_盤點藥品清單.GetAllRows();
             list_盤點藥品清單 = list_盤點藥品清單.GetRows((int)enum_盤點作業_盤點藥品清單.藥品碼, 藥品碼);
             if (list_盤點藥品清單.Count != 0) return;
@@ -147,15 +147,15 @@ namespace 智能藥庫系統
 
             if (this.rJ_TextBox_盤點作業_藥品資料_藥碼搜尋.Texts.StringIsEmpty() == false)
             {
-                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.藥品碼, this.rJ_TextBox_盤點作業_藥品資料_藥碼搜尋.Texts);
+                list_value = list_value.GetRowsStartWithByLike((int)enum_medDrugstore.藥品碼, this.rJ_TextBox_盤點作業_藥品資料_藥碼搜尋.Texts);
             }
             if (this.rJ_TextBox_盤點作業_藥品資料_藥名搜尋.Texts.StringIsEmpty() == false)
             {
-                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.藥品名稱, this.rJ_TextBox_盤點作業_藥品資料_藥名搜尋.Texts);
+                list_value = list_value.GetRowsStartWithByLike((int)enum_medDrugstore.藥品名稱, this.rJ_TextBox_盤點作業_藥品資料_藥名搜尋.Texts);
             }
             if (this.rJ_TextBox_盤點作業_藥品資料_料號搜尋.Texts.StringIsEmpty() == false)
             {
-                list_value = list_value.GetRowsStartWithByLike((int)enum_藥庫_藥品資料.料號, this.rJ_TextBox_盤點作業_藥品資料_料號搜尋.Texts);
+                list_value = list_value.GetRowsStartWithByLike((int)enum_medDrugstore.料號, this.rJ_TextBox_盤點作業_藥品資料_料號搜尋.Texts);
             }
 
             this.sqL_DataGridView_盤點作業_藥品資料.RefreshGrid(list_value);

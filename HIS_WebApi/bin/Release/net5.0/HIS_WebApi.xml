@@ -745,7 +745,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]</returns>
         </member>
-        <member name="M:HIS_WebApi.drugstotreDistribution.POST_init(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.drugStotreDistribution.POST_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化紀錄資料庫
             </summary>
@@ -765,7 +765,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.drugstotreDistribution.POST_add(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.drugStotreDistribution.POST_add(HIS_DB_Lib.returnData)">
             <summary>
             紀錄庫存資料
             </summary>
@@ -777,7 +777,7 @@
                 "ServerType" : "藥庫",
                 "Data": 
                 {
-                    [drugstotreDistributionClass]
+                    [drugStotreDistributionClass]
                 },
                 "ValueAry" : 
                 [
@@ -3477,6 +3477,95 @@
              </code>
              </remarks>
              <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_med_clouds_by_codes(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥碼取得雲端藥檔資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                    [藥碼1,藥碼2]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_update_med_clouds_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID更新雲端藥檔資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   [medclass陣列]
+                },
+                "ValueAry" : 
+                [
+                    
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_ds_pharma_medd(HIS_DB_Lib.returnData)">
+             <summary>
+             取得藥庫系統的藥局藥檔資料
+             </summary>
+             <remarks>
+             以下為範例JSON範例
+             <code>
+             {
+                 "ServerName" : "ds01",
+                 "Data": 
+                 {
+                    
+                 },
+                 "ValueAry" : 
+                 [
+            
+                 ]
+                 
+             }
+             </code>
+             </remarks>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_update_ds_pharma_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            以GUID更新藥庫系統的藥局藥檔資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   [medclass陣列]
+                },
+                "ValueAry" : 
+                [
+                    
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <returns></returns>
         </member>
         <member name="M:HIS_WebApi.MED_pageController.POST_get_by_apiserver(HIS_DB_Lib.returnData)">
             <summary>

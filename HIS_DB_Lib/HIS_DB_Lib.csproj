@@ -111,6 +111,7 @@
     <Compile Include="ctclistClass.cs" />
     <Compile Include="deviceApiClass.cs" />
     <Compile Include="drugDispatchClass.cs" />
+    <Compile Include="drugStotreDistributionCategory.cs" />
     <Compile Include="medGeneralConfigClass.cs" />
     <Compile Include="IncomeReasonsClass.cs" />
     <Compile Include="inspectionClass.cs" />
@@ -131,7 +132,7 @@
     <Compile Include="orderClass.cs" />
     <Compile Include="orderTClass.cs" />
     <Compile Include="personClass.cs" />
-    <Compile Include="drugstotreDistributionClass.cs" />
+    <Compile Include="drugStotreDistributionClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="protalClass.cs" />
     <Compile Include="ServerSettingClass.cs" />
