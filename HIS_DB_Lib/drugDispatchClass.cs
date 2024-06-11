@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 using Basic;
 using System.ComponentModel;
 using System.Reflection;
-
+using SQLUI;
 namespace HIS_DB_Lib
 {
     [EnumDescription("drugDispatch")]
@@ -198,7 +198,6 @@ namespace HIS_DB_Lib
                 return;
             }
             if (returnData_out.Code != 200) return;
-            personPageClass personPageClass = returnData_out.Data.ObjToClass<personPageClass>();
 
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             return;
@@ -226,7 +225,6 @@ namespace HIS_DB_Lib
                 return;
             }
             if (returnData_out.Code != 200) return;
-            personPageClass personPageClass = returnData_out.Data.ObjToClass<personPageClass>();
 
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             return;

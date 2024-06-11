@@ -593,3 +593,4 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\H_Pan
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\SQLUI.xml

@@ -363,7 +363,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("get_ds_pharma_med")]
         [HttpPost]
-        public string POST_get_ds_pharma_medd(returnData returnData)
+        public string POST_get_ds_pharma_med(returnData returnData)
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
@@ -396,77 +396,88 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
+                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_cloud = new Dictionary<string, List<medClass>>();
+                List<medClass> medClasses_cloud = new List<medClass>();
+                List<medClass> medClasses_cloud_buf = new List<medClass>();
+
 
                 SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_phar", UserName, Password, Port, SSLMode);
                 List<object[]> list_med = sQLControl_med.GetAllRows(null);
                 List<object[]> list_med_buf = new List<object[]>();
-                List<H_Pannel_lib.DeviceSimple> deviceBasics_藥局 = new List<H_Pannel_lib.DeviceSimple>();
-                List<H_Pannel_lib.DeviceSimple> deviceBasics_藥庫 = new List<H_Pannel_lib.DeviceSimple>();
-
+                List<H_Pannel_lib.DeviceBasic> deviceBasics_藥局 = new List<H_Pannel_lib.DeviceBasic>();
+                List<H_Pannel_lib.DeviceBasic> deviceBasics_藥庫 = new List<H_Pannel_lib.DeviceBasic>();
+                Dictionary<string, List<H_Pannel_lib.DeviceBasic>> dictionary_藥局 = new Dictionary<string, List<DeviceBasic>>();
+                Dictionary<string, List<H_Pannel_lib.DeviceBasic>> dictionary_藥庫 = new Dictionary<string, List<DeviceBasic>>();
                 List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    medClasses_cloud = Get_med_cloud(serverSettingClasses_med);
+                    keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
 
+                })));
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     MyTimerBasic myTimerBasic1 = new MyTimerBasic();
-                    deviceBasics_藥局 = deviceController.Function_Get_deviceSimple(serverSettingClasses[0], "sd0_device_jsonstring");
-                    Dictionary<string, List<H_Pannel_lib.DeviceSimple>> dictionary = ConvertToDictionary(deviceBasics_藥局);
-                    List<H_Pannel_lib.DeviceSimple> deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
-                    string 藥碼 = "";
-                    int inventory = 0;
-                    for (int i = 0; i < list_med.Count; i++)
-                    {
-                        inventory = 0;
-                        藥碼 = list_med[i][(int)enum_medDrugstore.藥品碼].ObjectToString();
-                        deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
-                        if (dictionary.ContainsKey(藥碼))
-                        {
-                            deviceBasics_buf = dictionary[藥碼];
-                        }
-                        if (deviceBasics_buf == null) continue;
-                        for (int k = 0; k < deviceBasics_buf.Count; k++)
-                        {
-                            inventory += deviceBasics_buf[k].Inventory.StringToInt32();
-                        }
-                        list_med[i][(int)enum_medDrugstore.藥局庫存] = inventory.ToString();
-                    }
+                    deviceBasics_藥局 = deviceController.Function_Get_device(serverSettingClasses_buf[0], "sd0_device_jsonstring");
+                    dictionary_藥局 = deviceBasics_藥局.CoverToDictionaryByCode();                
                     TaskTime_藥局 = myTimerBasic1.ToString();
 
                 })));
                 tasks.Add(Task.Run(new Action(delegate
                 {
                     MyTimerBasic myTimerBasic1 = new MyTimerBasic();
-                    deviceBasics_藥庫 = deviceController.Function_Get_deviceSimple(serverSettingClasses[0], "firstclass_device_jsonstring");
-                    List<H_Pannel_lib.DeviceSimple> deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
-                    Dictionary<string, List<H_Pannel_lib.DeviceSimple>> dictionary = ConvertToDictionary(deviceBasics_藥庫);
-                    string 藥碼 = "";
-                    int inventory = 0;
-
-                    for (int i = 0; i < list_med.Count; i++)
-                    {
-                        inventory = 0;
-                        藥碼 = list_med[i][(int)enum_medDrugstore.藥品碼].ObjectToString();
-                        //deviceBasics_buf = (from temp in deviceBasics_藥庫
-                        //                    where temp.Code == 藥碼
-                        //                    select temp).ToList();
-                        deviceBasics_buf = new List<H_Pannel_lib.DeviceSimple>();
-                        if (dictionary.ContainsKey(藥碼))
-                        {
-                            deviceBasics_buf = dictionary[藥碼];
-                        }
-                        if (deviceBasics_buf == null) continue;
-                        for (int k = 0; k < deviceBasics_buf.Count; k++)
-                        {
-                            inventory += deviceBasics_buf[k].Inventory.StringToInt32();
-                        }
-                        list_med[i][(int)enum_medDrugstore.藥庫庫存] = inventory.ToString();
-                    }
+                    deviceBasics_藥庫 = deviceController.Function_Get_device(serverSettingClasses_buf[0], "firstclass_device_jsonstring");
+                    dictionary_藥庫 = deviceBasics_藥庫.CoverToDictionaryByCode();          
                     TaskTime_藥庫 = myTimerBasic1.ToString();
                 })));
                 Task.WhenAll(tasks.ToArray()).Wait();
+                List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
+                string 藥碼 = "";
+                int inventory = 0;        
+                List<medClassBasic> medClasses = list_med.SQLToClass<medClassBasic, enum_medDrugstore>();
+                for (int i = 0; i < medClasses.Count; i++)
+                {
+                    藥碼 = medClasses[i].藥品碼;
+                    inventory = 0;
+                    medClasses_cloud_buf = keyValuePairs_medClasses_cloud.SortDictionaryByCode(medClasses[i].藥品碼);
+                    if (medClasses_cloud_buf.Count > 0)
+                    {
+                        medClasses[i].藥品名稱 = medClasses_cloud_buf[0].藥品名稱;
+                        medClasses[i].藥品學名 = medClasses_cloud_buf[0].藥品學名;
+                        medClasses[i].藥品許可證號 = medClasses_cloud_buf[0].藥品許可證號;
+                        medClasses[i].開檔狀態 = medClasses_cloud_buf[0].開檔狀態;
+                        medClasses[i].類別 = medClasses_cloud_buf[0].類別;
+                    }
+                    deviceBasics_buf = new List<DeviceBasic>();
+                    if (dictionary_藥局.ContainsKey(藥碼))
+                    {
+                        deviceBasics_buf = dictionary_藥局[藥碼];
+                    }
+                    if (deviceBasics_buf.Count == 0) continue;
+                    for (int k = 0; k < deviceBasics_buf.Count; k++)
+                    {
+                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                    }
+                    medClasses[i].DeviceBasics = deviceBasics_buf;
+                    medClasses[i].藥局庫存 = inventory.ToString();
 
+                    inventory = 0;
+                    deviceBasics_buf = new List<DeviceBasic>();
+                    if (dictionary_藥庫.ContainsKey(藥碼))
+                    {
+                        deviceBasics_buf = dictionary_藥庫[藥碼];
+                    }
+                    if (deviceBasics_buf.Count == 0) continue;
+                    for (int k = 0; k < deviceBasics_buf.Count; k++)
+                    {
+                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                    }
+                    medClasses[i].藥庫庫存 = inventory.ToString();
+                    medClasses[i].總庫存 = (medClasses[i].藥局庫存.StringToInt32() + medClasses[i].藥庫庫存.StringToInt32()).ToString();                  
+                }
 
-
-                returnData.Data = list_med.SQLToClass<medClassBasic, enum_medDrugstore>();
+                returnData.Data = medClasses;
                 returnData.Code = 200;
                 returnData.Result = $"藥局藥檔取得成功,藥局庫存取得耗時[{TaskTime_藥局}],藥庫庫存取得耗時[{TaskTime_藥庫}]";
                 returnData.TimeTaken = myTimerBasic.ToString();
@@ -559,6 +570,240 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+
+        /// <summary>
+        /// 取得藥庫系統的藥庫藥檔資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "ServerName" : "ds01",
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_ds_drugstore_med")]
+        [HttpPost]
+        public string POST_get_ds_drugstore_med(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_ds_drugstore_med";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, "藥庫", "本地端");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+
+                string TaskTime_藥局 = "";
+                string TaskTime_藥庫 = "";
+                string Server = serverSettingClasses_buf[0].Server;
+                string DB = serverSettingClasses_buf[0].DBName;
+                string UserName = serverSettingClasses_buf[0].User;
+                string Password = serverSettingClasses_buf[0].Password;
+                uint Port = (uint)serverSettingClasses_buf[0].Port.StringToInt32();
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_cloud = new Dictionary<string, List<medClass>>();
+                List<medClass> medClasses_cloud = new List<medClass>();
+                List<medClass> medClasses_cloud_buf = new List<medClass>();
+
+
+                SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_firstclass", UserName, Password, Port, SSLMode);
+                List<object[]> list_med = sQLControl_med.GetAllRows(null);
+                List<object[]> list_med_buf = new List<object[]>();
+                List<H_Pannel_lib.DeviceBasic> deviceBasics_藥局 = new List<H_Pannel_lib.DeviceBasic>();
+                List<H_Pannel_lib.DeviceBasic> deviceBasics_藥庫 = new List<H_Pannel_lib.DeviceBasic>();
+                Dictionary<string, List<H_Pannel_lib.DeviceBasic>> dictionary_藥局 = new Dictionary<string, List<DeviceBasic>>();
+                Dictionary<string, List<H_Pannel_lib.DeviceBasic>> dictionary_藥庫 = new Dictionary<string, List<DeviceBasic>>();
+                List<Task> tasks = new List<Task>();
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    medClasses_cloud = Get_med_cloud(serverSettingClasses_med);
+                    keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
+
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    MyTimerBasic myTimerBasic1 = new MyTimerBasic();
+                    deviceBasics_藥局 = deviceController.Function_Get_device(serverSettingClasses_buf[0], "sd0_device_jsonstring");
+                    dictionary_藥局 = deviceBasics_藥局.CoverToDictionaryByCode();
+                    TaskTime_藥局 = myTimerBasic1.ToString();
+
+                })));
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    MyTimerBasic myTimerBasic1 = new MyTimerBasic();
+                    deviceBasics_藥庫 = deviceController.Function_Get_device(serverSettingClasses_buf[0], "firstclass_device_jsonstring");
+                    dictionary_藥庫 = deviceBasics_藥庫.CoverToDictionaryByCode();
+                    TaskTime_藥庫 = myTimerBasic1.ToString();
+                })));
+                Task.WhenAll(tasks.ToArray()).Wait();
+                List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
+                string 藥碼 = "";
+                int inventory = 0;
+                List<medClassBasic> medClasses = list_med.SQLToClass<medClassBasic, enum_medDrugstore>();
+                for (int i = 0; i < medClasses.Count; i++)
+                {
+                    藥碼 = medClasses[i].藥品碼;
+                    inventory = 0;
+                    medClasses_cloud_buf = keyValuePairs_medClasses_cloud.SortDictionaryByCode(medClasses[i].藥品碼);
+                    if (medClasses_cloud_buf.Count > 0)
+                    {
+                        medClasses[i].藥品名稱 = medClasses_cloud_buf[0].藥品名稱;
+                        medClasses[i].藥品學名 = medClasses_cloud_buf[0].藥品學名;
+                        medClasses[i].藥品許可證號 = medClasses_cloud_buf[0].藥品許可證號;
+                        medClasses[i].開檔狀態 = medClasses_cloud_buf[0].開檔狀態;
+                        medClasses[i].類別 = medClasses_cloud_buf[0].類別;
+                    }
+                    deviceBasics_buf = new List<DeviceBasic>();
+                    if (dictionary_藥局.ContainsKey(藥碼))
+                    {
+                        deviceBasics_buf = dictionary_藥局[藥碼];
+                    }
+                    if (deviceBasics_buf.Count == 0) continue;
+                    for (int k = 0; k < deviceBasics_buf.Count; k++)
+                    {
+                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                    }
+          
+                    medClasses[i].藥局庫存 = inventory.ToString();
+
+                    deviceBasics_buf = new List<DeviceBasic>();
+                    if (dictionary_藥庫.ContainsKey(藥碼))
+                    {
+                        deviceBasics_buf = dictionary_藥庫[藥碼];
+                    }
+
+                    inventory = 0;
+                    if (deviceBasics_buf.Count == 0) continue;
+                    for (int k = 0; k < deviceBasics_buf.Count; k++)
+                    {
+                        inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                    }
+                    medClasses[i].DeviceBasics = deviceBasics_buf;
+                    medClasses[i].藥庫庫存 = inventory.ToString();
+                    medClasses[i].總庫存 = (medClasses[i].藥局庫存.StringToInt32() + medClasses[i].藥庫庫存.StringToInt32()).ToString();
+                }
+
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = $"藥局藥檔取得成功,藥局庫存取得耗時[{TaskTime_藥局}],藥庫庫存取得耗時[{TaskTime_藥庫}]";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(false);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 以GUID更新藥庫系統的藥庫藥檔資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        [medclass陣列]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///         
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("update_ds_drugstore_by_guid")]
+        [HttpPost]
+        public string POST_update_ds_store_by_guid(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_ds_drugstore_by_guid";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, "藥庫", "本地端");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                List<medClass> medClasses = returnData.Data.ObjToClass<List<medClass>>();
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料錯誤";
+                    return returnData.JsonSerializationt();
+                }
+
+                List<object[]> list_value_replace = medClasses.ClassToSQL<medClass, enum_medDrugstore>();
+
+
+                string Server = serverSettingClasses_buf[0].Server;
+                string DB = serverSettingClasses_buf[0].DBName;
+                string UserName = serverSettingClasses_buf[0].User;
+                string Password = serverSettingClasses_buf[0].Password;
+                uint Port = (uint)serverSettingClasses_buf[0].Port.StringToInt32();
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_firstclass", UserName, Password, Port, SSLMode);
+
+                sQLControl.UpdateByDefulteExtra(null, list_value_replace);
+
+                returnData.Code = 200;
+                returnData.Result = $"更新藥庫系統的藥庫藥檔成功,共<{list_value_replace.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(false);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
         /// <summary>
         /// 查詢藥品資料JSON格式範例
         /// </summary>

@@ -714,6 +714,121 @@
             開門權限
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.enum_drugStotreDistribution">
+            <summary>
+            枚舉表示藥品撥補的字段和屬性描述。
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.drugStotreDistributionClass">
+            <summary>
+            表示藥品撥補的數據類別。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.GUID">
+            <summary>
+            獨特標識符。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.來源庫別">
+            <summary>
+            來源庫別。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.目的庫別">
+            <summary>
+            目的庫別。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.藥碼">
+            <summary>
+            藥品代碼。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.藥名">
+            <summary>
+            藥品名稱。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.包裝單位">
+            <summary>
+            包裝單位。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.包裝量">
+            <summary>
+            包裝量。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.來源庫庫存">
+            <summary>
+            來源庫庫存。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.目的庫庫存">
+            <summary>
+            目的庫庫存。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.撥發量">
+            <summary>
+            撥發量。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.實撥量">
+            <summary>
+            實際撥發量。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.來源庫結存">
+            <summary>
+            來源庫結存。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.目的庫結存">
+            <summary>
+            目的庫結存。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.撥發人員">
+            <summary>
+            撥發人員。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.撥發單位">
+            <summary>
+            撥發單位。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.加入時間">
+            <summary>
+            加入時間。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.撥發時間">
+            <summary>
+            撥發時間。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.報表生成時間">
+            <summary>
+            報表生成時間。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.報表名稱">
+            <summary>
+            報表名稱。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.狀態">
+            <summary>
+            狀態。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.備註">
+            <summary>
+            備註。
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.transactionsClass.GUID">
             <summary>
             唯一KEY

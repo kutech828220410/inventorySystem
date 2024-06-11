@@ -173,3 +173,4 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Rel
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\stdole.dll
+C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\SQLUI.xml

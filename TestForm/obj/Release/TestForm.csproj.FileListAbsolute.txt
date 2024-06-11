@@ -64,3 +64,4 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Microso
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\H_Pannel_lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Basic.dll
+C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\SQLUI.xml

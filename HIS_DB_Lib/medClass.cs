@@ -254,7 +254,7 @@ namespace HIS_DB_Lib
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
             medClasses = returnData.Data.ObjToClass<List<medClass>>();
-            medClasses.Sort(new ICP_By_Code());
+            medClasses.Sort(new medClass.ICP_By_Code());
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
@@ -333,7 +333,46 @@ namespace HIS_DB_Lib
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
         }
-        
+
+        static public List<medClass> get_ds_drugstore_med(string API_Server, string ServerName)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_ds_drugstore_med";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        static public void update_ds_drugstore_by_guid(string API_Server, string ServerName, medClass medClass)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            medClasses.Add(medClass);
+            update_ds_drugstore_by_guid(API_Server, ServerName, medClasses);
+        }
+        static public void update_ds_drugstore_by_guid(string API_Server, string ServerName, List<medClass> medClasses)
+        {
+            string url = $"{API_Server}/api/MED_page/update_ds_drugstore_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.Data = medClasses;
+            if (medClasses.Count == 0) return;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+        }
+
         static public medClass get_med_clouds_by_code(string API_Server, string Code)
         {
             List<string> Codes = new List<string>();
@@ -440,6 +479,16 @@ namespace HIS_DB_Lib
             return new List<medClass>();
         }
 
+        public class ICP_By_Code : IComparer<medClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(medClass x, medClass y)
+            {
+                return x.藥品碼.CompareTo(y.藥品碼);
+
+            }
+        }
     }
     public static class medClassMethod
     {
@@ -474,16 +523,7 @@ namespace HIS_DB_Lib
             }
             return new List<medClass>();
         }
-
+    
     }
-    public class ICP_By_Code : IComparer<medClass>
-    {
-        //實作Compare方法
-        //依Speed由小排到大。
-        public int Compare(medClass x, medClass y)
-        {
-            return x.藥品碼.CompareTo(y.藥品碼);
-      
-        }
-    }
+ 
 }

@@ -245,12 +245,36 @@ namespace HIS_DB_Lib
                     var property = typeof(T).GetProperty(enumName);
                     if (value is DateTime)
                     {
-                        property?.SetValue(obj, value.ToDateTimeString());
+                        if (property == null)
+                        {
+                            property?.SetValue(obj, value.ObjectToString());
+                        }
+                        else if (property.PropertyType.Name == "DateTime")
+                        {
+                            property?.SetValue(obj, value);
+                        }
+                        else
+                        {
+                            property?.SetValue(obj, value.ToDateTimeString());
+                        }
+                       
                     }
                     else
                     {
-                        // 將值填入對應的屬性
-                        property?.SetValue(obj, value.ObjectToString());
+                        if (property == null)
+                        {
+                            property?.SetValue(obj, value.ObjectToString());
+                        }
+                        else if (property.PropertyType.Name == "DateTime")
+                        {
+                            property?.SetValue(obj, value.StringToDateTime());
+                        }
+                        else
+                        {
+                            // 將值填入對應的屬性
+                            property?.SetValue(obj, value.ObjectToString());
+                        }
+                       
                     }
 
                 }
