@@ -318,6 +318,7 @@ namespace HIS_WebApi
             }
         }
 
+
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
             List<Table> tables = new List<Table>();
