@@ -2403,6 +2403,7 @@ namespace 調劑台管理系統
                     else if (結存量 < 0)
                     {
                         this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName();
+                        if (!plC_Button_無庫存自動補足.Bool) Function_儲位亮燈_Ex(藥品碼, Color.Black);
                         // this.Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
                         flag_取藥堆疊母資料_Update = true;
                     }
