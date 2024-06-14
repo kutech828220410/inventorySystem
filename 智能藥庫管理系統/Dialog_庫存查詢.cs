@@ -473,7 +473,7 @@ namespace 智能藥庫管理系統
             {
                 List<object[]> list_value = new List<object[]>();
                 string 藥碼 = RowValue[(int)enum_庫存查詢.藥碼].ObjectToString();
-                List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
+                List<DeviceBasic> deviceBasics = deviceApiClass.Get_StoreHouse_DeviceBasicsByCodes(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
 
                 if (deviceBasics.Count > 0)
                 {
@@ -501,7 +501,7 @@ namespace 智能藥庫管理系統
 
                 List<object[]> list_value = new List<object[]>();
                 string 藥碼 = RowValue[(int)enum_庫存查詢.藥碼].ObjectToString();
-                List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥局);
+                List<DeviceBasic> deviceBasics = deviceApiClass.Get_StoreHouse_DeviceBasicsByCodes(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥局);
 
                 if (deviceBasics.Count > 0)
                 {
@@ -673,7 +673,7 @@ namespace 智能藥庫管理系統
                 string 效期 = dialog_效期批號輸入.效期;
                 string 批號 = dialog_效期批號輸入.批號;
 
-                List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
+                List<DeviceBasic> deviceBasics = deviceApiClass.Get_StoreHouse_DeviceBasicsByCodes(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
                 if (deviceBasics.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"找無儲位資訊", 1500);
@@ -727,7 +727,7 @@ namespace 智能藥庫管理系統
 
             this.Invoke(new Action(delegate
             {
-                List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
+                List<DeviceBasic> deviceBasics = deviceApiClass.Get_StoreHouse_DeviceBasicsByCodes(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
                 if (deviceBasics.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"找無儲位資訊", 1500);
@@ -766,7 +766,7 @@ namespace 智能藥庫管理系統
             string 效期 = list_效期及批號[0][(int)enum_效期及批號.效期].ObjectToString();
             string 批號 = list_效期及批號[0][(int)enum_效期及批號.批號].ObjectToString();
             int 數量 = list_效期及批號[0][(int)enum_效期及批號.庫存].StringToInt32();
-            List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
+            List<DeviceBasic> deviceBasics = deviceApiClass.Get_StoreHouse_DeviceBasicsByCodes(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥庫);
 
             this.Invoke(new Action(delegate
             {
@@ -800,7 +800,7 @@ namespace 智能藥庫管理系統
                 string 效期 = dialog_效期批號輸入.效期;
                 string 批號 = dialog_效期批號輸入.批號;
 
-                List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥局);
+                List<DeviceBasic> deviceBasics = deviceApiClass.Get_StoreHouse_DeviceBasicsByCodes(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥局);
                 if (deviceBasics.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"找無儲位資訊", 1500);
@@ -854,7 +854,7 @@ namespace 智能藥庫管理系統
 
             this.Invoke(new Action(delegate
             {
-                List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥局);
+                List<DeviceBasic> deviceBasics = deviceApiClass.Get_StoreHouse_DeviceBasicsByCodes(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥局);
                 if (deviceBasics.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"找無儲位資訊", 1500);
@@ -893,7 +893,7 @@ namespace 智能藥庫管理系統
             string 效期 = list_效期及批號[0][(int)enum_效期及批號.效期].ObjectToString();
             string 批號 = list_效期及批號[0][(int)enum_效期及批號.批號].ObjectToString();
             int 數量 = list_效期及批號[0][(int)enum_效期及批號.庫存].StringToInt32();
-            List<DeviceBasic> deviceBasics = deviceApiClass.GetDeviceBasicsByCode(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥局);
+            List<DeviceBasic> deviceBasics = deviceApiClass.Get_StoreHouse_DeviceBasicsByCodes(Main_Form.API_Server, "ds01", "藥庫", 藥碼, deviceApiClass.StoreType.藥局);
 
             this.Invoke(new Action(delegate
             {

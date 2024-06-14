@@ -7,11 +7,14 @@ using System.Text.Json.Serialization;
 using Basic;
 using System.ComponentModel;
 using System.Reflection;
-
+using SQLUI;
 namespace HIS_DB_Lib
 {
-    [EnumDescription("pharmacyDistribution")]
-    public enum enum_drugstotreDistribution
+    /// <summary>
+    /// 枚舉表示藥品撥補的字段和屬性描述。
+    /// </summary>
+    [EnumDescription("drug_stotre_Distribution")]
+    public enum enum_drugStotreDistribution
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
@@ -23,12 +26,22 @@ namespace HIS_DB_Lib
         藥碼,
         [Description("藥名,VARCHAR,300,NONE")]
         藥名,
-        [Description("庫存,VARCHAR,20,NONE")]
-        庫存,
+        [Description("包裝單位,VARCHAR,300,NONE")]
+        包裝單位,
+        [Description("包裝量,VARCHAR,300,NONE")]
+        包裝量,
+        [Description("來源庫庫存,VARCHAR,20,NONE")]
+        來源庫庫存,
+        [Description("目的庫庫存,VARCHAR,20,NONE")]
+        目的庫庫存,
         [Description("撥發量,VARCHAR,20,NONE")]
         撥發量,
         [Description("實撥量,VARCHAR,20,NONE")]
         實撥量,
+        [Description("來源庫結存,VARCHAR,20,NONE")]
+        來源庫結存,
+        [Description("目的庫結存,VARCHAR,20,NONE")]
+        目的庫結存,
         [Description("撥發人員,VARCHAR,50,NONE")]
         撥發人員,
         [Description("撥發單位,VARCHAR,100,NONE")]
@@ -37,41 +50,233 @@ namespace HIS_DB_Lib
         加入時間,
         [Description("撥發時間,DATETIME,20,INDEX")]
         撥發時間,
+        [Description("報表名稱,VARCHAR,100,NONE")]
+        報表名稱,
         [Description("報表生成時間,DATETIME,20,INDEX")]
         報表生成時間,
+        [Description("狀態,VARCHAR,50,INDEX")]
+        狀態,
         [Description("備註,VARCHAR,300,NONE")]
         備註,
 
     }
-    public class drugstotreDistributionClass
+    /// <summary>
+    /// 表示藥品撥補的數據類別。
+    /// </summary>
+    public class drugStotreDistributionClass
     {
+        /// <summary>
+        /// 獨特標識符。
+        /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// 來源庫別。
+        /// </summary>
         [JsonPropertyName("sourceStoreType")]
         public string 來源庫別 { get; set; }
+        /// <summary>
+        /// 目的庫別。
+        /// </summary>
         [JsonPropertyName("destinationStoreType")]
         public string 目的庫別 { get; set; }
+        /// <summary>
+        /// 藥品代碼。
+        /// </summary>
         [JsonPropertyName("code")]
         public string 藥碼 { get; set; }
+        /// <summary>
+        /// 藥品名稱。
+        /// </summary>
         [JsonPropertyName("name")]
         public string 藥名 { get; set; }
-        [JsonPropertyName("inventory")]
-        public string 庫存 { get; set; }
+        /// <summary>
+        /// 包裝單位。
+        /// </summary>
+        [JsonPropertyName("packageUnit")]
+        public string 包裝單位 { get; set; }
+        /// <summary>
+        /// 包裝量。
+        /// </summary>
+        [JsonPropertyName("packageQuantity")]
+        public string 包裝量 { get; set; }
+        /// <summary>
+        /// 來源庫庫存。
+        /// </summary>
+        [JsonPropertyName("sourceStoreInventory")]
+        public string 來源庫庫存 { get; set; }
+        /// <summary>
+        /// 目的庫庫存。
+        /// </summary>
+        [JsonPropertyName("destinationStoreInventory")]
+        public string 目的庫庫存 { get; set; }
+        /// <summary>
+        /// 撥發量。
+        /// </summary>
         [JsonPropertyName("issuedQuantity")]
         public string 撥發量 { get; set; }
+        /// <summary>
+        /// 實際撥發量。
+        /// </summary>
         [JsonPropertyName("actualIssuedQuantity")]
         public string 實撥量 { get; set; }
+        /// <summary>
+        /// 來源庫結存。
+        /// </summary>
+        [JsonPropertyName("sourceStoreBalance")]
+        public string 來源庫結存 { get; set; }
+        /// <summary>
+        /// 目的庫結存。
+        /// </summary>
+        [JsonPropertyName("destinationStoreBalance")]
+        public string 目的庫結存 { get; set; }
+        /// <summary>
+        /// 撥發人員。
+        /// </summary>
         [JsonPropertyName("issuer")]
         public string 撥發人員 { get; set; }
+        /// <summary>
+        /// 撥發單位。
+        /// </summary>
         [JsonPropertyName("issuingUnit")]
         public string 撥發單位 { get; set; }
+        /// <summary>
+        /// 加入時間。
+        /// </summary>
         [JsonPropertyName("addedTime")]
-        public string 加入時間 { get; set; }
+        public DateTime 加入時間 { get; set; }
+        /// <summary>
+        /// 撥發時間。
+        /// </summary>
         [JsonPropertyName("issuanceTime")]
-        public string 撥發時間 { get; set; }
+        public DateTime 撥發時間 { get; set; }
+        /// <summary>
+        /// 報表生成時間。
+        /// </summary>
         [JsonPropertyName("reportGenerationTime")]
-        public string 報表生成時間 { get; set; }
+        public DateTime 報表生成時間 { get; set; }
+        /// <summary>
+        /// 報表名稱。
+        /// </summary>
+        [JsonPropertyName("reportName")]
+        public string 報表名稱 { get; set; }
+        /// <summary>
+        /// 狀態。
+        /// </summary>
+        [JsonPropertyName("state")]
+        public string 狀態 { get; set; }
+        /// <summary>
+        /// 備註。
+        /// </summary>
         [JsonPropertyName("remarks")]
         public string 備註 { get; set; }
+
+        static public SQLUI.Table init(string API_Server)
+        {
+            string url = $"{API_Server}/api/drugStotreDistribution/init";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "Main";
+            returnData.ServerType = "網頁";
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+       
+            List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
+            return tables.GetTable(new enum_drugStotreDistribution());
+
+        }
+        static public void add(string API_Server, List<drugStotreDistributionClass> drugStotreDistributionClasses)
+        {
+            string url = $"{API_Server}/api/drugStotreDistribution/add";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "";
+            returnData.ServerType = "";
+            returnData.Data = drugStotreDistributionClasses;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            if (returnData_out.Code != 200) return;
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return;
+        }
+        static public void update_by_guid(string API_Server, List<drugStotreDistributionClass> drugStotreDistributionClasses)
+        {
+            string url = $"{API_Server}/api/drugStotreDistribution/update_by_guid";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "";
+            returnData.ServerType = "";
+            returnData.Data = drugStotreDistributionClasses;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            if (returnData_out.Code != 200) return;
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return;
+        }
+        static public List<drugStotreDistributionClass> get_by_addedTime(string API_Server, DateTime st_datetime , DateTime end_datetime)
+        {
+            List<drugStotreDistributionClass> drugStotreDistributionClasses = new List<drugStotreDistributionClass>();
+            string url = $"{API_Server}/api/drugStotreDistribution/get_by_addedTime";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(st_datetime.ToDateTimeString());
+            returnData.ValueAry.Add(end_datetime.ToDateTimeString());
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            drugStotreDistributionClasses = returnData.Data.ObjToClass<List<drugStotreDistributionClass>>();
+            Console.WriteLine($"[{returnData.Method}]:{returnData.Result}");
+            return drugStotreDistributionClasses;
+        }
+
+
+        public class ICP_By_Code : IComparer<drugStotreDistributionClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(drugStotreDistributionClass x, drugStotreDistributionClass y)
+            {
+                return x.藥碼.CompareTo(y.藥碼);
+            }
+        }
+        public class ICP_By_addedTime : IComparer<drugStotreDistributionClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(drugStotreDistributionClass x, drugStotreDistributionClass y)
+            {
+                return x.加入時間.CompareTo(y.加入時間);
+            }
+        }
     }
 }

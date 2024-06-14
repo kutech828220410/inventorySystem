@@ -1262,4 +1262,8 @@ C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Newtonsoft.Json.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Basic.dll
+<<<<<<< HEAD
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.AssemblyReference.cache
+=======
+C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\SQLUI.xml
+>>>>>>> 6b863d50e032dc737ecc559fe6b0838e70a4ed78

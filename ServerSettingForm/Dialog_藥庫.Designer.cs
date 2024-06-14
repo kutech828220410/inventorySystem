@@ -70,6 +70,8 @@ namespace ServerSettingForm
             this.panel_SQLContent3 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent2 = new ServerSettingForm.Panel_SQLContent();
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
+            this.comboBox_單位 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -535,12 +537,33 @@ namespace ServerSettingForm
             this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent1.TabIndex = 67;
             // 
+            // comboBox_單位
+            // 
+            this.comboBox_單位.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.comboBox_單位.FormattingEnabled = true;
+            this.comboBox_單位.Location = new System.Drawing.Point(722, 17);
+            this.comboBox_單位.Name = "comboBox_單位";
+            this.comboBox_單位.Size = new System.Drawing.Size(168, 32);
+            this.comboBox_單位.TabIndex = 81;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(652, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 27);
+            this.label2.TabIndex = 80;
+            this.label2.Text = "單位 :";
+            // 
             // Dialog_藥庫
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.comboBox_單位);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel_API_URL5);
             this.Controls.Add(this.panel_API_URL4);
             this.Controls.Add(this.panel_API_URL3);
@@ -606,5 +629,7 @@ namespace ServerSettingForm
         private Panel_API_URL panel_API_URL2;
         private Panel_API_URL panel_API_URL4;
         private Panel_API_URL panel_API_URL5;
+        private System.Windows.Forms.ComboBox comboBox_單位;
+        private System.Windows.Forms.Label label2;
     }
 }

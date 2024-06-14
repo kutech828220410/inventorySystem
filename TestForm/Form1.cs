@@ -28,7 +28,7 @@ namespace TestForm
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            deviceApiClass.GetRowsLED("http://127.0.0.1:4433", "管藥", "調劑台");
+            deviceApiClass.GetRowsLEDs("http://127.0.0.1:4433", "管藥", "調劑台");
         }
     }
 }

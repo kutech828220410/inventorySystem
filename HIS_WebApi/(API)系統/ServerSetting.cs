@@ -76,8 +76,14 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
             returnData.Method = "GET_init";
-            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
 
+            }
             try
             {
                 return CheckCreatTable();
@@ -116,7 +122,14 @@ namespace HIS_WebApi
 
             try
             {
-                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                try
+                {
+                    returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                }
+                catch
+                {
+
+                }
                 returnData.Method = "POST_init";
          
                 return CheckCreatTable();
@@ -173,7 +186,14 @@ namespace HIS_WebApi
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
-            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
             returnData.Method = "add";
             try
             {
@@ -251,7 +271,14 @@ namespace HIS_WebApi
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
-            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
             returnData.Method = "delete";
             try
             {
@@ -307,7 +334,14 @@ namespace HIS_WebApi
         {
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             myTimerBasic.StartTickTime(50000);
-            returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
             returnData.Method = "get_serversetting_by_type";
             try
             {
@@ -355,8 +389,170 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 取得指定Type(調劑台、藥庫...)伺服器資訊的服務單位
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "調劑台"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_department_type")]
+        [HttpPost]
+        public string POST_gget_department_type([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
+        
+            returnData.Method = "get_department_type";
+            try
+            {
+                this.CheckCreatTable();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetAllRows(null);
+                List<object[]> list_value_returnData = new List<object[]>();
+                List<object[]> list_value_add = new List<object[]>();
+                List<object[]> list_value_replace = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[Type]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string Type = returnData.ValueAry[0];
+
+                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
+                List<string> department_types = (from temp in serverSettingClasses
+                                                 where temp.類別 == Type
+                                                 where temp.內容 == "一般資料"
+                                                 select temp.單位).Distinct().ToList();
+
+                department_types.Remove("");
+                returnData.Code = 200;
+                returnData.Result = $"取得伺服器服務端未,共<{department_types.Count}>筆種類";
+                returnData.Data = department_types;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
+        /// <summary>
+        /// 以單位別取得連線資訊(門診、急診、住院、藥庫...)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "門診"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_serversetting_by_department_type")]
+        [HttpPost]
+        public string POST_get_serversetting_by_department_type([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
+            returnData.Method = "get_serversetting_by_department_type";
+            try
+            {
+                this.CheckCreatTable();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetAllRows(null);
+                List<object[]> list_value_returnData = new List<object[]>();
+                List<object[]> list_value_add = new List<object[]>();
+                List<object[]> list_value_replace = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[Type]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string department_type = returnData.ValueAry[0];
+
+                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
+                serverSettingClasses = (from temp in serverSettingClasses
+                                        where temp.單位 == department_type
+                                        where temp.內容 == "一般資料"
+                                        select temp).ToList();
 
 
+                returnData.Code = 200;
+                returnData.Result = $"取得連線資訊,共<{serverSettingClasses.Count}>筆";
+                returnData.Data = serverSettingClasses;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
 
         private string CheckCreatTable()
         {

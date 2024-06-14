@@ -1294,4 +1294,8 @@ C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.exe
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.pdb
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.dll
+<<<<<<< HEAD
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\LoggerClassLibrary.dll
+=======
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\SQLUI.xml
+>>>>>>> 6b863d50e032dc737ecc559fe6b0838e70a4ed78

@@ -163,6 +163,7 @@ C:\Users\vendors\Desktop\inventorySystem\batch_ds_stockRecord\obj\Release\batch_
 C:\Users\vendors\Desktop\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.pdb
 C:\Users\vendors\Desktop\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\Newtonsoft.Json.dll
+C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\Basic.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\MyOffice.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\NPOI.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\Microsoft.Office.Interop.Excel.dll
@@ -172,4 +173,4 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Rel
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\stdole.dll
-C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\Basic.dll
+C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\SQLUI.xml

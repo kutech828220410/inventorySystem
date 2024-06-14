@@ -160,7 +160,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 庫別
         /// </summary>
-        [JsonPropertyName("STTREHOUSE")]
+        [JsonPropertyName("STOREHOUSE")]
         public string 庫別 { get; set; }
         /// <summary>
         /// 藥品碼

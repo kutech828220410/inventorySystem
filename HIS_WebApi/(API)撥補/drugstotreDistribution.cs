@@ -23,7 +23,7 @@ namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class drugstotreDistribution : ControllerBase
+    public class drugStotreDistribution : ControllerBase
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
@@ -55,11 +55,11 @@ namespace HIS_WebApi
 
             try
             {
-                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+                //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
 
                 returnData.Method = "POST_init";
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -78,7 +78,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 紀錄庫存資料
+        /// 新增撥補資料
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -88,7 +88,7 @@ namespace HIS_WebApi
         ///     "ServerType" : "藥庫",
         ///     "Data": 
         ///     {
-        ///         [drugstotreDistributionClass]
+        ///         [drugStotreDistributionClass]
         ///     },
         ///     "ValueAry" : 
         ///     [
@@ -109,7 +109,7 @@ namespace HIS_WebApi
             {
                 POST_init(returnData);
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
@@ -123,24 +123,188 @@ namespace HIS_WebApi
                 string Password = serverSettingClass.Password;
                 uint Port = (uint)serverSettingClass.Port.StringToInt32();
 
-                List<drugstotreDistribution> drugstotreDistributions = returnData.Data.ObjToClass<List<drugstotreDistribution>>();
+                List<drugStotreDistributionClass> drugstotreDistributions = returnData.Data.ObjToClass<List<drugStotreDistributionClass>>();
 
-                SQLControl sQLControl_drugstotreDistribution = new SQLControl(Server, DB, new enum_drugstotreDistribution().GetEnumDescription(), UserName, Password, Port, SSLMode);
-                List<object[]> list_drugstotreDistributions = drugstotreDistributions.ClassToSQL<drugstotreDistribution, enum_drugstotreDistribution>();
+                SQLControl sQLControl_drugstotreDistribution = new SQLControl(Server, DB, new enum_drugStotreDistribution().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                List<object[]> list_drugstotreDistributions = drugstotreDistributions.ClassToSQL<drugStotreDistributionClass, enum_drugStotreDistribution>();
                 for (int i = 0; i < list_drugstotreDistributions.Count; i++)
                 {
-                    list_drugstotreDistributions[i][(int)enum_drugstotreDistribution.GUID] = Guid.NewGuid().ToString();
-                    list_drugstotreDistributions[i][(int)enum_drugstotreDistribution.加入時間] = DateTime.Now.ToDateTimeString_6();
-                    list_drugstotreDistributions[i][(int)enum_drugstotreDistribution.報表生成時間] = DateTime.MinValue.ToDateTimeString_6();
-                    list_drugstotreDistributions[i][(int)enum_drugstotreDistribution.撥發時間] = DateTime.MinValue.ToDateTimeString_6();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.GUID] = Guid.NewGuid().ToString();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.加入時間] = DateTime.Now.ToDateTimeString_6();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.報表生成時間] = DateTime.Now.ToDateTimeString_6();
+                    list_drugstotreDistributions[i][(int)enum_drugStotreDistribution.撥發時間] = DateTime.MinValue.ToDateTimeString_6();
                 }
 
+                sQLControl_drugstotreDistribution.AddRows(null, list_drugstotreDistributions);
 
-                returnData.Result = $"[{System.Reflection.MethodBase.GetCurrentMethod().Name}] 成功新增<{list_drugstotreDistributions.Count}>筆資料";
+                returnData.Result = $"新增撥補資料成功,共<{list_drugstotreDistributions.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
                 Logger.LogAddLine($"drugstotreDistribution");
-                Logger.Log($"stockRecord", $"{ returnData.JsonSerializationt(true)}");
+                Logger.Log($"drugstotreDistribution", $"{ returnData.JsonSerializationt(true)}");
+                Logger.LogAddLine($"drugstotreDistribution");
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"drugstotreDistribution", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 更新撥補資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "ds01",
+        ///     "ServerType" : "藥庫",
+        ///     "Data": 
+        ///     {
+        ///         [drugStotreDistributionClass]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("update_by_guid")]
+        [HttpPost]
+        public string POST_update_by_guid(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_by_guid";
+            try
+            {
+                POST_init(returnData);
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+                List<drugStotreDistributionClass> drugstotreDistributions = returnData.Data.ObjToClass<List<drugStotreDistributionClass>>();
+
+                SQLControl sQLControl_drugstotreDistribution = new SQLControl(Server, DB, new enum_drugStotreDistribution().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                List<object[]> list_drugstotreDistributions = drugstotreDistributions.ClassToSQL<drugStotreDistributionClass, enum_drugStotreDistribution>();
+
+                sQLControl_drugstotreDistribution.UpdateByDefulteExtra(null, list_drugstotreDistributions);
+
+                returnData.Result = $"更新撥補資料,共<{list_drugstotreDistributions.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Code = 200;
+            
+                Logger.LogAddLine($"drugstotreDistribution");
+                Logger.Log($"drugstotreDistribution", $"{ returnData.JsonSerializationt(true)}");
+                Logger.LogAddLine($"drugstotreDistribution");
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"drugstotreDistribution", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 取得撥補資料(新增時間範圍)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "ds01",
+        ///     "ServerType" : "藥庫",
+        ///     "Data": 
+        ///     {
+        ///         [drugStotreDistributionClass]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        "起始時間",
+        ///        "結束時間"
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_by_addedTime")]
+        [HttpPost]
+        public string get_by_addedTime(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_by_addedTime";
+            try
+            {
+                POST_init(returnData);
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[起始時間][結束時間]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 起始時間 = returnData.ValueAry[0];
+                string 結束時間 = returnData.ValueAry[1];
+                if (起始時間.Check_Date_String() == false || 結束時間.Check_Date_String() == false)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"時間範圍格式錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+              
+
+                SQLControl sQLControl_drugstotreDistribution = new SQLControl(Server, DB, new enum_drugStotreDistribution().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                List<object[]> list_drugstotreDistributions = new List<object[]>();
+
+                list_drugstotreDistributions =  sQLControl_drugstotreDistribution.GetRowsByBetween(null, (int)enum_drugStotreDistribution.加入時間, 起始時間, 結束時間);
+
+                list_drugstotreDistributions.Sort((x, y) => y[(int)enum_drugStotreDistribution.加入時間].StringToDateTime().CompareTo(x[(int)enum_drugStotreDistribution.加入時間].StringToDateTime()));
+
+                List<drugStotreDistributionClass> drugstotreDistributions = list_drugstotreDistributions.SQLToClass<drugStotreDistributionClass , enum_drugStotreDistribution>();
+
+
+                returnData.Result = $"取得撥補資料(新增時間範圍),共<{list_drugstotreDistributions.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = drugstotreDistributions;
+                returnData.Code = 200;
+                Logger.LogAddLine($"drugstotreDistribution");
+                Logger.Log($"drugstotreDistribution", $"{ returnData.JsonSerializationt(true)}");
                 Logger.LogAddLine($"drugstotreDistribution");
                 return returnData.JsonSerializationt(true);
             }
@@ -158,7 +322,7 @@ namespace HIS_WebApi
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
             List<Table> tables = new List<Table>();
-            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_drugstotreDistribution()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_drugStotreDistribution()));
             return tables.JsonSerializationt(true);
         }
     }

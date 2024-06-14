@@ -124,6 +124,7 @@ namespace ServerSettingForm
             Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.調劑台);
             Panel_CheckBox.SaveAll(this.FindForm(), ref serverSettingClasses);
 
+            serverSettingClasses.Set_department_type(comboBox_單位.Text);
 
             returnData.Data = serverSettingClasses;
             string json_in = returnData.JsonSerializationt(true);
@@ -186,6 +187,10 @@ namespace ServerSettingForm
 
             Panel_CheckBox.SetValue(this.FindForm(), enum_ServerSetting_Type.調劑台);
             Panel_CheckBox.LoadAll(this.FindForm(), serverSettingClasses);
+
+            this.comboBox_單位.DataSource = serverSettingClasses.Get_department_types();
+            ServerSettingClass serverSettingClass = serverSettingClasses.myFind(comboBox_名稱.Text, enum_ServerSetting_Type.調劑台.GetEnumName(), "一般資料");
+            this.comboBox_單位.Text = serverSettingClass.單位;
         }
         private void Button_刪除_Click(object sender, EventArgs e)
         {

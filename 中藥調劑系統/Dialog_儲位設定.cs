@@ -65,7 +65,7 @@ namespace 中藥調劑系統
         {
             this.rowsLED_Pannel.Init(Main_Form._rowsLEDUI.List_UDP_Local);
             this.rowsLED_Pannel.AutoWrite = true;
-            Table table_藥品資料 = medClass.Init(Main_Form.API_Server);
+            Table table_藥品資料 = medClass.init(Main_Form.API_Server);
             this.sqL_DataGridView_RowsLED_藥品資料.RowsHeight = 40;
             this.sqL_DataGridView_RowsLED_藥品資料.Init(table_藥品資料);
             this.sqL_DataGridView_RowsLED_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
@@ -121,7 +121,7 @@ namespace 中藥調劑系統
         #region Function
         private void Function_層架列表_Refresh()
         {
-            List<RowsLED> rowsLEDs = deviceApiClass.GetRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
+            List<RowsLED> rowsLEDs = deviceApiClass.GetRowsLEDs(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < rowsLEDs.Count; i++)
             {

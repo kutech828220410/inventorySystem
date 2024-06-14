@@ -124,6 +124,7 @@ namespace 癌症自動備藥機暨排程系統
             this.交易紀錄 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_交易記錄查詢 = new SQLUI.SQL_DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_交易紀錄查詢_匯出 = new MyUI.PLC_RJ_Button();
             this.checkBox_交易紀錄_庫存修正 = new System.Windows.Forms.CheckBox();
             this.checkBox_交易紀錄_一般操作 = new System.Windows.Forms.CheckBox();
             this.checkBox_交易紀錄_入庫 = new System.Windows.Forms.CheckBox();
@@ -771,7 +772,6 @@ namespace 癌症自動備藥機暨排程系統
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.textBox_自動備藥_密碼 = new System.Windows.Forms.TextBox();
             this.textBox_帳號 = new System.Windows.Forms.TextBox();
-            this.plC_RJ_Button_交易紀錄查詢_匯出 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_main.SuspendLayout();
             this.登入畫面.SuspendLayout();
             this.panel_登入畫面.SuspendLayout();
@@ -3238,6 +3238,59 @@ namespace 癌症自動備藥機暨排程系統
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1076, 310);
             this.panel9.TabIndex = 9;
+            // 
+            // plC_RJ_Button_交易紀錄查詢_匯出
+            // 
+            this.plC_RJ_Button_交易紀錄查詢_匯出.AutoResetState = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Bool = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.BorderRadius = 20;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.BorderSize = 0;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.but_press = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_交易紀錄查詢_匯出.GUID = "";
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Location = new System.Drawing.Point(437, 174);
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Name = "plC_RJ_Button_交易紀錄查詢_匯出";
+            this.plC_RJ_Button_交易紀錄查詢_匯出.OFF_文字內容 = "匯出";
+            this.plC_RJ_Button_交易紀錄查詢_匯出.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_交易紀錄查詢_匯出.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_BorderSize = 2;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_文字內容 = "匯出";
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ShadowSize = 3;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.ShowLoadingForm = true;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Size = new System.Drawing.Size(99, 52);
+            this.plC_RJ_Button_交易紀錄查詢_匯出.State = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.TabIndex = 62;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Text = "匯出";
+            this.plC_RJ_Button_交易紀錄查詢_匯出.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.TextHeight = 0;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.Texts = "匯出";
+            this.plC_RJ_Button_交易紀錄查詢_匯出.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.字型鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.文字鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.背景圖片 = null;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.讀取位元反向 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.讀寫鎖住 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.音效 = true;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.顯示 = false;
+            this.plC_RJ_Button_交易紀錄查詢_匯出.顯示狀態 = false;
             // 
             // checkBox_交易紀錄_庫存修正
             // 
@@ -20531,59 +20584,6 @@ namespace 癌症自動備藥機暨排程系統
             this.textBox_帳號.Name = "textBox_帳號";
             this.textBox_帳號.Size = new System.Drawing.Size(260, 27);
             this.textBox_帳號.TabIndex = 1;
-            // 
-            // plC_RJ_Button_交易紀錄查詢_匯出
-            // 
-            this.plC_RJ_Button_交易紀錄查詢_匯出.AutoResetState = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Bool = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.BorderRadius = 20;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.BorderSize = 0;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.but_press = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_交易紀錄查詢_匯出.GUID = "";
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Location = new System.Drawing.Point(437, 174);
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Name = "plC_RJ_Button_交易紀錄查詢_匯出";
-            this.plC_RJ_Button_交易紀錄查詢_匯出.OFF_文字內容 = "匯出";
-            this.plC_RJ_Button_交易紀錄查詢_匯出.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_交易紀錄查詢_匯出.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_BorderSize = 2;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_文字內容 = "匯出";
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ShadowSize = 3;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.ShowLoadingForm = true;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Size = new System.Drawing.Size(99, 52);
-            this.plC_RJ_Button_交易紀錄查詢_匯出.State = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.TabIndex = 62;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Text = "匯出";
-            this.plC_RJ_Button_交易紀錄查詢_匯出.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.TextHeight = 0;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.Texts = "匯出";
-            this.plC_RJ_Button_交易紀錄查詢_匯出.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.字型鎖住 = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.文字鎖住 = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.背景圖片 = null;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.讀取位元反向 = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.讀寫鎖住 = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.音效 = true;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.顯示 = false;
-            this.plC_RJ_Button_交易紀錄查詢_匯出.顯示狀態 = false;
             // 
             // Main_Form
             // 

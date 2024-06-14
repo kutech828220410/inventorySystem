@@ -1341,6 +1341,7 @@ namespace 調劑台管理系統
                                 if (!plC_CheckBox_測試模式.Checked)
                                 {
                                     this.storageUI_EPD_266.DrawToEpd_UDP(storage);
+                                    this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                                 }                        
                             }));
                             Task allTask = Task.WhenAll(taskList);
@@ -1448,29 +1449,14 @@ namespace 調劑台管理系統
             return Code;
         }
 
-        static public List<medClass> Function_搜尋Barcode(string barcode)
-        {
-            string url = $"{dBConfigClass.Api_URL}/api/MED_page/serch_by_BarCode";
-            returnData returnData = new returnData(url);
-            returnData.ServerName = dBConfigClass.Name;
-            returnData.ServerType = enum_ServerSetting_Type.調劑台.GetEnumName();
-            returnData.TableName = "medicine_page_cloud";
-            returnData.Value = barcode;
-            string json = returnData.ApiPostJson();
-            if (returnData.ResultData == null)
-            {
-                MyMessageBox.ShowDialog("API連結失敗,請檢查網路或設定!");
-                return new List<medClass>();
-            }
-            List<medClass> medClasses = returnData.ResultData.Data.ObjToListClass<medClass>();
-            return medClasses;
-        }
+  
         static public string Function_ReadBacodeScanner01()
         {
             if (MySerialPort_Scanner01.IsConnected == false) return null;
 
             string text = MySerialPort_Scanner01.ReadString();
             if (text == null) return null;
+            System.Threading.Thread.Sleep(20);
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 200) return null;
@@ -1485,6 +1471,7 @@ namespace 調劑台管理系統
 
             string text = MySerialPort_Scanner02.ReadString();
             if (text == null) return null;
+            System.Threading.Thread.Sleep(20);
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 200) return null;
@@ -1499,6 +1486,7 @@ namespace 調劑台管理系統
 
             string text = MySerialPort_Scanner03.ReadString();
             if (text == null) return null;
+            System.Threading.Thread.Sleep(20);
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 200) return null;
@@ -1513,6 +1501,7 @@ namespace 調劑台管理系統
 
             string text = MySerialPort_Scanner04.ReadString();
             if (text == null) return null;
+            System.Threading.Thread.Sleep(20);
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 200) return null;
@@ -1520,6 +1509,31 @@ namespace 調劑台管理系統
             MySerialPort_Scanner04.ClearReadByte();
             text = text.Replace("\r\n", "");
             return text;
+        }
+
+        static public string[] Function_ReadBacodeScanner()
+        {
+            string[] strs = new string[4];
+            List<Task> tasks = new List<Task>();
+            tasks.Add(Task.Run(new Action(delegate
+            {
+                strs[0] = Function_ReadBacodeScanner01();
+            })));
+            tasks.Add(Task.Run(new Action(delegate
+            {
+                strs[1] = Function_ReadBacodeScanner02();
+            })));
+            tasks.Add(Task.Run(new Action(delegate
+            {
+                strs[2] = Function_ReadBacodeScanner03();
+            })));
+            tasks.Add(Task.Run(new Action(delegate
+            {
+                strs[3] = Function_ReadBacodeScanner04();
+            })));
+            Task.WhenAll(tasks).Wait();
+
+            return strs;
         }
     }
 

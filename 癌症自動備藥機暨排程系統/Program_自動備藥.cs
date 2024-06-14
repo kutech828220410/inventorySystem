@@ -573,7 +573,7 @@ namespace 癌症自動備藥機暨排程系統
                 return;
             }
 
-            if (!PLC_Device_將藥盒從冷藏區傳接至常溫區_已到傳接位置.Bool) return;
+            if (PLC_Device_將藥盒從冷藏區傳接至常溫區.Bool) return;
             if (PLC_Device_常溫區輸送門開啟.Bool) return;
             PLC_Device_常溫區輸送門開啟.Bool = true;
             cnt++;

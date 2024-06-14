@@ -98,88 +98,214 @@ namespace HIS_DB_Lib
     /// </summary>
     public class OrderTClass
     {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// PRI_KEY
+        /// </summary>
         [JsonPropertyName("PRI_KEY")]
         public string PRI_KEY { get; set; }
+        /// <summary>
+        /// 藥局代碼
+        /// </summary>
         [JsonPropertyName("PHARM_CODE")]
         public string 藥局代碼 { get; set; }
+        /// <summary>
+        /// 藥袋條碼
+        /// </summary>
         [JsonPropertyName("MED_BAG_SN")]
         public string 藥袋條碼 { get; set; }
+        /// <summary>
+        /// 藥袋類型
+        /// </summary>
         [JsonPropertyName("BRYPE")]
         public string 藥袋類型 { get; set; }
+        /// <summary>
+        /// 藥品碼
+        /// </summary>
         [JsonPropertyName("CODE")]
         public string 藥品碼 { get; set; }
+        /// <summary>
+        /// 藥品名稱
+        /// </summary>
         [JsonPropertyName("NAME")]
         public string 藥品名稱 { get; set; }
+        /// <summary>
+        /// 領藥號
+        /// </summary>
         [JsonPropertyName("MED_BAG_NUM")]
         public string 領藥號 { get; set; }
+        /// <summary>
+        /// 住院序號
+        /// </summary>
         [JsonPropertyName("HCASENO")]
         public string 住院序號 { get; set; }
+        /// <summary>
+        /// 就醫序號
+        /// </summary>
         [JsonPropertyName("UDORDSEQ")]
         public string 就醫序號 { get; set; }
+        /// <summary>
+        /// 就醫類別
+        /// </summary>
         [JsonPropertyName("HCASETYP")]
         public string 就醫類別 { get; set; }
+        /// <summary>
+        /// 批序
+        /// </summary>
         [JsonPropertyName("DOS")]
         public string 批序 { get; set; }
+        /// <summary>
+        /// 天數
+        /// </summary>
         [JsonPropertyName("DAYS")]
         public string 天數 { get; set; }
+        /// <summary>
+        /// 單次劑量
+        /// </summary>
         [JsonPropertyName("SD")]
         public string 單次劑量 { get; set; }
+        /// <summary>
+        /// 劑量單位
+        /// </summary>
         [JsonPropertyName("DUNIT")]
         public string 劑量單位 { get; set; }
+        /// <summary>
+        /// 途徑
+        /// </summary>
         [JsonPropertyName("RROUTE")]
         public string 途徑 { get; set; }
+        /// <summary>
+        /// 頻次
+        /// </summary>
         [JsonPropertyName("FREQ")]
         public string 頻次 { get; set; }
+        /// <summary>
+        /// 費用別
+        /// </summary>
         [JsonPropertyName("CTYPE")]
         public string 費用別 { get; set; }
+        /// <summary>
+        /// 病房
+        /// </summary>
         [JsonPropertyName("WARD")]
         public string 病房 { get; set; }
+        /// <summary>
+        /// 床號
+        /// </summary>
         [JsonPropertyName("BEDNO")]
         public string 床號 { get; set; }
+        /// <summary>
+        /// 病人姓名
+        /// </summary>
         [JsonPropertyName("PATNAME")]
         public string 病人姓名 { get; set; }
+        /// <summary>
+        /// 性別
+        /// </summary>
         [JsonPropertyName("SEX")]
         public string 性別 { get; set; }
+        /// <summary>
+        /// 年齡
+        /// </summary>
         [JsonPropertyName("AGE")]
         public string 年齡 { get; set; }
+        /// <summary>
+        /// 病歷號
+        /// </summary>
         [JsonPropertyName("PATCODE")]
         public string 病歷號 { get; set; }
+        /// <summary>
+        /// 科別
+        /// </summary>
         [JsonPropertyName("SECTNO")]
         public string 科別 { get; set; }
+        /// <summary>
+        /// 醫師姓名
+        /// </summary>
         [JsonPropertyName("DOCNAME")]
         public string 醫師姓名 { get; set; }
+        /// <summary>
+        /// 醫師ID
+        /// </summary>
         [JsonPropertyName("DOCID")]
         public string 醫師ID { get; set; }
+        /// <summary>
+        /// 交易量
+        /// </summary>
         [JsonPropertyName("TXN_QTY")]
         public string 交易量 { get; set; }
+        /// <summary>
+        /// 實際調劑量
+        /// </summary>
         [JsonPropertyName("DISP_QTY")]
         public string 實際調劑量 { get; set; }
+        /// <summary>
+        /// 開方日期
+        /// </summary>
         [JsonPropertyName("ORD_START")]
         public string 開方日期 { get; set; }
+        /// <summary>
+        /// 結方日期
+        /// </summary>
         [JsonPropertyName("ORD_END")]
         public string 結方日期 { get; set; }
+        /// <summary>
+        /// 展藥時間
+        /// </summary>
         [JsonPropertyName("EXT_TIME")]
         public string 展藥時間 { get; set; }
+        /// <summary>
+        /// 產出時間
+        /// </summary>
         [JsonPropertyName("CT_TIME")]
         public string 產出時間 { get; set; }
+        /// <summary>
+        /// 過帳時間
+        /// </summary>
         [JsonPropertyName("POST_TIME")]
         public string 過帳時間 { get; set; }
+        /// <summary>
+        /// 藥師姓名
+        /// </summary>
         [JsonPropertyName("PHARER_NAME")]
         public string 藥師姓名 { get; set; }
+        /// <summary>
+        /// 藥師ID
+        /// </summary>
         [JsonPropertyName("PHARER_ID")]
         public string 藥師ID { get; set; }
+        /// <summary>
+        /// 核對姓名
+        /// </summary>
         [JsonPropertyName("CHK_NAME")]
         public string 核對姓名 { get; set; }
+        /// <summary>
+        /// 核對ID
+        /// </summary>
         [JsonPropertyName("CHK_ID")]
         public string 核對ID { get; set; }
+        /// <summary>
+        /// 領藥姓名
+        /// </summary>
         [JsonPropertyName("TAKER_NAME")]
         public string 領藥姓名 { get; set; }
+        /// <summary>
+        /// 領藥ID
+        /// </summary>
         [JsonPropertyName("TAKER_ID")]
         public string 領藥ID { get; set; }
+        /// <summary>
+        /// 狀態
+        /// </summary>
         [JsonPropertyName("STATE")]
         public string 狀態 { get; set; }
+        /// <summary>
+        /// 備註
+        /// </summary>
         [JsonPropertyName("NOTE")]
         public string 備註 { get; set; }
 

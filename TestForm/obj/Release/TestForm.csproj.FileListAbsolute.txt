@@ -63,4 +63,8 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Microso
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\H_Pannel_lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Basic.dll
+<<<<<<< HEAD
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Release\TestForm.csproj.AssemblyReference.cache
+=======
+C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\SQLUI.xml
+>>>>>>> 6b863d50e032dc737ecc559fe6b0838e70a4ed78

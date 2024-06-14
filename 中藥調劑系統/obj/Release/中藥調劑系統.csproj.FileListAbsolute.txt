@@ -70,3 +70,5 @@ C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Dialog_儲位設定.resources
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Dialog_人員資料.resources
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Dialog_人員資料_新增.resources
+C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\ExcelScaleLib.dll
+C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\SQLUI.xml

@@ -144,7 +144,7 @@ namespace HIS_WebApi
                     result = "-1";
                 }
                 if (data.Count == 1)
-                {                    
+                {
                     result = mul_med_take(returnData.ServerName, data);
                 }
                 else
@@ -182,14 +182,14 @@ namespace HIS_WebApi
                 }
                 if (data.Count == 1)
                 {
-                    result = single_med_take(value, data);
+                    result = mul_med_take(value, data);
                 }
                 else
                 {
                     result = mul_med_take(value, data);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 result = e.Message;
             }
@@ -211,7 +211,7 @@ namespace HIS_WebApi
             try
             {
                 MyTimerBasic myTimerBasic = new MyTimerBasic();
-          
+
                 returnData.Method = "POST_light_on";
                 string input_str = returnData.Value;
                 if (input_str.StringIsEmpty())
@@ -229,7 +229,7 @@ namespace HIS_WebApi
                 }
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count ==0 )
+                if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
                     returnData.Result = "找無serverSettingClass資料!";
@@ -255,7 +255,7 @@ namespace HIS_WebApi
 
                 value[(int)enum_取藥堆疊母資料.開方時間] = DateTime.Now.ToDateTimeString();
                 value[(int)enum_取藥堆疊母資料.操作時間] = DateTime.Now.ToDateTimeString();
-                value[(int)enum_取藥堆疊母資料.顏色] = Color.FromArgb(R,G,B).ToColorString();
+                value[(int)enum_取藥堆疊母資料.顏色] = Color.FromArgb(R, G, B).ToColorString();
                 value[(int)enum_取藥堆疊母資料.狀態] = "None";
                 value[(int)enum_取藥堆疊母資料.總異動量] = time;
 
@@ -340,7 +340,7 @@ namespace HIS_WebApi
 
             SQLControl sQLControl_trading = new SQLControl(IP, DataBaseName, "trading", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_take_medicine_stack = new SQLControl(IP, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_devicelist = new SQLControl(devicelist_IP, devicelist_database, "devicelist", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_devicelist = new SQLControl(devicelist_IP, devicelist_database, "devicelist", UserName, Password, serverSettingClass_人員資料.Port.StringToUInt32(), SSLMode);
 
 
             List<object[]> list_devicelist = sQLControl_devicelist.GetAllRows(null);
@@ -364,7 +364,7 @@ namespace HIS_WebApi
                 return "-2";
             }
             //取藥亮燈(不亮燈)
-            if (data[0].功能類型 == "1" || data[0].功能類型 == "-1")
+            if (data[0].功能類型 == "1" || data[0].功能類型 == "-1" || data[0].功能類型 == "2")
             {
                 string 設備名稱 = data[0].電腦名稱;
                 List<object[]> list_take_medicine_stack = sQLControl_take_medicine_stack.GetRowsByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, 設備名稱);
@@ -462,7 +462,7 @@ namespace HIS_WebApi
                 this.Function_取藥堆疊資料_新增母資料(serverSettingClass, 設備名稱, takeMedicineStackClass);
                 return $"OK";
             }
-           
+
             else
             {
                 return $"-3";
@@ -568,11 +568,11 @@ namespace HIS_WebApi
             for (int i = 0; i < data.Count; i++)
             {
                 string date_str = $"{data[i].日期} {data[i].時間}";
-                if(date_str.Check_Date_String())
+                if (date_str.Check_Date_String())
                 {
                     data[i].開方時間 = date_str;
                 }
-            
+
                 //清除指定電腦名稱資料(滅燈)
                 if (data[0].功能類型 == "-2")
                 {
@@ -585,7 +585,7 @@ namespace HIS_WebApi
                     returnData.Result = $"清除指定電腦名稱資料(滅燈)成功";
                     return returnData.JsonSerializationt(true);
                 }
-                if (data[i].功能類型 == "1" || data[i].功能類型 == "-1" || data[0].功能類型 == "2")
+                if (data[i].功能類型 == "1" || data[i].功能類型 == "-1" || data[i].功能類型 == "2")
                 {
                     if (data[i].PRI_KEY.StringIsEmpty()) data[i].PRI_KEY = Guid.NewGuid().ToString();
                     string PRI_KEY = data[i].PRI_KEY;
@@ -988,6 +988,7 @@ namespace HIS_WebApi
             Console.WriteLine($"從SQL取得所有儲位資料,耗時{myTimer.ToString()}ms");
             List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
             List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
+
             if (list_EPD1020.Count > 0) deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD1020));
             if (list_EPD583.Count > 0) deviceBasics.LockAdd(DrawerMethod.GetAllDeviceBasic(list_EPD583));
             if (list_EPD266.Count > 0) deviceBasics.LockAdd(StorageMethod.GetAllDeviceBasic(list_EPD266));
@@ -1038,7 +1039,7 @@ namespace HIS_WebApi
                 else if (takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.系統撥入) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.新增效期;
                 else if (takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.系統調入) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.新增效期;
                 else if (takeMedicineStackClasses[i].動作 == enum_交易記錄查詢動作.系統退藥) takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.新增效期;
-                else takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新; 
+                else takeMedicineStackClasses[i].狀態 = enum_取藥堆疊母資料_狀態.等待刷新;
             }
             List<object[]> list_add = takeMedicineStackClasses.ClassToSQL<takeMedicineStackClass, enum_取藥堆疊母資料>();
             for (int i = 0; i < list_add.Count; i++)
@@ -1047,7 +1048,7 @@ namespace HIS_WebApi
                 list_add[i][(int)enum_取藥堆疊母資料.狀態] = list_add[i][(int)enum_取藥堆疊母資料.狀態].GetEnumName();
             }
             sQLControl_take_medicine_stack.AddRows(null, list_add);
-     
+
             return true;
 
         }
@@ -1062,11 +1063,11 @@ namespace HIS_WebApi
             string DataBaseName = serverSettingClass.DBName;
             string UserName = serverSettingClass.User;
             string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();            
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
 
             SQLControl sQLControl_take_medicine_stack = new SQLControl(server, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
 
-        
+
             takeMedicineStackClass.調劑台名稱 = 設備名稱;
             if (takeMedicineStackClass.GUID == null) takeMedicineStackClass.GUID = Guid.NewGuid().ToString();
             else if (takeMedicineStackClass.GUID == "") takeMedicineStackClass.GUID = Guid.NewGuid().ToString();

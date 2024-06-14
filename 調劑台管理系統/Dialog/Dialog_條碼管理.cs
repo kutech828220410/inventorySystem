@@ -161,24 +161,16 @@ namespace 調劑台管理系統
         }
         private void RJ_Button_輸入_MouseDownEvent(MouseEventArgs mevent)
         {
+            returnData returnData = new returnData();
+            string json = "";
             string BarCode = rJ_TextBox_BarCode.Texts;
             if(BarCode.StringIsEmpty())
             {
                 MyMessageBox.ShowDialog($"國際條碼 空白!");
                 return;
             }
-            returnData returnData = new returnData($"{Main_Form.API_Server}/api/MED_page/serch_by_BarCode");
-            returnData.ServerName = Main_Form.ServerName;
-            returnData.ServerType = Main_Form.ServerType;
-            returnData.TableName = "medicine_page_cloud";
-            returnData.Value = BarCode;
-            string json = returnData.ApiPostJson();
-            if (returnData.ResultData.Code != 200)
-            {
-                MyMessageBox.ShowDialog(returnData.ResultData.Result);
-                return;
-            }
-            List<medClass> medClasses = returnData.ResultData.Data.ObjToListClass<medClass>();
+      
+            List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, BarCode);
             if (medClasses.Count > 0)
             {
                 MyMessageBox.ShowDialog("此國際條碼已被使用,請刪除使用藥品國際條碼再建立!");

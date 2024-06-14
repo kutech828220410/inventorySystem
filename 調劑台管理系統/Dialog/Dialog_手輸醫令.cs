@@ -21,7 +21,7 @@ namespace 調劑台管理系統
         藥品名稱,
         交易量,
     }
-    public partial class Dialog_手動作業 : MyDialog
+    public partial class Dialog_手輸醫令 : MyDialog
     {
         private transactionsClass _transactionsClass = new transactionsClass();
         public transactionsClass transactionsClass
@@ -53,7 +53,7 @@ namespace 調劑台管理系統
         private SQL_DataGridView sQL_DataGridView_藥品資料_buf;
         private Main_Form Main_Form_buf;
         private enum_狀態 _enum_狀態;
-        public Dialog_手動作業(Main_Form Main_Form, SQL_DataGridView sQL_DataGridView_藥品資料 , enum_狀態 enum_狀態)
+        public Dialog_手輸醫令(Main_Form Main_Form, SQL_DataGridView sQL_DataGridView_藥品資料 , enum_狀態 enum_狀態)
         {
             InitializeComponent();
 
@@ -132,7 +132,7 @@ namespace 調劑台管理系統
             text = Main_Form.Function_ReadBacodeScanner01();
             if (text.StringIsEmpty() == false)
             {
-                List<medClass> medClasses = Main_Form.Function_搜尋Barcode(text);
+                List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, text);
                 if (medClasses.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("條碼查無資料", 1500);
@@ -147,7 +147,7 @@ namespace 調劑台管理系統
             text = Main_Form.Function_ReadBacodeScanner02();
             if (text.StringIsEmpty() == false)
             {
-                List<medClass> medClasses = Main_Form.Function_搜尋Barcode(text);
+                List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, text);
                 if (medClasses.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("條碼查無資料", 1500);
@@ -162,7 +162,7 @@ namespace 調劑台管理系統
             text = Main_Form.Function_ReadBacodeScanner03();
             if (text.StringIsEmpty() == false)
             {
-                List<medClass> medClasses = Main_Form.Function_搜尋Barcode(text);
+                List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, text);
                 if (medClasses.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("條碼查無資料", 1500);
@@ -177,7 +177,7 @@ namespace 調劑台管理系統
             text = Main_Form.Function_ReadBacodeScanner04();
             if (text.StringIsEmpty() == false)
             {
-                List<medClass> medClasses = Main_Form.Function_搜尋Barcode(text);
+                List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, text);
                 if (medClasses.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("條碼查無資料", 1500);

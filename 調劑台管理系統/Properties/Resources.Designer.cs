@@ -103,9 +103,29 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_right {
+            get {
+                object obj = ResourceManager.GetObject("arrow-right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap down_arrow_icon {
             get {
                 object obj = ResourceManager.GetObject("down_arrow_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap drug_inventory_approval_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("drug-inventory-approval-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,6 +253,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap medication_transfer_to_dispensing_counter_with_arr_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medication-transfer-to-dispensing-counter-with-arr-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap RFID感應 {
             get {
                 object obj = ResourceManager.GetObject("RFID感應", resourceCulture);
@@ -256,6 +286,26 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap serach_document_512 {
             get {
                 object obj = ResourceManager.GetObject("serach_document-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap transfer_medication_take_in_to_dispensing_counter_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("transfer-medication-take-in-to-dispensing-counter-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap transfer_medication_to_dispensing_counter_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("transfer-medication-to-dispensing-counter-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
