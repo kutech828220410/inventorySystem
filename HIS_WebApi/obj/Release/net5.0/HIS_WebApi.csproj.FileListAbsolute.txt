@@ -2649,3 +2649,4 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\IGeekFan.AspNetCore.Knife4jUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\CSkin.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\LoggerClassLibrary.dll

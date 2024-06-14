@@ -82,8 +82,12 @@ namespace HIS_WebApi
                 var xmlFile_HIS_DB_Lib = $"HIS_DB_Lib.xml";
                 var xmlPath_HIS_DB_Lib = Path.Combine(AppContext.BaseDirectory, xmlFile_HIS_DB_Lib);
 
+                var xmlFile_LoggerClassLibrary = $"LoggerClassLibrary.xml";
+                var xmlPath_LoggerClassLibrary = Path.Combine(AppContext.BaseDirectory, xmlFile_LoggerClassLibrary);
+
                 c.IncludeXmlComments(xmlPath);
                 c.IncludeXmlComments(xmlPath_HIS_DB_Lib);
+                c.IncludeXmlComments(xmlPath_LoggerClassLibrary);
             });
         }
 

@@ -540,15 +540,12 @@ C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.csproj.GenerateResource.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.AssemblyInfoInputs.cache
-C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.AssemblyInfo.cs
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\staticwebassets\HIS_WebApi.StaticWebAssets.Manifest.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\staticwebassets\HIS_WebApi.StaticWebAssets.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\scopedcss\bundle\HIS_WebApi.styles.css
-C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.RazorTargetAssemblyInfo.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.dll
 C:\Users\Administrator\Source\Repos\inventorySystem\HIS_WebApi\obj\Debug\net5.0\ref\HIS_WebApi.dll
@@ -745,3 +742,7 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Debug\net5
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.pdb
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Debug\net5.0\HIS_WebApi.genruntimeconfig.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Debug\net5.0\HIS_DB_Lib.xml
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Debug\net5.0\IGeekFan.AspNetCore.Knife4jUI.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Debug\net5.0\CSkin.dll
+C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Debug\net5.0\zxing.dll

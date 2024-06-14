@@ -36,7 +36,6 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\CallBac
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\MeasureSystemFunction.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\MVSDK.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\HIS_DB_Lib.xml
-C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Release\TestForm.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Release\TestForm.Form1.resources
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Release\TestForm.Properties.Resources.resources
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Release\TestForm.csproj.GenerateResource.cache
@@ -64,3 +63,4 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Microso
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\H_Pannel_lib.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Basic.dll
+C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Release\TestForm.csproj.AssemblyReference.cache

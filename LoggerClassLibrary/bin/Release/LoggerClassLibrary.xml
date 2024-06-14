@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LoggerClassLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:LoggerClassLibrary.loggerClass">
+            <summary>
+            logger 資料
+            </summary>
+        </member>
+        <member name="P:LoggerClassLibrary.loggerClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:LoggerClassLibrary.loggerClass.網址">
+            <summary>
+            網址
+            </summary>
+        </member>
+        <member name="P:LoggerClassLibrary.loggerClass.項目">
+            <summary>
+            項目
+            </summary>
+        </member>
+        <member name="P:LoggerClassLibrary.loggerClass.操作類型">
+            <summary>
+            操作類型
+            </summary>
+        </member>
+        <member name="P:LoggerClassLibrary.loggerClass.操作者ID">
+            <summary>
+            操作者ID
+            </summary>
+        </member>
+        <member name="P:LoggerClassLibrary.loggerClass.操作者姓名">
+            <summary>
+            操作者姓名
+            </summary>
+        </member>
+        <member name="P:LoggerClassLibrary.loggerClass.操作時間">
+            <summary>
+            操作時間
+            </summary>
+        </member>
+        <member name="P:LoggerClassLibrary.loggerClass.回傳結果">
+            <summary>
+            時間
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -171,3 +171,4 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_效期批號輸入.resources
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_批號數量修改.resources
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\Basic.dll
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\LoggerClassLibrary.dll

@@ -1,0 +1,144 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\Logger_API\\Logger_API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj",
+        "projectName": "HIS_DB_Lib",
+        "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj",
+        "frameworks": {
+          "net461": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net461": {}
+      }
+    },
+    "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\LoggerClassLibrary\\LoggerClassLibrary.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\LoggerClassLibrary\\LoggerClassLibrary.csproj",
+        "projectName": "LoggerClassLibrary",
+        "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\LoggerClassLibrary\\LoggerClassLibrary.csproj",
+        "frameworks": {
+          "net461": {
+            "projectReferences": {
+              "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net461": {}
+      }
+    },
+    "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\Logger_API\\Logger_API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\Logger_API\\Logger_API.csproj",
+        "projectName": "Logger_API",
+        "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\Logger_API\\Logger_API.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\Logger_API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\HIS_DB_Lib\\HIS_DB_Lib.csproj"
+              },
+              "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\LoggerClassLibrary\\LoggerClassLibrary.csproj": {
+                "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\LoggerClassLibrary\\LoggerClassLibrary.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "DotNetZip": {
+              "target": "Package",
+              "version": "[1.16.0, )"
+            },
+            "IGeekFan.AspNetCore.Knife4jUI": {
+              "target": "Package",
+              "version": "[0.0.16, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[6.6.2, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

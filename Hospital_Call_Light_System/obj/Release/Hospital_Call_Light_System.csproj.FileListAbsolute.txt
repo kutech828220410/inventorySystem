@@ -69,7 +69,6 @@ C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\b
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\LightControlUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\MeasureSystemFunction.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\MeasureSystemUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\MVSDK.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\MVSDKUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\MySql.Data.dll
@@ -90,12 +89,6 @@ C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\b
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\System.ValueTuple.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\TCP.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\ZealTechUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\AxOvkBase.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\AxAltairUDrvAsm4.5.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\AxOvkBaseAsm4.5.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\AxOvkMsr.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\AxAltairUDrv.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\System.Buffers.xml
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\System.Memory.xml
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\System.Numerics.Vectors.xml
@@ -1301,3 +1294,4 @@ C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.exe
 C:\Users\vendors\Desktop\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.pdb
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.dll
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\LoggerClassLibrary.dll
