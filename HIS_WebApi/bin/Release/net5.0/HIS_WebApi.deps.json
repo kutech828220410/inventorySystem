@@ -47,7 +47,6 @@
           "HIS_DB_Lib": "1.0.0.0",
           "H_Pannel_lib": "1.0.0.0",
           "ICSharpCode.SharpZipLib": "1.0.6053.22017",
-          "LoggerClassLibrary": "1.0.0.0",
           "Microsoft.Bcl.AsyncInterfaces": "6.0.0.0",
           "MyOffice": "1.0.0.0",
           "MySQL_Login": "1.0.0.0",
@@ -718,17 +717,6 @@
         },
         "compile": {
           "ICSharpCode.SharpZipLib.dll": {}
-        }
-      },
-      "LoggerClassLibrary/1.0.0.0": {
-        "runtime": {
-          "LoggerClassLibrary.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "LoggerClassLibrary.dll": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0.0": {
@@ -2761,11 +2749,6 @@
       "sha512": ""
     },
     "ICSharpCode.SharpZipLib/1.0.6053.22017": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LoggerClassLibrary/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

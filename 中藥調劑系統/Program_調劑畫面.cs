@@ -32,6 +32,8 @@ namespace 中藥調劑系統
             實調,
             [Description("天,VARCHAR,15,NONE")]
             天,
+            [Description("頻次,VARCHAR,15,NONE")]
+            頻次,
             [Description("單位,VARCHAR,15,NONE")]
             單位,
             [Description("服用方法,VARCHAR,15,NONE")]
@@ -61,10 +63,11 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方內容.Init(table_處方內容);
             this.sqL_DataGridView_處方內容.Set_ColumnVisible(false, new enum_處方內容().GetEnumNames());
             //this.sqL_DataGridView_處方內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, "藥碼");
-            this.sqL_DataGridView_處方內容.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, "藥名");
+            this.sqL_DataGridView_處方內容.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, "藥名");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "應調");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "實調");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "天");
+            this.sqL_DataGridView_處方內容.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, "頻次");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "單位");
             this.sqL_DataGridView_處方內容.RowEnterEvent += SqL_DataGridView_處方內容_RowEnterEvent;
             this.sqL_DataGridView_處方內容.DataGridRefreshEvent += SqL_DataGridView_處方內容_DataGridRefreshEvent;
@@ -282,6 +285,9 @@ namespace 中藥調劑系統
 
             this.Invoke(new Action(delegate
             {
+
+                orderTClass.藥品名稱 = RemoveParenthesesContent(orderTClass.藥品名稱);
+        
                 rJ_Lable_處方藥品.Text = $"{orderTClass.藥品名稱}";
                 rJ_Lable_領藥號.Text = $"{orderTClass.領藥號}";
                 rJ_Lable_處方資訊_姓名_性別_病歷號.Text = $"{orderTClass.病人姓名}({orderTClass.性別}) {orderTClass.病歷號}";
@@ -332,11 +338,20 @@ namespace 中藥調劑系統
                 orderTClass.交易量 = (orderTClass.交易量.StringToDouble() * -1).ToString("0.00");
             }
             if (orderTClass.實際調劑量.StringIsEmpty()) orderTClass.實際調劑量 = "-";
+
+            orderTClass.藥品名稱 = RemoveParenthesesContent(orderTClass.藥品名稱);
+            orderTClass.藥品名稱 = $"({orderTClass.藥品碼}){orderTClass.藥品名稱}";
             value[(int)enum_處方內容.GUID] = orderTClass.GUID;
             value[(int)enum_處方內容.藥碼] = orderTClass.藥品碼;
             value[(int)enum_處方內容.藥名] = orderTClass.藥品名稱;
-            value[(int)enum_處方內容.應調] = orderTClass.交易量;
+            value[(int)enum_處方內容.應調] = orderTClass.交易量.StringToDouble();
             value[(int)enum_處方內容.實調] = orderTClass.實際調劑量;
+            if (orderTClass.實際調劑量.StringIsDouble())
+            {
+                value[(int)enum_處方內容.實調] = orderTClass.實際調劑量.StringToDouble();
+            }
+     
+            value[(int)enum_處方內容.頻次] = orderTClass.頻次;
             value[(int)enum_處方內容.天] = orderTClass.天數;
             value[(int)enum_處方內容.單位] = orderTClass.劑量單位;
             value[(int)enum_處方內容.服用方法] = orderTClass.頻次;
@@ -549,5 +564,10 @@ namespace 中藥調劑系統
 
         }
         #endregion
+        public static string RemoveParenthesesContent(string input)
+        {
+            // 使用正則表達式替換括號及其內部的內容
+            return System.Text.RegularExpressions.Regex.Replace(input, @"\s*\([^)]*\)", "");
+        }
     }
 }

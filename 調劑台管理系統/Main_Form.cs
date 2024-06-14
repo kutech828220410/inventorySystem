@@ -454,6 +454,7 @@ namespace 調劑台管理系統
                 printerClass.Init();
                 printerClass.PrintPageEvent += PrinterClass_PrintPageEvent;
 
+
                 this.plC_ScreenPage_Main.TabChangeEvent += PlC_ScreenPage_Main_TabChangeEvent;
             }
 

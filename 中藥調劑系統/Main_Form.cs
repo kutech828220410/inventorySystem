@@ -204,6 +204,8 @@ namespace 中藥調劑系統
         }
         private void PlC_UI_Init_UI_Finished_Event()
         {
+            this.WindowState = FormWindowState.Maximized;
+
             LoadDBConfig();
             LoadMyConfig();
 
@@ -269,3 +271,5 @@ namespace 中藥調劑系統
         }
     }
 }
+
+

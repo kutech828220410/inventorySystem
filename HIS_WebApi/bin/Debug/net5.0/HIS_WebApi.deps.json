@@ -35,10 +35,8 @@
         "dependencies": {
           "DotNetZip": "1.16.0",
           "IBM.Data.DB2.Core": "3.1.0.600",
-          "IGeekFan.AspNetCore.Knife4jUI": "0.0.16",
           "MySql.Data": "8.0.29",
           "Swashbuckle.AspNetCore": "6.5.0",
-          "Swashbuckle.AspNetCore.Annotations": "6.5.0",
           "System.Drawing.Common": "7.0.0",
           "System.Text.Encoding.CodePages": "7.0.0",
           "System.Text.Json": "6.0.0",
@@ -389,17 +387,6 @@
           "lib/netstandard2.1/IBM.Data.DB2.Core.dll": {}
         }
       },
-      "IGeekFan.AspNetCore.Knife4jUI/0.0.16": {
-        "runtime": {
-          "lib/netcoreapp3.1/IGeekFan.AspNetCore.Knife4jUI.dll": {
-            "assemblyVersion": "0.0.16.0",
-            "fileVersion": "0.0.16.0"
-          }
-        },
-        "compile": {
-          "lib/netcoreapp3.1/IGeekFan.AspNetCore.Knife4jUI.dll": {}
-        }
-      },
       "K4os.Compression.LZ4/1.2.6": {
         "dependencies": {
           "System.Memory": "4.5.5"
@@ -493,20 +480,6 @@
           "Swashbuckle.AspNetCore.Swagger": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0",
           "Swashbuckle.AspNetCore.SwaggerUI": "6.5.0"
-        }
-      },
-      "Swashbuckle.AspNetCore.Annotations/6.5.0": {
-        "dependencies": {
-          "Swashbuckle.AspNetCore.SwaggerGen": "6.5.0"
-        },
-        "runtime": {
-          "lib/net5.0/Swashbuckle.AspNetCore.Annotations.dll": {
-            "assemblyVersion": "6.5.0.0",
-            "fileVersion": "6.5.0.0"
-          }
-        },
-        "compile": {
-          "lib/net5.0/Swashbuckle.AspNetCore.Annotations.dll": {}
         }
       },
       "Swashbuckle.AspNetCore.Swagger/6.5.0": {
@@ -794,22 +767,6 @@
         },
         "compile": {
           "System.Management.dll": {}
-        }
-      },
-      "CSkin/10.23.0.0": {
-        "runtime": {
-          "CSkin.dll": {
-            "assemblyVersion": "10.23.0.0",
-            "fileVersion": "10.23.0.0"
-          }
-        }
-      },
-      "zxing/0.16.6.0": {
-        "runtime": {
-          "zxing.dll": {
-            "assemblyVersion": "0.16.6.0",
-            "fileVersion": "0.16.6.0"
-          }
         }
       },
       "NPOI.OOXML/2.4.1.0": {
@@ -2546,13 +2503,6 @@
       "path": "ibm.data.db2.core/3.1.0.600",
       "hashPath": "ibm.data.db2.core.3.1.0.600.nupkg.sha512"
     },
-    "IGeekFan.AspNetCore.Knife4jUI/0.0.16": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-bJjSJWP+FCkH0vweZq+evqOZ4OO2lSR13O19MpjiX49SRNarsM9DqJsqkYqKr17zzF1dgd/pzREdBbJDBRWUjA==",
-      "path": "igeekfan.aspnetcore.knife4jui/0.0.16",
-      "hashPath": "igeekfan.aspnetcore.knife4jui.0.0.16.nupkg.sha512"
-    },
     "K4os.Compression.LZ4/1.2.6": {
       "type": "package",
       "serviceable": true,
@@ -2608,13 +2558,6 @@
       "sha512": "sha512-FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
       "path": "swashbuckle.aspnetcore/6.5.0",
       "hashPath": "swashbuckle.aspnetcore.6.5.0.nupkg.sha512"
-    },
-    "Swashbuckle.AspNetCore.Annotations/6.5.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-EcHd1z2pEdnpaBMTI9qjVxk6mFVGVMZ1n0ySC3fjrkXCQQ8O9fMdt9TxPJRKyjiTiTjvO9700jKjmyl+hPBinQ==",
-      "path": "swashbuckle.aspnetcore.annotations/6.5.0",
-      "hashPath": "swashbuckle.aspnetcore.annotations.6.5.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore.Swagger/6.5.0": {
       "type": "package",
@@ -2784,16 +2727,6 @@
       "sha512": ""
     },
     "System.Management/4.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "CSkin/10.23.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "zxing/0.16.6.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
