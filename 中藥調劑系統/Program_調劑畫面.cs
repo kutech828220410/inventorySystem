@@ -17,8 +17,9 @@ namespace 中藥調劑系統
     public partial class Main_Form : Form
     {
         private object[] order_value = null;
+        private List<OrderTClass> OrderTClass_現在調劑處方 = null;
         private MyThread myThread_更新處方;
-
+    
         public enum enum_處方內容
         {
             [Description("GUID,VARCHAR,15,NONE")]
@@ -186,6 +187,19 @@ namespace 中藥調劑系統
                             }
                             if(list_處方內容_selected.Count == 0)
                             {
+                                string 頻次 = list_處方內容_buf[0][(int)enum_處方內容.頻次].ObjectToString();
+
+                                string 現在調劑頻次 = OrderTClass_現在調劑處方.GetCurrentFreq();
+                                if (現在調劑頻次 != null)
+                                {
+                                    if (頻次 != 現在調劑頻次)
+                                    {
+                                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{現在調劑頻次}]未完成", 1500);
+                                        dialog_AlarmForm.ShowDialog();
+                                        return;
+                                    }
+                                }
+
                                 if (list_處方內容_buf[0][(int)enum_處方內容.實調].ObjectToString().StringIsDouble())
                                 {
                                     Voice.MediaPlayAsync($@"{currentDirectory}\此藥品已調劑.wav");
@@ -213,6 +227,19 @@ namespace 中藥調劑系統
                             }
                             else if(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString() == list_處方內容_buf[0][(int)enum_處方內容.GUID].ObjectToString())
                             {
+                                string 頻次 = list_處方內容_buf[0][(int)enum_處方內容.頻次].ObjectToString();
+
+                                string 現在調劑頻次 = OrderTClass_現在調劑處方.GetCurrentFreq();
+                                if (現在調劑頻次 != null)
+                                {
+                                    if (頻次 != 現在調劑頻次)
+                                    {
+                                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{現在調劑頻次}]未完成", 1500);
+                                        dialog_AlarmForm.ShowDialog();
+                                        return;
+                                    }
+                                }
+
                                 double 應調 = list_處方內容_selected[0][(int)enum_處方內容.應調].StringToDouble();
                                 double 實調 = rJ_Lable_實調.Text.StringToDouble();
                                 double 應調_L = 應調 * 0.9;
@@ -241,6 +268,19 @@ namespace 中藥調劑系統
                                     return;
                                 }
                                 string 單位 = list_處方內容_buf[0][(int)enum_處方內容.單位].ObjectToString();
+                                string 頻次 = list_處方內容_buf[0][(int)enum_處方內容.頻次].ObjectToString();
+                                string 現在調劑頻次 = OrderTClass_現在調劑處方.GetCurrentFreq();
+                                if (現在調劑頻次 != null)
+                                {
+                                    if (頻次 != 現在調劑頻次)
+                                    {
+                                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{現在調劑頻次}]頻次未完成", 1500);
+                                        dialog_AlarmForm.ShowDialog();
+                                        return;
+                                    }
+                                }
+
+
                                 if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.dwt;
                                 else if (單位 == "克") enum_Unit_Type = Port.enum_unit_type.g;
                                 else if (單位 == "BTL")
@@ -280,6 +320,7 @@ namespace 中藥調劑系統
                 sqL_DataGridView_病患資訊.ClearGrid();
                 sqL_DataGridView_處方內容.ClearGrid();
                 order_value = null;
+                OrderTClass_現在調劑處方 = null;
             }));
         }
         public void Function_更新處方內容(string PRI_KEY)
@@ -304,7 +345,7 @@ namespace 中藥調劑系統
             order_value[(int)enum_病患資訊.病歷號] = orderTClasses[0].病歷號;
             order_value[(int)enum_病患資訊.處方日期] = orderTClasses[0].開方日期.StringToDateTime().ToDateString();
 
-
+            OrderTClass_現在調劑處方 = orderTClasses;
             this.sqL_DataGridView_處方內容.ClearGrid();
             this.sqL_DataGridView_處方內容.RefreshGrid(list_value);
         }
@@ -465,6 +506,13 @@ namespace 中藥調劑系統
             transactionsClass.病歷號 = orderTClass.病歷號;
             transactionsClass.藥袋序號 = orderTClass.PRI_KEY;
             transactionsClass.add(Main_Form.API_Server, transactionsClass, Main_Form.ServerName, Main_Form.ServerType);
+            Function_更新處方內容(orderTClass.PRI_KEY);
+
+            if(OrderTClass_現在調劑處方.GetFreqIsDone(orderTClass.頻次))
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{orderTClass.頻次}]調劑完成", 1000 , Color.Green);
+                dialog_AlarmForm.ShowDialog();
+            }
 
             return orderTClass;
         }
@@ -637,6 +685,7 @@ namespace 中藥調劑系統
             }
             this.sqL_DataGridView_處方內容.ClearGrid();
 
+          
             dialog_AlarmForm = new Dialog_AlarmForm("調劑完成", 1500, Color.Green);
             dialog_AlarmForm.ShowDialog();
 

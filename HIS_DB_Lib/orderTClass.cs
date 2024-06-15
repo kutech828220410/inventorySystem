@@ -487,7 +487,7 @@ namespace HIS_DB_Lib
             return orderTClasses;
         }
       
-
+        
 
         static public void updete_by_guid(string API_Server, OrderTClass orderTClass)
         {
@@ -606,8 +606,36 @@ namespace HIS_DB_Lib
 
             }
         }
+        static public bool GetFreqIsDone(this List<OrderTClass> orderTClasses, string freq)
+        {
+            List<OrderTClass> orderTClasses_buf = (from temp in orderTClasses
+                                                   where temp.頻次 == freq
+                                                   where temp.實際調劑量.StringIsDouble() == false
+                                                   select temp).ToList();
+            return (orderTClasses_buf.Count == 0);
+        }
+        static public string GetCurrentFreq(this List<OrderTClass> orderTClasses)
+        {
+            List<string> freqs = (from temp in orderTClasses
+                                  select temp.頻次).Distinct().ToList();
+            List<OrderTClass> orderTClasses_buf = new List<OrderTClass>();
+            for (int i = 0; i < freqs.Count; i++)
+            {
+                if(orderTClasses.GetFreqIsDone(freqs[i]) == false)
+                {
+                    orderTClasses_buf = (from temp in orderTClasses
+                                         where temp.頻次 == freqs[i]
+                                         where temp.實際調劑量.StringIsDouble() == true
+                                         select temp).ToList();
+                    if (orderTClasses_buf.Count != 0)
+                    {
+                        return orderTClasses_buf[0].頻次;
+                    }
+                }
+            }
+            return null;
 
-
+        }
         static public System.Collections.Generic.Dictionary<string, List<OrderTClass>> CoverToDictionaryBy_PRI_KEY(this List<OrderTClass> orderTClasses)
         {
             Dictionary<string, List<OrderTClass>> dictionary = new Dictionary<string, List<OrderTClass>>();
