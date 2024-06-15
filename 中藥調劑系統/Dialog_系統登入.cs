@@ -65,6 +65,7 @@ namespace 中藥調劑系統
                     Value = returnData.Data.ObjToClass<sessionClass>();
                     if (returnData.Code == 200)
                     {
+                        Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
                         Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, Color.Green);
                         dialog_AlarmForm.ShowDialog();
                         this.Invoke(new Action(delegate

@@ -61,9 +61,11 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方搜尋.RowDoubleClickEvent += SqL_DataGridView_處方搜尋_RowDoubleClickEvent;
             this.sqL_DataGridView_處方搜尋.DataGridRowsChangeRefEvent += SqL_DataGridView_處方搜尋_DataGridRowsChangeRefEvent;
 
+            this.dateTimeIntervelPicker_處方搜尋_開方時間.SetDateTime(DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
             this.dateTimeIntervelPicker_處方搜尋_開方時間.SureClick += DateTimeIntervelPicker_處方搜尋_開方時間_SureClick;
             this.comboBox_處方搜尋_搜尋條件.SelectedIndex = 0;
             this.rJ_Button_處方搜尋_搜尋.MouseDownEvent += RJ_Button_處方搜尋_搜尋_MouseDownEvent;
+            this.rJ_Button_處方搜尋_處方調劑.MouseDownEvent += RJ_Button_處方搜尋_處方調劑_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_處方搜尋);
         }
 
@@ -199,6 +201,36 @@ namespace 中藥調劑系統
             }
             Finction_處方搜尋_更新UI(orderTClasses);
             LoadingForm.CloseLoadingForm();
+        }
+        private void RJ_Button_處方搜尋_處方調劑_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_處方搜尋.Get_All_Select_RowsValues();
+            if (list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取處方", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string PRI_KEY = list_value[0][(int)enum_處方搜尋.PRI_KEY].ObjectToString();
+            if (list_value[0][(int)enum_處方搜尋.已調劑].ObjectToString() == "Y")
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此處方已調劑完成", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+
+            List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
+            if (orderTClasses.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無處方資訊", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string GUID = orderTClasses[0].GUID;
+            Function_更新處方UI(GUID);
+            Function_更新處方內容(PRI_KEY);
+
+            plC_ScreenPage_main.SelecteTabText("調劑畫面");
         }
         #endregion
     }

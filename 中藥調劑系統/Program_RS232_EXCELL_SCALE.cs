@@ -19,6 +19,7 @@ namespace 中藥調劑系統
         private Port.enum_unit_type enum_Unit_Type = Port.enum_unit_type.g;
         private MyThread myThread_RS232_EXCELL_SCALE_Init;
         private ExcelScaleLib.Port ExcelScaleLib_Port = new Port();
+        private bool flag_EXCELL_SCALE_IS_READY = false;
         private void Program_RS232_EXCELL_SCALE_Init()
         {
             //ExcelScaleLib.Communication.ConsoleWrite = true;
@@ -64,7 +65,15 @@ namespace 中藥調劑系統
                 flag_EXCELL_set_sub_current_weight = false;
             }
             double? weight = ExcelScaleLib_Port.get_weight(enum_Unit_Type);
-            if (weight == null) return;
+            if (weight == null)
+            {
+                flag_EXCELL_SCALE_IS_READY = false;
+                return;
+            }
+            else
+            {
+                flag_EXCELL_SCALE_IS_READY = true;
+            }
             this.Invoke(new Action(delegate 
             {
                 if(enum_Unit_Type == Port.enum_unit_type.g)
