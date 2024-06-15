@@ -103,7 +103,7 @@ namespace 中藥調劑系統
 
         private void sub_Progran_更新處方()
         {
-            DateTime dateTime = DateTime.Now.AddDays(0);
+            DateTime dateTime = DateTime.Now.AddDays(-1);
             if (PLC_Device_已登入.Bool == false) return;
             List<object[]> list_value = new List<object[]>();
             List<object[]> list_value_buf = new List<object[]>();
@@ -228,6 +228,7 @@ namespace 中藥調劑系統
                             else if(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString() == list_處方內容_buf[0][(int)enum_處方內容.GUID].ObjectToString())
                             {
                                 string 頻次 = list_處方內容_buf[0][(int)enum_處方內容.頻次].ObjectToString();
+                                string GUID = list_處方內容_buf[0][(int)enum_處方內容.GUID].ObjectToString();
 
                                 string 現在調劑頻次 = OrderTClass_現在調劑處方.GetCurrentFreq();
                                 if (現在調劑頻次 != null)
@@ -248,7 +249,7 @@ namespace 中藥調劑系統
                                 {
                                     if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                                     {
-                                        ToolStripMenuItem_處方內容_調劑完成_Click(null, null);
+                                        Funtion_調劑完成(GUID, 實調.ToString());
                                     }
                                 }
                                 else
@@ -476,6 +477,7 @@ namespace 中藥調劑系統
         }
         private OrderTClass Funtion_調劑完成(string GUID , string 實調)
         {
+            Dialog_AlarmForm dialog_AlarmForm;
             OrderTClass orderTClass = OrderTClass.get_by_guid(Main_Form.API_Server, GUID);
             if (orderTClass == null) return null;
             if (實調.StringIsEmpty())
@@ -510,9 +512,24 @@ namespace 中藥調劑系統
 
             if(OrderTClass_現在調劑處方.GetFreqIsDone(orderTClass.頻次))
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{orderTClass.頻次}]調劑完成", 1000 , Color.Green);
+                dialog_AlarmForm = new Dialog_AlarmForm($"[{orderTClass.頻次}]調劑完成", 1000 , Color.Green);
                 dialog_AlarmForm.ShowDialog();
             }
+
+            object[] value = Funtion_orderTClassesToObject(orderTClass);
+            this.sqL_DataGridView_處方內容.ClearSelection();
+            this.sqL_DataGridView_處方內容.ReplaceExtra(value, true);
+
+            List<object[]> list_處方內容 = this.sqL_DataGridView_處方內容.GetAllRows();
+            for (int i = 0; i < list_處方內容.Count; i++)
+            {
+                if (list_處方內容[i][(int)enum_處方內容.實調].ObjectToString().StringIsDouble() == false) return orderTClass;
+            }
+            this.sqL_DataGridView_處方內容.ClearGrid();
+
+
+            dialog_AlarmForm = new Dialog_AlarmForm("調劑完成", 1500, Color.Green);
+            dialog_AlarmForm.ShowDialog();
 
             return orderTClass;
         }
@@ -674,20 +691,7 @@ namespace 中藥調劑系統
            
 
 
-            object[] value = Funtion_orderTClassesToObject(orderTClass);
-            this.sqL_DataGridView_處方內容.ClearSelection();
-            this.sqL_DataGridView_處方內容.ReplaceExtra(value, true);
-
-            List<object[]> list_處方內容 = this.sqL_DataGridView_處方內容.GetAllRows();
-            for (int i = 0; i < list_處方內容.Count; i++)
-            {
-                if (list_處方內容[i][(int)enum_處方內容.實調].ObjectToString().StringIsDouble() == false) return;
-            }
-            this.sqL_DataGridView_處方內容.ClearGrid();
-
-          
-            dialog_AlarmForm = new Dialog_AlarmForm("調劑完成", 1500, Color.Green);
-            dialog_AlarmForm.ShowDialog();
+         
 
         }
         #endregion
