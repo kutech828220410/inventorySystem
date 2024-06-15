@@ -103,7 +103,7 @@ namespace 中藥調劑系統
 
         private void sub_Progran_更新處方()
         {
-            DateTime dateTime = DateTime.Now.AddDays(-1);
+            DateTime dateTime = DateTime.Now.AddDays(0);
             if (PLC_Device_已登入.Bool == false) return;
             List<object[]> list_value = new List<object[]>();
             List<object[]> list_value_buf = new List<object[]>();
