@@ -103,7 +103,7 @@ namespace 中藥調劑系統
 
         private void sub_Progran_更新處方()
         {
-            DateTime dateTime = DateTime.Now.AddDays(-1);
+            DateTime dateTime = DateTime.Now.AddDays(0);
             if (PLC_Device_已登入.Bool == false) return;
             List<object[]> list_value = new List<object[]>();
             List<object[]> list_value_buf = new List<object[]>();
@@ -249,7 +249,7 @@ namespace 中藥調劑系統
                                 {
                                     if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                                     {
-                                        Funtion_調劑完成(GUID, 實調.ToString());
+                                        Funtion_調劑完成(GUID, (實調 * -1).ToString());
                                     }
                                 }
                                 else
