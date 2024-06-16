@@ -416,10 +416,10 @@
     <Compile Include="Dialog\Dialog_藥品調入.Designer.cs">
       <DependentUpon>Dialog_藥品調入.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog_藥品搜尋.cs">
+    <Compile Include="Dialog\Dialog_藥品搜尋.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog_藥品搜尋.Designer.cs">
+    <Compile Include="Dialog\Dialog_藥品搜尋.Designer.cs">
       <DependentUpon>Dialog_藥品搜尋.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
@@ -682,7 +682,7 @@
     <EmbeddedResource Include="Dialog\Dialog_藥品調入.resx">
       <DependentUpon>Dialog_藥品調入.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog_藥品搜尋.resx">
+    <EmbeddedResource Include="Dialog\Dialog_藥品搜尋.resx">
       <DependentUpon>Dialog_藥品搜尋.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">

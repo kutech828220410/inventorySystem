@@ -3548,6 +3548,73 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_med_clouds_by_name(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥名取得雲端藥檔資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                    [藥名]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.get_med_clouds_by_dianame(HIS_DB_Lib.returnData)">
+            <summary>
+            以商品名取得雲端藥檔資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   
+                },
+                "Value" : "[前綴]",
+                "ValueAry" : 
+                [
+                    [商品名]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.get_med_clouds_by_chtname(HIS_DB_Lib.returnData)">
+            <summary>
+            以中文名取得雲端藥檔資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                    [中文名]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.MED_pageController.POST_update_med_clouds_by_guid(HIS_DB_Lib.returnData)">
             <summary>
             以GUID更新雲端藥檔資料

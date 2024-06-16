@@ -372,7 +372,10 @@ namespace 調劑台管理系統
         private void RJ_Button_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             Dialog_藥品搜尋 dialog_藥品搜尋 = new Dialog_藥品搜尋();
-            dialog_藥品搜尋.ShowDialog();
+            if (dialog_藥品搜尋.ShowDialog() != DialogResult.Yes) return;
+            medClass medClass = dialog_藥品搜尋.Value;
+
+            Function_SerchByBarCode(medClass.藥品碼);
         }
         private void RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)
         {

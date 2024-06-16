@@ -260,6 +260,294 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 以藥名取得雲端藥檔資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///         [藥名]
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_med_clouds_by_name")]
+        [HttpPost]
+        public string POST_get_med_clouds_by_name(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_med_clouds_by_name";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥名]";
+                    return returnData.JsonSerializationt(true);
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses_buf[0];
+                string text = returnData.ValueAry[0];
+
+       
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_med.GetAllRows(null);
+                if (returnData.Value == "前綴")
+                {
+                    list_value = list_value.GetRowsByLike((int)enum_雲端藥檔.藥品名稱, text);
+                }
+                else
+                {
+                    list_value = list_value.GetRowsStartWithByLike((int)enum_雲端藥檔.藥品名稱, text);
+                }
+
+                List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
+
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"藥檔取得失敗!";
+                    return returnData.JsonSerializationt();
+                }
+          
+
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = $"雲端藥檔取得成功,共<{medClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(false);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 以商品名取得雲端藥檔資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "Value" : "[前綴]",
+        ///     "ValueAry" : 
+        ///     [
+        ///         [商品名]
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_med_clouds_by_dianame")]
+        [HttpPost]
+        public string get_med_clouds_by_dianame(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_med_clouds_by_dianame";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥名]";
+                    return returnData.JsonSerializationt(true);
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses_buf[0];
+                string text = returnData.ValueAry[0];
+
+
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_med.GetAllRows(null);
+                if (returnData.Value == "前綴")
+                {
+                    list_value = list_value.GetRowsByLike((int)enum_雲端藥檔.藥品學名, text);
+                }
+                else
+                {
+                    list_value = list_value.GetRowsStartWithByLike((int)enum_雲端藥檔.藥品學名, text);
+                }
+
+                List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
+
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"藥檔取得失敗!";
+                    return returnData.JsonSerializationt();
+                }
+
+
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = $"雲端藥檔取得成功,共<{medClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(false);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 以中文名取得雲端藥檔資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///         [中文名]
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_med_clouds_by_chtname")]
+        [HttpPost]
+        public string get_med_clouds_by_chtname(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_med_clouds_by_dianame";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥名]";
+                    return returnData.JsonSerializationt(true);
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses_buf[0];
+                string text = returnData.ValueAry[0];
+
+
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                SQLControl sQLControl_med = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_med.GetAllRows(null);
+                if (returnData.Value == "前綴")
+                {
+                    list_value = list_value.GetRowsByLike((int)enum_雲端藥檔.中文名稱, text);
+                }
+                else
+                {
+                    list_value = list_value.GetRowsStartWithByLike((int)enum_雲端藥檔.中文名稱, text);
+                }
+
+                List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
+
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"藥檔取得失敗!";
+                    return returnData.JsonSerializationt();
+                }
+
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"藥檔取得失敗!";
+                    return returnData.JsonSerializationt();
+                }
+
+
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = $"雲端藥檔取得成功,共<{medClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(false);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
+        /// <summary>
         /// 以GUID更新雲端藥檔資料
         /// </summary>
         /// <remarks>

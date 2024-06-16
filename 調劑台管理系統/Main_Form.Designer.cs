@@ -9197,7 +9197,7 @@
             this.sqL_DataGridView_交易記錄查詢.BorderColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_交易記錄查詢.BorderRadius = 0;
             this.sqL_DataGridView_交易記錄查詢.BorderSize = 2;
-            this.sqL_DataGridView_交易記錄查詢.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_交易記錄查詢.CellBorderColor = System.Drawing.Color.Gainsboro;
             this.sqL_DataGridView_交易記錄查詢.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Single;
             this.sqL_DataGridView_交易記錄查詢.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_交易記錄查詢.cellStyleFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -10409,7 +10409,7 @@
             this.sqL_DataGridView_醫令資料.BorderColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_醫令資料.BorderRadius = 0;
             this.sqL_DataGridView_醫令資料.BorderSize = 2;
-            this.sqL_DataGridView_醫令資料.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_醫令資料.CellBorderColor = System.Drawing.Color.Gainsboro;
             this.sqL_DataGridView_醫令資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_醫令資料.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_醫令資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -12772,7 +12772,7 @@
             this.sqL_DataGridView_藥品資料_藥檔資料.BorderColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_藥品資料_藥檔資料.BorderRadius = 0;
             this.sqL_DataGridView_藥品資料_藥檔資料.BorderSize = 2;
-            this.sqL_DataGridView_藥品資料_藥檔資料.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_藥品資料_藥檔資料.CellBorderColor = System.Drawing.Color.Gainsboro;
             this.sqL_DataGridView_藥品資料_藥檔資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_藥品資料_藥檔資料.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_藥品資料_藥檔資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
