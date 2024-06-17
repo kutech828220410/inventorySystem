@@ -195,6 +195,7 @@ namespace 調劑台管理系統
             private bool _帳密登入_Enable = true;
             private bool _外部輸出 = false;
             private bool _全螢幕顯示 = true;
+            private bool _鍵盤掃碼模式 = false;
 
             private string rFID_COMPort = "COM1";
             private string scanner01_COMPort = "COM2";
@@ -225,6 +226,7 @@ namespace 調劑台管理系統
             public bool 系統取藥模式 { get => _系統取藥模式; set => _系統取藥模式 = value; }
             public bool EPD1020_Enable { get => ePD1020_Enable; set => ePD1020_Enable = value; }
             public bool 全螢幕顯示 { get => _全螢幕顯示; set => _全螢幕顯示 = value; }
+            public bool 鍵盤掃碼模式 { get => _鍵盤掃碼模式; set => _鍵盤掃碼模式 = value; }
         }
         private void LoadMyConfig()
         {

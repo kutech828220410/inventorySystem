@@ -8,6 +8,8 @@ using Basic;
 using System.ComponentModel;
 using System.Reflection;
 using SQLUI;
+using H_Pannel_lib;
+using System.Text.Json;
 namespace HIS_DB_Lib
 {
     /// <summary>
@@ -56,6 +58,10 @@ namespace HIS_DB_Lib
         報表生成時間,
         [Description("狀態,VARCHAR,50,INDEX")]
         狀態,
+        [Description("撥發細節,VARCHAR,500,NONE")]
+        撥發細節,
+        [Description("實撥細節,VARCHAR,500,NONE")]
+        實撥細節,
         [Description("備註,VARCHAR,300,NONE")]
         備註,
 
@@ -151,6 +157,57 @@ namespace HIS_DB_Lib
         [JsonPropertyName("issuanceTime")]
         public DateTime 撥發時間 { get; set; }
         /// <summary>
+        /// 撥發細節
+        /// </summary>
+        [JsonPropertyName("issuedStocks_text")]
+        public string 撥發細節 { get; set; }
+        /// <summary>
+        /// 撥發細節
+        /// </summary>
+        [JsonPropertyName("actualIssuedStocks_text")]
+        public string 實撥細節 { get; set; }
+        [JsonIgnore]
+        private static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
+        {
+            // PropertyNameCaseInsensitive = true,
+        };
+        /// <summary>
+        /// 撥發細節
+        /// </summary>
+        [JsonPropertyName("issuedStocks")]
+        public List<StockClass> issuedStocks
+        {
+            get
+            {
+                if (撥發細節.StringIsEmpty()) return new List<StockClass>(); ;
+                List<StockClass> temp = JsonSerializer.Deserialize<List<StockClass>>(撥發細節, jsonSerializerOptions);
+
+                return temp;
+            }
+            set
+            {
+                撥發細節 = JsonSerializer.Serialize(value, jsonSerializerOptions);
+            }
+        }
+        /// <summary>
+        /// 實撥細節
+        /// </summary>
+        [JsonPropertyName("actualIssuedStocks")]
+        public List<StockClass> actualIssuedStocks
+        {
+            get
+            {
+                if (實撥細節.StringIsEmpty()) return new List<StockClass>(); ;
+                List<StockClass> temp = JsonSerializer.Deserialize<List<StockClass>>(實撥細節, jsonSerializerOptions);
+
+                return temp;
+            }
+            set
+            {
+                實撥細節 = JsonSerializer.Serialize(value, jsonSerializerOptions);
+            }
+        }
+        /// <summary>
         /// 報表生成時間。
         /// </summary>
         [JsonPropertyName("reportGenerationTime")]
@@ -170,7 +227,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("remarks")]
         public string 備註 { get; set; }
-
+        
         static public SQLUI.Table init(string API_Server)
         {
             string url = $"{API_Server}/api/drugStotreDistribution/init";
@@ -257,6 +314,33 @@ namespace HIS_DB_Lib
             drugStotreDistributionClasses = returnData.Data.ObjToClass<List<drugStotreDistributionClass>>();
             Console.WriteLine($"[{returnData.Method}]:{returnData.Result}");
             return drugStotreDistributionClasses;
+        }
+        static public void update_by_guid(string API_Server, string GUID)
+        {
+            string url = $"{API_Server}/api/drugStotreDistribution/get_by_guid";
+            string str_serverNames = "";
+            string str_serverTypes = "";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = "";
+            returnData.ServerType = "";
+            returnData.ValueAry.Add(GUID);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            if (returnData_out.Code != 200) return;
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return;
         }
 
 

@@ -12,11 +12,55 @@ using Basic;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using HIS_DB_Lib;
+using System.Runtime.InteropServices;
 
 namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool AddClipboardFormatListener(IntPtr hwnd);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool RemoveClipboardFormatListener(IntPtr hwnd);
+
+
+        private const int WM_CLIPBOARDUPDATE = 0x031D;
+        private MyTimerBasic MyTimerBasic_Keyboard = new MyTimerBasic();
+        static public string keyDataString = "";
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == WM_CLIPBOARDUPDATE)
+            {
+                // 當剪貼簿更新時處理
+                IDataObject data = Clipboard.GetDataObject();
+                if (data != null && data.GetDataPresent(DataFormats.Text))
+                {
+                    if(data.GetData(DataFormats.Text).ToString() != keyDataString)
+                    {
+                        keyDataString = data.GetData(DataFormats.Text).ToString();
+
+                        if (keyDataString.Length > 2)
+                        {
+                            string temp = keyDataString;
+                            //temp = temp.Replace("\n", "");
+                            //temp = temp.Replace("\r", "");
+                            byte[] byteArray = Encoding.UTF8.GetBytes(temp);
+                            Console.WriteLine($"keyDataString : {temp}");
+                            MySerialPort_Scanner01.SetReadByte(byteArray);
+
+                            MyTimerBasic_Keyboard.TickStop();
+                            MyTimerBasic_Keyboard.StartTickTime(200);
+
+                        }
+                    }
+              
+                }
+            }
+            base.WndProc(ref m);
+        }
+
         static MySerialPort MySerialPort_Scanner01 = new MySerialPort();
         static MySerialPort MySerialPort_Scanner02 = new MySerialPort();
         static MySerialPort MySerialPort_Scanner03 = new MySerialPort();
@@ -39,20 +83,27 @@ namespace 調劑台管理系統
         }
         void Program_Scanner_RS232_Init()
         {
+            AddClipboardFormatListener(this.Handle);
+
+
             if (PLC_Device_掃碼槍COM通訊.Bool)
             {
                 MySerialPort_Scanner01.ConsoleWrite = true;
                 MySerialPort_Scanner02.ConsoleWrite = true;
                 MySerialPort_Scanner03.ConsoleWrite = true;
                 MySerialPort_Scanner04.ConsoleWrite = true;
-                if (!myConfigClass.Scanner01_COMPort.StringIsEmpty())
+                if(myConfigClass.鍵盤掃碼模式 == false)
                 {
-                    MySerialPort_Scanner01.Init(myConfigClass.Scanner01_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
-                    if (!MySerialPort_Scanner01.IsConnected)
+                    if (!myConfigClass.Scanner01_COMPort.StringIsEmpty())
                     {
-                        MyMessageBox.ShowDialog("掃碼器[01]初始化失敗!");
+                        MySerialPort_Scanner01.Init(myConfigClass.Scanner01_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
+                        if (!MySerialPort_Scanner01.IsConnected)
+                        {
+                            MyMessageBox.ShowDialog("掃碼器[01]初始化失敗!");
+                        }
                     }
                 }
+    
                 if (!myConfigClass.Scanner02_COMPort.StringIsEmpty())
                 {
                     MySerialPort_Scanner02.Init(myConfigClass.Scanner02_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);
@@ -83,6 +134,10 @@ namespace 調劑台管理系統
         }
         void sub_Program_Scanner_RS232()
         {
+            if (MyTimerBasic_Keyboard.IsTimeOut())
+            {
+                keyDataString = "";
+            }
             sub_Program_Scanner01_讀取藥單資料();
             sub_Program_Scanner02_讀取藥單資料();
             sub_Program_Scanner03_讀取藥單資料();

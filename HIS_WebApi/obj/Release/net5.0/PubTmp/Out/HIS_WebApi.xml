@@ -819,8 +819,6 @@
             以下為範例JSON範例
             <code>
               {
-                "ServerName" : "ds01",
-                "ServerType" : "藥庫",
                 "Data": 
                 {
                     [drugStotreDistributionClass]
@@ -829,6 +827,28 @@
                 [
                    "起始時間",
                    "結束時間"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.drugStotreDistribution.get_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            取得撥補資料(GUID)
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                    [drugStotreDistributionClass]
+                },
+                "ValueAry" : 
+                [
+                   "GUID",
                 ]
                 
               }

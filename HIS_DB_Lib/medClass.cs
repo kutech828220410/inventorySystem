@@ -91,18 +91,7 @@ namespace HIS_DB_Lib
             模糊,
             前綴,
         }
-        //[JsonPropertyName("BARCODE")]
-        //public string Barcode_Json
-        //{
-        //    get
-        //    {
-        //        return 藥品條碼2;
-        //    }
-        //    set
-        //    {
-        //        藥品條碼2 = value;
-        //    }
-        //}
+ 
         [JsonIgnore]
         private static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
         {

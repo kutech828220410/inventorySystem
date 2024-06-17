@@ -232,8 +232,6 @@ namespace HIS_WebApi
         /// 以下為範例JSON範例
         /// <code>
         ///   {
-        ///     "ServerName" : "ds01",
-        ///     "ServerType" : "藥庫",
         ///     "Data": 
         ///     {
         ///         [drugStotreDistributionClass]
@@ -317,7 +315,94 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        /// <summary>
+        /// 取得撥補資料(GUID)
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         [drugStotreDistributionClass]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        "GUID",
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_by_guid")]
+        [HttpPost]
+        public string get_by_guid(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "get_by_guid";
+            try
+            {
+                POST_init(returnData);
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[GUID]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+         
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
 
+
+
+                SQLControl sQLControl_drugstotreDistribution = new SQLControl(Server, DB, new enum_drugStotreDistribution().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                List<object[]> list_drugstotreDistributions = new List<object[]>();
+
+                list_drugstotreDistributions = sQLControl_drugstotreDistribution.GetRowsByDefult(null, (int)enum_drugStotreDistribution.GUID, GUID);
+
+                list_drugstotreDistributions.Sort((x, y) => y[(int)enum_drugStotreDistribution.加入時間].StringToDateTime().CompareTo(x[(int)enum_drugStotreDistribution.加入時間].StringToDateTime()));
+
+                List<drugStotreDistributionClass> drugstotreDistributions = list_drugstotreDistributions.SQLToClass<drugStotreDistributionClass, enum_drugStotreDistribution>();
+                if(drugstotreDistributions.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                returnData.Result = $"取得撥補資料(GUID),共<{list_drugstotreDistributions.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = drugstotreDistributions[0];
+                returnData.Code = 200;
+                Logger.LogAddLine($"drugstotreDistribution");
+                Logger.Log($"drugstotreDistribution", $"{ returnData.JsonSerializationt(true)}");
+                Logger.LogAddLine($"drugstotreDistribution");
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"drugstotreDistribution", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {

@@ -809,6 +809,26 @@
             撥發時間。
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.撥發細節">
+            <summary>
+            撥發細節
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.實撥細節">
+            <summary>
+            撥發細節
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.issuedStocks">
+            <summary>
+            撥發細節
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreDistributionClass.actualIssuedStocks">
+            <summary>
+            實撥細節
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.drugStotreDistributionClass.報表生成時間">
             <summary>
             報表生成時間。
