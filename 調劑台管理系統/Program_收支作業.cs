@@ -144,6 +144,7 @@ namespace 調劑台管理系統
                     Function_從SQL取得儲位到本地資料();
                     Function_從SQL取得儲位到雲端資料();
                     this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+
                     flag_Program_收支作業_換頁 = false;
                 }
             }
