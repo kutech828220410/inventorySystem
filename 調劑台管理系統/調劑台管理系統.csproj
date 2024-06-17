@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4EC46DF5-2F3E-499E-A5A2-91FC44A5FF4E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>調劑台管理系統</RootNamespace>
     <AssemblyName>調劑台管理系統</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
