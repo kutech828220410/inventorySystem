@@ -1219,8 +1219,15 @@ namespace 調劑台管理系統
         }
         public void Function_儲位亮燈(string 藥品碼, Color color, ref List<string> list_lock_IP)
         {
+
             if (藥品碼.StringIsEmpty()) return;
-            if(color == Color.Black)
+
+            //if (myConfigClass.系統取藥模式)
+            //{
+            //    Function_儲位亮燈_Ex(藥品碼, color);
+            //    return;
+            //}
+            if (color == Color.Black)
             {
                 List<object[]> list_取藥堆疊母資料 = sqL_DataGridView_取藥堆疊母資料.SQL_GetRows((int)enum_取藥堆疊母資料.藥品碼, 藥品碼, false);
 

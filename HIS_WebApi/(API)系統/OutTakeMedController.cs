@@ -1030,6 +1030,14 @@ namespace HIS_WebApi
 
 
             SQLControl sQLControl_take_medicine_stack = new SQLControl(server, DataBaseName, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_sub_take_medicine_stack = new SQLControl(server, DataBaseName, "take_medicine_substack_new", UserName, Password, Port, SSLMode);
+
+            //sQLControl_take_medicine_stack.DeleteByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, 設備名稱);
+            while (true)
+            {
+                List<object[]> list_temp = sQLControl_sub_take_medicine_stack.GetRowsByDefult(null, (int)enum_取藥堆疊子資料.調劑台名稱, 設備名稱);
+                if (list_temp.Count == 0) break;
+            }
             for (int i = 0; i < takeMedicineStackClasses.Count; i++)
             {
                 if (takeMedicineStackClasses[i].GUID == null) takeMedicineStackClasses[i].GUID = Guid.NewGuid().ToString();
