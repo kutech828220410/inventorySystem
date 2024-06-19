@@ -165,3 +165,9 @@ C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\o
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.csproj.CopyComplete
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.exe
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\obj\Debug\Hospital_Call_Light_System.pdb
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\CSkin.dll
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\Microsoft.mshtml.dll
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\PopupControl.dll
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\SunnyUI.dll
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\SunnyUI.Common.dll
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\SQLUI.xml

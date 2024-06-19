@@ -34,10 +34,7 @@
   </Target>
 
   <Target Name="UpdateAssemblyInfo" AfterTargets="GenerateBuildRevision">
-    <WriteLinesToFile File="Properties\AssemblyInfo.cs" Lines=
-    "            
-        [assembly: System.Reflection.AssemblyInformationalVersion(&quot;$(InformationalVersion)&quot;)]
-      " Overwrite="true" />
+    <WriteLinesToFile File="Properties\AssemblyInfo.cs" Lines="            &#xD;&#xA;        [assembly: System.Reflection.AssemblyInformationalVersion(&quot;$(InformationalVersion)&quot;)]&#xD;&#xA;      " Overwrite="true" />
   </Target>
 
   <PropertyGroup>
@@ -50,6 +47,10 @@
     <Optimize>false</Optimize>
     <NoWarn>1701;1702;1998;0169;0219;8632</NoWarn>
     <DocumentationFile>\inventorySystem\HIS_WebApi\HIS_WebApi.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\HIS_WebApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

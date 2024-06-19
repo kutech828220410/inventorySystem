@@ -245,7 +245,6 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\De
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_輸入效期.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_輸入藥品碼.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_RFID領退藥頁面.resources
-C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_手動作業.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_手輸醫令.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_收支原因設定.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_選擇效期.resources
@@ -372,3 +371,16 @@ C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\De
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_指紋登入.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_指紋建置.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Main_Form.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\SunnyUI.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\office.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\SunnyUI.Common.dll
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Debug\SQLUI.xml
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_中西藥選擇.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_藥品調出.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_條碼輸入.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_抽屜選擇.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_處方資訊填寫.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_藥品調入.resources
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_藥品搜尋.resources
