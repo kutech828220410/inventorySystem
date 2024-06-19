@@ -214,7 +214,7 @@ namespace HIS_DB_Lib
             List<Drawer> drawers = returnData_result.Data.ObjToClass<List<Drawer>>();
             return drawers;
         }
-        static public List<DeviceBasicClass> Get_epd583_DeviceBasics_By_Code(string API_Server, string ServerName, string ServerType, string Code)
+        static public List<DeviceBasic> Get_epd583_DeviceBasics_By_Code(string API_Server, string ServerName, string ServerType, string Code)
         {
             string url = $"{API_Server}/api/device/get_epd583_DeviceBasics_By_Code";
 
@@ -234,8 +234,8 @@ namespace HIS_DB_Lib
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             Console.WriteLine($"{returnData_result}");
             string jsonStr = returnData_result.Value;
-            List<DeviceBasicClass> deviceBasicClasses = returnData_result.Data.ObjToClass<List<DeviceBasicClass>>();
-            return deviceBasicClasses;
+            List<DeviceBasic> DeviceBasices = returnData_result.Data.ObjToClass<List<DeviceBasic>>();
+            return DeviceBasices;
         }
         static public void Replace_EPD583_Drawers(string API_Server, string ServerName, string ServerType, Drawer drawer)
         {
@@ -308,7 +308,7 @@ namespace HIS_DB_Lib
             List<Storage> storages = returnData_result.Data.ObjToClass<List<Storage>>();
             return storages;
         }
-        static public List<DeviceBasicClass> Get_EPD266_DeviceBasics_By_Code(string API_Server, string ServerName, string ServerType, string Code)
+        static public List<DeviceBasic> Get_EPD266_DeviceBasics_By_Code(string API_Server, string ServerName, string ServerType, string Code)
         {
             string url = $"{API_Server}/api/device/get_epd266_DeviceBasics_By_Code";
 
@@ -328,8 +328,8 @@ namespace HIS_DB_Lib
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             Console.WriteLine($"{returnData_result}");
             string jsonStr = returnData_result.Value;
-            List<DeviceBasicClass> deviceBasicClasses = returnData_result.Data.ObjToClass<List<DeviceBasicClass>>();
-            return deviceBasicClasses;
+            List<DeviceBasic> DeviceBasices = returnData_result.Data.ObjToClass<List<DeviceBasic>>();
+            return DeviceBasices;
         }
         static public Storage Get_EPD266_Storage_ByIP(string API_Server, string ServerName, string ServerType, string IP)
         {
@@ -425,7 +425,7 @@ namespace HIS_DB_Lib
             List<Storage> storages = returnData_result.Data.ObjToClass<List<Storage>>();
             return storages;
         }
-        static public List<DeviceBasicClass> Get_Panel35_DeviceBasics_By_Code(string API_Server, string ServerName, string ServerType, string Code)
+        static public List<DeviceBasic> Get_Panel35_DeviceBasics_By_Code(string API_Server, string ServerName, string ServerType, string Code)
         {
             string url = $"{API_Server}/api/device/get_Panel35_DeviceBasics_By_Code";
 
@@ -445,8 +445,8 @@ namespace HIS_DB_Lib
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             Console.WriteLine($"{returnData_result}");
             string jsonStr = returnData_result.Value;
-            List<DeviceBasicClass> deviceBasicClasses = returnData_result.Data.ObjToClass<List<DeviceBasicClass>>();
-            return deviceBasicClasses;
+            List<DeviceBasic> DeviceBasices = returnData_result.Data.ObjToClass<List<DeviceBasic>>();
+            return DeviceBasices;
         }
         static public Storage Get_Panel35_Storage_ByIP(string API_Server, string ServerName, string ServerType, string IP)
         {

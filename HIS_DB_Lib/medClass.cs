@@ -270,8 +270,81 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
+        static public List<medClass> get_dps_medClass_by_name(string API_Server, string ServerName, string name)
+        {
+            return get_dps_medClass_by_name(API_Server, ServerName, name, SerchType.模糊);
+        }
+        static public List<medClass> get_dps_medClass_by_name(string API_Server, string ServerName, string name, SerchType serchType)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_dps_medClass_by_name";
 
+            returnData returnData = new returnData();
 
+            returnData.ValueAry.Add(name);
+            returnData.Value = serchType.GetEnumName();
+            returnData.ServerName = ServerName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        static public List<medClass> get_dps_medClass_by_dianame(string API_Server, string ServerName, string name)
+        {
+            return get_dps_medClass_by_dianame(API_Server, ServerName, name, SerchType.模糊);
+        }
+        static public List<medClass> get_dps_medClass_by_dianame(string API_Server, string ServerName, string name, SerchType serchType)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_dps_medClass_by_dianame";
+
+            returnData returnData = new returnData();
+
+            returnData.ValueAry.Add(name);
+            returnData.Value = serchType.GetEnumName();
+            returnData.ServerName = ServerName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        static public List<medClass> get_dps_medClass_by_chtname(string API_Server, string ServerName, string name)
+        {
+            return get_dps_medClass_by_chtname(API_Server, ServerName, name, SerchType.模糊);
+        }
+        static public List<medClass> get_dps_medClass_by_chtname(string API_Server, string ServerName, string name, SerchType serchType)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_dps_medClass_by_chtname";
+
+            returnData returnData = new returnData();
+
+            returnData.ValueAry.Add(name);
+            returnData.Value = serchType.GetEnumName();
+            returnData.ServerName = ServerName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
 
         static public List<medClass> get_ds_pharma_med(string API_Server, string ServerName)
         {
@@ -405,11 +478,11 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
-        static public List<medClass> POST_get_med_clouds_by_name(string API_Server, string name)
+        static public List<medClass> get_med_clouds_by_name(string API_Server, string name)
         {
-            return POST_get_med_clouds_by_name(API_Server, name, SerchType.模糊);
+            return get_med_clouds_by_name(API_Server, name, SerchType.模糊);
         }
-        static public List<medClass> POST_get_med_clouds_by_name(string API_Server, string name , SerchType serchType)
+        static public List<medClass> get_med_clouds_by_name(string API_Server, string name , SerchType serchType)
         {
             List<medClass> medClasses = new List<medClass>();
             string url = $"{API_Server}/api/MED_page/get_med_clouds_by_name";
@@ -429,11 +502,11 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
-        static public List<medClass> POST_get_med_clouds_by_dianame(string API_Server, string dianame)
+        static public List<medClass> get_med_clouds_by_dianame(string API_Server, string dianame)
         {
-            return POST_get_med_clouds_by_dianame(API_Server, dianame, SerchType.模糊);
+            return get_med_clouds_by_dianame(API_Server, dianame, SerchType.模糊);
         }
-        static public List<medClass> POST_get_med_clouds_by_dianame(string API_Server, string name, SerchType serchType)
+        static public List<medClass> get_med_clouds_by_dianame(string API_Server, string name, SerchType serchType)
         {
             List<medClass> medClasses = new List<medClass>();
             string url = $"{API_Server}/api/MED_page/get_med_clouds_by_dianame";
@@ -453,11 +526,11 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
-        static public List<medClass> POST_get_med_clouds_by_chtname(string API_Server, string dianame)
+        static public List<medClass> get_med_clouds_by_chtname(string API_Server, string dianame)
         {
-            return POST_get_med_clouds_by_chtname(API_Server, dianame, SerchType.模糊);
+            return get_med_clouds_by_chtname(API_Server, dianame, SerchType.模糊);
         }
-        static public List<medClass> POST_get_med_clouds_by_chtname(string API_Server, string name, SerchType serchType)
+        static public List<medClass> get_med_clouds_by_chtname(string API_Server, string name, SerchType serchType)
         {
             List<medClass> medClasses = new List<medClass>();
             string url = $"{API_Server}/api/MED_page/get_med_clouds_by_chtname";

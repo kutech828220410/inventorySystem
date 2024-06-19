@@ -30,13 +30,13 @@ namespace 調劑台管理系統
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox_搜尋內容 = new MyUI.RJ_TextBox();
             this.rJ_Button_搜尋 = new MyUI.RJ_Button();
             this.comboBox_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.rJ_Button_返回 = new MyUI.RJ_Button();
             this.rJ_Button_確認 = new MyUI.RJ_Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_藥品搜尋 = new SQLUI.SQL_DataGridView();
-            this.textBox_搜尋內容 = new MyUI.RJ_TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,30 @@ namespace 調劑台管理系統
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1292, 100);
             this.panel1.TabIndex = 122;
+            // 
+            // textBox_搜尋內容
+            // 
+            this.textBox_搜尋內容.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_搜尋內容.BorderColor = System.Drawing.Color.Black;
+            this.textBox_搜尋內容.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_搜尋內容.BorderRadius = 0;
+            this.textBox_搜尋內容.BorderSize = 2;
+            this.textBox_搜尋內容.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_搜尋內容.ForeColor = System.Drawing.Color.DimGray;
+            this.textBox_搜尋內容.GUID = "";
+            this.textBox_搜尋內容.Location = new System.Drawing.Point(232, 33);
+            this.textBox_搜尋內容.Multiline = false;
+            this.textBox_搜尋內容.Name = "textBox_搜尋內容";
+            this.textBox_搜尋內容.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_搜尋內容.PassWordChar = false;
+            this.textBox_搜尋內容.PlaceholderColor = System.Drawing.Color.Silver;
+            this.textBox_搜尋內容.PlaceholderText = "請輸入搜尋條件";
+            this.textBox_搜尋內容.ShowTouchPannel = false;
+            this.textBox_搜尋內容.Size = new System.Drawing.Size(252, 37);
+            this.textBox_搜尋內容.TabIndex = 13;
+            this.textBox_搜尋內容.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_搜尋內容.Texts = "";
+            this.textBox_搜尋內容.UnderlineStyle = false;
             // 
             // rJ_Button_搜尋
             // 
@@ -227,30 +251,6 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品搜尋.顯示首行 = true;
             this.sqL_DataGridView_藥品搜尋.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_藥品搜尋.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            // 
-            // textBox_搜尋內容
-            // 
-            this.textBox_搜尋內容.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox_搜尋內容.BorderColor = System.Drawing.Color.Black;
-            this.textBox_搜尋內容.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.textBox_搜尋內容.BorderRadius = 0;
-            this.textBox_搜尋內容.BorderSize = 2;
-            this.textBox_搜尋內容.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_搜尋內容.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox_搜尋內容.GUID = "";
-            this.textBox_搜尋內容.Location = new System.Drawing.Point(232, 33);
-            this.textBox_搜尋內容.Multiline = false;
-            this.textBox_搜尋內容.Name = "textBox_搜尋內容";
-            this.textBox_搜尋內容.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.textBox_搜尋內容.PassWordChar = false;
-            this.textBox_搜尋內容.PlaceholderColor = System.Drawing.Color.Silver;
-            this.textBox_搜尋內容.PlaceholderText = "請輸入搜尋條件";
-            this.textBox_搜尋內容.ShowTouchPannel = false;
-            this.textBox_搜尋內容.Size = new System.Drawing.Size(252, 37);
-            this.textBox_搜尋內容.TabIndex = 13;
-            this.textBox_搜尋內容.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.textBox_搜尋內容.Texts = "";
-            this.textBox_搜尋內容.UnderlineStyle = false;
             // 
             // Dialog_藥品搜尋
             // 

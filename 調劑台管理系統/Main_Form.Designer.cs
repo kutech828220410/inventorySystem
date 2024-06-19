@@ -3036,6 +3036,7 @@
             this.plC_RJ_Button_調劑作業_藥品調入.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_調劑作業_藥品調入.文字鎖住 = false;
             this.plC_RJ_Button_調劑作業_藥品調入.背景圖片 = global::調劑台管理系統.Properties.Resources.medication_transfer_to_dispensing_counter_with_arr_removebg_preview;
+            this.plC_RJ_Button_調劑作業_藥品調入.致能讀取位置 = "S100";
             this.plC_RJ_Button_調劑作業_藥品調入.讀取位元反向 = false;
             this.plC_RJ_Button_調劑作業_藥品調入.讀寫鎖住 = false;
             this.plC_RJ_Button_調劑作業_藥品調入.音效 = true;

@@ -94,6 +94,46 @@
             回傳觸發請求網址
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.loggerClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.loggerClass.網址">
+            <summary>
+            網址
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.loggerClass.項目">
+            <summary>
+            項目
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.loggerClass.操作類型">
+            <summary>
+            操作類型
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.loggerClass.操作者ID">
+            <summary>
+            操作者ID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.loggerClass.操作者姓名">
+            <summary>
+            操作者姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.loggerClass.操作時間">
+            <summary>
+            操作時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.loggerClass.回傳結果">
+            <summary>
+            時間
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.drugDispatchClass.GUID">
             <summary>
             唯一KEY

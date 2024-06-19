@@ -39,17 +39,17 @@ namespace 調劑台管理系統
         private void Dialog_藥品搜尋_Load(object sender, EventArgs e)
         {
           
-            Table table = medClass.init(Main_Form.API_Server);
+            Table table = medClass.init(Main_Form.API_Server ,Main_Form.ServerName,Main_Form.ServerType, medClass.StoreType.調劑台);
             sqL_DataGridView_藥品搜尋.Init(table);
-            sqL_DataGridView_藥品搜尋.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
-            sqL_DataGridView_藥品搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.藥品碼);
-            sqL_DataGridView_藥品搜尋.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
-            sqL_DataGridView_藥品搜尋.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.中文名稱);
-            sqL_DataGridView_藥品搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
-            sqL_DataGridView_藥品搜尋.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
-            sqL_DataGridView_藥品搜尋.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
-            sqL_DataGridView_藥品搜尋.Set_ColumnText("中文名", enum_雲端藥檔.中文名稱);
-            sqL_DataGridView_藥品搜尋.Set_ColumnText("單位", enum_雲端藥檔.包裝單位);
+            sqL_DataGridView_藥品搜尋.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
+            sqL_DataGridView_藥品搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_藥品資料_藥檔資料.藥品碼);
+            sqL_DataGridView_藥品搜尋.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品名稱);
+            sqL_DataGridView_藥品搜尋.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.中文名稱);
+            sqL_DataGridView_藥品搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_藥品資料_藥檔資料.包裝單位);
+            sqL_DataGridView_藥品搜尋.Set_ColumnText("藥碼", enum_藥品資料_藥檔資料.藥品碼);
+            sqL_DataGridView_藥品搜尋.Set_ColumnText("藥名", enum_藥品資料_藥檔資料.藥品名稱);
+            sqL_DataGridView_藥品搜尋.Set_ColumnText("中文名", enum_藥品資料_藥檔資料.中文名稱);
+            sqL_DataGridView_藥品搜尋.Set_ColumnText("單位", enum_藥品資料_藥檔資料.包裝單位);
         }
         private void Dialog_藥品搜尋_LoadFinishedEvent(EventArgs e)
         {
@@ -60,7 +60,7 @@ namespace 調劑台管理系統
         {
             List<object[]> list_value = this.sqL_DataGridView_藥品搜尋.Get_All_Select_RowsValues();
 
-            List<medClass> medClasses = list_value.SQLToClass<medClass, enum_雲端藥檔>();
+            List<medClass> medClasses = list_value.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
             if(medClasses.Count == 0)
             {
                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
@@ -92,7 +92,7 @@ namespace 調劑台管理系統
                 LoadingForm.ShowLoadingForm();
                 if (cmb_text == "全部顯示")
                 {
-                    medClasses = medClass.get_med_cloud(Main_Form.API_Server);
+                    medClasses = medClass.get_dps_medClass(Main_Form.API_Server, Main_Form.ServerName);
                 }
                 if (cmb_text == "藥碼")
                 {
@@ -102,8 +102,7 @@ namespace 調劑台管理系統
                         dialog_AlarmForm.ShowDialog();
                         return;
                     }
-                    medClass medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, text);
-                    medClasses.Add(medClass);
+                    medClasses = medClass.get_dps_medClass_by_code(Main_Form.API_Server, Main_Form.ServerName,text);
                 }
                 if (cmb_text == "藥名")
                 {
@@ -113,7 +112,7 @@ namespace 調劑台管理系統
                         dialog_AlarmForm.ShowDialog();
                         return;
                     }
-                    medClasses = medClass.POST_get_med_clouds_by_name(Main_Form.API_Server, text);
+                    medClasses = medClass.get_dps_medClass_by_name(Main_Form.API_Server, Main_Form.ServerName, text);
                 }
                 if (cmb_text == "中文名")
                 {
@@ -123,16 +122,23 @@ namespace 調劑台管理系統
                         dialog_AlarmForm.ShowDialog();
                         return;
                     }
-                    medClasses = medClass.POST_get_med_clouds_by_chtname(Main_Form.API_Server, text);
+                    medClasses = medClass.get_dps_medClass_by_chtname(Main_Form.API_Server, Main_Form.ServerName, text);
                 }
+                
+                medClasses = (from temp in medClasses
+                              where temp.DeviceBasics.Count > 0
+                              select temp).ToList();
+
                 if (medClasses.Count == 0)
                 {
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無資料", 1500);
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
+                List<object[]> list_value = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
 
-                List<object[]> list_value = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
+
+
                 this.sqL_DataGridView_藥品搜尋.RefreshGrid(list_value);
 
             }

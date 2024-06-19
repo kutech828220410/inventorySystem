@@ -3580,6 +3580,7 @@
                 {
                    
                 },
+                "Value" : "[前綴]",
                 "ValueAry" : 
                 [
                     [藥名]
@@ -3590,7 +3591,7 @@
             </remarks>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.MED_pageController.get_med_clouds_by_dianame(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_med_clouds_by_dianame(HIS_DB_Lib.returnData)">
             <summary>
             以商品名取得雲端藥檔資料
             </summary>
@@ -3613,7 +3614,7 @@
             </remarks>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.MED_pageController.get_med_clouds_by_chtname(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_med_clouds_by_chtname(HIS_DB_Lib.returnData)">
             <summary>
             以中文名取得雲端藥檔資料
             </summary>
@@ -3625,6 +3626,7 @@
                 {
                    
                 },
+                "Value" : "[前綴]",
                 "ValueAry" : 
                 [
                     [中文名]
@@ -3810,9 +3812,79 @@
                 {
                     
                 },
+                "Value" : "[前綴,模糊]",
                 "ValueAry" : 
                 [
                    [藥碼1,藥碼2,藥碼3]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_dps_medClass_by_name(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥名搜尋[調劑台藥檔]
+            </summary>
+            <remarks>
+            <code>
+            {
+                "ServerName" : "A5",
+                "Data": 
+                {
+                    
+                },
+                "Value" : "[前綴]",
+                "ValueAry" : 
+                [
+                   [藥名]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_dps_medClass_by_chtname(HIS_DB_Lib.returnData)">
+            <summary>
+            以中文名搜尋[調劑台藥檔]
+            </summary>
+            <remarks>
+            <code>
+            {
+                "ServerName" : "A5",
+                "Data": 
+                {
+                    
+                },
+                "Value" : "[前綴]",
+                "ValueAry" : 
+                [
+                   [中文名]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_dps_medClass_by_dianame(HIS_DB_Lib.returnData)">
+            <summary>
+            以中文名搜尋[調劑台藥檔]
+            </summary>
+            <remarks>
+            <code>
+            {
+                "ServerName" : "A5",
+                "Data": 
+                {
+                    
+                },
+                "Value" : "[前綴]",
+                "ValueAry" : 
+                [
+                   [商品名]
                 ]
                 
             }
@@ -4503,6 +4575,101 @@
              3.[CT] : 操作者 <br/> 
             </remarks>
             <returns>Excel</returns>
+        </member>
+        <member name="M:HIS_WebApi.Anna_Logger.LoggerController.init(HIS_DB_Lib.returnData)">
+             <summary>
+            初始化Logger資料庫
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[""]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.Anna_Logger.LoggerController.POST_get_all(HIS_DB_Lib.returnData)">
+             <summary>
+            取得所有Logger資料
+             </summary>
+             <remarks>
+             <code>
+                 {
+                     "ValueAry":[項目]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.Anna_Logger.LoggerController.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增資料
+            </summary>
+            <remarks>
+            以下為JSON範例
+            <code>
+                {
+                    "Data":
+                    [
+                        [loggerClass]
+                    ]
+                    
+                }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.Anna_Logger.LoggerController.POST_get_log_by_opname(HIS_DB_Lib.returnData)">
+             <summary>
+            以操作者姓名取得Logger資料
+             </summary>
+             <remarks>
+             <code>
+                 {
+                     "ValueAry": 
+                     [
+                        "操作者姓名"
+                     ]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.Anna_Logger.LoggerController.POST_get_log_by_datetime_st_end(HIS_DB_Lib.returnData)">
+             <summary>
+            以操作時間取得Logger資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[起始時間, 結束時間]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.Anna_Logger.LoggerController.Post_delete(HIS_DB_Lib.returnData)">
+             <summary>
+            以項目刪除Logger資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[項目]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
         </member>
         <member name="M:HIS_WebApi.MedPriceController.Get">
             <summary>
