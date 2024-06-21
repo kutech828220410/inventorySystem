@@ -74,6 +74,8 @@ namespace 調劑台管理系統
             List_EPD583 = H_Pannel_lib.DrawerMethod.SQL_GetAllDrawers(list_EPD583);
             List_EPD266 = H_Pannel_lib.StorageMethod.SQL_GetAllStorage(list_EPD266);
             List_RowsLED = H_Pannel_lib.RowsLEDMethod.SQL_GetAllRowsLED(list_RowsLED);
+
+            Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - ({serverSettingClass.設備名稱}) EPD583<{list_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
         }
     }
 
