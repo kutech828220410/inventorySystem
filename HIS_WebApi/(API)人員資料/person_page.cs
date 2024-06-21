@@ -213,6 +213,75 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 以姓名搜尋人員資料
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "Value" : "[姓名]"
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]</returns>
+        [Route("serch_by_name")]
+        [HttpPost]
+        public string POST_serch_by_name([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "serch_by_name";
+            try
+            {
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string 姓名 = returnData.Value;
+                if (姓名.StringIsEmpty())
+                {
+
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                SQLControl sQLControl_personPage = new SQLControl(Server, DB, "person_page", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_personPage.GetRowsByDefult(null, (int)enum_人員資料.姓名, 姓名);
+                if (list_value.Count > 0)
+                {
+                    returnData.Data = list_value[0].SQLToClass<personPageClass, enum_人員資料>();
+                }
+                else
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.Code = 200;
+                returnData.Result = $"搜尋人員資料成功";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
         /// 新增及修改人員資料
         /// </summary>
         /// <remarks>

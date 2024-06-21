@@ -663,6 +663,26 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]</returns>
         </member>
+        <member name="M:HIS_WebApi.person_page.POST_serch_by_name(HIS_DB_Lib.returnData)">
+            <summary>
+            以姓名搜尋人員資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "Value" : "[姓名]"
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
         <member name="M:HIS_WebApi.person_page.POST_add(HIS_DB_Lib.returnData)">
             <summary>
             新增及修改人員資料

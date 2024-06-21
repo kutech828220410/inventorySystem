@@ -788,7 +788,10 @@ namespace HIS_WebApi
                     string 開方時間 = data[i].開方時間;
                     string 操作時間 = DateTime.Now.ToDateTimeString_6();
                     string 操作人 = data[i].操作人;
-                    string 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
+                    string 顏色 = data[i].顏色;
+                   
+                    if (顏色.StringIsEmpty()) 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
+                 
                     string 類別 = data[i].類別;
                     string 床號 = data[i].床號;
                     string 領藥號 = data[i].領藥號;

@@ -205,6 +205,8 @@ namespace HIS_DB_Lib
         public string 時間 { get; set; }
         [JsonPropertyName("RSN")]
         public string 收支原因 { get; set; }
+        [JsonPropertyName("color")]
+        public string 顏色 { get; set; }
     }
     /// <summary>
     /// 藥物取用堆疊類別

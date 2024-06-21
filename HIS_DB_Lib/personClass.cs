@@ -162,7 +162,36 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             return personPageClass;
         }
+        static public personPageClass serch_by_name(string API_Server, string name)
+        {
+            string url = $"{API_Server}/api/person_page/serch_by_name";
+            string str_serverNames = "";
+            string str_serverTypes = "";
 
+            returnData returnData = new returnData();
+            returnData.ServerName = "";
+            returnData.ServerType = "";
+            returnData.Data = null;
+            returnData.Value = name;
+            if (name.StringIsEmpty()) return null;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            if (returnData_out.Code != 200) return null;
+            personPageClass personPageClass = returnData_out.Data.ObjToClass<personPageClass>();
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return personPageClass;
+        }
         static public SQLUI.Table Init(string API_Server)
         {
             string url = $"{API_Server}/api/person_page/init";
