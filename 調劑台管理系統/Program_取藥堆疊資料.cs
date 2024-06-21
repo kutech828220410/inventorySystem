@@ -2150,6 +2150,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_取藥堆疊資料_檢查資料_從SQL讀取儲位資料(ref int cnt)
         {
+            this.list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
             if (this.list_取藥堆疊母資料.Count > 0)
             {
                 var Code_LINQ = (from value in list_取藥堆疊母資料
@@ -2570,7 +2571,10 @@ namespace 調劑台管理系統
                 }
 
                 if (list_取藥堆疊母資料_DeleteValue.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_DeleteExtra(list_取藥堆疊母資料_DeleteValue, false);
-                if (list_取藥堆疊母資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_ReplaceValue, false);
+                if (list_取藥堆疊母資料_ReplaceValue.Count > 0)
+                {
+                    this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_ReplaceValue, false);
+                }
                 if (list_取藥堆疊子資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(list_取藥堆疊子資料_ReplaceValue, false);
 
             }
@@ -2799,6 +2803,7 @@ namespace 調劑台管理系統
                              where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.等待入賬.GetEnumName()
                              where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.新增效期.GetEnumName()
                              where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()
+                             where value[(int)enum_取藥堆疊母資料.狀態].ObjectToString() != enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()
                              select value).ToList();
 
             _list_取藥堆疊母資料.Sort(new Icp_取藥堆疊母資料_index排序());
