@@ -150,8 +150,8 @@ namespace HIS_DB_Lib
         配藥完成,
         [Description("調劑結束,VARCHAR,10,None")]
         調劑結束,
-        [Description("已入賬,VARCHAR,10,None")]
-        已入賬,
+        [Description("已入帳,VARCHAR,10,None")]
+        已入帳,
     }
     public class class_OutTakeMed_data
     {

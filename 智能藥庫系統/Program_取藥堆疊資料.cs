@@ -165,7 +165,7 @@ namespace 智能藥庫系統
             string 流程作業完成 = false.ToString();
             string 配藥完成 = false.ToString();
             string 調劑結束 = false.ToString();
-            string 已入賬 = false.ToString();
+            string 已入帳 = false.ToString();
 
             object[] value = new object[new enum_取藥堆疊子資料().GetLength()];
             value[(int)enum_取藥堆疊子資料.GUID] = Guid.NewGuid().ToString();
@@ -183,7 +183,7 @@ namespace 智能藥庫系統
             value[(int)enum_取藥堆疊子資料.流程作業完成] = false.ToString();
             value[(int)enum_取藥堆疊子資料.配藥完成] = false.ToString();
             value[(int)enum_取藥堆疊子資料.調劑結束] = false.ToString();
-            value[(int)enum_取藥堆疊子資料.已入賬] = false.ToString();
+            value[(int)enum_取藥堆疊子資料.已入帳] = false.ToString();
 
             this.sqL_DataGridView_堆疊子資料.SQL_AddRow(value, false);
         }
@@ -441,7 +441,7 @@ namespace 智能藥庫系統
             }
 
         }
-        private object[] Function_堆疊子資料_設定已入賬(object[] 堆疊子資料)
+        private object[] Function_堆疊子資料_設定已入帳(object[] 堆疊子資料)
         {
             string IP = 堆疊子資料[(int)enum_取藥堆疊子資料.IP].ObjectToString();
             string 藥品碼 = 堆疊子資料[(int)enum_取藥堆疊子資料.藥品碼].ObjectToString();
@@ -468,7 +468,7 @@ namespace 智能藥庫系統
             }
           
             堆疊子資料[(int)enum_取藥堆疊子資料.批號] = 批號;
-            堆疊子資料[(int)enum_取藥堆疊子資料.已入賬] = true.ToString();
+            堆疊子資料[(int)enum_取藥堆疊子資料.已入帳] = true.ToString();
             堆疊子資料[(int)enum_取藥堆疊子資料.致能] = true.ToString();
             堆疊子資料[(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
             堆疊子資料[(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
@@ -1043,7 +1043,7 @@ namespace 智能藥庫系統
                                     list_sortValue[0][(int)enum_取藥堆疊子資料.異動量] = 儲位資訊_異動量;
                                     list_堆疊子資料_ReplaceValue.Add(list_sortValue[0]);
                                 }
-                                if (list_sortValue[0][(int)enum_取藥堆疊子資料.已入賬].ObjectToString() == false.ToString())
+                                if (list_sortValue[0][(int)enum_取藥堆疊子資料.已入帳].ObjectToString() == false.ToString())
                                 {
                                     this.Function_庫存異動至雲端資料(儲位資訊[k]);
                                 }
@@ -1160,7 +1160,7 @@ namespace 智能藥庫系統
             bool 流程作業完成 = true;
             bool 配藥完成 = true;
             bool 調劑結束 = true;
-            bool 已入賬 = true;
+            bool 已入帳 = true;
             List<object[]> _list_堆疊母資料 = this.Function_堆疊資料_取得母資料();
             List<object[]> _list_堆疊子資料 = this.Function_堆疊資料_取得子資料();
             List<object[]> _list_堆疊母資料_ReplaceValue = new List<object[]>();
@@ -1182,7 +1182,7 @@ namespace 智能藥庫系統
                 流程作業完成 = true;
                 配藥完成 = true;
                 調劑結束 = true;
-                已入賬 = true;
+                已入帳 = true;
                 狀態_buf = 狀態 = _list_堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString();
                 GUID = _list_堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
                 _list_堆疊子資料_buf = _list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Master_GUID, GUID);
@@ -1221,9 +1221,9 @@ namespace 智能藥庫系統
                 }
                 for (int k = 0; k < _list_堆疊子資料_buf.Count; k++)
                 {
-                    if (_list_堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.已入賬].ObjectToString() == false.ToString())
+                    if (_list_堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.已入帳].ObjectToString() == false.ToString())
                     {
-                        已入賬 = false;
+                        已入帳 = false;
                         break;
                     }
                 }
@@ -1235,7 +1235,7 @@ namespace 智能藥庫系統
                     }
                     if (配藥完成) 狀態_buf = enum_取藥堆疊母資料_狀態.作業完成.GetEnumName();
                     if (調劑結束) 狀態_buf = enum_取藥堆疊母資料_狀態.等待入賬.GetEnumName();
-                    if (已入賬) 狀態_buf = enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName();
+                    if (已入帳) 狀態_buf = enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName();
                     if (狀態_buf == enum_取藥堆疊母資料_狀態.作業完成.GetEnumName())
                     {
                         狀態_buf = enum_取藥堆疊母資料_狀態.等待入賬.GetEnumName();
@@ -1571,7 +1571,7 @@ namespace 智能藥庫系統
                 for (int k = 0; k < list_子資料_buf.Count; k++)
                 {
 
-                    list_子資料_buf[k] = this.Function_堆疊子資料_設定已入賬(list_子資料_buf[k]);
+                    list_子資料_buf[k] = this.Function_堆疊子資料_設定已入帳(list_子資料_buf[k]);
                     List_效期.Add(list_子資料_buf[k][(int)enum_取藥堆疊子資料.效期].ObjectToString());
                     List_批號.Add(list_子資料_buf[k][(int)enum_取藥堆疊子資料.批號].ObjectToString());
                     list_堆疊子資料_ReplaceValue.Add(list_子資料_buf[k]);
