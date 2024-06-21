@@ -1892,11 +1892,10 @@ namespace 調劑台管理系統
             this.list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得母資料();
             this.list_取藥堆疊母資料 = (from temp in this.list_取藥堆疊母資料
                                  where temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()
-                                 where temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()
-                                 where temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()
+                                 || temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName()
+                                 || temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName()
                                  || temp[(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName()
                                  select temp).ToList();
-            this.list_取藥堆疊母資料 = this.list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName());
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
             int 處方存在時間 = plC_NumBox_處方存在時間.Value / 1000;
             for (int i = 0; i < this.list_取藥堆疊母資料.Count; i++)
