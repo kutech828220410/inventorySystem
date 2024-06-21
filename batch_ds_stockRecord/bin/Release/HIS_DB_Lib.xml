@@ -889,6 +889,176 @@
             備註。
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.takeMedicineStackClass">
+            <summary>
+            藥物取用堆疊類別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.GUID">
+            <summary>
+            全局唯一標識符
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.Order_GUID">
+            <summary>
+            訂單全局唯一標識符
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.序號">
+            <summary>
+            序號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.調劑台名稱">
+            <summary>
+            調劑台名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.IP">
+            <summary>
+            IP地址
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.操作人">
+            <summary>
+            操作人
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.藥師證字號">
+            <summary>
+            藥師證字號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.動作">
+            <summary>
+            交易記錄查詢動作
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.作業模式">
+            <summary>
+            作業模式
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.藥袋序號">
+            <summary>
+            藥袋序號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.領藥號">
+            <summary>
+            領藥號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.病房號">
+            <summary>
+            病房號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.類別">
+            <summary>
+            類別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.藥品碼">
+            <summary>
+            藥品碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.藥品名稱">
+            <summary>
+            藥品名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.單位">
+            <summary>
+            單位
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.病歷號">
+            <summary>
+            病歷號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.病人姓名">
+            <summary>
+            病人姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.床號">
+            <summary>
+            床號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.頻次">
+            <summary>
+            頻次
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.開方時間">
+            <summary>
+            開方時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.操作時間">
+            <summary>
+            操作時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.顏色">
+            <summary>
+            顏色
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.狀態">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.庫存量">
+            <summary>
+            庫存量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.總異動量">
+            <summary>
+            總異動量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.結存量">
+            <summary>
+            結存量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.盤點量">
+            <summary>
+            盤點量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.效期">
+            <summary>
+            效期
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.批號">
+            <summary>
+            批號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.備註">
+            <summary>
+            備註
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.收支原因">
+            <summary>
+            收支原因
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.診別">
+            <summary>
+            診別
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.transactionsClass.GUID">
             <summary>
             唯一KEY

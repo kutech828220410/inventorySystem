@@ -267,8 +267,6 @@ namespace 調劑台管理系統
                 Console.WriteLine($" (耗時){myTimer.ToString()} ");
                 Console.WriteLine($"----------------------------------------------");
 
-                takeMedicineStackClass takeMedicineStackClass = takeMedicineStackClasses[i];
-
             }
 
             for (int i = 0; i < list_藥品碼.Count; i++)
@@ -1137,7 +1135,7 @@ namespace 調劑台管理系統
             returnData.ServerName = $"{dBConfigClass.Name}";
             string json_in = returnData.JsonSerializationt();
             string json = Basic.Net.WEBApiPostJson($"{url}", json_in);
-            List<SQLUI.Table> tables = json.JsonDeserializet<List<SQLUI.Table>>();
+            List<SQLUI.Table> tables = takeMedicineStackClass.init(Main_Form.API_Server, $"{dBConfigClass.Name}", enum_ServerSetting_Type.調劑台.GetEnumName());
 
 
 
@@ -2182,6 +2180,7 @@ namespace 調劑台管理系統
                     flag_雙人覆核 = this.Function_取藥堆疊資料_取得作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.雙人覆核);
                     if (庫存量 == -999)
                     {
+
                         if (this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態].ObjectToString() == enum_取藥堆疊母資料_狀態.無儲位.GetEnumName()) continue;
                         this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.無儲位.GetEnumName();
                         this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(this.list_取藥堆疊母資料[i], false);

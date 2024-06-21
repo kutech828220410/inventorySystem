@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
+using System.ComponentModel;
+using System.Reflection;
 
 
 namespace HIS_DB_Lib
@@ -42,60 +44,113 @@ namespace HIS_DB_Lib
         獨立作業,
         庫存不足語音提示,
     }
+    [EnumDescription("take_medicine_stack_new")]
     public enum enum_取藥堆疊母資料
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Order_GUID,VARCHAR,200,INDEX")]
         Order_GUID,
+        [Description("序號,VARCHAR,200,None")]
         序號,
+        [Description("調劑台名稱,VARCHAR,50,None")]
         調劑台名稱,
+        [Description("IP,VARCHAR,20,None")]
         IP,
+        [Description("操作人,VARCHAR,20,None")]
         操作人,
+        [Description("藥師證字號,VARCHAR,20,None")]
         藥師證字號,
+        [Description("動作,VARCHAR,20,None")]
         動作,
+        [Description("作業模式,VARCHAR,20,None")]
         作業模式,
+        [Description("藥袋序號,VARCHAR,200,None")]
         藥袋序號,
+        [Description("領藥號,VARCHAR,20,None")]
         領藥號,
+        [Description("病房號,VARCHAR,20,None")]
         病房號,
+        [Description("類別,VARCHAR,15,None")]
         類別,
+        [Description("藥品碼,VARCHAR,15,None")]
         藥品碼,
+        [Description("藥品名稱,VARCHAR,300,None")]
         藥品名稱,
+        [Description("單位,VARCHAR,20,None")]
         單位,
+        [Description("病歷號,VARCHAR,20,None")]
         病歷號,
+        [Description("病人姓名,VARCHAR,50,None")]
         病人姓名,
+        [Description("床號,VARCHAR,20,None")]
         床號,
+        [Description("頻次,VARCHAR,20,None")]
         頻次,
+        [Description("開方時間,VARCHAR,50,None")]
         開方時間,
+        [Description("操作時間,VARCHAR,50,None")]
         操作時間,
+        [Description("顏色,VARCHAR,20,None")]
         顏色,
+        [Description("狀態,VARCHAR,20,None")]
         狀態,
+        [Description("庫存量,VARCHAR,10,None")]
         庫存量,
+        [Description("總異動量,VARCHAR,10,None")]
         總異動量,
+        [Description("結存量,VARCHAR,10,None")]
         結存量,
+        [Description("盤點量,VARCHAR,10,None")]
         盤點量,
+        [Description("效期,VARCHAR,50,None")]
         效期,
+        [Description("批號,VARCHAR,50,None")]
         批號,
+        [Description("備註,VARCHAR,200,None")]
         備註,
+        [Description("收支原因,VARCHAR,200,None")]
         收支原因,
+        [Description("診別,VARCHAR,20,None")]
         診別
+
     }
+    [EnumDescription("take_medicine_substack_new")]
     public enum enum_取藥堆疊子資料
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Master_GUID,VARCHAR,50,None")]
         Master_GUID,
+        [Description("Device_GUID,VARCHAR,50,None")]
         Device_GUID,
+        [Description("序號,VARCHAR,200,None")]
         序號,
+        [Description("調劑台名稱,VARCHAR,50,None")]
         調劑台名稱,
+        [Description("藥品碼,VARCHAR,50,None")]
         藥品碼,
+        [Description("IP,VARCHAR,50,None")]
         IP,
+        [Description("Num,VARCHAR,10,None")]
         Num,
+        [Description("TYPE,VARCHAR,50,None")]
         TYPE,
+        [Description("效期,VARCHAR,50,None")]
         效期,
+        [Description("批號,VARCHAR,50,None")]
         批號,
+        [Description("異動量,VARCHAR,20,None")]
         異動量,
+        [Description("致能,VARCHAR,10,None")]
         致能,
+        [Description("流程作業完成,VARCHAR,10,None")]
         流程作業完成,
+        [Description("配藥完成,VARCHAR,10,None")]
         配藥完成,
+        [Description("調劑結束,VARCHAR,10,None")]
         調劑結束,
+        [Description("已入賬,VARCHAR,10,None")]
         已入賬,
     }
     public class class_OutTakeMed_data
@@ -114,6 +169,10 @@ namespace HIS_DB_Lib
         public string 加退藥來源 { get; set; }
         [JsonPropertyName("code")]
         public string 藥品碼 { get; set; }
+        [JsonPropertyName("name")]
+        public string 藥名 { get; set; }
+        [JsonPropertyName("package")]
+        public string 單位 { get; set; }
         [JsonPropertyName("MED_BAG_NUM")]
         public string 領藥號 { get; set; }
         [JsonPropertyName("WARD_NAME")]
@@ -147,40 +206,217 @@ namespace HIS_DB_Lib
         [JsonPropertyName("RSN")]
         public string 收支原因 { get; set; }
     }
+    /// <summary>
+    /// 藥物取用堆疊類別
+    /// </summary>
     public class takeMedicineStackClass
     {
+        /// <summary>
+        /// 全局唯一標識符
+        /// </summary>
+        [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// 訂單全局唯一標識符
+        /// </summary>
+        [JsonPropertyName("Order_GUID")]
         public string Order_GUID { get; set; }
+        /// <summary>
+        /// 序號
+        /// </summary>
+        [JsonPropertyName("serial_number")]
         public string 序號 { get; set; }
+        /// <summary>
+        /// 調劑台名稱
+        /// </summary>
+        [JsonPropertyName("dispensing_station_name")]
         public string 調劑台名稱 { get; set; }
+        /// <summary>
+        /// IP地址
+        /// </summary>
+        [JsonPropertyName("ip_address")]
         public string IP { get; set; }
+        /// <summary>
+        /// 操作人
+        /// </summary>
+        [JsonPropertyName("operator")]
         public string 操作人 { get; set; }
+        /// <summary>
+        /// 藥師證字號
+        /// </summary>
+        [JsonPropertyName("pharmacist_license_number")]
         public string 藥師證字號 { get; set; }
+        /// <summary>
+        /// 交易記錄查詢動作
+        /// </summary>
+        [JsonPropertyName("action")]
         public enum_交易記錄查詢動作 動作 { get; set; }
+        /// <summary>
+        /// 作業模式
+        /// </summary>
+        [JsonPropertyName("operation_mode")]
         public string 作業模式 { get; set; }
+        /// <summary>
+        /// 藥袋序號
+        /// </summary>
+        [JsonPropertyName("medicine_bag_serial_number")]
         public string 藥袋序號 { get; set; }
+        /// <summary>
+        /// 領藥號
+        /// </summary>
+        [JsonPropertyName("medicine_bag_number")]
         public string 領藥號 { get; set; }
+        /// <summary>
+        /// 病房號
+        /// </summary>
+        [JsonPropertyName("ward_number")]
         public string 病房號 { get; set; }
+        /// <summary>
+        /// 類別
+        /// </summary>
+        [JsonPropertyName("category")]
         public string 類別 { get; set; }
+        /// <summary>
+        /// 藥品碼
+        /// </summary>
+        [JsonPropertyName("medicine_code")]
         public string 藥品碼 { get; set; }
+        /// <summary>
+        /// 藥品名稱
+        /// </summary>
+        [JsonPropertyName("medicine_name")]
         public string 藥品名稱 { get; set; }
+        /// <summary>
+        /// 單位
+        /// </summary>
+        [JsonPropertyName("unit")]
         public string 單位 { get; set; }
+        /// <summary>
+        /// 病歷號
+        /// </summary>
+        [JsonPropertyName("patient_record_number")]
         public string 病歷號 { get; set; }
+        /// <summary>
+        /// 病人姓名
+        /// </summary>
+        [JsonPropertyName("patient_name")]
         public string 病人姓名 { get; set; }
+        /// <summary>
+        /// 床號
+        /// </summary>
+        [JsonPropertyName("bed_number")]
         public string 床號 { get; set; }
+        /// <summary>
+        /// 頻次
+        /// </summary>
+        [JsonPropertyName("frequency")]
         public string 頻次 { get; set; }
+        /// <summary>
+        /// 開方時間
+        /// </summary>
+        [JsonPropertyName("prescription_time")]
         public string 開方時間 { get; set; }
+        /// <summary>
+        /// 操作時間
+        /// </summary>
+        [JsonPropertyName("operation_time")]
         public string 操作時間 { get; set; }
+        /// <summary>
+        /// 顏色
+        /// </summary>
+        [JsonPropertyName("color")]
         public string 顏色 { get; set; }
+        /// <summary>
+        /// 狀態
+        /// </summary>
+        [JsonPropertyName("status")]
         public enum_取藥堆疊母資料_狀態 狀態 { get; set; }
+        /// <summary>
+        /// 庫存量
+        /// </summary>
+        [JsonPropertyName("inventory")]
         public string 庫存量 { get; set; }
+        /// <summary>
+        /// 總異動量
+        /// </summary>
+        [JsonPropertyName("total_change")]
         public string 總異動量 { get; set; }
+        /// <summary>
+        /// 結存量
+        /// </summary>
+        [JsonPropertyName("balance")]
         public string 結存量 { get; set; }
+        /// <summary>
+        /// 盤點量
+        /// </summary>
+        [JsonPropertyName("inventory_count")]
         public string 盤點量 { get; set; }
+        /// <summary>
+        /// 效期
+        /// </summary>
+        [JsonPropertyName("expiry_date")]
         public string 效期 { get; set; }
+        /// <summary>
+        /// 批號
+        /// </summary>
+        [JsonPropertyName("batch_number")]
         public string 批號 { get; set; }
+        /// <summary>
+        /// 備註
+        /// </summary>
+        [JsonPropertyName("remarks")]
         public string 備註 { get; set; }
+        /// <summary>
+        /// 收支原因
+        /// </summary>
+        [JsonPropertyName("reason")]
         public string 收支原因 { get; set; }
+        /// <summary>
+        /// 診別
+        /// </summary>
+        [JsonPropertyName("clinic_type")]
         public string 診別 { get; set; }
+
+
+        static public List<SQLUI.Table> init(string API_Server, string ServerName, string ServerType)
+        {
+            string url = $"{API_Server}/api/OutTakeMed/init";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string tableName = "";     
+            returnData.TableName = tableName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
+            return tables;
+        }
+        static public List<transactionsClass> set_device_tradding(string API_Server, string ServerName, string ServerType, List<takeMedicineStackClass> takeMedicineStackClasses)
+        {
+            string url = $"{API_Server}/api/OutTakeMed/set_device_tradding";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            returnData.Data = takeMedicineStackClasses;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<transactionsClass> transactions = returnData_out.Data.ObjToClass<List<transactionsClass>>();
+            return transactions;
+        }
     }
 }

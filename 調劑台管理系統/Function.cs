@@ -352,6 +352,14 @@ namespace 調劑台管理系統
                     Console.WriteLine($"外部設備資料資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
 
                 }));
+                taskList.Add(Task.Run(() =>
+                {
+                    MyTimer myTimer2 = new MyTimer();
+                    myTimer2.StartTickTime(50000);
+                    this.commonSapceClasses = Function_取得共用區所有儲位();
+                    Console.WriteLine($"取得共用區儲位! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
+
+                }));
                 Task allTask = Task.WhenAll(taskList);
                 allTask.Wait();
                 Console.WriteLine($"SQL讀取儲位資料到雲端結束! 耗時 : {myTimer.GetTickTime().ToString("0.000")}");
@@ -987,8 +995,12 @@ namespace 調劑台管理系統
                 Console.WriteLine($"讀取Pannel35資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
 
             }));
+            List<Device> deviceBasics = new List<Device>();
+           
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();
+
+   
             Console.WriteLine($"SQL讀取儲位資料到本地結束! 耗時 : {myTimer.GetTickTime().ToString("0.000")}");
         }
         public List<object> Function_從本地資料取得儲位(string 藥品碼)

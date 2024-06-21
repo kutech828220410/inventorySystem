@@ -28,7 +28,7 @@ namespace HIS_WebApi
     [ApiController]
     public class transactions : Controller
     {
-        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
+        static private string API_Server = "http://127.0.0.1:4433";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace HIS_WebApi
             returnData.Method = "add";
             try
             {
-                GET_init(returnData);
+                //GET_init(returnData);
                 List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "交易紀錄資料");
                 if (serverSettingClasses.Count == 0)

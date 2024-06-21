@@ -2911,6 +2911,31 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         </member>
+        <member name="M:HIS_WebApi.OutTakeMedController.POST_set_device_tradding(HIS_DB_Lib.returnData)">
+            <summary>
+            設定扣帳資訊
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "A6",
+                "ServerType" : "調劑台",
+                "ValueAry" : 
+                [
+                  
+                ],
+                "Data" : 
+                {
+                   [takeMedicineStackClass]
+                }
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[transactionsClass]陣列結構</returns>
+        </member>
         <member name="M:HIS_WebApi.OutTakeMedController.mul_med_take(System.String,System.Collections.Generic.List{HIS_DB_Lib.class_OutTakeMed_data})">
             <summary>
             op_type : 1(取藥亮燈) -1(取藥扣帳) 2(取藥亮燈並扣帳) -3(加藥) -4(退藥) -5(入庫扣帳) -6(撥入) -7(撥出) -8(調入) -9(調出)

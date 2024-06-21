@@ -33,7 +33,6 @@ namespace HIS_WebApi
         }
 
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
-        static private string name = ConfigurationManager.AppSettings["name"];
 
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
         MyTimer myTimer = new MyTimer(50000);
@@ -276,6 +275,181 @@ namespace HIS_WebApi
                 returnData.Result = e.Message;
                 return returnData.JsonSerializationt();
             }
+
+        }
+
+        /// <summary>
+        /// 設定扣帳資訊
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "A6",
+        ///     "ServerType" : "調劑台",
+        ///     "ValueAry" : 
+        ///     [
+        ///       
+        ///     ],
+        ///     "Data" : 
+        ///     {
+        ///        [takeMedicineStackClass]
+        ///     }
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[transactionsClass]陣列結構</returns>
+        [Route("set_device_tradding")]
+        [HttpPost]
+        public string POST_set_device_tradding(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+                returnData.Method = "set_device_tradding";
+            }
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
+                serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                ServerSettingClass serverSettingClass_儲位資料 = serverSettingClasses_buf[0];
+                if (serverSettingClass_儲位資料 == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                List<takeMedicineStackClass> takeMedicineStackClasses = returnData.Data.ObjToClass<List<takeMedicineStackClass>>();
+                if (takeMedicineStackClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料異常";
+                    return returnData.JsonSerializationt();
+                }
+                if (takeMedicineStackClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料空白";
+                    return returnData.JsonSerializationt();
+                }
+                List<DeviceBasic> deviceBasics = deviceController.Function_Get_device(serverSettingClass_儲位資料, returnData.TableName);
+                Dictionary<string, List<DeviceBasic>> keyValuePairs = deviceBasics.CoverToDictionaryByCode();
+
+                string GUID = "";
+                string Master_GUID = "";
+                int 庫存量 = 0;
+                int 結存量 = 0;
+                int 總異動量 = 0;
+                string 盤點量 = "";
+                string 動作 = "";
+                string 藥品碼 = "";
+                string 藥品名稱 = "";
+                string 藥袋序號 = "";
+                string 類別 = "";
+                string 交易量 = "";
+                string 操作人 = "";
+                string 病人姓名 = "";
+                string 床號 = "";
+                string 頻次 = "";
+                string 病歷號 = "";
+                string 操作時間 = "";
+                string 開方時間 = "";
+                string 備註 = "";
+                string 收支原因 = "";
+                string 診別 = "";
+                string 藥師證字號 = "";
+                string 效期 = "";
+                string 批號 = "";
+                string 顏色 = "";
+                string 領藥號 = "";
+                string 病房號 = "";
+                string 醫令_GUID = "";
+                string 交易紀錄_GUID = "";
+
+                List<DeviceBasic> deviceBasics_buf = new List<DeviceBasic>();
+                List<DeviceBasic> deviceBasics_result = new List<DeviceBasic>();
+                List<transactionsClass> transactionsClasses = new List<transactionsClass>();
+                for (int i = 0; i < takeMedicineStackClasses.Count; i++)
+                {
+                    deviceBasics_buf = keyValuePairs.SortDictionaryByCode(takeMedicineStackClasses[i].藥品碼);
+                    if (deviceBasics_buf.Count == 0)
+                    {
+                        continue;
+                    }
+                    transactionsClass _transactionsClass = new transactionsClass();
+
+                    庫存量 = deviceBasics_buf.GetInventory();
+                    總異動量 = takeMedicineStackClasses[i].總異動量.StringToInt32();
+                    結存量 = (庫存量 + 總異動量);
+                   
+
+                    List<object[]> list_儲位資訊 = deviceController.Function_取得異動儲位資訊(deviceBasics_buf, takeMedicineStackClasses[i].藥品碼, 總異動量);
+
+                    for (int k = 0; k < list_儲位資訊.Count; k++)
+                    {
+
+                        deviceController.Function_庫存異動(list_儲位資訊[k], serverSettingClass_儲位資料);
+                        備註 += $"[效期]:{list_儲位資訊[k][(int)deviceController.enum_儲位資訊.效期].ObjectToString()},[批號]:{list_儲位資訊[k][(int)deviceController.enum_儲位資訊.批號].ObjectToString()}";
+                        if (k != list_儲位資訊.Count - 1) 備註 += "\n";
+                    }
+
+                    _transactionsClass.GUID = Guid.NewGuid().ToString();
+                    _transactionsClass.動作 = takeMedicineStackClasses[i].動作.GetEnumName();
+                    _transactionsClass.診別 = takeMedicineStackClasses[i].診別;
+                    _transactionsClass.藥品碼 = takeMedicineStackClasses[i].藥品碼;
+                    _transactionsClass.藥品名稱 = takeMedicineStackClasses[i].藥品名稱;
+                    _transactionsClass.藥袋序號 = takeMedicineStackClasses[i].藥袋序號;
+                    _transactionsClass.藥師證字號 = takeMedicineStackClasses[i].藥師證字號;
+                    _transactionsClass.領藥號 = takeMedicineStackClasses[i].領藥號;
+                    _transactionsClass.病房號 = takeMedicineStackClasses[i].病房號;
+                    _transactionsClass.類別 = takeMedicineStackClasses[i].類別;
+                    _transactionsClass.庫存量 = 庫存量.ToString();
+                    _transactionsClass.交易量 = 總異動量.ToString();
+                    _transactionsClass.結存量 = 結存量.ToString();
+                    _transactionsClass.盤點量 = takeMedicineStackClasses[i].盤點量;
+                    _transactionsClass.操作人 = takeMedicineStackClasses[i].操作人;
+                    _transactionsClass.病人姓名 = takeMedicineStackClasses[i].病人姓名;
+                    _transactionsClass.床號 = takeMedicineStackClasses[i].床號;
+                    _transactionsClass.頻次 = takeMedicineStackClasses[i].頻次;
+                    _transactionsClass.病歷號 = takeMedicineStackClasses[i].病歷號;
+                    _transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                    if (開方時間.StringIsEmpty()) 開方時間 = DateTime.Now.ToDateTimeString_6();
+                    _transactionsClass.開方時間 = takeMedicineStackClasses[i].開方時間;
+                    _transactionsClass.備註 = takeMedicineStackClasses[i].備註;
+                    收支原因 = $"{收支原因}";
+                    _transactionsClass.收支原因 = takeMedicineStackClasses[i].收支原因;
+
+                    transactionsClass.add("http://127.0.0.1:4433", _transactionsClass, returnData.ServerName, returnData.ServerType);
+
+                    transactionsClasses.Add(_transactionsClass);
+                }
+           
+
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Code = 200;
+                returnData.Result = $"設定扣帳資訊,共<{transactionsClasses.Count}>筆資料,TableName : {returnData.TableName}";
+                returnData.Data = transactionsClasses;
+
+                string json_out = returnData.JsonSerializationt();
+
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Value = $"{e.Message}";
+                return returnData.JsonSerializationt();
+            }
+
 
         }
 
@@ -590,8 +764,8 @@ namespace HIS_WebApi
                     if (data[i].PRI_KEY.StringIsEmpty()) data[i].PRI_KEY = Guid.NewGuid().ToString();
                     string PRI_KEY = data[i].PRI_KEY;
                     string 藥品碼 = data[i].藥品碼;
-                    List<DeviceBasic> list_device = devices.SortByCode(data[i].藥品碼);
-                    if (list_device.Count == 0) continue;
+                    //List<DeviceBasic> list_device = devices.SortByCode(data[i].藥品碼);
+                    //if (list_device.Count == 0) continue;
                     int 總異動量 = data[i].交易量.StringToInt32();
                     if (總異動量 != 0)
                     {
@@ -607,8 +781,8 @@ namespace HIS_WebApi
                     {
                         PRI_KEY = Guid.NewGuid().ToString();
                     }
-                    string 藥品名稱 = list_device[0].Name;
-                    string 單位 = list_device[0].Package;
+                    string 藥品名稱 = data[i].藥名;
+                    string 單位 = data[i].單位;
                     string 病歷號 = data[i].病歷號;
                     string 病人姓名 = data[i].病人姓名;
                     string 開方時間 = data[i].開方時間;
@@ -619,8 +793,8 @@ namespace HIS_WebApi
                     string 床號 = data[i].床號;
                     string 領藥號 = data[i].領藥號;
                     string 收支原因 = data[i].收支原因;
-                    if (藥品名稱 != null) 藥品名稱 = 藥品名稱.Trim();
-                    if (單位 != null) 單位 = 單位.Trim();
+                    //if (藥品名稱 != null) 藥品名稱 = 藥品名稱.Trim();
+                    //if (單位 != null) 單位 = 單位.Trim();
                     if (病歷號 != null) 病歷號 = 病歷號.Trim();
                     if (病人姓名 != null) 病人姓名 = 病人姓名.Trim();
                     if (操作人 != null) 操作人 = 操作人.Trim();
@@ -635,8 +809,8 @@ namespace HIS_WebApi
                     takeMedicineStack.藥袋序號 = PRI_KEY;
                     takeMedicineStack.總異動量 = 總異動量.ToString();
                     takeMedicineStack.藥品碼 = 藥品碼;
-                    takeMedicineStack.藥品名稱 = 藥品名稱;
-                    takeMedicineStack.單位 = 單位;
+                    //takeMedicineStack.藥品名稱 = 藥品名稱;
+                    //takeMedicineStack.單位 = 單位;
                     takeMedicineStack.病歷號 = 病歷號;
                     takeMedicineStack.病人姓名 = 病人姓名;
                     takeMedicineStack.開方時間 = 開方時間;
@@ -1129,74 +1303,9 @@ namespace HIS_WebApi
         #endregion
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
-
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
             List<Table> tables = new List<Table>();
-            SQLControl sQLControl_take_medicine_stack_new = new SQLControl(Server, DB, "take_medicine_stack_new", UserName, Password, Port, SSLMode);
-            Table table = new Table("take_medicine_stack_new");
-            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("Order_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table.AddColumnList("序號", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("調劑台名稱", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("IP", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("操作人", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("藥師證字號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("動作", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table.AddColumnList("作業模式", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("藥袋序號", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("領藥號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("病房號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("類別", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("單位", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("病歷號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("病人姓名", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("床號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("頻次", Table.StringType.VARCHAR, 15, Table.IndexType.None);
-            table.AddColumnList("操作時間", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("開方時間", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("顏色", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("狀態", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("庫存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("總異動量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("結存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("效期", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("批號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("收支原因", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("診別", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            if (!sQLControl_take_medicine_stack_new.IsTableCreat()) sQLControl_take_medicine_stack_new.CreatTable(table);
-            else sQLControl_take_medicine_stack_new.CheckAllColumnName(table, true);
-            tables.Add(table);
-            SQLControl sQLControl_take_medicine_substack_new = new SQLControl(Server, DB, "take_medicine_substack_new", UserName, Password, Port, SSLMode);
-            table = new Table("take_medicine_substack_new");
-            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("Device_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("序號", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("調劑台名稱", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("IP", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("Num", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("TYPE", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("效期", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("批號", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("異動量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("致能", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("流程作業完成", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("配藥完成", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("調劑結束", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("已入帳", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            if (!sQLControl_take_medicine_substack_new.IsTableCreat()) sQLControl_take_medicine_substack_new.CreatTable(table);
-            else sQLControl_take_medicine_substack_new.CheckAllColumnName(table, true);
-            tables.Add(table);
-
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_取藥堆疊母資料()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_取藥堆疊子資料()));           
             return tables.JsonSerializationt(true);
         }
     }

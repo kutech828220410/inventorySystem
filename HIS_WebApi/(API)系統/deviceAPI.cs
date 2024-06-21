@@ -31,7 +31,16 @@ namespace HIS_WebApi
     [ApiController]
     public class deviceController : Controller
     {
-
+        public enum enum_儲位資訊
+        {
+            IP,
+            TYPE,
+            效期,
+            批號,
+            庫存,
+            異動量,
+            Value,
+        }
 
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
 
@@ -483,8 +492,8 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料";
                     return returnData.JsonSerializationt();
                 }
-
                 string tableName = returnData.ValueAry[0];
+
                 string Server = serverSettingClasses[0].Server;
                 string DB = serverSettingClasses[0].DBName;
                 string UserName = serverSettingClasses[0].User;
@@ -3068,6 +3077,141 @@ namespace HIS_WebApi
         }
         #endregion
         #endregion
+
+
+        static public List<object[]> Function_取得異動儲位資訊(List<DeviceBasic> deviceBasics, string 藥品碼, int 異動量)
+        {
+            List<object> 儲位 = new List<object>();
+            List<string> 儲位_TYPE = new List<string>();
+            deviceBasics = deviceBasics.SortByCode(藥品碼);
+
+            for (int i = 0; i < deviceBasics.Count; i++)
+            {
+                儲位.Add(deviceBasics[i]);
+                儲位_TYPE.Add(deviceBasics[i].DeviceType.GetEnumName());
+
+            }
+
+            List<object[]> 儲位資訊_buf = new List<object[]>();
+            List<object[]> 儲位資訊 = new List<object[]>();
+            if (儲位.Count == 0) return 儲位資訊_buf;
+
+
+            for (int k = 0; k < 儲位.Count; k++)
+            {
+                object value_device = 儲位[k];
+                if (value_device is Device)
+                {
+                    Device device = (Device)value_device;
+                    for (int i = 0; i < device.List_Validity_period.Count; i++)
+                    {
+                        object[] value = new object[new enum_儲位資訊().GetLength()];
+                        value[(int)enum_儲位資訊.IP] = device.IP;
+                        value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];
+                        value[(int)enum_儲位資訊.效期] = device.List_Validity_period[i];
+                        value[(int)enum_儲位資訊.批號] = device.List_Lot_number[i];
+                        value[(int)enum_儲位資訊.庫存] = device.List_Inventory[i];
+                        value[(int)enum_儲位資訊.異動量] = "0";
+                        value[(int)enum_儲位資訊.Value] = value_device;
+                        儲位資訊.Add(value);
+                    }
+                }
+            }
+            儲位資訊 = 儲位資訊.OrderBy(r => DateTime.Parse(r[(int)enum_儲位資訊.效期].ToDateString())).ToList();
+
+            if (異動量 == 0) return 儲位資訊;
+            int 使用數量 = 異動量;
+            int 庫存數量 = 0;
+            int 剩餘庫存數量 = 0;
+            for (int i = 0; i < 儲位資訊.Count; i++)
+            {
+                庫存數量 = 儲位資訊[i][(int)enum_儲位資訊.庫存].ObjectToString().StringToInt32();
+                if ((使用數量 < 0 && 庫存數量 > 0) || (使用數量 > 0 && 庫存數量 >= 0))
+                {
+                    剩餘庫存數量 = 庫存數量 + 使用數量;
+                    if (剩餘庫存數量 >= 0)
+                    {
+                        儲位資訊[i][(int)enum_儲位資訊.異動量] = (使用數量).ToString();
+                        儲位資訊_buf.Add(儲位資訊[i]);
+                        break;
+                    }
+                    else
+                    {
+                        儲位資訊[i][(int)enum_儲位資訊.異動量] = (庫存數量 * -1).ToString();
+                        使用數量 = 剩餘庫存數量;
+                        儲位資訊_buf.Add(儲位資訊[i]);
+                    }
+                }
+            }
+
+            return 儲位資訊_buf;
+        }
+        static public object Function_庫存異動(object[] 儲位資訊 , ServerSettingClass serverSettingClass)
+        {
+            SQLControl sQLControl_EPD583_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "epd583_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_EPD266_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "epd266_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_RowsLED_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "rowsled_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_RFID_Device_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "rfid_device_jsonstring", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_WT32_serialize = new SQLControl(serverSettingClass.Server, serverSettingClass.DBName, "WT32_Jsonstring", UserName, Password, Port, SSLMode);
+
+            object Value = 儲位資訊[(int)enum_儲位資訊.Value];
+            string 效期 = 儲位資訊[(int)enum_儲位資訊.效期].ObjectToString();
+            string 異動量 = 儲位資訊[(int)enum_儲位資訊.異動量].ObjectToString();
+            string TYPE = 儲位資訊[(int)enum_儲位資訊.TYPE].ObjectToString();
+            if (Value is Storage)
+            {
+                if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName() || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName())
+                {
+                  
+                    Storage storage = (Storage)Value;
+                    storage = StorageMethod.SQL_GetStorageByIP(sQLControl_EPD266_serialize ,storage.IP);
+                    if (storage != null)
+                    {
+                        storage.效期庫存異動(效期, 異動量, false);
+                        StorageMethod.SQL_ReplaceByIP(sQLControl_EPD266_serialize ,storage);
+                        return storage;
+                    }
+                }
+                if (TYPE == DeviceType.Pannel35.GetEnumName() || TYPE == DeviceType.Pannel35_lock.GetEnumName())
+                {
+                    Storage storage = (Storage)Value;
+                    storage = StorageMethod.SQL_GetStorageByIP(sQLControl_WT32_serialize ,storage.IP);
+                    if (storage != null)
+                    {
+                        storage.效期庫存異動(效期, 異動量, false);
+                        StorageMethod.SQL_ReplaceByIP(sQLControl_WT32_serialize, storage);
+                        return storage;
+                    }
+                }
+            }
+            else if (Value is Box)
+            {
+                if (TYPE == DeviceType.EPD583.GetEnumName() || TYPE == DeviceType.EPD583_lock.GetEnumName())
+                {
+                    Box box = (Box)Value;
+                    Drawer drawer = DrawerMethod.SQL_GetDrawerByIP(sQLControl_EPD583_serialize, box.IP);                   
+                    box.效期庫存異動(效期, 異動量, false);
+                    drawer.ReplaceBox(box);
+                    DrawerMethod.SQL_ReplaceByIP(sQLControl_EPD583_serialize, drawer);
+                    return drawer;
+                }
+          
+            }
+            else if (Value is RowsDevice)
+            {
+                if (TYPE == DeviceType.RowsLED.GetEnumName())
+                {
+                    RowsDevice rowsDevice = Value as RowsDevice;
+                    RowsLED rowsLED = RowsLEDMethod.SQL_GetRowsLEDByIP(sQLControl_RFID_Device_serialize, rowsDevice.IP);
+                    rowsDevice.效期庫存異動(效期, 異動量, false);
+                    RowsLEDMethod.SQL_ReplaceByIP(sQLControl_RowsLED_serialize, rowsLED);
+                    return rowsLED;
+                }
+
+            }
+      
+            return null;
+        }
 
 
     }
