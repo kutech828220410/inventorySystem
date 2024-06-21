@@ -809,8 +809,8 @@ namespace HIS_WebApi
                     takeMedicineStack.藥袋序號 = PRI_KEY;
                     takeMedicineStack.總異動量 = 總異動量.ToString();
                     takeMedicineStack.藥品碼 = 藥品碼;
-                    //takeMedicineStack.藥品名稱 = 藥品名稱;
-                    //takeMedicineStack.單位 = 單位;
+                    takeMedicineStack.藥品名稱 = 藥品名稱;
+                    takeMedicineStack.單位 = 單位;
                     takeMedicineStack.病歷號 = 病歷號;
                     takeMedicineStack.病人姓名 = 病人姓名;
                     takeMedicineStack.開方時間 = 開方時間;
