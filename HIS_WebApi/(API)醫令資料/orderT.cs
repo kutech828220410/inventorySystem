@@ -729,6 +729,277 @@ namespace HIS_WebApi
 
         }
 
+
+        /// <summary>
+        /// 以領藥號取得中藥醫令病患列表
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "領藥號",
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_header_by_MED_BAG_NUM")]
+        [HttpPost]
+        public string POST_header_by_MED_BAG_NUM([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "header_by_MED_BAG_NUM";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                string serverName = returnData.ServerName;
+                string serverType = returnData.ServerType;
+
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[領藥號]";
+                    return returnData.JsonSerializationt(true);
+                }
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string TableName = "ordert_list";
+                SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value_buf = sQLControl_醫令資料.GetRowsByLike(null, (int)enum_OrderT.領藥號, returnData.ValueAry[0]);
+                List<OrderTClass> orderTClasses = list_value_buf.SQLToClass<OrderTClass, enum_OrderT>();
+                List<OrderTClass> orderTClasses_buf = new List<OrderTClass>();
+                List<OrderTClass> orderTClasses_result = new List<OrderTClass>();
+                List<string> list_PRI_KEY = (from temp in orderTClasses
+                                             select temp.PRI_KEY).Distinct().ToList();
+                var keyValuePairs = orderTClasses.CoverToDictionaryBy_PRI_KEY();
+
+                for (int i = 0; i < list_PRI_KEY.Count; i++)
+                {
+                    string PRI_KEY = list_PRI_KEY[i];
+                    string 調劑完成 = "Y";
+                    orderTClasses_buf = keyValuePairs.SortDictionaryBy_PRI_KEY(list_PRI_KEY[i]);
+                    for (int k = 0; k < orderTClasses_buf.Count; k++)
+                    {
+                        if (orderTClasses_buf[k].實際調劑量.StringIsDouble() == false)
+                        {
+                            調劑完成 = "N";
+                        }
+                    }
+                    if (orderTClasses_buf.Count > 0)
+                    {
+                        orderTClasses_buf[0].住院序號 = "";
+                        orderTClasses_buf[0].備註 = "";
+                        orderTClasses_buf[0].劑量單位 = "";
+                        orderTClasses_buf[0].單次劑量 = "";
+                        orderTClasses_buf[0].天數 = "";
+                        orderTClasses_buf[0].實際調劑量 = "";
+                        orderTClasses_buf[0].就醫序號 = "";
+                        orderTClasses_buf[0].就醫類別 = "";
+                        orderTClasses_buf[0].展藥時間 = "";
+                        orderTClasses_buf[0].床號 = "";
+                        orderTClasses_buf[0].性別 = "";
+                        orderTClasses_buf[0].批序 = "";
+                        orderTClasses_buf[0].核對ID = "";
+                        orderTClasses_buf[0].核對姓名 = "";
+                        orderTClasses_buf[0].藥品名稱 = "";
+                        orderTClasses_buf[0].藥品碼 = "";
+                        orderTClasses_buf[0].藥局代碼 = "";
+                        orderTClasses_buf[0].藥師ID = "";
+                        orderTClasses_buf[0].藥師姓名 = "";
+                        orderTClasses_buf[0].藥袋條碼 = "";
+                        orderTClasses_buf[0].藥袋類型 = "";
+                        orderTClasses_buf[0].費用別 = "";
+                        orderTClasses_buf[0].途徑 = "";
+                        orderTClasses_buf[0].醫師ID = "";
+                        orderTClasses_buf[0].醫師姓名 = "";
+                        orderTClasses_buf[0].狀態 = 調劑完成;
+                        orderTClasses_result.Add(orderTClasses_buf[0]);
+                    }
+
+                }
+
+
+                if (orderTClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    returnData.Data = new List<OrderTClass>();
+                    return returnData.JsonSerializationt();
+                }
+
+                returnData.Code = 200;
+                returnData.Result = $"取得中藥醫令!共<{orderTClasses_result.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = orderTClasses_result;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
+        /// <summary>
+        /// 以病歷號取得中藥醫令病患列表
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       "病歷號",
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_header_by_PATCODE")]
+        [HttpPost]
+        public string POST_get_header_by_PATCODE([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "get_header_by_PATCODE";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                string serverName = returnData.ServerName;
+                string serverType = returnData.ServerType;
+
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[病歷號]";
+                    return returnData.JsonSerializationt(true);
+                }
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                string TableName = "ordert_list";
+                SQLControl sQLControl_醫令資料 = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value_buf = sQLControl_醫令資料.GetRowsByLike(null, (int)enum_OrderT.病歷號, returnData.ValueAry[0]);
+                List<OrderTClass> orderTClasses = list_value_buf.SQLToClass<OrderTClass, enum_OrderT>();
+                List<OrderTClass> orderTClasses_buf = new List<OrderTClass>();
+                List<OrderTClass> orderTClasses_result = new List<OrderTClass>();
+                List<string> list_PRI_KEY = (from temp in orderTClasses
+                                             select temp.PRI_KEY).Distinct().ToList();
+                var keyValuePairs = orderTClasses.CoverToDictionaryBy_PRI_KEY();
+
+                for (int i = 0; i < list_PRI_KEY.Count; i++)
+                {
+                    string PRI_KEY = list_PRI_KEY[i];
+                    string 調劑完成 = "Y";
+                    orderTClasses_buf = keyValuePairs.SortDictionaryBy_PRI_KEY(list_PRI_KEY[i]);
+                    for (int k = 0; k < orderTClasses_buf.Count; k++)
+                    {
+                        if (orderTClasses_buf[k].實際調劑量.StringIsDouble() == false)
+                        {
+                            調劑完成 = "N";
+                        }
+                    }
+                    if (orderTClasses_buf.Count > 0)
+                    {
+                        orderTClasses_buf[0].住院序號 = "";
+                        orderTClasses_buf[0].備註 = "";
+                        orderTClasses_buf[0].劑量單位 = "";
+                        orderTClasses_buf[0].單次劑量 = "";
+                        orderTClasses_buf[0].天數 = "";
+                        orderTClasses_buf[0].實際調劑量 = "";
+                        orderTClasses_buf[0].就醫序號 = "";
+                        orderTClasses_buf[0].就醫類別 = "";
+                        orderTClasses_buf[0].展藥時間 = "";
+                        orderTClasses_buf[0].床號 = "";
+                        orderTClasses_buf[0].性別 = "";
+                        orderTClasses_buf[0].批序 = "";
+                        orderTClasses_buf[0].核對ID = "";
+                        orderTClasses_buf[0].核對姓名 = "";
+                        orderTClasses_buf[0].藥品名稱 = "";
+                        orderTClasses_buf[0].藥品碼 = "";
+                        orderTClasses_buf[0].藥局代碼 = "";
+                        orderTClasses_buf[0].藥師ID = "";
+                        orderTClasses_buf[0].藥師姓名 = "";
+                        orderTClasses_buf[0].藥袋條碼 = "";
+                        orderTClasses_buf[0].藥袋類型 = "";
+                        orderTClasses_buf[0].費用別 = "";
+                        orderTClasses_buf[0].途徑 = "";
+                        orderTClasses_buf[0].醫師ID = "";
+                        orderTClasses_buf[0].醫師姓名 = "";
+                        orderTClasses_buf[0].狀態 = 調劑完成;
+                        orderTClasses_result.Add(orderTClasses_buf[0]);
+                    }
+
+                }
+
+
+                if (orderTClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    returnData.Data = new List<OrderTClass>();
+                    return returnData.JsonSerializationt();
+                }
+
+                returnData.Code = 200;
+                returnData.Result = $"取得中藥醫令!共<{orderTClasses_result.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Data = orderTClasses_result;
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
             string Server = serverSettingClass.Server;

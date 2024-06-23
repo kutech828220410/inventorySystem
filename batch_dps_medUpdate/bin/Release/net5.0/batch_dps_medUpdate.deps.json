@@ -304,6 +304,14 @@
           }
         }
       },
+      "CSkin/10.23.0.0": {
+        "runtime": {
+          "CSkin.dll": {
+            "assemblyVersion": "10.23.0.0",
+            "fileVersion": "10.23.0.0"
+          }
+        }
+      },
       "System.Management/4.0.0.0": {
         "runtime": {
           "System.Management.dll": {
@@ -333,14 +341,6 @@
           "MyOffice.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "CSkin/10.23.0.0": {
-        "runtime": {
-          "CSkin.dll": {
-            "assemblyVersion": "10.23.0.0",
-            "fileVersion": "10.23.0.0"
           }
         }
       },
@@ -760,6 +760,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "CSkin/10.23.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "System.Management/4.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -776,11 +781,6 @@
       "sha512": ""
     },
     "MyOffice/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "CSkin/10.23.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

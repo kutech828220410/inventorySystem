@@ -486,8 +486,80 @@ namespace HIS_DB_Lib
             List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
             return orderTClasses;
         }
-      
-        
+
+        static public List<OrderTClass> get_header_by_MED_BAG_NUM(string API_Server, string value, DateTime dateTime)
+        {
+ 
+            return get_header_by_MED_BAG_NUM(API_Server,value,dateTime.GetStartDate(),dateTime.GetEndDate());
+        }
+        static public List<OrderTClass> get_header_by_MED_BAG_NUM(string API_Server, string value, DateTime st_dateTime, DateTime end_dateTime)
+        {
+            List<OrderTClass> orderTClasses = get_header_by_MED_BAG_NUM(API_Server, value);
+            orderTClasses = (from temp in orderTClasses
+                             where temp.開方日期.StringToDateTime() > st_dateTime && temp.開方日期.StringToDateTime() < end_dateTime
+                             select temp).ToList();
+            return orderTClasses;
+        }
+        static public List<OrderTClass> get_header_by_MED_BAG_NUM(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/orderT/get_header_by_MED_BAG_NUM";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
+            return orderTClasses;
+        }
+
+        static public List<OrderTClass> get_header_by_PATCODE(string API_Server, string value, DateTime dateTime)
+        {
+
+            return get_header_by_PATCODE(API_Server, value, dateTime.GetStartDate(), dateTime.GetEndDate());
+        }
+        static public List<OrderTClass> get_header_by_PATCODE(string API_Server, string value, DateTime st_dateTime, DateTime end_dateTime)
+        {
+            List<OrderTClass> orderTClasses = get_header_by_PATCODE(API_Server, value);
+            orderTClasses = (from temp in orderTClasses
+                             where temp.開方日期.StringToDateTime() > st_dateTime && temp.開方日期.StringToDateTime() < end_dateTime
+                             select temp).ToList();
+            return orderTClasses;
+        }
+        static public List<OrderTClass> get_header_by_PATCODE(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/orderT/get_header_by_PATCODE";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
+            return orderTClasses;
+        }
 
         static public void updete_by_guid(string API_Server, OrderTClass orderTClass)
         {
@@ -593,6 +665,19 @@ namespace HIS_DB_Lib
 
             }
         }
+        public class ICP_By_de_MED_BAG_NUM : IComparer<OrderTClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderTClass x, OrderTClass y)
+            {
+                string temp0 = x.領藥號;
+                string temp1 = y.領藥號;
+                int compare = temp1.CompareTo(temp0);
+                return compare;
+
+            }
+        }
         public class ICP_By_DOS : IComparer<OrderTClass>
         {
             //實作Compare方法
@@ -610,6 +695,13 @@ namespace HIS_DB_Lib
         {
             List<OrderTClass> orderTClasses_buf = (from temp in orderTClasses
                                                    where temp.頻次 == freq
+                                                   where temp.實際調劑量.StringIsDouble() == false
+                                                   select temp).ToList();
+            return (orderTClasses_buf.Count == 0);
+        }
+        static public bool GetIsDone(this List<OrderTClass> orderTClasses)
+        {
+            List<OrderTClass> orderTClasses_buf = (from temp in orderTClasses
                                                    where temp.實際調劑量.StringIsDouble() == false
                                                    select temp).ToList();
             return (orderTClasses_buf.Count == 0);

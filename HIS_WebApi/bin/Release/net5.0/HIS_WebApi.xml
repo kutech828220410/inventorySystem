@@ -4151,6 +4151,50 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.orderT.POST_header_by_MED_BAG_NUM(HIS_DB_Lib.returnData)">
+            <summary>
+            以領藥號取得中藥醫令病患列表
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                },
+                "ValueAry" : 
+                [
+                  "領藥號",
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.orderT.POST_get_header_by_PATCODE(HIS_DB_Lib.returnData)">
+            <summary>
+            以病歷號取得中藥醫令病患列表
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+             
+                },
+                "ValueAry" : 
+                [
+                  "病歷號",
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.inspectionController.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化驗收單資料庫

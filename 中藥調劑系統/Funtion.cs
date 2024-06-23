@@ -12,11 +12,71 @@ using Basic;
 using SQLUI;
 using ExcelScaleLib;
 using HIS_DB_Lib;
+using H_Pannel_lib;
+
 
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
     {
+        static public List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
+        static public List<object> Function_從本地資料取得儲位(string 藥品碼)
+        {
+            List<object> list_value = new List<object>();
+            List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortByCode(藥品碼);
+        
+            for (int i = 0; i < rowsDevices.Count; i++)
+            {
+                list_value.Add(rowsDevices[i]);
+            }
+           
+            return list_value;
+        }
+        static public void Function_從SQL取得儲位到本地資料()
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            Console.WriteLine($"開始SQL讀取儲位資料到本地!");
+            List<Task> taskList = new List<Task>();
+                  
+            taskList.Add(Task.Run(() =>
+            {
+                MyTimer myTimer2 = new MyTimer();
+                myTimer2.StartTickTime(50000);
+                List_RowsLED_本地資料 = _rowsLEDUI.SQL_GetAllRowsLED();
+                Console.WriteLine($"讀取RowsLED資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
+            }));
+         
+            Task allTask = Task.WhenAll(taskList);
+            allTask.Wait();
+
+
+            Console.WriteLine($"SQL讀取儲位資料到本地結束! 耗時 : {myTimer.GetTickTime().ToString("0.000")}");
+        }
+        static public void Function_儲位亮燈(string 藥品碼, Color color)
+        {
+            if (藥品碼.StringIsEmpty()) return;
+            List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
+            for (int i = 0; i < list_Device.Count; i++)
+            {
+                Device device = list_Device[i] as Device;
+                if (device != null)
+                {
+                    if (device.DeviceType == DeviceType.RowsLED)
+                    {
+                        RowsDevice rowsDevice = list_Device[i] as RowsDevice;
+                        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+                        if (rowsDevice != null && rowsLED != null)
+                        {
+                            rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
+
+                            _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                        }
+                    }
+                }
+            }
+        }
+
         static public List<OrderClass> Funtion_醫令資料_API呼叫(string barcode)
         {
             barcode = barcode.Replace("\r\n", "");

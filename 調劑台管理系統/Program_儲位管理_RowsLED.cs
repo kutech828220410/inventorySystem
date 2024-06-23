@@ -126,7 +126,6 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_儲位管理_RowsLED_匯出.MouseDownEvent += PlC_RJ_Button_儲位管理_RowsLED_匯出_MouseDownEvent;
             this.plC_RJ_Button_儲位管理_RowsLED_匯入.MouseDownEvent += PlC_RJ_Button_儲位管理_RowsLED_匯入_MouseDownEvent;
 
-
             this.comboBox_儲位管理_RowsLED_儲位內容_儲位搜尋.SelectedIndex = 0;
             this.plC_UI_Init.Add_Method(this.Program_儲位管理_RowsLED);
         }

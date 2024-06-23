@@ -61,11 +61,15 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方搜尋.RowDoubleClickEvent += SqL_DataGridView_處方搜尋_RowDoubleClickEvent;
             this.sqL_DataGridView_處方搜尋.DataGridRowsChangeRefEvent += SqL_DataGridView_處方搜尋_DataGridRowsChangeRefEvent;
 
+            this.sqL_DataGridView_處方搜尋.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_處方搜尋.領藥號);
+            this.sqL_DataGridView_處方搜尋.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_處方搜尋.病歷號);
+            this.sqL_DataGridView_處方搜尋.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_處方搜尋.已調劑);
+
             this.dateTimeIntervelPicker_處方搜尋_開方時間.SetDateTime(DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
             this.dateTimeIntervelPicker_處方搜尋_開方時間.SureClick += DateTimeIntervelPicker_處方搜尋_開方時間_SureClick;
             this.comboBox_處方搜尋_搜尋條件.SelectedIndex = 0;
             this.rJ_Button_處方搜尋_搜尋.MouseDownEvent += RJ_Button_處方搜尋_搜尋_MouseDownEvent;
-            this.rJ_Button_處方搜尋_處方調劑.MouseDownEvent += RJ_Button_處方搜尋_處方調劑_MouseDownEvent;
+            this.rJ_Button_處方搜尋_再次調劑.MouseDownEvent += RJ_Button_處方搜尋_再次調劑_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_處方搜尋);
         }
 
@@ -98,7 +102,7 @@ namespace 中藥調劑系統
                     {
                         flag_已調劑 = false;
                     }
-                    list_value_buf = list_value.GetRows((int)enum_病患資訊.PRI_KEY, list_PRI_KEY[i]);
+                    list_value_buf = list_value.GetRows((int)enum_處方搜尋.PRI_KEY, list_PRI_KEY[i]);
                     if (list_value_buf.Count == 0)
                     {
 
@@ -175,22 +179,39 @@ namespace 中藥調劑系統
                 cmb_text = this.comboBox_處方搜尋_搜尋條件.Text;
             }));
 
-            if (text.StringIsEmpty() == true)
+           
+            if (cmb_text == enum_OrderT.開方日期.GetEnumName())
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
-                dialog_AlarmForm.ShowDialog();
-                return;
-            }
+                this.dateTimeIntervelPicker_處方搜尋_開方時間.OnSureClick();
+            }      
             if (cmb_text == enum_OrderT.領藥號.GetEnumName())
             {
+                if (text.StringIsEmpty() == true)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
                 orderTClasses = OrderTClass.get_by_MED_BAG_NUM(Main_Form.API_Server, text);
             }
             if (cmb_text == enum_OrderT.病歷號.GetEnumName())
             {
+                if (text.StringIsEmpty() == true)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
                 orderTClasses = OrderTClass.get_by_PATCODE(Main_Form.API_Server, text);
             }
             if (cmb_text == enum_OrderT.病人姓名.GetEnumName())
             {
+                if (text.StringIsEmpty() == true)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
                 orderTClasses = OrderTClass.get_by_PATNAME(Main_Form.API_Server, text);
             }
             if(orderTClasses.Count == 0 )
@@ -202,7 +223,7 @@ namespace 中藥調劑系統
             Finction_處方搜尋_更新UI(orderTClasses);
             LoadingForm.CloseLoadingForm();
         }
-        private void RJ_Button_處方搜尋_處方調劑_MouseDownEvent(MouseEventArgs mevent)
+        private void RJ_Button_處方搜尋_再次調劑_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_value = this.sqL_DataGridView_處方搜尋.Get_All_Select_RowsValues();
             if (list_value.Count == 0)

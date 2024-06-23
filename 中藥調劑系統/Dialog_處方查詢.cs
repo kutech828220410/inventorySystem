@@ -77,10 +77,12 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方查詢.Init(table_處方內容);
             this.sqL_DataGridView_處方查詢.Set_ColumnVisible(false, new enum_處方內容().GetEnumNames());
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, "藥名");
-            this.sqL_DataGridView_處方查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "應調");
-            this.sqL_DataGridView_處方查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "實調");
+            this.sqL_DataGridView_處方查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, "應調");
+            this.sqL_DataGridView_處方查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, "實調");
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "天");
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "單位");
+            this.sqL_DataGridView_處方查詢.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_處方內容.藥名);
+
 
             this.sqL_DataGridView_處方查詢.DataGridRefreshEvent += SqL_DataGridView_處方內容_DataGridRefreshEvent;
         }

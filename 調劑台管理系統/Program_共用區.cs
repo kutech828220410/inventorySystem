@@ -79,6 +79,7 @@ namespace 調劑台管理系統
             List_EPD266 = H_Pannel_lib.StorageMethod.SQL_GetAllStorage(list_EPD266);
             List_RowsLED = H_Pannel_lib.RowsLEDMethod.SQL_GetAllRowsLED(list_RowsLED);
 
+            Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - ({serverSettingClass.設備名稱}) EPD583<{list_EPD583.Count}>,EPD266<{List_EPD266.Count}>,RowsLED<{List_RowsLED.Count}>");
         }
     }
 
@@ -144,19 +145,17 @@ namespace 調劑台管理系統
                 {
                     list_value.Add(rowsDevices[i]);
                 }
-                Console.WriteLine($"{commonSapceClasses[m]}");
+                
             }
-            Console.WriteLine($"{DateTime.Now.ToDateTimeString()} -({藥品碼}) 從共用區取得儲位共<{list_value.Count}>筆");
-           
-          
+
+
+
             return list_value;
         }
 
 
         private List<CommonSapceClass> Function_取得共用區所有儲位()
         {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            myTimerBasic.StartTickTime(50000);
             List<CommonSapceClass> commonSapceClasses = new List<CommonSapceClass>();
             List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = Function_取得共用區連線資訊();
 
@@ -167,7 +166,7 @@ namespace 調劑台管理系統
                 commonSapceClasses.Add(commonSapceClass);
             }
 
-            Console.WriteLine($"取得共用區儲位共<{commonSapceClasses.Count}>筆! 耗時 :{myTimerBasic.GetTickTime().ToString("0.000")} ");
+
             return commonSapceClasses;
         }
         private List<HIS_DB_Lib.ServerSettingClass> Function_取得共用區連線資訊()

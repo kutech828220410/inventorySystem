@@ -163,9 +163,39 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap move_to_non_dispensing_data {
+            get {
+                object obj = ResourceManager.GetObject("move-to-non-dispensing-data", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap move_to_non_dispensing_data_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("move-to-non-dispensing-data-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap personnel_information_and_permission_levels {
             get {
                 object obj = ResourceManager.GetObject("personnel-information-and-permission-levels", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap personnel_information_and_permission_levels_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("personnel-information-and-permission-levels-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -13,11 +13,14 @@ using MyUI;
 using SQLUI;
 using DrawingClass;
 using H_Pannel_lib;
+using MyOffice;
 
 namespace 中藥調劑系統
 {
     public enum enum_儲位總表
     {
+        [Description("GUID,VARCHAR,15,NONE")]
+        GUID,
         [Description("IP,VARCHAR,15,NONE")]
         IP,
         [Description("名稱,VARCHAR,15,NONE")]
@@ -110,6 +113,9 @@ namespace 中藥調劑系統
             this.rJ_Button_RowsLED_刪除儲位.MouseDownEvent += RJ_Button_RowsLED_刪除儲位_MouseDownEvent;
             this.rJ_Button_RowsLED_填入儲位.MouseDownEvent += RJ_Button_RowsLED_填入儲位_MouseDownEvent;
             this.rJ_Button_RowsLED_清除燈號.MouseDownEvent += RJ_Button_RowsLED_清除燈號_MouseDownEvent;
+            this.rJ_Button_匯出.MouseDownEvent += RJ_Button_匯出_MouseDownEvent;
+            this.rJ_Button_匯入.MouseDownEvent += RJ_Button_匯入_MouseDownEvent;
+            this.rJ_Button_儲位名稱_儲存.MouseDownEvent += RJ_Button_儲位名稱_儲存_MouseDownEvent;
 
             this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_新增_MouseDownEvent;
             this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_刪除_MouseDownEvent;
@@ -117,6 +123,7 @@ namespace 中藥調劑系統
 
             this.Function_層架列表_Refresh();
         }
+
 
         #region Function
         private void Function_層架列表_Refresh()
@@ -126,6 +133,7 @@ namespace 中藥調劑系統
             for (int i = 0; i < rowsLEDs.Count; i++)
             {
                 object[] value = new object[new enum_儲位總表().GetLength()];
+                value[(int)enum_儲位總表.GUID] = rowsLEDs[i].IP;
                 value[(int)enum_儲位總表.IP] = rowsLEDs[i].IP;
                 value[(int)enum_儲位總表.名稱] = rowsLEDs[i].Name;
                 list_value.Add(value);
@@ -184,6 +192,9 @@ namespace 中藥調劑系統
             RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
             this.rowsLED_Pannel.CurrentRowsLED = rowsLED;
             rowsLED_Pannel.Maximum = rowsLED.Maximum;
+
+            rJ_TextBox_儲位名稱.Text = rowsLED.Name;
+
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < rowsLED.RowsDevices.Count; i++)
             {
@@ -342,6 +353,102 @@ namespace 中藥調劑系統
             }
             
   
+        }
+        private void RJ_Button_匯入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DialogResult dialogResult = DialogResult.None;
+            this.Invoke(new Action(delegate
+            {
+                dialogResult = this.openFileDialog_LoadExcel.ShowDialog();
+            }));
+            if (dialogResult != DialogResult.OK) return;
+            if (MyMessageBox.ShowDialog("確認匯入所有儲位?將會全部覆蓋!", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+
+            List<SheetClass> sheetClasses = MyOffice.ExcelClass.NPOI_LoadToSheetClasses(this.openFileDialog_LoadExcel.FileName);
+            for (int i = 0; i < sheetClasses.Count; i++)
+            {
+                string 儲位名稱 = sheetClasses[i].Name;
+                RowsLED rowsLED = Main_Form.List_RowsLED_本地資料.SortByName(儲位名稱);
+                if(rowsLED == null)
+                {
+                    MyMessageBox.ShowDialog($"找無此【{儲位名稱}】儲位名稱,請檢查表格頁籤是否與儲位名稱對應");
+                    return;
+                }
+                rowsLED.RowsDevices.Clear();
+                for (int k = 0; k < sheetClasses[i].Rows.Count; k++)
+                {
+                    if (sheetClasses[i].Rows[k].Cell.Count != 4) continue;
+                    string Name = sheetClasses[i].Rows[k].Cell[0].Text;
+                    string Code = sheetClasses[i].Rows[k].Cell[1].Text;
+                    int RowsLEDStart = sheetClasses[i].Rows[k].Cell[2].Text.StringToInt32();
+                    int RowsLEDEnd = sheetClasses[i].Rows[k].Cell[3].Text.StringToInt32();
+                    RowsDevice rowsDevice = new RowsDevice(rowsLED.IP, rowsLED.Port, RowsLEDStart, RowsLEDEnd);
+                    rowsDevice.Code = Code;
+                    rowsDevice.Index = k;
+                    rowsLED.RowsDevices.Add(rowsDevice);
+                }
+                Main_Form.List_RowsLED_本地資料.Add_NewRowsLED(rowsLED);
+            }
+            Main_Form._rowsLEDUI.SQL_ReplaceRowsLED(Main_Form.List_RowsLED_本地資料);
+            MyMessageBox.ShowDialog($"匯入完成,將關閉開啟視窗更新資訊");
+            this.Close();
+        }
+        private void RJ_Button_匯出_MouseDownEvent(MouseEventArgs mevent)
+        {
+            DialogResult dialogResult = DialogResult.None;
+            this.Invoke(new Action(delegate
+            {
+                dialogResult = this.saveFileDialog_SaveExcel.ShowDialog();
+            }));
+            Main_Form.Function_從SQL取得儲位到本地資料();
+            if (dialogResult != DialogResult.OK) return;
+            List<SheetClass> sheetClasses = new List<SheetClass>();
+            List<object[]> list_儲位列表 = this.sqL_DataGridView_RowsLED_層架列表.GetAllRows();
+            for (int i = 0; i < list_儲位列表.Count; i++)
+            {
+                string IP = list_儲位列表[i][(int)enum_儲位總表.IP].ObjectToString();
+                RowsLED rowsLED = Main_Form.List_RowsLED_本地資料.SortByIP(IP);
+                if (rowsLED == null) continue;
+                SheetClass sheetClass = new SheetClass(rowsLED.Name);
+                sheetClass.ColumnsWidth.Add(5000);
+                sheetClass.ColumnsWidth.Add(5000);
+                sheetClass.ColumnsWidth.Add(5000);
+                sheetClass.ColumnsWidth.Add(5000);
+                for (int k = 0; k < rowsLED.RowsDevices.Count; k++)
+                {
+                    int Num = k;
+                    string Code = rowsLED.RowsDevices[k].Code;
+                    int StartNum = rowsLED.RowsDevices[k].StartLED;
+                    int EndNum = rowsLED.RowsDevices[k].EndLED;
+                    sheetClass.AddNewCell(k, 0, $"{Num}", new Font("微軟正黑體", 14), 500);
+                    sheetClass.AddNewCell(k, 1, $"{Code}", new Font("微軟正黑體", 14), 500);
+                    sheetClass.AddNewCell(k, 2, $"{StartNum}", new Font("微軟正黑體", 14), 500);
+                    sheetClass.AddNewCell(k, 3, $"{EndNum}", new Font("微軟正黑體", 14), 500);
+                }
+                sheetClasses.Add(sheetClass);
+            }
+            sheetClasses.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
+            MyMessageBox.ShowDialog("匯出完成!");
+        }
+        private void RJ_Button_儲位名稱_儲存_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_RowsLED_層架列表.Get_All_Select_RowsValues();
+            if(list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1000);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string IP = list_value[0][(int)enum_儲位總表.IP].ObjectToString();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+            rowsLED.Name = rJ_TextBox_儲位名稱.Text;
+
+            deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, rowsLED);
+            list_value[0][(int)enum_儲位總表.名稱] = rowsLED.Name;
+            this.sqL_DataGridView_RowsLED_層架列表.ReplaceExtra(list_value, true);
+            MyMessageBox.ShowDialog("更新完成");
+
+
         }
         #endregion
     }

@@ -1327,7 +1327,6 @@ namespace 調劑台管理系統
 
         }
 
-
         public void Function_儲位刷新(string 藥品碼)
         {
             List<string> list_lock_IP = new List<string>();
