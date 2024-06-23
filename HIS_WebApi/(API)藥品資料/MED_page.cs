@@ -550,6 +550,100 @@ namespace HIS_WebApi
         }
 
         /// <summary>
+        /// 新增雲端藥檔資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        [medclass陣列]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///         
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("add_med_clouds")]
+        [HttpPost]
+        public string POST_add_med_clouds(returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "add_med_clouds";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    if (serverSettingClasses.Count == 0)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = $"找無Server資料!";
+                        return returnData.JsonSerializationt();
+                    }
+                }
+                List<medClass> medClasses = returnData.Data.ObjToClass<List<medClass>>();
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料錯誤";
+                    return returnData.JsonSerializationt();
+                }
+                //returnData.ServerName = "Main";
+                //returnData.ServerType = "網頁";
+                //returnData.TableName = "medicine_page_cloud";
+                //POST_init(returnData);
+                List<object[]> list_value_add = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
+                List<object[]> list_value_add_buf = new List<object[]>();
+
+                string Server = serverSettingClasses_buf[0].Server;
+                string DB = serverSettingClasses_buf[0].DBName;
+                string UserName = serverSettingClasses_buf[0].User;
+                string Password = serverSettingClasses_buf[0].Password;
+                uint Port = (uint)serverSettingClasses_buf[0].Port.StringToInt32();
+
+                SQLControl sQLControl = new SQLControl(Server, DB, "medicine_page_cloud", UserName, Password, Port, SSLMode);
+
+                List<object[]> list_value = sQLControl.GetAllRows(null);
+                List<object[]> list_value_buf = new List<object[]>();
+
+                for (int i = 0; i < list_value_add.Count; i++)
+                {
+                    string 藥碼 = list_value_add[i][(int)enum_雲端藥檔.藥品碼].ObjectToString();
+                    list_value_buf = list_value.GetRows((int)enum_雲端藥檔.藥品碼, 藥碼);
+                    if(list_value_buf.Count == 0)
+                    {
+                        list_value_add_buf.Add(list_value_add[i]);
+                    }
+                }
+
+
+                sQLControl.AddRows(null, list_value_add);
+
+                returnData.Code = 200;
+                returnData.Result = $"新增雲端藥檔成功,共<{list_value_add.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+
+                return returnData.JsonSerializationt(false);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"MED_page", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
         /// 以GUID更新雲端藥檔資料
         /// </summary>
         /// <remarks>
