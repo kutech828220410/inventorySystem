@@ -56,15 +56,15 @@ namespace 中藥調劑系統
             this.rJ_Button_RowsLED_刪除儲位 = new MyUI.RJ_Button();
             this.rJ_Button_RowsLED_新增儲位 = new MyUI.RJ_Button();
             this.rJ_Pannel1 = new MyUI.RJ_Pannel();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_RowsLED_層架列表 = new SQLUI.SQL_DataGridView();
-            this.rJ_Button_匯出 = new MyUI.RJ_Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.rJ_Button_儲位名稱_儲存 = new MyUI.RJ_Button();
+            this.rJ_TextBox_儲位名稱 = new MyUI.RJ_TextBox();
             this.rJ_Button_匯入 = new MyUI.RJ_Button();
+            this.rJ_Button_匯出 = new MyUI.RJ_Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
-            this.rJ_TextBox_儲位名稱 = new MyUI.RJ_TextBox();
-            this.rJ_Button_儲位名稱_儲存 = new MyUI.RJ_Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -504,6 +504,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_藥品資料.顯示首行 = true;
             this.sqL_DataGridView_RowsLED_藥品資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_RowsLED_藥品資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_藥品資料.MouseDown += new System.Windows.Forms.MouseEventHandler(this.sqL_DataGridView_RowsLED_藥品資料_MouseDown);
             // 
             // rJ_Pannel4
             // 
@@ -837,27 +838,6 @@ namespace 中藥調劑系統
             this.rJ_Pannel1.Size = new System.Drawing.Size(321, 832);
             this.rJ_Pannel1.TabIndex = 1;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1264, 832);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "電子紙";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.rJ_Button_儲位名稱_儲存);
-            this.panel3.Controls.Add(this.rJ_TextBox_儲位名稱);
-            this.panel3.Controls.Add(this.rJ_Button_匯入);
-            this.panel3.Controls.Add(this.rJ_Button_匯出);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 690);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(321, 142);
-            this.panel3.TabIndex = 3;
-            // 
             // sqL_DataGridView_RowsLED_層架列表
             // 
             this.sqL_DataGridView_RowsLED_層架列表.AutoSelectToDeep = false;
@@ -911,37 +891,73 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_層架列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_RowsLED_層架列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
-            // rJ_Button_匯出
+            // panel3
             // 
-            this.rJ_Button_匯出.AutoResetState = false;
-            this.rJ_Button_匯出.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_匯出.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_匯出.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_匯出.BorderRadius = 20;
-            this.rJ_Button_匯出.BorderSize = 0;
-            this.rJ_Button_匯出.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_匯出.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_匯出.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_匯出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_匯出.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_匯出.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_匯出.GUID = "";
-            this.rJ_Button_匯出.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_匯出.Location = new System.Drawing.Point(3, 65);
-            this.rJ_Button_匯出.Name = "rJ_Button_匯出";
-            this.rJ_Button_匯出.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_匯出.ProhibitionLineWidth = 4;
-            this.rJ_Button_匯出.ProhibitionSymbolSize = 30;
-            this.rJ_Button_匯出.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_匯出.ShadowSize = 3;
-            this.rJ_Button_匯出.ShowLoadingForm = false;
-            this.rJ_Button_匯出.Size = new System.Drawing.Size(95, 74);
-            this.rJ_Button_匯出.State = false;
-            this.rJ_Button_匯出.TabIndex = 33;
-            this.rJ_Button_匯出.Text = "匯出";
-            this.rJ_Button_匯出.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_匯出.TextHeight = 0;
-            this.rJ_Button_匯出.UseVisualStyleBackColor = false;
+            this.panel3.Controls.Add(this.rJ_Button_儲位名稱_儲存);
+            this.panel3.Controls.Add(this.rJ_TextBox_儲位名稱);
+            this.panel3.Controls.Add(this.rJ_Button_匯入);
+            this.panel3.Controls.Add(this.rJ_Button_匯出);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 690);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(321, 142);
+            this.panel3.TabIndex = 3;
+            // 
+            // rJ_Button_儲位名稱_儲存
+            // 
+            this.rJ_Button_儲位名稱_儲存.AutoResetState = false;
+            this.rJ_Button_儲位名稱_儲存.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_儲位名稱_儲存.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_儲位名稱_儲存.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_儲位名稱_儲存.BorderRadius = 20;
+            this.rJ_Button_儲位名稱_儲存.BorderSize = 0;
+            this.rJ_Button_儲位名稱_儲存.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_儲位名稱_儲存.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_儲位名稱_儲存.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_儲位名稱_儲存.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_儲位名稱_儲存.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_儲位名稱_儲存.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_儲位名稱_儲存.GUID = "";
+            this.rJ_Button_儲位名稱_儲存.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_儲位名稱_儲存.Location = new System.Drawing.Point(216, 8);
+            this.rJ_Button_儲位名稱_儲存.Name = "rJ_Button_儲位名稱_儲存";
+            this.rJ_Button_儲位名稱_儲存.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_儲位名稱_儲存.ProhibitionLineWidth = 4;
+            this.rJ_Button_儲位名稱_儲存.ProhibitionSymbolSize = 30;
+            this.rJ_Button_儲位名稱_儲存.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_儲位名稱_儲存.ShadowSize = 3;
+            this.rJ_Button_儲位名稱_儲存.ShowLoadingForm = false;
+            this.rJ_Button_儲位名稱_儲存.Size = new System.Drawing.Size(95, 51);
+            this.rJ_Button_儲位名稱_儲存.State = false;
+            this.rJ_Button_儲位名稱_儲存.TabIndex = 36;
+            this.rJ_Button_儲位名稱_儲存.Text = "儲存";
+            this.rJ_Button_儲位名稱_儲存.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_儲位名稱_儲存.TextHeight = 0;
+            this.rJ_Button_儲位名稱_儲存.UseVisualStyleBackColor = false;
+            // 
+            // rJ_TextBox_儲位名稱
+            // 
+            this.rJ_TextBox_儲位名稱.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_儲位名稱.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_儲位名稱.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_儲位名稱.BorderRadius = 0;
+            this.rJ_TextBox_儲位名稱.BorderSize = 2;
+            this.rJ_TextBox_儲位名稱.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_儲位名稱.ForeColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_儲位名稱.GUID = "";
+            this.rJ_TextBox_儲位名稱.Location = new System.Drawing.Point(11, 14);
+            this.rJ_TextBox_儲位名稱.Multiline = false;
+            this.rJ_TextBox_儲位名稱.Name = "rJ_TextBox_儲位名稱";
+            this.rJ_TextBox_儲位名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_儲位名稱.PassWordChar = false;
+            this.rJ_TextBox_儲位名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_儲位名稱.PlaceholderText = "請填入儲位名稱";
+            this.rJ_TextBox_儲位名稱.ShowTouchPannel = false;
+            this.rJ_TextBox_儲位名稱.Size = new System.Drawing.Size(200, 37);
+            this.rJ_TextBox_儲位名稱.TabIndex = 35;
+            this.rJ_TextBox_儲位名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_儲位名稱.Texts = "";
+            this.rJ_TextBox_儲位名稱.UnderlineStyle = false;
             // 
             // rJ_Button_匯入
             // 
@@ -975,6 +991,47 @@ namespace 中藥調劑系統
             this.rJ_Button_匯入.TextHeight = 0;
             this.rJ_Button_匯入.UseVisualStyleBackColor = false;
             // 
+            // rJ_Button_匯出
+            // 
+            this.rJ_Button_匯出.AutoResetState = false;
+            this.rJ_Button_匯出.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_匯出.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_匯出.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_匯出.BorderRadius = 20;
+            this.rJ_Button_匯出.BorderSize = 0;
+            this.rJ_Button_匯出.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_匯出.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_匯出.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_匯出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_匯出.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_匯出.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_匯出.GUID = "";
+            this.rJ_Button_匯出.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_匯出.Location = new System.Drawing.Point(3, 65);
+            this.rJ_Button_匯出.Name = "rJ_Button_匯出";
+            this.rJ_Button_匯出.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_匯出.ProhibitionLineWidth = 4;
+            this.rJ_Button_匯出.ProhibitionSymbolSize = 30;
+            this.rJ_Button_匯出.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_匯出.ShadowSize = 3;
+            this.rJ_Button_匯出.ShowLoadingForm = false;
+            this.rJ_Button_匯出.Size = new System.Drawing.Size(95, 74);
+            this.rJ_Button_匯出.State = false;
+            this.rJ_Button_匯出.TabIndex = 33;
+            this.rJ_Button_匯出.Text = "匯出";
+            this.rJ_Button_匯出.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_匯出.TextHeight = 0;
+            this.rJ_Button_匯出.UseVisualStyleBackColor = false;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(1265, 832);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "電子紙";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // openFileDialog_LoadExcel
             // 
             this.openFileDialog_LoadExcel.DefaultExt = "txt";
@@ -984,62 +1041,6 @@ namespace 中藥調劑系統
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
-            // 
-            // rJ_TextBox_儲位名稱
-            // 
-            this.rJ_TextBox_儲位名稱.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_儲位名稱.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_儲位名稱.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_儲位名稱.BorderRadius = 0;
-            this.rJ_TextBox_儲位名稱.BorderSize = 2;
-            this.rJ_TextBox_儲位名稱.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_儲位名稱.ForeColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_儲位名稱.GUID = "";
-            this.rJ_TextBox_儲位名稱.Location = new System.Drawing.Point(11, 14);
-            this.rJ_TextBox_儲位名稱.Multiline = false;
-            this.rJ_TextBox_儲位名稱.Name = "rJ_TextBox_儲位名稱";
-            this.rJ_TextBox_儲位名稱.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_儲位名稱.PassWordChar = false;
-            this.rJ_TextBox_儲位名稱.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_儲位名稱.PlaceholderText = "請填入儲位名稱";
-            this.rJ_TextBox_儲位名稱.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位名稱.Size = new System.Drawing.Size(200, 37);
-            this.rJ_TextBox_儲位名稱.TabIndex = 35;
-            this.rJ_TextBox_儲位名稱.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_儲位名稱.Texts = "";
-            this.rJ_TextBox_儲位名稱.UnderlineStyle = false;
-            // 
-            // rJ_Button_儲位名稱_儲存
-            // 
-            this.rJ_Button_儲位名稱_儲存.AutoResetState = false;
-            this.rJ_Button_儲位名稱_儲存.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_儲位名稱_儲存.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_儲位名稱_儲存.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_儲位名稱_儲存.BorderRadius = 20;
-            this.rJ_Button_儲位名稱_儲存.BorderSize = 0;
-            this.rJ_Button_儲位名稱_儲存.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_儲位名稱_儲存.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_儲位名稱_儲存.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_儲位名稱_儲存.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_儲位名稱_儲存.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_儲位名稱_儲存.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_儲位名稱_儲存.GUID = "";
-            this.rJ_Button_儲位名稱_儲存.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_儲位名稱_儲存.Location = new System.Drawing.Point(216, 8);
-            this.rJ_Button_儲位名稱_儲存.Name = "rJ_Button_儲位名稱_儲存";
-            this.rJ_Button_儲位名稱_儲存.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_儲位名稱_儲存.ProhibitionLineWidth = 4;
-            this.rJ_Button_儲位名稱_儲存.ProhibitionSymbolSize = 30;
-            this.rJ_Button_儲位名稱_儲存.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_儲位名稱_儲存.ShadowSize = 3;
-            this.rJ_Button_儲位名稱_儲存.ShowLoadingForm = false;
-            this.rJ_Button_儲位名稱_儲存.Size = new System.Drawing.Size(95, 51);
-            this.rJ_Button_儲位名稱_儲存.State = false;
-            this.rJ_Button_儲位名稱_儲存.TabIndex = 36;
-            this.rJ_Button_儲位名稱_儲存.Text = "儲存";
-            this.rJ_Button_儲位名稱_儲存.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_儲位名稱_儲存.TextHeight = 0;
-            this.rJ_Button_儲位名稱_儲存.UseVisualStyleBackColor = false;
             // 
             // Dialog_儲位設定
             // 

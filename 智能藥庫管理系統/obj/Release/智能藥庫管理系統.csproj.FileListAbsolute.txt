@@ -346,3 +346,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\obj\Rele
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_儲位管理.resources

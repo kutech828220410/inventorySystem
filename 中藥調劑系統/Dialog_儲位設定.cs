@@ -86,7 +86,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_層架列表.Init(table_儲位總表);
             this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnVisible(false, new enum_儲位總表().GetEnumNames());
             this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_儲位總表.IP);
-            this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_儲位總表.名稱);
+            this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位總表.名稱);
             this.sqL_DataGridView_RowsLED_層架列表.RowEnterEvent += SqL_DataGridView_RowsLED_層架列表_RowEnterEvent;
 
             Table table_儲位列表 = new Table(new enum_儲位列表());
@@ -95,7 +95,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnVisible(false, new enum_儲位列表().GetEnumNames());
             this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.編號);
             this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.藥碼);
-            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(370, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.藥名);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(370, DataGridViewContentAlignment.MiddleLeft, enum_儲位列表.藥名);
             this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_儲位列表.庫存);
             this.sqL_DataGridView_RowsLED_儲位資料.RowEnterEvent += SqL_DataGridView_RowsLED_儲位資料_RowEnterEvent;
 
@@ -142,6 +142,10 @@ namespace 中藥調劑系統
         }
         #endregion
         #region Event
+        private void sqL_DataGridView_RowsLED_藥品資料_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
         private void SqL_DataGridView_RowsLED_藥品資料_RowDoubleClickEvent(object[] RowValue)
         {
             RJ_Button_RowsLED_填入儲位_MouseDownEvent(null);
@@ -451,5 +455,7 @@ namespace 中藥調劑系統
 
         }
         #endregion
+
+      
     }
 }

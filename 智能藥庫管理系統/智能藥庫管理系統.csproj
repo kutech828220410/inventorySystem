@@ -211,6 +211,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog_儲位管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_儲位管理.Designer.cs">
+      <DependentUpon>Dialog_儲位管理.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_庫存查詢.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     <Compile Include="Dialog_批號數量修改.Designer.cs">
       <DependentUpon>Dialog_批號數量修改.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialog_儲位管理.resx">
+      <DependentUpon>Dialog_儲位管理.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog_庫存查詢.resx">
       <DependentUpon>Dialog_庫存查詢.cs</DependentUpon>
     </EmbeddedResource>
