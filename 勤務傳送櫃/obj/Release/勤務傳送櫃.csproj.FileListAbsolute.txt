@@ -1051,7 +1051,6 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\勤務傳送�
 C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\CSkin.dll
-C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\PopupControl.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\Microsoft.mshtml.dll
@@ -1335,3 +1334,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤�
 C:\Users\pacsuser\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Basic.xml

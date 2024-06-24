@@ -154,3 +154,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\batch_dps_medUpdate\obj\Release\n
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_dps_medUpdate\obj\Release\net5.0\ref\batch_dps_medUpdate.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_dps_medUpdate\obj\Release\net5.0\batch_dps_medUpdate.pdb
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_dps_medUpdate\obj\Release\net5.0\batch_dps_medUpdate.genruntimeconfig.cache
+C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Release\net5.0\Basic.xml

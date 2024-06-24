@@ -30,7 +30,6 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\MySql.D
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\System.Numerics.Vectors.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\System.Buffers.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\SunnyUI.Common.dll
-C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\TCP.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\CallBackUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\MeasureSystemFunction.dll
@@ -132,3 +131,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\obj\Release\TestForm.csp
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\obj\Release\TestForm.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\obj\Release\TestForm.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\obj\Release\TestForm.pdb
+C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Basic.xml

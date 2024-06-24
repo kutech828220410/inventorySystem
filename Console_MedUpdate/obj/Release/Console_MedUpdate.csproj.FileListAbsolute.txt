@@ -493,7 +493,6 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\Console_MedUpd
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\CSkin.dll
-C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\PopupControl.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
@@ -698,3 +697,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Con
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.pdb
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Basic.xml

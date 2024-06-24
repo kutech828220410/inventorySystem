@@ -113,6 +113,16 @@ namespace 智能藥庫管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap login_page_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("login-page-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap medication_inventory_inquiry {
             get {
                 object obj = ResourceManager.GetObject("medication-inventory-inquiry", resourceCulture);
@@ -166,6 +176,26 @@ namespace 智能藥庫管理系統.Properties {
         internal static System.Drawing.Bitmap staff_big_icon {
             get {
                 object obj = ResourceManager.GetObject("staff_big_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap system_gear_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("system-gear-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap system_gear_removebg_preview1 {
+            get {
+                object obj = ResourceManager.GetObject("system-gear-removebg-preview1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

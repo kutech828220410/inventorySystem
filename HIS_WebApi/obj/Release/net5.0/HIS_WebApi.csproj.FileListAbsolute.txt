@@ -2647,7 +2647,6 @@ C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebAp
 C:\Users\vendors\Desktop\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\IGeekFan.AspNetCore.Knife4jUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\CSkin.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\appsettings.Development.json
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\appsettings.json
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\clidriver\bin\db2app64.dll

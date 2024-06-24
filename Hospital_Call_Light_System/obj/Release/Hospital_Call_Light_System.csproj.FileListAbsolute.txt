@@ -405,7 +405,6 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\Hospital_Call_Light_Syste
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.pdb
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\CSkin.dll
-C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Hospital_Call_Light_System\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Hospital_Call_Light_System\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Hospital_Call_Light_System\bin\Release\PopupControl.dll
@@ -1482,3 +1481,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Re
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.pdb
+C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.xml

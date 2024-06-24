@@ -25,7 +25,6 @@ C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Relea
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Newtonsoft.Json.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\System.Memory.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Interop.SpeechLib.dll
-C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\MeasureSystemFunction.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\MVSDK.dll
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\System.Numerics.Vectors.dll
@@ -152,3 +151,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\�
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Basic.xml
