@@ -1409,6 +1409,8 @@ namespace 調劑台管理系統
                         if (drawer == null)
                         {
                             drawer = CommonSapceClass.GetEPD583(IP, ref commonSapceClasses);
+                            drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
+                            List_EPD583_本地資料.Add_NewDrawer(drawer);
                         }
                         if (drawer == null) return;
                         if (!plC_CheckBox_測試模式.Checked)
