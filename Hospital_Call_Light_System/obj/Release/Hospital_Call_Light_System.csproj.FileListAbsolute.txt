@@ -1449,7 +1449,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Re
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Release\TCP.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Release\ZealTechUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Release\zxing.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Release\AxOvkBase.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Release\AxAltairUDrvAsm4.5.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Release\AxOvkBaseAsm4.5.dll
@@ -1482,3 +1481,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Re
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.pdb
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.xml

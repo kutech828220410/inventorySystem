@@ -317,7 +317,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Rele
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Release\ZealTechUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Release\zxing.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Release\Newtonsoft.Json.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Release\MySQL_Login.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Release\MVSDKUI.dll
@@ -347,3 +346,5 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\obj\Rele
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_儲位管理.resources
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫管理系統.Dialog_儲位管理.resources

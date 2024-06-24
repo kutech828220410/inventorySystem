@@ -1301,7 +1301,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\TC
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\ZealTechUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Newtonsoft.Json.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Interop.SpeechLib.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\zxing.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\MeasureSystemFunction.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
@@ -1342,3 +1341,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\�
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Basic.xml

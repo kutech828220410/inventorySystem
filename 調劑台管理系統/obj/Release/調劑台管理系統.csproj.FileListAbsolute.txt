@@ -676,7 +676,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\System.ValueTuple.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\TCP.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\Newtonsoft.Json.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\PopupControl.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\SunnyUI.dll
@@ -751,3 +750,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\obj\Release
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\Basic.xml

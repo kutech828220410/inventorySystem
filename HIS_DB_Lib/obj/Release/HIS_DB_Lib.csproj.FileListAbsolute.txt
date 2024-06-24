@@ -635,7 +635,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\LightContr
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\ZealTechUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\HCGUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\ICSharpCode.SharpZipLib.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\office.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\SunnyUI.Common.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\TCP.dll
@@ -659,3 +658,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.xml

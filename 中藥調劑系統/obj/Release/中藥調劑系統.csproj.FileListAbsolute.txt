@@ -101,7 +101,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\Sy
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\TCP.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\Newtonsoft.Json.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\Interop.SpeechLib.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\MyOffice.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\zxing.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\PopupControl.dll
@@ -152,3 +151,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\�
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\Basic.xml

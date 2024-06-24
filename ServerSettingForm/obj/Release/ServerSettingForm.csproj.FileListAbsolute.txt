@@ -809,7 +809,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\NPO
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\NPOI.OOXML.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\SunnyUI.Common.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\TCP.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\CallBackUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\MeasureSystemFunction.dll
@@ -854,3 +853,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\Ser
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\Basic.xml

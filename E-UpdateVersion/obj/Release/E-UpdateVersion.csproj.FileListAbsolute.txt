@@ -2019,7 +2019,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\PortC
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\ZealTechUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OOXML.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.Common.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\MVSDK.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
@@ -2055,3 +2054,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-Upd
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.pdb
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.xml

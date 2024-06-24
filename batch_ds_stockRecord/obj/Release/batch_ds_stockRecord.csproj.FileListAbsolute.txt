@@ -212,7 +212,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\NPOI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\NPOI.OOXML.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\SunnyUI.Common.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\TCP.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\CallBackUI.dll
@@ -240,3 +239,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\obj\Release\
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.pdb
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\batch_ds_stockRecord\bin\Release\Basic.xml

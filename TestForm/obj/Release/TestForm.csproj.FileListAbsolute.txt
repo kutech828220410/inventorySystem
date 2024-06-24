@@ -106,7 +106,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\LightControl
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\ZealTechUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\HCGUI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\ICSharpCode.SharpZipLib.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\SunnyUI.Common.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\TCP.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\CallBackUI.dll
@@ -132,3 +131,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\obj\Release\TestForm.csp
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\obj\Release\TestForm.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\obj\Release\TestForm.pdb
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\TestForm\bin\Release\Basic.xml

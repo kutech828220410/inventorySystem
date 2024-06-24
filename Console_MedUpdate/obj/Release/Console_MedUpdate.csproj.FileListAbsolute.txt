@@ -670,7 +670,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\HCG
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.OOXML.dll
-C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.Common.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\TCP.dll
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\CallBackUI.dll
@@ -698,3 +697,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Con
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.pdb
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Basic.xml
+C:\Users\pacsuser\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\Basic.xml
