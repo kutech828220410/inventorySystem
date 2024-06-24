@@ -1510,7 +1510,6 @@ C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\CSkin.dll
-C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\PopupControl.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll
@@ -2055,3 +2054,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-Upd
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.pdb
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.xml

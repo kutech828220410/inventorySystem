@@ -1073,7 +1073,6 @@ C:\Users\Administrator\Desktop\管藥電腦資料\inventorySystem\智能藥庫�
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\HIS_DB_Lib.xml
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\CSkin.dll
-C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\智能藥庫系統\bin\Release\PopupControl.dll
@@ -1342,3 +1341,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\�
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Basic.xml

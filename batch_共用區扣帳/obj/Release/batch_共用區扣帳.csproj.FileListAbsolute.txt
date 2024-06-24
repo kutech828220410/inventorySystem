@@ -31,7 +31,6 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Re
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\NPOI.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\NPOI.OOXML.dll
-C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\SunnyUI.Common.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\TCP.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\CallBackUI.dll
@@ -100,3 +99,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\batch_共用區扣帳\obj\Release
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.pdb
+C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\Basic.xml

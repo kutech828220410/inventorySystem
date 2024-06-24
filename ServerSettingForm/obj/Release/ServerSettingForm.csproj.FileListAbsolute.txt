@@ -661,7 +661,6 @@ C:\Users\User\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerS
 C:\Users\User\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\CSkin.dll
-C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\bin\Release\PopupControl.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
@@ -854,3 +853,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\Ser
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Basic.xml

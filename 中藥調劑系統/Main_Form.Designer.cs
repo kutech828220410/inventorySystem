@@ -77,6 +77,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方內容 = new SQLUI.SQL_DataGridView();
             this.contextMenuStrip_處方內容 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItem_處方內容_調劑完成 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_處方內容_設為未調劑 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_病患資訊 = new SQLUI.SQL_DataGridView();
@@ -137,24 +138,23 @@ namespace 中藥調劑系統
             this.rJ_Lable7 = new MyUI.RJ_Lable();
             this.dateTimeIntervelPicker_交易紀錄_操作時間 = new MyUI.DateTimeIntervelPicker();
             this.設定 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.plC_NumBox_檢核下限 = new MyUI.PLC_NumBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.plC_NumBox_檢核上限 = new MyUI.PLC_NumBox();
             this.系統 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.rJ_Button_磅秤歸零 = new MyUI.RJ_Button();
+            this.rJ_Button_磅秤扣重 = new MyUI.RJ_Button();
             this.rfiD_FX600_UI = new RFID_FX600lib.RFID_FX600_UI();
             this.plC_UI_Init = new MyUI.PLC_UI_Init();
             this.lowerMachine_Panel = new LadderUI.LowerMachine_Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.rowsLEDUI = new H_Pannel_lib.RowsLEDUI();
-            this.rJ_Button_磅秤歸零 = new MyUI.RJ_Button();
-            this.rJ_Button_磅秤扣重 = new MyUI.RJ_Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.plC_NumBox_檢核上限 = new MyUI.PLC_NumBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.plC_NumBox_檢核下限 = new MyUI.PLC_NumBox();
-            this.ToolStripMenuItem_處方內容_設為未調劑 = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.panel_main.SuspendLayout();
@@ -187,11 +187,11 @@ namespace 中藥調劑系統
             this.panel30.SuspendLayout();
             this.panel29.SuspendLayout();
             this.設定.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.系統.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_main
@@ -1566,8 +1566,14 @@ namespace 中藥調劑系統
             // ToolStripMenuItem_處方內容_調劑完成
             // 
             this.ToolStripMenuItem_處方內容_調劑完成.Name = "ToolStripMenuItem_處方內容_調劑完成";
-            this.ToolStripMenuItem_處方內容_調劑完成.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItem_處方內容_調劑完成.Size = new System.Drawing.Size(134, 22);
             this.ToolStripMenuItem_處方內容_調劑完成.Text = "調劑完成";
+            // 
+            // ToolStripMenuItem_處方內容_設為未調劑
+            // 
+            this.ToolStripMenuItem_處方內容_設為未調劑.Name = "ToolStripMenuItem_處方內容_設為未調劑";
+            this.ToolStripMenuItem_處方內容_設為未調劑.Size = new System.Drawing.Size(134, 22);
+            this.ToolStripMenuItem_處方內容_設為未調劑.Text = "設為未調劑";
             // 
             // panel15
             // 
@@ -2723,6 +2729,100 @@ namespace 中藥調劑系統
             this.設定.TabIndex = 3;
             this.設定.Text = "設定";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.plC_NumBox_檢核下限);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.plC_NumBox_檢核上限);
+            this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox1.Location = new System.Drawing.Point(16, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(215, 152);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "檢核設定";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(162, 103);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 24);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "%";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 103);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 24);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "下限";
+            // 
+            // plC_NumBox_檢核下限
+            // 
+            this.plC_NumBox_檢核下限.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_檢核下限.Location = new System.Drawing.Point(74, 93);
+            this.plC_NumBox_檢核下限.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_檢核下限.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_檢核下限.Name = "plC_NumBox_檢核下限";
+            this.plC_NumBox_檢核下限.ReadOnly = false;
+            this.plC_NumBox_檢核下限.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_檢核下限.TabIndex = 4;
+            this.plC_NumBox_檢核下限.Value = 0;
+            this.plC_NumBox_檢核下限.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_檢核下限.密碼欄位 = false;
+            this.plC_NumBox_檢核下限.寫入元件位置 = "D201";
+            this.plC_NumBox_檢核下限.小數點位置 = 0;
+            this.plC_NumBox_檢核下限.微調數值 = 1;
+            this.plC_NumBox_檢核下限.讀取元件位置 = "D201";
+            this.plC_NumBox_檢核下限.音效 = true;
+            this.plC_NumBox_檢核下限.顯示微調按鈕 = false;
+            this.plC_NumBox_檢核下限.顯示螢幕小鍵盤 = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(162, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "%";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "上限";
+            // 
+            // plC_NumBox_檢核上限
+            // 
+            this.plC_NumBox_檢核上限.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_檢核上限.Location = new System.Drawing.Point(74, 41);
+            this.plC_NumBox_檢核上限.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_檢核上限.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_檢核上限.Name = "plC_NumBox_檢核上限";
+            this.plC_NumBox_檢核上限.ReadOnly = false;
+            this.plC_NumBox_檢核上限.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_檢核上限.TabIndex = 1;
+            this.plC_NumBox_檢核上限.Value = 0;
+            this.plC_NumBox_檢核上限.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_檢核上限.密碼欄位 = false;
+            this.plC_NumBox_檢核上限.寫入元件位置 = "D200";
+            this.plC_NumBox_檢核上限.小數點位置 = 0;
+            this.plC_NumBox_檢核上限.微調數值 = 1;
+            this.plC_NumBox_檢核上限.讀取元件位置 = "D200";
+            this.plC_NumBox_檢核上限.音效 = true;
+            this.plC_NumBox_檢核上限.顯示微調按鈕 = false;
+            this.plC_NumBox_檢核上限.顯示螢幕小鍵盤 = true;
+            // 
             // 系統
             // 
             this.系統.BackColor = System.Drawing.Color.White;
@@ -2759,6 +2859,70 @@ namespace 中藥調劑系統
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "系統";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // rJ_Button_磅秤歸零
+            // 
+            this.rJ_Button_磅秤歸零.AutoResetState = false;
+            this.rJ_Button_磅秤歸零.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_磅秤歸零.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_磅秤歸零.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_磅秤歸零.BorderRadius = 10;
+            this.rJ_Button_磅秤歸零.BorderSize = 0;
+            this.rJ_Button_磅秤歸零.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_磅秤歸零.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_磅秤歸零.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_磅秤歸零.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_磅秤歸零.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_磅秤歸零.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_磅秤歸零.GUID = "";
+            this.rJ_Button_磅秤歸零.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_磅秤歸零.Location = new System.Drawing.Point(3, 656);
+            this.rJ_Button_磅秤歸零.Name = "rJ_Button_磅秤歸零";
+            this.rJ_Button_磅秤歸零.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_磅秤歸零.ProhibitionLineWidth = 4;
+            this.rJ_Button_磅秤歸零.ProhibitionSymbolSize = 30;
+            this.rJ_Button_磅秤歸零.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_磅秤歸零.ShadowSize = 3;
+            this.rJ_Button_磅秤歸零.ShowLoadingForm = false;
+            this.rJ_Button_磅秤歸零.Size = new System.Drawing.Size(135, 63);
+            this.rJ_Button_磅秤歸零.State = false;
+            this.rJ_Button_磅秤歸零.TabIndex = 160;
+            this.rJ_Button_磅秤歸零.Text = "磅秤歸零";
+            this.rJ_Button_磅秤歸零.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_磅秤歸零.TextHeight = 0;
+            this.rJ_Button_磅秤歸零.UseVisualStyleBackColor = false;
+            // 
+            // rJ_Button_磅秤扣重
+            // 
+            this.rJ_Button_磅秤扣重.AutoResetState = false;
+            this.rJ_Button_磅秤扣重.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_磅秤扣重.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_磅秤扣重.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_磅秤扣重.BorderRadius = 10;
+            this.rJ_Button_磅秤扣重.BorderSize = 0;
+            this.rJ_Button_磅秤扣重.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_磅秤扣重.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_磅秤扣重.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_磅秤扣重.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_磅秤扣重.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_磅秤扣重.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_磅秤扣重.GUID = "";
+            this.rJ_Button_磅秤扣重.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_磅秤扣重.Location = new System.Drawing.Point(3, 587);
+            this.rJ_Button_磅秤扣重.Name = "rJ_Button_磅秤扣重";
+            this.rJ_Button_磅秤扣重.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_磅秤扣重.ProhibitionLineWidth = 4;
+            this.rJ_Button_磅秤扣重.ProhibitionSymbolSize = 30;
+            this.rJ_Button_磅秤扣重.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_磅秤扣重.ShadowSize = 3;
+            this.rJ_Button_磅秤扣重.ShowLoadingForm = false;
+            this.rJ_Button_磅秤扣重.Size = new System.Drawing.Size(135, 63);
+            this.rJ_Button_磅秤扣重.State = false;
+            this.rJ_Button_磅秤扣重.TabIndex = 159;
+            this.rJ_Button_磅秤扣重.Text = "磅秤扣重";
+            this.rJ_Button_磅秤扣重.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_磅秤扣重.TextHeight = 0;
+            this.rJ_Button_磅秤扣重.UseVisualStyleBackColor = false;
             // 
             // rfiD_FX600_UI
             // 
@@ -2835,170 +2999,6 @@ namespace 中藥調劑系統
             this.rowsLEDUI.UDP_ServerPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("rowsLEDUI.UDP_ServerPorts")));
             this.rowsLEDUI.UserName = "root";
             // 
-            // rJ_Button_磅秤歸零
-            // 
-            this.rJ_Button_磅秤歸零.AutoResetState = false;
-            this.rJ_Button_磅秤歸零.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_磅秤歸零.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_磅秤歸零.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_磅秤歸零.BorderRadius = 10;
-            this.rJ_Button_磅秤歸零.BorderSize = 0;
-            this.rJ_Button_磅秤歸零.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_磅秤歸零.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_磅秤歸零.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_磅秤歸零.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_磅秤歸零.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_磅秤歸零.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_磅秤歸零.GUID = "";
-            this.rJ_Button_磅秤歸零.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_磅秤歸零.Location = new System.Drawing.Point(3, 656);
-            this.rJ_Button_磅秤歸零.Name = "rJ_Button_磅秤歸零";
-            this.rJ_Button_磅秤歸零.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_磅秤歸零.ProhibitionLineWidth = 4;
-            this.rJ_Button_磅秤歸零.ProhibitionSymbolSize = 30;
-            this.rJ_Button_磅秤歸零.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_磅秤歸零.ShadowSize = 3;
-            this.rJ_Button_磅秤歸零.ShowLoadingForm = false;
-            this.rJ_Button_磅秤歸零.Size = new System.Drawing.Size(135, 63);
-            this.rJ_Button_磅秤歸零.State = false;
-            this.rJ_Button_磅秤歸零.TabIndex = 160;
-            this.rJ_Button_磅秤歸零.Text = "磅秤歸零";
-            this.rJ_Button_磅秤歸零.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_磅秤歸零.TextHeight = 0;
-            this.rJ_Button_磅秤歸零.UseVisualStyleBackColor = false;
-            // 
-            // rJ_Button_磅秤扣重
-            // 
-            this.rJ_Button_磅秤扣重.AutoResetState = false;
-            this.rJ_Button_磅秤扣重.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_磅秤扣重.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_磅秤扣重.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_磅秤扣重.BorderRadius = 10;
-            this.rJ_Button_磅秤扣重.BorderSize = 0;
-            this.rJ_Button_磅秤扣重.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_磅秤扣重.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_磅秤扣重.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_磅秤扣重.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_磅秤扣重.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_磅秤扣重.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_磅秤扣重.GUID = "";
-            this.rJ_Button_磅秤扣重.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_磅秤扣重.Location = new System.Drawing.Point(3, 587);
-            this.rJ_Button_磅秤扣重.Name = "rJ_Button_磅秤扣重";
-            this.rJ_Button_磅秤扣重.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_磅秤扣重.ProhibitionLineWidth = 4;
-            this.rJ_Button_磅秤扣重.ProhibitionSymbolSize = 30;
-            this.rJ_Button_磅秤扣重.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_磅秤扣重.ShadowSize = 3;
-            this.rJ_Button_磅秤扣重.ShowLoadingForm = false;
-            this.rJ_Button_磅秤扣重.Size = new System.Drawing.Size(135, 63);
-            this.rJ_Button_磅秤扣重.State = false;
-            this.rJ_Button_磅秤扣重.TabIndex = 159;
-            this.rJ_Button_磅秤扣重.Text = "磅秤扣重";
-            this.rJ_Button_磅秤扣重.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_磅秤扣重.TextHeight = 0;
-            this.rJ_Button_磅秤扣重.UseVisualStyleBackColor = false;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.plC_NumBox_檢核下限);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.plC_NumBox_檢核上限);
-            this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox1.Location = new System.Drawing.Point(16, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(215, 152);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "檢核設定";
-            // 
-            // plC_NumBox_檢核上限
-            // 
-            this.plC_NumBox_檢核上限.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_檢核上限.Location = new System.Drawing.Point(74, 41);
-            this.plC_NumBox_檢核上限.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_檢核上限.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_檢核上限.Name = "plC_NumBox_檢核上限";
-            this.plC_NumBox_檢核上限.ReadOnly = false;
-            this.plC_NumBox_檢核上限.Size = new System.Drawing.Size(82, 46);
-            this.plC_NumBox_檢核上限.TabIndex = 1;
-            this.plC_NumBox_檢核上限.Value = 0;
-            this.plC_NumBox_檢核上限.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_檢核上限.密碼欄位 = false;
-            this.plC_NumBox_檢核上限.寫入元件位置 = "D200";
-            this.plC_NumBox_檢核上限.小數點位置 = 0;
-            this.plC_NumBox_檢核上限.微調數值 = 1;
-            this.plC_NumBox_檢核上限.讀取元件位置 = "D200";
-            this.plC_NumBox_檢核上限.音效 = true;
-            this.plC_NumBox_檢核上限.顯示微調按鈕 = false;
-            this.plC_NumBox_檢核上限.顯示螢幕小鍵盤 = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 24);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "上限";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(162, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "%";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(162, 103);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 24);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "%";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 103);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 24);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "下限";
-            // 
-            // plC_NumBox_檢核下限
-            // 
-            this.plC_NumBox_檢核下限.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_檢核下限.Location = new System.Drawing.Point(74, 93);
-            this.plC_NumBox_檢核下限.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_檢核下限.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_檢核下限.Name = "plC_NumBox_檢核下限";
-            this.plC_NumBox_檢核下限.ReadOnly = false;
-            this.plC_NumBox_檢核下限.Size = new System.Drawing.Size(82, 46);
-            this.plC_NumBox_檢核下限.TabIndex = 4;
-            this.plC_NumBox_檢核下限.Value = 0;
-            this.plC_NumBox_檢核下限.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_檢核下限.密碼欄位 = false;
-            this.plC_NumBox_檢核下限.寫入元件位置 = "D201";
-            this.plC_NumBox_檢核下限.小數點位置 = 0;
-            this.plC_NumBox_檢核下限.微調數值 = 1;
-            this.plC_NumBox_檢核下限.讀取元件位置 = "D201";
-            this.plC_NumBox_檢核下限.音效 = true;
-            this.plC_NumBox_檢核下限.顯示微調按鈕 = false;
-            this.plC_NumBox_檢核下限.顯示螢幕小鍵盤 = true;
-            // 
-            // ToolStripMenuItem_處方內容_設為未調劑
-            // 
-            this.ToolStripMenuItem_處方內容_設為未調劑.Name = "ToolStripMenuItem_處方內容_設為未調劑";
-            this.ToolStripMenuItem_處方內容_設為未調劑.Size = new System.Drawing.Size(180, 22);
-            this.ToolStripMenuItem_處方內容_設為未調劑.Text = "設為未調劑";
-            // 
             // openFileDialog_LoadExcel
             // 
             this.openFileDialog_LoadExcel.DefaultExt = "txt";
@@ -3052,12 +3052,12 @@ namespace 中藥調劑系統
             this.panel30.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             this.設定.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.系統.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3142,7 +3142,6 @@ namespace 中藥調劑系統
         private RFID_FX600lib.RFID_FX600_UI rfiD_FX600_UI;
         private MyUI.PLC_UI_Init plC_UI_Init;
         private System.Windows.Forms.TabPage tabPage2;
-        private H_Pannel_lib.RowsLEDUI rowsLEDUI;
         private System.Windows.Forms.TabPage 設定;
         private System.Windows.Forms.TabPage 交易紀錄;
         private SQLUI.SQL_DataGridView sqL_DataGridView_交易紀錄;
@@ -3190,6 +3189,7 @@ namespace 中藥調劑系統
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_處方內容_設為未調劑;
         private System.Windows.Forms.OpenFileDialog openFileDialog_LoadExcel;
         private System.Windows.Forms.SaveFileDialog saveFileDialog_SaveExcel;
+        private H_Pannel_lib.RowsLEDUI rowsLEDUI;
     }
 }
 
