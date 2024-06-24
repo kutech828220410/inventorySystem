@@ -185,6 +185,8 @@ namespace 智能藥庫管理系統
 
             ApiServerSetting(dBConfigClass.Name);
             this.storageUI_EPD_266.Init(dBConfigClass.DB_儲位資料);
+            this.rfiD_UI.Init(dBConfigClass.DB_儲位資料);
+
             this.plC_UI_Init.Run(this.FindForm(), lowerMachine_Panel);
         }
         private void PlC_UI_Init_UI_Finished_Event()

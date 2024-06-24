@@ -19,6 +19,7 @@ namespace 智能藥庫管理系統
     public partial class Dialog_儲位管理 : MyDialog
     {
         private List<Storage> storages = new List<Storage>();
+        private Storage storage_copy = null;
         public enum enum_儲架電子紙列表
         {
             [Description("GUID,VARCHAR,15,NONE")]
@@ -60,11 +61,37 @@ namespace 智能藥庫管理系統
             this.FormClosing += Dialog_儲位管理_FormClosing;
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.MouseDownEvent += RJ_Button_儲架電子紙_藥品資料_搜尋_MouseDownEvent;
 
+            this.rJ_Button_儲架電子紙_面板亮燈.MouseDownEvent += RJ_Button_儲架電子紙_面板亮燈_MouseDownEvent;
 
-           
-       
+
+
         }
 
+  
+
+  
+
+        private void RefreshUI()
+        {
+            this.storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < storages.Count; i++)
+            {
+                object[] value = new object[new enum_儲架電子紙列表().GetLength()];
+                value[(int)enum_儲架電子紙列表.GUID] = storages[i].GUID;
+                value[(int)enum_儲架電子紙列表.IP] = storages[i].IP;
+                value[(int)enum_儲架電子紙列表.藥碼] = storages[i].Code;
+                value[(int)enum_儲架電子紙列表.藥名] = storages[i].Name;
+                value[(int)enum_儲架電子紙列表.區域] = storages[i].Area;
+
+
+                list_value.Add(value);
+            }
+            list_value.Sort(new ICP_儲架電子紙_藥品資料());
+            this.sqL_DataGridView_儲架電子紙列表.RefreshGrid(list_value);
+        }
+        #region Event
         private void Dialog_儲位管理_ShowDialogEvent()
         {
             if (IsShown)
@@ -88,14 +115,14 @@ namespace 智能藥庫管理系統
             IsShown = true;
             this.Refresh();
         }
-
-        #region Event
         private void SqL_DataGridView_儲架電子紙_藥品資料_RowDoubleClickEvent(object[] RowValue)
         {
 
         }
         private void Dialog_儲位管理_Load(object sender, EventArgs e)
         {
+            this.epD_290_Pannel.Init(Main_Form._storageUI_EPD_266.List_UDP_Local);
+
             this.comboBox_儲架電子紙_藥品資料_搜尋條件.SelectedIndex = 0;
 
             Table table_藥品資料 = medClass.init(Main_Form.API_Server);
@@ -117,31 +144,433 @@ namespace 智能藥庫管理系統
             this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.藥碼);
             this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(600, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.藥名);
             this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.區域);
+            this.sqL_DataGridView_儲架電子紙列表.RowEnterEvent += SqL_DataGridView_儲架電子紙列表_RowEnterEvent;
 
             this.rJ_Button_儲架電子紙_藥品資料_填入儲位.MouseDownEvent += RJ_Button_儲架電子紙_藥品資料_填入儲位_MouseDownEvent;
+
+            this.rJ_Button_儲架電子紙_面板亮燈.MouseDownEvent += RJ_Button_儲架電子紙_面板亮燈_MouseDownEvent;
+            this.rJ_Button_儲架電子紙_清除燈號.MouseDownEvent += RJ_Button_儲架電子紙_清除燈號_MouseDownEvent;
+            this.rJ_Button_儲架電子紙_複製格式.MouseDownEvent += RJ_Button_儲架電子紙_複製格式_MouseDownEvent;
+            this.rJ_Button_儲架電子紙_清除儲位.MouseDownEvent += RJ_Button_儲架電子紙_清除儲位_MouseDownEvent;
+            this.rJ_Button_儲架電子紙_面板刷新.MouseDownEvent += RJ_Button_儲架電子紙_面板刷新_MouseDownEvent;
+            this.rJ_Button_儲架電子紙_貼上格式.MouseDownEvent += RJ_Button_儲架電子紙_貼上格式_MouseDownEvent;
+
+            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品名稱字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品學名字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品學名字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_中文名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_中文名稱字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品碼字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品碼字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_包裝單位字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_包裝單位字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_效期字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_效期字體更動_MouseDownEvent;
+
+            this.plC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_Barcode顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_Barcode顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_效期顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_效期顯示_CheckStateChanged;
+
             RefreshUI();
         }
-        private void RefreshUI()
+
+        private void PlC_CheckBox_儲架電子紙_儲位內容_效期顯示_CheckStateChanged(object sender, EventArgs e)
         {
-            this.storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
-
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < storages.Count; i++)
+            this.Invoke(new Action(delegate
             {
-                object[] value = new object[new enum_儲架電子紙列表().GetLength()];
-                value[(int)enum_儲架電子紙列表.GUID] = storages[i].GUID;
-                value[(int)enum_儲架電子紙列表.IP] = storages[i].IP;
-                value[(int)enum_儲架電子紙列表.藥碼] = storages[i].Code;
-                value[(int)enum_儲架電子紙列表.藥名] = storages[i].Name;
-                value[(int)enum_儲架電子紙列表.區域] = storages[i].Area;
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.SetValue(Device.ValueName.效期, Device.ValueType.Visable, this.plC_CheckBox_儲架電子紙_儲位內容_效期顯示.Checked);
+                this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            }));
+        }
+        private void PlC_CheckBox_儲架電子紙_儲位內容_Barcode顯示_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.SetValue(Device.ValueName.BarCode, Device.ValueType.Visable, this.plC_CheckBox_儲架電子紙_儲位內容_Barcode顯示.Checked);
+                this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            }));
+        }
+        private void PlC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示_CheckStateChanged(object sender, EventArgs e)
+        {
 
-
-                list_value.Add(value);
-            }
-            list_value.Sort(new ICP_儲架電子紙_藥品資料());
-            this.sqL_DataGridView_儲架電子紙列表.RefreshGrid(list_value);
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Visable, this.plC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示.Checked);
+                this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            }));
+        }
+        private void PlC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.SetValue(Device.ValueName.藥品碼, Device.ValueType.Visable, this.plC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示.Checked);
+                this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            }));
+        }
+        private void PlC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Visable, this.plC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示.Checked);
+                this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            }));
+        }
+        private void PlC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.SetValue(Device.ValueName.藥品學名, Device.ValueType.Visable, this.plC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示.Checked);
+                this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            }));
+        }
+        private void PlC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示_CheckStateChanged(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                storage.SetValue(Device.ValueName.藥品名稱, Device.ValueType.Visable, this.plC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示.Checked);
+                this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            }));
         }
 
+        private void SqL_DataGridView_儲架電子紙列表_RowEnterEvent(object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
+
+            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
+
+            if (storage == null) return;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品名稱.Text = storage.Name;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品學名.Text = storage.Scientific_Name;
+            rJ_TextBox_儲架電子紙_儲位內容_中文名稱.Text = storage.ChineseName;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品碼.Text = storage.Code;
+            rJ_TextBox_儲架電子紙_儲位內容_包裝單位.Text = storage.Package;
+            rJ_TextBox_儲架電子紙_儲位內容_總庫存.Text = storage.Inventory;
+
+          
+            epD_290_Pannel.DrawToPictureBox(storage);
+
+
+        }
+        private void PlC_RJ_Button_儲架電子紙_儲位內容_效期字體更動_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                this.fontDialog.Font = storage.GetValue(Device.ValueName.效期, Device.ValueType.Font) as Font;
+                if (this.fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    storage.SetValue(Device.ValueName.效期, Device.ValueType.Font, fontDialog.Font);
+                    this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                    Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                }
+            }));
+        }
+        private void PlC_RJ_Button_儲架電子紙_儲位內容_包裝單位字體更動_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                this.fontDialog.Font = storage.GetValue(Device.ValueName.包裝單位, Device.ValueType.Font) as Font;
+                if (this.fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    storage.SetValue(Device.ValueName.包裝單位, Device.ValueType.Font, fontDialog.Font);
+                    this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                    Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                }
+            }));
+        }
+        private void PlC_RJ_Button_儲架電子紙_儲位內容_藥品碼字體更動_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                this.fontDialog.Font = storage.GetValue(Device.ValueName.藥品碼, Device.ValueType.Font) as Font;
+                if (this.fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    storage.SetValue(Device.ValueName.藥品碼, Device.ValueType.Font, fontDialog.Font);
+                    this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                    Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                }
+            }));
+        }
+        private void PlC_RJ_Button_儲架電子紙_儲位內容_中文名稱字體更動_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                this.fontDialog.Font = storage.GetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Font) as Font;
+                if (this.fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    storage.SetValue(Device.ValueName.藥品中文名稱, Device.ValueType.Font, fontDialog.Font);
+                    this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                    Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                }
+            }));
+        }
+        private void PlC_RJ_Button_儲架電子紙_儲位內容_藥品學名字體更動_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                this.fontDialog.Font = storage.GetValue(Device.ValueName.藥品學名, Device.ValueType.Font) as Font;
+                if (this.fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    storage.SetValue(Device.ValueName.藥品學名, Device.ValueType.Font, fontDialog.Font);
+                    this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                    Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                }
+            }));
+        }
+        private void PlC_RJ_Button_儲架電子紙_儲位內容_藥品名稱字體更動_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                Storage storage = this.epD_290_Pannel.CurrentStorage;
+                if (storage == null) return;
+                this.fontDialog.Font = storage.GetValue(Device.ValueName.藥品名稱, Device.ValueType.Font) as Font;
+                if (this.fontDialog.ShowDialog() == DialogResult.OK)
+                {
+                    storage.SetValue(Device.ValueName.藥品名稱, Device.ValueType.Font, fontDialog.Font);
+                    this.epD_290_Pannel.DrawToPictureBox(this.epD_290_Pannel.CurrentStorage);
+                    Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                }
+            }));
+        }
+
+        private void RJ_Button_儲架電子紙_面板刷新_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+            if (list_儲架電子紙列表.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲架電子紙");
+                return;
+            }
+            List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+            List<Storage> storages_buf = new List<Storage>();
+
+            for (int i = 0; i < list_儲架電子紙列表.Count; i++)
+            {
+                string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
+                Storage storage = storages.SortByIP(IP);
+                storage.Inventory_Visable = false;
+                if (storage != null)
+                {
+                    storages_buf.Add(storage);
+                }
+            }
+            List<Task> tasks = new List<Task>();
+
+            for (int i = 0; i < storages_buf.Count; i++)
+            {
+                Storage storage = storages_buf[i];
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    Main_Form._storageUI_EPD_266.DrawToEpd_UDP(storage);
+                })));
+            }
+            Task.WhenAll(tasks).Wait();
+
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("面板更新完成", 1000, Color.YellowGreen);
+            dialog_AlarmForm.ShowDialog();
+        }
+        private void RJ_Button_儲架電子紙_清除儲位_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+            if (list_儲架電子紙列表.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲架電子紙");
+                return;
+            }
+
+            if (MyMessageBox.ShowDialog($"是否清除所選儲位共<{list_儲架電子紙列表.Count}>筆?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+
+            List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+            List<Storage> storages_replace = new List<Storage>();
+
+      
+            for (int i = 0; i < list_儲架電子紙列表.Count; i++)
+            {
+                string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
+                Storage storage = storages.SortByIP(IP);
+                if (storage != null)
+                {
+                    storage.ClearStorage();
+                    storages_replace.Add(storage);
+                }
+            }
+       
+            Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storages_replace);
+            RefreshUI();
+
+            MyMessageBox.ShowDialog("清除完成");
+        }
+        private void RJ_Button_儲架電子紙_複製格式_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+            if (list_儲架電子紙列表.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲架電子紙");
+                return;
+            }
+            string IP = list_儲架電子紙列表[0][(int)enum_儲架電子紙列表.IP].ObjectToString();
+            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
+            storage_copy = storage;
+            MyMessageBox.ShowDialog("複製完成");
+        }
+        private void RJ_Button_儲架電子紙_貼上格式_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (storage_copy == null)
+            {
+                MyMessageBox.ShowDialog("操作失敗,請先複製儲位");
+                return;
+            }
+            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+            if (list_儲架電子紙列表.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲架電子紙");
+                return;
+            }
+
+            if (MyMessageBox.ShowDialog($"是否將複製至所選儲位共<{list_儲架電子紙列表.Count}>筆?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+
+            List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+            List<Storage> storages_replace = new List<Storage>();
+
+
+            for (int i = 0; i < list_儲架電子紙列表.Count; i++)
+            {
+                string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
+                Storage storage = storages.SortByIP(IP);
+                if (storage != null)
+                {
+                    storage.PasteFormat(storage_copy);
+                    storages_replace.Add(storage);
+                }
+            }
+
+            Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storages_replace);
+            RefreshUI();
+
+        }
+        private void RJ_Button_儲架電子紙_面板亮燈_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Color color = Color.Red;
+            if (rJ_RatioButton_儲架電子紙_紅.Checked)
+            {
+                color = Color.Red;
+            }
+            if (rJ_RatioButton_儲架電子紙_綠.Checked)
+            {
+                color = Color.Green;
+            }
+            if (rJ_RatioButton_儲架電子紙_藍.Checked)
+            {
+                color = Color.Blue;
+            }
+            if (rJ_RatioButton_儲架電子紙_白.Checked)
+            {
+                color = Color.White;
+            }
+            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+            if (list_儲架電子紙列表.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲架電子紙");
+                return;
+            }
+            List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+            List<Storage> storages_buf = new List<Storage>();
+
+            for (int i = 0; i < list_儲架電子紙列表.Count; i++)
+            {
+                string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
+                Storage storage = storages.SortByIP(IP);
+                if (storage != null)
+                {
+                    storages_buf.Add(storage);
+                }
+            }
+            List<Task> tasks = new List<Task>();
+
+            for (int i = 0; i < storages_buf.Count; i++)
+            {
+                Storage storage = storages_buf[i];
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+
+                })));
+
+            }
+            Task.WhenAll(tasks).Wait();
+
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("亮燈完成", 1000, Color.YellowGreen);
+            dialog_AlarmForm.ShowDialog();
+
+        }
+        private void RJ_Button_儲架電子紙_清除燈號_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Color color = Color.Black;
+        
+            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+            if (list_儲架電子紙列表.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲架電子紙");
+                return;
+            }
+            List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+            List<Storage> storages_buf = new List<Storage>();
+
+            for (int i = 0; i < list_儲架電子紙列表.Count; i++)
+            {
+                string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
+                Storage storage = storages.SortByIP(IP);
+                if (storage != null)
+                {
+                    storages_buf.Add(storage);
+                }
+            }
+            List<Task> tasks = new List<Task>();
+
+            for (int i = 0; i < storages_buf.Count; i++)
+            {
+                Storage storage = storages_buf[i];
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+
+                })));
+
+            }
+            Task.WhenAll(tasks).Wait();
+
+            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("滅燈完成", 1000, Color.YellowGreen);
+            dialog_AlarmForm.ShowDialog();
+        }
         private void RJ_Button_儲架電子紙_藥品資料_填入儲位_MouseDownEvent(MouseEventArgs mevent)
         {
             List<object[]> list_藥品資料 = this.sqL_DataGridView_儲架電子紙_藥品資料.Get_All_Select_RowsValues();

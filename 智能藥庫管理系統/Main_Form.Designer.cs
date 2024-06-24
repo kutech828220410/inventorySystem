@@ -53,6 +53,9 @@ namespace 智能藥庫管理系統
             this.plC_UI_Init = new MyUI.PLC_UI_Init();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.storageUI_EPD_266 = new H_Pannel_lib.StorageUI_EPD_266();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.rfiD_UI = new H_Pannel_lib.RFID_UI();
+            this.plC_RJ_ScreenButtonEx1 = new MyUI.PLC_RJ_ScreenButtonEx();
             this.plC_ScreenPage_main.SuspendLayout();
             this.主畫面.SuspendLayout();
             this.panel_main.SuspendLayout();
@@ -61,6 +64,7 @@ namespace 智能藥庫管理系統
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // plC_ScreenPage_main
@@ -105,6 +109,7 @@ namespace 智能藥庫管理系統
             // 
             // panel_MainForm
             // 
+            this.panel_MainForm.BackColor = System.Drawing.Color.Gainsboro;
             this.panel_MainForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_MainForm.Location = new System.Drawing.Point(0, 119);
             this.panel_MainForm.Name = "panel_MainForm";
@@ -114,6 +119,7 @@ namespace 智能藥庫管理系統
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.plC_RJ_ScreenButtonEx1);
             this.panel1.Controls.Add(this.plC_RJ_Button_庫存查詢);
             this.panel1.Controls.Add(this.plC_RJ_Button4);
             this.panel1.Controls.Add(this.plC_RJ_Button5);
@@ -281,6 +287,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button5.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button5.文字鎖住 = false;
             this.plC_RJ_Button5.背景圖片 = global::智能藥庫管理系統.Properties.Resources.staff_big_icon;
+            this.plC_RJ_Button5.致能讀取位置 = "M8001";
             this.plC_RJ_Button5.讀取位元反向 = false;
             this.plC_RJ_Button5.讀寫鎖住 = false;
             this.plC_RJ_Button5.音效 = true;
@@ -635,6 +642,7 @@ namespace 智能藥庫管理系統
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -779,6 +787,104 @@ namespace 智能藥庫管理系統
             this.storageUI_EPD_266.UDP_ServerPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("storageUI_EPD_266.UDP_ServerPorts")));
             this.storageUI_EPD_266.UserName = "root";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.rfiD_UI);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1788, 1006);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "RFID";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // rfiD_UI
+            // 
+            this.rfiD_UI._Password = "";
+            this.rfiD_UI.BackColor = System.Drawing.SystemColors.Window;
+            this.rfiD_UI.DataBaseName = "TEST";
+            this.rfiD_UI.DNS = "0.0.0.0";
+            this.rfiD_UI.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rfiD_UI.Gateway = "0.0.0.0";
+            this.rfiD_UI.IP = "localhost";
+            this.rfiD_UI.IP_Adress = "0.0.0.0";
+            this.rfiD_UI.Local_Port = "0";
+            this.rfiD_UI.Location = new System.Drawing.Point(0, 0);
+            this.rfiD_UI.Name = "rfiD_UI";
+            this.rfiD_UI.Password = "user82822040";
+            this.rfiD_UI.Port = ((uint)(3306u));
+            this.rfiD_UI.RFID_Enable = "0";
+            this.rfiD_UI.Server_IP_Adress = "0.0.0.0";
+            this.rfiD_UI.Server_Port = "0";
+            this.rfiD_UI.Size = new System.Drawing.Size(1788, 1006);
+            this.rfiD_UI.SSID = "";
+            this.rfiD_UI.Station = "0";
+            this.rfiD_UI.Subnet = "0.0.0.0";
+            this.rfiD_UI.TabIndex = 1;
+            this.rfiD_UI.TableName = "RFID_Device_Jsonstring";
+            this.rfiD_UI.UDP_LocalPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("rfiD_UI.UDP_LocalPorts")));
+            this.rfiD_UI.UDP_ServerPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("rfiD_UI.UDP_ServerPorts")));
+            this.rfiD_UI.UserName = "root";
+            // 
+            // plC_RJ_ScreenButtonEx1
+            // 
+            this.plC_RJ_ScreenButtonEx1.AutoResetState = false;
+            this.plC_RJ_ScreenButtonEx1.BackColor = System.Drawing.Color.Transparent;
+            this.plC_RJ_ScreenButtonEx1.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx1.BackgroundImage = global::智能藥庫管理系統.Properties.Resources.system_gear_removebg_preview;
+            this.plC_RJ_ScreenButtonEx1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.plC_RJ_ScreenButtonEx1.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx1.BorderRadius = 10;
+            this.plC_RJ_ScreenButtonEx1.BorderSize = 1;
+            this.plC_RJ_ScreenButtonEx1.but_press = false;
+            this.plC_RJ_ScreenButtonEx1.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.plC_RJ_ScreenButtonEx1.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_ScreenButtonEx1.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_ScreenButtonEx1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_ScreenButtonEx1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx1.ForeColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx1.GUID = "";
+            this.plC_RJ_ScreenButtonEx1.Image = global::智能藥庫管理系統.Properties.Resources.login_page_removebg_preview;
+            this.plC_RJ_ScreenButtonEx1.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
+            this.plC_RJ_ScreenButtonEx1.Location = new System.Drawing.Point(1229, 3);
+            this.plC_RJ_ScreenButtonEx1.Name = "plC_RJ_ScreenButtonEx1";
+            this.plC_RJ_ScreenButtonEx1.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx1.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx1.OffIconColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx1.OffText = "iConText";
+            this.plC_RJ_ScreenButtonEx1.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButtonEx1.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButtonEx1.OnIconColor = System.Drawing.Color.LemonChiffon;
+            this.plC_RJ_ScreenButtonEx1.OnText = "iConText";
+            this.plC_RJ_ScreenButtonEx1.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_ScreenButtonEx1.ProhibitionLineWidth = 4;
+            this.plC_RJ_ScreenButtonEx1.ProhibitionSymbolSize = 25;
+            this.plC_RJ_ScreenButtonEx1.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_ScreenButtonEx1.ShadowSize = 3;
+            this.plC_RJ_ScreenButtonEx1.ShowLoadingForm = false;
+            this.plC_RJ_ScreenButtonEx1.Size = new System.Drawing.Size(112, 116);
+            this.plC_RJ_ScreenButtonEx1.State = false;
+            this.plC_RJ_ScreenButtonEx1.TabIndex = 165;
+            this.plC_RJ_ScreenButtonEx1.Text = "系統";
+            this.plC_RJ_ScreenButtonEx1.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButtonEx1.TextHeight = 35;
+            this.plC_RJ_ScreenButtonEx1.UseVisualStyleBackColor = false;
+            this.plC_RJ_ScreenButtonEx1.字元長度 = MyUI.PLC_RJ_ScreenButtonEx.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButtonEx1.寫入位置註解 = "";
+            this.plC_RJ_ScreenButtonEx1.寫入元件位置 = "";
+            this.plC_RJ_ScreenButtonEx1.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
+            this.plC_RJ_ScreenButtonEx1.控制位址 = "D0";
+            this.plC_RJ_ScreenButtonEx1.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButtonEx1.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx1.讀取位元反向 = false;
+            this.plC_RJ_ScreenButtonEx1.讀取位置註解 = "";
+            this.plC_RJ_ScreenButtonEx1.讀取元件位置 = "";
+            this.plC_RJ_ScreenButtonEx1.音效 = false;
+            this.plC_RJ_ScreenButtonEx1.頁面名稱 = "系統";
+            this.plC_RJ_ScreenButtonEx1.頁面編號 = 0;
+            this.plC_RJ_ScreenButtonEx1.顯示方式 = MyUI.PLC_RJ_ScreenButtonEx.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButtonEx1.顯示狀態 = false;
+            this.plC_RJ_ScreenButtonEx1.顯示讀取位置 = "";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -798,6 +904,7 @@ namespace 智能藥庫管理系統
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -827,6 +934,9 @@ namespace 智能藥庫管理系統
         private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx_主畫面;
         private System.Windows.Forms.Panel panel_MainForm;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private H_Pannel_lib.RFID_UI rfiD_UI;
+        private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx1;
     }
 }
 
