@@ -695,6 +695,7 @@ namespace HIS_WebApi
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
             ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
             ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.VM端);
+            ServerSettingClass serverSettingClass_雲端藥檔 = serverSettingClasses.myFind("Main", "網頁", "藥檔資料");
             if (serverSettingClass == null)
             {
                 return "serverSettingClass[一般資料] is null!";
@@ -781,6 +782,7 @@ namespace HIS_WebApi
                     {
                         PRI_KEY = Guid.NewGuid().ToString();
                     }
+             
                     string 藥品名稱 = data[i].藥名;
                     string 單位 = data[i].單位;
                     string 病歷號 = data[i].病歷號;

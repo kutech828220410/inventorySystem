@@ -2561,7 +2561,7 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_01.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_01.TitleForeColor = Color.Black;
             }));
-            this.commonSapceClasses = Function_取得共用區所有儲位();
+            commonSapceClasses = Function_取得共用區所有儲位();
             //MySerialPort_Scanner01.ClearReadByte();
             Voice.MediaPlayAsync($@"{currentDirectory}\登入成功.wav");
 
@@ -4510,7 +4510,7 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_02.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_02.TitleForeColor = Color.Black;
             }));
-            this.commonSapceClasses = Function_取得共用區所有儲位();
+            commonSapceClasses = Function_取得共用區所有儲位();
             Voice.MediaPlayAsync($@"{currentDirectory}\登入成功.wav");
             PLC_Device_Scanner02_讀取藥單資料.Bool = false;
             PLC_Device_Scanner02_讀取藥單資料_OK.Bool = false;
@@ -6458,7 +6458,7 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_03.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_03.TitleForeColor = Color.Black;
             }));
-            this.commonSapceClasses = Function_取得共用區所有儲位();
+            commonSapceClasses = Function_取得共用區所有儲位();
             Voice.MediaPlayAsync($@"{currentDirectory}\登入成功.wav");
             PLC_Device_Scanner03_讀取藥單資料.Bool = false;
             PLC_Device_Scanner03_讀取藥單資料_OK.Bool = false;
@@ -8411,7 +8411,7 @@ namespace 調劑台管理系統
                 this.rJ_GroupBox_領藥台_04.TitleBackColor = Color.GreenYellow;
                 this.rJ_GroupBox_領藥台_04.TitleForeColor = Color.Black;
             }));
-            this.commonSapceClasses = Function_取得共用區所有儲位();
+            commonSapceClasses = Function_取得共用區所有儲位();
             Voice.MediaPlayAsync($@"{currentDirectory}\登入成功.wav");
             PLC_Device_Scanner04_讀取藥單資料.Bool = false;
             PLC_Device_Scanner04_讀取藥單資料_OK.Bool = false;

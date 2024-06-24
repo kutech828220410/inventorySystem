@@ -2679,7 +2679,13 @@ namespace HIS_WebApi
 
             return table.JsonSerializationt(true);
         }
-        private List<medClass> Get_med_cloud(ServerSettingClass serverSettingClass , string[] Codes)
+        static public medClass Get_med_cloud(ServerSettingClass serverSettingClass, string code)
+        {
+            List<medClass> medClasses = Get_med_cloud(serverSettingClass, new string[] { code });
+            if (medClasses.Count == 0) return null;
+            return medClasses[0];
+        }
+        static public List<medClass> Get_med_cloud(ServerSettingClass serverSettingClass , string[] Codes)
         {
             try
             {

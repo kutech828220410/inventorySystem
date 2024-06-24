@@ -224,14 +224,27 @@ namespace 調劑台管理系統
         private void SqL_DataGridView_藥品資料_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             this.Main_Form_buf.Function_從SQL取得儲位到本地資料();
+            Main_Form.commonSapceClasses = Main_Form.Function_取得共用區所有儲位();
+
             List<object[]> RowsList_buf = new List<object[]>();
             Parallel.ForEach(RowsList, value =>
             {
                 string 藥品碼 = value[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString();
-                int 庫存 = this.Main_Form_buf.Function_從本地資料取得庫存(藥品碼);
-                value[(int)enum_藥品資料_藥檔資料.庫存] = 庫存;
-                if (庫存 != -999)
+                int 本台庫存 = this.Main_Form_buf.Function_從本地資料取得庫存(藥品碼);
+                int 共用區庫存 = Main_Form.Function_從共用區取得庫存(藥品碼);
+       
+            
+                if (本台庫存 != -999 || 共用區庫存 != -999)
                 {
+                    if (共用區庫存 == -999)
+                    {
+                        共用區庫存 = 0;
+                    }
+                    if (本台庫存 == -999)
+                    {
+                        本台庫存 = 0;
+                    }
+                    value[(int)enum_藥品資料_藥檔資料.庫存] = 本台庫存 + 共用區庫存;
                     RowsList_buf.LockAdd(value);
                 }
      

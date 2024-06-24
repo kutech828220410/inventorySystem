@@ -85,7 +85,8 @@ namespace 調劑台管理系統
 
     public partial class Main_Form : Form
     {
-        List<CommonSapceClass> commonSapceClasses = new List<CommonSapceClass>();
+        static public SQL_DataGridView _sqL_DataGridView_共用區設定 = null;
+        static public List<CommonSapceClass> commonSapceClasses = new List<CommonSapceClass>();
         public Table table_共用區 = null;
         private void Program_共用區_Init()
         {
@@ -112,7 +113,7 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_共用區設定.SQL_CreateTable();
             }
 
-
+            _sqL_DataGridView_共用區設定 = this.sqL_DataGridView_共用區設定;
             this.plC_RJ_Button_共用區亮燈範圍設置.MouseDownEvent += PlC_RJ_Button_共用區亮燈範圍設置_MouseDownEvent;
             this.plC_UI_Init.Add_Method(this.Program_共用區);
 
@@ -123,7 +124,7 @@ namespace 調劑台管理系統
         }
         #region Function
 
-        public List<object> Function_從共用區取得儲位(string 藥品碼)
+        static public List<object> Function_從共用區取得儲位(string 藥品碼)
         {
             List<object> list_value = new List<object>();
             for (int m = 0; m < commonSapceClasses.Count; m++)
@@ -145,16 +146,34 @@ namespace 調劑台管理系統
                 {
                     list_value.Add(rowsDevices[i]);
                 }
-                
+
             }
 
 
 
             return list_value;
         }
+        static public int Function_從共用區取得庫存(string 藥品碼)
+        {
+            int 庫存 = 0;
+            List<object> list_value = Function_從共用區取得儲位(藥品碼);
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                if (list_value[i] is Device)
+                {
+                    Device device = (Device)list_value[i];
+                    if (device != null)
+                    {
+                        庫存 += device.Inventory.StringToInt32();
+                    }
+                }
+            }
+            if (list_value.Count == 0) return -999;
+            return 庫存;
+        }
 
 
-        private List<CommonSapceClass> Function_取得共用區所有儲位()
+        static public List<CommonSapceClass> Function_取得共用區所有儲位()
         {
             List<CommonSapceClass> commonSapceClasses = new List<CommonSapceClass>();
             List<HIS_DB_Lib.ServerSettingClass> serverSettingClasses = Function_取得共用區連線資訊();
@@ -169,9 +188,9 @@ namespace 調劑台管理系統
 
             return commonSapceClasses;
         }
-        private List<HIS_DB_Lib.ServerSettingClass> Function_取得共用區連線資訊()
+        static private List<HIS_DB_Lib.ServerSettingClass> Function_取得共用區連線資訊()
         {
-            List<object[]> list_value = this.sqL_DataGridView_共用區設定.SQL_GetAllRows(false);
+            List<object[]> list_value = _sqL_DataGridView_共用區設定.SQL_GetAllRows(false);
             list_value = (from temp in list_value
                           where temp[(int)enum_commonSpaceSetup.是否共用].ObjectToString().ToUpper() == true.ToString().ToUpper()
                           select temp).ToList();
@@ -210,7 +229,7 @@ namespace 調劑台管理系統
         {
             Dialog_共用區設置 dialog_共用區設置 = new Dialog_共用區設置(table_共用區);
             if (dialog_共用區設置.ShowDialog() != DialogResult.Yes) return;
-            this.commonSapceClasses = Function_取得共用區所有儲位();
+            commonSapceClasses = Function_取得共用區所有儲位();
             MyMessageBox.ShowDialog("已完成共用區設定!");
         }
 

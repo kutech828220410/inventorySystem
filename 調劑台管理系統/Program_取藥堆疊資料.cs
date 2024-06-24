@@ -1285,7 +1285,7 @@ namespace 調劑台管理系統
         {
             if (藥品碼.StringIsEmpty()) return new List<string>();
             List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
-            List<object> list_commonSpace_device = this.Function_從共用區取得儲位(藥品碼);
+            List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
             for (int i = 0; i < list_commonSpace_device.Count; i++)
             {
                 list_Device.Add(list_commonSpace_device[i]);
@@ -1308,7 +1308,7 @@ namespace 調劑台管理系統
                         Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                         if (drawer == null)
                         {
-                            drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
+                            drawer = CommonSapceClass.GetEPD583(IP, ref commonSapceClasses);
                             flag_common_device = true;
                         }
                         if (drawer == null) continue;
@@ -1408,7 +1408,7 @@ namespace 調劑台管理系統
                         Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
                         if (drawer == null)
                         {
-                            drawer = CommonSapceClass.GetEPD583(IP, ref this.commonSapceClasses);
+                            drawer = CommonSapceClass.GetEPD583(IP, ref commonSapceClasses);
                         }
                         if (drawer == null) return;
                         if (!plC_CheckBox_測試模式.Checked)
@@ -1437,7 +1437,7 @@ namespace 調劑台管理系統
         {
             if (藥品碼.StringIsEmpty()) return new List<string>();
             List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
-            List<object> list_commonSpace_device = this.Function_從共用區取得儲位(藥品碼);
+            List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
             for (int i = 0; i < list_commonSpace_device.Count; i++)
             {
                 list_Device.Add(list_commonSpace_device[i]);
@@ -1458,7 +1458,7 @@ namespace 調劑台管理系統
                         RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
                         if (rowsLED == null)
                         {
-                            rowsLED = CommonSapceClass.GetRowsLED(IP, ref this.commonSapceClasses);
+                            rowsLED = CommonSapceClass.GetRowsLED(IP, ref commonSapceClasses);
                         }
                         rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
                     }
@@ -1489,7 +1489,7 @@ namespace 調劑台管理系統
                         RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(IP);
                         if (rowsLED == null)
                         {
-                            rowsLED = CommonSapceClass.GetRowsLED(IP, ref this.commonSapceClasses);
+                            rowsLED = CommonSapceClass.GetRowsLED(IP, ref commonSapceClasses);
                         }
                         taskList.Add(Task.Run(() =>
                         {
@@ -1595,7 +1595,7 @@ namespace 調劑台管理系統
         {
             if (藥品碼.StringIsEmpty()) return;
             List<object> list_Device = this.Function_從雲端資料取得儲位(藥品碼);
-            List<object> list_commonSpace_device = this.Function_從共用區取得儲位(藥品碼);
+            List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
             for (int i = 0; i < list_commonSpace_device.Count; i++)
             {
                 list_Device.Add(list_commonSpace_device[i]);
@@ -3429,7 +3429,7 @@ namespace 調劑台管理系統
             }
             for (int i = 0; i < list_可入賬母資料.Count; i++)
             {
-
+             
                 Master_GUID = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
                 動作 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.動作].ObjectToString();
                 診別 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.診別].ObjectToString();
@@ -3458,6 +3458,17 @@ namespace 調劑台管理系統
                 批號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.批號].ObjectToString();
                 庫存量 = this.Function_從入賬資料取得庫存(藥品碼);
                 結存量 = (庫存量 + 總異動量);
+
+
+                if (藥品名稱.StringIsEmpty())
+                {
+                    medClass medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, 藥品碼);
+                    if(medClass != null)
+                    {
+                        藥品名稱 = medClass.藥品名稱;
+                    }
+                }
+
                 List_效期.Clear();
                 List_批號.Clear();
                 list_子資料_buf = list_子資料.GetRows((int)enum_取藥堆疊子資料.Master_GUID, Master_GUID);
