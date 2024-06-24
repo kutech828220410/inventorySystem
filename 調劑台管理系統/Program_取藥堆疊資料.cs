@@ -1461,6 +1461,7 @@ namespace 調劑台管理系統
                         if (rowsLED == null)
                         {
                             rowsLED = CommonSapceClass.GetRowsLED(IP, ref commonSapceClasses);
+                            rowsLED.LED_Bytes = this.rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
                         }
                         rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
                     }
