@@ -22,9 +22,9 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-namespace 智能藥庫管理系統
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]
+namespace 智能藥庫系統
 {
     public partial class Main_Form : Form
     {
@@ -289,7 +289,7 @@ namespace 智能藥庫管理系統
             Console.WriteLine($"[ApiServerSetting] url : {dBConfigClass.Api_Server}");
             Console.WriteLine($"[ApiServerSetting] name : {dBConfigClass.Name}");
 
-            this.Text = $"智能藥庫管理系統 Ver{this.ProductVersion}";
+            this.Text = $"智能藥庫系統 Ver{this.ProductVersion}";
             ServerName = Name;
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
             Console.WriteLine($"[ServerSettingClassMethod.WebApiGet] url : {API_Server}/api/serversetting");

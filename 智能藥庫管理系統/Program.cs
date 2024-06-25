@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 智能藥庫管理系統
+namespace 智能藥庫系統
 {
     static class Program
     {

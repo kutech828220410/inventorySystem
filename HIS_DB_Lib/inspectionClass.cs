@@ -71,6 +71,292 @@ namespace HIS_DB_Lib
     }
     public class inspectionClass
     {
+
+        static public List<SQLUI.Table> Init(string API_Server)
+        {
+            string url = $"{API_Server}/api/inspection/init";
+
+            returnData returnData = new returnData();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
+            return tables;
+        }
+        static public string new_IC_SN(string API_Server)
+        {
+            string url = $"{API_Server}/api/inspection/new_IC_SN";
+            returnData returnData = new returnData();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            return returnData_out.Value;
+        }
+        static public List<inspectionClass.creat> creat_get_by_CT_TIME_ST_END(string API_Server, DateTime dateTime)
+        {
+            return creat_get_by_CT_TIME_ST_END(API_Server, dateTime.GetStartDate(), dateTime.GetEndDate());
+        }
+        static public List<inspectionClass.creat> creat_get_by_CT_TIME_ST_END(string API_Server, DateTime dateTime_st, DateTime dateTime_end)
+        {
+            string url = $"{API_Server}/api/inspection/creat_get_by_CT_TIME_ST_END";
+            returnData returnData = new returnData();
+            returnData.Value = $"{dateTime_st.ToDateTimeString()},{dateTime_end.ToDateTimeString()}";
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            List<inspectionClass.creat> creats = returnData_out.Data.ObjToClass<List<inspectionClass.creat>>();
+
+            return creats;
+        }
+        static public inspectionClass.creat creat_update_startime_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inspection/creat_update_startime_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{IC_SN}";
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            inspectionClass.creat creat = returnData_out.Data.ObjToClass<inspectionClass.creat>();
+
+            return creat;
+        }
+        static public inspectionClass.creat creat_get_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inspection/creat_get_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{IC_SN}";
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            List<inspectionClass.creat> creats = returnData_out.Data.ObjToClass<List<inspectionClass.creat>>();
+            if (creats == null) return null;
+            if (creats.Count == 0) return null;
+            return creats[0];
+        }
+        static public inspectionClass.creat creat_add(string API_Server, inspectionClass.creat creat)
+        {
+            string url = $"{API_Server}/api/inspection/creat_add";
+            returnData returnData = new returnData();
+            returnData.Data = creat;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            inspectionClass.creat creat_out = returnData_out.Data.ObjToClass<inspectionClass.creat>();
+            return creat_out;
+        }
+        static public void creat_lock_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inspection/creat_lock_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{IC_SN}";
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+        }
+        static public void creat_unlock_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inspection/creat_unlock_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{IC_SN}";
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+
+        }
+        static public void creat_delete_by_IC_SN(string API_Server, string IC_SN)
+        {
+            string url = $"{API_Server}/api/inspection/creat_delete_by_IC_SN";
+            returnData returnData = new returnData();
+            returnData.Value = $"{IC_SN}";
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+         
+        }
+        static public void contents_delete_by_GUID(string API_Server, List<inspectionClass.content> contents)
+        {
+            string url = $"{API_Server}/api/inspection/contents_delete_by_GUID";
+            returnData returnData = new returnData();
+            returnData.Data = contents;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+        }
+        static public inspectionClass.content content_get_by_content_GUID(string API_Server, inspectionClass.content content)
+        {
+            string url = $"{API_Server}/api/inspection/content_get_by_content_GUID";
+            returnData returnData = new returnData();
+            returnData.Data = content;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            inspectionClass.content content_out = returnData_out.Data.ObjToClass<inspectionClass.content>();
+            return content_out;
+        }
+        static public List<inspectionClass.sub_content> sub_content_get_by_content_GUID(string API_Server, inspectionClass.content content)
+        {
+            string url = $"{API_Server}/api/inspection/sub_content_get_by_content_GUID";
+            returnData returnData = new returnData();
+            returnData.Data = content;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            List<inspectionClass.sub_content> sub_Contents = returnData_out.Data.ObjToClass<List<inspectionClass.sub_content>>();
+            return sub_Contents;
+        }
+        static public inspectionClass.sub_content sub_content_add_single(string API_Server, inspectionClass.sub_content sub_Content)
+        {
+            string url = $"{API_Server}/api/inspection/sub_content_add_single";
+            returnData returnData = new returnData();
+            returnData.Data = sub_Content;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            inspectionClass.sub_content sub_Content_out = returnData_out.Data.ObjToClass<inspectionClass.sub_content>();
+            return sub_Content_out;
+        }
+        static public inspectionClass.sub_content sub_content_add(string API_Server, inspectionClass.sub_content sub_Content)
+        {
+            string url = $"{API_Server}/api/inspection/sub_content_add";
+            returnData returnData = new returnData();
+            returnData.Data = sub_Content;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            inspectionClass.sub_content sub_Content_out = returnData_out.Data.ObjToClass<inspectionClass.sub_content>();
+            return sub_Content_out;
+        }
+
         public class creat
         {
             [JsonPropertyName("GUID")]

@@ -152,3 +152,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\�
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Basic.xml
 C:\Users\pacsuser\Source\Repos\inventorySystem\中藥調劑系統\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\Microsoft.mshtml.dll

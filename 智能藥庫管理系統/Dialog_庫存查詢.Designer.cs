@@ -1,5 +1,5 @@
 ﻿
-namespace 智能藥庫管理系統
+namespace 智能藥庫系統
 {
     partial class Dialog_庫存查詢
     {
@@ -606,7 +606,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_進階搜尋.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_進階搜尋.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_進階搜尋.文字鎖住 = false;
-            this.plC_RJ_Button_進階搜尋.背景圖片 = global::智能藥庫管理系統.Properties.Resources.inspection;
+            this.plC_RJ_Button_進階搜尋.背景圖片 = global::智能藥庫系統.Properties.Resources.inspection;
             this.plC_RJ_Button_進階搜尋.讀取位元反向 = false;
             this.plC_RJ_Button_進階搜尋.讀寫鎖住 = false;
             this.plC_RJ_Button_進階搜尋.音效 = false;
@@ -659,7 +659,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_匯出.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_匯出.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_匯出.文字鎖住 = false;
-            this.plC_RJ_Button_匯出.背景圖片 = global::智能藥庫管理系統.Properties.Resources.Files_and_Folders_file_export_arrow_512;
+            this.plC_RJ_Button_匯出.背景圖片 = global::智能藥庫系統.Properties.Resources.Files_and_Folders_file_export_arrow_512;
             this.plC_RJ_Button_匯出.讀取位元反向 = false;
             this.plC_RJ_Button_匯出.讀寫鎖住 = false;
             this.plC_RJ_Button_匯出.音效 = false;
@@ -712,7 +712,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_藥局_效期及批號_修改.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_藥局_效期及批號_修改.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_藥局_效期及批號_修改.文字鎖住 = false;
-            this.plC_RJ_Button_藥局_效期及批號_修改.背景圖片 = global::智能藥庫管理系統.Properties.Resources.EDIT;
+            this.plC_RJ_Button_藥局_效期及批號_修改.背景圖片 = global::智能藥庫系統.Properties.Resources.EDIT;
             this.plC_RJ_Button_藥局_效期及批號_修改.讀取位元反向 = false;
             this.plC_RJ_Button_藥局_效期及批號_修改.讀寫鎖住 = false;
             this.plC_RJ_Button_藥局_效期及批號_修改.音效 = false;
@@ -765,7 +765,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_藥局_效期及批號_新增.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_藥局_效期及批號_新增.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_藥局_效期及批號_新增.文字鎖住 = false;
-            this.plC_RJ_Button_藥局_效期及批號_新增.背景圖片 = global::智能藥庫管理系統.Properties.Resources.add_new_plus_512;
+            this.plC_RJ_Button_藥局_效期及批號_新增.背景圖片 = global::智能藥庫系統.Properties.Resources.add_new_plus_512;
             this.plC_RJ_Button_藥局_效期及批號_新增.讀取位元反向 = false;
             this.plC_RJ_Button_藥局_效期及批號_新增.讀寫鎖住 = false;
             this.plC_RJ_Button_藥局_效期及批號_新增.音效 = false;
@@ -818,7 +818,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_藥局_效期及批號_刪除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_藥局_效期及批號_刪除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_藥局_效期及批號_刪除.文字鎖住 = false;
-            this.plC_RJ_Button_藥局_效期及批號_刪除.背景圖片 = global::智能藥庫管理系統.Properties.Resources.trash_512;
+            this.plC_RJ_Button_藥局_效期及批號_刪除.背景圖片 = global::智能藥庫系統.Properties.Resources.trash_512;
             this.plC_RJ_Button_藥局_效期及批號_刪除.讀取位元反向 = false;
             this.plC_RJ_Button_藥局_效期及批號_刪除.讀寫鎖住 = false;
             this.plC_RJ_Button_藥局_效期及批號_刪除.音效 = false;
@@ -871,7 +871,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_藥庫_效期及批號_修改.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_藥庫_效期及批號_修改.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_藥庫_效期及批號_修改.文字鎖住 = false;
-            this.plC_RJ_Button_藥庫_效期及批號_修改.背景圖片 = global::智能藥庫管理系統.Properties.Resources.EDIT;
+            this.plC_RJ_Button_藥庫_效期及批號_修改.背景圖片 = global::智能藥庫系統.Properties.Resources.EDIT;
             this.plC_RJ_Button_藥庫_效期及批號_修改.讀取位元反向 = false;
             this.plC_RJ_Button_藥庫_效期及批號_修改.讀寫鎖住 = false;
             this.plC_RJ_Button_藥庫_效期及批號_修改.音效 = false;
@@ -924,7 +924,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_藥庫_效期及批號_新增.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_藥庫_效期及批號_新增.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_藥庫_效期及批號_新增.文字鎖住 = false;
-            this.plC_RJ_Button_藥庫_效期及批號_新增.背景圖片 = global::智能藥庫管理系統.Properties.Resources.add_new_plus_512;
+            this.plC_RJ_Button_藥庫_效期及批號_新增.背景圖片 = global::智能藥庫系統.Properties.Resources.add_new_plus_512;
             this.plC_RJ_Button_藥庫_效期及批號_新增.讀取位元反向 = false;
             this.plC_RJ_Button_藥庫_效期及批號_新增.讀寫鎖住 = false;
             this.plC_RJ_Button_藥庫_效期及批號_新增.音效 = false;
@@ -977,7 +977,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_藥庫_效期及批號_刪除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_藥庫_效期及批號_刪除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_藥庫_效期及批號_刪除.文字鎖住 = false;
-            this.plC_RJ_Button_藥庫_效期及批號_刪除.背景圖片 = global::智能藥庫管理系統.Properties.Resources.trash_512;
+            this.plC_RJ_Button_藥庫_效期及批號_刪除.背景圖片 = global::智能藥庫系統.Properties.Resources.trash_512;
             this.plC_RJ_Button_藥庫_效期及批號_刪除.讀取位元反向 = false;
             this.plC_RJ_Button_藥庫_效期及批號_刪除.讀寫鎖住 = false;
             this.plC_RJ_Button_藥庫_效期及批號_刪除.音效 = false;

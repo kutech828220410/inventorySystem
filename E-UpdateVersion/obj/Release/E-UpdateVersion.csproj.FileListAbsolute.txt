@@ -2055,3 +2055,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-Upd
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.pdb
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.xml
 C:\Users\pacsuser\Source\Repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.mshtml.dll

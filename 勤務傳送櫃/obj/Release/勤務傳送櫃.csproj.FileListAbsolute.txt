@@ -1335,3 +1335,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤�
 C:\Users\pacsuser\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.exe
 C:\Users\pacsuser\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Release\Microsoft.mshtml.dll

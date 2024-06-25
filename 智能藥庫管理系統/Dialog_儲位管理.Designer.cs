@@ -1,5 +1,5 @@
 ﻿
-namespace 智能藥庫管理系統
+namespace 智能藥庫系統
 {
     partial class Dialog_儲位管理
     {

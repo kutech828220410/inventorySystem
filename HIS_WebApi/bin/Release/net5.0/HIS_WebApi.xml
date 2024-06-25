@@ -3037,7 +3037,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.ServerSettingController.POST_gget_department_type(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.ServerSettingController.POST_get_department_type(HIS_DB_Lib.returnData)">
             <summary>
             取得指定Type(調劑台、藥庫...)伺服器資訊的服務單位
             </summary>
@@ -3074,6 +3074,28 @@
                 "ValueAry" : 
                 [
                   "門診"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ServerSettingController.POST_get_VM_Server(HIS_DB_Lib.returnData)">
+            <summary>
+            取得VM伺服器資訊
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                  
                 ]
               }
             </code>

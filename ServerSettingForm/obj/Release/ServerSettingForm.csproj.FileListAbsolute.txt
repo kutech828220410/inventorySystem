@@ -854,3 +854,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\Ser
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Basic.xml
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll

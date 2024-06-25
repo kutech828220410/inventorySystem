@@ -379,6 +379,28 @@ namespace HIS_DB_Lib
             List<string> strs = returnData_out.Data.ObjToClass<List<string>>();
             return strs;
         }
+
+        static public ServerSettingClass get_VM_Server(string API_Server)
+        {
+            string url = $"{API_Server}/api/ServerSetting/get_VM_Server";
+
+            returnData returnData = new returnData();
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            ServerSettingClass serverSettingClass = returnData_out.Data.ObjToClass<ServerSettingClass>();
+            return serverSettingClass;
+        }
         static public List<ServerSettingClass> get_serversetting_by_department_type(string API_Server ,string 單位)
         {
             string url = $"{API_Server}/api/ServerSetting/get_serversetting_by_department_type";
@@ -432,6 +454,9 @@ namespace HIS_DB_Lib
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
+
+
+        
 
     }
 }

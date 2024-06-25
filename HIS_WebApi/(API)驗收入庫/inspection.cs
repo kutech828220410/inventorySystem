@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SQLUI;
 using Basic;
-using System.Text; 
+using System.Text;
 using System.Text.Json;
 using System.Text.Encodings.Web;
 using System.Text.Json.Serialization;
@@ -56,7 +56,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -96,7 +96,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -167,7 +167,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -250,7 +250,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -329,7 +329,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -422,7 +422,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -440,11 +440,11 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
                 inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
-
+           
                 sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_inspection_creat = sQLControl_inspection_creat.GetAllRows(null);
-                list_inspection_creat = list_inspection_creat.GetRows((int)enum_驗收單號.驗收單號, creat.驗收單號);
+                list_inspection_creat = list_inspection_creat.GetRows((int)enum_驗收單號.驗收單號, returnData.Value);
                 if (list_inspection_creat.Count == 0)
                 {
                     returnData.Code = -5;
@@ -529,7 +529,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -550,10 +550,6 @@ namespace HIS_WebApi
 
             List<object[]> list_inspection_creat = sQLControl_inspection_creat.GetAllRows(null);
             List<object[]> list_inspection_creat_buf = new List<object[]>();
-            List<object[]> list_inspection_content = sQLControl_inspection_content.GetAllRows(null);
-            List<object[]> list_inspection_content_buf = new List<object[]>();
-            List<object[]> list_inspection_sub_content = sQLControl_inspection_sub_content.GetAllRows(null);
-            List<object[]> list_inspection_sub_content_buf = new List<object[]>();
 
 
             if (creat == null)
@@ -570,7 +566,7 @@ namespace HIS_WebApi
                 returnData.Result += $"驗收單號: {creat.驗收單號} 已存在,請刪除後再建立! \n";
                 return returnData.JsonSerializationt();
             }
-         
+
 
             if (creat.驗收單號.StringIsEmpty())
             {
@@ -578,7 +574,7 @@ namespace HIS_WebApi
                 returnData returnData_IC_SN = IC_SN_json.JsonDeserializet<returnData>();
                 creat.驗收單號 = returnData_IC_SN.Value;
             }
-            
+
             creat.GUID = Guid.NewGuid().ToString();
             creat.建表時間 = DateTime.Now.ToDateTimeString();
             creat.驗收開始時間 = DateTime.MaxValue.ToDateTimeString();
@@ -586,6 +582,7 @@ namespace HIS_WebApi
             creat.驗收狀態 = "等待驗收";
             List<object[]> list_inspection_creat_add = new List<object[]>();
             List<object[]> list_inspection_content_add = new List<object[]>();
+            List<object[]> list_inspection_sub_content_add = new List<object[]>();
             object[] value;
             value = new object[new enum_驗收單號().GetLength()];
 
@@ -593,11 +590,9 @@ namespace HIS_WebApi
             list_inspection_creat_add.Add(value);
 
 
-        
+
             for (int i = 0; i < creat.Contents.Count; i++)
             {
-
-                
                 creat.Contents[i].GUID = Guid.NewGuid().ToString();
                 creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
                 creat.Contents[i].Master_GUID = creat.GUID;
@@ -606,12 +601,29 @@ namespace HIS_WebApi
 
                 value = new object[new enum_驗收內容().GetLength()];
                 value = creat.Contents[i].ClassToSQL<inspectionClass.content, enum_驗收內容>();
-
-
                 list_inspection_content_add.Add(value);
+
+                if(creat.Contents[i].Sub_content != null)
+                {
+                    for (int k = 0; k < creat.Contents[i].Sub_content.Count; k++)
+                    {
+                        creat.Contents[i].Sub_content[k].GUID = Guid.NewGuid().ToString();
+                        creat.Contents[i].Sub_content[k].Master_GUID = creat.Contents[i].GUID;
+                        creat.Contents[i].Sub_content[k].操作時間 = DateTime.Now.ToDateTimeString_6();
+                        creat.Contents[i].Sub_content[k].藥品碼 = creat.Contents[i].藥品碼;
+                        creat.Contents[i].Sub_content[k].藥品名稱 = creat.Contents[i].藥品名稱;
+                        creat.Contents[i].Sub_content[k].中文名稱 = creat.Contents[i].中文名稱;
+                        creat.Contents[i].Sub_content[k].驗收單號 = creat.Contents[i].驗收單號;
+                        value = creat.Contents[i].Sub_content[k].ClassToSQL<inspectionClass.sub_content, enum_驗收明細>();
+
+                        list_inspection_sub_content_add.Add(value);
+                    }
+                }
+              
             }
             sQLControl_inspection_creat.AddRows(null, list_inspection_creat_add);
             sQLControl_inspection_content.AddRows(null, list_inspection_content_add);
+            sQLControl_inspection_sub_content.AddRows(null, list_inspection_sub_content_add);
             returnData.Data = creat;
             returnData.Code = 200;
             returnData.TimeTaken = myTimer.ToString();
@@ -678,7 +690,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses_buf.Count == 0)
                 {
@@ -708,7 +720,7 @@ namespace HIS_WebApi
 
                 returnData_med = mED_PageController.POST_get_by_apiserver(returnData_med).JsonDeserializet<returnData>();
                 List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
-          
+
                 inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
                 creat.驗收單號 = str_IC_SN;
                 for (int i = 0; i < medClasses.Count; i++)
@@ -721,7 +733,7 @@ namespace HIS_WebApi
                     content.料號 = medClasses[i].料號;
                     content.包裝單位 = medClasses[i].包裝單位;
                     content.應收數量 = "0";
-       
+
                     creat.Contents.Add(content);
                 }
                 if (creat.Contents.Count == 0)
@@ -770,7 +782,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -846,7 +858,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -922,7 +934,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1000,7 +1012,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1064,7 +1076,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1082,7 +1094,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
 
-            inspectionClass.content content = returnData.Data.ObjToClass<inspectionClass.content>();;
+            inspectionClass.content content = returnData.Data.ObjToClass<inspectionClass.content>(); ;
             //if (returnData.Value.StringIsEmpty())
             //{
             //    returnData.Code = -5;
@@ -1122,7 +1134,7 @@ namespace HIS_WebApi
                 list_inspection_sub_content_buf = list_inspection_sub_content.GetRows((int)enum_驗收明細.Master_GUID, content.GUID);
                 for (int m = 0; m < list_inspection_sub_content_buf.Count; m++)
                 {
-                    inspectionClass.sub_content sub_Content = list_inspection_sub_content_buf[m].SQLToClass<inspectionClass.sub_content, enum_驗收明細>(); 
+                    inspectionClass.sub_content sub_Content = list_inspection_sub_content_buf[m].SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
 
                     if (sub_Content.實收數量.StringIsInt32())
                     {
@@ -1194,7 +1206,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1211,7 +1223,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-            inspectionClass.content content = returnData.Data.ObjToClass<inspectionClass.content>();;
+            inspectionClass.content content = returnData.Data.ObjToClass<inspectionClass.content>(); ;
             //if (returnData.Value.StringIsEmpty())
             //{
             //    returnData.Code = -5;
@@ -1227,7 +1239,7 @@ namespace HIS_WebApi
             List<inspectionClass.sub_content> sub_Contents = new List<inspectionClass.sub_content>();
             for (int i = 0; i < list_inspection_sub_content_buf.Count; i++)
             {
-                inspectionClass.sub_content sub_Content = list_inspection_sub_content_buf[i].SQLToClass< inspectionClass.sub_content , enum_驗收明細>();
+                inspectionClass.sub_content sub_Content = list_inspection_sub_content_buf[i].SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
                 sub_Contents.Add(sub_Content);
             }
             returnData.Data = sub_Contents;
@@ -1265,7 +1277,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1358,7 +1370,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1471,7 +1483,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1564,7 +1576,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1608,12 +1620,12 @@ namespace HIS_WebApi
                 if (sub_num > 0)
                 {
                     row_end = NumOfRow + 6 + sub_num - 1;
-                    sheetClass.AddNewCell_Webapi(row_start, row_end , 0, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(row_start, row_end , 1, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(row_start, row_end , 2, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(row_start, row_end , 3, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(row_start, row_end , 4, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
-                    sheetClass.AddNewCell_Webapi(row_start, row_end , 5, 5, $"{creat.Contents[i].應收數量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                    sheetClass.AddNewCell_Webapi(row_start, row_end, 0, 0, $"{creat.Contents[i].藥品碼}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                    sheetClass.AddNewCell_Webapi(row_start, row_end, 1, 1, $"{creat.Contents[i].料號}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                    sheetClass.AddNewCell_Webapi(row_start, row_end, 2, 2, $"{creat.Contents[i].藥品名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                    sheetClass.AddNewCell_Webapi(row_start, row_end, 3, 3, $"{creat.Contents[i].中文名稱}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                    sheetClass.AddNewCell_Webapi(row_start, row_end, 4, 4, $"{creat.Contents[i].包裝單位}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
+                    sheetClass.AddNewCell_Webapi(row_start, row_end, 5, 5, $"{creat.Contents[i].應收數量}", "微軟正黑體", 14, false, NPOI_Color.BLACK, 430, NPOI.SS.UserModel.HorizontalAlignment.Left, NPOI.SS.UserModel.VerticalAlignment.Bottom, NPOI.SS.UserModel.BorderStyle.Thin);
                     for (int k = 0; k < creat.Contents[i].Sub_content.Count; k++)
                     {
                         row_end = NumOfRow + 6;
@@ -1624,7 +1636,7 @@ namespace HIS_WebApi
                     }
                 }
 
-                NumOfRow+= sub_num;
+                NumOfRow += sub_num;
             }
             Console.WriteLine($"寫入Sheet {myTimer.ToString()}");
 
@@ -1687,7 +1699,7 @@ namespace HIS_WebApi
             string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
             MED_pageController mED_PageController = new MED_pageController();
@@ -1713,14 +1725,14 @@ namespace HIS_WebApi
                 await formFile.CopyToAsync(memoryStream);
                 System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
                 List<object[]> list_value = dt.DataTableToRowList();
-                for(int i = 0; i < list_value.Count; i++)
+                for (int i = 0; i < list_value.Count; i++)
                 {
                     inspectionClass.content content = new inspectionClass.content();
                     content.藥品碼 = list_value[i][(int)enum_驗收單匯入.藥碼].ObjectToString();
                     medClasses_buf = (from temp in medClasses
-                                      where (temp.藥品碼 == content.藥品碼  || temp.料號 == content.藥品碼)
+                                      where (temp.藥品碼 == content.藥品碼 || temp.料號 == content.藥品碼)
                                       select temp).ToList();
-                    if(medClasses_buf.Count > 0)
+                    if (medClasses_buf.Count > 0)
                     {
                         content.藥品碼 = medClasses_buf[0].藥品碼;
                         content.料號 = medClasses_buf[0].料號;
@@ -1740,7 +1752,7 @@ namespace HIS_WebApi
 
             }
             returnData returnData = new returnData();
-  
+
             returnData.Data = creat;
 
             return POST_creat_add(returnData);
@@ -1765,7 +1777,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
             MED_pageController mED_PageController = new MED_pageController();
@@ -1826,7 +1838,7 @@ namespace HIS_WebApi
                         content.藥品名稱 = 藥品名稱;
                         content.中文名稱 = 中文名稱;
                         content.包裝單位 = 包裝單位;
-    
+
                         int 實收數量 = 0;
                         list_inspection_sub_content_buf = list_inspection_sub_content.GetRows((int)enum_驗收明細.Master_GUID, content.GUID);
                         for (int m = 0; m < list_inspection_sub_content_buf.Count; m++)
@@ -1861,7 +1873,7 @@ namespace HIS_WebApi
             returnData.Result = $"成功! {myTimer.ToString()}";
             return returnData;
         }
-      
+
 
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)

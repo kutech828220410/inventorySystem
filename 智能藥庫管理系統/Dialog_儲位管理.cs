@@ -14,7 +14,7 @@ using SQLUI;
 using DrawingClass;
 using H_Pannel_lib;
 
-namespace 智能藥庫管理系統
+namespace 智能藥庫系統
 {
     public partial class Dialog_儲位管理 : MyDialog
     {
@@ -605,7 +605,7 @@ namespace 智能藥庫管理系統
                 if (cmb_text == "藥碼")
                 {
                     medClasses_buf = (from temp in medClasses
-                                      where temp.藥品碼.ToUpper().Contains(text)
+                                      where temp.藥品碼.ToUpper().Contains(text.ToUpper())
                                       select temp).ToList();
                     if (medClasses_buf.Count == 0)
                     {
@@ -620,7 +620,7 @@ namespace 智能藥庫管理系統
                 if (cmb_text == "藥名")
                 {
                     medClasses_buf = (from temp in medClasses
-                                      where temp.藥品名稱.ToUpper().Contains(text)
+                                      where temp.藥品名稱.ToUpper().Contains(text.ToUpper())
                                       select temp).ToList();
                     if (medClasses_buf.Count == 0)
                     {
@@ -634,7 +634,7 @@ namespace 智能藥庫管理系統
                 if (cmb_text == "中文名")
                 {
                     medClasses_buf = (from temp in medClasses
-                                      where temp.中文名稱.ToUpper().Contains(text)
+                                      where temp.中文名稱.ToUpper().Contains(text.ToUpper())
                                       select temp).ToList();
                     if (medClasses_buf.Count == 0)
                     {

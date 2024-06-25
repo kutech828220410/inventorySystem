@@ -751,3 +751,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\obj\Release
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\Basic.xml
 C:\Users\pacsuser\Source\Repos\inventorySystem\調劑台管理系統\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.mshtml.dll

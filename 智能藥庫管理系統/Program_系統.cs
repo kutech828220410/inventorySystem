@@ -23,7 +23,7 @@ using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
 
-namespace 智能藥庫管理系統
+namespace 智能藥庫系統
 {
     public partial class Main_Form : Form
     {

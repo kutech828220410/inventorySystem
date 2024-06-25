@@ -1,5 +1,5 @@
 ﻿
-namespace 智能藥庫管理系統
+namespace 智能藥庫系統
 {
     partial class Main_Form
     {
@@ -180,7 +180,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_庫存查詢.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_庫存查詢.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_庫存查詢.文字鎖住 = false;
-            this.plC_RJ_Button_庫存查詢.背景圖片 = global::智能藥庫管理系統.Properties.Resources.medication_inventory_inquiry;
+            this.plC_RJ_Button_庫存查詢.背景圖片 = global::智能藥庫系統.Properties.Resources.medication_inventory_inquiry;
             this.plC_RJ_Button_庫存查詢.讀取位元反向 = false;
             this.plC_RJ_Button_庫存查詢.讀寫鎖住 = false;
             this.plC_RJ_Button_庫存查詢.音效 = true;
@@ -233,7 +233,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button4.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button4.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button4.文字鎖住 = false;
-            this.plC_RJ_Button4.背景圖片 = global::智能藥庫管理系統.Properties.Resources.order_receipt_management;
+            this.plC_RJ_Button4.背景圖片 = global::智能藥庫系統.Properties.Resources.order_receipt_management;
             this.plC_RJ_Button4.讀取位元反向 = false;
             this.plC_RJ_Button4.讀寫鎖住 = false;
             this.plC_RJ_Button4.音效 = true;
@@ -286,7 +286,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button5.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button5.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button5.文字鎖住 = false;
-            this.plC_RJ_Button5.背景圖片 = global::智能藥庫管理系統.Properties.Resources.staff_big_icon;
+            this.plC_RJ_Button5.背景圖片 = global::智能藥庫系統.Properties.Resources.staff_big_icon;
             this.plC_RJ_Button5.致能讀取位置 = "M8001";
             this.plC_RJ_Button5.讀取位元反向 = false;
             this.plC_RJ_Button5.讀寫鎖住 = false;
@@ -340,7 +340,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button1.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button1.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button1.文字鎖住 = false;
-            this.plC_RJ_Button1.背景圖片 = global::智能藥庫管理系統.Properties.Resources.medication_inventory_management;
+            this.plC_RJ_Button1.背景圖片 = global::智能藥庫系統.Properties.Resources.medication_inventory_management;
             this.plC_RJ_Button1.讀取位元反向 = false;
             this.plC_RJ_Button1.讀寫鎖住 = false;
             this.plC_RJ_Button1.音效 = true;
@@ -393,7 +393,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button3.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button3.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button3.文字鎖住 = false;
-            this.plC_RJ_Button3.背景圖片 = global::智能藥庫管理系統.Properties.Resources.inventory_management;
+            this.plC_RJ_Button3.背景圖片 = global::智能藥庫系統.Properties.Resources.inventory_management;
             this.plC_RJ_Button3.讀取位元反向 = false;
             this.plC_RJ_Button3.讀寫鎖住 = false;
             this.plC_RJ_Button3.音效 = true;
@@ -446,7 +446,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button7.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button7.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button7.文字鎖住 = false;
-            this.plC_RJ_Button7.背景圖片 = global::智能藥庫管理系統.Properties.Resources.transaction_records;
+            this.plC_RJ_Button7.背景圖片 = global::智能藥庫系統.Properties.Resources.transaction_records;
             this.plC_RJ_Button7.讀取位元反向 = false;
             this.plC_RJ_Button7.讀寫鎖住 = false;
             this.plC_RJ_Button7.音效 = true;
@@ -499,7 +499,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button_儲位管理.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_儲位管理.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_儲位管理.文字鎖住 = false;
-            this.plC_RJ_Button_儲位管理.背景圖片 = global::智能藥庫管理系統.Properties.Resources.panel_storage_location_setup;
+            this.plC_RJ_Button_儲位管理.背景圖片 = global::智能藥庫系統.Properties.Resources.panel_storage_location_setup;
             this.plC_RJ_Button_儲位管理.讀取位元反向 = false;
             this.plC_RJ_Button_儲位管理.讀寫鎖住 = false;
             this.plC_RJ_Button_儲位管理.音效 = true;
@@ -552,7 +552,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_Button2.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button2.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button2.文字鎖住 = false;
-            this.plC_RJ_Button2.背景圖片 = global::智能藥庫管理系統.Properties.Resources.transaction_records;
+            this.plC_RJ_Button2.背景圖片 = global::智能藥庫系統.Properties.Resources.transaction_records;
             this.plC_RJ_Button2.讀取位元反向 = false;
             this.plC_RJ_Button2.讀寫鎖住 = false;
             this.plC_RJ_Button2.音效 = true;
@@ -564,7 +564,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_ScreenButtonEx3.AutoResetState = false;
             this.plC_RJ_ScreenButtonEx3.BackColor = System.Drawing.Color.Transparent;
             this.plC_RJ_ScreenButtonEx3.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx3.BackgroundImage = global::智能藥庫管理系統.Properties.Resources.system_gear_removebg_preview;
+            this.plC_RJ_ScreenButtonEx3.BackgroundImage = global::智能藥庫系統.Properties.Resources.system_gear_removebg_preview;
             this.plC_RJ_ScreenButtonEx3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.plC_RJ_ScreenButtonEx3.BorderColor = System.Drawing.Color.Black;
             this.plC_RJ_ScreenButtonEx3.BorderRadius = 10;
@@ -577,7 +577,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_ScreenButtonEx3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_ScreenButtonEx3.ForeColor = System.Drawing.Color.Black;
             this.plC_RJ_ScreenButtonEx3.GUID = "";
-            this.plC_RJ_ScreenButtonEx3.Image = global::智能藥庫管理系統.Properties.Resources.system_gear_removebg_preview;
+            this.plC_RJ_ScreenButtonEx3.Image = global::智能藥庫系統.Properties.Resources.system_gear_removebg_preview;
             this.plC_RJ_ScreenButtonEx3.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_ScreenButtonEx3.Location = new System.Drawing.Point(1502, 3);
             this.plC_RJ_ScreenButtonEx3.Name = "plC_RJ_ScreenButtonEx3";
@@ -668,7 +668,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_ScreenButtonEx_主畫面.AutoResetState = false;
             this.plC_RJ_ScreenButtonEx_主畫面.BackColor = System.Drawing.Color.Transparent;
             this.plC_RJ_ScreenButtonEx_主畫面.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx_主畫面.BackgroundImage = global::智能藥庫管理系統.Properties.Resources.login_page_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_主畫面.BackgroundImage = global::智能藥庫系統.Properties.Resources.login_page_removebg_preview;
             this.plC_RJ_ScreenButtonEx_主畫面.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.plC_RJ_ScreenButtonEx_主畫面.BorderColor = System.Drawing.Color.Black;
             this.plC_RJ_ScreenButtonEx_主畫面.BorderRadius = 10;
@@ -681,7 +681,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_ScreenButtonEx_主畫面.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_ScreenButtonEx_主畫面.ForeColor = System.Drawing.Color.Black;
             this.plC_RJ_ScreenButtonEx_主畫面.GUID = "";
-            this.plC_RJ_ScreenButtonEx_主畫面.Image = global::智能藥庫管理系統.Properties.Resources.login_page_removebg_preview;
+            this.plC_RJ_ScreenButtonEx_主畫面.Image = global::智能藥庫系統.Properties.Resources.login_page_removebg_preview;
             this.plC_RJ_ScreenButtonEx_主畫面.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_ScreenButtonEx_主畫面.Location = new System.Drawing.Point(1643, 6);
             this.plC_RJ_ScreenButtonEx_主畫面.Name = "plC_RJ_ScreenButtonEx_主畫面";
@@ -830,7 +830,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_ScreenButtonEx1.AutoResetState = false;
             this.plC_RJ_ScreenButtonEx1.BackColor = System.Drawing.Color.Transparent;
             this.plC_RJ_ScreenButtonEx1.BackgroundColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButtonEx1.BackgroundImage = global::智能藥庫管理系統.Properties.Resources.system_gear_removebg_preview;
+            this.plC_RJ_ScreenButtonEx1.BackgroundImage = global::智能藥庫系統.Properties.Resources.system_gear_removebg_preview;
             this.plC_RJ_ScreenButtonEx1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.plC_RJ_ScreenButtonEx1.BorderColor = System.Drawing.Color.Black;
             this.plC_RJ_ScreenButtonEx1.BorderRadius = 10;
@@ -843,7 +843,7 @@ namespace 智能藥庫管理系統
             this.plC_RJ_ScreenButtonEx1.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_ScreenButtonEx1.ForeColor = System.Drawing.Color.Black;
             this.plC_RJ_ScreenButtonEx1.GUID = "";
-            this.plC_RJ_ScreenButtonEx1.Image = global::智能藥庫管理系統.Properties.Resources.login_page_removebg_preview;
+            this.plC_RJ_ScreenButtonEx1.Image = global::智能藥庫系統.Properties.Resources.login_page_removebg_preview;
             this.plC_RJ_ScreenButtonEx1.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
             this.plC_RJ_ScreenButtonEx1.Location = new System.Drawing.Point(1229, 3);
             this.plC_RJ_ScreenButtonEx1.Name = "plC_RJ_ScreenButtonEx1";
@@ -895,7 +895,7 @@ namespace 智能藥庫管理系統
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "智能藥庫管理系統";
+            this.Text = "智能藥庫系統";
             this.plC_ScreenPage_main.ResumeLayout(false);
             this.主畫面.ResumeLayout(false);
             this.panel_main.ResumeLayout(false);

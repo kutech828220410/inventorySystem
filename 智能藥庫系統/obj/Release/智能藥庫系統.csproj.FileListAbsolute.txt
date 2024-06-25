@@ -1342,3 +1342,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\�
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Basic.xml
 C:\Users\pacsuser\Source\Repos\inventorySystem\智能藥庫系統\bin\Release\Basic.xml
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.mshtml.dll

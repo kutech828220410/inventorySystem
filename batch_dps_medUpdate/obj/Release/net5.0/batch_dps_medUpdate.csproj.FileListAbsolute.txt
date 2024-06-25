@@ -28,7 +28,6 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Rele
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Release\net5.0\DrawingClass.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Release\net5.0\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Release\net5.0\SunnyUI.dll
-C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Release\net5.0\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Release\net5.0\LadderUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Release\net5.0\FontAwesome.Sharp.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Release\net5.0\MeasureSystemUI.dll
