@@ -39,13 +39,17 @@ namespace 智能藥庫系統
             this.ShowDialogEvent += Dialog_驗收管理_ShowDialogEvent;
             this.FormClosing += Dialog_驗收管理_FormClosing;
             this.LoadFinishedEvent += Dialog_驗收管理_LoadFinishedEvent;
+
+            this.rJ_Button_驗收明細_新增.MouseDownEvent += RJ_Button_驗收明細_新增_MouseDownEvent;
+            this.rJ_Button_驗收明細_刪除.MouseDownEvent += RJ_Button_驗收明細_刪除_MouseDownEvent;
+            this.rJ_Button_驗收明細_修改.MouseDownEvent += RJ_Button_驗收明細_修改_MouseDownEvent;
+            this.rJ_Button_驗收單_讀取.MouseDownEvent += RJ_Button_驗收單_讀取_MouseDownEvent;
+
             this.dateTimeIntervelPicker_報表日期.SureClick += DateTimeIntervelPicker_報表日期_SureClick;
             this.comboBox_驗收單號.SelectedIndexChanged += ComboBox_驗收單號_SelectedIndexChanged;
         }
 
- 
-
-
+   
 
 
         #region Event
@@ -58,8 +62,8 @@ namespace 智能藥庫系統
             sqL_DataGridView_驗收品項.RowsHeight = 50;
             sqL_DataGridView_驗收品項.Init(tables.GetTable(new enum_驗收內容()));
             sqL_DataGridView_驗收品項.Set_ColumnVisible(false, new enum_驗收內容().GetEnumNames());
-            sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.料號);
-            sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品碼);
+            sqL_DataGridView_驗收品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.料號);
+            sqL_DataGridView_驗收品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品碼);
             sqL_DataGridView_驗收品項.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品名稱);
             sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.應收數量);
             sqL_DataGridView_驗收品項.RowEnterEvent += SqL_DataGridView_驗收品項_RowEnterEvent;
@@ -100,26 +104,7 @@ namespace 智能藥庫系統
         }
         private void SqL_DataGridView_驗收明細_RowEnterEvent(object[] RowValue)
         {
-            DateTime dateTime;
-            string 效期 = RowValue[(int)enum_驗收明細.效期].ObjectToString();
-            string 批號 = RowValue[(int)enum_驗收明細.批號].ObjectToString();
-            int 實收數量 = RowValue[(int)enum_驗收明細.實收數量].StringToInt32();
-            dateTime = 效期.StringToDateTime();
-            if (效期.Check_Date_String() == false) dateTime = DateTime.MinValue;
-            if (實收數量 < 0) 實收數量 = 0;
-             Dialog_效期批號數量輸入 dialog_效期批號數量輸入 = new Dialog_效期批號數量輸入(dateTime, 批號, 實收數量);
-            if (dialog_效期批號數量輸入.ShowDialog() != DialogResult.Yes) return;
-
-            RowValue[(int)enum_驗收明細.效期] = dialog_效期批號數量輸入.效期;
-            RowValue[(int)enum_驗收明細.批號] = dialog_效期批號數量輸入.批號;
-            RowValue[(int)enum_驗收明細.實收數量] = dialog_效期批號數量輸入.數量;
-
-            inspectionClass.sub_content sub_Content = RowValue.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
-            if(sub_Content != null)
-            {
-                inspectionClass.sub_content_update(Main_Form.API_Server, sub_Content);
-            }
-            sqL_DataGridView_驗收明細.ReplaceExtra(RowValue, false);
+           
         }
         private void SqL_DataGridView_驗收品項_RowEnterEvent(object[] RowValue)
         {
@@ -150,16 +135,114 @@ namespace 智能藥庫系統
         }
         private void ComboBox_驗收單號_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string IC_SN = this.comboBox_驗收單號.Text;
-            current_creat = inspectionClass.creat_get_by_IC_SN(Main_Form.API_Server, IC_SN);
-            if(current_creat == null)
+     
+
+        }
+        private void RJ_Button_驗收單_讀取_MouseDownEvent(MouseEventArgs mevent)
+        {
+            try
             {
-                MyMessageBox.ShowDialog("查無資料");
+                LoadingForm.ShowLoadingForm();
+                string IC_SN = "";
+                this.Invoke(new Action(delegate
+                {
+                    IC_SN = this.comboBox_驗收單號.Text;
+                }));
+                current_creat = inspectionClass.creat_get_by_IC_SN(Main_Form.API_Server, IC_SN);
+                if (current_creat == null)
+                {
+                    MyMessageBox.ShowDialog("查無資料");
+                    return;
+                }
+                List<object[]> list_contents = current_creat.Contents.ClassToSQL<inspectionClass.content, enum_驗收內容>();
+                sqL_DataGridView_驗收品項.RefreshGrid(list_contents);
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                LoadingForm.CloseLoadingForm();
+            }
+       
+        }
+        private void RJ_Button_驗收明細_新增_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_驗收品項 = sqL_DataGridView_驗收品項.Get_All_Select_RowsValues();
+            if (list_驗收品項.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取驗收品項");
                 return;
             }
-            List<object[]> list_contents = current_creat.Contents.ClassToSQL<inspectionClass.content,enum_驗收內容>();
-            sqL_DataGridView_驗收品項.RefreshGrid(list_contents);
+            string Master_GUID = list_驗收品項[0][(int)enum_驗收內容.GUID].ObjectToString();
+            string 藥品碼 = list_驗收品項[0][(int)enum_驗收內容.藥品碼].ObjectToString();
+            string 藥品名稱 = list_驗收品項[0][(int)enum_驗收內容.藥品名稱].ObjectToString();
+            string 料號 = list_驗收品項[0][(int)enum_驗收內容.料號].ObjectToString();
+            inspectionClass.sub_content sub_Content = new inspectionClass.sub_content();
 
+            Dialog_效期批號數量輸入 dialog_效期批號數量輸入 = new Dialog_效期批號數量輸入();
+            if (dialog_效期批號數量輸入.ShowDialog() != DialogResult.Yes) return;
+
+            sub_Content.Master_GUID = Master_GUID;
+            sub_Content.藥品碼 = 藥品碼;
+            sub_Content.藥品名稱 = 藥品名稱;
+            sub_Content.料號 = 料號;
+            sub_Content.效期 = dialog_效期批號數量輸入.效期;
+            sub_Content.批號 = dialog_效期批號數量輸入.批號;
+            sub_Content.實收數量 = dialog_效期批號數量輸入.數量.ToString();
+            sub_Content.操作人 = Main_Form.登入者名稱;
+
+            inspectionClass.content content = inspectionClass.sub_content_add(Main_Form.API_Server, sub_Content);
+            List<object[]> list_驗收明細 = content.Sub_content.ClassToSQL<inspectionClass.sub_content, enum_驗收明細>();
+            sqL_DataGridView_驗收明細.ClearGrid();
+            sqL_DataGridView_驗收明細.AddRows(list_驗收明細, true);
+        }
+        private void RJ_Button_驗收明細_刪除_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_驗收明細 = sqL_DataGridView_驗收明細.Get_All_Select_RowsValues();
+            if (list_驗收明細.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取驗收品項");
+                return;
+            }
+
+            if (MyMessageBox.ShowDialog("是否將選取資料刪除", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            inspectionClass.sub_content sub_Content = new inspectionClass.sub_content();
+            sub_Content = list_驗收明細[0].SQLToClass<inspectionClass.sub_content , enum_驗收明細>();
+            inspectionClass.content content = inspectionClass.sub_contents_delete_by_GUID(Main_Form.API_Server, sub_Content);
+            list_驗收明細 = content.Sub_content.ClassToSQL<inspectionClass.sub_content, enum_驗收明細>();
+            sqL_DataGridView_驗收明細.ClearGrid();
+            sqL_DataGridView_驗收明細.AddRows(list_驗收明細, true);
+        }
+        private void RJ_Button_驗收明細_修改_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_驗收明細 = sqL_DataGridView_驗收明細.Get_All_Select_RowsValues();
+            if (list_驗收明細.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取驗收品項");
+                return;
+            }
+            DateTime dateTime;
+            string 效期 = list_驗收明細[0][(int)enum_驗收明細.效期].ObjectToString();
+            string 批號 = list_驗收明細[0][(int)enum_驗收明細.批號].ObjectToString();
+            int 實收數量 = list_驗收明細[0][(int)enum_驗收明細.實收數量].StringToInt32();
+            dateTime = 效期.StringToDateTime();
+            if (效期.Check_Date_String() == false) dateTime = DateTime.MinValue;
+            if (實收數量 < 0) 實收數量 = 0;
+            Dialog_效期批號數量輸入 dialog_效期批號數量輸入 = new Dialog_效期批號數量輸入(dateTime, 批號, 實收數量);
+            if (dialog_效期批號數量輸入.ShowDialog() != DialogResult.Yes) return;
+
+            list_驗收明細[0][(int)enum_驗收明細.效期] = dialog_效期批號數量輸入.效期;
+            list_驗收明細[0][(int)enum_驗收明細.批號] = dialog_效期批號數量輸入.批號;
+            list_驗收明細[0][(int)enum_驗收明細.實收數量] = dialog_效期批號數量輸入.數量;
+
+            inspectionClass.sub_content sub_Content = list_驗收明細[0].SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
+            if (sub_Content != null)
+            {
+                inspectionClass.sub_content_update(Main_Form.API_Server, sub_Content);
+            }
+            sqL_DataGridView_驗收明細.ReplaceExtra(list_驗收明細[0], true);
         }
         #endregion
     }

@@ -28,6 +28,8 @@ namespace 智能藥庫系統
 {
     public partial class Main_Form : Form
     {
+        public static string 登入者名稱 = "";
+
         public static string API_Server = "http://127.0.0.1:4433";
         public static string ServerType = "藥庫";
         public static string ServerName = "http://127.0.0.1:4433";

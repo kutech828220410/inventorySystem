@@ -328,14 +328,6 @@
           }
         }
       },
-      "CSkin/12.8.0.0": {
-        "runtime": {
-          "CSkin.dll": {
-            "assemblyVersion": "12.8.0.0",
-            "fileVersion": "12.8.0.0"
-          }
-        }
-      },
       "MyOffice/1.0.0.0": {
         "runtime": {
           "MyOffice.dll": {
@@ -771,11 +763,6 @@
       "sha512": ""
     },
     "Interop.SpeechLib/5.4.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "CSkin/12.8.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

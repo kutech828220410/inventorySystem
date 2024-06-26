@@ -385,7 +385,7 @@ namespace HIS_DB_Lib
             List<inspectionClass.sub_content> sub_Contents = returnData_out.Data.ObjToClass<List<inspectionClass.sub_content>>();
             return sub_Contents;
         }
-        static public inspectionClass.sub_content sub_content_add_single(string API_Server, inspectionClass.sub_content sub_Content)
+        static public inspectionClass.content sub_content_add_single(string API_Server, inspectionClass.sub_content sub_Content)
         {
             string url = $"{API_Server}/api/inspection/sub_content_add_single";
             returnData returnData = new returnData();
@@ -403,10 +403,10 @@ namespace HIS_DB_Lib
             }
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
 
-            inspectionClass.sub_content sub_Content_out = returnData_out.Data.ObjToClass<inspectionClass.sub_content>();
-            return sub_Content_out;
+            inspectionClass.content content = returnData_out.Data.ObjToClass<inspectionClass.content>();
+            return content;
         }
-        static public inspectionClass.sub_content sub_content_add(string API_Server, inspectionClass.sub_content sub_Content)
+        static public inspectionClass.content sub_content_add(string API_Server, inspectionClass.sub_content sub_Content)
         {
             string url = $"{API_Server}/api/inspection/sub_content_add";
             returnData returnData = new returnData();
@@ -424,8 +424,8 @@ namespace HIS_DB_Lib
             }
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
 
-            inspectionClass.sub_content sub_Content_out = returnData_out.Data.ObjToClass<inspectionClass.sub_content>();
-            return sub_Content_out;
+            inspectionClass.content content = returnData_out.Data.ObjToClass<inspectionClass.content>();
+            return content;
         }
 
         static public void sub_content_update(string API_Server, inspectionClass.sub_content sub_Content)
@@ -454,7 +454,35 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
 
         }
-        
+
+        static public inspectionClass.content sub_contents_delete_by_GUID(string API_Server, inspectionClass.sub_content sub_Content)
+        {
+            List<inspectionClass.sub_content> sub_Contents = new List<sub_content>();
+            sub_Contents.Add(sub_Content);
+            return sub_contents_delete_by_GUID(API_Server, sub_Contents);
+        }
+        static public inspectionClass.content sub_contents_delete_by_GUID(string API_Server, List<inspectionClass.sub_content> sub_Contents)
+        {
+            string url = $"{API_Server}/api/inspection/sub_contents_delete_by_GUID";
+            returnData returnData = new returnData();
+            returnData.Data = sub_Contents;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            inspectionClass.content content = returnData_out.Data.ObjToClass<inspectionClass.content>();
+            return content;
+        }
+     
+
         static public void MergeData(creat original, creat compare)
         {
             // 处理 Contents
