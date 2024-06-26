@@ -4699,6 +4699,29 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data] :sub_content資料結構 </returns>
         </member>
+        <member name="M:HIS_WebApi.inspectionController.POST_sub_content_update(HIS_DB_Lib.returnData)">
+            <summary>
+            更新單筆驗收藥品中的明細
+            </summary>
+            <remarks>
+            [必要輸入參數說明]<br/> 
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               [
+                  {  
+                   "GUID": "fad3bbfcfa61",
+                   "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0"
+                  }
+               ]
+             }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data] :sub_content資料結構 </returns>
+        </member>
         <member name="M:HIS_WebApi.inspectionController.POST_sub_contents_delete_by_GUID(HIS_DB_Lib.returnData)">
             <summary>
             以GUID刪除驗收藥品中的明細

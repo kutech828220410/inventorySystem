@@ -18,6 +18,7 @@ namespace 智能藥庫系統
 {
     public partial class Dialog_驗收管理 : MyDialog
     {
+        inspectionClass.creat current_creat = null;
         static public Dialog_驗收管理 myDialog;
         static public Dialog_驗收管理 GetForm()
         {
@@ -61,27 +62,25 @@ namespace 智能藥庫系統
             sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品碼);
             sqL_DataGridView_驗收品項.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品名稱);
             sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.應收數量);
+            sqL_DataGridView_驗收品項.RowEnterEvent += SqL_DataGridView_驗收品項_RowEnterEvent;
 
             sqL_DataGridView_驗收品項.Set_ColumnText("藥碼", enum_驗收內容.藥品碼);
             sqL_DataGridView_驗收品項.Set_ColumnText("藥名", enum_驗收內容.藥品名稱);
 
 
-            sqL_DataGridView_驗收明細.RowsHeight = 50;
+            sqL_DataGridView_驗收明細.RowsHeight = 60;
             sqL_DataGridView_驗收明細.Init(tables.GetTable(new enum_驗收明細()));
             sqL_DataGridView_驗收明細.Set_ColumnVisible(false, new enum_驗收明細().GetEnumNames());
-            sqL_DataGridView_驗收明細.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收明細.實收數量);
-            sqL_DataGridView_驗收明細.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_驗收明細.效期);
+            sqL_DataGridView_驗收明細.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_驗收明細.實收數量);
+            sqL_DataGridView_驗收明細.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_驗收明細.操作人);
+            sqL_DataGridView_驗收明細.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_驗收明細.操作時間);
+            sqL_DataGridView_驗收明細.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_驗收明細.效期);
             sqL_DataGridView_驗收明細.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_驗收明細.批號);
-
-
-
-
-            sqL_DataGridView_驗收品項.RowEnterEvent += SqL_DataGridView_驗收品項_RowEnterEvent;
-
+            sqL_DataGridView_驗收明細.RowEnterEvent += SqL_DataGridView_驗收明細_RowEnterEvent;
 
         }
 
-    
+  
 
         private void Dialog_驗收管理_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -99,8 +98,32 @@ namespace 智能藥庫系統
                 }));
             }
         }
+        private void SqL_DataGridView_驗收明細_RowEnterEvent(object[] RowValue)
+        {
+            DateTime dateTime;
+            string 效期 = RowValue[(int)enum_驗收明細.效期].ObjectToString();
+            string 批號 = RowValue[(int)enum_驗收明細.批號].ObjectToString();
+            int 實收數量 = RowValue[(int)enum_驗收明細.實收數量].StringToInt32();
+            dateTime = 效期.StringToDateTime();
+            if (效期.Check_Date_String() == false) dateTime = DateTime.MinValue;
+            if (實收數量 < 0) 實收數量 = 0;
+             Dialog_效期批號數量輸入 dialog_效期批號數量輸入 = new Dialog_效期批號數量輸入(dateTime, 批號, 實收數量);
+            if (dialog_效期批號數量輸入.ShowDialog() != DialogResult.Yes) return;
+
+            RowValue[(int)enum_驗收明細.效期] = dialog_效期批號數量輸入.效期;
+            RowValue[(int)enum_驗收明細.批號] = dialog_效期批號數量輸入.批號;
+            RowValue[(int)enum_驗收明細.實收數量] = dialog_效期批號數量輸入.數量;
+
+            inspectionClass.sub_content sub_Content = RowValue.SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
+            if(sub_Content != null)
+            {
+                inspectionClass.sub_content_update(Main_Form.API_Server, sub_Content);
+            }
+            sqL_DataGridView_驗收明細.ReplaceExtra(RowValue, false);
+        }
         private void SqL_DataGridView_驗收品項_RowEnterEvent(object[] RowValue)
         {
+            string GUID = RowValue[(int)enum_驗收內容.GUID].ObjectToString();
             string 藥碼 = RowValue[(int)enum_驗收內容.藥品碼].ObjectToString();
             string 藥名 = RowValue[(int)enum_驗收內容.藥品名稱].ObjectToString();
             string 料號 = RowValue[(int)enum_驗收內容.料號].ObjectToString();
@@ -108,6 +131,14 @@ namespace 智能藥庫系統
             rJ_Lable_藥碼.Text = $"藥碼 : {藥碼}";
             rJ_Lable_藥名.Text = $"藥名 : {藥名}";
             rJ_Lable_料號.Text = $"料號 : {料號}";
+
+            if (current_creat != null)
+            {
+                List<inspectionClass.sub_content> sub_Contents = current_creat.Get_SubContent_By_MasterGUID(GUID);
+                List<object[]> list_sub_Contents = sub_Contents.ClassToSQL<inspectionClass.sub_content, enum_驗收明細>();
+                sqL_DataGridView_驗收明細.RefreshGrid(list_sub_Contents);
+            }
+
         }
         private void DateTimeIntervelPicker_報表日期_SureClick(object sender, EventArgs e, DateTime start, DateTime end)
         {
@@ -120,9 +151,13 @@ namespace 智能藥庫系統
         private void ComboBox_驗收單號_SelectedIndexChanged(object sender, EventArgs e)
         {
             string IC_SN = this.comboBox_驗收單號.Text;
-            inspectionClass.creat creat = inspectionClass.creat_get_by_IC_SN(Main_Form.API_Server, IC_SN);
-
-            List<object[]> list_contents = creat.Contents.ClassToSQL<inspectionClass.content,enum_驗收內容>();
+            current_creat = inspectionClass.creat_get_by_IC_SN(Main_Form.API_Server, IC_SN);
+            if(current_creat == null)
+            {
+                MyMessageBox.ShowDialog("查無資料");
+                return;
+            }
+            List<object[]> list_contents = current_creat.Contents.ClassToSQL<inspectionClass.content,enum_驗收內容>();
             sqL_DataGridView_驗收品項.RefreshGrid(list_contents);
 
         }

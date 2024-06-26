@@ -75,9 +75,7 @@ namespace 中藥調劑系統
                     System.Threading.Thread.Sleep(1500);
                     rJ_TextBox_帳號.SetPlcaeHolder("帳號", Color.DarkGray);
 
-                }));
-           
-             
+                }));                     
             }
             else
             {

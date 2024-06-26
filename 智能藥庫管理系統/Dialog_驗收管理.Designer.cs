@@ -168,7 +168,7 @@ namespace 智能藥庫系統
             this.rJ_Pannel2.Padding = new System.Windows.Forms.Padding(10, 10, 15, 10);
             this.rJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel2.ShadowSize = 3;
-            this.rJ_Pannel2.Size = new System.Drawing.Size(831, 860);
+            this.rJ_Pannel2.Size = new System.Drawing.Size(831, 850);
             this.rJ_Pannel2.TabIndex = 3;
             // 
             // sqL_DataGridView_驗收品項
@@ -208,7 +208,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_驗收品項.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_驗收品項.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_驗收品項.Server = "127.0.0.0";
-            this.sqL_DataGridView_驗收品項.Size = new System.Drawing.Size(806, 759);
+            this.sqL_DataGridView_驗收品項.Size = new System.Drawing.Size(806, 749);
             this.sqL_DataGridView_驗收品項.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_驗收品項.TabIndex = 10;
             this.sqL_DataGridView_驗收品項.UserName = "root";
@@ -263,7 +263,7 @@ namespace 智能藥庫系統
             this.rJ_Pannel3.Padding = new System.Windows.Forms.Padding(10, 10, 15, 10);
             this.rJ_Pannel3.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel3.ShadowSize = 3;
-            this.rJ_Pannel3.Size = new System.Drawing.Size(1051, 860);
+            this.rJ_Pannel3.Size = new System.Drawing.Size(1051, 850);
             this.rJ_Pannel3.TabIndex = 4;
             // 
             // panel2
@@ -409,7 +409,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_驗收明細.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_驗收明細.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_驗收明細.Server = "127.0.0.0";
-            this.sqL_DataGridView_驗收明細.Size = new System.Drawing.Size(1026, 672);
+            this.sqL_DataGridView_驗收明細.Size = new System.Drawing.Size(1026, 662);
             this.sqL_DataGridView_驗收明細.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_驗收明細.TabIndex = 11;
             this.sqL_DataGridView_驗收明細.UserName = "root";
@@ -438,7 +438,7 @@ namespace 智能藥庫系統
             this.Controls.Add(this.panel1);
             this.MinimizeBox = true;
             this.Name = "Dialog_驗收管理";
-            this.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.Padding = new System.Windows.Forms.Padding(5, 0, 5, 10);
             this.ShowInTaskbar = true;
             this.Text = "驗收管理";
             this.rJ_Pannel1.ResumeLayout(false);

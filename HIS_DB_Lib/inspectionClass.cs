@@ -427,6 +427,34 @@ namespace HIS_DB_Lib
             inspectionClass.sub_content sub_Content_out = returnData_out.Data.ObjToClass<inspectionClass.sub_content>();
             return sub_Content_out;
         }
+
+        static public void sub_content_update(string API_Server, inspectionClass.sub_content sub_Content)
+        {
+            List<inspectionClass.sub_content> sub_Contents = new List<sub_content>();
+            sub_Contents.Add(sub_Content);
+
+            sub_content_update(API_Server, sub_Contents);
+        }
+        static public void sub_content_update(string API_Server, List<inspectionClass.sub_content> sub_Contents)
+        {
+            string url = $"{API_Server}/api/inspection/sub_content_update";
+            returnData returnData = new returnData();
+            returnData.Data = sub_Contents;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return;
+            }
+            if (returnData_out.Data == null)
+            {
+                return;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+        }
+        
         static public void MergeData(creat original, creat compare)
         {
             // 处理 Contents
@@ -569,4 +597,39 @@ namespace HIS_DB_Lib
          
         }
     }
+    static public class inspectionMethod
+    {
+        static public inspectionClass.content Get_Content_By_GUID(this inspectionClass.creat creat, string GUID)
+        {
+            List<inspectionClass.content> contents = (from temp in creat.Contents
+                                                      where temp.GUID == GUID
+                                                      select temp).ToList();
+            if (contents.Count == 0) return null;
+            return contents[0];
+        }
+        static public inspectionClass.sub_content Get_SubContent_By_GUID(this inspectionClass.creat creat, string GUID)
+        {
+            for (int i = 0; i < creat.Contents.Count; i++)
+            {
+                for (int k = 0; k < creat.Contents[i].Sub_content.Count; k++)
+                {
+                    if (creat.Contents[i].Sub_content[k].GUID == GUID) return creat.Contents[i].Sub_content[k];
+                }
+            }
+            return null;
+        }
+        static public List<inspectionClass.sub_content> Get_SubContent_By_MasterGUID(this inspectionClass.creat creat, string Master_GUID)
+        {
+            List<inspectionClass.sub_content> sub_Contents = new List<inspectionClass.sub_content>();
+            for (int i = 0; i < creat.Contents.Count; i++)
+            {
+                for (int k = 0; k < creat.Contents[i].Sub_content.Count; k++)
+                {
+                    if (creat.Contents[i].Sub_content[k].Master_GUID == Master_GUID) sub_Contents.Add(creat.Contents[i].Sub_content[k]);
+                }
+            }
+            return sub_Contents;
+        }
+    }
+
 }

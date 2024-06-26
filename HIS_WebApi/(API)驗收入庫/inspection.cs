@@ -1618,6 +1618,65 @@ namespace HIS_WebApi
             return returnData.JsonSerializationt();
         }
         /// <summary>
+        /// 更新單筆驗收藥品中的明細
+        /// </summary>
+        /// <remarks>
+        /// [必要輸入參數說明]<br/> 
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    [
+        ///       {  
+        ///        "GUID": "fad3bbfcfa61",
+        ///        "Master_GUID": "13a6625b-b7b2-43b0-ba59-7c451a4912e0"
+        ///       }
+        ///    ]
+        ///  }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data] :sub_content資料結構 </returns>
+        [Route("sub_content_update")]
+        [HttpPost]
+        public string POST_sub_content_update([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無Server資料!";
+                return returnData.JsonSerializationt();
+            }
+            string Server = serverSettingClasses[0].Server;
+            string DB = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+            SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+            List<inspectionClass.sub_content> sub_Contents = returnData.Data.ObjToClass<List<inspectionClass.sub_content>>();
+            List<object[]> list_sub_Contents = sub_Contents.ClassToSQL<inspectionClass.sub_content, enum_驗收明細>();
+          
+
+
+            sQLControl_inspection_sub_content.UpdateByDefulteExtra(null, list_sub_Contents);
+
+    
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Result = $"更新批效成功,共{sQLControl_inspection_sub_content}筆資料";
+            returnData.Method = "sub_content_update";
+            return returnData.JsonSerializationt();
+        }
+        /// <summary>
         /// 以GUID刪除驗收藥品中的明細
         /// </summary>
         /// <remarks>
