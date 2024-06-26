@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using HIS_DB_Lib;
+using Basic;
+using MyUI;
+using SQLUI;
+using DrawingClass;
+using H_Pannel_lib;
+
+namespace 智能藥庫系統
+{
+    public partial class Dialog_驗收管理 : MyDialog
+    {
+        static public Dialog_驗收管理 myDialog;
+        static public Dialog_驗收管理 GetForm()
+        {
+            if (myDialog != null)
+            {
+                return myDialog;
+            }
+            else
+            {
+                myDialog = new Dialog_驗收管理();
+                return myDialog;
+            }
+        }
+
+        public Dialog_驗收管理()
+        {
+            form.Invoke(new Action(delegate { InitializeComponent(); }));
+            this.ShowDialogEvent += Dialog_驗收管理_ShowDialogEvent;
+            this.FormClosing += Dialog_驗收管理_FormClosing;
+            this.LoadFinishedEvent += Dialog_驗收管理_LoadFinishedEvent;
+            this.dateTimeIntervelPicker_報表日期.SureClick += DateTimeIntervelPicker_報表日期_SureClick;
+            this.comboBox_驗收單號.SelectedIndexChanged += ComboBox_驗收單號_SelectedIndexChanged;
+        }
+
+ 
+
+
+
+
+        #region Event
+        private void Dialog_驗收管理_LoadFinishedEvent(EventArgs e)
+        {
+            dateTimeIntervelPicker_報表日期.SetDateTime(DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
+            dateTimeIntervelPicker_報表日期.OnSureClick();
+
+            List<Table> tables = inspectionClass.Init(Main_Form.API_Server);
+            sqL_DataGridView_驗收品項.RowsHeight = 50;
+            sqL_DataGridView_驗收品項.Init(tables.GetTable(new enum_驗收內容()));
+            sqL_DataGridView_驗收品項.Set_ColumnVisible(false, new enum_驗收內容().GetEnumNames());
+            sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.料號);
+            sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品碼);
+            sqL_DataGridView_驗收品項.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品名稱);
+            sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.應收數量);
+
+            sqL_DataGridView_驗收品項.Set_ColumnText("藥碼", enum_驗收內容.藥品碼);
+            sqL_DataGridView_驗收品項.Set_ColumnText("藥名", enum_驗收內容.藥品名稱);
+
+
+            sqL_DataGridView_驗收明細.RowsHeight = 50;
+            sqL_DataGridView_驗收明細.Init(tables.GetTable(new enum_驗收明細()));
+            sqL_DataGridView_驗收明細.Set_ColumnVisible(false, new enum_驗收明細().GetEnumNames());
+            sqL_DataGridView_驗收明細.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收明細.實收數量);
+            sqL_DataGridView_驗收明細.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_驗收明細.效期);
+            sqL_DataGridView_驗收明細.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_驗收明細.批號);
+
+
+
+
+            sqL_DataGridView_驗收品項.RowEnterEvent += SqL_DataGridView_驗收品項_RowEnterEvent;
+
+
+        }
+
+    
+
+        private void Dialog_驗收管理_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            myDialog = null;
+        }
+        private void Dialog_驗收管理_ShowDialogEvent()
+        {
+            if (myDialog != null)
+            {
+                form.Invoke(new Action(delegate
+                {
+                    myDialog.WindowState = FormWindowState.Normal;
+                    myDialog.BringToFront();
+                    this.DialogResult = DialogResult.Cancel;
+                }));
+            }
+        }
+        private void SqL_DataGridView_驗收品項_RowEnterEvent(object[] RowValue)
+        {
+            string 藥碼 = RowValue[(int)enum_驗收內容.藥品碼].ObjectToString();
+            string 藥名 = RowValue[(int)enum_驗收內容.藥品名稱].ObjectToString();
+            string 料號 = RowValue[(int)enum_驗收內容.料號].ObjectToString();
+
+            rJ_Lable_藥碼.Text = $"藥碼 : {藥碼}";
+            rJ_Lable_藥名.Text = $"藥名 : {藥名}";
+            rJ_Lable_料號.Text = $"料號 : {料號}";
+        }
+        private void DateTimeIntervelPicker_報表日期_SureClick(object sender, EventArgs e, DateTime start, DateTime end)
+        {
+            List<inspectionClass.creat> creats = inspectionClass.creat_get_by_CT_TIME_ST_END(Main_Form.API_Server, dateTimeIntervelPicker_報表日期.StartTime, dateTimeIntervelPicker_報表日期.EndTime);
+
+            List<string> vs = (from temp in creats
+                               select temp.驗收單號).ToList();
+            comboBox_驗收單號.DataSource = vs;
+        }
+        private void ComboBox_驗收單號_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string IC_SN = this.comboBox_驗收單號.Text;
+            inspectionClass.creat creat = inspectionClass.creat_get_by_IC_SN(Main_Form.API_Server, IC_SN);
+
+            List<object[]> list_contents = creat.Contents.ClassToSQL<inspectionClass.content,enum_驗收內容>();
+            sqL_DataGridView_驗收品項.RefreshGrid(list_contents);
+
+        }
+        #endregion
+    }
+}

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
+using System.ComponentModel;
+using System.Reflection;
 namespace HIS_DB_Lib
 {
     public enum enum_驗收單匯入
@@ -24,49 +26,95 @@ namespace HIS_DB_Lib
         下單日期,
         請購發票年月
     }
+
+
+    [EnumDescription("inspection_creat")]
     public enum enum_驗收單號
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("驗收名稱,VARCHAR,200,NONE")]
         驗收名稱,
+        [Description("請購單號,VARCHAR,30,NONE")]
         請購單號,
+        [Description("驗收單號,VARCHAR,30,NONE")]
         驗收單號,
+        [Description("建表人,VARCHAR,30,NONE")]
         建表人,
+        [Description("建表時間,DATETIME,200,NONE")]
         建表時間,
+        [Description("驗收開始時間,DATETIME,200,NONE")]
         驗收開始時間,
+        [Description("驗收結束時間,DATETIME,200,NONE")]
         驗收結束時間,
+        [Description("驗收狀態,VARCHAR,30,NONE")]
         驗收狀態,
+        [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
+    [EnumDescription("inspection_content")]
     public enum enum_驗收內容
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("請購單號,VARCHAR,30,INDEX")]
         請購單號,
+        [Description("驗收單號,VARCHAR,30,INDEX")]
         驗收單號,
+        [Description("藥品碼,VARCHAR,20,INDEX")]
         藥品碼,
+        [Description("藥品名稱,VARCHAR,300,NONE")]
+        藥品名稱,
+        [Description("廠牌,VARCHAR,200,NONE")]
         廠牌,
+        [Description("料號,VARCHAR,30,INDEX")]
         料號,
+        [Description("藥品條碼1,VARCHAR,50,NONE")]
         藥品條碼1,
+        [Description("藥品條碼2,TEXT,50,NONE")]
         藥品條碼2,
+        [Description("應收數量,VARCHAR,10,NONE")]
         應收數量,
+        [Description("新增時間,DATETIME,50,INDEX")]
         新增時間,
+        [Description("備註,VARCHAR,200,NONE")]
         備註,
+
     }
+    [EnumDescription("inspection_sub_content")]
     public enum enum_驗收明細
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("驗收單號,VARCHAR,30,INDEX")]
         驗收單號,
+        [Description("藥品碼,VARCHAR,20,INDEX")]
         藥品碼,
+        [Description("藥品名稱,VARCHAR,300,NONE")]
+        藥品名稱,
+        [Description("料號,VARCHAR,30,INDEX")]
         料號,
+        [Description("藥品條碼1,VARCHAR,50,NONE")]
         藥品條碼1,
+        [Description("藥品條碼2,TEXT,50,NONE")]
         藥品條碼2,
+        [Description("實收數量,VARCHAR,10,NONE")]
         實收數量,
+        [Description("效期,DATETIME,50,NONE")]
         效期,
+        [Description("批號,VARCHAR,20,NONE")]
         批號,
+        [Description("操作時間,DATETIME,50,INDEX")]
         操作時間,
+        [Description("操作人,VARCHAR,50,NONE")]
         操作人,
+        [Description("狀態,VARCHAR,20,NONE")]
         狀態,
+        [Description("備註,VARCHAR,200,NONE")]
         備註
     }
     public class inspectionClass
@@ -194,6 +242,29 @@ namespace HIS_DB_Lib
             inspectionClass.creat creat_out = returnData_out.Data.ObjToClass<inspectionClass.creat>();
             return creat_out;
         }
+        static public inspectionClass.creat creat_update(string API_Server, inspectionClass.creat creat)
+        {
+            string url = $"{API_Server}/api/inspection/creat_update";
+            returnData returnData = new returnData();
+            returnData.Data = creat;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+
+            inspectionClass.creat creat_out = returnData_out.Data.ObjToClass<inspectionClass.creat>();
+            return creat_out;
+        }
+
+        
         static public void creat_lock_by_IC_SN(string API_Server, string IC_SN)
         {
             string url = $"{API_Server}/api/inspection/creat_lock_by_IC_SN";
@@ -355,6 +426,38 @@ namespace HIS_DB_Lib
 
             inspectionClass.sub_content sub_Content_out = returnData_out.Data.ObjToClass<inspectionClass.sub_content>();
             return sub_Content_out;
+        }
+        static public void MergeData(creat original, creat compare)
+        {
+            // 处理 Contents
+            foreach (var compareContent in compare.Contents)
+            {
+                var originalContent = original.Contents.FirstOrDefault(c => c.藥品碼 == compareContent.藥品碼);
+                if (originalContent == null)
+                {
+                    // 新增的内容
+                    original.Contents.Add(compareContent);
+                }
+                else
+                {
+                    // 处理 Sub_content
+                    foreach (var compareSubContent in compareContent.Sub_content)
+                    {
+                        var originalSubContent = originalContent.Sub_content.FirstOrDefault(s => s.備註 == compareSubContent.備註);
+                        if (originalSubContent == null)
+                        {
+                            // 新增的子内容
+                            originalContent.Sub_content.Add(compareSubContent);
+                        }
+                    }
+
+                    // 删除原始 Sub_content 中没有的内容
+                    originalContent.Sub_content.RemoveAll(s => !compareContent.Sub_content.Any(c => c.備註 == s.備註));
+                }
+            }
+
+            // 删除原始 Contents 中没有的内容
+            original.Contents.RemoveAll(c => !compare.Contents.Any(c2 => c2.藥品碼 == c.藥品碼));
         }
 
         public class creat

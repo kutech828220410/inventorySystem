@@ -229,6 +229,12 @@
     <Compile Include="Dialog_效期批號輸入.Designer.cs">
       <DependentUpon>Dialog_效期批號輸入.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_驗收管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_驗收管理.Designer.cs">
+      <DependentUpon>Dialog_驗收管理.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_效期批號輸入.resx">
       <DependentUpon>Dialog_效期批號輸入.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_驗收管理.resx">
+      <DependentUpon>Dialog_驗收管理.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>

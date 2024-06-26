@@ -440,11 +440,25 @@ namespace HIS_WebApi
                 SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
                 inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
-           
+                string IC_SN = "";
+                if (creat != null)
+                {
+                    IC_SN = creat.驗收單號;
+                }
+                if(IC_SN.StringIsEmpty())
+                {
+                    IC_SN = returnData.Value;
+                }
+                if(IC_SN.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"驗收單號空白";
+                    return returnData.JsonSerializationt();
+                }
                 sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_inspection_creat = sQLControl_inspection_creat.GetAllRows(null);
-                list_inspection_creat = list_inspection_creat.GetRows((int)enum_驗收單號.驗收單號, returnData.Value);
+                list_inspection_creat = list_inspection_creat.GetRows((int)enum_驗收單號.驗收單號, IC_SN);
                 if (list_inspection_creat.Count == 0)
                 {
                     returnData.Code = -5;
@@ -630,6 +644,158 @@ namespace HIS_WebApi
             returnData.Method = "creat_add";
 
             returnData.Result = $"成功加入新驗收單! 共{list_inspection_content_add.Count}筆資料";
+            return returnData.JsonSerializationt(true);
+        }
+        /// <summary>
+        /// 更新驗收單
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///  {
+        ///    "Data": 
+        ///    {                 
+        ///        "IC_NAME": "測試驗收",
+        ///        "IC_SN": "Q202230101-測試驗收單",
+        ///        "CT": "",
+        ///        "NOTE": "",
+        ///        "Contents": 
+        ///         [
+        ///            {
+        ///                "CODE": "220302IHYA",
+        ///                "SKDIACODE": "",
+        ///                "CHT_NAME": "Hyaluronate Sodium",
+        ///                "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+        ///                "PAKAGE": "Syri",
+        ///                "BARCODE1": "",
+        ///                "BARCODE2": "[]",
+        ///                "START_QTY": "0",
+        ///                "END_QTY": "0",
+        ///                "ADD_TIME": "2023/10/30 20:41:53",
+        ///                "NOTE": "",
+        ///                "Sub_content": []
+        ///            },
+        ///            {
+        ///                "CODE": "220IHYA",
+        ///                "SKDIACODE": "",
+        ///                "CHT_NAME": "Hyaluronate Sodium",
+        ///                "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+        ///                "PAKAGE": "",
+        ///                "BARCODE1": "",
+        ///                "BARCODE2": "[]",
+        ///                "START_QTY": "0",
+        ///                "END_QTY": "0",
+        ///                "ADD_TIME": "2023/10/30 20:41:53",
+        ///                "NOTE": "",
+        ///                "Sub_content": []
+        ///             }
+        ///         ]       
+        ///     }
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為驗收單結構</returns>
+        [Route("creat_update")]
+        [HttpPost]
+        public string POST_creat_update([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+            serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+            if (serverSettingClasses.Count == 0)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"找無Server資料!";
+                return returnData.JsonSerializationt();
+            }
+            string Server = serverSettingClasses[0].Server;
+            string DB = serverSettingClasses[0].DBName;
+            string UserName = serverSettingClasses[0].User;
+            string Password = serverSettingClasses[0].Password;
+            uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+            SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
+            SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
+            inspectionClass.creat creat = returnData.Data.ObjToClass<inspectionClass.creat>();
+
+
+
+            sQLControl_inspection_creat.DeleteByDefult(null, (int)enum_驗收單號.驗收單號, creat.驗收單號);
+            sQLControl_inspection_content.DeleteByDefult(null, (int)enum_驗收內容.驗收單號, creat.驗收單號);
+            sQLControl_inspection_sub_content.DeleteByDefult(null, (int)enum_驗收明細.驗收單號, creat.驗收單號);
+            if (creat == null)
+            {
+                returnData.Code = -200;
+                returnData.Result += $"Data 資料錯誤 \n";
+                return returnData.JsonSerializationt();
+            }
+
+    
+            if (creat.驗收單號.StringIsEmpty())
+            {
+                string IC_SN_json = GET_new_IC_SN(returnData);
+                returnData returnData_IC_SN = IC_SN_json.JsonDeserializet<returnData>();
+                creat.驗收單號 = returnData_IC_SN.Value;
+            }
+
+            creat.GUID = Guid.NewGuid().ToString();
+            creat.建表時間 = DateTime.Now.ToDateTimeString();
+            creat.驗收開始時間 = DateTime.MaxValue.ToDateTimeString();
+            creat.驗收結束時間 = DateTime.MaxValue.ToDateTimeString();
+            creat.驗收狀態 = "等待驗收";
+            List<object[]> list_inspection_creat_add = new List<object[]>();
+            List<object[]> list_inspection_content_add = new List<object[]>();
+            List<object[]> list_inspection_sub_content_add = new List<object[]>();
+            object[] value;
+            value = new object[new enum_驗收單號().GetLength()];
+
+            value = creat.ClassToSQL<inspectionClass.creat, enum_驗收單號>();
+            list_inspection_creat_add.Add(value);
+
+
+
+            for (int i = 0; i < creat.Contents.Count; i++)
+            {
+                creat.Contents[i].GUID = Guid.NewGuid().ToString();
+                creat.Contents[i].新增時間 = DateTime.Now.ToDateTimeString();
+                creat.Contents[i].Master_GUID = creat.GUID;
+                creat.Contents[i].驗收單號 = creat.驗收單號;
+
+
+                value = new object[new enum_驗收內容().GetLength()];
+                value = creat.Contents[i].ClassToSQL<inspectionClass.content, enum_驗收內容>();
+                list_inspection_content_add.Add(value);
+
+                if (creat.Contents[i].Sub_content != null)
+                {
+                    for (int k = 0; k < creat.Contents[i].Sub_content.Count; k++)
+                    {
+                        creat.Contents[i].Sub_content[k].GUID = Guid.NewGuid().ToString();
+                        creat.Contents[i].Sub_content[k].Master_GUID = creat.Contents[i].GUID;
+                        creat.Contents[i].Sub_content[k].操作時間 = DateTime.Now.ToDateTimeString_6();
+                        creat.Contents[i].Sub_content[k].藥品碼 = creat.Contents[i].藥品碼;
+                        creat.Contents[i].Sub_content[k].藥品名稱 = creat.Contents[i].藥品名稱;
+                        creat.Contents[i].Sub_content[k].中文名稱 = creat.Contents[i].中文名稱;
+                        creat.Contents[i].Sub_content[k].驗收單號 = creat.Contents[i].驗收單號;
+                        value = creat.Contents[i].Sub_content[k].ClassToSQL<inspectionClass.sub_content, enum_驗收明細>();
+
+                        list_inspection_sub_content_add.Add(value);
+                    }
+                }
+
+            }
+            sQLControl_inspection_creat.AddRows(null, list_inspection_creat_add);
+            sQLControl_inspection_content.AddRows(null, list_inspection_content_add);
+            sQLControl_inspection_sub_content.AddRows(null, list_inspection_sub_content_add);
+            returnData.Data = creat;
+            returnData.Code = 200;
+            returnData.TimeTaken = myTimer.ToString();
+            returnData.Method = "creat_update";
+
+            returnData.Result = $"成功更新驗收單! 共{list_inspection_content_add.Count}筆資料";
             return returnData.JsonSerializationt(true);
         }
         /// <summary>
@@ -1878,73 +2044,10 @@ namespace HIS_WebApi
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
-
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-            SQLControl sQLControl_inspection_creat = new SQLControl(Server, DB, "inspection_creat", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inspection_content = new SQLControl(Server, DB, "inspection_content", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inspection_sub_content = new SQLControl(Server, DB, "inspection_sub_content", UserName, Password, Port, SSLMode);
-
             List<Table> tables = new List<Table>();
-            Table table_inspection_creat;
-            table_inspection_creat = new Table("inspection_creat");
-            table_inspection_creat.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inspection_creat.AddColumnList("驗收名稱", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table_inspection_creat.AddColumnList("請購單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inspection_creat.AddColumnList("驗收單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inspection_creat.AddColumnList("建表人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inspection_creat.AddColumnList("建表時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table_inspection_creat.AddColumnList("驗收開始時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table_inspection_creat.AddColumnList("驗收結束時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table_inspection_creat.AddColumnList("驗收狀態", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inspection_creat.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            if (!sQLControl_inspection_creat.IsTableCreat()) sQLControl_inspection_creat.CreatTable(table_inspection_creat);
-            else sQLControl_inspection_creat.CheckAllColumnName(table_inspection_creat, true);
-            tables.Add(table_inspection_creat);
-
-            Table table_inspection_content;
-            table_inspection_content = new Table("inspection_content");
-            table_inspection_content.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inspection_content.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table_inspection_content.AddColumnList("請購單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inspection_content.AddColumnList("驗收單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inspection_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inspection_content.AddColumnList("廠牌", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table_inspection_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inspection_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inspection_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
-            table_inspection_content.AddColumnList("應收數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table_inspection_content.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
-            table_inspection_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            if (!sQLControl_inspection_content.IsTableCreat()) sQLControl_inspection_content.CreatTable(table_inspection_content);
-            else sQLControl_inspection_content.CheckAllColumnName(table_inspection_content, true);
-            tables.Add(table_inspection_content);
-
-            Table table_inspection_sub_content;
-            table_inspection_sub_content = new Table("inspection_sub_content");
-            table_inspection_sub_content.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inspection_sub_content.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table_inspection_sub_content.AddColumnList("驗收單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inspection_sub_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inspection_sub_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inspection_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inspection_sub_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
-            table_inspection_sub_content.AddColumnList("實收數量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table_inspection_sub_content.AddColumnList("效期", Table.DateType.DATETIME, 30, Table.IndexType.None);
-            table_inspection_sub_content.AddColumnList("批號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table_inspection_sub_content.AddColumnList("操作時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
-            table_inspection_sub_content.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inspection_sub_content.AddColumnList("狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table_inspection_sub_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-
-            if (!sQLControl_inspection_sub_content.IsTableCreat()) sQLControl_inspection_sub_content.CreatTable(table_inspection_sub_content);
-            else sQLControl_inspection_sub_content.CheckAllColumnName(table_inspection_sub_content, true);
-            tables.Add(table_inspection_sub_content);
-
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_驗收單號()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_驗收內容()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_驗收明細()));
             return tables.JsonSerializationt(true);
 
         }

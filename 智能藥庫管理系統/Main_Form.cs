@@ -166,9 +166,10 @@ namespace 智能藥庫系統
 
             this.plC_RJ_Button_庫存查詢.MouseDownEvent += PlC_RJ_Button_庫存查詢_MouseDownEvent;
             this.plC_RJ_Button_儲位管理.MouseDownEvent += PlC_RJ_Button_儲位管理_MouseDownEvent;
+            this.plC_RJ_Button_驗收管理.MouseDownEvent += PlC_RJ_Button_驗收管理_MouseDownEvent;
         }
 
-     
+
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
@@ -207,81 +208,25 @@ namespace 智能藥庫系統
                 dialog_儲位管理.ShowChildForm(panel_MainForm);
             }));
 
-            //this.Invoke(new Action(delegate
-            //{
-            //    ChildForm childForm = new ChildForm();
-            //    childForm.TopLevel = false;
-            //    childForm.FormBorderStyle = FormBorderStyle.FixedDialog;
-            //    childForm.StartPosition = FormStartPosition.CenterParent;
-            //    childForm.Dock = DockStyle.None;
-            //    // 禁用父窗口
-
-            //    // 处理子窗口的关闭事件
-            //    childForm.FormClosed += (s, args) =>
-            //    {
-            //        panel_MainForm.Controls.Remove(childForm);
-            //    };
-
-            //    // 将子窗口添加到Panel中并显示
-            //    panel_MainForm.Controls.Add(childForm);
-            //    childForm.BringToFront();
-            //    childForm.Show();
-            //}));
-           
-
-            //dialog_儲位管理.ShowDialog();
         }
-
-        public class ChildForm : Form
-        {
-            private Button buttonClose;
-
-            public ChildForm()
-            {
-                InitializeComponent();
-            }
-
-            private void InitializeComponent()
-            {
-                this.buttonClose = new System.Windows.Forms.Button();
-                this.SuspendLayout();
-
-                // 
-                // buttonClose
-                // 
-                this.buttonClose.Dock = System.Windows.Forms.DockStyle.Bottom;
-                this.buttonClose.Location = new System.Drawing.Point(0, 420);
-                this.buttonClose.Name = "buttonClose";
-                this.buttonClose.Size = new System.Drawing.Size(800, 30);
-                this.buttonClose.TabIndex = 0;
-                this.buttonClose.Text = "Close";
-                this.buttonClose.UseVisualStyleBackColor = true;
-                this.buttonClose.Click += new System.EventHandler(this.ButtonClose_Click);
-
-                // 
-                // ChildForm
-                // 
-                this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-                this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-                this.ClientSize = new System.Drawing.Size(800, 450);
-                this.Controls.Add(this.buttonClose);
-                this.Name = "ChildForm";
-                this.Text = "Child Form";
-                this.ResumeLayout(false);
-            }
-
-            private void ButtonClose_Click(object sender, EventArgs e)
-            {
-                this.Close();
-            }
-        }
-
-
         private void PlC_RJ_Button_庫存查詢_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_庫存查詢 dialog_庫存查詢 = new Dialog_庫存查詢();
-            dialog_庫存查詢.ShowDialog();
+            Dialog_庫存查詢 dialog_庫存查詢 = Dialog_庫存查詢.GetForm();
+            this.Invoke(new Action(delegate
+            {
+                dialog_庫存查詢.ShowChildForm(panel_MainForm);
+            }));
         }
+        private void PlC_RJ_Button_驗收管理_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_驗收管理 dialog_驗收管理 = Dialog_驗收管理.GetForm();
+            this.Invoke(new Action(delegate
+            {
+                dialog_驗收管理.ShowChildForm(panel_MainForm);
+            }));
+        }
+
+
 
         private void ApiServerSetting(string Name)
         {

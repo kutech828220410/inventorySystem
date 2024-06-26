@@ -4418,6 +4418,58 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為驗收單結構</returns>
         </member>
+        <member name="M:HIS_WebApi.inspectionController.POST_creat_update(HIS_DB_Lib.returnData)">
+            <summary>
+            更新驗收單
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+             {
+               "Data": 
+               {                 
+                   "IC_NAME": "測試驗收",
+                   "IC_SN": "Q202230101-測試驗收單",
+                   "CT": "",
+                   "NOTE": "",
+                   "Contents": 
+                    [
+                       {
+                           "CODE": "220302IHYA",
+                           "SKDIACODE": "",
+                           "CHT_NAME": "Hyaluronate Sodium",
+                           "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+                           "PAKAGE": "Syri",
+                           "BARCODE1": "",
+                           "BARCODE2": "[]",
+                           "START_QTY": "0",
+                           "END_QTY": "0",
+                           "ADD_TIME": "2023/10/30 20:41:53",
+                           "NOTE": "",
+                           "Sub_content": []
+                       },
+                       {
+                           "CODE": "220IHYA",
+                           "SKDIACODE": "",
+                           "CHT_NAME": "Hyaluronate Sodium",
+                           "NAME": "(申報)Hyalgan膝爾康 關節腔注射劑",
+                           "PAKAGE": "",
+                           "BARCODE1": "",
+                           "BARCODE2": "[]",
+                           "START_QTY": "0",
+                           "END_QTY": "0",
+                           "ADD_TIME": "2023/10/30 20:41:53",
+                           "NOTE": "",
+                           "Sub_content": []
+                        }
+                    ]       
+                }
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為驗收單結構</returns>
+        </member>
         <member name="M:HIS_WebApi.inspectionController.POST_creat_auto_add(HIS_DB_Lib.returnData)">
             <summary>
             創建驗收單(自動填入驗收單號)

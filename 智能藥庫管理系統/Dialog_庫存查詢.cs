@@ -64,17 +64,24 @@ namespace 智能藥庫系統
             [Description("庫存,VARCHAR,15,NONE")]
             庫存,
         }
-
+        static public Dialog_庫存查詢 myDialog;
+        static public Dialog_庫存查詢 GetForm()
+        {
+            if (myDialog != null)
+            {
+                return myDialog;
+            }
+            else
+            {
+                myDialog = new Dialog_庫存查詢();
+                return myDialog;
+            }
+        }
         public Dialog_庫存查詢()
         {
             form.Invoke(new Action(delegate { InitializeComponent(); }));
 
             Reflection.MakeDoubleBuffered(this, true);
-
-            this.TopLevel = true;
-            this.TopMost = false;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.CanResize = true;
 
             this.Load += Dialog_庫存查詢_Load;
             this.FormClosing += Dialog_庫存查詢_FormClosing;
@@ -531,15 +538,24 @@ namespace 智能藥庫系統
         }
         private void Dialog_庫存查詢_ShowDialogEvent()
         {
-            if (IsShown)
+            if (myDialog != null)
             {
-                MyDialog.BringDialogToFront(this.Text);
-                this.DialogResult = DialogResult.Cancel;
+                form.Invoke(new Action(delegate
+                {
+                    myDialog.WindowState = FormWindowState.Normal;
+                    myDialog.BringToFront();
+                    this.DialogResult = DialogResult.Cancel;
+                }));
             }
+            //if (IsShown)
+            //{
+            //    MyDialog.BringDialogToFront(this.Text);
+            //    this.DialogResult = DialogResult.Cancel;
+            //}
         }
         private void Dialog_庫存查詢_FormClosing(object sender, FormClosingEventArgs e)
         {
-            IsShown = false;
+            myDialog = null;
         }
         private void PlC_RJ_Button_匯出_MouseDownEvent(MouseEventArgs mevent)
         {

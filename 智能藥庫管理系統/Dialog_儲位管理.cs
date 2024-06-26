@@ -34,7 +34,6 @@ namespace 智能藥庫系統
             區域,
         }
         public static bool IsShown = false;
-
         static public Dialog_儲位管理 myDialog;
         static public Dialog_儲位管理 GetForm()
         {
@@ -60,7 +59,6 @@ namespace 智能藥庫系統
             this.ShowDialogEvent += Dialog_儲位管理_ShowDialogEvent;
             this.FormClosing += Dialog_儲位管理_FormClosing;
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.MouseDownEvent += RJ_Button_儲架電子紙_藥品資料_搜尋_MouseDownEvent;
-
             this.rJ_Button_儲架電子紙_面板亮燈.MouseDownEvent += RJ_Button_儲架電子紙_面板亮燈_MouseDownEvent;
 
 
@@ -94,25 +92,24 @@ namespace 智能藥庫系統
         #region Event
         private void Dialog_儲位管理_ShowDialogEvent()
         {
-            if (IsShown)
+            if (myDialog != null)
             {
-                this.Invoke(new Action(delegate
+                form.Invoke(new Action(delegate
                 {
                     myDialog.WindowState = FormWindowState.Normal;
                     myDialog.BringToFront();
                     this.DialogResult = DialogResult.Cancel;
                 }));
-
             }
+
+          
         }
         private void Dialog_儲位管理_FormClosing(object sender, FormClosingEventArgs e)
         {
             myDialog = null;
-            IsShown = false;
         }
         private void Dialog_儲位管理_LoadFinishedEvent(EventArgs e)
         {
-            IsShown = true;
             this.Refresh();
         }
         private void SqL_DataGridView_儲架電子紙_藥品資料_RowDoubleClickEvent(object[] RowValue)
@@ -129,7 +126,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_儲架電子紙_藥品資料.RowsHeight = 40;
             this.sqL_DataGridView_儲架電子紙_藥品資料.Init(table_藥品資料);
             this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品碼);
             this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
             this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
             this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
