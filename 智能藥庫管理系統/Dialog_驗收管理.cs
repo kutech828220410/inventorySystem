@@ -43,13 +43,18 @@ namespace 智能藥庫系統
             this.rJ_Button_驗收明細_新增.MouseDownEvent += RJ_Button_驗收明細_新增_MouseDownEvent;
             this.rJ_Button_驗收明細_刪除.MouseDownEvent += RJ_Button_驗收明細_刪除_MouseDownEvent;
             this.rJ_Button_驗收明細_修改.MouseDownEvent += RJ_Button_驗收明細_修改_MouseDownEvent;
+            this.rJ_Button_驗收明細_輸入數量.MouseDownEvent += RJ_Button_驗收明細_輸入數量_MouseDownEvent;
+            this.rJ_Button_驗收明細_確認入庫.MouseDownEvent += RJ_Button_驗收明細_確認入庫_MouseDownEvent;
+
             this.rJ_Button_驗收單_讀取.MouseDownEvent += RJ_Button_驗收單_讀取_MouseDownEvent;
 
             this.dateTimeIntervelPicker_報表日期.SureClick += DateTimeIntervelPicker_報表日期_SureClick;
             this.comboBox_驗收單號.SelectedIndexChanged += ComboBox_驗收單號_SelectedIndexChanged;
         }
 
-   
+  
+
+
 
 
         #region Event
@@ -65,7 +70,8 @@ namespace 智能藥庫系統
             sqL_DataGridView_驗收品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.料號);
             sqL_DataGridView_驗收品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品碼);
             sqL_DataGridView_驗收品項.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品名稱);
-            sqL_DataGridView_驗收品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.應收數量);
+            sqL_DataGridView_驗收品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.應收數量);
+            sqL_DataGridView_驗收品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_驗收內容.贈品註記);
             sqL_DataGridView_驗收品項.RowEnterEvent += SqL_DataGridView_驗收品項_RowEnterEvent;
 
             sqL_DataGridView_驗收品項.Set_ColumnText("藥碼", enum_驗收內容.藥品碼);
@@ -112,11 +118,12 @@ namespace 智能藥庫系統
             string 藥碼 = RowValue[(int)enum_驗收內容.藥品碼].ObjectToString();
             string 藥名 = RowValue[(int)enum_驗收內容.藥品名稱].ObjectToString();
             string 料號 = RowValue[(int)enum_驗收內容.料號].ObjectToString();
+            string 驗收單號 = RowValue[(int)enum_驗收內容.驗收單號].ObjectToString();
 
             rJ_Lable_藥碼.Text = $"藥碼 : {藥碼}";
             rJ_Lable_藥名.Text = $"藥名 : {藥名}";
             rJ_Lable_料號.Text = $"料號 : {料號}";
-
+            rJ_Lable_驗收單號.Text = $"驗收單號 : {驗收單號}";
             if (current_creat != null)
             {
                 List<inspectionClass.sub_content> sub_Contents = current_creat.Get_SubContent_By_MasterGUID(GUID);
@@ -127,6 +134,14 @@ namespace 智能藥庫系統
         }
         private void DateTimeIntervelPicker_報表日期_SureClick(object sender, EventArgs e, DateTime start, DateTime end)
         {
+            ServerSettingClass serverSettingClass = ServerSettingClass.get_server(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, "API_inspection_refresh");
+            if (serverSettingClass != null)
+            {
+                if (serverSettingClass.Server.StringIsEmpty() == false)
+                {
+                    string json = Basic.Net.WEBApiPostJson(serverSettingClass.Server, new returnData().JsonSerializationt());
+                }
+            }
             List<inspectionClass.creat> creats = inspectionClass.creat_get_by_CT_TIME_ST_END(Main_Form.API_Server, dateTimeIntervelPicker_報表日期.StartTime, dateTimeIntervelPicker_報表日期.EndTime);
 
             List<string> vs = (from temp in creats
@@ -135,7 +150,7 @@ namespace 智能藥庫系統
         }
         private void ComboBox_驗收單號_SelectedIndexChanged(object sender, EventArgs e)
         {
-     
+         
 
         }
         private void RJ_Button_驗收單_讀取_MouseDownEvent(MouseEventArgs mevent)
@@ -143,6 +158,15 @@ namespace 智能藥庫系統
             try
             {
                 LoadingForm.ShowLoadingForm();
+
+                ServerSettingClass serverSettingClass = ServerSettingClass.get_server(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, "API_inspection_refresh");
+                if (serverSettingClass != null)
+                {
+                    if (serverSettingClass.Server.StringIsEmpty() == false)
+                    {
+                        string json = Basic.Net.WEBApiPostJson(serverSettingClass.Server, new returnData().JsonSerializationt());
+                    }
+                }
                 string IC_SN = "";
                 this.Invoke(new Action(delegate
                 {
@@ -156,6 +180,7 @@ namespace 智能藥庫系統
                 }
                 List<object[]> list_contents = current_creat.Contents.ClassToSQL<inspectionClass.content, enum_驗收內容>();
                 sqL_DataGridView_驗收品項.RefreshGrid(list_contents);
+                sqL_DataGridView_驗收明細.ClearGrid();
             }
             catch
             {
@@ -220,7 +245,7 @@ namespace 智能藥庫系統
             List<object[]> list_驗收明細 = sqL_DataGridView_驗收明細.Get_All_Select_RowsValues();
             if (list_驗收明細.Count == 0)
             {
-                MyMessageBox.ShowDialog("未選取驗收品項");
+                MyMessageBox.ShowDialog("未選取驗收資料");
                 return;
             }
             DateTime dateTime;
@@ -237,6 +262,36 @@ namespace 智能藥庫系統
             list_驗收明細[0][(int)enum_驗收明細.批號] = dialog_效期批號數量輸入.批號;
             list_驗收明細[0][(int)enum_驗收明細.實收數量] = dialog_效期批號數量輸入.數量;
 
+            inspectionClass.sub_content sub_Content = list_驗收明細[0].SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
+            if (sub_Content != null)
+            {
+                inspectionClass.sub_content_update(Main_Form.API_Server, sub_Content);
+            }
+            sqL_DataGridView_驗收明細.ReplaceExtra(list_驗收明細[0], true);
+        }
+        private void RJ_Button_驗收明細_確認入庫_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_驗收內容 = sqL_DataGridView_驗收品項.Get_All_Select_RowsValues();
+            if (list_驗收內容.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取驗收資料");
+                return;
+            }
+            inspectionClass.content content = list_驗收內容[0].SQLToClass<inspectionClass.content, enum_驗收內容>();
+            string json = content.JsonSerializationt();
+
+        }
+        private void RJ_Button_驗收明細_輸入數量_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_驗收明細 = sqL_DataGridView_驗收明細.Get_All_Select_RowsValues();
+            if (list_驗收明細.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取驗收資料");
+                return;
+            }
+            Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
+            if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
+            list_驗收明細[0][(int)enum_驗收明細.實收數量] = dialog_NumPannel.Value;
             inspectionClass.sub_content sub_Content = list_驗收明細[0].SQLToClass<inspectionClass.sub_content, enum_驗收明細>();
             if (sub_Content != null)
             {

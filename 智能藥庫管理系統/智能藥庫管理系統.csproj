@@ -241,6 +241,9 @@
     <Compile Include="Dialog_驗收管理.Designer.cs">
       <DependentUpon>Dialog_驗收管理.cs</DependentUpon>
     </Compile>
+    <Compile Include="Function.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,7 +251,16 @@
       <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Program_交易紀錄查詢.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_取藥堆疊資料.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_系統.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_藥品區域.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

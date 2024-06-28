@@ -767,7 +767,7 @@
         </member>
         <member name="M:HIS_WebApi.drugStotreDistribution.POST_init(HIS_DB_Lib.returnData)">
             <summary>
-            初始化紀錄資料庫
+            初始化撥補紀錄資料庫
             </summary>
             <remarks>
             以下為範例JSON範例
@@ -2931,6 +2931,48 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         </member>
+        <member name="M:HIS_WebApi.deviceController.POST_light_on_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥碼進行亮燈
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName": "ds01",
+                "ServerType": "藥庫",
+                "ValueAry" : 
+                [
+                  [藥碼1,藥碼2....],
+                  [顏色]
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        </member>
+        <member name="M:HIS_WebApi.drugStotreArea.POST_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "ds01",
+                "ServerType" : "藥庫",
+                "Data": 
+                {
+             
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.OutTakeMedController.POST_set_device_tradding(HIS_DB_Lib.returnData)">
             <summary>
             設定扣帳資訊
@@ -3096,6 +3138,30 @@
                 "ValueAry" : 
                 [
                   
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ServerSettingController.POST_get_server(HIS_DB_Lib.returnData)">
+            <summary>
+            取得VM伺服器資訊
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                  [名稱(ds01)],
+                  [類別(藥庫)],
+                  [內容(一般資料)]
                 ]
               }
             </code>
@@ -3748,6 +3814,29 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.MED_pageController.update_ds_pharma_med_from_medcloud(HIS_DB_Lib.returnData)">
+             <summary>
+             從線上藥檔更新藥庫系統的藥局藥檔資料
+             </summary>
+             <remarks>
+             以下為範例JSON範例
+             <code>
+             {
+                 "ServerName" : "ds01",
+                 "Data": 
+                 {
+                    
+                 },
+                 "ValueAry" : 
+                 [
+            
+                 ]
+                 
+             }
+             </code>
+             </remarks>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.MED_pageController.POST_get_ds_pharma_med(HIS_DB_Lib.returnData)">
              <summary>
              取得藥庫系統的藥局藥檔資料
@@ -3792,6 +3881,29 @@
             </code>
             </remarks>
             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.update_ds_drugstore_med_from_medcloud(HIS_DB_Lib.returnData)">
+             <summary>
+             從線上藥檔更新藥庫系統的藥庫藥檔資料
+             </summary>
+             <remarks>
+             以下為範例JSON範例
+             <code>
+             {
+                 "ServerName" : "ds01",
+                 "Data": 
+                 {
+                    
+                 },
+                 "ValueAry" : 
+                 [
+            
+                 ]
+                 
+             }
+             </code>
+             </remarks>
+             <returns></returns>
         </member>
         <member name="M:HIS_WebApi.MED_pageController.POST_get_ds_drugstore_med(HIS_DB_Lib.returnData)">
              <summary>

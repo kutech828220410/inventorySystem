@@ -271,7 +271,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Releas
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\System.Text.Json.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\System.Threading.Tasks.Extensions.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\System.ValueTuple.xml
-C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.AssemblyReference.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_新增.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_網頁.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_更新資訊.resources
@@ -855,3 +854,4 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\Ser
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Basic.xml
 C:\Users\pacsuser\Source\Repos\inventorySystem\ServerSettingForm\bin\Release\Basic.xml
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\bin\Release\Microsoft.mshtml.dll
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.AssemblyReference.cache

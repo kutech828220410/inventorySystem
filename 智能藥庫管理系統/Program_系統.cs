@@ -30,7 +30,6 @@ namespace 智能藥庫系統
 
         private void Program_系統_Init()
         {
-            storageUI_EPD_266.Init();
             plC_UI_Init.Add_Method(Program_系統);
         }
         private void Program_系統()

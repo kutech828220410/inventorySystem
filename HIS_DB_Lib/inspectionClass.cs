@@ -79,6 +79,12 @@ namespace HIS_DB_Lib
         應收數量,
         [Description("新增時間,DATETIME,50,INDEX")]
         新增時間,
+        [Description("編號,VARCHAR,10,NONE")]
+        編號,
+        [Description("贈品註記,VARCHAR,10,NONE")]
+        贈品註記,
+        [Description("API回寫註記,VARCHAR,100,NONE")]
+        API回寫註記,
         [Description("備註,VARCHAR,200,NONE")]
         備註,
 
@@ -483,6 +489,10 @@ namespace HIS_DB_Lib
         }
      
 
+        static public void dbvm_refresh()
+        {
+        }
+
         static public void MergeData(creat original, creat compare)
         {
             // 处理 Contents
@@ -575,6 +585,12 @@ namespace HIS_DB_Lib
             public string 實收數量 { get; set; }
             [JsonPropertyName("ADD_TIME")]
             public string 新增時間 { get; set; }
+            [JsonPropertyName("SEQ")]
+            public string 編號 { get; set; }
+            [JsonPropertyName("FREE_CHARGE_FLAG")]
+            public string 贈品註記 { get; set; }
+            [JsonPropertyName("API_RETURN_NOTE")]
+            public string API回寫註記 { get; set; }
             [JsonPropertyName("NOTE")]
             public string 備註 { get; set; }
 

@@ -2125,22 +2125,145 @@ namespace HIS_WebApi
             }
         }
 
+        /// <summary>
+        /// 以藥碼進行亮燈
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName": "ds01",
+        ///     "ServerType": "藥庫",
+        ///     "ValueAry" : 
+        ///     [
+        ///       [藥碼1,藥碼2....],
+        ///       [顏色]
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        [Route("light_on_by_code")]
+        [HttpPost]
+        public string POST_light_on_by_code(returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "light_on_by_code";
+            try
+            {
+                List<object[]> list_add = new List<object[]>();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                List<ServerSettingClass> serverSettingClasses_buf = new List<ServerSettingClass>();
+                ServerSettingClass serverSettingClass_儲位資料 = null;
+                ServerSettingClass serverSettingClass_堆疊資料 = null;
+                serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "儲位資料");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                serverSettingClass_儲位資料 = serverSettingClasses_buf[0];
+
+                serverSettingClasses_buf = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                serverSettingClass_堆疊資料 = serverSettingClasses_buf[0];
+
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼1,藥碼2....][顏色]";
+                    return returnData.JsonSerializationt(true);
+                }
+                
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                List<Task> tasks = new List<Task>();
+                string str_codes = returnData.ValueAry[0];
+                string str_color = returnData.ValueAry[1];
+
+                string Server = serverSettingClass_儲位資料.Server;
+                string DB = serverSettingClass_儲位資料.DBName;
+                string UserName = serverSettingClass_儲位資料.User;
+                string Password = serverSettingClass_儲位資料.Password;
+                uint Port = (uint)serverSettingClass_儲位資料.Port.StringToInt32();
+
+                string[] codes = str_codes.Split(",");
+
+                if (codes.Length == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入資料無可用藥碼";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<DeviceBasic> storages_epd266 = new List<DeviceBasic>();
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    SQLControl sQLControl_device = new SQLControl(Server, DB, "epd266_jsonstring", UserName, Password, Port, SSLMode);
+                    List<Storage> storages_buf = new List<Storage>();
+                    List<object[]> list_value = sQLControl_device.GetAllRows(null);
+                    for (int i = 0; i < codes.Length; i++)
+                    {
+                        storages_buf = StorageMethod.SQL_GetStorageByCode(list_value, codes[i]);
+                        foreach(DeviceBasic deviceBasic in storages_buf)
+                        {
+                            storages_epd266.Add(deviceBasic);
+                        }                     
+                    }
+                })));
+
+                Task.WhenAll(tasks).Wait();
+
+                Color color = str_color.ToColor();
+                List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
+                deviceBasics.LockAdd(storages_epd266);
+                for (int i = 0; i < deviceBasics.Count; i++)
+                {
+                    string IP = deviceBasics[i].IP;
+                    object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
+                    value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_取藥堆疊母資料.顏色] = color.ToColorString();
+                    value[(int)enum_取藥堆疊母資料.IP] = IP;
+                    value[(int)enum_取藥堆疊母資料.藥品碼] = deviceBasics[i].Code;
+                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "更新亮燈";
+                    list_add.Add(value);
+                }
+                SQLControl sQLControl_take_medicine_stack_new = new SQLControl(serverSettingClass_堆疊資料.Server, serverSettingClass_堆疊資料.DBName, "take_medicine_stack_new", 
+                    serverSettingClass_堆疊資料.User, serverSettingClass_堆疊資料.Password, serverSettingClass_堆疊資料.Port.StringToUInt32(), SSLMode);
+
+                sQLControl_take_medicine_stack_new.AddRows(null, list_add);
+
+                returnData.Code = 200;
+                returnData.Result = $"設備更新亮燈完成!";
+                returnData.TimeTaken = myTimer.ToString();
+                return returnData.JsonSerializationt();
+
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Data = null;
+                return returnData.JsonSerializationt(true);
+            }
+            finally
+            {
+
+            }
+        }
+
         [Route("light_web")]
         [HttpPost]
         public string POST_light_web(returnData returnData)
         {
-            //List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
-            //serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "API02");
-
-            //if (serverSettingClasses.Count == 0)
-            //{
-            //    returnData.Code = -200;
-            //    returnData.Result = $"找無Server資料!";
-            //    return returnData.JsonSerializationt();
-            //}
-            //string url = $"{serverSettingClasses[0].Server}/api/device/light";
-            //return Basic.Net.WEBApiPostJson(url, returnData.JsonSerializationt());
-
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
             returnData.Method = "light_web";

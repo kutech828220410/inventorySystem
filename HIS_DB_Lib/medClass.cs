@@ -346,6 +346,24 @@ namespace HIS_DB_Lib
             return medClasses;
         }
 
+
+        static public void update_ds_pharma_med_from_medcloud(string API_Server, string ServerName)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/update_ds_pharma_med_from_medcloud";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return;
+            if (returnData.Code != 200) return;
+
+            Console.WriteLine($"{returnData}");
+            return;
+        }
         static public List<medClass> get_ds_pharma_med(string API_Server, string ServerName)
         {
             List<medClass> medClasses = new List<medClass>();
@@ -385,6 +403,23 @@ namespace HIS_DB_Lib
             string json_out = Net.WEBApiPostJson(url, json_in);
         }
 
+        static public void update_ds_drugstore_med_from_medcloud(string API_Server, string ServerName)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/update_ds_drugstore_med_from_medcloud";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return;
+            if (returnData.Code != 200) return;
+ 
+            Console.WriteLine($"{returnData}");
+            return;
+        }
         static public List<medClass> get_ds_drugstore_med(string API_Server, string ServerName)
         {
             List<medClass> medClasses = new List<medClass>();
@@ -681,7 +716,30 @@ namespace HIS_DB_Lib
             }
             return new List<medClass>();
         }
-    
+
+        static public bool IsEqual(this medClass medClass_src, medClass medClass_dst)
+        {
+            if (medClass_src.藥品碼 != medClass_dst.藥品碼) return false;
+            if (medClass_src.藥品名稱 != medClass_dst.藥品名稱) return false;
+            if (medClass_src.中文名稱 != medClass_dst.中文名稱) return false;
+            if (medClass_src.藥品學名 != medClass_dst.藥品學名) return false;
+            if (medClass_src.包裝單位 != medClass_dst.包裝單位) return false;
+            if (medClass_src.包裝數量 != medClass_dst.包裝數量) return false;
+            if (medClass_src.最小包裝單位 != medClass_dst.最小包裝單位) return false;
+            if (medClass_src.最小包裝數量 != medClass_dst.最小包裝數量) return false;
+            return true;
+        }
+        static public void Format(this medClass medClass_src, medClass medClass_dst)
+        {
+            medClass_src.藥品碼 = medClass_dst.藥品碼;
+            medClass_src.藥品名稱 = medClass_dst.藥品名稱;
+            medClass_src.中文名稱 = medClass_dst.中文名稱;
+            medClass_src.藥品學名 = medClass_dst.藥品學名;
+            medClass_src.包裝單位 = medClass_dst.包裝單位;
+            medClass_src.包裝數量 = medClass_dst.包裝數量;
+            medClass_src.最小包裝單位 = medClass_dst.最小包裝單位;
+            medClass_src.最小包裝數量 = medClass_dst.最小包裝數量;
+        }
     }
  
 }

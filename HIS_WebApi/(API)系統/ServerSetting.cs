@@ -633,7 +633,104 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 取得VM伺服器資訊
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       [名稱(ds01)],
+        ///       [類別(藥庫)],
+        ///       [內容(一般資料)]
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_server")]
+        [HttpPost]
+        public string POST_get_server([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
 
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
+
+            returnData.Method = "get_server";
+            try
+            {
+                this.CheckCreatTable();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value_returnData = new List<object[]>();
+                List<object[]> list_value_add = new List<object[]>();
+                List<object[]> list_value_replace = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[名稱],[類別],[內容]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 類別 = returnData.ValueAry[1].ToUpper();
+                string 設備名稱 = returnData.ValueAry[0].ToUpper();
+                string 內容 = returnData.ValueAry[2].ToUpper();
+                List<ServerSettingClass> serverSettingClasses_buf = (from temp in serverSettingClasses
+                                                                     where temp.類別.ToUpper() == 類別
+                                                                     where temp.設備名稱.ToUpper() == 設備名稱
+                                                                     where temp.內容.ToUpper() == 內容
+                                                                     select temp).ToList();
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                returnData.Code = 200;
+                returnData.Result = $"取得伺服器服務端,共<{serverSettingClasses_buf.Count}>筆";
+                returnData.Data = serverSettingClasses_buf[0];
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
 
         private string CheckCreatTable()
         {

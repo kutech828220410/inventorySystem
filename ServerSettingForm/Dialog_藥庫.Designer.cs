@@ -42,6 +42,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass11 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass12 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass13 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass14 = new HIS_DB_Lib.ServerSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@ namespace ServerSettingForm
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
             this.comboBox_單位 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel_API_URL6 = new ServerSettingForm.Panel_API_URL();
             this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -556,12 +558,36 @@ namespace ServerSettingForm
             this.label2.TabIndex = 80;
             this.label2.Text = "單位 :";
             // 
+            // panel_API_URL6
+            // 
+            this.panel_API_URL6.Content = "API_inspection_refresh";
+            this.panel_API_URL6.Location = new System.Drawing.Point(17, 613);
+            this.panel_API_URL6.Name = "panel_API_URL6";
+            serverSettingClass14.DBName = null;
+            serverSettingClass14.GUID = null;
+            serverSettingClass14.Password = null;
+            serverSettingClass14.Port = null;
+            serverSettingClass14.Server = "";
+            serverSettingClass14.TableName = null;
+            serverSettingClass14.User = null;
+            serverSettingClass14.Value = null;
+            serverSettingClass14.內容 = "API_inspection_refresh";
+            serverSettingClass14.單位 = null;
+            serverSettingClass14.程式類別 = null;
+            serverSettingClass14.設備名稱 = "";
+            serverSettingClass14.類別 = "藥庫";
+            this.panel_API_URL6.ServerSetting = serverSettingClass14;
+            this.panel_API_URL6.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.藥庫;
+            this.panel_API_URL6.Size = new System.Drawing.Size(960, 36);
+            this.panel_API_URL6.TabIndex = 82;
+            // 
             // Dialog_藥庫
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_API_URL6);
             this.Controls.Add(this.comboBox_單位);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel_API_URL5);
@@ -631,5 +657,6 @@ namespace ServerSettingForm
         private Panel_API_URL panel_API_URL5;
         private System.Windows.Forms.ComboBox comboBox_單位;
         private System.Windows.Forms.Label label2;
+        private Panel_API_URL panel_API_URL6;
     }
 }

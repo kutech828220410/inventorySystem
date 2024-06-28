@@ -22,12 +22,14 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.1")]
-[assembly: AssemblyFileVersion("1.0.0.1")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]
 namespace 智能藥庫系統
 {
     public partial class Main_Form : Form
     {
+        public static PLC_Device PLC_Device_主機模式 = new PLC_Device("S1050");
+
         public static string 登入者名稱 = "";
 
         public static string API_Server = "http://127.0.0.1:4433";
@@ -37,7 +39,7 @@ namespace 智能藥庫系統
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
         public static StorageUI_EPD_266 _storageUI_EPD_266 = null;
-
+        public static H_Pannel_lib.RFID_UI _rFID_UI = null;
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         static public DBConfigClass dBConfigClass = new DBConfigClass();
@@ -159,12 +161,10 @@ namespace 智能藥庫系統
         #endregion
 
         public Main_Form()
-        {
-       
+        {       
             InitializeComponent();
             this.Load += Main_Form_Load;
             plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
-
 
             this.plC_RJ_Button_庫存查詢.MouseDownEvent += PlC_RJ_Button_庫存查詢_MouseDownEvent;
             this.plC_RJ_Button_儲位管理.MouseDownEvent += PlC_RJ_Button_儲位管理_MouseDownEvent;
@@ -186,6 +186,8 @@ namespace 智能藥庫系統
             LoadDBConfig();
             LoadMyConfig();
 
+       
+
             ApiServerSetting(dBConfigClass.Name);
             this.storageUI_EPD_266.Init(dBConfigClass.DB_儲位資料);
             this.rfiD_UI.Init(dBConfigClass.DB_儲位資料);
@@ -195,11 +197,16 @@ namespace 智能藥庫系統
         private void PlC_UI_Init_UI_Finished_Event()
         {
             _storageUI_EPD_266 = this.storageUI_EPD_266;
+            _rFID_UI = this.rfiD_UI;
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(plC_RJ_ScreenButtonEx_主畫面, this.plC_ScreenPage_main);
 
+            PLC_Device_主機模式.Bool = myConfigClass.主機模式;
 
             Program_系統_Init();
+            Program_藥品區域_Init();
+            Program_堆疊資料_Init();
+            Program_交易紀錄查詢_Init();
         }
 
         private void PlC_RJ_Button_儲位管理_MouseDownEvent(MouseEventArgs mevent)

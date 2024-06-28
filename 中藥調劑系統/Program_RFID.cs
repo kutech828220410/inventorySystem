@@ -21,8 +21,9 @@ namespace 中藥調劑系統
         {
             Task.Run(new Action(delegate 
             {
+                if (myConfigClass.RFID_COMPort.StringIsEmpty() == true) return;
                 System.Threading.Thread.Sleep(2000);
-                this.rfiD_FX600_UI.Init(2, "COM1");
+                this.rfiD_FX600_UI.Init(2, myConfigClass.RFID_COMPort);
                 plC_UI_Init.Add_Method(Program_RFID);
             }));
            

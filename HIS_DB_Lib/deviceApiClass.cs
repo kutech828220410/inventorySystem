@@ -498,6 +498,35 @@ namespace HIS_DB_Lib
 
         }
 
+        static public void light_on_by_code(string API_Server, string ServerName, string ServerType, List<string> Codes, string str_color)
+        {
+            string url = $"{API_Server}/api/device/light_on_by_code";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+            string str_codes = "";
+
+            for(int i = 0; i < Codes.Count; i++)
+            {
+                str_codes += Codes;
+                if (i < Codes.Count - 1) str_codes += ",";
+            }
+            returnData.ValueAry.Add(str_codes);
+            returnData.ValueAry.Add(str_color);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_result = json_out.JsonDeserializet<returnData>();
+            if (returnData_result.Code != 200)
+            {
+                return;
+            }
+            Console.WriteLine($"{returnData_result}");
+        }
+
+
+
         static public List<DeviceBasic> Get_Pharma_DeviceBasicsByCode(string API_Server, string ServerName, string ServerType, string Code)
         {
             string url = $"{API_Server}/api/device/get_from_pharma_by_code";

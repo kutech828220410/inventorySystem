@@ -29,7 +29,7 @@ namespace HIS_WebApi
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         /// <summary>
-        /// 初始化紀錄資料庫
+        /// 初始化撥補紀錄資料庫
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例

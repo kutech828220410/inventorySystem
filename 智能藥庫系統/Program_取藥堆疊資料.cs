@@ -267,61 +267,7 @@ namespace 智能藥庫系統
             return list_values;
         }
 
-        private Color Function_堆疊母資料_取得指定Master_GUID顏色(string GUID)
-        {
-            string[] serch_cols = new string[] { enum_取藥堆疊母資料.GUID.GetEnumName() };
-            string[] serch_values = new string[] { GUID };
-            List<object[]> list_values = this.sqL_DataGridView_堆疊母資料.SQL_GetRows(serch_cols, serch_values, false);
-            if (list_values.Count > 0)
-            {
-                return list_values[0][(int)enum_取藥堆疊母資料.顏色].ObjectToString().ToColor();
-            }
-            return Color.Black;
-        }
-        private string Function_堆疊母資料_取得指定Master_GUID結存量(string GUID)
-        {
-            string[] serch_cols = new string[] { enum_取藥堆疊母資料.GUID.GetEnumName() };
-            string[] serch_values = new string[] { GUID };
-            List<object[]> list_values = this.sqL_DataGridView_堆疊母資料.SQL_GetRows(serch_cols, serch_values, false);
-            if (list_values.Count > 0)
-            {
-                return list_values[0][(int)enum_取藥堆疊母資料.結存量].ObjectToString();
-            }
-            return "";
-        }
-        private string Function_堆疊母資料_取得指定Master_GUID調劑台名稱(string GUID)
-        {
-            string[] serch_cols = new string[] { enum_取藥堆疊母資料.GUID.GetEnumName() };
-            string[] serch_values = new string[] { GUID };
-            List<object[]> list_values = this.sqL_DataGridView_堆疊母資料.SQL_GetRows(serch_cols, serch_values, false);
-            if (list_values.Count > 0)
-            {
-                return list_values[0][(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString();
-            }
-            return "";
-        }
-        private void Function_堆疊子資料_設定流程作業完成ByCode(string 調劑台名稱, string 藥品碼)
-        {
-            string Master_GUID = "";
-            List<object[]> list_堆疊母資料 = this.Function_堆疊資料_取得指定調劑台名稱母資料(調劑台名稱, 藥品碼);
-            List<object[]> list_堆疊子資料 = this.Function_堆疊資料_取得指定調劑台名稱子資料(調劑台名稱, 藥品碼);
-            List<object[]> list_堆疊子資料_buf;
-            List<object[]> list_serch_values = new List<object[]>();
-            for (int i = 0; i < list_堆疊母資料.Count; i++)
-            {
-                Master_GUID = list_堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
-                list_堆疊子資料_buf = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Master_GUID, Master_GUID);
 
-                for (int k = 0; k < list_堆疊子資料_buf.Count; k++)
-                {
-                    list_堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.致能] = true.ToString();
-                    list_堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
-                    list_serch_values.Add(list_堆疊子資料_buf[k]);
-                }
-            }
-            this.sqL_DataGridView_堆疊子資料.SQL_ReplaceExtra(list_serch_values, false);
-
-        }
         private List<object[]> Function_堆疊子資料_設定流程作業完成ByIP(string 調劑台名稱, string IP)
         {
             return Function_堆疊子資料_設定流程作業完成ByIP(調劑台名稱, IP, "-1");
@@ -359,27 +305,6 @@ namespace 智能藥庫系統
                 this.sqL_DataGridView_堆疊子資料.SQL_ReplaceExtra(serch_values, false);
             }
             return list_堆疊子資料;
-        }
-        private void Function_堆疊子資料_設定配藥完成ByCode(string 調劑台名稱, string 藥品碼)
-        {
-            string Master_GUID = "";
-            List<object[]> list_堆疊母資料 = this.Function_堆疊資料_取得指定調劑台名稱母資料(調劑台名稱, 藥品碼);
-            List<object[]> list_堆疊子資料 = this.Function_堆疊資料_取得指定調劑台名稱子資料(調劑台名稱, 藥品碼);
-            List<object[]> list_堆疊子資料_buf;
-            List<object[]> list_serch_values = new List<object[]>();
-            for (int i = 0; i < list_堆疊母資料.Count; i++)
-            {
-                Master_GUID = list_堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
-                list_堆疊子資料_buf = list_堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Master_GUID, Master_GUID);
-                for (int k = 0; k < list_堆疊子資料_buf.Count; k++)
-                {
-                    list_堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.致能] = true.ToString();
-                    list_堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
-                    list_堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
-                    list_serch_values.Add(list_堆疊子資料_buf[k]);
-                }
-            }
-            this.sqL_DataGridView_堆疊子資料.SQL_ReplaceExtra(list_serch_values, false);
         }
         private void Function_堆疊子資料_設定配藥完成ByIP(string 調劑台名稱, string IP)
         {
