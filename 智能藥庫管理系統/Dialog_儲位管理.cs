@@ -96,7 +96,7 @@ namespace 智能藥庫系統
 
 
         }
-
+        #region Function
         private void RefreshUI()
         {
             this.storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
@@ -117,6 +117,8 @@ namespace 智能藥庫系統
             list_value.Sort(new ICP_儲架電子紙_藥品資料());
             this.sqL_DataGridView_儲架電子紙列表.RefreshGrid(list_value);
         }
+        #endregion
+
         #region Event
         private void Dialog_儲位管理_ShowDialogEvent()
         {

@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.5")]
-[assembly: AssemblyFileVersion("1.0.0.5")]
+[assembly: AssemblyVersion("1.0.0.6")]
+[assembly: AssemblyFileVersion("1.0.0.6")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -28,7 +28,7 @@ namespace 中藥調劑系統
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
         public static RowsLEDUI _rowsLEDUI = null;
-
+        public static StorageUI_EPD_266 _storageUI_EPD_266 = null;
         public Main_Form()
         {
             InitializeComponent();
@@ -214,6 +214,7 @@ namespace 中藥調劑系統
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
             PLC_Device_已登入.Bool = false;
 
+            Program_藥品區域_Init();
             Program_調劑畫面_Init();
             Program_處方搜尋_Init();
             Program_交易紀錄_Init();
@@ -223,6 +224,8 @@ namespace 中藥調劑系統
 
             _rowsLEDUI = this.rowsLEDUI;
             this.rowsLEDUI.Init(dBConfigClass.DB_儲位資料);
+            _storageUI_EPD_266 = this.storageUI_EPD_266;
+            this.storageUI_EPD_266.Init(dBConfigClass.DB_儲位資料);
         }
 
         private void ApiServerSetting(string Name)

@@ -34,11 +34,14 @@ namespace 中藥調劑系統
             天數,
             [Description("筆數,VARCHAR,15,NONE")]
             筆數,
+            [Description("操作人,VARCHAR,15,NONE")]
+            操作人,
             [Description("已調劑,VARCHAR,15,NONE")]
             已調劑,
             [Description("處方時間,VARCHAR,15,NONE")]
             處方時間,
-    
+            [Description("備註,VARCHAR,15,NONE")]
+            備註,
 
         }
         private void Program_處方搜尋_Init()
@@ -57,6 +60,8 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方搜尋.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_處方搜尋.筆數);
             this.sqL_DataGridView_處方搜尋.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_處方搜尋.已調劑);
             this.sqL_DataGridView_處方搜尋.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleCenter, enum_處方搜尋.處方時間);
+            this.sqL_DataGridView_處方搜尋.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_處方搜尋.操作人);
+            this.sqL_DataGridView_處方搜尋.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_處方搜尋.備註);
             this.sqL_DataGridView_處方搜尋.DataGridRefreshEvent += SqL_DataGridView_處方搜尋_DataGridRefreshEvent;
             this.sqL_DataGridView_處方搜尋.RowDoubleClickEvent += SqL_DataGridView_處方搜尋_RowDoubleClickEvent;
             this.sqL_DataGridView_處方搜尋.DataGridRowsChangeRefEvent += SqL_DataGridView_處方搜尋_DataGridRowsChangeRefEvent;
@@ -116,6 +121,8 @@ namespace 中藥調劑系統
                         value[(int)enum_處方搜尋.天數] = orderTClasses_buf[k].天數;
                         value[(int)enum_處方搜尋.筆數] = orderTClasses_buf.Count;
                         value[(int)enum_處方搜尋.處方時間] = orderTClasses_buf[k].開方日期;
+                        value[(int)enum_處方搜尋.操作人] = orderTClasses_buf[k].藥師姓名;
+                        value[(int)enum_處方搜尋.備註] = orderTClasses_buf[k].備註;
                         value[(int)enum_處方搜尋.已調劑] = flag_已調劑 ? "Y" : "N";
                         list_value.Add(value);
                     }
@@ -171,57 +178,71 @@ namespace 中藥調劑系統
         private void RJ_Button_處方搜尋_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             LoadingForm.ShowLoadingForm();
-            List<OrderTClass> orderTClasses = new List<OrderTClass>();
-            string text = textBox_處方搜尋_搜尋內容.Text;
-            string cmb_text = "";
-            this.Invoke(new Action(delegate 
-            {
-                cmb_text = this.comboBox_處方搜尋_搜尋條件.Text;
-            }));
 
-           
-            if (cmb_text == enum_OrderT.開方日期.GetEnumName())
+            try
             {
-                this.dateTimeIntervelPicker_處方搜尋_開方時間.OnSureClick();
-            }      
-            if (cmb_text == enum_OrderT.領藥號.GetEnumName())
-            {
-                if (text.StringIsEmpty() == true)
+                List<OrderTClass> orderTClasses = new List<OrderTClass>();
+                string text = textBox_處方搜尋_搜尋內容.Text;
+                string cmb_text = "";
+                this.Invoke(new Action(delegate
                 {
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
+                    cmb_text = this.comboBox_處方搜尋_搜尋條件.Text;
+                }));
+
+
+                if (cmb_text == enum_OrderT.開方日期.GetEnumName())
+                {
+                    this.dateTimeIntervelPicker_處方搜尋_開方時間.OnSureClick();
+                    return;
+                }
+                if (cmb_text == enum_OrderT.領藥號.GetEnumName())
+                {
+                    if (text.StringIsEmpty() == true)
+                    {
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
+                        dialog_AlarmForm.ShowDialog();
+                        return;
+                    }
+                    orderTClasses = OrderTClass.get_by_MED_BAG_NUM(Main_Form.API_Server, text);
+                }
+                if (cmb_text == enum_OrderT.病歷號.GetEnumName())
+                {
+                    if (text.StringIsEmpty() == true)
+                    {
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
+                        dialog_AlarmForm.ShowDialog();
+                        return;
+                    }
+                    orderTClasses = OrderTClass.get_by_PATCODE(Main_Form.API_Server, text);
+                }
+                if (cmb_text == enum_OrderT.病人姓名.GetEnumName())
+                {
+                    if (text.StringIsEmpty() == true)
+                    {
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
+                        dialog_AlarmForm.ShowDialog();
+                        return;
+                    }
+                    orderTClasses = OrderTClass.get_by_PATNAME(Main_Form.API_Server, text);
+                }
+                if (orderTClasses.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無資料", 1500);
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
-                orderTClasses = OrderTClass.get_by_MED_BAG_NUM(Main_Form.API_Server, text);
+                Finction_處方搜尋_更新UI(orderTClasses);
             }
-            if (cmb_text == enum_OrderT.病歷號.GetEnumName())
+            catch
             {
-                if (text.StringIsEmpty() == true)
-                {
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
-                    dialog_AlarmForm.ShowDialog();
-                    return;
-                }
-                orderTClasses = OrderTClass.get_by_PATCODE(Main_Form.API_Server, text);
+
             }
-            if (cmb_text == enum_OrderT.病人姓名.GetEnumName())
+            finally
             {
-                if (text.StringIsEmpty() == true)
-                {
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("請輸入搜尋資料", 1500);
-                    dialog_AlarmForm.ShowDialog();
-                    return;
-                }
-                orderTClasses = OrderTClass.get_by_PATNAME(Main_Form.API_Server, text);
+                LoadingForm.CloseLoadingForm();
             }
-            if(orderTClasses.Count == 0 )
-            {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無資料", 1500);
-                dialog_AlarmForm.ShowDialog();
-                return;
-            }
-            Finction_處方搜尋_更新UI(orderTClasses);
-            LoadingForm.CloseLoadingForm();
+         
+        
         }
         private void RJ_Button_處方搜尋_再次調劑_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -233,14 +254,22 @@ namespace 中藥調劑系統
                 return;
             }
             string PRI_KEY = list_value[0][(int)enum_處方搜尋.PRI_KEY].ObjectToString();
+            List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
+
             if (list_value[0][(int)enum_處方搜尋.已調劑].ObjectToString() == "Y")
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此處方已調劑完成", 1500);
-                dialog_AlarmForm.ShowDialog();
-                return;
+                if (MyMessageBox.ShowDialog("此處方已調劑,是否重新調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+                for (int i = 0; i < orderTClasses.Count; i++)
+                {
+                    orderTClasses[i].藥師ID = "";
+                    orderTClasses[i].藥師姓名 = "";
+                    orderTClasses[i].實際調劑量 = "";
+                    orderTClasses[i].備註 = "再次調劑";
+                }
+                OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClasses);
+                orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
             }
 
-            List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
             if (orderTClasses.Count == 0)
             {
                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無處方資訊", 1500);

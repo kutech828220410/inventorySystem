@@ -59,7 +59,7 @@ namespace 中藥調劑系統
             this.panel1.Location = new System.Drawing.Point(4, 28);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 10, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(952, 146);
+            this.panel1.Size = new System.Drawing.Size(1236, 146);
             this.panel1.TabIndex = 0;
             // 
             // panel10
@@ -70,7 +70,7 @@ namespace 中藥調劑系統
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(10, 101);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(942, 43);
+            this.panel10.Size = new System.Drawing.Size(1226, 43);
             this.panel10.TabIndex = 12;
             // 
             // rJ_Lable_處方資訊_處方日期
@@ -89,7 +89,7 @@ namespace 中藥調劑系統
             this.rJ_Lable_處方資訊_處方日期.Name = "rJ_Lable_處方資訊_處方日期";
             this.rJ_Lable_處方資訊_處方日期.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_處方資訊_處方日期.ShadowSize = 0;
-            this.rJ_Lable_處方資訊_處方日期.Size = new System.Drawing.Size(773, 43);
+            this.rJ_Lable_處方資訊_處方日期.Size = new System.Drawing.Size(1057, 43);
             this.rJ_Lable_處方資訊_處方日期.TabIndex = 9;
             this.rJ_Lable_處方資訊_處方日期.Text = "----/--/--";
             this.rJ_Lable_處方資訊_處方日期.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -148,7 +148,7 @@ namespace 中藥調劑系統
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(10, 58);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(942, 43);
+            this.panel9.Size = new System.Drawing.Size(1226, 43);
             this.panel9.TabIndex = 11;
             // 
             // rJ_Lable_處方資訊_年齡
@@ -167,7 +167,7 @@ namespace 中藥調劑系統
             this.rJ_Lable_處方資訊_年齡.Name = "rJ_Lable_處方資訊_年齡";
             this.rJ_Lable_處方資訊_年齡.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_處方資訊_年齡.ShadowSize = 0;
-            this.rJ_Lable_處方資訊_年齡.Size = new System.Drawing.Size(773, 43);
+            this.rJ_Lable_處方資訊_年齡.Size = new System.Drawing.Size(1057, 43);
             this.rJ_Lable_處方資訊_年齡.TabIndex = 8;
             this.rJ_Lable_處方資訊_年齡.Text = "--歲";
             this.rJ_Lable_處方資訊_年齡.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -234,7 +234,7 @@ namespace 中藥調劑系統
             this.rJ_Lable_處方資訊_姓名_性別_病歷號.Name = "rJ_Lable_處方資訊_姓名_性別_病歷號";
             this.rJ_Lable_處方資訊_姓名_性別_病歷號.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_處方資訊_姓名_性別_病歷號.ShadowSize = 0;
-            this.rJ_Lable_處方資訊_姓名_性別_病歷號.Size = new System.Drawing.Size(942, 48);
+            this.rJ_Lable_處方資訊_姓名_性別_病歷號.Size = new System.Drawing.Size(1226, 48);
             this.rJ_Lable_處方資訊_姓名_性別_病歷號.TabIndex = 10;
             this.rJ_Lable_處方資訊_姓名_性別_病歷號.Text = "-------(-)  -------------";
             this.rJ_Lable_處方資訊_姓名_性別_病歷號.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -246,7 +246,7 @@ namespace 中藥調劑系統
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(4, 718);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(952, 78);
+            this.panel2.Size = new System.Drawing.Size(1236, 78);
             this.panel2.TabIndex = 1;
             // 
             // rJ_Button_返回
@@ -266,7 +266,7 @@ namespace 中藥調劑系統
             this.rJ_Button_返回.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_返回.GUID = "";
             this.rJ_Button_返回.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_返回.Location = new System.Drawing.Point(817, 0);
+            this.rJ_Button_返回.Location = new System.Drawing.Point(1101, 0);
             this.rJ_Button_返回.Name = "rJ_Button_返回";
             this.rJ_Button_返回.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_返回.ProhibitionLineWidth = 4;
@@ -288,7 +288,7 @@ namespace 中藥調劑系統
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(4, 174);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(952, 544);
+            this.panel3.Size = new System.Drawing.Size(1236, 544);
             this.panel3.TabIndex = 2;
             // 
             // sqL_DataGridView_處方查詢
@@ -329,7 +329,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方查詢.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_處方查詢.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_處方查詢.Server = "127.0.0.0";
-            this.sqL_DataGridView_處方查詢.Size = new System.Drawing.Size(952, 544);
+            this.sqL_DataGridView_處方查詢.Size = new System.Drawing.Size(1236, 544);
             this.sqL_DataGridView_處方查詢.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_處方查詢.TabIndex = 20;
             this.sqL_DataGridView_處方查詢.UserName = "root";
@@ -350,7 +350,7 @@ namespace 中藥調劑系統
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(960, 800);
+            this.ClientSize = new System.Drawing.Size(1244, 800);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

@@ -21,7 +21,7 @@ namespace 中藥調劑系統
         private List<OrderTClass> OrderTClass_現在調劑處方 = null;
         private bool flag_新處方提示 = false;
         private MyThread myThread_更新處方;
-        private int orderDate = 0;
+        private int orderDate = -1;
         public enum enum_處方內容
         {
             [Description("GUID,VARCHAR,15,NONE")]
@@ -59,6 +59,8 @@ namespace 中藥調劑系統
             性別,
             [Description("病歷號,VARCHAR,15,NONE")]
             病歷號,
+            [Description("處方類型,VARCHAR,15,NONE")]
+            處方類型,
             [Description("處方日期,VARCHAR,15,NONE")]
             處方日期,
             [Description("調劑完成,VARCHAR,15,NONE")]
@@ -141,8 +143,10 @@ namespace 中藥調劑系統
             {
                 string PRI_KEY = list_PRI_KEY[i];
                 string 調劑完成 = "Y";
+                string 處方類型 = "";
                 orderTClasses_buf = keyValuePairs.SortDictionaryBy_PRI_KEY(list_PRI_KEY[i]);
                 list_value_buf = list_value.GetRows((int)enum_病患資訊.PRI_KEY, PRI_KEY);
+                List<string> packages = orderTClasses_buf.GetPackages();
                 for (int k = 0; k < orderTClasses_buf.Count; k++)
                 {
                     if (orderTClasses_buf[k].實際調劑量.StringIsDouble() == false)
@@ -150,8 +154,29 @@ namespace 中藥調劑系統
                         調劑完成 = "N";
                     }
                 }
-                if(orderTClasses_buf.Count > 0)
+                if (packages.Count > 1)
                 {
+                    處方類型 = "多劑型";
+                }
+                else if (packages.Count == 0)
+                {
+                    處方類型 = "無劑型";
+                }
+                else if (packages.Count == 1)
+                {
+                    if(packages[0] == "錢")
+                    {
+                        處方類型 = "煎煮";
+                    }
+                    else if (packages[0] == "克")
+                    {
+                        處方類型 = "科中";
+                    }
+                }
+
+                if (orderTClasses_buf.Count > 0)
+                {
+
                     if (list_value_buf.Count == 0)
                     {
                         object[] value = new object[new enum_病患資訊().GetLength()];
@@ -164,9 +189,13 @@ namespace 中藥調劑系統
                         value[(int)enum_病患資訊.病歷號] = orderTClasses_buf[0].病歷號;
                         value[(int)enum_病患資訊.處方日期] = orderTClasses_buf[0].開方日期.StringToDateTime().ToDateString();
                         value[(int)enum_病患資訊.調劑完成] = 調劑完成;
+                        value[(int)enum_病患資訊.處方類型] = 處方類型;
 
                         list_value.Add(value);
                    }
+
+
+
                 }
       
             }
@@ -175,15 +204,32 @@ namespace 中藥調劑系統
 
             foreach (string key in keyValues.Keys)
             {
+
                 list_value_buf = keyValues.SortDictionary(key);
                 if (list_value_buf.Count != 0)
                 {
- 
-                    list_value_buf.Sort(new ICP_病患資訊_降序());
-                    if (list_value_buf[0][(int)enum_病患資訊.調劑完成].ObjectToString() != "Y")
+                    List<string> list_處方類型 = (from temp in list_value_buf
+                                              select temp[(int)enum_病患資訊.處方類型].ObjectToString()).Distinct().ToList();
+
+                    for (int i = 0; i < list_處方類型.Count; i++)
                     {
-                        list_value_temp.Add(list_value_buf[0]);
+                        List<object[]> list_value_temp_buf = (from temp in list_value_buf
+                                                          where temp[(int)enum_病患資訊.處方類型].ObjectToString() == list_處方類型[i]
+                                                          select temp).ToList();
+
+                        if(list_value_temp_buf.Count > 0)
+                        {
+                            list_value_temp_buf.Sort(new ICP_病患資訊_降序());
+                            if (list_value_temp_buf[0][(int)enum_病患資訊.調劑完成].ObjectToString() != "Y")
+                            {
+                                list_value_temp.Add(list_value_temp_buf[0]);
+                            }
+                        }
+                       
                     }
+
+                
+         
                 
                 }
             }
@@ -198,13 +244,22 @@ namespace 中藥調劑系統
                 list_病患資訊_buf = list_病患資訊.GetRows((int)enum_病患資訊.PRI_KEY, PRI_KEY);
                 if (list_病患資訊_buf.Count == 0)
                 {
+                  
                     list_value_add.Add(list_value[i]);
 
                 }
                 else
                 {
+
+
                     string 病歷號 = list_病患資訊_buf[0][(int)enum_病患資訊.病歷號].ObjectToString();
+                    string 處方類型 = list_病患資訊_buf[0][(int)enum_病患資訊.處方類型].ObjectToString();
                     list_病患資訊_buf = list_病患資訊.GetRows((int)enum_病患資訊.病歷號, 病歷號);
+
+                    list_病患資訊_buf = (from temp in list_病患資訊
+                                     where temp[(int)enum_病患資訊.病歷號].ObjectToString() == 病歷號
+                                     where temp[(int)enum_病患資訊.處方類型].ObjectToString() == 處方類型
+                                     select temp).ToList();
                     if (list_病患資訊_buf.Count > 1)
                     {
 
@@ -256,8 +311,10 @@ namespace 中藥調劑系統
 
         private void Program_調劑畫面()
         {
-            if (plC_NumBox_檢核上限.Value < 3) plC_NumBox_檢核上限.Value = 10;
-            if (plC_NumBox_檢核下限.Value < 3) plC_NumBox_檢核下限.Value = 10;
+            if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 10;
+            if (plC_NumBox_檢核下限_克.Value < 1) plC_NumBox_檢核下限_克.Value = 10;
+            if (plC_NumBox_檢核下限_錢.Value < 1) plC_NumBox_檢核下限_錢.Value = 10;
+            if (plC_NumBox_檢核下限_錢.Value < 1) plC_NumBox_檢核下限_錢.Value = 10;
             if (MySerialPort_Scanner01.IsConnected && plC_ScreenPage_main.PageText == "調劑畫面" && PLC_Device_已登入.Bool)
             {
      
@@ -355,22 +412,34 @@ namespace 中藥調劑系統
                                 }
 
                                 double 應調 = list_處方內容_selected[0][(int)enum_處方內容.應調].StringToDouble();
+                                string 單位 = list_處方內容_selected[0][(int)enum_處方內容.單位].ObjectToString();
                                 double 實調 = rJ_Lable_實調.Text.StringToDouble();
-                                double 檢核上限 = (double)plC_NumBox_檢核上限.Value * 0.01 + 1;
-                                double 檢核下限 = 1 - (double)plC_NumBox_檢核下限.Value * 0.01 ;
+                                double 檢核上限 = 0;
+                                double 檢核下限 = 0;
 
-                                double 應調_L = 應調 * 檢核上限;
-                                double 應調_H = 應調 * 檢核下限;
+                                if (單位 == "克")
+                                {
+                                    檢核上限 = (double)plC_NumBox_檢核上限_克.Value;
+                                    檢核下限 = (double)plC_NumBox_檢核下限_克.Value;
+                                }
+                                else
+                                {
+                                    檢核上限 = (double)plC_NumBox_檢核上限_錢.Value;
+                                    檢核下限 = (double)plC_NumBox_檢核下限_錢.Value;
+                                }
+                           
+                                double 應調_L = 應調 + 檢核上限;
+                                double 應調_H = 應調 - 檢核下限;
                                 if (實調 <= 應調_L || 實調 >= 應調_H)
                                 {
                                     if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                                     {
-                                        Funtion_調劑完成(GUID, (實調 * -1).ToString());
+                                        Funtion_調劑完成(GUID, (實調 * -1).ToString() ,"");
                                     }
                                 }
                                 else
                                 {
-                                    Funtion_調劑完成(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString(), 應調.ToString());
+                                    Funtion_調劑完成(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString(), 應調.ToString(),"");
                                 }
 
 
@@ -517,6 +586,7 @@ namespace 中藥調劑系統
             if (orderTClass.頻次.ToUpper() == "TID&HS") 包數 = "4";
             if (orderTClass.頻次.ToUpper() == "TID") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
+            if (orderTClass.頻次.ToUpper() == "ASORDER") 包數 = "1";
             string 天數 = orderTClass.天數;
             string 總包數 = (包數.StringToInt32() * 天數.StringToInt32()).ToString();
 
@@ -538,7 +608,7 @@ namespace 中藥調劑系統
                 rJ_Lable_應調.Text = $"{orderTClass.交易量.StringToDouble() * -1}";
                 rJ_Lable_醫師代號.Text = $"醫師代號 : {orderTClass.醫師ID}";
                 rJ_Lable_處方時間.Text = $"處方時間 : {orderTClass.開方日期.StringToDateTime().ToTimeString()}";
-
+                rJ_Lable_科別.Text = $"科別 : {orderTClass.科別}";
                 rJ_Lable_應調單位.Text = $"{orderTClass.劑量單位}";
                 rJ_Lable_實調單位.Text = $"{orderTClass.劑量單位}";
             }));
@@ -595,7 +665,7 @@ namespace 中藥調劑系統
             value[(int)enum_處方內容.服用方法] = orderTClass.頻次;
             return value;
         }
-        private OrderTClass Funtion_調劑完成(string GUID , string 實調)
+        private OrderTClass Funtion_調劑完成(string GUID , string 實調 , string 備註)
         {
             Dialog_AlarmForm dialog_AlarmForm;
             OrderTClass orderTClass = OrderTClass.get_by_guid(Main_Form.API_Server, GUID);
@@ -630,6 +700,7 @@ namespace 中藥調劑系統
             transactionsClass.病人姓名 = orderTClass.病人姓名;
             transactionsClass.病歷號 = orderTClass.病歷號;
             transactionsClass.藥袋序號 = orderTClass.PRI_KEY;
+            transactionsClass.備註 = orderTClass.備註;
             transactionsClass.add(Main_Form.API_Server, transactionsClass, Main_Form.ServerName, Main_Form.ServerType);
             Function_更新處方內容(orderTClass.PRI_KEY);
 
@@ -695,6 +766,7 @@ namespace 中藥調劑系統
                 rJ_Lable_應調.Text = $"-.--";
                 rJ_Lable_醫師代號.Text = $"醫師代號 : ------------";
                 rJ_Lable_處方時間.Text = $"處方時間 : --:--:--";
+                rJ_Lable_科別.Text = $"科別 : -----";
             }));
 
         }
@@ -745,6 +817,7 @@ namespace 中藥調劑系統
                 rJ_Lable_處方資訊_年齡.Text = $"{年齡}歲";
             }));
             List<OrderTClass> orderTClasses = OrderTClass.get_header_by_PATCODE(Main_Form.API_Server, 病歷號, DateTime.Now.AddDays(orderDate));
+
             Console.WriteLine($"{orderTClasses.JsonSerializationt(true)}");
 
             if(orderTClasses.Count > 1)
@@ -841,7 +914,7 @@ namespace 中藥調劑系統
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
-            if (MyMessageBox.ShowDialog("系統強制扣帳並記錄", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            if (MyMessageBox.ShowDialog("所有未調劑藥品,系統強制扣帳並記錄", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
             string PRI_KEY = order_value[(int)enum_病患資訊.PRI_KEY].ObjectToString();
             List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
             List<transactionsClass> transactionsClasses = new List<transactionsClass>();
@@ -854,6 +927,7 @@ namespace 中藥調劑系統
                 orderTClass.藥師姓名 = sessionClass.Name;
                 orderTClass.藥師ID = sessionClass.ID;
                 orderTClass.過帳時間 = DateTime.Now.ToDateTimeString_6();
+                orderTClass.備註 = "強制扣帳";
                 OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClass);
 
                 transactionsClass transactionsClass = new transactionsClass();
@@ -906,6 +980,7 @@ namespace 中藥調劑系統
 
                 orderTClass.藥師姓名 = sessionClass.Name;
                 orderTClass.藥師ID = sessionClass.ID;
+                orderTClass.備註 = "移至未調劑";
                 orderTClass.過帳時間 = DateTime.Now.ToDateTimeString_6();
                 OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClass);
 
@@ -942,7 +1017,7 @@ namespace 中藥調劑系統
                 return;
             }
             string GUID = list_value[0][(int)enum_處方內容.GUID].ObjectToString();
-            OrderTClass orderTClass = Funtion_調劑完成(GUID, "");
+            OrderTClass orderTClass = Funtion_調劑完成(GUID, "" , "強制扣帳");
 
         }
         private void ToolStripMenuItem_處方內容_設為未調劑_Click(object sender, EventArgs e)

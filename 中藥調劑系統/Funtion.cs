@@ -20,16 +20,20 @@ namespace 中藥調劑系統
     public partial class Main_Form : Form
     {
         static public List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
+        static public List<Storage> List_EPD266_本地資料 = new List<Storage>();
         static public List<object> Function_從本地資料取得儲位(string 藥品碼)
         {
             List<object> list_value = new List<object>();
             List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortByCode(藥品碼);
-        
+            List<Storage> storages_epd266 = List_EPD266_本地資料.SortByCode(藥品碼);
             for (int i = 0; i < rowsDevices.Count; i++)
             {
                 list_value.Add(rowsDevices[i]);
             }
-           
+            for (int i = 0; i < storages_epd266.Count; i++)
+            {
+                list_value.Add(storages_epd266[i]);
+            }
             return list_value;
         }
         static public void Function_從SQL取得儲位到本地資料()
@@ -46,7 +50,13 @@ namespace 中藥調劑系統
                 List_RowsLED_本地資料 = _rowsLEDUI.SQL_GetAllRowsLED();
                 Console.WriteLine($"讀取RowsLED資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
             }));
-         
+            taskList.Add(Task.Run(() =>
+            {
+                MyTimer myTimer2 = new MyTimer();
+                myTimer2.StartTickTime(50000);
+                List_EPD266_本地資料 = _storageUI_EPD_266.SQL_GetAllStorage();
+                Console.WriteLine($"讀取EPD266資料! 耗時 :{myTimer2.GetTickTime().ToString("0.000")} ");
+            }));
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();
 
@@ -71,6 +81,14 @@ namespace 中藥調劑系統
                             rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
 
                             _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                        }
+                    }
+                    if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266)
+                    {
+                        Storage storage = List_EPD266_本地資料.SortByIP(device.IP);
+                        if (storage != null )
+                        {
+                            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
                         }
                     }
                 }

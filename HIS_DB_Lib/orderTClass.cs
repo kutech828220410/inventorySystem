@@ -713,7 +713,7 @@ namespace HIS_DB_Lib
             List<OrderTClass> orderTClasses_buf = new List<OrderTClass>();
             for (int i = 0; i < freqs.Count; i++)
             {
-                if(orderTClasses.GetFreqIsDone(freqs[i]) == false)
+                if (orderTClasses.GetFreqIsDone(freqs[i]) == false)
                 {
                     orderTClasses_buf = (from temp in orderTClasses
                                          where temp.頻次 == freqs[i]
@@ -727,6 +727,20 @@ namespace HIS_DB_Lib
             }
             return null;
 
+        }
+        static public List<string> GetFreqs(this List<OrderTClass> orderTClasses)
+        {
+            List<string> freqs = (from temp in orderTClasses
+                                  select temp.頻次).Distinct().ToList();
+
+            return freqs;
+        }
+        static public List<string> GetPackages(this List<OrderTClass> orderTClasses)
+        {
+            List<string> Packages = (from temp in orderTClasses
+                                  select temp.劑量單位).Distinct().ToList();
+
+            return Packages;
         }
         static public System.Collections.Generic.Dictionary<string, List<OrderTClass>> CoverToDictionaryBy_PRI_KEY(this List<OrderTClass> orderTClasses)
         {

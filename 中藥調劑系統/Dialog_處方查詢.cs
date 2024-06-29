@@ -34,6 +34,8 @@ namespace 中藥調劑系統
             單位,
             [Description("服用方法,VARCHAR,15,NONE")]
             服用方法,
+            [Description("備註,VARCHAR,15,NONE")]
+            備註,
         }
 
         private string pri_key = "";
@@ -64,6 +66,7 @@ namespace 中藥調劑系統
             value[(int)enum_處方內容.天] = orderTClass.天數;
             value[(int)enum_處方內容.單位] = orderTClass.劑量單位;
             value[(int)enum_處方內容.服用方法] = orderTClass.頻次;
+            value[(int)enum_處方內容.備註] = orderTClass.備註;
             return value;
         }
         #endregion
@@ -81,6 +84,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, "實調");
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "天");
             this.sqL_DataGridView_處方查詢.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "單位");
+            this.sqL_DataGridView_處方查詢.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, "備註");
             this.sqL_DataGridView_處方查詢.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_處方內容.藥名);
 
 
