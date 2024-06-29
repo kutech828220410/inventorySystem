@@ -311,10 +311,10 @@ namespace 中藥調劑系統
 
         private void Program_調劑畫面()
         {
-            if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 10;
-            if (plC_NumBox_檢核下限_克.Value < 1) plC_NumBox_檢核下限_克.Value = 10;
-            if (plC_NumBox_檢核下限_錢.Value < 1) plC_NumBox_檢核下限_錢.Value = 10;
-            if (plC_NumBox_檢核下限_錢.Value < 1) plC_NumBox_檢核下限_錢.Value = 10;
+            if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 1;
+            if (plC_NumBox_檢核下限_克.Value < 1) plC_NumBox_檢核下限_克.Value = 1;
+            if (plC_NumBox_檢核下限_錢.Value < 1) plC_NumBox_檢核下限_錢.Value = 1;
+            if (plC_NumBox_檢核下限_錢.Value < 1) plC_NumBox_檢核下限_錢.Value = 1;
             if (MySerialPort_Scanner01.IsConnected && plC_ScreenPage_main.PageText == "調劑畫面" && PLC_Device_已登入.Bool)
             {
      
@@ -419,13 +419,13 @@ namespace 中藥調劑系統
 
                                 if (單位 == "克")
                                 {
-                                    檢核上限 = (double)plC_NumBox_檢核上限_克.Value;
-                                    檢核下限 = (double)plC_NumBox_檢核下限_克.Value;
+                                    檢核上限 = (double)(plC_NumBox_檢核上限_克.Value / 10);
+                                    檢核下限 = (double)(plC_NumBox_檢核下限_克.Value / 10);
                                 }
                                 else
                                 {
-                                    檢核上限 = (double)plC_NumBox_檢核上限_錢.Value;
-                                    檢核下限 = (double)plC_NumBox_檢核下限_錢.Value;
+                                    檢核上限 = (double)(plC_NumBox_檢核上限_錢.Value / 10);
+                                    檢核下限 = (double)(plC_NumBox_檢核下限_錢.Value / 10);
                                 }
                            
                                 double 應調_L = 應調 + 檢核上限;

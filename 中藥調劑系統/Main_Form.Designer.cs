@@ -1165,11 +1165,11 @@ namespace 中藥調劑系統
             this.rJ_Lable_實調.Font = new System.Drawing.Font("新細明體", 90F, System.Drawing.FontStyle.Bold);
             this.rJ_Lable_實調.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_實調.GUID = "";
-            this.rJ_Lable_實調.Location = new System.Drawing.Point(183, 5);
+            this.rJ_Lable_實調.Location = new System.Drawing.Point(131, 5);
             this.rJ_Lable_實調.Name = "rJ_Lable_實調";
             this.rJ_Lable_實調.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_實調.ShadowSize = 0;
-            this.rJ_Lable_實調.Size = new System.Drawing.Size(297, 322);
+            this.rJ_Lable_實調.Size = new System.Drawing.Size(349, 322);
             this.rJ_Lable_實調.TabIndex = 10;
             this.rJ_Lable_實調.Text = "0.00";
             this.rJ_Lable_實調.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1206,16 +1206,16 @@ namespace 中藥調劑系統
             this.rJ_Lable23.BorderSize = 0;
             this.rJ_Lable23.Dock = System.Windows.Forms.DockStyle.Left;
             this.rJ_Lable23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable23.Font = new System.Drawing.Font("微軟正黑體", 48F, System.Drawing.FontStyle.Bold);
+            this.rJ_Lable23.Font = new System.Drawing.Font("微軟正黑體", 60F, System.Drawing.FontStyle.Bold);
             this.rJ_Lable23.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable23.GUID = "";
             this.rJ_Lable23.Location = new System.Drawing.Point(5, 5);
             this.rJ_Lable23.Name = "rJ_Lable23";
             this.rJ_Lable23.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable23.ShadowSize = 0;
-            this.rJ_Lable23.Size = new System.Drawing.Size(178, 322);
+            this.rJ_Lable23.Size = new System.Drawing.Size(126, 322);
             this.rJ_Lable23.TabIndex = 8;
-            this.rJ_Lable23.Text = "實調";
+            this.rJ_Lable23.Text = "實\r\n調";
             this.rJ_Lable23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable23.TextColor = System.Drawing.Color.Black;
             // 
@@ -1253,11 +1253,11 @@ namespace 中藥調劑系統
             this.rJ_Lable_應調.Font = new System.Drawing.Font("新細明體", 90F, System.Drawing.FontStyle.Bold);
             this.rJ_Lable_應調.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_應調.GUID = "";
-            this.rJ_Lable_應調.Location = new System.Drawing.Point(183, 5);
+            this.rJ_Lable_應調.Location = new System.Drawing.Point(131, 5);
             this.rJ_Lable_應調.Name = "rJ_Lable_應調";
             this.rJ_Lable_應調.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_應調.ShadowSize = 0;
-            this.rJ_Lable_應調.Size = new System.Drawing.Size(297, 322);
+            this.rJ_Lable_應調.Size = new System.Drawing.Size(349, 322);
             this.rJ_Lable_應調.TabIndex = 10;
             this.rJ_Lable_應調.Text = "0.00";
             this.rJ_Lable_應調.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1294,16 +1294,16 @@ namespace 中藥調劑系統
             this.rJ_Lable18.BorderSize = 0;
             this.rJ_Lable18.Dock = System.Windows.Forms.DockStyle.Left;
             this.rJ_Lable18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable18.Font = new System.Drawing.Font("微軟正黑體", 48F, System.Drawing.FontStyle.Bold);
+            this.rJ_Lable18.Font = new System.Drawing.Font("微軟正黑體", 60F, System.Drawing.FontStyle.Bold);
             this.rJ_Lable18.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable18.GUID = "";
             this.rJ_Lable18.Location = new System.Drawing.Point(5, 5);
             this.rJ_Lable18.Name = "rJ_Lable18";
             this.rJ_Lable18.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable18.ShadowSize = 0;
-            this.rJ_Lable18.Size = new System.Drawing.Size(178, 322);
+            this.rJ_Lable18.Size = new System.Drawing.Size(126, 322);
             this.rJ_Lable18.TabIndex = 8;
-            this.rJ_Lable18.Text = "應調";
+            this.rJ_Lable18.Text = "應\r\n調";
             this.rJ_Lable18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable18.TextColor = System.Drawing.Color.Black;
             // 
@@ -1471,7 +1471,7 @@ namespace 中藥調劑系統
             this.rJ_Lable_總包數.BorderSize = 0;
             this.rJ_Lable_總包數.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Lable_總包數.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_總包數.Font = new System.Drawing.Font("微軟正黑體", 30F, System.Drawing.FontStyle.Bold);
+            this.rJ_Lable_總包數.Font = new System.Drawing.Font("微軟正黑體", 46F, System.Drawing.FontStyle.Bold);
             this.rJ_Lable_總包數.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_總包數.GUID = "";
             this.rJ_Lable_總包數.Location = new System.Drawing.Point(235, 51);
@@ -3028,7 +3028,7 @@ namespace 中藥調劑系統
             this.plC_NumBox_檢核下限_錢.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
             this.plC_NumBox_檢核下限_錢.密碼欄位 = false;
             this.plC_NumBox_檢核下限_錢.寫入元件位置 = "D203";
-            this.plC_NumBox_檢核下限_錢.小數點位置 = 0;
+            this.plC_NumBox_檢核下限_錢.小數點位置 = 1;
             this.plC_NumBox_檢核下限_錢.微調數值 = 1;
             this.plC_NumBox_檢核下限_錢.讀取元件位置 = "D203";
             this.plC_NumBox_檢核下限_錢.音效 = true;
@@ -3067,7 +3067,7 @@ namespace 中藥調劑系統
             this.plC_NumBox_檢核上限_錢.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
             this.plC_NumBox_檢核上限_錢.密碼欄位 = false;
             this.plC_NumBox_檢核上限_錢.寫入元件位置 = "D202";
-            this.plC_NumBox_檢核上限_錢.小數點位置 = 0;
+            this.plC_NumBox_檢核上限_錢.小數點位置 = 1;
             this.plC_NumBox_檢核上限_錢.微調數值 = 1;
             this.plC_NumBox_檢核上限_錢.讀取元件位置 = "D202";
             this.plC_NumBox_檢核上限_錢.音效 = true;
@@ -3106,7 +3106,7 @@ namespace 中藥調劑系統
             this.plC_NumBox_檢核下限_克.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
             this.plC_NumBox_檢核下限_克.密碼欄位 = false;
             this.plC_NumBox_檢核下限_克.寫入元件位置 = "D201";
-            this.plC_NumBox_檢核下限_克.小數點位置 = 0;
+            this.plC_NumBox_檢核下限_克.小數點位置 = 1;
             this.plC_NumBox_檢核下限_克.微調數值 = 1;
             this.plC_NumBox_檢核下限_克.讀取元件位置 = "D201";
             this.plC_NumBox_檢核下限_克.音效 = true;
@@ -3145,7 +3145,7 @@ namespace 中藥調劑系統
             this.plC_NumBox_檢核上限_克.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
             this.plC_NumBox_檢核上限_克.密碼欄位 = false;
             this.plC_NumBox_檢核上限_克.寫入元件位置 = "D200";
-            this.plC_NumBox_檢核上限_克.小數點位置 = 0;
+            this.plC_NumBox_檢核上限_克.小數點位置 = 1;
             this.plC_NumBox_檢核上限_克.微調數值 = 1;
             this.plC_NumBox_檢核上限_克.讀取元件位置 = "D200";
             this.plC_NumBox_檢核上限_克.音效 = true;
