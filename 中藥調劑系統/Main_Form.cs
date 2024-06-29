@@ -171,6 +171,7 @@ namespace 中藥調劑系統
         {
             LoadingForm.form = this.FindForm();
             Dialog_AlarmForm.form = this.FindForm();
+            Dialog_藥品搜尋.form = this.FindForm();
             MyDialog.form = this.FindForm();
             MyMessageBox.form = this.FindForm();
             MyMessageBox.音效 = false;

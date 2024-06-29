@@ -28,12 +28,18 @@ namespace 中藥調劑系統
     {
         private void Program_藥品搜尋_Init()
         {
+            this.rJ_Button_藥品搜尋_搜尋.MouseDownEvent += RJ_Button_藥品搜尋_搜尋_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_藥品搜尋);
         }
+
         private void Program_藥品搜尋()
         {
 
         }
-
+        private void RJ_Button_藥品搜尋_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_藥品搜尋 dialog_藥品搜尋 = new Dialog_藥品搜尋();
+            if (dialog_藥品搜尋.ShowDialog() != DialogResult.Yes) return;
+        }
     }
 }

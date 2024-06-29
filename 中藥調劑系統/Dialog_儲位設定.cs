@@ -591,7 +591,6 @@ namespace 中藥調劑系統
             }
         }
         #endregion
-
         #region 儲架電子紙
         private void SqL_DataGridView_儲架電子紙列表_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1030,134 +1029,167 @@ namespace 中藥調劑系統
 
         private void RJ_Button_儲架電子紙_面板刷新_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
-            if (list_儲架電子紙列表.Count == 0)
+            try
             {
-                MyMessageBox.ShowDialog("未選取儲架電子紙");
-                return;
-            }
-            List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
-            List<Storage> storages_buf = new List<Storage>();
-
-            for (int i = 0; i < list_儲架電子紙列表.Count; i++)
-            {
-                string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
-                Storage storage = storages.SortByIP(IP);
-                storage.Inventory_Visable = false;
-                if (storage != null)
+                List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+                if (list_儲架電子紙列表.Count == 0)
                 {
-                    storages_buf.Add(storage);
+                    MyMessageBox.ShowDialog("未選取儲架電子紙");
+                    return;
                 }
-            }
-            List<Task> tasks = new List<Task>();
+                List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+                List<Storage> storages_buf = new List<Storage>();
 
-            for (int i = 0; i < storages_buf.Count; i++)
-            {
-                Storage storage = storages_buf[i];
-                tasks.Add(Task.Run(new Action(delegate
+                for (int i = 0; i < list_儲架電子紙列表.Count; i++)
                 {
-                    Main_Form._storageUI_EPD_266.DrawToEpd_UDP(storage);
-                })));
+                    string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
+                    Storage storage = storages.SortByIP(IP);
+                    storage.Inventory_Visable = false;
+                    if (storage != null)
+                    {
+                        storages_buf.Add(storage);
+                    }
+                }
+                List<Task> tasks = new List<Task>();
+
+                for (int i = 0; i < storages_buf.Count; i++)
+                {
+                    Storage storage = storages_buf[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        Main_Form._storageUI_EPD_266.DrawToEpd_UDP(storage);
+                    })));
+                }
+                Task.WhenAll(tasks).Wait();
+
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("面板更新完成", 1000, Color.YellowGreen);
+                dialog_AlarmForm.ShowDialog();
             }
-            Task.WhenAll(tasks).Wait();
+            catch
+            {
 
-            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("面板更新完成", 1000, Color.YellowGreen);
-            dialog_AlarmForm.ShowDialog();
+            }
+            finally
+            {
+
+            }
+            
         }
-
         private void RJ_Button_儲架電子紙_面板亮燈_MouseDownEvent(MouseEventArgs mevent)
         {
-            Color color = Color.Red;
-            if (rJ_RatioButton_儲架電子紙_紅.Checked)
+            try
             {
-                color = Color.Red;
-            }
-            if (rJ_RatioButton_儲架電子紙_綠.Checked)
-            {
-                color = Color.Green;
-            }
-            if (rJ_RatioButton_儲架電子紙_藍.Checked)
-            {
-                color = Color.Blue;
-            }
-            if (rJ_RatioButton_儲架電子紙_白.Checked)
-            {
-                color = Color.White;
-            }
-            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
-            if (list_儲架電子紙列表.Count == 0)
-            {
-                MyMessageBox.ShowDialog("未選取儲架電子紙");
-                return;
-            }
-            List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
-            List<Storage> storages_buf = new List<Storage>();
-
-            for (int i = 0; i < list_儲架電子紙列表.Count; i++)
-            {
-                string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
-                Storage storage = storages.SortByIP(IP);
-                if (storage != null)
+                Color color = Color.Red;
+                if (rJ_RatioButton_儲架電子紙_紅.Checked)
                 {
-                    storages_buf.Add(storage);
+                    color = Color.Red;
                 }
-            }
-            List<Task> tasks = new List<Task>();
-
-            for (int i = 0; i < storages_buf.Count; i++)
-            {
-                Storage storage = storages_buf[i];
-                tasks.Add(Task.Run(new Action(delegate
+                if (rJ_RatioButton_儲架電子紙_綠.Checked)
                 {
-                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                    color = Color.Green;
+                }
+                if (rJ_RatioButton_儲架電子紙_藍.Checked)
+                {
+                    color = Color.Blue;
+                }
+                if (rJ_RatioButton_儲架電子紙_白.Checked)
+                {
+                    color = Color.White;
+                }
+                List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+                if (list_儲架電子紙列表.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("未選取儲架電子紙");
+                    return;
+                }
+                List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+                List<Storage> storages_buf = new List<Storage>();
 
-                })));
+                for (int i = 0; i < list_儲架電子紙列表.Count; i++)
+                {
+                    string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
+                    Storage storage = storages.SortByIP(IP);
+                    if (storage != null)
+                    {
+                        storages_buf.Add(storage);
+                    }
+                }
+                List<Task> tasks = new List<Task>();
+
+                for (int i = 0; i < storages_buf.Count; i++)
+                {
+                    Storage storage = storages_buf[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+
+                    })));
+
+                }
+                Task.WhenAll(tasks).Wait();
+            }
+            catch
+            {
 
             }
-            Task.WhenAll(tasks).Wait();
+            finally
+            {
 
-            //Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("亮燈完成", 1000, Color.YellowGreen);
-            //dialog_AlarmForm.ShowDialog();
+            }
+          
+
+ 
 
         }
         private void RJ_Button_儲架電子紙_清除燈號_MouseDownEvent(MouseEventArgs mevent)
         {
-            Color color = Color.Black;
-
-            List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
-            if (list_儲架電子紙列表.Count == 0)
+            try
             {
-                MyMessageBox.ShowDialog("未選取儲架電子紙");
-                return;
-            }
-            List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
-            List<Storage> storages_buf = new List<Storage>();
+                Color color = Color.Black;
 
-            for (int i = 0; i < list_儲架電子紙列表.Count; i++)
-            {
-                string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
-                Storage storage = storages.SortByIP(IP);
-                if (storage != null)
+                List<object[]> list_儲架電子紙列表 = this.sqL_DataGridView_儲架電子紙列表.Get_All_Select_RowsValues();
+                if (list_儲架電子紙列表.Count == 0)
                 {
-                    storages_buf.Add(storage);
+                    MyMessageBox.ShowDialog("未選取儲架電子紙");
+                    return;
                 }
-            }
-            List<Task> tasks = new List<Task>();
+                List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+                List<Storage> storages_buf = new List<Storage>();
 
-            for (int i = 0; i < storages_buf.Count; i++)
-            {
-                Storage storage = storages_buf[i];
-                tasks.Add(Task.Run(new Action(delegate
+                for (int i = 0; i < list_儲架電子紙列表.Count; i++)
                 {
-                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                    string IP = list_儲架電子紙列表[i][(int)enum_儲架電子紙列表.IP].ObjectToString();
+                    Storage storage = storages.SortByIP(IP);
+                    if (storage != null)
+                    {
+                        storages_buf.Add(storage);
+                    }
+                }
+                List<Task> tasks = new List<Task>();
 
-                })));
+                for (int i = 0; i < storages_buf.Count; i++)
+                {
+                    Storage storage = storages_buf[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+
+                    })));
+
+                }
+                Task.WhenAll(tasks).Wait();
+            }
+            catch
+            {
 
             }
-            Task.WhenAll(tasks).Wait();
+            finally
+            {
 
-            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("滅燈完成", 1000, Color.YellowGreen);
-            dialog_AlarmForm.ShowDialog();
+            }
+           
+
+       
         }
         private void RJ_Button_儲架電子紙_藥品資料_填入儲位_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1245,6 +1277,7 @@ namespace 中藥調劑系統
         }
 
         #endregion
+
         #endregion
 
 
