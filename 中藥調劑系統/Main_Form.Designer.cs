@@ -117,9 +117,9 @@ namespace 中藥調劑系統
             this.rJ_Lable_醫師代號 = new MyUI.RJ_Lable();
             this.panel26 = new System.Windows.Forms.Panel();
             this.藥品搜尋 = new System.Windows.Forms.TabPage();
-            this.rJ_Lable11 = new MyUI.RJ_Lable();
+            this.rJ_Lable_藥品搜尋_藥名 = new MyUI.RJ_Lable();
             this.panel37 = new System.Windows.Forms.Panel();
-            this.rJ_Lable10 = new MyUI.RJ_Lable();
+            this.rJ_Lable_藥品搜尋_狀態 = new MyUI.RJ_Lable();
             this.panel36 = new System.Windows.Forms.Panel();
             this.rJ_Button_藥品搜尋_搜尋 = new MyUI.RJ_Button();
             this.處方搜尋 = new System.Windows.Forms.TabPage();
@@ -2334,9 +2334,9 @@ namespace 中藥調劑系統
             // 
             // 藥品搜尋
             // 
-            this.藥品搜尋.Controls.Add(this.rJ_Lable11);
+            this.藥品搜尋.Controls.Add(this.rJ_Lable_藥品搜尋_藥名);
             this.藥品搜尋.Controls.Add(this.panel37);
-            this.藥品搜尋.Controls.Add(this.rJ_Lable10);
+            this.藥品搜尋.Controls.Add(this.rJ_Lable_藥品搜尋_狀態);
             this.藥品搜尋.Controls.Add(this.panel36);
             this.藥品搜尋.Location = new System.Drawing.Point(4, 25);
             this.藥品搜尋.Name = "藥品搜尋";
@@ -2345,27 +2345,27 @@ namespace 中藥調劑系統
             this.藥品搜尋.Text = "藥品搜尋";
             this.藥品搜尋.UseVisualStyleBackColor = true;
             // 
-            // rJ_Lable11
+            // rJ_Lable_藥品搜尋_藥名
             // 
-            this.rJ_Lable11.BackColor = System.Drawing.SystemColors.Control;
-            this.rJ_Lable11.BackgroundColor = System.Drawing.Color.Silver;
-            this.rJ_Lable11.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable11.BorderRadius = 5;
-            this.rJ_Lable11.BorderSize = 0;
-            this.rJ_Lable11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable11.Font = new System.Drawing.Font("微軟正黑體", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable11.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable11.GUID = "";
-            this.rJ_Lable11.Location = new System.Drawing.Point(0, 259);
-            this.rJ_Lable11.Name = "rJ_Lable11";
-            this.rJ_Lable11.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable11.ShadowSize = 0;
-            this.rJ_Lable11.Size = new System.Drawing.Size(1896, 278);
-            this.rJ_Lable11.TabIndex = 8;
-            this.rJ_Lable11.Text = "補陽還五湯";
-            this.rJ_Lable11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.rJ_Lable11.TextColor = System.Drawing.Color.Blue;
+            this.rJ_Lable_藥品搜尋_藥名.BackColor = System.Drawing.SystemColors.Control;
+            this.rJ_Lable_藥品搜尋_藥名.BackgroundColor = System.Drawing.Color.Silver;
+            this.rJ_Lable_藥品搜尋_藥名.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_藥品搜尋_藥名.BorderRadius = 5;
+            this.rJ_Lable_藥品搜尋_藥名.BorderSize = 0;
+            this.rJ_Lable_藥品搜尋_藥名.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable_藥品搜尋_藥名.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_藥品搜尋_藥名.Font = new System.Drawing.Font("微軟正黑體", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_藥品搜尋_藥名.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_藥品搜尋_藥名.GUID = "";
+            this.rJ_Lable_藥品搜尋_藥名.Location = new System.Drawing.Point(0, 259);
+            this.rJ_Lable_藥品搜尋_藥名.Name = "rJ_Lable_藥品搜尋_藥名";
+            this.rJ_Lable_藥品搜尋_藥名.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_藥品搜尋_藥名.ShadowSize = 0;
+            this.rJ_Lable_藥品搜尋_藥名.Size = new System.Drawing.Size(1896, 278);
+            this.rJ_Lable_藥品搜尋_藥名.TabIndex = 8;
+            this.rJ_Lable_藥品搜尋_藥名.Text = "---------";
+            this.rJ_Lable_藥品搜尋_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.rJ_Lable_藥品搜尋_藥名.TextColor = System.Drawing.Color.Blue;
             // 
             // panel37
             // 
@@ -2375,27 +2375,27 @@ namespace 中藥調劑系統
             this.panel37.Size = new System.Drawing.Size(1896, 8);
             this.panel37.TabIndex = 7;
             // 
-            // rJ_Lable10
+            // rJ_Lable_藥品搜尋_狀態
             // 
-            this.rJ_Lable10.BackColor = System.Drawing.SystemColors.Control;
-            this.rJ_Lable10.BackgroundColor = System.Drawing.Color.Red;
-            this.rJ_Lable10.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Lable10.BorderRadius = 10;
-            this.rJ_Lable10.BorderSize = 0;
-            this.rJ_Lable10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rJ_Lable10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable10.Font = new System.Drawing.Font("微軟正黑體", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Lable10.ForeColor = System.Drawing.Color.Transparent;
-            this.rJ_Lable10.GUID = "";
-            this.rJ_Lable10.Location = new System.Drawing.Point(0, 102);
-            this.rJ_Lable10.Name = "rJ_Lable10";
-            this.rJ_Lable10.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Lable10.ShadowSize = 3;
-            this.rJ_Lable10.Size = new System.Drawing.Size(1896, 149);
-            this.rJ_Lable10.TabIndex = 6;
-            this.rJ_Lable10.Text = "請【刷取條碼】或【搜尋藥品】";
-            this.rJ_Lable10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rJ_Lable10.TextColor = System.Drawing.Color.White;
+            this.rJ_Lable_藥品搜尋_狀態.BackColor = System.Drawing.SystemColors.Control;
+            this.rJ_Lable_藥品搜尋_狀態.BackgroundColor = System.Drawing.Color.Red;
+            this.rJ_Lable_藥品搜尋_狀態.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Lable_藥品搜尋_狀態.BorderRadius = 10;
+            this.rJ_Lable_藥品搜尋_狀態.BorderSize = 0;
+            this.rJ_Lable_藥品搜尋_狀態.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rJ_Lable_藥品搜尋_狀態.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Lable_藥品搜尋_狀態.Font = new System.Drawing.Font("微軟正黑體", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Lable_藥品搜尋_狀態.ForeColor = System.Drawing.Color.Transparent;
+            this.rJ_Lable_藥品搜尋_狀態.GUID = "";
+            this.rJ_Lable_藥品搜尋_狀態.Location = new System.Drawing.Point(0, 102);
+            this.rJ_Lable_藥品搜尋_狀態.Name = "rJ_Lable_藥品搜尋_狀態";
+            this.rJ_Lable_藥品搜尋_狀態.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Lable_藥品搜尋_狀態.ShadowSize = 3;
+            this.rJ_Lable_藥品搜尋_狀態.Size = new System.Drawing.Size(1896, 149);
+            this.rJ_Lable_藥品搜尋_狀態.TabIndex = 6;
+            this.rJ_Lable_藥品搜尋_狀態.Text = "請【刷取條碼】或【搜尋藥品】";
+            this.rJ_Lable_藥品搜尋_狀態.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rJ_Lable_藥品搜尋_狀態.TextColor = System.Drawing.Color.White;
             // 
             // panel36
             // 
@@ -3955,9 +3955,9 @@ namespace 中藥調劑系統
         private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx3;
         private MyUI.PLC_RJ_ScreenButtonEx plC_RJ_ScreenButtonEx4;
         private System.Windows.Forms.TabPage 藥品搜尋;
-        private MyUI.RJ_Lable rJ_Lable10;
+        private MyUI.RJ_Lable rJ_Lable_藥品搜尋_狀態;
         private System.Windows.Forms.Panel panel36;
-        private MyUI.RJ_Lable rJ_Lable11;
+        private MyUI.RJ_Lable rJ_Lable_藥品搜尋_藥名;
         private System.Windows.Forms.Panel panel37;
         private MyUI.RJ_Button rJ_Button_藥品搜尋_搜尋;
     }

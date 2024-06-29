@@ -21,7 +21,7 @@ namespace 中藥調劑系統
         private List<OrderTClass> OrderTClass_現在調劑處方 = null;
         private bool flag_新處方提示 = false;
         private MyThread myThread_更新處方;
-        private int orderDate = -1;
+        private int orderDate = 0;
         public enum enum_處方內容
         {
             [Description("GUID,VARCHAR,15,NONE")]

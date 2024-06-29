@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.6")]
-[assembly: AssemblyFileVersion("1.0.0.6")]
+[assembly: AssemblyVersion("1.0.0.7")]
+[assembly: AssemblyFileVersion("1.0.0.7")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -222,7 +222,7 @@ namespace 中藥調劑系統
             Program_RS232_EXCELL_SCALE_Init();
             Program_RS232_Scanner_Init();
             Program_RFID_Init();
-
+            Program_藥品搜尋_Init();
             _rowsLEDUI = this.rowsLEDUI;
             this.rowsLEDUI.Init(dBConfigClass.DB_儲位資料);
             _storageUI_EPD_266 = this.storageUI_EPD_266;
