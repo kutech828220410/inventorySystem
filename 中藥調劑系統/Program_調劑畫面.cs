@@ -757,7 +757,7 @@ namespace 中藥調劑系統
         {
             this.Invoke(new Action(delegate
             {
-                rJ_Lable_處方藥品.Text = $"-------------------";
+                rJ_Lable_處方藥品.Text = $"-----------";
                 rJ_Lable_處方資訊_單筆包數.Text = $"-包";
                 rJ_Lable_處方資訊_單筆處方天數.Text = $"--天";
                 rJ_Lable_處方資訊_單包重.Text = $"--.-- 克/包";

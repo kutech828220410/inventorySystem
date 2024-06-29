@@ -221,6 +221,9 @@
     <Compile Include="Program_藥品區域.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_藥品搜尋.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_處方搜尋.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +302,7 @@
     <None Include="Resources\move-to-non-dispensing-data.png" />
     <None Include="Resources\move-to-non-dispensing-data-removebg-preview.png" />
     <None Include="Resources\personnel-information-and-permission-levels-removebg-preview.png" />
+    <None Include="Resources\icon-for-searching-medicine-removebg-preview.png" />
     <Content Include="中藥調劑系統ICON.ico" />
   </ItemGroup>
   <ItemGroup>
