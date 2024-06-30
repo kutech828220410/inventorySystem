@@ -35,6 +35,8 @@ namespace HIS_DB_Lib
         藥品碼,
         [Description("藥品名稱,VARCHAR,200,NONE")]
         藥品名稱,
+        [Description("住院序號,VARCHAR,15,INDEX")]
+        住院序號,
         [Description("領藥號,VARCHAR,15,INDEX")]
         領藥號,
         [Description("批序,VARCHAR,15,NONE")]
@@ -57,6 +59,10 @@ namespace HIS_DB_Lib
         病人姓名,
         [Description("病歷號,VARCHAR,20,INDEX")]
         病歷號,
+        [Description("醫師代碼,VARCHAR,20,NONE")]
+        醫師代碼,
+        [Description("科別,VARCHAR,20,NONE")]
+        科別,
         [Description("交易量,VARCHAR,15,NONE")]
         交易量,
         [Description("開方日期,DATETIME,20,INDEX")]
@@ -69,6 +75,16 @@ namespace HIS_DB_Lib
         產出時間,
         [Description("過帳時間,DATETIME,20,INDEX")]
         過帳時間,
+        [Description("就醫時間,DATETIME,20,INDEX")]
+        就醫時間,
+        [Description("藥師姓名,VARCHAR,50,INDEX")]
+        藥師姓名,
+        [Description("藥師ID,VARCHAR,20,NONE")]
+        藥師ID,
+        [Description("領藥姓名,VARCHAR,50,INDEX")]
+        領藥姓名,
+        [Description("領藥ID,VARCHAR,20,NONE")]
+        領藥ID,
         [Description("狀態,VARCHAR,15,NONE")]
         狀態,
         [Description("備註,VARCHAR,300,INDEX")]
@@ -120,6 +136,10 @@ namespace HIS_DB_Lib
         public string 病歷號 { get; set; }
         [JsonPropertyName("TXN_QTY")]
         public string 交易量 { get; set; }
+        [JsonPropertyName("DOCID")]
+        public string 醫師代碼 { get; set; }
+        [JsonPropertyName("SECTNO")]
+        public string 科別 { get; set; }
         [JsonPropertyName("ORD_START")]
         public string 開方日期 { get; set; }
         [JsonPropertyName("ORD_END")]
@@ -130,6 +150,8 @@ namespace HIS_DB_Lib
         public string 產出時間 { get; set; }
         [JsonPropertyName("POST_TIME")]
         public string 過帳時間 { get; set; }
+        [JsonPropertyName("VISITDT_TIME")]
+        public string 就醫時間 { get; set; }
         [JsonPropertyName("PHARER_NAME")]
         public string 藥師姓名 { get; set; }
         [JsonPropertyName("PHARER_ID")]
