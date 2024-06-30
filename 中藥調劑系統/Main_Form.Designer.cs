@@ -147,6 +147,10 @@ namespace 中藥調劑系統
             this.rJ_Lable7 = new MyUI.RJ_Lable();
             this.dateTimeIntervelPicker_交易紀錄_操作時間 = new MyUI.DateTimeIntervelPicker();
             this.設定 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.plC_NumBox_更新前幾天醫令 = new MyUI.PLC_NumBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -192,10 +196,6 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_藥品區域 = new SQLUI.SQL_DataGridView();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.plC_NumBox_更新前幾天醫令 = new MyUI.PLC_NumBox();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -229,6 +229,7 @@ namespace 中藥調劑系統
             this.panel30.SuspendLayout();
             this.panel29.SuspendLayout();
             this.設定.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.系統.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -241,7 +242,6 @@ namespace 中藥調劑系統
             this.panel32.SuspendLayout();
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_main
@@ -2981,6 +2981,58 @@ namespace 中藥調劑系統
             this.設定.TabIndex = 3;
             this.設定.Text = "設定";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.plC_NumBox_更新前幾天醫令);
+            this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox2.Location = new System.Drawing.Point(404, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(382, 152);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "醫令日期";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(224, 51);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(67, 24);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "天醫令";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(20, 51);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(105, 24);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "更新往前第";
+            // 
+            // plC_NumBox_更新前幾天醫令
+            // 
+            this.plC_NumBox_更新前幾天醫令.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_更新前幾天醫令.Location = new System.Drawing.Point(131, 41);
+            this.plC_NumBox_更新前幾天醫令.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_更新前幾天醫令.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_更新前幾天醫令.Name = "plC_NumBox_更新前幾天醫令";
+            this.plC_NumBox_更新前幾天醫令.ReadOnly = false;
+            this.plC_NumBox_更新前幾天醫令.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_更新前幾天醫令.TabIndex = 1;
+            this.plC_NumBox_更新前幾天醫令.Value = 0;
+            this.plC_NumBox_更新前幾天醫令.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_更新前幾天醫令.密碼欄位 = false;
+            this.plC_NumBox_更新前幾天醫令.寫入元件位置 = "D210";
+            this.plC_NumBox_更新前幾天醫令.小數點位置 = 0;
+            this.plC_NumBox_更新前幾天醫令.微調數值 = 1;
+            this.plC_NumBox_更新前幾天醫令.讀取元件位置 = "D210";
+            this.plC_NumBox_更新前幾天醫令.音效 = true;
+            this.plC_NumBox_更新前幾天醫令.顯示微調按鈕 = false;
+            this.plC_NumBox_更新前幾天醫令.顯示螢幕小鍵盤 = true;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label9);
@@ -3738,58 +3790,6 @@ namespace 中藥調劑系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.plC_NumBox_更新前幾天醫令);
-            this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox2.Location = new System.Drawing.Point(404, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(382, 152);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "醫令日期";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(224, 51);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(67, 24);
-            this.label19.TabIndex = 3;
-            this.label19.Text = "天醫令";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(20, 51);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(105, 24);
-            this.label20.TabIndex = 2;
-            this.label20.Text = "更新往前第";
-            // 
-            // plC_NumBox_更新前幾天醫令
-            // 
-            this.plC_NumBox_更新前幾天醫令.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_更新前幾天醫令.Location = new System.Drawing.Point(131, 41);
-            this.plC_NumBox_更新前幾天醫令.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_更新前幾天醫令.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_更新前幾天醫令.Name = "plC_NumBox_更新前幾天醫令";
-            this.plC_NumBox_更新前幾天醫令.ReadOnly = false;
-            this.plC_NumBox_更新前幾天醫令.Size = new System.Drawing.Size(82, 46);
-            this.plC_NumBox_更新前幾天醫令.TabIndex = 1;
-            this.plC_NumBox_更新前幾天醫令.Value = 0;
-            this.plC_NumBox_更新前幾天醫令.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_更新前幾天醫令.密碼欄位 = false;
-            this.plC_NumBox_更新前幾天醫令.寫入元件位置 = "D210";
-            this.plC_NumBox_更新前幾天醫令.小數點位置 = 0;
-            this.plC_NumBox_更新前幾天醫令.微調數值 = 1;
-            this.plC_NumBox_更新前幾天醫令.讀取元件位置 = "D210";
-            this.plC_NumBox_更新前幾天醫令.音效 = true;
-            this.plC_NumBox_更新前幾天醫令.顯示微調按鈕 = false;
-            this.plC_NumBox_更新前幾天醫令.顯示螢幕小鍵盤 = true;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3835,6 +3835,8 @@ namespace 中藥調劑系統
             this.panel30.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             this.設定.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.系統.ResumeLayout(false);
@@ -3852,8 +3854,6 @@ namespace 中藥調劑系統
             this.panel33.PerformLayout();
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
