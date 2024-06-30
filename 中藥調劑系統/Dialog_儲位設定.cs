@@ -595,6 +595,34 @@ namespace 中藥調劑系統
         }
         #endregion
         #region 儲架電子紙
+        private void SqL_DataGridView_儲架電子紙列表_RowEnterEvent(object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
+
+            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
+
+            if (storage == null) return;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品名稱.Text = storage.Name;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品學名.Text = storage.Scientific_Name;
+            rJ_TextBox_儲架電子紙_儲位內容_中文名稱.Text = storage.ChineseName;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品碼.Text = storage.Code;
+            rJ_TextBox_儲架電子紙_儲位內容_包裝單位.Text = storage.Package;
+            rJ_TextBox_儲架電子紙_儲位內容_總庫存.Text = storage.Inventory;
+
+            plC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_庫存顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_Barcode顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_效期顯示.Checked = storage.Name_Visable;
+
+            
+            epD_290_Pannel.DrawToPictureBox(storage);
+
+
+        }
         private void SqL_DataGridView_儲架電子紙列表_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -921,25 +949,7 @@ namespace 中藥調劑系統
             }));
         }
 
-        private void SqL_DataGridView_儲架電子紙列表_RowEnterEvent(object[] RowValue)
-        {
-            string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
-
-            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
-
-            if (storage == null) return;
-            rJ_TextBox_儲架電子紙_儲位內容_藥品名稱.Text = storage.Name;
-            rJ_TextBox_儲架電子紙_儲位內容_藥品學名.Text = storage.Scientific_Name;
-            rJ_TextBox_儲架電子紙_儲位內容_中文名稱.Text = storage.ChineseName;
-            rJ_TextBox_儲架電子紙_儲位內容_藥品碼.Text = storage.Code;
-            rJ_TextBox_儲架電子紙_儲位內容_包裝單位.Text = storage.Package;
-            rJ_TextBox_儲架電子紙_儲位內容_總庫存.Text = storage.Inventory;
-
-
-            epD_290_Pannel.DrawToPictureBox(storage);
-
-
-        }
+      
         private void PlC_RJ_Button_儲架電子紙_儲位內容_效期字體更動_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
@@ -1283,9 +1293,6 @@ namespace 中藥調劑系統
         #endregion
 
         #endregion
-
-
-
 
         private class ICP_儲架電子紙_藥品資料 : IComparer<object[]>
         {
