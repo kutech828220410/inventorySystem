@@ -343,7 +343,7 @@ namespace HIS_DB_Lib
             {
                 return null;
             }
-            Console.WriteLine($"{returnData_out}");
+           // Console.WriteLine($"{returnData_out}");
             List<OrderTClass> orderTClasses = returnData_out.Data.ObjToClass<List<OrderTClass>>();
             return orderTClasses;
         }

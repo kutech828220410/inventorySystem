@@ -19,10 +19,24 @@ namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
     {
+        public class LightOn
+        {
+            public string IP { get; set; }
+            public string Code { get; set; }
+            public Color color { get; set; }
+
+            public LightOn(string IP, Color color)
+            {
+                this.IP = IP;
+                this.color = color;
+            }
+        }
+
         static public List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
         static public List<Storage> List_EPD266_本地資料 = new List<Storage>();
         static public List<object> Function_從本地資料取得儲位(string 藥品碼)
         {
+            藥品碼 = ReplaceHyphenWithStar(藥品碼);
             List<object> list_value = new List<object>();
             List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortByCode(藥品碼);
             List<Storage> storages_epd266 = List_EPD266_本地資料.SortByCode(藥品碼);
@@ -63,9 +77,81 @@ namespace 中藥調劑系統
 
             Console.WriteLine($"SQL讀取儲位資料到本地結束! 耗時 : {myTimer.GetTickTime().ToString("0.000")}");
         }
+        static public void Function_儲位亮燈(List<string> Codes, Color color)
+        {
+            List<LightOn> lightOns = new List<LightOn>();
+            List<LightOn> LightOns_buf = new List<LightOn>();
+            for (int i = 0; i < Codes.Count; i++)
+            {
+                Console.WriteLine($"儲位亮燈 : 藥碼 : {Codes[i]} 顏色 : {color.ToColorString()}");
+                if (Codes[i].StringIsEmpty()) return;
+                Codes[i] = ReplaceHyphenWithStar(Codes[i]);
+                List<object> list_Device = Function_從本地資料取得儲位(Codes[i]);
+                for (int k = 0; k < list_Device.Count; k++)
+                {
+                    Device device = list_Device[k] as Device;
+                    if (device != null)
+                    {
+                        if (device.DeviceType == DeviceType.RowsLED)
+                        {
+                            RowsDevice rowsDevice = list_Device[k] as RowsDevice;
+                            RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(device.IP);
+                            if (rowsDevice != null && rowsLED != null)
+                            {
+                                rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
+                                LightOns_buf = (from temp in lightOns
+                                                where temp.IP == device.IP
+                                                select temp).ToList();
+                                if (LightOns_buf.Count == 0)
+                                {
+                                    lightOns.Add(new LightOn(device.IP, color));
+                                }
+                            }
+                        }
+                        if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266)
+                        {
+                            Storage storage = List_EPD266_本地資料.SortByIP(device.IP);
+                            if (storage != null)
+                            {
+                                if (LightOns_buf.Count == 0)
+                                {
+                                    lightOns.Add(new LightOn(device.IP, color));
+                                }
+                                //_storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
+                            }
+                        }
+                    }
+                }
+            }
+            List<Task> tasks = new List<Task>();
+            for (int i = 0; i < lightOns.Count; i++)
+            {
+                LightOn lightOn = lightOns[i];
+
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(lightOn.IP);
+                    Storage storage = List_EPD266_本地資料.SortByIP(lightOn.IP);
+                    if (rowsLED != null)
+                    {
+                        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                    }
+                    if (storage != null)
+                    {
+                        _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, lightOn.color);
+                    }
+                })));
+            }
+
+            Task.WhenAll(tasks).Wait();
+        }
+
+
         static public void Function_儲位亮燈(string 藥品碼, Color color)
         {
             if (藥品碼.StringIsEmpty()) return;
+            藥品碼 = ReplaceHyphenWithStar(藥品碼);
+            Console.WriteLine($"儲位亮燈 : 藥碼 : {藥品碼} 顏色 : {color.ToColorString()}");
             List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
             for (int i = 0; i < list_Device.Count; i++)
             {
@@ -137,6 +223,14 @@ namespace 中藥調劑系統
             }
 
             return orderClasses;
+        }
+        public static string ReplaceHyphenWithStar(string input)
+        {
+            string pattern = "-[a-zA-Z0-9]";
+            string replacement = "";
+            input = System.Text.RegularExpressions.Regex.Replace(input, pattern, replacement);
+            input = $"{input}*";
+            return input;
         }
     }
 }

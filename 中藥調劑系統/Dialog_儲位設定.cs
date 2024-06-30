@@ -113,6 +113,7 @@ namespace 中藥調劑系統
             InitializeComponent();
             this.Load += Dialog_儲位設定_Load;
             this.Shown += Dialog_儲位設定_Shown;
+       
         }
 
         private void Dialog_儲位設定_Shown(object sender, EventArgs e)
@@ -122,6 +123,8 @@ namespace 中藥調劑系統
         }
         private void Dialog_儲位設定_Load(object sender, EventArgs e)
         {
+            //this.TopMost = true;
+            //this.TopLevel = false;
             #region 層架亮燈
             this.rowsLED_Pannel.Init(Main_Form._rowsLEDUI.List_UDP_Local);
             this.rowsLED_Pannel.AutoWrite = true;
@@ -596,6 +599,7 @@ namespace 中藥調劑系統
         {
             if (e.Button == MouseButtons.Right)
             {
+                
                 Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(new ContextMenuStrip_儲架電子紙列表());
                 if (dialog_ContextMenuStrip.ShowDialog() == DialogResult.Yes)
                 {

@@ -192,6 +192,11 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_藥品區域 = new SQLUI.SQL_DataGridView();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.plC_NumBox_更新前幾天醫令 = new MyUI.PLC_NumBox();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
@@ -236,6 +241,7 @@ namespace 中藥調劑系統
             this.panel32.SuspendLayout();
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_main
@@ -1162,14 +1168,14 @@ namespace 中藥調劑系統
             this.rJ_Lable_實調.BorderSize = 0;
             this.rJ_Lable_實調.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Lable_實調.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_實調.Font = new System.Drawing.Font("新細明體", 90F, System.Drawing.FontStyle.Bold);
+            this.rJ_Lable_實調.Font = new System.Drawing.Font("新細明體", 85F, System.Drawing.FontStyle.Bold);
             this.rJ_Lable_實調.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_實調.GUID = "";
-            this.rJ_Lable_實調.Location = new System.Drawing.Point(131, 5);
+            this.rJ_Lable_實調.Location = new System.Drawing.Point(114, 5);
             this.rJ_Lable_實調.Name = "rJ_Lable_實調";
             this.rJ_Lable_實調.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_實調.ShadowSize = 0;
-            this.rJ_Lable_實調.Size = new System.Drawing.Size(349, 322);
+            this.rJ_Lable_實調.Size = new System.Drawing.Size(366, 322);
             this.rJ_Lable_實調.TabIndex = 10;
             this.rJ_Lable_實調.Text = "0.00";
             this.rJ_Lable_實調.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1213,7 +1219,7 @@ namespace 中藥調劑系統
             this.rJ_Lable23.Name = "rJ_Lable23";
             this.rJ_Lable23.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable23.ShadowSize = 0;
-            this.rJ_Lable23.Size = new System.Drawing.Size(126, 322);
+            this.rJ_Lable23.Size = new System.Drawing.Size(109, 322);
             this.rJ_Lable23.TabIndex = 8;
             this.rJ_Lable23.Text = "實\r\n調";
             this.rJ_Lable23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1250,14 +1256,14 @@ namespace 中藥調劑系統
             this.rJ_Lable_應調.BorderSize = 0;
             this.rJ_Lable_應調.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rJ_Lable_應調.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Lable_應調.Font = new System.Drawing.Font("新細明體", 90F, System.Drawing.FontStyle.Bold);
+            this.rJ_Lable_應調.Font = new System.Drawing.Font("新細明體", 85F, System.Drawing.FontStyle.Bold);
             this.rJ_Lable_應調.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_應調.GUID = "";
-            this.rJ_Lable_應調.Location = new System.Drawing.Point(131, 5);
+            this.rJ_Lable_應調.Location = new System.Drawing.Point(114, 5);
             this.rJ_Lable_應調.Name = "rJ_Lable_應調";
             this.rJ_Lable_應調.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_應調.ShadowSize = 0;
-            this.rJ_Lable_應調.Size = new System.Drawing.Size(349, 322);
+            this.rJ_Lable_應調.Size = new System.Drawing.Size(366, 322);
             this.rJ_Lable_應調.TabIndex = 10;
             this.rJ_Lable_應調.Text = "0.00";
             this.rJ_Lable_應調.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1301,7 +1307,7 @@ namespace 中藥調劑系統
             this.rJ_Lable18.Name = "rJ_Lable18";
             this.rJ_Lable18.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable18.ShadowSize = 0;
-            this.rJ_Lable18.Size = new System.Drawing.Size(126, 322);
+            this.rJ_Lable18.Size = new System.Drawing.Size(109, 322);
             this.rJ_Lable18.TabIndex = 8;
             this.rJ_Lable18.Text = "應\r\n調";
             this.rJ_Lable18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1874,11 +1880,11 @@ namespace 中藥調劑系統
             this.rJ_Lable_處方資訊_單筆總重.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_Lable_處方資訊_單筆總重.ForeColor = System.Drawing.Color.Transparent;
             this.rJ_Lable_處方資訊_單筆總重.GUID = "";
-            this.rJ_Lable_處方資訊_單筆總重.Location = new System.Drawing.Point(376, 0);
+            this.rJ_Lable_處方資訊_單筆總重.Location = new System.Drawing.Point(358, 0);
             this.rJ_Lable_處方資訊_單筆總重.Name = "rJ_Lable_處方資訊_單筆總重";
             this.rJ_Lable_處方資訊_單筆總重.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_處方資訊_單筆總重.ShadowSize = 0;
-            this.rJ_Lable_處方資訊_單筆總重.Size = new System.Drawing.Size(177, 71);
+            this.rJ_Lable_處方資訊_單筆總重.Size = new System.Drawing.Size(195, 71);
             this.rJ_Lable_處方資訊_單筆總重.TabIndex = 7;
             this.rJ_Lable_處方資訊_單筆總重.Text = "總重:266g";
             this.rJ_Lable_處方資訊_單筆總重.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1900,7 +1906,7 @@ namespace 中藥調劑系統
             this.rJ_Lable_處方資訊_單包重.Name = "rJ_Lable_處方資訊_單包重";
             this.rJ_Lable_處方資訊_單包重.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable_處方資訊_單包重.ShadowSize = 0;
-            this.rJ_Lable_處方資訊_單包重.Size = new System.Drawing.Size(189, 71);
+            this.rJ_Lable_處方資訊_單包重.Size = new System.Drawing.Size(171, 71);
             this.rJ_Lable_處方資訊_單包重.TabIndex = 6;
             this.rJ_Lable_處方資訊_單包重.Text = "9.50 克/包";
             this.rJ_Lable_處方資訊_單包重.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -2967,6 +2973,7 @@ namespace 中藥調劑系統
             // 設定
             // 
             this.設定.BackColor = System.Drawing.Color.White;
+            this.設定.Controls.Add(this.groupBox2);
             this.設定.Controls.Add(this.groupBox1);
             this.設定.Location = new System.Drawing.Point(4, 25);
             this.設定.Name = "設定";
@@ -3731,6 +3738,58 @@ namespace 中藥調劑系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.plC_NumBox_更新前幾天醫令);
+            this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox2.Location = new System.Drawing.Point(404, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(382, 152);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "醫令日期";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(224, 51);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(67, 24);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "天醫令";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(20, 51);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(105, 24);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "更新往前第";
+            // 
+            // plC_NumBox_更新前幾天醫令
+            // 
+            this.plC_NumBox_更新前幾天醫令.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_更新前幾天醫令.Location = new System.Drawing.Point(131, 41);
+            this.plC_NumBox_更新前幾天醫令.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_更新前幾天醫令.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_更新前幾天醫令.Name = "plC_NumBox_更新前幾天醫令";
+            this.plC_NumBox_更新前幾天醫令.ReadOnly = false;
+            this.plC_NumBox_更新前幾天醫令.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_更新前幾天醫令.TabIndex = 1;
+            this.plC_NumBox_更新前幾天醫令.Value = 0;
+            this.plC_NumBox_更新前幾天醫令.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_更新前幾天醫令.密碼欄位 = false;
+            this.plC_NumBox_更新前幾天醫令.寫入元件位置 = "D210";
+            this.plC_NumBox_更新前幾天醫令.小數點位置 = 0;
+            this.plC_NumBox_更新前幾天醫令.微調數值 = 1;
+            this.plC_NumBox_更新前幾天醫令.讀取元件位置 = "D210";
+            this.plC_NumBox_更新前幾天醫令.音效 = true;
+            this.plC_NumBox_更新前幾天醫令.顯示微調按鈕 = false;
+            this.plC_NumBox_更新前幾天醫令.顯示螢幕小鍵盤 = true;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -3793,6 +3852,8 @@ namespace 中藥調劑系統
             this.panel33.PerformLayout();
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3960,6 +4021,11 @@ namespace 中藥調劑系統
         private MyUI.RJ_Lable rJ_Lable_藥品搜尋_藥名;
         private System.Windows.Forms.Panel panel37;
         private MyUI.RJ_Button rJ_Button_藥品搜尋_搜尋;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private MyUI.PLC_NumBox plC_NumBox_更新前幾天醫令;
+        private System.Windows.Forms.ColorDialog colorDialog;
     }
 }
 
