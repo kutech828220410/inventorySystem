@@ -377,7 +377,7 @@ namespace 中藥調劑系統
             this.plC_RJ_ScreenButtonEx4.按鈕型態 = MyUI.PLC_RJ_ScreenButtonEx.StatusEnum.保持型;
             this.plC_RJ_ScreenButtonEx4.控制位址 = "D0";
             this.plC_RJ_ScreenButtonEx4.換頁選擇方式 = MyUI.PLC_RJ_ScreenButtonEx.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButtonEx4.致能讀取位置 = "";
+            this.plC_RJ_ScreenButtonEx4.致能讀取位置 = "S4000";
             this.plC_RJ_ScreenButtonEx4.讀取位元反向 = false;
             this.plC_RJ_ScreenButtonEx4.讀取位置註解 = "";
             this.plC_RJ_ScreenButtonEx4.讀取元件位置 = "";

@@ -65,12 +65,13 @@ namespace 中藥調劑系統
                     List<medClass> medClasses = medClass.serch_by_BarCode(Main_Form.API_Server, text);
                     if (medClasses.Count > 0)
                     {
-                        if (medClass_藥品搜尋 != null)
-                        {
-                            Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Black);
-                        }
+                        
                         if (flag_藥品搜尋 == false)
                         {
+                            if (medClass_藥品搜尋 != null)
+                            {
+                                Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Black);
+                            }
                             medClass_藥品搜尋 = medClasses[0];
                             flag_藥品搜尋 = true;
                         }
@@ -88,28 +89,23 @@ namespace 中藥調劑系統
             if (flag_藥品搜尋)
             {
 
-
-                Task.Run(new Action(delegate
+                this.Invoke(new Action(delegate
                 {
-                    this.Invoke(new Action(delegate
-                    {
-                        this.rJ_Lable_藥品搜尋_藥名.Text = $"({medClass_藥品搜尋.藥品碼}){medClass_藥品搜尋.藥品名稱}";
-                        this.rJ_Lable_藥品搜尋_狀態.BackgroundColor = Color.Green;
-                        this.rJ_Lable_藥品搜尋_狀態.Text = "藥品帶入成功";
-   
-                    }));
-                    Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Purple);
-                    System.Threading.Thread.Sleep(2000);
+                    this.rJ_Lable_藥品搜尋_藥名.Text = $"({medClass_藥品搜尋.藥品碼}){ RemoveParenthesesContent(medClass_藥品搜尋.藥品名稱)}";
+                    this.rJ_Lable_藥品搜尋_狀態.BackgroundColor = Color.Green;
+                    this.rJ_Lable_藥品搜尋_狀態.Text = "藥品帶入成功";
 
-                    this.Invoke(new Action(delegate
-                    {
-                        this.rJ_Lable_藥品搜尋_狀態.BackgroundColor = Color.Red;
-
-                        this.rJ_Lable_藥品搜尋_狀態.Text = "請【刷取條碼】或【搜尋藥品】";
-                    }));
-                    flag_藥品搜尋 = false;
                 }));
+                Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Purple);
+                System.Threading.Thread.Sleep(2000);
 
+                this.Invoke(new Action(delegate
+                {
+                    this.rJ_Lable_藥品搜尋_狀態.BackgroundColor = Color.Red;
+
+                    this.rJ_Lable_藥品搜尋_狀態.Text = "請【刷取條碼】或【搜尋藥品】";
+                }));
+                flag_藥品搜尋 = false;
 
             }
         }
