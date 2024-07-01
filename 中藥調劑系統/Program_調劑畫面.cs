@@ -392,7 +392,10 @@ namespace 中藥調劑系統
                                     ToolStripMenuItem_處方內容_調劑完成_Click(null, null);
                                     return;
                                 }
-                                if (flag_EXCELL_SCALE_IS_READY == true) EXCELL_set_sub_current_weight();
+                                if (flag_EXCELL_SCALE_IS_READY == true && plC_CheckBox_自動歸零.Checked == true)
+                                {
+                                    EXCELL_set_sub_current_weight();
+                                }
                                 this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
                             }
                             else if(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString() == list_處方內容_buf[0][(int)enum_處方內容.GUID].ObjectToString())
@@ -429,8 +432,8 @@ namespace 中藥調劑系統
 
                                 }
                            
-                                double 應調_L = 應調 + 檢核上限;
-                                double 應調_H = 應調 - 檢核下限;
+                                double 應調_H = 應調 + 檢核上限;
+                                double 應調_L = 應調 - 檢核下限;
                                 if (實調 <= 應調_L || 實調 >= 應調_H)
                                 {
                                     if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
@@ -612,6 +615,20 @@ namespace 中藥調劑系統
                 rJ_Lable_科別.Text = $"科別 : {orderTClass.科別}";
                 rJ_Lable_應調單位.Text = $"{orderTClass.劑量單位}";
                 rJ_Lable_實調單位.Text = $"{orderTClass.劑量單位}";
+
+                double 單包重 = rJ_Lable_處方資訊_單包重.Text.StringToDouble();
+                if (單包重 > 0)
+                {
+                    if (單包重 > ((double)plC_NumBox_單包重上限.Value / 10D))
+                    {
+                        MyMessageBox.ShowDialog("單包重超過上限");
+                    }
+                    if (單包重 < ((double)plC_NumBox_單包重下限.Value / 10D))
+                    {
+                        MyMessageBox.ShowDialog("單包重低於下限");
+                    }
+                }
+                
             }));
         }
         private void Function_登入(sessionClass _sessionClass)
@@ -732,6 +749,8 @@ namespace 中藥調劑系統
 
             dialog_AlarmForm = new Dialog_AlarmForm("調劑完成", 1500, Color.Green);
             dialog_AlarmForm.ShowDialog();
+            RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
+            Function_重置處方();
 
             return orderTClass;
         }
