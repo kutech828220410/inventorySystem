@@ -109,6 +109,7 @@ namespace 中藥調劑系統
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel22 = new System.Windows.Forms.Panel();
+            this.plC_CheckBox_自動歸零 = new MyUI.PLC_CheckBox();
             this.rJ_Lable_科別 = new MyUI.RJ_Lable();
             this.panel35 = new System.Windows.Forms.Panel();
             this.rJ_Lable2 = new MyUI.RJ_Lable();
@@ -152,18 +153,29 @@ namespace 中藥調劑系統
             this.label20 = new System.Windows.Forms.Label();
             this.plC_NumBox_更新前幾天醫令 = new MyUI.PLC_NumBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel40 = new System.Windows.Forms.Panel();
+            this.plC_NumBox_單包重上限 = new MyUI.PLC_NumBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.plC_NumBox_單包重下限 = new MyUI.PLC_NumBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel39 = new System.Windows.Forms.Panel();
+            this.plC_NumBox_檢核上限_錢 = new MyUI.PLC_NumBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.plC_NumBox_檢核下限_錢 = new MyUI.PLC_NumBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.plC_NumBox_檢核上限_錢 = new MyUI.PLC_NumBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.plC_NumBox_檢核下限_克 = new MyUI.PLC_NumBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel38 = new System.Windows.Forms.Panel();
             this.plC_NumBox_檢核上限_克 = new MyUI.PLC_NumBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.plC_NumBox_檢核下限_克 = new MyUI.PLC_NumBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.系統 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -197,18 +209,6 @@ namespace 中藥調劑系統
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.plC_CheckBox_自動歸零 = new MyUI.PLC_CheckBox();
-            this.panel38 = new System.Windows.Forms.Panel();
-            this.panel39 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.panel40 = new System.Windows.Forms.Panel();
-            this.plC_NumBox_單包重上限 = new MyUI.PLC_NumBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.plC_NumBox_單包重下限 = new MyUI.PLC_NumBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
@@ -243,6 +243,9 @@ namespace 中藥調劑系統
             this.設定.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel40.SuspendLayout();
+            this.panel39.SuspendLayout();
+            this.panel38.SuspendLayout();
             this.系統.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -254,9 +257,6 @@ namespace 中藥調劑系統
             this.panel32.SuspendLayout();
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
-            this.panel38.SuspendLayout();
-            this.panel39.SuspendLayout();
-            this.panel40.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_main
@@ -2242,6 +2242,26 @@ namespace 中藥調劑系統
             this.panel22.Size = new System.Drawing.Size(1890, 33);
             this.panel22.TabIndex = 6;
             // 
+            // plC_CheckBox_自動歸零
+            // 
+            this.plC_CheckBox_自動歸零.AutoSize = true;
+            this.plC_CheckBox_自動歸零.Bool = false;
+            this.plC_CheckBox_自動歸零.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_自動歸零.ForeColor = System.Drawing.Color.Black;
+            this.plC_CheckBox_自動歸零.Location = new System.Drawing.Point(1401, 6);
+            this.plC_CheckBox_自動歸零.Name = "plC_CheckBox_自動歸零";
+            this.plC_CheckBox_自動歸零.Size = new System.Drawing.Size(91, 20);
+            this.plC_CheckBox_自動歸零.TabIndex = 11;
+            this.plC_CheckBox_自動歸零.Text = "自動歸零";
+            this.plC_CheckBox_自動歸零.UseVisualStyleBackColor = true;
+            this.plC_CheckBox_自動歸零.寫入元件位置 = "S4500";
+            this.plC_CheckBox_自動歸零.文字內容 = "自動歸零";
+            this.plC_CheckBox_自動歸零.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_CheckBox_自動歸零.文字顏色 = System.Drawing.Color.Black;
+            this.plC_CheckBox_自動歸零.讀取元件位置 = "S4500";
+            this.plC_CheckBox_自動歸零.讀寫鎖住 = false;
+            this.plC_CheckBox_自動歸零.音效 = true;
+            // 
             // rJ_Lable_科別
             // 
             this.rJ_Lable_科別.BackColor = System.Drawing.Color.White;
@@ -3064,6 +3084,160 @@ namespace 中藥調劑系統
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "檢核設定";
             // 
+            // panel40
+            // 
+            this.panel40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel40.Controls.Add(this.plC_NumBox_單包重上限);
+            this.panel40.Controls.Add(this.label15);
+            this.panel40.Controls.Add(this.label16);
+            this.panel40.Controls.Add(this.plC_NumBox_單包重下限);
+            this.panel40.Controls.Add(this.label17);
+            this.panel40.Controls.Add(this.label18);
+            this.panel40.Location = new System.Drawing.Point(14, 249);
+            this.panel40.Name = "panel40";
+            this.panel40.Size = new System.Drawing.Size(201, 127);
+            this.panel40.TabIndex = 17;
+            // 
+            // plC_NumBox_單包重上限
+            // 
+            this.plC_NumBox_單包重上限.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_單包重上限.Location = new System.Drawing.Point(65, 14);
+            this.plC_NumBox_單包重上限.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_單包重上限.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_單包重上限.Name = "plC_NumBox_單包重上限";
+            this.plC_NumBox_單包重上限.ReadOnly = false;
+            this.plC_NumBox_單包重上限.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_單包重上限.TabIndex = 1;
+            this.plC_NumBox_單包重上限.Value = 0;
+            this.plC_NumBox_單包重上限.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_單包重上限.密碼欄位 = false;
+            this.plC_NumBox_單包重上限.寫入元件位置 = "D220";
+            this.plC_NumBox_單包重上限.小數點位置 = 1;
+            this.plC_NumBox_單包重上限.微調數值 = 1;
+            this.plC_NumBox_單包重上限.讀取元件位置 = "D220";
+            this.plC_NumBox_單包重上限.音效 = true;
+            this.plC_NumBox_單包重上限.顯示微調按鈕 = false;
+            this.plC_NumBox_單包重上限.顯示螢幕小鍵盤 = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(11, 24);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(48, 24);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "上限";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(153, 24);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(22, 24);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "g";
+            // 
+            // plC_NumBox_單包重下限
+            // 
+            this.plC_NumBox_單包重下限.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_單包重下限.Location = new System.Drawing.Point(65, 66);
+            this.plC_NumBox_單包重下限.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_單包重下限.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_單包重下限.Name = "plC_NumBox_單包重下限";
+            this.plC_NumBox_單包重下限.ReadOnly = false;
+            this.plC_NumBox_單包重下限.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_單包重下限.TabIndex = 4;
+            this.plC_NumBox_單包重下限.Value = 0;
+            this.plC_NumBox_單包重下限.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_單包重下限.密碼欄位 = false;
+            this.plC_NumBox_單包重下限.寫入元件位置 = "D221";
+            this.plC_NumBox_單包重下限.小數點位置 = 1;
+            this.plC_NumBox_單包重下限.微調數值 = 1;
+            this.plC_NumBox_單包重下限.讀取元件位置 = "D221";
+            this.plC_NumBox_單包重下限.音效 = true;
+            this.plC_NumBox_單包重下限.顯示微調按鈕 = false;
+            this.plC_NumBox_單包重下限.顯示螢幕小鍵盤 = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(11, 76);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(48, 24);
+            this.label17.TabIndex = 5;
+            this.label17.Text = "下限";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(153, 76);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(22, 24);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "g";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 222);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(67, 24);
+            this.label14.TabIndex = 16;
+            this.label14.Text = "單包重";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(10, 51);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 24);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "調劑";
+            // 
+            // panel39
+            // 
+            this.panel39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel39.Controls.Add(this.plC_NumBox_檢核上限_錢);
+            this.panel39.Controls.Add(this.label12);
+            this.panel39.Controls.Add(this.label9);
+            this.panel39.Controls.Add(this.label11);
+            this.panel39.Controls.Add(this.label10);
+            this.panel39.Controls.Add(this.plC_NumBox_檢核下限_錢);
+            this.panel39.Location = new System.Drawing.Point(221, 81);
+            this.panel39.Name = "panel39";
+            this.panel39.Size = new System.Drawing.Size(200, 127);
+            this.panel39.TabIndex = 14;
+            // 
+            // plC_NumBox_檢核上限_錢
+            // 
+            this.plC_NumBox_檢核上限_錢.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_檢核上限_錢.Location = new System.Drawing.Point(64, 15);
+            this.plC_NumBox_檢核上限_錢.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_檢核上限_錢.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_檢核上限_錢.Name = "plC_NumBox_檢核上限_錢";
+            this.plC_NumBox_檢核上限_錢.ReadOnly = false;
+            this.plC_NumBox_檢核上限_錢.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_檢核上限_錢.TabIndex = 7;
+            this.plC_NumBox_檢核上限_錢.Value = 0;
+            this.plC_NumBox_檢核上限_錢.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_檢核上限_錢.密碼欄位 = false;
+            this.plC_NumBox_檢核上限_錢.寫入元件位置 = "D202";
+            this.plC_NumBox_檢核上限_錢.小數點位置 = 1;
+            this.plC_NumBox_檢核上限_錢.微調數值 = 1;
+            this.plC_NumBox_檢核上限_錢.讀取元件位置 = "D202";
+            this.plC_NumBox_檢核上限_錢.音效 = true;
+            this.plC_NumBox_檢核上限_錢.顯示微調按鈕 = false;
+            this.plC_NumBox_檢核上限_錢.顯示螢幕小鍵盤 = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(10, 24);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(48, 24);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "上限";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -3072,6 +3246,15 @@ namespace 中藥調劑系統
             this.label9.Size = new System.Drawing.Size(29, 24);
             this.label9.TabIndex = 12;
             this.label9.Text = "錢";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(152, 25);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 24);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "錢";
             // 
             // label10
             // 
@@ -3103,62 +3286,58 @@ namespace 中藥調劑系統
             this.plC_NumBox_檢核下限_錢.顯示微調按鈕 = false;
             this.plC_NumBox_檢核下限_錢.顯示螢幕小鍵盤 = true;
             // 
-            // label11
+            // panel38
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(152, 25);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(29, 24);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "錢";
+            this.panel38.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel38.Controls.Add(this.plC_NumBox_檢核上限_克);
+            this.panel38.Controls.Add(this.label1);
+            this.panel38.Controls.Add(this.label2);
+            this.panel38.Controls.Add(this.plC_NumBox_檢核下限_克);
+            this.panel38.Controls.Add(this.label4);
+            this.panel38.Controls.Add(this.label3);
+            this.panel38.Location = new System.Drawing.Point(14, 81);
+            this.panel38.Name = "panel38";
+            this.panel38.Size = new System.Drawing.Size(201, 127);
+            this.panel38.TabIndex = 13;
             // 
-            // label12
+            // plC_NumBox_檢核上限_克
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(10, 24);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(48, 24);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "上限";
+            this.plC_NumBox_檢核上限_克.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_檢核上限_克.Location = new System.Drawing.Point(65, 14);
+            this.plC_NumBox_檢核上限_克.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_檢核上限_克.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_檢核上限_克.Name = "plC_NumBox_檢核上限_克";
+            this.plC_NumBox_檢核上限_克.ReadOnly = false;
+            this.plC_NumBox_檢核上限_克.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_檢核上限_克.TabIndex = 1;
+            this.plC_NumBox_檢核上限_克.Value = 0;
+            this.plC_NumBox_檢核上限_克.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_檢核上限_克.密碼欄位 = false;
+            this.plC_NumBox_檢核上限_克.寫入元件位置 = "D200";
+            this.plC_NumBox_檢核上限_克.小數點位置 = 1;
+            this.plC_NumBox_檢核上限_克.微調數值 = 1;
+            this.plC_NumBox_檢核上限_克.讀取元件位置 = "D200";
+            this.plC_NumBox_檢核上限_克.音效 = true;
+            this.plC_NumBox_檢核上限_克.顯示微調按鈕 = false;
+            this.plC_NumBox_檢核上限_克.顯示螢幕小鍵盤 = true;
             // 
-            // plC_NumBox_檢核上限_錢
+            // label1
             // 
-            this.plC_NumBox_檢核上限_錢.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_檢核上限_錢.Location = new System.Drawing.Point(64, 15);
-            this.plC_NumBox_檢核上限_錢.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_檢核上限_錢.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_檢核上限_錢.Name = "plC_NumBox_檢核上限_錢";
-            this.plC_NumBox_檢核上限_錢.ReadOnly = false;
-            this.plC_NumBox_檢核上限_錢.Size = new System.Drawing.Size(82, 46);
-            this.plC_NumBox_檢核上限_錢.TabIndex = 7;
-            this.plC_NumBox_檢核上限_錢.Value = 0;
-            this.plC_NumBox_檢核上限_錢.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_檢核上限_錢.密碼欄位 = false;
-            this.plC_NumBox_檢核上限_錢.寫入元件位置 = "D202";
-            this.plC_NumBox_檢核上限_錢.小數點位置 = 1;
-            this.plC_NumBox_檢核上限_錢.微調數值 = 1;
-            this.plC_NumBox_檢核上限_錢.讀取元件位置 = "D202";
-            this.plC_NumBox_檢核上限_錢.音效 = true;
-            this.plC_NumBox_檢核上限_錢.顯示微調按鈕 = false;
-            this.plC_NumBox_檢核上限_錢.顯示螢幕小鍵盤 = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "上限";
             // 
-            // label3
+            // label2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(153, 76);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(22, 24);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "g";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 76);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 24);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "下限";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(153, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "g";
             // 
             // plC_NumBox_檢核下限_克
             // 
@@ -3181,44 +3360,23 @@ namespace 中藥調劑系統
             this.plC_NumBox_檢核下限_克.顯示微調按鈕 = false;
             this.plC_NumBox_檢核下限_克.顯示螢幕小鍵盤 = true;
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(153, 24);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "g";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 24);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "下限";
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 24);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "上限";
-            // 
-            // plC_NumBox_檢核上限_克
-            // 
-            this.plC_NumBox_檢核上限_克.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_檢核上限_克.Location = new System.Drawing.Point(65, 14);
-            this.plC_NumBox_檢核上限_克.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_檢核上限_克.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_檢核上限_克.Name = "plC_NumBox_檢核上限_克";
-            this.plC_NumBox_檢核上限_克.ReadOnly = false;
-            this.plC_NumBox_檢核上限_克.Size = new System.Drawing.Size(82, 46);
-            this.plC_NumBox_檢核上限_克.TabIndex = 1;
-            this.plC_NumBox_檢核上限_克.Value = 0;
-            this.plC_NumBox_檢核上限_克.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_檢核上限_克.密碼欄位 = false;
-            this.plC_NumBox_檢核上限_克.寫入元件位置 = "D200";
-            this.plC_NumBox_檢核上限_克.小數點位置 = 1;
-            this.plC_NumBox_檢核上限_克.微調數值 = 1;
-            this.plC_NumBox_檢核上限_克.讀取元件位置 = "D200";
-            this.plC_NumBox_檢核上限_克.音效 = true;
-            this.plC_NumBox_檢核上限_克.顯示微調按鈕 = false;
-            this.plC_NumBox_檢核上限_克.顯示螢幕小鍵盤 = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(153, 76);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(22, 24);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "g";
             // 
             // 系統
             // 
@@ -3799,164 +3957,6 @@ namespace 中藥調劑系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
-            // plC_CheckBox_自動歸零
-            // 
-            this.plC_CheckBox_自動歸零.AutoSize = true;
-            this.plC_CheckBox_自動歸零.Bool = false;
-            this.plC_CheckBox_自動歸零.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_CheckBox_自動歸零.ForeColor = System.Drawing.Color.Black;
-            this.plC_CheckBox_自動歸零.Location = new System.Drawing.Point(1401, 6);
-            this.plC_CheckBox_自動歸零.Name = "plC_CheckBox_自動歸零";
-            this.plC_CheckBox_自動歸零.Size = new System.Drawing.Size(91, 20);
-            this.plC_CheckBox_自動歸零.TabIndex = 11;
-            this.plC_CheckBox_自動歸零.Text = "自動歸零";
-            this.plC_CheckBox_自動歸零.UseVisualStyleBackColor = true;
-            this.plC_CheckBox_自動歸零.寫入元件位置 = "S4500";
-            this.plC_CheckBox_自動歸零.文字內容 = "自動歸零";
-            this.plC_CheckBox_自動歸零.文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_CheckBox_自動歸零.文字顏色 = System.Drawing.Color.Black;
-            this.plC_CheckBox_自動歸零.讀取元件位置 = "S4500";
-            this.plC_CheckBox_自動歸零.讀寫鎖住 = false;
-            this.plC_CheckBox_自動歸零.音效 = true;
-            // 
-            // panel38
-            // 
-            this.panel38.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel38.Controls.Add(this.plC_NumBox_檢核上限_克);
-            this.panel38.Controls.Add(this.label1);
-            this.panel38.Controls.Add(this.label2);
-            this.panel38.Controls.Add(this.plC_NumBox_檢核下限_克);
-            this.panel38.Controls.Add(this.label4);
-            this.panel38.Controls.Add(this.label3);
-            this.panel38.Location = new System.Drawing.Point(14, 81);
-            this.panel38.Name = "panel38";
-            this.panel38.Size = new System.Drawing.Size(201, 127);
-            this.panel38.TabIndex = 13;
-            // 
-            // panel39
-            // 
-            this.panel39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel39.Controls.Add(this.plC_NumBox_檢核上限_錢);
-            this.panel39.Controls.Add(this.label12);
-            this.panel39.Controls.Add(this.label9);
-            this.panel39.Controls.Add(this.label11);
-            this.panel39.Controls.Add(this.label10);
-            this.panel39.Controls.Add(this.plC_NumBox_檢核下限_錢);
-            this.panel39.Location = new System.Drawing.Point(221, 81);
-            this.panel39.Name = "panel39";
-            this.panel39.Size = new System.Drawing.Size(200, 127);
-            this.panel39.TabIndex = 14;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(10, 51);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(48, 24);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "調劑";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 222);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(67, 24);
-            this.label14.TabIndex = 16;
-            this.label14.Text = "單包重";
-            // 
-            // panel40
-            // 
-            this.panel40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel40.Controls.Add(this.plC_NumBox_單包重上限);
-            this.panel40.Controls.Add(this.label15);
-            this.panel40.Controls.Add(this.label16);
-            this.panel40.Controls.Add(this.plC_NumBox_單包重下限);
-            this.panel40.Controls.Add(this.label17);
-            this.panel40.Controls.Add(this.label18);
-            this.panel40.Location = new System.Drawing.Point(14, 249);
-            this.panel40.Name = "panel40";
-            this.panel40.Size = new System.Drawing.Size(201, 127);
-            this.panel40.TabIndex = 17;
-            // 
-            // plC_NumBox_單包重上限
-            // 
-            this.plC_NumBox_單包重上限.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_單包重上限.Location = new System.Drawing.Point(65, 14);
-            this.plC_NumBox_單包重上限.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_單包重上限.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_單包重上限.Name = "plC_NumBox_單包重上限";
-            this.plC_NumBox_單包重上限.ReadOnly = false;
-            this.plC_NumBox_單包重上限.Size = new System.Drawing.Size(82, 46);
-            this.plC_NumBox_單包重上限.TabIndex = 1;
-            this.plC_NumBox_單包重上限.Value = 0;
-            this.plC_NumBox_單包重上限.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_單包重上限.密碼欄位 = false;
-            this.plC_NumBox_單包重上限.寫入元件位置 = "D210";
-            this.plC_NumBox_單包重上限.小數點位置 = 1;
-            this.plC_NumBox_單包重上限.微調數值 = 1;
-            this.plC_NumBox_單包重上限.讀取元件位置 = "D210";
-            this.plC_NumBox_單包重上限.音效 = true;
-            this.plC_NumBox_單包重上限.顯示微調按鈕 = false;
-            this.plC_NumBox_單包重上限.顯示螢幕小鍵盤 = true;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(11, 24);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(48, 24);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "上限";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(153, 24);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(22, 24);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "g";
-            // 
-            // plC_NumBox_單包重下限
-            // 
-            this.plC_NumBox_單包重下限.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_NumBox_單包重下限.Location = new System.Drawing.Point(65, 66);
-            this.plC_NumBox_單包重下限.mBackColor = System.Drawing.SystemColors.Window;
-            this.plC_NumBox_單包重下限.mForeColor = System.Drawing.SystemColors.WindowText;
-            this.plC_NumBox_單包重下限.Name = "plC_NumBox_單包重下限";
-            this.plC_NumBox_單包重下限.ReadOnly = false;
-            this.plC_NumBox_單包重下限.Size = new System.Drawing.Size(82, 46);
-            this.plC_NumBox_單包重下限.TabIndex = 4;
-            this.plC_NumBox_單包重下限.Value = 0;
-            this.plC_NumBox_單包重下限.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
-            this.plC_NumBox_單包重下限.密碼欄位 = false;
-            this.plC_NumBox_單包重下限.寫入元件位置 = "D211";
-            this.plC_NumBox_單包重下限.小數點位置 = 1;
-            this.plC_NumBox_單包重下限.微調數值 = 1;
-            this.plC_NumBox_單包重下限.讀取元件位置 = "D211";
-            this.plC_NumBox_單包重下限.音效 = true;
-            this.plC_NumBox_單包重下限.顯示微調按鈕 = false;
-            this.plC_NumBox_單包重下限.顯示螢幕小鍵盤 = true;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(11, 76);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(48, 24);
-            this.label17.TabIndex = 5;
-            this.label17.Text = "下限";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(153, 76);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(22, 24);
-            this.label18.TabIndex = 6;
-            this.label18.Text = "g";
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4007,6 +4007,12 @@ namespace 中藥調劑系統
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel40.ResumeLayout(false);
+            this.panel40.PerformLayout();
+            this.panel39.ResumeLayout(false);
+            this.panel39.PerformLayout();
+            this.panel38.ResumeLayout(false);
+            this.panel38.PerformLayout();
             this.系統.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -4022,12 +4028,6 @@ namespace 中藥調劑系統
             this.panel33.PerformLayout();
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
-            this.panel38.ResumeLayout(false);
-            this.panel38.PerformLayout();
-            this.panel39.ResumeLayout(false);
-            this.panel39.PerformLayout();
-            this.panel40.ResumeLayout(false);
-            this.panel40.PerformLayout();
             this.ResumeLayout(false);
 
         }

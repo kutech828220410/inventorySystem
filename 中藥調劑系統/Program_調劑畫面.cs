@@ -378,7 +378,7 @@ namespace 中藥調劑系統
                                     return;
                                 }
                                 string 單位 = list_處方內容_buf[0][(int)enum_處方內容.單位].ObjectToString();
-                                if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.dwt;
+                                if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.hh;
                                 else if (單位 == "克") enum_Unit_Type = Port.enum_unit_type.g;
                                 else if (單位 == "BTL")
                                 {
@@ -471,7 +471,7 @@ namespace 中藥調劑系統
                                 }
 
 
-                                if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.dwt;
+                                if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.hh;
                                 else if (單位 == "克") enum_Unit_Type = Port.enum_unit_type.g;
                                 else if (單位 == "BTL")
                                 {
