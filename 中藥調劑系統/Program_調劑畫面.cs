@@ -695,9 +695,9 @@ namespace 中藥調劑系統
             }
             Task.Run(new Action(delegate
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    Function_儲位亮燈(藥碼, Color.Red);
+                    Function_儲位亮燈(藥碼, Color.Blue);
                     System.Threading.Thread.Sleep(300);
                     Function_儲位亮燈(藥碼, Color.Black);
                     System.Threading.Thread.Sleep(300);
@@ -1098,9 +1098,9 @@ namespace 中藥調劑系統
             string 藥碼 = list_value[0][(int)enum_處方內容.藥碼].ObjectToString();
             Task.Run(new Action(delegate 
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    Function_儲位亮燈(藥碼, Color.Red);
+                    Function_儲位亮燈(藥碼, Color.Blue);
                     System.Threading.Thread.Sleep(300);
                     Function_儲位亮燈(藥碼, Color.Black);
                     System.Threading.Thread.Sleep(300);
@@ -1118,7 +1118,7 @@ namespace 中藥調劑系統
                 return;
             }
             string 藥碼 = list_value[0][(int)enum_處方內容.藥碼].ObjectToString();
-            Function_儲位亮燈(藥碼, Color.Red);
+            Function_儲位亮燈(藥碼, Color.Blue);
         }
         private void RJ_Button_調劑畫面_全亮_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1136,7 +1136,7 @@ namespace 中藥調劑系統
                 Codes.Add(藥碼);
 
             }
-            Function_儲位亮燈(Codes, Color.Red);
+            Function_儲位亮燈(Codes, Color.Blue);
         }
         #endregion
         public static string RemoveParenthesesContent(string input)

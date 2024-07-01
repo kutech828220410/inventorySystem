@@ -433,8 +433,52 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_RowsLED_清除燈號_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (this.rowsLED_Pannel.CurrentRowsLED == null) return;
-            Main_Form._rowsLEDUI.Set_Rows_LED_Clear_UDP(this.rowsLED_Pannel.CurrentRowsLED);          
+            try
+            {
+                Color color = Color.Black;
+
+                List<object[]> list_層架列表 = this.sqL_DataGridView_RowsLED_層架列表.Get_All_Select_RowsValues();
+                if (list_層架列表.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("未選取層架列表");
+                    return;
+                }
+                List<RowsLED> rowsLEDs = Main_Form._rowsLEDUI.SQL_GetAllRowsLED();
+                List<RowsLED> rowsLEDs_buf = new List<RowsLED>();
+
+                for (int i = 0; i < list_層架列表.Count; i++)
+                {
+                    string IP = list_層架列表[i][(int)enum_層架亮燈儲位總表.IP].ObjectToString();
+                    RowsLED rowsLED = rowsLEDs.SortByIP(IP);
+                    if (rowsLED != null)
+                    {
+                        rowsLEDs_buf.Add(rowsLED);
+                    }
+                }
+                List<Task> tasks = new List<Task>();
+
+                for (int i = 0; i < rowsLEDs_buf.Count; i++)
+                {
+                    RowsLED rowsLED = rowsLEDs_buf[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        Main_Form._rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED);
+
+                    })));
+
+                }
+                Task.WhenAll(tasks).Wait();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+
+            }
+             
         }
         private void RJ_Button_RowsLED_儲位名稱_儲存_MouseDownEvent(MouseEventArgs mevent)
         {

@@ -975,7 +975,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_層架列表.TabIndex = 4;
             this.sqL_DataGridView_RowsLED_層架列表.UserName = "root";
             this.sqL_DataGridView_RowsLED_層架列表.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_RowsLED_層架列表.可選擇多列 = false;
+            this.sqL_DataGridView_RowsLED_層架列表.可選擇多列 = true;
             this.sqL_DataGridView_RowsLED_層架列表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.sqL_DataGridView_RowsLED_層架列表.自動換行 = true;
             this.sqL_DataGridView_RowsLED_層架列表.表單字體 = new System.Drawing.Font("新細明體", 9F);
