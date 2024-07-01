@@ -417,15 +417,16 @@ namespace 中藥調劑系統
                                 double 檢核上限 = 0;
                                 double 檢核下限 = 0;
 
-                                if (單位 == "克")
+                                if (單位 == "錢")
                                 {
-                                    檢核上限 = (double)(plC_NumBox_檢核上限_克.Value / 10);
-                                    檢核下限 = (double)(plC_NumBox_檢核下限_克.Value / 10);
+                                    檢核上限 = (double)((double)plC_NumBox_檢核上限_錢.Value / 10D);
+                                    檢核下限 = (double)((double)plC_NumBox_檢核下限_錢.Value / 10D);
                                 }
                                 else
                                 {
-                                    檢核上限 = (double)(plC_NumBox_檢核上限_錢.Value / 10);
-                                    檢核下限 = (double)(plC_NumBox_檢核下限_錢.Value / 10);
+                                    檢核上限 = (double)((double)plC_NumBox_檢核上限_克.Value / 10D);
+                                    檢核下限 = (double)((double)plC_NumBox_檢核下限_克.Value / 10D);
+
                                 }
                            
                                 double 應調_L = 應調 + 檢核上限;
