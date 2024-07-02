@@ -169,6 +169,7 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_庫存查詢.MouseDownEvent += PlC_RJ_Button_庫存查詢_MouseDownEvent;
             this.plC_RJ_Button_儲位管理.MouseDownEvent += PlC_RJ_Button_儲位管理_MouseDownEvent;
             this.plC_RJ_Button_驗收管理.MouseDownEvent += PlC_RJ_Button_驗收管理_MouseDownEvent;
+            this.plC_RJ_Button_申領.MouseDownEvent += PlC_RJ_Button_申領_MouseDownEvent;
         }
 
 
@@ -180,6 +181,8 @@ namespace 智能藥庫系統
             LoadingForm.form = this.FindForm();
             MyDialog.form = this.FindForm();
             Dialog_儲位管理.form = this.FindForm();
+            Dialog_申領.form = this.FindForm();
+
 
             this.WindowState = FormWindowState.Maximized;
 
@@ -234,7 +237,14 @@ namespace 智能藥庫系統
                 dialog_驗收管理.ShowChildForm(panel_MainForm);
             }));
         }
-
+        private void PlC_RJ_Button_申領_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_申領 dialog_申領 = new Dialog_申領();
+            this.Invoke(new Action(delegate
+            {
+                dialog_申領.ShowChildForm(panel_MainForm);
+            }));
+        }
 
 
         private void ApiServerSetting(string Name)

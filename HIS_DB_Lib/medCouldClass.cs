@@ -19,6 +19,8 @@ namespace HIS_DB_Lib
         藥品碼,
         [Description("料號,VARCHAR,20,INDEX")]
         料號,
+        [Description("ATC,VARCHAR,20,INDEX")]
+        ATC,
         [Description("中文名稱,VARCHAR,300,NONE")]
         中文名稱,
         [Description("藥品名稱,VARCHAR,300,NONE")]
@@ -53,12 +55,16 @@ namespace HIS_DB_Lib
         圖片網址,
         [Description("類別,VARCHAR,500,NONE")]
         類別,
+        [Description("中西藥,VARCHAR,30,NONE")]
+        中西藥,
         [Description("廠牌,VARCHAR,200,NONE")]
         廠牌,
         [Description("藥品許可證號,VARCHAR,50,NONE")]
         藥品許可證號,
         [Description("開檔狀態,VARCHAR,50,NONE")]
         開檔狀態,
+        [Description("儲位描述,VARCHAR,300,NONE")]
+        儲位描述,
     }
    
   

@@ -123,6 +123,16 @@ namespace 智能藥庫系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap login_page_removebg_preview1 {
+            get {
+                object obj = ResourceManager.GetObject("login-page-removebg-preview1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap medication_inventory_inquiry {
             get {
                 object obj = ResourceManager.GetObject("medication-inventory-inquiry", resourceCulture);
@@ -156,6 +166,16 @@ namespace 智能藥庫系統.Properties {
         internal static System.Drawing.Bitmap panel_storage_location_setup {
             get {
                 object obj = ResourceManager.GetObject("panel-storage-location-setup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap requesting_operation_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("requesting-operation-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

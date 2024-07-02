@@ -114,6 +114,7 @@
     <Compile Include="ctclistClass.cs" />
     <Compile Include="deviceApiClass.cs" />
     <Compile Include="drugDispatchClass.cs" />
+    <Compile Include="materialRequisitionClass.cs" />
     <Compile Include="medGeneralConfigClass.cs" />
     <Compile Include="IncomeReasonsClass.cs" />
     <Compile Include="inspectionClass.cs" />

@@ -20,6 +20,8 @@ namespace HIS_DB_Lib
         public string 藥品碼 { get; set; }
         [JsonPropertyName("SKDIACODE")]
         public string 料號 { get; set; }
+        [JsonPropertyName("ATC")]
+        public string ATC { get; set; }
         [JsonPropertyName("CHT_NAME")]
         public string 中文名稱 { get; set; }
         [JsonPropertyName("NAME")]
@@ -68,9 +70,12 @@ namespace HIS_DB_Lib
         public string 藥品許可證號 { get; set; }
         [JsonPropertyName("TYPE")]
         public string 類別 { get; set; }
+        [JsonPropertyName("TORW")]
+        public string 中西藥 { get; set; }
         [JsonPropertyName("FILE_STATUS")]
         public string 開檔狀態 { get; set; }
-
+        [JsonPropertyName("STORAGE_NOTE")]
+        public string 儲位描述 { get; set; }
 
         [JsonPropertyName("DeviceBasics")]
         public List<DeviceBasic> DeviceBasics { get => deviceBasics; set => deviceBasics = value; }

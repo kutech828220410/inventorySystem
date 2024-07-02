@@ -28,7 +28,7 @@ namespace HIS_DB_Lib
         藥碼,
         [Description("藥名,VARCHAR,300,NONE")]
         藥名,
-        [Description("包裝單位,VARCHAR,300,NONE")]
+        [Description("包裝單位,VARCHAR,50,NONE")]
         包裝單位,
         [Description("包裝量,VARCHAR,300,NONE")]
         包裝量,

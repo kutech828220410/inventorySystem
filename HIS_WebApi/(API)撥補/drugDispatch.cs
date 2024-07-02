@@ -160,8 +160,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
 
             }
-
-
         }
 
         /// <summary>

@@ -351,3 +351,4 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫系統.Dialog_驗收管理.resources
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫系統.Dialog_效期批號數量輸入.resources
+C:\Users\Administrator\source\repos\inventorySystem\智能藥庫管理系統\obj\Release\智能藥庫系統.Dialog_申領.resources

@@ -21,7 +21,7 @@ namespace HIS_DB_Lib
         動作類別,
         [Description("藥碼,VARCHAR,50,INDEX")]
         藥碼,
-        [Description("藥名,VARCHAR,50,NONE")]
+        [Description("藥名,VARCHAR,300,NONE")]
         藥名,
         [Description("單位,VARCHAR,50,NONE")]
         單位,
