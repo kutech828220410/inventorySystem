@@ -39,6 +39,7 @@ namespace 智能藥庫系統
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
         public static StorageUI_EPD_266 _storageUI_EPD_266 = null;
+        public static DrawerUI_EPD_583 _drawerUI_EPD_583 = null;
         public static H_Pannel_lib.RFID_UI _rFID_UI = null;
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
@@ -193,6 +194,7 @@ namespace 智能藥庫系統
 
             ApiServerSetting(dBConfigClass.Name);
             this.storageUI_EPD_266.Init(dBConfigClass.DB_儲位資料);
+            this.drawerUI_EPD_583.Init(dBConfigClass.DB_儲位資料);
             this.rfiD_UI.Init(dBConfigClass.DB_儲位資料);
 
             this.plC_UI_Init.Run(this.FindForm(), lowerMachine_Panel);
@@ -200,6 +202,7 @@ namespace 智能藥庫系統
         private void PlC_UI_Init_UI_Finished_Event()
         {
             _storageUI_EPD_266 = this.storageUI_EPD_266;
+            _drawerUI_EPD_583 = this.drawerUI_EPD_583;
             _rFID_UI = this.rfiD_UI;
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(plC_RJ_ScreenButtonEx_主畫面, this.plC_ScreenPage_main);

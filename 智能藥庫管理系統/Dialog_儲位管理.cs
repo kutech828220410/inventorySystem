@@ -29,6 +29,15 @@ namespace 智能藥庫系統
             清除儲位內容,
 
         }
+        public enum enum_儲架儲位總表
+        {
+            [Description("GUID,VARCHAR,15,NONE")]
+            GUID,
+            [Description("IP,VARCHAR,15,NONE")]
+            IP,
+            [Description("名稱,VARCHAR,15,NONE")]
+            名稱,
+        }
 
         private List<Storage> storages = new List<Storage>();
         private Storage storage_copy = null;
@@ -140,6 +149,7 @@ namespace 智能藥庫系統
         }
         private void Dialog_儲位管理_Load(object sender, EventArgs e)
         {
+            #region 儲架電子紙
             this.epD_290_Pannel.Init(Main_Form._storageUI_EPD_266.List_UDP_Local);
 
             this.comboBox_儲架電子紙_藥品資料_搜尋條件.SelectedIndex = 0;
@@ -193,6 +203,14 @@ namespace 智能藥庫系統
             this.rJ_Button_儲架電子紙列表_搜尋.MouseDownEvent += RJ_Button_儲架電子紙列表_搜尋_MouseDownEvent;
             this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndex = 0;
             this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndexChanged += ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged;
+            #endregion 7"大電子紙
+
+            Table table_儲架儲位總表 = new Table(new enum_儲架儲位總表());
+            this.sqL_DataGridView_EPD583_儲位列表.Init(table_儲架儲位總表);
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnVisible(false, new enum_儲架儲位總表().GetEnumNames());
+            
+            #endregion
+            #region 
             RefreshUI();
         }
 

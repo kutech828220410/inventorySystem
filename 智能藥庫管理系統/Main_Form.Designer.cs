@@ -55,6 +55,8 @@ namespace 智能藥庫系統
             this.plC_UI_Init = new MyUI.PLC_UI_Init();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.storageUI_EPD_266 = new H_Pannel_lib.StorageUI_EPD_266();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.drawerUI_EPD_583 = new H_Pannel_lib.DrawerUI_EPD_583();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.rfiD_UI = new H_Pannel_lib.RFID_UI();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -91,6 +93,7 @@ namespace 智能藥庫系統
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -814,6 +817,7 @@ namespace 智能藥庫系統
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
@@ -960,6 +964,43 @@ namespace 智能藥庫系統
             this.storageUI_EPD_266.UDP_SendTime = "0";
             this.storageUI_EPD_266.UDP_ServerPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("storageUI_EPD_266.UDP_ServerPorts")));
             this.storageUI_EPD_266.UserName = "root";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.drawerUI_EPD_583);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1888, 1006);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "EPD583";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // drawerUI_EPD_583
+            // 
+            this.drawerUI_EPD_583._Password = "";
+            this.drawerUI_EPD_583.DataBaseName = "TEST";
+            this.drawerUI_EPD_583.DNS = "0.0.0.0";
+            this.drawerUI_EPD_583.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.drawerUI_EPD_583.Gateway = "0.0.0.0";
+            this.drawerUI_EPD_583.IP = "localhost";
+            this.drawerUI_EPD_583.IP_Adress = "0.0.0.0";
+            this.drawerUI_EPD_583.Local_Port = "0";
+            this.drawerUI_EPD_583.Location = new System.Drawing.Point(0, 0);
+            this.drawerUI_EPD_583.Name = "drawerUI_EPD_583";
+            this.drawerUI_EPD_583.Password = "user82822040";
+            this.drawerUI_EPD_583.Port = ((uint)(3306u));
+            this.drawerUI_EPD_583.Server_IP_Adress = "0.0.0.0";
+            this.drawerUI_EPD_583.Server_Port = "0";
+            this.drawerUI_EPD_583.Size = new System.Drawing.Size(1888, 1006);
+            this.drawerUI_EPD_583.SSID = "";
+            this.drawerUI_EPD_583.Station = "0";
+            this.drawerUI_EPD_583.Subnet = "0.0.0.0";
+            this.drawerUI_EPD_583.TabIndex = 0;
+            this.drawerUI_EPD_583.TableName = "EPD583_Jsonstring";
+            this.drawerUI_EPD_583.UDP_LocalPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("drawerUI_EPD_583.UDP_LocalPorts")));
+            this.drawerUI_EPD_583.UDP_SendTime = "0";
+            this.drawerUI_EPD_583.UDP_ServerPorts = ((System.Collections.Generic.List<string>)(resources.GetObject("drawerUI_EPD_583.UDP_ServerPorts")));
+            this.drawerUI_EPD_583.UserName = "root";
             // 
             // tabPage3
             // 
@@ -1574,6 +1615,7 @@ namespace 智能藥庫系統
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -1647,6 +1689,8 @@ namespace 智能藥庫系統
         private System.Windows.Forms.GroupBox groupBox3;
         private SQLUI.SQL_DataGridView sqL_DataGridView_交易記錄查詢;
         private MyUI.PLC_RJ_Button plC_RJ_Button_申領;
+        private System.Windows.Forms.TabPage tabPage6;
+        private H_Pannel_lib.DrawerUI_EPD_583 drawerUI_EPD_583;
     }
 }
 

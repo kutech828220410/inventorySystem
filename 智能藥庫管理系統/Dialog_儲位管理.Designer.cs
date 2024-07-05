@@ -102,11 +102,13 @@ namespace 智能藥庫系統
             this.rJ_Button_儲架電子紙_清除燈號 = new MyUI.RJ_Button();
             this.epD_290_Pannel = new H_Pannel_lib.EPD_290_Pannel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
+            this.epD_583_Pannel = new H_Pannel_lib.EPD_583_Pannel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.sqL_DataGridView_EPD583_儲位列表 = new SQLUI.SQL_DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -131,6 +133,8 @@ namespace 智能藥庫系統
             this.panel148.SuspendLayout();
             this.panel14.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -145,7 +149,6 @@ namespace 智能藥庫系統
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(4, 38);
             this.tabControl1.Name = "tabControl1";
@@ -1729,6 +1732,8 @@ namespace 智能藥庫系統
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.panel15);
+            this.tabPage2.Controls.Add(this.epD_583_Pannel);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -1736,15 +1741,6 @@ namespace 智能藥庫系統
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "7\"大電子紙";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1660, 989);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "藥品區域";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // openFileDialog_LoadExcel
             // 
@@ -1755,6 +1751,77 @@ namespace 智能藥庫系統
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
+            // 
+            // epD_583_Pannel
+            // 
+            this.epD_583_Pannel.CurrentDrawer = null;
+            this.epD_583_Pannel.Location = new System.Drawing.Point(408, 81);
+            this.epD_583_Pannel.Margin = new System.Windows.Forms.Padding(0);
+            this.epD_583_Pannel.Name = "epD_583_Pannel";
+            this.epD_583_Pannel.Size = new System.Drawing.Size(648, 480);
+            this.epD_583_Pannel.TabIndex = 0;
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.sqL_DataGridView_EPD583_儲位列表);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel15.Location = new System.Drawing.Point(3, 3);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(340, 983);
+            this.panel15.TabIndex = 6;
+            // 
+            // sqL_DataGridView_EPD583_儲位列表
+            // 
+            this.sqL_DataGridView_EPD583_儲位列表.AutoSelectToDeep = false;
+            this.sqL_DataGridView_EPD583_儲位列表.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_EPD583_儲位列表.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_EPD583_儲位列表.BorderRadius = 0;
+            this.sqL_DataGridView_EPD583_儲位列表.BorderSize = 2;
+            this.sqL_DataGridView_EPD583_儲位列表.CellBorderColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_EPD583_儲位列表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_儲位列表.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_EPD583_儲位列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_EPD583_儲位列表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_EPD583_儲位列表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_EPD583_儲位列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_EPD583_儲位列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_EPD583_儲位列表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_儲位列表.columnHeadersHeight = 18;
+            this.sqL_DataGridView_EPD583_儲位列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_EPD583_儲位列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_EPD583_儲位列表.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_EPD583_儲位列表.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_EPD583_儲位列表.ImageBox = false;
+            this.sqL_DataGridView_EPD583_儲位列表.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_EPD583_儲位列表.Name = "sqL_DataGridView_EPD583_儲位列表";
+            this.sqL_DataGridView_EPD583_儲位列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_EPD583_儲位列表.Password = "user82822040";
+            this.sqL_DataGridView_EPD583_儲位列表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_EPD583_儲位列表.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_EPD583_儲位列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_儲位列表.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_EPD583_儲位列表.RowsHeight = 20;
+            this.sqL_DataGridView_EPD583_儲位列表.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_EPD583_儲位列表.selectedBorderSize = 0;
+            this.sqL_DataGridView_EPD583_儲位列表.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_EPD583_儲位列表.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_EPD583_儲位列表.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_EPD583_儲位列表.Server = "127.0.0.0";
+            this.sqL_DataGridView_EPD583_儲位列表.Size = new System.Drawing.Size(340, 983);
+            this.sqL_DataGridView_EPD583_儲位列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_EPD583_儲位列表.TabIndex = 6;
+            this.sqL_DataGridView_EPD583_儲位列表.UserName = "root";
+            this.sqL_DataGridView_EPD583_儲位列表.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_EPD583_儲位列表.可選擇多列 = true;
+            this.sqL_DataGridView_EPD583_儲位列表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_儲位列表.自動換行 = true;
+            this.sqL_DataGridView_EPD583_儲位列表.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_EPD583_儲位列表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_EPD583_儲位列表.顯示CheckBox = false;
+            this.sqL_DataGridView_EPD583_儲位列表.顯示首列 = false;
+            this.sqL_DataGridView_EPD583_儲位列表.顯示首行 = true;
+            this.sqL_DataGridView_EPD583_儲位列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_儲位列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
             // Dialog_儲位管理
             // 
@@ -1804,6 +1871,8 @@ namespace 智能藥庫系統
             this.panel14.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1819,7 +1888,6 @@ namespace 智能藥庫系統
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.FontDialog fontDialog;
         private System.Windows.Forms.ColorDialog colorDialog;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.OpenFileDialog openFileDialog_LoadExcel;
         private System.Windows.Forms.SaveFileDialog saveFileDialog_SaveExcel;
         private System.Windows.Forms.Panel panel2;
@@ -1888,5 +1956,8 @@ namespace 智能藥庫系統
         private MyUI.RJ_Button rJ_Button_儲架電子紙_清除燈號;
         private H_Pannel_lib.EPD_290_Pannel epD_290_Pannel;
         private MyUI.PLC_CheckBox plC_CheckBox_儲架電子紙列表_顯示空儲位;
+        private H_Pannel_lib.EPD_583_Pannel epD_583_Pannel;
+        private System.Windows.Forms.Panel panel15;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_EPD583_儲位列表;
     }
 }
