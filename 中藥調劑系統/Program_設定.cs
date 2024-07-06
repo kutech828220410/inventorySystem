@@ -12,6 +12,7 @@ using Basic;
 using SQLUI;
 using ExcelScaleLib;
 using HIS_DB_Lib;
+using H_Pannel_lib;
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -81,6 +82,8 @@ namespace 中藥調劑系統
         {
             this.SaveConfig工程模式();
             PLC.properties.Device.Set_Device("S8", true);
+            if (plC_NumBox_亮度.Value == 0) plC_NumBox_亮度.Value = 80;
+            RowsLEDUI.Lightness = (double)plC_NumBox_亮度.Value / 100D;
             MyMessageBox.ShowDialog("儲存成功!");
         }
     }

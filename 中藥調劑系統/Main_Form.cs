@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.19")]
-[assembly: AssemblyFileVersion("1.0.0.19")]
+[assembly: AssemblyVersion("1.0.0.21")]
+[assembly: AssemblyFileVersion("1.0.0.21")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -181,8 +181,7 @@ namespace 中藥調劑系統
             MyMessageBox.form = this.FindForm();
             MyMessageBox.音效 = false;
             this.plC_UI_Init.音效 = false;
-
-          
+   
 
             this.plC_RJ_Button_儲位設定.MouseDownEvent += PlC_RJ_Button_儲位設定_MouseDownEvent;
             this.plC_RJ_Button_人員資料.MouseDownEvent += PlC_RJ_Button_人員資料_MouseDownEvent;
@@ -233,7 +232,8 @@ namespace 中藥調劑系統
             this.rowsLEDUI.Init(dBConfigClass.DB_儲位資料);
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             this.storageUI_EPD_266.Init(dBConfigClass.DB_儲位資料);
-
+            if (plC_NumBox_亮度.Value == 0) plC_NumBox_亮度.Value = 80;
+            RowsLEDUI.Lightness = (double)plC_NumBox_亮度.Value / 100D;
             Task.Run(new Action(delegate 
             {
                 System.Threading.Thread.Sleep(3000);

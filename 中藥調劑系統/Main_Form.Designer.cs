@@ -148,6 +148,14 @@ namespace 中藥調劑系統
             this.rJ_Lable7 = new MyUI.RJ_Lable();
             this.dateTimeIntervelPicker_交易紀錄_操作時間 = new MyUI.DateTimeIntervelPicker();
             this.設定 = new System.Windows.Forms.TabPage();
+            this.rJ_Button_存檔 = new MyUI.RJ_Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.panel_調劑中顏色 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.panel_調劑完閃爍顏色 = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.panel_調劑刷藥單顏色 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -209,14 +217,9 @@ namespace 中藥調劑系統
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.panel_調劑刷藥單顏色 = new System.Windows.Forms.Panel();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.panel_調劑完閃爍顏色 = new System.Windows.Forms.Panel();
-            this.label23 = new System.Windows.Forms.Label();
-            this.panel_調劑中顏色 = new System.Windows.Forms.Panel();
-            this.rJ_Button_存檔 = new MyUI.RJ_Button();
+            this.plC_NumBox_亮度 = new MyUI.PLC_NumBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
@@ -249,6 +252,7 @@ namespace 中藥調劑系統
             this.panel30.SuspendLayout();
             this.panel29.SuspendLayout();
             this.設定.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel40.SuspendLayout();
@@ -265,7 +269,6 @@ namespace 中藥調劑系統
             this.panel32.SuspendLayout();
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_main
@@ -3028,6 +3031,108 @@ namespace 中藥調劑系統
             this.設定.TabIndex = 3;
             this.設定.Text = "設定";
             // 
+            // rJ_Button_存檔
+            // 
+            this.rJ_Button_存檔.AutoResetState = false;
+            this.rJ_Button_存檔.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_存檔.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_存檔.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_存檔.BorderRadius = 10;
+            this.rJ_Button_存檔.BorderSize = 0;
+            this.rJ_Button_存檔.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_存檔.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_存檔.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_存檔.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_存檔.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_存檔.GUID = "";
+            this.rJ_Button_存檔.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_存檔.Location = new System.Drawing.Point(268, 731);
+            this.rJ_Button_存檔.Name = "rJ_Button_存檔";
+            this.rJ_Button_存檔.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_存檔.ProhibitionLineWidth = 4;
+            this.rJ_Button_存檔.ProhibitionSymbolSize = 30;
+            this.rJ_Button_存檔.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_存檔.ShadowSize = 3;
+            this.rJ_Button_存檔.ShowLoadingForm = false;
+            this.rJ_Button_存檔.Size = new System.Drawing.Size(201, 87);
+            this.rJ_Button_存檔.State = false;
+            this.rJ_Button_存檔.TabIndex = 31;
+            this.rJ_Button_存檔.Text = "存檔";
+            this.rJ_Button_存檔.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_存檔.TextHeight = 0;
+            this.rJ_Button_存檔.UseVisualStyleBackColor = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.plC_NumBox_亮度);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.label25);
+            this.groupBox3.Controls.Add(this.label23);
+            this.groupBox3.Controls.Add(this.panel_調劑中顏色);
+            this.groupBox3.Controls.Add(this.label22);
+            this.groupBox3.Controls.Add(this.panel_調劑完閃爍顏色);
+            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.panel_調劑刷藥單顏色);
+            this.groupBox3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox3.Location = new System.Drawing.Point(16, 427);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(453, 298);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "亮燈顏色設定";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(185, 50);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(105, 24);
+            this.label23.TabIndex = 21;
+            this.label23.Text = "調劑中顏色";
+            // 
+            // panel_調劑中顏色
+            // 
+            this.panel_調劑中顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_調劑中顏色.Location = new System.Drawing.Point(185, 77);
+            this.panel_調劑中顏色.Name = "panel_調劑中顏色";
+            this.panel_調劑中顏色.Size = new System.Drawing.Size(64, 56);
+            this.panel_調劑中顏色.TabIndex = 20;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(19, 146);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(143, 24);
+            this.label22.TabIndex = 19;
+            this.label22.Text = "調劑完閃爍顏色";
+            // 
+            // panel_調劑完閃爍顏色
+            // 
+            this.panel_調劑完閃爍顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_調劑完閃爍顏色.Location = new System.Drawing.Point(19, 173);
+            this.panel_調劑完閃爍顏色.Name = "panel_調劑完閃爍顏色";
+            this.panel_調劑完閃爍顏色.Size = new System.Drawing.Size(64, 56);
+            this.panel_調劑完閃爍顏色.TabIndex = 18;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(19, 50);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(143, 24);
+            this.label21.TabIndex = 17;
+            this.label21.Text = "調劑刷藥單顏色";
+            // 
+            // panel_調劑刷藥單顏色
+            // 
+            this.panel_調劑刷藥單顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_調劑刷藥單顏色.Location = new System.Drawing.Point(19, 77);
+            this.panel_調劑刷藥單顏色.Name = "panel_調劑刷藥單顏色";
+            this.panel_調劑刷藥單顏色.Size = new System.Drawing.Size(64, 56);
+            this.panel_調劑刷藥單顏色.TabIndex = 0;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label19);
@@ -3968,104 +4073,44 @@ namespace 中藥調劑系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
-            // groupBox3
+            // plC_NumBox_亮度
             // 
-            this.groupBox3.Controls.Add(this.label23);
-            this.groupBox3.Controls.Add(this.panel_調劑中顏色);
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.panel_調劑完閃爍顏色);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.panel_調劑刷藥單顏色);
-            this.groupBox3.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox3.Location = new System.Drawing.Point(16, 427);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(453, 298);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "亮燈顏色設定";
+            this.plC_NumBox_亮度.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_NumBox_亮度.Location = new System.Drawing.Point(327, 246);
+            this.plC_NumBox_亮度.mBackColor = System.Drawing.SystemColors.Window;
+            this.plC_NumBox_亮度.mForeColor = System.Drawing.SystemColors.WindowText;
+            this.plC_NumBox_亮度.Name = "plC_NumBox_亮度";
+            this.plC_NumBox_亮度.ReadOnly = false;
+            this.plC_NumBox_亮度.Size = new System.Drawing.Size(82, 46);
+            this.plC_NumBox_亮度.TabIndex = 22;
+            this.plC_NumBox_亮度.Value = 0;
+            this.plC_NumBox_亮度.字元長度 = MyUI.PLC_NumBox.WordLengthEnum.單字元;
+            this.plC_NumBox_亮度.密碼欄位 = false;
+            this.plC_NumBox_亮度.寫入元件位置 = "D230";
+            this.plC_NumBox_亮度.小數點位置 = 0;
+            this.plC_NumBox_亮度.微調數值 = 1;
+            this.plC_NumBox_亮度.讀取元件位置 = "D230";
+            this.plC_NumBox_亮度.音效 = true;
+            this.plC_NumBox_亮度.顯示微調按鈕 = false;
+            this.plC_NumBox_亮度.顯示螢幕小鍵盤 = true;
             // 
-            // panel_調劑刷藥單顏色
+            // label24
             // 
-            this.panel_調劑刷藥單顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_調劑刷藥單顏色.Location = new System.Drawing.Point(19, 77);
-            this.panel_調劑刷藥單顏色.Name = "panel_調劑刷藥單顏色";
-            this.panel_調劑刷藥單顏色.Size = new System.Drawing.Size(64, 56);
-            this.panel_調劑刷藥單顏色.TabIndex = 0;
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(273, 256);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(48, 24);
+            this.label24.TabIndex = 23;
+            this.label24.Text = "亮度";
             // 
-            // label21
+            // label25
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(19, 50);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(143, 24);
-            this.label21.TabIndex = 17;
-            this.label21.Text = "調劑刷藥單顏色";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(19, 146);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(143, 24);
-            this.label22.TabIndex = 19;
-            this.label22.Text = "調劑完閃爍顏色";
-            // 
-            // panel_調劑完閃爍顏色
-            // 
-            this.panel_調劑完閃爍顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_調劑完閃爍顏色.Location = new System.Drawing.Point(19, 173);
-            this.panel_調劑完閃爍顏色.Name = "panel_調劑完閃爍顏色";
-            this.panel_調劑完閃爍顏色.Size = new System.Drawing.Size(64, 56);
-            this.panel_調劑完閃爍顏色.TabIndex = 18;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(185, 50);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(105, 24);
-            this.label23.TabIndex = 21;
-            this.label23.Text = "調劑中顏色";
-            // 
-            // panel_調劑中顏色
-            // 
-            this.panel_調劑中顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_調劑中顏色.Location = new System.Drawing.Point(185, 77);
-            this.panel_調劑中顏色.Name = "panel_調劑中顏色";
-            this.panel_調劑中顏色.Size = new System.Drawing.Size(64, 56);
-            this.panel_調劑中顏色.TabIndex = 20;
-            // 
-            // rJ_Button_存檔
-            // 
-            this.rJ_Button_存檔.AutoResetState = false;
-            this.rJ_Button_存檔.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_存檔.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_存檔.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_存檔.BorderRadius = 10;
-            this.rJ_Button_存檔.BorderSize = 0;
-            this.rJ_Button_存檔.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_存檔.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_存檔.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_存檔.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_存檔.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_存檔.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_存檔.GUID = "";
-            this.rJ_Button_存檔.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_存檔.Location = new System.Drawing.Point(268, 731);
-            this.rJ_Button_存檔.Name = "rJ_Button_存檔";
-            this.rJ_Button_存檔.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_存檔.ProhibitionLineWidth = 4;
-            this.rJ_Button_存檔.ProhibitionSymbolSize = 30;
-            this.rJ_Button_存檔.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_存檔.ShadowSize = 3;
-            this.rJ_Button_存檔.ShowLoadingForm = false;
-            this.rJ_Button_存檔.Size = new System.Drawing.Size(201, 87);
-            this.rJ_Button_存檔.State = false;
-            this.rJ_Button_存檔.TabIndex = 31;
-            this.rJ_Button_存檔.Text = "存檔";
-            this.rJ_Button_存檔.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_存檔.TextHeight = 0;
-            this.rJ_Button_存檔.UseVisualStyleBackColor = false;
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(415, 256);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(27, 24);
+            this.label25.TabIndex = 24;
+            this.label25.Text = "%";
             // 
             // Main_Form
             // 
@@ -4113,6 +4158,8 @@ namespace 中藥調劑系統
             this.panel30.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             this.設定.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -4138,8 +4185,6 @@ namespace 中藥調劑系統
             this.panel33.PerformLayout();
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4332,6 +4377,9 @@ namespace 中藥調劑系統
         private System.Windows.Forms.Panel panel_調劑完閃爍顏色;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Panel panel_調劑刷藥單顏色;
+        private MyUI.PLC_NumBox plC_NumBox_亮度;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
     }
 }
 
