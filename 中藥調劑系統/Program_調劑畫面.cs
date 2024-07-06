@@ -341,6 +341,12 @@ namespace 中藥調劑系統
                     List<OrderClass> orderClasses = Funtion_醫令資料_API呼叫(text);
                     if (orderClasses != null && orderClasses.Count != 0)
                     {
+                        if (this.sqL_DataGridView_病患資訊.Get_All_Select_RowsValues().Count > 0)
+                        {
+                            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方已選擇,請先離開處方", 1000);
+                            dialog_AlarmForm.ShowDialog();
+                            return;
+                        }
                         if (orderClasses.Count > 0)
                         {
                             string PRI_KEY = orderClasses[0].PRI_KEY;
@@ -445,19 +451,26 @@ namespace 中藥調劑系統
                            
                                 double 應調_H = 應調 + 檢核上限;
                                 double 應調_L = 應調 - 檢核下限;
-                                if (實調 <= 應調_L || 實調 >= 應調_H)
+                                if(單位 == "錢" || 單位 == "克")
                                 {
-
-
-                                    if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                                    if (實調 < 應調_L || 實調 > 應調_H)
                                     {
-                                        Funtion_調劑完成(GUID, (實調 * -1).ToString() ,"");
-                                        return;
+
+
+                                        if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
+                                        {
+                                            Funtion_調劑完成(GUID, (實調 * -1).ToString(), "");
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Funtion_調劑完成(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString(), (實調 * -1).ToString(), "");
                                     }
                                 }
                                 else
                                 {
-                                    Funtion_調劑完成(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString(), (實調 * -1).ToString(),"");
+                                    Funtion_調劑完成(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString(), (實調 * -1).ToString(), "");
                                 }
 
 
@@ -546,6 +559,7 @@ namespace 中藥調劑系統
         public object[] Function_更新處方內容(string PRI_KEY)
         {
             List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
+            orderTClasses.sort(OrderTClassMethod.SortType.批序);
             if (orderTClasses.Count == 0) return null;
 
             List<object[]> list_value = new List<object[]>();
@@ -645,11 +659,11 @@ namespace 中藥調劑系統
             OrderTClass orderTClass = OrderTClass.get_by_guid(Main_Form.API_Server, GUID);
             if (orderTClass != null)
             {
-            
-         
+
+                Function_更新處方UI(orderTClass);
             }
         }
-        public void Function_更新處方UI(OrderTClass orderTClass , double 總重)
+        public void Function_更新處方UI(OrderTClass orderTClass)
         {
       
             
@@ -969,7 +983,7 @@ namespace 中藥調劑系統
             Task.Run(new Action(delegate
             {
                 //Function_儲位亮燈(藥碼_current_row, Color.Black);
-                Function_儲位亮燈(藥碼, this.panel_調劑刷藥單顏色.BackColor);
+                Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
                 Voice voice = new Voice();
                 voice.SpeakOnTask(RemoveParenthesesContent(藥名));
             }));
@@ -1124,7 +1138,25 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_調劑畫面_全滅_MouseDownEvent(MouseEventArgs mevent)
         {
-            Function_全部滅燈();
+            List<object[]> list_value = sqL_DataGridView_處方內容.GetAllRows();
+            if (list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1000);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            List<string> Codes = new List<string>();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                string 藥碼 = list_value[i][(int)enum_處方內容.藥碼].ObjectToString();
+                Codes.Add(藥碼);
+
+            }
+            for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
+            {
+                List_RowsLED_本地資料[i].LED_Bytes = new byte[H_Pannel_lib.RowsLED.NumOfLED  * 3];
+            }
+            Function_儲位亮燈(Codes, Color.Black);
         }
         private void RJ_Button_調劑畫面_單滅_MouseDownEvent(MouseEventArgs mevent)
         {

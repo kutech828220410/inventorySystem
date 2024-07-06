@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.18")]
-[assembly: AssemblyFileVersion("1.0.0.18")]
+[assembly: AssemblyVersion("1.0.0.19")]
+[assembly: AssemblyFileVersion("1.0.0.19")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -234,7 +234,12 @@ namespace 中藥調劑系統
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             this.storageUI_EPD_266.Init(dBConfigClass.DB_儲位資料);
 
-            Function_全部滅燈();
+            Task.Run(new Action(delegate 
+            {
+                System.Threading.Thread.Sleep(3000);
+                Function_全部滅燈();
+            }));
+           
         }
 
         private void ApiServerSetting(string Name)
