@@ -111,9 +111,16 @@ namespace 中藥調劑系統
             this.rJ_Button_調劑畫面_單亮.MouseDownEvent += RJ_Button_調劑畫面_單亮_MouseDownEvent;
             this.rJ_Button_調劑畫面_單滅.MouseDownEvent += RJ_Button_調劑畫面_單滅_MouseDownEvent;
             this.rJ_Button_調劑畫面_全滅.MouseDownEvent += RJ_Button_調劑畫面_全滅_MouseDownEvent;
-
+            this.rJ_Lable_實調.DoubleClick += RJ_Lable_實調_DoubleClick;
             plC_UI_Init.Add_Method(Program_調劑畫面);
-        }   
+        }
+
+        private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
+        {
+            Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
+            if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
+            this.rJ_Lable_實調.Text = dialog_NumPannel.Value.ToString("0.00");
+        }
 
         private void sub_Progran_更新處方()
         {
@@ -304,7 +311,11 @@ namespace 中藥調劑系統
             }
             if (list_value_add.Count > 0) this.sqL_DataGridView_病患資訊.AddRows(list_value_add, true);
             if (list_value_delete.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_delete, true);
-
+            if (order_病患資訊_再次調劑 != null)
+            {
+                this.sqL_DataGridView_病患資訊.SetSelectRow(order_病患資訊_再次調劑);
+                order_病患資訊_再次調劑 = null;
+            }
 
         }
 
@@ -321,14 +332,14 @@ namespace 中藥調劑系統
                 {
                     string text = MySerialPort_Scanner01.ReadString();
                     if (text.StringIsEmpty()) return;
-                    System.Threading.Thread.Sleep(200);
+                    System.Threading.Thread.Sleep(50);
                     text = MySerialPort_Scanner01.ReadString();
                     MySerialPort_Scanner01.ClearReadByte();
                     text = text.Replace("\0", "");
                     text = text.Replace("\n", "");
                     text = text.Replace("\r", "");
                     List<OrderClass> orderClasses = Funtion_醫令資料_API呼叫(text);
-                    if (orderClasses != null)
+                    if (orderClasses != null && orderClasses.Count != 0)
                     {
                         if (orderClasses.Count > 0)
                         {
@@ -436,14 +447,17 @@ namespace 中藥調劑系統
                                 double 應調_L = 應調 - 檢核下限;
                                 if (實調 <= 應調_L || 實調 >= 應調_H)
                                 {
+
+
                                     if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                                     {
                                         Funtion_調劑完成(GUID, (實調 * -1).ToString() ,"");
+                                        return;
                                     }
                                 }
                                 else
                                 {
-                                    Funtion_調劑完成(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString(), 應調.ToString(),"");
+                                    Funtion_調劑完成(list_處方內容_selected[0][(int)enum_處方內容.GUID].ObjectToString(), (實調 * -1).ToString(),"");
                                 }
 
 
@@ -513,12 +527,26 @@ namespace 中藥調劑系統
                 OrderTClass_現在調劑處方 = null;
                 order_current_row = null;
                 flag_新處方提示 = false;
+
+                this.Invoke(new Action(delegate
+                {
+                    rJ_Lable_處方藥品.Text = $"-----------";
+                    rJ_Lable_處方資訊_單筆包數.Text = $"-包";
+                    rJ_Lable_處方資訊_單筆處方天數.Text = $"--天";
+                    rJ_Lable_處方資訊_單包重.Text = $"--.-- 克/包";
+                    rJ_Lable_處方資訊_單筆總重.Text = $"總重:---克";
+                    rJ_Lable_總包數.Text = $"--包";
+                    rJ_Lable_應調.Text = $"-.--";
+                    rJ_Lable_醫師代號.Text = $"醫師代號 : ------------";
+                    rJ_Lable_處方時間.Text = $"處方時間 : --:--:--";
+                    rJ_Lable_科別.Text = $"科別 : -----";
+                }));
             }));
         }
-        public void Function_更新處方內容(string PRI_KEY)
+        public object[] Function_更新處方內容(string PRI_KEY)
         {
             List<OrderTClass> orderTClasses = OrderTClass.get_by_pri_key(Main_Form.API_Server, PRI_KEY);
-            if (orderTClasses.Count == 0) return;
+            if (orderTClasses.Count == 0) return null;
 
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < orderTClasses.Count; i++)
@@ -527,7 +555,7 @@ namespace 中藥調劑系統
 
                 list_value.Add(value);
             }
-        
+
             order_value = new object[new enum_病患資訊().GetLength()];
             order_value[(int)enum_病患資訊.PRI_KEY] = orderTClasses[0].PRI_KEY;
             order_value[(int)enum_病患資訊.領藥號] = orderTClasses[0].領藥號;
@@ -536,38 +564,26 @@ namespace 中藥調劑系統
             order_value[(int)enum_病患資訊.性別] = orderTClasses[0].性別;
             order_value[(int)enum_病患資訊.病歷號] = orderTClasses[0].病歷號;
             order_value[(int)enum_病患資訊.處方日期] = orderTClasses[0].開方日期.StringToDateTime().ToDateString();
-
             OrderTClass_現在調劑處方 = orderTClasses;
             order_current_row = null;
-            this.sqL_DataGridView_處方內容.ClearGrid();
-            this.sqL_DataGridView_處方內容.RefreshGrid(list_value);
-        }
-        public void Function_更新處方UI(string GUID)
-        {
-            OrderTClass orderTClass = OrderTClass.get_by_guid(Main_Form.API_Server, GUID);
-            if (orderTClass != null)
+
+
+            double 總重 = 0;
+            double 應調 = 0;
+            string 單位 = "";
+            for (int i = 0; i < orderTClasses.Count; i++)
             {
-                double 總重 = 0;
-                double 應調 = 0;
-                string 單位 = "";
-                List<object[]> list_value = this.sqL_DataGridView_處方內容.GetAllRows();
-                for (int i = 0; i < list_value.Count; i++)
+
+                if (orderTClasses[i].交易量.ObjectToString().StringIsDouble())
                 {
-
-                    if (list_value[i][(int)enum_處方內容.應調].ObjectToString().StringIsDouble())
-                    {
-                        應調 = list_value[i][(int)enum_處方內容.應調].ObjectToString().StringToDouble();
-                        單位 = list_value[i][(int)enum_處方內容.單位].ObjectToString();
-                        if (單位 == "錢") 應調 *= 3.75;
-
-                        總重 += 應調;
-                    }
+                    應調 = orderTClasses[i].交易量.ObjectToString().StringToDouble();
+                    單位 = orderTClasses[i].劑量單位.ObjectToString();
+                    if (單位 == "錢") 應調 *= 3.75;
+                    if (單位 == "BTL") continue;
+                    總重 += 應調;
                 }
-                Function_更新處方UI(orderTClass, 總重);
             }
-        }
-        public void Function_更新處方UI(OrderTClass orderTClass , double 總重)
-        {
+            OrderTClass orderTClass = orderTClasses[0];
             string 包數 = "";
             if (orderTClass.頻次.ToUpper() == "Q1H") 包數 = "24";
             if (orderTClass.頻次.ToUpper() == "Q2H") 包數 = "12";
@@ -591,16 +607,11 @@ namespace 中藥調劑系統
             if (orderTClass.頻次.ToUpper() == "TID") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "ASORDER") 包數 = "1";
-            string 天數 = orderTClass.天數;
+            string 天數 = orderTClasses[0].天數;
             string 總包數 = (包數.StringToInt32() * 天數.StringToInt32()).ToString();
 
-            this.Invoke(new Action(delegate
+            this.Invoke(new Action(delegate 
             {
-
-                orderTClass.藥品名稱 = RemoveParenthesesContent(orderTClass.藥品名稱);
-        
-                rJ_Lable_處方藥品.Text = $"{orderTClass.藥品名稱}";
-                rJ_Lable_領藥號.Text = $"{orderTClass.領藥號}";
                 rJ_Lable_處方資訊_姓名_性別_病歷號.Text = $"{orderTClass.病人姓名}({orderTClass.性別}) {orderTClass.病歷號}";
                 rJ_Lable_處方資訊_處方日期.Text = $"{orderTClass.開方日期.StringToDateTime().ToDateString()}";
                 rJ_Lable_處方資訊_年齡.Text = $"{orderTClass.年齡.StringToInt32()}歲";
@@ -609,12 +620,6 @@ namespace 中藥調劑系統
                 rJ_Lable_處方資訊_單包重.Text = $"{(總重 / 總包數.StringToInt32()).ToString("0.00")} 克/包";
                 rJ_Lable_處方資訊_單筆總重.Text = $"總重:{總重.ToString("0.00")}克";
                 rJ_Lable_總包數.Text = $"{總包數}包";
-                rJ_Lable_應調.Text = $"{orderTClass.交易量.StringToDouble() * -1}";
-                rJ_Lable_醫師代號.Text = $"醫師代號 : {orderTClass.醫師ID}";
-                rJ_Lable_處方時間.Text = $"處方時間 : {orderTClass.開方日期.StringToDateTime().ToTimeString()}";
-                rJ_Lable_科別.Text = $"科別 : {orderTClass.科別}";
-                rJ_Lable_應調單位.Text = $"{orderTClass.劑量單位}";
-                rJ_Lable_實調單位.Text = $"{orderTClass.劑量單位}";
 
                 double 單包重 = rJ_Lable_處方資訊_單包重.Text.StringToDouble();
                 if (單包重 > 0)
@@ -628,6 +633,46 @@ namespace 中藥調劑系統
                         MyMessageBox.ShowDialog("單包重低於下限");
                     }
                 }
+            }));
+          
+
+            this.sqL_DataGridView_處方內容.ClearGrid();
+            this.sqL_DataGridView_處方內容.RefreshGrid(list_value);
+            return order_value;
+        }
+        public void Function_更新處方UI(string GUID)
+        {
+            OrderTClass orderTClass = OrderTClass.get_by_guid(Main_Form.API_Server, GUID);
+            if (orderTClass != null)
+            {
+            
+         
+            }
+        }
+        public void Function_更新處方UI(OrderTClass orderTClass , double 總重)
+        {
+      
+            
+          
+
+            this.Invoke(new Action(delegate
+            {
+
+                orderTClass.藥品名稱 = RemoveParenthesesContent(orderTClass.藥品名稱);
+
+                rJ_Lable_醫師代號.Text = $"醫師代號 : {orderTClass.醫師ID}";
+                rJ_Lable_處方時間.Text = $"處方時間 : {orderTClass.開方日期.StringToDateTime().ToTimeString()}";
+
+                rJ_Lable_處方藥品.Text = $"{orderTClass.藥品名稱}";
+                rJ_Lable_領藥號.Text = $"{orderTClass.領藥號}";
+             
+                rJ_Lable_應調.Text = $"{orderTClass.交易量.StringToDouble() * -1}";
+          
+                rJ_Lable_科別.Text = $"科別 : {orderTClass.科別}";
+                rJ_Lable_應調單位.Text = $"{orderTClass.劑量單位}";
+                rJ_Lable_實調單位.Text = $"{orderTClass.劑量單位}";
+
+              
                 
             }));
         }
@@ -637,6 +682,7 @@ namespace 中藥調劑系統
             sessionClass = _sessionClass;
             this.Invoke(new Action(delegate 
             {
+                this.plC_ScreenPage_main.SelecteTabText("調劑畫面");
                 this.plC_RJ_Button_登入.Texts = "登出";
                 PLC_Device_已登入.Bool = true;
                 rJ_Lable_調劑人員.Text = $"調劑人員 : {sessionClass.Name}";
@@ -697,7 +743,7 @@ namespace 中藥調劑系統
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    Function_儲位亮燈(藥碼, Color.Blue);
+                    Function_儲位亮燈(藥碼, this.panel_調劑完閃爍顏色.BackColor);
                     System.Threading.Thread.Sleep(300);
                     Function_儲位亮燈(藥碼, Color.Black);
                     System.Threading.Thread.Sleep(300);
@@ -785,15 +831,6 @@ namespace 中藥調劑系統
             this.Invoke(new Action(delegate
             {
                 rJ_Lable_處方藥品.Text = $"-----------";
-                rJ_Lable_處方資訊_單筆包數.Text = $"-包";
-                rJ_Lable_處方資訊_單筆處方天數.Text = $"--天";
-                rJ_Lable_處方資訊_單包重.Text = $"--.-- 克/包";
-                rJ_Lable_處方資訊_單筆總重.Text = $"總重:---克";
-                rJ_Lable_總包數.Text = $"--包";
-                rJ_Lable_應調.Text = $"-.--";
-                rJ_Lable_醫師代號.Text = $"醫師代號 : ------------";
-                rJ_Lable_處方時間.Text = $"處方時間 : --:--:--";
-                rJ_Lable_科別.Text = $"科別 : -----";
             }));
 
         }
@@ -894,9 +931,26 @@ namespace 中藥調劑系統
             string 藥名 = RowValue[(int)enum_處方內容.藥名].ObjectToString();
             string 藥碼 = RowValue[(int)enum_處方內容.藥碼].ObjectToString();
             string 藥碼_current_row = "";
+
+            string 頻次 = RowValue[(int)enum_處方內容.頻次].ObjectToString();
+            string 現在調劑頻次 = OrderTClass_現在調劑處方.GetCurrentFreq();
+            if (現在調劑頻次 != null)
+            {
+                if (頻次 != 現在調劑頻次)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{現在調劑頻次}]頻次未完成", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    this.sqL_DataGridView_處方內容.ClearSelection();
+
+                    return;
+                }
+            }
+
+
             if (order_current_row != null)
             {
                 藥碼_current_row = order_current_row[(int)enum_處方內容.藥碼].ObjectToString();
+             
                 if (GUID != order_current_row[(int)enum_處方內容.GUID].ObjectToString())
                 {
                     if (order_current_row[(int)enum_處方內容.實調].ObjectToString().StringIsDouble() == false)
@@ -915,7 +969,7 @@ namespace 中藥調劑系統
             Task.Run(new Action(delegate
             {
                 //Function_儲位亮燈(藥碼_current_row, Color.Black);
-                Function_儲位亮燈(藥碼, Color.Lime);
+                Function_儲位亮燈(藥碼, this.panel_調劑刷藥單顏色.BackColor);
                 Voice voice = new Voice();
                 voice.SpeakOnTask(RemoveParenthesesContent(藥名));
             }));
@@ -984,7 +1038,7 @@ namespace 中藥調劑系統
             transactionsClass.add(Main_Form.API_Server, transactionsClasses, Main_Form.ServerName, Main_Form.ServerType);
             //this.sqL_DataGridView_處方內容.ClearSelection();
             //this.sqL_DataGridView_處方內容.ReplaceExtra(list_value_buf, true);
-
+            RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
             Function_重置處方();
 
         }
@@ -1070,21 +1124,7 @@ namespace 中藥調劑系統
         }
         private void RJ_Button_調劑畫面_全滅_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = sqL_DataGridView_處方內容.GetAllRows();
-            if (list_value.Count == 0)
-            {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1000);
-                dialog_AlarmForm.ShowDialog();
-                return;
-            }
-            List<string> Codes = new List<string>();
-            for (int i = 0; i < list_value.Count; i++)
-            {
-                string 藥碼 = list_value[i][(int)enum_處方內容.藥碼].ObjectToString();
-                Codes.Add(藥碼);
-
-            }
-            Function_儲位亮燈(Codes, Color.Black);
+            Function_全部滅燈();
         }
         private void RJ_Button_調劑畫面_單滅_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1100,7 +1140,7 @@ namespace 中藥調劑系統
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    Function_儲位亮燈(藥碼, Color.Blue);
+                    Function_儲位亮燈(藥碼, this.panel_調劑完閃爍顏色.BackColor);
                     System.Threading.Thread.Sleep(300);
                     Function_儲位亮燈(藥碼, Color.Black);
                     System.Threading.Thread.Sleep(300);
@@ -1118,7 +1158,7 @@ namespace 中藥調劑系統
                 return;
             }
             string 藥碼 = list_value[0][(int)enum_處方內容.藥碼].ObjectToString();
-            Function_儲位亮燈(藥碼, Color.Blue);
+            Function_儲位亮燈(藥碼, this.panel_調劑中顏色.BackColor);
         }
         private void RJ_Button_調劑畫面_全亮_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1136,7 +1176,7 @@ namespace 中藥調劑系統
                 Codes.Add(藥碼);
 
             }
-            Function_儲位亮燈(Codes, Color.Blue);
+            Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
         }
         #endregion
         public static string RemoveParenthesesContent(string input)

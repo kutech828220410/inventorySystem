@@ -145,8 +145,6 @@ namespace 中藥調劑系統
 
             Task.WhenAll(tasks).Wait();
         }
-
-
         static public void Function_儲位亮燈(string 藥品碼, Color color)
         {
             if (藥品碼.StringIsEmpty()) return;
@@ -180,7 +178,32 @@ namespace 中藥調劑系統
                 }
             }
         }
+        static public void Function_全部滅燈()
+        {
+            List<RowsLED> rowsLEDs = _rowsLEDUI.SQL_GetAllRowsLED();
+            List<Storage> storages = _storageUI_EPD_266.SQL_GetAllStorage();
 
+
+            List<Task> tasks = new List<Task>();
+
+            for (int i = 0; i < rowsLEDs.Count; i++)
+            {
+                RowsLED rowsLED = rowsLEDs[i];
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    _rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED);                   
+                })));
+            }
+            for (int i = 0; i < storages.Count; i++)
+            {
+                Storage storage = storages[i];
+                tasks.Add(Task.Run(new Action(delegate
+                {
+                    _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                })));
+            }
+            Task.WhenAll(tasks).Wait();
+        }
         static public List<OrderClass> Funtion_醫令資料_API呼叫(string barcode)
         {
             barcode = barcode.Replace("\r\n", "");

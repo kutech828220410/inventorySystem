@@ -40,6 +40,9 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_交易紀錄.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_交易記錄查詢資料.領藥號);
             this.sqL_DataGridView_交易紀錄.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_交易記錄查詢資料.藥品碼);
             this.sqL_DataGridView_交易紀錄.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_交易記錄查詢資料.操作人);
+            this.sqL_DataGridView_交易紀錄.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_交易記錄查詢資料.開方時間);
+            this.sqL_DataGridView_交易紀錄.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_交易記錄查詢資料.操作時間);
+            this.sqL_DataGridView_交易紀錄.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_交易記錄查詢資料.病歷號);
 
             this.dateTimeIntervelPicker_交易紀錄_操作時間.SetDateTime(DateTime.Now.AddMonths(-1).GetStartDate(), DateTime.Now.GetEndDate());
             this.dateTimeIntervelPicker_交易紀錄_操作時間.SureClick += DateTimeIntervelPicker_交易紀錄_操作時間_SureClick;

@@ -684,8 +684,8 @@ namespace HIS_DB_Lib
             //依Speed由小排到大。
             public int Compare(OrderTClass x, OrderTClass y)
             {
-                string temp0 = x.批序;
-                string temp1 = y.批序;
+                int temp0 = x.批序.StringToInt32();
+                int temp1 = y.批序.StringToInt32();
                 int compare = temp0.CompareTo(temp1);
                 return compare;
 

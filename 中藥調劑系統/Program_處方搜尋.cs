@@ -16,6 +16,7 @@ namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
     {
+        private object[] order_病患資訊_再次調劑 = null;
         public enum enum_處方搜尋
         {
             [Description("PRI_KEY,VARCHAR,15,NONE")]
@@ -278,9 +279,10 @@ namespace 中藥調劑系統
             }
             string GUID = orderTClasses[0].GUID;
             Function_更新處方UI(GUID);
-            Function_更新處方內容(PRI_KEY);
-
+            order_病患資訊_再次調劑 = Function_更新處方內容(PRI_KEY);
             plC_ScreenPage_main.SelecteTabText("調劑畫面");
+
+   
         }
         #endregion
     }

@@ -26,17 +26,19 @@ namespace 中藥調劑系統
         public PLC_Device PLC_Device_已登入 = new PLC_Device("S4000");
         public static string Order_URL = "";
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
+        private LadderConnection.LowerMachine PLC;
         public static RowsLEDUI _rowsLEDUI = null;
         public static StorageUI_EPD_266 _storageUI_EPD_266 = null;
         public Main_Form()
         {
             InitializeComponent();
             this.Load += MainForm_Load;
-
+            this.FormClosing += Main_Form_FormClosing;
             this.rJ_Button_磅秤扣重.MouseDownEvent += RJ_Button_磅秤扣重_MouseDownEvent;
             this.rJ_Button_磅秤歸零.MouseDownEvent += RJ_Button_磅秤歸零_MouseDownEvent;
         }
+
+      
 
         private void RJ_Button_磅秤歸零_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -166,7 +168,10 @@ namespace 中藥調劑系統
 
         }
         #endregion
-
+        private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Function_全部滅燈();
+        }
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadingForm.form = this.FindForm();
@@ -206,10 +211,10 @@ namespace 中藥調劑系統
         private void PlC_UI_Init_UI_Finished_Event()
         {
             this.WindowState = FormWindowState.Maximized;
-
+            PLC = this.lowerMachine_Panel.GetlowerMachine();
             LoadDBConfig();
             LoadMyConfig();
-
+            LoadConfig工程模式();
             ApiServerSetting(dBConfigClass.Name);
 
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);
@@ -223,10 +228,13 @@ namespace 中藥調劑系統
             Program_RS232_Scanner_Init();
             Program_RFID_Init();
             Program_藥品搜尋_Init();
+            Program_設定_Init();
             _rowsLEDUI = this.rowsLEDUI;
             this.rowsLEDUI.Init(dBConfigClass.DB_儲位資料);
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             this.storageUI_EPD_266.Init(dBConfigClass.DB_儲位資料);
+
+            Function_全部滅燈();
         }
 
         private void ApiServerSetting(string Name)

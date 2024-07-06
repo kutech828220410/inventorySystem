@@ -102,13 +102,13 @@ namespace 智能藥庫系統
             this.rJ_Button_儲架電子紙_清除燈號 = new MyUI.RJ_Button();
             this.epD_290_Pannel = new H_Pannel_lib.EPD_290_Pannel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.sqL_DataGridView_EPD583_儲位列表 = new SQLUI.SQL_DataGridView();
+            this.epD_583_Pannel = new H_Pannel_lib.EPD_583_Pannel();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
-            this.epD_583_Pannel = new H_Pannel_lib.EPD_583_Pannel();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.sqL_DataGridView_EPD583_儲位列表 = new SQLUI.SQL_DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -1742,32 +1742,13 @@ namespace 智能藥庫系統
             this.tabPage2.Text = "7\"大電子紙";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // openFileDialog_LoadExcel
-            // 
-            this.openFileDialog_LoadExcel.DefaultExt = "txt";
-            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
-            // 
-            // saveFileDialog_SaveExcel
-            // 
-            this.saveFileDialog_SaveExcel.DefaultExt = "txt";
-            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
-            // 
-            // epD_583_Pannel
-            // 
-            this.epD_583_Pannel.CurrentDrawer = null;
-            this.epD_583_Pannel.Location = new System.Drawing.Point(408, 81);
-            this.epD_583_Pannel.Margin = new System.Windows.Forms.Padding(0);
-            this.epD_583_Pannel.Name = "epD_583_Pannel";
-            this.epD_583_Pannel.Size = new System.Drawing.Size(648, 480);
-            this.epD_583_Pannel.TabIndex = 0;
-            // 
             // panel15
             // 
             this.panel15.Controls.Add(this.sqL_DataGridView_EPD583_儲位列表);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel15.Location = new System.Drawing.Point(3, 3);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(340, 983);
+            this.panel15.Size = new System.Drawing.Size(436, 983);
             this.panel15.TabIndex = 6;
             // 
             // sqL_DataGridView_EPD583_儲位列表
@@ -1807,7 +1788,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_EPD583_儲位列表.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_EPD583_儲位列表.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_EPD583_儲位列表.Server = "127.0.0.0";
-            this.sqL_DataGridView_EPD583_儲位列表.Size = new System.Drawing.Size(340, 983);
+            this.sqL_DataGridView_EPD583_儲位列表.Size = new System.Drawing.Size(436, 983);
             this.sqL_DataGridView_EPD583_儲位列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_EPD583_儲位列表.TabIndex = 6;
             this.sqL_DataGridView_EPD583_儲位列表.UserName = "root";
@@ -1822,6 +1803,25 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_EPD583_儲位列表.顯示首行 = true;
             this.sqL_DataGridView_EPD583_儲位列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_EPD583_儲位列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
+            // epD_583_Pannel
+            // 
+            this.epD_583_Pannel.CurrentDrawer = null;
+            this.epD_583_Pannel.Location = new System.Drawing.Point(493, 95);
+            this.epD_583_Pannel.Margin = new System.Windows.Forms.Padding(0);
+            this.epD_583_Pannel.Name = "epD_583_Pannel";
+            this.epD_583_Pannel.Size = new System.Drawing.Size(648, 480);
+            this.epD_583_Pannel.TabIndex = 0;
+            // 
+            // openFileDialog_LoadExcel
+            // 
+            this.openFileDialog_LoadExcel.DefaultExt = "txt";
+            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
+            // 
+            // saveFileDialog_SaveExcel
+            // 
+            this.saveFileDialog_SaveExcel.DefaultExt = "txt";
+            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
             // Dialog_儲位管理
             // 

@@ -66,13 +66,13 @@ namespace 中藥調劑系統
             }
             double? weight = null;
 
-            if(rJ_Lable_應調單位.Text == "克")
+            if(rJ_Lable_應調單位.Text != "錢")
             {
-                weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.g);
+                weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.hh);
             }
             else
             {
-                weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.hh);
+                weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.g);
             }
 
 

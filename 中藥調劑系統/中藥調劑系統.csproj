@@ -233,6 +233,9 @@
     <Compile Include="Program_處方搜尋.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program_RS232_EXCELL_SCALE.cs">
       <SubType>Form</SubType>

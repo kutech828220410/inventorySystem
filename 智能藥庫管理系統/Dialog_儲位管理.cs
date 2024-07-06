@@ -37,9 +37,13 @@ namespace 智能藥庫系統
             IP,
             [Description("名稱,VARCHAR,15,NONE")]
             名稱,
+            [Description("區域,VARCHAR,15,NONE")]
+            區域
+                ,
         }
 
         private List<Storage> storages = new List<Storage>();
+        private List<Drawer> drawers = new List<Drawer>();
         private Storage storage_copy = null;
         public enum enum_儲架電子紙列表
         {
@@ -106,7 +110,7 @@ namespace 智能藥庫系統
 
         }
         #region Function
-        private void RefreshUI()
+        private void Refresh_儲架電子紙列表_UI()
         {
             this.storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
 
@@ -204,14 +208,19 @@ namespace 智能藥庫系統
             this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndex = 0;
             this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndexChanged += ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged;
             #endregion 7"大電子紙
-
+            #region EPD583_儲位列表
             Table table_儲架儲位總表 = new Table(new enum_儲架儲位總表());
+            table_儲架儲位總表[enum_儲架儲位總表.區域.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, Main_Form.Function_取得藥品區域名稱().ToArray());
+
             this.sqL_DataGridView_EPD583_儲位列表.Init(table_儲架儲位總表);
             this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnVisible(false, new enum_儲架儲位總表().GetEnumNames());
-            
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.IP);
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.名稱);
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.區域);
+
+            this.drawers = Main_Form._drawerUI_EPD_583.SQL_GetAllDrawers();
             #endregion
-            #region 
-            RefreshUI();
+            Refresh_儲架電子紙列表_UI();
         }
 
    
@@ -286,7 +295,7 @@ namespace 智能藥庫系統
                         }
 
                         Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storages_replace);
-                        RefreshUI();
+                        Refresh_儲架電子紙列表_UI();
                         MyMessageBox.ShowDialog("匯入完成");
                     }
                     if (dialog_ContextMenuStrip.Value == ContextMenuStrip_儲架電子紙列表.複製格式.GetEnumName())
@@ -334,7 +343,7 @@ namespace 智能藥庫系統
                         }
 
                         Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storages_replace);
-                        RefreshUI();
+                        Refresh_儲架電子紙列表_UI();
 
                     }
                     if (dialog_ContextMenuStrip.Value == ContextMenuStrip_儲架電子紙列表.清除儲位內容.GetEnumName())
@@ -365,7 +374,7 @@ namespace 智能藥庫系統
                         }
 
                         Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storages_replace);
-                        RefreshUI();
+                        Refresh_儲架電子紙列表_UI();
 
                         MyMessageBox.ShowDialog("清除完成");
                     }
@@ -806,7 +815,7 @@ namespace 智能藥庫系統
             Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
             storage = storage.SetMedClass(medClass);
             Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
-            RefreshUI();
+            Refresh_儲架電子紙列表_UI();
         }
         private void RJ_Button_儲架電子紙_藥品資料_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
