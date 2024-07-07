@@ -102,9 +102,39 @@ namespace 智能藥庫系統
             this.rJ_Button_儲架電子紙_清除燈號 = new MyUI.RJ_Button();
             this.epD_290_Pannel = new H_Pannel_lib.EPD_290_Pannel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.sqL_DataGridView_EPD583_藥品資料 = new SQLUI.SQL_DataGridView();
+            this.rJ_Pannel2 = new MyUI.RJ_Pannel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.comboBox_EPD583_藥品資料_搜尋條件 = new System.Windows.Forms.ComboBox();
+            this.textBox_EPD583_藥品資料_搜尋內容 = new MyUI.RJ_TextBox();
+            this.rJ_Button_EPD583_藥品資料_填入儲位 = new MyUI.RJ_Button();
+            this.rJ_Button_EPD583_藥品資料_搜尋 = new MyUI.RJ_Button();
+            this.panel_583 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel27 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel26 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.epD_583_Pannel = new H_Pannel_lib.EPD_583_Pannel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_EPD583_儲位列表 = new SQLUI.SQL_DataGridView();
-            this.epD_583_Pannel = new H_Pannel_lib.EPD_583_Pannel();
             this.fontDialog = new System.Windows.Forms.FontDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
@@ -134,6 +164,18 @@ namespace 智能藥庫系統
             this.panel14.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.panel17.SuspendLayout();
+            this.panel18.SuspendLayout();
+            this.panel19.SuspendLayout();
+            this.rJ_Pannel2.SuspendLayout();
+            this.panel21.SuspendLayout();
+            this.panel_583.SuspendLayout();
+            this.panel16.SuspendLayout();
+            this.panel27.SuspendLayout();
+            this.panel26.SuspendLayout();
+            this.panel25.SuspendLayout();
+            this.panel24.SuspendLayout();
+            this.panel23.SuspendLayout();
             this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1732,8 +1774,9 @@ namespace 智能藥庫系統
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.panel17);
+            this.tabPage2.Controls.Add(this.panel_583);
             this.tabPage2.Controls.Add(this.panel15);
-            this.tabPage2.Controls.Add(this.epD_583_Pannel);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -1741,6 +1784,436 @@ namespace 智能藥庫系統
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "7\"大電子紙";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel17
+            // 
+            this.panel17.Controls.Add(this.panel18);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel17.Location = new System.Drawing.Point(439, 3);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(1218, 461);
+            this.panel17.TabIndex = 8;
+            // 
+            // panel18
+            // 
+            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel18.Controls.Add(this.panel19);
+            this.panel18.Controls.Add(this.rJ_Pannel2);
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel18.Location = new System.Drawing.Point(0, 0);
+            this.panel18.Name = "panel18";
+            this.panel18.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.panel18.Size = new System.Drawing.Size(1218, 461);
+            this.panel18.TabIndex = 13;
+            // 
+            // panel19
+            // 
+            this.panel19.Controls.Add(this.sqL_DataGridView_EPD583_藥品資料);
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel19.Location = new System.Drawing.Point(5, 0);
+            this.panel19.Name = "panel19";
+            this.panel19.Padding = new System.Windows.Forms.Padding(5);
+            this.panel19.Size = new System.Drawing.Size(1211, 389);
+            this.panel19.TabIndex = 6;
+            // 
+            // sqL_DataGridView_EPD583_藥品資料
+            // 
+            this.sqL_DataGridView_EPD583_藥品資料.AutoSelectToDeep = false;
+            this.sqL_DataGridView_EPD583_藥品資料.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_EPD583_藥品資料.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_EPD583_藥品資料.BorderRadius = 0;
+            this.sqL_DataGridView_EPD583_藥品資料.BorderSize = 0;
+            this.sqL_DataGridView_EPD583_藥品資料.CellBorderColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_EPD583_藥品資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_藥品資料.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_EPD583_藥品資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_EPD583_藥品資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_EPD583_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_EPD583_藥品資料.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_EPD583_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_EPD583_藥品資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_藥品資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_EPD583_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_EPD583_藥品資料.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_EPD583_藥品資料.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_EPD583_藥品資料.Font = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_EPD583_藥品資料.ImageBox = false;
+            this.sqL_DataGridView_EPD583_藥品資料.Location = new System.Drawing.Point(5, 5);
+            this.sqL_DataGridView_EPD583_藥品資料.Name = "sqL_DataGridView_EPD583_藥品資料";
+            this.sqL_DataGridView_EPD583_藥品資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_EPD583_藥品資料.Password = "user82822040";
+            this.sqL_DataGridView_EPD583_藥品資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_EPD583_藥品資料.rowHeaderBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_EPD583_藥品資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_藥品資料.RowsColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_EPD583_藥品資料.RowsHeight = 20;
+            this.sqL_DataGridView_EPD583_藥品資料.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_EPD583_藥品資料.selectedBorderSize = 0;
+            this.sqL_DataGridView_EPD583_藥品資料.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_EPD583_藥品資料.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_EPD583_藥品資料.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_EPD583_藥品資料.Server = "127.0.0.0";
+            this.sqL_DataGridView_EPD583_藥品資料.Size = new System.Drawing.Size(1201, 379);
+            this.sqL_DataGridView_EPD583_藥品資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_EPD583_藥品資料.TabIndex = 7;
+            this.sqL_DataGridView_EPD583_藥品資料.UserName = "root";
+            this.sqL_DataGridView_EPD583_藥品資料.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_EPD583_藥品資料.可選擇多列 = false;
+            this.sqL_DataGridView_EPD583_藥品資料.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_藥品資料.自動換行 = true;
+            this.sqL_DataGridView_EPD583_藥品資料.表單字體 = new System.Drawing.Font("新細明體", 9F);
+            this.sqL_DataGridView_EPD583_藥品資料.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_EPD583_藥品資料.顯示CheckBox = false;
+            this.sqL_DataGridView_EPD583_藥品資料.顯示首列 = true;
+            this.sqL_DataGridView_EPD583_藥品資料.顯示首行 = true;
+            this.sqL_DataGridView_EPD583_藥品資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_EPD583_藥品資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
+            // rJ_Pannel2
+            // 
+            this.rJ_Pannel2.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Pannel2.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Pannel2.BorderColor = System.Drawing.Color.DimGray;
+            this.rJ_Pannel2.BorderRadius = 2;
+            this.rJ_Pannel2.BorderSize = 0;
+            this.rJ_Pannel2.Controls.Add(this.panel21);
+            this.rJ_Pannel2.Controls.Add(this.rJ_Button_EPD583_藥品資料_填入儲位);
+            this.rJ_Pannel2.Controls.Add(this.rJ_Button_EPD583_藥品資料_搜尋);
+            this.rJ_Pannel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.rJ_Pannel2.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel2.IsSelected = false;
+            this.rJ_Pannel2.Location = new System.Drawing.Point(5, 389);
+            this.rJ_Pannel2.Name = "rJ_Pannel2";
+            this.rJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Pannel2.ShadowSize = 0;
+            this.rJ_Pannel2.Size = new System.Drawing.Size(1211, 70);
+            this.rJ_Pannel2.TabIndex = 5;
+            // 
+            // panel21
+            // 
+            this.panel21.Controls.Add(this.comboBox_EPD583_藥品資料_搜尋條件);
+            this.panel21.Controls.Add(this.textBox_EPD583_藥品資料_搜尋內容);
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel21.Location = new System.Drawing.Point(694, 0);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(382, 70);
+            this.panel21.TabIndex = 34;
+            // 
+            // comboBox_EPD583_藥品資料_搜尋條件
+            // 
+            this.comboBox_EPD583_藥品資料_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_EPD583_藥品資料_搜尋條件.FormattingEnabled = true;
+            this.comboBox_EPD583_藥品資料_搜尋條件.Items.AddRange(new object[] {
+            "藥碼",
+            "藥名",
+            "中文名"});
+            this.comboBox_EPD583_藥品資料_搜尋條件.Location = new System.Drawing.Point(10, 15);
+            this.comboBox_EPD583_藥品資料_搜尋條件.Name = "comboBox_EPD583_藥品資料_搜尋條件";
+            this.comboBox_EPD583_藥品資料_搜尋條件.Size = new System.Drawing.Size(121, 39);
+            this.comboBox_EPD583_藥品資料_搜尋條件.TabIndex = 34;
+            // 
+            // textBox_EPD583_藥品資料_搜尋內容
+            // 
+            this.textBox_EPD583_藥品資料_搜尋內容.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox_EPD583_藥品資料_搜尋內容.BorderColor = System.Drawing.Color.Black;
+            this.textBox_EPD583_藥品資料_搜尋內容.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.textBox_EPD583_藥品資料_搜尋內容.BorderRadius = 0;
+            this.textBox_EPD583_藥品資料_搜尋內容.BorderSize = 2;
+            this.textBox_EPD583_藥品資料_搜尋內容.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_EPD583_藥品資料_搜尋內容.ForeColor = System.Drawing.Color.Black;
+            this.textBox_EPD583_藥品資料_搜尋內容.GUID = "";
+            this.textBox_EPD583_藥品資料_搜尋內容.Location = new System.Drawing.Point(146, 16);
+            this.textBox_EPD583_藥品資料_搜尋內容.Multiline = false;
+            this.textBox_EPD583_藥品資料_搜尋內容.Name = "textBox_EPD583_藥品資料_搜尋內容";
+            this.textBox_EPD583_藥品資料_搜尋內容.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.textBox_EPD583_藥品資料_搜尋內容.PassWordChar = false;
+            this.textBox_EPD583_藥品資料_搜尋內容.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.textBox_EPD583_藥品資料_搜尋內容.PlaceholderText = "";
+            this.textBox_EPD583_藥品資料_搜尋內容.ShowTouchPannel = false;
+            this.textBox_EPD583_藥品資料_搜尋內容.Size = new System.Drawing.Size(227, 37);
+            this.textBox_EPD583_藥品資料_搜尋內容.TabIndex = 33;
+            this.textBox_EPD583_藥品資料_搜尋內容.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_EPD583_藥品資料_搜尋內容.Texts = "";
+            this.textBox_EPD583_藥品資料_搜尋內容.UnderlineStyle = false;
+            // 
+            // rJ_Button_EPD583_藥品資料_填入儲位
+            // 
+            this.rJ_Button_EPD583_藥品資料_填入儲位.AutoResetState = false;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.BorderRadius = 20;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.BorderSize = 0;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_EPD583_藥品資料_填入儲位.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.GUID = "";
+            this.rJ_Button_EPD583_藥品資料_填入儲位.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_EPD583_藥品資料_填入儲位.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Button_EPD583_藥品資料_填入儲位.Name = "rJ_Button_EPD583_藥品資料_填入儲位";
+            this.rJ_Button_EPD583_藥品資料_填入儲位.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.ProhibitionLineWidth = 4;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.ProhibitionSymbolSize = 30;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.ShadowSize = 3;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.ShowLoadingForm = false;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.Size = new System.Drawing.Size(135, 70);
+            this.rJ_Button_EPD583_藥品資料_填入儲位.State = false;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.TabIndex = 33;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.Text = "填入儲位";
+            this.rJ_Button_EPD583_藥品資料_填入儲位.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.TextHeight = 0;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.UseVisualStyleBackColor = false;
+            // 
+            // rJ_Button_EPD583_藥品資料_搜尋
+            // 
+            this.rJ_Button_EPD583_藥品資料_搜尋.AutoResetState = false;
+            this.rJ_Button_EPD583_藥品資料_搜尋.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_EPD583_藥品資料_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_EPD583_藥品資料_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_EPD583_藥品資料_搜尋.BorderRadius = 20;
+            this.rJ_Button_EPD583_藥品資料_搜尋.BorderSize = 0;
+            this.rJ_Button_EPD583_藥品資料_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_EPD583_藥品資料_搜尋.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_EPD583_藥品資料_搜尋.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_EPD583_藥品資料_搜尋.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_EPD583_藥品資料_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_EPD583_藥品資料_搜尋.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_EPD583_藥品資料_搜尋.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_EPD583_藥品資料_搜尋.GUID = "";
+            this.rJ_Button_EPD583_藥品資料_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_EPD583_藥品資料_搜尋.Location = new System.Drawing.Point(1076, 0);
+            this.rJ_Button_EPD583_藥品資料_搜尋.Name = "rJ_Button_EPD583_藥品資料_搜尋";
+            this.rJ_Button_EPD583_藥品資料_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_EPD583_藥品資料_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_EPD583_藥品資料_搜尋.ProhibitionSymbolSize = 30;
+            this.rJ_Button_EPD583_藥品資料_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_EPD583_藥品資料_搜尋.ShadowSize = 3;
+            this.rJ_Button_EPD583_藥品資料_搜尋.ShowLoadingForm = false;
+            this.rJ_Button_EPD583_藥品資料_搜尋.Size = new System.Drawing.Size(135, 70);
+            this.rJ_Button_EPD583_藥品資料_搜尋.State = false;
+            this.rJ_Button_EPD583_藥品資料_搜尋.TabIndex = 31;
+            this.rJ_Button_EPD583_藥品資料_搜尋.Text = "搜尋";
+            this.rJ_Button_EPD583_藥品資料_搜尋.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_EPD583_藥品資料_搜尋.TextHeight = 0;
+            this.rJ_Button_EPD583_藥品資料_搜尋.UseVisualStyleBackColor = false;
+            // 
+            // panel_583
+            // 
+            this.panel_583.Controls.Add(this.panel16);
+            this.panel_583.Controls.Add(this.epD_583_Pannel);
+            this.panel_583.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_583.Location = new System.Drawing.Point(439, 464);
+            this.panel_583.Name = "panel_583";
+            this.panel_583.Size = new System.Drawing.Size(1218, 522);
+            this.panel_583.TabIndex = 7;
+            // 
+            // panel16
+            // 
+            this.panel16.Controls.Add(this.panel27);
+            this.panel16.Controls.Add(this.panel26);
+            this.panel16.Controls.Add(this.panel25);
+            this.panel16.Controls.Add(this.panel24);
+            this.panel16.Controls.Add(this.panel23);
+            this.panel16.Controls.Add(this.panel22);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel16.Location = new System.Drawing.Point(894, 0);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(324, 522);
+            this.panel16.TabIndex = 1;
+            // 
+            // panel27
+            // 
+            this.panel27.Controls.Add(this.label9);
+            this.panel27.Controls.Add(this.label10);
+            this.panel27.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel27.Location = new System.Drawing.Point(0, 229);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(324, 54);
+            this.panel27.TabIndex = 5;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label9.Location = new System.Drawing.Point(41, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 16);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "--------";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label10.Location = new System.Drawing.Point(15, 6);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(39, 15);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "藥碼";
+            // 
+            // panel26
+            // 
+            this.panel26.Controls.Add(this.label7);
+            this.panel26.Controls.Add(this.label8);
+            this.panel26.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel26.Location = new System.Drawing.Point(0, 175);
+            this.panel26.Name = "panel26";
+            this.panel26.Size = new System.Drawing.Size(324, 54);
+            this.panel26.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label7.Location = new System.Drawing.Point(41, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 16);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "--------";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label8.Location = new System.Drawing.Point(15, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 15);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "商品名";
+            // 
+            // panel25
+            // 
+            this.panel25.Controls.Add(this.label5);
+            this.panel25.Controls.Add(this.label6);
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel25.Location = new System.Drawing.Point(0, 121);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(324, 54);
+            this.panel25.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label5.Location = new System.Drawing.Point(41, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 16);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "--------";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label6.Location = new System.Drawing.Point(15, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "中文名";
+            // 
+            // panel24
+            // 
+            this.panel24.Controls.Add(this.label3);
+            this.panel24.Controls.Add(this.label4);
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel24.Location = new System.Drawing.Point(0, 67);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(324, 54);
+            this.panel24.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Location = new System.Drawing.Point(41, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 16);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "--------";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label4.Location = new System.Drawing.Point(15, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 15);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "藥名";
+            // 
+            // panel23
+            // 
+            this.panel23.Controls.Add(this.label11);
+            this.panel23.Controls.Add(this.label12);
+            this.panel23.Controls.Add(this.label2);
+            this.panel23.Controls.Add(this.label1);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(0, 13);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(324, 54);
+            this.panel23.TabIndex = 1;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label11.Location = new System.Drawing.Point(179, 26);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 16);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "--------";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label12.Location = new System.Drawing.Point(153, 6);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(39, 15);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "料號";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(41, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 16);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "--------";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(15, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "藥碼";
+            // 
+            // panel22
+            // 
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel22.Location = new System.Drawing.Point(0, 0);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(324, 13);
+            this.panel22.TabIndex = 0;
+            // 
+            // epD_583_Pannel
+            // 
+            this.epD_583_Pannel.CurrentDrawer = null;
+            this.epD_583_Pannel.Location = new System.Drawing.Point(15, 23);
+            this.epD_583_Pannel.Margin = new System.Windows.Forms.Padding(0);
+            this.epD_583_Pannel.Name = "epD_583_Pannel";
+            this.epD_583_Pannel.Size = new System.Drawing.Size(648, 480);
+            this.epD_583_Pannel.TabIndex = 0;
             // 
             // panel15
             // 
@@ -1804,15 +2277,6 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_EPD583_儲位列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_EPD583_儲位列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
-            // epD_583_Pannel
-            // 
-            this.epD_583_Pannel.CurrentDrawer = null;
-            this.epD_583_Pannel.Location = new System.Drawing.Point(493, 95);
-            this.epD_583_Pannel.Margin = new System.Windows.Forms.Padding(0);
-            this.epD_583_Pannel.Name = "epD_583_Pannel";
-            this.epD_583_Pannel.Size = new System.Drawing.Size(648, 480);
-            this.epD_583_Pannel.TabIndex = 0;
-            // 
             // openFileDialog_LoadExcel
             // 
             this.openFileDialog_LoadExcel.DefaultExt = "txt";
@@ -1872,6 +2336,23 @@ namespace 智能藥庫系統
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.panel17.ResumeLayout(false);
+            this.panel18.ResumeLayout(false);
+            this.panel19.ResumeLayout(false);
+            this.rJ_Pannel2.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
+            this.panel_583.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
+            this.panel27.ResumeLayout(false);
+            this.panel27.PerformLayout();
+            this.panel26.ResumeLayout(false);
+            this.panel26.PerformLayout();
+            this.panel25.ResumeLayout(false);
+            this.panel25.PerformLayout();
+            this.panel24.ResumeLayout(false);
+            this.panel24.PerformLayout();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
             this.panel15.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1959,5 +2440,35 @@ namespace 智能藥庫系統
         private H_Pannel_lib.EPD_583_Pannel epD_583_Pannel;
         private System.Windows.Forms.Panel panel15;
         private SQLUI.SQL_DataGridView sqL_DataGridView_EPD583_儲位列表;
+        private System.Windows.Forms.Panel panel_583;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Panel panel19;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_EPD583_藥品資料;
+        private MyUI.RJ_Pannel rJ_Pannel2;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.ComboBox comboBox_EPD583_藥品資料_搜尋條件;
+        private MyUI.RJ_Button rJ_Button_EPD583_藥品資料_填入儲位;
+        private MyUI.RJ_Button rJ_Button_EPD583_藥品資料_搜尋;
+        private MyUI.RJ_TextBox textBox_EPD583_藥品資料_搜尋內容;
+        private System.Windows.Forms.Panel panel27;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel26;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panel25;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel24;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel22;
     }
 }

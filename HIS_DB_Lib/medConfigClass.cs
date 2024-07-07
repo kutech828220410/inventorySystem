@@ -40,7 +40,7 @@ namespace HIS_DB_Lib
     public class medConfigClass
     {
         /// <summary>
-        /// 唯一KEY
+        /// 唯一KEY.
         /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }

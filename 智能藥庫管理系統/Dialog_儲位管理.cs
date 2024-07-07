@@ -127,8 +127,26 @@ namespace 智能藥庫系統
 
                 list_value.Add(value);
             }
-            list_value.Sort(new ICP_儲架電子紙_藥品資料());
+            list_value.Sort(new ICP_儲架電子紙());
             this.sqL_DataGridView_儲架電子紙列表.RefreshGrid(list_value);
+        }
+        private void Refresh_7吋大電子紙_UI()
+        {
+            this.drawers = Main_Form._drawerUI_EPD_583.SQL_GetAllDrawers();
+
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < drawers.Count; i++)
+            {
+                object[] value = new object[new enum_儲架儲位總表().GetLength()];
+                value[(int)enum_儲架儲位總表.IP] = drawers[i].IP;
+                value[(int)enum_儲架儲位總表.名稱] = drawers[i].Name;
+                value[(int)enum_儲架儲位總表.區域] = drawers[i].Area;
+
+
+                list_value.Add(value);
+            }
+            list_value.Sort(new ICP_儲架儲位總表());
+            this.sqL_DataGridView_EPD583_儲位列表.RefreshGrid(list_value);
         }
         #endregion
 
@@ -207,29 +225,49 @@ namespace 智能藥庫系統
             this.rJ_Button_儲架電子紙列表_搜尋.MouseDownEvent += RJ_Button_儲架電子紙列表_搜尋_MouseDownEvent;
             this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndex = 0;
             this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndexChanged += ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged;
-            #endregion 7"大電子紙
-            #region EPD583_儲位列表
+            Refresh_儲架電子紙列表_UI();
+            #endregion
+
+            #region 7"大電子紙
+            this.sqL_DataGridView_EPD583_藥品資料.RowsHeight = 40;
+            this.sqL_DataGridView_EPD583_藥品資料.Init(table_藥品資料);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(650, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("單位", enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_EPD583_藥品資料.RowDoubleClickEvent += SqL_DataGridView_EPD583_藥品資料_RowDoubleClickEvent;
+
+            this.epD_583_Pannel.Init(Main_Form._drawerUI_EPD_583.GetLoacalUDP_Class());
             Table table_儲架儲位總表 = new Table(new enum_儲架儲位總表());
             table_儲架儲位總表[enum_儲架儲位總表.區域.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, Main_Form.Function_取得藥品區域名稱().ToArray());
-
+            this.sqL_DataGridView_EPD583_儲位列表.RowsHeight = 40;
             this.sqL_DataGridView_EPD583_儲位列表.Init(table_儲架儲位總表);
             this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnVisible(false, new enum_儲架儲位總表().GetEnumNames());
             this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.IP);
-            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.名稱);
-            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.區域);
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.名稱);
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(140, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.區域);
+            this.sqL_DataGridView_EPD583_儲位列表.RowEnterEvent += SqL_DataGridView_EPD583_儲位列表_RowEnterEvent;
 
-            this.drawers = Main_Form._drawerUI_EPD_583.SQL_GetAllDrawers();
+            this.rJ_Button_EPD583_藥品資料_搜尋.MouseDownEvent += RJ_Button_EPD583_藥品資料_搜尋_MouseDownEvent;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.MouseDownEvent += RJ_Button_EPD583_藥品資料_填入儲位_MouseDownEvent;
+            this.comboBox_EPD583_藥品資料_搜尋條件.SelectedIndex = 0;
+            this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
+            Refresh_7吋大電子紙_UI();
             #endregion
-            Refresh_儲架電子紙列表_UI();
+
         }
 
-   
+  
 
         private void Dialog_儲位管理_LoadFinishedEvent(EventArgs e)
         {
             this.Refresh();
         }
 
+        #region 儲架電子紙
         private void SqL_DataGridView_儲架電子紙列表_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -394,7 +432,6 @@ namespace 智能藥庫系統
                             select temp).ToList();
             }
         }
-
         private void ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox_儲架電子紙列表_搜尋條件.Text == "區域")
@@ -437,7 +474,7 @@ namespace 智能藥庫系統
 
                 list_value.Add(value);
             }
-            list_value.Sort(new ICP_儲架電子紙_藥品資料());
+            list_value.Sort(new ICP_儲架電子紙());
             if (text == "全部顯示")
             {
                 list_value = list_value;
@@ -554,7 +591,6 @@ namespace 智能藥庫系統
                 Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
             }));
         }
-
         private void SqL_DataGridView_儲架電子紙列表_RowEnterEvent(object[] RowValue)
         {
             string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
@@ -880,15 +916,174 @@ namespace 智能藥庫系統
                 LoadingForm.CloseLoadingForm();
             }
         }
+        #endregion
+        #region EPD583
+        private void EpD_583_Pannel_DrawerChangeEvent(Drawer drawer)
+        {
+            Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+        }
+        private void SqL_DataGridView_EPD583_儲位列表_RowEnterEvent(object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲架儲位總表.IP].ObjectToString();
+
+            Drawer drawer = Main_Form._drawerUI_EPD_583.SQL_GetDrawer(IP);
+            if (drawer != null)
+            {
+                this.epD_583_Pannel.DrawToPictureBox(drawer);
+            }
+        }
+        private void SqL_DataGridView_EPD583_藥品資料_RowDoubleClickEvent(object[] RowValue)
+        {
+           
+        }
+        private void RJ_Button_EPD583_藥品資料_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            try
+            {
+                string text = textBox_EPD583_藥品資料_搜尋內容.Text;
+                string cmb_text = "";
+                this.Invoke(new Action(delegate { cmb_text = comboBox_EPD583_藥品資料_搜尋條件.Text; }));
+                LoadingForm.ShowLoadingForm();
+                List<medClass> medClasses = medClass.get_med_cloud(Main_Form.API_Server);
+                List<medClass> medClasses_buf = new List<medClass>();
+                if (cmb_text == "藥碼")
+                {
+                    medClasses_buf = (from temp in medClasses
+                                      where temp.藥品碼.ToUpper().Contains(text.ToUpper())
+                                      select temp).ToList();
+                    if (medClasses_buf.Count == 0)
+                    {
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無資料", 1500);
+                        dialog_AlarmForm.ShowDialog();
+                        return;
+                    }
+                    List<object[]> list_value = medClasses_buf.ClassToSQL<medClass, enum_雲端藥檔>();
+                    this.sqL_DataGridView_EPD583_藥品資料.RefreshGrid(list_value);
+
+                }
+                if (cmb_text == "藥名")
+                {
+                    medClasses_buf = (from temp in medClasses
+                                      where temp.藥品名稱.ToUpper().Contains(text.ToUpper())
+                                      select temp).ToList();
+                    if (medClasses_buf.Count == 0)
+                    {
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無資料", 1500);
+                        dialog_AlarmForm.ShowDialog();
+                        return;
+                    }
+                    List<object[]> list_value = medClasses_buf.ClassToSQL<medClass, enum_雲端藥檔>();
+                    this.sqL_DataGridView_EPD583_藥品資料.RefreshGrid(list_value);
+                }
+                if (cmb_text == "中文名")
+                {
+                    medClasses_buf = (from temp in medClasses
+                                      where temp.中文名稱.ToUpper().Contains(text.ToUpper())
+                                      select temp).ToList();
+                    if (medClasses_buf.Count == 0)
+                    {
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無資料", 1500);
+                        dialog_AlarmForm.ShowDialog();
+                        return;
+                    }
+                    List<object[]> list_value = medClasses_buf.ClassToSQL<medClass, enum_雲端藥檔>();
+                    this.sqL_DataGridView_EPD583_藥品資料.RefreshGrid(list_value);
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                LoadingForm.CloseLoadingForm();
+            }
+        }
+        private void RJ_Button_EPD583_藥品資料_填入儲位_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_藥品資料 = this.sqL_DataGridView_EPD583_藥品資料.Get_All_Select_RowsValues();
+            if (list_藥品資料.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取藥品資料");
+                return;
+            }
+            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+            if (boxes.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲位");
+                return;
+            }
+            Drawer drawer = epD_583_Pannel.CurrentDrawer;
+            medClass medClass = list_藥品資料[0].SQLToClass<medClass, enum_雲端藥檔>();
+            boxes[0].SetMedClass(medClass);
+            drawer.ReplaceBox(boxes[0]);
+            Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+
+            this.epD_583_Pannel.DrawToPictureBox(drawer);
+        }
+        #endregion
 
         #endregion
 
-        private class ICP_儲架電子紙_藥品資料 : IComparer<object[]>
+        private class ICP_儲架電子紙: IComparer<object[]>
         {
             public int Compare(object[] x, object[] y)
             {
                 string IP_0 = x[(int)enum_儲架電子紙列表.IP].ObjectToString();
                 string IP_1 = y[(int)enum_儲架電子紙列表.IP].ObjectToString();
+                string[] IP_0_Array = IP_0.Split('.');
+                string[] IP_1_Array = IP_1.Split('.');
+                IP_0 = "";
+                IP_1 = "";
+                for (int i = 0; i < 4; i++)
+                {
+                    if (IP_0_Array[i].Length < 3) IP_0_Array[i] = "0" + IP_0_Array[i];
+                    if (IP_0_Array[i].Length < 3) IP_0_Array[i] = "0" + IP_0_Array[i];
+                    if (IP_0_Array[i].Length < 3) IP_0_Array[i] = "0" + IP_0_Array[i];
+
+                    if (IP_1_Array[i].Length < 3) IP_1_Array[i] = "0" + IP_1_Array[i];
+                    if (IP_1_Array[i].Length < 3) IP_1_Array[i] = "0" + IP_1_Array[i];
+                    if (IP_1_Array[i].Length < 3) IP_1_Array[i] = "0" + IP_1_Array[i];
+
+                    IP_0 += IP_0_Array[i];
+                    IP_1 += IP_1_Array[i];
+                }
+                int cmp = IP_0_Array[2].CompareTo(IP_1_Array[2]);
+                if (cmp > 0)
+                {
+                    return 1;
+                }
+                else if (cmp < 0)
+                {
+                    return -1;
+                }
+                else if (cmp == 0)
+                {
+                    cmp = IP_0_Array[3].CompareTo(IP_1_Array[3]);
+                    if (cmp > 0)
+                    {
+                        return 1;
+                    }
+                    else if (cmp < 0)
+                    {
+                        return -1;
+                    }
+                    else if (cmp == 0)
+                    {
+                        return 0;
+                    }
+                }
+
+                return 0;
+
+            }
+        }
+        private class ICP_儲架儲位總表 : IComparer<object[]>
+        {
+            public int Compare(object[] x, object[] y)
+            {
+                string IP_0 = x[(int)enum_儲架儲位總表.IP].ObjectToString();
+                string IP_1 = y[(int)enum_儲架儲位總表.IP].ObjectToString();
                 string[] IP_0_Array = IP_0.Split('.');
                 string[] IP_1_Array = IP_1.Split('.');
                 IP_0 = "";

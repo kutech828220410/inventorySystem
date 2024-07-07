@@ -13,141 +13,60 @@ using System.Text.Json;
 
 namespace HIS_DB_Lib
 {
-    /// <summary>
-    /// 表示申領單的枚舉類別。
-    /// </summary>
     [EnumDescription("materialRequisition")]
     public enum enum_materialRequisition
     {
-        /// <summary>
-        /// 唯一標識符。
-        /// </summary>
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
-        /// <summary>
-        /// 申領類別。
-        /// </summary>
         [Description("申領類別,VARCHAR,50,INDEX")]
         申領類別,
-        /// <summary>
-        /// 申領單號。
-        /// </summary>
         [Description("申領單號,VARCHAR,50,INDEX")]
         申領單號,
-        /// <summary>
-        /// 藥品代碼。
-        /// </summary>
         [Description("藥碼,VARCHAR,50,INDEX")]
         藥碼,
-        /// <summary>
-        /// 藥品名稱。
-        /// </summary>
         [Description("藥名,VARCHAR,300,NONE")]
         藥名,
-        /// <summary>
-        /// 包裝單位。
-        /// </summary>
         [Description("包裝單位,VARCHAR,50,NONE")]
         包裝單位,
-        /// <summary>
-        /// 包裝量。
-        /// </summary>
         [Description("包裝量,VARCHAR,10,NONE")]
         包裝量,
-        /// <summary>
-        /// 申領庫庫存。
-        /// </summary>
         [Description("申領庫庫存,VARCHAR,10,NONE")]
         申領庫庫存,
-        /// <summary>
-        /// 申領量。
-        /// </summary>
         [Description("申領量,VARCHAR,10,NONE")]
         申領量,
-        /// <summary>
-        /// 申領庫結存。
-        /// </summary>
         [Description("申領庫結存,VARCHAR,10,NONE")]
         申領庫結存,
-        /// <summary>
-        /// 實撥庫庫存。
-        /// </summary>
         [Description("實撥庫庫存,VARCHAR,10,NONE")]
         實撥庫庫存,
-        /// <summary>
-        /// 實撥量。
-        /// </summary>
         [Description("實撥量,VARCHAR,10,NONE")]
         實撥量,
-        /// <summary>
-        /// 實撥庫結存。
-        /// </summary>
         [Description("實撥庫結存,VARCHAR,10,NONE")]
         實撥庫結存,
-        /// <summary>
-        /// 申領單位。
-        /// </summary>
         [Description("申領單位,VARCHAR,10,NONE")]
         申領單位,
-        /// <summary>
-        /// 申領人員。
-        /// </summary>
         [Description("申領人員,VARCHAR,50,NONE")]
         申領人員,
-        /// <summary>
-        /// 申領人員ID。
-        /// </summary>
         [Description("申領人員ID,VARCHAR,10,NONE")]
         申領人員ID,
-        /// <summary>
-        /// 申領時間。
-        /// </summary>
         [Description("申領時間,DATETIME,10,INDEX")]
         申領時間,
-        /// <summary>
-        /// 核撥單位。
-        /// </summary>
         [Description("核撥單位,VARCHAR,10,NONE")]
         核撥單位,
-        /// <summary>
-        /// 核撥人員。
-        /// </summary>
         [Description("核撥人員,VARCHAR,50,NONE")]
         核撥人員,
-        /// <summary>
-        /// 核撥人員ID。
-        /// </summary>
         [Description("核撥人員ID,VARCHAR,10,NONE")]
         核撥人員ID,
-        /// <summary>
-        /// 核撥時間。
-        /// </summary>
         [Description("核撥時間,DATETIME,10,INDEX")]
         核撥時間,
-        /// <summary>
-        /// 申領細節。
-        /// </summary>
         [Description("申領細節,VARCHAR,500,NONE")]
         申領細節,
-        /// <summary>
-        /// 核撥細節。
-        /// </summary>
         [Description("核撥細節,VARCHAR,500,NONE")]
         核撥細節,
-        /// <summary>
-        /// 狀態。
-        /// </summary>
         [Description("狀態,VARCHAR,20,NONE")]
         狀態,
-        /// <summary>
-        /// 備註。
-        /// </summary>
         [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
-    /// <summary>
-    /// 表示申領單的數據類別。
-    /// </summary>
     public class materialRequisitionClass
     {
         /// <summary>
@@ -155,7 +74,6 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
-
         /// <summary>
         /// 申領類別。
         /// </summary>
@@ -171,127 +89,116 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("code")]
         public string 藥碼 { get; set; }
-
+        /// <summary>
+        /// 料號。
+        /// </summary>
+        [JsonPropertyName("skdiacode")]
+        public string 料號 { get; set; }
         /// <summary>
         /// 藥品名稱。
         /// </summary>
         [JsonPropertyName("name")]
         public string 藥名 { get; set; }
-
+        /// <summary>
+        /// 中文名。
+        /// </summary>
+        [JsonPropertyName("cht_name")]
+        public string 中文名 { get; set; }
         /// <summary>
         /// 包裝單位。
         /// </summary>
         [JsonPropertyName("packageUnit")]
         public string 包裝單位 { get; set; }
-
         /// <summary>
         /// 包裝量。
         /// </summary>
         [JsonPropertyName("packageQuantity")]
         public string 包裝量 { get; set; }
-
         /// <summary>
         /// 申領庫庫存。
         /// </summary>
         [JsonPropertyName("requestStoreInventory")]
         public string 申領庫庫存 { get; set; }
-
         /// <summary>
         /// 申領量。
         /// </summary>
         [JsonPropertyName("requestedQuantity")]
         public string 申領量 { get; set; }
-
         /// <summary>
         /// 申領庫結存。
         /// </summary>
         [JsonPropertyName("requestStoreBalance")]
         public string 申領庫結存 { get; set; }
-
         /// <summary>
         /// 實撥庫庫存。
         /// </summary>
         [JsonPropertyName("actualStoreInventory")]
         public string 實撥庫庫存 { get; set; }
-
         /// <summary>
         /// 實撥量。
         /// </summary>
         [JsonPropertyName("actualQuantity")]
         public string 實撥量 { get; set; }
-
         /// <summary>
         /// 實撥庫結存。
         /// </summary>
         [JsonPropertyName("actualStoreBalance")]
         public string 實撥庫結存 { get; set; }
-
         /// <summary>
         /// 申領單位。
         /// </summary>
         [JsonPropertyName("requestingUnit")]
         public string 申領單位 { get; set; }
-
         /// <summary>
         /// 申領人員。
         /// </summary>
         [JsonPropertyName("requestingPerson")]
         public string 申領人員 { get; set; }
-
         /// <summary>
         /// 申領人員ID。
         /// </summary>
         [JsonPropertyName("requestingPersonID")]
         public string 申領人員ID { get; set; }
-
         /// <summary>
         /// 申領時間。
         /// </summary>
         [JsonPropertyName("requestTime")]
-        public DateTime 申領時間 { get; set; }
-
+        public string 申領時間 { get; set; }
         /// <summary>
         /// 核撥單位。
         /// </summary>
         [JsonPropertyName("issuingUnit")]
         public string 核撥單位 { get; set; }
-
         /// <summary>
         /// 核撥人員。
         /// </summary>
         [JsonPropertyName("issuingPerson")]
         public string 核撥人員 { get; set; }
-
         /// <summary>
         /// 核撥人員ID。
         /// </summary>
         [JsonPropertyName("issuingPersonID")]
         public string 核撥人員ID { get; set; }
-
         /// <summary>
         /// 核撥時間。
         /// </summary>
         [JsonPropertyName("issueTime")]
-        public DateTime 核撥時間 { get; set; }
-
+        public string 核撥時間 { get; set; }
         /// <summary>
         /// 申領細節。
         /// </summary>
         [JsonPropertyName("requestDetails")]
         public string 申領細節 { get; set; }
-
         /// <summary>
         /// 核撥細節。
         /// </summary>
         [JsonPropertyName("issueDetails")]
         public string 核撥細節 { get; set; }
-
         /// <summary>
         /// 狀態。
         /// </summary>
         [JsonPropertyName("state")]
         public string 狀態 { get; set; }
-
         /// <summary>
         /// 備註。
         /// </summary>
@@ -320,7 +227,6 @@ namespace HIS_DB_Lib
                 申領細節 = JsonSerializer.Serialize(value, jsonSerializerOptions);
             }
         }
-
         /// <summary>
         /// 核撥細節列表。
         /// </summary>
@@ -357,7 +263,6 @@ namespace HIS_DB_Lib
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
-
         /// <summary>
         /// 添加申領單。
         /// </summary>
@@ -382,7 +287,6 @@ namespace HIS_DB_Lib
 
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
         }
-
         /// <summary>
         /// 根據 GUID 更新申領單。
         /// </summary>
@@ -407,7 +311,6 @@ namespace HIS_DB_Lib
 
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
         }
-
         /// <summary>
         /// 根據申領時間獲取申領單。
         /// </summary>
@@ -434,7 +337,6 @@ namespace HIS_DB_Lib
 
             return returnData_out.Data.ObjToClass<List<materialRequisitionClass>>();
         }
-
         /// <summary>
         /// 根據 GUID 獲取申領單。
         /// </summary>
@@ -444,7 +346,6 @@ namespace HIS_DB_Lib
         static public materialRequisitionClass get_by_guid(string API_Server, string GUID)
         {
             string url = $"{API_Server}/api/materialRequisition/get_by_guid";
-
             returnData returnData = new returnData();
             returnData.ServerName = "";
             returnData.ServerType = "";
@@ -460,6 +361,118 @@ namespace HIS_DB_Lib
 
             return returnData_out.Data.ObjToClass<materialRequisitionClass>();
         }
+        /// <summary>
+        /// 修改實撥量。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="materialRequisition">materialRequisitionClass實例。</param>
+        static public void update_actual_quantity(string API_Server, materialRequisitionClass materialRequisition)
+        {
+            update_actual_quantity(API_Server, materialRequisition.GUID, materialRequisition.實撥量);
+        }
+        /// <summary>
+        /// 修改實撥量。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="guid">資料的 GUID。</param>
+        /// <param name="newActualQuantity">新的實撥量。</param>
+        static public void update_actual_quantity(string API_Server, string guid, string newActualQuantity)
+        {
+            string url = $"{API_Server}/api/materialRequisition/update_actual_quantity";
+
+            var data = new
+            {
+                GUID = guid,
+                actualQuantity = newActualQuantity
+            };
+
+            returnData returnData = new returnData();
+            returnData.Data = data;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Data == null || returnData_out.Code != 200)
+            {
+                return;
+            }
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+        }
+        /// <summary>
+        /// 修改狀態為等待過帳。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="materialRequisition">materialRequisitionClass實例。</param>
+        static public void update_status_pending(string API_Server, materialRequisitionClass materialRequisition)
+        {
+            update_status_pending(API_Server, materialRequisition.GUID);
+        }
+        /// <summary>
+        /// 修改狀態為等待過帳。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="guid">資料的 GUID。</param>
+        static public void update_status_pending(string API_Server, string guid)
+        {
+            string url = $"{API_Server}/api/materialRequisition/update_status_pending";
+
+            var data = new
+            {
+                GUID = guid
+            };
+
+            returnData returnData = new returnData();
+            returnData.Data = data;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Data == null || returnData_out.Code != 200)
+            {
+                return;
+            }
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+        }
+        /// <summary>
+        /// 修改狀態為已過帳。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="materialRequisition">materialRequisitionClass實例。</param>
+        static public void update_status_posted(string API_Server, materialRequisitionClass materialRequisition)
+        {
+            update_status_posted(API_Server, materialRequisition.GUID);
+        }
+        /// <summary>
+        /// 修改狀態為已過帳。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="guid">資料的 GUID。</param>
+        static public void update_status_posted(string API_Server, string guid)
+        {
+            string url = $"{API_Server}/api/materialRequisition/update_status_posted";
+
+            var data = new
+            {
+                GUID = guid
+            };
+
+            returnData returnData = new returnData();
+            returnData.Data = data;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Data == null || returnData_out.Code != 200)
+            {
+                return;
+            }
+
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+        }
+
+
 
         /// <summary>
         /// 比較藥碼的比較器。
@@ -477,7 +490,6 @@ namespace HIS_DB_Lib
                 return x.藥碼.CompareTo(y.藥碼);
             }
         }
-
         /// <summary>
         /// 比較申領時間的比較器。
         /// </summary>

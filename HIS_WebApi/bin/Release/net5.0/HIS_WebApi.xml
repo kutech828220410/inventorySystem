@@ -1093,6 +1093,175 @@
             </remarks>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.materialRequisition.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                { 
+                    
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   [materialRequisitionClass Ary]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_update(HIS_DB_Lib.returnData)">
+            <summary>
+            根據 GUID 獲取更新申領單。
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   [materialRequisitionClass Ary]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_get_by_requestTime(HIS_DB_Lib.returnData)">
+            <summary>
+            根據申領時間獲取申領單
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                   "起始時間",
+                   "結束時間"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_get_by_guid(HIS_DB_Lib.returnData)">
+            <summary>
+            根據 GUID 獲取申領單。
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                  "GUID"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_update_actual_quantity(HIS_DB_Lib.returnData)">
+            <summary>
+            修改實撥量。
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   "GUID": "unique-guid",
+                   "actualQuantity": "new-actual-quantity"
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_update_status_pending(HIS_DB_Lib.returnData)">
+            <summary>
+            修改狀態為等待過帳。
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   "GUID": "unique-guid"
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_update_status_posted(HIS_DB_Lib.returnData)">
+            <summary>
+            修改狀態為已過帳。
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   "GUID": "unique-guid"
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.UpdateStatus(HIS_DB_Lib.returnData,System.String)">
+            <summary>
+            更新狀態的通用方法。
+            </summary>
+            <param name="returnData">共用傳遞資料結構</param>
+            <param name="newStatus">新的狀態</param>
+            <returns>[returnData.Data]</returns>
+        </member>
         <member name="T:HIS_WebApi.ChemotherapyRxScheduling">
             <summary>
             化療藥局癌症排程處方系統
@@ -4092,67 +4261,6 @@
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
-        </member>
-        <member name="M:HIS_WebApi.materialRequisition.GET_init(HIS_DB_Lib.returnData)">
-            <summary>
-            初始化資料庫
-            </summary>
-            <remarks>
-            以下為範例JSON範例
-            <code>
-              {
-                "Data": 
-                { 
-                    
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns></returns>
-        </member>
-        <member name="M:HIS_WebApi.materialRequisition.POST_add(HIS_DB_Lib.returnData)">
-            <summary>
-            新增資料
-            </summary>
-            <remarks>
-             --------------------------------------------<br/> 
-            以下為範例JSON範例
-            <code>
-              {
-                "Data": 
-                {
-                   [materialRequisitionClass]
-                }
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns>[returnData.Data]</returns>
-        </member>
-        <member name="M:HIS_WebApi.materialRequisition.POST_get_by_requestTime(HIS_DB_Lib.returnData)">
-            <summary>
-            根據申領時間獲取申領單
-            </summary>
-            <remarks>
-             --------------------------------------------<br/> 
-            以下為範例JSON範例
-            <code>
-              {
-                "Data": 
-                {
-                   [materialRequisitionClass]
-                },
-                "ValueAry" : 
-                [
-                   "起始時間",
-                   "結束時間"
-                ]
-              }
-            </code>
-            </remarks>
-            <param name="returnData">共用傳遞資料結構</param>
-            <returns>[returnData.Data]</returns>
         </member>
         <member name="M:HIS_WebApi.order.GET_init(HIS_DB_Lib.returnData)">
             <summary>

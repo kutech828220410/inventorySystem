@@ -94,6 +94,41 @@
             回傳觸發請求網址
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.drugStotreArea.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreArea.IP">
+            <summary>
+            IP
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreArea.Port">
+            <summary>
+            Port
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreArea.PIN_NUM">
+            <summary>
+            腳位號碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreArea.序號">
+            <summary>
+            序號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreArea.名稱">
+            <summary>
+            名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.drugStotreArea.狀態">
+            <summary>
+            狀態
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.loggerClass.GUID">
             <summary>
             唯一KEY
@@ -239,6 +274,258 @@
             備註
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.GUID">
+            <summary>
+            獨特標識符。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領類別">
+            <summary>
+            申領類別。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領單號">
+            <summary>
+            申領單號。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.藥碼">
+            <summary>
+            藥品代碼。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.料號">
+            <summary>
+            料號。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.藥名">
+            <summary>
+            藥品名稱。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.中文名">
+            <summary>
+            中文名。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.包裝單位">
+            <summary>
+            包裝單位。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.包裝量">
+            <summary>
+            包裝量。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領庫庫存">
+            <summary>
+            申領庫庫存。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領量">
+            <summary>
+            申領量。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領庫結存">
+            <summary>
+            申領庫結存。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.實撥庫庫存">
+            <summary>
+            實撥庫庫存。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.實撥量">
+            <summary>
+            實撥量。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.實撥庫結存">
+            <summary>
+            實撥庫結存。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領單位">
+            <summary>
+            申領單位。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領人員">
+            <summary>
+            申領人員。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領人員ID">
+            <summary>
+            申領人員ID。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領時間">
+            <summary>
+            申領時間。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.核撥單位">
+            <summary>
+            核撥單位。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.核撥人員">
+            <summary>
+            核撥人員。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.核撥人員ID">
+            <summary>
+            核撥人員ID。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.核撥時間">
+            <summary>
+            核撥時間。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.申領細節">
+            <summary>
+            申領細節。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.核撥細節">
+            <summary>
+            核撥細節。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.狀態">
+            <summary>
+            狀態。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.備註">
+            <summary>
+            備註。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.requestDetailsList">
+            <summary>
+            申領細節列表。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.materialRequisitionClass.issueDetailsList">
+            <summary>
+            核撥細節列表。
+            </summary>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.init(System.String)">
+            <summary>
+            初始化數據表。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <returns>初始化後的數據表。</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.add(System.String,System.Collections.Generic.List{HIS_DB_Lib.materialRequisitionClass})">
+            <summary>
+            添加申領單。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="materialRequisitions">申領單列表。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_by_guid(System.String,System.Collections.Generic.List{HIS_DB_Lib.materialRequisitionClass})">
+            <summary>
+            根據 GUID 更新申領單。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="materialRequisitions">申領單列表。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.get_by_requestTime(System.String,System.DateTime,System.DateTime)">
+            <summary>
+            根據申領時間獲取申領單。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="st_datetime">開始時間。</param>
+            <param name="end_datetime">結束時間。</param>
+            <returns>申領單列表。</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.get_by_guid(System.String,System.String)">
+            <summary>
+            根據 GUID 獲取申領單。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="GUID">申領單 GUID。</param>
+            <returns>申領單。</returns>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_actual_quantity(System.String,HIS_DB_Lib.materialRequisitionClass)">
+            <summary>
+            修改實撥量。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="materialRequisition">materialRequisitionClass實例。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_actual_quantity(System.String,System.String,System.String)">
+            <summary>
+            修改實撥量。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="guid">資料的 GUID。</param>
+            <param name="newActualQuantity">新的實撥量。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_status_pending(System.String,HIS_DB_Lib.materialRequisitionClass)">
+            <summary>
+            修改狀態為等待過帳。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="materialRequisition">materialRequisitionClass實例。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_status_pending(System.String,System.String)">
+            <summary>
+            修改狀態為等待過帳。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="guid">資料的 GUID。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_status_posted(System.String,HIS_DB_Lib.materialRequisitionClass)">
+            <summary>
+            修改狀態為已過帳。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="materialRequisition">materialRequisitionClass實例。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_status_posted(System.String,System.String)">
+            <summary>
+            修改狀態為已過帳。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="guid">資料的 GUID。</param>
+        </member>
+        <member name="T:HIS_DB_Lib.materialRequisitionClass.ICP_By_Code">
+            <summary>
+            比較藥碼的比較器。
+            </summary>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.ICP_By_Code.Compare(HIS_DB_Lib.materialRequisitionClass,HIS_DB_Lib.materialRequisitionClass)">
+            <summary>
+            比較兩個申領單的藥碼。
+            </summary>
+            <param name="x">申領單 x。</param>
+            <param name="y">申領單 y。</param>
+            <returns>比較結果。</returns>
+        </member>
+        <member name="T:HIS_DB_Lib.materialRequisitionClass.ICP_By_requestTime">
+            <summary>
+            比較申領時間的比較器。
+            </summary>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.ICP_By_requestTime.Compare(HIS_DB_Lib.materialRequisitionClass,HIS_DB_Lib.materialRequisitionClass)">
+            <summary>
+            比較兩個申領單的申領時間。
+            </summary>
+            <param name="x">申領單 x。</param>
+            <param name="y">申領單 y。</param>
+            <returns>比較結果。</returns>
+        </member>
         <member name="P:HIS_DB_Lib.medGeneralConfigClass.GUID">
             <summary>
             唯一KEY
@@ -366,7 +653,7 @@
         </member>
         <member name="P:HIS_DB_Lib.medConfigClass.GUID">
             <summary>
-            唯一KEY
+            唯一KEY.
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medConfigClass.藥碼">

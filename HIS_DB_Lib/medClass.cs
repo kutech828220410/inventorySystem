@@ -72,6 +72,8 @@ namespace HIS_DB_Lib
         public string 類別 { get; set; }
         [JsonPropertyName("TORW")]
         public string 中西藥 { get; set; }
+        [JsonPropertyName("PIC_URL")]
+        public string 圖片網址 { get; set; }       
         [JsonPropertyName("FILE_STATUS")]
         public string 開檔狀態 { get; set; }
         [JsonPropertyName("STORAGE_NOTE")]

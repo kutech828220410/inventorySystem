@@ -108,7 +108,7 @@ namespace 中藥調劑系統
                                 }
                             }
                         }
-                        if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266)
+                        if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266|| device.DeviceType == DeviceType.EPD290_lock || device.DeviceType == DeviceType.EPD266_lock)
                         {
                             Storage storage = List_EPD266_本地資料.SortByIP(device.IP);
                             if (storage != null)

@@ -29,12 +29,14 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>
     </NoWarn>
-    <DocumentationFile>bin\Release\HIS_DB_Lib.xml</DocumentationFile>
+    <DocumentationFile>bin\HIS_DB_Lib.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Basic">
@@ -163,4 +165,9 @@ copy /Y "$(TargetDir)$(ProjectName).xml" "$(SolutionDir)\0.DLL"</PostBuildEvent>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>nIF EXIST "$(TargetDir)$(ProjectName).xml" (
+    del "$(TargetDir)$(ProjectName).xml"
+)</PreBuildEvent>
+  </PropertyGroup>
 </Project>
