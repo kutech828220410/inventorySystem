@@ -3607,6 +3607,68 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.medPic.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
+              }
+              
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medPic.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增藥品圖片資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data":
+                [
+                  {
+                    "GUID": "unique-guid",
+                    "code": "med-code",
+                    "name": "med-name",
+                    "pic_base64": "base64-image-string"
+                  }
+                ]
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medPic.POST_get_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            根據藥碼獲取藥品圖片資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" :
+                [
+                   "code"
+                ]
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.medPirce.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化資料庫

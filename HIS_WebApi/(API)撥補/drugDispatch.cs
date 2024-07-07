@@ -187,7 +187,7 @@ namespace HIS_WebApi
         {
 
             MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "add";
+            returnData.Method = "datas_posting";
             try
             {
                 GET_init(returnData);

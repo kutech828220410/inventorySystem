@@ -1196,6 +1196,72 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]</returns>
         </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_update_actual_quantity(HIS_DB_Lib.returnData)">
+            <summary>
+            修改實撥量。
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   "GUID": "unique-guid",
+                   "actualQuantity": "new-actual-quantity"
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_update_status_pending(HIS_DB_Lib.returnData)">
+            <summary>
+            修改狀態為等待過帳。
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   "GUID": "unique-guid"
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.POST_update_status_posted(HIS_DB_Lib.returnData)">
+            <summary>
+            修改狀態為已過帳。
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   "GUID": "unique-guid"
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.UpdateStatus(HIS_DB_Lib.returnData,System.String)">
+            <summary>
+            更新狀態的通用方法。
+            </summary>
+            <param name="returnData">共用傳遞資料結構</param>
+            <param name="newStatus">新的狀態</param>
+            <returns>[returnData.Data]</returns>
+        </member>
         <member name="T:HIS_WebApi.ChemotherapyRxScheduling">
             <summary>
             化療藥局癌症排程處方系統
@@ -3539,6 +3605,68 @@
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medPic.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                }
+              }
+              
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medPic.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增藥品圖片資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data":
+                [
+                  {
+                    "GUID": "unique-guid",
+                    "code": "med-code",
+                    "name": "med-name",
+                    "pic_base64": "base64-image-string"
+                  }
+                ]
+            }
+            </code>
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.medPic.POST_get_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            根據藥碼獲取藥品圖片資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+            {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" :
+                [
+                   "code"
+                ]
+            }
+            </code>
+            </remarks>
             <returns></returns>
         </member>
         <member name="M:HIS_WebApi.medPirce.GET_init(HIS_DB_Lib.returnData)">

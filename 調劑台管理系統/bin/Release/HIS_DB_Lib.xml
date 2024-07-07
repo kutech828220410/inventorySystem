@@ -706,6 +706,26 @@
             自定義
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medPicClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPicClass.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPicClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPicClass.pic_base64">
+            <summary>
+            pic_base64
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medPriceClass.GUID">
             <summary>
             GUID

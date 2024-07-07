@@ -142,6 +142,16 @@ namespace HIS_DB_Lib
             barcodes.Remove(barcode);
             Barcode = barcodes;
         }
+        public bool IsHaveBarCode(string barcode)
+        {
+            List<string> barcodes = 藥品條碼2.JsonDeserializet<List<string>>();
+            if (barcodes == null) return false;
+            foreach (string temp in barcodes)
+            {
+                if (temp == barcode) return true;
+            }
+            return false;
+        }
 
         static public SQLUI.Table init(string API_Server)
         {

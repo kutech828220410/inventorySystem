@@ -457,6 +457,49 @@
             <param name="GUID">申領單 GUID。</param>
             <returns>申領單。</returns>
         </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_actual_quantity(System.String,HIS_DB_Lib.materialRequisitionClass)">
+            <summary>
+            修改實撥量。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="materialRequisition">materialRequisitionClass實例。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_actual_quantity(System.String,System.String,System.String)">
+            <summary>
+            修改實撥量。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="guid">資料的 GUID。</param>
+            <param name="newActualQuantity">新的實撥量。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_status_pending(System.String,HIS_DB_Lib.materialRequisitionClass)">
+            <summary>
+            修改狀態為等待過帳。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="materialRequisition">materialRequisitionClass實例。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_status_pending(System.String,System.String)">
+            <summary>
+            修改狀態為等待過帳。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="guid">資料的 GUID。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_status_posted(System.String,HIS_DB_Lib.materialRequisitionClass)">
+            <summary>
+            修改狀態為已過帳。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="materialRequisition">materialRequisitionClass實例。</param>
+        </member>
+        <member name="M:HIS_DB_Lib.materialRequisitionClass.update_status_posted(System.String,System.String)">
+            <summary>
+            修改狀態為已過帳。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="guid">資料的 GUID。</param>
+        </member>
         <member name="T:HIS_DB_Lib.materialRequisitionClass.ICP_By_Code">
             <summary>
             比較藥碼的比較器。
@@ -661,6 +704,26 @@
         <member name="P:HIS_DB_Lib.medConfigClass.自定義">
             <summary>
             自定義
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPicClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPicClass.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPicClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medPicClass.pic_base64">
+            <summary>
+            pic_base64
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medPriceClass.GUID">

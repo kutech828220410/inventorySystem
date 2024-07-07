@@ -28,7 +28,8 @@ namespace TestForm
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            deviceApiClass.GetRowsLEDs("http://127.0.0.1:4433", "管藥", "調劑台");
+            medPicClass medPicClass1 = medPicClass.get_by_code("http://127.0.0.1:4433", "med-code");
+            //deviceApiClass.GetRowsLEDs("http://127.0.0.1:4433", "管藥", "調劑台");
         }
     }
 }
