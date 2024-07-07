@@ -19,7 +19,7 @@ namespace HIS_DB_Lib
         藥碼,
         [Description("藥名,VARCHAR,300,NONE")]
         藥名,
-        [Description("pic_base64,TEXT,50,NONE")]
+        [Description("pic_base64,LONGTEXT,50,NONE")]
         pic_base64,
 
     }
@@ -107,6 +107,16 @@ namespace HIS_DB_Lib
             medPicClass medPicClass = returnData_out.Data.ObjToClass<medPicClass>();
             return medPicClass;
         }
-        
+        static public System.Drawing.Image get_image_by_code(string API_Server, string code)
+        {
+            medPicClass medPicClass = get_by_code(API_Server, code);
+
+            if (medPicClass == null) return null;
+            string base64 = medPicClass.pic_base64;
+            System.Drawing.Image image = base64.Base64ToImage();
+            return image;
+
+        }
+
     }
 }

@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backgroundProgram", "backgr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bkp_drugStore", "bkp_drugStore\bkp_drugStore.csproj", "{550C4B14-6906-429A-AC55-FAE5BF6FBD0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "batch_medpic_download_to_base64", "batch_medpic_download_to_base64\batch_medpic_download_to_base64.csproj", "{D052F6A1-7A59-4351-B2CC-F72D1CE81809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{550C4B14-6906-429A-AC55-FAE5BF6FBD0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{550C4B14-6906-429A-AC55-FAE5BF6FBD0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{550C4B14-6906-429A-AC55-FAE5BF6FBD0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D052F6A1-7A59-4351-B2CC-F72D1CE81809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D052F6A1-7A59-4351-B2CC-F72D1CE81809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D052F6A1-7A59-4351-B2CC-F72D1CE81809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D052F6A1-7A59-4351-B2CC-F72D1CE81809}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +139,7 @@ Global
 		{89223B5D-E6E9-40DF-82AB-462048E6BEC7} = {BED408C5-A664-4417-812E-6486B776D33E}
 		{7FF10CAA-986D-4D8E-B2BD-E36C2610F7A3} = {BED408C5-A664-4417-812E-6486B776D33E}
 		{550C4B14-6906-429A-AC55-FAE5BF6FBD0A} = {A7E77C33-031E-4713-9B8B-A1972553EE94}
+		{D052F6A1-7A59-4351-B2CC-F72D1CE81809} = {E617E12B-9021-4311-8DAA-E6E3CFE5047F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4B921A9E-6909-4DAB-8E4C-5F9D26A5CEDE}

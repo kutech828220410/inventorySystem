@@ -144,7 +144,7 @@ namespace HIS_WebApi
                     }
                     else
                     {
-                        medPicClass medPicClass = medPicClasses[i];
+                        medPicClass medPicClass = list_value[0].SQLToClass<medPicClass, enum_medPic>();
                         medPicClass.藥碼 = medPicClasses[i].藥碼;
                         medPicClass.藥名 = medPicClasses[i].藥名;
                         medPicClass.pic_base64 = medPicClasses[i].pic_base64;

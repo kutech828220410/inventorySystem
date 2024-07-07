@@ -28,7 +28,8 @@ namespace TestForm
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            medPicClass medPicClass1 = medPicClass.get_by_code("http://127.0.0.1:4433", "med-code");
+            //medPicClass medPicClass1 = medPicClass.get_by_code("http://127.0.0.1:4433", "1XTAND");
+            pictureBox1.Image = medPicClass.get_image_by_code("http://127.0.0.1:4433", "1XTAND");
             //deviceApiClass.GetRowsLEDs("http://127.0.0.1:4433", "管藥", "調劑台");
         }
     }
