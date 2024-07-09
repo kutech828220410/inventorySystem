@@ -19,6 +19,8 @@ namespace HIS_DB_Lib
         藥碼,
         [Description("藥名,VARCHAR,300,NONE")]
         藥名,
+        [Description("副檔名,VARCHAR,20,NONE")]
+        副檔名,
         [Description("pic_base64,LONGTEXT,50,NONE")]
         pic_base64,
 
@@ -39,6 +41,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("name")]
         public string 藥名 { get; set; }
+        /// <summary>
+        /// 副檔名
+        /// </summary>
+        [JsonPropertyName("extension")]
+        public string 副檔名 { get; set; }
         /// <summary>
         /// pic_base64
         /// </summary>

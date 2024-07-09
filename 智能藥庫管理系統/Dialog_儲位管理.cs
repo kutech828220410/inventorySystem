@@ -255,12 +255,13 @@ namespace 智能藥庫系統
             this.rJ_Button_EPD583_藥品資料_填入儲位.MouseDownEvent += RJ_Button_EPD583_藥品資料_填入儲位_MouseDownEvent;
             this.comboBox_EPD583_藥品資料_搜尋條件.SelectedIndex = 0;
             this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
+            this.epD_583_Pannel.MouseDownEvent += EpD_583_Pannel_MouseDownEvent;
             Refresh_7吋大電子紙_UI();
             #endregion
 
         }
 
-  
+ 
 
         private void Dialog_儲位管理_LoadFinishedEvent(EventArgs e)
         {
@@ -917,6 +918,17 @@ namespace 智能藥庫系統
             }
         }
         #endregion
+        private void EpD_583_Pannel_MouseDownEvent(List<Box> Boxes)
+        {
+            if (Boxes.Count == 0) return;
+            Box box = Boxes[0];
+            label_EPD583_藥碼.Text = box.Code;
+            label_EPD583_料號.Text = box.SKDIACODE;
+            label_EPD583_藥名.Text = box.Name;
+            label_EPD583_中文名.Text = box.ChineseName;
+            label_EPD583_商品名.Text = box.Scientific_Name;
+
+        }
         #region EPD583
         private void EpD_583_Pannel_DrawerChangeEvent(Drawer drawer)
         {

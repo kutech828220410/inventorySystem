@@ -31,6 +31,7 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [Route("init")]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(OrderClass))]
         [HttpPost]
         public string POST_init([FromBody] returnData returnData)
         {

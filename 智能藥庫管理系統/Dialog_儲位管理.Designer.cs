@@ -114,22 +114,19 @@ namespace 智能藥庫系統
             this.rJ_Button_EPD583_藥品資料_搜尋 = new MyUI.RJ_Button();
             this.panel_583 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.panel27 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label_EPD583_商品名 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel25 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.label_EPD583_中文名 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel24 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_EPD583_藥名 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel23 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label_EPD583_料號 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label_EPD583_藥碼 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel22 = new System.Windows.Forms.Panel();
             this.epD_583_Pannel = new H_Pannel_lib.EPD_583_Pannel();
@@ -171,7 +168,6 @@ namespace 智能藥庫系統
             this.panel21.SuspendLayout();
             this.panel_583.SuspendLayout();
             this.panel16.SuspendLayout();
-            this.panel27.SuspendLayout();
             this.panel26.SuspendLayout();
             this.panel25.SuspendLayout();
             this.panel24.SuspendLayout();
@@ -2014,7 +2010,6 @@ namespace 智能藥庫系統
             // 
             // panel16
             // 
-            this.panel16.Controls.Add(this.panel27);
             this.panel16.Controls.Add(this.panel26);
             this.panel16.Controls.Add(this.panel25);
             this.panel16.Controls.Add(this.panel24);
@@ -2026,39 +2021,9 @@ namespace 智能藥庫系統
             this.panel16.Size = new System.Drawing.Size(324, 522);
             this.panel16.TabIndex = 1;
             // 
-            // panel27
-            // 
-            this.panel27.Controls.Add(this.label9);
-            this.panel27.Controls.Add(this.label10);
-            this.panel27.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel27.Location = new System.Drawing.Point(0, 229);
-            this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(324, 54);
-            this.panel27.TabIndex = 5;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(41, 26);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 16);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "--------";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label10.Location = new System.Drawing.Point(15, 6);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 15);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "藥碼";
-            // 
             // panel26
             // 
-            this.panel26.Controls.Add(this.label7);
+            this.panel26.Controls.Add(this.label_EPD583_商品名);
             this.panel26.Controls.Add(this.label8);
             this.panel26.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel26.Location = new System.Drawing.Point(0, 175);
@@ -2066,15 +2031,15 @@ namespace 智能藥庫系統
             this.panel26.Size = new System.Drawing.Size(324, 54);
             this.panel26.TabIndex = 4;
             // 
-            // label7
+            // label_EPD583_商品名
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label7.Location = new System.Drawing.Point(41, 26);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 16);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "--------";
+            this.label_EPD583_商品名.AutoSize = true;
+            this.label_EPD583_商品名.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_EPD583_商品名.Location = new System.Drawing.Point(41, 26);
+            this.label_EPD583_商品名.Name = "label_EPD583_商品名";
+            this.label_EPD583_商品名.Size = new System.Drawing.Size(48, 16);
+            this.label_EPD583_商品名.TabIndex = 1;
+            this.label_EPD583_商品名.Text = "--------";
             // 
             // label8
             // 
@@ -2088,7 +2053,7 @@ namespace 智能藥庫系統
             // 
             // panel25
             // 
-            this.panel25.Controls.Add(this.label5);
+            this.panel25.Controls.Add(this.label_EPD583_中文名);
             this.panel25.Controls.Add(this.label6);
             this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel25.Location = new System.Drawing.Point(0, 121);
@@ -2096,15 +2061,15 @@ namespace 智能藥庫系統
             this.panel25.Size = new System.Drawing.Size(324, 54);
             this.panel25.TabIndex = 3;
             // 
-            // label5
+            // label_EPD583_中文名
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(41, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 16);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "--------";
+            this.label_EPD583_中文名.AutoSize = true;
+            this.label_EPD583_中文名.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_EPD583_中文名.Location = new System.Drawing.Point(41, 26);
+            this.label_EPD583_中文名.Name = "label_EPD583_中文名";
+            this.label_EPD583_中文名.Size = new System.Drawing.Size(48, 16);
+            this.label_EPD583_中文名.TabIndex = 1;
+            this.label_EPD583_中文名.Text = "--------";
             // 
             // label6
             // 
@@ -2118,7 +2083,7 @@ namespace 智能藥庫系統
             // 
             // panel24
             // 
-            this.panel24.Controls.Add(this.label3);
+            this.panel24.Controls.Add(this.label_EPD583_藥名);
             this.panel24.Controls.Add(this.label4);
             this.panel24.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel24.Location = new System.Drawing.Point(0, 67);
@@ -2126,15 +2091,15 @@ namespace 智能藥庫系統
             this.panel24.Size = new System.Drawing.Size(324, 54);
             this.panel24.TabIndex = 2;
             // 
-            // label3
+            // label_EPD583_藥名
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(41, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 16);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "--------";
+            this.label_EPD583_藥名.AutoSize = true;
+            this.label_EPD583_藥名.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_EPD583_藥名.Location = new System.Drawing.Point(41, 26);
+            this.label_EPD583_藥名.Name = "label_EPD583_藥名";
+            this.label_EPD583_藥名.Size = new System.Drawing.Size(48, 16);
+            this.label_EPD583_藥名.TabIndex = 1;
+            this.label_EPD583_藥名.Text = "--------";
             // 
             // label4
             // 
@@ -2148,9 +2113,9 @@ namespace 智能藥庫系統
             // 
             // panel23
             // 
-            this.panel23.Controls.Add(this.label11);
+            this.panel23.Controls.Add(this.label_EPD583_料號);
             this.panel23.Controls.Add(this.label12);
-            this.panel23.Controls.Add(this.label2);
+            this.panel23.Controls.Add(this.label_EPD583_藥碼);
             this.panel23.Controls.Add(this.label1);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel23.Location = new System.Drawing.Point(0, 13);
@@ -2158,15 +2123,15 @@ namespace 智能藥庫系統
             this.panel23.Size = new System.Drawing.Size(324, 54);
             this.panel23.TabIndex = 1;
             // 
-            // label11
+            // label_EPD583_料號
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label11.Location = new System.Drawing.Point(179, 26);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 16);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "--------";
+            this.label_EPD583_料號.AutoSize = true;
+            this.label_EPD583_料號.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_EPD583_料號.Location = new System.Drawing.Point(179, 26);
+            this.label_EPD583_料號.Name = "label_EPD583_料號";
+            this.label_EPD583_料號.Size = new System.Drawing.Size(48, 16);
+            this.label_EPD583_料號.TabIndex = 3;
+            this.label_EPD583_料號.Text = "--------";
             // 
             // label12
             // 
@@ -2178,15 +2143,15 @@ namespace 智能藥庫系統
             this.label12.TabIndex = 2;
             this.label12.Text = "料號";
             // 
-            // label2
+            // label_EPD583_藥碼
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(41, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "--------";
+            this.label_EPD583_藥碼.AutoSize = true;
+            this.label_EPD583_藥碼.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_EPD583_藥碼.Location = new System.Drawing.Point(41, 26);
+            this.label_EPD583_藥碼.Name = "label_EPD583_藥碼";
+            this.label_EPD583_藥碼.Size = new System.Drawing.Size(48, 16);
+            this.label_EPD583_藥碼.TabIndex = 1;
+            this.label_EPD583_藥碼.Text = "--------";
             // 
             // label1
             // 
@@ -2343,8 +2308,6 @@ namespace 智能藥庫系統
             this.panel21.ResumeLayout(false);
             this.panel_583.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
-            this.panel27.ResumeLayout(false);
-            this.panel27.PerformLayout();
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
             this.panel25.ResumeLayout(false);
@@ -2452,22 +2415,19 @@ namespace 智能藥庫系統
         private MyUI.RJ_Button rJ_Button_EPD583_藥品資料_填入儲位;
         private MyUI.RJ_Button rJ_Button_EPD583_藥品資料_搜尋;
         private MyUI.RJ_TextBox textBox_EPD583_藥品資料_搜尋內容;
-        private System.Windows.Forms.Panel panel27;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel26;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label_EPD583_商品名;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel25;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label_EPD583_中文名;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_EPD583_藥名;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label_EPD583_料號;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label_EPD583_藥碼;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel22;
     }

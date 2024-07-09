@@ -12,70 +12,201 @@ namespace HIS_DB_Lib
 
     public class medClassBasic
     {
+        /// <summary>
+        /// 唯一KEY。
+        /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+
+        /// <summary>
+        /// 主GUID。
+        /// </summary>
         [JsonPropertyName("Master_GUID")]
         public string Master_GUID { get; set; }
+
+        /// <summary>
+        /// 藥品碼。
+        /// </summary>
         [JsonPropertyName("CODE")]
         public string 藥品碼 { get; set; }
+
+        /// <summary>
+        /// 料號。
+        /// </summary>
         [JsonPropertyName("SKDIACODE")]
         public string 料號 { get; set; }
+
+        /// <summary>
+        /// ATC 代碼。
+        /// </summary>
         [JsonPropertyName("ATC")]
         public string ATC { get; set; }
+
+        /// <summary>
+        /// 中文名稱。
+        /// </summary>
         [JsonPropertyName("CHT_NAME")]
         public string 中文名稱 { get; set; }
+
+        /// <summary>
+        /// 藥品名稱。
+        /// </summary>
         [JsonPropertyName("NAME")]
         public string 藥品名稱 { get; set; }
+
+        /// <summary>
+        /// 藥品學名。
+        /// </summary>
         [JsonPropertyName("DIANAME")]
         public string 藥品學名 { get; set; }
+
+        /// <summary>
+        /// 藥品群組。
+        /// </summary>
         [JsonPropertyName("GROUP")]
         public string 藥品群組 { get; set; }
+
+        /// <summary>
+        /// 健保碼。
+        /// </summary>
         [JsonPropertyName("HI_CODE")]
         public string 健保碼 { get; set; }
+
+        /// <summary>
+        /// 包裝單位。
+        /// </summary>
         [JsonPropertyName("PAKAGE")]
         public string 包裝單位 { get; set; }
+
+        /// <summary>
+        /// 包裝數量。
+        /// </summary>
         [JsonPropertyName("PAKAGE_VAL")]
         public string 包裝數量 { get; set; }
+
+        /// <summary>
+        /// 最小包裝單位。
+        /// </summary>
         [JsonPropertyName("MIN_PAKAGE")]
         public string 最小包裝單位 { get; set; }
+
+        /// <summary>
+        /// 最小包裝數量。
+        /// </summary>
         [JsonPropertyName("MIN_PAKAGE_VAL")]
         public string 最小包裝數量 { get; set; }
+
+        /// <summary>
+        /// 藥品條碼1。
+        /// </summary>
         [JsonPropertyName("BARCODE1")]
         public string 藥品條碼1 { get; set; }
+
+        /// <summary>
+        /// 藥品條碼2。
+        /// </summary>
         [JsonPropertyName("BARCODE2")]
         public string 藥品條碼2 { get; set; }
+
+        /// <summary>
+        /// 警訊藥品。
+        /// </summary>
         [JsonPropertyName("IS_WARRING")]
         public string 警訊藥品 { get; set; }
+
+        /// <summary>
+        /// 高價藥品。
+        /// </summary>
         [JsonPropertyName("IS_H_COST")]
         public string 高價藥品 { get; set; }
+
+        /// <summary>
+        /// 生物製劑。
+        /// </summary>
         [JsonPropertyName("IS_BIO")]
         public string 生物製劑 { get; set; }
+
+        /// <summary>
+        /// 藥局庫存。
+        /// </summary>
         [JsonPropertyName("PHAR_QTY")]
         public string 藥局庫存 { get; set; }
+
+        /// <summary>
+        /// 藥庫庫存。
+        /// </summary>
         [JsonPropertyName("DRUG_QTY")]
         public string 藥庫庫存 { get; set; }
+
+        /// <summary>
+        /// 管制級別。
+        /// </summary>
         [JsonPropertyName("DRUGKIND")]
         public string 管制級別 { get; set; }
+
+        /// <summary>
+        /// 總庫存。
+        /// </summary>
         [JsonPropertyName("TOLTAL_QTY")]
         public string 總庫存 { get; set; }
+
+        /// <summary>
+        /// 庫存。
+        /// </summary>
         [JsonPropertyName("QTY")]
         public string 庫存 { get; set; }
+
+        /// <summary>
+        /// 基準量。
+        /// </summary>
         [JsonPropertyName("REF_QTY")]
         public string 基準量 { get; set; }
+
+        /// <summary>
+        /// 安全庫存。
+        /// </summary>
         [JsonPropertyName("SAFE_QTY")]
         public string 安全庫存 { get; set; }
+
+        /// <summary>
+        /// 廠牌。
+        /// </summary>
         [JsonPropertyName("BRD")]
         public string 廠牌 { get; set; }
+
+        /// <summary>
+        /// 藥品許可證號。
+        /// </summary>
         [JsonPropertyName("LICENSE")]
         public string 藥品許可證號 { get; set; }
+
+        /// <summary>
+        /// 類別。
+        /// </summary>
         [JsonPropertyName("TYPE")]
         public string 類別 { get; set; }
+
+        /// <summary>
+        /// 中西藥。
+        /// </summary>
         [JsonPropertyName("TORW")]
         public string 中西藥 { get; set; }
+
+        /// <summary>
+        /// 圖片網址。
+        /// </summary>
         [JsonPropertyName("PIC_URL")]
-        public string 圖片網址 { get; set; }       
+        public string 圖片網址 { get; set; }
+
+        /// <summary>
+        /// 開檔狀態。
+        /// </summary>
         [JsonPropertyName("FILE_STATUS")]
         public string 開檔狀態 { get; set; }
+
+        /// <summary>
+        /// 儲位描述。
+        /// </summary>
         [JsonPropertyName("STORAGE_NOTE")]
         public string 儲位描述 { get; set; }
 

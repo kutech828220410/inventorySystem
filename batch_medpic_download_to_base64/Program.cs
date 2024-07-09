@@ -40,9 +40,14 @@ namespace batch_medpic_download_to_base64
                         {
                             List<medPicClass> medPicClasses_buf = new List<medPicClass>();
                             string base64 = Basic.Net.DownloadImageAsBase64(medClass.圖片網址);
+                            if(base64.StringIsEmpty())
+                            {
+
+                            }
                             medPicClass medPicClass = new medPicClass();
                             medPicClass.藥碼 = medClass.藥品碼;
                             medPicClass.藥名 = medClass.藥品名稱;
+                            medPicClass.副檔名 = GetFileExtension(medClass.圖片網址);
                             medPicClass.pic_base64 = base64;
                             medPicClasses.LockAdd(medPicClass);
                             string losg_temp = $"({medClass.藥品碼}){medClass.藥品名稱}".StringLength(50) + $"取得圖片Base64成功\n";
@@ -74,5 +79,22 @@ namespace batch_medpic_download_to_base64
             }
 
         }
+        public static string GetFileExtension(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new ArgumentException("URL不能為空", nameof(url));
+            }
+
+            int lastDotIndex = url.LastIndexOf('.');
+            if (lastDotIndex == -1 || lastDotIndex == url.Length - 1)
+            {
+                throw new ArgumentException("URL不包含有效的副檔名", nameof(url));
+            }
+
+            return url.Substring(lastDotIndex).Replace(".","");
+        }
     }
+
+
 }

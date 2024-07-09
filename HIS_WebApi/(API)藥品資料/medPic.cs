@@ -139,6 +139,7 @@ namespace HIS_WebApi
                         medPicClass.GUID = Guid.NewGuid().ToString();
                         medPicClass.藥碼 = medPicClasses[i].藥碼;
                         medPicClass.藥名 = medPicClasses[i].藥名;
+                        medPicClass.副檔名 = medPicClasses[i].副檔名;
                         medPicClass.pic_base64 = medPicClasses[i].pic_base64;
                         medPicClasses_add.Add(medPicClass);
                     }
@@ -147,6 +148,7 @@ namespace HIS_WebApi
                         medPicClass medPicClass = list_value[0].SQLToClass<medPicClass, enum_medPic>();
                         medPicClass.藥碼 = medPicClasses[i].藥碼;
                         medPicClass.藥名 = medPicClasses[i].藥名;
+                        medPicClass.副檔名 = medPicClasses[i].副檔名;
                         medPicClass.pic_base64 = medPicClasses[i].pic_base64;
                         medPicClasses_replace.Add(medPicClass);
                     }
