@@ -59,7 +59,6 @@ namespace 中藥調劑系統
             rJ_Lable_Blue.Click += RJ_Lable_Click;
             rJ_Lable_Purple.Click += RJ_Lable_Click;
             rJ_Lable_Aqua.Click += RJ_Lable_Click;
-
             rJ_TextBox_帳號.Leave += RJ_TextBox_帳號_Leave;
 
         }

@@ -31,7 +31,6 @@ namespace 智能藥庫系統
                 return myDialog;
             }
         }
-
         public Dialog_申領()
         {
             form.Invoke(new Action(delegate { InitializeComponent(); }));
@@ -45,8 +44,6 @@ namespace 智能藥庫系統
             this.FormClosing += Dialog_申領_FormClosing;
 
         }
-
-  
         #region Event
         private void Dialog_申領_ShowDialogEvent()
         {

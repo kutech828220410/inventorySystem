@@ -243,9 +243,6 @@ namespace 中藥調劑系統
             this.Function_儲架電子紙_RefreshUI();
         }
 
-
-
-
         #region Function
         private void Function_層架列表_RefreshUI()
         {

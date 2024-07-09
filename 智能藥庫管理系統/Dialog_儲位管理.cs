@@ -254,6 +254,12 @@ namespace 智能藥庫系統
             this.rJ_Button_EPD583_藥品資料_搜尋.MouseDownEvent += RJ_Button_EPD583_藥品資料_搜尋_MouseDownEvent;
             this.rJ_Button_EPD583_藥品資料_填入儲位.MouseDownEvent += RJ_Button_EPD583_藥品資料_填入儲位_MouseDownEvent;
             this.comboBox_EPD583_藥品資料_搜尋條件.SelectedIndex = 0;
+
+            this.button_EPD583_藥碼字體.Click += Button_EPD583_藥碼字體_Click;
+            this.button_EPD583_藥名字體.Click += Button_EPD583_藥名字體_Click;
+            this.panel_EPD583_藥碼顏色.Click += Panel_EPD583_藥碼顏色_Click;
+            this.panel_EPD583_藥名顏色.Click += Panel_EPD583_藥名顏色_Click;
+            this.panel_EPD583_背景顏色.Click += Panel_EPD583_背景顏色_Click;
             this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
             this.epD_583_Pannel.MouseDownEvent += EpD_583_Pannel_MouseDownEvent;
             Refresh_7吋大電子紙_UI();
@@ -261,7 +267,7 @@ namespace 智能藥庫系統
 
         }
 
- 
+
 
         private void Dialog_儲位管理_LoadFinishedEvent(EventArgs e)
         {
@@ -432,6 +438,36 @@ namespace 智能藥庫系統
                             where temp[(int)enum_儲架電子紙列表.藥碼].ObjectToString().StringIsEmpty() == false
                             select temp).ToList();
             }
+
+   
+
+        }
+        private void SqL_DataGridView_儲架電子紙列表_RowEnterEvent(object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
+
+            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
+
+            if (storage == null) return;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品名稱.Text = storage.Name;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品學名.Text = storage.Scientific_Name;
+            rJ_TextBox_儲架電子紙_儲位內容_中文名稱.Text = storage.ChineseName;
+            rJ_TextBox_儲架電子紙_儲位內容_藥品碼.Text = storage.Code;
+            rJ_TextBox_儲架電子紙_儲位內容_包裝單位.Text = storage.Package;
+            rJ_TextBox_儲架電子紙_儲位內容_總庫存.Text = storage.Inventory;
+
+            plC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_庫存顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_Barcode顯示.Checked = storage.Name_Visable;
+            plC_CheckBox_儲架電子紙_儲位內容_效期顯示.Checked = storage.Name_Visable;
+
+            epD_290_Pannel.DrawToPictureBox(storage);
+
+
         }
         private void ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -592,25 +628,7 @@ namespace 智能藥庫系統
                 Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
             }));
         }
-        private void SqL_DataGridView_儲架電子紙列表_RowEnterEvent(object[] RowValue)
-        {
-            string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
-
-            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
-
-            if (storage == null) return;
-            rJ_TextBox_儲架電子紙_儲位內容_藥品名稱.Text = storage.Name;
-            rJ_TextBox_儲架電子紙_儲位內容_藥品學名.Text = storage.Scientific_Name;
-            rJ_TextBox_儲架電子紙_儲位內容_中文名稱.Text = storage.ChineseName;
-            rJ_TextBox_儲架電子紙_儲位內容_藥品碼.Text = storage.Code;
-            rJ_TextBox_儲架電子紙_儲位內容_包裝單位.Text = storage.Package;
-            rJ_TextBox_儲架電子紙_儲位內容_總庫存.Text = storage.Inventory;
-
-          
-            epD_290_Pannel.DrawToPictureBox(storage);
-
-
-        }
+  
         private void PlC_RJ_Button_儲架電子紙_儲位內容_效期字體更動_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
@@ -918,6 +936,8 @@ namespace 智能藥庫系統
             }
         }
         #endregion
+
+        #region EPD583
         private void EpD_583_Pannel_MouseDownEvent(List<Box> Boxes)
         {
             if (Boxes.Count == 0) return;
@@ -926,10 +946,16 @@ namespace 智能藥庫系統
             label_EPD583_料號.Text = box.SKDIACODE;
             label_EPD583_藥名.Text = box.Name;
             label_EPD583_中文名.Text = box.ChineseName;
-            label_EPD583_商品名.Text = box.Scientific_Name;
 
+            if (label_EPD583_藥碼.Text.StringIsEmpty()) label_EPD583_藥碼.Text = "無";
+            if (label_EPD583_料號.Text.StringIsEmpty()) label_EPD583_料號.Text = "無";
+            if (label_EPD583_藥名.Text.StringIsEmpty()) label_EPD583_藥名.Text = "無";
+            if (label_EPD583_中文名.Text.StringIsEmpty()) label_EPD583_中文名.Text = "無";
+
+            this.panel_EPD583_藥碼顏色.BackColor = box.Code_ForeColor;
+            this.panel_EPD583_藥名顏色.BackColor = box.Name_ForeColor;
+            this.panel_EPD583_背景顏色.BackColor = box.BackColor;
         }
-        #region EPD583
         private void EpD_583_Pannel_DrawerChangeEvent(Drawer drawer)
         {
             Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
@@ -1032,6 +1058,94 @@ namespace 智能藥庫系統
             Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
 
             this.epD_583_Pannel.DrawToPictureBox(drawer);
+        }
+        private void Button_EPD583_藥名字體_Click(object sender, EventArgs e)
+        {
+            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+            if (boxes.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲位");
+            }
+            if (this.fontDialog.ShowDialog() != DialogResult.OK) return;
+
+           
+            Box box = boxes[0];
+            box.Name_font = this.fontDialog.Font;
+
+            this.epD_583_Pannel.CurrentDrawer.ReplaceBox(box);
+            this.epD_583_Pannel.DrawToPictureBox();
+
+            Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
+
+        }
+        private void Button_EPD583_藥碼字體_Click(object sender, EventArgs e)
+        {
+            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+            if (boxes.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲位");
+            }
+            if (this.fontDialog.ShowDialog() != DialogResult.OK) return;
+
+          
+            Box box = boxes[0];
+            box.Code_font = this.fontDialog.Font;
+
+            this.epD_583_Pannel.CurrentDrawer.ReplaceBox(box);
+            this.epD_583_Pannel.DrawToPictureBox();
+            Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
+        }
+
+        private void Panel_EPD583_藥碼顏色_Click(object sender, EventArgs e)
+        {
+            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+            if (boxes.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲位");
+            }
+
+            Box box = boxes[0];
+            Dialog_EPD730_顏色選擇 dialog_EPD730_顏色選擇 = new Dialog_EPD730_顏色選擇(box.Code_ForeColor);
+            if (dialog_EPD730_顏色選擇.ShowDialog() != DialogResult.Yes) return;
+            box.Code_ForeColor = dialog_EPD730_顏色選擇.Value;
+
+            this.epD_583_Pannel.CurrentDrawer.ReplaceBox(box);
+            this.epD_583_Pannel.DrawToPictureBox();
+            Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
+        }
+        private void Panel_EPD583_藥名顏色_Click(object sender, EventArgs e)
+        {
+            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+            if (boxes.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲位");
+            }
+
+            Box box = boxes[0];
+            Dialog_EPD730_顏色選擇 dialog_EPD730_顏色選擇 = new Dialog_EPD730_顏色選擇(box.Name_ForeColor);
+            if (dialog_EPD730_顏色選擇.ShowDialog() != DialogResult.Yes) return;
+            box.Name_ForeColor = dialog_EPD730_顏色選擇.Value;
+
+            this.epD_583_Pannel.CurrentDrawer.ReplaceBox(box);
+            this.epD_583_Pannel.DrawToPictureBox();
+            Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
+        }
+        private void Panel_EPD583_背景顏色_Click(object sender, EventArgs e)
+        {
+            List<Box> boxes = this.epD_583_Pannel.GetSelectBoxes();
+            if (boxes.Count == 0)
+            {
+                MyMessageBox.ShowDialog("未選取儲位");
+            }
+
+            Box box = boxes[0];
+            Dialog_EPD730_顏色選擇 dialog_EPD730_顏色選擇 = new Dialog_EPD730_顏色選擇(box.BackColor);
+            if (dialog_EPD730_顏色選擇.ShowDialog() != DialogResult.Yes) return;
+            box.BackColor = dialog_EPD730_顏色選擇.Value;
+
+            this.epD_583_Pannel.CurrentDrawer.ReplaceBox(box);
+            this.epD_583_Pannel.DrawToPictureBox();
+            Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(this.epD_583_Pannel.CurrentDrawer);
         }
         #endregion
 

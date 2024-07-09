@@ -94,7 +94,6 @@ namespace 智能藥庫系統
             //Task allTask = Task.WhenAll(taskList);
             //allTask.Wait();
         }
-
         static public List<object> Function_從雲端資料取得儲位(string 藥品碼)
         {
             List<object> list_value = new List<object>();
