@@ -83,7 +83,23 @@ namespace 智能藥庫系統
                             if (device.DeviceType == DeviceType.EPD266_lock) list_lock_IP.Add(IP);
                         }
                     }
-              
+                    else if (device.DeviceType == DeviceType.EPD730 || device.DeviceType == DeviceType.EPD730_lock)
+                    {
+                        Box box = list_Device[i] as Box;
+                        if (box != null)
+                        {
+                            taskList.Add(Task.Run(() =>
+                            {
+                                Drawer drawer = _drawerUI_EPD_583.SQL_GetDrawer(box);
+                                if (drawer != null)
+                                {
+                                    _drawerUI_EPD_583.Set_Drawer_LED_UDP(drawer, box, color);
+                                }
+                              
+                            }));
+                            list_IP.Add(IP);
+                        }
+                    }
 
                 }
             }

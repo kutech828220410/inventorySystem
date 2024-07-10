@@ -116,14 +116,20 @@ namespace 智能藥庫系統
             this.label_EPD583_中文名 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel24 = new System.Windows.Forms.Panel();
+            this.panel_EPD583_藥名顏色 = new System.Windows.Forms.Panel();
+            this.button_EPD583_藥名字體 = new System.Windows.Forms.Button();
             this.label_EPD583_藥名 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel23 = new System.Windows.Forms.Panel();
+            this.panel_EPD583_藥碼顏色 = new System.Windows.Forms.Panel();
+            this.button_EPD583_藥碼字體 = new System.Windows.Forms.Button();
             this.label_EPD583_料號 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label_EPD583_藥碼 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel_583 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel_EPD583_背景顏色 = new System.Windows.Forms.Panel();
             this.epD_583_Pannel = new H_Pannel_lib.EPD_583_Pannel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.sqL_DataGridView_EPD583_儲位列表 = new SQLUI.SQL_DataGridView();
@@ -131,12 +137,6 @@ namespace 智能藥庫系統
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
-            this.button_EPD583_藥碼字體 = new System.Windows.Forms.Button();
-            this.button_EPD583_藥名字體 = new System.Windows.Forms.Button();
-            this.panel_EPD583_藥碼顏色 = new System.Windows.Forms.Panel();
-            this.panel_EPD583_藥名顏色 = new System.Windows.Forms.Panel();
-            this.panel_EPD583_背景顏色 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -2043,6 +2043,23 @@ namespace 智能藥庫系統
             this.panel24.Size = new System.Drawing.Size(440, 50);
             this.panel24.TabIndex = 15;
             // 
+            // panel_EPD583_藥名顏色
+            // 
+            this.panel_EPD583_藥名顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_EPD583_藥名顏色.Location = new System.Drawing.Point(110, 3);
+            this.panel_EPD583_藥名顏色.Name = "panel_EPD583_藥名顏色";
+            this.panel_EPD583_藥名顏色.Size = new System.Drawing.Size(29, 23);
+            this.panel_EPD583_藥名顏色.TabIndex = 5;
+            // 
+            // button_EPD583_藥名字體
+            // 
+            this.button_EPD583_藥名字體.Location = new System.Drawing.Point(60, 3);
+            this.button_EPD583_藥名字體.Name = "button_EPD583_藥名字體";
+            this.button_EPD583_藥名字體.Size = new System.Drawing.Size(44, 23);
+            this.button_EPD583_藥名字體.TabIndex = 2;
+            this.button_EPD583_藥名字體.Text = "...";
+            this.button_EPD583_藥名字體.UseVisualStyleBackColor = true;
+            // 
             // label_EPD583_藥名
             // 
             this.label_EPD583_藥名.AutoSize = true;
@@ -2076,6 +2093,23 @@ namespace 智能藥庫系統
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(324, 50);
             this.panel23.TabIndex = 14;
+            // 
+            // panel_EPD583_藥碼顏色
+            // 
+            this.panel_EPD583_藥碼顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_EPD583_藥碼顏色.Location = new System.Drawing.Point(110, 3);
+            this.panel_EPD583_藥碼顏色.Name = "panel_EPD583_藥碼顏色";
+            this.panel_EPD583_藥碼顏色.Size = new System.Drawing.Size(29, 23);
+            this.panel_EPD583_藥碼顏色.TabIndex = 4;
+            // 
+            // button_EPD583_藥碼字體
+            // 
+            this.button_EPD583_藥碼字體.Location = new System.Drawing.Point(60, 3);
+            this.button_EPD583_藥碼字體.Name = "button_EPD583_藥碼字體";
+            this.button_EPD583_藥碼字體.Size = new System.Drawing.Size(44, 23);
+            this.button_EPD583_藥碼字體.TabIndex = 1;
+            this.button_EPD583_藥碼字體.Text = "...";
+            this.button_EPD583_藥碼字體.UseVisualStyleBackColor = true;
             // 
             // label_EPD583_料號
             // 
@@ -2127,6 +2161,24 @@ namespace 智能藥庫系統
             this.panel_583.Name = "panel_583";
             this.panel_583.Size = new System.Drawing.Size(1218, 496);
             this.panel_583.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Location = new System.Drawing.Point(831, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 15);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "背景";
+            // 
+            // panel_EPD583_背景顏色
+            // 
+            this.panel_EPD583_背景顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_EPD583_背景顏色.Location = new System.Drawing.Point(876, 16);
+            this.panel_EPD583_背景顏色.Name = "panel_EPD583_背景顏色";
+            this.panel_EPD583_背景顏色.Size = new System.Drawing.Size(29, 23);
+            this.panel_EPD583_背景顏色.TabIndex = 6;
             // 
             // epD_583_Pannel
             // 
@@ -2208,58 +2260,6 @@ namespace 智能藥庫系統
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
-            // 
-            // button_EPD583_藥碼字體
-            // 
-            this.button_EPD583_藥碼字體.Location = new System.Drawing.Point(60, 3);
-            this.button_EPD583_藥碼字體.Name = "button_EPD583_藥碼字體";
-            this.button_EPD583_藥碼字體.Size = new System.Drawing.Size(44, 23);
-            this.button_EPD583_藥碼字體.TabIndex = 1;
-            this.button_EPD583_藥碼字體.Text = "...";
-            this.button_EPD583_藥碼字體.UseVisualStyleBackColor = true;
-            // 
-            // button_EPD583_藥名字體
-            // 
-            this.button_EPD583_藥名字體.Location = new System.Drawing.Point(60, 3);
-            this.button_EPD583_藥名字體.Name = "button_EPD583_藥名字體";
-            this.button_EPD583_藥名字體.Size = new System.Drawing.Size(44, 23);
-            this.button_EPD583_藥名字體.TabIndex = 2;
-            this.button_EPD583_藥名字體.Text = "...";
-            this.button_EPD583_藥名字體.UseVisualStyleBackColor = true;
-            // 
-            // panel_EPD583_藥碼顏色
-            // 
-            this.panel_EPD583_藥碼顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_EPD583_藥碼顏色.Location = new System.Drawing.Point(110, 3);
-            this.panel_EPD583_藥碼顏色.Name = "panel_EPD583_藥碼顏色";
-            this.panel_EPD583_藥碼顏色.Size = new System.Drawing.Size(29, 23);
-            this.panel_EPD583_藥碼顏色.TabIndex = 4;
-            // 
-            // panel_EPD583_藥名顏色
-            // 
-            this.panel_EPD583_藥名顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_EPD583_藥名顏色.Location = new System.Drawing.Point(110, 3);
-            this.panel_EPD583_藥名顏色.Name = "panel_EPD583_藥名顏色";
-            this.panel_EPD583_藥名顏色.Size = new System.Drawing.Size(29, 23);
-            this.panel_EPD583_藥名顏色.TabIndex = 5;
-            // 
-            // panel_EPD583_背景顏色
-            // 
-            this.panel_EPD583_背景顏色.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_EPD583_背景顏色.Location = new System.Drawing.Point(876, 16);
-            this.panel_EPD583_背景顏色.Name = "panel_EPD583_背景顏色";
-            this.panel_EPD583_背景顏色.Size = new System.Drawing.Size(29, 23);
-            this.panel_EPD583_背景顏色.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("新細明體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(831, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "背景";
             // 
             // Dialog_儲位管理
             // 
