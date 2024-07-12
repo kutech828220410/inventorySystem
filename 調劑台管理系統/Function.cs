@@ -1249,14 +1249,12 @@ namespace 調劑台管理系統
                                 select temp).ToList();
                 if (list_取藥堆疊母資料.Count != 0) return;
             }
-            if (list_lock_IP.Count == 0 )
-            {
-                LightOn lightOn = new LightOn();
-                lightOn.藥品碼 = 藥品碼;
-                lightOn.顏色 = color;
-                lightOns.Add(lightOn);
 
-            }
+            LightOn lightOn = new LightOn();
+            lightOn.藥品碼 = 藥品碼;
+            lightOn.顏色 = color;
+            lightOns.Add(lightOn);
+
             List<object> list_Device = new List<object>();
             list_Device.LockAdd(this.Function_從雲端資料取得儲位(藥品碼));
             list_Device.LockAdd(Function_從共用區取得儲位(藥品碼));
