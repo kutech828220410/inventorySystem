@@ -26,8 +26,10 @@ namespace HIS_DB_Lib
         序號,
         [Description("名稱,VARCHAR,50,NONE")]
         名稱,
-        [Description("狀態,VARCHAR,50,NONE")]
+        [Description("狀態,VARCHAR,10,NONE")]
         狀態,
+        [Description("燈號更新旗標,VARCHAR,10,NONE")]
+        燈號更新旗標,
     }
     public class drugStotreArea
     {
@@ -66,7 +68,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("state")]
         public string 狀態 { get; set; }
-
+        /// <summary>
+        /// 燈號更新旗標
+        /// </summary>
+        [JsonPropertyName("flag_light")]
+        public string 燈號更新旗標 { get; set; }
         static public SQLUI.Table init(string API_Server)
         {
             string url = $"{API_Server}/api/drugStotreArea/init";

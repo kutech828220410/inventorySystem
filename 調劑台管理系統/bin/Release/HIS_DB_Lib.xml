@@ -129,6 +129,11 @@
             狀態
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.drugStotreArea.燈號更新旗標">
+            <summary>
+            燈號更新旗標
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.loggerClass.GUID">
             <summary>
             唯一KEY

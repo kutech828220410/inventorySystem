@@ -109,6 +109,103 @@ namespace 智能藥庫系統
 
 
         }
+        private void Dialog_儲位管理_Load(object sender, EventArgs e)
+        {
+            #region 儲架電子紙
+            this.epD_290_Pannel.Init(Main_Form._storageUI_EPD_266.List_UDP_Local);
+
+            this.comboBox_儲架電子紙_藥品資料_搜尋條件.SelectedIndex = 0;
+
+            Table table_藥品資料 = medClass.init(Main_Form.API_Server);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.RowsHeight = 40;
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Init(table_藥品資料);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnText("單位", enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.RowDoubleClickEvent += SqL_DataGridView_儲架電子紙_藥品資料_RowDoubleClickEvent;
+
+            Table table_儲架電子紙列表 = new Table(new enum_儲架電子紙列表());
+            table_儲架電子紙列表[enum_儲架電子紙列表.區域.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, Main_Form.Function_取得藥品區域名稱().ToArray());
+
+            this.sqL_DataGridView_儲架電子紙列表.Init(table_儲架電子紙列表);
+            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnVisible(false, new enum_儲架電子紙列表().GetEnumNames());
+            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.IP);
+            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.藥碼);
+            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(600, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.藥名);
+            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_儲架電子紙列表.區域);
+            this.sqL_DataGridView_儲架電子紙列表.MouseDown += SqL_DataGridView_儲架電子紙列表_MouseDown;
+            this.sqL_DataGridView_儲架電子紙列表.RowEnterEvent += SqL_DataGridView_儲架電子紙列表_RowEnterEvent;
+            this.sqL_DataGridView_儲架電子紙列表.DataGridRowsChangeRefEvent += SqL_DataGridView_儲架電子紙列表_DataGridRowsChangeRefEvent;
+            this.sqL_DataGridView_儲架電子紙列表.ComboBoxSelectedIndexChangedEvent += SqL_DataGridView_儲架電子紙列表_ComboBoxSelectedIndexChangedEvent;
+
+            this.rJ_Button_儲架電子紙_藥品資料_填入儲位.MouseDownEvent += RJ_Button_儲架電子紙_藥品資料_填入儲位_MouseDownEvent;
+
+            this.rJ_Button_儲架電子紙_面板亮燈.MouseDownEvent += RJ_Button_儲架電子紙_面板亮燈_MouseDownEvent;
+            this.rJ_Button_儲架電子紙_清除燈號.MouseDownEvent += RJ_Button_儲架電子紙_清除燈號_MouseDownEvent;
+            this.rJ_Button_儲架電子紙_面板刷新.MouseDownEvent += RJ_Button_儲架電子紙_面板刷新_MouseDownEvent;
+
+            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品名稱字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品學名字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品學名字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_中文名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_中文名稱字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品碼字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品碼字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_包裝單位字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_包裝單位字體更動_MouseDownEvent;
+            this.plC_RJ_Button_儲架電子紙_儲位內容_效期字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_效期字體更動_MouseDownEvent;
+
+            this.plC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_Barcode顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_Barcode顯示_CheckStateChanged;
+            this.plC_CheckBox_儲架電子紙_儲位內容_效期顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_效期顯示_CheckStateChanged;
+
+            this.rJ_Button_儲架電子紙列表_搜尋.MouseDownEvent += RJ_Button_儲架電子紙列表_搜尋_MouseDownEvent;
+            this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndex = 0;
+            this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndexChanged += ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged;
+            Refresh_儲架電子紙列表_UI();
+            #endregion
+            #region 7"大電子紙
+            this.sqL_DataGridView_EPD583_藥品資料.RowsHeight = 40;
+            this.sqL_DataGridView_EPD583_藥品資料.Init(table_藥品資料);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(650, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
+            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("單位", enum_雲端藥檔.包裝單位);
+            this.sqL_DataGridView_EPD583_藥品資料.RowDoubleClickEvent += SqL_DataGridView_EPD583_藥品資料_RowDoubleClickEvent;
+
+            this.epD_583_Pannel.Init(Main_Form._drawerUI_EPD_583.GetLoacalUDP_Class());
+            Table table_儲架儲位總表 = new Table(new enum_儲架儲位總表());
+            table_儲架儲位總表[enum_儲架儲位總表.區域.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, Main_Form.Function_取得藥品區域名稱().ToArray());
+            this.sqL_DataGridView_EPD583_儲位列表.RowsHeight = 40;
+            this.sqL_DataGridView_EPD583_儲位列表.Init(table_儲架儲位總表);
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnVisible(false, new enum_儲架儲位總表().GetEnumNames());
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.IP);
+            //this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.名稱);
+            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(140, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.區域);
+            this.sqL_DataGridView_EPD583_儲位列表.RowEnterEvent += SqL_DataGridView_EPD583_儲位列表_RowEnterEvent;
+            this.sqL_DataGridView_EPD583_儲位列表.ComboBoxSelectedIndexChangedEvent += SqL_DataGridView_EPD583_儲位列表_ComboBoxSelectedIndexChangedEvent;
+
+            this.rJ_Button_EPD583_藥品資料_搜尋.MouseDownEvent += RJ_Button_EPD583_藥品資料_搜尋_MouseDownEvent;
+            this.rJ_Button_EPD583_藥品資料_填入儲位.MouseDownEvent += RJ_Button_EPD583_藥品資料_填入儲位_MouseDownEvent;
+            this.comboBox_EPD583_藥品資料_搜尋條件.SelectedIndex = 0;
+
+            this.button_EPD583_藥碼字體.Click += Button_EPD583_藥碼字體_Click;
+            this.button_EPD583_藥名字體.Click += Button_EPD583_藥名字體_Click;
+            this.panel_EPD583_藥碼顏色.Click += Panel_EPD583_藥碼顏色_Click;
+            this.panel_EPD583_藥名顏色.Click += Panel_EPD583_藥名顏色_Click;
+            this.panel_EPD583_背景顏色.Click += Panel_EPD583_背景顏色_Click;
+            this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
+            this.epD_583_Pannel.MouseDownEvent += EpD_583_Pannel_MouseDownEvent;
+            Refresh_7吋大電子紙_UI();
+            #endregion
+        }
         #region Function
         private void Refresh_儲架電子紙列表_UI()
         {
@@ -149,7 +246,6 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_EPD583_儲位列表.RefreshGrid(list_value);
         }
         #endregion
-
         #region Event
         private void Dialog_儲位管理_ShowDialogEvent()
         {
@@ -169,112 +265,27 @@ namespace 智能藥庫系統
         {
             myDialog = null;
         }
-        private void Dialog_儲位管理_Load(object sender, EventArgs e)
-        {
-            #region 儲架電子紙
-            this.epD_290_Pannel.Init(Main_Form._storageUI_EPD_266.List_UDP_Local);
-
-            this.comboBox_儲架電子紙_藥品資料_搜尋條件.SelectedIndex = 0;
-
-            Table table_藥品資料 = medClass.init(Main_Form.API_Server);
-            this.sqL_DataGridView_儲架電子紙_藥品資料.RowsHeight = 40;
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Init(table_藥品資料);
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品碼);
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Set_ColumnText("單位", enum_雲端藥檔.包裝單位);
-            this.sqL_DataGridView_儲架電子紙_藥品資料.RowDoubleClickEvent += SqL_DataGridView_儲架電子紙_藥品資料_RowDoubleClickEvent;
-
-            Table table_儲架電子紙列表 = new Table(new enum_儲架電子紙列表());
-            table_儲架電子紙列表[enum_儲架電子紙列表.區域.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, Main_Form.Function_取得藥品區域名稱().ToArray());
-
-            this.sqL_DataGridView_儲架電子紙列表.Init(table_儲架電子紙列表);
-            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnVisible(false, new enum_儲架電子紙列表().GetEnumNames());
-            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.IP);
-            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.藥碼);
-            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(600, DataGridViewContentAlignment.MiddleLeft, enum_儲架電子紙列表.藥名);
-            this.sqL_DataGridView_儲架電子紙列表.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_儲架電子紙列表.區域);
-            this.sqL_DataGridView_儲架電子紙列表.MouseDown += SqL_DataGridView_儲架電子紙列表_MouseDown;
-            this.sqL_DataGridView_儲架電子紙列表.RowEnterEvent += SqL_DataGridView_儲架電子紙列表_RowEnterEvent;
-            this.sqL_DataGridView_儲架電子紙列表.DataGridRowsChangeRefEvent += SqL_DataGridView_儲架電子紙列表_DataGridRowsChangeRefEvent;
-
-            this.rJ_Button_儲架電子紙_藥品資料_填入儲位.MouseDownEvent += RJ_Button_儲架電子紙_藥品資料_填入儲位_MouseDownEvent;
-
-            this.rJ_Button_儲架電子紙_面板亮燈.MouseDownEvent += RJ_Button_儲架電子紙_面板亮燈_MouseDownEvent;
-            this.rJ_Button_儲架電子紙_清除燈號.MouseDownEvent += RJ_Button_儲架電子紙_清除燈號_MouseDownEvent;
-            this.rJ_Button_儲架電子紙_面板刷新.MouseDownEvent += RJ_Button_儲架電子紙_面板刷新_MouseDownEvent;
-
-            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品名稱字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品學名字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品學名字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲架電子紙_儲位內容_中文名稱字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_中文名稱字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲架電子紙_儲位內容_藥品碼字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_藥品碼字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲架電子紙_儲位內容_包裝單位字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_包裝單位字體更動_MouseDownEvent;
-            this.plC_RJ_Button_儲架電子紙_儲位內容_效期字體更動.MouseDownEvent += PlC_RJ_Button_儲架電子紙_儲位內容_效期字體更動_MouseDownEvent;
-
-            this.plC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品名稱顯示_CheckStateChanged;
-            this.plC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品學名顯示_CheckStateChanged;
-            this.plC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_中文名稱顯示_CheckStateChanged;
-            this.plC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_藥品碼顯示_CheckStateChanged;
-            this.plC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_包裝單位顯示_CheckStateChanged;
-            this.plC_CheckBox_儲架電子紙_儲位內容_Barcode顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_Barcode顯示_CheckStateChanged;
-            this.plC_CheckBox_儲架電子紙_儲位內容_效期顯示.CheckStateChanged += PlC_CheckBox_儲架電子紙_儲位內容_效期顯示_CheckStateChanged;
-
-            this.rJ_Button_儲架電子紙列表_搜尋.MouseDownEvent += RJ_Button_儲架電子紙列表_搜尋_MouseDownEvent;
-            this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndex = 0;
-            this.comboBox_儲架電子紙列表_搜尋條件.SelectedIndexChanged += ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged;
-            Refresh_儲架電子紙列表_UI();
-            #endregion
-
-            #region 7"大電子紙
-            this.sqL_DataGridView_EPD583_藥品資料.RowsHeight = 40;
-            this.sqL_DataGridView_EPD583_藥品資料.Init(table_藥品資料);
-            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnVisible(false, new enum_雲端藥檔().GetEnumNames());
-            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品碼);
-            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(650, DataGridViewContentAlignment.MiddleLeft, enum_雲端藥檔.藥品名稱);
-            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_雲端藥檔.包裝單位);
-            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("藥碼", enum_雲端藥檔.藥品碼);
-            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("藥名", enum_雲端藥檔.藥品名稱);
-            this.sqL_DataGridView_EPD583_藥品資料.Set_ColumnText("單位", enum_雲端藥檔.包裝單位);
-            this.sqL_DataGridView_EPD583_藥品資料.RowDoubleClickEvent += SqL_DataGridView_EPD583_藥品資料_RowDoubleClickEvent;
-
-            this.epD_583_Pannel.Init(Main_Form._drawerUI_EPD_583.GetLoacalUDP_Class());
-            Table table_儲架儲位總表 = new Table(new enum_儲架儲位總表());
-            table_儲架儲位總表[enum_儲架儲位總表.區域.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, Main_Form.Function_取得藥品區域名稱().ToArray());
-            this.sqL_DataGridView_EPD583_儲位列表.RowsHeight = 40;
-            this.sqL_DataGridView_EPD583_儲位列表.Init(table_儲架儲位總表);
-            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnVisible(false, new enum_儲架儲位總表().GetEnumNames());
-            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.IP);
-            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.名稱);
-            this.sqL_DataGridView_EPD583_儲位列表.Set_ColumnWidth(140, DataGridViewContentAlignment.MiddleLeft, enum_儲架儲位總表.區域);
-            this.sqL_DataGridView_EPD583_儲位列表.RowEnterEvent += SqL_DataGridView_EPD583_儲位列表_RowEnterEvent;
-
-            this.rJ_Button_EPD583_藥品資料_搜尋.MouseDownEvent += RJ_Button_EPD583_藥品資料_搜尋_MouseDownEvent;
-            this.rJ_Button_EPD583_藥品資料_填入儲位.MouseDownEvent += RJ_Button_EPD583_藥品資料_填入儲位_MouseDownEvent;
-            this.comboBox_EPD583_藥品資料_搜尋條件.SelectedIndex = 0;
-
-            this.button_EPD583_藥碼字體.Click += Button_EPD583_藥碼字體_Click;
-            this.button_EPD583_藥名字體.Click += Button_EPD583_藥名字體_Click;
-            this.panel_EPD583_藥碼顏色.Click += Panel_EPD583_藥碼顏色_Click;
-            this.panel_EPD583_藥名顏色.Click += Panel_EPD583_藥名顏色_Click;
-            this.panel_EPD583_背景顏色.Click += Panel_EPD583_背景顏色_Click;
-            this.epD_583_Pannel.DrawerChangeEvent += EpD_583_Pannel_DrawerChangeEvent;
-            this.epD_583_Pannel.MouseDownEvent += EpD_583_Pannel_MouseDownEvent;
-            Refresh_7吋大電子紙_UI();
-            #endregion
-
-        }
-
-
-
         private void Dialog_儲位管理_LoadFinishedEvent(EventArgs e)
         {
             this.Refresh();
         }
 
         #region 儲架電子紙
+        private void SqL_DataGridView_儲架電子紙列表_ComboBoxSelectedIndexChangedEvent(object sender, string colName, object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
+            string 區域 = RowValue[(int)enum_儲架電子紙列表.區域].ObjectToString();
+
+            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
+            if(storage == null)
+            {
+                MyMessageBox.ShowDialog("查無儲位資料");
+                return;
+            }
+            storage.Area = 區域;
+            Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            Refresh_儲架電子紙列表_UI();
+        }
         private void SqL_DataGridView_儲架電子紙列表_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -848,8 +859,7 @@ namespace 智能藥庫系統
             }
             Task.WhenAll(tasks).Wait();
 
-            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("滅燈完成", 1000, Color.YellowGreen);
-            dialog_AlarmForm.ShowDialog();
+  
         }
         private void RJ_Button_儲架電子紙_藥品資料_填入儲位_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -938,6 +948,21 @@ namespace 智能藥庫系統
         #endregion
 
         #region EPD583
+        private void SqL_DataGridView_EPD583_儲位列表_ComboBoxSelectedIndexChangedEvent(object sender, string colName, object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲架儲位總表.IP].ObjectToString();
+            string 區域 = RowValue[(int)enum_儲架儲位總表.區域].ObjectToString();
+
+            Drawer drawer = Main_Form._drawerUI_EPD_583.SQL_GetDrawer(IP);
+            if (drawer == null)
+            {
+                MyMessageBox.ShowDialog("查無儲位資料");
+                return;
+            }
+            drawer.Area = 區域;
+            Main_Form._drawerUI_EPD_583.SQL_ReplaceDrawer(drawer);
+            Refresh_7吋大電子紙_UI();
+        }
         private void EpD_583_Pannel_MouseDownEvent(List<Box> Boxes)
         {
             if (Boxes.Count == 0) return;

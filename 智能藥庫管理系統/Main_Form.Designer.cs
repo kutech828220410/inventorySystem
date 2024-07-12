@@ -84,6 +84,10 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_堆疊子資料 = new SQLUI.SQL_DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.sqL_DataGridView_堆疊母資料 = new SQLUI.SQL_DataGridView();
+            this.rJ_Button_藥品區域_匯出 = new MyUI.RJ_Button();
+            this.rJ_Button_藥品區域_匯入 = new MyUI.RJ_Button();
+            this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.plC_ScreenPage_main.SuspendLayout();
             this.主畫面.SuspendLayout();
             this.panel_main.SuspendLayout();
@@ -1057,6 +1061,8 @@ namespace 智能藥庫系統
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.rJ_Button_藥品區域_匯入);
+            this.panel5.Controls.Add(this.rJ_Button_藥品區域_匯出);
             this.panel5.Controls.Add(this.rJ_Button_藥品區域_更新);
             this.panel5.Controls.Add(this.rJ_Button_藥品區域_刪除);
             this.panel5.Controls.Add(this.rJ_Button_藥品區域_新增);
@@ -1595,6 +1601,82 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_堆疊母資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_堆疊母資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
+            // rJ_Button_藥品區域_匯出
+            // 
+            this.rJ_Button_藥品區域_匯出.AutoResetState = false;
+            this.rJ_Button_藥品區域_匯出.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_藥品區域_匯出.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_藥品區域_匯出.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_藥品區域_匯出.BorderRadius = 20;
+            this.rJ_Button_藥品區域_匯出.BorderSize = 0;
+            this.rJ_Button_藥品區域_匯出.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_藥品區域_匯出.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_藥品區域_匯出.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_藥品區域_匯出.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_藥品區域_匯出.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_藥品區域_匯出.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_藥品區域_匯出.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_藥品區域_匯出.GUID = "";
+            this.rJ_Button_藥品區域_匯出.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_藥品區域_匯出.Location = new System.Drawing.Point(602, 0);
+            this.rJ_Button_藥品區域_匯出.Name = "rJ_Button_藥品區域_匯出";
+            this.rJ_Button_藥品區域_匯出.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_藥品區域_匯出.ProhibitionLineWidth = 4;
+            this.rJ_Button_藥品區域_匯出.ProhibitionSymbolSize = 30;
+            this.rJ_Button_藥品區域_匯出.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_藥品區域_匯出.ShadowSize = 3;
+            this.rJ_Button_藥品區域_匯出.ShowLoadingForm = false;
+            this.rJ_Button_藥品區域_匯出.Size = new System.Drawing.Size(135, 88);
+            this.rJ_Button_藥品區域_匯出.State = false;
+            this.rJ_Button_藥品區域_匯出.TabIndex = 37;
+            this.rJ_Button_藥品區域_匯出.Text = "匯出";
+            this.rJ_Button_藥品區域_匯出.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_藥品區域_匯出.TextHeight = 0;
+            this.rJ_Button_藥品區域_匯出.UseVisualStyleBackColor = false;
+            // 
+            // rJ_Button_藥品區域_匯入
+            // 
+            this.rJ_Button_藥品區域_匯入.AutoResetState = false;
+            this.rJ_Button_藥品區域_匯入.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_藥品區域_匯入.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_藥品區域_匯入.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_藥品區域_匯入.BorderRadius = 20;
+            this.rJ_Button_藥品區域_匯入.BorderSize = 0;
+            this.rJ_Button_藥品區域_匯入.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_藥品區域_匯入.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_藥品區域_匯入.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_藥品區域_匯入.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_藥品區域_匯入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_藥品區域_匯入.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_藥品區域_匯入.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_藥品區域_匯入.GUID = "";
+            this.rJ_Button_藥品區域_匯入.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_藥品區域_匯入.Location = new System.Drawing.Point(467, 0);
+            this.rJ_Button_藥品區域_匯入.Name = "rJ_Button_藥品區域_匯入";
+            this.rJ_Button_藥品區域_匯入.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_藥品區域_匯入.ProhibitionLineWidth = 4;
+            this.rJ_Button_藥品區域_匯入.ProhibitionSymbolSize = 30;
+            this.rJ_Button_藥品區域_匯入.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_藥品區域_匯入.ShadowSize = 3;
+            this.rJ_Button_藥品區域_匯入.ShowLoadingForm = false;
+            this.rJ_Button_藥品區域_匯入.Size = new System.Drawing.Size(135, 88);
+            this.rJ_Button_藥品區域_匯入.State = false;
+            this.rJ_Button_藥品區域_匯入.TabIndex = 38;
+            this.rJ_Button_藥品區域_匯入.Text = "匯入";
+            this.rJ_Button_藥品區域_匯入.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_藥品區域_匯入.TextHeight = 0;
+            this.rJ_Button_藥品區域_匯入.UseVisualStyleBackColor = false;
+            // 
+            // openFileDialog_LoadExcel
+            // 
+            this.openFileDialog_LoadExcel.DefaultExt = "txt";
+            this.openFileDialog_LoadExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
+            // 
+            // saveFileDialog_SaveExcel
+            // 
+            this.saveFileDialog_SaveExcel.DefaultExt = "txt";
+            this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1691,6 +1773,10 @@ namespace 智能藥庫系統
         private MyUI.PLC_RJ_Button plC_RJ_Button_申領;
         private System.Windows.Forms.TabPage tabPage6;
         private H_Pannel_lib.DrawerUI_EPD_583 drawerUI_EPD_583;
+        private MyUI.RJ_Button rJ_Button_藥品區域_匯入;
+        private MyUI.RJ_Button rJ_Button_藥品區域_匯出;
+        private System.Windows.Forms.OpenFileDialog openFileDialog_LoadExcel;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog_SaveExcel;
     }
 }
 

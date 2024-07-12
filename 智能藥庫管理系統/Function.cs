@@ -21,7 +21,8 @@ namespace 智能藥庫系統
 {
     public partial class Main_Form : Form
     {
-        static public  List<Storage> List_EPD266_雲端資料 = new List<Storage>();
+        static public List<Storage> List_EPD266_雲端資料 = new List<Storage>();
+        static public List<Drawer> List_EPD583_雲端資料 = new List<Drawer>();
         public enum enum_儲位資訊
         {
             GUID,
@@ -54,7 +55,7 @@ namespace 智能藥庫系統
                                where value == IP
                                select value).ToList();
                 if (list_IP_buf.Count > 0) continue;
-
+                Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - (儲位亮燈) {IP} {device.DeviceType.GetEnumName()} Color:{color.ToColorString()}");
                 if (device != null)
                 {
                     if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD266_lock)
@@ -113,12 +114,18 @@ namespace 智能藥庫系統
         static public List<object> Function_從雲端資料取得儲位(string 藥品碼)
         {
             List<object> list_value = new List<object>();
-            List<Storage> epd266s = List_EPD266_雲端資料.SortByCode(藥品碼);
-   
-            for (int i = 0; i < epd266s.Count; i++)
+            List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
+            List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
+            for (int i = 0; i < boxes.Count; i++)
             {
-                list_value.Add(epd266s[i]);
+                list_value.Add(boxes[i]);
             }
+         
+            for (int i = 0; i < storages.Count; i++)
+            {
+                list_value.Add(storages[i]);
+            }
+          
             return list_value;
         }
         static public void Function_從SQL取得儲位到雲端資料()
@@ -138,7 +145,16 @@ namespace 智能藥庫系統
                     Console.WriteLine($"讀取EPD266資料! 耗時 :{myTimer1.GetTickTime().ToString("0.000")} ");
 
                 }));
+                taskList.Add(Task.Run(() =>
+                {
+                    MyTimer myTimer1 = new MyTimer();
+                    myTimer1.StartTickTime(50000);
+                    List_EPD583_雲端資料 = _drawerUI_EPD_583.SQL_GetAllDrawers();
+                    Console.WriteLine($"讀取EPD583資料! 耗時 :{myTimer1.GetTickTime().ToString("0.000")} ");
 
+                }));
+
+                
                 Task allTask = Task.WhenAll(taskList);
                 allTask.Wait();
                 Console.WriteLine($"SQL讀取儲位資料到雲端結束! 耗時 : {myTimer.GetTickTime().ToString("0.000")}");
@@ -153,7 +169,7 @@ namespace 智能藥庫系統
         {
             List<object> list_value = new List<object>();
             List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
-
+            List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
 
             for (int i = 0; i < storages.Count; i++)
             {
@@ -161,7 +177,12 @@ namespace 智能藥庫系統
                 List_EPD266_雲端資料.Add_NewStorage(storage);
                 list_value.Add(storage);
             }
-
+            for (int i = 0; i < boxes.Count; i++)
+            {
+                Box box = _drawerUI_EPD_583.SQL_GetBox(boxes[i]);
+                List_EPD583_雲端資料.Add_NewDrawer(box);
+                list_value.Add(box);
+            }
             return list_value;
         }
         static public void Function_從雲端資料取得儲位(string 藥品碼, ref List<string> TYPE, ref List<object> values)

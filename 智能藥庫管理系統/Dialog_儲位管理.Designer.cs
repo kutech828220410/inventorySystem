@@ -1678,7 +1678,7 @@ namespace 智能藥庫系統
             this.rJ_Button_儲架電子紙_面板刷新.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_儲架電子紙_面板刷新.GUID = "";
             this.rJ_Button_儲架電子紙_面板刷新.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_儲架電子紙_面板刷新.Location = new System.Drawing.Point(129, 166);
+            this.rJ_Button_儲架電子紙_面板刷新.Location = new System.Drawing.Point(245, 166);
             this.rJ_Button_儲架電子紙_面板刷新.Name = "rJ_Button_儲架電子紙_面板刷新";
             this.rJ_Button_儲架電子紙_面板刷新.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_儲架電子紙_面板刷新.ProhibitionLineWidth = 4;
@@ -1742,7 +1742,7 @@ namespace 智能藥庫系統
             this.rJ_Button_儲架電子紙_清除燈號.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_儲架電子紙_清除燈號.GUID = "";
             this.rJ_Button_儲架電子紙_清除燈號.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_儲架電子紙_清除燈號.Location = new System.Drawing.Point(245, 166);
+            this.rJ_Button_儲架電子紙_清除燈號.Location = new System.Drawing.Point(129, 166);
             this.rJ_Button_儲架電子紙_清除燈號.Name = "rJ_Button_儲架電子紙_清除燈號";
             this.rJ_Button_儲架電子紙_清除燈號.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_儲架電子紙_清除燈號.ProhibitionLineWidth = 4;

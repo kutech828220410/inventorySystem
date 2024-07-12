@@ -29,6 +29,7 @@ namespace 智能藥庫系統
     {
         public static SQL_DataGridView _sqL_DataGridView_藥品區域 = null;
         private MyThread MyThread_藥品區域亮燈 = null;
+        private bool flag_藥品區域_Init = true;
         private void Program_藥品區域_Init()
         {
             Table table_drugStotreArea = drugStotreArea.init(Main_Form.API_Server);
@@ -48,11 +49,13 @@ namespace 智能藥庫系統
             this.rJ_Button_藥品區域_新增.MouseDownEvent += RJ_Button_藥品區域_新增_MouseDownEvent;
             this.rJ_Button_藥品區域_刪除.MouseDownEvent += RJ_Button_藥品區域_刪除_MouseDownEvent;
             this.rJ_Button_藥品區域_更新.MouseDownEvent += RJ_Button_藥品區域_更新_MouseDownEvent;
+            this.rJ_Button_藥品區域_匯入.MouseDownEvent += RJ_Button_藥品區域_匯入_MouseDownEvent;
+            this.rJ_Button_藥品區域_匯出.MouseDownEvent += RJ_Button_藥品區域_匯出_MouseDownEvent;
 
             if (PLC_Device_主機模式.Bool)
             {
                 MyThread_藥品區域亮燈 = new MyThread();
-                MyThread_藥品區域亮燈.SetSleepTime(10);
+                MyThread_藥品區域亮燈.SetSleepTime(100);
                 MyThread_藥品區域亮燈.Add_Method(Program_藥品區域);
                 MyThread_藥品區域亮燈.AutoRun(true);
                 MyThread_藥品區域亮燈.Trigger();
@@ -61,9 +64,13 @@ namespace 智能藥庫系統
             //plC_UI_Init.Add_Method(Program_藥品區域);
         }
 
+   
+
         public static List<string> Function_取得藥品區域名稱()
         {
             List<object[]> list_value = _sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
+            list_value.Sort(new ICP_藥品區域());
+
             List<string> strs = (from temp in list_value
                                  select temp[(int)enum_drugStotreArea.名稱].ObjectToString()).ToList();
             return strs;
@@ -139,15 +146,64 @@ namespace 智能藥庫系統
                 this.sqL_DataGridView_藥品區域.SQL_GetAllRows(true);
             }
         }
+        private void RJ_Button_藥品區域_匯出_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                List<object[]> list_value = this.sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
+                list_value.Sort(new ICP_藥品區域());
+                DataTable dataTable = list_value.ToDataTable(new enum_drugStotreArea());
+                dataTable = dataTable.ReorderTable(new enum_drugStotreArea().GetEnumNames());
 
+                if (saveFileDialog_SaveExcel.ShowDialog() != DialogResult.OK) return;
+                dataTable.NPOI_SaveFile(saveFileDialog_SaveExcel.FileName);
+                MyMessageBox.ShowDialog("匯出成功");
+            }));
+         
+        }
+        private void RJ_Button_藥品區域_匯入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                if (openFileDialog_LoadExcel.ShowDialog() != DialogResult.OK) return;
+
+                DataTable dataTable = MyOffice.ExcelClass.NPOI_LoadFile(openFileDialog_LoadExcel.FileName);
+                if (dataTable == null)
+                {
+                    MyMessageBox.ShowDialog("匯入失敗");
+                    return;
+                }
+                dataTable = dataTable.ReorderTable(new enum_drugStotreArea());
+                if (dataTable == null)
+                {
+                    MyMessageBox.ShowDialog("匯入失敗");
+                    return;
+                }
+
+                List<object[]> list_value = dataTable.DataTableToRowList();
+                List<object[]> list_藥品區域 = this.sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
+                this.sqL_DataGridView_藥品區域.SQL_DeleteExtra(list_藥品區域 , false);
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    list_value[i][(int)enum_drugStotreArea.GUID] = Guid.NewGuid().ToString();
+                }
+                this.sqL_DataGridView_藥品區域.SQL_AddRows(list_value, true);
+
+                MyMessageBox.ShowDialog("匯入完成");
+            }));
+            
+        }
         private void Program_藥品區域()
         {
+            MyTimer myTimer = new MyTimer(5000);
             List<Storage> storages_EPD266 = List_EPD266_雲端資料;
             List<Storage> storages_EPD266_buf = new List<Storage>();
 
             Dictionary<string, List<Storage>> keyValuePairs_storage =  storages_EPD266.CoverToDictionaryByIP();
 
             List<StorageUI_EPD_266.UDP_READ> uDP_READs_EPD266 = this.storageUI_EPD_266.GerAllUDP_READ();
+            //Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - 藥品區域,取得uDP_READs_EPD266,{uDP_READs_EPD266.Count}筆資料  ,{myTimer}");
+
             List<StorageUI_EPD_266.UDP_READ> uDP_READs_EPD266_buf = new List<StorageUI_EPD_266.UDP_READ>();
             for (int i = 0; i < uDP_READs_EPD266.Count; i++)
             {
@@ -158,33 +214,69 @@ namespace 智能藥庫系統
                 }
               
             }
+            //Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - 藥品區域,分析uDP_READs_EPD266,{uDP_READs_EPD266.Count}筆資料  ,{myTimer}");
+
             List<object[]> list_藥品區域 = _sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
-            
+            if(flag_藥品區域_Init)
+            {
+                for (int i = 0; i < list_藥品區域.Count; i++)
+                {
+                    list_藥品區域[i][(int)enum_drugStotreArea.燈號更新旗標] = true.ToString();
+                }
+                _sqL_DataGridView_藥品區域.SQL_ReplaceExtra(list_藥品區域, false);
+                list_藥品區域 = _sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
+                flag_藥品區域_Init = false;
+            }
+
+            //Console.WriteLine($"{DateTime.Now.ToDateTimeString()} - 藥品區域,取得藥品區域資料庫,{list_藥品區域.Count}筆資料  ,{myTimer}");
+
             for (int i = 0; i < list_藥品區域.Count; i++)
             {
                 string 名稱 = list_藥品區域[i][(int)enum_drugStotreArea.名稱].ObjectToString();
                 string IP = list_藥品區域[i][(int)enum_drugStotreArea.IP].ObjectToString();
                 string Port = list_藥品區域[i][(int)enum_drugStotreArea.Port].ObjectToString();
                 string Num = list_藥品區域[i][(int)enum_drugStotreArea.Num].ObjectToString();
+                string 狀態 = list_藥品區域[i][(int)enum_drugStotreArea.狀態].ObjectToString();
                 storages_EPD266_buf = (from temp in storages_EPD266
                                        where temp.Area == 名稱 && temp.IsLightOn == true
                                        select temp).ToList();
 
                 int port = Port.StringToInt32();
                 int num = Num.StringToInt32();
-
+                if (port == 0) continue;
                 if (IP.Check_IP_Adress())
                 {
                     if (storages_EPD266_buf.Count > 0)
                     {
-                        if (!this.rfiD_UI.Get_IO_Output(IP, port, num)) this.rfiD_UI.Set_OutputPIN(IP, port, num, true);
+                        list_藥品區域[i][(int)enum_drugStotreArea.狀態] = true.ToString();
+                        if (狀態.StringToBool() == false) list_藥品區域[i][(int)enum_drugStotreArea.燈號更新旗標] = true.ToString();
                     }
                     else
                     {
-                        if (this.rfiD_UI.Get_IO_Output(IP, port, num)) this.rfiD_UI.Set_OutputPIN(IP, port, num, false);
+                        list_藥品區域[i][(int)enum_drugStotreArea.狀態] = false.ToString();
+                        if (狀態.StringToBool() == true) list_藥品區域[i][(int)enum_drugStotreArea.燈號更新旗標] = true.ToString();
                     }
                 }             
             }
+            _sqL_DataGridView_藥品區域.SQL_ReplaceExtra(list_藥品區域, false);
+            list_藥品區域 = _sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
+            for (int i = 0; i < list_藥品區域.Count; i++)
+            {
+                string IP = list_藥品區域[i][(int)enum_drugStotreArea.IP].ObjectToString();
+                string Port = list_藥品區域[i][(int)enum_drugStotreArea.Port].ObjectToString();
+                string Num = list_藥品區域[i][(int)enum_drugStotreArea.Num].ObjectToString();
+                string 燈號更新旗標 = list_藥品區域[i][(int)enum_drugStotreArea.燈號更新旗標].ObjectToString();
+                string 狀態 = list_藥品區域[i][(int)enum_drugStotreArea.狀態].ObjectToString();
+                if (燈號更新旗標.StringToBool())
+                {
+                    int port = Port.StringToInt32();
+                    int num = Num.StringToInt32();
+                    this.rfiD_UI.Set_OutputPIN(IP, port, num, 狀態.StringToBool());
+                    list_藥品區域[i][(int)enum_drugStotreArea.燈號更新旗標] = false.ToString();
+                }
+                
+            }
+            _sqL_DataGridView_藥品區域.SQL_ReplaceExtra(list_藥品區域, false);
         }
 
         public class ICP_藥品區域 : IComparer<object[]>
