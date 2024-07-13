@@ -385,8 +385,10 @@ namespace 中藥調劑系統
                 return;
             }
             rowsLED.Area = 區域;
+            LoadingForm.ShowLoadingForm();
             Main_Form._rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
             Function_層架列表_RefreshUI();
+            LoadingForm.CloseLoadingForm();
         }
         private void RJ_Button_RowsLED_新增儲位_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -957,8 +959,10 @@ namespace 中藥調劑系統
                 return;
             }
             storage.Area = 區域;
+            LoadingForm.ShowLoadingForm();
             Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
             Function_儲架電子紙_RefreshUI();
+            LoadingForm.CloseLoadingForm();
         }
         private void ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged(object sender, EventArgs e)
         {
