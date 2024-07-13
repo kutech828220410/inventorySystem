@@ -85,7 +85,18 @@ namespace HIS_DB_Lib
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
-   
+        static public SQLUI.Table init(string API_Server , string serverName , string serverType)
+        {
+            string url = $"{API_Server}/api/drugStotreArea/init";
+
+            returnData returnData = new returnData();
+            returnData.ServerName = serverName;
+            returnData.ServerType = serverType;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
+            return table;
+        }
 
 
     }

@@ -48,6 +48,7 @@ namespace 中藥調劑系統
             public Color Color_調劑刷藥單顏色 = Color.Blue;
             public Color Color_調劑完閃爍顏色 = Color.Green;
             public Color Color_調劑中顏色 = Color.Green;
+            public string 調劑種類 = "科中";
         }
         public void SaveConfig工程模式()
         {
@@ -58,6 +59,10 @@ namespace 中藥調劑系統
             saveConfig.Color_調劑刷藥單顏色 = this.panel_調劑刷藥單顏色.BackColor;
             saveConfig.Color_調劑完閃爍顏色 = this.panel_調劑完閃爍顏色.BackColor;
             saveConfig.Color_調劑中顏色 = this.panel_調劑中顏色.BackColor;
+
+            if (rJ_RatioButton_調劑種類_科中.Checked) saveConfig.調劑種類 = "科中";
+            if (rJ_RatioButton_調劑種類_飲片.Checked) saveConfig.調劑種類 = "飲片";
+
             Basic.FileIO.SaveProperties(saveConfig, StreamName);
         }
         public void LoadConfig工程模式()
@@ -73,6 +78,16 @@ namespace 中藥調劑系統
                     this.panel_調劑刷藥單顏色.BackColor = ((SaveConfig工程模式Class)temp).Color_調劑刷藥單顏色;
                     this.panel_調劑完閃爍顏色.BackColor = ((SaveConfig工程模式Class)temp).Color_調劑完閃爍顏色;
                     this.panel_調劑中顏色.BackColor = ((SaveConfig工程模式Class)temp).Color_調劑中顏色;
+
+                    if (((SaveConfig工程模式Class)temp).調劑種類 == "科中")
+                    {
+                        rJ_RatioButton_調劑種類_科中.Checked = true;
+                    }
+                    else
+                    {
+                        rJ_RatioButton_調劑種類_飲片.Checked = true;
+
+                    }
                 }));
             }
 

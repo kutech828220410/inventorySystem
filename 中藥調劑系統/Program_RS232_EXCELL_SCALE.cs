@@ -66,14 +66,22 @@ namespace 中藥調劑系統
             }
             double? weight = null;
 
-            if(rJ_Lable_應調單位.Text != "錢")
+            if (rJ_RatioButton_調劑種類_科中.Checked)
             {
                 weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.g);
             }
-            else
+            if (rJ_RatioButton_調劑種類_飲片.Checked)
             {
                 weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.hh);
             }
+            //if (rJ_Lable_應調單位.Text != "錢")
+            //{
+            //    weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.g);
+            //}
+            //else
+            //{
+            //    weight = ExcelScaleLib_Port.get_weight(Port.enum_unit_type.hh);
+            //}
 
 
             if (weight == null)
@@ -87,18 +95,6 @@ namespace 中藥調劑系統
             }
             this.Invoke(new Action(delegate
             {
-                //if (enum_Unit_Type == Port.enum_unit_type.g)
-                //{
-                //    Console.WriteLine($"秤重單位更動為:克");
-                //    rJ_Lable_應調單位.Text = "克";
-                //    rJ_Lable_實調單位.Text = "克";
-                //}
-                //else if (enum_Unit_Type == Port.enum_unit_type.hh)
-                //{
-                //    Console.WriteLine($"秤重單位更動為:錢");
-                //    rJ_Lable_應調單位.Text = "錢";
-                //    rJ_Lable_實調單位.Text = "錢";
-                //}
                 double temp = (double)weight;
                 rJ_Lable_實調.Text = temp.ToString("0.00");
             }));

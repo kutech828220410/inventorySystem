@@ -176,12 +176,14 @@ namespace 中藥調劑系統
             this.rJ_Button_RowsLED_匯出.MouseDownEvent += RJ_Button_RowsLED_匯出_MouseDownEvent;
             this.rJ_Button_RowsLED_匯入.MouseDownEvent += RJ_Button_RowsLED_匯入_MouseDownEvent;
             this.rJ_Button_RowsLED_儲位名稱_儲存.MouseDownEvent += RJ_Button_RowsLED_儲位名稱_儲存_MouseDownEvent;
+            this.rJ_Button_RowsLED_搜尋.MouseDownEvent += RJ_Button_RowsLED_搜尋_MouseDownEvent;
+
 
             this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_新增_MouseDownEvent;
             this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_刪除_MouseDownEvent;
             this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_修改_MouseDownEvent;
+            comboBox_RowsLED_搜尋條件.SelectedIndex = 0;
 
-        
             #endregion
             #region 儲架電子紙
             this.epD_290_Pannel.Init(Main_Form._storageUI_EPD_266.List_UDP_Local);
@@ -243,6 +245,8 @@ namespace 中藥調劑系統
             this.Function_儲架電子紙_RefreshUI();
         }
 
+ 
+
         #region Function
         private void Function_層架列表_RefreshUI()
         {
@@ -292,6 +296,7 @@ namespace 中藥調劑系統
         }
         private void SqL_DataGridView_RowsLED_儲位資料_RowEnterEvent(object[] RowValue)
         {
+      
             if (this.rowsLED_Pannel.CurrentRowsLED != null) deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this.rowsLED_Pannel.CurrentRowsLED);
             string GUID = RowValue[(int)enum_層架亮燈儲位列表.GUID].ObjectToString();
             RowsLED rowsLED = this.rowsLED_Pannel.CurrentRowsLED;
@@ -332,6 +337,7 @@ namespace 中藥調劑系統
         }
         private void SqL_DataGridView_RowsLED_層架列表_RowEnterEvent(object[] RowValue)
         {
+
             string IP = RowValue[(int)enum_層架亮燈儲位總表.IP].ObjectToString();
             RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
             this.rowsLED_Pannel.CurrentRowsLED = rowsLED;
@@ -634,10 +640,92 @@ namespace 中藥調劑系統
                 LoadingForm.CloseLoadingForm();
             }
         }
+        private void RJ_Button_RowsLED_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string text = "";
+            string comboBox_text = "";
+            this.Invoke(new Action(delegate
+            {
+                text = this.comboBox_RowsLED_搜尋內容.Text;
+                comboBox_text = this.comboBox_RowsLED_搜尋條件.Text;
+            }));
+
+            if (text.StringIsEmpty()) return;
+            List<RowsDevice> rowsDevices = new List<RowsDevice>();
+            int select_index = -1;
+            if (comboBox_text == "藥碼")
+            {
+                List<RowsDevice> rowsDevices_buf = Main_Form.List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                   where temp.Code.ToUpper().Contains(text.ToUpper())
+                                   select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+            if (comboBox_text == "藥名")
+            {
+                List<RowsDevice> rowsDevices_buf = Main_Form.List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                   where temp.Code.ToUpper().Contains(text.ToUpper())
+                                   select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+            if (comboBox_text == "商品名")
+            {
+                List<RowsDevice> rowsDevices_buf = Main_Form.List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                   where temp.Code.ToUpper().Contains(text.ToUpper())
+                                   select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+
+            if (rowsDevices.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無無此藥品!!");
+                return;
+            }
+            string IP = "0.0.0.0";
+            int index = 0;
+            if (this.rowsLED_Pannel.CurrentRowsLED != null)
+            {
+                IP = this.rowsLED_Pannel.CurrentRowsLED.IP;
+            }
+            if (this.rowsLED_Pannel.CurrentRowsDevice != null)
+            {
+                index = this.rowsLED_Pannel.CurrentRowsDevice.Index;
+            }
+            for (int i = 0; i < rowsDevices.Count; i++)
+            {
+                if (rowsDevices[i].IP == IP)
+                {
+                    if (rowsDevices[i].Index == index)
+                    {
+                        select_index = i;
+                    }
+                }
+            }
+            RowsDevice rowsDevice;
+            if (select_index == -1)
+            {
+                rowsDevice = rowsDevices[0];
+            }
+            else if ((select_index + 1) == rowsDevices.Count)
+            {
+                rowsDevice = rowsDevices[0];
+            }
+            else
+            {
+                rowsDevice = rowsDevices[select_index + 1];
+            }
+            RowsLED rowsLED = Main_Form.List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+            if (rowsLED == null) return;
+            sqL_DataGridView_RowsLED_層架列表.SetSelectRow(enum_層架亮燈儲位總表.IP.GetEnumName(), rowsDevice.IP);
+            sqL_DataGridView_RowsLED_儲位資料.SetSelectRow(enum_層架亮燈儲位列表.GUID.GetEnumName(), rowsDevice.GUID);
+        }
         #endregion
         #region 儲架電子紙
         private void SqL_DataGridView_儲架電子紙列表_RowEnterEvent(object[] RowValue)
         {
+
             string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
 
             Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);

@@ -30,7 +30,7 @@ namespace 中藥調劑系統
 
         private void Program_藥品區域_Init()
         {
-            Table table_drugStotreArea = drugStotreArea.init(Main_Form.API_Server);
+            Table table_drugStotreArea = drugStotreArea.init(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
             this.sqL_DataGridView_藥品區域.RowsHeight = 40;
             this.sqL_DataGridView_藥品區域.InitEx(table_drugStotreArea);
             this.sqL_DataGridView_藥品區域.Set_ColumnVisible(false, new enum_drugStotreArea().GetEnumNames());
@@ -47,17 +47,20 @@ namespace 中藥調劑系統
             this.rJ_Button_藥品區域_新增.MouseDownEvent += RJ_Button_藥品區域_新增_MouseDownEvent;
             this.rJ_Button_藥品區域_刪除.MouseDownEvent += RJ_Button_藥品區域_刪除_MouseDownEvent;
             this.rJ_Button_藥品區域_更新.MouseDownEvent += RJ_Button_藥品區域_更新_MouseDownEvent;
+            this.rJ_Button_藥品區域_匯入.MouseDownEvent += RJ_Button_藥品區域_匯入_MouseDownEvent;
+            this.rJ_Button_藥品區域_匯出.MouseDownEvent += RJ_Button_藥品區域_匯出_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_藥品區域);
         }
-
         public static List<string> Function_取得藥品區域名稱()
         {
             List<object[]> list_value = _sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
+            list_value.Sort(new ICP_藥品區域());
+
             List<string> strs = (from temp in list_value
                                  select temp[(int)enum_drugStotreArea.名稱].ObjectToString()).ToList();
             return strs;
         }
-
+   
         private void SqL_DataGridView_藥品區域_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             RowsList.Sort(new ICP_藥品區域());
@@ -128,7 +131,53 @@ namespace 中藥調劑系統
                 this.sqL_DataGridView_藥品區域.SQL_GetAllRows(true);
             }
         }
+        private void RJ_Button_藥品區域_匯出_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                List<object[]> list_value = this.sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
+                list_value.Sort(new ICP_藥品區域());
+                DataTable dataTable = list_value.ToDataTable(new enum_drugStotreArea());
+                dataTable = dataTable.ReorderTable(new enum_drugStotreArea().GetEnumNames());
 
+                if (saveFileDialog_SaveExcel.ShowDialog() != DialogResult.OK) return;
+                dataTable.NPOI_SaveFile(saveFileDialog_SaveExcel.FileName);
+                MyMessageBox.ShowDialog("匯出成功");
+            }));
+
+        }
+        private void RJ_Button_藥品區域_匯入_MouseDownEvent(MouseEventArgs mevent)
+        {
+            this.Invoke(new Action(delegate
+            {
+                if (openFileDialog_LoadExcel.ShowDialog() != DialogResult.OK) return;
+
+                DataTable dataTable = MyOffice.ExcelClass.NPOI_LoadFile(openFileDialog_LoadExcel.FileName);
+                if (dataTable == null)
+                {
+                    MyMessageBox.ShowDialog("匯入失敗");
+                    return;
+                }
+                dataTable = dataTable.ReorderTable(new enum_drugStotreArea());
+                if (dataTable == null)
+                {
+                    MyMessageBox.ShowDialog("匯入失敗");
+                    return;
+                }
+
+                List<object[]> list_value = dataTable.DataTableToRowList();
+                List<object[]> list_藥品區域 = this.sqL_DataGridView_藥品區域.SQL_GetAllRows(false);
+                this.sqL_DataGridView_藥品區域.SQL_DeleteExtra(list_藥品區域, false);
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    list_value[i][(int)enum_drugStotreArea.GUID] = Guid.NewGuid().ToString();
+                }
+                this.sqL_DataGridView_藥品區域.SQL_AddRows(list_value, true);
+
+                MyMessageBox.ShowDialog("匯入完成");
+            }));
+
+        }
         private void Program_藥品區域()
         {
 

@@ -170,7 +170,7 @@ namespace 中藥調劑系統
         #endregion
         private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Function_全部滅燈();
+            //Function_全部滅燈();
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -185,11 +185,18 @@ namespace 中藥調劑系統
 
             this.plC_RJ_Button_儲位設定.MouseDownEvent += PlC_RJ_Button_儲位設定_MouseDownEvent;
             this.plC_RJ_Button_人員資料.MouseDownEvent += PlC_RJ_Button_人員資料_MouseDownEvent;
-
+            this.plC_RJ_Button_強制滅燈.MouseDownEvent += PlC_RJ_Button_強制滅燈_MouseDownEvent;
             plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
             plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
         }
 
+        private void PlC_RJ_Button_強制滅燈_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (MyMessageBox.ShowDialog("是否全部強制滅燈?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            LoadingForm.ShowLoadingForm();
+            Function_全部滅燈();
+            LoadingForm.CloseLoadingForm();
+        }
         private void PlC_RJ_Button_人員資料_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
@@ -237,7 +244,7 @@ namespace 中藥調劑系統
             Task.Run(new Action(delegate 
             {
                 System.Threading.Thread.Sleep(3000);
-                Function_全部滅燈();
+                //Function_全部滅燈();
             }));
            
         }

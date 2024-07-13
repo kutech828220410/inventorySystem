@@ -77,7 +77,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "應調");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, "實調");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "天");
-            this.sqL_DataGridView_處方內容.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, "頻次");
+            this.sqL_DataGridView_處方內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, "頻次");
             this.sqL_DataGridView_處方內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, "單位");
             this.sqL_DataGridView_處方內容.RowEnterEvent += SqL_DataGridView_處方內容_RowEnterEvent;
             this.sqL_DataGridView_處方內容.DataGridRefreshEvent += SqL_DataGridView_處方內容_DataGridRefreshEvent;
@@ -86,8 +86,8 @@ namespace 中藥調劑系統
             Table table_病患資訊 = new Table(new enum_病患資訊());
             this.sqL_DataGridView_病患資訊.Init(table_病患資訊);
             this.sqL_DataGridView_病患資訊.Set_ColumnVisible(false, new enum_病患資訊().GetEnumNames());
-            this.sqL_DataGridView_病患資訊.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, "領藥號");
-            this.sqL_DataGridView_病患資訊.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, "姓名");
+            this.sqL_DataGridView_病患資訊.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, "領藥號");
+            this.sqL_DataGridView_病患資訊.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleLeft, "姓名");
             this.sqL_DataGridView_病患資訊.DataGridClearGridEvent += SqL_DataGridView_病患資訊_DataGridClearGridEvent;
             this.sqL_DataGridView_病患資訊.RowEnterEvent += SqL_DataGridView_病患資訊_RowEnterEvent;
 
@@ -112,8 +112,16 @@ namespace 中藥調劑系統
             this.rJ_Button_調劑畫面_單滅.MouseDownEvent += RJ_Button_調劑畫面_單滅_MouseDownEvent;
             this.rJ_Button_調劑畫面_全滅.MouseDownEvent += RJ_Button_調劑畫面_全滅_MouseDownEvent;
             this.rJ_Lable_實調.DoubleClick += RJ_Lable_實調_DoubleClick;
+
+            this.button_病患資訊_ScrollUp.Click += Button_病患資訊_ScrollUp_Click;
+            this.button_病患資訊_ScrollDown.Click += Button_病患資訊_ScrollDown_Click;
+            this.button_處方內容_ScrollUp.Click += Button_處方內容_ScrollUp_Click;
+            this.button_處方內容_ScrollDown.Click += Button_處方內容_ScrollDown_Click;
+
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
+
+
 
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
@@ -162,7 +170,36 @@ namespace 中藥調劑系統
                 }
                 if (packages.Count > 1)
                 {
-                    處方類型 = "多劑型";
+                  
+                    bool flag_錢 = false;
+                    bool flag_克 = false;
+                    foreach (string str in packages)
+                    {
+                        if (str == "錢")
+                        {
+                            flag_錢 = true;
+                        }
+                        if (str == "克")
+                        {
+                            flag_克 = true;
+                        }
+                    }
+                    if (flag_克 && flag_錢)
+                    {
+                        處方類型 = "多劑型";
+                    }
+                    else if (flag_克)
+                    {
+                        處方類型 = "科中";
+                    }
+                    else if (flag_錢)
+                    {
+                        處方類型 = "飲片";
+                    }
+                    else
+                    {
+                        處方類型 = "其他";
+                    }
                 }
                 else if (packages.Count == 0)
                 {
@@ -172,7 +209,7 @@ namespace 中藥調劑系統
                 {
                     if(packages[0] == "錢")
                     {
-                        處方類型 = "煎煮";
+                        處方類型 = "飲片";
                     }
                     else if (packages[0] == "克")
                     {
@@ -197,8 +234,16 @@ namespace 中藥調劑系統
                         value[(int)enum_病患資訊.調劑完成] = 調劑完成;
                         value[(int)enum_病患資訊.處方類型] = 處方類型;
 
-                        list_value.Add(value);
-                   }
+                        if(rJ_RatioButton_調劑種類_科中.Checked && 處方類型 == "科中")
+                        {
+                            list_value.Add(value);
+                        }
+                        if (rJ_RatioButton_調劑種類_飲片.Checked && 處方類型 == "飲片")
+                        {
+                            list_value.Add(value);
+                        }
+
+                    }
 
 
 
@@ -556,6 +601,7 @@ namespace 中藥調劑系統
                     rJ_Lable_醫師代號.Text = $"醫師代號 : ------------";
                     rJ_Lable_處方時間.Text = $"處方時間 : --:--:--";
                     rJ_Lable_科別.Text = $"科別 : -----";
+  
                 }));
             }));
         }
@@ -582,6 +628,8 @@ namespace 中藥調劑系統
             double 總重 = 0;
             double 應調 = 0;
             string 單位 = "";
+            bool flag_飲片調劑 = false;
+            bool flag_BTL = false;
             for (int i = 0; i < orderTClasses.Count; i++)
             {
 
@@ -589,15 +637,32 @@ namespace 中藥調劑系統
                 {
                     應調 = orderTClasses[i].交易量.ObjectToString().StringToDouble();
                     單位 = orderTClasses[i].劑量單位.ObjectToString();
-                    if (單位 == "錢") 應調 *= 3.75;
+                    if (單位 == "錢") flag_飲片調劑 = true;
                     if (單位 == "BTL" || orderTClasses[i].藥品碼.Contains("BTL") || orderTClasses[i].藥品名稱.Contains("BTL"))
                     {
                         orderTClasses.Remove(orderTClasses[i]);
+                        flag_BTL = true;
+                   
+                     
                         continue;
                     }
+                   
                     總重 += 應調;
                 }
             }
+            if(flag_BTL)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    rJ_Lable_處方警示.Text = "此為罐裝調劑";
+                    Voice.MediaPlayAsync($@"{currentDirectory}\此為罐裝調劑.wav");
+                }));
+            }
+            else
+            {
+                rJ_Lable_處方警示.Text = "---------------";
+            }
+            if (總重 < 0) 總重 *= -1;
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < orderTClasses.Count; i++)
             {
@@ -635,27 +700,33 @@ namespace 中藥調劑系統
 
             this.Invoke(new Action(delegate 
             {
+                string 單位_temp = "克";
+                if (flag_飲片調劑) 單位_temp = "錢";
                 rJ_Lable_處方資訊_姓名_性別_病歷號.Text = $"{orderTClass.病人姓名}({orderTClass.性別}) {orderTClass.病歷號}";
                 rJ_Lable_處方資訊_處方日期.Text = $"{orderTClass.開方日期.StringToDateTime().ToDateString()}";
                 rJ_Lable_處方資訊_年齡.Text = $"{orderTClass.年齡.StringToInt32()}歲";
                 rJ_Lable_處方資訊_單筆包數.Text = $"{包數}包/天";
                 rJ_Lable_處方資訊_單筆處方天數.Text = $"{天數}天";
-                rJ_Lable_處方資訊_單包重.Text = $"{(總重 / 總包數.StringToInt32()).ToString("0.00")} 克/包";
-                rJ_Lable_處方資訊_單筆總重.Text = $"總重:{總重.ToString("0.00")}克";
+                rJ_Lable_處方資訊_單包重.Text = $"{(總重 / 總包數.StringToInt32()).ToString("0.00")} {單位_temp}/包";
+                rJ_Lable_處方資訊_單筆總重.Text = $"總重:{總重.ToString("0.00")}{單位_temp}";
                 rJ_Lable_總包數.Text = $"{總包數}包";
 
-                double 單包重 = rJ_Lable_處方資訊_單包重.Text.StringToDouble();
-                if (單包重 > 0)
+                if (flag_飲片調劑 == false)
                 {
-                    if (單包重 > ((double)plC_NumBox_單包重上限.Value / 10D))
+                    double 單包重 = rJ_Lable_處方資訊_單包重.Text.StringToDouble();
+                    if (單包重 > 0)
                     {
-                        MyMessageBox.ShowDialog("單包重超過上限");
-                    }
-                    if (單包重 < ((double)plC_NumBox_單包重下限.Value / 10D))
-                    {
-                        MyMessageBox.ShowDialog("單包重低於下限");
+                        if (單包重 > ((double)plC_NumBox_單包重上限.Value / 10D))
+                        {
+                            MyMessageBox.ShowDialog("單包重超過上限");
+                        }
+                        if (單包重 < ((double)plC_NumBox_單包重下限.Value / 10D))
+                        {
+                            MyMessageBox.ShowDialog("單包重低於下限");
+                        }
                     }
                 }
+             
             }));
           
 
@@ -818,7 +889,7 @@ namespace 中藥調劑系統
 
             dialog_AlarmForm = new Dialog_AlarmForm("調劑完成", 1500, Color.Green);
             dialog_AlarmForm.ShowDialog();
-            RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
+            //RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
             Function_重置處方();
 
             return orderTClass;
@@ -865,7 +936,8 @@ namespace 中藥調劑系統
                 rJ_Lable_處方資訊_姓名_性別_病歷號.Text = $"-------(-) -----------";
                 rJ_Lable_處方資訊_處方日期.Text = $"----/--/--";
                 rJ_Lable_處方資訊_年齡.Text = $"--歲";
-                
+                rJ_Lable_處方警示.Text = "---------------";
+
             }));
 
         }
@@ -950,6 +1022,8 @@ namespace 中藥調劑系統
         }
         private void SqL_DataGridView_處方內容_RowEnterEvent(object[] RowValue)
         {
+     
+
             string GUID = RowValue[(int)enum_處方內容.GUID].ObjectToString();
             string 藥名 = RowValue[(int)enum_處方內容.藥名].ObjectToString();
             string 藥碼 = RowValue[(int)enum_處方內容.藥碼].ObjectToString();
@@ -1220,6 +1294,22 @@ namespace 中藥調劑系統
             Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
         }
         #endregion
+        private void Button_處方內容_ScrollDown_Click(object sender, EventArgs e)
+        {
+            this.sqL_DataGridView_處方內容.ScrollDown();
+        }
+        private void Button_處方內容_ScrollUp_Click(object sender, EventArgs e)
+        {
+            this.sqL_DataGridView_處方內容.ScrollUp();
+        }
+        private void Button_病患資訊_ScrollDown_Click(object sender, EventArgs e)
+        {
+            this.sqL_DataGridView_病患資訊.ScrollDown();
+        }
+        private void Button_病患資訊_ScrollUp_Click(object sender, EventArgs e)
+        {
+            this.sqL_DataGridView_病患資訊.ScrollUp();
+        }
         public static string RemoveParenthesesContent(string input)
         {
             // 使用正則表達式替換括號及其內部的內容

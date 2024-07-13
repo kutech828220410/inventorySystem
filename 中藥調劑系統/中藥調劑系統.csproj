@@ -312,6 +312,9 @@
     <None Include="Resources\move-to-non-dispensing-data-removebg-preview.png" />
     <None Include="Resources\personnel-information-and-permission-levels-removebg-preview.png" />
     <None Include="Resources\icon-for-searching-medicine-removebg-preview.png" />
+    <None Include="Resources\up_arrow_icon.png" />
+    <None Include="Resources\down_arrow_icon.png" />
+    <None Include="Resources\light-off-removebg-preview.png" />
     <Content Include="中藥調劑系統ICON.ico" />
   </ItemGroup>
   <ItemGroup>

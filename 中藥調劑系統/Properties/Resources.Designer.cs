@@ -133,6 +133,16 @@ namespace 中藥調劑系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap down_arrow_icon {
+            get {
+                object obj = ResourceManager.GetObject("down_arrow_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap EDIT {
             get {
                 object obj = ResourceManager.GetObject("EDIT", resourceCulture);
@@ -156,6 +166,16 @@ namespace 中藥調劑系統.Properties {
         internal static System.Drawing.Bitmap key_512 {
             get {
                 object obj = ResourceManager.GetObject("key-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap light_off_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("light-off-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -226,6 +246,16 @@ namespace 中藥調劑系統.Properties {
         internal static System.Drawing.Bitmap trash_512 {
             get {
                 object obj = ResourceManager.GetObject("trash-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap up_arrow_icon {
+            get {
+                object obj = ResourceManager.GetObject("up_arrow_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

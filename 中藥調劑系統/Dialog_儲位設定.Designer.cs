@@ -136,6 +136,9 @@ namespace 中藥調劑系統
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
+            this.rJ_Button_RowsLED_搜尋 = new MyUI.RJ_Button();
+            this.comboBox_RowsLED_搜尋內容 = new System.Windows.Forms.ComboBox();
+            this.comboBox_RowsLED_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -697,6 +700,9 @@ namespace 中藥調劑系統
             this.rJ_Pannel2.BorderColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel2.BorderRadius = 2;
             this.rJ_Pannel2.BorderSize = 0;
+            this.rJ_Pannel2.Controls.Add(this.rJ_Button_RowsLED_搜尋);
+            this.rJ_Pannel2.Controls.Add(this.comboBox_RowsLED_搜尋內容);
+            this.rJ_Pannel2.Controls.Add(this.comboBox_RowsLED_搜尋條件);
             this.rJ_Pannel2.Controls.Add(this.rJ_Button_RowsLED_清除燈號);
             this.rJ_Pannel2.Controls.Add(this.rJ_RatioButton_儲位資料_RowsLED_紅);
             this.rJ_Pannel2.Controls.Add(this.rJ_RatioButton_儲位資料_RowsLED_白);
@@ -1477,11 +1483,6 @@ namespace 中藥調劑系統
             // 
             this.comboBox_儲架電子紙列表_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
             this.comboBox_儲架電子紙列表_搜尋內容.FormattingEnabled = true;
-            this.comboBox_儲架電子紙列表_搜尋內容.Items.AddRange(new object[] {
-            "藥碼",
-            "藥名",
-            "IP",
-            "區域"});
             this.comboBox_儲架電子紙列表_搜尋內容.Location = new System.Drawing.Point(174, 313);
             this.comboBox_儲架電子紙列表_搜尋內容.Name = "comboBox_儲架電子紙列表_搜尋內容";
             this.comboBox_儲架電子紙列表_搜尋內容.Size = new System.Drawing.Size(291, 39);
@@ -2701,6 +2702,60 @@ namespace 中藥調劑系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
+            // rJ_Button_RowsLED_搜尋
+            // 
+            this.rJ_Button_RowsLED_搜尋.AutoResetState = false;
+            this.rJ_Button_RowsLED_搜尋.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_RowsLED_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_RowsLED_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_RowsLED_搜尋.BorderRadius = 20;
+            this.rJ_Button_RowsLED_搜尋.BorderSize = 0;
+            this.rJ_Button_RowsLED_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_RowsLED_搜尋.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_RowsLED_搜尋.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_RowsLED_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_RowsLED_搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_RowsLED_搜尋.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_搜尋.GUID = "";
+            this.rJ_Button_RowsLED_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_RowsLED_搜尋.Location = new System.Drawing.Point(873, 1);
+            this.rJ_Button_RowsLED_搜尋.Name = "rJ_Button_RowsLED_搜尋";
+            this.rJ_Button_RowsLED_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_RowsLED_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_RowsLED_搜尋.ProhibitionSymbolSize = 30;
+            this.rJ_Button_RowsLED_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_RowsLED_搜尋.ShadowSize = 3;
+            this.rJ_Button_RowsLED_搜尋.ShowLoadingForm = false;
+            this.rJ_Button_RowsLED_搜尋.Size = new System.Drawing.Size(110, 57);
+            this.rJ_Button_RowsLED_搜尋.State = false;
+            this.rJ_Button_RowsLED_搜尋.TabIndex = 127;
+            this.rJ_Button_RowsLED_搜尋.Text = "搜尋";
+            this.rJ_Button_RowsLED_搜尋.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_搜尋.TextHeight = 0;
+            this.rJ_Button_RowsLED_搜尋.UseVisualStyleBackColor = false;
+            // 
+            // comboBox_RowsLED_搜尋內容
+            // 
+            this.comboBox_RowsLED_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.comboBox_RowsLED_搜尋內容.FormattingEnabled = true;
+            this.comboBox_RowsLED_搜尋內容.Location = new System.Drawing.Point(574, 8);
+            this.comboBox_RowsLED_搜尋內容.Name = "comboBox_RowsLED_搜尋內容";
+            this.comboBox_RowsLED_搜尋內容.Size = new System.Drawing.Size(291, 39);
+            this.comboBox_RowsLED_搜尋內容.TabIndex = 126;
+            // 
+            // comboBox_RowsLED_搜尋條件
+            // 
+            this.comboBox_RowsLED_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_RowsLED_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.comboBox_RowsLED_搜尋條件.FormattingEnabled = true;
+            this.comboBox_RowsLED_搜尋條件.Items.AddRange(new object[] {
+            "藥碼",
+            "藥名"});
+            this.comboBox_RowsLED_搜尋條件.Location = new System.Drawing.Point(429, 8);
+            this.comboBox_RowsLED_搜尋條件.Name = "comboBox_RowsLED_搜尋條件";
+            this.comboBox_RowsLED_搜尋條件.Size = new System.Drawing.Size(130, 39);
+            this.comboBox_RowsLED_搜尋條件.TabIndex = 125;
+            // 
             // Dialog_儲位設定
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2868,5 +2923,8 @@ namespace 中藥調劑系統
         private SQLUI.SQL_DataGridView sqL_DataGridView_儲架電子紙列表;
         private System.Windows.Forms.ColorDialog colorDialog;
         private System.Windows.Forms.FontDialog fontDialog;
+        private MyUI.RJ_Button rJ_Button_RowsLED_搜尋;
+        private System.Windows.Forms.ComboBox comboBox_RowsLED_搜尋內容;
+        private System.Windows.Forms.ComboBox comboBox_RowsLED_搜尋條件;
     }
 }
