@@ -395,14 +395,17 @@ namespace 中藥調劑系統
                                     return;
                                 }
                                 string 單位 = list_處方內容_buf[0][(int)enum_處方內容.單位].ObjectToString();
-                                if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.hh;
-                                else if (單位 == "克") enum_Unit_Type = Port.enum_unit_type.g;
-                                else if (單位 == "BTL")
+                                string 藥名 = list_處方內容_buf[0][(int)enum_處方內容.藥名].ObjectToString();
+
+                                if (單位 == "BTL" || 藥名.Contains("BTL") || 藥碼.Contains("BTL"))
                                 {
                                     Voice.MediaPlayAsync($@"{currentDirectory}\此為罐裝調劑.wav");
                                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此為罐裝調劑", 1500);
                                     dialog_AlarmForm.ShowDialog();
                                 }
+                                else if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.hh;
+                                else if (單位 == "克") enum_Unit_Type = Port.enum_unit_type.g;
+                         
                                 else
                                 {
                                     this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
@@ -484,6 +487,7 @@ namespace 中藥調劑系統
                                     dialog_AlarmForm.ShowDialog();
                                     return;
                                 }
+                                string 藥名 = list_處方內容_buf[0][(int)enum_處方內容.藥名].ObjectToString();
                                 string 單位 = list_處方內容_buf[0][(int)enum_處方內容.單位].ObjectToString();
                                 string 頻次 = list_處方內容_buf[0][(int)enum_處方內容.頻次].ObjectToString();
                                 string 現在調劑頻次 = OrderTClass_現在調劑處方.GetCurrentFreq();
@@ -497,15 +501,14 @@ namespace 中藥調劑系統
                                     }
                                 }
 
-
-                                if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.hh;
-                                else if (單位 == "克") enum_Unit_Type = Port.enum_unit_type.g;
-                                else if (單位 == "BTL")
+                                if (單位 == "BTL" || 藥名.Contains("BTL") || 藥碼.Contains("BTL"))
                                 {
                                     Voice.MediaPlayAsync($@"{currentDirectory}\此為罐裝調劑.wav");
                                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此為罐裝調劑", 1500);
                                     dialog_AlarmForm.ShowDialog();
                                 }
+                                else if (單位 == "錢") enum_Unit_Type = Port.enum_unit_type.hh;
+                                else if (單位 == "克") enum_Unit_Type = Port.enum_unit_type.g;                  
                                 else
                                 {
                                     this.sqL_DataGridView_處方內容.SetSelectRow(list_處方內容_buf[0]);
@@ -519,7 +522,7 @@ namespace 中藥調劑系統
                         }
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
 
                 }
@@ -562,13 +565,7 @@ namespace 中藥調劑系統
             orderTClasses.sort(OrderTClassMethod.SortType.批序);
             if (orderTClasses.Count == 0) return null;
 
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < orderTClasses.Count; i++)
-            {
-                object[] value = Funtion_orderTClassesToObject(orderTClasses[i]);
-
-                list_value.Add(value);
-            }
+          
 
             order_value = new object[new enum_病患資訊().GetLength()];
             order_value[(int)enum_病患資訊.PRI_KEY] = orderTClasses[0].PRI_KEY;
@@ -593,10 +590,22 @@ namespace 中藥調劑系統
                     應調 = orderTClasses[i].交易量.ObjectToString().StringToDouble();
                     單位 = orderTClasses[i].劑量單位.ObjectToString();
                     if (單位 == "錢") 應調 *= 3.75;
-                    if (單位 == "BTL") continue;
+                    if (單位 == "BTL" || orderTClasses[i].藥品碼.Contains("BTL") || orderTClasses[i].藥品名稱.Contains("BTL"))
+                    {
+                        orderTClasses.Remove(orderTClasses[i]);
+                        continue;
+                    }
                     總重 += 應調;
                 }
             }
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < orderTClasses.Count; i++)
+            {
+                object[] value = Funtion_orderTClassesToObject(orderTClasses[i]);
+
+                list_value.Add(value);
+            }
+
             OrderTClass orderTClass = orderTClasses[0];
             string 包數 = "";
             if (orderTClass.頻次.ToUpper() == "Q1H") 包數 = "24";
