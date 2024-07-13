@@ -81,6 +81,8 @@ namespace 中藥調劑系統
             IP,
             [Description("名稱,VARCHAR,15,NONE")]
             名稱,
+            [Description("區域,VARCHAR,15,NONE")]
+            區域,
         }
         public enum enum_層架亮燈儲位列表
         {
@@ -142,12 +144,16 @@ namespace 中藥調劑系統
 
 
             Table table_層架亮燈儲位總表 = new Table(new enum_層架亮燈儲位總表());
+            table_層架亮燈儲位總表[enum_層架亮燈儲位總表.區域.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, Main_Form.Function_取得藥品區域名稱().ToArray());
+
             this.sqL_DataGridView_RowsLED_層架列表.RowsHeight = 40;
             this.sqL_DataGridView_RowsLED_層架列表.Init(table_層架亮燈儲位總表);
             this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnVisible(false, new enum_層架亮燈儲位總表().GetEnumNames());
             this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_層架亮燈儲位總表.IP);
             this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_層架亮燈儲位總表.名稱);
+            this.sqL_DataGridView_RowsLED_層架列表.Set_ColumnWidth(180, DataGridViewContentAlignment.MiddleCenter, enum_層架亮燈儲位總表.區域);
             this.sqL_DataGridView_RowsLED_層架列表.RowEnterEvent += SqL_DataGridView_RowsLED_層架列表_RowEnterEvent;
+            this.sqL_DataGridView_RowsLED_層架列表.ComboBoxSelectedIndexChangedEvent += SqL_DataGridView_RowsLED_層架列表_ComboBoxSelectedIndexChangedEvent;
 
             Table table_層架亮燈儲位列表 = new Table(new enum_層架亮燈儲位列表());
             this.sqL_DataGridView_RowsLED_儲位資料.RowsHeight = 40;
@@ -213,6 +219,8 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲架電子紙列表.MouseDown += SqL_DataGridView_儲架電子紙列表_MouseDown;
             this.sqL_DataGridView_儲架電子紙列表.RowEnterEvent += SqL_DataGridView_儲架電子紙列表_RowEnterEvent;
             this.sqL_DataGridView_儲架電子紙列表.DataGridRowsChangeRefEvent += SqL_DataGridView_儲架電子紙列表_DataGridRowsChangeRefEvent;
+            this.sqL_DataGridView_儲架電子紙列表.ComboBoxSelectedIndexChangedEvent += SqL_DataGridView_儲架電子紙列表_ComboBoxSelectedIndexChangedEvent;
+
 
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.MouseDownEvent += RJ_Button_儲架電子紙_藥品資料_搜尋_MouseDownEvent;
             this.rJ_Button_儲架電子紙_藥品資料_填入儲位.MouseDownEvent += RJ_Button_儲架電子紙_藥品資料_填入儲位_MouseDownEvent;
@@ -245,7 +253,11 @@ namespace 中藥調劑系統
             this.Function_儲架電子紙_RefreshUI();
         }
 
- 
+
+
+
+
+
 
         #region Function
         private void Function_層架列表_RefreshUI()
@@ -258,6 +270,7 @@ namespace 中藥調劑系統
                 value[(int)enum_層架亮燈儲位總表.GUID] = rowsLEDs[i].IP;
                 value[(int)enum_層架亮燈儲位總表.IP] = rowsLEDs[i].IP;
                 value[(int)enum_層架亮燈儲位總表.名稱] = rowsLEDs[i].Name;
+                value[(int)enum_層架亮燈儲位總表.區域] = rowsLEDs[i].Area;
                 list_value.Add(value);
             }
             this.sqL_DataGridView_RowsLED_層架列表.RefreshGrid(list_value);
@@ -359,6 +372,21 @@ namespace 中藥調劑系統
             }
 
             this.sqL_DataGridView_RowsLED_儲位資料.RefreshGrid(list_value);
+        }
+        private void SqL_DataGridView_RowsLED_層架列表_ComboBoxSelectedIndexChangedEvent(object sender, string colName, object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_層架亮燈儲位總表.IP].ObjectToString();
+            string 區域 = RowValue[(int)enum_層架亮燈儲位總表.區域].ObjectToString();
+
+            RowsLED rowsLED = Main_Form._rowsLEDUI.SQL_GetRowsLED(IP);
+            if (rowsLED == null)
+            {
+                MyMessageBox.ShowDialog("查無儲位資料");
+                return;
+            }
+            rowsLED.Area = 區域;
+            Main_Form._rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
+            Function_層架列表_RefreshUI();
         }
         private void RJ_Button_RowsLED_新增儲位_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -917,7 +945,21 @@ namespace 中藥調劑系統
                             select temp).ToList();
             }
         }
+        private void SqL_DataGridView_儲架電子紙列表_ComboBoxSelectedIndexChangedEvent(object sender, string colName, object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_儲架電子紙列表.IP].ObjectToString();
+            string 區域 = RowValue[(int)enum_儲架電子紙列表.區域].ObjectToString();
 
+            Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(IP);
+            if (storage == null)
+            {
+                MyMessageBox.ShowDialog("查無儲位資料");
+                return;
+            }
+            storage.Area = 區域;
+            Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+            Function_儲架電子紙_RefreshUI();
+        }
         private void ComboBox_儲架電子紙列表_搜尋條件_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox_儲架電子紙列表_搜尋條件.Text == "區域")

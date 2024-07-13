@@ -178,7 +178,7 @@ namespace 中藥調劑系統
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(4, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1692, 10);
+            this.panel1.Size = new System.Drawing.Size(1892, 10);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -189,7 +189,7 @@ namespace 中藥調劑系統
             this.tabControl1.Location = new System.Drawing.Point(4, 38);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1692, 858);
+            this.tabControl1.Size = new System.Drawing.Size(1892, 858);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -202,7 +202,7 @@ namespace 中藥調劑系統
             this.tabPage1.Controls.Add(this.rJ_Pannel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1684, 832);
+            this.tabPage1.Size = new System.Drawing.Size(1884, 832);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "層架燈";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -214,10 +214,10 @@ namespace 中藥調劑系統
             this.panel2.Controls.Add(this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除);
             this.panel2.Controls.Add(this.sqL_DataGridView_儲位管理_RowsLED_效期及批號);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(937, 481);
+            this.panel2.Location = new System.Drawing.Point(1116, 481);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(3);
-            this.panel2.Size = new System.Drawing.Size(747, 351);
+            this.panel2.Size = new System.Drawing.Size(768, 351);
             this.panel2.TabIndex = 27;
             // 
             // plC_RJ_Button_RowLED_儲位設定_效期及批號_修改
@@ -417,7 +417,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Server = "127.0.0.0";
-            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Size = new System.Drawing.Size(741, 257);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Size = new System.Drawing.Size(762, 257);
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.TabIndex = 28;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.UserName = "root";
@@ -455,7 +455,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_儲位資料.Dock = System.Windows.Forms.DockStyle.Left;
             this.sqL_DataGridView_RowsLED_儲位資料.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_RowsLED_儲位資料.ImageBox = false;
-            this.sqL_DataGridView_RowsLED_儲位資料.Location = new System.Drawing.Point(321, 481);
+            this.sqL_DataGridView_RowsLED_儲位資料.Location = new System.Drawing.Point(500, 481);
             this.sqL_DataGridView_RowsLED_儲位資料.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sqL_DataGridView_RowsLED_儲位資料.Name = "sqL_DataGridView_RowsLED_儲位資料";
             this.sqL_DataGridView_RowsLED_儲位資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
@@ -499,14 +499,14 @@ namespace 中藥調劑系統
             this.rowsLED_Pannel.CurrentRowsDevice = null;
             this.rowsLED_Pannel.CurrentRowsLED = null;
             this.rowsLED_Pannel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rowsLED_Pannel.Location = new System.Drawing.Point(321, 368);
+            this.rowsLED_Pannel.Location = new System.Drawing.Point(500, 368);
             this.rowsLED_Pannel.Maximum = 100;
             this.rowsLED_Pannel.MaxValue = 0;
             this.rowsLED_Pannel.Minimum = 0;
             this.rowsLED_Pannel.MinValue = 0;
             this.rowsLED_Pannel.Name = "rowsLED_Pannel";
             this.rowsLED_Pannel.RowsDeviceGUID = "";
-            this.rowsLED_Pannel.Size = new System.Drawing.Size(1363, 113);
+            this.rowsLED_Pannel.Size = new System.Drawing.Size(1384, 113);
             this.rowsLED_Pannel.SliderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.rowsLED_Pannel.SliderSize = 10;
             this.rowsLED_Pannel.TabIndex = 4;
@@ -524,11 +524,11 @@ namespace 中藥調劑系統
             this.rJ_Pannel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.rJ_Pannel3.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel3.IsSelected = false;
-            this.rJ_Pannel3.Location = new System.Drawing.Point(321, 57);
+            this.rJ_Pannel3.Location = new System.Drawing.Point(500, 57);
             this.rJ_Pannel3.Name = "rJ_Pannel3";
             this.rJ_Pannel3.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel3.ShadowSize = 0;
-            this.rJ_Pannel3.Size = new System.Drawing.Size(1363, 311);
+            this.rJ_Pannel3.Size = new System.Drawing.Size(1384, 311);
             this.rJ_Pannel3.TabIndex = 3;
             // 
             // rJ_Pannel5
@@ -546,7 +546,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel5.Name = "rJ_Pannel5";
             this.rJ_Pannel5.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel5.ShadowSize = 0;
-            this.rJ_Pannel5.Size = new System.Drawing.Size(1363, 241);
+            this.rJ_Pannel5.Size = new System.Drawing.Size(1384, 241);
             this.rJ_Pannel5.TabIndex = 5;
             // 
             // sqL_DataGridView_RowsLED_藥品資料
@@ -586,7 +586,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_藥品資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_RowsLED_藥品資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_RowsLED_藥品資料.Server = "127.0.0.0";
-            this.sqL_DataGridView_RowsLED_藥品資料.Size = new System.Drawing.Size(1363, 241);
+            this.sqL_DataGridView_RowsLED_藥品資料.Size = new System.Drawing.Size(1384, 241);
             this.sqL_DataGridView_RowsLED_藥品資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_RowsLED_藥品資料.TabIndex = 3;
             this.sqL_DataGridView_RowsLED_藥品資料.UserName = "root";
@@ -620,7 +620,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel4.Name = "rJ_Pannel4";
             this.rJ_Pannel4.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel4.ShadowSize = 0;
-            this.rJ_Pannel4.Size = new System.Drawing.Size(1363, 70);
+            this.rJ_Pannel4.Size = new System.Drawing.Size(1384, 70);
             this.rJ_Pannel4.TabIndex = 4;
             // 
             // comboBox_RowsLED_藥品資料_搜尋條件
@@ -714,12 +714,12 @@ namespace 中藥調劑系統
             this.rJ_Pannel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.rJ_Pannel2.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel2.IsSelected = false;
-            this.rJ_Pannel2.Location = new System.Drawing.Point(321, 0);
+            this.rJ_Pannel2.Location = new System.Drawing.Point(500, 0);
             this.rJ_Pannel2.Name = "rJ_Pannel2";
             this.rJ_Pannel2.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.rJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel2.ShadowSize = 0;
-            this.rJ_Pannel2.Size = new System.Drawing.Size(1363, 57);
+            this.rJ_Pannel2.Size = new System.Drawing.Size(1384, 57);
             this.rJ_Pannel2.TabIndex = 2;
             // 
             // rJ_Button_RowsLED_清除燈號
@@ -739,7 +739,7 @@ namespace 中藥調劑系統
             this.rJ_Button_RowsLED_清除燈號.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_RowsLED_清除燈號.GUID = "";
             this.rJ_Button_RowsLED_清除燈號.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_RowsLED_清除燈號.Location = new System.Drawing.Point(1228, 0);
+            this.rJ_Button_RowsLED_清除燈號.Location = new System.Drawing.Point(1249, 0);
             this.rJ_Button_RowsLED_清除燈號.Name = "rJ_Button_RowsLED_清除燈號";
             this.rJ_Button_RowsLED_清除燈號.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_RowsLED_清除燈號.ProhibitionLineWidth = 4;
@@ -936,7 +936,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel1.Name = "rJ_Pannel1";
             this.rJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel1.ShadowSize = 0;
-            this.rJ_Pannel1.Size = new System.Drawing.Size(321, 832);
+            this.rJ_Pannel1.Size = new System.Drawing.Size(500, 832);
             this.rJ_Pannel1.TabIndex = 1;
             // 
             // sqL_DataGridView_RowsLED_層架列表
@@ -976,7 +976,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_層架列表.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_RowsLED_層架列表.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_RowsLED_層架列表.Server = "127.0.0.0";
-            this.sqL_DataGridView_RowsLED_層架列表.Size = new System.Drawing.Size(321, 690);
+            this.sqL_DataGridView_RowsLED_層架列表.Size = new System.Drawing.Size(500, 690);
             this.sqL_DataGridView_RowsLED_層架列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_RowsLED_層架列表.TabIndex = 4;
             this.sqL_DataGridView_RowsLED_層架列表.UserName = "root";
@@ -1001,7 +1001,7 @@ namespace 中藥調劑系統
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 690);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(321, 142);
+            this.panel3.Size = new System.Drawing.Size(500, 142);
             this.panel3.TabIndex = 3;
             // 
             // rJ_Button_RowsLED_儲位名稱_儲存
@@ -2761,7 +2761,7 @@ namespace 中藥調劑系統
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1700, 900);
+            this.ClientSize = new System.Drawing.Size(1900, 900);
             this.ControlBox = true;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
