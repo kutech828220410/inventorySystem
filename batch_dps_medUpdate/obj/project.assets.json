@@ -1155,19 +1155,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HS\\.nuget\\packages\\": {}
+    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HS\\source\\repos\\inventorySystem\\batch_dps_medUpdate\\batch_dps_medUpdate.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\batch_dps_medUpdate\\batch_dps_medUpdate.csproj",
       "projectName": "batch_dps_medUpdate",
-      "projectPath": "C:\\Users\\HS\\source\\repos\\inventorySystem\\batch_dps_medUpdate\\batch_dps_medUpdate.csproj",
-      "packagesPath": "C:\\Users\\HS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HS\\source\\repos\\inventorySystem\\batch_dps_medUpdate\\obj\\",
+      "projectPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\batch_dps_medUpdate\\batch_dps_medUpdate.csproj",
+      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Administrator\\source\\repos\\inventorySystem\\batch_dps_medUpdate\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

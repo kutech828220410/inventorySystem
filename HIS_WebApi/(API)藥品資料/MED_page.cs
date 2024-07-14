@@ -1769,6 +1769,7 @@ namespace HIS_WebApi
                         {
                             object[] value = medClasses_cloud[i].ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
                             value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
+                            value[(int)enum_藥品資料_藥檔資料.圖片網址] = "";
                             list_med_add.Add(value);
                         }
                     }
