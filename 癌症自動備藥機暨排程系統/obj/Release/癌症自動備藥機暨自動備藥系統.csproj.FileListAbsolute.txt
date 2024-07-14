@@ -1625,7 +1625,6 @@ C:\Users\pacsuser\Source\Repos\inventorySystem\癌症自動備藥機暨排程系
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Basic.xml
 C:\Users\pacsuser\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Basic.xml
 C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Microsoft.mshtml.dll
-C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\PopupControl.dll
 C:\Users\hmisa\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\癌症自動備藥機暨排程系統.exe.config
 C:\Users\hmisa\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\癌症自動備藥機暨排程系統.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\癌症自動備藥機暨排程系統.pdb

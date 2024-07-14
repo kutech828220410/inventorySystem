@@ -59,6 +59,8 @@ namespace HIS_DB_Lib
         IP,
         [Description("操作人,VARCHAR,20,None")]
         操作人,
+        [Description("ID,VARCHAR,20,None")]
+        ID,
         [Description("藥師證字號,VARCHAR,20,None")]
         藥師證字號,
         [Description("動作,VARCHAR,20,None")]
@@ -243,6 +245,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("operator")]
         public string 操作人 { get; set; }
+        /// <summary>
+        /// ID
+        /// </summary>
+        [JsonPropertyName("ID")]
+        public string ID { get; set; }
         /// <summary>
         /// 藥師證字號
         /// </summary>

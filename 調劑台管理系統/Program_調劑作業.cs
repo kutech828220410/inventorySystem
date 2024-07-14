@@ -2052,6 +2052,8 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.床號 = 床號;
                     takeMedicineStackClass.開方時間 = 開方時間;
                     takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.ID = ID;
+
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.效期 = 效期;
@@ -2176,6 +2178,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -2274,6 +2277,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -2375,6 +2379,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
+            takeMedicineStackClass.ID = ID;
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
@@ -2458,6 +2463,8 @@ namespace 調劑台管理系統
             takeMedicineStackClass.病人姓名 = 病人姓名;
             takeMedicineStackClass.開方時間 = 開方時間;
             takeMedicineStackClass.操作人 = 操作人;
+            takeMedicineStackClass.ID = ID;
+
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
@@ -4002,10 +4009,12 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.床號 = 床號;
                     takeMedicineStackClass.開方時間 = 開方時間;
                     takeMedicineStackClass.操作人 = 操作人;
+                    takeMedicineStackClass.ID = ID;
                     takeMedicineStackClass.藥師證字號 = 藥師證字號;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.收支原因 = 收支原因;
+                    takeMedicineStackClass.ID = ID;
 
                     if (pLC_Device.Bool == false)
                     {
@@ -4125,6 +4134,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -4223,6 +4233,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -4324,6 +4335,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
+            takeMedicineStackClass.ID = ID;
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
@@ -4410,6 +4422,8 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
+            takeMedicineStackClass.ID = ID;
+
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
@@ -5954,6 +5968,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.收支原因 = 收支原因;
+                    takeMedicineStackClass.ID = ID;
 
                     if (pLC_Device.Bool == false)
                     {
@@ -6074,6 +6089,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -6172,6 +6188,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -6273,6 +6290,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
+            takeMedicineStackClass.ID = ID;
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
@@ -6359,6 +6377,8 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
+            takeMedicineStackClass.ID = ID;
+
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
@@ -7899,6 +7919,7 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.收支原因 = 收支原因;
+                    takeMedicineStackClass.ID = ID;
 
                     if (pLC_Device.Bool == false)
                     {
@@ -8017,6 +8038,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -8115,6 +8137,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
@@ -8216,6 +8239,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
+            takeMedicineStackClass.ID = ID;
 
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
@@ -8302,6 +8326,8 @@ namespace 調劑台管理系統
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
+            takeMedicineStackClass.ID = ID;
+
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
             Console.Write($"新增取藥資料 , 耗時{myTimer.ToString()}\n");
             Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
@@ -8526,6 +8552,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
                 takeMedicineStackClass.收支原因 = 收支原因;
+                takeMedicineStackClass.ID = ID;
 
                 if (flag_雙人覆核)
                 {
@@ -8815,6 +8842,7 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.顏色 = 顏色;
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
+                takeMedicineStackClass.ID = ID;
 
                 this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
                 List_領藥_入出庫資料檢查.RemoveAt(i);
@@ -8915,6 +8943,8 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.總異動量 = 總異動量.ToString();
                 takeMedicineStackClass.效期 = 效期;
                 takeMedicineStackClass.收支原因 = 收支原因;
+                takeMedicineStackClass.ID = ID;
+
                 if (pLC_Device.Bool == false)
                 {
                     if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
@@ -9025,6 +9055,8 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.顏色 = 顏色;
                     takeMedicineStackClass.總異動量 = 總異動量.ToString();
                     takeMedicineStackClass.效期 = 效期;
+                    takeMedicineStackClass.ID = ID;
+
                     if (flag_雙人覆核)
                     {
                         this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);

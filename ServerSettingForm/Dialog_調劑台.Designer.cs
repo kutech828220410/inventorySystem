@@ -45,6 +45,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass14 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass15 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass16 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass17 = new HIS_DB_Lib.ServerSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@ namespace ServerSettingForm
             this.panel_API_URL7 = new ServerSettingForm.Panel_API_URL();
             this.comboBox_單位 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel_API_URL8 = new ServerSettingForm.Panel_API_URL();
             this.SuspendLayout();
             // 
             // label1
@@ -569,12 +571,36 @@ namespace ServerSettingForm
             this.label2.TabIndex = 72;
             this.label2.Text = "單位 :";
             // 
+            // panel_API_URL8
+            // 
+            this.panel_API_URL8.Content = "Order_upload_API";
+            this.panel_API_URL8.Location = new System.Drawing.Point(12, 676);
+            this.panel_API_URL8.Name = "panel_API_URL8";
+            serverSettingClass17.DBName = null;
+            serverSettingClass17.GUID = null;
+            serverSettingClass17.Password = null;
+            serverSettingClass17.Port = null;
+            serverSettingClass17.Server = "";
+            serverSettingClass17.TableName = null;
+            serverSettingClass17.User = null;
+            serverSettingClass17.Value = null;
+            serverSettingClass17.內容 = "Order_upload_API";
+            serverSettingClass17.單位 = null;
+            serverSettingClass17.程式類別 = null;
+            serverSettingClass17.設備名稱 = "";
+            serverSettingClass17.類別 = "調劑台";
+            this.panel_API_URL8.ServerSetting = serverSettingClass17;
+            this.panel_API_URL8.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.調劑台;
+            this.panel_API_URL8.Size = new System.Drawing.Size(864, 36);
+            this.panel_API_URL8.TabIndex = 74;
+            // 
             // Dialog_調劑台
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1801, 970);
+            this.Controls.Add(this.panel_API_URL8);
             this.Controls.Add(this.comboBox_單位);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel_API_URL7);
@@ -642,5 +668,6 @@ namespace ServerSettingForm
         private Panel_API_URL panel_API_URL7;
         private System.Windows.Forms.ComboBox comboBox_單位;
         private System.Windows.Forms.Label label2;
+        private Panel_API_URL panel_API_URL8;
     }
 }

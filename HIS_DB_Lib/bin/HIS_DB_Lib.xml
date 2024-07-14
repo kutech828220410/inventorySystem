@@ -1406,6 +1406,11 @@
             操作人
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.takeMedicineStackClass.藥師證字號">
             <summary>
             藥師證字號

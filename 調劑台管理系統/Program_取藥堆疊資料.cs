@@ -3401,6 +3401,7 @@ namespace 調劑台管理系統
             string 類別 = "";
             string 交易量 = "";
             string 操作人 = "";
+            string ID = "";
             string 病人姓名 = "";
             string 床號 = "";
             string 頻次 = "";
@@ -3442,6 +3443,7 @@ namespace 調劑台管理系統
                 藥袋序號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
                 類別 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.類別].ObjectToString();
                 操作人 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
+                ID = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
                 藥師證字號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.藥師證字號].ObjectToString();
                 總異動量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
                 交易量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString();
@@ -3616,10 +3618,19 @@ namespace 調劑台管理系統
                     if (list_value[m][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
                     list_value[m][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
                     list_value[m][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
+                    list_value[m][(int)enum_醫囑資料.藥師ID] = DateTime.Now.ToDateTimeString_6();
+                    list_value[m][(int)enum_醫囑資料.藥師姓名] = DateTime.Now.ToDateTimeString_6();
                     list_value[m][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
                     list_醫囑資料_ReplaceValue.Add(list_value[m]);
                 }
-                //List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫囑資料>();
+                if(dBConfigClass.Order_upload_ApiURL.StringIsEmpty() == false)
+                {
+                    List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫囑資料>();
+                    returnData returnData = new returnData();
+                    returnData.Data = orderClasses;
+                    Basic.Net.WEBApiPostJsonAsync(dBConfigClass.Order_upload_ApiURL, returnData.JsonSerializationt(), false);
+                }
+              
                 //Console.WriteLine($"{orderClasses.JsonSerializationt()}");
             }
             for (int i = 0; i < list_儲位刷新_藥品碼.Count; i++)

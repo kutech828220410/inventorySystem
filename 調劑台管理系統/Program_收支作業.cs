@@ -718,6 +718,7 @@ namespace 調劑台管理系統
             string 開方時間 = DateTime.Now.ToDateTimeString_6();
             string IP = device.IP;
             string 操作人 = 登入者名稱;
+            string ID = 登入者ID;
             string 顏色 = 登入者顏色;
             string 藥師證字號 = 登入者藥師證字號;
             int 總異動量 = 輸入數量.StringToInt32();
@@ -737,6 +738,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.開方時間 = 開方時間;
             takeMedicineStackClass.收支原因 = 收支原因;
             takeMedicineStackClass.操作人 = 操作人;
+            takeMedicineStackClass.ID = ID;
             takeMedicineStackClass.藥師證字號 = 藥師證字號;
             takeMedicineStackClass.顏色 = 顏色;
             takeMedicineStackClass.總異動量 = 總異動量.ToString();

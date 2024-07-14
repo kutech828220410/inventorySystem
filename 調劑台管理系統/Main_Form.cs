@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.67")]
-[assembly: AssemblyFileVersion("1.2.1.67")]
+[assembly: AssemblyVersion("1.2.1.68")]
+[assembly: AssemblyFileVersion("1.2.1.68")]
 namespace 調劑台管理系統
 {
 
@@ -108,6 +108,7 @@ namespace 調劑台管理系統
             private string api_Server = "";
 
             private string orderApiURL = "";
+            private string order_upload_ApiURL = "";
             private string orderByCodeApiURL = "";
             private string medApiURL = "";
             private string med_Update_ApiURL = "";
@@ -135,11 +136,12 @@ namespace 調劑台管理系統
             public string Web_URL { get => web_URL; set => web_URL = value; }
             [JsonIgnore]
             public string Login_URL { get => login_URL; set => login_URL = value; }
-
-
+            [JsonIgnore]
             public string Med_Update_ApiURL { get => med_Update_ApiURL; set => med_Update_ApiURL = value; }
             [JsonIgnore]
             public string OrderByCodeApiURL { get => orderByCodeApiURL; set => orderByCodeApiURL = value; }
+            [JsonIgnore]
+            public string Order_upload_ApiURL { get => order_upload_ApiURL; set => order_upload_ApiURL = value; }
         }
         private void LoadDBConfig()
         {
@@ -889,6 +891,10 @@ namespace 調劑台管理系統
             if (serverSettingClass != null) dBConfigClass.OrderApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_By_Code_API");
             if (serverSettingClass != null) dBConfigClass.OrderByCodeApiURL = serverSettingClass.Server;
+            serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, "Order_upload_API");
+            if (serverSettingClass != null) dBConfigClass.Order_upload_ApiURL = serverSettingClass.Server;
+
+
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Med_API);
             if (serverSettingClass != null) dBConfigClass.MedApiURL = serverSettingClass.Server;
             serverSettingClass = serverSettingClasses.MyFind(Name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.Website);

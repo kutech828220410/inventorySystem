@@ -232,3 +232,4 @@ C:\Users\hmisa\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中�
 C:\Users\hmisa\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.pdb
 C:\Users\hmisa\Source\Repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Dialog_儲位區域選擇.resources
+C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Dialog_儲位區域選擇.resources
