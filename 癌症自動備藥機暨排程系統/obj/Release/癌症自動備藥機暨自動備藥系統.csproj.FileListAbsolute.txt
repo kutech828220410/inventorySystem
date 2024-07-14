@@ -1810,3 +1810,7 @@ C:\Users\hmisa\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統
 C:\Users\hmisa\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨自動備藥系統.csproj.CopyComplete
 C:\Users\hmisa\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.pdb
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\SunnyUI.dll
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\SunnyUI.Common.dll
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\Basic.xml
+C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\SQLUI.xml

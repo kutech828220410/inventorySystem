@@ -1,5 +1,4 @@
 {
-  "Name": "A5",
-  "Api_Server": "http://127.0.0.1:4433",
-  "Med_Update_ApiURL": ""
+  "Name": "«æ¶E",
+  "Api_Server": "http://192.168.23.54:4433"
 }

@@ -1664,3 +1664,7 @@ C:\Users\hmisa\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Relea
 C:\Users\hmisa\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.csproj.CopyComplete
 C:\Users\hmisa\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\Hospital_Call_Light_System\obj\Release\Hospital_Call_Light_System.pdb
+C:\Users\HS\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\SunnyUI.dll
+C:\Users\HS\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\SunnyUI.Common.dll
+C:\Users\HS\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\Basic.xml
+C:\Users\HS\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Release\SQLUI.xml

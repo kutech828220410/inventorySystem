@@ -276,7 +276,6 @@ C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調�
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_輸入效期.resources
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_輸入藥品碼.resources
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_RFID領退藥頁面.resources
-C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_手動作業.resources
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_手輸醫令.resources
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_收支原因設定.resources
 C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_選擇效期.resources
@@ -868,3 +867,17 @@ C:\Users\hmisa\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\�
 C:\Users\hmisa\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.csproj.CopyComplete
 C:\Users\hmisa\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.pdb
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\bin\Release\Newtonsoft.Json.dll
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\bin\Release\SunnyUI.dll
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\bin\Release\office.dll
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\bin\Release\SunnyUI.Common.dll
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\bin\Release\Basic.xml
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\bin\Release\SQLUI.xml
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_中西藥選擇.resources
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_藥品調出.resources
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_條碼輸入.resources
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_抽屜選擇.resources
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_處方資訊填寫.resources
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_藥品調入.resources
+C:\Users\HS\source\repos\inventorySystem\調劑台管理系統\obj\Release\調劑台管理系統.Dialog_藥品搜尋.resources

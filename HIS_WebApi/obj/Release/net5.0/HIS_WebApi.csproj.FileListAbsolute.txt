@@ -877,14 +877,11 @@ C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\NPOI.Open
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.GenerateResource.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.AssemblyInfoInputs.cache
-C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.AssemblyInfo.cs
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CoreCompileInputs.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\staticwebassets\HIS_WebApi.StaticWebAssets.Manifest.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\staticwebassets\HIS_WebApi.StaticWebAssets.xml
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\scopedcss\bundle\HIS_WebApi.styles.css
-C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.RazorTargetAssemblyInfo.cache
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CopyComplete
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.dll
 C:\Users\HS\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
@@ -3033,3 +3030,6 @@ C:\Users\hmisa\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_We
 C:\Users\hmisa\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
 C:\Users\hmisa\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.pdb
 C:\Users\hmisa\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.genruntimeconfig.cache
+C:\Users\HS\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\IGeekFan.AspNetCore.Knife4jUI.dll
+C:\Users\HS\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\HS\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\zxing.dll

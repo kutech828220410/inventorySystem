@@ -2234,3 +2234,10 @@ C:\Users\hmisa\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-Update
 C:\Users\hmisa\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.csproj.CopyComplete
 C:\Users\hmisa\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\E-UpdateVersion\obj\Release\E-UpdateVersion.pdb
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Newtonsoft.Json.dll
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.dll
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.Common.dll
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.xml
+C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\SQLUI.xml

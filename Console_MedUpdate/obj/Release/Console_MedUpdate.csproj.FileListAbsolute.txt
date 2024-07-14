@@ -608,7 +608,6 @@ C:\Users\useradmin\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Mi
 C:\Users\useradmin\source\repos\inventorySystem\Console_MedUpdate\bin\Release\HIS_DB_Lib.xml
 C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\PopupControl.dll
 C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\CSkin.dll
-C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.Common.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\SunnyUI.dll
@@ -764,3 +763,17 @@ C:\Users\hmisa\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Consol
 C:\Users\hmisa\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.csproj.CopyComplete
 C:\Users\hmisa\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.pdb
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Newtonsoft.Json.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\MyOffice.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.OOXML.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SunnyUI.Common.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\office.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.OpenXml4Net.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.OpenXmlFormats.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\stdole.dll
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Basic.xml
+C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SQLUI.xml

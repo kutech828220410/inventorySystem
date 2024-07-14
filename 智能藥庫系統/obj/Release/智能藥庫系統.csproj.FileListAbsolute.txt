@@ -1429,3 +1429,10 @@ C:\Users\hmisa\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智�
 C:\Users\hmisa\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.csproj.CopyComplete
 C:\Users\hmisa\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\智能藥庫系統\obj\Release\智能藥庫系統.pdb
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\Newtonsoft.Json.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\office.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\SunnyUI.Common.dll
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\Basic.xml
+C:\Users\HS\source\repos\inventorySystem\智能藥庫系統\bin\Release\SQLUI.xml

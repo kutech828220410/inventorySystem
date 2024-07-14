@@ -3443,7 +3443,7 @@ namespace 調劑台管理系統
                 藥袋序號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.藥袋序號].ObjectToString();
                 類別 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.類別].ObjectToString();
                 操作人 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
-                ID = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.操作人].ObjectToString();
+                ID = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.ID].ObjectToString();
                 藥師證字號 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.藥師證字號].ObjectToString();
                 總異動量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString().StringToInt32();
                 交易量 = list_可入賬母資料[i][(int)enum_取藥堆疊母資料.總異動量].ObjectToString();
@@ -3618,18 +3618,12 @@ namespace 調劑台管理系統
                     if (list_value[m][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
                     list_value[m][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
                     list_value[m][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
-                    list_value[m][(int)enum_醫囑資料.藥師ID] = DateTime.Now.ToDateTimeString_6();
-                    list_value[m][(int)enum_醫囑資料.藥師姓名] = DateTime.Now.ToDateTimeString_6();
+                    list_value[m][(int)enum_醫囑資料.藥師ID] = ID;
+                    list_value[m][(int)enum_醫囑資料.藥師姓名] = 操作人;
                     list_value[m][(int)enum_醫囑資料.備註] = $"調劑人[{操作人}]";
                     list_醫囑資料_ReplaceValue.Add(list_value[m]);
                 }
-                if(dBConfigClass.Order_upload_ApiURL.StringIsEmpty() == false)
-                {
-                    List<OrderClass> orderClasses = list_value.SQLToClass<OrderClass, enum_醫囑資料>();
-                    returnData returnData = new returnData();
-                    returnData.Data = orderClasses;
-                    Basic.Net.WEBApiPostJsonAsync(dBConfigClass.Order_upload_ApiURL, returnData.JsonSerializationt(), false);
-                }
+
               
                 //Console.WriteLine($"{orderClasses.JsonSerializationt()}");
             }
@@ -3637,11 +3631,21 @@ namespace 調劑台管理系統
             {
                 Function_儲位刷新(list_儲位刷新_藥品碼[i]);
             }
-
+       
             if (list_交易紀錄新增資料_AddValue.Count > 0) this.sqL_DataGridView_交易記錄查詢.SQL_AddRows(list_交易紀錄新增資料_AddValue, false);
             if (list_取藥堆疊子資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊子資料.SQL_ReplaceExtra(list_取藥堆疊子資料_ReplaceValue, false);
             if (list_取藥堆疊母資料_ReplaceValue.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_ReplaceValue, false);
-            if (list_醫囑資料_ReplaceValue.Count > 0) this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(list_醫囑資料_ReplaceValue, false);
+            if (list_醫囑資料_ReplaceValue.Count > 0)
+            {
+                if (dBConfigClass.Order_upload_ApiURL.StringIsEmpty() == false)
+                {
+                    List<OrderClass> orderClasses = list_醫囑資料_ReplaceValue.SQLToClass<OrderClass, enum_醫囑資料>();
+                    returnData returnData = new returnData();
+                    returnData.Data = orderClasses;
+                    Basic.Net.WEBApiPostJsonAsync(dBConfigClass.Order_upload_ApiURL, returnData.JsonSerializationt(), false);
+                }
+                this.sqL_DataGridView_醫令資料.SQL_ReplaceExtra(list_醫囑資料_ReplaceValue, false);
+            }
             cnt++;
         }
         void cnt_Program_取藥堆疊資料_入賬檢查_等待延遲(ref int cnt)
