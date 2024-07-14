@@ -47,6 +47,9 @@ namespace 中藥調劑系統
             this.rJ_Button_RowsLED_藥品資料_搜尋 = new MyUI.RJ_Button();
             this.textBox_RowsLED_藥品資料_搜尋內容 = new MyUI.RJ_TextBox();
             this.rJ_Pannel2 = new MyUI.RJ_Pannel();
+            this.rJ_Button_RowsLED_搜尋 = new MyUI.RJ_Button();
+            this.comboBox_RowsLED_搜尋內容 = new System.Windows.Forms.ComboBox();
+            this.comboBox_RowsLED_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.rJ_Button_RowsLED_清除燈號 = new MyUI.RJ_Button();
             this.rJ_RatioButton_儲位資料_RowsLED_紅 = new MyUI.RJ_RatioButton();
             this.rJ_RatioButton_儲位資料_RowsLED_白 = new MyUI.RJ_RatioButton();
@@ -136,9 +139,6 @@ namespace 中藥調劑系統
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.fontDialog = new System.Windows.Forms.FontDialog();
-            this.rJ_Button_RowsLED_搜尋 = new MyUI.RJ_Button();
-            this.comboBox_RowsLED_搜尋內容 = new System.Windows.Forms.ComboBox();
-            this.comboBox_RowsLED_搜尋條件 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -722,6 +722,60 @@ namespace 中藥調劑系統
             this.rJ_Pannel2.Size = new System.Drawing.Size(1384, 57);
             this.rJ_Pannel2.TabIndex = 2;
             // 
+            // rJ_Button_RowsLED_搜尋
+            // 
+            this.rJ_Button_RowsLED_搜尋.AutoResetState = false;
+            this.rJ_Button_RowsLED_搜尋.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_RowsLED_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_RowsLED_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_RowsLED_搜尋.BorderRadius = 20;
+            this.rJ_Button_RowsLED_搜尋.BorderSize = 0;
+            this.rJ_Button_RowsLED_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_RowsLED_搜尋.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_RowsLED_搜尋.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_RowsLED_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_RowsLED_搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_RowsLED_搜尋.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_搜尋.GUID = "";
+            this.rJ_Button_RowsLED_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_RowsLED_搜尋.Location = new System.Drawing.Point(873, 1);
+            this.rJ_Button_RowsLED_搜尋.Name = "rJ_Button_RowsLED_搜尋";
+            this.rJ_Button_RowsLED_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_RowsLED_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_RowsLED_搜尋.ProhibitionSymbolSize = 30;
+            this.rJ_Button_RowsLED_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_RowsLED_搜尋.ShadowSize = 3;
+            this.rJ_Button_RowsLED_搜尋.ShowLoadingForm = false;
+            this.rJ_Button_RowsLED_搜尋.Size = new System.Drawing.Size(110, 57);
+            this.rJ_Button_RowsLED_搜尋.State = false;
+            this.rJ_Button_RowsLED_搜尋.TabIndex = 127;
+            this.rJ_Button_RowsLED_搜尋.Text = "搜尋";
+            this.rJ_Button_RowsLED_搜尋.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_搜尋.TextHeight = 0;
+            this.rJ_Button_RowsLED_搜尋.UseVisualStyleBackColor = false;
+            // 
+            // comboBox_RowsLED_搜尋內容
+            // 
+            this.comboBox_RowsLED_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.comboBox_RowsLED_搜尋內容.FormattingEnabled = true;
+            this.comboBox_RowsLED_搜尋內容.Location = new System.Drawing.Point(574, 8);
+            this.comboBox_RowsLED_搜尋內容.Name = "comboBox_RowsLED_搜尋內容";
+            this.comboBox_RowsLED_搜尋內容.Size = new System.Drawing.Size(291, 39);
+            this.comboBox_RowsLED_搜尋內容.TabIndex = 126;
+            // 
+            // comboBox_RowsLED_搜尋條件
+            // 
+            this.comboBox_RowsLED_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_RowsLED_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.comboBox_RowsLED_搜尋條件.FormattingEnabled = true;
+            this.comboBox_RowsLED_搜尋條件.Items.AddRange(new object[] {
+            "藥碼",
+            "藥名"});
+            this.comboBox_RowsLED_搜尋條件.Location = new System.Drawing.Point(429, 8);
+            this.comboBox_RowsLED_搜尋條件.Name = "comboBox_RowsLED_搜尋條件";
+            this.comboBox_RowsLED_搜尋條件.Size = new System.Drawing.Size(130, 39);
+            this.comboBox_RowsLED_搜尋條件.TabIndex = 125;
+            // 
             // rJ_Button_RowsLED_清除燈號
             // 
             this.rJ_Button_RowsLED_清除燈號.AutoResetState = false;
@@ -1130,7 +1184,7 @@ namespace 中藥調劑系統
             this.tabPage2.Controls.Add(this.panel10);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1684, 832);
+            this.tabPage2.Size = new System.Drawing.Size(1884, 832);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "電子紙";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1195,7 +1249,7 @@ namespace 中藥調劑系統
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1684, 373);
+            this.panel10.Size = new System.Drawing.Size(1884, 373);
             this.panel10.TabIndex = 9;
             // 
             // panel4
@@ -1206,7 +1260,7 @@ namespace 中藥調劑系統
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1682, 371);
+            this.panel4.Size = new System.Drawing.Size(1882, 371);
             this.panel4.TabIndex = 3;
             // 
             // panel5
@@ -1217,7 +1271,7 @@ namespace 中藥調劑系統
             this.panel5.Location = new System.Drawing.Point(908, 0);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.panel5.Size = new System.Drawing.Size(772, 369);
+            this.panel5.Size = new System.Drawing.Size(972, 369);
             this.panel5.TabIndex = 10;
             // 
             // panel8
@@ -1227,7 +1281,7 @@ namespace 中藥調劑系統
             this.panel8.Location = new System.Drawing.Point(5, 0);
             this.panel8.Name = "panel8";
             this.panel8.Padding = new System.Windows.Forms.Padding(5);
-            this.panel8.Size = new System.Drawing.Size(767, 299);
+            this.panel8.Size = new System.Drawing.Size(967, 299);
             this.panel8.TabIndex = 6;
             // 
             // sqL_DataGridView_儲架電子紙_藥品資料
@@ -1267,7 +1321,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲架電子紙_藥品資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_儲架電子紙_藥品資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_儲架電子紙_藥品資料.Server = "127.0.0.0";
-            this.sqL_DataGridView_儲架電子紙_藥品資料.Size = new System.Drawing.Size(757, 289);
+            this.sqL_DataGridView_儲架電子紙_藥品資料.Size = new System.Drawing.Size(957, 289);
             this.sqL_DataGridView_儲架電子紙_藥品資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_儲架電子紙_藥品資料.TabIndex = 7;
             this.sqL_DataGridView_儲架電子紙_藥品資料.UserName = "root";
@@ -1300,7 +1354,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel6.Name = "rJ_Pannel6";
             this.rJ_Pannel6.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel6.ShadowSize = 0;
-            this.rJ_Pannel6.Size = new System.Drawing.Size(767, 70);
+            this.rJ_Pannel6.Size = new System.Drawing.Size(967, 70);
             this.rJ_Pannel6.TabIndex = 5;
             // 
             // panel11
@@ -1308,7 +1362,7 @@ namespace 中藥調劑系統
             this.panel11.Controls.Add(this.comboBox_儲架電子紙_藥品資料_搜尋條件);
             this.panel11.Controls.Add(this.textBox_儲架電子紙_藥品資料_搜尋內容);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel11.Location = new System.Drawing.Point(250, 0);
+            this.panel11.Location = new System.Drawing.Point(450, 0);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(382, 70);
             this.panel11.TabIndex = 34;
@@ -1400,7 +1454,7 @@ namespace 中藥調劑系統
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.ForeColor = System.Drawing.Color.White;
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.GUID = "";
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_儲架電子紙_藥品資料_搜尋.Location = new System.Drawing.Point(632, 0);
+            this.rJ_Button_儲架電子紙_藥品資料_搜尋.Location = new System.Drawing.Point(832, 0);
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.Name = "rJ_Button_儲架電子紙_藥品資料_搜尋";
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.ProhibitionBorderLineWidth = 1;
             this.rJ_Button_儲架電子紙_藥品資料_搜尋.ProhibitionLineWidth = 4;
@@ -2701,60 +2755,6 @@ namespace 中藥調劑系統
             // 
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
-            // 
-            // rJ_Button_RowsLED_搜尋
-            // 
-            this.rJ_Button_RowsLED_搜尋.AutoResetState = false;
-            this.rJ_Button_RowsLED_搜尋.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_RowsLED_搜尋.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_RowsLED_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_RowsLED_搜尋.BorderRadius = 20;
-            this.rJ_Button_RowsLED_搜尋.BorderSize = 0;
-            this.rJ_Button_RowsLED_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_RowsLED_搜尋.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_RowsLED_搜尋.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_RowsLED_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_RowsLED_搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_RowsLED_搜尋.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_搜尋.GUID = "";
-            this.rJ_Button_RowsLED_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_RowsLED_搜尋.Location = new System.Drawing.Point(873, 1);
-            this.rJ_Button_RowsLED_搜尋.Name = "rJ_Button_RowsLED_搜尋";
-            this.rJ_Button_RowsLED_搜尋.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_RowsLED_搜尋.ProhibitionLineWidth = 4;
-            this.rJ_Button_RowsLED_搜尋.ProhibitionSymbolSize = 30;
-            this.rJ_Button_RowsLED_搜尋.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_RowsLED_搜尋.ShadowSize = 3;
-            this.rJ_Button_RowsLED_搜尋.ShowLoadingForm = false;
-            this.rJ_Button_RowsLED_搜尋.Size = new System.Drawing.Size(110, 57);
-            this.rJ_Button_RowsLED_搜尋.State = false;
-            this.rJ_Button_RowsLED_搜尋.TabIndex = 127;
-            this.rJ_Button_RowsLED_搜尋.Text = "搜尋";
-            this.rJ_Button_RowsLED_搜尋.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_搜尋.TextHeight = 0;
-            this.rJ_Button_RowsLED_搜尋.UseVisualStyleBackColor = false;
-            // 
-            // comboBox_RowsLED_搜尋內容
-            // 
-            this.comboBox_RowsLED_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.comboBox_RowsLED_搜尋內容.FormattingEnabled = true;
-            this.comboBox_RowsLED_搜尋內容.Location = new System.Drawing.Point(574, 8);
-            this.comboBox_RowsLED_搜尋內容.Name = "comboBox_RowsLED_搜尋內容";
-            this.comboBox_RowsLED_搜尋內容.Size = new System.Drawing.Size(291, 39);
-            this.comboBox_RowsLED_搜尋內容.TabIndex = 126;
-            // 
-            // comboBox_RowsLED_搜尋條件
-            // 
-            this.comboBox_RowsLED_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_RowsLED_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.comboBox_RowsLED_搜尋條件.FormattingEnabled = true;
-            this.comboBox_RowsLED_搜尋條件.Items.AddRange(new object[] {
-            "藥碼",
-            "藥名"});
-            this.comboBox_RowsLED_搜尋條件.Location = new System.Drawing.Point(429, 8);
-            this.comboBox_RowsLED_搜尋條件.Name = "comboBox_RowsLED_搜尋條件";
-            this.comboBox_RowsLED_搜尋條件.Size = new System.Drawing.Size(130, 39);
-            this.comboBox_RowsLED_搜尋條件.TabIndex = 125;
             // 
             // Dialog_儲位設定
             // 

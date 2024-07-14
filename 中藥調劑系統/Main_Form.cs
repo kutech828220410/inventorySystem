@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.21")]
-[assembly: AssemblyFileVersion("1.0.0.21")]
+[assembly: AssemblyVersion("1.0.0.22")]
+[assembly: AssemblyFileVersion("1.0.0.22")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -220,7 +220,7 @@ namespace 中藥調劑系統
             PLC = this.lowerMachine_Panel.GetlowerMachine();
             LoadDBConfig();
             LoadMyConfig();
-            LoadConfig工程模式();
+    
             ApiServerSetting(dBConfigClass.Name);
 
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main, this.plC_ScreenPage_main);

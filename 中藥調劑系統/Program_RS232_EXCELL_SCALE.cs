@@ -58,7 +58,7 @@ namespace 中藥調劑系統
         bool flag_EXCELL_set_sub_current_weight = false;
         private void Program_RS232_EXCELL_SCALE()
         {
-            if(flag_EXCELL_set_sub_current_weight)
+            if(flag_EXCELL_set_sub_current_weight && plC_CheckBox_自動歸零.Checked)
             {
                 System.Threading.Thread.Sleep(100);
                 ExcelScaleLib_Port.set_sub_current_weight();

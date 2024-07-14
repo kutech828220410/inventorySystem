@@ -66,7 +66,7 @@ namespace 中藥調劑系統
                     if (returnData.Code == 200)
                     {
                         Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
-                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, Color.Green);
+                        Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, 0, -(this.Height - 50), Color.Green);
                         dialog_AlarmForm.ShowDialog();
                         this.Invoke(new Action(delegate
                         {
@@ -112,19 +112,19 @@ namespace 中藥調劑系統
             returnData returnData = sessionClass.LoginByID(Main_Form.API_Server, UserID, Password);
             if (returnData == null)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"API連結失敗", 1500);
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"API連結失敗", 1500, 0, -(this.Height - 50));
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
             if(returnData.Code != 200)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"{returnData.Result}", 1500);
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"{returnData.Result}", 1500, 0, -(this.Height - 50));
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
             if(returnData.Data == null)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"API連結失敗", 1500);
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"API連結失敗", 1500, 0, -(this.Height - 50));
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
@@ -132,7 +132,8 @@ namespace 中藥調劑系統
 
             if (returnData.Code == 200)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, Color.Green);
+                Voice.MediaPlayAsync($@"{Main_Form.currentDirectory}\登入成功.wav");
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{Value.Name}] 登入成功", 1500, 0, -(this.Height - 50), Color.Green);
                 dialog_AlarmForm.ShowDialog();
             }
             this.Invoke(new Action(delegate 

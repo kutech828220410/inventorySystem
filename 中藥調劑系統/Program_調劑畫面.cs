@@ -121,8 +121,6 @@ namespace 中藥調劑系統
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
 
-
-
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
@@ -275,13 +273,13 @@ namespace 中藥調劑系統
                             {
                                 list_value_temp.Add(list_value_temp_buf[0]);
                             }
+                            else
+                            {
+                                list_value_delete.Add(list_value_temp_buf[0]);
+                            }
                         }
                        
-                    }
-
-                
-         
-                
+                    }           
                 }
             }
 
@@ -364,6 +362,7 @@ namespace 中藥調劑系統
 
         }
 
+        private bool flag_MySerialPort_Scanner01_enable = true;
         private void Program_調劑畫面()
         {
             if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 1;
@@ -375,6 +374,7 @@ namespace 中藥調劑系統
      
                 try
                 {
+                    if (flag_MySerialPort_Scanner01_enable == false) return;
                     string text = MySerialPort_Scanner01.ReadString();
                     if (text.StringIsEmpty()) return;
                     System.Threading.Thread.Sleep(50);
@@ -384,10 +384,20 @@ namespace 中藥調劑系統
                     text = text.Replace("\n", "");
                     text = text.Replace("\r", "");
                     List<OrderClass> orderClasses = Funtion_醫令資料_API呼叫(text);
+                    flag_MySerialPort_Scanner01_enable = false;
+                    Task.Run(new Action(delegate 
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        MySerialPort_Scanner01.ClearReadByte();
+                        flag_MySerialPort_Scanner01_enable = true;
+                    }));
+
                     if (orderClasses != null && orderClasses.Count != 0)
                     {
                         if (this.sqL_DataGridView_病患資訊.Get_All_Select_RowsValues().Count > 0)
                         {
+                            Voice voice = new Voice();
+                            voice.SpeakOnTask(RemoveParenthesesContent($"處方已選擇,請先離開處方"));
                             Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方已選擇,請先離開處方", 1000);
                             dialog_AlarmForm.ShowDialog();
                             return;
@@ -413,6 +423,8 @@ namespace 中藥調劑系統
                 
                             if (list_處方內容_buf.Count == 0)
                             {
+                                Voice voice = new Voice();
+                                voice.SpeakOnTask(RemoveParenthesesContent($"處方無此條碼藥品"));
                                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方無此條碼藥品", 1500);
                                 dialog_AlarmForm.ShowDialog();
                                 return;
@@ -434,7 +446,8 @@ namespace 中藥調劑系統
 
                                 if (list_處方內容_buf[0][(int)enum_處方內容.實調].ObjectToString().StringIsDouble())
                                 {
-                                    Voice.MediaPlayAsync($@"{currentDirectory}\此藥品已調劑.wav");
+                                    Voice voice = new Voice();
+                                    voice.SpeakOnTask(RemoveParenthesesContent($"此藥品已調劑"));
                                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此藥品已調劑", 1500);
                                     dialog_AlarmForm.ShowDialog();
                                     return;
@@ -473,6 +486,8 @@ namespace 中藥調劑系統
                                 {
                                     if (頻次 != 現在調劑頻次)
                                     {
+                                        Voice voice = new Voice();
+                                        voice.SpeakOnTask(RemoveParenthesesContent($"[{現在調劑頻次}]未完成"));
                                         Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{現在調劑頻次}]未完成", 1500);
                                         dialog_AlarmForm.ShowDialog();
                                         return;
@@ -504,7 +519,8 @@ namespace 中藥調劑系統
                                     if (實調 < 應調_L || 實調 > 應調_H)
                                     {
 
-
+                                        Voice voice = new Voice();
+                                        voice.SpeakOnTask(RemoveParenthesesContent($"秤重範圍異常,是否完成調劑"));
                                         if (MyMessageBox.ShowDialog("秤重範圍異常,是否完成調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) == DialogResult.Yes)
                                         {
                                             Funtion_調劑完成(GUID, (實調 * -1).ToString(), "");
@@ -540,6 +556,8 @@ namespace 中藥調劑系統
                                 {
                                     if (頻次 != 現在調劑頻次)
                                     {
+                                        Voice voice = new Voice();
+                                        voice.SpeakOnTask(RemoveParenthesesContent($"[{現在調劑頻次}]頻次未完成"));
                                         Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{現在調劑頻次}]頻次未完成", 1500);
                                         dialog_AlarmForm.ShowDialog();
                                         return;
@@ -1035,6 +1053,8 @@ namespace 中藥調劑系統
             {
                 if (頻次 != 現在調劑頻次)
                 {
+                    Voice voice = new Voice();
+                    voice.SpeakOnTask(RemoveParenthesesContent($"[{現在調劑頻次}]頻次未完成"));
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{現在調劑頻次}]頻次未完成", 1500);
                     dialog_AlarmForm.ShowDialog();
                     this.sqL_DataGridView_處方內容.ClearSelection();
@@ -1052,6 +1072,8 @@ namespace 中藥調劑系統
                 {
                     if (order_current_row[(int)enum_處方內容.實調].ObjectToString().StringIsDouble() == false)
                     {
+                        Voice voice = new Voice();
+                        voice.SpeakOnTask(RemoveParenthesesContent("未調劑完成,是否跳至其他藥品調劑?"));
                         if (MyMessageBox.ShowDialog($"{ order_current_row[(int)enum_處方內容.藥名].ObjectToString()} 未調劑完成,是否跳至其他藥品調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
                         {
                             RJ_Button_調劑畫面_全滅_MouseDownEvent(null);

@@ -175,6 +175,12 @@
     <Compile Include="Dialog_人員資料_新增.Designer.cs">
       <DependentUpon>Dialog_人員資料_新增.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_儲位區域選擇.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_儲位區域選擇.Designer.cs">
+      <DependentUpon>Dialog_儲位區域選擇.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_儲位設定.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_人員資料_新增.resx">
       <DependentUpon>Dialog_人員資料_新增.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_儲位區域選擇.resx">
+      <DependentUpon>Dialog_儲位區域選擇.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_儲位設定.resx">
       <DependentUpon>Dialog_儲位設定.cs</DependentUpon>
