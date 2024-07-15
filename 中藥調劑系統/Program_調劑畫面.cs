@@ -669,12 +669,13 @@ namespace 中藥調劑系統
                     {
                         orderTClasses.Remove(orderTClasses[i]);
                         flag_BTL = true;
-                   
-                     
+
+                        Funtion_調劑完成(orderTClasses[i].GUID, "", "");
                         continue;
                     }
                     if ( orderTClasses[i].藥品名稱.Contains("水劑處方"))
                     {
+                        Funtion_調劑完成(orderTClasses[i].GUID, "", "");
                         orderTClasses.Remove(orderTClasses[i]);
                         flag_BTL = true;
 
