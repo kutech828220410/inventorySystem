@@ -137,6 +137,7 @@ namespace 中藥調劑系統
             List<object[]> list_value_temp = new List<object[]>();
             List<object[]> list_value_add = new List<object[]>();
             List<object[]> list_value_delete = new List<object[]>();
+            List<object[]> list_value_刪除已調配處方 = new List<object[]>();
             List<object[]> list_value_replace = new List<object[]>();
             List<object[]> list_value_buf = new List<object[]>();
             List<object[]> list_病患資訊 = this.sqL_DataGridView_病患資訊.GetAllRows();
@@ -313,7 +314,7 @@ namespace 中藥調劑系統
                     {
 
                         list_病患資訊_buf.Sort(new ICP_病患資訊_升序());
-                        list_value_delete.Add(list_病患資訊_buf[0]);
+                        list_value_刪除已調配處方.Add(list_病患資訊_buf[0]);
                     }
                 }
 
@@ -354,6 +355,7 @@ namespace 中藥調劑系統
             }
             if (list_value_add.Count > 0) this.sqL_DataGridView_病患資訊.AddRows(list_value_add, true);
             if (list_value_delete.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_delete, true);
+            if (list_value_刪除已調配處方.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_刪除已調配處方, true);
             if (order_病患資訊_再次調劑 != null)
             {
                 this.sqL_DataGridView_病患資訊.SetSelectRow(order_病患資訊_再次調劑);
@@ -361,8 +363,8 @@ namespace 中藥調劑系統
             }
 
         }
-
         private bool flag_MySerialPort_Scanner01_enable = true;
+        private MyTimer myTimer_MySerialPort_Scanner01 = new MyTimer();
         private void Program_調劑畫面()
         {
             if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 1;
@@ -374,6 +376,16 @@ namespace 中藥調劑系統
      
                 try
                 {
+                    if (flag_MySerialPort_Scanner01_enable == true)
+                    {
+                        myTimer_MySerialPort_Scanner01.TickStop();
+                        myTimer_MySerialPort_Scanner01.StartTickTime(1000);
+                    }
+                    if(myTimer_MySerialPort_Scanner01.IsTimeOut())
+                    {
+                        flag_MySerialPort_Scanner01_enable = true;
+                        MySerialPort_Scanner01.ClearReadByte();
+                    }
                     if (flag_MySerialPort_Scanner01_enable == false) return;
                     string text = MySerialPort_Scanner01.ReadString();
                     if (text.StringIsEmpty()) return;
@@ -383,14 +395,10 @@ namespace 中藥調劑系統
                     text = text.Replace("\0", "");
                     text = text.Replace("\n", "");
                     text = text.Replace("\r", "");
+                    Console.WriteLine($"接收到資料 : {text}");
                     List<OrderClass> orderClasses = Funtion_醫令資料_API呼叫(text);
                     flag_MySerialPort_Scanner01_enable = false;
-                    Task.Run(new Action(delegate 
-                    {
-                        System.Threading.Thread.Sleep(1000);
-                        MySerialPort_Scanner01.ClearReadByte();
-                        flag_MySerialPort_Scanner01_enable = true;
-                    }));
+     
 
                     if (orderClasses != null && orderClasses.Count != 0)
                     {
