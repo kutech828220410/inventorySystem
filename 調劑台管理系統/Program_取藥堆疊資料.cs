@@ -3615,7 +3615,7 @@ namespace 調劑台管理系統
                 if (list_value.Count == 0) continue;
                 for (int m = 0; m < list_value.Count; m++)
                 {
-                    if (list_value[m][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
+                    //if (list_value[m][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName()) continue;
                     list_value[m][(int)enum_醫囑資料.狀態] = enum_醫囑資料_狀態.已過帳.GetEnumName();
                     list_value[m][(int)enum_醫囑資料.過帳時間] = DateTime.Now.ToDateTimeString_6();
                     list_value[m][(int)enum_醫囑資料.藥師ID] = ID;
