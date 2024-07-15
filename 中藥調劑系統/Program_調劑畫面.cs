@@ -656,6 +656,7 @@ namespace 中藥調劑系統
             string 單位 = "";
             bool flag_飲片調劑 = false;
             bool flag_BTL = false;
+            bool flag_水劑處方待製 = false;
             for (int i = 0; i < orderTClasses.Count; i++)
             {
 
@@ -672,7 +673,15 @@ namespace 中藥調劑系統
                      
                         continue;
                     }
-                   
+                    if ( orderTClasses[i].藥品名稱.Contains("水劑處方"))
+                    {
+                        orderTClasses.Remove(orderTClasses[i]);
+                        flag_BTL = true;
+
+
+                        continue;
+                    }
+
                     總重 += 應調;
                 }
             }
@@ -682,6 +691,15 @@ namespace 中藥調劑系統
                 {
                     rJ_Lable_處方警示.Text = "此為罐裝調劑";
                     Voice.MediaPlayAsync($@"{currentDirectory}\此為罐裝調劑.wav");
+                }));
+            }
+            if (flag_水劑處方待製)
+            {
+                this.Invoke(new Action(delegate
+                {
+                    rJ_Lable_處方警示.Text = "水劑處方待製)";
+                    Voice voice = new Voice();
+                    voice.SpeakOnTask(RemoveParenthesesContent($"水劑處方待製"));
                 }));
             }
             else
