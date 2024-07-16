@@ -667,10 +667,11 @@ namespace 中藥調劑系統
                     if (單位 == "錢") flag_飲片調劑 = true;
                     if (單位 == "BTL" || orderTClasses[i].藥品碼.Contains("BTL") || orderTClasses[i].藥品名稱.Contains("BTL"))
                     {
+                        Funtion_調劑完成(orderTClasses[i].GUID, "", "");
+                      
                         orderTClasses.Remove(orderTClasses[i]);
                         flag_BTL = true;
 
-                        Funtion_調劑完成(orderTClasses[i].GUID, "", "");
                         continue;
                     }
                     if ( orderTClasses[i].藥品名稱.Contains("水劑處方"))
