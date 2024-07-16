@@ -1,7 +1,6 @@
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\中藥調劑系統.exe.config
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\中藥調劑系統.exe
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Release\中藥調劑系統.pdb
-C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Properties.Resources.resources
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.csproj.GenerateResource.cache
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.csproj.CoreCompileInputs.cache
@@ -391,3 +390,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\中藥調劑系統\obj\Re
 C:\Users\hsonds01\source\repos\inventorySystem20231119\中藥調劑系統\obj\Release\中藥調劑系統.csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem20231119\中藥調劑系統\obj\Release\中藥調劑系統.exe
 C:\Users\hsonds01\source\repos\inventorySystem20231119\中藥調劑系統\obj\Release\中藥調劑系統.pdb
+C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.csproj.AssemblyReference.cache

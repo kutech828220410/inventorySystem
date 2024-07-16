@@ -210,7 +210,7 @@ namespace 中藥調劑系統
                     {
                         處方類型 = "飲片";
                     }
-                    else if (packages[0] == "克")
+                    else
                     {
                         處方類型 = "科中";
                     }
@@ -598,8 +598,6 @@ namespace 中藥調劑系統
 
                 }
                
-
-
             }
 
         }
@@ -667,8 +665,10 @@ namespace 中藥調劑系統
                     if (單位 == "錢") flag_飲片調劑 = true;
                     if (單位 == "BTL" || orderTClasses[i].藥品碼.Contains("BTL") || orderTClasses[i].藥品名稱.Contains("BTL"))
                     {
-                        Funtion_調劑完成(orderTClasses[i].GUID, "", "");
-                      
+                        orderTClasses[i].實際調劑量 = "1";
+                        orderTClasses[i].過帳時間 = DateTime.Now.ToDateTimeString_6();
+                        OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClasses[i]);
+
                         orderTClasses.Remove(orderTClasses[i]);
                         flag_BTL = true;
 
@@ -676,9 +676,11 @@ namespace 中藥調劑系統
                     }
                     if ( orderTClasses[i].藥品名稱.Contains("水劑處方"))
                     {
-                        Funtion_調劑完成(orderTClasses[i].GUID, "", "");
+                        orderTClasses[i].實際調劑量 = "1";
+                        orderTClasses[i].過帳時間 = DateTime.Now.ToDateTimeString_6();
+                        OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClasses[i]);
                         orderTClasses.Remove(orderTClasses[i]);
-                        flag_BTL = true;
+                        flag_水劑處方待製 = true;
 
 
                         continue;
@@ -695,7 +697,7 @@ namespace 中藥調劑系統
                     Voice.MediaPlayAsync($@"{currentDirectory}\此為罐裝調劑.wav");
                 }));
             }
-            if (flag_水劑處方待製)
+            else if (flag_水劑處方待製)
             {
                 this.Invoke(new Action(delegate
                 {
@@ -706,7 +708,11 @@ namespace 中藥調劑系統
             }
             else
             {
-                rJ_Lable_處方警示.Text = "---------------";
+                this.Invoke(new Action(delegate
+                {
+                    rJ_Lable_處方警示.Text = "---------------";
+                }));
+          
             }
             if (總重 < 0) 總重 *= -1;
             List<object[]> list_value = new List<object[]>();
@@ -869,7 +875,11 @@ namespace 中藥調劑系統
             value[(int)enum_處方內容.服用方法] = orderTClass.頻次;
             return value;
         }
-        private OrderTClass Funtion_調劑完成(string GUID , string 實調 , string 備註)
+        private OrderTClass Funtion_調劑完成(string GUID, string 實調, string 備註 )
+        {
+            return Funtion_調劑完成(GUID, 實調, 備註, true);
+        }
+        private OrderTClass Funtion_調劑完成(string GUID , string 實調 , string 備註 ,bool flag_更新處方內容)
         {
             Dialog_AlarmForm dialog_AlarmForm;
             OrderTClass orderTClass = OrderTClass.get_by_guid(Main_Form.API_Server, GUID);
@@ -913,9 +923,9 @@ namespace 中藥調劑系統
             transactionsClass.藥袋序號 = orderTClass.PRI_KEY;
             transactionsClass.備註 = orderTClass.備註;
             transactionsClass.add(Main_Form.API_Server, transactionsClass, Main_Form.ServerName, Main_Form.ServerType);
-            Function_更新處方內容(orderTClass.PRI_KEY);
+            if (flag_更新處方內容) Function_更新處方內容(orderTClass.PRI_KEY);
 
-            if(OrderTClass_現在調劑處方.GetFreqIsDone(orderTClass.頻次))
+            if (OrderTClass_現在調劑處方.GetFreqIsDone(orderTClass.頻次))
             {
                 dialog_AlarmForm = new Dialog_AlarmForm($"[{orderTClass.頻次}]調劑完成", 1000 , Color.Green);
                 dialog_AlarmForm.ShowDialog();
@@ -928,7 +938,10 @@ namespace 中藥調劑系統
             List<object[]> list_處方內容 = this.sqL_DataGridView_處方內容.GetAllRows();
             for (int i = 0; i < list_處方內容.Count; i++)
             {
-                if (list_處方內容[i][(int)enum_處方內容.實調].ObjectToString().StringIsDouble() == false) return orderTClass;
+                if (list_處方內容[i][(int)enum_處方內容.實調].ObjectToString().StringIsDouble() == false)
+                {
+                    return orderTClass;
+                }
             }
             this.sqL_DataGridView_處方內容.ClearGrid();
 
