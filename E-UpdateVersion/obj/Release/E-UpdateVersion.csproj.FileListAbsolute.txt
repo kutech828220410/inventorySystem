@@ -2241,3 +2241,9 @@ C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\SunnyUI.Com
 C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\office.dll
 C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\Basic.xml
 C:\Users\HS\source\repos\inventorySystem\E-UpdateVersion\bin\Release\SQLUI.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\Newtonsoft.Json.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\office.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\stdole.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\Basic.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\E-UpdateVersion\bin\Release\SQLUI.xml

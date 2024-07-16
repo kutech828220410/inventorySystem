@@ -30,6 +30,11 @@ namespace 調劑台管理系統
     }
     public partial class Main_Form : Form
     {
+        public static StorageUI_EPD_266 _storageUI_EPD_266 = null;
+        public static StorageUI_WT32 _storageUI_WT32 = null;
+        public static DrawerUI_EPD_583 _drawerUI_EPD_583 = null;
+
+
         public void Function_從SQL取得儲位到入賬資料(string 藥品碼)
         {
             List<object> list_value = new List<object>();
@@ -1281,7 +1286,10 @@ namespace 調劑台管理系統
                         if (storage != null)
                         {
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock) list_lock_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
+                            {
+                                list_lock_IP.Add(IP);
+                            }
                         }
                     }
                     else if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
@@ -1290,7 +1298,10 @@ namespace 調劑台管理系統
                         if (box != null)
                         {
                             list_IP.Add(IP);
-                            if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock) list_lock_IP.Add(IP);
+                            if (device.DeviceType == DeviceType.EPD583 || device.DeviceType == DeviceType.EPD583_lock)
+                            {
+                                list_lock_IP.Add(IP);
+                            }
                         }
                     }
                     else if (device.DeviceType == DeviceType.EPD1020 || device.DeviceType == DeviceType.EPD1020_lock)
@@ -1465,7 +1476,40 @@ namespace 調劑台管理系統
      
             return Code;
         }
+        static public void Function_抽屜解鎖(List<string> list_IP)
+        {
+            List<Task> tasks = new List<Task>();
+            foreach(string IP in list_IP)
+            {
+                string ip = IP;
+                tasks.Add(Task.Run(new Action(delegate 
+                {             
+                    Storage storage_EPD_266 = List_EPD266_本地資料.SortByIP(ip);
+                    if (storage_EPD_266 != null)
+                    {
+                        _storageUI_EPD_266.Set_LockOpen(storage_EPD_266);
+                        return;
+                    }
+                    Storage storageUI_WT32 = List_Pannel35_本地資料.SortByIP(ip);
+                    if (storage_EPD_266 != null)
+                    {
+                        _storageUI_WT32.Set_LockOpen(storageUI_WT32);
+                        return;
+                    }
+                    Drawer drawer_EPD583 = List_EPD583_雲端資料.SortByIP(IP);
+                    if (drawer_EPD583 != null)
+                    {
+                        _drawerUI_EPD_583.Set_LockOpen(drawer_EPD583);
+                        return;
+                    }
 
+                })));
+          
+
+
+            }
+            Task.WhenAll(tasks).Wait();
+        }
   
         static public string Function_ReadBacodeScanner01()
         {

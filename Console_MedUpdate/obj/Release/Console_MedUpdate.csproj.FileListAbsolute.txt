@@ -495,7 +495,6 @@ C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Releas
 C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\bin\Release\CSkin.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\PopupControl.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\CSkin.dll
-C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\Microsoft.mshtml.dll
 C:\inventorySystem\Console_MedUpdate\bin\Release\Console_MedUpdate.exe.config
 C:\inventorySystem\Console_MedUpdate\bin\Release\Console_MedUpdate.exe
 C:\inventorySystem\Console_MedUpdate\bin\Release\Console_MedUpdate.pdb
@@ -777,3 +776,15 @@ C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\NPOI.Open
 C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\stdole.dll
 C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Basic.xml
 C:\Users\HS\source\repos\inventorySystem\Console_MedUpdate\bin\Release\SQLUI.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\Newtonsoft.Json.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\MyOffice.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\NPOI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\NPOI.OOXML.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\office.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\NPOI.OpenXml4Net.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\NPOI.OpenXmlFormats.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\stdole.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\Basic.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\SQLUI.xml

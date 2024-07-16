@@ -1408,3 +1408,9 @@ C:\Users\hmisa\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務�
 C:\Users\hmisa\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送櫃.csproj.CopyComplete
 C:\Users\hmisa\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.exe
 C:\Users\hmisa\Source\Repos\inventorySystem\勤務傳送櫃\obj\Release\勤務傳送系統.pdb
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\Newtonsoft.Json.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\office.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\stdole.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\Basic.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\勤務傳送櫃\bin\Release\SQLUI.xml

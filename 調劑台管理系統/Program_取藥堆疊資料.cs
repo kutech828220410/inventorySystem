@@ -268,7 +268,7 @@ namespace 調劑台管理系統
                 Console.WriteLine($"----------------------------------------------");
 
             }
-
+            List<string> list_lock_IP = new List<string>();
             for (int i = 0; i < list_藥品碼.Count; i++)
             {
                 string 藥品碼 = list_藥品碼[i];
@@ -280,10 +280,12 @@ namespace 調劑台管理系統
                 {
                     顏色 = takeMedicineStackClasses_buf[0].顏色;
                 }
-                this.Function_儲位亮燈(藥品碼, 顏色.ToColor());
+                this.Function_儲位亮燈(藥品碼, 顏色.ToColor() , ref list_lock_IP);
             }
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();
+
+            Function_抽屜解鎖(list_lock_IP);
 
             if (list_堆疊母資料_add.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
 

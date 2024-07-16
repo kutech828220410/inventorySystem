@@ -464,8 +464,6 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_DB_Lib\obj\Release\HI
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_DB_Lib\obj\Release\HIS_DB_Lib.pdb
 C:\Users\HS\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\PopupControl.dll
-C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\CSkin.dll
-C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\Microsoft.mshtml.dll
 C:\Users\User\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.dll.config
 C:\Users\User\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.xml
 C:\Users\User\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\HIS_DB_Lib.dll
@@ -736,3 +734,17 @@ C:\Users\HS\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\SunnyUI.Common.d
 C:\Users\HS\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\stdole.dll
 C:\Users\HS\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.xml
 C:\Users\HS\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\SQLUI.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\H_Pannel_lib.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\MyOffice.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\NPOI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\NPOI.OOXML.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\NPOI.OpenXml4Net.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\NPOI.OpenXmlFormats.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\Newtonsoft.Json.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\zxing.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\ICSharpCode.SharpZipLib.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\office.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\stdole.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\Basic.xml
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_DB_Lib\bin\Release\SQLUI.xml

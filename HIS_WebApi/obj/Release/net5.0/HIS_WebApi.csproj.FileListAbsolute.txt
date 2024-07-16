@@ -2039,15 +2039,12 @@ C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\bin\Release\ne
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.Properties.Resources.resources
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.GenerateResource.cache
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.AssemblyInfoInputs.cache
-C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.AssemblyInfo.cs
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CoreCompileInputs.cache
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\staticwebassets\HIS_WebApi.StaticWebAssets.Manifest.cache
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\staticwebassets\HIS_WebApi.StaticWebAssets.xml
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\scopedcss\bundle\HIS_WebApi.styles.css
-C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.RazorTargetAssemblyInfo.cache
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.csproj.CopyComplete
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\HIS_WebApi.dll
 C:\Users\hsonds01\Source\Repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\ref\HIS_WebApi.dll
@@ -3033,3 +3030,5 @@ C:\Users\hmisa\Source\Repos\inventorySystem\HIS_WebApi\obj\Release\net5.0\HIS_We
 C:\Users\HS\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\IGeekFan.AspNetCore.Knife4jUI.dll
 C:\Users\HS\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\HS\source\repos\inventorySystem\HIS_WebApi\bin\Release\net5.0\zxing.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\bin\Release\net5.0\IGeekFan.AspNetCore.Knife4jUI.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\bin\Release\net5.0\Swashbuckle.AspNetCore.Annotations.dll

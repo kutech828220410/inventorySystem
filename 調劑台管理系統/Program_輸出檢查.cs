@@ -59,7 +59,7 @@ namespace 調劑台管理系統
 
             this.輸出入檢查_蜂鳴器輸出 = new MyThread();
             this.輸出入檢查_蜂鳴器輸出.Add_Method(this.sub_Program_輸出入檢查_蜂鳴器輸出);
-            this.輸出入檢查_蜂鳴器輸出.SetSleepTime(50);
+            this.輸出入檢查_蜂鳴器輸出.SetSleepTime(100);
             this.輸出入檢查_蜂鳴器輸出.AutoRun(true);
             this.輸出入檢查_蜂鳴器輸出.AutoStop(false);
             this.輸出入檢查_蜂鳴器輸出.Trigger();
@@ -666,10 +666,6 @@ namespace 調劑台管理系統
         List<object[]> list_輸出入檢查_蜂鳴器輸出_特殊輸出表 = new List<object[]>();
         MyTimer MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間 = new MyTimer();
         MyTimer MyTimer_輸出入檢查_蜂鳴器輸出_語音時間 = new MyTimer();
-        string PLC_輸出入檢查_蜂鳴器輸出_IP = "";
-        string PLC_輸出入檢查_蜂鳴器輸出_PINNum = "";
-        object PLC_輸出入檢查_蜂鳴器輸出_輸出裝置;
-        bool flag_輸出入檢查_蜂鳴器輸出 = false;
         int cnt_Program_輸出入檢查_蜂鳴器輸出 = 65534;
         void sub_Program_輸出入檢查_蜂鳴器輸出()
         {
@@ -715,12 +711,8 @@ namespace 調劑台管理系統
             if (!PLC_Device_輸出入檢查_蜂鳴器輸出.Bool) cnt = 65500;
         }
         void cnt_Program_輸出入檢查_蜂鳴器輸出_初始化(ref int cnt)
-        {
-        
-            Pannel_Locker.AlarmTimeOut = PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴開始時間.Value;
-
-      
-
+        {      
+            Pannel_Locker.AlarmTimeOut = PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴開始時間.Value; 
             cnt++;
         }
         void cnt_Program_輸出入檢查_蜂鳴器輸出_尋找輸出位置(ref int cnt)
@@ -731,7 +723,6 @@ namespace 調劑台管理系統
         void cnt_Program_輸出入檢查_蜂鳴器輸出_檢查抽屜異常(ref int cnt)
         {
             bool flag_Alarm = true;
-
             for (int i = 0; i < List_Locker.Count; i++)
             {
                 if (List_Locker[i].AlarmEnable)
@@ -743,7 +734,6 @@ namespace 調劑台管理系統
                     }
                 }
             }
-
             if (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
             {
                 MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.TickStop();
@@ -768,67 +758,60 @@ namespace 調劑台管理系統
                 MyTimer_輸出入檢查_蜂鳴器輸出_語音時間.StartTickTime(PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value);
             }
 
-
             List<object[]> list_value = this.list_輸出入檢查_蜂鳴器輸出_特殊輸出表;
             if (list_value.Count == 0)
             {
                 cnt = 65500;
                 return;
             }
-            this.PLC_輸出入檢查_蜂鳴器輸出_IP = list_value[0][(int)enum_特殊輸出表.IP].ObjectToString();
-            this.PLC_輸出入檢查_蜂鳴器輸出_PINNum = list_value[0][(int)enum_特殊輸出表.Num].ObjectToString();
+            string IP = list_value[0][(int)enum_特殊輸出表.IP].ObjectToString();
 
-            PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 = List_RFID_本地資料.SortByIP(PLC_輸出入檢查_蜂鳴器輸出_IP);
-            if (PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 == null)
+        
+         
+           bool flag_output = this.drawerUI_EPD_583.GetOutput(IP);
+
+            if (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
             {
-                cnt = 65500;
+                MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.TickStop();
+                MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.StartTickTime(PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value);
+                if (flag_output)
+                {
+                    Console.WriteLine($"[蜂鳴器] {IP}:29005 ,蜂鳴器關閉 #000");
+                    this.drawerUI_EPD_583.SetOutput(IP, 29005, false);
+                }
+                cnt++;
                 return;
             }
-
-            if (PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 == null)
+            if (!flag_Alarm)
             {
-                cnt = 65500;
-                return;
-            }
-            string IP = this.PLC_輸出入檢查_蜂鳴器輸出_IP;
-            int PINNum = this.PLC_輸出入檢查_蜂鳴器輸出_PINNum.StringToInt32();
-            if (PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 is RFIDClass)
-            {
-                RFIDClass rFIDClass = PLC_輸出入檢查_蜂鳴器輸出_輸出裝置 as RFIDClass;
-                int num = this.PLC_輸出入檢查_蜂鳴器輸出_PINNum.StringToInt32() - 1;
-                if (num < 0)
+                if (!MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.IsTimeOut() || (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value == 0))
                 {
-                    return;
-                }
-                this.flag_輸出入檢查_蜂鳴器輸出 = this.rfiD_UI.GetOutput(rFIDClass.IP, num);
-                if (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴不使用.Bool)
-                {
-                    MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.TickStop();
-                    MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.StartTickTime(PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value);
-                    if (flag_輸出入檢查_蜂鳴器輸出) this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, false);
-                    cnt++;
-                    return;
-                }
-                if (!flag_Alarm)
-                {
-                    if (!MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.IsTimeOut() || (PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value == 0))
+                    if (!flag_output)
                     {
-                        if (!flag_輸出入檢查_蜂鳴器輸出) this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, true);
-                    }
-                    else
-                    {
-                        this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, false);
+                        Console.WriteLine($"[蜂鳴器] {IP}:29005 ,蜂鳴器響起 #001");
+                        this.drawerUI_EPD_583.SetOutput(IP, 29005, true);
                     }
                 }
                 else
                 {
-                    MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.TickStop();
-                    MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.StartTickTime(PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value);
-                    if (flag_輸出入檢查_蜂鳴器輸出) this.rfiD_UI.Set_OutputPIN(rFIDClass.IP, rFIDClass.Port, PINNum, false);
+                    if (flag_output)
+                    {
+                        Console.WriteLine($"[蜂鳴器] {IP}:29005 ,蜂鳴器關閉 #002");
+                        this.drawerUI_EPD_583.SetOutput(IP, 29005, false);
+                    }
+          
                 }
-
             }
-
+            else
+            {
+                MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.TickStop();
+                MyTimer_輸出入檢查_蜂鳴器輸出_蜂鳴時間.StartTickTime(PLC_Device_輸出入檢查_蜂鳴器輸出_蜂鳴持續時間.Value);
+                if (flag_output)
+                {
+                    Console.WriteLine($"[蜂鳴器] {IP}:29005 ,蜂鳴器關閉 #003");
+                    this.drawerUI_EPD_583.SetOutput(IP, 29005, false);
+                }
+            }
 
             cnt++;
         }

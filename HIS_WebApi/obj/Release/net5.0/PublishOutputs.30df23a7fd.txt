@@ -136,6 +136,7 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\ne
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\DotNetZip.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Google.Protobuf.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\IBM.Data.DB2.Core.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\IGeekFan.AspNetCore.Knife4jUI.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\K4os.Compression.LZ4.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\K4os.Compression.LZ4.Streams.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\K4os.Hash.xxHash.dll
@@ -143,6 +144,7 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\ne
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\MySql.Data.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Ubiety.Dns.Core.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\ZstdNet.dll
+C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Annotations.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\HIS_WebApi\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll

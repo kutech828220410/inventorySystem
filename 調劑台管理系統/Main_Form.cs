@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.70")]
-[assembly: AssemblyFileVersion("1.2.1.70")]
+[assembly: AssemblyVersion("1.2.1.75")]
+[assembly: AssemblyFileVersion("1.2.1.75")]
 namespace 調劑台管理系統
 {
 
@@ -619,6 +619,9 @@ namespace 調劑台管理系統
             this.drawerUI_EPD_1020.Set_UDP_WriteTime(10);
             this.drawerUI_EPD_583.Set_UDP_WriteTime(10);
 
+            _storageUI_EPD_266 = this.storageUI_EPD_266;
+            _storageUI_WT32 = this.storageUI_WT32;
+            _drawerUI_EPD_583 = this.drawerUI_EPD_583;
 
             Task task = Task.Run(new Action(delegate
             {
