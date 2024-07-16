@@ -2696,28 +2696,50 @@ namespace HIS_WebApi
             List<Task> taskList = new List<Task>();
             taskList.Add(Task.Run(() =>
             {
-                if(sQLControl_EPD583_serialize.IsTableCreat()) list_EPD583 = sQLControl_EPD583_serialize.GetAllRows(null);
-                deviceBasics_EPD583 = DrawerMethod.GetAllDeviceBasic(list_EPD583);
+                if (sQLControl_EPD583_serialize.IsTableCreat()) list_EPD583 = sQLControl_EPD583_serialize.GetAllRows(null);
+                if (list_EPD583.Count > 0)
+                {
+                    deviceBasics_EPD583 = DrawerMethod.GetAllDeviceBasic(list_EPD583);
+                }
             }));
             taskList.Add(Task.Run(() =>
             {
                 if (sQLControl_EPD266_serialize.IsTableCreat()) list_EPD266 = sQLControl_EPD266_serialize.GetAllRows(null);
-                deviceBasics_EPD266 = StorageMethod.GetAllDeviceBasic(list_EPD266);
+                if (list_EPD266.Count > 0)
+                {
+                    deviceBasics_EPD266 = StorageMethod.GetAllDeviceBasic(list_EPD266);
+                }
+
             }));
             taskList.Add(Task.Run(() =>
             {
                 if (sQLControl_RowsLED_serialize.IsTableCreat()) list_RowsLED = sQLControl_RowsLED_serialize.GetAllRows(null);
-                deviceBasics_RowsLED = RowsLEDMethod.GetAllDeviceBasic(list_RowsLED);
+
+                if (list_RowsLED.Count > 0)
+                {
+                    deviceBasics_RowsLED = RowsLEDMethod.GetAllDeviceBasic(list_RowsLED);
+                }
+
             }));
             taskList.Add(Task.Run(() =>
             {
                 if (sQLControl_RFID_Device_serialize.IsTableCreat()) list_RFID_Device = sQLControl_RFID_Device_serialize.GetAllRows(null);
-                deviceBasics_RFID_Device = RFIDMethod.GetAllDeviceBasic(list_RFID_Device);
+
+                if (list_RFID_Device.Count > 0)
+                {
+                    deviceBasics_RFID_Device = RFIDMethod.GetAllDeviceBasic(list_RFID_Device);
+                }
+
             }));
             taskList.Add(Task.Run(() =>
             {
                 if (sQLControl_WT32_serialize.IsTableCreat()) list_WT32 = sQLControl_WT32_serialize.GetAllRows(null);
-                deviceBasics_WT32 = StorageMethod.GetAllDeviceBasic(list_WT32);
+
+
+                if (list_WT32.Count > 0)
+                {
+                    deviceBasics_WT32 = StorageMethod.GetAllDeviceBasic(list_WT32);
+                }
             }));
             Task allTask = Task.WhenAll(taskList);
             allTask.Wait();

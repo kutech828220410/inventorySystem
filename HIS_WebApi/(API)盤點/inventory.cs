@@ -2367,23 +2367,14 @@ namespace HIS_WebApi
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
-                MED_pageController mED_PageController = new MED_pageController();
-                returnData returnData_med = new returnData();
-                returnData_med.Server = serverSettingClasses_med.Server;
-                returnData_med.DbName = serverSettingClasses_med.DBName;
-                returnData_med.TableName = "medicine_page_cloud";
-                returnData_med.UserName = serverSettingClasses_med.User;
-                returnData_med.Password = serverSettingClasses_med.Password;
-                returnData_med.Port = serverSettingClasses_med.Port.StringToUInt32();
-                string json_med = Basic.Net.WEBApiPostJson("http://127.0.0.1:4433/api/MED_page", returnData_med.JsonSerializationt());
-                returnData_med = json_med.JsonDeserializet<returnData>();
-                if (returnData_med == null)
+
+                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
+                if (medClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = "ServerSetting VM端設定異常!";
                     return returnData.JsonSerializationt(true);
                 }
-                List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
                 List<object[]> list_medClasses = medClasses.ClassToSQL<medClass, enum_雲端藥檔>();
                 List<object[]> list_medClasses_buf = new List<object[]>();
                 Dictionary<object, List<object[]>> list_medClasses_藥碼_keys = list_medClasses.ConvertToDictionary((int)enum_雲端藥檔.藥品碼);
