@@ -57,6 +57,7 @@ namespace 調劑台管理系統
             自動分配未配置顏色人員,
         }
 
+
         private List<PLC_Device> List_PLC_Device_權限管理 = new List<PLC_Device>();
         private List<LoginDataWebAPI.Class_login_data> List_class_Login_Data = new List<LoginDataWebAPI.Class_login_data>();
         private List<LoginDataWebAPI.Class_login_data_index> List_class_Login_Data_index = new List<LoginDataWebAPI.Class_login_data_index>();

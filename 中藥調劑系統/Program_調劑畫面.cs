@@ -363,8 +363,10 @@ namespace 中藥調劑系統
             }
 
         }
+
         private bool flag_MySerialPort_Scanner01_enable = true;
         private MyTimer myTimer_MySerialPort_Scanner01 = new MyTimer();
+        
         private void Program_調劑畫面()
         {
             if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 1;

@@ -1689,6 +1689,7 @@ namespace 調劑台管理系統
             allTask = Task.WhenAll(taskList);
             allTask.Wait();
         }
+
         #region PLC_取藥堆疊資料_檢查資料
         PLC_Device PLC_Device_取藥堆疊資料_檢查資料 = new PLC_Device("");
         PLC_Device PLC_Device_取藥堆疊資料_檢查資料_更新儲位資料 = new PLC_Device("");

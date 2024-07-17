@@ -191,9 +191,11 @@ namespace 調劑台管理系統
         static private List<HIS_DB_Lib.ServerSettingClass> Function_取得共用區連線資訊()
         {
             List<object[]> list_value = _sqL_DataGridView_共用區設定.SQL_GetAllRows(false);
+
             list_value = (from temp in list_value
                           where temp[(int)enum_commonSpaceSetup.是否共用].ObjectToString().ToUpper() == true.ToString().ToUpper()
                           select temp).ToList();
+
             string json_result = Basic.Net.WEBApiGet($"{dBConfigClass.Api_Server}/api/ServerSetting");
             if (json_result.StringIsEmpty())
             {
@@ -213,6 +215,7 @@ namespace 調劑台管理系統
                                             where temp.類別 == "調劑台"
                                             where temp.內容 == "儲位資料"
                                             select temp).ToList();
+
                 if (serverSettingClasses_buf.Count > 0)
                 {
                     serverSettingClasses_return.Add(serverSettingClasses_buf[0]);

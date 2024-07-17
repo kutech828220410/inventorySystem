@@ -141,15 +141,14 @@ namespace 中藥調劑系統
                                                 select temp).ToList();
                                 if (LightOns_buf.Count == 0)
                                 {
-                                    if (Funtion_判斷共用亮燈區域(rowsLED.Area))
-                                    {
-                                        Console.WriteLine($"儲位亮燈 : 藥碼 : {Codes[i]} 共用亮燈區域,取得({device.IP})亮燈資訊");
-                                        rowsLED.LED_Bytes = Main_Form._rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
-                                    }
+                                    //if (Funtion_判斷共用亮燈區域(rowsLED.Area))
+                                    //{
+                                    //    Console.WriteLine($"儲位亮燈 : 藥碼 : {Codes[i]} 共用亮燈區域,取得({device.IP})亮燈資訊");
+                                    //    rowsLED.LED_Bytes = Main_Form._rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
+                                    //}
                                     lightOns.Add(new LightOn(device.IP, color));
                                 }
-                                rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
-                              
+                                rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);                              
                             }
                         }
                         if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266|| device.DeviceType == DeviceType.EPD290_lock || device.DeviceType == DeviceType.EPD266_lock)

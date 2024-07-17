@@ -1816,3 +1816,4 @@ C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bi
 C:\Users\HS\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\SQLUI.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\bin\Release\Basic.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\癌症自動備藥機暨排程系統\bin\Release\SQLUI.xml
+C:\Users\Administrator\source\repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\PopupControl.dll
