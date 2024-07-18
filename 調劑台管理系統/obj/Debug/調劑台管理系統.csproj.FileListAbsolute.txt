@@ -384,3 +384,4 @@ C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\De
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_處方資訊填寫.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_藥品調入.resources
 C:\Users\Administrator\source\repos\inventorySystem\調劑台管理系統\obj\Debug\調劑台管理系統.Dialog_藥品搜尋.resources
+C:\Users\Administrator\Source\Repos\inventorySystem\調劑台管理系統\bin\Debug\Basic.xml

@@ -22,7 +22,6 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\System.Th
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\System.ValueTuple.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\Interop.SpeechLib.dll
-C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\MySql.Data.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\DrawingClass.dll
@@ -40,7 +39,6 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\LightCont
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\ZealTechUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\HCGUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\ICSharpCode.SharpZipLib.dll
-C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\SunnyUI.Common.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\TCP.dll
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\bin\Debug\CallBackUI.dll
@@ -65,3 +63,4 @@ C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Debug\TestForm.
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Debug\TestForm.csproj.CopyComplete
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Debug\TestForm.exe
 C:\Users\Administrator\source\repos\inventorySystem\TestForm\obj\Debug\TestForm.pdb
+C:\Users\Administrator\Source\Repos\inventorySystem\TestForm\bin\Debug\Basic.xml

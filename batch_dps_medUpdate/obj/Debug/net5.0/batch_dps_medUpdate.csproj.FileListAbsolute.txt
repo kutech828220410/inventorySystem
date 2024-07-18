@@ -37,7 +37,6 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Debu
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Debug\net5.0\Interop.SpeechLib.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Debug\net5.0\MyOffice.dll
-C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Debug\net5.0\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Debug\net5.0\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Debug\net5.0\DrawingClass.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\bin\Debug\net5.0\PopupControl.dll
@@ -76,3 +75,4 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\obj\Debu
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\obj\Debug\net5.0\ref\batch_dps_medUpdate.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\obj\Debug\net5.0\batch_dps_medUpdate.pdb
 C:\Users\Administrator\source\repos\inventorySystem\batch_dps_medUpdate\obj\Debug\net5.0\batch_dps_medUpdate.genruntimeconfig.cache
+C:\Users\Administrator\Source\Repos\inventorySystem\batch_dps_medUpdate\bin\Debug\net5.0\Basic.xml

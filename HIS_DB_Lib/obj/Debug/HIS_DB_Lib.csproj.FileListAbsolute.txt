@@ -143,15 +143,14 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\NPOI.OO
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\NPOI.OpenXml4Net.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\NPOI.OpenXmlFormats.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\CSkin.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\PopupControl.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\ICSharpCode.SharpZipLib.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\Microsoft.mshtml.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\SunnyUI.Common.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\stdole.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\SQLUI.xml
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Debug\HIS_DB_Lib.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\HIS_DB_Lib\bin\Debug\Basic.xml

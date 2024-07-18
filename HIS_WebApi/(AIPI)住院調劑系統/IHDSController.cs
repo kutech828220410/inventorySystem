@@ -141,6 +141,65 @@ namespace HIS_WebApi._AIPI_住院調劑系統
                 return returnData.JsonSerializationt();
             }
         }
+        [HttpPost("delete_by_GUID")]
+        public string delete_by_guid([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            returnData.Method = "delete_by_guid";
+            try
+            {
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind("Main", "一般資料", "網頁");
+                if (_serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[GUID]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+
+                string Server = _serverSettingClasses[0].Server;
+                string DB = _serverSettingClasses[0].DBName;
+                string UserName = _serverSettingClasses[0].User;
+                string Password = _serverSettingClasses[0].Password;
+                uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                string TableName = "med_carInfo";
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_藥車資訊.GUID, GUID);
+                if (list_value.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                sQLControl_med_carInfo.DeleteExtra(null, list_value);
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"刪除藥品設定成功,共刪除<{list_value.Count}>筆資料";
+                return returnData.JsonSerializationt();
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+
     }
 
 }

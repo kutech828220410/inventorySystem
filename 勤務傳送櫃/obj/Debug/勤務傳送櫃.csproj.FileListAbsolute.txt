@@ -139,3 +139,4 @@ C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Debug\Mi
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Debug\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Debug\SunnyUI.Common.dll
 C:\Users\Administrator\source\repos\inventorySystem\勤務傳送櫃\bin\Debug\SQLUI.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\勤務傳送櫃\bin\Debug\Basic.xml

@@ -336,14 +336,6 @@
           }
         }
       },
-      "CSkin/10.23.0.0": {
-        "runtime": {
-          "CSkin.dll": {
-            "assemblyVersion": "10.23.0.0",
-            "fileVersion": "10.23.0.0"
-          }
-        }
-      },
       "zxing/0.16.6.0": {
         "runtime": {
           "zxing.dll": {
@@ -776,11 +768,6 @@
       "sha512": ""
     },
     "MyOffice/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "CSkin/10.23.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

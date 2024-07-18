@@ -418,3 +418,4 @@ C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\Mi
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\SunnyUI.Common.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\E-UpdateVersion\bin\Debug\SQLUI.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\E-UpdateVersion\bin\Debug\Basic.xml

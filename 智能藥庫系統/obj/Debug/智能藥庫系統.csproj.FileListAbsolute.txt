@@ -467,3 +467,4 @@ C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\office.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\SunnyUI.Common.dll
 C:\Users\Administrator\source\repos\inventorySystem\智能藥庫系統\bin\Debug\SQLUI.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\智能藥庫系統\bin\Debug\Basic.xml

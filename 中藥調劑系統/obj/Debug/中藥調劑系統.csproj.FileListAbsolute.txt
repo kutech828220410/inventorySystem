@@ -75,3 +75,5 @@ C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\bin\Debug
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Debug\中藥調劑系統.csproj.CopyComplete
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Debug\中藥調劑系統.exe
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Debug\中藥調劑系統.pdb
+C:\Users\Administrator\Source\Repos\inventorySystem\中藥調劑系統\bin\Debug\Basic.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\中藥調劑系統\obj\Debug\中藥調劑系統.Dialog_儲位區域選擇.resources

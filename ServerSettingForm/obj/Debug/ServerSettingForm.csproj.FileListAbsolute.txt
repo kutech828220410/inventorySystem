@@ -202,3 +202,4 @@ C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Debug\
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Debug\ServerSettingForm.Dialog_中藥調劑系統.resources
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Debug\ServerSettingForm.Dialog_設定.resources
 C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Debug\ServerSettingForm.Panel_CheckBox.resources
+C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\bin\Debug\Basic.xml

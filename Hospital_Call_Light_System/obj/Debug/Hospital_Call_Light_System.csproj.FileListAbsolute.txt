@@ -171,3 +171,4 @@ C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\b
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\SunnyUI.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\SunnyUI.Common.dll
 C:\Users\Administrator\source\repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\SQLUI.xml
+C:\Users\Administrator\Source\Repos\inventorySystem\Hospital_Call_Light_System\bin\Debug\Basic.xml
