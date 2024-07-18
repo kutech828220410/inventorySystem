@@ -766,7 +766,6 @@
             this.radioButton_儲位管理_EPD266_面板亮燈_藍 = new MyUI.RJ_RatioButton();
             this.radioButton_儲位管理_EPD266_面板亮燈_綠 = new MyUI.RJ_RatioButton();
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈 = new MyUI.PLC_RJ_Button();
-            this.epD_266_Pannel = new H_Pannel_lib.EPD_266_Pannel();
             this.plC_RJ_GroupBox6 = new MyUI.PLC_RJ_GroupBox();
             this.plC_RJ_Button_儲位管理_EPD266_警報 = new MyUI.PLC_CheckBox();
             this.rJ_TextBox_儲位管理_EPD266_儲位內容_語音 = new MyUI.RJ_TextBox();
@@ -1582,6 +1581,7 @@
             this.plC_RJ_Button_後台登入_登出 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
             this.ContentsPanel = new MyUI.RJ_Pannel();
+            this.storagePanel = new H_Pannel_lib.StoragePanel();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -21747,6 +21747,7 @@
             // 
             // panel11
             // 
+            this.panel11.Controls.Add(this.storagePanel);
             this.panel11.Controls.Add(this.comboBox_儲位管理_EPD266_儲位內容_儲位搜尋);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_自動填入儲位名稱);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_匯入);
@@ -21763,7 +21764,6 @@
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_清除燈號);
             this.panel11.Controls.Add(this.rJ_Pannel7);
             this.panel11.Controls.Add(this.plC_RJ_Button_儲位管理_EPD266_面板亮燈);
-            this.panel11.Controls.Add(this.epD_266_Pannel);
             this.panel11.Controls.Add(this.plC_RJ_GroupBox6);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
@@ -22542,15 +22542,6 @@
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.音效 = true;
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.顯示 = false;
             this.plC_RJ_Button_儲位管理_EPD266_面板亮燈.顯示狀態 = false;
-            // 
-            // epD_266_Pannel
-            // 
-            this.epD_266_Pannel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.epD_266_Pannel.CurrentStorage = null;
-            this.epD_266_Pannel.Location = new System.Drawing.Point(9, 8);
-            this.epD_266_Pannel.Name = "epD_266_Pannel";
-            this.epD_266_Pannel.Size = new System.Drawing.Size(296, 152);
-            this.epD_266_Pannel.TabIndex = 55;
             // 
             // plC_RJ_GroupBox6
             // 
@@ -44294,6 +44285,15 @@
             this.ContentsPanel.Size = new System.Drawing.Size(835, 407);
             this.ContentsPanel.TabIndex = 2;
             // 
+            // storagePanel
+            // 
+            this.storagePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.storagePanel.CurrentStorage = null;
+            this.storagePanel.Location = new System.Drawing.Point(18, 8);
+            this.storagePanel.Name = "storagePanel";
+            this.storagePanel.Size = new System.Drawing.Size(296, 152);
+            this.storagePanel.TabIndex = 155;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -45105,7 +45105,6 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼_搜尋;
         private MyUI.RJ_TextBox rJ_TextBox_儲位管理_EPD583_儲位內容_儲位搜尋_藥品碼;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD583_開鎖;
-        private H_Pannel_lib.EPD_266_Pannel epD_266_Pannel;
         private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox6;
         private MyUI.PLC_RJ_GroupBox plC_RJ_GroupBox7;
         private MyUI.PLC_RJ_Button plC_RJ_Button_儲位管理_EPD266_儲位內容_效期管理_修正庫存;
@@ -46380,6 +46379,7 @@
         private System.Windows.Forms.Panel panel117;
         private MyUI.PLC_RJ_Button plC_RJ_Button_收支確認;
         private MyUI.PLC_RJ_Button plC_RJ_Button_調劑作業_藥品調入;
+        private H_Pannel_lib.StoragePanel storagePanel;
     }
 }
 
