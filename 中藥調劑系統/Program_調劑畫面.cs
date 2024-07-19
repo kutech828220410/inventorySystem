@@ -341,10 +341,10 @@ namespace 中藥調劑系統
                         if(flag_新處方提示 == false)
                         {
                             string 領藥號 = list_value_delete[i][(int)enum_病患資訊.領藥號].ObjectToString();
-                            Task.Run(new Action(delegate
-                            {
-                                MyMessageBox.ShowDialog($"{姓名} 有新處方 【{領藥號}】");
-                            }));
+                            //Task.Run(new Action(delegate
+                            //{
+                            //    MyMessageBox.ShowDialog($"{姓名} 有新處方 【{領藥號}】");
+                            //}));
                     
                             flag_新處方提示 = true;
                         }
