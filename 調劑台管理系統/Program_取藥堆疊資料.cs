@@ -1311,7 +1311,7 @@ namespace 調劑台管理系統
                         if (drawer == null)
                         {
                             drawer = CommonSapceClass.GetEPD583(IP, ref commonSapceClasses);
-                            drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
+                            //drawer.LED_Bytes = this.drawerUI_EPD_583.Get_Drawer_LED_UDP(drawer);
 
                             flag_common_device = true;
                         }
@@ -1463,7 +1463,7 @@ namespace 調劑台管理系統
                         if (rowsLED == null)
                         {
                             rowsLED = CommonSapceClass.GetRowsLED(IP, ref commonSapceClasses);
-                            rowsLED.LED_Bytes = this.rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
+                            //rowsLED.LED_Bytes = this.rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
                         }
                         rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
                     }
