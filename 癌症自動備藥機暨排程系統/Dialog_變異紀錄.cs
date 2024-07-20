@@ -32,30 +32,22 @@ namespace 癌症自動備藥機暨排程系統
         {
             LoadingForm.ShowLoadingForm();
 
-            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_GUID";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = GUID;
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            List<udnoectc> udnoectcs = returnData.Data.ObjToClass<List<udnoectc>>();
+            udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
 
 
             Dialog_備藥清單.form = this.ParentForm;
             this.Load += Dialog_變異紀錄_Load;
-            if (udnoectcs.Count == 0)
+            if (udnoectc == null)
             {
                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("異常:查無資料", 2000);
                 this.Invoke(new Action(delegate
                 {
                     this.Close();
                     this.DialogResult = DialogResult.No;
-                }));
-            }
-            udnoectc = udnoectcs[0];
 
+                }));
+                return;
+            }
             this.sqL_DataGridView_變異紀錄.RowPostPaintingEvent += SqL_DataGridView_變異紀錄_RowPostPaintingEvent;
             LoadingForm.CloseLoadingForm();
         }

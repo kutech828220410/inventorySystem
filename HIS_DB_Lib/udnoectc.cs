@@ -333,8 +333,183 @@ namespace HIS_DB_Lib
 
             return udnoectc_Orders;
         }
+        /// <summary>
+        ///  更新指定操作員的化療配藥通知子項目為醫令確認狀態。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="ServerName">伺服器名稱。</param>
+        /// <param name="ServerType">伺服器類型。</param>
+        /// <param name="loginName">操作員名稱。</param>
+        /// <param name="udnoectcData">需要確認的化療配藥通知子項目。</param>
+        /// <returns>返回更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
+        /// <example>
+        /// 以下是使用 `ConfirmChemotherapyRxOrders` 方法的範例：
+        /// <code>
+        /// string apiServer = "http://example.com";
+        /// string serverName = "cheom";
+        /// string serverType = "癌症備藥機";
+        /// string loginName = "JohnDoe";
+        /// var udnoectcData = new udnoectc();
+        /// // 設置需要確認的訂單資料到 udnoectcData 中
+        /// var confirmedOrders = ChemotherapyRxOrders.ConfirmChemotherapyRxOrders(apiServer, serverName, serverType, loginName, udnoectcData);
+        /// if (confirmedOrders != null)
+        /// {
+        ///     Console.WriteLine("確認成功");
+        /// }
+        /// else
+        /// {
+        ///     Console.WriteLine("未找到指定操作員的訂單或發生錯誤。");
+        /// }
+        /// </code>
+        /// </example>
+        public static List<udnoectc_orders> update_udnoectc_confirm_ph(string API_Server, string ServerName, string ServerType, string loginName, udnoectc udnoectcData)
+        {
+            try
+            {
+                string url = $"{API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_confirm_ph";
 
+                returnData returnData = new returnData();
+                returnData.ServerName = ServerName;
+                returnData.ServerType = ServerType;
+                returnData.Value = loginName;
+                returnData.Data = udnoectcData;
 
+                string json_in = returnData.JsonSerializationt();
+                string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+                returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+                if (returnData_out == null || returnData_out.Code != 200)
+                {
+                    return null;
+                }
+
+                List<udnoectc_orders> confirmedOrders = returnData_out.Data.ObjToClass<List<udnoectc_orders>>();
+                return confirmedOrders;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"內部伺服器錯誤: {ex.Message}");
+                return null;
+            }
+        }
+        /// <summary>
+        /// 更新指定操作員的化療配藥通知子項目為調配完成狀態。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="ServerName">伺服器名稱。</param>
+        /// <param name="ServerType">伺服器類型。</param>
+        /// <param name="loginName">操作員名稱。</param>
+        /// <param name="udnoectcData">需要更新的化療配藥通知子項目。</param>
+        /// <returns>返回更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
+        /// <example>
+        /// 以下是使用 `UpdateDispensingComplete` 方法的範例：
+        /// <code>
+        /// string apiServer = "http://example.com";
+        /// string serverName = "cheom";
+        /// string serverType = "癌症備藥機";
+        /// string loginName = "JohnDoe";
+        /// var udnoectcData = new udnoectc();
+        /// // 設置需要更新的訂單資料到 udnoectcData 中
+        /// var updatedOrders = ChemotherapyRxOrders.UpdateDispensingComplete(apiServer, serverName, serverType, loginName, udnoectcData);
+        /// if (updatedOrders != null)
+        /// {
+        ///     Console.WriteLine("更新成功");
+        /// }
+        /// else
+        /// {
+        ///     Console.WriteLine("未找到指定操作員的訂單或發生錯誤。");
+        /// }
+        /// </code>
+        /// </example>
+        public static List<udnoectc_orders> update_udnoectc_disp_ph(string API_Server, string ServerName, string ServerType, string loginName, udnoectc udnoectcData)
+        {
+            try
+            {
+                string url = $"{API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_disp_ph";
+
+                returnData returnData = new returnData();
+                returnData.ServerName = ServerName;
+                returnData.ServerType = ServerType;
+                returnData.Value = loginName;
+                returnData.Data = udnoectcData;
+
+                string json_in = returnData.JsonSerializationt();
+                string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+                returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+                if (returnData_out == null || returnData_out.Code != 200)
+                {
+                    return null;
+                }
+
+                List<udnoectc_orders> updatedOrders = returnData_out.Data.ObjToClass<List<udnoectc_orders>>();
+                return updatedOrders;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"內部伺服器錯誤: {ex.Message}");
+                return null;
+            }
+        }
+        /// <summary>
+        /// 更新指定操作員的化療配藥通知子項目為處方核對狀態。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="ServerName">伺服器名稱。</param>
+        /// <param name="ServerType">伺服器類型。</param>
+        /// <param name="loginName">操作員名稱。</param>
+        /// <param name="udnoectcData">需要更新的化療配藥通知子項目。</param>
+        /// <returns>返回更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
+        /// <example>
+        /// 以下是使用 `UpdatePrescriptionCheck` 方法的範例：
+        /// <code>
+        /// string apiServer = "http://example.com";
+        /// string serverName = "cheom";
+        /// string serverType = "癌症備藥機";
+        /// string loginName = "JohnDoe";
+        /// var udnoectcData = new udnoectc();
+        /// // 設置需要更新的訂單資料到 udnoectcData 中
+        /// var updatedOrders = ChemotherapyRxOrders.UpdatePrescriptionCheck(apiServer, serverName, serverType, loginName, udnoectcData);
+        /// if (updatedOrders != null)
+        /// {
+        ///     Console.WriteLine("更新成功");
+        /// }
+        /// else
+        /// {
+        ///     Console.WriteLine("未找到指定操作員的訂單或發生錯誤。");
+        /// }
+        /// </code>
+        /// </example>
+        public static List<udnoectc_orders> update_udnoectc_check_ph(string API_Server, string ServerName, string ServerType, string loginName, udnoectc udnoectcData)
+        {
+            try
+            {
+                string url = $"{API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_check_ph";
+
+                returnData returnData = new returnData();
+                returnData.ServerName = ServerName;
+                returnData.ServerType = ServerType;
+                returnData.Value = loginName;
+                returnData.Data = udnoectcData;
+
+                string json_in = returnData.JsonSerializationt();
+                string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+                returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+                if (returnData_out == null || returnData_out.Code != 200)
+                {
+                    return null;
+                }
+
+                List<udnoectc_orders> updatedOrders = returnData_out.Data.ObjToClass<List<udnoectc_orders>>();
+                return updatedOrders;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"內部伺服器錯誤: {ex.Message}");
+                return null;
+            }
+        }
     }
 
     public enum enum_udnoectc_orders

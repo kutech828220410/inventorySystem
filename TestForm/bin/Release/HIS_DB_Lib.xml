@@ -1846,6 +1846,99 @@
             </example>
         </member>
         <!-- Badly formed XML comment ignored for member "M:HIS_DB_Lib.udnoectc.update_udnoectc_orders_comp(System.String,System.String,System.String,System.Collections.Generic.List{HIS_DB_Lib.udnoectc_orders},System.String)" -->
+        <member name="M:HIS_DB_Lib.udnoectc.update_udnoectc_confirm_ph(System.String,System.String,System.String,System.String,HIS_DB_Lib.udnoectc)">
+            <summary>
+             更新指定操作員的化療配藥通知子項目為醫令確認狀態。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="ServerName">伺服器名稱。</param>
+            <param name="ServerType">伺服器類型。</param>
+            <param name="loginName">操作員名稱。</param>
+            <param name="udnoectcData">需要確認的化療配藥通知子項目。</param>
+            <returns>返回更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
+            <example>
+            以下是使用 `ConfirmChemotherapyRxOrders` 方法的範例：
+            <code>
+            string apiServer = "http://example.com";
+            string serverName = "cheom";
+            string serverType = "癌症備藥機";
+            string loginName = "JohnDoe";
+            var udnoectcData = new udnoectc();
+            // 設置需要確認的訂單資料到 udnoectcData 中
+            var confirmedOrders = ChemotherapyRxOrders.ConfirmChemotherapyRxOrders(apiServer, serverName, serverType, loginName, udnoectcData);
+            if (confirmedOrders != null)
+            {
+                Console.WriteLine("確認成功");
+            }
+            else
+            {
+                Console.WriteLine("未找到指定操作員的訂單或發生錯誤。");
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS_DB_Lib.udnoectc.update_udnoectc_disp_ph(System.String,System.String,System.String,System.String,HIS_DB_Lib.udnoectc)">
+            <summary>
+            更新指定操作員的化療配藥通知子項目為調配完成狀態。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="ServerName">伺服器名稱。</param>
+            <param name="ServerType">伺服器類型。</param>
+            <param name="loginName">操作員名稱。</param>
+            <param name="udnoectcData">需要更新的化療配藥通知子項目。</param>
+            <returns>返回更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
+            <example>
+            以下是使用 `UpdateDispensingComplete` 方法的範例：
+            <code>
+            string apiServer = "http://example.com";
+            string serverName = "cheom";
+            string serverType = "癌症備藥機";
+            string loginName = "JohnDoe";
+            var udnoectcData = new udnoectc();
+            // 設置需要更新的訂單資料到 udnoectcData 中
+            var updatedOrders = ChemotherapyRxOrders.UpdateDispensingComplete(apiServer, serverName, serverType, loginName, udnoectcData);
+            if (updatedOrders != null)
+            {
+                Console.WriteLine("更新成功");
+            }
+            else
+            {
+                Console.WriteLine("未找到指定操作員的訂單或發生錯誤。");
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:HIS_DB_Lib.udnoectc.update_udnoectc_check_ph(System.String,System.String,System.String,System.String,HIS_DB_Lib.udnoectc)">
+            <summary>
+            更新指定操作員的化療配藥通知子項目為處方核對狀態。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="ServerName">伺服器名稱。</param>
+            <param name="ServerType">伺服器類型。</param>
+            <param name="loginName">操作員名稱。</param>
+            <param name="udnoectcData">需要更新的化療配藥通知子項目。</param>
+            <returns>返回更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
+            <example>
+            以下是使用 `UpdatePrescriptionCheck` 方法的範例：
+            <code>
+            string apiServer = "http://example.com";
+            string serverName = "cheom";
+            string serverType = "癌症備藥機";
+            string loginName = "JohnDoe";
+            var udnoectcData = new udnoectc();
+            // 設置需要更新的訂單資料到 udnoectcData 中
+            var updatedOrders = ChemotherapyRxOrders.UpdatePrescriptionCheck(apiServer, serverName, serverType, loginName, udnoectcData);
+            if (updatedOrders != null)
+            {
+                Console.WriteLine("更新成功");
+            }
+            else
+            {
+                Console.WriteLine("未找到指定操作員的訂單或發生錯誤。");
+            }
+            </code>
+            </example>
+        </member>
         <member name="T:HIS_DB_Lib.udnoectc_orders">
             <summary>
             藥囑資料(配藥通知子項目)

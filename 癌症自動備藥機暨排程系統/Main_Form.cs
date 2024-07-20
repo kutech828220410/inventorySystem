@@ -279,6 +279,7 @@ namespace 癌症自動備藥機暨排程系統
 
             PLC_UI_Init.Set_PLC_ScreenPage(panel_main01, this.plC_ScreenPage_main);
             PLC_UI_Init.Set_PLC_ScreenPage(panel_系統, this.plC_ScreenPage_系統);
+            PLC_UI_Init.Set_PLC_ScreenPage(panel_儲位設定, this.plC_ScreenPage_儲位設定);
 
             Program_登入畫面_Init();
             Program_系統_Init();
@@ -313,8 +314,8 @@ namespace 癌症自動備藥機暨排程系統
             }
             if (PageText == "儲位設定")
             {
-                PlC_RJ_Button_儲位設定_儲位列表_重新整理_MouseDownEvent(null);
-                comboBox_儲位設定_儲位列表_亮燈顏色.SelectedIndex = 0;
+                PlC_RJ_Button_儲位設定_面板_儲位列表_重新整理_MouseDownEvent(null);
+                comboBox_儲位設定_面板_儲位列表_亮燈顏色.SelectedIndex = 0;
             }
         }
 

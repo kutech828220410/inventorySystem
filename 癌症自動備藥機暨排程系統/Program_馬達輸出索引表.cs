@@ -384,10 +384,10 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void PlC_RJ_Button_馬達輸出索引表_出料測試_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_儲位列表 = sqL_DataGridView_馬達輸出索引表.Get_All_Select_RowsValues();
+            List<object[]> list_面板_儲位列表 = sqL_DataGridView_馬達輸出索引表.Get_All_Select_RowsValues();
 
             Dialog_AlarmForm dialog_AlarmForm;
-            if (list_儲位列表.Count == 0)
+            if (list_面板_儲位列表.Count == 0)
             {
                 dialog_AlarmForm = new Dialog_AlarmForm("未選擇儲位", 2000, 0, -200, Color.DarkRed);
                 dialog_AlarmForm.ShowDialog();
@@ -397,7 +397,7 @@ namespace 癌症自動備藥機暨排程系統
             if (plC_NumBox_馬達輸出索引表_出料測試次數.Value < 0) plC_NumBox_馬達輸出索引表_出料測試次數.Value = 1;
             int cnt = 0;
             int temp = 0;
-            string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
+            string IP = list_面板_儲位列表[0][(int)enum_面板_儲位列表.IP].ObjectToString();
             Storage storage = List_EPD266_本地資料.SortByIP(IP);
             MyTimer myTimer = new MyTimer();
             while (true)
@@ -411,7 +411,7 @@ namespace 癌症自動備藥機暨排程系統
                 {
  
                    
-                    int ms = list_儲位列表[0][(int)enum_CMPM_StorageConfig.出料馬達輸入延遲時間].StringToInt32();
+                    int ms = list_面板_儲位列表[0][(int)enum_CMPM_StorageConfig.出料馬達輸入延遲時間].StringToInt32();
                     if (!storageUI_EPD_266.Set_ADCMotorTrigger(storage, ms))
                     {
                         break;
@@ -447,9 +447,9 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void PlC_RJ_Button_馬達輸出索引表_出料一次_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_儲位列表 = sqL_DataGridView_馬達輸出索引表.Get_All_Select_RowsValues();
+            List<object[]> list_面板_儲位列表 = sqL_DataGridView_馬達輸出索引表.Get_All_Select_RowsValues();
             Dialog_AlarmForm dialog_AlarmForm;
-            if (list_儲位列表.Count == 0)
+            if (list_面板_儲位列表.Count == 0)
             {
                 dialog_AlarmForm = new Dialog_AlarmForm("未選擇儲位", 2000, 0, -200, Color.DarkRed);
                 dialog_AlarmForm.ShowDialog();
@@ -459,7 +459,7 @@ namespace 癌症自動備藥機暨排程系統
 
             LoadingForm.ShowLoadingForm();
 
-            string IP = list_儲位列表[0][(int)enum_儲位列表.IP].ObjectToString();
+            string IP = list_面板_儲位列表[0][(int)enum_面板_儲位列表.IP].ObjectToString();
    
             List<object[]> list_馬達輸出索引表 = this.sqL_DataGridView_馬達輸出索引表.SQL_GetRows((int)enum_CMPM_StorageConfig.IP, IP, false);
             if (list_馬達輸出索引表.Count == 0)

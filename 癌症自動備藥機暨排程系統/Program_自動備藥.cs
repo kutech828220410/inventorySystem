@@ -635,7 +635,9 @@ namespace 癌症自動備藥機暨排程系統
             }
             string GUID = list_value[0][(int)enum_udnoectc.GUID].ObjectToString();
             Dialog_備藥清單 dialog_備藥清單 = new Dialog_備藥清單(GUID, 登入者名稱);
-            dialog_備藥清單.ShowDialog();
+            if (dialog_備藥清單.ShowDialog() != DialogResult.Yes) return;
+
+            List<udnoectc_orders> udnoectc_Orders = dialog_備藥清單.Value;
         }
         private void PlC_RJ_Button_自動備藥_重新整理_MouseDownEvent(MouseEventArgs mevent)
         {

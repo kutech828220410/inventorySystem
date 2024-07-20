@@ -327,14 +327,7 @@ namespace 癌症自動備藥機暨排程系統
     
         private void PlC_RJ_Button_醫囑確認_MouseDownEvent(MouseEventArgs mevent)
         {
-            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_confirm_ph";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = this._login_name;
-            returnData.Data = udnoectc;
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            udnoectc.update_udnoectc_confirm_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
             udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
             refresh_UI();
             Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("醫囑確認完成", 1500, Color.DarkGreen);
@@ -342,14 +335,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void PlC_RJ_Button_調配完成_MouseDownEvent(MouseEventArgs mevent)
         {
-            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_disp_ph";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = this._login_name;
-            returnData.Data = udnoectc;
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            udnoectc.update_udnoectc_disp_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
             udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
             refresh_UI();
             Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("調配完成", 1500, Color.DarkGreen);
@@ -357,14 +343,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void PlC_RJ_Button_處方核對_MouseDownEvent(MouseEventArgs mevent)
         {
-            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_check_ph";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = this._login_name;
-            returnData.Data = udnoectc;
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            udnoectc.update_udnoectc_check_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
             udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
             refresh_UI();
             Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方核對完成", 1500, Color.DarkGreen);

@@ -73,6 +73,26 @@ namespace 癌症自動備藥機暨排程系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap e_paper_display_screen_for_illumination_guidance_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("e-paper-display-screen-for-illumination-guidance-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap led_strip_light_for_illumination_guidance__removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("led-strip-light-for-illumination-guidance--removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap 交易紀錄_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("交易紀錄-removebg-preview", resourceCulture);

@@ -265,11 +265,11 @@ namespace 癌症自動備藥機暨排程系統
             // label_處方核對
             // 
             this.label_處方核對.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_處方核對.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_處方核對.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_處方核對.ForeColor = System.Drawing.Color.Black;
-            this.label_處方核對.Location = new System.Drawing.Point(93, 0);
+            this.label_處方核對.Location = new System.Drawing.Point(109, 0);
             this.label_處方核對.Name = "label_處方核對";
-            this.label_處方核對.Size = new System.Drawing.Size(165, 52);
+            this.label_處方核對.Size = new System.Drawing.Size(149, 52);
             this.label_處方核對.TabIndex = 2;
             this.label_處方核對.Text = "----------";
             this.label_處方核對.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -277,11 +277,11 @@ namespace 癌症自動備藥機暨排程系統
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label3.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 52);
+            this.label3.Size = new System.Drawing.Size(109, 52);
             this.label3.TabIndex = 1;
             this.label3.Text = "處方核對:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -299,11 +299,11 @@ namespace 癌症自動備藥機暨排程系統
             // label_調配完成
             // 
             this.label_調配完成.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_調配完成.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_調配完成.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_調配完成.ForeColor = System.Drawing.Color.Black;
-            this.label_調配完成.Location = new System.Drawing.Point(93, 0);
+            this.label_調配完成.Location = new System.Drawing.Point(109, 0);
             this.label_調配完成.Name = "label_調配完成";
-            this.label_調配完成.Size = new System.Drawing.Size(165, 52);
+            this.label_調配完成.Size = new System.Drawing.Size(149, 52);
             this.label_調配完成.TabIndex = 2;
             this.label_調配完成.Text = "----------";
             this.label_調配完成.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -311,11 +311,11 @@ namespace 癌症自動備藥機暨排程系統
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label2.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 52);
+            this.label2.Size = new System.Drawing.Size(109, 52);
             this.label2.TabIndex = 1;
             this.label2.Text = "調配完成:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -333,11 +333,11 @@ namespace 癌症自動備藥機暨排程系統
             // label_醫囑確認
             // 
             this.label_醫囑確認.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label_醫囑確認.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_醫囑確認.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_醫囑確認.ForeColor = System.Drawing.Color.Black;
-            this.label_醫囑確認.Location = new System.Drawing.Point(93, 0);
+            this.label_醫囑確認.Location = new System.Drawing.Point(109, 0);
             this.label_醫囑確認.Name = "label_醫囑確認";
-            this.label_醫囑確認.Size = new System.Drawing.Size(165, 52);
+            this.label_醫囑確認.Size = new System.Drawing.Size(149, 52);
             this.label_醫囑確認.TabIndex = 1;
             this.label_醫囑確認.Text = "----------";
             this.label_醫囑確認.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -345,13 +345,13 @@ namespace 癌症自動備藥機暨排程系統
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 52);
+            this.label1.Size = new System.Drawing.Size(109, 52);
             this.label1.TabIndex = 0;
-            this.label1.Text = "醫囑確認:";
+            this.label1.Text = "醫令確認:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel_病人資訊
