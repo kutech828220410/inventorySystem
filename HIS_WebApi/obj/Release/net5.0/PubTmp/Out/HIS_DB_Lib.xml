@@ -1821,6 +1821,31 @@
             變異紀錄(請參閱 udnoectc_ctcvarsClass)
             </summary>
         </member>
+        <member name="M:HIS_DB_Lib.udnoectc.get_udnoectc_by_GUID(System.String,System.String,System.String,System.String)">
+            <summary>
+            根據 GUID 從 API 伺服器獲取化療配藥通知處方。
+            </summary>
+            <param name="API_Server">API 伺服器地址。</param>
+            <param name="GUID">唯一標識符 GUID。</param>
+            <returns>返回具有指定 GUID 的化療配藥通知處方對象。如果未找到或發生錯誤，返回 null。</returns>
+            <example>
+            以下是使用 `get_udnoectc_by_GUID` 方法的範例：
+            <code>
+            string apiServer = "http://example.com";
+            string guid = "unique-guid";
+            var prescription = udnoectc.get_udnoectc_by_GUID(apiServer, guid);
+            if (prescription != null)
+            {
+                Console.WriteLine($"病人姓名: {prescription.病人姓名}");
+            }
+            else
+            {
+                Console.WriteLine("未找到指定 GUID 的處方。");
+            }
+            </code>
+            </example>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:HIS_DB_Lib.udnoectc.update_udnoectc_orders_comp(System.String,System.String,System.String,System.Collections.Generic.List{HIS_DB_Lib.udnoectc_orders},System.String)" -->
         <member name="T:HIS_DB_Lib.udnoectc_orders">
             <summary>
             藥囑資料(配藥通知子項目)
