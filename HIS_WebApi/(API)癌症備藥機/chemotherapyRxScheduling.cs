@@ -653,6 +653,8 @@ namespace HIS_WebApi
                         list_udnoectc_orders_replace.Add(list_udnoectc_orders[0]);
                     }
                 }
+
+                List<udnoectc_orders> udnoectc_orders_replace = list_udnoectc_orders_replace.SQLToClass<udnoectc_orders, enum_udnoectc_orders>();
                 if (list_udnoectc_orders_replace.Count > 0) sQLControl_udnoectc_orders.UpdateByDefulteExtra(null, list_udnoectc_orders_replace);
                 returnData.Result = $"更新資料成功!共<{list_udnoectc_orders_replace.Count}>筆資料!";
                 returnData.TimeTaken = myTimerBasic.ToString();

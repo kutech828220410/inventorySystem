@@ -24,8 +24,14 @@ namespace 癌症自動備藥機暨排程系統
         public Dialog_變異紀錄(string guid)
         {
             InitializeComponent();
-            this.TopMost = true;
+            this.LoadFinishedEvent += Dialog_變異紀錄_LoadFinishedEvent;
             this.GUID = guid;
+        }
+
+        private void Dialog_變異紀錄_LoadFinishedEvent(EventArgs e)
+        {
+            LoadingForm.ShowLoadingForm();
+
             string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_GUID";
             returnData returnData = new returnData();
             returnData.ServerName = "cheom";
@@ -51,9 +57,9 @@ namespace 癌症自動備藥機暨排程系統
             udnoectc = udnoectcs[0];
 
             this.sqL_DataGridView_變異紀錄.RowPostPaintingEvent += SqL_DataGridView_變異紀錄_RowPostPaintingEvent;
+            LoadingForm.CloseLoadingForm();
         }
 
-      
         private void Dialog_變異紀錄_Load(object sender, EventArgs e)
         {
             Table table = new Table("");

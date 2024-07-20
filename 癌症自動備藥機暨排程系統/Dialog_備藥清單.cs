@@ -16,6 +16,9 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Dialog_備藥清單 : MyDialog
     {
+        public delegate void SureClickEventHandler();
+        public event SureClickEventHandler SureClickEvent;
+
         private string _login_name = "";
    
 
@@ -23,51 +26,41 @@ namespace 癌症自動備藥機暨排程系統
         private udnoectc udnoectc = null;
         public Dialog_備藥清單(string guid , string login_name)
         {
-            InitializeComponent();
-            this.TopMost = true;
+            form.Invoke(new Action(delegate { InitializeComponent(); }));
+            LoadingForm.ShowLoadingForm();
             this.GUID = guid;
-            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_GUID";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = GUID;
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            List<udnoectc> udnoectcs = returnData.Data.ObjToClass<List<udnoectc>>();
-
-
-            Dialog_備藥清單.form = this.ParentForm;
+            udnoectc udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, GUID);
             this.Load += Dialog_備藥清單_Load;
-           
-
-            if(udnoectcs.Count == 0)
+            if (udnoectc == null)
             {
                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("異常:查無資料", 2000);
-                this.Invoke(new Action(delegate
+                form.Invoke(new Action(delegate
                 {
                     this.Close();
                     this.DialogResult = DialogResult.No;
                 }));
             }
             this._login_name = login_name;
-            this.udnoectc = udnoectcs[0];
+            this.udnoectc = udnoectc;
+            this.LoadFinishedEvent += Dialog_備藥清單_LoadFinishedEvent;
 
 
         }
 
-      
-
-        private void Dialog_備藥清單_Load(object sender, EventArgs e)
+        private void Dialog_備藥清單_LoadFinishedEvent(EventArgs e)
         {
-          
             this.uc_備藥通知內容.Init(udnoectc, _login_name, false);
             this.plC_RJ_Button_返回.MouseDownEvent += PlC_RJ_Button_返回_MouseDownEvent;
             this.plC_RJ_Button_確認.MouseDownEvent += PlC_RJ_Button_確認_MouseDownEvent;
             this.plC_RJ_Button_變異紀錄.MouseDownEvent += PlC_RJ_Button_變異紀錄_MouseDownEvent;
+            LoadingForm.CloseLoadingForm();
         }
 
-       
+        private void Dialog_備藥清單_Load(object sender, EventArgs e)
+        {         
+         
+        }
+     
         #region Event
         private void PlC_RJ_Button_變異紀錄_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -103,6 +96,9 @@ namespace 癌症自動備藥機暨排程系統
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            this.Close();
+            if (SureClickEvent != null) SureClickEvent();
         }
    
         private void PlC_RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)

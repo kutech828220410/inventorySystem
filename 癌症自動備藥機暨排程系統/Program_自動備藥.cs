@@ -29,8 +29,8 @@ namespace 癌症自動備藥機暨排程系統
     public partial class Main_Form : Form
     {
         MyThread myThread_開始備藥;
+        MyThread myThread_自動備藥_處方更新;
 
-      
         private void Program_自動備藥_Init()
         {
           
@@ -45,6 +45,13 @@ namespace 癌症自動備藥機暨排程系統
             myThread_開始備藥.SetSleepTime(1);
             myThread_開始備藥.Add_Method(Program_自動備藥);
             myThread_開始備藥.Trigger();
+
+
+            myThread_自動備藥_處方更新 = new MyThread(this.FindForm());
+            myThread_自動備藥_處方更新.AutoRun(true);
+            myThread_自動備藥_處方更新.SetSleepTime(500);
+            myThread_自動備藥_處方更新.Add_Method(Program_自動備藥_處方更新);
+            myThread_自動備藥_處方更新.Trigger();
 
             //plC_UI_Init.Add_Method(Program_自動備藥);
         }
@@ -81,6 +88,17 @@ namespace 癌症自動備藥機暨排程系統
             }
         }
         
+        private void Program_自動備藥_處方更新()
+        {
+            if (this.plC_ScreenPage_main.PageText != "自動備藥") return;
+            this.uc_備藥通知處方.RefreshGrid();
+            this.Invoke(new Action(delegate 
+            {
+                label_自動備藥_處方上次更新時間.Text = $"處方上次更新間 : {DateTime.Now.ToDateTimeString()}";
+            }));
+        }
+
+
         #region PLC_自動備藥_開始備藥
         List<object[]> list_自動備藥_開始備藥_常溫 = new List<object[]>();
         List<object[]> list_自動備藥_開始備藥_冷藏 = new List<object[]>();
@@ -616,11 +634,8 @@ namespace 癌症自動備藥機暨排程系統
                 return;
             }
             string GUID = list_value[0][(int)enum_udnoectc.GUID].ObjectToString();
-            this.Invoke(new Action(delegate 
-            {
-                Dialog_備藥清單 dialog_備藥清單 = new Dialog_備藥清單(GUID , 登入者名稱);
-                dialog_備藥清單.ShowDialog();
-            }));           
+            Dialog_備藥清單 dialog_備藥清單 = new Dialog_備藥清單(GUID, 登入者名稱);
+            dialog_備藥清單.ShowDialog();
         }
         private void PlC_RJ_Button_自動備藥_重新整理_MouseDownEvent(MouseEventArgs mevent)
         {

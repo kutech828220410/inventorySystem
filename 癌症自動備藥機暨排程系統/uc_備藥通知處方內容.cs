@@ -20,11 +20,11 @@ namespace 癌症自動備藥機暨排程系統
         private string _login_name = "";
         private bool flag_init = false;
         public udnoectc udnoectc = null;
+        private bool _show_func_panel = false;
         public uc_備藥通知處方內容()
         {
             InitializeComponent();
             this.Load += Uc_備藥通知內容_Load;
-
         }
         public List<object[]> GetSelectedRows()
         {
@@ -34,13 +34,14 @@ namespace 癌症自動備藥機暨排程系統
         public void Init(udnoectc udnoectc , string login_name ,bool show_func_panel)
         {
             this.udnoectc = udnoectc;
+            this._show_func_panel = show_func_panel;
             this._login_name = login_name;
             if (flag_init == false)
             {
-                this.Invoke(new Action(delegate
+                Parent.FindForm().Invoke(new Action(delegate
                 {
-                    Basic.Reflection.MakeDoubleBuffered(this, true);
-                    this.panel_功能表.Visible = show_func_panel;
+                    //Basic.Reflection.MakeDoubleBuffered(this, true);
+                    this.panel_功能表.Visible = _show_func_panel;
 
                     rJ_Pannel_處方內容.Paint += RJ_Pannel_處方內容_Paint;
                     rJ_Pannel_備藥內容.Paint += RJ_Pannel_備藥內容_Paint;
@@ -62,12 +63,11 @@ namespace 癌症自動備藥機暨排程系統
                 }));
 
             }
-        
-
             refresh_UI();
-
             flag_init = true;
+
         }
+
         public udnoectc Get_udnoectc_by_GUID(string GUID)
         {
             string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_GUID";
@@ -85,9 +85,6 @@ namespace 癌症自動備藥機暨排程系統
 
         private void refresh_UI()
         {
-
-
-
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < udnoectc.藥囑資料.Count; i++)
             {
@@ -161,9 +158,20 @@ namespace 癌症自動備藥機暨排程系統
         private void SqL_DataGridView_服藥順序_RowClickEvent(object[] RowValue)
         {
             int index = sqL_DataGridView_服藥順序.GetSelectRow();
+         
             if (index >= 0)
             {
                 sqL_DataGridView_服藥順序.Checked[index] = !sqL_DataGridView_服藥順序.Checked[index];
+            }
+            List<udnoectc_orders> udnoectc_Orders = RowValue[0].ToString().JsonDeserializet<List<udnoectc_orders>>();
+
+            for (int i = 0; i < udnoectc_Orders.Count; i++)
+            {
+                if (udnoectc_Orders[i].備藥藥師.StringIsEmpty() == false)
+                {
+                    sqL_DataGridView_服藥順序.Checked[index] = false;
+                    return;
+                }
             }
         }
         private void SqL_DataGridView_服藥順序_RowEnterEvent(object[] RowValue)

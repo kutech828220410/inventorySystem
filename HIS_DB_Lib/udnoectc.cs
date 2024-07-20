@@ -238,6 +238,100 @@ namespace HIS_DB_Lib
                 else return compare;
             }
         }
+
+        /// <summary>
+        /// 根據 GUID 從 API 伺服器獲取化療配藥通知處方。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="GUID">唯一標識符 GUID。</param>
+        /// <returns>返回具有指定 GUID 的化療配藥通知處方對象。如果未找到或發生錯誤，返回 null。</returns>
+        /// <example>
+        /// 以下是使用 `get_udnoectc_by_GUID` 方法的範例：
+        /// <code>
+        /// string apiServer = "http://example.com";
+        /// string guid = "unique-guid";
+        /// var prescription = udnoectc.get_udnoectc_by_GUID(apiServer, guid);
+        /// if (prescription != null)
+        /// {
+        ///     Console.WriteLine($"病人姓名: {prescription.病人姓名}");
+        /// }
+        /// else
+        /// {
+        ///     Console.WriteLine("未找到指定 GUID 的處方。");
+        /// }
+        /// </code>
+        /// </example>
+        static public udnoectc get_udnoectc_by_GUID(string API_Server, string ServerName, string ServerType, string GUID)
+        {
+            string url = $"{API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_GUID";
+
+            returnData returnData = new returnData();
+            returnData.Value = GUID;
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+            List<udnoectc> udnoectcs = returnData_out.Data.ObjToClass<List<udnoectc>>();
+            if (udnoectcs.Count == 0) return null;
+
+            return udnoectcs[0];
+        }
+        /// <summary>
+        /// 更新指定操作員的化療配藥通知子項目（已備藥完成）。
+        /// </summary>
+        /// <param name="API_Server">API 伺服器地址。</param>
+        /// <param name="ServerName">伺服器名稱。</param>
+        /// <param name="ServerType">伺服器類型。</param>
+        /// <param name="op_name">操作員名稱。</param>
+        /// <returns>返回已更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
+        /// <example>
+        /// 以下是使用 `update_udnoectc_orders_comp` 方法的範例：
+        /// <code>
+        /// string apiServer = "http://example.com";
+        /// string serverName = "MainServer";
+        /// string serverType = "WebServer";
+        /// string operatorName = "JohnDoe";
+        /// var updatedOrders = udnoectc.update_udnoectc_orders_comp(apiServer, serverName, serverType, operatorName);
+        /// if (updatedOrders != null)
+        /// {
+        ///     Console.WriteLine($"更新的訂單數量: {updatedOrders.Count}");
+        /// }
+        /// else
+        /// {
+        ///     Console.WriteLine("未找到指定操作員的訂單或發生錯誤。");
+        /// }
+        /// </code>
+        /// </example>
+        static public List<udnoectc_orders> update_udnoectc_orders_comp(string API_Server, string ServerName, string ServerType, string op_name)
+        {
+            string url = $"{API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_orders_comp";
+
+            returnData returnData = new returnData();
+            returnData.Value = op_name;
+            returnData.ServerName = ServerName;
+            returnData.ServerType = ServerType;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+            List<udnoectc_orders> udnoectc_Orders = returnData_out.Data.ObjToClass<List<udnoectc_orders>>();
+
+            return udnoectc_Orders;
+        }
+
+
     }
 
     public enum enum_udnoectc_orders

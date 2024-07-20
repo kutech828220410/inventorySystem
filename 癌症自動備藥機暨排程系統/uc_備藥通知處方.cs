@@ -35,6 +35,12 @@ namespace 癌症自動備藥機暨排程系統
 
         public void Init()
         {
+            this.Load += Uc_備藥通知處方_Load;
+        
+        }
+
+        private void Uc_備藥通知處方_Load(object sender, EventArgs e)
+        {
             string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/init_udnoectc";
             returnData returnData = new returnData();
             returnData.ServerName = "cheom";
@@ -58,10 +64,9 @@ namespace 癌症自動備藥機暨排程系統
             ToolStripMenuItem_取得即時備藥通知.Click += ToolStripMenuItem_取得即時備藥通知_Click;
         }
 
-
         public void RefreshGrid()
         {
-            this.Function_取得備藥通知(DateTime.Now.AddDays(-1), DateTime.Now, true);
+            this.Function_取得備藥通知(DateTime.Now.AddDays(Main_Form.PLC_Device_更新往前第幾天醫令.Value * -1), DateTime.Now, true);
         }
 
         public List<object[]> GetSelectedRows()
@@ -73,10 +78,39 @@ namespace 癌症自動備藥機暨排程系統
         public List<object[]> Function_取得備藥通知(DateTime dt_start, DateTime dt_end, bool flag_refresh_grid)
         {
             List<object[]> list_udnoectc = Function_取得備藥通知(dt_start, dt_end);
-
+            List<object[]> list_udnoectc_buf = new List<object[]>();
             if (flag_refresh_grid)
             {
-                this.sqL_DataGridView_備藥通知.RefreshGrid(list_udnoectc);
+                List<object[]> list_備藥通知 = this.sqL_DataGridView_備藥通知.GetAllRows();
+                List<object[]> list_備藥通知_buf = new List<object[]>();
+                List<object[]> list_備藥通知_add = new List<object[]>();
+                List<object[]> list_備藥通知_delete = new List<object[]>();
+
+                for (int i = 0; i < list_udnoectc.Count; i++)
+                {
+                    string GUID = list_udnoectc[i][(int)enum_udnoectc.GUID].ObjectToString();
+                    list_備藥通知_buf = (from temp in list_備藥通知
+                                     where temp[(int)enum_udnoectc.GUID].ObjectToString() == GUID
+                                     select temp).ToList();
+                    if(list_備藥通知_buf.Count == 0)
+                    {
+                        list_備藥通知_add.Add(list_udnoectc[i]);
+                    }
+                }
+                for (int i = 0; i < list_備藥通知.Count; i++)
+                {
+                    string GUID = list_備藥通知[i][(int)enum_udnoectc.GUID].ObjectToString();
+                    list_udnoectc_buf = (from temp in list_udnoectc
+                                         where temp[(int)enum_udnoectc.GUID].ObjectToString() == GUID
+                                         select temp).ToList();
+                    if (list_udnoectc_buf.Count == 0)
+                    {
+                        list_備藥通知_delete.Add(list_備藥通知[i]);
+                    }
+                }
+                this.sqL_DataGridView_備藥通知.AddRows(list_備藥通知_add, false);
+                this.sqL_DataGridView_備藥通知.DeleteExtra(list_備藥通知_delete, false);
+                this.sqL_DataGridView_備藥通知.RefreshGrid();
             }
             return list_udnoectc;
         }

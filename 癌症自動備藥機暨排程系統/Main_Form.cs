@@ -33,7 +33,7 @@ namespace 癌症自動備藥機暨排程系統
         public static string API_Server = "";
         public static string currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         public LadderConnection.Properties PLC;
-      
+        static public PLC_Device PLC_Device_更新往前第幾天醫令 = new PLC_Device("D210");
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         static public DBConfigClass dBConfigClass = new DBConfigClass();
@@ -255,6 +255,7 @@ namespace 癌症自動備藥機暨排程系統
             LoadingForm.form = this.FindForm();
             Dialog_AlarmForm.form = this.FindForm();
             Dialog_NumPannel.form = this.FindForm();
+            Dialog_備藥清單.form = this.FindForm();
             MyMessageBox.form = this.FindForm();
             MyMessageBox.音效 = false;
             this.plC_UI_Init.音效 = false;
