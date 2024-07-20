@@ -1845,34 +1845,7 @@
             </code>
             </example>
         </member>
-        <member name="M:HIS_DB_Lib.udnoectc.update_udnoectc_orders_comp(System.String,System.String,System.String,System.String)">
-            <summary>
-            更新指定操作員的化療配藥通知子項目（已備藥完成）。
-            </summary>
-            <param name="API_Server">API 伺服器地址。</param>
-            <param name="ServerName">伺服器名稱。</param>
-            <param name="ServerType">伺服器類型。</param>
-            <param name="op_name">操作員名稱。</param>
-            <returns>返回已更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
-            <example>
-            以下是使用 `update_udnoectc_orders_comp` 方法的範例：
-            <code>
-            string apiServer = "http://example.com";
-            string serverName = "MainServer";
-            string serverType = "WebServer";
-            string operatorName = "JohnDoe";
-            var updatedOrders = udnoectc.update_udnoectc_orders_comp(apiServer, serverName, serverType, operatorName);
-            if (updatedOrders != null)
-            {
-                Console.WriteLine($"更新的訂單數量: {updatedOrders.Count}");
-            }
-            else
-            {
-                Console.WriteLine("未找到指定操作員的訂單或發生錯誤。");
-            }
-            </code>
-            </example>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:HIS_DB_Lib.udnoectc.update_udnoectc_orders_comp(System.String,System.String,System.String,System.Collections.Generic.List{HIS_DB_Lib.udnoectc_orders},System.String)" -->
         <member name="T:HIS_DB_Lib.udnoectc_orders">
             <summary>
             藥囑資料(配藥通知子項目)

@@ -29,6 +29,7 @@ namespace 癌症自動備藥機暨排程系統
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel_功能表 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_處方核對 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_調配完成 = new MyUI.PLC_RJ_Button();
@@ -54,6 +55,8 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable19 = new MyUI.RJ_Lable();
             this.rJ_Lable18 = new MyUI.RJ_Lable();
             this.rJ_Lable17 = new MyUI.RJ_Lable();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ToolStripMenuItem_設為未備藥 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_功能表.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_處方核對.SuspendLayout();
@@ -62,6 +65,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel_病人資訊.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_功能表
@@ -85,12 +89,14 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_處方核對.BorderSize = 0;
             this.plC_RJ_Button_處方核對.but_press = false;
             this.plC_RJ_Button_處方核對.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_處方核對.DisenableColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button_處方核對.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_Button_處方核對.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_處方核對.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_處方核對.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_處方核對.GUID = "";
             this.plC_RJ_Button_處方核對.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_處方核對.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.plC_RJ_Button_處方核對.Location = new System.Drawing.Point(516, 0);
             this.plC_RJ_Button_處方核對.Name = "plC_RJ_Button_處方核對";
             this.plC_RJ_Button_處方核對.OFF_文字內容 = "處方核對";
@@ -102,6 +108,9 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_處方核對.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_處方核對.ON_文字顏色 = System.Drawing.Color.LightGray;
             this.plC_RJ_Button_處方核對.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_處方核對.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_處方核對.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_處方核對.ProhibitionSymbolSize = 30;
             this.plC_RJ_Button_處方核對.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_處方核對.ShadowSize = 3;
             this.plC_RJ_Button_處方核對.ShowLoadingForm = false;
@@ -110,12 +119,14 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_處方核對.TabIndex = 12;
             this.plC_RJ_Button_處方核對.Text = "處方核對";
             this.plC_RJ_Button_處方核對.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_處方核對.TextHeight = 0;
             this.plC_RJ_Button_處方核對.Texts = "處方核對";
             this.plC_RJ_Button_處方核對.UseVisualStyleBackColor = false;
             this.plC_RJ_Button_處方核對.字型鎖住 = false;
             this.plC_RJ_Button_處方核對.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_處方核對.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_處方核對.文字鎖住 = false;
+            this.plC_RJ_Button_處方核對.背景圖片 = null;
             this.plC_RJ_Button_處方核對.讀取位元反向 = false;
             this.plC_RJ_Button_處方核對.讀寫鎖住 = false;
             this.plC_RJ_Button_處方核對.音效 = true;
@@ -132,12 +143,14 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_調配完成.BorderSize = 0;
             this.plC_RJ_Button_調配完成.but_press = false;
             this.plC_RJ_Button_調配完成.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_調配完成.DisenableColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button_調配完成.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_Button_調配完成.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_調配完成.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_調配完成.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_調配完成.GUID = "";
             this.plC_RJ_Button_調配完成.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_調配完成.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.plC_RJ_Button_調配完成.Location = new System.Drawing.Point(258, 0);
             this.plC_RJ_Button_調配完成.Name = "plC_RJ_Button_調配完成";
             this.plC_RJ_Button_調配完成.OFF_文字內容 = "調配完成";
@@ -149,6 +162,9 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_調配完成.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_調配完成.ON_文字顏色 = System.Drawing.Color.LightGray;
             this.plC_RJ_Button_調配完成.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_調配完成.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_調配完成.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_調配完成.ProhibitionSymbolSize = 30;
             this.plC_RJ_Button_調配完成.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_調配完成.ShadowSize = 3;
             this.plC_RJ_Button_調配完成.ShowLoadingForm = false;
@@ -157,12 +173,14 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_調配完成.TabIndex = 11;
             this.plC_RJ_Button_調配完成.Text = "調配完成";
             this.plC_RJ_Button_調配完成.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_調配完成.TextHeight = 0;
             this.plC_RJ_Button_調配完成.Texts = "調配完成";
             this.plC_RJ_Button_調配完成.UseVisualStyleBackColor = false;
             this.plC_RJ_Button_調配完成.字型鎖住 = false;
             this.plC_RJ_Button_調配完成.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_調配完成.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_調配完成.文字鎖住 = false;
+            this.plC_RJ_Button_調配完成.背景圖片 = null;
             this.plC_RJ_Button_調配完成.讀取位元反向 = false;
             this.plC_RJ_Button_調配完成.讀寫鎖住 = false;
             this.plC_RJ_Button_調配完成.音效 = true;
@@ -179,12 +197,14 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_醫囑確認.BorderSize = 0;
             this.plC_RJ_Button_醫囑確認.but_press = false;
             this.plC_RJ_Button_醫囑確認.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_醫囑確認.DisenableColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button_醫囑確認.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_Button_醫囑確認.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_醫囑確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_醫囑確認.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.plC_RJ_Button_醫囑確認.GUID = "";
             this.plC_RJ_Button_醫囑確認.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_醫囑確認.Image_padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.plC_RJ_Button_醫囑確認.Location = new System.Drawing.Point(0, 0);
             this.plC_RJ_Button_醫囑確認.Name = "plC_RJ_Button_醫囑確認";
             this.plC_RJ_Button_醫囑確認.OFF_文字內容 = "醫囑確認";
@@ -196,6 +216,9 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_醫囑確認.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
             this.plC_RJ_Button_醫囑確認.ON_文字顏色 = System.Drawing.Color.LightGray;
             this.plC_RJ_Button_醫囑確認.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_醫囑確認.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_醫囑確認.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_醫囑確認.ProhibitionSymbolSize = 30;
             this.plC_RJ_Button_醫囑確認.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_醫囑確認.ShadowSize = 3;
             this.plC_RJ_Button_醫囑確認.ShowLoadingForm = false;
@@ -204,12 +227,14 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_醫囑確認.TabIndex = 10;
             this.plC_RJ_Button_醫囑確認.Text = "醫囑確認";
             this.plC_RJ_Button_醫囑確認.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_醫囑確認.TextHeight = 0;
             this.plC_RJ_Button_醫囑確認.Texts = "醫囑確認";
             this.plC_RJ_Button_醫囑確認.UseVisualStyleBackColor = false;
             this.plC_RJ_Button_醫囑確認.字型鎖住 = false;
             this.plC_RJ_Button_醫囑確認.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_醫囑確認.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
             this.plC_RJ_Button_醫囑確認.文字鎖住 = false;
+            this.plC_RJ_Button_醫囑確認.背景圖片 = null;
             this.plC_RJ_Button_醫囑確認.讀取位元反向 = false;
             this.plC_RJ_Button_醫囑確認.讀寫鎖住 = false;
             this.plC_RJ_Button_醫囑確認.音效 = true;
@@ -391,15 +416,19 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_服藥順序.BorderColor = System.Drawing.Color.Silver;
             this.sqL_DataGridView_服藥順序.BorderRadius = 0;
             this.sqL_DataGridView_服藥順序.BorderSize = 2;
+            this.sqL_DataGridView_服藥順序.CellBorderColor = System.Drawing.Color.White;
             this.sqL_DataGridView_服藥順序.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.sqL_DataGridView_服藥順序.cellStylBackColor = System.Drawing.Color.PowderBlue;
             this.sqL_DataGridView_服藥順序.cellStyleFont = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_服藥順序.cellStylForeColor = System.Drawing.Color.Black;
             this.sqL_DataGridView_服藥順序.columnHeaderBackColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_服藥順序.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_服藥順序.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_服藥順序.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.sqL_DataGridView_服藥順序.columnHeadersHeight = 40;
             this.sqL_DataGridView_服藥順序.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.sqL_DataGridView_服藥順序.ContextMenuStrip = this.contextMenuStrip;
+            this.sqL_DataGridView_服藥順序.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sqL_DataGridView_服藥順序.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_服藥順序.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_服藥順序.ImageBox = false;
@@ -414,6 +443,10 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_服藥順序.RowsColor = System.Drawing.SystemColors.Control;
             this.sqL_DataGridView_服藥順序.RowsHeight = 80;
             this.sqL_DataGridView_服藥順序.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_服藥順序.selectedBorderSize = 0;
+            this.sqL_DataGridView_服藥順序.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_服藥順序.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_服藥順序.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_服藥順序.Server = "127.0.0.0";
             this.sqL_DataGridView_服藥順序.Size = new System.Drawing.Size(790, 668);
             this.sqL_DataGridView_服藥順序.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
@@ -555,6 +588,19 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable17.TextColor = System.Drawing.Color.White;
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_設為未備藥});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(135, 26);
+            // 
+            // ToolStripMenuItem_設為未備藥
+            // 
+            this.ToolStripMenuItem_設為未備藥.Name = "ToolStripMenuItem_設為未備藥";
+            this.ToolStripMenuItem_設為未備藥.Size = new System.Drawing.Size(134, 22);
+            this.ToolStripMenuItem_設為未備藥.Text = "設為未備藥";
+            // 
             // uc_備藥通知處方內容
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -573,6 +619,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel_病人資訊.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -603,5 +650,7 @@ namespace 癌症自動備藥機暨排程系統
         private SQLUI.SQL_DataGridView sqL_DataGridView_服藥順序;
         private MyUI.RJ_Pannel rJ_Pannel_處方內容;
         private MyUI.RJ_Pannel rJ_Pannel_備藥內容;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_設為未備藥;
     }
 }

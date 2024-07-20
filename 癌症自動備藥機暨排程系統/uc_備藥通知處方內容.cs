@@ -26,11 +26,7 @@ namespace 癌症自動備藥機暨排程系統
             InitializeComponent();
             this.Load += Uc_備藥通知內容_Load;
         }
-        public List<object[]> GetSelectedRows()
-        {
-            List<object[]> list_value = this.sqL_DataGridView_服藥順序.Get_All_Checked_RowsValuesEx();
-            return list_value;
-        }
+     
         public void Init(udnoectc udnoectc , string login_name ,bool show_func_panel)
         {
             this.udnoectc = udnoectc;
@@ -60,6 +56,7 @@ namespace 癌症自動備藥機暨排程系統
                     plC_RJ_Button_醫囑確認.MouseDownEvent += PlC_RJ_Button_醫囑確認_MouseDownEvent;
                     plC_RJ_Button_調配完成.MouseDownEvent += PlC_RJ_Button_調配完成_MouseDownEvent;
                     plC_RJ_Button_處方核對.MouseDownEvent += PlC_RJ_Button_處方核對_MouseDownEvent;
+                    ToolStripMenuItem_設為未備藥.Click += ToolStripMenuItem_設為未備藥_Click;
                 }));
 
             }
@@ -68,20 +65,13 @@ namespace 癌症自動備藥機暨排程系統
 
         }
 
-        public udnoectc Get_udnoectc_by_GUID(string GUID)
-        {
-            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/get_udnoectc_by_GUID";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = GUID;
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-            returnData = json_out.JsonDeserializet<returnData>();
-            List<udnoectc> udnoectcs = returnData.Data.ObjToClass<List<udnoectc>>();
-            return udnoectcs[0];
-        }
+    
 
+        public List<object[]> GetSelectedRows()
+        {
+            List<object[]> list_value = this.sqL_DataGridView_服藥順序.Get_All_Checked_RowsValuesEx();
+            return list_value;
+        }
 
         private void refresh_UI()
         {
@@ -345,7 +335,7 @@ namespace 癌症自動備藥機暨排程系統
             returnData.Data = udnoectc;
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-            udnoectc = Get_udnoectc_by_GUID(udnoectc.GUID);
+            udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
             refresh_UI();
             Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("醫囑確認完成", 1500, Color.DarkGreen);
             dialog_AlarmForm.ShowDialog();
@@ -360,7 +350,7 @@ namespace 癌症自動備藥機暨排程系統
             returnData.Data = udnoectc;
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-            udnoectc = Get_udnoectc_by_GUID(udnoectc.GUID);
+            udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
             refresh_UI();
             Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("調配完成", 1500, Color.DarkGreen);
             dialog_AlarmForm.ShowDialog();
@@ -375,12 +365,37 @@ namespace 癌症自動備藥機暨排程系統
             returnData.Data = udnoectc;
             string json_in = returnData.JsonSerializationt();
             string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-            udnoectc = Get_udnoectc_by_GUID(udnoectc.GUID);
+            udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
             refresh_UI();
             Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方核對完成", 1500, Color.DarkGreen);
             dialog_AlarmForm.ShowDialog();
         }
-      
+        private void ToolStripMenuItem_設為未備藥_Click(object sender, EventArgs e)
+        {
+            LoadingForm.ShowLoadingForm();
+            List<object[]> list_value = this.sqL_DataGridView_服藥順序.GetAllRows();
+            if (list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            List<udnoectc_orders> list_udnoectc_orders = new List<udnoectc_orders>();
+            List<udnoectc_orders> list_udnoectc_orders_replace = new List<udnoectc_orders>();
+            for (int i = 0; i < list_value.Count; i++)
+            {
+                list_udnoectc_orders = list_value[i][0].ObjectToString().JsonDeserializet<List<udnoectc_orders>>();
+                list_udnoectc_orders_replace.LockAdd(list_udnoectc_orders);
+            }
+            List<udnoectc_orders> list_udnoectc_orders_retuen = udnoectc.update_udnoectc_orders_comp(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, list_udnoectc_orders_replace, "");
+            udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
+
+            refresh_UI();
+
+
+
+            LoadingForm.CloseLoadingForm();
+        }
 
         #endregion
 

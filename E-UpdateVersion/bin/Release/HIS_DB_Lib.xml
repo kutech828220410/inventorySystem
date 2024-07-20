@@ -1845,6 +1845,7 @@
             </code>
             </example>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:HIS_DB_Lib.udnoectc.update_udnoectc_orders_comp(System.String,System.String,System.String,System.Collections.Generic.List{HIS_DB_Lib.udnoectc_orders},System.String)" -->
         <member name="T:HIS_DB_Lib.udnoectc_orders">
             <summary>
             藥囑資料(配藥通知子項目)

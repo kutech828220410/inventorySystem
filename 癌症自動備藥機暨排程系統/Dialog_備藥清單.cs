@@ -72,12 +72,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void PlC_RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
         {
-            string url = $"{Main_Form.API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_orders_comp";
-            returnData returnData = new returnData();
-            returnData.ServerName = "cheom";
-            returnData.ServerType = "癌症備藥機";
-            returnData.Value = this._login_name;
-
+            LoadingForm.ShowLoadingForm();
             List<object[]> list_value = this.uc_備藥通知內容.GetSelectedRows();
             if (list_value.Count == 0)
             {
@@ -92,11 +87,9 @@ namespace 癌症自動備藥機暨排程系統
                 list_udnoectc_orders = list_value[i][0].ObjectToString().JsonDeserializet<List<udnoectc_orders>>();
                 list_udnoectc_orders_replace.LockAdd(list_udnoectc_orders);
             }
-            returnData.Data = list_udnoectc_orders_replace;
-
-            string json_in = returnData.JsonSerializationt();
-            string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            List<udnoectc_orders> list_udnoectc_orders_retuen = udnoectc.update_udnoectc_orders_comp(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, list_udnoectc_orders_replace, this._login_name);
+            LoadingForm.CloseLoadingForm();
+            
             this.Close();
             if (SureClickEvent != null) SureClickEvent();
         }

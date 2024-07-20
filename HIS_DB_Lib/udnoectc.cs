@@ -289,6 +289,7 @@ namespace HIS_DB_Lib
         /// <param name="API_Server">API 伺服器地址。</param>
         /// <param name="ServerName">伺服器名稱。</param>
         /// <param name="ServerType">伺服器類型。</param>
+        /// <param name="replace_datas">需要更新的化療配藥通知子項目列表。</param>
         /// <param name="op_name">操作員名稱。</param>
         /// <returns>返回已更新的化療配藥通知子項目列表。如果未找到或發生錯誤，返回 null。</returns>
         /// <example>
@@ -298,7 +299,9 @@ namespace HIS_DB_Lib
         /// string serverName = "MainServer";
         /// string serverType = "WebServer";
         /// string operatorName = "JohnDoe";
-        /// var updatedOrders = udnoectc.update_udnoectc_orders_comp(apiServer, serverName, serverType, operatorName);
+        /// List<udnoectc_orders> replaceData = new List<udnoectc_orders>();
+        /// // 添加需要更新的訂單資料到 replaceData 列表中
+        /// var updatedOrders = udnoectc.update_udnoectc_orders_comp(apiServer, serverName, serverType, replaceData, operatorName);
         /// if (updatedOrders != null)
         /// {
         ///     Console.WriteLine($"更新的訂單數量: {updatedOrders.Count}");
@@ -309,7 +312,7 @@ namespace HIS_DB_Lib
         /// }
         /// </code>
         /// </example>
-        static public List<udnoectc_orders> update_udnoectc_orders_comp(string API_Server, string ServerName, string ServerType, string op_name)
+        static public List<udnoectc_orders> update_udnoectc_orders_comp(string API_Server, string ServerName, string ServerType, List<udnoectc_orders> replace_datas , string op_name)
         {
             string url = $"{API_Server}/api/ChemotherapyRxScheduling/update_udnoectc_orders_comp";
 
@@ -317,7 +320,7 @@ namespace HIS_DB_Lib
             returnData.Value = op_name;
             returnData.ServerName = ServerName;
             returnData.ServerType = ServerType;
-
+            returnData.Data = replace_datas;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
