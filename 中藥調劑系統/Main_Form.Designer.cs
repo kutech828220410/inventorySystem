@@ -130,6 +130,7 @@ namespace 中藥調劑系統
             this.panel37 = new System.Windows.Forms.Panel();
             this.rJ_Lable_藥品搜尋_狀態 = new MyUI.RJ_Lable();
             this.panel36 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_藥品地圖 = new MyUI.PLC_RJ_Button();
             this.rJ_Button_藥品搜尋_搜尋 = new MyUI.RJ_Button();
             this.處方搜尋 = new System.Windows.Forms.TabPage();
             this.sqL_DataGridView_處方搜尋 = new SQLUI.SQL_DataGridView();
@@ -156,6 +157,10 @@ namespace 中藥調劑系統
             this.rJ_Lable7 = new MyUI.RJ_Lable();
             this.dateTimeIntervelPicker_交易紀錄_操作時間 = new MyUI.DateTimeIntervelPicker();
             this.設定 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel_亮燈區域_共用 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label30 = new System.Windows.Forms.Label();
+            this.comboBox_亮燈區域 = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rJ_RatioButton_調劑種類_飲片 = new MyUI.RJ_RatioButton();
             this.rJ_RatioButton_調劑種類_科中 = new MyUI.RJ_RatioButton();
@@ -233,10 +238,6 @@ namespace 中藥調劑系統
             this.openFileDialog_LoadExcel = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog_SaveExcel = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog = new System.Windows.Forms.ColorDialog();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.comboBox_亮燈區域 = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel_亮燈區域_共用 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel_main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plC_ScreenPage_main.SuspendLayout();
@@ -271,6 +272,7 @@ namespace 中藥調劑系統
             this.panel30.SuspendLayout();
             this.panel29.SuspendLayout();
             this.設定.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -289,7 +291,6 @@ namespace 中藥調劑系統
             this.panel32.SuspendLayout();
             this.panel33.SuspendLayout();
             this.panel34.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_main
@@ -2619,12 +2620,68 @@ namespace 中藥調劑系統
             // 
             // panel36
             // 
+            this.panel36.Controls.Add(this.plC_RJ_Button_藥品地圖);
             this.panel36.Controls.Add(this.rJ_Button_藥品搜尋_搜尋);
             this.panel36.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel36.Location = new System.Drawing.Point(0, 0);
             this.panel36.Name = "panel36";
             this.panel36.Size = new System.Drawing.Size(1896, 102);
             this.panel36.TabIndex = 0;
+            // 
+            // plC_RJ_Button_藥品地圖
+            // 
+            this.plC_RJ_Button_藥品地圖.AutoResetState = false;
+            this.plC_RJ_Button_藥品地圖.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥品地圖.Bool = false;
+            this.plC_RJ_Button_藥品地圖.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_藥品地圖.BorderRadius = 10;
+            this.plC_RJ_Button_藥品地圖.BorderSize = 1;
+            this.plC_RJ_Button_藥品地圖.but_press = false;
+            this.plC_RJ_Button_藥品地圖.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_藥品地圖.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_藥品地圖.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_Button_藥品地圖.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_藥品地圖.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_藥品地圖.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_藥品地圖.GUID = "";
+            this.plC_RJ_Button_藥品地圖.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_藥品地圖.Image_padding = new System.Windows.Forms.Padding(15, 5, 22, 5);
+            this.plC_RJ_Button_藥品地圖.Location = new System.Drawing.Point(0, 0);
+            this.plC_RJ_Button_藥品地圖.Name = "plC_RJ_Button_藥品地圖";
+            this.plC_RJ_Button_藥品地圖.OFF_文字內容 = "藥品地圖";
+            this.plC_RJ_Button_藥品地圖.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_藥品地圖.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_藥品地圖.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥品地圖.ON_BorderSize = 1;
+            this.plC_RJ_Button_藥品地圖.ON_文字內容 = "藥品地圖";
+            this.plC_RJ_Button_藥品地圖.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_藥品地圖.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_藥品地圖.ON_背景顏色 = System.Drawing.Color.OrangeRed;
+            this.plC_RJ_Button_藥品地圖.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_藥品地圖.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_藥品地圖.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_藥品地圖.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_藥品地圖.ShadowSize = 3;
+            this.plC_RJ_Button_藥品地圖.ShowLoadingForm = false;
+            this.plC_RJ_Button_藥品地圖.Size = new System.Drawing.Size(97, 102);
+            this.plC_RJ_Button_藥品地圖.State = false;
+            this.plC_RJ_Button_藥品地圖.TabIndex = 150;
+            this.plC_RJ_Button_藥品地圖.Text = "藥品地圖";
+            this.plC_RJ_Button_藥品地圖.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_藥品地圖.TextHeight = 35;
+            this.plC_RJ_Button_藥品地圖.Texts = "藥品地圖";
+            this.plC_RJ_Button_藥品地圖.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_藥品地圖.字型鎖住 = false;
+            this.plC_RJ_Button_藥品地圖.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_藥品地圖.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_藥品地圖.文字鎖住 = false;
+            this.plC_RJ_Button_藥品地圖.背景圖片 = global::中藥調劑系統.Properties.Resources.icon_for_medicine_map_papper_removebg_preview;
+            this.plC_RJ_Button_藥品地圖.致能讀取位置 = "S4000";
+            this.plC_RJ_Button_藥品地圖.讀取位元反向 = false;
+            this.plC_RJ_Button_藥品地圖.讀寫鎖住 = false;
+            this.plC_RJ_Button_藥品地圖.音效 = false;
+            this.plC_RJ_Button_藥品地圖.顯示 = false;
+            this.plC_RJ_Button_藥品地圖.顯示狀態 = false;
             // 
             // rJ_Button_藥品搜尋_搜尋
             // 
@@ -3198,6 +3255,49 @@ namespace 中藥調劑系統
             this.設定.Size = new System.Drawing.Size(1896, 912);
             this.設定.TabIndex = 3;
             this.設定.Text = "設定";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.flowLayoutPanel_亮燈區域_共用);
+            this.groupBox5.Controls.Add(this.label30);
+            this.groupBox5.Controls.Add(this.comboBox_亮燈區域);
+            this.groupBox5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox5.Location = new System.Drawing.Point(475, 236);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox5.Size = new System.Drawing.Size(382, 489);
+            this.groupBox5.TabIndex = 33;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "亮燈區域";
+            // 
+            // flowLayoutPanel_亮燈區域_共用
+            // 
+            this.flowLayoutPanel_亮燈區域_共用.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanel_亮燈區域_共用.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel_亮燈區域_共用.Location = new System.Drawing.Point(10, 135);
+            this.flowLayoutPanel_亮燈區域_共用.Name = "flowLayoutPanel_亮燈區域_共用";
+            this.flowLayoutPanel_亮燈區域_共用.Padding = new System.Windows.Forms.Padding(20);
+            this.flowLayoutPanel_亮燈區域_共用.Size = new System.Drawing.Size(362, 344);
+            this.flowLayoutPanel_亮燈區域_共用.TabIndex = 33;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(6, 102);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(48, 24);
+            this.label30.TabIndex = 32;
+            this.label30.Text = "共用";
+            // 
+            // comboBox_亮燈區域
+            // 
+            this.comboBox_亮燈區域.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_亮燈區域.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_亮燈區域.FormattingEnabled = true;
+            this.comboBox_亮燈區域.Location = new System.Drawing.Point(27, 42);
+            this.comboBox_亮燈區域.Name = "comboBox_亮燈區域";
+            this.comboBox_亮燈區域.Size = new System.Drawing.Size(303, 39);
+            this.comboBox_亮燈區域.TabIndex = 31;
             // 
             // groupBox4
             // 
@@ -4388,49 +4488,6 @@ namespace 中藥調劑系統
             this.saveFileDialog_SaveExcel.DefaultExt = "txt";
             this.saveFileDialog_SaveExcel.Filter = "Excel File (*.xlsx)|*.xlsx|txt File (*.txt)|*.txt;";
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.flowLayoutPanel_亮燈區域_共用);
-            this.groupBox5.Controls.Add(this.label30);
-            this.groupBox5.Controls.Add(this.comboBox_亮燈區域);
-            this.groupBox5.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox5.Location = new System.Drawing.Point(475, 236);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(382, 489);
-            this.groupBox5.TabIndex = 33;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "亮燈區域";
-            // 
-            // comboBox_亮燈區域
-            // 
-            this.comboBox_亮燈區域.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_亮燈區域.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBox_亮燈區域.FormattingEnabled = true;
-            this.comboBox_亮燈區域.Location = new System.Drawing.Point(27, 42);
-            this.comboBox_亮燈區域.Name = "comboBox_亮燈區域";
-            this.comboBox_亮燈區域.Size = new System.Drawing.Size(303, 39);
-            this.comboBox_亮燈區域.TabIndex = 31;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 102);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(48, 24);
-            this.label30.TabIndex = 32;
-            this.label30.Text = "共用";
-            // 
-            // flowLayoutPanel_亮燈區域_共用
-            // 
-            this.flowLayoutPanel_亮燈區域_共用.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel_亮燈區域_共用.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel_亮燈區域_共用.Location = new System.Drawing.Point(10, 135);
-            this.flowLayoutPanel_亮燈區域_共用.Name = "flowLayoutPanel_亮燈區域_共用";
-            this.flowLayoutPanel_亮燈區域_共用.Padding = new System.Windows.Forms.Padding(20);
-            this.flowLayoutPanel_亮燈區域_共用.Size = new System.Drawing.Size(362, 344);
-            this.flowLayoutPanel_亮燈區域_共用.TabIndex = 33;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4479,6 +4536,8 @@ namespace 中藥調劑系統
             this.panel30.ResumeLayout(false);
             this.panel29.ResumeLayout(false);
             this.設定.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -4508,8 +4567,6 @@ namespace 中藥調劑系統
             this.panel33.PerformLayout();
             this.panel34.ResumeLayout(false);
             this.panel34.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4722,6 +4779,7 @@ namespace 中藥調劑系統
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox comboBox_亮燈區域;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel_亮燈區域_共用;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_藥品地圖;
     }
 }
 

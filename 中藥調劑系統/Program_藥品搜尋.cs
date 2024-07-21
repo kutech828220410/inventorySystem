@@ -26,13 +26,17 @@ namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
     {
-        private medClass medClass_藥品搜尋 = new medClass();
+        private medClass medClass_藥品搜尋 = null;
         private bool flag_藥品搜尋 = false;
         private void Program_藥品搜尋_Init()
         {
             this.rJ_Button_藥品搜尋_搜尋.MouseDownEvent += RJ_Button_藥品搜尋_搜尋_MouseDownEvent;
+            this.plC_RJ_Button_藥品地圖.MouseDownEvent += PlC_RJ_Button_藥品地圖_MouseDownEvent;
             plC_UI_Init.Add_Method(Program_藥品搜尋);
         }
+
+    
+
         private bool flag_藥品搜尋頁面離開 = false;
         private void Program_藥品搜尋()
         {
@@ -46,7 +50,7 @@ namespace 中藥調劑系統
                 {
                     if (medClass_藥品搜尋 != null)
                     {
-                        Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Black);
+                        Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Black, true);
                     }
                     flag_藥品搜尋頁面離開 = true;
                 }
@@ -70,7 +74,7 @@ namespace 中藥調劑系統
                         {
                             if (medClass_藥品搜尋 != null)
                             {
-                                Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Black);
+                                Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Black, true);
                             }
                             medClass_藥品搜尋 = medClasses[0];
                             flag_藥品搜尋 = true;
@@ -96,7 +100,7 @@ namespace 中藥調劑系統
                     this.rJ_Lable_藥品搜尋_狀態.Text = "藥品帶入成功";
 
                 }));
-                Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Purple);
+                Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Purple ,true);
                 System.Threading.Thread.Sleep(2000);
 
                 this.Invoke(new Action(delegate
@@ -116,7 +120,7 @@ namespace 中藥調劑系統
 
             if (medClass_藥品搜尋 != null)
             {
-                Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Black);
+                Function_儲位亮燈(medClass_藥品搜尋.藥品碼, Color.Black, true);
             }
             if (flag_藥品搜尋 == false)
             {
@@ -126,6 +130,16 @@ namespace 中藥調劑系統
          
             
 
+        }
+        private void PlC_RJ_Button_藥品地圖_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if(medClass_藥品搜尋 ==null)
+            {
+                MyMessageBox.ShowDialog("未搜尋藥品");
+                return;
+            }
+            Dialog_藥品地圖 dialog_藥品地圖 = new Dialog_藥品地圖(medClass_藥品搜尋);
+            dialog_藥品地圖.ShowDialog();
         }
     }
 }

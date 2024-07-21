@@ -22,13 +22,28 @@ namespace 中藥調劑系統
         public class LightOn
         {
             public string IP { get; set; }
-            public string Code { get; set; }
+            public List<RowsDevice> RowsDevices = new List<RowsDevice>();
             public Color color { get; set; }
 
             public LightOn(string IP, Color color)
             {
                 this.IP = IP;
                 this.color = color;
+            }
+            public LightOn(RowsDevice rowsDevice, Color color)
+            {
+                this.IP = rowsDevice.IP;
+                this.color = color;
+
+                AddDevice(rowsDevice);
+            }
+            public void AddDevice(RowsDevice rowsDevice)
+            {
+                for (int i = 0; i < RowsDevices.Count; i++)
+                {
+                    if (rowsDevice.GUID == RowsDevices[i].GUID) return;
+                }
+                RowsDevices.Add(rowsDevice);
             }
         }
 
@@ -58,15 +73,25 @@ namespace 中藥調劑系統
         }
         static public List<object> Function_從本地資料取得儲位(string 藥品碼)
         {
+            return Function_從本地資料取得儲位(藥品碼, false);
+        }
+        static public List<object> Function_從本地資料取得儲位(string 藥品碼 , bool all_light)
+        {
             藥品碼 = ReplaceHyphenWithStar(藥品碼);
             List<object> list_value = new List<object>();
+            
+          
             List<RowsLED> rowsLEDs = (from temp in List_RowsLED_本地資料
                                       where Funtion_判斷亮燈區域(temp.Area)
                                       select temp).ToList();
             List<Storage> storages = (from temp in List_EPD266_本地資料
                                       where Funtion_判斷亮燈區域(temp.Area)
                                       select temp).ToList();
-
+            if (all_light)
+            {
+                rowsLEDs = List_RowsLED_本地資料;
+                storages = List_EPD266_本地資料;
+            }
             List<RowsDevice> rowsDevices = rowsLEDs.SortByCode(藥品碼);
             List<Storage> storages_epd266 = storages.SortByCode(藥品碼);
    
@@ -141,14 +166,13 @@ namespace 中藥調劑系統
                                                 select temp).ToList();
                                 if (LightOns_buf.Count == 0)
                                 {
-                                    //if (Funtion_判斷共用亮燈區域(rowsLED.Area))
-                                    //{
-                                    //    Console.WriteLine($"儲位亮燈 : 藥碼 : {Codes[i]} 共用亮燈區域,取得({device.IP})亮燈資訊");
-                                    //    rowsLED.LED_Bytes = Main_Form._rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
-                                    //}
-                                    lightOns.Add(new LightOn(device.IP, color));
+                                    lightOns.Add(new LightOn(rowsDevice, color));
                                 }
-                                rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);                              
+                                else
+                                {
+                                    //LightOns_buf[0].AddDevice(rowsDevice);
+                                }
+                                rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
                             }
                         }
                         if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266|| device.DeviceType == DeviceType.EPD290_lock || device.DeviceType == DeviceType.EPD266_lock)
@@ -179,6 +203,10 @@ namespace 中藥調劑系統
                     Storage storage = List_EPD266_本地資料.SortByIP(lightOn.IP);
                     if (rowsLED != null)
                     {
+                        //for (int k = 0; k < lightOn.RowsDevices.Count; k++)
+                        //{
+                        //    _rowsLEDUI.Set_Rows_LED_UDP_Ex(rowsLED, lightOn.RowsDevices[k].StartLED, lightOn.RowsDevices[k].EndLED, color);
+                        //}
                         _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
                     }
                     if (storage != null)
@@ -192,10 +220,14 @@ namespace 中藥調劑系統
         }
         static public void Function_儲位亮燈(string 藥品碼, Color color)
         {
+            Function_儲位亮燈(藥品碼, color, false);
+        }
+        static public void Function_儲位亮燈(string 藥品碼, Color color , bool all_light)
+        {
             if (藥品碼.StringIsEmpty()) return;
             藥品碼 = ReplaceHyphenWithStar(藥品碼);
             Console.WriteLine($"儲位亮燈 : 藥碼 : {藥品碼} 顏色 : {color.ToColorString()}");
-            List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
+            List<object> list_Device = Function_從本地資料取得儲位(藥品碼, all_light);
             for (int i = 0; i < list_Device.Count; i++)
             {
                 Device device = list_Device[i] as Device;

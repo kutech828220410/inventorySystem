@@ -391,3 +391,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\中藥調劑系統\obj\Re
 C:\Users\hsonds01\source\repos\inventorySystem20231119\中藥調劑系統\obj\Release\中藥調劑系統.exe
 C:\Users\hsonds01\source\repos\inventorySystem20231119\中藥調劑系統\obj\Release\中藥調劑系統.pdb
 C:\Users\Administrator\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.csproj.AssemblyReference.cache
+C:\Users\hmisa\source\repos\inventorySystem\中藥調劑系統\obj\Release\中藥調劑系統.Dialog_藥品地圖.resources

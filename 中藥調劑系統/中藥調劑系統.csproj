@@ -193,6 +193,12 @@
     <Compile Include="Dialog_系統登入.Designer.cs">
       <DependentUpon>Dialog_系統登入.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_藥品地圖.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_藥品地圖.Designer.cs">
+      <DependentUpon>Dialog_藥品地圖.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_藥品搜尋.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +270,9 @@
     <EmbeddedResource Include="Dialog_系統登入.resx">
       <DependentUpon>Dialog_系統登入.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_藥品地圖.resx">
+      <DependentUpon>Dialog_藥品地圖.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog_處方查詢.resx">
       <DependentUpon>Dialog_處方查詢.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +333,7 @@
     <None Include="Resources\up_arrow_icon.png" />
     <None Include="Resources\down_arrow_icon.png" />
     <None Include="Resources\light-off-removebg-preview.png" />
+    <None Include="Resources\icon-for-medicine-map-papper-removebg-preview.png" />
     <Content Include="中藥調劑系統ICON.ico" />
   </ItemGroup>
   <ItemGroup>
