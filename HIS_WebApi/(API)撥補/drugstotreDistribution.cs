@@ -18,6 +18,9 @@ using System.IO;
 using MyUI;
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace HIS_WebApi
 {
@@ -400,6 +403,87 @@ namespace HIS_WebApi
                 returnData.Data = null;
                 returnData.Result = $"{e.Message}";
                 Logger.Log($"drugstotreDistribution", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        [Route("excel_upload")]
+        [HttpPost]
+        public async Task<string> POST_excel_upload([FromForm] IFormFile file, [FromForm] string IC_NAME, [FromForm] string CT, [FromForm] string DEFAULT_OP)
+        {
+            returnData returnData = new returnData();
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+
+                List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
+                if (medClasses == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "ServerSetting VM端設定異常!";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                returnData.Method = "POST_excel_upload";
+                var formFile = Request.Form.Files.FirstOrDefault();
+
+                if (formFile == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "文件不得為空";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string extension = Path.GetExtension(formFile.FileName); // 获取文件的扩展名
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                inventoryClass.creat creat = new inventoryClass.creat();
+                string error = "";
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    await formFile.CopyToAsync(memoryStream);
+                    System.Data.DataTable dt = ExcelClass.NPOI_LoadFile(memoryStream.ToArray(), extension);
+                    dt = dt.ReorderTable(new enum_撥補單上傳_Excel());
+                    if (dt == null)
+                    {
+                        returnData.Code = -200;
+                        returnData.Result = "上傳文件表頭無效!";
+                        return returnData.JsonSerializationt(true);
+                    }
+                    List<object[]> list_value = dt.DataTableToRowList();
+
+                    if (IC_NAME.StringIsEmpty())
+                    {
+                        IC_NAME = Path.GetFileNameWithoutExtension(file.FileName);
+                    }
+                    List<distribution_excel> distributionList = new List<distribution_excel>();
+                    for (int i = 0; i < list_value.Count; i++)
+                    {
+
+                        distribution_excel rowvalue = new distribution_excel
+                        {
+                            藥碼 = list_value[i][(int)enum_撥補單上傳_Excel.藥碼].ObjectToString(),
+                            藥名 = list_value[i][(int)enum_撥補單上傳_Excel.藥名].ObjectToString(),
+                            撥發量 = list_value[i][(int)enum_撥補單上傳_Excel.撥發量].ObjectToString(),
+                            效期 = list_value[i][(int)enum_撥補單上傳_Excel.效期].ObjectToString(),
+                            批號 = list_value[i][(int)enum_撥補單上傳_Excel.批號].ObjectToString(),
+                        };
+                        distributionList.Add(rowvalue);
+
+
+                    }
+                }
+                returnData.Data = "";
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Result = "接收上傳文件成功";
+                return returnData.JsonSerializationt(true);
+            }
+
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = $"{e.Message}";
                 return returnData.JsonSerializationt(true);
             }
         }

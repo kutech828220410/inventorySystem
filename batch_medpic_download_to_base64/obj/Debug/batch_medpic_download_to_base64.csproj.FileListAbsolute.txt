@@ -58,7 +58,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_bas
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\System.Text.Json.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\bin\Debug\System.ValueTuple.xml
-C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.AssemblyReference.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.exe

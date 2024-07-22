@@ -12,6 +12,22 @@ using H_Pannel_lib;
 using System.Text.Json;
 namespace HIS_DB_Lib
 {
+    public enum enum_撥補單上傳_Excel
+    {
+        藥碼,
+        藥名,
+        撥發量,
+        效期,
+        批號
+    }
+    public class distribution_excel
+    {
+        public string 藥碼 { get; set; }
+        public string 藥名 { get; set; }
+        public string 撥發量 { get; set; }
+        public string 效期 { get; set; }
+        public string 批號 { get; set; }
+    }
     /// <summary>
     /// 枚舉表示藥品撥補的字段和屬性描述。
     /// </summary>
