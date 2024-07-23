@@ -27,11 +27,17 @@ mono_crash.*
 /E-UpdateVersion/bin/
 /E-UpdateVersion/obj/
 /中藥調劑系統/bin/
+/中藥調劑系統/obj/
 /智能藥庫系統/bin/
+/智能藥庫系統/obj/
 /智能藥庫管理系統/bin/
+/智能藥庫管理系統/obj/
 /勤務傳送櫃/bin/
+/勤務傳送櫃/obj/
 /調劑台管理系統/bin/
+/調劑台管理系統/obj/
 /癌症自動備藥機暨排程系統/bin/
+/癌症自動備藥機暨排程系統/obj/
 
 /[Dd]ebug/
 /[Dd]ebugPublic/
