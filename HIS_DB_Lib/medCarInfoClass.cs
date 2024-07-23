@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Basic;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace HIS_DB_Lib
 {
@@ -25,18 +26,32 @@ namespace HIS_DB_Lib
         護理站,
         [Description("床號,VARCHAR,10,NONE")]
         床號,
-        [Description("狀態,VARCHAR,10,NONE")]
-        狀態
+        [Description("占床狀態,VARCHAR,10,NONE")]
+        占床狀態,
+        [Description("調劑狀態,VARCHAR,10,NONE")]
+        調劑狀態
     }
     public class medCarInfoClass
     {
+        [JsonPropertyName("GUID")]
+
         public string GUID { get; set; }
+        [JsonPropertyName("pnamec")]
+
         public string 姓名 { get; set; }
+        [JsonPropertyName("caseno")]
         public string 住院號 { get; set; }
+        [JsonPropertyName("histno")]
         public string 病歷號 { get; set; }
+        [JsonPropertyName("phar")]
         public string 住院藥局 { get; set; }
+        [JsonPropertyName("hnursta")]
         public string 護理站 { get; set; }
+        [JsonPropertyName("hbedno")]
         public string 床號 { get; set; }
-        public string 狀態 { get; set; }
+        [JsonPropertyName("bed_status")]
+        public string 占床狀態 { get; set; }
+        [JsonPropertyName("dispens_status")]
+        public string 調劑狀態 { get; set; }
     }
 }
