@@ -15,12 +15,28 @@
 
 # Mono auto generated files
 mono_crash.*
-
+.vscode/
+.idea/
+*.iml
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
+
+/HIS_WebApi/bin/
+/HIS_WebApi/obj/
+/batch_dps_medUpdate/bin/
+/batch_dps_medUpdate/obj/
+/E-UpdateVersion/bin/
+/E-UpdateVersion/obj/
+/中藥調劑系統/bin/
+/智能藥庫系統/bin/
+/智能藥庫管理系統/bin/
+/勤務傳送櫃/bin/
+/調劑台管理系統/bin/
+/癌症自動備藥機暨排程系統/bin/
+
+/[Dd]ebug/
+/[Dd]ebugPublic/
+/[Rr]elease/
+/[Rr]eleases/
 x64/
 x86/
 [Ww][Ii][Nn]32/

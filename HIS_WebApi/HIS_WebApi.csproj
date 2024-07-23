@@ -169,10 +169,6 @@
     <Folder Include="WebControllers\" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy /Y &quot;$(TargetDir)$(ProjectName).dll&quot; &quot;$(SolutionDir)\0.DLL&quot;" />
-  </Target>
-
   <ProjectExtensions><VisualStudio><UserProperties libman_1json__JsonSchema="" properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
