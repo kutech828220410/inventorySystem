@@ -1,9 +1,0 @@
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\癌症自動備藥機暨排程系統.pdb
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.csproj.AssemblyReference.cache
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.Properties.Resources.resources
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.csproj.GenerateResource.cache
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.csproj.CoreCompileInputs.cache
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.pdb
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\癌症自動備藥機暨排程系統.exe.config
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\bin\Release\癌症自動備藥機暨排程系統.exe
-C:\Users\HS\Source\Repos\inventorySystem\癌症自動備藥機暨排程系統\obj\Release\癌症自動備藥機暨排程系統.exe
