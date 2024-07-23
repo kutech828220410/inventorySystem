@@ -1,4 +1,0 @@
-{
-  "Default_program": "µL",
-  "Api_server": "http://127.0.0.1:4433"
-}
