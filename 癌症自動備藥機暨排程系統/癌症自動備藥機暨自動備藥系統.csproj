@@ -437,6 +437,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\EDIT.png" />
+    <None Include="Resources\trash-512.png" />
+    <None Include="Resources\add-new-plus-5121.png" />
+    <None Include="Resources\add-new-plus-512.png" />
     <None Include="Resources\e-paper-display-screen-for-illumination-guidance-removebg-preview.png" />
     <None Include="Resources\led-strip-light-for-illumination-guidance--removebg-preview.png" />
     <None Include="Resources\使用者資訊.png" />

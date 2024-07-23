@@ -143,6 +143,47 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_交易紀錄查詢_操作時間_搜尋 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable5 = new MyUI.RJ_Lable();
             this.儲位設定 = new System.Windows.Forms.TabPage();
+            this.plC_ScreenPage_儲位設定 = new MyUI.PLC_ScreenPage();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.rJ_Pannel14 = new MyUI.RJ_Pannel();
+            this.sqL_DataGridView_面板_儲位列表 = new SQLUI.SQL_DataGridView();
+            this.panel39 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_儲位設定_效期批號修正 = new MyUI.PLC_RJ_Button();
+            this.plC_Button63 = new MyUI.PLC_Button();
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈 = new MyUI.PLC_RJ_Button();
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色 = new System.Windows.Forms.ComboBox();
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理 = new MyUI.PLC_RJ_Button();
+            this.epD_290_Pannel = new H_Pannel_lib.EPD_290_Pannel();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.panel58 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button1 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button2 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button3 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增 = new MyUI.PLC_RJ_Button();
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除 = new MyUI.PLC_RJ_Button();
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號 = new SQLUI.SQL_DataGridView();
+            this.rJ_Button_RowsLED_清除燈號 = new MyUI.RJ_Button();
+            this.rJ_RatioButton_儲位資料_RowsLED_紅 = new MyUI.RJ_RatioButton();
+            this.rJ_RatioButton_儲位資料_RowsLED_白 = new MyUI.RJ_RatioButton();
+            this.rJ_RatioButton_儲位資料_RowsLED_藍 = new MyUI.RJ_RatioButton();
+            this.rJ_RatioButton_儲位資料_RowsLED_綠 = new MyUI.RJ_RatioButton();
+            this.sqL_DataGridView_RowsLED_儲位資料 = new SQLUI.SQL_DataGridView();
+            this.rowsLED_Pannel = new H_Pannel_lib.RowsLED_Pannel();
+            this.panel56 = new System.Windows.Forms.Panel();
+            this.rJ_Button_RowsLED_搜尋 = new MyUI.RJ_Button();
+            this.comboBox_RowsLED_搜尋內容 = new System.Windows.Forms.ComboBox();
+            this.comboBox_RowsLED_搜尋條件 = new System.Windows.Forms.ComboBox();
+            this.panel57 = new System.Windows.Forms.Panel();
+            this.rJ_Button_RowsLED_填入儲位 = new MyUI.RJ_Button();
+            this.rJ_Button_RowsLED_刪除儲位 = new MyUI.RJ_Button();
+            this.rJ_Button_RowsLED_新增儲位 = new MyUI.RJ_Button();
+            this.rJ_Button_RowsLED_儲位名稱_儲存 = new MyUI.RJ_Button();
+            this.rJ_TextBox_儲位名稱_RowsLED = new MyUI.RJ_TextBox();
+            this.sqL_DataGridView_RowsLED_燈條列表 = new SQLUI.SQL_DataGridView();
             this.panel35 = new System.Windows.Forms.Panel();
             this.rJ_Pannel13 = new MyUI.RJ_Pannel();
             this.sqL_DataGridView_儲位設定_藥品搜尋 = new SQLUI.SQL_DataGridView();
@@ -773,33 +814,6 @@ namespace 癌症自動備藥機暨排程系統
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.textBox_自動備藥_密碼 = new System.Windows.Forms.TextBox();
             this.textBox_帳號 = new System.Windows.Forms.TextBox();
-            this.plC_ScreenPage_儲位設定 = new MyUI.PLC_ScreenPage();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.rJ_Pannel14 = new MyUI.RJ_Pannel();
-            this.sqL_DataGridView_面板_儲位列表 = new SQLUI.SQL_DataGridView();
-            this.panel39 = new System.Windows.Forms.Panel();
-            this.plC_RJ_Button_儲位設定_效期批號修正 = new MyUI.PLC_RJ_Button();
-            this.plC_Button63 = new MyUI.PLC_Button();
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈 = new MyUI.PLC_RJ_Button();
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色 = new System.Windows.Forms.ComboBox();
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位 = new MyUI.PLC_RJ_Button();
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理 = new MyUI.PLC_RJ_Button();
-            this.epD_290_Pannel = new H_Pannel_lib.EPD_290_Pannel();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
-            this.rowsLED_Pannel = new H_Pannel_lib.RowsLED_Pannel();
-            this.panel56 = new System.Windows.Forms.Panel();
-            this.rJ_Button_RowsLED_搜尋 = new MyUI.RJ_Button();
-            this.comboBox_RowsLED_搜尋內容 = new System.Windows.Forms.ComboBox();
-            this.comboBox_RowsLED_搜尋條件 = new System.Windows.Forms.ComboBox();
-            this.panel57 = new System.Windows.Forms.Panel();
-            this.rJ_Button_RowsLED_填入儲位 = new MyUI.RJ_Button();
-            this.rJ_Button_RowsLED_刪除儲位 = new MyUI.RJ_Button();
-            this.rJ_Button_RowsLED_新增儲位 = new MyUI.RJ_Button();
-            this.rJ_Button_RowsLED_儲位名稱_儲存 = new MyUI.RJ_Button();
-            this.rJ_TextBox_儲位名稱_RowsLED = new MyUI.RJ_TextBox();
-            this.sqL_DataGridView_RowsLED_燈條列表 = new SQLUI.SQL_DataGridView();
             this.plC_ScreenPage_main.SuspendLayout();
             this.登入畫面.SuspendLayout();
             this.panel_登入畫面.SuspendLayout();
@@ -836,6 +850,14 @@ namespace 癌症自動備藥機暨排程系統
             this.panel44.SuspendLayout();
             this.panel11.SuspendLayout();
             this.儲位設定.SuspendLayout();
+            this.plC_ScreenPage_儲位設定.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.rJ_Pannel14.SuspendLayout();
+            this.panel39.SuspendLayout();
+            this.tabPage13.SuspendLayout();
+            this.panel58.SuspendLayout();
+            this.panel56.SuspendLayout();
+            this.panel57.SuspendLayout();
             this.panel35.SuspendLayout();
             this.rJ_Pannel13.SuspendLayout();
             this.panel38.SuspendLayout();
@@ -897,13 +919,6 @@ namespace 癌症自動備藥機暨排程系統
             this.panel47.SuspendLayout();
             this.panel50.SuspendLayout();
             this.panel48.SuspendLayout();
-            this.plC_ScreenPage_儲位設定.SuspendLayout();
-            this.tabPage12.SuspendLayout();
-            this.rJ_Pannel14.SuspendLayout();
-            this.panel39.SuspendLayout();
-            this.tabPage13.SuspendLayout();
-            this.panel56.SuspendLayout();
-            this.panel57.SuspendLayout();
             this.SuspendLayout();
             // 
             // plC_ScreenPage_main
@@ -3719,6 +3734,1374 @@ namespace 癌症自動備藥機暨排程系統
             this.儲位設定.Size = new System.Drawing.Size(1076, 1739);
             this.儲位設定.TabIndex = 5;
             this.儲位設定.Text = "儲位設定";
+            // 
+            // plC_ScreenPage_儲位設定
+            // 
+            this.plC_ScreenPage_儲位設定.Appearance = System.Windows.Forms.TabAppearance.Buttons;
+            this.plC_ScreenPage_儲位設定.BackColor = System.Drawing.Color.White;
+            this.plC_ScreenPage_儲位設定.Controls.Add(this.tabPage12);
+            this.plC_ScreenPage_儲位設定.Controls.Add(this.tabPage13);
+            this.plC_ScreenPage_儲位設定.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plC_ScreenPage_儲位設定.ForekColor = System.Drawing.Color.Black;
+            this.plC_ScreenPage_儲位設定.ItemSize = new System.Drawing.Size(54, 21);
+            this.plC_ScreenPage_儲位設定.Location = new System.Drawing.Point(0, 673);
+            this.plC_ScreenPage_儲位設定.Name = "plC_ScreenPage_儲位設定";
+            this.plC_ScreenPage_儲位設定.SelectedIndex = 0;
+            this.plC_ScreenPage_儲位設定.Size = new System.Drawing.Size(1076, 1066);
+            this.plC_ScreenPage_儲位設定.TabBackColor = System.Drawing.Color.White;
+            this.plC_ScreenPage_儲位設定.TabIndex = 2;
+            this.plC_ScreenPage_儲位設定.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
+            this.plC_ScreenPage_儲位設定.顯示頁面 = 0;
+            // 
+            // tabPage12
+            // 
+            this.tabPage12.BackColor = System.Drawing.Color.White;
+            this.tabPage12.Controls.Add(this.rJ_Pannel14);
+            this.tabPage12.Location = new System.Drawing.Point(4, 25);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(1068, 1037);
+            this.tabPage12.TabIndex = 0;
+            this.tabPage12.Text = "面板";
+            // 
+            // rJ_Pannel14
+            // 
+            this.rJ_Pannel14.BackColor = System.Drawing.Color.White;
+            this.rJ_Pannel14.BackgroundColor = System.Drawing.Color.Transparent;
+            this.rJ_Pannel14.BorderColor = System.Drawing.Color.Black;
+            this.rJ_Pannel14.BorderRadius = 10;
+            this.rJ_Pannel14.BorderSize = 2;
+            this.rJ_Pannel14.Controls.Add(this.sqL_DataGridView_面板_儲位列表);
+            this.rJ_Pannel14.Controls.Add(this.panel39);
+            this.rJ_Pannel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rJ_Pannel14.ForeColor = System.Drawing.Color.White;
+            this.rJ_Pannel14.IsSelected = false;
+            this.rJ_Pannel14.Location = new System.Drawing.Point(0, 0);
+            this.rJ_Pannel14.Name = "rJ_Pannel14";
+            this.rJ_Pannel14.Padding = new System.Windows.Forms.Padding(10);
+            this.rJ_Pannel14.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Pannel14.ShadowSize = 3;
+            this.rJ_Pannel14.Size = new System.Drawing.Size(1068, 1037);
+            this.rJ_Pannel14.TabIndex = 3;
+            // 
+            // sqL_DataGridView_面板_儲位列表
+            // 
+            this.sqL_DataGridView_面板_儲位列表.AutoSelectToDeep = false;
+            this.sqL_DataGridView_面板_儲位列表.backColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_面板_儲位列表.BorderColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_面板_儲位列表.BorderRadius = 0;
+            this.sqL_DataGridView_面板_儲位列表.BorderSize = 2;
+            this.sqL_DataGridView_面板_儲位列表.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_面板_儲位列表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_面板_儲位列表.cellStylBackColor = System.Drawing.Color.PowderBlue;
+            this.sqL_DataGridView_面板_儲位列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_面板_儲位列表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_面板_儲位列表.columnHeaderBackColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_面板_儲位列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_面板_儲位列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_面板_儲位列表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_面板_儲位列表.columnHeadersHeight = 18;
+            this.sqL_DataGridView_面板_儲位列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_面板_儲位列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sqL_DataGridView_面板_儲位列表.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sqL_DataGridView_面板_儲位列表.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_面板_儲位列表.ImageBox = false;
+            this.sqL_DataGridView_面板_儲位列表.Location = new System.Drawing.Point(10, 180);
+            this.sqL_DataGridView_面板_儲位列表.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.sqL_DataGridView_面板_儲位列表.Name = "sqL_DataGridView_面板_儲位列表";
+            this.sqL_DataGridView_面板_儲位列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_面板_儲位列表.Password = "user82822040";
+            this.sqL_DataGridView_面板_儲位列表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_面板_儲位列表.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_面板_儲位列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_面板_儲位列表.RowsColor = System.Drawing.SystemColors.Control;
+            this.sqL_DataGridView_面板_儲位列表.RowsHeight = 40;
+            this.sqL_DataGridView_面板_儲位列表.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_面板_儲位列表.selectedBorderSize = 0;
+            this.sqL_DataGridView_面板_儲位列表.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_面板_儲位列表.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_面板_儲位列表.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_面板_儲位列表.Server = "127.0.0.0";
+            this.sqL_DataGridView_面板_儲位列表.Size = new System.Drawing.Size(1048, 847);
+            this.sqL_DataGridView_面板_儲位列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_面板_儲位列表.TabIndex = 9;
+            this.sqL_DataGridView_面板_儲位列表.UserName = "root";
+            this.sqL_DataGridView_面板_儲位列表.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_面板_儲位列表.可選擇多列 = true;
+            this.sqL_DataGridView_面板_儲位列表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_面板_儲位列表.自動換行 = true;
+            this.sqL_DataGridView_面板_儲位列表.表單字體 = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_面板_儲位列表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_面板_儲位列表.顯示CheckBox = false;
+            this.sqL_DataGridView_面板_儲位列表.顯示首列 = true;
+            this.sqL_DataGridView_面板_儲位列表.顯示首行 = true;
+            this.sqL_DataGridView_面板_儲位列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_面板_儲位列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
+            // panel39
+            // 
+            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_效期批號修正);
+            this.panel39.Controls.Add(this.plC_Button63);
+            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈);
+            this.panel39.Controls.Add(this.comboBox_儲位設定_面板_儲位列表_亮燈顏色);
+            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號);
+            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板);
+            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位);
+            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理);
+            this.panel39.Controls.Add(this.epD_290_Pannel);
+            this.panel39.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel39.Location = new System.Drawing.Point(10, 10);
+            this.panel39.Name = "panel39";
+            this.panel39.Size = new System.Drawing.Size(1048, 170);
+            this.panel39.TabIndex = 1;
+            // 
+            // plC_RJ_Button_儲位設定_效期批號修正
+            // 
+            this.plC_RJ_Button_儲位設定_效期批號修正.AutoResetState = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_效期批號修正.Bool = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_儲位設定_效期批號修正.BorderRadius = 20;
+            this.plC_RJ_Button_儲位設定_效期批號修正.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_效期批號修正.but_press = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位設定_效期批號修正.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位設定_效期批號修正.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_效期批號修正.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位設定_效期批號修正.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_效期批號修正.GUID = "";
+            this.plC_RJ_Button_儲位設定_效期批號修正.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位設定_效期批號修正.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位設定_效期批號修正.Location = new System.Drawing.Point(413, 85);
+            this.plC_RJ_Button_儲位設定_效期批號修正.Name = "plC_RJ_Button_儲位設定_效期批號修正";
+            this.plC_RJ_Button_儲位設定_效期批號修正.OFF_文字內容 = "效期批號修正";
+            this.plC_RJ_Button_儲位設定_效期批號修正.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_效期批號修正.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_效期批號修正.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ON_BorderSize = 2;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ON_文字內容 = "效期批號修正";
+            this.plC_RJ_Button_儲位設定_效期批號修正.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_效期批號修正.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ShadowSize = 3;
+            this.plC_RJ_Button_儲位設定_效期批號修正.ShowLoadingForm = true;
+            this.plC_RJ_Button_儲位設定_效期批號修正.Size = new System.Drawing.Size(184, 71);
+            this.plC_RJ_Button_儲位設定_效期批號修正.State = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.TabIndex = 106;
+            this.plC_RJ_Button_儲位設定_效期批號修正.Text = "效期批號修正";
+            this.plC_RJ_Button_儲位設定_效期批號修正.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_效期批號修正.TextHeight = 0;
+            this.plC_RJ_Button_儲位設定_效期批號修正.Texts = "效期批號修正";
+            this.plC_RJ_Button_儲位設定_效期批號修正.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.字型鎖住 = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位設定_效期批號修正.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位設定_效期批號修正.文字鎖住 = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.背景圖片 = null;
+            this.plC_RJ_Button_儲位設定_效期批號修正.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.音效 = true;
+            this.plC_RJ_Button_儲位設定_效期批號修正.顯示 = false;
+            this.plC_RJ_Button_儲位設定_效期批號修正.顯示狀態 = false;
+            // 
+            // plC_Button63
+            // 
+            this.plC_Button63.Bool = false;
+            this.plC_Button63.but_press = false;
+            this.plC_Button63.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button63.Location = new System.Drawing.Point(901, 85);
+            this.plC_Button63.Name = "plC_Button63";
+            this.plC_Button63.OFF_文字內容 = "出料一次";
+            this.plC_Button63.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button63.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_Button63.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button63.ON_文字內容 = "出料一次";
+            this.plC_Button63.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button63.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button63.ON_背景顏色 = System.Drawing.SystemColors.Control;
+            this.plC_Button63.Size = new System.Drawing.Size(116, 58);
+            this.plC_Button63.Style = MyUI.PLC_Button.StyleEnum.經典;
+            this.plC_Button63.TabIndex = 105;
+            this.plC_Button63.事件驅動 = false;
+            this.plC_Button63.字型鎖住 = false;
+            this.plC_Button63.寫入元件位置 = "M12101";
+            this.plC_Button63.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
+            this.plC_Button63.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button63.文字鎖住 = false;
+            this.plC_Button63.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button63.狀態OFF圖片")));
+            this.plC_Button63.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button63.狀態ON圖片")));
+            this.plC_Button63.讀取位元反向 = false;
+            this.plC_Button63.讀取元件位置 = "M12100";
+            this.plC_Button63.讀寫鎖住 = false;
+            this.plC_Button63.起始狀態 = false;
+            this.plC_Button63.音效 = true;
+            this.plC_Button63.顯示 = false;
+            this.plC_Button63.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_儲位設定_面板_儲位列表_亮燈
+            // 
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.AutoResetState = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Bool = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.BorderRadius = 20;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.but_press = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.GUID = "";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Location = new System.Drawing.Point(413, 8);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_亮燈";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.OFF_文字內容 = "亮燈";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_BorderSize = 2;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_文字內容 = "亮燈";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ShadowSize = 3;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ShowLoadingForm = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Size = new System.Drawing.Size(116, 71);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.State = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.TabIndex = 67;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Text = "亮燈";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.TextHeight = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Texts = "亮燈";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.字型鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.文字鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.背景圖片 = null;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.音效 = true;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.顯示 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.顯示狀態 = false;
+            // 
+            // comboBox_儲位設定_面板_儲位列表_亮燈顏色
+            // 
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.FormattingEnabled = true;
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Items.AddRange(new object[] {
+            "紅",
+            "藍",
+            "綠",
+            "白"});
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Location = new System.Drawing.Point(328, 27);
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Name = "comboBox_儲位設定_面板_儲位列表_亮燈顏色";
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Size = new System.Drawing.Size(79, 35);
+            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.TabIndex = 66;
+            // 
+            // plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號
+            // 
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.AutoResetState = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Bool = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.BorderRadius = 20;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.but_press = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.GUID = "";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Location = new System.Drawing.Point(535, 8);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.OFF_文字內容 = "清除燈號";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_BorderSize = 2;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_文字內容 = "清除燈號";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ShadowSize = 3;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ShowLoadingForm = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Size = new System.Drawing.Size(116, 71);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.State = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.TabIndex = 65;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Text = "清除燈號";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.TextHeight = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Texts = "清除燈號";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.字型鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.文字鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.背景圖片 = null;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.音效 = true;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.顯示 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板
+            // 
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.AutoResetState = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Bool = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.BorderRadius = 20;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.but_press = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.GUID = "";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Location = new System.Drawing.Point(657, 8);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.OFF_文字內容 = "上傳面板";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_BorderSize = 2;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_文字內容 = "上傳面板";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ShadowSize = 3;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ShowLoadingForm = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Size = new System.Drawing.Size(116, 71);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.State = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.TabIndex = 64;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Text = "上傳面板";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.TextHeight = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Texts = "上傳面板";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.字型鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.文字鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.背景圖片 = null;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.音效 = true;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.顯示 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位
+            // 
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.AutoResetState = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Bool = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.BorderRadius = 20;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.but_press = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.GUID = "";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Location = new System.Drawing.Point(901, 8);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.OFF_文字內容 = "刪除儲位";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_BorderSize = 2;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_文字內容 = "刪除儲位";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ShadowSize = 3;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ShowLoadingForm = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Size = new System.Drawing.Size(116, 71);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.State = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.TabIndex = 63;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Text = "刪除儲位";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.TextHeight = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Texts = "刪除儲位";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.字型鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.文字鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.背景圖片 = null;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.音效 = true;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.顯示 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_儲位設定_面板_儲位列表_重新整理
+            // 
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.AutoResetState = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.BackgroundColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Bool = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.BorderColor = System.Drawing.Color.Thistle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.BorderRadius = 20;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.but_press = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.GUID = "";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Location = new System.Drawing.Point(779, 8);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_重新整理";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.OFF_文字內容 = "重新整理";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.OFF_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_BorderSize = 2;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_文字內容 = "重新整理";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_背景顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ShadowSize = 3;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ShowLoadingForm = true;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Size = new System.Drawing.Size(116, 71);
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.State = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.TabIndex = 61;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Text = "重新整理";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.TextColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.TextHeight = 0;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Texts = "重新整理";
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.字型鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.文字鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.背景圖片 = null;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.讀取位元反向 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.讀寫鎖住 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.音效 = true;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.顯示 = false;
+            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.顯示狀態 = false;
+            // 
+            // epD_290_Pannel
+            // 
+            this.epD_290_Pannel.CurrentStorage = null;
+            this.epD_290_Pannel.Location = new System.Drawing.Point(9, 8);
+            this.epD_290_Pannel.Name = "epD_290_Pannel";
+            this.epD_290_Pannel.Size = new System.Drawing.Size(296, 128);
+            this.epD_290_Pannel.TabIndex = 0;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.BackColor = System.Drawing.Color.White;
+            this.tabPage13.Controls.Add(this.panel58);
+            this.tabPage13.Controls.Add(this.rJ_Button_RowsLED_清除燈號);
+            this.tabPage13.Controls.Add(this.rJ_RatioButton_儲位資料_RowsLED_紅);
+            this.tabPage13.Controls.Add(this.rJ_RatioButton_儲位資料_RowsLED_白);
+            this.tabPage13.Controls.Add(this.rJ_RatioButton_儲位資料_RowsLED_藍);
+            this.tabPage13.Controls.Add(this.rJ_RatioButton_儲位資料_RowsLED_綠);
+            this.tabPage13.Controls.Add(this.sqL_DataGridView_RowsLED_儲位資料);
+            this.tabPage13.Controls.Add(this.rowsLED_Pannel);
+            this.tabPage13.Controls.Add(this.panel56);
+            this.tabPage13.Location = new System.Drawing.Point(4, 25);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(1068, 1037);
+            this.tabPage13.TabIndex = 1;
+            this.tabPage13.Text = "燈條";
+            // 
+            // panel58
+            // 
+            this.panel58.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel58.Controls.Add(this.plC_RJ_Button1);
+            this.panel58.Controls.Add(this.plC_RJ_Button2);
+            this.panel58.Controls.Add(this.plC_RJ_Button3);
+            this.panel58.Controls.Add(this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改);
+            this.panel58.Controls.Add(this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增);
+            this.panel58.Controls.Add(this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除);
+            this.panel58.Controls.Add(this.sqL_DataGridView_儲位管理_RowsLED_效期及批號);
+            this.panel58.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel58.Location = new System.Drawing.Point(589, 686);
+            this.panel58.Name = "panel58";
+            this.panel58.Padding = new System.Windows.Forms.Padding(3);
+            this.panel58.Size = new System.Drawing.Size(479, 351);
+            this.panel58.TabIndex = 127;
+            // 
+            // plC_RJ_Button1
+            // 
+            this.plC_RJ_Button1.AutoResetState = false;
+            this.plC_RJ_Button1.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button1.Bool = false;
+            this.plC_RJ_Button1.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button1.BorderRadius = 7;
+            this.plC_RJ_Button1.BorderSize = 1;
+            this.plC_RJ_Button1.but_press = false;
+            this.plC_RJ_Button1.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button1.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button1.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button1.GUID = "";
+            this.plC_RJ_Button1.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button1.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
+            this.plC_RJ_Button1.Location = new System.Drawing.Point(408, 274);
+            this.plC_RJ_Button1.Name = "plC_RJ_Button1";
+            this.plC_RJ_Button1.OFF_文字內容 = "修改";
+            this.plC_RJ_Button1.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button1.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button1.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button1.ON_BorderSize = 1;
+            this.plC_RJ_Button1.ON_文字內容 = "修改";
+            this.plC_RJ_Button1.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button1.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button1.ON_背景顏色 = System.Drawing.Color.Linen;
+            this.plC_RJ_Button1.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button1.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button1.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button1.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button1.ShadowSize = 3;
+            this.plC_RJ_Button1.ShowLoadingForm = false;
+            this.plC_RJ_Button1.Size = new System.Drawing.Size(61, 66);
+            this.plC_RJ_Button1.State = false;
+            this.plC_RJ_Button1.TabIndex = 155;
+            this.plC_RJ_Button1.Text = "修改";
+            this.plC_RJ_Button1.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button1.TextHeight = 30;
+            this.plC_RJ_Button1.Texts = "修改";
+            this.plC_RJ_Button1.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button1.字型鎖住 = false;
+            this.plC_RJ_Button1.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button1.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button1.文字鎖住 = false;
+            this.plC_RJ_Button1.背景圖片 = global::癌症自動備藥機暨排程系統.Properties.Resources.EDIT;
+            this.plC_RJ_Button1.讀取位元反向 = false;
+            this.plC_RJ_Button1.讀寫鎖住 = false;
+            this.plC_RJ_Button1.音效 = false;
+            this.plC_RJ_Button1.顯示 = false;
+            this.plC_RJ_Button1.顯示狀態 = false;
+            // 
+            // plC_RJ_Button2
+            // 
+            this.plC_RJ_Button2.AutoResetState = false;
+            this.plC_RJ_Button2.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button2.Bool = false;
+            this.plC_RJ_Button2.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button2.BorderRadius = 6;
+            this.plC_RJ_Button2.BorderSize = 1;
+            this.plC_RJ_Button2.but_press = false;
+            this.plC_RJ_Button2.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button2.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button2.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button2.GUID = "";
+            this.plC_RJ_Button2.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button2.Image = global::癌症自動備藥機暨排程系統.Properties.Resources.add_new_plus_512;
+            this.plC_RJ_Button2.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
+            this.plC_RJ_Button2.Location = new System.Drawing.Point(274, 274);
+            this.plC_RJ_Button2.Name = "plC_RJ_Button2";
+            this.plC_RJ_Button2.OFF_文字內容 = "新增";
+            this.plC_RJ_Button2.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button2.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button2.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button2.ON_BorderSize = 1;
+            this.plC_RJ_Button2.ON_文字內容 = "新增";
+            this.plC_RJ_Button2.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button2.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button2.ON_背景顏色 = System.Drawing.Color.Linen;
+            this.plC_RJ_Button2.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button2.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button2.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button2.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button2.ShadowSize = 3;
+            this.plC_RJ_Button2.ShowLoadingForm = false;
+            this.plC_RJ_Button2.Size = new System.Drawing.Size(61, 66);
+            this.plC_RJ_Button2.State = false;
+            this.plC_RJ_Button2.TabIndex = 153;
+            this.plC_RJ_Button2.Text = "新增";
+            this.plC_RJ_Button2.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button2.TextHeight = 30;
+            this.plC_RJ_Button2.Texts = "新增";
+            this.plC_RJ_Button2.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button2.字型鎖住 = false;
+            this.plC_RJ_Button2.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button2.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button2.文字鎖住 = false;
+            this.plC_RJ_Button2.背景圖片 = global::癌症自動備藥機暨排程系統.Properties.Resources.add_new_plus_5121;
+            this.plC_RJ_Button2.讀取位元反向 = false;
+            this.plC_RJ_Button2.讀寫鎖住 = false;
+            this.plC_RJ_Button2.音效 = false;
+            this.plC_RJ_Button2.顯示 = false;
+            this.plC_RJ_Button2.顯示狀態 = false;
+            // 
+            // plC_RJ_Button3
+            // 
+            this.plC_RJ_Button3.AutoResetState = false;
+            this.plC_RJ_Button3.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button3.Bool = false;
+            this.plC_RJ_Button3.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button3.BorderRadius = 6;
+            this.plC_RJ_Button3.BorderSize = 1;
+            this.plC_RJ_Button3.but_press = false;
+            this.plC_RJ_Button3.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button3.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button3.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button3.GUID = "";
+            this.plC_RJ_Button3.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button3.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
+            this.plC_RJ_Button3.Location = new System.Drawing.Point(341, 274);
+            this.plC_RJ_Button3.Name = "plC_RJ_Button3";
+            this.plC_RJ_Button3.OFF_文字內容 = "刪除";
+            this.plC_RJ_Button3.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button3.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button3.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button3.ON_BorderSize = 1;
+            this.plC_RJ_Button3.ON_文字內容 = "刪除";
+            this.plC_RJ_Button3.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button3.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button3.ON_背景顏色 = System.Drawing.Color.Linen;
+            this.plC_RJ_Button3.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button3.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button3.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button3.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button3.ShadowSize = 3;
+            this.plC_RJ_Button3.ShowLoadingForm = false;
+            this.plC_RJ_Button3.Size = new System.Drawing.Size(61, 66);
+            this.plC_RJ_Button3.State = false;
+            this.plC_RJ_Button3.TabIndex = 154;
+            this.plC_RJ_Button3.Text = "刪除";
+            this.plC_RJ_Button3.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button3.TextHeight = 30;
+            this.plC_RJ_Button3.Texts = "刪除";
+            this.plC_RJ_Button3.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button3.字型鎖住 = false;
+            this.plC_RJ_Button3.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button3.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button3.文字鎖住 = false;
+            this.plC_RJ_Button3.背景圖片 = global::癌症自動備藥機暨排程系統.Properties.Resources.trash_512;
+            this.plC_RJ_Button3.讀取位元反向 = false;
+            this.plC_RJ_Button3.讀寫鎖住 = false;
+            this.plC_RJ_Button3.音效 = false;
+            this.plC_RJ_Button3.顯示 = false;
+            this.plC_RJ_Button3.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_RowLED_儲位設定_效期及批號_修改
+            // 
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.AutoResetState = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Bool = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.BorderRadius = 7;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.BorderSize = 0;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.but_press = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.GUID = "";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Location = new System.Drawing.Point(681, 274);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Name = "plC_RJ_Button_RowLED_儲位設定_效期及批號_修改";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.OFF_文字內容 = "修改";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ON_BorderSize = 1;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ON_文字內容 = "修改";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ON_背景顏色 = System.Drawing.Color.Linen;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ShadowSize = 3;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.ShowLoadingForm = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Size = new System.Drawing.Size(61, 66);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.State = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.TabIndex = 152;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Text = "修改";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.TextHeight = 30;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.Texts = "修改";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.字型鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.文字鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.背景圖片 = null;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.讀取位元反向 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.讀寫鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.音效 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.顯示 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_RowLED_儲位設定_效期及批號_新增
+            // 
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.AutoResetState = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Bool = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.BorderRadius = 6;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.BorderSize = 0;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.but_press = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.GUID = "";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Location = new System.Drawing.Point(547, 274);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Name = "plC_RJ_Button_RowLED_儲位設定_效期及批號_新增";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.OFF_文字內容 = "新增";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ON_BorderSize = 1;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ON_文字內容 = "新增";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ON_背景顏色 = System.Drawing.Color.Linen;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ShadowSize = 3;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.ShowLoadingForm = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Size = new System.Drawing.Size(61, 66);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.State = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.TabIndex = 149;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Text = "新增";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.TextHeight = 30;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.Texts = "新增";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.字型鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.文字鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.背景圖片 = null;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.讀取位元反向 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.讀寫鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.音效 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.顯示 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.顯示狀態 = false;
+            // 
+            // plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除
+            // 
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.AutoResetState = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Bool = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.BorderRadius = 6;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.BorderSize = 0;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.but_press = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.GUID = "";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Location = new System.Drawing.Point(614, 274);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Name = "plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.OFF_文字內容 = "刪除";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ON_BorderSize = 1;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ON_文字內容 = "刪除";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ON_背景顏色 = System.Drawing.Color.Linen;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ShadowSize = 3;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.ShowLoadingForm = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Size = new System.Drawing.Size(61, 66);
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.State = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.TabIndex = 150;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Text = "刪除";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.TextHeight = 30;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.Texts = "刪除";
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.字型鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.文字鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.背景圖片 = null;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.讀取位元反向 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.讀寫鎖住 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.音效 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.顯示 = false;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.顯示狀態 = false;
+            // 
+            // sqL_DataGridView_儲位管理_RowsLED_效期及批號
+            // 
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.AutoSelectToDeep = false;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.backColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.BorderRadius = 0;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.BorderSize = 2;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStylBackColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeadersHeight = 18;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Font = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.ImageBox = false;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Location = new System.Drawing.Point(3, 3);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Name = "sqL_DataGridView_儲位管理_RowsLED_效期及批號";
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Offline;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Password = "user82822040";
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Port = ((uint)(3306u));
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.rowHeaderBackColor = System.Drawing.Color.CornflowerBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.RowsColor = System.Drawing.SystemColors.Window;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.RowsHeight = 40;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.selectedBorderSize = 0;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Server = "127.0.0.0";
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Size = new System.Drawing.Size(471, 257);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.TabIndex = 28;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.UserName = "root";
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.可選擇多列 = true;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.自動換行 = true;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.表單字體 = new System.Drawing.Font("新細明體", 12F);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.邊框樣式 = System.Windows.Forms.BorderStyle.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.顯示CheckBox = false;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.顯示首列 = false;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.顯示首行 = true;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            // 
+            // rJ_Button_RowsLED_清除燈號
+            // 
+            this.rJ_Button_RowsLED_清除燈號.AutoResetState = false;
+            this.rJ_Button_RowsLED_清除燈號.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_RowsLED_清除燈號.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_RowsLED_清除燈號.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_RowsLED_清除燈號.BorderRadius = 20;
+            this.rJ_Button_RowsLED_清除燈號.BorderSize = 0;
+            this.rJ_Button_RowsLED_清除燈號.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_RowsLED_清除燈號.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_RowsLED_清除燈號.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_RowsLED_清除燈號.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_RowsLED_清除燈號.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_RowsLED_清除燈號.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_清除燈號.GUID = "";
+            this.rJ_Button_RowsLED_清除燈號.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_RowsLED_清除燈號.Location = new System.Drawing.Point(912, 455);
+            this.rJ_Button_RowsLED_清除燈號.Name = "rJ_Button_RowsLED_清除燈號";
+            this.rJ_Button_RowsLED_清除燈號.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_RowsLED_清除燈號.ProhibitionLineWidth = 4;
+            this.rJ_Button_RowsLED_清除燈號.ProhibitionSymbolSize = 30;
+            this.rJ_Button_RowsLED_清除燈號.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_RowsLED_清除燈號.ShadowSize = 3;
+            this.rJ_Button_RowsLED_清除燈號.ShowLoadingForm = false;
+            this.rJ_Button_RowsLED_清除燈號.Size = new System.Drawing.Size(135, 57);
+            this.rJ_Button_RowsLED_清除燈號.State = false;
+            this.rJ_Button_RowsLED_清除燈號.TabIndex = 126;
+            this.rJ_Button_RowsLED_清除燈號.Text = "清除燈號";
+            this.rJ_Button_RowsLED_清除燈號.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_清除燈號.TextHeight = 0;
+            this.rJ_Button_RowsLED_清除燈號.UseVisualStyleBackColor = false;
+            // 
+            // rJ_RatioButton_儲位資料_RowsLED_紅
+            // 
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.AutoSize = true;
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.BackColor = System.Drawing.Color.White;
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.CheckColor = System.Drawing.Color.Red;
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.ForeColor = System.Drawing.Color.Black;
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.Location = new System.Drawing.Point(799, 455);
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.MinimumSize = new System.Drawing.Size(0, 21);
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.Name = "rJ_RatioButton_儲位資料_RowsLED_紅";
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.Size = new System.Drawing.Size(54, 23);
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.TabIndex = 122;
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.Text = "紅";
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.UncheckColor = System.Drawing.Color.Gray;
+            this.rJ_RatioButton_儲位資料_RowsLED_紅.UseVisualStyleBackColor = false;
+            // 
+            // rJ_RatioButton_儲位資料_RowsLED_白
+            // 
+            this.rJ_RatioButton_儲位資料_RowsLED_白.AutoSize = true;
+            this.rJ_RatioButton_儲位資料_RowsLED_白.BackColor = System.Drawing.Color.White;
+            this.rJ_RatioButton_儲位資料_RowsLED_白.CheckColor = System.Drawing.Color.LightGray;
+            this.rJ_RatioButton_儲位資料_RowsLED_白.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_RatioButton_儲位資料_RowsLED_白.ForeColor = System.Drawing.Color.Black;
+            this.rJ_RatioButton_儲位資料_RowsLED_白.Location = new System.Drawing.Point(852, 482);
+            this.rJ_RatioButton_儲位資料_RowsLED_白.MinimumSize = new System.Drawing.Size(0, 21);
+            this.rJ_RatioButton_儲位資料_RowsLED_白.Name = "rJ_RatioButton_儲位資料_RowsLED_白";
+            this.rJ_RatioButton_儲位資料_RowsLED_白.Size = new System.Drawing.Size(54, 23);
+            this.rJ_RatioButton_儲位資料_RowsLED_白.TabIndex = 125;
+            this.rJ_RatioButton_儲位資料_RowsLED_白.Text = "白";
+            this.rJ_RatioButton_儲位資料_RowsLED_白.UncheckColor = System.Drawing.Color.Gray;
+            this.rJ_RatioButton_儲位資料_RowsLED_白.UseVisualStyleBackColor = false;
+            // 
+            // rJ_RatioButton_儲位資料_RowsLED_藍
+            // 
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.AutoSize = true;
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.BackColor = System.Drawing.Color.White;
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.CheckColor = System.Drawing.Color.Blue;
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.ForeColor = System.Drawing.Color.Black;
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.Location = new System.Drawing.Point(799, 482);
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.MinimumSize = new System.Drawing.Size(0, 21);
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.Name = "rJ_RatioButton_儲位資料_RowsLED_藍";
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.Size = new System.Drawing.Size(54, 23);
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.TabIndex = 123;
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.Text = "藍";
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.UncheckColor = System.Drawing.Color.Gray;
+            this.rJ_RatioButton_儲位資料_RowsLED_藍.UseVisualStyleBackColor = false;
+            // 
+            // rJ_RatioButton_儲位資料_RowsLED_綠
+            // 
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.AutoSize = true;
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.BackColor = System.Drawing.Color.White;
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.CheckColor = System.Drawing.Color.Lime;
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.Checked = true;
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.ForeColor = System.Drawing.Color.Black;
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.Location = new System.Drawing.Point(852, 455);
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.MinimumSize = new System.Drawing.Size(0, 21);
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.Name = "rJ_RatioButton_儲位資料_RowsLED_綠";
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.Size = new System.Drawing.Size(54, 23);
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.TabIndex = 124;
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.TabStop = true;
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.Text = "綠";
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.UncheckColor = System.Drawing.Color.Gray;
+            this.rJ_RatioButton_儲位資料_RowsLED_綠.UseVisualStyleBackColor = false;
+            // 
+            // sqL_DataGridView_RowsLED_儲位資料
+            // 
+            this.sqL_DataGridView_RowsLED_儲位資料.AutoSelectToDeep = true;
+            this.sqL_DataGridView_RowsLED_儲位資料.backColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_RowsLED_儲位資料.BorderColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_RowsLED_儲位資料.BorderRadius = 10;
+            this.sqL_DataGridView_RowsLED_儲位資料.BorderSize = 2;
+            this.sqL_DataGridView_RowsLED_儲位資料.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_RowsLED_儲位資料.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_儲位資料.cellStylBackColor = System.Drawing.Color.PowderBlue;
+            this.sqL_DataGridView_RowsLED_儲位資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_RowsLED_儲位資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_RowsLED_儲位資料.columnHeaderBackColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_RowsLED_儲位資料.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_RowsLED_儲位資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_RowsLED_儲位資料.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_儲位資料.columnHeadersHeight = 18;
+            this.sqL_DataGridView_RowsLED_儲位資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_RowsLED_儲位資料.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sqL_DataGridView_RowsLED_儲位資料.Dock = System.Windows.Forms.DockStyle.Left;
+            this.sqL_DataGridView_RowsLED_儲位資料.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_RowsLED_儲位資料.ImageBox = false;
+            this.sqL_DataGridView_RowsLED_儲位資料.Location = new System.Drawing.Point(0, 455);
+            this.sqL_DataGridView_RowsLED_儲位資料.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.sqL_DataGridView_RowsLED_儲位資料.Name = "sqL_DataGridView_RowsLED_儲位資料";
+            this.sqL_DataGridView_RowsLED_儲位資料.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_RowsLED_儲位資料.Password = "user82822040";
+            this.sqL_DataGridView_RowsLED_儲位資料.Port = ((uint)(3306u));
+            this.sqL_DataGridView_RowsLED_儲位資料.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_RowsLED_儲位資料.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_儲位資料.RowsColor = System.Drawing.SystemColors.Control;
+            this.sqL_DataGridView_RowsLED_儲位資料.RowsHeight = 80;
+            this.sqL_DataGridView_RowsLED_儲位資料.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_RowsLED_儲位資料.selectedBorderSize = 0;
+            this.sqL_DataGridView_RowsLED_儲位資料.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_RowsLED_儲位資料.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_RowsLED_儲位資料.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_RowsLED_儲位資料.Server = "127.0.0.0";
+            this.sqL_DataGridView_RowsLED_儲位資料.Size = new System.Drawing.Size(589, 582);
+            this.sqL_DataGridView_RowsLED_儲位資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_RowsLED_儲位資料.TabIndex = 10;
+            this.sqL_DataGridView_RowsLED_儲位資料.UserName = "root";
+            this.sqL_DataGridView_RowsLED_儲位資料.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_RowsLED_儲位資料.可選擇多列 = false;
+            this.sqL_DataGridView_RowsLED_儲位資料.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_儲位資料.自動換行 = true;
+            this.sqL_DataGridView_RowsLED_儲位資料.表單字體 = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_RowsLED_儲位資料.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_RowsLED_儲位資料.顯示CheckBox = false;
+            this.sqL_DataGridView_RowsLED_儲位資料.顯示首列 = true;
+            this.sqL_DataGridView_RowsLED_儲位資料.顯示首行 = true;
+            this.sqL_DataGridView_RowsLED_儲位資料.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_儲位資料.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
+            // rowsLED_Pannel
+            // 
+            this.rowsLED_Pannel.AutoWrite = true;
+            this.rowsLED_Pannel.BackColor = System.Drawing.SystemColors.Window;
+            this.rowsLED_Pannel.BarColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.rowsLED_Pannel.BarFont = new System.Drawing.Font("微軟正黑體", 9F);
+            this.rowsLED_Pannel.BarForeColor = System.Drawing.Color.DarkGray;
+            this.rowsLED_Pannel.BarSize = 50;
+            this.rowsLED_Pannel.BottomSliderColor = System.Drawing.Color.Red;
+            this.rowsLED_Pannel.CurrentRowsDevice = null;
+            this.rowsLED_Pannel.CurrentRowsLED = null;
+            this.rowsLED_Pannel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.rowsLED_Pannel.Location = new System.Drawing.Point(0, 342);
+            this.rowsLED_Pannel.Maximum = 100;
+            this.rowsLED_Pannel.MaxValue = 0;
+            this.rowsLED_Pannel.Minimum = 0;
+            this.rowsLED_Pannel.MinValue = 0;
+            this.rowsLED_Pannel.Name = "rowsLED_Pannel";
+            this.rowsLED_Pannel.RowsDeviceGUID = "";
+            this.rowsLED_Pannel.Size = new System.Drawing.Size(1068, 113);
+            this.rowsLED_Pannel.SliderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.rowsLED_Pannel.SliderSize = 10;
+            this.rowsLED_Pannel.TabIndex = 5;
+            this.rowsLED_Pannel.TopSliderColor = System.Drawing.Color.Silver;
+            // 
+            // panel56
+            // 
+            this.panel56.Controls.Add(this.rJ_Button_RowsLED_搜尋);
+            this.panel56.Controls.Add(this.comboBox_RowsLED_搜尋內容);
+            this.panel56.Controls.Add(this.comboBox_RowsLED_搜尋條件);
+            this.panel56.Controls.Add(this.panel57);
+            this.panel56.Controls.Add(this.rJ_Button_RowsLED_儲位名稱_儲存);
+            this.panel56.Controls.Add(this.rJ_TextBox_儲位名稱_RowsLED);
+            this.panel56.Controls.Add(this.sqL_DataGridView_RowsLED_燈條列表);
+            this.panel56.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel56.Location = new System.Drawing.Point(0, 0);
+            this.panel56.Name = "panel56";
+            this.panel56.Size = new System.Drawing.Size(1068, 342);
+            this.panel56.TabIndex = 0;
+            // 
+            // rJ_Button_RowsLED_搜尋
+            // 
+            this.rJ_Button_RowsLED_搜尋.AutoResetState = false;
+            this.rJ_Button_RowsLED_搜尋.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_RowsLED_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_RowsLED_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_RowsLED_搜尋.BorderRadius = 20;
+            this.rJ_Button_RowsLED_搜尋.BorderSize = 0;
+            this.rJ_Button_RowsLED_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_RowsLED_搜尋.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_RowsLED_搜尋.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_RowsLED_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_RowsLED_搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_RowsLED_搜尋.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_搜尋.GUID = "";
+            this.rJ_Button_RowsLED_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_RowsLED_搜尋.Location = new System.Drawing.Point(952, 213);
+            this.rJ_Button_RowsLED_搜尋.Name = "rJ_Button_RowsLED_搜尋";
+            this.rJ_Button_RowsLED_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_RowsLED_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_RowsLED_搜尋.ProhibitionSymbolSize = 30;
+            this.rJ_Button_RowsLED_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_RowsLED_搜尋.ShadowSize = 3;
+            this.rJ_Button_RowsLED_搜尋.ShowLoadingForm = false;
+            this.rJ_Button_RowsLED_搜尋.Size = new System.Drawing.Size(110, 57);
+            this.rJ_Button_RowsLED_搜尋.State = false;
+            this.rJ_Button_RowsLED_搜尋.TabIndex = 130;
+            this.rJ_Button_RowsLED_搜尋.Text = "搜尋";
+            this.rJ_Button_RowsLED_搜尋.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_搜尋.TextHeight = 0;
+            this.rJ_Button_RowsLED_搜尋.UseVisualStyleBackColor = false;
+            // 
+            // comboBox_RowsLED_搜尋內容
+            // 
+            this.comboBox_RowsLED_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.comboBox_RowsLED_搜尋內容.FormattingEnabled = true;
+            this.comboBox_RowsLED_搜尋內容.Location = new System.Drawing.Point(653, 220);
+            this.comboBox_RowsLED_搜尋內容.Name = "comboBox_RowsLED_搜尋內容";
+            this.comboBox_RowsLED_搜尋內容.Size = new System.Drawing.Size(291, 39);
+            this.comboBox_RowsLED_搜尋內容.TabIndex = 129;
+            // 
+            // comboBox_RowsLED_搜尋條件
+            // 
+            this.comboBox_RowsLED_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_RowsLED_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
+            this.comboBox_RowsLED_搜尋條件.FormattingEnabled = true;
+            this.comboBox_RowsLED_搜尋條件.Items.AddRange(new object[] {
+            "藥碼",
+            "藥名"});
+            this.comboBox_RowsLED_搜尋條件.Location = new System.Drawing.Point(508, 220);
+            this.comboBox_RowsLED_搜尋條件.Name = "comboBox_RowsLED_搜尋條件";
+            this.comboBox_RowsLED_搜尋條件.Size = new System.Drawing.Size(130, 39);
+            this.comboBox_RowsLED_搜尋條件.TabIndex = 128;
+            // 
+            // panel57
+            // 
+            this.panel57.Controls.Add(this.rJ_Button_RowsLED_填入儲位);
+            this.panel57.Controls.Add(this.rJ_Button_RowsLED_刪除儲位);
+            this.panel57.Controls.Add(this.rJ_Button_RowsLED_新增儲位);
+            this.panel57.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel57.Location = new System.Drawing.Point(498, 276);
+            this.panel57.Name = "panel57";
+            this.panel57.Size = new System.Drawing.Size(570, 66);
+            this.panel57.TabIndex = 39;
+            // 
+            // rJ_Button_RowsLED_填入儲位
+            // 
+            this.rJ_Button_RowsLED_填入儲位.AutoResetState = false;
+            this.rJ_Button_RowsLED_填入儲位.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_RowsLED_填入儲位.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_RowsLED_填入儲位.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_RowsLED_填入儲位.BorderRadius = 20;
+            this.rJ_Button_RowsLED_填入儲位.BorderSize = 0;
+            this.rJ_Button_RowsLED_填入儲位.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_RowsLED_填入儲位.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_RowsLED_填入儲位.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_RowsLED_填入儲位.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_RowsLED_填入儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_RowsLED_填入儲位.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_RowsLED_填入儲位.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_填入儲位.GUID = "";
+            this.rJ_Button_RowsLED_填入儲位.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_RowsLED_填入儲位.Location = new System.Drawing.Point(165, 0);
+            this.rJ_Button_RowsLED_填入儲位.Name = "rJ_Button_RowsLED_填入儲位";
+            this.rJ_Button_RowsLED_填入儲位.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_RowsLED_填入儲位.ProhibitionLineWidth = 4;
+            this.rJ_Button_RowsLED_填入儲位.ProhibitionSymbolSize = 30;
+            this.rJ_Button_RowsLED_填入儲位.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_RowsLED_填入儲位.ShadowSize = 3;
+            this.rJ_Button_RowsLED_填入儲位.ShowLoadingForm = false;
+            this.rJ_Button_RowsLED_填入儲位.Size = new System.Drawing.Size(135, 66);
+            this.rJ_Button_RowsLED_填入儲位.State = false;
+            this.rJ_Button_RowsLED_填入儲位.TabIndex = 37;
+            this.rJ_Button_RowsLED_填入儲位.Text = "填入儲位";
+            this.rJ_Button_RowsLED_填入儲位.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_填入儲位.TextHeight = 0;
+            this.rJ_Button_RowsLED_填入儲位.UseVisualStyleBackColor = false;
+            // 
+            // rJ_Button_RowsLED_刪除儲位
+            // 
+            this.rJ_Button_RowsLED_刪除儲位.AutoResetState = false;
+            this.rJ_Button_RowsLED_刪除儲位.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_RowsLED_刪除儲位.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_RowsLED_刪除儲位.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_RowsLED_刪除儲位.BorderRadius = 20;
+            this.rJ_Button_RowsLED_刪除儲位.BorderSize = 0;
+            this.rJ_Button_RowsLED_刪除儲位.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_RowsLED_刪除儲位.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_RowsLED_刪除儲位.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_RowsLED_刪除儲位.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_RowsLED_刪除儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_RowsLED_刪除儲位.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_RowsLED_刪除儲位.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_刪除儲位.GUID = "";
+            this.rJ_Button_RowsLED_刪除儲位.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_RowsLED_刪除儲位.Location = new System.Drawing.Point(300, 0);
+            this.rJ_Button_RowsLED_刪除儲位.Name = "rJ_Button_RowsLED_刪除儲位";
+            this.rJ_Button_RowsLED_刪除儲位.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_RowsLED_刪除儲位.ProhibitionLineWidth = 4;
+            this.rJ_Button_RowsLED_刪除儲位.ProhibitionSymbolSize = 30;
+            this.rJ_Button_RowsLED_刪除儲位.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_RowsLED_刪除儲位.ShadowSize = 3;
+            this.rJ_Button_RowsLED_刪除儲位.ShowLoadingForm = false;
+            this.rJ_Button_RowsLED_刪除儲位.Size = new System.Drawing.Size(135, 66);
+            this.rJ_Button_RowsLED_刪除儲位.State = false;
+            this.rJ_Button_RowsLED_刪除儲位.TabIndex = 36;
+            this.rJ_Button_RowsLED_刪除儲位.Text = "刪除儲位";
+            this.rJ_Button_RowsLED_刪除儲位.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_刪除儲位.TextHeight = 0;
+            this.rJ_Button_RowsLED_刪除儲位.UseVisualStyleBackColor = false;
+            // 
+            // rJ_Button_RowsLED_新增儲位
+            // 
+            this.rJ_Button_RowsLED_新增儲位.AutoResetState = false;
+            this.rJ_Button_RowsLED_新增儲位.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_RowsLED_新增儲位.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_RowsLED_新增儲位.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_RowsLED_新增儲位.BorderRadius = 20;
+            this.rJ_Button_RowsLED_新增儲位.BorderSize = 0;
+            this.rJ_Button_RowsLED_新增儲位.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_RowsLED_新增儲位.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_RowsLED_新增儲位.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_RowsLED_新增儲位.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_RowsLED_新增儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_RowsLED_新增儲位.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_RowsLED_新增儲位.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_新增儲位.GUID = "";
+            this.rJ_Button_RowsLED_新增儲位.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_RowsLED_新增儲位.Location = new System.Drawing.Point(435, 0);
+            this.rJ_Button_RowsLED_新增儲位.Name = "rJ_Button_RowsLED_新增儲位";
+            this.rJ_Button_RowsLED_新增儲位.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_RowsLED_新增儲位.ProhibitionLineWidth = 4;
+            this.rJ_Button_RowsLED_新增儲位.ProhibitionSymbolSize = 30;
+            this.rJ_Button_RowsLED_新增儲位.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_RowsLED_新增儲位.ShadowSize = 3;
+            this.rJ_Button_RowsLED_新增儲位.ShowLoadingForm = false;
+            this.rJ_Button_RowsLED_新增儲位.Size = new System.Drawing.Size(135, 66);
+            this.rJ_Button_RowsLED_新增儲位.State = false;
+            this.rJ_Button_RowsLED_新增儲位.TabIndex = 35;
+            this.rJ_Button_RowsLED_新增儲位.Text = "新增儲位";
+            this.rJ_Button_RowsLED_新增儲位.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_新增儲位.TextHeight = 0;
+            this.rJ_Button_RowsLED_新增儲位.UseVisualStyleBackColor = false;
+            // 
+            // rJ_Button_RowsLED_儲位名稱_儲存
+            // 
+            this.rJ_Button_RowsLED_儲位名稱_儲存.AutoResetState = false;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.BorderRadius = 20;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.BorderSize = 0;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_RowsLED_儲位名稱_儲存.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.GUID = "";
+            this.rJ_Button_RowsLED_儲位名稱_儲存.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_RowsLED_儲位名稱_儲存.Location = new System.Drawing.Point(969, 15);
+            this.rJ_Button_RowsLED_儲位名稱_儲存.Name = "rJ_Button_RowsLED_儲位名稱_儲存";
+            this.rJ_Button_RowsLED_儲位名稱_儲存.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.ProhibitionLineWidth = 4;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.ProhibitionSymbolSize = 30;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.ShadowSize = 3;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.ShowLoadingForm = false;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.Size = new System.Drawing.Size(95, 51);
+            this.rJ_Button_RowsLED_儲位名稱_儲存.State = false;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.TabIndex = 38;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.Text = "儲存";
+            this.rJ_Button_RowsLED_儲位名稱_儲存.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.TextHeight = 0;
+            this.rJ_Button_RowsLED_儲位名稱_儲存.UseVisualStyleBackColor = false;
+            // 
+            // rJ_TextBox_儲位名稱_RowsLED
+            // 
+            this.rJ_TextBox_儲位名稱_RowsLED.BackColor = System.Drawing.SystemColors.Window;
+            this.rJ_TextBox_儲位名稱_RowsLED.BorderColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_儲位名稱_RowsLED.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.rJ_TextBox_儲位名稱_RowsLED.BorderRadius = 0;
+            this.rJ_TextBox_儲位名稱_RowsLED.BorderSize = 2;
+            this.rJ_TextBox_儲位名稱_RowsLED.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_TextBox_儲位名稱_RowsLED.ForeColor = System.Drawing.Color.Black;
+            this.rJ_TextBox_儲位名稱_RowsLED.GUID = "";
+            this.rJ_TextBox_儲位名稱_RowsLED.Location = new System.Drawing.Point(764, 21);
+            this.rJ_TextBox_儲位名稱_RowsLED.Multiline = false;
+            this.rJ_TextBox_儲位名稱_RowsLED.Name = "rJ_TextBox_儲位名稱_RowsLED";
+            this.rJ_TextBox_儲位名稱_RowsLED.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.rJ_TextBox_儲位名稱_RowsLED.PassWordChar = false;
+            this.rJ_TextBox_儲位名稱_RowsLED.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.rJ_TextBox_儲位名稱_RowsLED.PlaceholderText = "請填入儲位名稱";
+            this.rJ_TextBox_儲位名稱_RowsLED.ShowTouchPannel = false;
+            this.rJ_TextBox_儲位名稱_RowsLED.Size = new System.Drawing.Size(200, 37);
+            this.rJ_TextBox_儲位名稱_RowsLED.TabIndex = 37;
+            this.rJ_TextBox_儲位名稱_RowsLED.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
+            this.rJ_TextBox_儲位名稱_RowsLED.Texts = "";
+            this.rJ_TextBox_儲位名稱_RowsLED.UnderlineStyle = false;
+            // 
+            // sqL_DataGridView_RowsLED_燈條列表
+            // 
+            this.sqL_DataGridView_RowsLED_燈條列表.AutoSelectToDeep = true;
+            this.sqL_DataGridView_RowsLED_燈條列表.backColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_RowsLED_燈條列表.BorderColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_RowsLED_燈條列表.BorderRadius = 10;
+            this.sqL_DataGridView_RowsLED_燈條列表.BorderSize = 2;
+            this.sqL_DataGridView_RowsLED_燈條列表.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_RowsLED_燈條列表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_燈條列表.cellStylBackColor = System.Drawing.Color.PowderBlue;
+            this.sqL_DataGridView_RowsLED_燈條列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_RowsLED_燈條列表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_RowsLED_燈條列表.columnHeaderBackColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_RowsLED_燈條列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_RowsLED_燈條列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_RowsLED_燈條列表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_燈條列表.columnHeadersHeight = 18;
+            this.sqL_DataGridView_RowsLED_燈條列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_RowsLED_燈條列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sqL_DataGridView_RowsLED_燈條列表.Dock = System.Windows.Forms.DockStyle.Left;
+            this.sqL_DataGridView_RowsLED_燈條列表.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_RowsLED_燈條列表.ImageBox = false;
+            this.sqL_DataGridView_RowsLED_燈條列表.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_RowsLED_燈條列表.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.sqL_DataGridView_RowsLED_燈條列表.Name = "sqL_DataGridView_RowsLED_燈條列表";
+            this.sqL_DataGridView_RowsLED_燈條列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_RowsLED_燈條列表.Password = "user82822040";
+            this.sqL_DataGridView_RowsLED_燈條列表.Port = ((uint)(3306u));
+            this.sqL_DataGridView_RowsLED_燈條列表.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_RowsLED_燈條列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_燈條列表.RowsColor = System.Drawing.SystemColors.Control;
+            this.sqL_DataGridView_RowsLED_燈條列表.RowsHeight = 80;
+            this.sqL_DataGridView_RowsLED_燈條列表.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_RowsLED_燈條列表.selectedBorderSize = 0;
+            this.sqL_DataGridView_RowsLED_燈條列表.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_RowsLED_燈條列表.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_RowsLED_燈條列表.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_RowsLED_燈條列表.Server = "127.0.0.0";
+            this.sqL_DataGridView_RowsLED_燈條列表.Size = new System.Drawing.Size(498, 342);
+            this.sqL_DataGridView_RowsLED_燈條列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_RowsLED_燈條列表.TabIndex = 9;
+            this.sqL_DataGridView_RowsLED_燈條列表.UserName = "root";
+            this.sqL_DataGridView_RowsLED_燈條列表.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_RowsLED_燈條列表.可選擇多列 = false;
+            this.sqL_DataGridView_RowsLED_燈條列表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_燈條列表.自動換行 = true;
+            this.sqL_DataGridView_RowsLED_燈條列表.表單字體 = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_RowsLED_燈條列表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_RowsLED_燈條列表.顯示CheckBox = false;
+            this.sqL_DataGridView_RowsLED_燈條列表.顯示首列 = true;
+            this.sqL_DataGridView_RowsLED_燈條列表.顯示首行 = true;
+            this.sqL_DataGridView_RowsLED_燈條列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_RowsLED_燈條列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             // 
             // panel35
             // 
@@ -20453,825 +21836,6 @@ namespace 癌症自動備藥機暨排程系統
             this.textBox_帳號.Size = new System.Drawing.Size(260, 27);
             this.textBox_帳號.TabIndex = 1;
             // 
-            // plC_ScreenPage_儲位設定
-            // 
-            this.plC_ScreenPage_儲位設定.Appearance = System.Windows.Forms.TabAppearance.Buttons;
-            this.plC_ScreenPage_儲位設定.BackColor = System.Drawing.Color.White;
-            this.plC_ScreenPage_儲位設定.Controls.Add(this.tabPage12);
-            this.plC_ScreenPage_儲位設定.Controls.Add(this.tabPage13);
-            this.plC_ScreenPage_儲位設定.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plC_ScreenPage_儲位設定.ForekColor = System.Drawing.Color.Black;
-            this.plC_ScreenPage_儲位設定.ItemSize = new System.Drawing.Size(54, 21);
-            this.plC_ScreenPage_儲位設定.Location = new System.Drawing.Point(0, 673);
-            this.plC_ScreenPage_儲位設定.Name = "plC_ScreenPage_儲位設定";
-            this.plC_ScreenPage_儲位設定.SelectedIndex = 0;
-            this.plC_ScreenPage_儲位設定.Size = new System.Drawing.Size(1076, 1066);
-            this.plC_ScreenPage_儲位設定.TabBackColor = System.Drawing.Color.White;
-            this.plC_ScreenPage_儲位設定.TabIndex = 2;
-            this.plC_ScreenPage_儲位設定.顯示標籤列 = MyUI.PLC_ScreenPage.TabVisibleEnum.顯示;
-            this.plC_ScreenPage_儲位設定.顯示頁面 = 0;
-            // 
-            // tabPage12
-            // 
-            this.tabPage12.BackColor = System.Drawing.Color.White;
-            this.tabPage12.Controls.Add(this.rJ_Pannel14);
-            this.tabPage12.Location = new System.Drawing.Point(4, 25);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1068, 1037);
-            this.tabPage12.TabIndex = 0;
-            this.tabPage12.Text = "面板";
-            // 
-            // rJ_Pannel14
-            // 
-            this.rJ_Pannel14.BackColor = System.Drawing.Color.White;
-            this.rJ_Pannel14.BackgroundColor = System.Drawing.Color.Transparent;
-            this.rJ_Pannel14.BorderColor = System.Drawing.Color.Black;
-            this.rJ_Pannel14.BorderRadius = 10;
-            this.rJ_Pannel14.BorderSize = 2;
-            this.rJ_Pannel14.Controls.Add(this.sqL_DataGridView_面板_儲位列表);
-            this.rJ_Pannel14.Controls.Add(this.panel39);
-            this.rJ_Pannel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rJ_Pannel14.ForeColor = System.Drawing.Color.White;
-            this.rJ_Pannel14.IsSelected = false;
-            this.rJ_Pannel14.Location = new System.Drawing.Point(0, 0);
-            this.rJ_Pannel14.Name = "rJ_Pannel14";
-            this.rJ_Pannel14.Padding = new System.Windows.Forms.Padding(10);
-            this.rJ_Pannel14.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Pannel14.ShadowSize = 3;
-            this.rJ_Pannel14.Size = new System.Drawing.Size(1068, 1037);
-            this.rJ_Pannel14.TabIndex = 3;
-            // 
-            // sqL_DataGridView_面板_儲位列表
-            // 
-            this.sqL_DataGridView_面板_儲位列表.AutoSelectToDeep = false;
-            this.sqL_DataGridView_面板_儲位列表.backColor = System.Drawing.Color.Silver;
-            this.sqL_DataGridView_面板_儲位列表.BorderColor = System.Drawing.Color.Silver;
-            this.sqL_DataGridView_面板_儲位列表.BorderRadius = 0;
-            this.sqL_DataGridView_面板_儲位列表.BorderSize = 2;
-            this.sqL_DataGridView_面板_儲位列表.CellBorderColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_面板_儲位列表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.sqL_DataGridView_面板_儲位列表.cellStylBackColor = System.Drawing.Color.PowderBlue;
-            this.sqL_DataGridView_面板_儲位列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_面板_儲位列表.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_面板_儲位列表.columnHeaderBackColor = System.Drawing.Color.DarkGray;
-            this.sqL_DataGridView_面板_儲位列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_面板_儲位列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_面板_儲位列表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_面板_儲位列表.columnHeadersHeight = 18;
-            this.sqL_DataGridView_面板_儲位列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_面板_儲位列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sqL_DataGridView_面板_儲位列表.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sqL_DataGridView_面板_儲位列表.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_面板_儲位列表.ImageBox = false;
-            this.sqL_DataGridView_面板_儲位列表.Location = new System.Drawing.Point(10, 180);
-            this.sqL_DataGridView_面板_儲位列表.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.sqL_DataGridView_面板_儲位列表.Name = "sqL_DataGridView_面板_儲位列表";
-            this.sqL_DataGridView_面板_儲位列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_面板_儲位列表.Password = "user82822040";
-            this.sqL_DataGridView_面板_儲位列表.Port = ((uint)(3306u));
-            this.sqL_DataGridView_面板_儲位列表.rowHeaderBackColor = System.Drawing.Color.Gray;
-            this.sqL_DataGridView_面板_儲位列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_面板_儲位列表.RowsColor = System.Drawing.SystemColors.Control;
-            this.sqL_DataGridView_面板_儲位列表.RowsHeight = 40;
-            this.sqL_DataGridView_面板_儲位列表.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_面板_儲位列表.selectedBorderSize = 0;
-            this.sqL_DataGridView_面板_儲位列表.selectedRowBackColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_面板_儲位列表.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_面板_儲位列表.selectedRowForeColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_面板_儲位列表.Server = "127.0.0.0";
-            this.sqL_DataGridView_面板_儲位列表.Size = new System.Drawing.Size(1048, 847);
-            this.sqL_DataGridView_面板_儲位列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_面板_儲位列表.TabIndex = 9;
-            this.sqL_DataGridView_面板_儲位列表.UserName = "root";
-            this.sqL_DataGridView_面板_儲位列表.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_面板_儲位列表.可選擇多列 = true;
-            this.sqL_DataGridView_面板_儲位列表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.sqL_DataGridView_面板_儲位列表.自動換行 = true;
-            this.sqL_DataGridView_面板_儲位列表.表單字體 = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_面板_儲位列表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sqL_DataGridView_面板_儲位列表.顯示CheckBox = false;
-            this.sqL_DataGridView_面板_儲位列表.顯示首列 = true;
-            this.sqL_DataGridView_面板_儲位列表.顯示首行 = true;
-            this.sqL_DataGridView_面板_儲位列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_面板_儲位列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            // 
-            // panel39
-            // 
-            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_效期批號修正);
-            this.panel39.Controls.Add(this.plC_Button63);
-            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈);
-            this.panel39.Controls.Add(this.comboBox_儲位設定_面板_儲位列表_亮燈顏色);
-            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號);
-            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板);
-            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位);
-            this.panel39.Controls.Add(this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理);
-            this.panel39.Controls.Add(this.epD_290_Pannel);
-            this.panel39.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel39.Location = new System.Drawing.Point(10, 10);
-            this.panel39.Name = "panel39";
-            this.panel39.Size = new System.Drawing.Size(1048, 170);
-            this.panel39.TabIndex = 1;
-            // 
-            // plC_RJ_Button_儲位設定_效期批號修正
-            // 
-            this.plC_RJ_Button_儲位設定_效期批號修正.AutoResetState = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_效期批號修正.Bool = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_儲位設定_效期批號修正.BorderRadius = 20;
-            this.plC_RJ_Button_儲位設定_效期批號修正.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_效期批號修正.but_press = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位設定_效期批號修正.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位設定_效期批號修正.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_效期批號修正.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位設定_效期批號修正.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_效期批號修正.GUID = "";
-            this.plC_RJ_Button_儲位設定_效期批號修正.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位設定_效期批號修正.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位設定_效期批號修正.Location = new System.Drawing.Point(413, 85);
-            this.plC_RJ_Button_儲位設定_效期批號修正.Name = "plC_RJ_Button_儲位設定_效期批號修正";
-            this.plC_RJ_Button_儲位設定_效期批號修正.OFF_文字內容 = "效期批號修正";
-            this.plC_RJ_Button_儲位設定_效期批號修正.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_效期批號修正.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_效期批號修正.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ON_BorderSize = 2;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ON_文字內容 = "效期批號修正";
-            this.plC_RJ_Button_儲位設定_效期批號修正.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_效期批號修正.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ON_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ShadowSize = 3;
-            this.plC_RJ_Button_儲位設定_效期批號修正.ShowLoadingForm = true;
-            this.plC_RJ_Button_儲位設定_效期批號修正.Size = new System.Drawing.Size(184, 71);
-            this.plC_RJ_Button_儲位設定_效期批號修正.State = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.TabIndex = 106;
-            this.plC_RJ_Button_儲位設定_效期批號修正.Text = "效期批號修正";
-            this.plC_RJ_Button_儲位設定_效期批號修正.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_效期批號修正.TextHeight = 0;
-            this.plC_RJ_Button_儲位設定_效期批號修正.Texts = "效期批號修正";
-            this.plC_RJ_Button_儲位設定_效期批號修正.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.字型鎖住 = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位設定_效期批號修正.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位設定_效期批號修正.文字鎖住 = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.背景圖片 = null;
-            this.plC_RJ_Button_儲位設定_效期批號修正.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.音效 = true;
-            this.plC_RJ_Button_儲位設定_效期批號修正.顯示 = false;
-            this.plC_RJ_Button_儲位設定_效期批號修正.顯示狀態 = false;
-            // 
-            // plC_Button63
-            // 
-            this.plC_Button63.Bool = false;
-            this.plC_Button63.but_press = false;
-            this.plC_Button63.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button63.Location = new System.Drawing.Point(901, 85);
-            this.plC_Button63.Name = "plC_Button63";
-            this.plC_Button63.OFF_文字內容 = "出料一次";
-            this.plC_Button63.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button63.OFF_文字顏色 = System.Drawing.Color.Black;
-            this.plC_Button63.OFF_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button63.ON_文字內容 = "出料一次";
-            this.plC_Button63.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button63.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button63.ON_背景顏色 = System.Drawing.SystemColors.Control;
-            this.plC_Button63.Size = new System.Drawing.Size(116, 58);
-            this.plC_Button63.Style = MyUI.PLC_Button.StyleEnum.經典;
-            this.plC_Button63.TabIndex = 105;
-            this.plC_Button63.事件驅動 = false;
-            this.plC_Button63.字型鎖住 = false;
-            this.plC_Button63.寫入元件位置 = "M12101";
-            this.plC_Button63.按鈕型態 = MyUI.PLC_Button.StatusEnum.交替型;
-            this.plC_Button63.按鍵方式 = MyUI.PLC_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button63.文字鎖住 = false;
-            this.plC_Button63.狀態OFF圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button63.狀態OFF圖片")));
-            this.plC_Button63.狀態ON圖片 = ((System.Drawing.Image)(resources.GetObject("plC_Button63.狀態ON圖片")));
-            this.plC_Button63.讀取位元反向 = false;
-            this.plC_Button63.讀取元件位置 = "M12100";
-            this.plC_Button63.讀寫鎖住 = false;
-            this.plC_Button63.起始狀態 = false;
-            this.plC_Button63.音效 = true;
-            this.plC_Button63.顯示 = false;
-            this.plC_Button63.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_儲位設定_面板_儲位列表_亮燈
-            // 
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.AutoResetState = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Bool = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.BorderRadius = 20;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.but_press = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.GUID = "";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Location = new System.Drawing.Point(413, 8);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_亮燈";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.OFF_文字內容 = "亮燈";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_BorderSize = 2;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_文字內容 = "亮燈";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ON_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ShadowSize = 3;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Size = new System.Drawing.Size(116, 71);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.State = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.TabIndex = 67;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Text = "亮燈";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.TextHeight = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.Texts = "亮燈";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.字型鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.文字鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.背景圖片 = null;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.音效 = true;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.顯示 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.顯示狀態 = false;
-            // 
-            // comboBox_儲位設定_面板_儲位列表_亮燈顏色
-            // 
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.FormattingEnabled = true;
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Items.AddRange(new object[] {
-            "紅",
-            "藍",
-            "綠",
-            "白"});
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Location = new System.Drawing.Point(328, 27);
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Name = "comboBox_儲位設定_面板_儲位列表_亮燈顏色";
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.Size = new System.Drawing.Size(79, 35);
-            this.comboBox_儲位設定_面板_儲位列表_亮燈顏色.TabIndex = 66;
-            // 
-            // plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號
-            // 
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.AutoResetState = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Bool = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.BorderRadius = 20;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.but_press = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.GUID = "";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Location = new System.Drawing.Point(535, 8);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.OFF_文字內容 = "清除燈號";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_BorderSize = 2;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_文字內容 = "清除燈號";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ON_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ShadowSize = 3;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Size = new System.Drawing.Size(116, 71);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.State = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.TabIndex = 65;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Text = "清除燈號";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.TextHeight = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.Texts = "清除燈號";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.字型鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.文字鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.背景圖片 = null;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.音效 = true;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.顯示 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板
-            // 
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.AutoResetState = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Bool = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.BorderRadius = 20;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.but_press = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.GUID = "";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Location = new System.Drawing.Point(657, 8);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.OFF_文字內容 = "上傳面板";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_BorderSize = 2;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_文字內容 = "上傳面板";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ON_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ShadowSize = 3;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Size = new System.Drawing.Size(116, 71);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.State = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.TabIndex = 64;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Text = "上傳面板";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.TextHeight = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.Texts = "上傳面板";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.字型鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.文字鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.背景圖片 = null;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.音效 = true;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.顯示 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位
-            // 
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.AutoResetState = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Bool = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.BorderRadius = 20;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.but_press = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.GUID = "";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Location = new System.Drawing.Point(901, 8);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.OFF_文字內容 = "刪除儲位";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_BorderSize = 2;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_文字內容 = "刪除儲位";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ON_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ShadowSize = 3;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.ShowLoadingForm = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Size = new System.Drawing.Size(116, 71);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.State = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.TabIndex = 63;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Text = "刪除儲位";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.TextHeight = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.Texts = "刪除儲位";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.字型鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.文字鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.背景圖片 = null;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.音效 = true;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.顯示 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.顯示狀態 = false;
-            // 
-            // plC_RJ_Button_儲位設定_面板_儲位列表_重新整理
-            // 
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.AutoResetState = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.BackgroundColor = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Bool = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.BorderColor = System.Drawing.Color.Thistle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.BorderRadius = 20;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.but_press = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.FlatAppearance.BorderSize = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.GUID = "";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Location = new System.Drawing.Point(779, 8);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Name = "plC_RJ_Button_儲位設定_面板_儲位列表_重新整理";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.OFF_文字內容 = "重新整理";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.OFF_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.OFF_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_BorderSize = 2;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_文字內容 = "重新整理";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_文字字體 = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ON_背景顏色 = System.Drawing.Color.Black;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ProhibitionBorderLineWidth = 1;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ProhibitionLineWidth = 4;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ProhibitionSymbolSize = 30;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ShadowSize = 3;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.ShowLoadingForm = true;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Size = new System.Drawing.Size(116, 71);
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.State = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.TabIndex = 61;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Text = "重新整理";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.TextColor = System.Drawing.Color.White;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.TextHeight = 0;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.Texts = "重新整理";
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.字型鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.文字鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.背景圖片 = null;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.讀取位元反向 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.讀寫鎖住 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.音效 = true;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.顯示 = false;
-            this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.顯示狀態 = false;
-            // 
-            // epD_290_Pannel
-            // 
-            this.epD_290_Pannel.CurrentStorage = null;
-            this.epD_290_Pannel.Location = new System.Drawing.Point(9, 8);
-            this.epD_290_Pannel.Name = "epD_290_Pannel";
-            this.epD_290_Pannel.Size = new System.Drawing.Size(296, 128);
-            this.epD_290_Pannel.TabIndex = 0;
-            // 
-            // tabPage13
-            // 
-            this.tabPage13.BackColor = System.Drawing.Color.White;
-            this.tabPage13.Controls.Add(this.rowsLED_Pannel);
-            this.tabPage13.Controls.Add(this.panel56);
-            this.tabPage13.Location = new System.Drawing.Point(4, 25);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(1068, 1063);
-            this.tabPage13.TabIndex = 1;
-            this.tabPage13.Text = "燈條";
-            // 
-            // rowsLED_Pannel
-            // 
-            this.rowsLED_Pannel.AutoWrite = true;
-            this.rowsLED_Pannel.BackColor = System.Drawing.SystemColors.Window;
-            this.rowsLED_Pannel.BarColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.rowsLED_Pannel.BarFont = new System.Drawing.Font("微軟正黑體", 9F);
-            this.rowsLED_Pannel.BarForeColor = System.Drawing.Color.DarkGray;
-            this.rowsLED_Pannel.BarSize = 50;
-            this.rowsLED_Pannel.BottomSliderColor = System.Drawing.Color.Red;
-            this.rowsLED_Pannel.CurrentRowsDevice = null;
-            this.rowsLED_Pannel.CurrentRowsLED = null;
-            this.rowsLED_Pannel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rowsLED_Pannel.Location = new System.Drawing.Point(0, 342);
-            this.rowsLED_Pannel.Maximum = 100;
-            this.rowsLED_Pannel.MaxValue = 0;
-            this.rowsLED_Pannel.Minimum = 0;
-            this.rowsLED_Pannel.MinValue = 0;
-            this.rowsLED_Pannel.Name = "rowsLED_Pannel";
-            this.rowsLED_Pannel.RowsDeviceGUID = "";
-            this.rowsLED_Pannel.Size = new System.Drawing.Size(1068, 113);
-            this.rowsLED_Pannel.SliderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.rowsLED_Pannel.SliderSize = 10;
-            this.rowsLED_Pannel.TabIndex = 5;
-            this.rowsLED_Pannel.TopSliderColor = System.Drawing.Color.Silver;
-            // 
-            // panel56
-            // 
-            this.panel56.Controls.Add(this.rJ_Button_RowsLED_搜尋);
-            this.panel56.Controls.Add(this.comboBox_RowsLED_搜尋內容);
-            this.panel56.Controls.Add(this.comboBox_RowsLED_搜尋條件);
-            this.panel56.Controls.Add(this.panel57);
-            this.panel56.Controls.Add(this.rJ_Button_RowsLED_儲位名稱_儲存);
-            this.panel56.Controls.Add(this.rJ_TextBox_儲位名稱_RowsLED);
-            this.panel56.Controls.Add(this.sqL_DataGridView_RowsLED_燈條列表);
-            this.panel56.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel56.Location = new System.Drawing.Point(0, 0);
-            this.panel56.Name = "panel56";
-            this.panel56.Size = new System.Drawing.Size(1068, 342);
-            this.panel56.TabIndex = 0;
-            // 
-            // rJ_Button_RowsLED_搜尋
-            // 
-            this.rJ_Button_RowsLED_搜尋.AutoResetState = false;
-            this.rJ_Button_RowsLED_搜尋.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_RowsLED_搜尋.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_RowsLED_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_RowsLED_搜尋.BorderRadius = 20;
-            this.rJ_Button_RowsLED_搜尋.BorderSize = 0;
-            this.rJ_Button_RowsLED_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_RowsLED_搜尋.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_RowsLED_搜尋.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_RowsLED_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_RowsLED_搜尋.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_RowsLED_搜尋.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_搜尋.GUID = "";
-            this.rJ_Button_RowsLED_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_RowsLED_搜尋.Location = new System.Drawing.Point(952, 213);
-            this.rJ_Button_RowsLED_搜尋.Name = "rJ_Button_RowsLED_搜尋";
-            this.rJ_Button_RowsLED_搜尋.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_RowsLED_搜尋.ProhibitionLineWidth = 4;
-            this.rJ_Button_RowsLED_搜尋.ProhibitionSymbolSize = 30;
-            this.rJ_Button_RowsLED_搜尋.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_RowsLED_搜尋.ShadowSize = 3;
-            this.rJ_Button_RowsLED_搜尋.ShowLoadingForm = false;
-            this.rJ_Button_RowsLED_搜尋.Size = new System.Drawing.Size(110, 57);
-            this.rJ_Button_RowsLED_搜尋.State = false;
-            this.rJ_Button_RowsLED_搜尋.TabIndex = 130;
-            this.rJ_Button_RowsLED_搜尋.Text = "搜尋";
-            this.rJ_Button_RowsLED_搜尋.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_搜尋.TextHeight = 0;
-            this.rJ_Button_RowsLED_搜尋.UseVisualStyleBackColor = false;
-            // 
-            // comboBox_RowsLED_搜尋內容
-            // 
-            this.comboBox_RowsLED_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.comboBox_RowsLED_搜尋內容.FormattingEnabled = true;
-            this.comboBox_RowsLED_搜尋內容.Location = new System.Drawing.Point(653, 220);
-            this.comboBox_RowsLED_搜尋內容.Name = "comboBox_RowsLED_搜尋內容";
-            this.comboBox_RowsLED_搜尋內容.Size = new System.Drawing.Size(291, 39);
-            this.comboBox_RowsLED_搜尋內容.TabIndex = 129;
-            // 
-            // comboBox_RowsLED_搜尋條件
-            // 
-            this.comboBox_RowsLED_搜尋條件.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_RowsLED_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.comboBox_RowsLED_搜尋條件.FormattingEnabled = true;
-            this.comboBox_RowsLED_搜尋條件.Items.AddRange(new object[] {
-            "藥碼",
-            "藥名"});
-            this.comboBox_RowsLED_搜尋條件.Location = new System.Drawing.Point(508, 220);
-            this.comboBox_RowsLED_搜尋條件.Name = "comboBox_RowsLED_搜尋條件";
-            this.comboBox_RowsLED_搜尋條件.Size = new System.Drawing.Size(130, 39);
-            this.comboBox_RowsLED_搜尋條件.TabIndex = 128;
-            // 
-            // panel57
-            // 
-            this.panel57.Controls.Add(this.rJ_Button_RowsLED_填入儲位);
-            this.panel57.Controls.Add(this.rJ_Button_RowsLED_刪除儲位);
-            this.panel57.Controls.Add(this.rJ_Button_RowsLED_新增儲位);
-            this.panel57.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel57.Location = new System.Drawing.Point(498, 276);
-            this.panel57.Name = "panel57";
-            this.panel57.Size = new System.Drawing.Size(570, 66);
-            this.panel57.TabIndex = 39;
-            // 
-            // rJ_Button_RowsLED_填入儲位
-            // 
-            this.rJ_Button_RowsLED_填入儲位.AutoResetState = false;
-            this.rJ_Button_RowsLED_填入儲位.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_RowsLED_填入儲位.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_RowsLED_填入儲位.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_RowsLED_填入儲位.BorderRadius = 20;
-            this.rJ_Button_RowsLED_填入儲位.BorderSize = 0;
-            this.rJ_Button_RowsLED_填入儲位.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_RowsLED_填入儲位.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_RowsLED_填入儲位.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rJ_Button_RowsLED_填入儲位.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_RowsLED_填入儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_RowsLED_填入儲位.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_RowsLED_填入儲位.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_填入儲位.GUID = "";
-            this.rJ_Button_RowsLED_填入儲位.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_RowsLED_填入儲位.Location = new System.Drawing.Point(165, 0);
-            this.rJ_Button_RowsLED_填入儲位.Name = "rJ_Button_RowsLED_填入儲位";
-            this.rJ_Button_RowsLED_填入儲位.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_RowsLED_填入儲位.ProhibitionLineWidth = 4;
-            this.rJ_Button_RowsLED_填入儲位.ProhibitionSymbolSize = 30;
-            this.rJ_Button_RowsLED_填入儲位.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_RowsLED_填入儲位.ShadowSize = 3;
-            this.rJ_Button_RowsLED_填入儲位.ShowLoadingForm = false;
-            this.rJ_Button_RowsLED_填入儲位.Size = new System.Drawing.Size(135, 66);
-            this.rJ_Button_RowsLED_填入儲位.State = false;
-            this.rJ_Button_RowsLED_填入儲位.TabIndex = 37;
-            this.rJ_Button_RowsLED_填入儲位.Text = "填入儲位";
-            this.rJ_Button_RowsLED_填入儲位.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_填入儲位.TextHeight = 0;
-            this.rJ_Button_RowsLED_填入儲位.UseVisualStyleBackColor = false;
-            // 
-            // rJ_Button_RowsLED_刪除儲位
-            // 
-            this.rJ_Button_RowsLED_刪除儲位.AutoResetState = false;
-            this.rJ_Button_RowsLED_刪除儲位.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_RowsLED_刪除儲位.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_RowsLED_刪除儲位.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_RowsLED_刪除儲位.BorderRadius = 20;
-            this.rJ_Button_RowsLED_刪除儲位.BorderSize = 0;
-            this.rJ_Button_RowsLED_刪除儲位.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_RowsLED_刪除儲位.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_RowsLED_刪除儲位.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rJ_Button_RowsLED_刪除儲位.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_RowsLED_刪除儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_RowsLED_刪除儲位.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_RowsLED_刪除儲位.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_刪除儲位.GUID = "";
-            this.rJ_Button_RowsLED_刪除儲位.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_RowsLED_刪除儲位.Location = new System.Drawing.Point(300, 0);
-            this.rJ_Button_RowsLED_刪除儲位.Name = "rJ_Button_RowsLED_刪除儲位";
-            this.rJ_Button_RowsLED_刪除儲位.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_RowsLED_刪除儲位.ProhibitionLineWidth = 4;
-            this.rJ_Button_RowsLED_刪除儲位.ProhibitionSymbolSize = 30;
-            this.rJ_Button_RowsLED_刪除儲位.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_RowsLED_刪除儲位.ShadowSize = 3;
-            this.rJ_Button_RowsLED_刪除儲位.ShowLoadingForm = false;
-            this.rJ_Button_RowsLED_刪除儲位.Size = new System.Drawing.Size(135, 66);
-            this.rJ_Button_RowsLED_刪除儲位.State = false;
-            this.rJ_Button_RowsLED_刪除儲位.TabIndex = 36;
-            this.rJ_Button_RowsLED_刪除儲位.Text = "刪除儲位";
-            this.rJ_Button_RowsLED_刪除儲位.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_刪除儲位.TextHeight = 0;
-            this.rJ_Button_RowsLED_刪除儲位.UseVisualStyleBackColor = false;
-            // 
-            // rJ_Button_RowsLED_新增儲位
-            // 
-            this.rJ_Button_RowsLED_新增儲位.AutoResetState = false;
-            this.rJ_Button_RowsLED_新增儲位.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_RowsLED_新增儲位.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_RowsLED_新增儲位.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_RowsLED_新增儲位.BorderRadius = 20;
-            this.rJ_Button_RowsLED_新增儲位.BorderSize = 0;
-            this.rJ_Button_RowsLED_新增儲位.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_RowsLED_新增儲位.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_RowsLED_新增儲位.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rJ_Button_RowsLED_新增儲位.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_RowsLED_新增儲位.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_RowsLED_新增儲位.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_RowsLED_新增儲位.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_新增儲位.GUID = "";
-            this.rJ_Button_RowsLED_新增儲位.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_RowsLED_新增儲位.Location = new System.Drawing.Point(435, 0);
-            this.rJ_Button_RowsLED_新增儲位.Name = "rJ_Button_RowsLED_新增儲位";
-            this.rJ_Button_RowsLED_新增儲位.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_RowsLED_新增儲位.ProhibitionLineWidth = 4;
-            this.rJ_Button_RowsLED_新增儲位.ProhibitionSymbolSize = 30;
-            this.rJ_Button_RowsLED_新增儲位.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_RowsLED_新增儲位.ShadowSize = 3;
-            this.rJ_Button_RowsLED_新增儲位.ShowLoadingForm = false;
-            this.rJ_Button_RowsLED_新增儲位.Size = new System.Drawing.Size(135, 66);
-            this.rJ_Button_RowsLED_新增儲位.State = false;
-            this.rJ_Button_RowsLED_新增儲位.TabIndex = 35;
-            this.rJ_Button_RowsLED_新增儲位.Text = "新增儲位";
-            this.rJ_Button_RowsLED_新增儲位.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_新增儲位.TextHeight = 0;
-            this.rJ_Button_RowsLED_新增儲位.UseVisualStyleBackColor = false;
-            // 
-            // rJ_Button_RowsLED_儲位名稱_儲存
-            // 
-            this.rJ_Button_RowsLED_儲位名稱_儲存.AutoResetState = false;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.BorderRadius = 20;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.BorderSize = 0;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_RowsLED_儲位名稱_儲存.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.GUID = "";
-            this.rJ_Button_RowsLED_儲位名稱_儲存.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_RowsLED_儲位名稱_儲存.Location = new System.Drawing.Point(969, 15);
-            this.rJ_Button_RowsLED_儲位名稱_儲存.Name = "rJ_Button_RowsLED_儲位名稱_儲存";
-            this.rJ_Button_RowsLED_儲位名稱_儲存.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.ProhibitionLineWidth = 4;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.ProhibitionSymbolSize = 30;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.ShadowSize = 3;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.ShowLoadingForm = false;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.Size = new System.Drawing.Size(95, 51);
-            this.rJ_Button_RowsLED_儲位名稱_儲存.State = false;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.TabIndex = 38;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.Text = "儲存";
-            this.rJ_Button_RowsLED_儲位名稱_儲存.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.TextHeight = 0;
-            this.rJ_Button_RowsLED_儲位名稱_儲存.UseVisualStyleBackColor = false;
-            // 
-            // rJ_TextBox_儲位名稱_RowsLED
-            // 
-            this.rJ_TextBox_儲位名稱_RowsLED.BackColor = System.Drawing.SystemColors.Window;
-            this.rJ_TextBox_儲位名稱_RowsLED.BorderColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_儲位名稱_RowsLED.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.rJ_TextBox_儲位名稱_RowsLED.BorderRadius = 0;
-            this.rJ_TextBox_儲位名稱_RowsLED.BorderSize = 2;
-            this.rJ_TextBox_儲位名稱_RowsLED.Font = new System.Drawing.Font("新細明體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_TextBox_儲位名稱_RowsLED.ForeColor = System.Drawing.Color.Black;
-            this.rJ_TextBox_儲位名稱_RowsLED.GUID = "";
-            this.rJ_TextBox_儲位名稱_RowsLED.Location = new System.Drawing.Point(764, 21);
-            this.rJ_TextBox_儲位名稱_RowsLED.Multiline = false;
-            this.rJ_TextBox_儲位名稱_RowsLED.Name = "rJ_TextBox_儲位名稱_RowsLED";
-            this.rJ_TextBox_儲位名稱_RowsLED.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.rJ_TextBox_儲位名稱_RowsLED.PassWordChar = false;
-            this.rJ_TextBox_儲位名稱_RowsLED.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.rJ_TextBox_儲位名稱_RowsLED.PlaceholderText = "請填入儲位名稱";
-            this.rJ_TextBox_儲位名稱_RowsLED.ShowTouchPannel = false;
-            this.rJ_TextBox_儲位名稱_RowsLED.Size = new System.Drawing.Size(200, 37);
-            this.rJ_TextBox_儲位名稱_RowsLED.TabIndex = 37;
-            this.rJ_TextBox_儲位名稱_RowsLED.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
-            this.rJ_TextBox_儲位名稱_RowsLED.Texts = "";
-            this.rJ_TextBox_儲位名稱_RowsLED.UnderlineStyle = false;
-            // 
-            // sqL_DataGridView_RowsLED_燈條列表
-            // 
-            this.sqL_DataGridView_RowsLED_燈條列表.AutoSelectToDeep = true;
-            this.sqL_DataGridView_RowsLED_燈條列表.backColor = System.Drawing.Color.Silver;
-            this.sqL_DataGridView_RowsLED_燈條列表.BorderColor = System.Drawing.Color.Silver;
-            this.sqL_DataGridView_RowsLED_燈條列表.BorderRadius = 10;
-            this.sqL_DataGridView_RowsLED_燈條列表.BorderSize = 2;
-            this.sqL_DataGridView_RowsLED_燈條列表.CellBorderColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_RowsLED_燈條列表.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.sqL_DataGridView_RowsLED_燈條列表.cellStylBackColor = System.Drawing.Color.PowderBlue;
-            this.sqL_DataGridView_RowsLED_燈條列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_RowsLED_燈條列表.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_RowsLED_燈條列表.columnHeaderBackColor = System.Drawing.Color.DarkGray;
-            this.sqL_DataGridView_RowsLED_燈條列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_RowsLED_燈條列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.sqL_DataGridView_RowsLED_燈條列表.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_RowsLED_燈條列表.columnHeadersHeight = 18;
-            this.sqL_DataGridView_RowsLED_燈條列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sqL_DataGridView_RowsLED_燈條列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.sqL_DataGridView_RowsLED_燈條列表.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sqL_DataGridView_RowsLED_燈條列表.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_RowsLED_燈條列表.ImageBox = false;
-            this.sqL_DataGridView_RowsLED_燈條列表.Location = new System.Drawing.Point(0, 0);
-            this.sqL_DataGridView_RowsLED_燈條列表.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.sqL_DataGridView_RowsLED_燈條列表.Name = "sqL_DataGridView_RowsLED_燈條列表";
-            this.sqL_DataGridView_RowsLED_燈條列表.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
-            this.sqL_DataGridView_RowsLED_燈條列表.Password = "user82822040";
-            this.sqL_DataGridView_RowsLED_燈條列表.Port = ((uint)(3306u));
-            this.sqL_DataGridView_RowsLED_燈條列表.rowHeaderBackColor = System.Drawing.Color.Gray;
-            this.sqL_DataGridView_RowsLED_燈條列表.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_RowsLED_燈條列表.RowsColor = System.Drawing.SystemColors.Control;
-            this.sqL_DataGridView_RowsLED_燈條列表.RowsHeight = 80;
-            this.sqL_DataGridView_RowsLED_燈條列表.SaveFileName = "SQL_DataGridView";
-            this.sqL_DataGridView_RowsLED_燈條列表.selectedBorderSize = 0;
-            this.sqL_DataGridView_RowsLED_燈條列表.selectedRowBackColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_RowsLED_燈條列表.selectedRowBorderColor = System.Drawing.Color.Blue;
-            this.sqL_DataGridView_RowsLED_燈條列表.selectedRowForeColor = System.Drawing.Color.White;
-            this.sqL_DataGridView_RowsLED_燈條列表.Server = "127.0.0.0";
-            this.sqL_DataGridView_RowsLED_燈條列表.Size = new System.Drawing.Size(498, 342);
-            this.sqL_DataGridView_RowsLED_燈條列表.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
-            this.sqL_DataGridView_RowsLED_燈條列表.TabIndex = 9;
-            this.sqL_DataGridView_RowsLED_燈條列表.UserName = "root";
-            this.sqL_DataGridView_RowsLED_燈條列表.可拖曳欄位寬度 = false;
-            this.sqL_DataGridView_RowsLED_燈條列表.可選擇多列 = false;
-            this.sqL_DataGridView_RowsLED_燈條列表.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.sqL_DataGridView_RowsLED_燈條列表.自動換行 = true;
-            this.sqL_DataGridView_RowsLED_燈條列表.表單字體 = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.sqL_DataGridView_RowsLED_燈條列表.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sqL_DataGridView_RowsLED_燈條列表.顯示CheckBox = false;
-            this.sqL_DataGridView_RowsLED_燈條列表.顯示首列 = true;
-            this.sqL_DataGridView_RowsLED_燈條列表.顯示首行 = true;
-            this.sqL_DataGridView_RowsLED_燈條列表.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            this.sqL_DataGridView_RowsLED_燈條列表.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
-            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -21326,6 +21890,15 @@ namespace 癌症自動備藥機暨排程系統
             this.panel44.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.儲位設定.ResumeLayout(false);
+            this.plC_ScreenPage_儲位設定.ResumeLayout(false);
+            this.tabPage12.ResumeLayout(false);
+            this.rJ_Pannel14.ResumeLayout(false);
+            this.panel39.ResumeLayout(false);
+            this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
+            this.panel58.ResumeLayout(false);
+            this.panel56.ResumeLayout(false);
+            this.panel57.ResumeLayout(false);
             this.panel35.ResumeLayout(false);
             this.rJ_Pannel13.ResumeLayout(false);
             this.panel38.ResumeLayout(false);
@@ -21410,13 +21983,6 @@ namespace 癌症自動備藥機暨排程系統
             this.panel47.ResumeLayout(false);
             this.panel50.ResumeLayout(false);
             this.panel48.ResumeLayout(false);
-            this.plC_ScreenPage_儲位設定.ResumeLayout(false);
-            this.tabPage12.ResumeLayout(false);
-            this.rJ_Pannel14.ResumeLayout(false);
-            this.panel39.ResumeLayout(false);
-            this.tabPage13.ResumeLayout(false);
-            this.panel56.ResumeLayout(false);
-            this.panel57.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -22192,6 +22758,20 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.RJ_Button rJ_Button_RowsLED_儲位名稱_儲存;
         private MyUI.RJ_TextBox rJ_TextBox_儲位名稱_RowsLED;
         private SQLUI.SQL_DataGridView sqL_DataGridView_RowsLED_燈條列表;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_RowsLED_儲位資料;
+        private MyUI.RJ_Button rJ_Button_RowsLED_清除燈號;
+        private MyUI.RJ_RatioButton rJ_RatioButton_儲位資料_RowsLED_紅;
+        private MyUI.RJ_RatioButton rJ_RatioButton_儲位資料_RowsLED_白;
+        private MyUI.RJ_RatioButton rJ_RatioButton_儲位資料_RowsLED_藍;
+        private MyUI.RJ_RatioButton rJ_RatioButton_儲位資料_RowsLED_綠;
+        private System.Windows.Forms.Panel panel58;
+        private MyUI.PLC_RJ_Button plC_RJ_Button1;
+        private MyUI.PLC_RJ_Button plC_RJ_Button2;
+        private MyUI.PLC_RJ_Button plC_RJ_Button3;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_RowLED_儲位設定_效期及批號_修改;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_RowLED_儲位設定_效期及批號_新增;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_儲位管理_RowsLED_效期及批號;
     }
 }
 

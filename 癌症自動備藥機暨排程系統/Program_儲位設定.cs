@@ -81,6 +81,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Program_儲位設定_Init()
         {
+            #region 燈條
             this.rowsLEDUI.Init(dBConfigClass.DB_Storagelist);
             _rowsLEDUI = this.rowsLEDUI;
             this.rowsLED_Pannel.Init(Main_Form._rowsLEDUI.List_UDP_Local);
@@ -88,13 +89,37 @@ namespace 癌症自動備藥機暨排程系統
 
 
             Table table_燈條亮燈儲位總表 = new Table(new enum_燈條亮燈儲位總表());
-
             this.sqL_DataGridView_RowsLED_燈條列表.RowsHeight = 40;
             this.sqL_DataGridView_RowsLED_燈條列表.Init(table_燈條亮燈儲位總表);
             this.sqL_DataGridView_RowsLED_燈條列表.Set_ColumnVisible(false, new enum_燈條亮燈儲位總表().GetEnumNames());
             this.sqL_DataGridView_RowsLED_燈條列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_燈條亮燈儲位總表.IP);
             this.sqL_DataGridView_RowsLED_燈條列表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_燈條亮燈儲位總表.名稱);
+            this.sqL_DataGridView_RowsLED_燈條列表.RowEnterEvent += SqL_DataGridView_RowsLED_燈條列表_RowEnterEvent;
 
+
+            Table table_燈條亮燈儲位列表 = new Table(new enum_燈條亮燈儲位列表());
+            this.sqL_DataGridView_RowsLED_儲位資料.RowsHeight = 40;
+            this.sqL_DataGridView_RowsLED_儲位資料.Init(table_燈條亮燈儲位列表);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnVisible(false, new enum_燈條亮燈儲位列表().GetEnumNames());
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleCenter, enum_燈條亮燈儲位列表.編號);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_燈條亮燈儲位列表.藥碼);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(370, DataGridViewContentAlignment.MiddleLeft, enum_燈條亮燈儲位列表.藥名);
+            this.sqL_DataGridView_RowsLED_儲位資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_燈條亮燈儲位列表.庫存);
+            this.sqL_DataGridView_RowsLED_儲位資料.RowEnterEvent += SqL_DataGridView_RowsLED_儲位資料_RowEnterEvent;
+
+            Table table_效期及批號 = new Table(new enum_效期及批號());
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.RowsHeight = 40;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Init(table_效期及批號);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Set_ColumnVisible(false, new enum_效期及批號().GetEnumNames());
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_效期及批號.效期);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_效期及批號.批號);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_效期及批號.庫存);
+
+
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_新增_MouseDownEvent;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_刪除_MouseDownEvent;
+            this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_修改_MouseDownEvent;
+            #endregion
 
 
             this.storageUI_EPD_266.Init(dBConfigClass.DB_Storagelist);
@@ -145,7 +170,7 @@ namespace 癌症自動備藥機暨排程系統
             plC_UI_Init.Add_Method(Program_儲位設定);
         }
 
-      
+
 
         private void Program_儲位設定()
         {
@@ -231,7 +256,7 @@ namespace 癌症自動備藥機暨排程系統
 
         #endregion
         #region Function
-        private void Function_儲位設定_重新整理()
+        private void Function_儲位設定_EPD266_重新整理()
         {
             List<Storage> storages = storageUI_EPD_266.SQL_GetAllStorage();
             List<object[]> list_value = new List<object[]>();
@@ -256,8 +281,91 @@ namespace 癌症自動備藥機暨排程系統
             }
             sqL_DataGridView_面板_儲位列表.RefreshGrid(list_value);
         }
+        private void Function_儲位設定_燈條亮燈_重新整理()
+        {
+            List<RowsLED> rowsLEDs = deviceApiClass.GetRowsLEDs(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType);
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < rowsLEDs.Count; i++)
+            {
+                object[] value = new object[new enum_燈條亮燈儲位總表().GetLength()];
+                value[(int)enum_燈條亮燈儲位總表.GUID] = rowsLEDs[i].IP;
+                value[(int)enum_燈條亮燈儲位總表.IP] = rowsLEDs[i].IP;
+                value[(int)enum_燈條亮燈儲位總表.名稱] = rowsLEDs[i].Name;
+                value[(int)enum_燈條亮燈儲位總表.區域] = rowsLEDs[i].Area;
+                list_value.Add(value);
+            }
+            this.sqL_DataGridView_RowsLED_燈條列表.RefreshGrid(list_value);
+        }
+        private void Function_儲位設定_重新整理()
+        {
+            Function_儲位設定_EPD266_重新整理();
+            Function_儲位設定_燈條亮燈_重新整理();
+        }
         #endregion
         #region Event
+        private void SqL_DataGridView_RowsLED_燈條列表_RowEnterEvent(object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_燈條亮燈儲位總表.IP].ObjectToString();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+            this.rowsLED_Pannel.CurrentRowsLED = rowsLED;
+            rowsLED_Pannel.Maximum = rowsLED.Maximum;
+
+            rJ_TextBox_儲位名稱_RowsLED.Text = rowsLED.Name;
+
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < rowsLED.RowsDevices.Count; i++)
+            {
+                object[] value = new object[new enum_燈條亮燈儲位列表().GetLength()];
+                value[(int)enum_燈條亮燈儲位列表.GUID] = rowsLED.RowsDevices[i].GUID;
+                value[(int)enum_燈條亮燈儲位列表.編號] = rowsLED.RowsDevices[i].Index;
+                value[(int)enum_燈條亮燈儲位列表.藥碼] = rowsLED.RowsDevices[i].Code;
+                value[(int)enum_燈條亮燈儲位列表.藥名] = rowsLED.RowsDevices[i].Name;
+                value[(int)enum_燈條亮燈儲位列表.儲位名稱] = rowsLED.RowsDevices[i].StorageName;
+                value[(int)enum_燈條亮燈儲位列表.庫存] = rowsLED.RowsDevices[i].Inventory;
+                list_value.Add(value);
+            }
+            this.sqL_DataGridView_RowsLED_儲位資料.RefreshGrid(list_value);
+        }
+        private void SqL_DataGridView_RowsLED_儲位資料_RowEnterEvent(object[] RowValue)
+        {
+            if (this.rowsLED_Pannel.CurrentRowsLED != null) deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this.rowsLED_Pannel.CurrentRowsLED);
+            string GUID = RowValue[(int)enum_燈條亮燈儲位列表.GUID].ObjectToString();
+            RowsLED rowsLED = this.rowsLED_Pannel.CurrentRowsLED;
+            RowsDevice rowsDevice = rowsLED.SortByGUID(GUID);
+            if (rowsDevice == null) return;
+            this.rowsLED_Pannel.RowsDeviceGUID = GUID;
+
+            if (rJ_RatioButton_儲位資料_RowsLED_紅.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Red;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_藍.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Blue;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_綠.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Lime;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_白.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.White;
+            }
+
+            sqL_DataGridView_儲位管理_RowsLED_效期及批號.ClearGrid();
+
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < rowsDevice.List_Validity_period.Count; i++)
+            {
+                object[] value = new object[new enum_效期及批號().GetLength()];
+                value[(int)enum_效期及批號.效期] = rowsDevice.List_Validity_period[i];
+                value[(int)enum_效期及批號.批號] = rowsDevice.List_Lot_number[i];
+                value[(int)enum_效期及批號.庫存] = rowsDevice.List_Inventory[i];
+                list_value.Add(value);
+            }
+
+            sqL_DataGridView_儲位管理_RowsLED_效期及批號.RefreshGrid(list_value);
+        }
         private void SqL_DataGridView_面板_儲位列表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             RowsList.Sort(new ICP_面板_儲位列表());
@@ -536,6 +644,20 @@ namespace 癌症自動備藥機暨排程系統
 
             Function_儲位設定_重新整理();
         }
+
+        private void PlC_RJ_Button_RowLED_儲位設定_效期及批號_新增_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+        private void PlC_RJ_Button_RowLED_儲位設定_效期及批號_刪除_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+        private void PlC_RJ_Button_RowLED_儲位設定_效期及批號_修改_MouseDownEvent(MouseEventArgs mevent)
+        {
+
+        }
+
         #endregion
 
 
