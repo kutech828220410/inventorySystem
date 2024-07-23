@@ -4258,10 +4258,10 @@ namespace 癌症自動備藥機暨排程系統
             this.panel58.Controls.Add(this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除);
             this.panel58.Controls.Add(this.sqL_DataGridView_儲位管理_RowsLED_效期及批號);
             this.panel58.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel58.Location = new System.Drawing.Point(589, 686);
+            this.panel58.Location = new System.Drawing.Point(650, 686);
             this.panel58.Name = "panel58";
             this.panel58.Padding = new System.Windows.Forms.Padding(3);
-            this.panel58.Size = new System.Drawing.Size(479, 351);
+            this.panel58.Size = new System.Drawing.Size(418, 351);
             this.panel58.TabIndex = 127;
             // 
             // plC_RJ_Button1
@@ -4281,7 +4281,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button1.GUID = "";
             this.plC_RJ_Button1.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button1.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
-            this.plC_RJ_Button1.Location = new System.Drawing.Point(408, 274);
+            this.plC_RJ_Button1.Location = new System.Drawing.Point(344, 271);
             this.plC_RJ_Button1.Name = "plC_RJ_Button1";
             this.plC_RJ_Button1.OFF_文字內容 = "修改";
             this.plC_RJ_Button1.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4335,7 +4335,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button2.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button2.Image = global::癌症自動備藥機暨排程系統.Properties.Resources.add_new_plus_512;
             this.plC_RJ_Button2.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
-            this.plC_RJ_Button2.Location = new System.Drawing.Point(274, 274);
+            this.plC_RJ_Button2.Location = new System.Drawing.Point(210, 271);
             this.plC_RJ_Button2.Name = "plC_RJ_Button2";
             this.plC_RJ_Button2.OFF_文字內容 = "新增";
             this.plC_RJ_Button2.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4388,7 +4388,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button3.GUID = "";
             this.plC_RJ_Button3.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
             this.plC_RJ_Button3.Image_padding = new System.Windows.Forms.Padding(15, 7, 20, 5);
-            this.plC_RJ_Button3.Location = new System.Drawing.Point(341, 274);
+            this.plC_RJ_Button3.Location = new System.Drawing.Point(277, 271);
             this.plC_RJ_Button3.Name = "plC_RJ_Button3";
             this.plC_RJ_Button3.OFF_文字內容 = "刪除";
             this.plC_RJ_Button3.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4586,8 +4586,8 @@ namespace 癌症自動備藥機暨排程系統
             // sqL_DataGridView_儲位管理_RowsLED_效期及批號
             // 
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.AutoSelectToDeep = false;
-            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.backColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.BorderColor = System.Drawing.Color.LightBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.backColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.BorderColor = System.Drawing.Color.Silver;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.BorderRadius = 0;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.BorderSize = 2;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.CellBorderColor = System.Drawing.Color.White;
@@ -4595,7 +4595,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStylForeColor = System.Drawing.Color.Black;
-            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderBackColor = System.Drawing.Color.DarkGray;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -4621,7 +4621,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Server = "127.0.0.0";
-            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Size = new System.Drawing.Size(471, 257);
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Size = new System.Drawing.Size(410, 257);
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.TabIndex = 28;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.UserName = "root";
@@ -4773,7 +4773,7 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_RowsLED_儲位資料.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_RowsLED_儲位資料.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_RowsLED_儲位資料.Server = "127.0.0.0";
-            this.sqL_DataGridView_RowsLED_儲位資料.Size = new System.Drawing.Size(589, 582);
+            this.sqL_DataGridView_RowsLED_儲位資料.Size = new System.Drawing.Size(650, 582);
             this.sqL_DataGridView_RowsLED_儲位資料.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_RowsLED_儲位資料.TabIndex = 10;
             this.sqL_DataGridView_RowsLED_儲位資料.UserName = "root";
@@ -4797,6 +4797,7 @@ namespace 癌症自動備藥機暨排程系統
             this.rowsLED_Pannel.BarFont = new System.Drawing.Font("微軟正黑體", 9F);
             this.rowsLED_Pannel.BarForeColor = System.Drawing.Color.DarkGray;
             this.rowsLED_Pannel.BarSize = 50;
+            this.rowsLED_Pannel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rowsLED_Pannel.BottomSliderColor = System.Drawing.Color.Red;
             this.rowsLED_Pannel.CurrentRowsDevice = null;
             this.rowsLED_Pannel.CurrentRowsLED = null;

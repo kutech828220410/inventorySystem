@@ -45,7 +45,7 @@ namespace 癌症自動備藥機暨排程系統
             this.udnoectc = udnoectc;
             this.LoadFinishedEvent += Dialog_備藥清單_LoadFinishedEvent;
 
-
+            Logger.Log($"[備藥清單] Form 開啟...");
         }
 
         private void Dialog_備藥清單_LoadFinishedEvent(EventArgs e)
@@ -73,20 +73,31 @@ namespace 癌症自動備藥機暨排程系統
         {
             this.Invoke(new Action(delegate
             {
+                Logger.Log($"[備藥清單] 變異紀錄開啟");
                 Dialog_變異紀錄 dialog_變異紀錄 = new Dialog_變異紀錄(this.GUID);
                 dialog_變異紀錄.ShowDialog();
             }));
         }
         private void PlC_RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
         {
-            LoadingForm.ShowLoadingForm();
+             
             List<object[]> list_value = this.uc_備藥通知內容.GetSelectedRows();
             if (list_value.Count == 0)
             {
                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取備藥藥品", 1500);
                 dialog_AlarmForm.ShowDialog();
+                Logger.Log($"[備藥清單] 未選取備藥藥品...");
                 return;
             }
+            Logger.Log($"[備藥清單] 選取備藥藥品<{list_value.Count}>筆");
+            Dialog_藥盒掃描 dialog_藥盒掃描 = new Dialog_藥盒掃描();
+            if (dialog_藥盒掃描.ShowDialog() != DialogResult.Yes)
+            {
+                Logger.Log($"[備藥清單] 掃描藥盒取消...");
+                return;
+            }
+            Logger.Log($"[備藥清單] 掃描藥盒<{dialog_藥盒掃描.Value}>");
+            LoadingForm.ShowLoadingForm();
             List<udnoectc_orders> list_udnoectc_orders = new List<udnoectc_orders>();
             List<udnoectc_orders> list_udnoectc_orders_replace = new List<udnoectc_orders>();
             for (int i = 0; i < list_value.Count; i++)
@@ -95,6 +106,7 @@ namespace 癌症自動備藥機暨排程系統
                 list_udnoectc_orders_replace.LockAdd(list_udnoectc_orders);
             }
             List<udnoectc_orders> list_udnoectc_orders_return = udnoectc.update_udnoectc_orders_comp(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, list_udnoectc_orders_replace, this._login_name);
+            Logger.Log($"[備藥清單] 成功確認備藥<{list_udnoectc_orders_return.Count}>筆");
             LoadingForm.CloseLoadingForm();
             if (SureClickEvent != null) SureClickEvent(list_udnoectc_orders_return);
             this.DialogResult = DialogResult.Yes;
@@ -106,6 +118,8 @@ namespace 癌症自動備藥機暨排程系統
         private void PlC_RJ_Button_醫令確認_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("是否確認醫令?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+        
+
             LoadingForm.ShowLoadingForm();
             udnoectc.update_udnoectc_confirm_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
             udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
@@ -116,11 +130,12 @@ namespace 癌症自動備藥機暨排程系統
                 this.plC_RJ_Button_醫令確認.Enabled = !this.uc_備藥通知內容.Enabled;
                 this.label_狀態.Visible = this.plC_RJ_Button_醫令確認.Enabled;
             }));
-    
+            Logger.Log($"[備藥清單] 醫囑確認,病人{udnoectc.病人姓名}({udnoectc.病歷號}) 藥師:{_login_name}");
             LoadingForm.CloseLoadingForm();
         }
         private void PlC_RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)
         {
+            Logger.Log($"[備藥清單] Form 返回...");
             this.Invoke(new Action(delegate
             {
                 this.Close();

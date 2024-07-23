@@ -289,6 +289,12 @@
     <Compile Include="Dialog_等待RFID感應.Designer.cs">
       <DependentUpon>Dialog_等待RFID感應.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_藥盒掃描.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_藥盒掃描.Designer.cs">
+      <DependentUpon>Dialog_藥盒掃描.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_變異紀錄.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -392,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_條碼管理.resx">
       <DependentUpon>Dialog_條碼管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_藥盒掃描.resx">
+      <DependentUpon>Dialog_藥盒掃描.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_變異紀錄.resx">
       <DependentUpon>Dialog_變異紀錄.cs</DependentUpon>

@@ -29,8 +29,9 @@ namespace 癌症自動備藥機暨排程系統
         static private StorageUI_EPD_266 _storageUI_EPD_266;
         static private RowsLEDUI _rowsLEDUI;
         static private List<Storage> List_EPD266_本地資料 = new List<Storage>();
+        static private List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
 
-
+        
         #region 燈條亮燈
         public enum enum_燈條亮燈儲位總表
         {
@@ -81,6 +82,8 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Program_儲位設定_Init()
         {
+            this.plC_RJ_Button_儲位設定_藥品搜尋_填入至儲位.MouseDownEvent += PlC_RJ_Button_儲位設定_藥品搜尋_填入至儲位_MouseDownEvent;
+
             #region 燈條
             this.rowsLEDUI.Init(dBConfigClass.DB_Storagelist);
             _rowsLEDUI = this.rowsLEDUI;
@@ -119,9 +122,15 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_RJ_Button_RowLED_儲位設定_效期及批號_新增.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_新增_MouseDownEvent;
             this.plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_刪除_MouseDownEvent;
             this.plC_RJ_Button_RowLED_儲位設定_效期及批號_修改.MouseDownEvent += PlC_RJ_Button_RowLED_儲位設定_效期及批號_修改_MouseDownEvent;
+
+            this.rJ_Button_RowsLED_新增儲位.MouseDownEvent += RJ_Button_RowsLED_新增儲位_MouseDownEvent;
+            this.rJ_Button_RowsLED_刪除儲位.MouseDownEvent += RJ_Button_RowsLED_刪除儲位_MouseDownEvent;
+            this.rJ_Button_RowsLED_清除燈號.MouseDownEvent += RJ_Button_RowsLED_清除燈號_MouseDownEvent;
+            this.rJ_Button_RowsLED_搜尋.MouseDownEvent += RJ_Button_RowsLED_搜尋_MouseDownEvent;
+            comboBox_RowsLED_搜尋條件.SelectedIndex = 0;
+
             #endregion
-
-
+            #region 面板
             this.storageUI_EPD_266.Init(dBConfigClass.DB_Storagelist);
             _storageUI_EPD_266 = this.storageUI_EPD_266;
             this.plC_ScreenPage_main.TabChangeEvent += PlC_ScreenPage_main_TabChangeEvent;
@@ -159,13 +168,12 @@ namespace 癌症自動備藥機暨排程系統
 
 
             this.plC_RJ_Button_儲位設定_面板_儲位列表_重新整理.MouseDownEvent += PlC_RJ_Button_儲位設定_面板_儲位列表_重新整理_MouseDownEvent;
-            this.plC_RJ_Button_儲位設定_藥品搜尋_填入至儲位.MouseDownEvent += PlC_RJ_Button_儲位設定_藥品搜尋_填入至儲位_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位.MouseDownEvent += PlC_RJ_Button_儲位設定_面板_儲位列表_刪除儲位_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_面板_儲位列表_上傳面板.MouseDownEvent += PlC_RJ_Button_儲位設定_面板_儲位列表_上傳面板_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_面板_儲位列表_清除燈號.MouseDownEvent += PlC_RJ_Button_儲位設定_面板_儲位列表_清除燈號_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_面板_儲位列表_亮燈.MouseDownEvent += PlC_RJ_Button_儲位設定_面板_儲位列表_亮燈_MouseDownEvent;
             this.plC_RJ_Button_儲位設定_效期批號修正.MouseDownEvent += PlC_RJ_Button_儲位設定_效期批號修正_MouseDownEvent;
-
+            #endregion
             Function_取得本地儲位();
             plC_UI_Init.Add_Method(Program_儲位設定);
         }
@@ -303,69 +311,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         #endregion
         #region Event
-        private void SqL_DataGridView_RowsLED_燈條列表_RowEnterEvent(object[] RowValue)
-        {
-            string IP = RowValue[(int)enum_燈條亮燈儲位總表.IP].ObjectToString();
-            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
-            this.rowsLED_Pannel.CurrentRowsLED = rowsLED;
-            rowsLED_Pannel.Maximum = rowsLED.Maximum;
-
-            rJ_TextBox_儲位名稱_RowsLED.Text = rowsLED.Name;
-
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < rowsLED.RowsDevices.Count; i++)
-            {
-                object[] value = new object[new enum_燈條亮燈儲位列表().GetLength()];
-                value[(int)enum_燈條亮燈儲位列表.GUID] = rowsLED.RowsDevices[i].GUID;
-                value[(int)enum_燈條亮燈儲位列表.編號] = rowsLED.RowsDevices[i].Index;
-                value[(int)enum_燈條亮燈儲位列表.藥碼] = rowsLED.RowsDevices[i].Code;
-                value[(int)enum_燈條亮燈儲位列表.藥名] = rowsLED.RowsDevices[i].Name;
-                value[(int)enum_燈條亮燈儲位列表.儲位名稱] = rowsLED.RowsDevices[i].StorageName;
-                value[(int)enum_燈條亮燈儲位列表.庫存] = rowsLED.RowsDevices[i].Inventory;
-                list_value.Add(value);
-            }
-            this.sqL_DataGridView_RowsLED_儲位資料.RefreshGrid(list_value);
-        }
-        private void SqL_DataGridView_RowsLED_儲位資料_RowEnterEvent(object[] RowValue)
-        {
-            if (this.rowsLED_Pannel.CurrentRowsLED != null) deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this.rowsLED_Pannel.CurrentRowsLED);
-            string GUID = RowValue[(int)enum_燈條亮燈儲位列表.GUID].ObjectToString();
-            RowsLED rowsLED = this.rowsLED_Pannel.CurrentRowsLED;
-            RowsDevice rowsDevice = rowsLED.SortByGUID(GUID);
-            if (rowsDevice == null) return;
-            this.rowsLED_Pannel.RowsDeviceGUID = GUID;
-
-            if (rJ_RatioButton_儲位資料_RowsLED_紅.Checked)
-            {
-                this.rowsLED_Pannel.SliderColor = Color.Red;
-            }
-            else if (rJ_RatioButton_儲位資料_RowsLED_藍.Checked)
-            {
-                this.rowsLED_Pannel.SliderColor = Color.Blue;
-            }
-            else if (rJ_RatioButton_儲位資料_RowsLED_綠.Checked)
-            {
-                this.rowsLED_Pannel.SliderColor = Color.Lime;
-            }
-            else if (rJ_RatioButton_儲位資料_RowsLED_白.Checked)
-            {
-                this.rowsLED_Pannel.SliderColor = Color.White;
-            }
-
-            sqL_DataGridView_儲位管理_RowsLED_效期及批號.ClearGrid();
-
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < rowsDevice.List_Validity_period.Count; i++)
-            {
-                object[] value = new object[new enum_效期及批號().GetLength()];
-                value[(int)enum_效期及批號.效期] = rowsDevice.List_Validity_period[i];
-                value[(int)enum_效期及批號.批號] = rowsDevice.List_Lot_number[i];
-                value[(int)enum_效期及批號.庫存] = rowsDevice.List_Inventory[i];
-                list_value.Add(value);
-            }
-
-            sqL_DataGridView_儲位管理_RowsLED_效期及批號.RefreshGrid(list_value);
-        }
+    
         private void SqL_DataGridView_面板_儲位列表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
             RowsList.Sort(new ICP_面板_儲位列表());
@@ -551,39 +497,68 @@ namespace 癌症自動備藥機暨排程系統
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
-            if (list_面板_儲位列表.Count == 0)
-            {
-                dialog_AlarmForm = new Dialog_AlarmForm("未選擇儲位", 2000, 0, -200, Color.DarkRed);
-                dialog_AlarmForm.ShowDialog();
-                return;
-            }
-            string GUID = list_面板_儲位列表[0][(int)enum_面板_儲位列表.GUID].ObjectToString();
-            string IP = list_面板_儲位列表[0][(int)enum_面板_儲位列表.IP].ObjectToString();
+       
             string 藥碼 = list_藥品搜尋[0][(int)enum_雲端藥檔.藥品碼].ObjectToString();
             string 藥名 = list_藥品搜尋[0][(int)enum_雲端藥檔.藥品名稱].ObjectToString();
             string 單位 = list_藥品搜尋[0][(int)enum_雲端藥檔.包裝單位].ObjectToString();
             string 包裝量 = list_藥品搜尋[0][(int)enum_雲端藥檔.包裝數量].ObjectToString();
 
+            if (this.plC_ScreenPage_儲位設定.PageText == "面板")
+            {
+                if (list_面板_儲位列表.Count == 0)
+                {
+                    dialog_AlarmForm = new Dialog_AlarmForm("未選擇儲位", 2000, 0, -200, Color.DarkRed);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                string GUID = list_面板_儲位列表[0][(int)enum_面板_儲位列表.GUID].ObjectToString();
+                string IP = list_面板_儲位列表[0][(int)enum_面板_儲位列表.IP].ObjectToString();
 
-            Storage storage = storageUI_EPD_266.SQL_GetStorage(IP);
-            storage.ClearStorage();
-            storage.Code = 藥碼;
-            storage.Name = 藥名;
-            storage.Package = 單位;
-            storage.Min_Package_Num = 包裝量;
-            storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                Storage storage = storageUI_EPD_266.SQL_GetStorage(IP);
+                storage.ClearStorage();
+                storage.Code = 藥碼;
+                storage.Name = 藥名;
+                storage.Package = 單位;
+                storage.Min_Package_Num = 包裝量;
+                storageUI_EPD_266.SQL_ReplaceStorage(storage);
 
-            object[] value = new object[new enum_面板_儲位列表().GetLength()];
-            value[(int)enum_面板_儲位列表.GUID] = GUID;
-            value[(int)enum_面板_儲位列表.IP] = IP;
-            value[(int)enum_面板_儲位列表.藥碼] = 藥碼;
-            value[(int)enum_面板_儲位列表.藥名] = 藥名;
-            value[(int)enum_面板_儲位列表.單位] = 單位;
-            value[(int)enum_面板_儲位列表.包裝量] = 包裝量;
-            value[(int)enum_面板_儲位列表.庫存] = "0";
-            sqL_DataGridView_面板_儲位列表.ReplaceExtra(value, true);
-            dialog_AlarmForm = new Dialog_AlarmForm("設定完成", 1000, 0, -200, Color.DarkRed);
-            dialog_AlarmForm.ShowDialog();
+                object[] value = new object[new enum_面板_儲位列表().GetLength()];
+                value[(int)enum_面板_儲位列表.GUID] = GUID;
+                value[(int)enum_面板_儲位列表.IP] = IP;
+                value[(int)enum_面板_儲位列表.藥碼] = 藥碼;
+                value[(int)enum_面板_儲位列表.藥名] = 藥名;
+                value[(int)enum_面板_儲位列表.單位] = 單位;
+                value[(int)enum_面板_儲位列表.包裝量] = 包裝量;
+                value[(int)enum_面板_儲位列表.庫存] = "0";
+                sqL_DataGridView_面板_儲位列表.ReplaceExtra(value, true);
+                dialog_AlarmForm = new Dialog_AlarmForm("設定完成", 1000, 0, -200, Color.DarkRed);
+                dialog_AlarmForm.ShowDialog();
+            }
+            if (this.plC_ScreenPage_儲位設定.PageText == "燈條")
+            {
+                List<object[]> list_燈條列表 = this.sqL_DataGridView_RowsLED_燈條列表.Get_All_Select_RowsValues();
+                List<object[]> list_儲位資料 = this.sqL_DataGridView_RowsLED_儲位資料.Get_All_Select_RowsValues();
+
+                if (list_儲位資料.Count == 0 || list_燈條列表.Count == 0)
+                {
+                    dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    return;
+                }
+                string IP = list_燈條列表[0][(int)enum_燈條亮燈儲位總表.IP].ObjectToString();
+                string GUID = list_儲位資料[0][(int)enum_燈條亮燈儲位列表.GUID].ObjectToString();
+                RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+
+                RowsDevice rowsDevice = rowsLED.SortByGUID(GUID);
+                rowsDevice.Code = 藥碼;
+                rowsDevice.Name = 藥名;
+                rowsDevice.Package = 包裝量;
+                rowsLED.ReplaceRowsDevice(rowsDevice);
+
+                deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, rowsLED);
+                this.sqL_DataGridView_RowsLED_燈條列表.On_RowEnter();
+            }
+
 
         }
         private void PlC_RJ_Button_儲位設定_藥品搜尋_藥名搜尋_MouseDownEvent(MouseEventArgs mevent)
@@ -645,6 +620,233 @@ namespace 癌症自動備藥機暨排程系統
             Function_儲位設定_重新整理();
         }
 
+        private void SqL_DataGridView_RowsLED_燈條列表_RowEnterEvent(object[] RowValue)
+        {
+            string IP = RowValue[(int)enum_燈條亮燈儲位總表.IP].ObjectToString();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+            this.rowsLED_Pannel.CurrentRowsLED = rowsLED;
+            rowsLED_Pannel.Maximum = rowsLED.Maximum;
+
+            rJ_TextBox_儲位名稱_RowsLED.Text = rowsLED.Name;
+
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < rowsLED.RowsDevices.Count; i++)
+            {
+                object[] value = new object[new enum_燈條亮燈儲位列表().GetLength()];
+                value[(int)enum_燈條亮燈儲位列表.GUID] = rowsLED.RowsDevices[i].GUID;
+                value[(int)enum_燈條亮燈儲位列表.編號] = rowsLED.RowsDevices[i].Index;
+                value[(int)enum_燈條亮燈儲位列表.藥碼] = rowsLED.RowsDevices[i].Code;
+                value[(int)enum_燈條亮燈儲位列表.藥名] = rowsLED.RowsDevices[i].Name;
+                value[(int)enum_燈條亮燈儲位列表.儲位名稱] = rowsLED.RowsDevices[i].StorageName;
+                value[(int)enum_燈條亮燈儲位列表.庫存] = rowsLED.RowsDevices[i].Inventory;
+                list_value.Add(value);
+            }
+            this.sqL_DataGridView_RowsLED_儲位資料.RefreshGrid(list_value);
+        }
+        private void SqL_DataGridView_RowsLED_儲位資料_RowEnterEvent(object[] RowValue)
+        {
+            if (this.rowsLED_Pannel.CurrentRowsLED != null) deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this.rowsLED_Pannel.CurrentRowsLED);
+            string GUID = RowValue[(int)enum_燈條亮燈儲位列表.GUID].ObjectToString();
+            RowsLED rowsLED = this.rowsLED_Pannel.CurrentRowsLED;
+            RowsDevice rowsDevice = rowsLED.SortByGUID(GUID);
+            if (rowsDevice == null) return;
+            this.rowsLED_Pannel.RowsDeviceGUID = GUID;
+
+            if (rJ_RatioButton_儲位資料_RowsLED_紅.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Red;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_藍.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Blue;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_綠.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.Lime;
+            }
+            else if (rJ_RatioButton_儲位資料_RowsLED_白.Checked)
+            {
+                this.rowsLED_Pannel.SliderColor = Color.White;
+            }
+
+            sqL_DataGridView_儲位管理_RowsLED_效期及批號.ClearGrid();
+
+            List<object[]> list_value = new List<object[]>();
+            for (int i = 0; i < rowsDevice.List_Validity_period.Count; i++)
+            {
+                object[] value = new object[new enum_效期及批號().GetLength()];
+                value[(int)enum_效期及批號.效期] = rowsDevice.List_Validity_period[i];
+                value[(int)enum_效期及批號.批號] = rowsDevice.List_Lot_number[i];
+                value[(int)enum_效期及批號.庫存] = rowsDevice.List_Inventory[i];
+                list_value.Add(value);
+            }
+
+            sqL_DataGridView_儲位管理_RowsLED_效期及批號.RefreshGrid(list_value);
+        }
+        private void RJ_Button_RowsLED_新增儲位_MouseDownEvent(MouseEventArgs mevent)
+        {
+            List<object[]> list_value = this.sqL_DataGridView_RowsLED_燈條列表.Get_All_Select_RowsValues();
+            if (list_value.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string IP = list_value[0][(int)enum_燈條亮燈儲位總表.IP].ObjectToString();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+            rowsLED.Add(0, 8);
+            deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, rowsLED);
+            this.sqL_DataGridView_RowsLED_燈條列表.On_RowEnter();
+        }
+        private void RJ_Button_RowsLED_刪除儲位_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (MyMessageBox.ShowDialog("是否刪除儲位?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            List<object[]> list_燈條列表 = this.sqL_DataGridView_RowsLED_燈條列表.Get_All_Select_RowsValues();
+            List<object[]> list_儲位資料 = this.sqL_DataGridView_RowsLED_儲位資料.Get_All_Select_RowsValues();
+            if (list_儲位資料.Count == 0 || list_燈條列表.Count == 0)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取資料", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string IP = list_燈條列表[0][(int)enum_燈條亮燈儲位總表.IP].ObjectToString();
+            int index = list_儲位資料[0][(int)enum_燈條亮燈儲位列表.編號].StringToInt32();
+            RowsLED rowsLED = deviceApiClass.GetRowsLED_ByIP(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, IP);
+            rowsLED.Delete(index);
+
+            deviceApiClass.ReplaceRowsLED(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, rowsLED);
+            this.sqL_DataGridView_RowsLED_燈條列表.On_RowEnter();
+        }
+        private void RJ_Button_RowsLED_清除燈號_MouseDownEvent(MouseEventArgs mevent)
+        {
+            try
+            {
+                Color color = Color.Black;
+
+                List<object[]> list_燈條列表 = this.sqL_DataGridView_RowsLED_燈條列表.Get_All_Select_RowsValues();
+                if (list_燈條列表.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("未選取燈條列表");
+                    return;
+                }
+                List<RowsLED> rowsLEDs = Main_Form._rowsLEDUI.SQL_GetAllRowsLED();
+                List<RowsLED> rowsLEDs_buf = new List<RowsLED>();
+
+                for (int i = 0; i < list_燈條列表.Count; i++)
+                {
+                    string IP = list_燈條列表[i][(int)enum_燈條亮燈儲位總表.IP].ObjectToString();
+                    RowsLED rowsLED = rowsLEDs.SortByIP(IP);
+                    if (rowsLED != null)
+                    {
+                        rowsLEDs_buf.Add(rowsLED);
+                    }
+                }
+                List<Task> tasks = new List<Task>();
+
+                for (int i = 0; i < rowsLEDs_buf.Count; i++)
+                {
+                    RowsLED rowsLED = rowsLEDs_buf[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        Main_Form._rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED);
+
+                    })));
+
+                }
+                Task.WhenAll(tasks).Wait();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+
+            }
+
+        }
+        private void RJ_Button_RowsLED_搜尋_MouseDownEvent(MouseEventArgs mevent)
+        {
+            string text = "";
+            string comboBox_text = "";
+            this.Invoke(new Action(delegate
+            {
+                text = this.comboBox_RowsLED_搜尋內容.Text;
+                comboBox_text = this.comboBox_RowsLED_搜尋條件.Text;
+            }));
+
+            if (text.StringIsEmpty()) return;
+            List<RowsDevice> rowsDevices = new List<RowsDevice>();
+            int select_index = -1;
+            if (comboBox_text == "藥碼")
+            {
+                List<RowsDevice> rowsDevices_buf = Main_Form.List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                   where temp.Code.ToUpper().Contains(text.ToUpper())
+                                   select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+            if (comboBox_text == "藥名")
+            {
+                List<RowsDevice> rowsDevices_buf = Main_Form.List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                   where temp.Code.ToUpper().Contains(text.ToUpper())
+                                   select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+            if (comboBox_text == "商品名")
+            {
+                List<RowsDevice> rowsDevices_buf = Main_Form.List_RowsLED_本地資料.GetAllRowsDevices();
+                rowsDevices_buf = (from temp in rowsDevices_buf
+                                   where temp.Code.ToUpper().Contains(text.ToUpper())
+                                   select temp).ToList();
+                rowsDevices = rowsDevices_buf;
+            }
+
+            if (rowsDevices.Count == 0)
+            {
+                MyMessageBox.ShowDialog("查無無此藥品!!");
+                return;
+            }
+            string IP = "0.0.0.0";
+            int index = 0;
+            if (this.rowsLED_Pannel.CurrentRowsLED != null)
+            {
+                IP = this.rowsLED_Pannel.CurrentRowsLED.IP;
+            }
+            if (this.rowsLED_Pannel.CurrentRowsDevice != null)
+            {
+                index = this.rowsLED_Pannel.CurrentRowsDevice.Index;
+            }
+            for (int i = 0; i < rowsDevices.Count; i++)
+            {
+                if (rowsDevices[i].IP == IP)
+                {
+                    if (rowsDevices[i].Index == index)
+                    {
+                        select_index = i;
+                    }
+                }
+            }
+            RowsDevice rowsDevice;
+            if (select_index == -1)
+            {
+                rowsDevice = rowsDevices[0];
+            }
+            else if ((select_index + 1) == rowsDevices.Count)
+            {
+                rowsDevice = rowsDevices[0];
+            }
+            else
+            {
+                rowsDevice = rowsDevices[select_index + 1];
+            }
+            RowsLED rowsLED = Main_Form.List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+            if (rowsLED == null) return;
+            sqL_DataGridView_RowsLED_燈條列表.SetSelectRow(enum_燈條亮燈儲位總表.IP.GetEnumName(), rowsDevice.IP);
+            sqL_DataGridView_RowsLED_儲位資料.SetSelectRow(enum_燈條亮燈儲位列表.GUID.GetEnumName(), rowsDevice.GUID);
+        }
         private void PlC_RJ_Button_RowLED_儲位設定_效期及批號_新增_MouseDownEvent(MouseEventArgs mevent)
         {
 

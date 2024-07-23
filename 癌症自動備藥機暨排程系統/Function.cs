@@ -39,7 +39,20 @@ namespace 癌症自動備藥機暨排程系統
         }
         static private List<Storage> Function_取得本地儲位()
         {
-            return List_EPD266_本地資料 = _storageUI_EPD_266.SQL_GetAllStorage();
+            List<Task> tasks = new List<Task>();
+
+            tasks.Add(Task.Run(new Action(delegate
+            {
+                List_EPD266_本地資料 = _storageUI_EPD_266.SQL_GetAllStorage();
+            })));
+
+            tasks.Add(Task.Run(new Action(delegate
+            {
+                List_RowsLED_本地資料 = _rowsLEDUI.SQL_GetAllRowsLED();
+            })));
+
+            Task.WhenAll(tasks).Wait();
+            return List_EPD266_本地資料;
         }
         static public int Function_從SQL取得庫存(string 藥品碼)
         {
@@ -263,21 +276,10 @@ namespace 癌症自動備藥機暨排程系統
         static public string Function_ReadBacodeScanner01()
         {
             string text = "";
-            string text_buf = "";
             text = MySerialPort_Scanner01.ReadString();
             if (text == null) return null;
 
-            while(true)
-            {
-                System.Threading.Thread.Sleep(30);
-                text_buf = MySerialPort_Scanner01.ReadString();
-                if(text.Length == text_buf.Length)
-                {
-                    break;
-                }
-                text = text_buf;
-            }
-
+ 
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 300) return null;
@@ -293,20 +295,10 @@ namespace 癌症自動備藥機暨排程系統
         static public string Function_ReadBacodeScanner02()
         {
             string text = "";
-            string text_buf = "";
             text = MySerialPort_Scanner02.ReadString();
             if (text == null) return null;
 
-            while (true)
-            {
-                System.Threading.Thread.Sleep(30);
-                text_buf = MySerialPort_Scanner02.ReadString();
-                if (text.Length == text_buf.Length)
-                {
-                    break;
-                }
-                text = text_buf;
-            }
+      
             text = text.Replace("\0", "");
             if (text.StringIsEmpty()) return null;
             if (text.Length <= 2 || text.Length > 300) return null;

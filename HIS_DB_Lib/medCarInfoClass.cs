@@ -34,10 +34,8 @@ namespace HIS_DB_Lib
     public class medCarInfoClass
     {
         [JsonPropertyName("GUID")]
-
         public string GUID { get; set; }
         [JsonPropertyName("pnamec")]
-
         public string 姓名 { get; set; }
         [JsonPropertyName("caseno")]
         public string 住院號 { get; set; }
