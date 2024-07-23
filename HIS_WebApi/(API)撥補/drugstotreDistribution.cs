@@ -439,6 +439,7 @@ namespace HIS_WebApi
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 inventoryClass.creat creat = new inventoryClass.creat();
                 string error = "";
+                List<distribution_excel> distributionList = new List<distribution_excel>();
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     await formFile.CopyToAsync(memoryStream);
@@ -456,7 +457,6 @@ namespace HIS_WebApi
                     {
                         IC_NAME = Path.GetFileNameWithoutExtension(file.FileName);
                     }
-                    List<distribution_excel> distributionList = new List<distribution_excel>();
                     for (int i = 0; i < list_value.Count; i++)
                     {
 
@@ -473,7 +473,7 @@ namespace HIS_WebApi
 
                     }
                 }
-                returnData.Data = "";
+                returnData.Data = distributionList;
                 returnData.Code = 200;
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Result = "接收上傳文件成功";
