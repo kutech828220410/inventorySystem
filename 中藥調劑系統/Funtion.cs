@@ -167,6 +167,7 @@ namespace 中藥調劑系統
                                 if (LightOns_buf.Count == 0)
                                 {
                                     lightOns.Add(new LightOn(rowsDevice, color));
+                                    rowsLED.LED_Bytes = RowsLEDUI.Get_Empty_LEDBytes();
                                 }
                                 else
                                 {

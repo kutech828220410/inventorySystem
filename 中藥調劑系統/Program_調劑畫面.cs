@@ -117,9 +117,12 @@ namespace 中藥調劑系統
             this.button_病患資訊_ScrollDown.Click += Button_病患資訊_ScrollDown_Click;
             this.button_處方內容_ScrollUp.Click += Button_處方內容_ScrollUp_Click;
             this.button_處方內容_ScrollDown.Click += Button_處方內容_ScrollDown_Click;
+            this.plC_RJ_Button_調劑畫面_藥品地圖.MouseDown += PlC_RJ_Button_調劑畫面_藥品地圖_MouseDown;
 
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
+
+   
 
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
@@ -323,24 +326,20 @@ namespace 中藥調劑系統
             {
                 string PRI_KEY = order_value[(int)enum_病患資訊.PRI_KEY].ObjectToString();
                 string 姓名 = order_value[(int)enum_病患資訊.姓名].ObjectToString();
-                string 病歷號 = order_value[(int)enum_病患資訊.病歷號].ObjectToString();
+                string 病歷號_current = order_value[(int)enum_病患資訊.病歷號].ObjectToString();
                 list_病患資訊_buf = list_病患資訊.GetRows((int)enum_病患資訊.PRI_KEY, PRI_KEY);
                 if (list_病患資訊_buf.Count == 0)
                 {
                     list_value_add.Add(order_value);
                 }
-                list_value_temp.Clear();
-                for (int i = 0; i < list_value_delete.Count; i++)
+                for (int i = 0; i < list_value_add.Count; i++)
                 {
-                    if(PRI_KEY != list_value_delete[i][(int)enum_病患資訊.PRI_KEY].ObjectToString())
+                    string 領藥號 = list_value_add[i][(int)enum_病患資訊.領藥號].ObjectToString();
+                    string 病歷號 = list_value_add[i][(int)enum_病患資訊.病歷號].ObjectToString();
+                    if (病歷號_current == 病歷號)
                     {
-                        list_value_temp.Add(list_value_delete[i]);
-                    }
-                    else
-                    {
-                        if(flag_新處方提示 == false)
+                        if (flag_新處方提示 == false)
                         {
-                            string 領藥號 = list_value_delete[i][(int)enum_病患資訊.領藥號].ObjectToString();
                             Task.Run(new Action(delegate
                             {
                                 MyMessageBox.ShowDialog($"{姓名} 有新處方 【{領藥號}】");
@@ -349,12 +348,13 @@ namespace 中藥調劑系統
                             flag_新處方提示 = true;
                         }
                     }
+
                 }
-                list_value_delete = list_value_temp;
+               
 
             }
             if (list_value_add.Count > 0) this.sqL_DataGridView_病患資訊.AddRows(list_value_add, true);
-            if (list_value_delete.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_delete, true);
+            //if (list_value_delete.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_delete, true);
             if (list_value_刪除已調配處方.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_刪除已調配處方, true);
             if (order_病患資訊_再次調劑 != null)
             {
@@ -608,7 +608,7 @@ namespace 中藥調劑系統
         {
             this.Invoke(new Action(delegate
             {
-                sqL_DataGridView_病患資訊.ClearGrid();
+                sqL_DataGridView_病患資訊.ClearSelection();
                 sqL_DataGridView_處方內容.ClearGrid();
                 order_value = null;
                 OrderTClass_現在調劑處方 = null;
@@ -687,8 +687,11 @@ namespace 中藥調劑系統
 
                         continue;
                     }
-
-                    總重 += 應調;
+                    if (單位 == "錢"|| 單位 == "克")
+                    {
+                        總重 += 應調;
+                    }
+               
                 }
             }
             if(flag_BTL)
@@ -750,6 +753,16 @@ namespace 中藥調劑系統
             if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "ASORDER") 包數 = "1";
             string 天數 = orderTClasses[0].天數;
+
+            for (int i = 0; i < orderTClasses.Count; i++)
+            {
+                if(orderTClasses[i].劑量單位 == "克" || orderTClasses[i].劑量單位 == "錢")
+                {
+                    天數 = orderTClasses[i].天數;
+                    break;
+                }
+            }
+            
             string 總包數 = (包數.StringToInt32() * 天數.StringToInt32()).ToString();
 
             this.Invoke(new Action(delegate 
@@ -761,7 +774,7 @@ namespace 中藥調劑系統
                 rJ_Lable_處方資訊_年齡.Text = $"{orderTClass.年齡.StringToInt32()}歲";
                 rJ_Lable_處方資訊_單筆包數.Text = $"{包數}包/天";
                 rJ_Lable_處方資訊_單筆處方天數.Text = $"{天數}天";
-                rJ_Lable_處方資訊_單包重.Text = $"{(總重 / 總包數.StringToInt32()).ToString("0.00")} {單位_temp}/包";
+                rJ_Lable_處方資訊_單包重.Text = $"{(總重 / 總包數.StringToDouble()).ToString("0.00")} {單位_temp}/包";
                 rJ_Lable_處方資訊_單筆總重.Text = $"總重:{總重.ToString("0.00")}{單位_temp}";
                 rJ_Lable_總包數.Text = $"{總包數}包";
 
@@ -1064,7 +1077,11 @@ namespace 中藥調劑系統
              
             }    
             Function_更新處方內容(PRI_KEY);
-            RJ_Button_調劑畫面_全亮_MouseDownEvent(null);
+
+            List<string> Codes = (from temp in OrderTClass_現在調劑處方
+                                  select temp.藥品碼).Distinct().ToList();
+
+            Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
 
         }
         private void SqL_DataGridView_處方內容_DataGridRefreshEvent()
@@ -1101,7 +1118,6 @@ namespace 中藥調劑系統
                     Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm($"[{現在調劑頻次}]頻次未完成", 1500);
                     dialog_AlarmForm.ShowDialog();
                     this.sqL_DataGridView_處方內容.ClearSelection();
-
                     return;
                 }
             }
@@ -1357,6 +1373,26 @@ namespace 中藥調劑系統
 
             }
             Function_儲位亮燈(Codes, this.panel_調劑刷藥單顏色.BackColor);
+        }
+        private void PlC_RJ_Button_調劑畫面_藥品地圖_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (order_current_row == null)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取處方內容", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            string 藥碼_current_row = order_current_row[(int)enum_處方內容.藥碼].ObjectToString();
+            medClass _medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, 藥碼_current_row);
+            if(_medClass == null)
+            {
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無藥品", 1500);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
+            Dialog_藥品地圖 dialog_藥品地圖 = new Dialog_藥品地圖(_medClass);
+            dialog_藥品地圖.ShowDialog();
+
         }
         #endregion
         private void Button_處方內容_ScrollDown_Click(object sender, EventArgs e)
