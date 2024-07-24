@@ -814,6 +814,9 @@ namespace 癌症自動備藥機暨排程系統
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.textBox_自動備藥_密碼 = new System.Windows.Forms.TextBox();
             this.textBox_帳號 = new System.Windows.Forms.TextBox();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.sqL_DataGridView_藥盒索引 = new SQLUI.SQL_DataGridView();
+            this.plC_RJ_ScreenButton2 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_ScreenPage_main.SuspendLayout();
             this.登入畫面.SuspendLayout();
             this.panel_登入畫面.SuspendLayout();
@@ -919,6 +922,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel47.SuspendLayout();
             this.panel50.SuspendLayout();
             this.panel48.SuspendLayout();
+            this.tabPage14.SuspendLayout();
             this.SuspendLayout();
             // 
             // plC_ScreenPage_main
@@ -7370,6 +7374,7 @@ namespace 癌症自動備藥機暨排程系統
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage7);
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage8);
             this.plC_ScreenPage_系統.Controls.Add(this.tabPage9);
+            this.plC_ScreenPage_系統.Controls.Add(this.tabPage14);
             this.plC_ScreenPage_系統.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_ScreenPage_系統.ForekColor = System.Drawing.Color.Black;
             this.plC_ScreenPage_系統.ItemSize = new System.Drawing.Size(54, 21);
@@ -20603,6 +20608,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel_系統.Controls.Add(this.plC_RJ_ScreenButton1);
             this.panel_系統.Controls.Add(this.plC_RJ_ScreenButton5);
             this.panel_系統.Controls.Add(this.plC_RJ_ScreenButton9);
+            this.panel_系統.Controls.Add(this.plC_RJ_ScreenButton2);
             this.panel_系統.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_系統.Location = new System.Drawing.Point(0, 0);
             this.panel_系統.Name = "panel_系統";
@@ -21837,6 +21843,108 @@ namespace 癌症自動備藥機暨排程系統
             this.textBox_帳號.Size = new System.Drawing.Size(260, 27);
             this.textBox_帳號.TabIndex = 1;
             // 
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(this.sqL_DataGridView_藥盒索引);
+            this.tabPage14.Location = new System.Drawing.Point(4, 25);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(1068, 1623);
+            this.tabPage14.TabIndex = 11;
+            this.tabPage14.Text = "藥盒索引";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // sqL_DataGridView_藥盒索引
+            // 
+            this.sqL_DataGridView_藥盒索引.AutoSelectToDeep = false;
+            this.sqL_DataGridView_藥盒索引.backColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_藥盒索引.BorderColor = System.Drawing.Color.Silver;
+            this.sqL_DataGridView_藥盒索引.BorderRadius = 0;
+            this.sqL_DataGridView_藥盒索引.BorderSize = 2;
+            this.sqL_DataGridView_藥盒索引.CellBorderColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_藥盒索引.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_藥盒索引.cellStylBackColor = System.Drawing.Color.PowderBlue;
+            this.sqL_DataGridView_藥盒索引.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_藥盒索引.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_藥盒索引.columnHeaderBackColor = System.Drawing.Color.DarkGray;
+            this.sqL_DataGridView_藥盒索引.columnHeaderBorderColor = System.Drawing.Color.DimGray;
+            this.sqL_DataGridView_藥盒索引.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_藥盒索引.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥盒索引.columnHeadersHeight = 18;
+            this.sqL_DataGridView_藥盒索引.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqL_DataGridView_藥盒索引.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.sqL_DataGridView_藥盒索引.Dock = System.Windows.Forms.DockStyle.Top;
+            this.sqL_DataGridView_藥盒索引.Font = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_藥盒索引.ImageBox = false;
+            this.sqL_DataGridView_藥盒索引.Location = new System.Drawing.Point(0, 0);
+            this.sqL_DataGridView_藥盒索引.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.sqL_DataGridView_藥盒索引.Name = "sqL_DataGridView_藥盒索引";
+            this.sqL_DataGridView_藥盒索引.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
+            this.sqL_DataGridView_藥盒索引.Password = "user82822040";
+            this.sqL_DataGridView_藥盒索引.Port = ((uint)(3306u));
+            this.sqL_DataGridView_藥盒索引.rowHeaderBackColor = System.Drawing.Color.Gray;
+            this.sqL_DataGridView_藥盒索引.rowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥盒索引.RowsColor = System.Drawing.SystemColors.Control;
+            this.sqL_DataGridView_藥盒索引.RowsHeight = 80;
+            this.sqL_DataGridView_藥盒索引.SaveFileName = "SQL_DataGridView";
+            this.sqL_DataGridView_藥盒索引.selectedBorderSize = 0;
+            this.sqL_DataGridView_藥盒索引.selectedRowBackColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_藥盒索引.selectedRowBorderColor = System.Drawing.Color.Blue;
+            this.sqL_DataGridView_藥盒索引.selectedRowForeColor = System.Drawing.Color.White;
+            this.sqL_DataGridView_藥盒索引.Server = "127.0.0.0";
+            this.sqL_DataGridView_藥盒索引.Size = new System.Drawing.Size(1068, 1239);
+            this.sqL_DataGridView_藥盒索引.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
+            this.sqL_DataGridView_藥盒索引.TabIndex = 6;
+            this.sqL_DataGridView_藥盒索引.UserName = "root";
+            this.sqL_DataGridView_藥盒索引.可拖曳欄位寬度 = false;
+            this.sqL_DataGridView_藥盒索引.可選擇多列 = false;
+            this.sqL_DataGridView_藥盒索引.單格樣式 = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.sqL_DataGridView_藥盒索引.自動換行 = true;
+            this.sqL_DataGridView_藥盒索引.表單字體 = new System.Drawing.Font("新細明體", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_藥盒索引.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sqL_DataGridView_藥盒索引.顯示CheckBox = false;
+            this.sqL_DataGridView_藥盒索引.顯示首列 = true;
+            this.sqL_DataGridView_藥盒索引.顯示首行 = true;
+            this.sqL_DataGridView_藥盒索引.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            this.sqL_DataGridView_藥盒索引.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
+            // plC_RJ_ScreenButton2
+            // 
+            this.plC_RJ_ScreenButton2.but_press = false;
+            this.plC_RJ_ScreenButton2.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.plC_RJ_ScreenButton2.IconSize = 32;
+            this.plC_RJ_ScreenButton2.Location = new System.Drawing.Point(607, 37);
+            this.plC_RJ_ScreenButton2.Margin = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_ScreenButton2.Name = "plC_RJ_ScreenButton2";
+            this.plC_RJ_ScreenButton2.OffBackColor = System.Drawing.Color.Silver;
+            this.plC_RJ_ScreenButton2.OffFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_RJ_ScreenButton2.OffForeColor = System.Drawing.Color.Gray;
+            this.plC_RJ_ScreenButton2.OffIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton2.OffText = "藥盒索引";
+            this.plC_RJ_ScreenButton2.OnBackColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton2.OnFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton2.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton2.OnIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton2.OnText = "藥盒索引";
+            this.plC_RJ_ScreenButton2.ShowIcon = false;
+            this.plC_RJ_ScreenButton2.Size = new System.Drawing.Size(148, 37);
+            this.plC_RJ_ScreenButton2.TabIndex = 18;
+            this.plC_RJ_ScreenButton2.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButton2.寫入位置註解 = "";
+            this.plC_RJ_ScreenButton2.寫入元件位置 = "";
+            this.plC_RJ_ScreenButton2.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
+            this.plC_RJ_ScreenButton2.控制位址 = "";
+            this.plC_RJ_ScreenButton2.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButton2.致能讀取位置 = "";
+            this.plC_RJ_ScreenButton2.讀取位元反向 = false;
+            this.plC_RJ_ScreenButton2.讀取位置註解 = "";
+            this.plC_RJ_ScreenButton2.讀取元件位置 = "";
+            this.plC_RJ_ScreenButton2.音效 = true;
+            this.plC_RJ_ScreenButton2.頁面名稱 = "藥盒索引";
+            this.plC_RJ_ScreenButton2.頁面編號 = 0;
+            this.plC_RJ_ScreenButton2.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButton2.顯示狀態 = false;
+            this.plC_RJ_ScreenButton2.顯示讀取位置 = "";
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -21984,6 +22092,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel47.ResumeLayout(false);
             this.panel50.ResumeLayout(false);
             this.panel48.ResumeLayout(false);
+            this.tabPage14.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -22773,6 +22882,9 @@ namespace 癌症自動備藥機暨排程系統
         private MyUI.PLC_RJ_Button plC_RJ_Button_RowLED_儲位設定_效期及批號_新增;
         private MyUI.PLC_RJ_Button plC_RJ_Button_RowLED_儲位設定_效期及批號_刪除;
         private SQLUI.SQL_DataGridView sqL_DataGridView_儲位管理_RowsLED_效期及批號;
+        private System.Windows.Forms.TabPage tabPage14;
+        private SQLUI.SQL_DataGridView sqL_DataGridView_藥盒索引;
+        private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton2;
     }
 }
 

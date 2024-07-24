@@ -350,6 +350,9 @@
     <Compile Include="Program_藥檔資料.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Program_藥盒索引.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program_調配排程.cs">
       <SubType>Form</SubType>
     </Compile>

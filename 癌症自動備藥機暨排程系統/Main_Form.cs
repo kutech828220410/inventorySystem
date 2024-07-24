@@ -298,7 +298,7 @@ namespace 癌症自動備藥機暨排程系統
             Program_出入庫作業_Init();
             Program_交易紀錄_Init();
             Program_Scanner_RS232_Init();
-
+            Program_藥盒索引_Init();
 
             plC_ScreenPage_main.TabChangeEvent += PlC_ScreenPage_main_TabChangeEvent;
         }
