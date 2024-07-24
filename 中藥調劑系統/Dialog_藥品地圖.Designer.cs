@@ -53,6 +53,7 @@ namespace 中藥調劑系統
             this.panel_飲片正面_中 = new System.Windows.Forms.Panel();
             this.panel_飲片正面_左 = new System.Windows.Forms.Panel();
             this.rJ_Pannel5 = new MyUI.RJ_Pannel();
+            this.panel_庫存C_下 = new System.Windows.Forms.Panel();
             this.panel_庫存C_右 = new System.Windows.Forms.Panel();
             this.panel_庫存C_中 = new System.Windows.Forms.Panel();
             this.panel_庫存C_左 = new System.Windows.Forms.Panel();
@@ -67,7 +68,6 @@ namespace 中藥調劑系統
             this.panel_飲片吊櫃_1 = new System.Windows.Forms.Panel();
             this.rJ_Pannel9 = new MyUI.RJ_Pannel();
             this.panel_外用 = new System.Windows.Forms.Panel();
-            this.panel_庫存C_下 = new System.Windows.Forms.Panel();
             this.rJ_Pannel1.SuspendLayout();
             this.rJ_Pannel2.SuspendLayout();
             this.rJ_Pannel3.SuspendLayout();
@@ -86,14 +86,14 @@ namespace 中藥調劑系統
             this.rJ_Pannel1.BorderRadius = 2;
             this.rJ_Pannel1.BorderSize = 2;
             this.rJ_Pannel1.Controls.Add(this.panel_正面右下);
-            this.rJ_Pannel1.Controls.Add(this.panel_正面中下);
             this.rJ_Pannel1.Controls.Add(this.panel_正面右上);
-            this.rJ_Pannel1.Controls.Add(this.panel_正面左下);
             this.rJ_Pannel1.Controls.Add(this.panel_正面中上);
+            this.rJ_Pannel1.Controls.Add(this.panel_正面中下);
             this.rJ_Pannel1.Controls.Add(this.panel_正面左上);
+            this.rJ_Pannel1.Controls.Add(this.panel_正面左下);
             this.rJ_Pannel1.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel1.IsSelected = false;
-            this.rJ_Pannel1.Location = new System.Drawing.Point(7, 884);
+            this.rJ_Pannel1.Location = new System.Drawing.Point(361, 192);
             this.rJ_Pannel1.Name = "rJ_Pannel1";
             this.rJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel1.ShadowSize = 0;
@@ -102,42 +102,42 @@ namespace 中藥調劑系統
             // 
             // panel_正面右下
             // 
-            this.panel_正面右下.Location = new System.Drawing.Point(638, 70);
+            this.panel_正面右下.Location = new System.Drawing.Point(638, 5);
             this.panel_正面右下.Name = "panel_正面右下";
             this.panel_正面右下.Size = new System.Drawing.Size(308, 59);
             this.panel_正面右下.TabIndex = 8;
             // 
             // panel_正面中下
             // 
-            this.panel_正面中下.Location = new System.Drawing.Point(324, 70);
+            this.panel_正面中下.Location = new System.Drawing.Point(324, 5);
             this.panel_正面中下.Name = "panel_正面中下";
             this.panel_正面中下.Size = new System.Drawing.Size(308, 59);
             this.panel_正面中下.TabIndex = 9;
             // 
             // panel_正面右上
             // 
-            this.panel_正面右上.Location = new System.Drawing.Point(638, 5);
+            this.panel_正面右上.Location = new System.Drawing.Point(638, 66);
             this.panel_正面右上.Name = "panel_正面右上";
             this.panel_正面右上.Size = new System.Drawing.Size(308, 59);
             this.panel_正面右上.TabIndex = 6;
             // 
             // panel_正面左下
             // 
-            this.panel_正面左下.Location = new System.Drawing.Point(10, 70);
+            this.panel_正面左下.Location = new System.Drawing.Point(10, 5);
             this.panel_正面左下.Name = "panel_正面左下";
             this.panel_正面左下.Size = new System.Drawing.Size(308, 59);
             this.panel_正面左下.TabIndex = 5;
             // 
             // panel_正面中上
             // 
-            this.panel_正面中上.Location = new System.Drawing.Point(324, 5);
+            this.panel_正面中上.Location = new System.Drawing.Point(324, 66);
             this.panel_正面中上.Name = "panel_正面中上";
             this.panel_正面中上.Size = new System.Drawing.Size(308, 59);
             this.panel_正面中上.TabIndex = 7;
             // 
             // panel_正面左上
             // 
-            this.panel_正面左上.Location = new System.Drawing.Point(10, 5);
+            this.panel_正面左上.Location = new System.Drawing.Point(10, 66);
             this.panel_正面左上.Name = "panel_正面左上";
             this.panel_正面左上.Size = new System.Drawing.Size(308, 59);
             this.panel_正面左上.TabIndex = 4;
@@ -150,14 +150,14 @@ namespace 中藥調劑系統
             this.rJ_Pannel2.BorderRadius = 2;
             this.rJ_Pannel2.BorderSize = 2;
             this.rJ_Pannel2.Controls.Add(this.panel_背面左上);
-            this.rJ_Pannel2.Controls.Add(this.panel_背面中上);
             this.rJ_Pannel2.Controls.Add(this.panel_背面左下);
-            this.rJ_Pannel2.Controls.Add(this.panel_背面右上);
             this.rJ_Pannel2.Controls.Add(this.panel_背面中下);
+            this.rJ_Pannel2.Controls.Add(this.panel_背面中上);
             this.rJ_Pannel2.Controls.Add(this.panel_背面右下);
+            this.rJ_Pannel2.Controls.Add(this.panel_背面右上);
             this.rJ_Pannel2.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel2.IsSelected = false;
-            this.rJ_Pannel2.Location = new System.Drawing.Point(7, 744);
+            this.rJ_Pannel2.Location = new System.Drawing.Point(361, 332);
             this.rJ_Pannel2.Name = "rJ_Pannel2";
             this.rJ_Pannel2.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel2.ShadowSize = 0;
@@ -166,42 +166,42 @@ namespace 中藥調劑系統
             // 
             // panel_背面左上
             // 
-            this.panel_背面左上.Location = new System.Drawing.Point(638, 70);
+            this.panel_背面左上.Location = new System.Drawing.Point(638, 7);
             this.panel_背面左上.Name = "panel_背面左上";
             this.panel_背面左上.Size = new System.Drawing.Size(308, 59);
             this.panel_背面左上.TabIndex = 8;
             // 
             // panel_背面中上
             // 
-            this.panel_背面中上.Location = new System.Drawing.Point(324, 70);
+            this.panel_背面中上.Location = new System.Drawing.Point(324, 7);
             this.panel_背面中上.Name = "panel_背面中上";
             this.panel_背面中上.Size = new System.Drawing.Size(308, 59);
             this.panel_背面中上.TabIndex = 9;
             // 
             // panel_背面左下
             // 
-            this.panel_背面左下.Location = new System.Drawing.Point(638, 5);
+            this.panel_背面左下.Location = new System.Drawing.Point(638, 69);
             this.panel_背面左下.Name = "panel_背面左下";
             this.panel_背面左下.Size = new System.Drawing.Size(308, 59);
             this.panel_背面左下.TabIndex = 6;
             // 
             // panel_背面右上
             // 
-            this.panel_背面右上.Location = new System.Drawing.Point(10, 70);
+            this.panel_背面右上.Location = new System.Drawing.Point(10, 7);
             this.panel_背面右上.Name = "panel_背面右上";
             this.panel_背面右上.Size = new System.Drawing.Size(308, 59);
             this.panel_背面右上.TabIndex = 5;
             // 
             // panel_背面中下
             // 
-            this.panel_背面中下.Location = new System.Drawing.Point(324, 5);
+            this.panel_背面中下.Location = new System.Drawing.Point(324, 69);
             this.panel_背面中下.Name = "panel_背面中下";
             this.panel_背面中下.Size = new System.Drawing.Size(308, 59);
             this.panel_背面中下.TabIndex = 7;
             // 
             // panel_背面右下
             // 
-            this.panel_背面右下.Location = new System.Drawing.Point(10, 5);
+            this.panel_背面右下.Location = new System.Drawing.Point(10, 69);
             this.panel_背面右下.Name = "panel_背面右下";
             this.panel_背面右下.Size = new System.Drawing.Size(308, 59);
             this.panel_背面右下.TabIndex = 4;
@@ -216,7 +216,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel3.Controls.Add(this.panel_庫存B);
             this.rJ_Pannel3.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel3.IsSelected = false;
-            this.rJ_Pannel3.Location = new System.Drawing.Point(7, 377);
+            this.rJ_Pannel3.Location = new System.Drawing.Point(1205, 515);
             this.rJ_Pannel3.Name = "rJ_Pannel3";
             this.rJ_Pannel3.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel3.ShadowSize = 0;
@@ -241,11 +241,11 @@ namespace 中藥調劑系統
             this.rJ_Pannel4.Controls.Add(this.panel_飲片背面_中);
             this.rJ_Pannel4.Controls.Add(this.panel_飲片背面_右);
             this.rJ_Pannel4.Controls.Add(this.panel_飲片正面_右);
-            this.rJ_Pannel4.Controls.Add(this.panel_飲片正面_中);
             this.rJ_Pannel4.Controls.Add(this.panel_飲片正面_左);
+            this.rJ_Pannel4.Controls.Add(this.panel_飲片正面_中);
             this.rJ_Pannel4.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel4.IsSelected = false;
-            this.rJ_Pannel4.Location = new System.Drawing.Point(244, 404);
+            this.rJ_Pannel4.Location = new System.Drawing.Point(374, 555);
             this.rJ_Pannel4.Name = "rJ_Pannel4";
             this.rJ_Pannel4.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel4.ShadowSize = 0;
@@ -254,42 +254,42 @@ namespace 中藥調劑系統
             // 
             // panel_飲片背面_左
             // 
-            this.panel_飲片背面_左.Location = new System.Drawing.Point(478, 12);
+            this.panel_飲片背面_左.Location = new System.Drawing.Point(477, 209);
             this.panel_飲片背面_左.Name = "panel_飲片背面_左";
             this.panel_飲片背面_左.Size = new System.Drawing.Size(224, 59);
             this.panel_飲片背面_左.TabIndex = 13;
             // 
             // panel_飲片背面_中
             // 
-            this.panel_飲片背面_中.Location = new System.Drawing.Point(248, 12);
+            this.panel_飲片背面_中.Location = new System.Drawing.Point(247, 209);
             this.panel_飲片背面_中.Name = "panel_飲片背面_中";
             this.panel_飲片背面_中.Size = new System.Drawing.Size(224, 59);
             this.panel_飲片背面_中.TabIndex = 12;
             // 
             // panel_飲片背面_右
             // 
-            this.panel_飲片背面_右.Location = new System.Drawing.Point(18, 12);
+            this.panel_飲片背面_右.Location = new System.Drawing.Point(17, 209);
             this.panel_飲片背面_右.Name = "panel_飲片背面_右";
             this.panel_飲片背面_右.Size = new System.Drawing.Size(224, 59);
             this.panel_飲片背面_右.TabIndex = 11;
             // 
             // panel_飲片正面_右
             // 
-            this.panel_飲片正面_右.Location = new System.Drawing.Point(478, 210);
+            this.panel_飲片正面_右.Location = new System.Drawing.Point(477, 9);
             this.panel_飲片正面_右.Name = "panel_飲片正面_右";
             this.panel_飲片正面_右.Size = new System.Drawing.Size(224, 59);
             this.panel_飲片正面_右.TabIndex = 10;
             // 
             // panel_飲片正面_中
             // 
-            this.panel_飲片正面_中.Location = new System.Drawing.Point(248, 210);
+            this.panel_飲片正面_中.Location = new System.Drawing.Point(247, 9);
             this.panel_飲片正面_中.Name = "panel_飲片正面_中";
             this.panel_飲片正面_中.Size = new System.Drawing.Size(224, 59);
             this.panel_飲片正面_中.TabIndex = 9;
             // 
             // panel_飲片正面_左
             // 
-            this.panel_飲片正面_左.Location = new System.Drawing.Point(18, 210);
+            this.panel_飲片正面_左.Location = new System.Drawing.Point(17, 9);
             this.panel_飲片正面_左.Name = "panel_飲片正面_左";
             this.panel_飲片正面_左.Size = new System.Drawing.Size(224, 59);
             this.panel_飲片正面_左.TabIndex = 8;
@@ -307,30 +307,37 @@ namespace 中藥調劑系統
             this.rJ_Pannel5.Controls.Add(this.panel_庫存C_左);
             this.rJ_Pannel5.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel5.IsSelected = false;
-            this.rJ_Pannel5.Location = new System.Drawing.Point(7, 208);
+            this.rJ_Pannel5.Location = new System.Drawing.Point(235, 910);
             this.rJ_Pannel5.Name = "rJ_Pannel5";
             this.rJ_Pannel5.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel5.ShadowSize = 0;
             this.rJ_Pannel5.Size = new System.Drawing.Size(956, 136);
             this.rJ_Pannel5.TabIndex = 4;
             // 
+            // panel_庫存C_下
+            // 
+            this.panel_庫存C_下.Location = new System.Drawing.Point(11, 8);
+            this.panel_庫存C_下.Name = "panel_庫存C_下";
+            this.panel_庫存C_下.Size = new System.Drawing.Size(936, 57);
+            this.panel_庫存C_下.TabIndex = 11;
+            // 
             // panel_庫存C_右
             // 
-            this.panel_庫存C_右.Location = new System.Drawing.Point(635, 6);
+            this.panel_庫存C_右.Location = new System.Drawing.Point(639, 67);
             this.panel_庫存C_右.Name = "panel_庫存C_右";
             this.panel_庫存C_右.Size = new System.Drawing.Size(308, 64);
             this.panel_庫存C_右.TabIndex = 10;
             // 
             // panel_庫存C_中
             // 
-            this.panel_庫存C_中.Location = new System.Drawing.Point(321, 6);
+            this.panel_庫存C_中.Location = new System.Drawing.Point(325, 67);
             this.panel_庫存C_中.Name = "panel_庫存C_中";
             this.panel_庫存C_中.Size = new System.Drawing.Size(308, 64);
             this.panel_庫存C_中.TabIndex = 8;
             // 
             // panel_庫存C_左
             // 
-            this.panel_庫存C_左.Location = new System.Drawing.Point(7, 6);
+            this.panel_庫存C_左.Location = new System.Drawing.Point(11, 67);
             this.panel_庫存C_左.Name = "panel_庫存C_左";
             this.panel_庫存C_左.Size = new System.Drawing.Size(308, 64);
             this.panel_庫存C_左.TabIndex = 6;
@@ -345,7 +352,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel7.Controls.Add(this.panel_冰箱);
             this.rJ_Pannel7.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel7.IsSelected = false;
-            this.rJ_Pannel7.Location = new System.Drawing.Point(1139, 339);
+            this.rJ_Pannel7.Location = new System.Drawing.Point(14, 711);
             this.rJ_Pannel7.Name = "rJ_Pannel7";
             this.rJ_Pannel7.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel7.ShadowSize = 0;
@@ -402,7 +409,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel8.Controls.Add(this.panel_飲片吊櫃_1);
             this.rJ_Pannel8.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel8.IsSelected = false;
-            this.rJ_Pannel8.Location = new System.Drawing.Point(1139, 744);
+            this.rJ_Pannel8.Location = new System.Drawing.Point(14, 357);
             this.rJ_Pannel8.Name = "rJ_Pannel8";
             this.rJ_Pannel8.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel8.ShadowSize = 0;
@@ -411,28 +418,28 @@ namespace 中藥調劑系統
             // 
             // panel_飲片吊櫃_4
             // 
-            this.panel_飲片吊櫃_4.Location = new System.Drawing.Point(3, 200);
+            this.panel_飲片吊櫃_4.Location = new System.Drawing.Point(1, 12);
             this.panel_飲片吊櫃_4.Name = "panel_飲片吊櫃_4";
             this.panel_飲片吊櫃_4.Size = new System.Drawing.Size(158, 59);
             this.panel_飲片吊櫃_4.TabIndex = 14;
             // 
             // panel_飲片吊櫃_3
             // 
-            this.panel_飲片吊櫃_3.Location = new System.Drawing.Point(3, 135);
+            this.panel_飲片吊櫃_3.Location = new System.Drawing.Point(2, 77);
             this.panel_飲片吊櫃_3.Name = "panel_飲片吊櫃_3";
             this.panel_飲片吊櫃_3.Size = new System.Drawing.Size(158, 59);
             this.panel_飲片吊櫃_3.TabIndex = 13;
             // 
             // panel_飲片吊櫃_2
             // 
-            this.panel_飲片吊櫃_2.Location = new System.Drawing.Point(3, 70);
+            this.panel_飲片吊櫃_2.Location = new System.Drawing.Point(3, 142);
             this.panel_飲片吊櫃_2.Name = "panel_飲片吊櫃_2";
             this.panel_飲片吊櫃_2.Size = new System.Drawing.Size(158, 59);
             this.panel_飲片吊櫃_2.TabIndex = 12;
             // 
             // panel_飲片吊櫃_1
             // 
-            this.panel_飲片吊櫃_1.Location = new System.Drawing.Point(3, 5);
+            this.panel_飲片吊櫃_1.Location = new System.Drawing.Point(3, 208);
             this.panel_飲片吊櫃_1.Name = "panel_飲片吊櫃_1";
             this.panel_飲片吊櫃_1.Size = new System.Drawing.Size(158, 59);
             this.panel_飲片吊櫃_1.TabIndex = 11;
@@ -447,7 +454,7 @@ namespace 中藥調劑系統
             this.rJ_Pannel9.Controls.Add(this.panel_外用);
             this.rJ_Pannel9.ForeColor = System.Drawing.Color.White;
             this.rJ_Pannel9.IsSelected = false;
-            this.rJ_Pannel9.Location = new System.Drawing.Point(1139, 671);
+            this.rJ_Pannel9.Location = new System.Drawing.Point(14, 637);
             this.rJ_Pannel9.Name = "rJ_Pannel9";
             this.rJ_Pannel9.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel9.ShadowSize = 0;
@@ -460,13 +467,6 @@ namespace 中藥調劑系統
             this.panel_外用.Name = "panel_外用";
             this.panel_外用.Size = new System.Drawing.Size(158, 58);
             this.panel_外用.TabIndex = 13;
-            // 
-            // panel_庫存C_下
-            // 
-            this.panel_庫存C_下.Location = new System.Drawing.Point(7, 72);
-            this.panel_庫存C_下.Name = "panel_庫存C_下";
-            this.panel_庫存C_下.Size = new System.Drawing.Size(936, 57);
-            this.panel_庫存C_下.TabIndex = 11;
             // 
             // Dialog_藥品地圖
             // 

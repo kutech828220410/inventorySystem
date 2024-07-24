@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.28")]
-[assembly: AssemblyFileVersion("1.0.0.28")]
+[assembly: AssemblyVersion("1.0.0.29")]
+[assembly: AssemblyFileVersion("1.0.0.29")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -168,6 +168,7 @@ namespace 中藥調劑系統
 
         }
         #endregion
+
         private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Function_全部滅燈();
