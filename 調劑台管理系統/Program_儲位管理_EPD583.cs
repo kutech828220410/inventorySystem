@@ -1618,7 +1618,7 @@ namespace 調劑台管理系統
                             int colEnd = rect.X + rect.Width - 1;
                             int rowStart = rect.Y;
                             int rowEnd = rect.Y + rect.Height - 1;
-                            sheetClass.AddNewCell(rowStart, rowEnd, colStart, colEnd, $"{_box.Code}", new Font("微軟正黑體", 14), 1000);
+                            sheetClass.AddNewCell(rowStart, rowEnd, colStart, colEnd, $"{_box.Code}({_box.Name})", new Font("微軟正黑體", 14), 1000);
                             //sheetClass.SetSlave(k, i, false);
                         }
                         else
@@ -1657,7 +1657,7 @@ namespace 調劑台管理系統
                     if (sheetClasses[i].CellValues[k].Slave == false)
                     {
                         string 藥品碼 = sheetClasses[i].CellValues[k].Text;
-                     
+                        藥品碼 = RemoveParenthesesContent(藥品碼);
                         int colStart = sheetClasses[i].CellValues[k].ColStart;
                         int colEnd = sheetClasses[i].CellValues[k].ColEnd;
                         int rowStart = sheetClasses[i].CellValues[k].RowStart;

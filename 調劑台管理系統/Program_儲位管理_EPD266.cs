@@ -1478,8 +1478,8 @@ namespace 調劑台管理系統
             {
                 string SotrageName = sheetClass.Rows[k].Cell[0].Text;
                 string Code = sheetClass.Rows[k].Cell[1].Text;
-
-                Storage storage = List_EPD266_本地資料.SortByName(SotrageName);
+                Code = RemoveParenthesesContent(Code);
+                Storage storage = List_EPD266_本地資料.SortByIP(SotrageName);
                 if (storage == null) continue;
                 storage.Code = Code;
                 List_EPD266_本地資料.Add_NewStorage(storage);
@@ -1511,9 +1511,9 @@ namespace 調劑台管理系統
                 if (storage == null) continue;
  
                 sheetClass.ColumnsWidth.Add(5000);
-                sheetClass.ColumnsWidth.Add(5000);
-                sheetClass.AddNewCell(d, 0, $"{storage.StorageName}", new Font("微軟正黑體", 14), 500);
-                sheetClass.AddNewCell(d, 1, $"{storage.Code}", new Font("微軟正黑體", 14), 500);
+                sheetClass.ColumnsWidth.Add(30000);
+                sheetClass.AddNewCell(d, 0, $"{storage.IP}", new Font("微軟正黑體", 14), 500);
+                sheetClass.AddNewCell(d, 1, $"{storage.Code}({storage.Name})", new Font("微軟正黑體", 14), NPOI_Color.BLACK, NPOI.SS.UserModel.HorizontalAlignment.Left);
             }
             sheetClasses.Add(sheetClass);
             sheetClasses.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);

@@ -1476,7 +1476,7 @@ namespace 調劑台管理系統
      
             return Code;
         }
-        static public void Function_抽屜解鎖(List<string> list_IP)
+        public static void Function_抽屜解鎖(List<string> list_IP)
         {
             List<Task> tasks = new List<Task>();
             foreach(string IP in list_IP)
@@ -1511,7 +1511,7 @@ namespace 調劑台管理系統
             Task.WhenAll(tasks).Wait();
         }
   
-        static public string Function_ReadBacodeScanner01()
+        public static string Function_ReadBacodeScanner01()
         {
             if (MySerialPort_Scanner01.IsConnected == false) return null;
 
@@ -1526,7 +1526,7 @@ namespace 調劑台管理系統
             text = text.Replace("\r\n", "");
             return text;
         }
-        static public string Function_ReadBacodeScanner02()
+        public static string Function_ReadBacodeScanner02()
         {
             if (MySerialPort_Scanner02.IsConnected == false) return null;
 
@@ -1541,7 +1541,7 @@ namespace 調劑台管理系統
             text = text.Replace("\r\n", "");
             return text;
         }
-        static public string Function_ReadBacodeScanner03()
+        public static string Function_ReadBacodeScanner03()
         {
             if (MySerialPort_Scanner03.IsConnected == false) return null;
 
@@ -1556,7 +1556,7 @@ namespace 調劑台管理系統
             text = text.Replace("\r\n", "");
             return text;
         }
-        static public string Function_ReadBacodeScanner04()
+        public static string Function_ReadBacodeScanner04()
         {
             if (MySerialPort_Scanner04.IsConnected == false) return null;
 
@@ -1572,7 +1572,7 @@ namespace 調劑台管理系統
             return text;
         }
 
-        static public string[] Function_ReadBacodeScanner()
+        public static string[] Function_ReadBacodeScanner()
         {
             string[] strs = new string[4];
             List<Task> tasks = new List<Task>();
@@ -1595,6 +1595,13 @@ namespace 調劑台管理系統
             Task.WhenAll(tasks).Wait();
 
             return strs;
+        }
+
+
+        public static string RemoveParenthesesContent(string input)
+        {
+            // 使用正則表達式替換括號及其內部的內容
+            return System.Text.RegularExpressions.Regex.Replace(input, @"\s*\([^)]*\)", "");
         }
     }
 
