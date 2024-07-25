@@ -81,7 +81,7 @@ namespace 調劑台管理系統
             String 狀態 = "";
             for (int i = 0; i < this.sqL_DataGridView_批次領藥_領藥總量清單.dataGridView.Rows.Count; i++)
             {
-                狀態 = this.sqL_DataGridView_批次領藥_領藥總量清單.dataGridView.Rows[i].Cells[(int)enum_領藥內容.狀態].Value.ToString();
+                狀態 = this.sqL_DataGridView_批次領藥_領藥總量清單.dataGridView.Rows[i].Cells[(int)enum_取藥堆疊母資料.狀態].Value.ToString();
                 if (狀態 == enum_取藥堆疊母資料_狀態.等待作業.GetEnumName())
                 {
                     this.sqL_DataGridView_批次領藥_領藥總量清單.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
@@ -104,7 +104,7 @@ namespace 調劑台管理系統
             String 狀態 = "";
             for (int i = 0; i < this.sqL_DataGridView_批次領藥_未領取領藥清單.dataGridView.Rows.Count; i++)
             {
-                狀態 = this.sqL_DataGridView_批次領藥_未領取領藥清單.dataGridView.Rows[i].Cells[(int)enum_領藥內容.狀態].Value.ToString();
+                狀態 = this.sqL_DataGridView_批次領藥_未領取領藥清單.dataGridView.Rows[i].Cells[(int)enum_取藥堆疊母資料.狀態].Value.ToString();
                 if (狀態 == enum_取藥堆疊母資料_狀態.等待作業.GetEnumName())
                 {
                     this.sqL_DataGridView_批次領藥_未領取領藥清單.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;

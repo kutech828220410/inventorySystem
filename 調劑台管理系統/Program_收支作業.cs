@@ -239,7 +239,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_收支作業_單品入庫_狀態更新_檢查雙人覆核(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
 
@@ -279,7 +279,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_收支作業_單品入庫_狀態更新_檢查盲盤作業(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
 
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName());
@@ -367,7 +367,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_收支作業_單品入庫_狀態更新_檢查複盤作業(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
 
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待複盤.GetEnumName());

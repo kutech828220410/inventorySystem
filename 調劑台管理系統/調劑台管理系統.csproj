@@ -785,6 +785,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\使用者資訊.png" />
     <None Include="Resources\medication-transfer-to-dispensing-counter-with-arr-removebg-preview.png" />
     <None Include="Resources\transfer-medication-take-in-to-dispensing-counter-removebg-preview.png" />
     <None Include="Resources\drug-inventory-approval-removebg-preview.png" />

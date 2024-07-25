@@ -45,6 +45,8 @@ namespace 調劑台管理系統
         List<object[]> list_取藥堆疊子資料 = new List<object[]>();
         private MyThread MyThread_取藥堆疊資料_檢查資料;
         private MyThread MyThread_取藥堆疊資料_儲位亮燈;
+        static public SQL_DataGridView _sqL_DataGridView_取藥堆疊母資料 = null;
+
         #region Function
         public class Icp_取藥堆疊母資料_index排序 : IComparer<object[]>
         {
@@ -512,15 +514,15 @@ namespace 調劑台管理系統
             }
             System.Threading.Thread.Sleep(100);
         }
-        private List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱)
+        static public List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱)
         {
-            List<object[]> list_values = this.sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
+            List<object[]> list_values = _sqL_DataGridView_取藥堆疊母資料.SQL_GetAllRows(false);
             list_values = list_values.Where(a => a[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString() == 調劑台名稱).ToList();
             return list_values;
         }
-        private List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱, string 藥品碼)
+        static public List<object[]> Function_取藥堆疊資料_取得指定調劑台名稱母資料(string 調劑台名稱, string 藥品碼)
         {
-            List<object[]> list_values = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱);
+            List<object[]> list_values = Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱);
             list_values = list_values.Where(a => a[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString() == 藥品碼).ToList();
             return list_values;
         }
@@ -581,7 +583,7 @@ namespace 調劑台管理系統
         private void Function_取藥堆疊子資料_設定流程作業完成ByCode(string 調劑台名稱, string 藥品碼)
         {
             string Master_GUID = "";
-            List<object[]> list_堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱, 藥品碼);
+            List<object[]> list_堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱, 藥品碼);
             List<object[]> list_堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(調劑台名稱, 藥品碼);
             List<object[]> list_堆疊子資料_buf;
             List<object[]> list_serch_values = new List<object[]>();
@@ -654,7 +656,7 @@ namespace 調劑台管理系統
         private void Function_取藥堆疊子資料_設定配藥完成ByCode(string 調劑台名稱, string 藥品碼)
         {
             string Master_GUID = "";
-            List<object[]> list_堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱, 藥品碼);
+            List<object[]> list_堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱, 藥品碼);
             List<object[]> list_堆疊子資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱子資料(調劑台名稱, 藥品碼);
             List<object[]> list_堆疊子資料_buf;
             List<object[]> list_serch_values = new List<object[]>();
@@ -727,7 +729,7 @@ namespace 調劑台管理系統
         private void Function_取藥堆疊子資料_設定調劑結束(string 調劑台名稱, string 藥品碼)
         {
             string GUID = "";
-            List<object[]> list_values = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱, 藥品碼);
+            List<object[]> list_values = Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱, 藥品碼);
             for (int i = 0; i < list_values.Count; i++)
             {
                 GUID = list_values[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
@@ -737,7 +739,7 @@ namespace 調劑台管理系統
         private void Function_取藥堆疊子資料_設定調劑結束(string 調劑台名稱)
         {
             string GUID = "";
-            List<object[]> list_values = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱);
+            List<object[]> list_values = Function_取藥堆疊資料_取得指定調劑台名稱母資料(調劑台名稱);
             for (int i = 0; i < list_values.Count; i++)
             {
                 GUID = list_values[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
@@ -1152,6 +1154,7 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_取藥堆疊子資料.Init(tables[i]);
                 }
             }
+            _sqL_DataGridView_取藥堆疊母資料 = this.sqL_DataGridView_取藥堆疊母資料;
 
             this.MyThread_取藥堆疊資料_檢查資料 = new MyThread();
             this.MyThread_取藥堆疊資料_檢查資料.AutoRun(true);

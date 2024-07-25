@@ -34,7 +34,21 @@ namespace 調劑台管理系統
         public static StorageUI_WT32 _storageUI_WT32 = null;
         public static DrawerUI_EPD_583 _drawerUI_EPD_583 = null;
 
+        public void Function_調劑作業_藥品資訊更新(string 藥碼, PictureBox pictureBox)
+        {
 
+            Task.Run(new Action(delegate
+            {
+                Image image = medPicClass.get_image_by_code(Main_Form.API_Server, 藥碼);
+                if (image == null) return;
+                this.Invoke(new Action(delegate 
+                {
+                    if (pictureBox.BackgroundImage != null) pictureBox.BackgroundImage.Dispose();
+                    pictureBox.BackgroundImage = image;
+                }));
+      
+            }));
+        }
         public void Function_從SQL取得儲位到入賬資料(string 藥品碼)
         {
             List<object> list_value = new List<object>();
