@@ -36,7 +36,6 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Re
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\SQLUI.xml
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.csproj.CopyComplete
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.exe
 C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.pdb
 C:\Users\pacsuser\Source\Repos\inventorySystem\batch_共用區扣帳\bin\Release\batch_共用區扣帳.exe.config
@@ -313,3 +312,6 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\batch_共用區扣帳\obj
 C:\Users\hsonds01\source\repos\inventorySystem20231119\batch_共用區扣帳\obj\Release\batch_共用區扣帳.csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem20231119\batch_共用區扣帳\obj\Release\batch_共用區扣帳.exe
 C:\Users\hsonds01\source\repos\inventorySystem20231119\batch_共用區扣帳\obj\Release\batch_共用區扣帳.pdb
+C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\bin\Release\System.Memory.xml
+C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用區扣帳.csproj.SuggestedBindingRedirects.cache
+C:\Users\Administrator\source\repos\inventorySystem\batch_共用區扣帳\obj\Release\batch_共用.8DEBA23B.Up2Date

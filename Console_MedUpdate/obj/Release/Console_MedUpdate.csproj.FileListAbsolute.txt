@@ -239,7 +239,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\bin\Releas
 C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\bin\Release\System.ValueTuple.xml
 C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.csproj.AssemblyReference.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\Console_MedUpdate\obj\Release\Console_MedUpdate.pdb
 C:\Users\hsonds01\source\repos\inventorySystem\Console_MedUpdate\bin\Release\Console_MedUpdate.exe.config
@@ -788,3 +787,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Rel
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\stdole.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\Basic.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\Console_MedUpdate\bin\Release\SQLUI.xml
+C:\Users\Administrator\source\repos\inventorySystem\Console_MedUpdate\obj\Release\Console_.A40C4318.Up2Date

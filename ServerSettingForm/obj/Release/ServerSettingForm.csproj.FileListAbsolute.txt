@@ -284,7 +284,6 @@ C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Releas
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.Properties.Resources.resources
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.GenerateResource.cache
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\ServerSettingForm\obj\Release\ServerSettingForm.pdb
 C:\Users\hsonds01\source\repos\inventorySystem\ServerSettingForm\bin\Release\ServerSettingForm.exe.config
@@ -978,3 +977,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\obj\Rel
 C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_中藥調劑系統.resources
 C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\obj\Release\ServerSettingForm.Dialog_設定.resources
 C:\Users\hsonds01\source\repos\inventorySystem20231119\ServerSettingForm\obj\Release\ServerSettingForm.Panel_CheckBox.resources
+C:\Users\Administrator\source\repos\inventorySystem\ServerSettingForm\obj\Release\ServerSe.F4449D70.Up2Date

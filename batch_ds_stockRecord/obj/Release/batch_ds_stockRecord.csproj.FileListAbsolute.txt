@@ -35,7 +35,6 @@ C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Rel
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\MeasureSystemFunction.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\MVSDK.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\HIS_DB_Lib.xml
-C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds_stockRecord.csproj.CopyComplete
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\bin\Release\System.Text.Encodings.Web.dll
@@ -383,3 +382,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\batch_ds_stockRecord\bin\
 C:\Users\hsonds01\source\repos\inventorySystem20231119\batch_ds_stockRecord\bin\Release\stdole.dll
 C:\Users\hsonds01\source\repos\inventorySystem20231119\batch_ds_stockRecord\bin\Release\Basic.xml
 C:\Users\hsonds01\source\repos\inventorySystem20231119\batch_ds_stockRecord\bin\Release\SQLUI.xml
+C:\Users\Administrator\source\repos\inventorySystem\batch_ds_stockRecord\obj\Release\batch_ds.06A30E39.Up2Date

@@ -47,7 +47,6 @@ C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\bin\Release\HI
 C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\bin\Release\SQLUI.xml
 C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\obj\Release\bkp_drugStore.csproj.AssemblyReference.cache
 C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\obj\Release\bkp_drugStore.csproj.CoreCompileInputs.cache
-C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\obj\Release\bkp_drugStore.csproj.CopyComplete
 C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\obj\Release\bkp_drugStore.exe
 C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\obj\Release\bkp_drugStore.pdb
 C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
@@ -266,3 +265,4 @@ C:\Users\hsonds01\source\repos\inventorySystem20231119\bkp_drugStore\obj\Release
 C:\Users\hsonds01\source\repos\inventorySystem20231119\bkp_drugStore\obj\Release\bkp_drugStore.csproj.CopyComplete
 C:\Users\hsonds01\source\repos\inventorySystem20231119\bkp_drugStore\obj\Release\bkp_drugStore.exe
 C:\Users\hsonds01\source\repos\inventorySystem20231119\bkp_drugStore\obj\Release\bkp_drugStore.pdb
+C:\Users\Administrator\source\repos\inventorySystem\bkp_drugStore\obj\Release\bkp_drug.08B55D94.Up2Date
