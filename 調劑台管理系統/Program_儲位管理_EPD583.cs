@@ -20,6 +20,22 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        public enum ContextMenuStrip_儲位管理_EPD583_匯出
+        {
+            [Description("M8000")]
+            匯出建置表,
+            [Description("M8000")]
+            匯出儲位表,
+        }
+        [EnumDescription("")]
+        private enum enum_儲位管理_EPD583_匯出儲位表
+        {
+            藥碼,
+            藥名,
+            單位,
+            儲位名稱,
+        }
+
         static public List<Drawer> List_EPD583_本地資料 = new List<Drawer>();
         static public List<Drawer> List_EPD583_雲端資料 = new List<Drawer>();
         static public List<Drawer> List_EPD583_入賬資料 = new List<Drawer>();
@@ -1579,59 +1595,108 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_EPD583_匯出_MouseDownEvent(MouseEventArgs mevent)
         {
-            DialogResult dialogResult = DialogResult.None;
-            this.Invoke(new Action(delegate 
+            Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(new ContextMenuStrip_儲位管理_EPD583_匯出());
+            if (dialog_ContextMenuStrip.ShowDialog() == DialogResult.Yes)
             {
-                dialogResult = this.saveFileDialog_SaveExcel.ShowDialog();
-            }));
-            if (dialogResult != DialogResult.OK) return;
-            List<SheetClass> sheetClasses = new List<SheetClass>();
-            List<object[]> list_抽屜列表 = this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.GetAllRows();
-            for (int d = 0; d < list_抽屜列表.Count; d++)
-            {
-                string IP = list_抽屜列表[d][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
-                Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
-                if (drawer == null) continue;
-                List<Box[]> Boxes = drawer.Boxes;
-                SheetClass sheetClass = new SheetClass(drawer.Name);
-                sheetClass.ColumnsWidth.Add(10000);
-                sheetClass.ColumnsWidth.Add(10000);
-                sheetClass.ColumnsWidth.Add(10000);
-                sheetClass.ColumnsWidth.Add(10000);
-
-
-                for (int i = 0; i < Boxes.Count; i++)
+                if(dialog_ContextMenuStrip.Value == ContextMenuStrip_儲位管理_EPD583_匯出.匯出建置表.GetEnumName())
                 {
-                    for (int k = 0; k < Boxes[i].Length; k++)
+                    DialogResult dialogResult = DialogResult.None;
+                    this.Invoke(new Action(delegate
                     {
-                        Rectangle rect = DrawerUI_EPD_583.Get_Box_Combine(drawer, Boxes[i][k]);
-                        Box _box = Boxes[i][k];
-                        int width = _box.Width;
-                        int height = _box.Height;
-                        rect.X /= width;
-                        rect.Y /= height;
-                        rect.Width /= width;
-                        rect.Height /= height;
-                        if (Boxes[i][k].Slave == false)
+                        dialogResult = this.saveFileDialog_SaveExcel.ShowDialog();
+                    }));
+                    if (dialogResult != DialogResult.OK) return;
+                    List<SheetClass> sheetClasses = new List<SheetClass>();
+                    List<object[]> list_抽屜列表 = this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.GetAllRows();
+                    for (int d = 0; d < list_抽屜列表.Count; d++)
+                    {
+                        string IP = list_抽屜列表[d][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
+                        Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
+                        if (drawer == null) continue;
+                        List<Box[]> Boxes = drawer.Boxes;
+                        SheetClass sheetClass = new SheetClass(drawer.Name);
+                        sheetClass.ColumnsWidth.Add(10000);
+                        sheetClass.ColumnsWidth.Add(10000);
+                        sheetClass.ColumnsWidth.Add(10000);
+                        sheetClass.ColumnsWidth.Add(10000);
+
+
+                        for (int i = 0; i < Boxes.Count; i++)
                         {
-                            int colStart = rect.X;
-                            int colEnd = rect.X + rect.Width - 1;
-                            int rowStart = rect.Y;
-                            int rowEnd = rect.Y + rect.Height - 1;
-                            sheetClass.AddNewCell(rowStart, rowEnd, colStart, colEnd, $"{_box.Code}({_box.Name})", new Font("微軟正黑體", 14), 1000);
-                            //sheetClass.SetSlave(k, i, false);
+                            for (int k = 0; k < Boxes[i].Length; k++)
+                            {
+                                Rectangle rect = DrawerUI_EPD_583.Get_Box_Combine(drawer, Boxes[i][k]);
+                                Box _box = Boxes[i][k];
+                                int width = _box.Width;
+                                int height = _box.Height;
+                                rect.X /= width;
+                                rect.Y /= height;
+                                rect.Width /= width;
+                                rect.Height /= height;
+                                if (Boxes[i][k].Slave == false)
+                                {
+                                    int colStart = rect.X;
+                                    int colEnd = rect.X + rect.Width - 1;
+                                    int rowStart = rect.Y;
+                                    int rowEnd = rect.Y + rect.Height - 1;
+                                    sheetClass.AddNewCell(rowStart, rowEnd, colStart, colEnd, $"{_box.Code}({_box.Name})", new Font("微軟正黑體", 14), 1000);
+                                    //sheetClass.SetSlave(k, i, false);
+                                }
+                                else
+                                {
+                                    sheetClass.AddNewCell(k, i, $"", new Font("微軟正黑體", 14), 1000);
+                                    sheetClass.SetSlave(k, i, true);
+                                }
+                            }
                         }
-                        else
+                        sheetClasses.Add(sheetClass);
+                    }
+                    sheetClasses.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
+                    MyMessageBox.ShowDialog("匯出完成!");
+                }
+                if (dialog_ContextMenuStrip.Value == ContextMenuStrip_儲位管理_EPD583_匯出.匯出儲位表.GetEnumName())
+                {
+                    DialogResult dialogResult = DialogResult.None;
+                    this.Invoke(new Action(delegate
+                    {
+                        dialogResult = this.saveFileDialog_SaveExcel.ShowDialog();
+                    }));
+                    if (dialogResult != DialogResult.OK) return;
+                    List<SheetClass> sheetClasses = new List<SheetClass>();
+                    List<object[]> list_抽屜列表 = this.sqL_DataGridView_儲位管理_EPD583_抽屜列表.GetAllRows();
+                    List<object[]> list_匯出資料 = new List<object[]>();
+
+                    for (int d = 0; d < list_抽屜列表.Count; d++)
+                    {
+                        string IP = list_抽屜列表[d][(int)enum_儲位管理_EPD583_抽屜列表.IP].ObjectToString();
+                        Drawer drawer = List_EPD583_本地資料.SortByIP(IP);
+                        if (drawer == null) continue;
+                        List<Box[]> Boxes = drawer.Boxes;            
+                        for (int i = 0; i < Boxes.Count; i++)
                         {
-                            sheetClass.AddNewCell(k, i, $"", new Font("微軟正黑體", 14), 1000);
-                            sheetClass.SetSlave(k, i, true);
+                            for (int k = 0; k < Boxes[i].Length; k++)
+                            {
+                                if (Boxes[i][k].Slave == false)
+                                {
+                                    if (Boxes[i][k].Code.StringIsEmpty()) continue;
+                                    object[] value = new object[new enum_儲位管理_EPD583_匯出儲位表().GetLength()];
+                                    value[(int)enum_儲位管理_EPD583_匯出儲位表.藥碼] = Boxes[i][k].Code;
+                                    value[(int)enum_儲位管理_EPD583_匯出儲位表.藥名] = Boxes[i][k].Name;
+                                    value[(int)enum_儲位管理_EPD583_匯出儲位表.單位] = Boxes[i][k].Package;
+                                    value[(int)enum_儲位管理_EPD583_匯出儲位表.儲位名稱] = drawer.Name;
+                                    list_匯出資料.Add(value);
+                                }
+                 
+                            }
                         }
                     }
+                    DataTable dataTable = list_匯出資料.ToDataTable(new enum_儲位管理_EPD583_匯出儲位表());
+                    dataTable.NPOI_SaveFile(saveFileDialog_SaveExcel.FileName);
+
+                    MyMessageBox.ShowDialog("匯出完成!");
                 }
-                sheetClasses.Add(sheetClass);         
             }
-            sheetClasses.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
-            MyMessageBox.ShowDialog("匯出完成!");
+             
 
         }
         private void PlC_RJ_Button_儲位管理_EPD583_匯入_MouseDownEvent(MouseEventArgs mevent)

@@ -20,6 +20,22 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        public enum ContextMenuStrip_儲位管理_RowsLED_匯出
+        {
+            [Description("M8000")]
+            匯出建置表,
+            [Description("M8000")]
+            匯出儲位表,
+        }
+        [EnumDescription("")]
+        private enum enum_儲位管理_RowsLED_匯出儲位表
+        {
+            藥碼,
+            藥名,
+            單位,
+            儲位名稱,
+        }
+
         [EnumDescription("")]
         private enum enum_儲位管理_RowsLED_層架列表
         {
@@ -1095,52 +1111,106 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_儲位管理_RowsLED_匯出_MouseDownEvent(MouseEventArgs mevent)
         {
-            try
+            Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(new ContextMenuStrip_儲位管理_RowsLED_匯出());
+            if (dialog_ContextMenuStrip.ShowDialog() == DialogResult.Yes)
             {
-                DialogResult dialogResult = DialogResult.None;
-                this.Invoke(new Action(delegate
+                if (dialog_ContextMenuStrip.Value == ContextMenuStrip_儲位管理_RowsLED_匯出.匯出建置表.GetEnumName())
                 {
-                    dialogResult = this.saveFileDialog_SaveExcel.ShowDialog();
-                }));
-                if (dialogResult != DialogResult.OK) return;
-                List<SheetClass> sheetClasses = new List<SheetClass>();
-                List<object[]> list_儲位列表 = this.sqL_DataGridView_儲位管理_RowsLED_層架列表.GetAllRows();
-                for (int i = 0; i < list_儲位列表.Count; i++)
-                {
-                    string IP = list_儲位列表[i][(int)enum_儲位管理_RowsLED_層架列表.IP].ObjectToString();
-                    RowsLED rowsLED = this.List_RowsLED_本地資料.SortByIP(IP);
-                    if (rowsLED == null) continue;
-                    SheetClass sheetClass = new SheetClass(rowsLED.IP);
-                    sheetClass.ColumnsWidth.Add(5000);
-                    sheetClass.ColumnsWidth.Add(30000);
-                    sheetClass.ColumnsWidth.Add(5000);
-                    sheetClass.ColumnsWidth.Add(5000);
-                    for (int k = 0; k < rowsLED.RowsDevices.Count; k++)
+                    try
                     {
-                        int Num = k;
-                        string Code = rowsLED.RowsDevices[k].Code;
-                        string Name = rowsLED.RowsDevices[k].Name;
-                        int StartNum = rowsLED.RowsDevices[k].StartLED;
-                        int EndNum = rowsLED.RowsDevices[k].EndLED;
-                        sheetClass.AddNewCell(k, 0, $"{Num}", new Font("微軟正黑體", 14), 500);
-                        sheetClass.AddNewCell(k, 1, $"{Code}({Name})", new Font("微軟正黑體", 14), NPOI_Color.BLACK, NPOI.SS.UserModel.HorizontalAlignment.Left);
-                        sheetClass.AddNewCell(k, 2, $"{StartNum}", new Font("微軟正黑體", 14), 500);
-                        sheetClass.AddNewCell(k, 3, $"{EndNum}", new Font("微軟正黑體", 14), 500);
+                        DialogResult dialogResult = DialogResult.None;
+                        this.Invoke(new Action(delegate
+                        {
+                            dialogResult = this.saveFileDialog_SaveExcel.ShowDialog();
+                        }));
+                        if (dialogResult != DialogResult.OK) return;
+                        List<SheetClass> sheetClasses = new List<SheetClass>();
+                        List<object[]> list_儲位列表 = this.sqL_DataGridView_儲位管理_RowsLED_層架列表.GetAllRows();
+                        for (int i = 0; i < list_儲位列表.Count; i++)
+                        {
+                            string IP = list_儲位列表[i][(int)enum_儲位管理_RowsLED_層架列表.IP].ObjectToString();
+                            RowsLED rowsLED = this.List_RowsLED_本地資料.SortByIP(IP);
+                            if (rowsLED == null) continue;
+                            SheetClass sheetClass = new SheetClass(rowsLED.IP);
+                            sheetClass.ColumnsWidth.Add(5000);
+                            sheetClass.ColumnsWidth.Add(30000);
+                            sheetClass.ColumnsWidth.Add(5000);
+                            sheetClass.ColumnsWidth.Add(5000);
+                            for (int k = 0; k < rowsLED.RowsDevices.Count; k++)
+                            {
+                                int Num = k;
+                                string Code = rowsLED.RowsDevices[k].Code;
+                                string Name = rowsLED.RowsDevices[k].Name;
+                                int StartNum = rowsLED.RowsDevices[k].StartLED;
+                                int EndNum = rowsLED.RowsDevices[k].EndLED;
+                                sheetClass.AddNewCell(k, 0, $"{Num}", new Font("微軟正黑體", 14), 500);
+                                sheetClass.AddNewCell(k, 1, $"{Code}({Name})", new Font("微軟正黑體", 14), NPOI_Color.BLACK, NPOI.SS.UserModel.HorizontalAlignment.Left);
+                                sheetClass.AddNewCell(k, 2, $"{StartNum}", new Font("微軟正黑體", 14), 500);
+                                sheetClass.AddNewCell(k, 3, $"{EndNum}", new Font("微軟正黑體", 14), 500);
+                            }
+                            sheetClasses.Add(sheetClass);
+                        }
+                        sheetClasses.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
+                        MyMessageBox.ShowDialog("匯出完成!");
                     }
-                    sheetClasses.Add(sheetClass);
-                }
-                sheetClasses.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
-                MyMessageBox.ShowDialog("匯出完成!");
-            }
-            catch(Exception ex)
-            {
-                MyMessageBox.ShowDialog($"錯誤 : {ex.Message}");
-            }
-            finally
-            {
+                    catch (Exception ex)
+                    {
+                        MyMessageBox.ShowDialog($"錯誤 : {ex.Message}");
+                    }
+                    finally
+                    {
 
+                    }
+
+                }
+                if (dialog_ContextMenuStrip.Value == ContextMenuStrip_儲位管理_RowsLED_匯出.匯出儲位表.GetEnumName())
+                {
+                    try
+                    {
+                        DialogResult dialogResult = DialogResult.None;
+                        this.Invoke(new Action(delegate
+                        {
+                            dialogResult = this.saveFileDialog_SaveExcel.ShowDialog();
+                        }));
+                        if (dialogResult != DialogResult.OK) return;
+                        List<SheetClass> sheetClasses = new List<SheetClass>();
+                        List<object[]> list_儲位列表 = this.sqL_DataGridView_儲位管理_RowsLED_層架列表.GetAllRows();
+                        List<object[]> list_匯出資料 = new List<object[]>();
+                        for (int i = 0; i < list_儲位列表.Count; i++)
+                        {
+                            string IP = list_儲位列表[i][(int)enum_儲位管理_RowsLED_層架列表.IP].ObjectToString();
+                            RowsLED rowsLED = this.List_RowsLED_本地資料.SortByIP(IP);
+                            if (rowsLED == null) continue;
+                   
+                            for (int k = 0; k < rowsLED.RowsDevices.Count; k++)
+                            {
+                                if (rowsLED.RowsDevices[k].Code.StringIsEmpty()) continue;
+                                object[] value = new object[new enum_儲位管理_RowsLED_匯出儲位表().GetLength()];
+                                value[(int)enum_儲位管理_RowsLED_匯出儲位表.藥碼] = rowsLED.RowsDevices[k].Code;
+                                value[(int)enum_儲位管理_RowsLED_匯出儲位表.藥名] = rowsLED.RowsDevices[k].Name;
+                                value[(int)enum_儲位管理_RowsLED_匯出儲位表.單位] = rowsLED.RowsDevices[k].Package;
+                                value[(int)enum_儲位管理_RowsLED_匯出儲位表.儲位名稱] = rowsLED.Name;
+                                list_匯出資料.Add(value);
+
+                            }
+
+                        }
+                        DataTable dataTable = list_匯出資料.ToDataTable(new enum_儲位管理_RowsLED_匯出儲位表());
+                        dataTable.NPOI_SaveFile(saveFileDialog_SaveExcel.FileName);
+
+                        MyMessageBox.ShowDialog("匯出完成!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MyMessageBox.ShowDialog($"錯誤 : {ex.Message}");
+                    }
+                    finally
+                    {
+
+                    }
+                }
             }
-       
+               
         }
         private void PlC_RJ_Button_儲位管理_RowsLED_匯入_MouseDownEvent(MouseEventArgs mevent)
         {
