@@ -81,6 +81,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_01_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_領藥台_01_領藥內容.DataGridRefreshEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridRefreshEvent;
             this.sqL_DataGridView_領藥台_01_領藥內容.RowEnterEvent += SqL_DataGridView_領藥台_01_領藥內容_RowEnterEvent;
+            this.sqL_DataGridView_領藥台_01_領藥內容.DataGridClearGridEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridClearGridEvent;
 
             this.textBox_領藥台_01_密碼.PassWordChar = true;
             this.textBox_領藥台_01_帳號.KeyPress += TextBox_領藥台_01_帳號_KeyPress;
@@ -126,6 +127,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_02_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_02_領藥內容_DataGridRowsChangeRefEvent;
             this.sqL_DataGridView_領藥台_02_領藥內容.DataGridRefreshEvent += SqL_DataGridView_領藥台_02_領藥內容_DataGridRefreshEvent;
             this.sqL_DataGridView_領藥台_02_領藥內容.RowEnterEvent += SqL_DataGridView_領藥台_02_領藥內容_RowEnterEvent;
+            this.sqL_DataGridView_領藥台_02_領藥內容.DataGridClearGridEvent += SqL_DataGridView_領藥台_02_領藥內容_DataGridClearGridEvent;
 
             this.textBox_領藥台_02_密碼.PassWordChar = true;
             this.textBox_領藥台_02_帳號.KeyPress += TextBox_領藥台_02_帳號_KeyPress;
@@ -143,9 +145,6 @@ namespace 調劑台管理系統
             this.MyThread_領藥台_02.SetSleepTime(20);
             this.MyThread_領藥台_02.Trigger();
         }
-
-     
-
         private void Program_調劑作業_領藥台_03_Init()
         {
             Table table = new Table(new enum_取藥堆疊母資料());
@@ -249,6 +248,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_調劑作業_病歷號輸入.MouseDownEvent += PlC_RJ_Button_調劑作業_病歷號輸入_MouseDownEvent;
             this.plC_RJ_Button_調劑作業_藥品調出.MouseDownEvent += PlC_RJ_Button_調劑作業_藥品調出_MouseDownEvent;
             this.plC_RJ_Button_調劑作業_藥品調入.MouseDownEvent += PlC_RJ_Button_調劑作業_藥品調入_MouseDownEvent;
+            this.plC_RJ_Button_交班對點.MouseDownEvent += PlC_RJ_Button_交班對點_MouseDownEvent;
 
             this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
@@ -270,6 +270,8 @@ namespace 調劑台管理系統
 
             this.plC_UI_Init.Add_Method(Program_調劑作業);
         }
+
+  
 
         bool flag_調劑作業_頁面更新 = false;
         private void Program_調劑作業()
@@ -1440,7 +1442,11 @@ namespace 調劑台管理系統
             if (list_取藥堆疊資料_add.Count > 0)
             {
                 string 藥碼 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                Function_調劑作業_藥品資訊更新(藥碼, pictureBox_領藥台_01_藥品圖片);
+                string 藥名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+                string 領藥號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
+                病歷號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
+                開方時間 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
+                Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間, 1);
             }
             this.sqL_DataGridView_領藥台_01_領藥內容.RefreshGrid(list_value);
             Application.DoEvents();
@@ -2478,7 +2484,10 @@ namespace 調劑台管理系統
         {
             RowsList = Function_領藥內容_重新排序(RowsList);
         }
-   
+        private void SqL_DataGridView_領藥台_01_領藥內容_DataGridClearGridEvent()
+        {
+            Function_調劑作業_醫令資訊更新(1);
+        }
         private void PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent(MouseEventArgs mevent)
         {
             if (!this.PLC_Device_領藥台_01_已登入.Bool) return;
@@ -2489,6 +2498,7 @@ namespace 調劑台管理系統
             Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.取消作業, 領藥台_01_登入者姓名, "01.號使用者");
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.ClearGrid();
+    
         }
         private void PlC_RJ_Button_領藥台_01_登入_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -2653,7 +2663,11 @@ namespace 調劑台管理系統
         private void SqL_DataGridView_領藥台_01_領藥內容_RowEnterEvent(object[] RowValue)
         {
             string 藥碼 = RowValue[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-            Function_調劑作業_藥品資訊更新(藥碼, pictureBox_領藥台_01_藥品圖片);
+            string 藥名 = RowValue[(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+            string 領藥號 = RowValue[(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
+            string 病歷號 = RowValue[(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
+            string 開方時間 = RowValue[(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
+            Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間, 1);
 
         }
         #endregion
@@ -3413,7 +3427,11 @@ namespace 調劑台管理系統
             if (list_取藥堆疊資料_add.Count > 0)
             {
                 string 藥碼 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-                Function_調劑作業_藥品資訊更新(藥碼, pictureBox_領藥台_02_藥品圖片);
+                string 藥名 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+                string 領藥號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
+                病歷號 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
+                開方時間 = list_取藥堆疊資料_add[0][(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
+                Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間, 2);
             }
             this.sqL_DataGridView_領藥台_02_領藥內容.RefreshGrid(list_value);
             Application.DoEvents();
@@ -4459,6 +4477,10 @@ namespace 調劑台管理系統
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             this.sqL_DataGridView_領藥台_02_領藥內容.ClearGrid();
         }
+        private void SqL_DataGridView_領藥台_02_領藥內容_DataGridClearGridEvent()
+        {
+            Function_調劑作業_醫令資訊更新(2);
+        }
         private void PlC_RJ_Button_領藥台_02_登入_MouseDownEvent(MouseEventArgs mevent)
         {
             if (plC_RJ_Button_領藥台_02_登入.Texts == "登出")
@@ -4633,7 +4655,11 @@ namespace 調劑台管理系統
         private void SqL_DataGridView_領藥台_02_領藥內容_RowEnterEvent(object[] RowValue)
         {
             string 藥碼 = RowValue[(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
-            Function_調劑作業_藥品資訊更新(藥碼, pictureBox_領藥台_02_藥品圖片);
+            string 藥名 = RowValue[(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+            string 領藥號 = RowValue[(int)enum_取藥堆疊母資料.領藥號].ObjectToString();
+            string 病歷號 = RowValue[(int)enum_取藥堆疊母資料.病歷號].ObjectToString();
+            string 開方時間 = RowValue[(int)enum_取藥堆疊母資料.開方時間].ObjectToString();
+            Function_調劑作業_醫令資訊更新(藥碼, 藥名, 領藥號, 病歷號, 開方時間, 2);
         }
         #endregion
 
@@ -9006,6 +9032,11 @@ namespace 調劑台管理系統
         {
             Dialog_藥品調入 dialog_藥品調入 = new Dialog_藥品調入();
             dialog_藥品調入.ShowDialog();
+        }
+        private void PlC_RJ_Button_交班對點_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_交班對點 dialog_交班對點 = new Dialog_交班對點();
+            dialog_交班對點.ShowDialog();
         }
         private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
         {

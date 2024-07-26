@@ -34,17 +34,63 @@ namespace 調劑台管理系統
         public static StorageUI_WT32 _storageUI_WT32 = null;
         public static DrawerUI_EPD_583 _drawerUI_EPD_583 = null;
 
-        public void Function_調劑作業_藥品資訊更新(string 藥碼, PictureBox pictureBox)
+        public void Function_調劑作業_醫令資訊更新(int 台號)
+        {
+            if (台號 == 1)
+            {
+                if (pictureBox_領藥台_01_藥品圖片.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片.BackgroundImage.Dispose();
+                pictureBox_領藥台_01_藥品圖片.BackgroundImage = null;
+
+                this.rJ_Lable_領藥台_01_領藥住院號.Text = "-------------------------";
+                this.rJ_Lable_領藥台_01_病歷號.Text = "-------------------------";
+                this.rJ_Lable_領藥台_01_藥名.Text = "-------------------------";
+                this.rJ_Lable_領藥台_01_開方時間.Text = "-------------------------";
+            }
+            if (台號 == 2)
+            {
+                if (pictureBox_領藥台_02_藥品圖片.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片.BackgroundImage.Dispose();
+                pictureBox_領藥台_02_藥品圖片.BackgroundImage = null;
+
+                this.rJ_Lable_領藥台_02_領藥住院號.Text = null;
+                this.rJ_Lable_領藥台_02_病歷號.Text = "-------------------------";
+                this.rJ_Lable_領藥台_02_藥名.Text = "-------------------------";
+                this.rJ_Lable_領藥台_02_開方時間.Text = "-------------------------";
+            }
+        }
+        public void Function_調劑作業_醫令資訊更新(string 藥碼 ,string 藥名 ,string 領藥住院號, string 病歷號, string 開方時間, int 台號)
         {
 
             Task.Run(new Action(delegate
             {
                 Image image = medPicClass.get_image_by_code(Main_Form.API_Server, 藥碼);
-                if (image == null) return;
                 this.Invoke(new Action(delegate 
                 {
-                    if (pictureBox.BackgroundImage != null) pictureBox.BackgroundImage.Dispose();
-                    pictureBox.BackgroundImage = image;
+                    if (藥名.StringIsEmpty()) 藥名 = "-------------------------";
+                    if (領藥住院號.StringIsEmpty()) 領藥住院號 = "-------------------------";
+                    if (病歷號.StringIsEmpty()) 病歷號 = "-------------------------";
+                    if (開方時間.Check_Date_String() == false) 開方時間 = "-------------------------";
+                    else 開方時間.StringToDateTime().ToDateTimeString();
+
+                    if (台號 == 1)
+                    {
+                        if (pictureBox_領藥台_01_藥品圖片.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片.BackgroundImage.Dispose();
+                        pictureBox_領藥台_01_藥品圖片.BackgroundImage = image;
+
+                        this.rJ_Lable_領藥台_01_領藥住院號.Text = 領藥住院號;
+                        this.rJ_Lable_領藥台_01_病歷號.Text = 病歷號;
+                        this.rJ_Lable_領藥台_01_藥名.Text = 藥名;
+                        this.rJ_Lable_領藥台_01_開方時間.Text = 開方時間;
+                    }
+                    if (台號 == 2)
+                    {
+                        if (pictureBox_領藥台_02_藥品圖片.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片.BackgroundImage.Dispose();
+                        pictureBox_領藥台_02_藥品圖片.BackgroundImage = image;
+
+                        this.rJ_Lable_領藥台_02_領藥住院號.Text = 領藥住院號;
+                        this.rJ_Lable_領藥台_02_病歷號.Text = 病歷號;
+                        this.rJ_Lable_領藥台_02_藥名.Text = 藥名;
+                        this.rJ_Lable_領藥台_02_開方時間.Text = 開方時間;
+                    }
                 }));
       
             }));

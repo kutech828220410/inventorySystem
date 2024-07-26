@@ -422,6 +422,12 @@
     <Compile Include="Dialog\Dialog_藥品搜尋.Designer.cs">
       <DependentUpon>Dialog_藥品搜尋.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_交班對點.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_交班對點.Designer.cs">
+      <DependentUpon>Dialog_交班對點.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -579,6 +585,9 @@
     </Compile>
     <EmbeddedResource Include="Dialog\Dialog_下載藥檔範圍選擇.resx">
       <DependentUpon>Dialog_下載藥檔範圍選擇.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_交班對點.resx">
+      <DependentUpon>Dialog_交班對點.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_交班表_交易紀錄明細.resx">
       <DependentUpon>Dialog_交班表_交易紀錄明細.cs</DependentUpon>
@@ -785,6 +794,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\medicine-shift-handover-checklist__1_-removebg-preview.png" />
+    <None Include="Resources\medicine-shift-handover-checklist-removebg-preview.png" />
     <None Include="Resources\使用者資訊.png" />
     <None Include="Resources\medication-transfer-to-dispensing-counter-with-arr-removebg-preview.png" />
     <None Include="Resources\transfer-medication-take-in-to-dispensing-counter-removebg-preview.png" />

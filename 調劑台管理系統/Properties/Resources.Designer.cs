@@ -263,6 +263,26 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap medicine_shift_handover_checklist__1__removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-shift-handover-checklist__1_-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_shift_handover_checklist_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-shift-handover-checklist-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap RFID感應 {
             get {
                 object obj = ResourceManager.GetObject("RFID感應", resourceCulture);
