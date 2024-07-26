@@ -14,7 +14,7 @@ namespace HIS_WebApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class med_cpoeController : ControllerBase
+    public class med_cpoe : ControllerBase
     {
         [Route("api/[controller]")]
         [ApiController]
