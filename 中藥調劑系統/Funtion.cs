@@ -238,10 +238,10 @@ namespace 中藥調劑系統
                     {
                         RowsDevice rowsDevice = list_Device[i] as RowsDevice;
                         RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
-                        if (Funtion_判斷共用亮燈區域(rowsLED.Area))
-                        {
-                            rowsLED.LED_Bytes = Main_Form._rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
-                        }
+                        //if (Funtion_判斷共用亮燈區域(rowsLED.Area))
+                        //{
+                        //    rowsLED.LED_Bytes = Main_Form._rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
+                        //}
                         if (rowsDevice != null && rowsLED != null)
                         {
                             rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);

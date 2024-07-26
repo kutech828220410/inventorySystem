@@ -303,8 +303,6 @@ namespace 中藥調劑系統
                 }
                 else
                 {
-
-
                     string 病歷號 = list_病患資訊_buf[0][(int)enum_病患資訊.病歷號].ObjectToString();
                     string 處方類型 = list_病患資訊_buf[0][(int)enum_病患資訊.處方類型].ObjectToString();
                     list_病患資訊_buf = list_病患資訊.GetRows((int)enum_病患資訊.病歷號, 病歷號);
@@ -322,39 +320,39 @@ namespace 中藥調劑系統
                 }
 
             }
-            if (order_value != null)
-            {
-                string PRI_KEY = order_value[(int)enum_病患資訊.PRI_KEY].ObjectToString();
-                string 姓名 = order_value[(int)enum_病患資訊.姓名].ObjectToString();
-                string 病歷號_current = order_value[(int)enum_病患資訊.病歷號].ObjectToString();
-                list_病患資訊_buf = list_病患資訊.GetRows((int)enum_病患資訊.PRI_KEY, PRI_KEY);
-                if (list_病患資訊_buf.Count == 0)
-                {
-                    list_value_add.Add(order_value);
-                }
-                for (int i = 0; i < list_value_add.Count; i++)
-                {
-                    string 領藥號 = list_value_add[i][(int)enum_病患資訊.領藥號].ObjectToString();
-                    string 病歷號 = list_value_add[i][(int)enum_病患資訊.病歷號].ObjectToString();
-                    if (病歷號_current == 病歷號)
-                    {
-                        if (flag_新處方提示 == false)
-                        {
-                            Task.Run(new Action(delegate
-                            {
-                                MyMessageBox.ShowDialog($"{姓名} 有新處方 【{領藥號}】");
-                            }));
+            //if (order_value != null)
+            //{
+            //    string PRI_KEY = order_value[(int)enum_病患資訊.PRI_KEY].ObjectToString();
+            //    string 姓名 = order_value[(int)enum_病患資訊.姓名].ObjectToString();
+            //    string 病歷號_current = order_value[(int)enum_病患資訊.病歷號].ObjectToString();
+            //    list_病患資訊_buf = list_病患資訊.GetRows((int)enum_病患資訊.PRI_KEY, PRI_KEY);
+            //    if (list_病患資訊_buf.Count == 0)
+            //    {
+            //        list_value_add.Add(order_value);
+            //    }
+            //    for (int i = 0; i < list_value_add.Count; i++)
+            //    {
+            //        string 領藥號 = list_value_add[i][(int)enum_病患資訊.領藥號].ObjectToString();
+            //        string 病歷號 = list_value_add[i][(int)enum_病患資訊.病歷號].ObjectToString();
+            //        if (病歷號_current == 病歷號)
+            //        {
+            //            if (flag_新處方提示 == false)
+            //            {
+            //                Task.Run(new Action(delegate
+            //                {
+            //                    MyMessageBox.ShowDialog($"{姓名} 有新處方 【{領藥號}】");
+            //                }));
 
-                            flag_新處方提示 = true;
-                        }
-                    }
+            //                flag_新處方提示 = true;
+            //            }
+            //        }
 
-                }
+            //    }
                
 
-            }
+            //}
             if (list_value_add.Count > 0) this.sqL_DataGridView_病患資訊.AddRows(list_value_add, true);
-            //if (list_value_delete.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_delete, true);
+            if (list_value_delete.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_delete, true);
             if (list_value_刪除已調配處方.Count > 0) this.sqL_DataGridView_病患資訊.DeleteExtra(list_value_刪除已調配處方, true);
             if (order_病患資訊_再次調劑 != null)
             {
