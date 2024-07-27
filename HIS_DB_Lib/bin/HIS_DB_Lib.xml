@@ -901,6 +901,11 @@
             pic_base64
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medPicClass.pic1_base64">
+            <summary>
+            pic_base64
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medPriceClass.GUID">
             <summary>
             GUID
