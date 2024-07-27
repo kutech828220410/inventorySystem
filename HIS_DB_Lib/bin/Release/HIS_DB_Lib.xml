@@ -811,6 +811,11 @@
             圖片網址。
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medClassBasic.圖片網址1">
+            <summary>
+            圖片網址。
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medClassBasic.開檔狀態">
             <summary>
             開檔狀態。
@@ -896,6 +901,11 @@
             副檔名
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medPicClass.副檔名1">
+            <summary>
+            副檔名
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medPicClass.pic_base64">
             <summary>
             pic_base64
@@ -949,6 +959,26 @@
         <member name="P:HIS_DB_Lib.medPriceClass.加入時間">
             <summary>
             加入時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.天數">
+            <summary>
+            天數
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.實際調劑量">
+            <summary>
+            實際調劑量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.核對姓名">
+            <summary>
+            核對姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.OrderClass.核對ID">
+            <summary>
+            核對ID
             </summary>
         </member>
         <member name="T:HIS_DB_Lib.OrderTClass">

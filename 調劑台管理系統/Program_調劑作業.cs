@@ -2626,7 +2626,7 @@ namespace 調劑台管理系統
                 }
                 else if (狀態 == enum_取藥堆疊母資料_狀態.入賬完成.GetEnumName())
                 {
-                    this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.YellowGreen;
+                    this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Lime;
                     this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
                 else if (狀態 == enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName())

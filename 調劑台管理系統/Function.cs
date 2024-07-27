@@ -38,8 +38,11 @@ namespace 調劑台管理系統
         {
             if (台號 == 1)
             {
-                if (pictureBox_領藥台_01_藥品圖片.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片.BackgroundImage.Dispose();
-                pictureBox_領藥台_01_藥品圖片.BackgroundImage = null;
+                if (pictureBox_領藥台_01_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片01.BackgroundImage.Dispose();
+                pictureBox_領藥台_01_藥品圖片01.BackgroundImage = null;
+
+                if (pictureBox_領藥台_01_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片02.BackgroundImage.Dispose();
+                pictureBox_領藥台_01_藥品圖片02.BackgroundImage = null;
 
                 this.rJ_Lable_領藥台_01_領藥住院號.Text = "-------------------------";
                 this.rJ_Lable_領藥台_01_病歷號.Text = "-------------------------";
@@ -48,8 +51,11 @@ namespace 調劑台管理系統
             }
             if (台號 == 2)
             {
-                if (pictureBox_領藥台_02_藥品圖片.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片.BackgroundImage.Dispose();
-                pictureBox_領藥台_02_藥品圖片.BackgroundImage = null;
+                if (pictureBox_領藥台_02_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片01.BackgroundImage.Dispose();
+                pictureBox_領藥台_02_藥品圖片01.BackgroundImage = null;
+
+                if (pictureBox_領藥台_02_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片02.BackgroundImage.Dispose();
+                pictureBox_領藥台_02_藥品圖片02.BackgroundImage = null;
 
                 this.rJ_Lable_領藥台_02_領藥住院號.Text = null;
                 this.rJ_Lable_領藥台_02_病歷號.Text = "-------------------------";
@@ -62,7 +68,7 @@ namespace 調劑台管理系統
 
             Task.Run(new Action(delegate
             {
-                Image image = medPicClass.get_image_by_code(Main_Form.API_Server, 藥碼);
+                List<Image> images = medPicClass.get_images_by_code(Main_Form.API_Server, 藥碼);
                 this.Invoke(new Action(delegate 
                 {
                     if (藥名.StringIsEmpty()) 藥名 = "-------------------------";
@@ -73,8 +79,15 @@ namespace 調劑台管理系統
 
                     if (台號 == 1)
                     {
-                        if (pictureBox_領藥台_01_藥品圖片.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片.BackgroundImage.Dispose();
-                        pictureBox_領藥台_01_藥品圖片.BackgroundImage = image;
+                        if(images.Count >= 2)
+                        {
+                            if (pictureBox_領藥台_01_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片01.BackgroundImage.Dispose();
+                            pictureBox_領藥台_01_藥品圖片01.BackgroundImage = images[0];
+
+                            if (pictureBox_領藥台_01_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片02.BackgroundImage.Dispose();
+                            pictureBox_領藥台_01_藥品圖片02.BackgroundImage = images[1];
+                        }
+                      
 
                         this.rJ_Lable_領藥台_01_領藥住院號.Text = 領藥住院號;
                         this.rJ_Lable_領藥台_01_病歷號.Text = 病歷號;
@@ -83,8 +96,14 @@ namespace 調劑台管理系統
                     }
                     if (台號 == 2)
                     {
-                        if (pictureBox_領藥台_02_藥品圖片.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片.BackgroundImage.Dispose();
-                        pictureBox_領藥台_02_藥品圖片.BackgroundImage = image;
+                        if (images.Count >= 2)
+                        {
+                            if (pictureBox_領藥台_02_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片01.BackgroundImage.Dispose();
+                            pictureBox_領藥台_02_藥品圖片01.BackgroundImage = images[0];
+
+                            if (pictureBox_領藥台_02_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片02.BackgroundImage.Dispose();
+                            pictureBox_領藥台_02_藥品圖片02.BackgroundImage = images[1];
+                        }
 
                         this.rJ_Lable_領藥台_02_領藥住院號.Text = 領藥住院號;
                         this.rJ_Lable_領藥台_02_病歷號.Text = 病歷號;

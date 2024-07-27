@@ -21,6 +21,8 @@ namespace HIS_DB_Lib
         藥名,
         [Description("副檔名,VARCHAR,20,NONE")]
         副檔名,
+        [Description("副檔名1,VARCHAR,20,NONE")]
+        副檔名1,
         [Description("pic_base64,LONGTEXT,50,NONE")]
         pic_base64,
         [Description("pic1_base64,LONGTEXT,50,NONE")]
@@ -48,6 +50,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("extension")]
         public string 副檔名 { get; set; }
+        /// <summary>
+        /// 副檔名
+        /// </summary>
+        [JsonPropertyName("extension1")]
+        public string 副檔名1 { get; set; }
         /// <summary>
         /// pic_base64
         /// </summary>

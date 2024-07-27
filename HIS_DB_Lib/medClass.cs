@@ -199,6 +199,12 @@ namespace HIS_DB_Lib
         public string 圖片網址 { get; set; }
 
         /// <summary>
+        /// 圖片網址。
+        /// </summary>
+        [JsonPropertyName("PIC1_URL")]
+        public string 圖片網址1 { get; set; }
+
+        /// <summary>
         /// 開檔狀態。
         /// </summary>
         [JsonPropertyName("FILE_STATUS")]
