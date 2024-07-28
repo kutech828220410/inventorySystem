@@ -137,7 +137,6 @@ namespace 癌症自動備藥機暨排程系統
                     {
                         error_msg += $"({藥碼}){藥名},領用:{數量},庫存{庫存}\n";
                     }
-
                 }
 
                 if (error_msg.StringIsEmpty() == false)
@@ -156,6 +155,23 @@ namespace 癌症自動備藥機暨排程系統
                 }
                 Logger.Log($"[備藥清單] 掃描藥盒<{dialog_藥盒掃描.Value}>");
 
+
+                List<object[]> list_藥盒索引 = Main_Form._sqL_DataGridView_藥盒索引.SQL_GetRows((int)enum_drugBoxIndex.barcode, dialog_藥盒掃描.Value, false);
+                if(list_藥盒索引.Count > 0)
+                {
+                    object[] value = list_藥盒索引[0];
+                    value[(int)enum_drugBoxIndex.barcode] = dialog_藥盒掃描.Value;
+                    value[(int)enum_drugBoxIndex.master_GUID] = udnoectc.GUID;
+                    Main_Form._sqL_DataGridView_藥盒索引.SQL_ReplaceExtra(value, false);
+                }
+                else
+                {
+                    object[] value = new object[new enum_drugBoxIndex().GetLength()];
+                    value[(int)enum_drugBoxIndex.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_drugBoxIndex.barcode] = dialog_藥盒掃描.Value;
+                    value[(int)enum_drugBoxIndex.master_GUID] = udnoectc.GUID;
+                    Main_Form._sqL_DataGridView_藥盒索引.SQL_AddRow(value, false);
+                }
 
                 List<udnoectc_orders> list_udnoectc_orders_return = udnoectc.update_udnoectc_orders_comp(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, list_udnoectc_orders_replace, this._login_name);
                 Logger.Log($"[備藥清單] 成功確認備藥<{list_udnoectc_orders_return.Count}>筆");

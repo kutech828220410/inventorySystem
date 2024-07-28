@@ -35,9 +35,10 @@ namespace 癌症自動備藥機暨排程系統
         master_GUID,
 
     }
-
+ 
     public partial class Main_Form : Form
     {
+        static public SQL_DataGridView _sqL_DataGridView_藥盒索引 = null;
         private void Program_藥盒索引_Init()
         {
             Table table = new Table(new enum_drugBoxIndex());
@@ -48,7 +49,7 @@ namespace 癌症自動備藥機暨排程系統
             table.Password = dBConfigClass.DB_Basic.Password;
 
             sqL_DataGridView_藥盒索引.InitEx(table);
-            if(sqL_DataGridView_藥盒索引.SQL_IsTableCreat() == false)
+            if (sqL_DataGridView_藥盒索引.SQL_IsTableCreat() == false)
             {
                 sqL_DataGridView_藥盒索引.SQL_CreateTable();
             }
@@ -56,6 +57,14 @@ namespace 癌症自動備藥機暨排程系統
             {
                 sqL_DataGridView_藥盒索引.SQL_CheckAllColumnName(true);
             }
+            _sqL_DataGridView_藥盒索引 = sqL_DataGridView_藥盒索引;
+
+            sqL_DataGridView_藥盒索引.MouseDown += SqL_DataGridView_藥盒索引_MouseDown;
+        }
+
+        private void SqL_DataGridView_藥盒索引_MouseDown(object sender, MouseEventArgs e)
+        {
+            sqL_DataGridView_藥盒索引.SQL_GetAllRows(true);
         }
     }
 }

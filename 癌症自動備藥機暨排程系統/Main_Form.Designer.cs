@@ -817,6 +817,8 @@ namespace 癌症自動備藥機暨排程系統
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.textBox_自動備藥_密碼 = new System.Windows.Forms.TextBox();
             this.textBox_帳號 = new System.Windows.Forms.TextBox();
+            this.textBox_調配排程_條碼輸入 = new System.Windows.Forms.TextBox();
+            this.button_調配排程_焦點 = new System.Windows.Forms.Button();
             this.plC_ScreenPage_main.SuspendLayout();
             this.登入畫面.SuspendLayout();
             this.panel_登入畫面.SuspendLayout();
@@ -831,6 +833,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel3.SuspendLayout();
             this.調配排程.SuspendLayout();
             this.rJ_Pannel1.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel1.SuspendLayout();
             this.出入庫作業.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -1586,17 +1589,21 @@ namespace 癌症自動備藥機暨排程系統
             // uc_備藥通知內容
             // 
             this.uc_備藥通知內容.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uc_備藥通知內容.Location = new System.Drawing.Point(5, 23);
+            this.uc_備藥通知內容.Location = new System.Drawing.Point(5, 86);
             this.uc_備藥通知內容.Name = "uc_備藥通知內容";
-            this.uc_備藥通知內容.Size = new System.Drawing.Size(1061, 1634);
+            this.uc_備藥通知內容.Size = new System.Drawing.Size(1061, 1571);
             this.uc_備藥通知內容.TabIndex = 9;
             // 
             // panel8
             // 
+            this.panel8.Controls.Add(this.button_調配排程_焦點);
+            this.panel8.Controls.Add(this.textBox_調配排程_條碼輸入);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.ForeColor = System.Drawing.Color.Black;
             this.panel8.Location = new System.Drawing.Point(5, 5);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1061, 18);
+            this.panel8.Padding = new System.Windows.Forms.Padding(5);
+            this.panel8.Size = new System.Drawing.Size(1061, 81);
             this.panel8.TabIndex = 8;
             // 
             // panel1
@@ -21948,6 +21955,28 @@ namespace 癌症自動備藥機暨排程系統
             this.textBox_帳號.Size = new System.Drawing.Size(260, 27);
             this.textBox_帳號.TabIndex = 1;
             // 
+            // textBox_調配排程_條碼輸入
+            // 
+            this.textBox_調配排程_條碼輸入.Dock = System.Windows.Forms.DockStyle.Left;
+            this.textBox_調配排程_條碼輸入.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_調配排程_條碼輸入.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.textBox_調配排程_條碼輸入.Location = new System.Drawing.Point(5, 5);
+            this.textBox_調配排程_條碼輸入.Multiline = true;
+            this.textBox_調配排程_條碼輸入.Name = "textBox_調配排程_條碼輸入";
+            this.textBox_調配排程_條碼輸入.Size = new System.Drawing.Size(171, 71);
+            this.textBox_調配排程_條碼輸入.TabIndex = 16;
+            // 
+            // button_調配排程_焦點
+            // 
+            this.button_調配排程_焦點.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button_調配排程_焦點.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_調配排程_焦點.Location = new System.Drawing.Point(176, 5);
+            this.button_調配排程_焦點.Name = "button_調配排程_焦點";
+            this.button_調配排程_焦點.Size = new System.Drawing.Size(110, 71);
+            this.button_調配排程_焦點.TabIndex = 17;
+            this.button_調配排程_焦點.Text = "焦點";
+            this.button_調配排程_焦點.UseVisualStyleBackColor = true;
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -21979,6 +22008,8 @@ namespace 癌症自動備藥機暨排程系統
             this.panel3.ResumeLayout(false);
             this.調配排程.ResumeLayout(false);
             this.rJ_Pannel1.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.出入庫作業.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
@@ -22888,6 +22919,8 @@ namespace 癌症自動備藥機暨排程系統
         private System.Windows.Forms.TabPage tabPage14;
         private SQLUI.SQL_DataGridView sqL_DataGridView_藥盒索引;
         private MyUI.PLC_RJ_ScreenButton plC_RJ_ScreenButton2;
+        private System.Windows.Forms.Button button_調配排程_焦點;
+        private System.Windows.Forms.TextBox textBox_調配排程_條碼輸入;
     }
 }
 
