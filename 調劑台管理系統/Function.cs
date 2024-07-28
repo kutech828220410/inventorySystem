@@ -57,7 +57,7 @@ namespace 調劑台管理系統
                 if (pictureBox_領藥台_02_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片02.BackgroundImage.Dispose();
                 pictureBox_領藥台_02_藥品圖片02.BackgroundImage = null;
 
-                this.rJ_Lable_領藥台_02_領藥住院號.Text = null;
+                this.rJ_Lable_領藥台_02_領藥住院號.Text = "-------------------------";
                 this.rJ_Lable_領藥台_02_病歷號.Text = "-------------------------";
                 this.rJ_Lable_領藥台_02_藥名.Text = "-------------------------";
                 this.rJ_Lable_領藥台_02_開方時間.Text = "-------------------------";
