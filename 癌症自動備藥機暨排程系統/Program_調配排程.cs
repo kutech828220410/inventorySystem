@@ -56,10 +56,12 @@ namespace 癌症備藥機
         }
         private void TextBox_調配排程_條碼輸入_KeyPress(object sender, KeyPressEventArgs e)
         {
+            bool flag_enter = false;
             try
             {
                 if (e.KeyChar == (char)Keys.Enter)
                 {
+                    flag_enter = true;
                     if (this.textBox_調配排程_條碼輸入.Text.StringIsEmpty())
                     {
                         MyMessageBox.ShowDialog("未輸入條碼資訊");
@@ -91,7 +93,7 @@ namespace 癌症備藥機
             }
             finally
             {
-                this.textBox_調配排程_條碼輸入.Text = "";
+              if(flag_enter)  this.textBox_調配排程_條碼輸入.Text = "";
             }
          
         }
