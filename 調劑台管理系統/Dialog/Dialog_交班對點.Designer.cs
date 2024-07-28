@@ -46,8 +46,8 @@ namespace 調劑台管理系統
             this.stepViewer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.stepViewer.CurrentStep = 0;
             this.stepViewer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.stepViewer.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.stepViewer.LineWidth = 60;
+            this.stepViewer.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.stepViewer.LineWidth = 120;
             this.stepViewer.ListDataSource = null;
             this.stepViewer.Location = new System.Drawing.Point(4, 44);
             this.stepViewer.Margin = new System.Windows.Forms.Padding(4);

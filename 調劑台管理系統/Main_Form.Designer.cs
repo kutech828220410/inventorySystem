@@ -67,6 +67,7 @@
             this.textBox_領藥台_01_帳號 = new MyUI.RJ_TextBox();
             this.textBox_領藥台_01_密碼 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_領藥台_01_登入 = new MyUI.PLC_RJ_Button();
+            this.plC_Button_領藥台_01_領 = new MyUI.PLC_RJ_Button();
             this.plC_Button_領藥台_01_退 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_01_取消作業 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel_領藥台_02 = new MyUI.RJ_Pannel();
@@ -94,8 +95,8 @@
             this.textBox_領藥台_02_帳號 = new MyUI.RJ_TextBox();
             this.textBox_領藥台_02_密碼 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_領藥台_02_登入 = new MyUI.PLC_RJ_Button();
-            this.plC_Button_領藥台_02_退 = new MyUI.PLC_RJ_Button();
             this.plC_Button_領藥台_02_領 = new MyUI.PLC_RJ_Button();
+            this.plC_Button_領藥台_02_退 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_02_取消作業 = new MyUI.PLC_RJ_Button();
             this.panel_領藥台_03_04 = new System.Windows.Forms.Panel();
             this.rJ_Pannel_領藥台_03 = new MyUI.RJ_Pannel();
@@ -107,8 +108,8 @@
             this.textBox_領藥台_03_帳號 = new MyUI.RJ_TextBox();
             this.textBox_領藥台_03_密碼 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_領藥台_03_登入 = new MyUI.PLC_RJ_Button();
-            this.plC_Button_領藥台_03_退 = new MyUI.PLC_RJ_Button();
             this.plC_Button_領藥台_03_領 = new MyUI.PLC_RJ_Button();
+            this.plC_Button_領藥台_03_退 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_03_取消作業 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel_領藥台_04 = new MyUI.RJ_Pannel();
             this.sqL_DataGridView_領藥台_04_領藥內容 = new SQLUI.SQL_DataGridView();
@@ -119,8 +120,8 @@
             this.textBox_領藥台_04_帳號 = new MyUI.RJ_TextBox();
             this.textBox_領藥台_04_密碼 = new MyUI.RJ_TextBox();
             this.plC_RJ_Button_領藥台_04_登入 = new MyUI.PLC_RJ_Button();
-            this.plC_Button_領藥台_04_退 = new MyUI.PLC_RJ_Button();
             this.plC_Button_領藥台_04_領 = new MyUI.PLC_RJ_Button();
+            this.plC_Button_領藥台_04_退 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_領藥台_04_取消作業 = new MyUI.PLC_RJ_Button();
             this.調劑樣式2 = new System.Windows.Forms.TabPage();
             this.rJ_Pannel24 = new MyUI.RJ_Pannel();
@@ -1618,7 +1619,6 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
-            this.plC_Button_領藥台_01_領 = new MyUI.PLC_RJ_Button();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -2689,6 +2689,59 @@
             this.plC_RJ_Button_領藥台_01_登入.顯示 = false;
             this.plC_RJ_Button_領藥台_01_登入.顯示狀態 = false;
             // 
+            // plC_Button_領藥台_01_領
+            // 
+            this.plC_Button_領藥台_01_領.AutoResetState = false;
+            this.plC_Button_領藥台_01_領.BackgroundColor = System.Drawing.Color.Silver;
+            this.plC_Button_領藥台_01_領.Bool = false;
+            this.plC_Button_領藥台_01_領.BorderColor = System.Drawing.Color.Yellow;
+            this.plC_Button_領藥台_01_領.BorderRadius = 20;
+            this.plC_Button_領藥台_01_領.BorderSize = 0;
+            this.plC_Button_領藥台_01_領.but_press = false;
+            this.plC_Button_領藥台_01_領.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_Button_領藥台_01_領.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_Button_領藥台_01_領.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_Button_領藥台_01_領.FlatAppearance.BorderSize = 0;
+            this.plC_Button_領藥台_01_領.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_Button_領藥台_01_領.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_Button_領藥台_01_領.GUID = "";
+            this.plC_Button_領藥台_01_領.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_領藥台_01_領.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_Button_領藥台_01_領.Location = new System.Drawing.Point(581, 3);
+            this.plC_Button_領藥台_01_領.Name = "plC_Button_領藥台_01_領";
+            this.plC_Button_領藥台_01_領.OFF_文字內容 = "領";
+            this.plC_Button_領藥台_01_領.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_Button_領藥台_01_領.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_領藥台_01_領.OFF_背景顏色 = System.Drawing.Color.Silver;
+            this.plC_Button_領藥台_01_領.ON_BorderSize = 0;
+            this.plC_Button_領藥台_01_領.ON_文字內容 = "領";
+            this.plC_Button_領藥台_01_領.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_領藥台_01_領.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_領藥台_01_領.ON_背景顏色 = System.Drawing.Color.Green;
+            this.plC_Button_領藥台_01_領.ProhibitionBorderLineWidth = 1;
+            this.plC_Button_領藥台_01_領.ProhibitionLineWidth = 4;
+            this.plC_Button_領藥台_01_領.ProhibitionSymbolSize = 30;
+            this.plC_Button_領藥台_01_領.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_Button_領藥台_01_領.ShadowSize = 3;
+            this.plC_Button_領藥台_01_領.ShowLoadingForm = false;
+            this.plC_Button_領藥台_01_領.Size = new System.Drawing.Size(74, 70);
+            this.plC_Button_領藥台_01_領.State = false;
+            this.plC_Button_領藥台_01_領.TabIndex = 138;
+            this.plC_Button_領藥台_01_領.Text = "領";
+            this.plC_Button_領藥台_01_領.TextColor = System.Drawing.Color.White;
+            this.plC_Button_領藥台_01_領.TextHeight = 0;
+            this.plC_Button_領藥台_01_領.UseVisualStyleBackColor = false;
+            this.plC_Button_領藥台_01_領.字型鎖住 = false;
+            this.plC_Button_領藥台_01_領.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_Button_領藥台_01_領.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_領藥台_01_領.文字鎖住 = false;
+            this.plC_Button_領藥台_01_領.背景圖片 = null;
+            this.plC_Button_領藥台_01_領.讀取位元反向 = false;
+            this.plC_Button_領藥台_01_領.讀寫鎖住 = false;
+            this.plC_Button_領藥台_01_領.音效 = true;
+            this.plC_Button_領藥台_01_領.顯示 = false;
+            this.plC_Button_領藥台_01_領.顯示狀態 = false;
+            // 
             // plC_Button_領藥台_01_退
             // 
             this.plC_Button_領藥台_01_退.AutoResetState = false;
@@ -3274,59 +3327,6 @@
             this.plC_RJ_Button_領藥台_02_登入.顯示 = false;
             this.plC_RJ_Button_領藥台_02_登入.顯示狀態 = false;
             // 
-            // plC_Button_領藥台_02_退
-            // 
-            this.plC_Button_領藥台_02_退.AutoResetState = false;
-            this.plC_Button_領藥台_02_退.BackgroundColor = System.Drawing.Color.Silver;
-            this.plC_Button_領藥台_02_退.Bool = false;
-            this.plC_Button_領藥台_02_退.BorderColor = System.Drawing.Color.Yellow;
-            this.plC_Button_領藥台_02_退.BorderRadius = 20;
-            this.plC_Button_領藥台_02_退.BorderSize = 0;
-            this.plC_Button_領藥台_02_退.but_press = false;
-            this.plC_Button_領藥台_02_退.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_Button_領藥台_02_退.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_Button_領藥台_02_退.Dock = System.Windows.Forms.DockStyle.Right;
-            this.plC_Button_領藥台_02_退.FlatAppearance.BorderSize = 0;
-            this.plC_Button_領藥台_02_退.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_Button_領藥台_02_退.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
-            this.plC_Button_領藥台_02_退.GUID = "";
-            this.plC_Button_領藥台_02_退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_領藥台_02_退.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_Button_領藥台_02_退.Location = new System.Drawing.Point(670, 3);
-            this.plC_Button_領藥台_02_退.Name = "plC_Button_領藥台_02_退";
-            this.plC_Button_領藥台_02_退.OFF_文字內容 = "退";
-            this.plC_Button_領藥台_02_退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
-            this.plC_Button_領藥台_02_退.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_領藥台_02_退.OFF_背景顏色 = System.Drawing.Color.Silver;
-            this.plC_Button_領藥台_02_退.ON_BorderSize = 0;
-            this.plC_Button_領藥台_02_退.ON_文字內容 = "退";
-            this.plC_Button_領藥台_02_退.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_領藥台_02_退.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_領藥台_02_退.ON_背景顏色 = System.Drawing.Color.Red;
-            this.plC_Button_領藥台_02_退.ProhibitionBorderLineWidth = 1;
-            this.plC_Button_領藥台_02_退.ProhibitionLineWidth = 4;
-            this.plC_Button_領藥台_02_退.ProhibitionSymbolSize = 30;
-            this.plC_Button_領藥台_02_退.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_Button_領藥台_02_退.ShadowSize = 3;
-            this.plC_Button_領藥台_02_退.ShowLoadingForm = false;
-            this.plC_Button_領藥台_02_退.Size = new System.Drawing.Size(74, 70);
-            this.plC_Button_領藥台_02_退.State = false;
-            this.plC_Button_領藥台_02_退.TabIndex = 139;
-            this.plC_Button_領藥台_02_退.Text = "退";
-            this.plC_Button_領藥台_02_退.TextColor = System.Drawing.Color.White;
-            this.plC_Button_領藥台_02_退.TextHeight = 0;
-            this.plC_Button_領藥台_02_退.UseVisualStyleBackColor = false;
-            this.plC_Button_領藥台_02_退.字型鎖住 = false;
-            this.plC_Button_領藥台_02_退.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_Button_領藥台_02_退.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_領藥台_02_退.文字鎖住 = false;
-            this.plC_Button_領藥台_02_退.背景圖片 = null;
-            this.plC_Button_領藥台_02_退.讀取位元反向 = false;
-            this.plC_Button_領藥台_02_退.讀寫鎖住 = false;
-            this.plC_Button_領藥台_02_退.音效 = true;
-            this.plC_Button_領藥台_02_退.顯示 = false;
-            this.plC_Button_領藥台_02_退.顯示狀態 = false;
-            // 
             // plC_Button_領藥台_02_領
             // 
             this.plC_Button_領藥台_02_領.AutoResetState = false;
@@ -3379,6 +3379,59 @@
             this.plC_Button_領藥台_02_領.音效 = true;
             this.plC_Button_領藥台_02_領.顯示 = false;
             this.plC_Button_領藥台_02_領.顯示狀態 = false;
+            // 
+            // plC_Button_領藥台_02_退
+            // 
+            this.plC_Button_領藥台_02_退.AutoResetState = false;
+            this.plC_Button_領藥台_02_退.BackgroundColor = System.Drawing.Color.Silver;
+            this.plC_Button_領藥台_02_退.Bool = false;
+            this.plC_Button_領藥台_02_退.BorderColor = System.Drawing.Color.Yellow;
+            this.plC_Button_領藥台_02_退.BorderRadius = 20;
+            this.plC_Button_領藥台_02_退.BorderSize = 0;
+            this.plC_Button_領藥台_02_退.but_press = false;
+            this.plC_Button_領藥台_02_退.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_Button_領藥台_02_退.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_Button_領藥台_02_退.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_Button_領藥台_02_退.FlatAppearance.BorderSize = 0;
+            this.plC_Button_領藥台_02_退.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_Button_領藥台_02_退.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_Button_領藥台_02_退.GUID = "";
+            this.plC_Button_領藥台_02_退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_領藥台_02_退.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_Button_領藥台_02_退.Location = new System.Drawing.Point(670, 3);
+            this.plC_Button_領藥台_02_退.Name = "plC_Button_領藥台_02_退";
+            this.plC_Button_領藥台_02_退.OFF_文字內容 = "退";
+            this.plC_Button_領藥台_02_退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_Button_領藥台_02_退.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_領藥台_02_退.OFF_背景顏色 = System.Drawing.Color.Silver;
+            this.plC_Button_領藥台_02_退.ON_BorderSize = 0;
+            this.plC_Button_領藥台_02_退.ON_文字內容 = "退";
+            this.plC_Button_領藥台_02_退.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_領藥台_02_退.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_領藥台_02_退.ON_背景顏色 = System.Drawing.Color.Red;
+            this.plC_Button_領藥台_02_退.ProhibitionBorderLineWidth = 1;
+            this.plC_Button_領藥台_02_退.ProhibitionLineWidth = 4;
+            this.plC_Button_領藥台_02_退.ProhibitionSymbolSize = 30;
+            this.plC_Button_領藥台_02_退.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_Button_領藥台_02_退.ShadowSize = 3;
+            this.plC_Button_領藥台_02_退.ShowLoadingForm = false;
+            this.plC_Button_領藥台_02_退.Size = new System.Drawing.Size(74, 70);
+            this.plC_Button_領藥台_02_退.State = false;
+            this.plC_Button_領藥台_02_退.TabIndex = 139;
+            this.plC_Button_領藥台_02_退.Text = "退";
+            this.plC_Button_領藥台_02_退.TextColor = System.Drawing.Color.White;
+            this.plC_Button_領藥台_02_退.TextHeight = 0;
+            this.plC_Button_領藥台_02_退.UseVisualStyleBackColor = false;
+            this.plC_Button_領藥台_02_退.字型鎖住 = false;
+            this.plC_Button_領藥台_02_退.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_Button_領藥台_02_退.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_領藥台_02_退.文字鎖住 = false;
+            this.plC_Button_領藥台_02_退.背景圖片 = null;
+            this.plC_Button_領藥台_02_退.讀取位元反向 = false;
+            this.plC_Button_領藥台_02_退.讀寫鎖住 = false;
+            this.plC_Button_領藥台_02_退.音效 = true;
+            this.plC_Button_領藥台_02_退.顯示 = false;
+            this.plC_Button_領藥台_02_退.顯示狀態 = false;
             // 
             // plC_RJ_Button_領藥台_02_取消作業
             // 
@@ -3672,59 +3725,6 @@
             this.plC_RJ_Button_領藥台_03_登入.顯示 = false;
             this.plC_RJ_Button_領藥台_03_登入.顯示狀態 = false;
             // 
-            // plC_Button_領藥台_03_退
-            // 
-            this.plC_Button_領藥台_03_退.AutoResetState = false;
-            this.plC_Button_領藥台_03_退.BackgroundColor = System.Drawing.Color.Silver;
-            this.plC_Button_領藥台_03_退.Bool = false;
-            this.plC_Button_領藥台_03_退.BorderColor = System.Drawing.Color.Yellow;
-            this.plC_Button_領藥台_03_退.BorderRadius = 20;
-            this.plC_Button_領藥台_03_退.BorderSize = 0;
-            this.plC_Button_領藥台_03_退.but_press = false;
-            this.plC_Button_領藥台_03_退.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_Button_領藥台_03_退.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_Button_領藥台_03_退.Dock = System.Windows.Forms.DockStyle.Right;
-            this.plC_Button_領藥台_03_退.FlatAppearance.BorderSize = 0;
-            this.plC_Button_領藥台_03_退.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_Button_領藥台_03_退.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
-            this.plC_Button_領藥台_03_退.GUID = "";
-            this.plC_Button_領藥台_03_退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_領藥台_03_退.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_Button_領藥台_03_退.Location = new System.Drawing.Point(655, 3);
-            this.plC_Button_領藥台_03_退.Name = "plC_Button_領藥台_03_退";
-            this.plC_Button_領藥台_03_退.OFF_文字內容 = "退";
-            this.plC_Button_領藥台_03_退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
-            this.plC_Button_領藥台_03_退.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_領藥台_03_退.OFF_背景顏色 = System.Drawing.Color.Silver;
-            this.plC_Button_領藥台_03_退.ON_BorderSize = 0;
-            this.plC_Button_領藥台_03_退.ON_文字內容 = "退";
-            this.plC_Button_領藥台_03_退.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_領藥台_03_退.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_領藥台_03_退.ON_背景顏色 = System.Drawing.Color.Red;
-            this.plC_Button_領藥台_03_退.ProhibitionBorderLineWidth = 1;
-            this.plC_Button_領藥台_03_退.ProhibitionLineWidth = 4;
-            this.plC_Button_領藥台_03_退.ProhibitionSymbolSize = 30;
-            this.plC_Button_領藥台_03_退.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_Button_領藥台_03_退.ShadowSize = 3;
-            this.plC_Button_領藥台_03_退.ShowLoadingForm = false;
-            this.plC_Button_領藥台_03_退.Size = new System.Drawing.Size(74, 70);
-            this.plC_Button_領藥台_03_退.State = false;
-            this.plC_Button_領藥台_03_退.TabIndex = 139;
-            this.plC_Button_領藥台_03_退.Text = "退";
-            this.plC_Button_領藥台_03_退.TextColor = System.Drawing.Color.White;
-            this.plC_Button_領藥台_03_退.TextHeight = 0;
-            this.plC_Button_領藥台_03_退.UseVisualStyleBackColor = false;
-            this.plC_Button_領藥台_03_退.字型鎖住 = false;
-            this.plC_Button_領藥台_03_退.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_Button_領藥台_03_退.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_領藥台_03_退.文字鎖住 = false;
-            this.plC_Button_領藥台_03_退.背景圖片 = null;
-            this.plC_Button_領藥台_03_退.讀取位元反向 = false;
-            this.plC_Button_領藥台_03_退.讀寫鎖住 = false;
-            this.plC_Button_領藥台_03_退.音效 = true;
-            this.plC_Button_領藥台_03_退.顯示 = false;
-            this.plC_Button_領藥台_03_退.顯示狀態 = false;
-            // 
             // plC_Button_領藥台_03_領
             // 
             this.plC_Button_領藥台_03_領.AutoResetState = false;
@@ -3777,6 +3777,59 @@
             this.plC_Button_領藥台_03_領.音效 = true;
             this.plC_Button_領藥台_03_領.顯示 = false;
             this.plC_Button_領藥台_03_領.顯示狀態 = false;
+            // 
+            // plC_Button_領藥台_03_退
+            // 
+            this.plC_Button_領藥台_03_退.AutoResetState = false;
+            this.plC_Button_領藥台_03_退.BackgroundColor = System.Drawing.Color.Silver;
+            this.plC_Button_領藥台_03_退.Bool = false;
+            this.plC_Button_領藥台_03_退.BorderColor = System.Drawing.Color.Yellow;
+            this.plC_Button_領藥台_03_退.BorderRadius = 20;
+            this.plC_Button_領藥台_03_退.BorderSize = 0;
+            this.plC_Button_領藥台_03_退.but_press = false;
+            this.plC_Button_領藥台_03_退.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_Button_領藥台_03_退.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_Button_領藥台_03_退.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_Button_領藥台_03_退.FlatAppearance.BorderSize = 0;
+            this.plC_Button_領藥台_03_退.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_Button_領藥台_03_退.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_Button_領藥台_03_退.GUID = "";
+            this.plC_Button_領藥台_03_退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_領藥台_03_退.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_Button_領藥台_03_退.Location = new System.Drawing.Point(655, 3);
+            this.plC_Button_領藥台_03_退.Name = "plC_Button_領藥台_03_退";
+            this.plC_Button_領藥台_03_退.OFF_文字內容 = "退";
+            this.plC_Button_領藥台_03_退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_Button_領藥台_03_退.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_領藥台_03_退.OFF_背景顏色 = System.Drawing.Color.Silver;
+            this.plC_Button_領藥台_03_退.ON_BorderSize = 0;
+            this.plC_Button_領藥台_03_退.ON_文字內容 = "退";
+            this.plC_Button_領藥台_03_退.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_領藥台_03_退.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_領藥台_03_退.ON_背景顏色 = System.Drawing.Color.Red;
+            this.plC_Button_領藥台_03_退.ProhibitionBorderLineWidth = 1;
+            this.plC_Button_領藥台_03_退.ProhibitionLineWidth = 4;
+            this.plC_Button_領藥台_03_退.ProhibitionSymbolSize = 30;
+            this.plC_Button_領藥台_03_退.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_Button_領藥台_03_退.ShadowSize = 3;
+            this.plC_Button_領藥台_03_退.ShowLoadingForm = false;
+            this.plC_Button_領藥台_03_退.Size = new System.Drawing.Size(74, 70);
+            this.plC_Button_領藥台_03_退.State = false;
+            this.plC_Button_領藥台_03_退.TabIndex = 139;
+            this.plC_Button_領藥台_03_退.Text = "退";
+            this.plC_Button_領藥台_03_退.TextColor = System.Drawing.Color.White;
+            this.plC_Button_領藥台_03_退.TextHeight = 0;
+            this.plC_Button_領藥台_03_退.UseVisualStyleBackColor = false;
+            this.plC_Button_領藥台_03_退.字型鎖住 = false;
+            this.plC_Button_領藥台_03_退.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_Button_領藥台_03_退.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_領藥台_03_退.文字鎖住 = false;
+            this.plC_Button_領藥台_03_退.背景圖片 = null;
+            this.plC_Button_領藥台_03_退.讀取位元反向 = false;
+            this.plC_Button_領藥台_03_退.讀寫鎖住 = false;
+            this.plC_Button_領藥台_03_退.音效 = true;
+            this.plC_Button_領藥台_03_退.顯示 = false;
+            this.plC_Button_領藥台_03_退.顯示狀態 = false;
             // 
             // plC_RJ_Button_領藥台_03_取消作業
             // 
@@ -4060,59 +4113,6 @@
             this.plC_RJ_Button_領藥台_04_登入.顯示 = false;
             this.plC_RJ_Button_領藥台_04_登入.顯示狀態 = false;
             // 
-            // plC_Button_領藥台_04_退
-            // 
-            this.plC_Button_領藥台_04_退.AutoResetState = false;
-            this.plC_Button_領藥台_04_退.BackgroundColor = System.Drawing.Color.Silver;
-            this.plC_Button_領藥台_04_退.Bool = false;
-            this.plC_Button_領藥台_04_退.BorderColor = System.Drawing.Color.Yellow;
-            this.plC_Button_領藥台_04_退.BorderRadius = 20;
-            this.plC_Button_領藥台_04_退.BorderSize = 0;
-            this.plC_Button_領藥台_04_退.but_press = false;
-            this.plC_Button_領藥台_04_退.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_Button_領藥台_04_退.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_Button_領藥台_04_退.Dock = System.Windows.Forms.DockStyle.Right;
-            this.plC_Button_領藥台_04_退.FlatAppearance.BorderSize = 0;
-            this.plC_Button_領藥台_04_退.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_Button_領藥台_04_退.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
-            this.plC_Button_領藥台_04_退.GUID = "";
-            this.plC_Button_領藥台_04_退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_領藥台_04_退.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_Button_領藥台_04_退.Location = new System.Drawing.Point(670, 3);
-            this.plC_Button_領藥台_04_退.Name = "plC_Button_領藥台_04_退";
-            this.plC_Button_領藥台_04_退.OFF_文字內容 = "退";
-            this.plC_Button_領藥台_04_退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
-            this.plC_Button_領藥台_04_退.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_領藥台_04_退.OFF_背景顏色 = System.Drawing.Color.Silver;
-            this.plC_Button_領藥台_04_退.ON_BorderSize = 0;
-            this.plC_Button_領藥台_04_退.ON_文字內容 = "退";
-            this.plC_Button_領藥台_04_退.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_領藥台_04_退.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_領藥台_04_退.ON_背景顏色 = System.Drawing.Color.Red;
-            this.plC_Button_領藥台_04_退.ProhibitionBorderLineWidth = 1;
-            this.plC_Button_領藥台_04_退.ProhibitionLineWidth = 4;
-            this.plC_Button_領藥台_04_退.ProhibitionSymbolSize = 30;
-            this.plC_Button_領藥台_04_退.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_Button_領藥台_04_退.ShadowSize = 3;
-            this.plC_Button_領藥台_04_退.ShowLoadingForm = false;
-            this.plC_Button_領藥台_04_退.Size = new System.Drawing.Size(74, 70);
-            this.plC_Button_領藥台_04_退.State = false;
-            this.plC_Button_領藥台_04_退.TabIndex = 139;
-            this.plC_Button_領藥台_04_退.Text = "退";
-            this.plC_Button_領藥台_04_退.TextColor = System.Drawing.Color.White;
-            this.plC_Button_領藥台_04_退.TextHeight = 0;
-            this.plC_Button_領藥台_04_退.UseVisualStyleBackColor = false;
-            this.plC_Button_領藥台_04_退.字型鎖住 = false;
-            this.plC_Button_領藥台_04_退.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_Button_領藥台_04_退.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_領藥台_04_退.文字鎖住 = false;
-            this.plC_Button_領藥台_04_退.背景圖片 = null;
-            this.plC_Button_領藥台_04_退.讀取位元反向 = false;
-            this.plC_Button_領藥台_04_退.讀寫鎖住 = false;
-            this.plC_Button_領藥台_04_退.音效 = true;
-            this.plC_Button_領藥台_04_退.顯示 = false;
-            this.plC_Button_領藥台_04_退.顯示狀態 = false;
-            // 
             // plC_Button_領藥台_04_領
             // 
             this.plC_Button_領藥台_04_領.AutoResetState = false;
@@ -4165,6 +4165,59 @@
             this.plC_Button_領藥台_04_領.音效 = true;
             this.plC_Button_領藥台_04_領.顯示 = false;
             this.plC_Button_領藥台_04_領.顯示狀態 = false;
+            // 
+            // plC_Button_領藥台_04_退
+            // 
+            this.plC_Button_領藥台_04_退.AutoResetState = false;
+            this.plC_Button_領藥台_04_退.BackgroundColor = System.Drawing.Color.Silver;
+            this.plC_Button_領藥台_04_退.Bool = false;
+            this.plC_Button_領藥台_04_退.BorderColor = System.Drawing.Color.Yellow;
+            this.plC_Button_領藥台_04_退.BorderRadius = 20;
+            this.plC_Button_領藥台_04_退.BorderSize = 0;
+            this.plC_Button_領藥台_04_退.but_press = false;
+            this.plC_Button_領藥台_04_退.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_Button_領藥台_04_退.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_Button_領藥台_04_退.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_Button_領藥台_04_退.FlatAppearance.BorderSize = 0;
+            this.plC_Button_領藥台_04_退.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_Button_領藥台_04_退.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_Button_領藥台_04_退.GUID = "";
+            this.plC_Button_領藥台_04_退.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_Button_領藥台_04_退.Image_padding = new System.Windows.Forms.Padding(0);
+            this.plC_Button_領藥台_04_退.Location = new System.Drawing.Point(670, 3);
+            this.plC_Button_領藥台_04_退.Name = "plC_Button_領藥台_04_退";
+            this.plC_Button_領藥台_04_退.OFF_文字內容 = "退";
+            this.plC_Button_領藥台_04_退.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
+            this.plC_Button_領藥台_04_退.OFF_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_領藥台_04_退.OFF_背景顏色 = System.Drawing.Color.Silver;
+            this.plC_Button_領藥台_04_退.ON_BorderSize = 0;
+            this.plC_Button_領藥台_04_退.ON_文字內容 = "退";
+            this.plC_Button_領藥台_04_退.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.plC_Button_領藥台_04_退.ON_文字顏色 = System.Drawing.Color.White;
+            this.plC_Button_領藥台_04_退.ON_背景顏色 = System.Drawing.Color.Red;
+            this.plC_Button_領藥台_04_退.ProhibitionBorderLineWidth = 1;
+            this.plC_Button_領藥台_04_退.ProhibitionLineWidth = 4;
+            this.plC_Button_領藥台_04_退.ProhibitionSymbolSize = 30;
+            this.plC_Button_領藥台_04_退.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_Button_領藥台_04_退.ShadowSize = 3;
+            this.plC_Button_領藥台_04_退.ShowLoadingForm = false;
+            this.plC_Button_領藥台_04_退.Size = new System.Drawing.Size(74, 70);
+            this.plC_Button_領藥台_04_退.State = false;
+            this.plC_Button_領藥台_04_退.TabIndex = 139;
+            this.plC_Button_領藥台_04_退.Text = "退";
+            this.plC_Button_領藥台_04_退.TextColor = System.Drawing.Color.White;
+            this.plC_Button_領藥台_04_退.TextHeight = 0;
+            this.plC_Button_領藥台_04_退.UseVisualStyleBackColor = false;
+            this.plC_Button_領藥台_04_退.字型鎖住 = false;
+            this.plC_Button_領藥台_04_退.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
+            this.plC_Button_領藥台_04_退.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_Button_領藥台_04_退.文字鎖住 = false;
+            this.plC_Button_領藥台_04_退.背景圖片 = null;
+            this.plC_Button_領藥台_04_退.讀取位元反向 = false;
+            this.plC_Button_領藥台_04_退.讀寫鎖住 = false;
+            this.plC_Button_領藥台_04_退.音效 = true;
+            this.plC_Button_領藥台_04_退.顯示 = false;
+            this.plC_Button_領藥台_04_退.顯示狀態 = false;
             // 
             // plC_RJ_Button_領藥台_04_取消作業
             // 
@@ -4306,7 +4359,6 @@
             this.plC_RJ_Button_交班對點.TextHeight = 35;
             this.plC_RJ_Button_交班對點.Texts = "交班對點";
             this.plC_RJ_Button_交班對點.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_交班對點.Visible = false;
             this.plC_RJ_Button_交班對點.字型鎖住 = false;
             this.plC_RJ_Button_交班對點.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_交班對點.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
@@ -44774,59 +44826,6 @@
             this.plC_RJ_ScreenButton143.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
-            // 
-            // plC_Button_領藥台_01_領
-            // 
-            this.plC_Button_領藥台_01_領.AutoResetState = false;
-            this.plC_Button_領藥台_01_領.BackgroundColor = System.Drawing.Color.Silver;
-            this.plC_Button_領藥台_01_領.Bool = false;
-            this.plC_Button_領藥台_01_領.BorderColor = System.Drawing.Color.Yellow;
-            this.plC_Button_領藥台_01_領.BorderRadius = 20;
-            this.plC_Button_領藥台_01_領.BorderSize = 0;
-            this.plC_Button_領藥台_01_領.but_press = false;
-            this.plC_Button_領藥台_01_領.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
-            this.plC_Button_領藥台_01_領.DisenableColor = System.Drawing.Color.Gray;
-            this.plC_Button_領藥台_01_領.Dock = System.Windows.Forms.DockStyle.Right;
-            this.plC_Button_領藥台_01_領.FlatAppearance.BorderSize = 0;
-            this.plC_Button_領藥台_01_領.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.plC_Button_領藥台_01_領.Font = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
-            this.plC_Button_領藥台_01_領.GUID = "";
-            this.plC_Button_領藥台_01_領.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
-            this.plC_Button_領藥台_01_領.Image_padding = new System.Windows.Forms.Padding(0);
-            this.plC_Button_領藥台_01_領.Location = new System.Drawing.Point(581, 3);
-            this.plC_Button_領藥台_01_領.Name = "plC_Button_領藥台_01_領";
-            this.plC_Button_領藥台_01_領.OFF_文字內容 = "領";
-            this.plC_Button_領藥台_01_領.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold);
-            this.plC_Button_領藥台_01_領.OFF_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_領藥台_01_領.OFF_背景顏色 = System.Drawing.Color.Silver;
-            this.plC_Button_領藥台_01_領.ON_BorderSize = 0;
-            this.plC_Button_領藥台_01_領.ON_文字內容 = "領";
-            this.plC_Button_領藥台_01_領.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.plC_Button_領藥台_01_領.ON_文字顏色 = System.Drawing.Color.White;
-            this.plC_Button_領藥台_01_領.ON_背景顏色 = System.Drawing.Color.Green;
-            this.plC_Button_領藥台_01_領.ProhibitionBorderLineWidth = 1;
-            this.plC_Button_領藥台_01_領.ProhibitionLineWidth = 4;
-            this.plC_Button_領藥台_01_領.ProhibitionSymbolSize = 30;
-            this.plC_Button_領藥台_01_領.ShadowColor = System.Drawing.Color.DimGray;
-            this.plC_Button_領藥台_01_領.ShadowSize = 3;
-            this.plC_Button_領藥台_01_領.ShowLoadingForm = false;
-            this.plC_Button_領藥台_01_領.Size = new System.Drawing.Size(74, 70);
-            this.plC_Button_領藥台_01_領.State = false;
-            this.plC_Button_領藥台_01_領.TabIndex = 138;
-            this.plC_Button_領藥台_01_領.Text = "領";
-            this.plC_Button_領藥台_01_領.TextColor = System.Drawing.Color.White;
-            this.plC_Button_領藥台_01_領.TextHeight = 0;
-            this.plC_Button_領藥台_01_領.UseVisualStyleBackColor = false;
-            this.plC_Button_領藥台_01_領.字型鎖住 = false;
-            this.plC_Button_領藥台_01_領.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.交替型;
-            this.plC_Button_領藥台_01_領.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
-            this.plC_Button_領藥台_01_領.文字鎖住 = false;
-            this.plC_Button_領藥台_01_領.背景圖片 = null;
-            this.plC_Button_領藥台_01_領.讀取位元反向 = false;
-            this.plC_Button_領藥台_01_領.讀寫鎖住 = false;
-            this.plC_Button_領藥台_01_領.音效 = true;
-            this.plC_Button_領藥台_01_領.顯示 = false;
-            this.plC_Button_領藥台_01_領.顯示狀態 = false;
             // 
             // Main_Form
             // 
