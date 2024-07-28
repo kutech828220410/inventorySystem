@@ -56,32 +56,44 @@ namespace 癌症備藥機
         }
         private void TextBox_調配排程_條碼輸入_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+            try
             {
-                if (this.textBox_調配排程_條碼輸入.Text.StringIsEmpty())
+                if (e.KeyChar == (char)Keys.Enter)
                 {
-                    MyMessageBox.ShowDialog("未輸入條碼資訊");
-                    return;
+                    if (this.textBox_調配排程_條碼輸入.Text.StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("未輸入條碼資訊");
+                        return;
+                    }
+                    string barcode = this.textBox_調配排程_條碼輸入.Text;
+                    barcode = barcode.Replace("\n", "");
+                    barcode = barcode.Replace("\r", "");
+                    List<object[]> list_藥盒索引 = Main_Form._sqL_DataGridView_藥盒索引.SQL_GetRows((int)enum_drugBoxIndex.barcode, barcode, false);
+                    if (list_藥盒索引.Count == 0)
+                    {
+                        MyMessageBox.ShowDialog("找無藥盒索引");
+                        return;
+                    }
+                    string GUID = list_藥盒索引[0][(int)enum_drugBoxIndex.master_GUID].ObjectToString();
+                    udnoectc udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, GUID);
+                    if (udnoectc == null)
+                    {
+                        MyMessageBox.ShowDialog("找無醫令處方");
+                        return;
+                    }
+                    uc_備藥通知內容.Init(udnoectc, 登入者名稱, true);
+
                 }
-                string barcode = this.textBox_調配排程_條碼輸入.Text;
-                barcode = barcode.Replace("\n", "");
-                barcode = barcode.Replace("\r", "");
-                List<object[]> list_藥盒索引 = Main_Form._sqL_DataGridView_藥盒索引.SQL_GetRows((int)enum_drugBoxIndex.barcode, barcode, false);
-                if(list_藥盒索引.Count == 0)
-                {
-                    MyMessageBox.ShowDialog("找無藥盒索引");
-                    return;
-                }
-                string GUID = list_藥盒索引[0][(int)enum_drugBoxIndex.master_GUID].ObjectToString();
-                udnoectc udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, GUID);
-                if(udnoectc == null)
-                {
-                    MyMessageBox.ShowDialog("找無醫令處方");
-                    return;
-                }
-                uc_備藥通知內容.Init(udnoectc, 登入者名稱, true);
+            }
+            catch
+            {
 
             }
+            finally
+            {
+                this.textBox_調配排程_條碼輸入.Text = "";
+            }
+         
         }
         private void Button_調配排程_焦點_Click(object sender, EventArgs e)
         {
