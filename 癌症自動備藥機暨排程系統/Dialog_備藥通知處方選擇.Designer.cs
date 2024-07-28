@@ -1,5 +1,5 @@
 ﻿
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     partial class Dialog_備藥通知處方選擇
     {
@@ -34,7 +34,7 @@ namespace 癌症自動備藥機暨排程系統
             this.dateTimeIntervelPicker_備藥通知時間範圍 = new MyUI.DateTimeIntervelPicker();
             this.plC_RJ_Button_返回 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_確認 = new MyUI.PLC_RJ_Button();
-            this.uc_備藥通知處方 = new 癌症自動備藥機暨排程系統.uc_備藥通知處方();
+            this.uc_備藥通知處方 = new 癌症備藥機.uc_備藥通知處方();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +51,7 @@ namespace 癌症自動備藥機暨排程系統
             // 
             // button_重新整理
             // 
-            this.button_重新整理.BackgroundImage = global::癌症自動備藥機暨排程系統.Properties.Resources._568370;
+            this.button_重新整理.BackgroundImage = global::癌症備藥機.Properties.Resources._568370;
             this.button_重新整理.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_重新整理.Location = new System.Drawing.Point(346, 14);
             this.button_重新整理.Name = "button_重新整理";

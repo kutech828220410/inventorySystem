@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Form_buf : Form
     {

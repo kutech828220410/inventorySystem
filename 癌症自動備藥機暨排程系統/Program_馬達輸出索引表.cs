@@ -23,7 +23,7 @@ using MyOffice;
 using HIS_DB_Lib;
 using DeltaMotor485;
 using H_Pannel_lib;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public enum enum_CMPM_StorageConfig_匯出
     {

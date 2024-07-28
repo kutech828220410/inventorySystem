@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using HIS_DB_Lib;
 using Basic;
 using MyUI;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Dialog_條碼管理 : MyDialog
     {

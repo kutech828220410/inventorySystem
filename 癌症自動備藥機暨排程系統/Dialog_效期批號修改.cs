@@ -12,7 +12,7 @@ using Basic;
 using MyUI;
 using H_Pannel_lib;
 using SQLUI;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Dialog_效期批號修改 : MyDialog
     {

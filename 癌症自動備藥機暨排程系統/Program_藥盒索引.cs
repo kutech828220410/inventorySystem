@@ -22,7 +22,7 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     [EnumDescription("drugBoxIndex")]
     public enum enum_drugBoxIndex

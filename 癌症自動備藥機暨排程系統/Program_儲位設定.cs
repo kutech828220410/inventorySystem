@@ -22,7 +22,7 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Main_Form : Form
     {

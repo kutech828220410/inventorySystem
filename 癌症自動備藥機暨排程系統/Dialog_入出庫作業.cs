@@ -13,7 +13,7 @@ using MyUI;
 using SQLUI;
 using DrawingClass;
 using H_Pannel_lib;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Dialog_入出庫作業 : MyDialog
     {
