@@ -37,7 +37,7 @@ namespace 癌症自動備藥機暨排程系統
             異動量,
             Value,
         }
-        static private List<Storage> Function_取得本地儲位()
+        static public List<Device> Function_取得本地儲位()
         {
             List<Task> tasks = new List<Task>();
 
@@ -52,7 +52,12 @@ namespace 癌症自動備藥機暨排程系統
             })));
 
             Task.WhenAll(tasks).Wait();
-            return List_EPD266_本地資料;
+            List<Device> devices = new List<Device>();
+            devices.LockAdd(List_EPD266_本地資料.GetAllDevice());
+            devices.LockAdd(List_RowsLED_本地資料.GetAllDevice());
+
+
+            return devices;
         }
         static public int Function_從SQL取得庫存(string 藥品碼)
         {
@@ -77,9 +82,16 @@ namespace 癌症自動備藥機暨排程系統
         {
             List<object> list_value = new List<object>();
             List<Storage> storages = List_EPD266_本地資料.SortByCode(藥品碼);
+            List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortByCode(藥品碼);
 
+     
 
-
+            for (int i = 0; i < rowsDevices.Count; i++)
+            {
+                RowsDevice rowsDevice = _rowsLEDUI.SQL_GetRowsDevice(rowsDevices[i]);
+                List_RowsLED_本地資料.Add_NewRowsLED(rowsDevice);
+                list_value.Add(rowsDevice);
+            }
             for (int i = 0; i < storages.Count; i++)
             {
                 Storage storage = _storageUI_EPD_266.SQL_GetStorage(storages[i]);
@@ -199,7 +211,11 @@ namespace 癌症自動備藥機暨排程系統
         {
             List<object> list_value = new List<object>();
             List<Storage> storages = List_EPD266_本地資料.SortByCode(藥品碼);
-          
+            List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortByCode(藥品碼);
+            for (int i = 0; i < rowsDevices.Count; i++)
+            {
+                list_value.Add(rowsDevices[i]);
+            }
             for (int i = 0; i < storages.Count; i++)
             {
                 list_value.Add(storages[i]);
@@ -254,7 +270,7 @@ namespace 癌症自動備藥機暨排程系統
             List<medClass> medClasses = Function_取得藥檔資料();
             List<medClass> medClasses_buf = new List<medClass>();
             List<medClass> medClasses_result = new List<medClass>();
-            List<Storage> storages = Function_取得本地儲位();
+            List<Device> storages = Function_取得本地儲位();
             storages.Sort(new Icp_Storage());
             List<string> codes = (from temp in storages
                                   select temp.Code).Distinct().ToList();
@@ -317,9 +333,9 @@ namespace 癌症自動備藥機暨排程系統
         }
     }
 
-    public class Icp_Storage : IComparer<Storage>
+    public class Icp_Storage : IComparer<Device>
     {
-        public int Compare(Storage x, Storage y)
+        public int Compare(Device x, Device y)
         {
             string 藥品碼_0 = x.Code;
             string 藥品碼_1 = y.Code;

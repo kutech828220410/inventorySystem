@@ -25,10 +25,10 @@ namespace 癌症自動備藥機暨排程系統
 
             this.LoadFinishedEvent += Dialog_藥盒掃描_LoadFinishedEvent;
             this.plC_RJ_Button_取消.MouseDownEvent += PlC_RJ_Button_取消_MouseDownEvent;
-
+            this.textBox_條碼輸入.KeyPress += TextBox_條碼輸入_KeyPress;
         }
 
-    
+  
 
         private void sub_program()
         {
@@ -51,6 +51,7 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void Dialog_藥盒掃描_LoadFinishedEvent(EventArgs e)
         {
+            this.textBox_條碼輸入.Focus();
             myThread_program = new MyThread();
             myThread_program.AutoRun(true);
             myThread_program.AutoStop(true);
@@ -60,6 +61,23 @@ namespace 癌症自動備藥機暨排程系統
         private void PlC_RJ_Button_取消_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Close();
+        }
+        private void TextBox_條碼輸入_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if(textBox_條碼輸入.Text.StringIsEmpty())
+                {
+                    MyMessageBox.ShowDialog("條碼輸入不得空白");
+                    return;
+                }
+                string text = textBox_條碼輸入.Text;
+                text = text.Replace("\n", "");
+                text = text.Replace("\r", "");
+                Value = text;
+                this.DialogResult = DialogResult.Yes;
+                this.Close();
+            }
         }
     }
 }

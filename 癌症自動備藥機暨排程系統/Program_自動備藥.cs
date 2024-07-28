@@ -619,7 +619,6 @@ namespace 癌症自動備藥機暨排程系統
         }
         #endregion
 
-
         #region Function
 
         #endregion
@@ -638,6 +637,46 @@ namespace 癌症自動備藥機暨排程系統
             if (dialog_備藥清單.ShowDialog() != DialogResult.Yes) return;
 
             List<udnoectc_orders> udnoectc_Orders = dialog_備藥清單.Value;
+
+        
+            while(true)
+            {
+                string msg = "";
+                for (int i = 0; i < dialog_備藥清單.stockClasses.Count; i++)
+                {
+                    string 藥碼 = dialog_備藥清單.stockClasses[i].Code;
+                    string 藥名 = dialog_備藥清單.stockClasses[i].Name;
+                    string 數量 = dialog_備藥清單.stockClasses[i].Qty;
+                    msg += $"{i} ({藥碼}){藥名},數量:{數量}\n";
+                }
+                msg += $"【請將藥盒置放到入料口後按確認】";
+                if (MyMessageBox.ShowDialog($"{msg}", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+                if (!PLC_IO_進出盒區_藥盒到位感應.Bool)
+                {
+                    MyMessageBox.ShowDialog("藥盒未放入入料口");
+                    System.Threading.Thread.Sleep(10);
+                    continue;
+
+                }
+                else
+                {
+                    break;
+                }
+             
+            }
+
+            List<object[]> list_value_常溫 = new List<object[]>();
+            List<object[]> list_value_冷藏 = new List<object[]>();
+            Function_取得異動儲位資訊從本地資料(dialog_備藥清單.stockClasses, ref list_value_常溫, ref list_value_冷藏);
+            list_自動備藥_開始備藥_常溫 = list_value_常溫;
+            list_自動備藥_開始備藥_冷藏 = list_value_冷藏;
+            if (PLC_Device_自動備藥_開始備藥.Bool == false)
+            {
+                PLC_Device_自動備藥_開始備藥.Bool = true;
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("開始備藥", 1500, Color.Green);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
         }
         private void PlC_RJ_Button_自動備藥_重新整理_MouseDownEvent(MouseEventArgs mevent)
         {

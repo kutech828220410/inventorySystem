@@ -90,7 +90,14 @@ namespace 癌症自動備藥機暨排程系統
         private void SqL_DataGridView_人員資料_RowPostPaintingEvent(DataGridViewRowPostPaintEventArgs e)
         {
             Color row_Backcolor = Color.White;
+    
             Color row_Forecolor = Color.Black;
+
+            if (this.sqL_DataGridView_人員資料.GetSelectRow() == e.RowIndex)
+            {
+                row_Backcolor = this.sqL_DataGridView_人員資料.selectedRowBackColor;
+                row_Forecolor = this.sqL_DataGridView_人員資料.selectedRowForeColor;
+            }
             using (Brush brush = new SolidBrush(row_Backcolor))
             {
                 int x = e.RowBounds.Left;
@@ -112,11 +119,11 @@ namespace 癌症自動備藥機暨排程系統
 
 
 
-                DrawingClass.Draw.文字左上繪製(序號, new PointF(10, y + 10), new Font("標楷體", 14), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(姓名, new PointF(50, y + 10), new Font("標楷體", 14, FontStyle.Regular), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(ID, new PointF(150, y + 10), new Font("標楷體", 14, FontStyle.Regular), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(權限等級, new PointF(300, y + 10), new Font("標楷體", 14, FontStyle.Regular), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(卡號, new PointF(450, y + 10), new Font("標楷體", 14, FontStyle.Regular), Color.Black, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(序號, new PointF(10, y + 10), new Font("標楷體", 14), row_Forecolor, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(姓名, new PointF(50, y + 10), new Font("標楷體", 14, FontStyle.Regular), row_Forecolor, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(ID, new PointF(150, y + 10), new Font("標楷體", 14, FontStyle.Regular), row_Forecolor, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(權限等級, new PointF(300, y + 10), new Font("標楷體", 14, FontStyle.Regular), row_Forecolor, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(卡號, new PointF(450, y + 10), new Font("標楷體", 14, FontStyle.Regular), row_Forecolor, e.Graphics);
 
             }
         }

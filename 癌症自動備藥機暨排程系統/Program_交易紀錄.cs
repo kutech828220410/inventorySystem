@@ -42,6 +42,8 @@ namespace 癌症自動備藥機暨排程系統
             }
             SQLUI.SQL_DataGridView.SQL_Set_Properties(this.sqL_DataGridView_交易記錄查詢, dBConfigClass.DB_Basic);
 
+            dateTimeIntervelPicker_交易紀錄查詢_操作時間.SetDateTime(DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
+
             this.sqL_DataGridView_交易記錄查詢.顯示首列 = true;
             this.sqL_DataGridView_交易記錄查詢.顯示首行 = true;
             this.sqL_DataGridView_交易記錄查詢.Init(table);

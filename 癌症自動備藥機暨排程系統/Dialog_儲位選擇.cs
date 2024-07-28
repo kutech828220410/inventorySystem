@@ -18,12 +18,11 @@ namespace 癌症自動備藥機暨排程系統
 {
     public partial class Dialog_儲位選擇 : MyDialog
     {
-        private StorageUI_EPD_266 _storageUI_EPD_266;
         private string _藥碼;
         private string _藥名;
-        public Storage Value = null;
+        public Device Value = null;
   
-        public Dialog_儲位選擇(string 藥碼, string 藥名, StorageUI_EPD_266 storageUI_EPD_266)
+        public Dialog_儲位選擇(string 藥碼, string 藥名)
         {
             InitializeComponent();
 
@@ -32,7 +31,6 @@ namespace 癌症自動備藥機暨排程系統
             this.Load += Dialog_儲位選擇_Load;
             this._藥碼 = 藥碼;
             this._藥名 = 藥名;
-            this._storageUI_EPD_266 = storageUI_EPD_266;
 
             this.rJ_Lable_藥品資訊.Text = $"({this._藥碼 }) {this._藥名 }";
 
@@ -46,17 +44,17 @@ namespace 癌症自動備藥機暨排程系統
             this.sqL_DataGridView_儲位選擇.RowPostPaintingEvent += SqL_DataGridView_儲位選擇_RowPostPaintingEvent;
             this.sqL_DataGridView_儲位選擇.RowClickEvent += SqL_DataGridView_儲位選擇_RowClickEvent;
 
-            List<Storage> storages = storageUI_EPD_266.SQL_GetAllStorage();
+            List<Device> devices = Main_Form.Function_取得本地儲位();
 
-            List<Storage> storages_buf = (from temp in storages
+            List<Device> devices_buf = (from temp in devices
                                           where temp.Code == 藥碼
                                           select temp).ToList();
 
-
+            
             List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < storages_buf.Count; i++)
+            for (int i = 0; i < devices_buf.Count; i++)
             {
-                string json = storages_buf[i].JsonSerializationt();
+                string json = devices_buf[i].JsonSerializationt();
                 list_value.Add(new object[] { json });
             }
             this.sqL_DataGridView_儲位選擇.RefreshGrid(list_value);
@@ -76,6 +74,13 @@ namespace 癌症自動備藥機暨排程系統
         {
             Color row_Backcolor = Color.LightGray;
             Color row_Forecolor = Color.Black;
+
+            if (this.sqL_DataGridView_儲位選擇.GetSelectRow() == e.RowIndex)
+            {
+                row_Backcolor = this.sqL_DataGridView_儲位選擇.selectedRowBackColor;
+                row_Forecolor = this.sqL_DataGridView_儲位選擇.selectedRowForeColor;
+            }
+
             using (Brush brush = new SolidBrush(row_Backcolor))
             {
                 int x = e.RowBounds.Left;
@@ -88,15 +93,15 @@ namespace 癌症自動備藥機暨排程系統
                 Size size = new Size();
                 PointF pointF = new PointF();
                 object[] value = this.sqL_DataGridView_儲位選擇.GetRowsList()[e.RowIndex];
-                Storage storage = value[0].ObjectToString().JsonDeserializet<Storage>();
+                Device device = value[0].ObjectToString().JsonDeserializet<Device>();
                 string 序號 = $"{e.RowIndex + 1}.";
-                string IP = $"({storage.IP})";
-                string 儲位名稱 = $"[{storage.StorageName}]";
-                string 庫存 = $"庫存:{storage.Inventory}";
+                string IP = $"({device.IP})";
+                string 儲位名稱 = $"[{device.StorageName}]";
+                string 庫存 = $"庫存:{device.Inventory}";
               
-                DrawingClass.Draw.文字左上繪製(序號, new PointF(10, y + 10), new Font("標楷體", 16), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(IP, new PointF(50, y + 10), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
-                DrawingClass.Draw.文字左上繪製(儲位名稱, new PointF(250, y + 10), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(序號, new PointF(10, y + 10), new Font("標楷體", 16), row_Forecolor, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(IP, new PointF(50, y + 10), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(儲位名稱, new PointF(250, y + 10), new Font("標楷體", 16, FontStyle.Bold), row_Forecolor, e.Graphics);
 
                 size = 庫存.MeasureText(new Font("標楷體", 16, FontStyle.Bold));
                 DrawingClass.Draw.文字左上繪製(庫存, new PointF(e.RowBounds.Width - size.Width - 10, y + 10), new Font("標楷體", 16, FontStyle.Bold), Color.Black, e.Graphics);
@@ -105,18 +110,42 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void SqL_DataGridView_儲位選擇_RowClickEvent(object[] RowValue)
         {
-            Storage storage;
+            Device device;
             List<object[]> list_value = this.sqL_DataGridView_儲位選擇.GetAllRows();
             for (int i = 0; i < list_value.Count; i++)
             {
-                storage = list_value[i][0].ObjectToString().JsonDeserializet<Storage>();
+                device = list_value[i][0].ObjectToString().JsonDeserializet<Storage>();
+                if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290)
+                {
+                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP((Storage)device, Color.Black);
+                }
+                if (device.DeviceType == DeviceType.RowsLED)
+                {
+                    RowsDevice rowsDevice = Main_Form.List_RowsLED_本地資料.GetRowsDevice(device.GUID);
+                    RowsLED rowsLED = Main_Form.List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+                    rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, Color.Black);
+                    Main_Form._rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                }
 
-                _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+     
 
             }
-
-            storage = RowValue[0].ObjectToString().JsonDeserializet<Storage>();
-            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Blue);
+            device = RowValue[0].ObjectToString().JsonDeserializet<Device>();
+            if(device != null)
+            {
+                if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290)
+                {
+                    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP((Storage)device, Color.Blue);
+                }
+                if (device.DeviceType == DeviceType.RFID_Device)
+                {
+                    RowsDevice rowsDevice = Main_Form.List_RowsLED_本地資料.GetRowsDevice(device.GUID);
+                    RowsLED rowsLED = Main_Form.List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+                    rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, Color.Blue);
+                    Main_Form._rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                }
+            }
+  
         }
         private void RJ_Button_確認選擇_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -129,7 +158,7 @@ namespace 癌症自動備藥機暨排程系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
-                this.Value = list_value[0][0].ObjectToString().JsonDeserializet<Storage>();
+                this.Value = list_value[0][0].ObjectToString().JsonDeserializet<Device>();
                 this.Close();
                 this.DialogResult = DialogResult.Yes;
             }));

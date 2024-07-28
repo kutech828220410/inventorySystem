@@ -71,7 +71,13 @@ namespace 癌症自動備藥機暨排程系統
             if (value != null)
             {
                 Color row_Backcolor = Color.White;
+              
                 Color row_Forecolor = Color.Black;
+                if (this.sqL_DataGridView_出入庫作業.GetSelectRow() == e.RowIndex)
+                {
+                    row_Backcolor = this.sqL_DataGridView_出入庫作業.selectedRowBackColor;
+                    row_Forecolor = this.sqL_DataGridView_出入庫作業.selectedRowForeColor;
+                }
                 using (Brush brush = new SolidBrush(row_Backcolor))
                 {
                     int x = e.RowBounds.Left;
@@ -85,18 +91,18 @@ namespace 癌症自動備藥機暨排程系統
                     PointF pointF = new PointF();
 
                     string 藥碼 = $"({value[(int)enum_藥品資料_藥檔資料.藥品碼].ObjectToString()})";
-                    DrawingClass.Draw.文字左上繪製(藥碼, new PointF(10, y + 10), new Font("標楷體", 16 , FontStyle.Bold), Color.Black, e.Graphics);
+                    DrawingClass.Draw.文字左上繪製(藥碼, new PointF(10, y + 10), new Font("標楷體", 16 , FontStyle.Bold), row_Forecolor, e.Graphics);
                     size = 藥碼.MeasureText(new Font("標楷體", 16, FontStyle.Bold));
 
                     string 藥名 = $"{value[(int)enum_藥品資料_藥檔資料.藥品名稱].ObjectToString()}";
-                    DrawingClass.Draw.文字左上繪製(藥名, new PointF(10 + size.Width, y + 10), new Font("標楷體", 16), Color.Black, e.Graphics);
+                    DrawingClass.Draw.文字左上繪製(藥名, new PointF(10 + size.Width, y + 10), new Font("標楷體", 16), row_Forecolor, e.Graphics);
                   
                     string 單位 = $"[{value[(int)enum_藥品資料_藥檔資料.包裝單位].ObjectToString()}]";
-                    DrawingClass.Draw.文字左上繪製(單位, new PointF(10 + 650, y + 10), new Font("標楷體", 16), Color.Black, e.Graphics);
+                    DrawingClass.Draw.文字左上繪製(單位, new PointF(10 + 650, y + 10), new Font("標楷體", 16), row_Forecolor, e.Graphics);
 
                     string 庫存 = $"庫存:{value[(int)enum_藥品資料_藥檔資料.庫存].ObjectToString()}";
                     size = 庫存.MeasureText(new Font("標楷體", 16, FontStyle.Bold));
-                    DrawingClass.Draw.文字左上繪製(庫存, new PointF(e.RowBounds.Width - size.Width - 10, y + 10), new Font("標楷體", 16), Color.Black, e.Graphics);
+                    DrawingClass.Draw.文字左上繪製(庫存, new PointF(e.RowBounds.Width - size.Width - 10, y + 10), new Font("標楷體", 16), row_Forecolor, e.Graphics);
 
 
                 }

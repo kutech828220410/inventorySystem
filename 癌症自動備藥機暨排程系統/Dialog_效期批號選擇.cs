@@ -76,6 +76,13 @@ namespace 癌症自動備藥機暨排程系統
         {
             Color row_Backcolor = Color.LightGray;
             Color row_Forecolor = Color.Black;
+
+            if (this.sqL_DataGridView_效期批號.GetSelectRow() == e.RowIndex)
+            {
+                row_Backcolor = this.sqL_DataGridView_效期批號.selectedRowBackColor;
+                row_Forecolor = this.sqL_DataGridView_效期批號.selectedRowForeColor;
+            }
+
             using (Brush brush = new SolidBrush(row_Backcolor))
             {
                 int x = e.RowBounds.Left;
@@ -93,7 +100,7 @@ namespace 癌症自動備藥機暨排程系統
                 string 效期 = $"{stockClass.Validity_period}";
                 string 批號 = $"{stockClass.Lot_number}";
                 string str = $"{序號} 效期 : {效期} 批號 {((批號.StringIsEmpty())? "無": $"{批號}")}";
-                DrawingClass.Draw.文字左上繪製(str, new PointF(10, y + 10), new Font("標楷體", 16), Color.Black, e.Graphics);
+                DrawingClass.Draw.文字左上繪製(str, new PointF(10, y + 10), new Font("標楷體", 16), row_Forecolor, e.Graphics);
 
             }
         }

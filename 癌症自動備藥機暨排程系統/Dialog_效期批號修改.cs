@@ -81,7 +81,22 @@ namespace 癌症自動備藥機暨排程系統
                 StorageUI_EPD_266 storageUI_EPD_266 = _device_UI as StorageUI_EPD_266;
                 storageUI_EPD_266.SQL_ReplaceStorage((Storage)_device);
             }
+            if (_device_UI is RowsLEDUI)
+            {
+                RowsLEDUI rowsLEDUI = _device_UI as RowsLEDUI;
+                RowsLED rowsLED = rowsLEDUI.SQL_GetRowsLED(_device.IP);
+                if(rowsLED != null)
+                {
+                    RowsDevice rowsDevice = rowsLED.SortByGUID(_device.GUID);
+                    if (rowsDevice != null)
+                    {
+                        rowsDevice = rowsDevice.Paste(_device);
+                        rowsLED.ReplaceRowsDevice(rowsDevice);
+                        rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
 
+                    }
+                }
+            }
             List<StockClass> stockClasses = _device.stockClasses;
 
             List<object[]> list_value = new List<object[]>();
