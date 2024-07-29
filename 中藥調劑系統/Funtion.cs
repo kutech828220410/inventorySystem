@@ -63,6 +63,10 @@ namespace 中藥調劑系統
             public Color Color { get; set; }
             public bool Light { get; set; } = false;
 
+            public LightOn(string ip)
+            {
+                this.IP = ip;
+            }
             // 构造函數
             public LightOn(string ip, Color color)
             {
@@ -70,10 +74,9 @@ namespace 中藥調劑系統
                 this.Color = color;
             }
 
-            public LightOn(RowsLED RowsLED, Color color)
+            public LightOn(RowsLED RowsLED)
             {
                 this.IP = RowsLED.IP;
-                this.Color = color;
                 this.RowsLED = RowsLED;
             }
         }
@@ -88,11 +91,24 @@ namespace 中藥調劑系統
         }
         public void sub_light_program()
         {
-            List<LightOn> lightOns = LightOn.GetAll().DeepClone();
-            for (int i = 0; i < lightOns.Count; i++)
+            List<Task> tasks = new List<Task>();
+            List<RowsLED> rowsLEDs = List_RowsLED_本地資料;
+
+            for (int i = 0; i < rowsLEDs.Count; i++)
             {
-                
+                RowsLED rowsLED = rowsLEDs[i];
+                rowsLEDs[i].LED_Bytes_buf = RowsLEDUI.Get_RowsLightStateLEDBytes(rowsLEDs[i]);
+                if (RowsLEDUI.Check_LEDBytesBuf_Diff(rowsLEDs[i]))
+                {             
+                    Console.WriteLine($"[RowsLED 上傳亮燈資料]({rowsLEDs[i].IP})");
+                    tasks.Add(Task.Run(new Action(delegate 
+                    {
+                        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                    })));                
+                }
             }
+
+            Task.WhenAll(tasks).Wait();
         }
 
         static public List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
@@ -194,7 +210,7 @@ namespace 中藥調劑系統
 
                 for (int i = 0; i < Codes.Count; i++)
                 {
-                    Console.WriteLine($"儲位亮燈 : 藥碼 : {Codes[i]} 顏色 : {color.ToColorString()}");
+           
                     if (Codes[i].StringIsEmpty()) return;
 
                     List<object> list_Device = Function_從本地資料取得儲位(Codes[i], all_light);
@@ -202,17 +218,27 @@ namespace 中藥調劑系統
                     for (int k = 0; k < list_Device.Count; k++)
                     {
                         Device device = list_Device[k] as Device;
+                        string IP = device.IP;
                         if (device != null)
                         {
                             if (device.DeviceType == DeviceType.RowsLED)
                             {
                                 RowsDevice rowsDevice = list_Device[k] as RowsDevice;
                                 RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(device.IP);
-                                rowsDevice.LightState.State = true;
-                                rowsDevice.LightState.LightColor = color;
-                                rowsLED.Add_NewRowsLED(rowsDevice);
-                                rowsLED.LED_Bytes = RowsLEDUI.Get_RowsLightStateLEDBytes(rowsLED);
+                                rowsDevice.SetLight(true, color, -1, -1);
+                                rowsLED.ReplaceRowsDevice(rowsDevice);
+                              
                                 List_RowsLED_本地資料.Add_NewRowsLED(rowsLED);
+                                Logger.Log($"[RowsLED]儲位亮燈資料寫入:({rowsDevice.IP})({rowsDevice.Code}){rowsDevice.Name}".StringLength(50) + $"顏色 : {color.ToColorString()}");
+
+                                LightOns_buf = (from temp in lightOns
+                                                where temp.IP != IP
+                                                select temp).ToList();
+                                if(LightOns_buf.Count == 0)
+                                {
+                                    lightOns.Add(new LightOn(rowsLED));
+                                }
+
                             }
                             if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290_lock || device.DeviceType == DeviceType.EPD266_lock)
                             {
@@ -220,35 +246,45 @@ namespace 中藥調劑系統
                                 storage.LightState.State = true;
                                 storage.LightState.LightColor = color;
                                 List_EPD266_本地資料.Add_NewStorage(storage);
+                                Logger.Log($"[Storage]儲位亮燈資料寫入:({storage.IP})({storage.Code}){storage.Name}".StringLength(50) + $"顏色 : {color.ToColorString()}");
+
                             }
                         }
                     }
                 }
-                List<Task> tasks = new List<Task>();
+
                 for (int i = 0; i < lightOns.Count; i++)
                 {
-                    LightOn lightOn = lightOns[i];
-
-                    tasks.Add(Task.Run(new Action(delegate
+                    if (lightOns[i].RowsLED != null)
                     {
-                        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(lightOn.IP);
-                        Storage storage = List_EPD266_本地資料.SortByIP(lightOn.IP);
-                        if (rowsLED != null)
-                        {
-                            //for (int k = 0; k < lightOn.RowsDevices.Count; k++)
-                            //{
-                            //    _rowsLEDUI.Set_Rows_LED_UDP_Ex(rowsLED, lightOn.RowsDevices[k].StartLED, lightOn.RowsDevices[k].EndLED, color);
-                            //}
-                            _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
-                        }
-                        if (storage != null)
-                        {
-                            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, storage.LightState.LightColor);
-                        }
-                    })));
+                        lightOns[i].RowsLED.UploadLED = true;
+                    }
                 }
+                //List<Task> tasks = new List<Task>();
+                //for (int i = 0; i < lightOns.Count; i++)
+                //{
+                //    LightOn lightOn = lightOns[i];
 
-                Task.WhenAll(tasks).Wait();
+                //    tasks.Add(Task.Run(new Action(delegate
+                //    {
+                //        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(lightOn.IP);
+                //        Storage storage = List_EPD266_本地資料.SortByIP(lightOn.IP);
+                //        if (rowsLED != null)
+                //        {
+                //            //for (int k = 0; k < lightOn.RowsDevices.Count; k++)
+                //            //{
+                //            //    _rowsLEDUI.Set_Rows_LED_UDP_Ex(rowsLED, lightOn.RowsDevices[k].StartLED, lightOn.RowsDevices[k].EndLED, color);
+                //            //}
+                //            _rowsLEDUI.Set_Rows_LED_UDP(rowsLED, true); 
+                //        }
+                //        if (storage != null)
+                //        {
+                //            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, storage.LightState.LightColor);
+                //        }
+                //    })));
+                //}
+
+                //Task.WhenAll(tasks).Wait();
             }
         }
         static public void Function_儲位亮燈(string 藥品碼, Color color)

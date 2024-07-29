@@ -182,8 +182,8 @@ namespace 中藥調劑系統
             MyMessageBox.form = this.FindForm();
             MyMessageBox.音效 = false;
             this.plC_UI_Init.音效 = false;
-   
 
+            ExcelScaleLib.Communication.ConsoleWrite = false;
             this.plC_RJ_Button_儲位設定.MouseDownEvent += PlC_RJ_Button_儲位設定_MouseDownEvent;
             this.plC_RJ_Button_人員資料.MouseDownEvent += PlC_RJ_Button_人員資料_MouseDownEvent;
             this.plC_RJ_Button_強制滅燈.MouseDownEvent += PlC_RJ_Button_強制滅燈_MouseDownEvent;
@@ -236,6 +236,9 @@ namespace 中藥調劑系統
             Program_RFID_Init();
             Program_藥品搜尋_Init();
             Program_設定_Init();
+
+            Function_Init();
+
             _rowsLEDUI = this.rowsLEDUI;
             this.rowsLEDUI.Init(dBConfigClass.DB_儲位資料);
             _storageUI_EPD_266 = this.storageUI_EPD_266;
