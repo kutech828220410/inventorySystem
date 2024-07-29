@@ -224,75 +224,42 @@ namespace 中藥調劑系統
                         }
                     }
                 }
-                //List<Task> tasks = new List<Task>();
-                //for (int i = 0; i < lightOns.Count; i++)
-                //{
-                //    LightOn lightOn = lightOns[i];
+                List<Task> tasks = new List<Task>();
+                for (int i = 0; i < lightOns.Count; i++)
+                {
+                    LightOn lightOn = lightOns[i];
 
-                //    tasks.Add(Task.Run(new Action(delegate
-                //    {
-                //        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(lightOn.IP);
-                //        Storage storage = List_EPD266_本地資料.SortByIP(lightOn.IP);
-                //        if (rowsLED != null)
-                //        {
-                //        //for (int k = 0; k < lightOn.RowsDevices.Count; k++)
-                //        //{
-                //        //    _rowsLEDUI.Set_Rows_LED_UDP_Ex(rowsLED, lightOn.RowsDevices[k].StartLED, lightOn.RowsDevices[k].EndLED, color);
-                //        //}
-                //        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
-                //        }
-                //        if (storage != null)
-                //        {
-                //            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, lightOn.color);
-                //        }
-                //    })));
-                //}
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(lightOn.IP);
+                        Storage storage = List_EPD266_本地資料.SortByIP(lightOn.IP);
+                        if (rowsLED != null)
+                        {
+                            //for (int k = 0; k < lightOn.RowsDevices.Count; k++)
+                            //{
+                            //    _rowsLEDUI.Set_Rows_LED_UDP_Ex(rowsLED, lightOn.RowsDevices[k].StartLED, lightOn.RowsDevices[k].EndLED, color);
+                            //}
+                            _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                        }
+                        if (storage != null)
+                        {
+                            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, storage.LightState.LightColor);
+                        }
+                    })));
+                }
 
-                //Task.WhenAll(tasks).Wait();
+                Task.WhenAll(tasks).Wait();
             }
         }
         static public void Function_儲位亮燈(string 藥品碼, Color color)
         {
+            Function_儲位亮燈(藥品碼, color, false);
+        }
+        static public void Function_儲位亮燈(string 藥品碼, Color color, bool all_light)
+        {
             List<string> Codes = new List<string>();
             Codes.Add(藥品碼);
-            Function_儲位亮燈(Codes, color, false);
-        }
-        static public void Function_儲位亮燈(string 藥品碼, Color color , bool all_light)
-        {
-
-            if (藥品碼.StringIsEmpty()) return;
-            Console.WriteLine($"儲位亮燈 : 藥碼 : {藥品碼} 顏色 : {color.ToColorString()}");
-            List<object> list_Device = Function_從本地資料取得儲位(藥品碼, all_light);
-            for (int i = 0; i < list_Device.Count; i++)
-            {
-                Device device = list_Device[i] as Device;
-                if (device != null)
-                {
-                    if (device.DeviceType == DeviceType.RowsLED)
-                    {
-                        RowsDevice rowsDevice = list_Device[i] as RowsDevice;
-                        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
-                        //if (Funtion_判斷共用亮燈區域(rowsLED.Area))
-                        //{
-                        //    rowsLED.LED_Bytes = Main_Form._rowsLEDUI.Get_RowsLED_LED_UDP(rowsLED);
-                        //}
-                        if (rowsDevice != null && rowsLED != null)
-                        {
-                            rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
-
-                            _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
-                        }
-                    }
-                    if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266)
-                    {
-                        Storage storage = List_EPD266_本地資料.SortByIP(device.IP);
-                        if (storage != null )
-                        {
-                            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, color);
-                        }
-                    }
-                }
-            }
+            Function_儲位亮燈(Codes, color, all_light);
         }
         static public void Function_全部滅燈()
         {
