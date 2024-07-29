@@ -263,6 +263,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap medicine_data_set_group {
+            get {
+                object obj = ResourceManager.GetObject("medicine-data-set-group", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap medicine_shift_handover_checklist__1__removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("medicine-shift-handover-checklist__1_-removebg-preview", resourceCulture);

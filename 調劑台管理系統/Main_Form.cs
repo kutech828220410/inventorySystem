@@ -348,6 +348,7 @@ namespace 調劑台管理系統
                 Dialog_共用區設置.form = this.FindForm();
                 Dialog_AlarmForm.form = this.FindForm();
                 Dialog_藥品調出.form = this.FindForm();
+                Dialog_交班對點.form = this.FindForm();
 
 
                 LoadDBConfig();

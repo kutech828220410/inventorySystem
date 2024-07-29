@@ -26,7 +26,7 @@ namespace HIS_WebApi
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class medGroupController : Controller
+    public class medGroup : Controller
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
@@ -53,7 +53,6 @@ namespace HIS_WebApi
             string jsonString = JsonSerializer.Serialize<object>(medGroupClass, options);
             return jsonString;
         }
-
         /// <summary>
         /// 初始化藥品群組資料庫結構
         /// </summary>
@@ -87,7 +86,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
-
         /// <summary>
         /// 取得所有藥品群組內容
         /// </summary>
@@ -137,7 +135,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
-
         /// <summary>
         /// 新增或修改藥品群組
         /// </summary>
@@ -320,7 +317,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
-
         /// <summary>
         /// 修改指定藥品群組名稱
         /// </summary>
@@ -409,7 +405,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
-
         /// <summary>
         /// 刪除指定藥品群組
         /// </summary>
@@ -489,7 +484,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
-
         /// <summary>
         /// 刪除指定群組內多個藥品
         /// </summary>
@@ -624,7 +618,7 @@ namespace HIS_WebApi
             returnData_med = mED_PageController.Get(returnData_med).JsonDeserializet<returnData>();
             List<medClass> medClasses = returnData_med.Data.ObjToListClass<medClass>();
             List<medClass> medClasses_buf = new List<medClass>();
-
+            Dictionary<string, List<medClass>> keyValuePairs_medClass = medClasses.CoverToDictionaryByCode();
             List<object[]> list_med_group = sQLControl_med_group.GetAllRows(null);
             List<object[]> list_med_sub_group = sQLControl_med_sub_group.GetAllRows(null);
             List<object[]> list_med_sub_group_buf = new List<object[]>();
@@ -635,6 +629,15 @@ namespace HIS_WebApi
                 string GUID = medGroupClasses[i].GUID;
                 list_med_sub_group_buf = list_med_sub_group.GetRows((int)enum_藥品群組明細.Master_GUID, GUID);
                 medGroupClasses[i].MedClasses = list_med_sub_group_buf.SQLToClass<medClass, enum_藥品群組明細>();
+                for (int k = 0; k < medGroupClasses[i].MedClasses.Count; k++)
+                {
+                    medClasses_buf = keyValuePairs_medClass.SortDictionaryByCode(medGroupClasses[i].MedClasses[k].藥品碼);
+                    if (medClasses_buf.Count > 0)
+                    {
+                        medGroupClasses[i].MedClasses[k] = medClasses_buf[0];
+                    }
+                }
+   
             }
             return medGroupClasses;
         }

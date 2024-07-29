@@ -794,6 +794,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\medicine-data-set-group.jpg" />
     <None Include="Resources\medicine-shift-handover-checklist__1_-removebg-preview.png" />
     <None Include="Resources\medicine-shift-handover-checklist-removebg-preview.png" />
     <None Include="Resources\使用者資訊.png" />
