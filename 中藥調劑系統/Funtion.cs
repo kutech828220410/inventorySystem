@@ -93,20 +93,36 @@ namespace 中藥調劑系統
         {
             List<Task> tasks = new List<Task>();
             List<RowsLED> rowsLEDs = List_RowsLED_本地資料;
+            List<Storage> storages = List_EPD266_本地資料;
 
             for (int i = 0; i < rowsLEDs.Count; i++)
             {
                 RowsLED rowsLED = rowsLEDs[i];
                 rowsLEDs[i].LED_Bytes_buf = RowsLEDUI.Get_RowsLightStateLEDBytes(rowsLEDs[i]);
                 if (RowsLEDUI.Check_LEDBytesBuf_Diff(rowsLEDs[i]))
-                {             
+                {
+                    rowsLEDs[i].LED_Bytes = rowsLEDs[i].LED_Bytes_buf;
                     Console.WriteLine($"[RowsLED 上傳亮燈資料]({rowsLEDs[i].IP})");
                     tasks.Add(Task.Run(new Action(delegate 
                     {
-                        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+                        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED,true);
                     })));                
                 }
             }
+            //for (int i = 0; i < storages.Count; i++)
+            //{
+            //    storages[i].LED_Bytes_buf = StorageUI_EPD_266.Get_LightStateLEDBytes(storages[i]);
+            //    if (StorageUI_EPD_266.Check_LEDBytesBuf_Diff(storages[i]))
+            //    {
+            //        Storage storage = storages[i];
+            //        storages[i].LED_Bytes = storages[i].LED_Bytes_buf;
+            //        Console.WriteLine($"[StorageUI_EPD_266 上傳亮燈資料]({rowsLEDs[i].IP})");
+            //        tasks.Add(Task.Run(new Action(delegate
+            //        {
+            //            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, storages[i].LightState.LightColor);
+            //        })));
+            //    }
+            //}
 
             Task.WhenAll(tasks).Wait();
         }
@@ -203,6 +219,10 @@ namespace 中藥調劑系統
         }
         static public void Function_儲位亮燈(List<string> Codes, Color color, bool all_light)
         {
+            Function_儲位亮燈(Codes, color, -1, -1, all_light);
+        }
+        static public void Function_儲位亮燈(List<string> Codes, Color color, double 閃爍間隔, double 滅燈時間, bool all_light)
+        {
             lock (_lock)
             {
                 List<LightOn> lightOns = new List<LightOn>();
@@ -225,7 +245,7 @@ namespace 中藥調劑系統
                             {
                                 RowsDevice rowsDevice = list_Device[k] as RowsDevice;
                                 RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(device.IP);
-                                rowsDevice.SetLight(true, color, -1, -1);
+                                rowsDevice.SetLight(true, color, 閃爍間隔, 滅燈時間);
                                 rowsLED.ReplaceRowsDevice(rowsDevice);
                               
                                 List_RowsLED_本地資料.Add_NewRowsLED(rowsLED);
@@ -243,8 +263,8 @@ namespace 中藥調劑系統
                             if (device.DeviceType == DeviceType.EPD290 || device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290_lock || device.DeviceType == DeviceType.EPD266_lock)
                             {
                                 Storage storage = List_EPD266_本地資料.SortByIP(device.IP);
-                                storage.LightState.State = true;
-                                storage.LightState.LightColor = color;
+                                storage.SetLight(true, color, 閃爍間隔, 滅燈時間);
+                                storage.UploadLED = true;
                                 List_EPD266_本地資料.Add_NewStorage(storage);
                                 Logger.Log($"[Storage]儲位亮燈資料寫入:({storage.IP})({storage.Code}){storage.Name}".StringLength(50) + $"顏色 : {color.ToColorString()}");
 
@@ -287,41 +307,62 @@ namespace 中藥調劑系統
                 //Task.WhenAll(tasks).Wait();
             }
         }
+        static public void Function_儲位亮燈(string 藥品碼, Color color, double 閃爍間隔, double 滅燈時間)
+        {
+            Function_儲位亮燈(藥品碼, color, 閃爍間隔, 滅燈時間, false);
+        }
         static public void Function_儲位亮燈(string 藥品碼, Color color)
         {
             Function_儲位亮燈(藥品碼, color, false);
         }
         static public void Function_儲位亮燈(string 藥品碼, Color color, bool all_light)
         {
+            Function_儲位亮燈(藥品碼, color, -1, -1, all_light);
+        }
+        static public void Function_儲位亮燈(string 藥品碼, Color color, double 閃爍間隔, double 滅燈時間, bool all_light)
+        {
             List<string> Codes = new List<string>();
             Codes.Add(藥品碼);
-            Function_儲位亮燈(Codes, color, all_light);
+            Function_儲位亮燈(Codes, color, 閃爍間隔, 滅燈時間, all_light);
         }
         static public void Function_全部滅燈()
         {
-            List<RowsLED> rowsLEDs = _rowsLEDUI.SQL_GetAllRowsLED();
-            List<Storage> storages = _storageUI_EPD_266.SQL_GetAllStorage();
-
-
-            List<Task> tasks = new List<Task>();
-
-            for (int i = 0; i < rowsLEDs.Count; i++)
+            try
             {
-                RowsLED rowsLED = rowsLEDs[i];
-                tasks.Add(Task.Run(new Action(delegate
+                List<RowsLED> rowsLEDs = _rowsLEDUI.SQL_GetAllRowsLED();
+                List<Storage> storages = _storageUI_EPD_266.SQL_GetAllStorage();
+
+
+                List<Task> tasks = new List<Task>();
+
+                for (int i = 0; i < rowsLEDs.Count; i++)
                 {
-                    _rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED);                   
-                })));
+                    RowsLED rowsLED = rowsLEDs[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        _rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED);
+                    })));
+                }
+                for (int i = 0; i < storages.Count; i++)
+                {
+                    Storage storage = storages[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                    })));
+                }
+                Task.WhenAll(tasks).Wait();
             }
-            for (int i = 0; i < storages.Count; i++)
+            catch
             {
-                Storage storage = storages[i];
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
-                })));
+
+
             }
-            Task.WhenAll(tasks).Wait();
+            finally
+            {
+
+            }
+           
         }
         static public List<OrderClass> Funtion_醫令資料_API呼叫(string barcode)
         {

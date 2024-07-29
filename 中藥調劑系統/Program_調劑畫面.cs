@@ -902,16 +902,7 @@ namespace 中藥調劑系統
             {
                 實調 = orderTClass.交易量;
             }
-            Task.Run(new Action(delegate
-            {
-                for (int i = 0; i < 8; i++)
-                {
-                    Function_儲位亮燈(藥碼, this.panel_調劑完閃爍顏色.BackColor);
-                    System.Threading.Thread.Sleep(300);
-                    Function_儲位亮燈(藥碼, Color.Black);
-                    System.Threading.Thread.Sleep(300);
-                }
-            }));
+            Function_儲位亮燈(藥碼, this.panel_調劑完閃爍顏色.BackColor, 300, 3000);
             orderTClass.實際調劑量 = (實調.StringToDouble() * -1).ToString("0.00");
             orderTClass.藥師姓名 = sessionClass.Name;
             orderTClass.藥師ID = sessionClass.ID;
@@ -1330,16 +1321,17 @@ namespace 中藥調劑系統
                 return;
             }
             string 藥碼 = list_value[0][(int)enum_處方內容.藥碼].ObjectToString();
-            Task.Run(new Action(delegate 
-            {
-                for (int i = 0; i < 8; i++)
-                {
-                    Function_儲位亮燈(藥碼, this.panel_調劑完閃爍顏色.BackColor);
-                    System.Threading.Thread.Sleep(300);
-                    Function_儲位亮燈(藥碼, Color.Black);
-                    System.Threading.Thread.Sleep(300);
-                }           
-            }));
+            Function_儲位亮燈(藥碼, this.panel_調劑完閃爍顏色.BackColor, 300, 3000);
+            //Task.Run(new Action(delegate 
+            //{
+            //    for (int i = 0; i < 8; i++)
+            //    {
+            //        Function_儲位亮燈(藥碼, this.panel_調劑完閃爍顏色.BackColor);
+            //        System.Threading.Thread.Sleep(300);
+            //        Function_儲位亮燈(藥碼, Color.Black);
+            //        System.Threading.Thread.Sleep(300);
+            //    }           
+            //}));
 
         }
         private void RJ_Button_調劑畫面_單亮_MouseDownEvent(MouseEventArgs mevent)
