@@ -122,8 +122,14 @@ namespace 癌症備藥機
                 if (qty < 0) qty = qty * -1;
                 for (int k = 0; k < qty; k++)
                 {
-                    object[] value = list_value[i].DeepClone();
-                    value[(int)enum_儲位資訊.異動量] = -1;
+                    object[] value = new object[new enum_儲位資訊().GetLength()];
+                    value[(int)enum_儲位資訊.IP] = list_value_buf[i][(int)enum_儲位資訊.IP];
+                    value[(int)enum_儲位資訊.TYPE] = list_value_buf[i][(int)enum_儲位資訊.TYPE];
+                    value[(int)enum_儲位資訊.效期] = list_value_buf[i][(int)enum_儲位資訊.效期];
+                    value[(int)enum_儲位資訊.批號] = list_value_buf[i][(int)enum_儲位資訊.批號];
+                    value[(int)enum_儲位資訊.庫存] = list_value_buf[i][(int)enum_儲位資訊.IP];
+                    value[(int)enum_儲位資訊.異動量] = "-1";
+                    value[(int)enum_儲位資訊.Value] = list_value_buf[i][(int)enum_儲位資訊.Value];
                     list_value.Add(value);
                 }
             }
@@ -250,7 +256,7 @@ namespace 癌症備藥機
                 if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName() || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName())
                 {
                     Storage storage = (Storage)Value;
-                    storage = List_EPD266_本地資料.SortByIP(storage.IP);
+                    storage = _storageUI_EPD_266.SQL_GetStorage(storage);
                     if (storage != null)
                     {
                         storage.效期庫存異動(效期, 異動量, false);
