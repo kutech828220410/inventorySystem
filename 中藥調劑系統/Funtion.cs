@@ -105,7 +105,7 @@ namespace 中藥調劑系統
                     Console.WriteLine($"[RowsLED 上傳亮燈資料]({rowsLEDs[i].IP})");
                     tasks.Add(Task.Run(new Action(delegate 
                     {
-                        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED,true);
+                        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED,false);
                     })));                
                 }
             }
