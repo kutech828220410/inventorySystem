@@ -1010,6 +1010,79 @@ namespace HIS_WebApi
 
         }
         /// <summary>
+        /// 取得交易紀錄明細(Excel)(多台合併)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [參照指定網址]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        "網址名"(如:get_datas_by_op_time_st_end,get_datas_by_op)
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("download_datas_excel_ex")]
+        [HttpPost]
+        public async Task<ActionResult> download_datas_excel_ex([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return null;
+                }
+                if (returnData.Value.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 內容應為[網址名(如:get_datas_by_op_time_st_end,get_datas_by_op)]";
+                    return null;
+                }
+                string json_in = returnData.JsonSerializationt();
+                string json_out = Basic.Net.WEBApiPostJson($"http://127.0.0.1:4433/api/transactions/{returnData.Value}", json_in);
+                returnData returnData_out = json_out.JsonDeserializet<returnData>();
+                if (returnData_out == null)
+                {
+                    return null;
+                }
+                if (returnData_out.Code != 200)
+                {
+                    return null;
+                }
+                List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
+
+                List<object[]> list_transactionsClasses = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
+                System.Data.DataTable dataTable = list_transactionsClasses.ToDataTable(new enum_交易記錄查詢資料());
+                dataTable = dataTable.ReorderTable(new enum_交易記錄查詢資料_匯出());
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+                dataTables.Add(dataTable);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_交易紀錄明細.xlsx"));
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
+        /// <summary>
         /// 取得收支結存報表(Excel)(多台合併)
         /// </summary>
         /// <remarks>
