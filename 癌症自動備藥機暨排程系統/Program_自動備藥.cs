@@ -267,7 +267,12 @@ namespace 癌症備藥機
                 {
                     Function_出料一次(IP);
                 }
-                if (數量 > 0) 數量 = 數量 * -1;
+                if (數量 > 0)
+                {
+                    數量 = 數量 * -1;
+                    list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.異動量] = 數量;
+
+                }
                 Function_庫存異動至本地資料(list_自動備藥_開始備藥_常溫[i], true);
                
                 string url = $"{Main_Form.API_Server}/api/transactions/add";
