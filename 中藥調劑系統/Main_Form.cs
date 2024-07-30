@@ -36,9 +36,10 @@ namespace 中藥調劑系統
             this.FormClosing += Main_Form_FormClosing;
             this.rJ_Button_磅秤扣重.MouseDownEvent += RJ_Button_磅秤扣重_MouseDownEvent;
             this.rJ_Button_磅秤歸零.MouseDownEvent += RJ_Button_磅秤歸零_MouseDownEvent;
+            MyMessageBox.TimerEvent += MyMessageBox_TimerEvent;
         }
 
-      
+   
 
         private void RJ_Button_磅秤歸零_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -190,7 +191,19 @@ namespace 中藥調劑系統
             plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
             plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
         }
+        private void MyMessageBox_TimerEvent(MyMessageBox myMessageBox)
+        {
+            myTimer_MySerialPort_Scanner01.TickStop();
+            myTimer_MySerialPort_Scanner01.StartTickTime(1000);
+            flag_MySerialPort_Scanner01_enable = false;
+            string text = MySerialPort_Scanner01.ReadString();
+            if (text.StringIsEmpty()) return;
+            System.Threading.Thread.Sleep(50);
+            text = MySerialPort_Scanner01.ReadString();
+            MySerialPort_Scanner01.ClearReadByte();
 
+            myMessageBox.Close();
+        }
         private void PlC_RJ_Button_強制滅燈_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("是否全部強制滅燈?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;

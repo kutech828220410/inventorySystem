@@ -315,7 +315,7 @@ namespace 中藥調劑系統
                     {
 
                         list_病患資訊_buf.Sort(new ICP_病患資訊_升序());
-                        list_value_刪除已調配處方.Add(list_病患資訊_buf[0]);
+                        //list_value_刪除已調配處方.Add(list_病患資訊_buf[0]);
                     }
                 }
 
@@ -1124,7 +1124,7 @@ namespace 中藥調劑系統
                         voice.SpeakOnTask(RemoveParenthesesContent("未調劑完成,是否跳至其他藥品調劑?"));
                         if (MyMessageBox.ShowDialog($"{ order_current_row[(int)enum_處方內容.藥名].ObjectToString()} 未調劑完成,是否跳至其他藥品調劑?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes)
                         {
-                            RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
+                            //RJ_Button_調劑畫面_全滅_MouseDownEvent(null);
                             this.sqL_DataGridView_處方內容.SetSelectRow(order_current_row);
                             return;
                         }
