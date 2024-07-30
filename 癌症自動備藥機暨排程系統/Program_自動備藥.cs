@@ -255,6 +255,7 @@ namespace 癌症備藥機
                     rJ_Lable_備藥狀態_冷藏.Text = $"【冷藏】({cnt_自動備藥_開始備藥_冷藏_已完成}/{list_自動備藥_開始備藥_冷藏.Count })";
                     rJ_Lable_備藥狀態.Text = "常溫區開始出料";
                 }));
+                list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.異動量] = list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.異動量].StringToInt32() * -1;
                 string IP = list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.IP].ObjectToString();
                 string 效期 = list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.效期].ObjectToString();
                 string 批號 = list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.批號].ObjectToString();
@@ -270,8 +271,6 @@ namespace 癌症備藥機
                 if (數量 > 0)
                 {
                     數量 = 數量 * -1;
-                    list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.異動量] = 數量;
-
                 }
                 Function_庫存異動至本地資料(list_自動備藥_開始備藥_常溫[i], true);
                
@@ -354,6 +353,8 @@ namespace 癌症備藥機
                     rJ_Lable_備藥狀態_冷藏.Text = $"【冷藏】({cnt_自動備藥_開始備藥_冷藏_已完成}/{list_自動備藥_開始備藥_冷藏.Count })";
                     rJ_Lable_備藥狀態.Text = "冷藏區開始出料";
                 }));
+                list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.異動量] = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.異動量].StringToInt32() * -1;
+
                 string IP = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.IP].ObjectToString();
                 string 效期 = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.效期].ObjectToString();
                 string 批號 = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.批號].ObjectToString();
