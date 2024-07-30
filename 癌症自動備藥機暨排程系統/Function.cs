@@ -111,7 +111,10 @@ namespace 癌症備藥機
             List<object[]> list_value = new List<object[]>();
             for (int i = 0; i < stockClasses.Count; i++)
             {
-                list_value.LockAdd(Function_取得異動儲位資訊從本地資料(stockClasses[i].Code, stockClasses[i].Qty.StringToInt32()));
+                for (int k = 0; k < stockClasses[i].Qty.StringToInt32(); k++)
+                {
+                    list_value.LockAdd(Function_取得異動儲位資訊從本地資料(stockClasses[i].Code, 1));
+                }
             }
             for(int i = 0; i < list_value.Count; i++)
             {
