@@ -185,10 +185,11 @@ namespace 癌症備藥機
                     returnData.Data = transactionsClass;
                     string json_in = returnData.JsonSerializationt();
                     string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290)
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290
+                   || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
                     {
-                        Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage((Storage)device);
-                        device.效期庫存異動(效期, 批號, 數量.ToString());
+                        Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(device.IP);
+                        storage.效期庫存異動(效期, 批號, 數量.ToString());
                         Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
                         Main_Form._storageUI_EPD_266.DrawToEpd_UDP(storage);
 
@@ -203,14 +204,15 @@ namespace 癌症備藥機
                 }
                 if (_enum_type == enum_type.出庫)
                 {
-                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290)
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290
+                        || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
                     {
                         int 原有庫存 = Main_Form.Function_從SQL取得庫存(device.Code);
-                        Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage((Storage)device);
+                        Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(device.IP);
                         List<string> List_效期 = new List<string>();
                         List<string> List_批號 = new List<string>();
                         List<string> List_異動量 = new List<string>();
-                        device.庫存異動((數量 * -1), out List_效期, out List_批號, out List_異動量);
+                        storage.庫存異動((數量 * -1), out List_效期, out List_批號, out List_異動量);
                         string url = $"{Main_Form.API_Server}/api/transactions/add";
                         returnData returnData = new returnData();
                         returnData.ServerName = "cheom";

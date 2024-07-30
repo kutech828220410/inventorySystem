@@ -109,13 +109,26 @@ namespace 癌症備藥機
             List<object[]> list_馬達輸出索引表 = _sqL_DataGridView_馬達輸出索引表.SQL_GetAllRows(false);
             List<object[]> list_馬達輸出索引表_buf = new List<object[]>();
             List<object[]> list_value = new List<object[]>();
+            List<object[]> list_value_buf = new List<object[]>();
             for (int i = 0; i < stockClasses.Count; i++)
             {
-                for (int k = 0; k < stockClasses[i].Qty.StringToInt32(); k++)
+                list_value_buf.LockAdd(Function_取得異動儲位資訊從本地資料(stockClasses[i].Code, stockClasses[i].Qty.StringToInt32()));
+            }
+
+            for (int i = 0; i < list_value_buf.Count; i++)
+            {
+ 
+                int qty = list_value_buf[i][(int)enum_儲位資訊.異動量].StringToInt32();
+                if (qty < 0) qty = qty * -1;
+                for (int k = 0; k < qty; k++)
                 {
-                    list_value.LockAdd(Function_取得異動儲位資訊從本地資料(stockClasses[i].Code, 1));
+                    object[] value = list_value[i].DeepClone();
+                    value[(int)enum_儲位資訊.異動量] = -1;
+                    list_value.Add(value);
                 }
             }
+
+
             for(int i = 0; i < list_value.Count; i++)
             {
                 string IP = list_value[i][(int)enum_儲位資訊.IP].ObjectToString();
