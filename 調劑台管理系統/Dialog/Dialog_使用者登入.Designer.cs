@@ -217,13 +217,14 @@ namespace 調劑台管理系統
             // plC_RJ_Button_取消
             // 
             this.plC_RJ_Button_取消.AutoResetState = false;
-            this.plC_RJ_Button_取消.BackgroundColor = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_取消.BackgroundColor = System.Drawing.Color.Silver;
             this.plC_RJ_Button_取消.Bool = false;
             this.plC_RJ_Button_取消.BorderColor = System.Drawing.Color.PaleVioletRed;
             this.plC_RJ_Button_取消.BorderRadius = 20;
             this.plC_RJ_Button_取消.BorderSize = 0;
             this.plC_RJ_Button_取消.but_press = false;
             this.plC_RJ_Button_取消.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_取消.DisenableColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button_取消.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plC_RJ_Button_取消.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_取消.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -242,6 +243,9 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_取消.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.plC_RJ_Button_取消.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_取消.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_取消.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_取消.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_取消.ProhibitionSymbolSize = 30;
             this.plC_RJ_Button_取消.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_取消.ShadowSize = 3;
             this.plC_RJ_Button_取消.ShowLoadingForm = false;
@@ -273,6 +277,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認.BorderSize = 0;
             this.plC_RJ_Button_確認.but_press = false;
             this.plC_RJ_Button_確認.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_確認.DisenableColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button_確認.Dock = System.Windows.Forms.DockStyle.Left;
             this.plC_RJ_Button_確認.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_確認.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -291,6 +296,9 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_確認.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.plC_RJ_Button_確認.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_確認.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_確認.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_確認.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_確認.ProhibitionSymbolSize = 30;
             this.plC_RJ_Button_確認.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_確認.ShadowSize = 3;
             this.plC_RJ_Button_確認.ShowLoadingForm = false;
@@ -344,6 +352,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_登入.BorderSize = 0;
             this.plC_RJ_Button_登入.but_press = false;
             this.plC_RJ_Button_登入.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_登入.DisenableColor = System.Drawing.Color.Gray;
             this.plC_RJ_Button_登入.FlatAppearance.BorderSize = 0;
             this.plC_RJ_Button_登入.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plC_RJ_Button_登入.Font = new System.Drawing.Font("微軟正黑體", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -361,6 +370,9 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_登入.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 21.75F);
             this.plC_RJ_Button_登入.ON_文字顏色 = System.Drawing.Color.Black;
             this.plC_RJ_Button_登入.ON_背景顏色 = System.Drawing.Color.RoyalBlue;
+            this.plC_RJ_Button_登入.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_登入.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_登入.ProhibitionSymbolSize = 30;
             this.plC_RJ_Button_登入.ShadowColor = System.Drawing.Color.DimGray;
             this.plC_RJ_Button_登入.ShadowSize = 3;
             this.plC_RJ_Button_登入.ShowLoadingForm = false;

@@ -36,32 +36,36 @@ namespace 調劑台管理系統
 
         public void Function_調劑作業_醫令資訊更新(int 台號)
         {
-            if (台號 == 1)
+            this.Invoke(new Action(delegate 
             {
-                if (pictureBox_領藥台_01_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片01.BackgroundImage.Dispose();
-                pictureBox_領藥台_01_藥品圖片01.BackgroundImage = null;
+                if (台號 == 1)
+                {
+                    if (pictureBox_領藥台_01_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片01.BackgroundImage.Dispose();
+                    pictureBox_領藥台_01_藥品圖片01.BackgroundImage = null;
 
-                if (pictureBox_領藥台_01_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片02.BackgroundImage.Dispose();
-                pictureBox_領藥台_01_藥品圖片02.BackgroundImage = null;
+                    if (pictureBox_領藥台_01_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片02.BackgroundImage.Dispose();
+                    pictureBox_領藥台_01_藥品圖片02.BackgroundImage = null;
 
-                this.rJ_Lable_領藥台_01_領藥住院號.Text = "-------------------------";
-                this.rJ_Lable_領藥台_01_病歷號.Text = "-------------------------";
-                this.rJ_Lable_領藥台_01_藥名.Text = "-------------------------";
-                this.rJ_Lable_領藥台_01_開方時間.Text = "-------------------------";
-            }
-            if (台號 == 2)
-            {
-                if (pictureBox_領藥台_02_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片01.BackgroundImage.Dispose();
-                pictureBox_領藥台_02_藥品圖片01.BackgroundImage = null;
+                    this.rJ_Lable_領藥台_01_領藥住院號.Text = "-----------------";
+                    this.rJ_Lable_領藥台_01_病歷號.Text = "-----------------";
+                    this.rJ_Lable_領藥台_01_藥名.Text = "-------------------------";
+                    this.rJ_Lable_領藥台_01_開方時間.Text = "-----------------";
+                }
+                if (台號 == 2)
+                {
+                    if (pictureBox_領藥台_02_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片01.BackgroundImage.Dispose();
+                    pictureBox_領藥台_02_藥品圖片01.BackgroundImage = null;
 
-                if (pictureBox_領藥台_02_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片02.BackgroundImage.Dispose();
-                pictureBox_領藥台_02_藥品圖片02.BackgroundImage = null;
+                    if (pictureBox_領藥台_02_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片02.BackgroundImage.Dispose();
+                    pictureBox_領藥台_02_藥品圖片02.BackgroundImage = null;
 
-                this.rJ_Lable_領藥台_02_領藥住院號.Text = "-------------------------";
-                this.rJ_Lable_領藥台_02_病歷號.Text = "-------------------------";
-                this.rJ_Lable_領藥台_02_藥名.Text = "-------------------------";
-                this.rJ_Lable_領藥台_02_開方時間.Text = "-------------------------";
-            }
+                    this.rJ_Lable_領藥台_02_領藥住院號.Text = "-------------------------";
+                    this.rJ_Lable_領藥台_02_病歷號.Text = "-----------------";
+                    this.rJ_Lable_領藥台_02_藥名.Text = "-------------------------";
+                    this.rJ_Lable_領藥台_02_開方時間.Text = "-----------------";
+                }
+            }));
+            
         }
         public void Function_調劑作業_醫令資訊更新(string 藥碼 ,string 藥名 ,string 領藥住院號, string 病歷號, string 開方時間, int 台號)
         {
@@ -72,20 +76,36 @@ namespace 調劑台管理系統
                 this.Invoke(new Action(delegate 
                 {
                     if (藥名.StringIsEmpty()) 藥名 = "-------------------------";
-                    if (領藥住院號.StringIsEmpty()) 領藥住院號 = "-------------------------";
-                    if (病歷號.StringIsEmpty()) 病歷號 = "-------------------------";
-                    if (開方時間.Check_Date_String() == false) 開方時間 = "-------------------------";
-                    else 開方時間.StringToDateTime().ToDateTimeString();
+                    if (領藥住院號.StringIsEmpty()) 領藥住院號 = "-----------------";
+                    if (病歷號.StringIsEmpty()) 病歷號 = "-----------------";
+                    if (開方時間.Check_Date_String() == false) 開方時間 = "-----------------";
+                    else 開方時間 = 開方時間.StringToDateTime().ToDateTimeString();
 
                     if (台號 == 1)
                     {
                         if(images.Count >= 2)
                         {
                             if (pictureBox_領藥台_01_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片01.BackgroundImage.Dispose();
-                            pictureBox_領藥台_01_藥品圖片01.BackgroundImage = images[0];
-
                             if (pictureBox_領藥台_01_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_01_藥品圖片02.BackgroundImage.Dispose();
-                            pictureBox_領藥台_01_藥品圖片02.BackgroundImage = images[1];
+                            if (images[0] != null && images[1] != null)
+                            {
+                                pictureBox_領藥台_01_藥品圖片01.BackgroundImage = images[0];
+                                pictureBox_領藥台_01_藥品圖片02.BackgroundImage = images[1];
+                                pictureBox_領藥台_01_藥品圖片01.Visible = true;
+                                pictureBox_領藥台_01_藥品圖片02.Visible = true;
+                            }
+                            else if (images[0] == null && images[1] != null)
+                            {
+                                pictureBox_領藥台_01_藥品圖片01.BackgroundImage = images[1];
+                                pictureBox_領藥台_01_藥品圖片01.Visible = true;
+                                pictureBox_領藥台_01_藥品圖片02.Visible = false;
+                            }
+                            else if (images[0] != null && images[1] == null)
+                            {
+                                pictureBox_領藥台_01_藥品圖片01.BackgroundImage = images[0];
+                                pictureBox_領藥台_01_藥品圖片01.Visible = true;
+                                pictureBox_領藥台_01_藥品圖片02.Visible = false;
+                            }
                         }
                       
 
@@ -99,10 +119,26 @@ namespace 調劑台管理系統
                         if (images.Count >= 2)
                         {
                             if (pictureBox_領藥台_02_藥品圖片01.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片01.BackgroundImage.Dispose();
-                            pictureBox_領藥台_02_藥品圖片01.BackgroundImage = images[0];
-
                             if (pictureBox_領藥台_02_藥品圖片02.BackgroundImage != null) pictureBox_領藥台_02_藥品圖片02.BackgroundImage.Dispose();
-                            pictureBox_領藥台_02_藥品圖片02.BackgroundImage = images[1];
+                            if (images[0] != null && images[1] != null)
+                            {
+                                pictureBox_領藥台_02_藥品圖片01.BackgroundImage = images[0];
+                                pictureBox_領藥台_02_藥品圖片02.BackgroundImage = images[1];
+                                pictureBox_領藥台_02_藥品圖片01.Visible = true;
+                                pictureBox_領藥台_02_藥品圖片02.Visible = true;
+                            }
+                            else if (images[0] == null && images[1] != null)
+                            {
+                                pictureBox_領藥台_02_藥品圖片01.BackgroundImage = images[1];
+                                pictureBox_領藥台_02_藥品圖片01.Visible = true;
+                                pictureBox_領藥台_02_藥品圖片02.Visible = false;
+                            }
+                            else if (images[0] != null && images[1] == null)
+                            {
+                                pictureBox_領藥台_02_藥品圖片01.BackgroundImage = images[0];
+                                pictureBox_領藥台_02_藥品圖片01.Visible = true;
+                                pictureBox_領藥台_02_藥品圖片02.Visible = false;
+                            }
                         }
 
                         this.rJ_Lable_領藥台_02_領藥住院號.Text = 領藥住院號;

@@ -249,7 +249,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 Application.DoEvents();
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(登入者ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(登入者ID, 藥名);
     
 
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)

@@ -1465,7 +1465,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 Application.DoEvents();
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_01_ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_01_ID, 藥名);
                 this.Invoke(new Action(delegate
                 {
 
@@ -3450,7 +3450,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 Application.DoEvents();
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_02_ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_02_ID, 藥名);
                 this.Invoke(new Action(delegate
                 {
                     //dialog_使用者登入.Location = new Point(this.rJ_GroupBox_領藥台_02.PointToScreen(Point.Empty).X + this.rJ_GroupBox_領藥台_02.Width + 20, 1);
@@ -5419,7 +5419,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 Application.DoEvents();
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_03_ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_03_ID, 藥名);
                 this.Invoke(new Action(delegate
                 {
                     dialog_使用者登入.Location = new Point(this.rJ_Pannel_領藥台_03.PointToScreen(Point.Empty).X + this.rJ_Pannel_領藥台_03.Width + 20, 1);
@@ -7374,7 +7374,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 Application.DoEvents();
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_04_ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(領藥台_04_ID, 藥名);
                 this.Invoke(new Action(delegate
                 {
                     dialog_使用者登入.Location = new Point(this.rJ_Pannel_領藥台_04.PointToScreen(Point.Empty).X + this.rJ_Pannel_領藥台_04.Width + 20, 1);
@@ -8919,6 +8919,7 @@ namespace 調劑台管理系統
         }
         private void PlC_RJ_Button_調劑作業_條碼輸入_MouseDownEvent(MouseEventArgs mevent)
         {
+
             Dialog_條碼輸入 dialog_條碼輸入 = new Dialog_條碼輸入();
             if (dialog_條碼輸入.ShowDialog() != DialogResult.Yes) return;
             string Barcode = dialog_條碼輸入.Value;

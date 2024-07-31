@@ -794,6 +794,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\personnel-information-and-permission-login-removebg-preview1.png" />
+    <None Include="Resources\personnel-information-and-permission-login-removebg-preview.png" />
     <None Include="Resources\medicine-data-set-group.jpg" />
     <None Include="Resources\medicine-shift-handover-checklist__1_-removebg-preview.png" />
     <None Include="Resources\medicine-shift-handover-checklist-removebg-preview.png" />

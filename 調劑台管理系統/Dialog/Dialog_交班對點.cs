@@ -35,6 +35,8 @@ namespace 調劑台管理系統
             庫存,
             [Description("盤點庫存,VARCHAR,200,NONE")]
             盤點庫存,
+            [Description("覆盤庫存,VARCHAR,200,NONE")]
+            覆盤庫存,
             [Description("備註,VARCHAR,200,NONE")]
             備註,
         }
@@ -44,18 +46,16 @@ namespace 調劑台管理系統
             form.Invoke(new Action(delegate { InitializeComponent(); }));
 
             this.sqL_DataGridView_交班藥品.RowEnterEvent += SqL_DataGridView_交班藥品_RowEnterEvent;
-
             this.LoadFinishedEvent += Dialog_交班對點_LoadFinishedEvent;
             this.rJ_Button_藥品群組_選擇.MouseDownEvent += RJ_Button_藥品群組_選擇_MouseDownEvent;
         }
 
-      
-
+        #region Event
         private void Dialog_交班對點_LoadFinishedEvent(EventArgs e)
         {
             List<StepEntity> list = new List<StepEntity>();
-            list.Add(new StepEntity("1", "登入", 1, "請登入使用者(1號)", eumStepState.Completed, null));
-            list.Add(new StepEntity("2", "登入", 2, "請登入使用者(1號)", eumStepState.Completed, null));
+            list.Add(new StepEntity("1", "登入", 1, "請登入使用者(盤點)", eumStepState.Waiting, null));
+            list.Add(new StepEntity("2", "登入", 2, "請登入使用者(覆盤)", eumStepState.Waiting, null));
             list.Add(new StepEntity("3", "藥品選擇", 3, "選擇交班藥品", eumStepState.Waiting, null));
             list.Add(new StepEntity("4", "交班完成", 4, "清點交班藥品", eumStepState.Waiting, null));
             this.stepViewer.CurrentStep = 1;
@@ -81,6 +81,9 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_交班藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.藥碼);
                 this.sqL_DataGridView_交班藥品.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_交班藥品.藥名);
                 this.sqL_DataGridView_交班藥品.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.單位);
+                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.盤點庫存);
+                this.sqL_DataGridView_交班藥品.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班藥品.覆盤庫存);
+                this.sqL_DataGridView_交班藥品.ClearGrid();
             }));
             
         }
@@ -128,5 +131,6 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥品資訊.Text = $"({藥碼}){藥名}";
             this.rJ_Lable_現有庫存.Text = $"{庫存}";
         }
+        #endregion
     }
 }

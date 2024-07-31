@@ -37,6 +37,7 @@ namespace 調劑台管理系統
         public static string Order_URL = "";
         public static string OrderByCodeApi_URL = "";
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        public static RFID_FX600lib.RFID_FX600_UI _RFID_FX600_UI = null;
         public string 領藥台_01名稱
         {
             get
@@ -383,12 +384,14 @@ namespace 調劑台管理系統
 
                 this.plC_ScreenPage_Main.TabChangeEvent += PlC_ScreenPage_Main_TabChangeEvent;
                 this.plC_ScreenPage_調劑樣式.Resize += PlC_ScreenPage_調劑樣式_Resize;
+                this.ToolStripMenuItem_顯示主控台.Click += ToolStripMenuItem_顯示主控台_Click;
+                this.ToolStripMenuItem_隱藏主控台.Click += ToolStripMenuItem_隱藏主控台_Click;
             }
         }
 
  
 
-
+      
 
         #region Event
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
@@ -668,6 +671,14 @@ namespace 調劑台管理系統
                 panel_領藥台_03_04.Height = height;
             }
         }
+        private void ToolStripMenuItem_顯示主控台_Click(object sender, EventArgs e)
+        {
+            Basic.Screen.ShowConsole();
+        }
+        private void ToolStripMenuItem_隱藏主控台_Click(object sender, EventArgs e)
+        {
+            Basic.Screen.CloseConsole();
+        }
         #endregion
         #region Function
         private void RFID_Iint()
@@ -680,6 +691,7 @@ namespace 調劑台管理系統
                 MyTimer_rfiD_FX600_UI_Init.StartTickTime(5000);
                 while (true)
                 {
+                    _RFID_FX600_UI = this.rfiD_FX600_UI;
                     if (myConfigClass.RFID使用 == false) break;
 
                     if (MyTimer_rfiD_FX600_UI_Init.IsTimeOut() && !flag_rfiD_FX600_UI_Init)
@@ -703,7 +715,9 @@ namespace 調劑台管理系統
                             {
                                 num++;
                             }
+                        
                             this.rfiD_FX600_UI.Init(RFID_FX600lib.RFID_FX600_UI.Baudrate._9600, num, myConfigClass.RFID_COMPort);
+                           
                         }
                         flag_rfiD_FX600_UI_Init = true;
                         break;
