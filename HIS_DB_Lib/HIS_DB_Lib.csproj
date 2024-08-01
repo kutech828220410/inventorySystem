@@ -119,6 +119,7 @@
     <Compile Include="drugDispatchClass.cs" />
     <Compile Include="materialRequisitionClass.cs" />
     <Compile Include="medCarInfoClass.cs" />
+    <Compile Include="medCarList.cs" />
     <Compile Include="medCpoeClass.cs" />
     <Compile Include="medGeneralConfigClass.cs" />
     <Compile Include="IncomeReasonsClass.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="medPharmacyClass.cs" />
     <Compile Include="medPicClass.cs" />
     <Compile Include="medPriceClass.cs" />
+    <Compile Include="medQty.cs" />
     <Compile Include="MedRecheckLogClass.cs" />
     <Compile Include="medShiftConfigClass.cs" />
     <Compile Include="medSMDSClass.cs" />
