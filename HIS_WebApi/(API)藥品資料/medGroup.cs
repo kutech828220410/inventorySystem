@@ -136,6 +136,80 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
+        /// 以GUID取得藥品群組內容
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" :
+        ///     [
+        ///        "GUID"
+        ///     ]
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <returns></returns>
+        [Route("get_group_by_guid")]
+        [HttpPost]
+        public string POST_get_group_by_guid([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[GUID]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string GUID = returnData.ValueAry[0];
+                List<medGroupClass> medGroupClasses = Function_Get_medGroupClass(serverSettingClasses[0]);
+                medGroupClasses = (from temp in medGroupClasses
+                                   where temp.GUID == GUID
+                                   select temp).ToList();
+                if(medGroupClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt();
+                }
+                returnData.Code = 200;
+                returnData.Data = medGroupClasses;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "get_group_by_guid";
+                returnData.Result = $"取得藥品群組資料成功!";
+
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
         /// 新增或修改藥品群組
         /// </summary>
         /// <remarks>
@@ -589,6 +663,135 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 新增指定群組內多個藥品
+        /// </summary>
+        /// <remarks>
+        /// 以下為傳入範例資料結構
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         "GUID": "ef2f3e3e-a58d-4ac0-8878-d29aa1ccebdf",
+        ///         "NAME": "TEST123",
+        ///         "MedClasses": 
+        ///          [
+        ///             {
+        ///                 "CODE": "IDIP1"
+        ///             },
+        ///             {
+        ///                 "CODE": "OOXY"
+        ///             }
+        ///          ]
+        ///     },
+        ///     "Value": "",
+        ///     "TableName": "",
+        ///     "ServerName": "",
+        ///     "ServerType": "",
+        ///     "TimeTaken": ""
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("add_meds_in_group")]
+        [HttpPost]
+        public string POST_add_meds_in_group([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
+
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入資料錯誤,須為[medGroupClass]";
+                    return returnData.JsonSerializationt();
+                }
+                medGroupClass medGroupClass = returnData.Data.ObjToClass<medGroupClass>();
+                if (medGroupClass == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"輸入資料空白,須為[medGroupClass]";
+                    return returnData.JsonSerializationt();
+                }
+                if(medGroupClass.GUID.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"medGroupClass.GUID,須為[medGroupClass]";
+                    return returnData.JsonSerializationt();
+                }
+                
+                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
+
+                List<medClass> medClasses_cloud = medClass.get_med_cloud(API_Server);
+                List<medClass> medClasses_cloud_buf = new List<medClass>();
+
+                Dictionary<string, List<medClass>> keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
+
+                List<object[]> list_med_group = sQLControl_med_group.GetRowsByDefult(null, (int)enum_藥品群組.GUID, medGroupClass.GUID);
+                if(list_med_group.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料,找無此GUID藥品群組";
+                    return returnData.JsonSerializationt();
+                }
+                List<object[]> list_sub_group = sQLControl_med_sub_group.GetRowsByDefult(null, (int)enum_藥品群組明細.Master_GUID, medGroupClass.GUID);
+                List<object[]> list_sub_group_buf = new List<object[]>();
+                List<object[]> list_sub_group_add = new List<object[]>();
+                List<object[]> list_sub_group_replace = new List<object[]>();
+
+                for (int i = 0; i < list_sub_group.Count; i++)
+                {
+                    string 藥品碼 = list_sub_group[i][(int)enum_藥品群組明細.藥品碼].ObjectToString();
+                    list_sub_group_buf = list_sub_group.GetRows((int)enum_藥品群組明細.藥品碼, 藥品碼);
+                    if (list_sub_group_buf.Count == 0)
+                    {
+                        object[] value = new object[new enum_藥品群組明細().GetLength()];
+                        value[(int)enum_藥品群組明細.GUID] = Guid.NewGuid().ToString();
+                        value[(int)enum_藥品群組明細.藥品碼] = 藥品碼;
+                        value[(int)enum_藥品群組明細.Master_GUID] = medGroupClass.GUID;
+                        list_sub_group_add.Add(value);
+                    }
+                }
+                sQLControl_med_sub_group.AddRows(null, list_sub_group_add);
+
+                returnData.Code = 200;
+                returnData.TimeTaken = myTimer.ToString();
+                returnData.Method = "add_meds_in_group";
+                returnData.Result = $"寫入藥品群組資料成功!共新增<{list_sub_group_add.Count}>筆藥品,共修改<{list_sub_group_replace.Count}>筆藥品!";
+                return returnData.JsonSerializationt(true);
+
+
+
+
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+
 
         private List<medGroupClass> Function_Get_medGroupClass(ServerSettingClass serverSettingClass)
         {

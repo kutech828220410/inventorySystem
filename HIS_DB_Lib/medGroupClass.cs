@@ -51,6 +51,15 @@ namespace HIS_DB_Lib
             List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
             return tables;
         }
+        static public medGroupClass get_all_group(string API_Server, string name)
+        {
+            List<medGroupClass> medGroupClasses = get_all_group(API_Server);
+            medGroupClasses = (from temp in medGroupClasses
+                               where temp.名稱 == name
+                               select temp).ToList();
+            if (medGroupClasses.Count == 0) return null;
+            return medGroupClasses[0];
+        }
         static public List<medGroupClass> get_all_group(string API_Server)
         {
             string url = $"{API_Server}/api/medGroup/get_all_group";
@@ -65,6 +74,68 @@ namespace HIS_DB_Lib
 
             return medGroupClasses;
         }
+        
+        static public void add_group(string API_Server, medGroupClass medGroupClass)
+        {
+            string url = $"{API_Server}/api/medGroup/add_group";
+            returnData returnData = new returnData();
+            returnData.Data = medGroupClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();       
+            if (returnData_out == null) return;
+            if (returnData_out.Code != 200) return;
+            Console.WriteLine($"{returnData}");
+        }
+        static public void delete_group_by_guid(string API_Server, medGroupClass medGroupClass)
+        {
+            delete_group_by_guid(API_Server, medGroupClass);
+        }
+        static public void delete_group_by_guid(string API_Server, string GUID)
+        {
+            string url = $"{API_Server}/api/medGroup/delete_group_by_guid";
+            returnData returnData = new returnData();
+            returnData.Value = GUID;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null) return;
+            if (returnData_out.Code != 200) return;
+            Console.WriteLine($"{returnData}");
+        }
+        static public void delete_meds_in_group(string API_Server, string GUID, List<medClass> medClasses)
+        {
+            medGroupClass medGroupClass = new medGroupClass();
+            medGroupClass.GUID = GUID;
+            medGroupClass.medClasses = medClasses;
+            delete_meds_in_group(API_Server, medGroupClass);
+        }
+        static public void delete_meds_in_group(string API_Server, medGroupClass medGroupClass)
+        {
+            string url = $"{API_Server}/api/medGroup/delete_meds_in_group";
+            returnData returnData = new returnData();
+            returnData.Data = medGroupClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null) return;
+            if (returnData_out.Code != 200) return;
+            Console.WriteLine($"{returnData}");
+        }
+        static public void add_meds_in_group(string API_Server, medGroupClass medGroupClass)
+        {
+            string url = $"{API_Server}/api/medGroup/add_meds_in_group";
+            returnData returnData = new returnData();
+            returnData.Data = medGroupClass;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null) return;
+            if (returnData_out.Code != 200) return;
+            Console.WriteLine($"{returnData}");
+        }
+
+
     }
   
 }

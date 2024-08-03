@@ -379,7 +379,6 @@ namespace HIS_DB_Lib
             List<string> strs = returnData_out.Data.ObjToClass<List<string>>();
             return strs;
         }
-
         static public ServerSettingClass get_VM_Server(string API_Server)
         {
             string url = $"{API_Server}/api/ServerSetting/get_VM_Server";

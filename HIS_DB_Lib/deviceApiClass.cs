@@ -525,8 +525,6 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData_result}");
         }
 
-
-
         static public List<DeviceBasic> Get_Pharma_DeviceBasicsByCode(string API_Server, string ServerName, string ServerType, string Code)
         {
             string url = $"{API_Server}/api/device/get_from_pharma_by_code";

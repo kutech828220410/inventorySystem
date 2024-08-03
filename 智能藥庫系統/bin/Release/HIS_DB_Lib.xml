@@ -1656,6 +1656,11 @@
             領用人
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.transactionsClass.覆核藥師">
+            <summary>
+            領用人
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.transactionsClass.藥師證字號">
             <summary>
             藥師證字號

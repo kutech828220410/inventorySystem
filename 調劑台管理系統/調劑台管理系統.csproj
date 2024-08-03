@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4EC46DF5-2F3E-499E-A5A2-91FC44A5FF4E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>調劑台管理系統</RootNamespace>
     <AssemblyName>調劑台管理系統</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -428,6 +428,12 @@
     <Compile Include="Dialog\Dialog_交班對點.Designer.cs">
       <DependentUpon>Dialog_交班對點.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_藥品群組.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_藥品群組.Designer.cs">
+      <DependentUpon>Dialog_藥品群組.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -694,6 +700,9 @@
     <EmbeddedResource Include="Dialog\Dialog_藥品搜尋.resx">
       <DependentUpon>Dialog_藥品搜尋.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_藥品群組.resx">
+      <DependentUpon>Dialog_藥品群組.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -794,6 +803,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\plus-removebg-preview.png" />
+    <None Include="Resources\medicine-shift-handover-checklist--add-data-plus-removebg-preview.png" />
+    <None Include="Resources\icon-for-searching-medicine-removebg-preview.png" />
+    <None Include="Resources\medicine-data-set-group-removebg-preview-removebg-preview.png" />
+    <None Include="Resources\update-his-medicine-data-removebg-preview.png" />
+    <None Include="Resources\delete-data-removebg-preview.png" />
+    <None Include="Resources\update-medicine-cabinet-data-removebg-preview.png" />
+    <None Include="Resources\add-new-medicine--removebg-preview.png" />
+    <None Include="Resources\adjusted_checkmark-removebg-preview.png" />
     <None Include="Resources\personnel-information-and-permission-login-removebg-preview1.png" />
     <None Include="Resources\personnel-information-and-permission-login-removebg-preview.png" />
     <None Include="Resources\medicine-data-set-group.jpg" />
