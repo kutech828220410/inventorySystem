@@ -143,7 +143,7 @@ namespace 調劑台管理系統
                             this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
                             if (plC_Button_同藥碼全亮.Bool) return;
                           
-                            //this.List_EPD1020_雲端資料.Add_NewDrawer(drawer);
+                            //List_EPD1020_雲端資料.Add_NewDrawer(drawer);
                             this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
                         }
                              
@@ -155,7 +155,7 @@ namespace 調劑台管理系統
                 {
                     RFIDClass rFIDClass = value_device as RFIDClass;
                     this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
-                    this.List_RFID_雲端資料.Add_NewRFIDClass(rFIDClass);
+                    List_RFID_雲端資料.Add_NewRFIDClass(rFIDClass);
                 }
 
             }
@@ -234,7 +234,7 @@ namespace 調劑台管理系統
                         }));
                         taskList.Add(Task.Run(() =>
                         {
-                            Drawer drawer = this.List_EPD1020_雲端資料.SortByIP(IP);
+                            Drawer drawer = List_EPD1020_雲端資料.SortByIP(IP);
                             if (drawer != null)
                             {
                                 this.drawerUI_EPD_1020.Set_LockOpen(drawer);
@@ -258,7 +258,7 @@ namespace 調劑台管理系統
                         }));
                         taskList.Add(Task.Run(() =>
                         {
-                            RFIDClass rFIDClass = this.List_RFID_雲端資料.SortByIP(IP);
+                            RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(IP);
                             if (rFIDClass != null)
                             {
                                 if (Num == -1) return;
@@ -388,7 +388,7 @@ namespace 調劑台管理系統
                     //Console.WriteLine($"Input:{Input},{flag_state}");
                     AlarmEnable = drawer.AlarmEnable;
                 }
-                Drawer drawer_1020 = this.List_EPD1020_雲端資料.SortByIP(IP);
+                Drawer drawer_1020 = List_EPD1020_雲端資料.SortByIP(IP);
                 if (drawer_1020 != null)
                 {
                     flag_state = this.drawerUI_EPD_1020.GetInput(drawer_1020.IP);
@@ -422,7 +422,7 @@ namespace 調劑台管理系統
                     }
                    
                 }
-                RFIDClass rFIDClass = this.List_RFID_雲端資料.SortByIP(IP);
+                RFIDClass rFIDClass = List_RFID_雲端資料.SortByIP(IP);
                 if (rFIDClass != null)
                 {
                     if (Num >= 0)

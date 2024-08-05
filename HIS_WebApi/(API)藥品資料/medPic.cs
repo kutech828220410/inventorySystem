@@ -258,7 +258,6 @@ namespace HIS_WebApi
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
-
             Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_medPic());
             return table.JsonSerializationt(true);
         }

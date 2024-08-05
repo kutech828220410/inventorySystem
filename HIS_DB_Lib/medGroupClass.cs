@@ -89,7 +89,7 @@ namespace HIS_DB_Lib
         }
         static public void delete_group_by_guid(string API_Server, medGroupClass medGroupClass)
         {
-            delete_group_by_guid(API_Server, medGroupClass);
+            delete_group_by_guid(API_Server, medGroupClass.GUID);
         }
         static public void delete_group_by_guid(string API_Server, string GUID)
         {

@@ -2199,7 +2199,7 @@ namespace HIS_WebApi
             if (str_action == enum_交易記錄查詢動作.批次領藥.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.重複領藥.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.系統領藥.GetEnumName()) return true;
-            if (str_action == enum_交易記錄查詢動作.盤點調整.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.盤點校正.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.掃碼退藥.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.手輸退藥.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.系統入庫.GetEnumName()) return true;

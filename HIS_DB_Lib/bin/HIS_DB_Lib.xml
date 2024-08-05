@@ -961,6 +961,131 @@
             加入時間
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.medRecheckLogClass">
+            <summary>
+            表示藥品覆盤日志的數據類別。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.GUID">
+            <summary>
+            獨特的標識符。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.發生類別">
+            <summary>
+            發生類別。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.藥碼">
+            <summary>
+            藥品的代碼。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.藥名">
+            <summary>
+            藥品的名稱。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.庫存值">
+            <summary>
+            庫存值。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.盤點值">
+            <summary>
+            盤點值。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.差異值">
+            <summary>
+            差異值。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.批號">
+            <summary>
+            批號。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.效期">
+            <summary>
+            效期。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.醫令_GUID">
+            <summary>
+            醫令的唯一標識符。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.交易紀錄_GUID">
+            <summary>
+            交易紀錄的唯一標識符。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.盤點藥師1">
+            <summary>
+            盤點藥師。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.盤點藥師ID1">
+            <summary>
+            盤點藥師ID2。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.盤點藥師2">
+            <summary>
+            盤點藥師。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.盤點藥師ID2">
+            <summary>
+            盤點藥師ID2。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.排除藥師">
+            <summary>
+            排除藥師。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.發生時間">
+            <summary>
+            發生時間。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.排除時間">
+            <summary>
+            排除時間。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.異常原因">
+            <summary>
+            異常原因。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medRecheckLogClass.狀態">
+            <summary>
+            狀態。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.notifyExceptionClass.GUID">
+            <summary>
+            唯一KEY.
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.notifyExceptionClass.類別">
+            <summary>
+            唯一KEY.
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.notifyExceptionClass.內容">
+            <summary>
+            唯一KEY.
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.notifyExceptionClass.發生時間">
+            <summary>
+            唯一KEY.
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.OrderClass.天數">
             <summary>
             天數
@@ -1449,6 +1574,16 @@
         <member name="P:HIS_DB_Lib.takeMedicineStackClass.藥師證字號">
             <summary>
             藥師證字號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.覆核藥師姓名">
+            <summary>
+            覆核藥師姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.takeMedicineStackClass.覆核藥師ID">
+            <summary>
+            覆核藥師ID
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.takeMedicineStackClass.動作">

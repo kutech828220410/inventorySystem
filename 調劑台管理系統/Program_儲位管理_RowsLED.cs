@@ -70,13 +70,15 @@ namespace 調劑台管理系統
             [Description("庫存,VARCHAR,300,NONE")]
             庫存,
         }
-        private List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
-        private List<RowsLED> List_RowsLED_雲端資料 = new List<RowsLED>();
-        private List<RowsLED> List_RowsLED_入賬資料 = new List<RowsLED>();
+        static public List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
+        static public List<RowsLED> List_RowsLED_雲端資料 = new List<RowsLED>();
+        static public List<RowsLED> List_RowsLED_入賬資料 = new List<RowsLED>();
+        static public RowsLEDUI _rowsLEDUI;
         private RowsLED RowsLED_Copy;
 
         private void Program_儲位管理_RowsLED_Init()
         {
+            _rowsLEDUI = this.rowsLEDUI;
             this.rowsLED_Pannel.Init(this.rowsLEDUI.List_UDP_Local);
             this.rowsLED_Pannel.AutoWrite = true;
 
@@ -232,7 +234,7 @@ namespace 調劑台管理系統
             MyTimer_TickTime.TickStop();
             MyTimer_TickTime.StartTickTime(50000);
             List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < this.List_RowsLED_本地資料.Count; i++)
+            for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
             {
                 object[] value = new object[new enum_儲位管理_RowsLED_層架列表().GetLength()];
                 value[(int)enum_儲位管理_RowsLED_層架列表.IP] = List_RowsLED_本地資料[i].IP;
@@ -266,9 +268,9 @@ namespace 調劑台管理系統
             string BarCode_buf = "";
             string 包裝單位_buf = "";
             string 警訊藥品_buf = "";
-            for (int i = 0; i < this.List_RowsLED_本地資料.Count; i++)
+            for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
             {
-                string IP = this.List_RowsLED_本地資料[i].IP;
+                string IP = List_RowsLED_本地資料[i].IP;
                 List<RowsDevice> rowsDevices = List_RowsLED_本地資料[i].GetAllRowsDevices();
                 bool Is_Replace = false;
                 for (int k = 0; k < rowsDevices.Count; k++)
@@ -336,7 +338,7 @@ namespace 調劑台管理系統
                 }
                 if (Is_Replace)
                 {
-                    list_replaceValue.Add(this.List_RowsLED_本地資料[i]);
+                    list_replaceValue.Add(List_RowsLED_本地資料[i]);
                 }
             }
 
@@ -633,7 +635,7 @@ namespace 調劑台管理系統
                 int 原有庫存 = rowsDevice.取得庫存();
                 string 藥品碼 = rowsDevice.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
-                string 庫存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 rowsDevice.效期庫存覆蓋(效期, 數量);
                 int 修正庫存 = rowsDevice.取得庫存();
                 this.rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
@@ -643,7 +645,7 @@ namespace 調劑台管理系統
                 string 藥品名稱 = rowsDevice.Name;
                 string 藥袋序號 = "";
                 string 交易量 = (修正庫存 - 原有庫存).ToString();
-                string 結存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 結存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 string 操作人 = this.登入者名稱;
                 string 病人姓名 = "";
                 string 病歷號 = "";
@@ -736,18 +738,18 @@ namespace 調劑台管理系統
                 int 原有庫存 = rowsDevice.取得庫存();
                 string 藥品碼 = rowsDevice.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
-                string 庫存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 rowsDevice.效期庫存覆蓋(效期, 批號, 數量);
                 int 修正庫存 = rowsDevice.取得庫存();
                 this.rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
-                this.List_RowsLED_本地資料.Add_NewRowsLED(rowsDevice);
+                List_RowsLED_本地資料.Add_NewRowsLED(rowsDevice);
 
                 string GUID = Guid.NewGuid().ToString();
                 string 動作 = enum_交易記錄查詢動作.效期庫存異動.GetEnumName();
                 string 藥品名稱 = rowsDevice.Name;
                 string 藥袋序號 = "";
                 string 交易量 = (修正庫存 - 原有庫存).ToString();
-                string 結存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 結存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 string 操作人 = this.登入者名稱;
                 string 病人姓名 = "";
                 string 病歷號 = "";
@@ -825,7 +827,7 @@ namespace 調劑台管理系統
                 }
                 rowsDevice.修正批號(效期, 新批號);
                 this.rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
-                this.List_RowsLED_本地資料.Add_NewRowsLED(rowsDevice);
+                List_RowsLED_本地資料.Add_NewRowsLED(rowsDevice);
 
 
                 string GUID = Guid.NewGuid().ToString();
@@ -886,7 +888,7 @@ namespace 調劑台管理系統
             this.rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
             List_RowsLED_本地資料.Add_NewRowsLED(rowsLED);
             List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < this.List_RowsLED_本地資料.Count; i++)
+            for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
             {
                 object[] value = new object[new enum_儲位管理_RowsLED_層架列表().GetLength()];
                 value[(int)enum_儲位管理_RowsLED_層架列表.IP] = List_RowsLED_本地資料[i].IP;
@@ -1096,12 +1098,12 @@ namespace 調劑台管理系統
             for (int i = 0; i < list_儲位列表.Count; i++)
             {
                 string IP = list_儲位列表[i][(int)enum_儲位管理_RowsLED_層架列表.IP].ObjectToString();
-                RowsLED rowsLED = this.List_RowsLED_本地資料.SortByIP(IP);
+                RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(IP);
                 if (rowsLED == null) continue;
                 rowsLED.Name = $"{i + 1}";
-                this.List_RowsLED_本地資料.Add_NewRowsLED(rowsLED);
+                List_RowsLED_本地資料.Add_NewRowsLED(rowsLED);
             }
-            this.rowsLEDUI.SQL_ReplaceRowsLED(this.List_RowsLED_本地資料);
+            this.rowsLEDUI.SQL_ReplaceRowsLED(List_RowsLED_本地資料);
             this.Function_設定雲端資料更新();
             PLC_Device_儲位管理_RowsLED_資料更新.Bool = true;
             while (true)
@@ -1129,7 +1131,7 @@ namespace 調劑台管理系統
                         for (int i = 0; i < list_儲位列表.Count; i++)
                         {
                             string IP = list_儲位列表[i][(int)enum_儲位管理_RowsLED_層架列表.IP].ObjectToString();
-                            RowsLED rowsLED = this.List_RowsLED_本地資料.SortByIP(IP);
+                            RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(IP);
                             if (rowsLED == null) continue;
                             SheetClass sheetClass = new SheetClass(rowsLED.IP);
                             sheetClass.ColumnsWidth.Add(5000);
@@ -1179,7 +1181,7 @@ namespace 調劑台管理系統
                         for (int i = 0; i < list_儲位列表.Count; i++)
                         {
                             string IP = list_儲位列表[i][(int)enum_儲位管理_RowsLED_層架列表.IP].ObjectToString();
-                            RowsLED rowsLED = this.List_RowsLED_本地資料.SortByIP(IP);
+                            RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(IP);
                             if (rowsLED == null) continue;
                    
                             for (int k = 0; k < rowsLED.RowsDevices.Count; k++)
@@ -1225,7 +1227,7 @@ namespace 調劑台管理系統
             for (int i = 0; i < sheetClasses.Count; i++)
             {
                 string 儲位名稱 = sheetClasses[i].Name;
-                RowsLED rowsLED = this.List_RowsLED_本地資料.SortByIP(儲位名稱);
+                RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(儲位名稱);
                 rowsLED.RowsDevices.Clear();
                 for (int k = 0; k < sheetClasses[i].Rows.Count; k++ )
                 {
@@ -1240,9 +1242,9 @@ namespace 調劑台管理系統
                     rowsDevice.Index = k;
                     rowsLED.RowsDevices.Add(rowsDevice);
                 }
-                this.List_RowsLED_本地資料.Add_NewRowsLED(rowsLED);
+                List_RowsLED_本地資料.Add_NewRowsLED(rowsLED);
             }
-            this.rowsLEDUI.SQL_ReplaceRowsLED(this.List_RowsLED_本地資料);
+            this.rowsLEDUI.SQL_ReplaceRowsLED(List_RowsLED_本地資料);
             this.Function_設定雲端資料更新();
             PLC_Device_儲位管理_RowsLED_資料更新.Bool = true;
             while (true)

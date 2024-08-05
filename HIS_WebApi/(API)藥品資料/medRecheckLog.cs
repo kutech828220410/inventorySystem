@@ -25,17 +25,17 @@ using System.Text;
 namespace HIS_WebApi
 {
     /// <summary>
-    /// 覆盤異常LOG
+    /// 盤點異常LOG
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class MedRecheckLog: Controller
+    public class medRecheckLog: Controller
     {
         static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
         static private MySqlSslMode SSLMode = MySqlSslMode.None;
 
         /// <summary>
-        /// 初始化覆盤異常資料庫
+        /// 初始化盤點異常資料庫
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -54,6 +54,7 @@ namespace HIS_WebApi
         /// <returns></returns>
         [Route("init")]
         [HttpPost]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(medRecheckLogClass))]
         public string GET_init([FromBody] returnData returnData)
         {
             try
@@ -77,7 +78,7 @@ namespace HIS_WebApi
 
         }
         /// <summary>
-        /// 新增資料至覆盤異常資料庫
+        /// 新增資料至盤點異常資料庫
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -87,7 +88,7 @@ namespace HIS_WebApi
         ///     "ServerType" : "調劑台",
         ///     "Data": 
         ///     {
-        ///  
+        ///         [medRecheckLogClassAry]
         ///     }
         ///   }
         /// </code>
@@ -116,25 +117,35 @@ namespace HIS_WebApi
                 string UserName = serverSettingClass.User;
                 string Password = serverSettingClass.Password;
                 uint Port = (uint)serverSettingClass.Port.StringToInt32();
-                MedRecheckLogClass medRecheckLogClass = returnData.Data.ObjToClass<MedRecheckLogClass>();
-                if(medRecheckLogClass == null)
+                List<medRecheckLogClass> medRecheckLogClasses = returnData.Data.ObjToClass<List<medRecheckLogClass>>();
+                if(medRecheckLogClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入資料異常!";
                     return returnData.JsonSerializationt();
                 }
-                if (medRecheckLogClass.GUID.StringIsEmpty() == true) medRecheckLogClass.GUID = Guid.NewGuid().ToString();
-                if (medRecheckLogClass.系統理論值.StringIsEmpty() == true) medRecheckLogClass.系統理論值 = "0";
-                if (medRecheckLogClass.覆盤理論值.StringIsEmpty() == true) medRecheckLogClass.覆盤理論值 = "0";
-                if (medRecheckLogClass.校正庫存值.StringIsEmpty() == true) medRecheckLogClass.校正庫存值 = "0";
-                medRecheckLogClass.發生時間 = DateTime.Now.ToDateTimeString_6();
-                medRecheckLogClass.排除時間 = DateTime.MinValue.ToDateTimeString();
-                medRecheckLogClass.狀態 = enum_MedRecheckLog_State.未排除.GetEnumName();
-                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
-                object[] value = medRecheckLogClass.ClassToSQL<MedRecheckLogClass , enum_MedRecheckLog>();
-                sQLControl.AddRow(null, value);
+                List<object[]> list_value = new List<object[]>();
+                for (int i = 0; i < medRecheckLogClasses.Count; i++)
+                {
+                    medRecheckLogClass medRecheckLogClass = medRecheckLogClasses[i];
+                    if (medRecheckLogClass.GUID.StringIsEmpty() == true) medRecheckLogClass.GUID = Guid.NewGuid().ToString();
+                    if (medRecheckLogClass.庫存值.StringIsEmpty() == true) medRecheckLogClass.庫存值 = "0";
+                    if (medRecheckLogClass.盤點值.StringIsEmpty() == true) medRecheckLogClass.盤點值 = "0";
+                    if (medRecheckLogClass.差異值.StringIsEmpty() == true) medRecheckLogClass.差異值 = "0";
+                    medRecheckLogClass.差異值 = (medRecheckLogClass.盤點值.StringToInt32() - medRecheckLogClass.庫存值.StringToInt32()).ToString();
+
+                    medRecheckLogClass.發生時間 = DateTime.Now.ToDateTimeString_6();
+                    medRecheckLogClass.排除時間 = DateTime.MinValue.ToDateTimeString();
+                    medRecheckLogClass.狀態 = enum_medRecheckLog_State.未排除.GetEnumName();
+                    object[] value = medRecheckLogClass.ClassToSQL<medRecheckLogClass, enum_medRecheckLog>();
+                    list_value.Add(value);
+                }
+              
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log_new", UserName, Password, Port, SSLMode);
+          
+                sQLControl.AddRows(null, list_value);
                 returnData.Code = 200;
-                returnData.Result = $"新增資料成功!";
+                returnData.Result = $"新增資料成功!共<{list_value.Count}>筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -145,7 +156,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 更新資料至覆盤異常資料庫
+        /// 更新資料至盤點異常資料庫
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -153,10 +164,9 @@ namespace HIS_WebApi
         ///   {
         ///     "ServerName" : "管藥",
         ///     "ServerType" : "調劑台",
-        ///     "Value" : "c301bce4-d865-474c-8faf-23fef4451869",
         ///     "Data": 
         ///     {
-        ///  
+        ///         [medRecheckLogClassAry]
         ///     }
         ///   }
         /// </code>
@@ -184,8 +194,8 @@ namespace HIS_WebApi
                 string UserName = serverSettingClass.User;
                 string Password = serverSettingClass.Password;
                 uint Port = (uint)serverSettingClass.Port.StringToInt32();
-                MedRecheckLogClass medRecheckLogClass = returnData.Data.ObjToClass<MedRecheckLogClass>();
-                if (medRecheckLogClass == null)
+                List<medRecheckLogClass> medRecheckLogClasses = returnData.Data.ObjToClass<List<medRecheckLogClass>>();
+                if (medRecheckLogClasses == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"傳入資料異常!";
@@ -197,19 +207,25 @@ namespace HIS_WebApi
                     returnData.Result = $"[eturnData.Value] GUID 空白!";
                     return returnData.JsonSerializationt();
                 }
-                medRecheckLogClass.GUID = returnData.Value;
-                if (medRecheckLogClass.系統理論值.StringIsEmpty() == true) medRecheckLogClass.系統理論值 = "0";
-                if (medRecheckLogClass.覆盤理論值.StringIsEmpty() == true) medRecheckLogClass.覆盤理論值 = "0";
-                if (medRecheckLogClass.校正庫存值.StringIsEmpty() == true) medRecheckLogClass.校正庫存值 = "0";
-                medRecheckLogClass.發生時間 = DateTime.Now.ToDateTimeString_6();
-                medRecheckLogClass.排除時間 = DateTime.MinValue.ToDateTimeString();
-                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
-                object[] value = medRecheckLogClass.ClassToSQL<MedRecheckLogClass, enum_MedRecheckLog>();
                 List<object[]> list_value = new List<object[]>();
-                list_value.Add(value);
+                for (int i = 0; i < medRecheckLogClasses.Count; i++)
+                {
+                    medRecheckLogClass medRecheckLogClass = medRecheckLogClasses[i];
+                    if (medRecheckLogClass.庫存值.StringIsEmpty() == true) medRecheckLogClass.庫存值 = "0";
+                    if (medRecheckLogClass.盤點值.StringIsEmpty() == true) medRecheckLogClass.盤點值 = "0";
+                    if (medRecheckLogClass.差異值.StringIsEmpty() == true) medRecheckLogClass.差異值 = "0";
+                    medRecheckLogClass.差異值 = (medRecheckLogClass.盤點值.StringToInt32() - medRecheckLogClass.庫存值.StringToInt32()).ToString();
+                    //medRecheckLogClass.發生時間 = DateTime.Now.ToDateTimeString_6();
+                    //medRecheckLogClass.排除時間 = DateTime.MinValue.ToDateTimeString();
+                    object[] value = medRecheckLogClass.ClassToSQL<medRecheckLogClass, enum_medRecheckLog>();
+                    list_value.Add(value);
+                }
+                
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log_new", UserName, Password, Port, SSLMode);
+         
                 sQLControl.UpdateByDefulteExtra(null, list_value);
                 returnData.Code = 200;
-                returnData.Result = $"更新資料成功!";
+                returnData.Result = $"更新資料成功,共<{list_value.Count}>筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception e)
@@ -220,79 +236,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 以藥碼異常排除,更新資料至覆盤異常資料庫
-        /// </summary>
-        /// <remarks>
-        /// 以下為範例JSON範例
-        /// <code>
-        ///   {
-        ///     "ServerName" : "管藥",
-        ///     "ServerType" : "調劑台",
-        ///     "Value" : "c301bce4-d865-474c-8faf-23fef4451869",
-        ///     "Data": 
-        ///     {
-        ///  
-        ///     }
-        ///   }
-        /// </code>
-        /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns></returns>
-        [Route("replace_QTY_by_code")]
-        [HttpPost]
-        public string POST_replace_QTY_by_code([FromBody] returnData returnData)
-        {
-            try
-            {
-                returnData.Method = "POST_replace_QTY_by_code";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
-                if (serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料!";
-                    return returnData.JsonSerializationt();
-                }
-                ServerSettingClass serverSettingClass = serverSettingClasses[0];
-                string Server = serverSettingClass.Server;
-                string DB = serverSettingClass.DBName;
-                string UserName = serverSettingClass.User;
-                string Password = serverSettingClass.Password;
-                uint Port = (uint)serverSettingClass.Port.StringToInt32();
-          
-                if (returnData.Value.StringIsEmpty() == true)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"[eturnData.Value] 藥碼,校正值 空白!";
-                    return returnData.JsonSerializationt();
-                }
-                string[] str_Ary = returnData.Value.Split(",");
-                string 藥碼 = str_Ary[0];
-                string 校正庫存值 = str_Ary[1];
-
-                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
-                List<object[]> list_value = sQLControl.GetRowsByDefult(null, (int)enum_MedRecheckLog.藥碼, 藥碼);
-                list_value = list_value.GetRows((int)enum_MedRecheckLog.狀態, enum_MedRecheckLog_State.未排除.GetEnumName());
-                for (int i = 0; i < list_value.Count; i++)
-                {
-                    list_value[i][(int)enum_MedRecheckLog.校正庫存值] = 校正庫存值;
-                    list_value[i][(int)enum_MedRecheckLog.排除時間] = DateTime.Now.ToDateTimeString_6();
-                    list_value[i][(int)enum_MedRecheckLog.狀態] = enum_MedRecheckLog_State.已排除.GetEnumName();
-                }
-                sQLControl.UpdateByDefulteExtra(null, list_value);
-                returnData.Code = 200;
-                returnData.Result = $"更新資料成功,共<{list_value.Count}>筆!";
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception e)
-            {
-                returnData.Code = -200;
-                returnData.Result = e.Message;
-                return returnData.JsonSerializationt();
-            }
-        }
-        /// <summary>
-        /// 取得指定發生時間範圍覆盤異常資料庫
+        /// 取得指定發生時間範圍盤點異常資料庫
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -353,9 +297,9 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
     
-                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
-                List<object[]> list_value = sQLControl.GetRowsByBetween(null, (int)enum_MedRecheckLog.發生時間, date_ary[0], date_ary[1]);
-                List<MedRecheckLogClass> medRecheckLogClasses = list_value.SQLToClass<MedRecheckLogClass, enum_MedRecheckLog>();
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log_new", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetRowsByBetween(null, (int)enum_medRecheckLog.發生時間, date_ary[0], date_ary[1]);
+                List<medRecheckLogClass> medRecheckLogClasses = list_value.SQLToClass<medRecheckLogClass, enum_medRecheckLog>();
                 returnData.Data = medRecheckLogClasses;
                 returnData.Code = 200;
                 returnData.Result = $"取得資料成功,共{medRecheckLogClasses.Count}筆!";
@@ -369,7 +313,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 取得指定排除時間範圍覆盤異常資料庫
+        /// 取得指定排除時間範圍盤點異常資料庫
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -430,9 +374,9 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
 
-                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
-                List<object[]> list_value = sQLControl.GetRowsByBetween(null, (int)enum_MedRecheckLog.排除時間, date_ary[0], date_ary[1]);
-                List<MedRecheckLogClass> medRecheckLogClasses = list_value.SQLToClass<MedRecheckLogClass, enum_MedRecheckLog>();
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log_new", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetRowsByBetween(null, (int)enum_medRecheckLog.排除時間, date_ary[0], date_ary[1]);
+                List<medRecheckLogClass> medRecheckLogClasses = list_value.SQLToClass<medRecheckLogClass, enum_medRecheckLog>();
                 returnData.Data = medRecheckLogClasses;
                 returnData.Code = 200;
                 returnData.Result = $"取得資料成功,共{medRecheckLogClasses.Count}筆!";
@@ -446,7 +390,7 @@ namespace HIS_WebApi
             }
         }
         /// <summary>
-        /// 取得未排除覆盤異常資料庫
+        /// 取得未排除盤點異常資料庫
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -488,9 +432,9 @@ namespace HIS_WebApi
 
               
 
-                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
-                List<object[]> list_value = sQLControl.GetRowsByDefult(null, (int)enum_MedRecheckLog.狀態, "未排除");
-                List<MedRecheckLogClass> medRecheckLogClasses = list_value.SQLToClass<MedRecheckLogClass, enum_MedRecheckLog>();
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log_new", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetRowsByDefult(null, (int)enum_medRecheckLog.狀態, "未排除");
+                List<medRecheckLogClass> medRecheckLogClasses = list_value.SQLToClass<medRecheckLogClass, enum_medRecheckLog>();
                 returnData.Data = medRecheckLogClasses;
                 returnData.Code = 200;
                 returnData.Result = $"取得資料成功,共{medRecheckLogClasses.Count}筆!";
@@ -503,49 +447,164 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt();
             }
         }
+        /// <summary>
+        /// 取得未排除盤點異常資料庫
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "管藥",
+        ///     "ServerType" : "調劑台",
+        ///     
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     },
+        ///     "ValueAry" :
+        ///     [
+        ///        "code"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_unresolved_qty_by_code")]
+        [HttpPost]
+        public string POST_get_unresolved_qty_by_code([FromBody] returnData returnData)
+        {
+            try
+            {
+                returnData.Method = "get_unresolved_qty_by_code";
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[code]";
+                    return returnData.JsonSerializationt(true);
+                }
 
+                string code = returnData.ValueAry[0];
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log_new", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetRowsByDefult(null, (int)enum_medRecheckLog.狀態, "未排除");
+                list_value = list_value.GetRows((int)enum_medRecheckLog.藥碼, code);
+                medRecheckLogClass medRecheckLogClass = new medRecheckLogClass();
+                medRecheckLogClass.藥碼 = code;
+                medRecheckLogClass.差異值 = "0";
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    medRecheckLogClass.藥名 = list_value[i][(int)enum_medRecheckLog.藥名].ObjectToString();
+                    medRecheckLogClass.差異值 = (medRecheckLogClass.差異值.StringToInt32() + list_value[i][(int)enum_medRecheckLog.差異值].StringToInt32()).ToString();
+                }
+
+                returnData.Data = medRecheckLogClass;
+                returnData.Code = 200;
+                returnData.Result = $"取得藥品差異值成功";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
+        /// <summary>
+        /// 設定未排除盤點異常資料庫,已排除
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "ServerName" : "管藥",
+        ///     "ServerType" : "調劑台",
+        ///     
+        ///     "Data": 
+        ///     {
+        ///  
+        ///     },
+        ///     "ValueAry" :
+        ///     [
+        ///        "code",
+        ///        "排除藥師姓名"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("set_unresolved_data_by_code")]
+        [HttpPost]
+        public string POST_set_unresolved_data_by_code([FromBody] returnData returnData)
+        {
+            try
+            {
+                returnData.Method = "set_unresolved_data_by_code";
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[code][排除藥師姓名]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string code = returnData.ValueAry[0];
+                string 排除藥師姓名 = returnData.ValueAry[1];
+                SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log_new", UserName, Password, Port, SSLMode);
+                List<object[]> list_value = sQLControl.GetRowsByDefult(null, (int)enum_medRecheckLog.狀態, "未排除");
+                list_value = list_value.GetRows((int)enum_medRecheckLog.藥碼, code);
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    list_value[i][(int)enum_medRecheckLog.狀態] = "已排除";
+                    list_value[i][(int)enum_medRecheckLog.排除時間] = DateTime.Now.ToDateTimeString_6();
+                    list_value[i][(int)enum_medRecheckLog.排除藥師] = 排除藥師姓名;
+                }
+                sQLControl.UpdateByDefulteExtra(null, list_value);
+                returnData.Code = 200;
+                returnData.Result = $"設定未排除盤點異常資料庫,已排除成功共<{list_value.Count}>筆";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+        }
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
-
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-            SQLControl sQLControl = new SQLControl(Server, DB, "med_recheck_log", UserName, Password, Port, SSLMode);
-            Table table = new Table("med_recheck_log");
-            table.DBName = DB;
-            table.Server = Server;
-            table.Username = UserName;
-            table.Password = Password;
-            table.Port = Port.ToString();
-
-            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("藥碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table.AddColumnList("藥名", Table.StringType.VARCHAR, 300, Table.IndexType.None);
-            table.AddColumnList("系統理論值", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("覆盤理論值", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("校正庫存值", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("批號", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("效期", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("醫令_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table.AddColumnList("交易紀錄_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table.AddColumnList("發生時間", Table.DateType.DATETIME, 20, Table.IndexType.INDEX);
-            table.AddColumnList("排除時間", Table.DateType.DATETIME, 20, Table.IndexType.INDEX);
-            table.AddColumnList("狀態", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-
-
-            if (!sQLControl.IsTableCreat())
-            {
-                sQLControl.CreatTable(table);
-            }
-            else
-            {
-                sQLControl.CheckAllColumnName(table, true);
-            }
+            Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_medRecheckLog());
             return table.JsonSerializationt(true);
         }
+
+
+     
     }
 }

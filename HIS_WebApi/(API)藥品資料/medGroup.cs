@@ -65,6 +65,7 @@ namespace HIS_WebApi
         /// <returns>資料庫表單JsonString</returns>
         [Route("init")]
         [HttpPost]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(1, "", typeof(medGroupClass))]
         public string GET_init([FromBody] returnData returnData)
         {
             try

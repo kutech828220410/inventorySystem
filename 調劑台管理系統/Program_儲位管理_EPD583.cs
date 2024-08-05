@@ -1063,7 +1063,7 @@ namespace 調劑台管理系統
                 int 原有庫存 = boxes[0].取得庫存();
                 string 藥品碼 = boxes[0].Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
-                string 庫存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 boxes[0].效期庫存覆蓋(效期, 批號, 數量);
                 int 修正庫存 = boxes[0].取得庫存();
                 epD_583_Pannel.CurrentDrawer.ReplaceBox(boxes[0]);
@@ -1075,7 +1075,7 @@ namespace 調劑台管理系統
                 string 藥品名稱 = boxes[0].Name;
                 string 藥袋序號 = "";
                 string 交易量 = (修正庫存 - 原有庫存).ToString();
-                string 結存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 結存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 string 操作人 = this.登入者名稱;
                 string 病人姓名 = "";
                 string 病歷號 = "";
@@ -1137,7 +1137,7 @@ namespace 調劑台管理系統
                 int 原有庫存 = boxes[0].取得庫存();
                 string 藥品碼 = boxes[0].Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
-                string 庫存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 boxes[0].效期庫存覆蓋(效期, 批號, 數量);
                 int 修正庫存 = boxes[0].取得庫存();
                 epD_583_Pannel.CurrentDrawer.ReplaceBox(boxes[0]);
@@ -1148,7 +1148,7 @@ namespace 調劑台管理系統
                 string 藥品名稱 = boxes[0].Name;
                 string 藥袋序號 = "";
                 string 交易量 = (修正庫存 - 原有庫存).ToString();
-                string 結存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 結存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 string 操作人 = this.登入者名稱;
                 string 病人姓名 = "";
                 string 病歷號 = "";

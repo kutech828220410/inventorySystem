@@ -81,7 +81,7 @@ namespace 調劑台管理系統
         Basic.MyConvert myConvert = new Basic.MyConvert();
 
 
-        PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
+        static public PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
@@ -351,6 +351,7 @@ namespace 調劑台管理系統
                 Dialog_藥品調出.form = this.FindForm();
                 Dialog_交班對點.form = this.FindForm();
                 Dialog_藥品群組.form = this.FindForm();
+                Dialog_異常通知.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();
@@ -530,13 +531,14 @@ namespace 調劑台管理系統
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();
+            this.Program_異常通知_Init();
 
             if (!this.ControlMode) this.Program_輸出入檢查_Init();
             this.Program_收支作業_Init();
             this.Program_指紋辨識_Init();
 
 
-            this.Program_異常通知_覆盤錯誤_Init();
+            this.Program_異常通知_盤點錯誤_Init();
 
             this.LoadConfig工程模式();
 
