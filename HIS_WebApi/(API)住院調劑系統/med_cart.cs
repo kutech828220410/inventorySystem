@@ -166,7 +166,6 @@ namespace HIS_WebApi
                         medCarInfoClass sql_medCart = medCart_sql_buf[0];
                         if (sql_medCart.病歷號 != 病歷號)
                         {
-
                             medCarInfoClass medCarInfoClass = input_medCarInfo[i];
                             input_medCarInfo[i].GUID = sql_medCart.GUID;
                             medCart_sql_replace.Add(input_medCarInfo[i]);
@@ -175,6 +174,7 @@ namespace HIS_WebApi
                         {
                             medCarInfoClass medCarInfoClass = input_medCarInfo[i];
                             input_medCarInfo[i].GUID = sql_medCart.GUID;
+                            //List<medCpoeClass> medCpoeClasses_new = input_medCarInfo[i].處方.ObjToClass<List<medCpoeClass>>();                            
                             medCart_sql_replace.Add(input_medCarInfo[i]);
                         }
 

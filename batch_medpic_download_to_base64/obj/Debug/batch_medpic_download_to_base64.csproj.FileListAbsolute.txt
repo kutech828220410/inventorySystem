@@ -62,3 +62,4 @@ C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_bas
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.exe
 C:\Users\Administrator\Source\Repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.pdb
+C:\Users\Administrator\source\repos\inventorySystem\batch_medpic_download_to_base64\obj\Debug\batch_medpic_download_to_base64.csproj.AssemblyReference.cache
