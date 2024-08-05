@@ -122,8 +122,6 @@ namespace 中藥調劑系統
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
 
-   
-
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
