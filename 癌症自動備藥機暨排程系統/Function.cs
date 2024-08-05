@@ -23,7 +23,7 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Main_Form : Form
     {
@@ -37,7 +37,7 @@ namespace 癌症自動備藥機暨排程系統
             異動量,
             Value,
         }
-        static private List<Storage> Function_取得本地儲位()
+        static public List<Device> Function_取得本地儲位()
         {
             List<Task> tasks = new List<Task>();
 
@@ -52,7 +52,12 @@ namespace 癌症自動備藥機暨排程系統
             })));
 
             Task.WhenAll(tasks).Wait();
-            return List_EPD266_本地資料;
+            List<Device> devices = new List<Device>();
+            devices.LockAdd(List_EPD266_本地資料.GetAllDevice());
+            devices.LockAdd(List_RowsLED_本地資料.GetAllDevice());
+
+
+            return devices;
         }
         static public int Function_從SQL取得庫存(string 藥品碼)
         {
@@ -77,9 +82,16 @@ namespace 癌症自動備藥機暨排程系統
         {
             List<object> list_value = new List<object>();
             List<Storage> storages = List_EPD266_本地資料.SortByCode(藥品碼);
+            List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortByCode(藥品碼);
 
+     
 
-
+            for (int i = 0; i < rowsDevices.Count; i++)
+            {
+                RowsDevice rowsDevice = _rowsLEDUI.SQL_GetRowsDevice(rowsDevices[i]);
+                List_RowsLED_本地資料.Add_NewRowsLED(rowsDevice);
+                list_value.Add(rowsDevice);
+            }
             for (int i = 0; i < storages.Count; i++)
             {
                 Storage storage = _storageUI_EPD_266.SQL_GetStorage(storages[i]);
@@ -97,10 +109,32 @@ namespace 癌症自動備藥機暨排程系統
             List<object[]> list_馬達輸出索引表 = _sqL_DataGridView_馬達輸出索引表.SQL_GetAllRows(false);
             List<object[]> list_馬達輸出索引表_buf = new List<object[]>();
             List<object[]> list_value = new List<object[]>();
+            List<object[]> list_value_buf = new List<object[]>();
             for (int i = 0; i < stockClasses.Count; i++)
             {
-                list_value.LockAdd(Function_取得異動儲位資訊從本地資料(stockClasses[i].Code, stockClasses[i].Qty.StringToInt32()));
+                list_value_buf.LockAdd(Function_取得異動儲位資訊從本地資料(stockClasses[i].Code, stockClasses[i].Qty.StringToInt32()));
             }
+
+            for (int i = 0; i < list_value_buf.Count; i++)
+            {
+ 
+                int qty = list_value_buf[i][(int)enum_儲位資訊.異動量].StringToInt32();
+                if (qty < 0) qty = qty * -1;
+                for (int k = 0; k < qty; k++)
+                {
+                    object[] value = new object[new enum_儲位資訊().GetLength()];
+                    value[(int)enum_儲位資訊.IP] = list_value_buf[i][(int)enum_儲位資訊.IP];
+                    value[(int)enum_儲位資訊.TYPE] = list_value_buf[i][(int)enum_儲位資訊.TYPE];
+                    value[(int)enum_儲位資訊.效期] = list_value_buf[i][(int)enum_儲位資訊.效期];
+                    value[(int)enum_儲位資訊.批號] = list_value_buf[i][(int)enum_儲位資訊.批號];
+                    value[(int)enum_儲位資訊.庫存] = list_value_buf[i][(int)enum_儲位資訊.IP];
+                    value[(int)enum_儲位資訊.異動量] = "-1";
+                    value[(int)enum_儲位資訊.Value] = list_value_buf[i][(int)enum_儲位資訊.Value];
+                    list_value.Add(value);
+                }
+            }
+
+
             for(int i = 0; i < list_value.Count; i++)
             {
                 string IP = list_value[i][(int)enum_儲位資訊.IP].ObjectToString();
@@ -199,7 +233,11 @@ namespace 癌症自動備藥機暨排程系統
         {
             List<object> list_value = new List<object>();
             List<Storage> storages = List_EPD266_本地資料.SortByCode(藥品碼);
-          
+            List<RowsDevice> rowsDevices = List_RowsLED_本地資料.SortByCode(藥品碼);
+            for (int i = 0; i < rowsDevices.Count; i++)
+            {
+                list_value.Add(rowsDevices[i]);
+            }
             for (int i = 0; i < storages.Count; i++)
             {
                 list_value.Add(storages[i]);
@@ -218,7 +256,7 @@ namespace 癌症自動備藥機暨排程系統
                 if (TYPE == DeviceType.EPD266.GetEnumName() || TYPE == DeviceType.EPD266_lock.GetEnumName() || TYPE == DeviceType.EPD290.GetEnumName() || TYPE == DeviceType.EPD290_lock.GetEnumName())
                 {
                     Storage storage = (Storage)Value;
-                    storage = List_EPD266_本地資料.SortByIP(storage.IP);
+                    storage = _storageUI_EPD_266.SQL_GetStorage(storage);
                     if (storage != null)
                     {
                         storage.效期庫存異動(效期, 異動量, false);
@@ -254,7 +292,7 @@ namespace 癌症自動備藥機暨排程系統
             List<medClass> medClasses = Function_取得藥檔資料();
             List<medClass> medClasses_buf = new List<medClass>();
             List<medClass> medClasses_result = new List<medClass>();
-            List<Storage> storages = Function_取得本地儲位();
+            List<Device> storages = Function_取得本地儲位();
             storages.Sort(new Icp_Storage());
             List<string> codes = (from temp in storages
                                   select temp.Code).Distinct().ToList();
@@ -317,9 +355,9 @@ namespace 癌症自動備藥機暨排程系統
         }
     }
 
-    public class Icp_Storage : IComparer<Storage>
+    public class Icp_Storage : IComparer<Device>
     {
-        public int Compare(Storage x, Storage y)
+        public int Compare(Device x, Device y)
         {
             string 藥品碼_0 = x.Code;
             string 藥品碼_1 = y.Code;

@@ -33,6 +33,7 @@ namespace 調劑台管理系統
             this.rJ_Lable_藥名 = new MyUI.RJ_Lable();
             this.rJ_Lable_藥碼 = new MyUI.RJ_Lable();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.rJ_Button_搜尋 = new MyUI.RJ_Button();
             this.rJ_Button_返回 = new MyUI.RJ_Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rJ_Lable_State = new MyUI.RJ_Lable();
@@ -67,7 +68,6 @@ namespace 調劑台管理系統
             this.rJ_Pannel9 = new MyUI.RJ_Pannel();
             this.rJ_Lable14 = new MyUI.RJ_Lable();
             this.rJ_Lable15 = new MyUI.RJ_Lable();
-            this.rJ_Button_搜尋 = new MyUI.RJ_Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -151,6 +151,39 @@ namespace 調劑台管理系統
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(306, 63);
             this.panel5.TabIndex = 0;
+            // 
+            // rJ_Button_搜尋
+            // 
+            this.rJ_Button_搜尋.AutoResetState = false;
+            this.rJ_Button_搜尋.BackColor = System.Drawing.Color.Transparent;
+            this.rJ_Button_搜尋.BackgroundColor = System.Drawing.Color.Black;
+            this.rJ_Button_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.rJ_Button_搜尋.BorderRadius = 10;
+            this.rJ_Button_搜尋.BorderSize = 0;
+            this.rJ_Button_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
+            this.rJ_Button_搜尋.DisenableColor = System.Drawing.Color.Gray;
+            this.rJ_Button_搜尋.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rJ_Button_搜尋.FlatAppearance.BorderSize = 0;
+            this.rJ_Button_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rJ_Button_搜尋.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.rJ_Button_搜尋.ForeColor = System.Drawing.Color.White;
+            this.rJ_Button_搜尋.GUID = "";
+            this.rJ_Button_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
+            this.rJ_Button_搜尋.Location = new System.Drawing.Point(68, 0);
+            this.rJ_Button_搜尋.Name = "rJ_Button_搜尋";
+            this.rJ_Button_搜尋.ProhibitionBorderLineWidth = 1;
+            this.rJ_Button_搜尋.ProhibitionLineWidth = 4;
+            this.rJ_Button_搜尋.ProhibitionSymbolSize = 30;
+            this.rJ_Button_搜尋.ShadowColor = System.Drawing.Color.DimGray;
+            this.rJ_Button_搜尋.ShadowSize = 3;
+            this.rJ_Button_搜尋.ShowLoadingForm = false;
+            this.rJ_Button_搜尋.Size = new System.Drawing.Size(119, 63);
+            this.rJ_Button_搜尋.State = false;
+            this.rJ_Button_搜尋.TabIndex = 8;
+            this.rJ_Button_搜尋.Text = "搜尋";
+            this.rJ_Button_搜尋.TextColor = System.Drawing.Color.White;
+            this.rJ_Button_搜尋.TextHeight = 0;
+            this.rJ_Button_搜尋.UseVisualStyleBackColor = false;
             // 
             // rJ_Button_返回
             // 
@@ -855,39 +888,6 @@ namespace 調劑台管理系統
             this.rJ_Lable15.Text = "A7";
             this.rJ_Lable15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable15.TextColor = System.Drawing.Color.White;
-            // 
-            // rJ_Button_搜尋
-            // 
-            this.rJ_Button_搜尋.AutoResetState = false;
-            this.rJ_Button_搜尋.BackColor = System.Drawing.Color.Transparent;
-            this.rJ_Button_搜尋.BackgroundColor = System.Drawing.Color.Black;
-            this.rJ_Button_搜尋.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.rJ_Button_搜尋.BorderRadius = 10;
-            this.rJ_Button_搜尋.BorderSize = 0;
-            this.rJ_Button_搜尋.buttonType = MyUI.RJ_Button.ButtonType.Push;
-            this.rJ_Button_搜尋.DisenableColor = System.Drawing.Color.Gray;
-            this.rJ_Button_搜尋.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rJ_Button_搜尋.FlatAppearance.BorderSize = 0;
-            this.rJ_Button_搜尋.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rJ_Button_搜尋.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.rJ_Button_搜尋.ForeColor = System.Drawing.Color.White;
-            this.rJ_Button_搜尋.GUID = "";
-            this.rJ_Button_搜尋.Image_padding = new System.Windows.Forms.Padding(0);
-            this.rJ_Button_搜尋.Location = new System.Drawing.Point(68, 0);
-            this.rJ_Button_搜尋.Name = "rJ_Button_搜尋";
-            this.rJ_Button_搜尋.ProhibitionBorderLineWidth = 1;
-            this.rJ_Button_搜尋.ProhibitionLineWidth = 4;
-            this.rJ_Button_搜尋.ProhibitionSymbolSize = 30;
-            this.rJ_Button_搜尋.ShadowColor = System.Drawing.Color.DimGray;
-            this.rJ_Button_搜尋.ShadowSize = 3;
-            this.rJ_Button_搜尋.ShowLoadingForm = false;
-            this.rJ_Button_搜尋.Size = new System.Drawing.Size(119, 63);
-            this.rJ_Button_搜尋.State = false;
-            this.rJ_Button_搜尋.TabIndex = 8;
-            this.rJ_Button_搜尋.Text = "搜尋";
-            this.rJ_Button_搜尋.TextColor = System.Drawing.Color.White;
-            this.rJ_Button_搜尋.TextHeight = 0;
-            this.rJ_Button_搜尋.UseVisualStyleBackColor = false;
             // 
             // Dialog_藥品調入
             // 

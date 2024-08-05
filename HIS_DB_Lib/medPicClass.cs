@@ -21,8 +21,12 @@ namespace HIS_DB_Lib
         藥名,
         [Description("副檔名,VARCHAR,20,NONE")]
         副檔名,
+        [Description("副檔名1,VARCHAR,20,NONE")]
+        副檔名1,
         [Description("pic_base64,LONGTEXT,50,NONE")]
         pic_base64,
+        [Description("pic1_base64,LONGTEXT,50,NONE")]
+        pic1_base64,
 
     }
     public class medPicClass
@@ -47,10 +51,20 @@ namespace HIS_DB_Lib
         [JsonPropertyName("extension")]
         public string 副檔名 { get; set; }
         /// <summary>
+        /// 副檔名
+        /// </summary>
+        [JsonPropertyName("extension1")]
+        public string 副檔名1 { get; set; }
+        /// <summary>
         /// pic_base64
         /// </summary>
         [JsonPropertyName("pic_base64")]
         public string pic_base64 { get; set; }
+        /// <summary>
+        /// pic_base64
+        /// </summary>
+        [JsonPropertyName("pic1_base64")]
+        public string pic1_base64 { get; set; }
 
         static public SQLUI.Table init(string API_Server)
         {
@@ -114,6 +128,29 @@ namespace HIS_DB_Lib
             medPicClass medPicClass = returnData_out.Data.ObjToClass<medPicClass>();
             return medPicClass;
         }
+
+        static public List<System.Drawing.Image> get_images_by_code(string API_Server, string code)
+        {
+            List<System.Drawing.Image> images = new List<System.Drawing.Image>();
+            medPicClass medPicClass = get_by_code(API_Server, code);
+
+            if (medPicClass == null) return null;
+            System.Drawing.Image image0 = null;
+            System.Drawing.Image image1 = null;
+
+            if (medPicClass.pic_base64.StringIsEmpty() == false)
+            {
+                image0 = medPicClass.pic_base64.Base64ToImage();
+            }
+            if (medPicClass.pic1_base64.StringIsEmpty() == false)
+            {
+                image1 = medPicClass.pic1_base64.Base64ToImage();
+            }
+            images.Add(image0);
+            images.Add(image1);
+
+            return images;
+        }
         static public System.Drawing.Image get_image_by_code(string API_Server, string code)
         {
             medPicClass medPicClass = get_by_code(API_Server, code);
@@ -122,7 +159,6 @@ namespace HIS_DB_Lib
             string base64 = medPicClass.pic_base64;
             System.Drawing.Image image = base64.Base64ToImage();
             return image;
-
         }
 
     }

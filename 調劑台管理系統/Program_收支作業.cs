@@ -239,7 +239,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_收支作業_單品入庫_狀態更新_檢查雙人覆核(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
             List<object[]> list_取藥堆疊母資料_delete = new List<object[]>();
 
@@ -249,7 +249,7 @@ namespace 調劑台管理系統
                 string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
                 string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
                 Application.DoEvents();
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(登入者ID, 藥名, this.sqL_DataGridView_人員資料, this.rfiD_FX600_UI);
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(登入者ID, 藥名);
     
 
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes)
@@ -279,7 +279,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_收支作業_單品入庫_狀態更新_檢查盲盤作業(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
 
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待盲盤.GetEnumName());
@@ -310,7 +310,7 @@ namespace 調劑台管理系統
                     //}
                     //if (try_error == 2)
                     //{
-                    //    Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇($"{dBConfigClass.Api_URL}/api/IncomeReasons", dBConfigClass.Name);
+                    //    Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇();
                     //    dialog_收支原因選擇.Title = $"盲盤數量錯誤({結存量}) 選擇原因";
                     //    dialog_收支原因選擇.ShowDialog();
                     //    list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n盲盤錯誤原因:{dialog_收支原因選擇.Value}";
@@ -367,7 +367,7 @@ namespace 調劑台管理系統
         }
         void cnt_Program_收支作業_單品入庫_狀態更新_檢查複盤作業(ref int cnt)
         {
-            List<object[]> list_取藥堆疊母資料 = this.Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
+            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得指定調劑台名稱母資料(this.textBox_工程模式_領藥台_名稱.Text);
             List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
 
             list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.等待複盤.GetEnumName());
@@ -395,7 +395,7 @@ namespace 調劑台管理系統
                     }
                     if (try_error == 2)
                     {
-                        Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇($"{dBConfigClass.Api_URL}/api/IncomeReasons", dBConfigClass.Name);
+                        Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇();
                         dialog_收支原因選擇.Title = $"複盤數量錯誤({結存量}) 選擇原因";
                         dialog_收支原因選擇.ShowDialog();
                         list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因] = $"{list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.收支原因].ObjectToString()} \n複盤錯誤原因:{dialog_收支原因選擇.Value}";
@@ -445,7 +445,7 @@ namespace 調劑台管理系統
         #region Event
         private void PlC_RJ_Button_收支作業_設定_MouseDownEvent(MouseEventArgs mevent)
         {
-            Dialog_收支原因設定 dialog_收支原因設定 = new Dialog_收支原因設定($"{dBConfigClass.Api_URL}/api/IncomeReasons", dBConfigClass.Name);
+            Dialog_收支原因設定 dialog_收支原因設定 = new Dialog_收支原因設定();
             dialog_收支原因設定.ShowDialog();
         }
         private void RJ_TextBox_收支作業_單品入庫_中文名稱_KeyPress(object sender, KeyPressEventArgs e)
@@ -489,7 +489,7 @@ namespace 調劑台管理系統
                 MyMessageBox.ShowDialog("找無此國際條碼!");
                 return;
             }
-            List<object> list_儲位資訊 = this.Function_從SQL取得儲位到本地資料(medClasses[0].藥品碼);
+            List<object> list_儲位資訊 = Function_從SQL取得儲位到本地資料(medClasses[0].藥品碼);
             if (list_儲位資訊.Count == 0)
             {
                 MyMessageBox.ShowDialog($"藥碼 : {medClasses[0].藥品碼}\n藥名 : {medClasses[0].藥品名稱}\n找無此儲位資訊!");
@@ -680,7 +680,7 @@ namespace 調劑台管理系統
             }
             if (plC_RJ_Button_收支作業_調入.Bool || plC_RJ_Button_收支作業_調出.Bool)
             {
-                Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇($"{dBConfigClass.Api_URL}/api/IncomeReasons", dBConfigClass.Name);
+                Dialog_收支原因選擇 dialog_收支原因選擇 = new Dialog_收支原因選擇();
                 dialog_收支原因選擇.ShowDialog();
                 收支原因 = dialog_收支原因選擇.Value;
             }

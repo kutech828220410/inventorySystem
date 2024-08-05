@@ -87,6 +87,7 @@ namespace HIS_WebApi
         ///         "code": "med-code",
         ///         "name": "med-name",
         ///         "pic_base64": "base64-image-string"
+        ///         "pic1_base64": "base64-image1-string"
         ///       }
         ///     ]
         /// }
@@ -140,7 +141,9 @@ namespace HIS_WebApi
                         medPicClass.藥碼 = medPicClasses[i].藥碼;
                         medPicClass.藥名 = medPicClasses[i].藥名;
                         medPicClass.副檔名 = medPicClasses[i].副檔名;
+                        medPicClass.副檔名1 = medPicClasses[i].副檔名1;
                         medPicClass.pic_base64 = medPicClasses[i].pic_base64;
+                        medPicClass.pic1_base64 = medPicClasses[i].pic1_base64;
                         medPicClasses_add.Add(medPicClass);
                     }
                     else
@@ -149,7 +152,9 @@ namespace HIS_WebApi
                         medPicClass.藥碼 = medPicClasses[i].藥碼;
                         medPicClass.藥名 = medPicClasses[i].藥名;
                         medPicClass.副檔名 = medPicClasses[i].副檔名;
+                        medPicClass.副檔名1 = medPicClasses[i].副檔名1;
                         medPicClass.pic_base64 = medPicClasses[i].pic_base64;
+                        medPicClass.pic1_base64 = medPicClasses[i].pic1_base64;
                         medPicClasses_replace.Add(medPicClass);
                     }
 
@@ -253,7 +258,6 @@ namespace HIS_WebApi
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
-
             Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_medPic());
             return table.JsonSerializationt(true);
         }

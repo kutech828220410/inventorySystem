@@ -22,14 +22,14 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Main_Form : Form
     {
-        static private StorageUI_EPD_266 _storageUI_EPD_266;
-        static private RowsLEDUI _rowsLEDUI;
-        static private List<Storage> List_EPD266_本地資料 = new List<Storage>();
-        static private List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
+        static public StorageUI_EPD_266 _storageUI_EPD_266;
+        static public RowsLEDUI _rowsLEDUI;
+        static public List<Storage> List_EPD266_本地資料 = new List<Storage>();
+        static public List<RowsLED> List_RowsLED_本地資料 = new List<RowsLED>();
 
         
         #region 燈條亮燈

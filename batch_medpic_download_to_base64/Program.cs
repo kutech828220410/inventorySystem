@@ -32,31 +32,63 @@ namespace batch_medpic_download_to_base64
                 List<medPicClass> medPicClasses = new List<medPicClass>();
                 List<object[]> list_medpic = new List<object[]>();
                 string log = "";
+                //string pic_base64 = Basic.Net.DownloadImageAsBase64("https://reg.ntuh.gov.tw/pharmacyoutside/DrugImage/New/PAM1LD48-A.jpg");
+                int index = 0;
                 foreach (medClass medClass in medClasses)
                 {
-                    if (medClass.圖片網址.StringIsEmpty() == false)
+                    tasks.Add(Task.Run(new Action(delegate
                     {
-                        tasks.Add(Task.Run(new Action(delegate
+                        medPicClass medPicClass = new medPicClass();
+                        medPicClass.藥碼 = medClass.藥品碼;
+                        medPicClass.藥名 = medClass.藥品名稱;
+                        List<medPicClass> medPicClasses_buf = new List<medPicClass>();
+                        bool flag_pic0_OK = false;
+                        bool flag_pic1_OK = false;
+                        if (medClass.圖片網址.StringIsEmpty() == false)
                         {
-                            List<medPicClass> medPicClasses_buf = new List<medPicClass>();
-                            string base64 = Basic.Net.DownloadImageAsBase64(medClass.圖片網址);
-                            if(base64.StringIsEmpty())
+                            string pic_base64 = Basic.Net.DownloadImageAsBase64(medClass.圖片網址);
+                            if (pic_base64.StringIsEmpty() == false)
                             {
-
+                                medPicClass.副檔名 = GetFileExtension(medClass.圖片網址);
+                                medPicClass.pic_base64 = pic_base64;
+                                string losg_temp = $"({medClass.藥品碼}){medClass.藥品名稱}".StringLength(150) + $"取得圖片(0)Base64成功\n";
+                                log += losg_temp;
+                                //Console.Write(losg_temp);
+                                flag_pic0_OK = true;
                             }
-                            medPicClass medPicClass = new medPicClass();
-                            medPicClass.藥碼 = medClass.藥品碼;
-                            medPicClass.藥名 = medClass.藥品名稱;
-                            medPicClass.副檔名 = GetFileExtension(medClass.圖片網址);
-                            medPicClass.pic_base64 = base64;
-                            medPicClasses.LockAdd(medPicClass);
-                            string losg_temp = $"({medClass.藥品碼}){medClass.藥品名稱}".StringLength(50) + $"取得圖片Base64成功\n";
-                            log += losg_temp;
+                            else
+                            {
+                                string losg_temp = $"({medClass.藥品碼}){medClass.藥品名稱}".StringLength(150) + $"取得圖片(0)Base64【失敗】\n";
+                                log += losg_temp;
+                                //Console.Write(losg_temp);
+                            }
+                        }
+                        if (medClass.圖片網址1.StringIsEmpty() == false)
+                        {
+                            string pic1_base64 = Basic.Net.DownloadImageAsBase64(medClass.圖片網址1);
 
-                            Console.Write(losg_temp);
-                        })));
-              
-                    }
+                            if (pic1_base64.StringIsEmpty() == false)
+                            {
+                                medPicClass.副檔名1 = GetFileExtension(medClass.圖片網址1);
+                                medPicClass.pic1_base64 = pic1_base64;
+                                string losg_temp = $"({medClass.藥品碼}){medClass.藥品名稱}".StringLength(150) + $"取得圖片(1)Base64成功\n";
+                                log += losg_temp;
+                                //Console.Write(losg_temp);
+                                flag_pic1_OK = true;
+                            }
+                            else
+                            {
+                                string losg_temp = $"({medClass.藥品碼}){medClass.藥品名稱}".StringLength(150) + $"取得圖片(1)Base64【失敗】\n";
+                                log += losg_temp;
+                                //Console.Write(losg_temp);
+                            }
+                        }
+                        index++;
+                        Console.WriteLine($"{index}/{medClasses.Count}");
+             
+                        if (flag_pic0_OK || flag_pic1_OK) medPicClasses.LockAdd(medPicClass);
+                    })));
+
                 }
                 Logger.Log(log);
         

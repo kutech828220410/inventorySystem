@@ -210,7 +210,7 @@ namespace 智能藥庫系統
                 storages_EPD266_buf = keyValuePairs_storage.SortDictionaryByIP(uDP_READs_EPD266[i].IP);
                 if(storages_EPD266_buf.Count > 0)
                 {
-                    storages_EPD266_buf[0].IsLightOn = uDP_READs_EPD266[i].WS2812_State;
+                    storages_EPD266_buf[0].LightState.IsLightOn = uDP_READs_EPD266[i].WS2812_State;
                 }
               
             }
@@ -238,7 +238,7 @@ namespace 智能藥庫系統
                 string Num = list_藥品區域[i][(int)enum_drugStotreArea.Num].ObjectToString();
                 string 狀態 = list_藥品區域[i][(int)enum_drugStotreArea.狀態].ObjectToString();
                 storages_EPD266_buf = (from temp in storages_EPD266
-                                       where temp.Area == 名稱 && temp.IsLightOn == true
+                                       where temp.Area == 名稱 && temp.LightState.IsLightOn == true
                                        select temp).ToList();
 
                 int port = Port.StringToInt32();

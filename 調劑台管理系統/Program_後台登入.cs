@@ -43,7 +43,7 @@ namespace 調劑台管理系統
             }
         }
 
-        
+        public static string _登入者名稱 = "";
         private string 登入者名稱
         {
             get
@@ -54,8 +54,10 @@ namespace 調劑台管理系統
             {
                 this.rJ_TextBox_登入者姓名.Texts = value;
                 this.rJ_Lable_後台登入_歡迎登入_姓名.Text = value;
+                _登入者名稱 = value;
             }
         }
+        public static string _登入者ID = "";
         private string 登入者ID
         {
             get
@@ -66,6 +68,7 @@ namespace 調劑台管理系統
             {
                 this.rJ_TextBox_登入者ID.Texts = value;
                 this.rJ_Lable_後台登入_歡迎登入_ID.Text = value;
+                _登入者ID = value;
             }
         }
         private string 登入者顏色

@@ -267,7 +267,7 @@ namespace 調劑台管理系統
             {
                 if (rJ_Lable_交班作業_對點作業_當班交接人_狀態.Text == "等待登入")
                 {
-                    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_被交接人_ID.Text, "", this.sqL_DataGridView_人員資料, rfiD_FX600_UI);
+                    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_被交接人_ID.Text, "");
                     if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
                     this.Invoke(new Action(delegate
                     {
@@ -297,7 +297,7 @@ namespace 調劑台管理系統
             {
                 if (rJ_Lable_交班作業_對點作業_被交接人_狀態.Text == "等待登入")
                 {
-                    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_當班交接人_ID.Text, "", this.sqL_DataGridView_人員資料, rfiD_FX600_UI);
+                    Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_當班交接人_ID.Text, "");
                     if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
                     this.Invoke(new Action(delegate
                     {
@@ -335,7 +335,7 @@ namespace 調劑台管理系統
                     UID_01 = this.rJ_TextBox_交班作業_對點作業_測試UID.Text;
                     plC_RJ_Button_交班作業_對點作業_測試登入.Bool = false;
                 }
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_被交接人_ID.Text, "", this.sqL_DataGridView_人員資料, rfiD_FX600_UI);
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_被交接人_ID.Text, "");
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
                 this.Invoke(new Action(delegate
                 {
@@ -474,7 +474,7 @@ namespace 調劑台管理系統
                     UID_01 = this.rJ_TextBox_交班作業_對點作業_測試UID.Text;
                     plC_RJ_Button_交班作業_對點作業_測試登入.Bool = false;
                 }
-                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_當班交接人_ID.Text, "", this.sqL_DataGridView_人員資料, rfiD_FX600_UI);
+                Dialog_使用者登入 dialog_使用者登入 = new Dialog_使用者登入(rJ_Lable_交班作業_對點作業_當班交接人_ID.Text, "");
                 if (dialog_使用者登入.ShowDialog() != DialogResult.Yes) return;
                 this.Invoke(new Action(delegate
                 {

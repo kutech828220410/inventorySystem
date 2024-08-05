@@ -16,7 +16,7 @@ namespace 調劑台管理系統
         [STAThread]
         static void Main()
         {
-
+            Basic.Screen.CloseConsole();
             mutex = new System.Threading.Mutex(true, "OnlyRun");
             if (mutex.WaitOne(0, false))
             {

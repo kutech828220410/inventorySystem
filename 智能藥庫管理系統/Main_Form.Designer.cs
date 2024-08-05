@@ -165,7 +165,6 @@ namespace 智能藥庫系統
             // 
             this.sidePanel1.AnimationStep = 30;
             this.sidePanel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.sidePanel1.CollapsedWidth = 40;
             // 
             // sidePanel1.ContentsPanel
             // 
@@ -194,7 +193,6 @@ namespace 智能藥庫系統
             this.sidePanel1.ContentsPanel.Size = new System.Drawing.Size(276, 1032);
             this.sidePanel1.ContentsPanel.TabIndex = 2;
             this.sidePanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.sidePanel1.ExpandedWidth = 268;
             this.sidePanel1.Location = new System.Drawing.Point(0, 0);
             this.sidePanel1.Name = "sidePanel1";
             this.sidePanel1.Size = new System.Drawing.Size(276, 1032);

@@ -1,5 +1,5 @@
 ﻿
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     partial class Dialog_備藥清單
     {
@@ -35,7 +35,7 @@ namespace 癌症自動備藥機暨排程系統
             this.panel2 = new System.Windows.Forms.Panel();
             this.plC_RJ_Button_確認 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_醫令確認 = new MyUI.PLC_RJ_Button();
-            this.uc_備藥通知內容 = new 癌症自動備藥機暨排程系統.uc_備藥通知處方內容();
+            this.uc_備藥通知內容 = new 癌症備藥機.uc_備藥通知處方內容();
             this.label_狀態 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();

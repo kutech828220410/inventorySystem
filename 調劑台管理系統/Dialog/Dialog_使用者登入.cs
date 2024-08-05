@@ -18,6 +18,7 @@ namespace 調劑台管理系統
     public partial class Dialog_使用者登入 : MyDialog
     {
         public object[] Value;
+        public personPageClass personPageClass = null;
         static public MyTimerBasic myTimerBasic_覆核完成 = new MyTimerBasic();
         private MyThread MyThread_program;
         public static bool IsShown = false;
@@ -41,8 +42,44 @@ namespace 調劑台管理系統
                 this.location = value;
             }
         }
+        public Dialog_使用者登入()
+        {
+            InitializeComponent();
+            Basic.Reflection.MakeDoubleBuffered(this, true);
 
-        public Dialog_使用者登入(string _已登入ID ,string _藥名,SQL_DataGridView _sQL_DataGridView_人員資料, RFID_FX600lib.RFID_FX600_UI _rFID_FX600_UI)
+            this.Load += Dialog_使用者登入_Load;
+            this.FormClosed += Dialog_使用者登入_FormClosed;
+            this.plC_RJ_Button_登入.MouseDownEventEx += PlC_RJ_Button_登入_MouseDownEventEx;
+            this.plC_RJ_Button_確認.MouseDownEventEx += PlC_RJ_Button_確認_MouseDownEventEx;
+            this.plC_RJ_Button_取消.MouseDownEventEx += PlC_RJ_Button_取消_MouseDownEventEx;
+            plC_RJ_Button_登入.音效 = false;
+            plC_RJ_Button_確認.音效 = false;
+            plC_RJ_Button_取消.音效 = false;
+            this.sQL_DataGridView_人員資料 = Main_Form._sqL_DataGridView_人員資料;
+            this.rFID_FX600_UI = Main_Form._RFID_FX600_UI;
+            this.LoadFinishedEvent += Dialog_使用者登入_LoadFinishedEvent;
+
+        }
+        public Dialog_使用者登入(string _已登入ID)
+        {
+            InitializeComponent();
+            Basic.Reflection.MakeDoubleBuffered(this, true);
+
+            this.Load += Dialog_使用者登入_Load;
+            this.FormClosed += Dialog_使用者登入_FormClosed;
+            this.plC_RJ_Button_登入.MouseDownEventEx += PlC_RJ_Button_登入_MouseDownEventEx;
+            this.plC_RJ_Button_確認.MouseDownEventEx += PlC_RJ_Button_確認_MouseDownEventEx;
+            this.plC_RJ_Button_取消.MouseDownEventEx += PlC_RJ_Button_取消_MouseDownEventEx;
+            plC_RJ_Button_登入.音效 = false;
+            plC_RJ_Button_確認.音效 = false;
+            plC_RJ_Button_取消.音效 = false;
+            this.sQL_DataGridView_人員資料 = Main_Form._sqL_DataGridView_人員資料;
+            this.已登入ID = _已登入ID;
+            this.rFID_FX600_UI = Main_Form._RFID_FX600_UI;
+            this.LoadFinishedEvent += Dialog_使用者登入_LoadFinishedEvent;
+
+        }
+        public Dialog_使用者登入(string _已登入ID , string _藥名)
         {
             InitializeComponent();
             Basic.Reflection.MakeDoubleBuffered(this, true);
@@ -55,16 +92,13 @@ namespace 調劑台管理系統
             plC_RJ_Button_登入.音效 = false;
             plC_RJ_Button_確認.音效 = false;
             plC_RJ_Button_取消.音效 = false;
-            this.sQL_DataGridView_人員資料 = _sQL_DataGridView_人員資料;
+            this.sQL_DataGridView_人員資料 = Main_Form._sqL_DataGridView_人員資料;
             this.藥名 = _藥名;
             this.已登入ID = _已登入ID;
-            this.rFID_FX600_UI = _rFID_FX600_UI;
-
+            this.rFID_FX600_UI = Main_Form._RFID_FX600_UI;
             this.LoadFinishedEvent += Dialog_使用者登入_LoadFinishedEvent;
 
         }
-
-      
 
         private void sub_program()
         {
@@ -171,25 +205,36 @@ namespace 調劑台管理系統
        
 
         }
-        Task task;
         private void Dialog_使用者登入_LoadFinishedEvent(EventArgs e)
         {
+            this.Resize += Dialog_使用者登入_Resize;
+            textBox_密碼.SetPlcaeHolder("", Color.Black);
+            textBox_密碼.PassWordChar = true;
             Main_Form.Function_指紋辨識初始化(true,false);
             MyThread_program = new MyThread();
             MyThread_program.Add_Method(sub_program);
             MyThread_program.AutoRun(true);
             MyThread_program.SetSleepTime(10);
             MyThread_program.Trigger();
-         
+
+            this.textBox_帳號.Focus();
+
+            panel_subLogin.Location = new Point((panel_Login.Width - panel_subLogin.Width) / 2, (panel_Login.Height - panel_subLogin.Height) / 2);
+            panel_subLogin.Visible = true;
+            this.Refresh();
         }
         private bool Function_登入(string ID , string PWD)
         {
-            if (ID.ToUpper() == this.已登入ID.ToUpper())
+            if (this.已登入ID.StringIsEmpty() == false)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此ID已登入", 2000);
-                dialog_AlarmForm.ShowDialog();
-                return false;
+                if (ID.ToUpper() == this.已登入ID.ToUpper())
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("此ID已登入", 2000);
+                    dialog_AlarmForm.ShowDialog();
+                    return false;
+                }
             }
+        
             List<object[]> list_人員資料 = this.sQL_DataGridView_人員資料.SQL_GetAllRows(false);
             List<object[]> list_人員資料_buf = new List<object[]>();
             list_人員資料_buf = list_人員資料.GetRows((int)enum_人員資料.ID, ID);
@@ -210,6 +255,7 @@ namespace 調劑台管理系統
             UserName = list_人員資料_buf[0][(int)enum_人員資料.姓名].ObjectToString();
             UserID = list_人員資料_buf[0][(int)enum_人員資料.ID].ObjectToString();
             Value = list_人員資料_buf[0];
+            personPageClass = Value.SQLToClass<personPageClass, enum_人員資料>();
             this.Invoke(new Action(delegate
             {
                 rJ_Lable_Title.Text = $"[已登入] {UserName}";
@@ -232,6 +278,10 @@ namespace 調劑台管理系統
             return true;
         }
         #region Event
+        private void Dialog_使用者登入_Resize(object sender, EventArgs e)
+        {
+            panel_subLogin.Location = new Point((panel_Login.Width - panel_subLogin.Width) / 2, (panel_Login.Height - panel_subLogin.Height) / 2);
+        }
         private void PlC_RJ_Button_取消_MouseDownEventEx(MyUI.RJ_Button rJ_Button, MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
@@ -280,12 +330,12 @@ namespace 調劑台管理系統
                 {
                     this.rJ_Lable_Title.Text = "使用者登入";
                     this.rJ_Lable_藥名.Text = "";
-                    this.rJ_Lable_藥名.Visible = false;
+                    this.panel_藥品資訊.Visible = false;
                 }
                 else
                 {
                     this.rJ_Lable_藥名.Text = $" 藥名 : { this.藥名}";
-                    this.rJ_Lable_藥名.Visible = true;
+                    this.panel_藥品資訊.Visible = true;
                 }
                 
             }));
@@ -294,6 +344,7 @@ namespace 調劑台管理系統
                 this.StartPosition = FormStartPosition.WindowsDefaultLocation;
                 base.Location = this.location;
             }
+
             IsShown = true;
             this.textBox_密碼.KeyPress += TextBox_密碼_KeyPress;
             Main_Form.領藥台_01_卡號 = "";

@@ -103,9 +103,39 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap add_new_medicine__removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("add-new-medicine--removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap adjusted_checkmark_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("adjusted_checkmark-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap arrow_right {
             get {
                 object obj = ResourceManager.GetObject("arrow-right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap delete_data_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("delete-data-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,6 +223,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap icon_for_searching_medicine_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("icon-for-searching-medicine-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap key_512 {
             get {
                 object obj = ResourceManager.GetObject("key-512", resourceCulture);
@@ -256,6 +296,86 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap medication_transfer_to_dispensing_counter_with_arr_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("medication-transfer-to-dispensing-counter-with-arr-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_data_set_group {
+            get {
+                object obj = ResourceManager.GetObject("medicine-data-set-group", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_data_set_group_removebg_preview_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-data-set-group-removebg-preview-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_shift_handover_checklist__1__removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-shift-handover-checklist__1_-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_shift_handover_checklist__add_data_plus_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-shift-handover-checklist--add-data-plus-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_shift_handover_checklist_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("medicine-shift-handover-checklist-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap personnel_information_and_permission_login_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("personnel-information-and-permission-login-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap personnel_information_and_permission_login_removebg_preview1 {
+            get {
+                object obj = ResourceManager.GetObject("personnel-information-and-permission-login-removebg-preview1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap plus_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("plus-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,9 +473,49 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap update_his_medicine_data_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("update-his-medicine-data-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap update_medicine_cabinet_data_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("update-medicine-cabinet-data-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap user {
             get {
                 object obj = ResourceManager.GetObject("user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap warnning_message_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("warnning-message-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 使用者資訊 {
+            get {
+                object obj = ResourceManager.GetObject("使用者資訊", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

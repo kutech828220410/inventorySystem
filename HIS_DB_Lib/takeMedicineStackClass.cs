@@ -63,6 +63,10 @@ namespace HIS_DB_Lib
         ID,
         [Description("藥師證字號,VARCHAR,20,None")]
         藥師證字號,
+        [Description("覆核藥師姓名,VARCHAR,20,None")]
+        覆核藥師姓名,
+        [Description("覆核藥師ID,VARCHAR,20,None")]
+        覆核藥師ID,
         [Description("動作,VARCHAR,20,None")]
         動作,
         [Description("作業模式,VARCHAR,20,None")]
@@ -189,6 +193,10 @@ namespace HIS_DB_Lib
         public string 操作人 { get; set; }
         [JsonPropertyName("ID")]
         public string ID { get; set; }
+        [JsonPropertyName("recheck_name")]
+        public string 覆核藥師姓名 { get; set; }
+        [JsonPropertyName("recheck_id")]
+        public string 覆核藥師ID { get; set; }
         [JsonPropertyName("patient_name")]
         public string 病人姓名 { get; set; }
         [JsonPropertyName("patient_code")]
@@ -255,6 +263,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("pharmacist_license_number")]
         public string 藥師證字號 { get; set; }
+        /// <summary>
+        /// 覆核藥師姓名
+        /// </summary>
+        [JsonPropertyName("recheck_name")]
+        public string 覆核藥師姓名 { get; set; }
+        /// <summary>
+        /// 覆核藥師ID
+        /// </summary>
+        [JsonPropertyName("recheck_id")]
+        public string 覆核藥師ID { get; set; }
         /// <summary>
         /// 交易記錄查詢動作
         /// </summary>

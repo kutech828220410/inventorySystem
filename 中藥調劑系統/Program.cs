@@ -14,6 +14,7 @@ namespace 中藥調劑系統
         [STAThread]
         static void Main()
         {
+            Basic.Screen.CloseConsole();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main_Form());

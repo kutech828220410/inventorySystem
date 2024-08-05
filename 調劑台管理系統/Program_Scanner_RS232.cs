@@ -65,7 +65,18 @@ namespace 調劑台管理系統
         static MySerialPort MySerialPort_Scanner02 = new MySerialPort();
         static MySerialPort MySerialPort_Scanner03 = new MySerialPort();
         static MySerialPort MySerialPort_Scanner04 = new MySerialPort();
-
+        static int NumOfConnectedScanner
+        {
+            get
+            {
+                int index = 0;
+                if (MySerialPort_Scanner01.IsConnected) index++;
+                if (MySerialPort_Scanner02.IsConnected) index++;
+                if (MySerialPort_Scanner03.IsConnected) index++;
+                if (MySerialPort_Scanner04.IsConnected) index++;
+                return index;
+            }
+        }
         private enum enum_Scanner_陣列內容
         {
             病人姓名 = 10,
@@ -103,7 +114,6 @@ namespace 調劑台管理系統
                         }
                     }
                 }
-    
                 if (!myConfigClass.Scanner02_COMPort.StringIsEmpty())
                 {
                     MySerialPort_Scanner02.Init(myConfigClass.Scanner02_COMPort, 9600, 8, System.IO.Ports.Parity.None, System.IO.Ports.StopBits.One);

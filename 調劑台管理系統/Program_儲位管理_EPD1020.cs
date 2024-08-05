@@ -20,10 +20,10 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
-        private List<Drawer> List_EPD1020_本地資料 = new List<Drawer>();
-        private List<Drawer> List_EPD1020_雲端資料 = new List<Drawer>();
-        private List<Drawer> List_EPD1020_入賬資料 = new List<Drawer>();
-
+        static public List<Drawer> List_EPD1020_本地資料 = new List<Drawer>();
+        static public List<Drawer> List_EPD1020_雲端資料 = new List<Drawer>();
+        static public List<Drawer> List_EPD1020_入賬資料 = new List<Drawer>();
+        static public DrawerUI _drawerUI_EPD_1020;
         [EnumDescription("")]
         private enum enum_儲位管理_EPD1020_效期及庫存
         {
@@ -191,7 +191,7 @@ namespace 調劑台管理系統
             MyTimer_TickTime.TickStop();
             MyTimer_TickTime.StartTickTime(50000);
             List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < this.List_EPD1020_本地資料.Count; i++)
+            for (int i = 0; i < List_EPD1020_本地資料.Count; i++)
             {
                 object[] value = new object[new enum_儲位管理_EPD1020_抽屜列表().GetLength()];
                 value[(int)enum_儲位管理_EPD1020_抽屜列表.IP] = List_EPD1020_本地資料[i].IP;
@@ -225,9 +225,9 @@ namespace 調劑台管理系統
             string BarCode_buf = "";
             string 包裝單位_buf = "";
             string 警訊藥品_buf = "";
-            for (int i = 0; i < this.List_EPD1020_本地資料.Count; i++)
+            for (int i = 0; i < List_EPD1020_本地資料.Count; i++)
             {
-                string IP = this.List_EPD1020_本地資料[i].IP;
+                string IP = List_EPD1020_本地資料[i].IP;
                 List<Box> boxes = List_EPD1020_本地資料[i].GetAllBoxes();
                 bool Is_Replace = false;
                 for (int k = 0; k < boxes.Count; k++)
@@ -275,7 +275,7 @@ namespace 調劑台管理系統
                 }
                 if (Is_Replace)
                 {
-                    list_replaceValue.Add(this.List_EPD1020_本地資料[i]);
+                    list_replaceValue.Add(List_EPD1020_本地資料[i]);
                 }
             }
 
@@ -368,7 +368,7 @@ namespace 調劑台管理系統
                 if (drawer != null)
                 {
                     this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
-                    this.List_EPD1020_本地資料.Add_NewDrawer(drawer);
+                    List_EPD1020_本地資料.Add_NewDrawer(drawer);
                     this.epD_1020_Pannel.CurrentDrawer = drawer;
                     this.Function_設定雲端資料更新();
                 }
@@ -420,7 +420,7 @@ namespace 調劑台管理系統
                 if (box == null) return;
                 box.SetValue(Device.ValueName.儲位名稱, Device.ValueType.Value, rJ_TextBox_儲位管理_EPD1020_儲位內容_儲位名稱.Text);
                 this.drawerUI_EPD_1020.SQL_ReplaceDrawer(epD_1020_Pannel.CurrentDrawer);
-                this.List_EPD1020_本地資料.Add_NewDrawer(epD_1020_Pannel.CurrentDrawer);
+                List_EPD1020_本地資料.Add_NewDrawer(epD_1020_Pannel.CurrentDrawer);
             }
         }
         private void RJ_TextBox_儲位管理_EPD1020_儲位內容_儲位搜尋_藥品碼_KeyPress(object sender, KeyPressEventArgs e)
@@ -438,7 +438,7 @@ namespace 調劑台管理系統
             {
                 drawer.Speaker = rJ_TextBox_儲位管理_EPD1020_抽屜列表_語音.Text;
                 this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
-                this.List_EPD1020_本地資料.Add_NewDrawer(drawer);
+                List_EPD1020_本地資料.Add_NewDrawer(drawer);
                 sqL_DataGridView_儲位管理_EPD1020_抽屜列表.Replace(new object[] { drawer.IP, drawer.Name }, true);
                 sqL_DataGridView_儲位管理_EPD1020_抽屜列表.On_RowEnter();
                 this.Function_設定雲端資料更新();
@@ -548,7 +548,7 @@ namespace 調劑台管理系統
                 drawer.Name = rJ_TextBox_儲位管理_EPD1020_抽屜列表_儲位名稱.Text;
                 drawer.Speaker = rJ_TextBox_儲位管理_EPD1020_抽屜列表_語音.Text;
                 this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
-                this.List_EPD1020_本地資料.Add_NewDrawer(drawer);
+                List_EPD1020_本地資料.Add_NewDrawer(drawer);
                 sqL_DataGridView_儲位管理_EPD1020_抽屜列表.Replace(new object[] { drawer.IP, drawer.Name }, true);
                 sqL_DataGridView_儲位管理_EPD1020_抽屜列表.On_RowEnter();
                 this.Function_設定雲端資料更新();
@@ -619,7 +619,7 @@ namespace 調劑台管理系統
 
             this.epD_1020_Pannel.DrawToPictureBox(drawer);
             this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
-            this.List_EPD1020_本地資料.Add_NewDrawer(drawer);
+            List_EPD1020_本地資料.Add_NewDrawer(drawer);
             this.Function_設定雲端資料更新();
             this.sqL_DataGridView_儲位管理_EPD1020_抽屜列表.On_RowEnter();
         }
@@ -674,19 +674,19 @@ namespace 調劑台管理系統
                 int 原有庫存 = box.取得庫存();
                 string 藥品碼 = box.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
-                string 庫存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 box.效期庫存覆蓋(效期, 批號, 數量);
                 int 修正庫存 = box.取得庫存();
                 epD_1020_Pannel.CurrentDrawer.ReplaceByGUID(box);
                 this.drawerUI_EPD_1020.SQL_ReplaceDrawer(epD_1020_Pannel.CurrentDrawer);
-                this.List_EPD1020_本地資料.Add_NewDrawer(epD_1020_Pannel.CurrentDrawer);
+                List_EPD1020_本地資料.Add_NewDrawer(epD_1020_Pannel.CurrentDrawer);
 
                 string GUID = Guid.NewGuid().ToString();
                 string 動作 = enum_交易記錄查詢動作.效期庫存異動.GetEnumName();
                 string 藥品名稱 = box.Name;
                 string 藥袋序號 = "";
                 string 交易量 = (修正庫存 - 原有庫存).ToString();
-                string 結存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 結存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 string 操作人 = this.登入者名稱;
                 string 病人姓名 = "";
                 string 病歷號 = "";
@@ -754,7 +754,7 @@ namespace 調劑台管理系統
                 int 原有庫存 = box.取得庫存();
                 string 藥品碼 = box.Code;
                 藥品碼 = Function_藥品碼檢查(藥品碼);
-                string 庫存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 庫存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 box.效期庫存覆蓋(效期, 批號, 數量);
                 int 修正庫存 = box.取得庫存();
                 epD_1020_Pannel.CurrentDrawer.ReplaceByGUID(box);
@@ -765,7 +765,7 @@ namespace 調劑台管理系統
                 string 藥品名稱 = box.Name;
                 string 藥袋序號 = "";
                 string 交易量 = (修正庫存 - 原有庫存).ToString();
-                string 結存量 = this.Function_從SQL取得庫存(藥品碼).ToString();
+                string 結存量 = Function_從SQL取得庫存(藥品碼).ToString();
                 string 操作人 = this.登入者名稱;
                 string 病人姓名 = "";
                 string 病歷號 = "";
@@ -833,7 +833,7 @@ namespace 調劑台管理系統
 
                 box.修正批號(效期, 新批號);
                 epD_1020_Pannel.CurrentDrawer.ReplaceByGUID(box);
-                this.List_EPD1020_本地資料.Add_NewDrawer(epD_1020_Pannel.CurrentDrawer);
+                List_EPD1020_本地資料.Add_NewDrawer(epD_1020_Pannel.CurrentDrawer);
                 this.drawerUI_EPD_1020.SQL_ReplaceDrawer(epD_1020_Pannel.CurrentDrawer);
 
                 string GUID = Guid.NewGuid().ToString();
@@ -968,7 +968,7 @@ namespace 調劑台管理系統
                 {
                     drawer.AlarmEnable = plC_CheckBox_儲位管理_EPD1020_警報.Checked;
                     this.drawerUI_EPD_1020.SQL_ReplaceDrawer(drawer);
-                    this.List_EPD1020_本地資料.Add_NewDrawer(drawer);
+                    List_EPD1020_本地資料.Add_NewDrawer(drawer);
                     this.epD_1020_Pannel.CurrentDrawer = drawer;
                     this.Function_設定雲端資料更新();
                     flag_Program_輸出入檢查_輸出刷新_Init = false;

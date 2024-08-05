@@ -199,6 +199,12 @@ namespace HIS_DB_Lib
         public string 圖片網址 { get; set; }
 
         /// <summary>
+        /// 圖片網址。
+        /// </summary>
+        [JsonPropertyName("PIC1_URL")]
+        public string 圖片網址1 { get; set; }
+
+        /// <summary>
         /// 開檔狀態。
         /// </summary>
         [JsonPropertyName("FILE_STATUS")]
@@ -733,6 +739,29 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return medClasses;
         }
+        static public List<medClass> get_med_clouds_by_durgkind(string API_Server, string name)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_med_clouds_by_durgkind";
+
+            returnData returnData = new returnData();
+
+            returnData.ValueAry.Add(name);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+
+
+
+        
         static public void update_med_clouds_by_guid(string API_Server, medClass medClass)
         {
             List<medClass> medClasses = new List<medClass>();

@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.75")]
-[assembly: AssemblyFileVersion("1.2.1.75")]
+[assembly: AssemblyVersion("1.2.1.82")]
+[assembly: AssemblyFileVersion("1.2.1.82")]
 namespace 調劑台管理系統
 {
 
@@ -37,6 +37,7 @@ namespace 調劑台管理系統
         public static string Order_URL = "";
         public static string OrderByCodeApi_URL = "";
         public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        public static RFID_FX600lib.RFID_FX600_UI _RFID_FX600_UI = null;
         public string 領藥台_01名稱
         {
             get
@@ -80,7 +81,7 @@ namespace 調劑台管理系統
         Basic.MyConvert myConvert = new Basic.MyConvert();
 
 
-        PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
+        static public PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
@@ -296,106 +297,27 @@ namespace 調劑台管理系統
         public Main_Form()
         {
             InitializeComponent();
-            #region PLC_MultiStateDisplay
-            MyUI.PLC_MultiStateDisplay.TextValue textValue1 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue2 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue3 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue4 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue5 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue6 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue7 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue8 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue9 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue10 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue11 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            MyUI.PLC_MultiStateDisplay.TextValue textValue12 = new MyUI.PLC_MultiStateDisplay.TextValue();
-            //textValue1.Name = "M5000";
-            //textValue1.Text = "請登入身分...";
-            //textValue1.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            //textValue1.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue1.文字顏色 = System.Drawing.Color.Black;
-            //textValue1.自定義參數 = false;
-            //textValue2.Name = "M5001";
-            //textValue2.Text = "登入者姓名 : XXX";
-            //textValue2.字體 = new System.Drawing.Font("微軟正黑體", 30F);
-            //textValue2.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue2.文字顏色 = System.Drawing.Color.Black;
-            //textValue2.自定義參數 = true;
-            //textValue3.Name = "M5002";
-            //textValue3.Text = "登入失敗,查無此資料!";
-            //textValue3.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            //textValue3.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue3.文字顏色 = System.Drawing.Color.Red;
-            //textValue3.自定義參數 = false;
-            //textValue4.Name = "M5005";
-            //textValue4.Text = "請選擇領/退藥";
-            //textValue4.字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            //textValue4.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue4.文字顏色 = System.Drawing.Color.Red;
-            //textValue4.自定義參數 = false;
-            //textValue5.Name = "M5006";
-            //textValue5.Text = "此藥單已領用過!";
-            //textValue5.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            //textValue5.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue5.文字顏色 = System.Drawing.Color.Red;
-            //textValue5.自定義參數 = false;
-            //textValue6.Name = "M5007";
-            //textValue6.Text = "掃碼失敗!";
-            //textValue6.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            //textValue6.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue6.文字顏色 = System.Drawing.Color.Red;
-            //textValue6.自定義參數 = false;
-            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue1);
-            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue2);
-            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue3);
-            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue4);
-            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue5);
-            //this.plC_MultiStateDisplay_領藥台_02_狀態顯示.狀態內容.Add(textValue6);
-            //textValue7.Name = "M4000";
-            //textValue7.Text = "請登入身分...";
-            //textValue7.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            //textValue7.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue7.文字顏色 = System.Drawing.Color.Black;
-            //textValue7.自定義參數 = false;
-            //textValue8.Name = "M4001";
-            //textValue8.Text = "登入者姓名 : XXX";
-            //textValue8.字體 = new System.Drawing.Font("微軟正黑體", 30F);
-            //textValue8.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue8.文字顏色 = System.Drawing.Color.Black;
-            //textValue8.自定義參數 = true;
-            //textValue9.Name = "M4002";
-            //textValue9.Text = "登入失敗,查無此資料!";
-            //textValue9.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            //textValue9.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue9.文字顏色 = System.Drawing.Color.Red;
-            //textValue9.自定義參數 = false;
-            //textValue10.Name = "M4005";
-            //textValue10.Text = "請選擇領/退藥";
-            //textValue10.字體 = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Bold);
-            //textValue10.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue10.文字顏色 = System.Drawing.Color.Red;
-            //textValue10.自定義參數 = false;
-            //textValue11.Name = "M4006";
-            //textValue11.Text = "此藥單已領用過!";
-            //textValue11.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            //textValue11.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue11.文字顏色 = System.Drawing.Color.Red;
-            //textValue11.自定義參數 = false;
-            //textValue12.Name = "M4007";
-            //textValue12.Text = "掃碼失敗!";
-            //textValue12.字體 = new System.Drawing.Font("微軟正黑體", 15.75F);
-            //textValue12.文字對齊方式 = MyUI.PLC_MultiStateDisplay.TextValue.Alignment.Left;
-            //textValue12.文字顏色 = System.Drawing.Color.Red;
-            //textValue12.自定義參數 = false;
-            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue7);
-            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue8);
-            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue9);
-            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue10);
-            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue11);
-            //this.plC_MultiStateDisplay_領藥台_01_狀態顯示.狀態內容.Add(textValue12);
-            #endregion
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
         }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            // 使用雙重緩衝
+            BufferedGraphicsContext currentContext;
+            BufferedGraphics myBuffer;
 
+            currentContext = BufferedGraphicsManager.Current;
+            myBuffer = currentContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
+
+            // 在緩衝區域進行繪製
+            Graphics g = myBuffer.Graphics;
+            g.Clear(this.BackColor); // 清除背景
+            base.OnPaint(new PaintEventArgs(g, this.ClientRectangle));
+
+            // 將緩衝區域的內容繪製到表單
+            myBuffer.Render(e.Graphics);
+            myBuffer.Dispose(); // 釋放緩衝區資源
+        }
         private void Main_Form_Load(object sender, EventArgs e)
         {
             if (this.DesignMode == false)
@@ -427,7 +349,9 @@ namespace 調劑台管理系統
                 Dialog_共用區設置.form = this.FindForm();
                 Dialog_AlarmForm.form = this.FindForm();
                 Dialog_藥品調出.form = this.FindForm();
-
+                Dialog_交班對點.form = this.FindForm();
+                Dialog_藥品群組.form = this.FindForm();
+                Dialog_異常通知.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();
@@ -460,11 +384,15 @@ namespace 調劑台管理系統
 
 
                 this.plC_ScreenPage_Main.TabChangeEvent += PlC_ScreenPage_Main_TabChangeEvent;
+                this.plC_ScreenPage_調劑樣式.Resize += PlC_ScreenPage_調劑樣式_Resize;
+                this.ToolStripMenuItem_顯示主控台.Click += ToolStripMenuItem_顯示主控台_Click;
+                this.ToolStripMenuItem_隱藏主控台.Click += ToolStripMenuItem_隱藏主控台_Click;
             }
-
         }
 
+ 
 
+      
 
         #region Event
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
@@ -492,19 +420,19 @@ namespace 調劑台管理系統
 
             if (myConfigClass.Scanner01_COMPort.StringIsEmpty())
             {
-                rJ_GroupBox_領藥台_01.Visible = false;
+                rJ_Pannel_領藥台_01.Visible = false;
             }
             if (myConfigClass.Scanner02_COMPort.StringIsEmpty())
             {
-                rJ_GroupBox_領藥台_02.Visible = false;
+                rJ_Pannel_領藥台_02.Visible = false;
             }
             if (myConfigClass.Scanner03_COMPort.StringIsEmpty())
             {
-                rJ_GroupBox_領藥台_03.Visible = false;
+                rJ_Pannel_領藥台_03.Visible = false;
             }
             if (myConfigClass.Scanner04_COMPort.StringIsEmpty())
             {
-                rJ_GroupBox_領藥台_04.Visible = false;
+                rJ_Pannel_領藥台_04.Visible = false;
             }
             if (myConfigClass.Scanner03_COMPort.StringIsEmpty() && myConfigClass.Scanner04_COMPort.StringIsEmpty())
             {
@@ -603,13 +531,14 @@ namespace 調劑台管理系統
             this.sub_Program_盤點作業_新增盤點_Init();
             this.sub_Program_盤點作業_單號查詢_Init();
             this.sub_Program_盤點作業_資料庫_Init();
+            this.Program_異常通知_Init();
 
             if (!this.ControlMode) this.Program_輸出入檢查_Init();
             this.Program_收支作業_Init();
             this.Program_指紋辨識_Init();
 
 
-            this.Program_異常通知_覆盤錯誤_Init();
+            this.Program_異常通知_盤點錯誤_Init();
 
             this.LoadConfig工程模式();
 
@@ -684,6 +613,74 @@ namespace 調劑台管理系統
         {
             System.Environment.Exit(0);
         }
+        private void PlC_ScreenPage_調劑樣式_Resize(object sender, EventArgs e)
+        {
+        
+            Control control = sender as Control;
+            int basic_width = 1660;
+            int offset_width = (control.Width -basic_width) / 2;
+
+            if (NumOfConnectedScanner > 1)
+            {
+                if (flag_Init) this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init) this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init) this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+                if (flag_Init) this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(355 + offset_width, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
+            }
+            if (NumOfConnectedScanner == 4)
+            {
+           
+                int width = control.Width / 2 - 10;
+                int height = control.Height / 2 - 10;
+                rJ_Pannel_領藥台_01.Width = width;
+                rJ_Pannel_領藥台_02.Width = width;
+                rJ_Pannel_領藥台_03.Width = width;
+                rJ_Pannel_領藥台_04.Width = width;
+                panel_領藥台_01_02.Height = height;
+                panel_領藥台_03_04.Height = height;
+            }
+            else if (NumOfConnectedScanner == 3)
+            {
+                int width = control.Width / 2 - 10;
+                int height = control.Height / 2 - 10;
+                rJ_Pannel_領藥台_01.Width = width;
+                rJ_Pannel_領藥台_02.Width = width;
+                rJ_Pannel_領藥台_03.Width = width;
+                rJ_Pannel_領藥台_04.Width = width;
+                panel_領藥台_01_02.Height = height;
+                panel_領藥台_03_04.Height = height;
+            }
+            else if (NumOfConnectedScanner == 2)
+            {
+                int width = control.Width / 2 - 10;
+                int height = control.Height / 1 - 10;
+                rJ_Pannel_領藥台_01.Width = width;
+                rJ_Pannel_領藥台_02.Width = width;
+                rJ_Pannel_領藥台_03.Width = width;
+                rJ_Pannel_領藥台_04.Width = width;
+                panel_領藥台_01_02.Height = height;
+                panel_領藥台_03_04.Height = height;
+            }
+            else if (NumOfConnectedScanner == 1)
+            {
+                int width = control.Width / 1 - 10;
+                int height = control.Height / 1 - 10;
+                rJ_Pannel_領藥台_01.Width = width;
+                rJ_Pannel_領藥台_02.Width = width;
+                rJ_Pannel_領藥台_03.Width = width;
+                rJ_Pannel_領藥台_04.Width = width;
+                panel_領藥台_01_02.Height = height;
+                panel_領藥台_03_04.Height = height;
+            }
+        }
+        private void ToolStripMenuItem_顯示主控台_Click(object sender, EventArgs e)
+        {
+            Basic.Screen.ShowConsole();
+        }
+        private void ToolStripMenuItem_隱藏主控台_Click(object sender, EventArgs e)
+        {
+            Basic.Screen.CloseConsole();
+        }
         #endregion
         #region Function
         private void RFID_Iint()
@@ -696,6 +693,7 @@ namespace 調劑台管理系統
                 MyTimer_rfiD_FX600_UI_Init.StartTickTime(5000);
                 while (true)
                 {
+                    _RFID_FX600_UI = this.rfiD_FX600_UI;
                     if (myConfigClass.RFID使用 == false) break;
 
                     if (MyTimer_rfiD_FX600_UI_Init.IsTimeOut() && !flag_rfiD_FX600_UI_Init)
@@ -719,7 +717,9 @@ namespace 調劑台管理系統
                             {
                                 num++;
                             }
+                        
                             this.rfiD_FX600_UI.Init(RFID_FX600lib.RFID_FX600_UI.Baudrate._9600, num, myConfigClass.RFID_COMPort);
+                           
                         }
                         flag_rfiD_FX600_UI_Init = true;
                         break;

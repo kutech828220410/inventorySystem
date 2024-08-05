@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
+using System.ComponentModel;
+using System.Reflection;
+using SQLUI;
 
 namespace HIS_DB_Lib
 {
@@ -48,7 +51,7 @@ namespace HIS_DB_Lib
         開啟門片,
         交班對點,
         取消作業,
-        盤點調整,
+        盤點校正,
         批次過帳,
         驗收作業,
         驗收入庫,
@@ -60,33 +63,62 @@ namespace HIS_DB_Lib
         盤存盈虧,
         None,
     }
+    [EnumDescription("trading")]
     public enum enum_交易記錄查詢資料
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("動作,VARCHAR,50,NONE")]
         動作,
+        [Description("診別,VARCHAR,50,NONE")]
         診別,
+        [Description("庫別,VARCHAR,50,NONE")]
         庫別,
+        [Description("藥品碼,VARCHAR,15,INDEX")]
         藥品碼,
+        [Description("藥品名稱,VARCHAR,300,NONE")]
         藥品名稱,
+        [Description("藥袋序號,VARCHAR,50,INDEX")]
         藥袋序號,
+        [Description("領藥號,VARCHAR,20,INDEX")]
         領藥號,
+        [Description("類別,VARCHAR,20,NONE")]
         類別,
+        [Description("庫存量,VARCHAR,10,NONE")]
         庫存量,
+        [Description("交易量,VARCHAR,10,NONE")]
         交易量,
+        [Description("結存量,VARCHAR,10,NONE")]
         結存量,
+        [Description("盤點量,VARCHAR,10,NONE")]
         盤點量,
+        [Description("操作人,VARCHAR,50,INDEX")]
         操作人,
+        [Description("覆核藥師,VARCHAR,50,INDEX")]
+        覆核藥師,
+        [Description("領用人,VARCHAR,50,INDEX")]
         領用人,
+        [Description("藥師證字號,VARCHAR,20,INDEX")]
         藥師證字號,
+        [Description("病人姓名,VARCHAR,50,INDEX")]
         病人姓名,
+        [Description("頻次,VARCHAR,15,NONE")]
         頻次,
+        [Description("病房號,VARCHAR,15,NONE")]
         病房號,
+        [Description("床號,VARCHAR,15,NONE")]
         床號,
+        [Description("病歷號,VARCHAR,20,INDEX")]
         病歷號,
+        [Description("操作時間,DATETIME,50,INDEX")]
         操作時間,
+        [Description("領用時間,DATETIME,50,INDEX")]
         領用時間,
+        [Description("開方時間,DATETIME,50,INDEX")]
         開方時間,
+        [Description("收支原因,VARCHAR,200,NONE")]
         收支原因,
+        [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
     public enum enum_交易記錄查詢資料_匯出
@@ -217,6 +249,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("RECV")]
         public string 領用人 { get; set; }
+        /// <summary>
+        /// 領用人
+        /// </summary>
+        [JsonPropertyName("CHKOP")]
+        public string 覆核藥師 { get; set; }
         /// <summary>
         /// 藥師證字號
         /// </summary>

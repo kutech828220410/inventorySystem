@@ -1010,6 +1010,79 @@ namespace HIS_WebApi
 
         }
         /// <summary>
+        /// 取得交易紀錄明細(Excel)(多台合併)
+        /// </summary>
+        /// <remarks>
+        ///  --------------------------------------------<br/> 
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        [參照指定網址]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        "網址名"(如:get_datas_by_op_time_st_end,get_datas_by_op)
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>[returnData.Data]為交易紀錄結構</returns>
+        [Route("download_datas_excel_ex")]
+        [HttpPost]
+        public async Task<ActionResult> download_datas_excel_ex([FromBody] returnData returnData)
+        {
+            try
+            {
+                MyTimer myTimer = new MyTimer();
+                myTimer.StartTickTime(50000);
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return null;
+                }
+                if (returnData.Value.StringIsEmpty())
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 內容應為[網址名(如:get_datas_by_op_time_st_end,get_datas_by_op)]";
+                    return null;
+                }
+                string json_in = returnData.JsonSerializationt();
+                string json_out = Basic.Net.WEBApiPostJson($"http://127.0.0.1:4433/api/transactions/{returnData.Value}", json_in);
+                returnData returnData_out = json_out.JsonDeserializet<returnData>();
+                if (returnData_out == null)
+                {
+                    return null;
+                }
+                if (returnData_out.Code != 200)
+                {
+                    return null;
+                }
+                List<transactionsClass> transactionsClasses = returnData_out.Data.ObjToClass<List<transactionsClass>>();
+
+                List<object[]> list_transactionsClasses = transactionsClasses.ClassToSQL<transactionsClass, enum_交易記錄查詢資料>();
+                System.Data.DataTable dataTable = list_transactionsClasses.ToDataTable(new enum_交易記錄查詢資料());
+                dataTable = dataTable.ReorderTable(new enum_交易記錄查詢資料_匯出());
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+                List<System.Data.DataTable> dataTables = new List<System.Data.DataTable>();
+                dataTables.Add(dataTable);
+                byte[] excelData = MyOffice.ExcelClass.NPOI_GetBytes(dataTable, Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_交易紀錄明細.xlsx"));
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
+        /// <summary>
         /// 取得收支結存報表(Excel)(多台合併)
         /// </summary>
         /// <remarks>
@@ -2126,7 +2199,7 @@ namespace HIS_WebApi
             if (str_action == enum_交易記錄查詢動作.批次領藥.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.重複領藥.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.系統領藥.GetEnumName()) return true;
-            if (str_action == enum_交易記錄查詢動作.盤點調整.GetEnumName()) return true;
+            if (str_action == enum_交易記錄查詢動作.盤點校正.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.掃碼退藥.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.手輸退藥.GetEnumName()) return true;
             if (str_action == enum_交易記錄查詢動作.系統入庫.GetEnumName()) return true;
@@ -2148,45 +2221,7 @@ namespace HIS_WebApi
 
         private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
-
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-            SQLControl sQLControl = new SQLControl(Server, DB, "trading", UserName, Password, Port, SSLMode);
-
-
-            Table table = new Table("trading");
-            table.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table.AddColumnList("動作", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("診別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("庫別", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("藥品碼", Table.StringType.VARCHAR, 15, Table.IndexType.INDEX);
-            table.AddColumnList("藥品名稱", Table.StringType.VARCHAR, 200, Table.IndexType.INDEX);
-            table.AddColumnList("藥袋序號", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            table.AddColumnList("領藥號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("類別", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("庫存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("交易量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("結存量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table.AddColumnList("領用人", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table.AddColumnList("藥師證字號", Table.StringType.VARCHAR, 15, Table.IndexType.INDEX);
-            table.AddColumnList("病人姓名", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table.AddColumnList("頻次", Table.StringType.VARCHAR, 15, Table.IndexType.None);
-            table.AddColumnList("病房號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("床號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("病歷號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table.AddColumnList("操作時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
-            table.AddColumnList("領用時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
-            table.AddColumnList("開方時間", Table.DateType.DATETIME, 50, Table.IndexType.INDEX);
-            table.AddColumnList("收支原因", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table.AddColumnList("備註", Table.StringType.VARCHAR, 500, Table.IndexType.None);
-            if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
-            else sQLControl.CheckAllColumnName(table, true);
+            Table table = MethodClass.CheckCreatTable(serverSettingClass, new enum_交易記錄查詢資料());
             return table.JsonSerializationt(true);
         }
         public class ICP_交易記錄查詢 : IComparer<object[]>

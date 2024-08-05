@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9952E5D3-B159-497F-9DED-612B4B5E1C98}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>癌症自動備藥機暨排程系統</RootNamespace>
-    <AssemblyName>癌症自動備藥機暨排程系統</AssemblyName>
+    <RootNamespace>癌症備藥機</RootNamespace>
+    <AssemblyName>癌症備藥機</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -348,6 +348,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_藥檔資料.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_藥盒索引.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_調配排程.cs">

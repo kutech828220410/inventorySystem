@@ -13,7 +13,7 @@ using MyUI;
 using SQLUI;
 using DrawingClass;
 
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class uc_備藥通知處方內容 : UserControl
     {
@@ -327,27 +327,66 @@ namespace 癌症自動備藥機暨排程系統
     
         private void PlC_RJ_Button_醫囑確認_MouseDownEvent(MouseEventArgs mevent)
         {
-            udnoectc.update_udnoectc_confirm_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
-            udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
-            refresh_UI();
-            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("醫囑確認完成", 1500, Color.DarkGreen);
-            dialog_AlarmForm.ShowDialog();
+            LoadingForm.ShowLoadingForm();
+            try
+            {
+                udnoectc.update_udnoectc_confirm_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
+                udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
+                refresh_UI();
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("醫囑確認完成", 1500, Color.DarkGreen);
+                dialog_AlarmForm.ShowDialog();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                LoadingForm.CloseLoadingForm();
+            }
+         
         }
         private void PlC_RJ_Button_調配完成_MouseDownEvent(MouseEventArgs mevent)
         {
-            udnoectc.update_udnoectc_disp_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
-            udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
-            refresh_UI();
-            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("調配完成", 1500, Color.DarkGreen);
-            dialog_AlarmForm.ShowDialog();
+            LoadingForm.ShowLoadingForm();
+            try
+            {
+                udnoectc.update_udnoectc_disp_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
+                udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
+                refresh_UI();
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("調配完成", 1500, Color.DarkGreen);
+                dialog_AlarmForm.ShowDialog();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                LoadingForm.CloseLoadingForm();
+            }
+      
         }
         private void PlC_RJ_Button_處方核對_MouseDownEvent(MouseEventArgs mevent)
         {
-            udnoectc.update_udnoectc_check_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
-            udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
-            refresh_UI();
-            Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方核對完成", 1500, Color.DarkGreen);
-            dialog_AlarmForm.ShowDialog();
+            LoadingForm.ShowLoadingForm();
+            try
+            {
+                udnoectc.update_udnoectc_check_ph(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, this._login_name, udnoectc);
+                udnoectc = udnoectc.get_udnoectc_by_GUID(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, udnoectc.GUID);
+                refresh_UI();
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("處方核對完成", 1500, Color.DarkGreen);
+                dialog_AlarmForm.ShowDialog();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                LoadingForm.CloseLoadingForm();
+            }
+
         }
         private void ToolStripMenuItem_設為未備藥_Click(object sender, EventArgs e)
         {

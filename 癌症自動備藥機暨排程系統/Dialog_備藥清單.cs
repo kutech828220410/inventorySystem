@@ -12,7 +12,8 @@ using Basic;
 using MyUI;
 using SQLUI;
 using DrawingClass;
-namespace 癌症自動備藥機暨排程系統
+using H_Pannel_lib;
+namespace 癌症備藥機
 {
     public partial class Dialog_備藥清單 : MyDialog
     {
@@ -24,7 +25,7 @@ namespace 癌症自動備藥機暨排程系統
         private udnoectc udnoectc = null;
 
         public List<udnoectc_orders> Value = null;
-
+        public List<StockClass> stockClasses = new List<StockClass>();
         public Dialog_備藥清單(string guid , string login_name)
         {
             form.Invoke(new Action(delegate { InitializeComponent(); }));
@@ -80,38 +81,117 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void PlC_RJ_Button_確認_MouseDownEvent(MouseEventArgs mevent)
         {
-             
-            List<object[]> list_value = this.uc_備藥通知內容.GetSelectedRows();
-            if (list_value.Count == 0)
+            try
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取備藥藥品", 1500);
-                dialog_AlarmForm.ShowDialog();
-                Logger.Log($"[備藥清單] 未選取備藥藥品...");
-                return;
+                stockClasses.Clear();
+                List<object[]> list_value = this.uc_備藥通知內容.GetSelectedRows();
+                if (list_value.Count == 0)
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("未選取備藥藥品", 1500);
+                    dialog_AlarmForm.ShowDialog();
+                    Logger.Log($"[備藥清單] 未選取備藥藥品...");
+                    return;
+                }
+                List<udnoectc_orders> list_udnoectc_orders = new List<udnoectc_orders>();
+                List<udnoectc_orders> list_udnoectc_orders_replace = new List<udnoectc_orders>();
+                List<StockClass> stockClasses_buf = new List<StockClass>();
+                LoadingForm.ShowLoadingForm();
+                for (int i = 0; i < list_value.Count; i++)
+                {
+                    list_udnoectc_orders = list_value[i][0].ObjectToString().JsonDeserializet<List<udnoectc_orders>>();
+                    list_udnoectc_orders_replace.LockAdd(list_udnoectc_orders);
+                    for (int k = 0; k < list_udnoectc_orders.Count; k++)
+                    {
+                        string 藥碼 = list_udnoectc_orders[k].藥碼;
+                        string 藥名 = list_udnoectc_orders[k].藥名;
+                        int 數量 = list_udnoectc_orders[k].數量.StringToInt32();
+                        stockClasses_buf = (from temp in stockClasses
+                                            where temp.Code == 藥碼
+                                            select temp).ToList();
+                        if (stockClasses_buf.Count == 0)
+                        {
+                            StockClass stockClass = new StockClass();
+                            stockClass.Code = 藥碼;
+                            stockClass.Name = 藥名;
+                            stockClass.Qty = 數量.ToString();
+                            stockClasses.Add(stockClass);
+                        }
+                        else
+                        {
+                            StockClass stockClass = stockClasses_buf[0];
+                            stockClass.Code = 藥碼;
+                            stockClass.Name = 藥名;
+                            stockClass.Qty = (stockClass.Qty.StringToInt32() + 數量).ToString();
+                        }
+                    }
+                }
+                string error_msg = "";
+                for (int i = 0; i < stockClasses.Count; i++)
+                {
+                    string 藥碼 = stockClasses[i].Code;
+                    string 藥名 = stockClasses[i].Name;
+                    int 數量 = stockClasses[i].Qty.StringToInt32();
+                    int 庫存 = Main_Form.Function_從SQL取得庫存(藥碼);
+                    Logger.Log($"[備藥清單] 領用,({藥碼}){藥名} ,數量:{數量},庫存{庫存}");
+                    if (數量 > 庫存)
+                    {
+                        error_msg += $"({藥碼}){藥名},領用:{數量},庫存{庫存}\n";
+                    }
+                }
+
+                if (error_msg.StringIsEmpty() == false)
+                {
+                    MyMessageBox.ShowDialog($"{error_msg}");
+                    Logger.Log($"[備藥清單] error_msg : {error_msg}");
+                    return;
+                }
+
+                Logger.Log($"[備藥清單] 選取備藥藥品<{list_value.Count}>筆");
+                Dialog_藥盒掃描 dialog_藥盒掃描 = new Dialog_藥盒掃描();
+                if (dialog_藥盒掃描.ShowDialog() != DialogResult.Yes)
+                {
+                    Logger.Log($"[備藥清單] 掃描藥盒取消...");
+                    return;
+                }
+                Logger.Log($"[備藥清單] 掃描藥盒<{dialog_藥盒掃描.Value}>");
+
+
+                List<object[]> list_藥盒索引 = Main_Form._sqL_DataGridView_藥盒索引.SQL_GetRows((int)enum_drugBoxIndex.barcode, dialog_藥盒掃描.Value, false);
+                if(list_藥盒索引.Count > 0)
+                {
+                    object[] value = list_藥盒索引[0];
+                    value[(int)enum_drugBoxIndex.barcode] = dialog_藥盒掃描.Value;
+                    value[(int)enum_drugBoxIndex.master_GUID] = udnoectc.GUID;
+                    Main_Form._sqL_DataGridView_藥盒索引.SQL_ReplaceExtra(value, false);
+                }
+                else
+                {
+                    object[] value = new object[new enum_drugBoxIndex().GetLength()];
+                    value[(int)enum_drugBoxIndex.GUID] = Guid.NewGuid().ToString();
+                    value[(int)enum_drugBoxIndex.barcode] = dialog_藥盒掃描.Value;
+                    value[(int)enum_drugBoxIndex.master_GUID] = udnoectc.GUID;
+                    Main_Form._sqL_DataGridView_藥盒索引.SQL_AddRow(value, false);
+                }
+
+                List<udnoectc_orders> list_udnoectc_orders_return = udnoectc.update_udnoectc_orders_comp(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, list_udnoectc_orders_replace, this._login_name);
+                Logger.Log($"[備藥清單] 成功確認備藥<{list_udnoectc_orders_return.Count}>筆");
+     
+                if (SureClickEvent != null) SureClickEvent(list_udnoectc_orders_return);
+                this.DialogResult = DialogResult.Yes;
+                Value = list_udnoectc_orders_return;
+                this.Close();
             }
-            Logger.Log($"[備藥清單] 選取備藥藥品<{list_value.Count}>筆");
-            Dialog_藥盒掃描 dialog_藥盒掃描 = new Dialog_藥盒掃描();
-            if (dialog_藥盒掃描.ShowDialog() != DialogResult.Yes)
+            catch(Exception ex)
             {
-                Logger.Log($"[備藥清單] 掃描藥盒取消...");
-                return;
+                Logger.Log($"[備藥清單] Exception : {ex.Message}");
+
+
             }
-            Logger.Log($"[備藥清單] 掃描藥盒<{dialog_藥盒掃描.Value}>");
-            LoadingForm.ShowLoadingForm();
-            List<udnoectc_orders> list_udnoectc_orders = new List<udnoectc_orders>();
-            List<udnoectc_orders> list_udnoectc_orders_replace = new List<udnoectc_orders>();
-            for (int i = 0; i < list_value.Count; i++)
+            finally
             {
-                list_udnoectc_orders = list_value[i][0].ObjectToString().JsonDeserializet<List<udnoectc_orders>>();
-                list_udnoectc_orders_replace.LockAdd(list_udnoectc_orders);
+                LoadingForm.CloseLoadingForm();
             }
-            List<udnoectc_orders> list_udnoectc_orders_return = udnoectc.update_udnoectc_orders_comp(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, list_udnoectc_orders_replace, this._login_name);
-            Logger.Log($"[備藥清單] 成功確認備藥<{list_udnoectc_orders_return.Count}>筆");
-            LoadingForm.CloseLoadingForm();
-            if (SureClickEvent != null) SureClickEvent(list_udnoectc_orders_return);
-            this.DialogResult = DialogResult.Yes;
-            Value = list_udnoectc_orders_return;
-            this.Close();
+          
      
 
         }

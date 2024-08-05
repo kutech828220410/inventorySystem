@@ -14,8 +14,8 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.28")]
-[assembly: AssemblyFileVersion("1.0.0.28")]
+[assembly: AssemblyVersion("1.0.0.32")]
+[assembly: AssemblyFileVersion("1.0.0.32")]
 namespace 中藥調劑系統
 {
     public partial class Main_Form : Form
@@ -36,9 +36,10 @@ namespace 中藥調劑系統
             this.FormClosing += Main_Form_FormClosing;
             this.rJ_Button_磅秤扣重.MouseDownEvent += RJ_Button_磅秤扣重_MouseDownEvent;
             this.rJ_Button_磅秤歸零.MouseDownEvent += RJ_Button_磅秤歸零_MouseDownEvent;
+            MyMessageBox.TimerEvent += MyMessageBox_TimerEvent;
         }
 
-      
+   
 
         private void RJ_Button_磅秤歸零_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -168,6 +169,7 @@ namespace 中藥調劑系統
 
         }
         #endregion
+
         private void Main_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Function_全部滅燈();
@@ -181,15 +183,27 @@ namespace 中藥調劑系統
             MyMessageBox.form = this.FindForm();
             MyMessageBox.音效 = false;
             this.plC_UI_Init.音效 = false;
-   
 
+            ExcelScaleLib.Communication.ConsoleWrite = false;
             this.plC_RJ_Button_儲位設定.MouseDownEvent += PlC_RJ_Button_儲位設定_MouseDownEvent;
             this.plC_RJ_Button_人員資料.MouseDownEvent += PlC_RJ_Button_人員資料_MouseDownEvent;
             this.plC_RJ_Button_強制滅燈.MouseDownEvent += PlC_RJ_Button_強制滅燈_MouseDownEvent;
             plC_UI_Init.Run(this.FindForm(), this.lowerMachine_Panel);
             plC_UI_Init.UI_Finished_Event += PlC_UI_Init_UI_Finished_Event;
         }
+        private void MyMessageBox_TimerEvent(MyMessageBox myMessageBox)
+        {
+            myTimer_MySerialPort_Scanner01.TickStop();
+            myTimer_MySerialPort_Scanner01.StartTickTime(1000);
+            flag_MySerialPort_Scanner01_enable = false;
+            string text = MySerialPort_Scanner01.ReadString();
+            if (text.StringIsEmpty()) return;
+            System.Threading.Thread.Sleep(50);
+            text = MySerialPort_Scanner01.ReadString();
+            MySerialPort_Scanner01.ClearReadByte();
 
+            myMessageBox.Close();
+        }
         private void PlC_RJ_Button_強制滅燈_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("是否全部強制滅燈?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
@@ -235,6 +249,9 @@ namespace 中藥調劑系統
             Program_RFID_Init();
             Program_藥品搜尋_Init();
             Program_設定_Init();
+
+            Function_Init();
+
             _rowsLEDUI = this.rowsLEDUI;
             this.rowsLEDUI.Init(dBConfigClass.DB_儲位資料);
             _storageUI_EPD_266 = this.storageUI_EPD_266;

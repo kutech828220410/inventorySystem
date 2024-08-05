@@ -136,10 +136,15 @@
     <Compile Include="medPharmacyClass.cs" />
     <Compile Include="medPicClass.cs" />
     <Compile Include="medPriceClass.cs" />
+<<<<<<< HEAD
     <Compile Include="medQty.cs" />
     <Compile Include="MedRecheckLogClass.cs" />
+=======
+    <Compile Include="medRecheckLogClass.cs" />
+>>>>>>> master
     <Compile Include="medShiftConfigClass.cs" />
     <Compile Include="medSMDSClass.cs" />
+    <Compile Include="notifyExceptionClass.cs" />
     <Compile Include="orderClass.cs" />
     <Compile Include="orderTClass.cs" />
     <Compile Include="personClass.cs" />
@@ -149,6 +154,7 @@
     <Compile Include="ServerSettingClass.cs" />
     <Compile Include="sessionClass.cs" />
     <Compile Include="stockRecordClass.cs" />
+    <Compile Include="storagelistClass.cs" />
     <Compile Include="takeMedicineStackClass.cs" />
     <Compile Include="transactionsClass.cs" />
     <Compile Include="udnoectc.cs" />

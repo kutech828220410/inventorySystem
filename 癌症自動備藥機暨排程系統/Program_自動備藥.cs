@@ -24,7 +24,7 @@ using HIS_DB_Lib;
 using DeltaMotor485;
 using DrawingClass;
 using H_Pannel_lib;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Main_Form : Form
     {
@@ -267,7 +267,11 @@ namespace 癌症自動備藥機暨排程系統
                 {
                     Function_出料一次(IP);
                 }
-                if (數量 > 0) 數量 = 數量 * -1;
+                if (數量 > 0)
+                {
+                    數量 = 數量 * -1;
+                }
+                list_自動備藥_開始備藥_常溫[i][(int)enum_儲位資訊.異動量] = 數量;
                 Function_庫存異動至本地資料(list_自動備藥_開始備藥_常溫[i], true);
                
                 string url = $"{Main_Form.API_Server}/api/transactions/add";
@@ -349,6 +353,7 @@ namespace 癌症自動備藥機暨排程系統
                     rJ_Lable_備藥狀態_冷藏.Text = $"【冷藏】({cnt_自動備藥_開始備藥_冷藏_已完成}/{list_自動備藥_開始備藥_冷藏.Count })";
                     rJ_Lable_備藥狀態.Text = "冷藏區開始出料";
                 }));
+
                 string IP = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.IP].ObjectToString();
                 string 效期 = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.效期].ObjectToString();
                 string 批號 = list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.批號].ObjectToString();
@@ -361,7 +366,8 @@ namespace 癌症自動備藥機暨排程系統
                 {
                     Function_出料一次(IP);
                 }
-                if (數量 > 0) 數量 = 數量 * -1; 
+                if (數量 > 0) 數量 = 數量 * -1;
+                list_自動備藥_開始備藥_冷藏[i][(int)enum_儲位資訊.異動量] = 數量;
                 Function_庫存異動至本地資料(list_自動備藥_開始備藥_冷藏[i], true);
 
                 string url = $"{Main_Form.API_Server}/api/transactions/add";
@@ -619,7 +625,6 @@ namespace 癌症自動備藥機暨排程系統
         }
         #endregion
 
-
         #region Function
 
         #endregion
@@ -636,8 +641,45 @@ namespace 癌症自動備藥機暨排程系統
             string GUID = list_value[0][(int)enum_udnoectc.GUID].ObjectToString();
             Dialog_備藥清單 dialog_備藥清單 = new Dialog_備藥清單(GUID, 登入者名稱);
             if (dialog_備藥清單.ShowDialog() != DialogResult.Yes) return;
+        
+            while(true)
+            {
+                string msg = "";
+                for (int i = 0; i < dialog_備藥清單.stockClasses.Count; i++)
+                {
+                    string 藥碼 = dialog_備藥清單.stockClasses[i].Code;
+                    string 藥名 = dialog_備藥清單.stockClasses[i].Name;
+                    string 數量 = dialog_備藥清單.stockClasses[i].Qty;
+                    msg += $"{i} ({藥碼}){藥名},數量:{數量}\n";
+                }
+                msg += $"【請將藥盒置放到入料口後按確認】";
+                if (MyMessageBox.ShowDialog($"{msg}", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+                if (!PLC_IO_進出盒區_藥盒到位感應.Bool)
+                {
+                    MyMessageBox.ShowDialog("藥盒未放入入料口");
+                    System.Threading.Thread.Sleep(10);
+                    continue;
 
-            List<udnoectc_orders> udnoectc_Orders = dialog_備藥清單.Value;
+                }
+                else
+                {
+                    break;
+                }
+             
+            }
+
+            List<object[]> list_value_常溫 = new List<object[]>();
+            List<object[]> list_value_冷藏 = new List<object[]>();
+            Function_取得異動儲位資訊從本地資料(dialog_備藥清單.stockClasses, ref list_value_常溫, ref list_value_冷藏);
+            list_自動備藥_開始備藥_常溫 = list_value_常溫;
+            list_自動備藥_開始備藥_冷藏 = list_value_冷藏;
+            if (PLC_Device_自動備藥_開始備藥.Bool == false)
+            {
+                PLC_Device_自動備藥_開始備藥.Bool = true;
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("開始備藥", 1500, Color.Green);
+                dialog_AlarmForm.ShowDialog();
+                return;
+            }
         }
         private void PlC_RJ_Button_自動備藥_重新整理_MouseDownEvent(MouseEventArgs mevent)
         {

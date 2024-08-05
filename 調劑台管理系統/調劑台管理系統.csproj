@@ -10,7 +10,7 @@
     <AssemblyName>調劑台管理系統</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -50,6 +50,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -248,6 +249,12 @@
     <Compile Include="Dialog\Dialog_條碼管理.Designer.cs">
       <DependentUpon>Dialog_條碼管理.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_異常通知.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_異常通知.Designer.cs">
+      <DependentUpon>Dialog_異常通知.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\Dialog_等待RFID感應.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -422,6 +429,24 @@
     <Compile Include="Dialog\Dialog_藥品搜尋.Designer.cs">
       <DependentUpon>Dialog_藥品搜尋.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_交班對點.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_交班對點.Designer.cs">
+      <DependentUpon>Dialog_交班對點.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\Dialog_藥品群組.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_藥品群組.Designer.cs">
+      <DependentUpon>Dialog_藥品群組.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\Dialog_藥品群組_新增群組.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_藥品群組_新增群組.Designer.cs">
+      <DependentUpon>Dialog_藥品群組_新增群組.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -435,6 +460,9 @@
       <DependentUpon>Form_Buffer.cs</DependentUpon>
     </Compile>
     <Compile Include="Function.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_異常通知.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_交班作業_交班表.cs">
@@ -455,7 +483,7 @@
     <Compile Include="Program_指紋辨識.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Program_異常通知_覆盤錯誤.cs">
+    <Compile Include="Program_異常通知_盤點錯誤.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_盤點作業_定盤.cs">
@@ -580,6 +608,9 @@
     <EmbeddedResource Include="Dialog\Dialog_下載藥檔範圍選擇.resx">
       <DependentUpon>Dialog_下載藥檔範圍選擇.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_交班對點.resx">
+      <DependentUpon>Dialog_交班對點.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_交班表_交易紀錄明細.resx">
       <DependentUpon>Dialog_交班表_交易紀錄明細.cs</DependentUpon>
     </EmbeddedResource>
@@ -605,6 +636,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_條碼管理.resx">
       <DependentUpon>Dialog_條碼管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_異常通知.resx">
+      <DependentUpon>Dialog_異常通知.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_盤點數量錯誤.resx">
       <DependentUpon>Dialog_盤點數量錯誤.cs</DependentUpon>
@@ -684,6 +718,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_藥品搜尋.resx">
       <DependentUpon>Dialog_藥品搜尋.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_藥品群組.resx">
+      <DependentUpon>Dialog_藥品群組.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_藥品群組_新增群組.resx">
+      <DependentUpon>Dialog_藥品群組_新增群組.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
@@ -785,6 +825,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\warnning-message-removebg-preview.png" />
+    <None Include="Resources\plus-removebg-preview.png" />
+    <None Include="Resources\medicine-shift-handover-checklist--add-data-plus-removebg-preview.png" />
+    <None Include="Resources\icon-for-searching-medicine-removebg-preview.png" />
+    <None Include="Resources\medicine-data-set-group-removebg-preview-removebg-preview.png" />
+    <None Include="Resources\update-his-medicine-data-removebg-preview.png" />
+    <None Include="Resources\delete-data-removebg-preview.png" />
+    <None Include="Resources\update-medicine-cabinet-data-removebg-preview.png" />
+    <None Include="Resources\add-new-medicine--removebg-preview.png" />
+    <None Include="Resources\adjusted_checkmark-removebg-preview.png" />
+    <None Include="Resources\personnel-information-and-permission-login-removebg-preview1.png" />
+    <None Include="Resources\personnel-information-and-permission-login-removebg-preview.png" />
+    <None Include="Resources\medicine-data-set-group.jpg" />
+    <None Include="Resources\medicine-shift-handover-checklist__1_-removebg-preview.png" />
+    <None Include="Resources\medicine-shift-handover-checklist-removebg-preview.png" />
+    <None Include="Resources\使用者資訊.png" />
     <None Include="Resources\medication-transfer-to-dispensing-counter-with-arr-removebg-preview.png" />
     <None Include="Resources\transfer-medication-take-in-to-dispensing-counter-removebg-preview.png" />
     <None Include="Resources\drug-inventory-approval-removebg-preview.png" />

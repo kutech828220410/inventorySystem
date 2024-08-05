@@ -1,5 +1,5 @@
 ﻿
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     partial class Dialog_藥盒掃描
     {
@@ -31,6 +31,7 @@ namespace 癌症自動備藥機暨排程系統
         {
             this.plC_RJ_Button_取消 = new MyUI.PLC_RJ_Button();
             this.rJ_Lable1 = new MyUI.RJ_Lable();
+            this.textBox_條碼輸入 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // plC_RJ_Button_取消
@@ -102,11 +103,21 @@ namespace 癌症自動備藥機暨排程系統
             this.rJ_Lable1.Name = "rJ_Lable1";
             this.rJ_Lable1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Lable1.ShadowSize = 0;
-            this.rJ_Lable1.Size = new System.Drawing.Size(633, 83);
+            this.rJ_Lable1.Size = new System.Drawing.Size(525, 83);
             this.rJ_Lable1.TabIndex = 14;
             this.rJ_Lable1.Text = "請掃描藥盒條碼";
             this.rJ_Lable1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rJ_Lable1.TextColor = System.Drawing.Color.White;
+            // 
+            // textBox_條碼輸入
+            // 
+            this.textBox_條碼輸入.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_條碼輸入.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.textBox_條碼輸入.Location = new System.Drawing.Point(614, 45);
+            this.textBox_條碼輸入.Multiline = true;
+            this.textBox_條碼輸入.Name = "textBox_條碼輸入";
+            this.textBox_條碼輸入.Size = new System.Drawing.Size(164, 83);
+            this.textBox_條碼輸入.TabIndex = 15;
             // 
             // Dialog_藥盒掃描
             // 
@@ -114,11 +125,13 @@ namespace 癌症自動備藥機暨排程系統
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(798, 259);
+            this.Controls.Add(this.textBox_條碼輸入);
             this.Controls.Add(this.rJ_Lable1);
             this.Controls.Add(this.plC_RJ_Button_取消);
             this.Name = "Dialog_藥盒掃描";
             this.Text = "藥盒掃描";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -126,5 +139,6 @@ namespace 癌症自動備藥機暨排程系統
 
         private MyUI.PLC_RJ_Button plC_RJ_Button_取消;
         private MyUI.RJ_Lable rJ_Lable1;
+        private System.Windows.Forms.TextBox textBox_條碼輸入;
     }
 }

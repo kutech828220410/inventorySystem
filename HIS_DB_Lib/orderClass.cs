@@ -41,6 +41,8 @@ namespace HIS_DB_Lib
         領藥號,
         [Description("批序,VARCHAR,15,NONE")]
         批序,
+        [Description("天數,VARCHAR,15,NONE")]
+        天數,
         [Description("單次劑量,VARCHAR,10,NONE")]
         單次劑量,
         [Description("劑量單位,VARCHAR,10,NONE")]
@@ -65,6 +67,8 @@ namespace HIS_DB_Lib
         科別,
         [Description("交易量,VARCHAR,15,NONE")]
         交易量,
+        [Description("實際調劑量,VARCHAR,15,NONE")]
+        實際調劑量,
         [Description("開方日期,DATETIME,20,INDEX")]
         開方日期,
         [Description("結方日期,DATETIME,20,NONE")]
@@ -81,6 +85,10 @@ namespace HIS_DB_Lib
         藥師姓名,
         [Description("藥師ID,VARCHAR,20,NONE")]
         藥師ID,
+        [Description("核對姓名,VARCHAR,50,INDEX")]
+        核對姓名,
+        [Description("核對ID,VARCHAR,15,INDEX")]
+        核對ID,
         [Description("領藥姓名,VARCHAR,50,INDEX")]
         領藥姓名,
         [Description("領藥ID,VARCHAR,20,NONE")]
@@ -116,6 +124,11 @@ namespace HIS_DB_Lib
         public string 就醫類別 { get; set; }
         [JsonPropertyName("DOS")]
         public string 批序 { get; set; }
+        /// <summary>
+        /// 天數
+        /// </summary>
+        [JsonPropertyName("DAYS")]
+        public string 天數 { get; set; }
         [JsonPropertyName("SD")]
         public string 單次劑量 { get; set; }
         [JsonPropertyName("DUNIT")]
@@ -136,6 +149,11 @@ namespace HIS_DB_Lib
         public string 病歷號 { get; set; }
         [JsonPropertyName("TXN_QTY")]
         public string 交易量 { get; set; }
+        /// <summary>
+        /// 實際調劑量
+        /// </summary>
+        [JsonPropertyName("DISP_QTY")]
+        public string 實際調劑量 { get; set; }
         [JsonPropertyName("DOCID")]
         public string 醫師代碼 { get; set; }
         [JsonPropertyName("SECTNO")]
@@ -156,6 +174,16 @@ namespace HIS_DB_Lib
         public string 藥師姓名 { get; set; }
         [JsonPropertyName("PHARER_ID")]
         public string 藥師ID { get; set; }
+        /// <summary>
+        /// 核對姓名
+        /// </summary>
+        [JsonPropertyName("CHK_NAME")]
+        public string 核對姓名 { get; set; }
+        /// <summary>
+        /// 核對ID
+        /// </summary>
+        [JsonPropertyName("CHK_ID")]
+        public string 核對ID { get; set; }
         [JsonPropertyName("TAKER_NAME")]
         public string 領藥姓名 { get; set; }
         [JsonPropertyName("TAKER_ID")]
@@ -179,6 +207,484 @@ namespace HIS_DB_Lib
             SQLUI.Table table = json_out.JsonDeserializet<SQLUI.Table>();
             return table;
         }
+        static public List<OrderClass> get_by_rx_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end)
+        {
+            string url = $"{API_Server}/api/order/get_by_rx_time_st_end";
 
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(dateTime_st.ToDateTimeString_6());
+            returnData.ValueAry.Add(dateTime_end.ToDateTimeString_6());
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            // Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_by_post_time_st_end(string API_Server, DateTime dateTime_st, DateTime dateTime_end)
+        {
+            string url = $"{API_Server}/api/order/get_by_post_time_st_end";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(dateTime_st.ToDateTimeString_6());
+            returnData.ValueAry.Add(dateTime_end.ToDateTimeString_6());
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_by_pri_key(string API_Server, string PRI_KEY)
+        {
+            string url = $"{API_Server}/api/order/get_by_pri_key";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(PRI_KEY);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public OrderClass get_by_guid(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            OrderClass OrderClass = returnData_out.Data.ObjToClass<OrderClass>();
+            return OrderClass;
+        }
+        static public List<OrderClass> get_by_MED_BAG_NUM(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_by_MED_BAG_NUM";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_by_PATCODE(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_by_PATCODE";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_by_PATNAME(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_by_PATNAME";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+
+        static public List<OrderClass> get_header_by_MED_BAG_NUM(string API_Server, string value, DateTime dateTime)
+        {
+
+            return get_header_by_MED_BAG_NUM(API_Server, value, dateTime.GetStartDate(), dateTime.GetEndDate());
+        }
+        static public List<OrderClass> get_header_by_MED_BAG_NUM(string API_Server, string value, DateTime st_dateTime, DateTime end_dateTime)
+        {
+            List<OrderClass> OrderClasses = get_header_by_MED_BAG_NUM(API_Server, value);
+            OrderClasses = (from temp in OrderClasses
+                             where temp.開方日期.StringToDateTime() > st_dateTime && temp.開方日期.StringToDateTime() < end_dateTime
+                             select temp).ToList();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_header_by_MED_BAG_NUM(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_header_by_MED_BAG_NUM";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+
+        static public List<OrderClass> get_header_by_PATCODE(string API_Server, string value, DateTime dateTime)
+        {
+
+            return get_header_by_PATCODE(API_Server, value, dateTime.GetStartDate(), dateTime.GetEndDate());
+        }
+        static public List<OrderClass> get_header_by_PATCODE(string API_Server, string value, DateTime st_dateTime, DateTime end_dateTime)
+        {
+            List<OrderClass> OrderClasses = get_header_by_PATCODE(API_Server, value);
+            OrderClasses = (from temp in OrderClasses
+                             where temp.開方日期.StringToDateTime() > st_dateTime && temp.開方日期.StringToDateTime() < end_dateTime
+                             select temp).ToList();
+            return OrderClasses;
+        }
+        static public List<OrderClass> get_header_by_PATCODE(string API_Server, string value)
+        {
+            string url = $"{API_Server}/api/order/get_header_by_PATCODE";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(value);
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"{returnData_out}");
+            List<OrderClass> OrderClasses = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses;
+        }
+
+        static public void updete_by_guid(string API_Server, OrderClass OrderClass)
+        {
+            List<OrderClass> OrderClasse = new List<OrderClass>();
+            OrderClasse.Add(OrderClass);
+            updete_by_guid(API_Server, OrderClasse);
+        }
+        static public void updete_by_guid(string API_Server, List<OrderClass> OrderClasses)
+        {
+            string url = $"{API_Server}/api/order/updete_by_guid";
+
+            returnData returnData = new returnData();
+            returnData.Data = OrderClasses;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+
+            }
+            if (returnData_out.Data == null)
+            {
+
+            }
+            Console.WriteLine($"{returnData_out}");
+            OrderClass OrderClass = returnData_out.Data.ObjToClass<OrderClass>();
+
+        }
+
+        static public List<OrderClass> add(string API_Server, OrderClass OrderClass)
+        {
+            List<OrderClass> OrderClasse = new List<OrderClass>();
+            OrderClasse.Add(OrderClass);
+            return add(API_Server, OrderClasse);
+        }
+
+        static public List<OrderClass> add(string API_Server, List<OrderClass> OrderClasses)
+        {
+            string url = $"{API_Server}/api/order/add";
+
+            returnData returnData = new returnData();
+            returnData.Data = OrderClasses;
+
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+
+            }
+            if (returnData_out.Data == null)
+            {
+
+            }
+            Console.WriteLine($"{returnData_out}");
+            OrderClass OrderClass = returnData_out.Data.ObjToClass<OrderClass>();
+            List<OrderClass> OrderClasses_out = returnData_out.Data.ObjToClass<List<OrderClass>>();
+            return OrderClasses_out;
+        }
+    }
+
+    static public class OrderClassMethod
+    {
+        public enum SortType
+        {
+            批序,
+            開方日期,
+            產出時間,
+            領藥號
+        }
+
+        static public void sort(this List<OrderClass> OrderClasses, SortType sortType)
+        {
+            if (OrderClasses == null) return;
+            if (sortType == SortType.開方日期)
+            {
+                OrderClasses.Sort(new ICP_By_rx_time());
+            }
+            if (sortType == SortType.產出時間)
+            {
+                OrderClasses.Sort(new ICP_By_op_time());
+            }
+            if (sortType == SortType.領藥號)
+            {
+                OrderClasses.Sort(new ICP_By_MED_BAG_NUM());
+            }
+            if (sortType == SortType.批序)
+            {
+                OrderClasses.Sort(new ICP_By_DOS());
+            }
+        }
+
+        public class ICP_By_rx_time : IComparer<OrderClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderClass x, OrderClass y)
+            {
+                DateTime datetime1 = x.開方日期.StringToDateTime();
+                DateTime datetime2 = y.開方日期.StringToDateTime();
+                int compare = DateTime.Compare(datetime1, datetime2);
+                return compare;
+
+            }
+        }
+        public class ICP_By_op_time : IComparer<OrderClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderClass x, OrderClass y)
+            {
+                DateTime datetime1 = x.產出時間.StringToDateTime();
+                DateTime datetime2 = y.產出時間.StringToDateTime();
+                int compare = DateTime.Compare(datetime1, datetime2);
+                return compare;
+
+            }
+        }
+        public class ICP_By_MED_BAG_NUM : IComparer<OrderClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderClass x, OrderClass y)
+            {
+                string temp0 = x.領藥號;
+                string temp1 = y.領藥號;
+                int compare = temp0.CompareTo(temp1);
+                return compare;
+
+            }
+        }
+        public class ICP_By_de_MED_BAG_NUM : IComparer<OrderClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderClass x, OrderClass y)
+            {
+                string temp0 = x.領藥號;
+                string temp1 = y.領藥號;
+                int compare = temp1.CompareTo(temp0);
+                return compare;
+
+            }
+        }
+        public class ICP_By_DOS : IComparer<OrderClass>
+        {
+            //實作Compare方法
+            //依Speed由小排到大。
+            public int Compare(OrderClass x, OrderClass y)
+            {
+                int temp0 = x.批序.StringToInt32();
+                int temp1 = y.批序.StringToInt32();
+                int compare = temp0.CompareTo(temp1);
+                return compare;
+
+            }
+        }
+        static public bool GetFreqIsDone(this List<OrderClass> OrderClasses, string freq)
+        {
+            List<OrderClass> OrderClasses_buf = (from temp in OrderClasses
+                                                   where temp.頻次 == freq
+                                                   where temp.實際調劑量.StringIsDouble() == false
+                                                   select temp).ToList();
+            return (OrderClasses_buf.Count == 0);
+        }
+        static public bool GetIsDone(this List<OrderClass> OrderClasses)
+        {
+            List<OrderClass> OrderClasses_buf = (from temp in OrderClasses
+                                                   where temp.實際調劑量.StringIsDouble() == false
+                                                   select temp).ToList();
+            return (OrderClasses_buf.Count == 0);
+        }
+        static public string GetCurrentFreq(this List<OrderClass> OrderClasses)
+        {
+            List<string> freqs = (from temp in OrderClasses
+                                  select temp.頻次).Distinct().ToList();
+            List<OrderClass> OrderClasses_buf = new List<OrderClass>();
+            for (int i = 0; i < freqs.Count; i++)
+            {
+                if (OrderClasses.GetFreqIsDone(freqs[i]) == false)
+                {
+                    OrderClasses_buf = (from temp in OrderClasses
+                                         where temp.頻次 == freqs[i]
+                                         where temp.實際調劑量.StringIsDouble() == true
+                                         select temp).ToList();
+                    if (OrderClasses_buf.Count != 0)
+                    {
+                        return OrderClasses_buf[0].頻次;
+                    }
+                }
+            }
+            return null;
+
+        }
+        static public List<string> GetFreqs(this List<OrderClass> OrderClasses)
+        {
+            List<string> freqs = (from temp in OrderClasses
+                                  select temp.頻次).Distinct().ToList();
+
+            return freqs;
+        }
+        static public List<string> GetPackages(this List<OrderClass> OrderClasses)
+        {
+            List<string> Packages = (from temp in OrderClasses
+                                     select temp.劑量單位).Distinct().ToList();
+
+            return Packages;
+        }
+        static public System.Collections.Generic.Dictionary<string, List<OrderClass>> CoverToDictionaryBy_PRI_KEY(this List<OrderClass> OrderClasses)
+        {
+            Dictionary<string, List<OrderClass>> dictionary = new Dictionary<string, List<OrderClass>>();
+
+            foreach (var item in OrderClasses)
+            {
+                string key = item.PRI_KEY;
+
+                // 如果字典中已經存在該索引鍵，則將值添加到對應的列表中
+                if (dictionary.ContainsKey(key))
+                {
+                    dictionary[key].Add(item);
+                }
+                // 否則創建一個新的列表並添加值
+                else
+                {
+                    List<OrderClass> values = new List<OrderClass> { item };
+                    dictionary[key] = values;
+                }
+            }
+
+            return dictionary;
+        }
+        static public List<OrderClass> SortDictionaryBy_PRI_KEY(this System.Collections.Generic.Dictionary<string, List<OrderClass>> dictionary, string value)
+        {
+            if (dictionary.ContainsKey(value))
+            {
+                return dictionary[value];
+            }
+            return new List<OrderClass>();
+        }
     }
 }

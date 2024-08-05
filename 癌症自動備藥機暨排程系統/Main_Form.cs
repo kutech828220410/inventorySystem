@@ -22,9 +22,9 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.1")]
-[assembly: AssemblyFileVersion("1.0.0.1")]
-namespace 癌症自動備藥機暨排程系統
+[assembly: AssemblyVersion("1.0.0.13")]
+[assembly: AssemblyFileVersion("1.0.0.13")]
+namespace 癌症備藥機
 {
     public partial class Main_Form : Form
     {
@@ -298,7 +298,7 @@ namespace 癌症自動備藥機暨排程系統
             Program_出入庫作業_Init();
             Program_交易紀錄_Init();
             Program_Scanner_RS232_Init();
-
+            Program_藥盒索引_Init();
 
             plC_ScreenPage_main.TabChangeEvent += PlC_ScreenPage_main_TabChangeEvent;
         }
@@ -309,7 +309,7 @@ namespace 癌症自動備藥機暨排程系統
         {
             if (PageText == "出入庫作業")
             {
-                List<Storage> storages = Function_取得本地儲位();
+                Function_取得本地儲位();
                 PlC_RJ_Button_出入庫作業_入庫_MouseDownEvent(null);
 
             }

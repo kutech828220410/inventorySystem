@@ -53,6 +53,8 @@ namespace HIS_DB_Lib
         管制級別,
         [Description("圖片網址,VARCHAR,500,NONE")]
         圖片網址,
+        [Description("圖片網址1,VARCHAR,500,NONE")]
+        圖片網址1,
         [Description("類別,VARCHAR,500,NONE")]
         類別,
         [Description("中西藥,VARCHAR,30,NONE")]

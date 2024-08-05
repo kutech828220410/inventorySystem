@@ -13,7 +13,7 @@ using MyUI;
 using SQLUI;
 using DrawingClass;
 using H_Pannel_lib;
-namespace 癌症自動備藥機暨排程系統
+namespace 癌症備藥機
 {
     public partial class Dialog_入出庫作業 : MyDialog
     {
@@ -25,8 +25,7 @@ namespace 癌症自動備藥機暨排程系統
         public int 數量 = 0;
         public string 效期 = "";
         public string 批號 = "";
-        public Storage storage;
-        private StorageUI_EPD_266 _storageUI_EPD_266;
+        public Device device;
         private string _藥碼;
         private string _藥名;
         private string _操作人;
@@ -67,7 +66,6 @@ namespace 癌症自動備藥機暨排程系統
             this._藥碼 = 藥碼;
             this._藥名 = 藥名;
             this._操作人 = 操作人;
-            this._storageUI_EPD_266 = storageUI_EPD_266;
             this.Shown += Dialog_入出庫作業_Shown;
             this.LoadFinishedEvent += Dialog_入出庫作業_LoadFinishedEvent;
             this.plC_RJ_Button_確認完成.MouseDownEvent += PlC_RJ_Button_確認完成_MouseDownEvent;
@@ -82,14 +80,14 @@ namespace 癌症自動備藥機暨排程系統
             System.Windows.Forms.Screen[] screen = System.Windows.Forms.Screen.AllScreens;
             if (_enum_type == enum_type.出庫)
             {
-                Dialog_儲位選擇 dialog_儲位選擇 = new Dialog_儲位選擇(this._藥碼, this._藥名, this._storageUI_EPD_266);
+                Dialog_儲位選擇 dialog_儲位選擇 = new Dialog_儲位選擇(this._藥碼, this._藥名);
                 dialog_儲位選擇.StartPosition = FormStartPosition.Manual;
                 dialog_儲位選擇.Location = new Point((screen[0].Bounds.Width - dialog_儲位選擇.Width) / 2, this.Location.Y + 200);
                 dialog_儲位選擇.ShowDialog();
-                Storage storage = dialog_儲位選擇.Value;
-                rJ_Lable_儲位資訊.Text = $"({storage.IP}) {storage.StorageName}";
+                Device device = dialog_儲位選擇.Value;
+                rJ_Lable_儲位資訊.Text = $"({device.IP}) {device.StorageName}";
                 this.stepViewer1.Next();
-                Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel($"請輸入小於[{storage.Inventory}]庫存值");
+                Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel($"請輸入小於[{device.Inventory}]庫存值");
                 dialog_NumPannel.StartPosition = FormStartPosition.Manual;
                 dialog_NumPannel.Location = new Point((screen[0].Bounds.Width - dialog_NumPannel.Width) / 2, this.Location.Y + 200);
                 dialog_NumPannel.X_Visible = false;
@@ -97,7 +95,7 @@ namespace 癌症自動備藥機暨排程系統
                 {
 
                     dialog_NumPannel.ShowDialog();
-                    if (dialog_NumPannel.Value > storage.Inventory.StringToInt32())
+                    if (dialog_NumPannel.Value > device.Inventory.StringToInt32())
                     {
                         Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("輸入數值大於庫存", 1500);
                         dialog_AlarmForm.ShowDialog();
@@ -112,18 +110,18 @@ namespace 癌症自動備藥機暨排程系統
                 this.stepViewer1.Next();
 
                 this.數量 = dialog_NumPannel.Value;
-                this.storage = storage;
+                this.device = device;
 
                 this.plC_RJ_Button_確認完成.Visible = true;
             }
             if (_enum_type == enum_type.入庫)
             {
-                Dialog_儲位選擇 dialog_儲位選擇 = new Dialog_儲位選擇(this._藥碼, this._藥名, this._storageUI_EPD_266);
+                Dialog_儲位選擇 dialog_儲位選擇 = new Dialog_儲位選擇(this._藥碼, this._藥名);
                 dialog_儲位選擇.StartPosition = FormStartPosition.Manual;
                 dialog_儲位選擇.Location = new Point((screen[0].Bounds.Width - dialog_儲位選擇.Width) / 2, this.Location.Y + 200);
                 dialog_儲位選擇.ShowDialog();
-                Storage storage = dialog_儲位選擇.Value;
-                rJ_Lable_儲位資訊.Text = $"({storage.IP}) {storage.StorageName}";
+                Device device = dialog_儲位選擇.Value;
+                rJ_Lable_儲位資訊.Text = $"({device.IP}) {device.StorageName}";
                 this.stepViewer1.Next();
 
 
@@ -145,7 +143,7 @@ namespace 癌症自動備藥機暨排程系統
                 this.stepViewer1.Next();
 
                 this.數量 = dialog_NumPannel.Value;
-                this.storage = storage;
+                this.device = device;
 
                 this.plC_RJ_Button_確認完成.Visible = true;
             }
@@ -163,88 +161,117 @@ namespace 癌症自動備藥機暨排程系統
         }
         private void PlC_RJ_Button_確認完成_MouseDownEvent(MouseEventArgs mevent)
         {
-            if (_enum_type == enum_type.入庫)
+            LoadingForm.ShowLoadingForm();
+            try
             {
-                int 原有庫存 = Main_Form.Function_從SQL取得庫存(storage.Code);
-                string url = $"{Main_Form.API_Server}/api/transactions/add";
-                returnData returnData = new returnData();
-                returnData.ServerName = "cheom";
-                returnData.ServerType = "癌症備藥機";
-                transactionsClass transactionsClass = new transactionsClass();
-                transactionsClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
-                transactionsClass.藥品碼 = storage.Code;
-                transactionsClass.藥品名稱 = storage.Name;
-                transactionsClass.操作人 = this._操作人;
-                transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
-                transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
-                transactionsClass.庫存量 = 原有庫存.ToString(); ;
-                transactionsClass.交易量 = 數量.ToString();
-                transactionsClass.結存量 = (原有庫存 + 數量).ToString();
-                transactionsClass.備註 += $"[效期]:{this.效期},[批號]:{this.批號}";
-                returnData.Data = transactionsClass;
-                string json_in = returnData.JsonSerializationt();
-                string json_out = Basic.Net.WEBApiPostJson(url, json_in);
-
-                storage = _storageUI_EPD_266.SQL_GetStorage(storage);
-                storage.效期庫存異動(效期, 批號, 數量.ToString());
-                _storageUI_EPD_266.SQL_ReplaceStorage(storage);
-                _storageUI_EPD_266.DrawToEpd_UDP(storage);
-            }
-            if (_enum_type == enum_type.出庫)
-            {
-                int 原有庫存 = Main_Form.Function_從SQL取得庫存(storage.Code);
-                storage = _storageUI_EPD_266.SQL_GetStorage(storage);   
-                List<string> List_效期 = new List<string>();
-                List<string> List_批號 = new List<string>();
-                List<string> List_異動量 = new List<string>();
-                storage.庫存異動((數量 * -1), out List_效期,out List_批號,out List_異動量);
-                string url = $"{Main_Form.API_Server}/api/transactions/add";
-                returnData returnData = new returnData();
-                returnData.ServerName = "cheom";
-                returnData.ServerType = "癌症備藥機";
-                transactionsClass transactionsClass = new transactionsClass();
-                transactionsClass.動作 = enum_交易記錄查詢動作.出庫作業.GetEnumName();
-                transactionsClass.藥品碼 = storage.Code;
-                transactionsClass.藥品名稱 = storage.Name;
-                transactionsClass.操作人 = this._操作人;
-                transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
-                transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
-                transactionsClass.庫存量 = 原有庫存.ToString();
-                transactionsClass.交易量 = (數量 * -1).ToString();
-                transactionsClass.結存量 = (原有庫存 - 數量).ToString();
-                string 備註 = "";
-                for (int k = 0; k < List_效期.Count; k++)
+                if (_enum_type == enum_type.入庫)
                 {
-                    備註 += $"[效期]:{List_效期[k]},[批號]:{List_批號[k]}";
-                    if (k != List_效期.Count - 1) 備註 += "\n";
+                    int 原有庫存 = Main_Form.Function_從SQL取得庫存(device.Code);
+                    string url = $"{Main_Form.API_Server}/api/transactions/add";
+                    returnData returnData = new returnData();
+                    returnData.ServerName = "cheom";
+                    returnData.ServerType = "癌症備藥機";
+                    transactionsClass transactionsClass = new transactionsClass();
+                    transactionsClass.動作 = enum_交易記錄查詢動作.入庫作業.GetEnumName();
+                    transactionsClass.藥品碼 = device.Code;
+                    transactionsClass.藥品名稱 = device.Name;
+                    transactionsClass.操作人 = this._操作人;
+                    transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                    transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
+                    transactionsClass.庫存量 = 原有庫存.ToString(); ;
+                    transactionsClass.交易量 = 數量.ToString();
+                    transactionsClass.結存量 = (原有庫存 + 數量).ToString();
+                    transactionsClass.備註 += $"[效期]:{this.效期},[批號]:{this.批號}";
+                    returnData.Data = transactionsClass;
+                    string json_in = returnData.JsonSerializationt();
+                    string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290
+                   || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
+                    {
+                        Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(device.IP);
+                        storage.效期庫存異動(效期, 批號, 數量.ToString());
+                        Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                        Main_Form._storageUI_EPD_266.DrawToEpd_UDP(storage);
+
+                    }
+                    if (device.DeviceType == DeviceType.RowsLED)
+                    {
+                        RowsLED rowsLED = Main_Form._rowsLEDUI.SQL_GetRowsLED(device.IP);
+                        RowsDevice rowsDevice = rowsLED.GetRowsDevice(device.GUID);
+                        rowsDevice.效期庫存異動(效期, 批號, 數量.ToString());
+                        Main_Form._rowsLEDUI.SQL_ReplaceRowsLED(rowsLED);
+                    }
                 }
-                transactionsClass.備註 = 備註;
-                returnData.Data = transactionsClass;
-                string json_in = returnData.JsonSerializationt();
-                string json_out = Basic.Net.WEBApiPostJson(url, json_in);
+                if (_enum_type == enum_type.出庫)
+                {
+                    if (device.DeviceType == DeviceType.EPD266 || device.DeviceType == DeviceType.EPD290
+                        || device.DeviceType == DeviceType.EPD266_lock || device.DeviceType == DeviceType.EPD290_lock)
+                    {
+                        int 原有庫存 = Main_Form.Function_從SQL取得庫存(device.Code);
+                        Storage storage = Main_Form._storageUI_EPD_266.SQL_GetStorage(device.IP);
+                        List<string> List_效期 = new List<string>();
+                        List<string> List_批號 = new List<string>();
+                        List<string> List_異動量 = new List<string>();
+                        storage.庫存異動((數量 * -1), out List_效期, out List_批號, out List_異動量);
+                        string url = $"{Main_Form.API_Server}/api/transactions/add";
+                        returnData returnData = new returnData();
+                        returnData.ServerName = "cheom";
+                        returnData.ServerType = "癌症備藥機";
+                        transactionsClass transactionsClass = new transactionsClass();
+                        transactionsClass.動作 = enum_交易記錄查詢動作.出庫作業.GetEnumName();
+                        transactionsClass.藥品碼 = device.Code;
+                        transactionsClass.藥品名稱 = device.Name;
+                        transactionsClass.操作人 = this._操作人;
+                        transactionsClass.操作時間 = DateTime.Now.ToDateTimeString_6();
+                        transactionsClass.開方時間 = DateTime.Now.ToDateTimeString_6();
+                        transactionsClass.庫存量 = 原有庫存.ToString();
+                        transactionsClass.交易量 = (數量 * -1).ToString();
+                        transactionsClass.結存量 = (原有庫存 - 數量).ToString();
+                        string 備註 = "";
+                        for (int k = 0; k < List_效期.Count; k++)
+                        {
+                            備註 += $"[效期]:{List_效期[k]},[批號]:{List_批號[k]}";
+                            if (k != List_效期.Count - 1) 備註 += "\n";
+                        }
+                        transactionsClass.備註 = 備註;
+                        returnData.Data = transactionsClass;
+                        string json_in = returnData.JsonSerializationt();
+                        string json_out = Basic.Net.WEBApiPostJson(url, json_in);
 
-              
-                _storageUI_EPD_266.SQL_ReplaceStorage(storage);
-                _storageUI_EPD_266.DrawToEpd_UDP(storage);
+
+                        Main_Form._storageUI_EPD_266.SQL_ReplaceStorage(storage);
+                        Main_Form._storageUI_EPD_266.DrawToEpd_UDP(storage);
+                    }
+
+                }
+
+                //List<Storage> storages = Main_Form._storageUI_EPD_266.SQL_GetAllStorage();
+
+                //List<Storage> storages_buf = (from temp in storages
+                //                              where temp.Code == device.Code
+                //                              select temp).ToList();
+
+                //for (int i = 0; i < storages_buf.Count; i++)
+                //{
+                //    Main_Form._storageUI_EPD_266.Set_Stroage_LED_UDP(storages_buf[i], Color.Black);
+                //}
+                this.Invoke(new Action(delegate
+                {
+                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("作業完成", 1500, Color.Green);
+                    dialog_AlarmForm.ShowDialog();
+                    this.Close();
+                    this.DialogResult = DialogResult.Yes;
+                }));
             }
-
-            List<Storage> storages = _storageUI_EPD_266.SQL_GetAllStorage();
-
-            List<Storage> storages_buf = (from temp in storages
-                                          where temp.Code == storage.Code
-                                          select temp).ToList();
-
-            for (int i = 0; i < storages_buf.Count; i++)
+            catch
             {
-                _storageUI_EPD_266.Set_Stroage_LED_UDP(storages_buf[i], Color.Black);
+
             }
-            this.Invoke(new Action(delegate
+            finally
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("作業完成", 1500, Color.Green);
-                dialog_AlarmForm.ShowDialog();
-                this.Close();
-                this.DialogResult = DialogResult.Yes;
-            }));
+                LoadingForm.CloseLoadingForm();
+            }
+           
         }
 
         private void PlC_RJ_Button_返回_MouseDownEvent(MouseEventArgs mevent)

@@ -153,7 +153,6 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_藥品資料_商品名_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_商品名_搜尋_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_管制級別_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_管制級別_搜尋_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_高價藥品_搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_高價藥品_搜尋_MouseDownEvent;
-
             this.plC_RJ_Button_藥品資料_條碼管理.MouseDownEvent += PlC_RJ_Button_藥品資料_條碼管理_MouseDownEvent;
 
             this.plC_RJ_Button_藥品資料_登錄.MouseDownEvent += PlC_RJ_Button_藥品資料_登錄_MouseDownEvent;
@@ -161,6 +160,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_藥品資料_新藥建置.MouseDownEvent += PlC_RJ_Button_藥品資料_新藥建置_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_更新藥櫃資料.MouseDownEvent += PlC_RJ_Button_藥品資料_更新藥櫃資料_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_HIS下載全部藥檔.MouseDownEvent += PlC_RJ_Button_藥品資料_HIS下載全部藥檔_MouseDownEvent;
+            this.plC_RJ_Button_藥檔資料_藥品群組.MouseDownEvent += PlC_RJ_Button_藥檔資料_藥品群組_MouseDownEvent;
+
 
             this.plC_CheckBox_藥品資料_藥檔資料_自定義設定.CheckedChanged += PlC_CheckBox_藥品資料_藥檔資料_自定義設定_CheckedChanged;
             this.plC_CheckBox_藥品資料_藥檔資料_效期管理.CheckedChanged += PlC_CheckBox_藥品資料_藥檔資料_效期管理_CheckedChanged;
@@ -722,6 +723,11 @@ namespace 調劑台管理系統
         }
         #endregion
         #region Event
+        private void PlC_RJ_Button_藥檔資料_藥品群組_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_藥品群組 dialog_藥品群組 = new Dialog_藥品群組();
+            dialog_藥品群組.ShowDialog();
+        }
         private void PlC_RJ_Button_藥品資料_條碼管理_MouseDownEvent(MouseEventArgs mevent)
         {
             string 藥品碼 = this.textBox_藥品資料_藥檔資料_藥品碼.Text;
