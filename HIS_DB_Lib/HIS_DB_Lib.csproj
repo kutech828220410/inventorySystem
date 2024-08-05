@@ -136,12 +136,12 @@
     <Compile Include="medPharmacyClass.cs" />
     <Compile Include="medPicClass.cs" />
     <Compile Include="medPriceClass.cs" />
-<<<<<<< HEAD
+
     <Compile Include="medQty.cs" />
     <Compile Include="MedRecheckLogClass.cs" />
-=======
+
     <Compile Include="medRecheckLogClass.cs" />
->>>>>>> master
+
     <Compile Include="medShiftConfigClass.cs" />
     <Compile Include="medSMDSClass.cs" />
     <Compile Include="notifyExceptionClass.cs" />
