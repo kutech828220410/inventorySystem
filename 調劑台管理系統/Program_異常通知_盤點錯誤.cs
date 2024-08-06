@@ -77,6 +77,11 @@ namespace 調劑台管理系統
                 medRecheckLogClass.set_unresolved_data_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼, Main_Form._登入者名稱);
                 Function_異常通知_盤點錯誤_庫存異動(藥碼, 藥名, 差異值);
                 this.sqL_DataGridView_異常通知_盤點錯誤.ClearGrid();
+                PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(null);
+                PlC_RJ_Button_領藥台_02_登出_MouseDownEvent(null);
+                PlC_RJ_Button_領藥台_03_登出_MouseDownEvent(null);
+                PlC_RJ_Button_領藥台_04_登出_MouseDownEvent(null);
+
                 MyMessageBox.ShowDialog("完成");
             }
             catch

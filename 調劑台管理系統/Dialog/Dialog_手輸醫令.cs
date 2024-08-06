@@ -101,7 +101,7 @@ namespace 調劑台管理系統
 
             this.rJ_Button_確認.MouseDownEvent += RJ_Button_確認_MouseDownEvent;
             this.rJ_Button_退出.MouseDownEvent += RJ_Button_退出_MouseDownEvent;
-
+            this.LoadFinishedEvent += Dialog_手輸醫令_LoadFinishedEvent;
             this.Invoke(new Action(delegate
             {
                 this.rJ_Lable_領退藥狀態.Text = this._enum_狀態.GetEnumName();
@@ -124,7 +124,12 @@ namespace 調劑台管理系統
 
         }
 
-    
+        private void Dialog_手輸醫令_LoadFinishedEvent(EventArgs e)
+        {
+            Dialog_處方資訊填寫 dialog_處方資訊填寫 = new Dialog_處方資訊填寫(transactionsClass);
+            if (dialog_處方資訊填寫.ShowDialog() != DialogResult.Yes) return;
+            this.transactionsClass = dialog_處方資訊填寫.transactionsClass;
+        }
 
         private void sub_program()
         {

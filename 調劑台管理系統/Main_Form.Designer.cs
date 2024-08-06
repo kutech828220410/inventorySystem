@@ -13422,7 +13422,6 @@
             this.plC_RJ_Button_藥品資料_新藥建置.TextHeight = 35;
             this.plC_RJ_Button_藥品資料_新藥建置.Texts = "新藥建置";
             this.plC_RJ_Button_藥品資料_新藥建置.UseVisualStyleBackColor = false;
-            this.plC_RJ_Button_藥品資料_新藥建置.Visible = false;
             this.plC_RJ_Button_藥品資料_新藥建置.字型鎖住 = false;
             this.plC_RJ_Button_藥品資料_新藥建置.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
             this.plC_RJ_Button_藥品資料_新藥建置.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
