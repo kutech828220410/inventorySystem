@@ -17,8 +17,8 @@ using System.Text.Json.Serialization;
 
 using System.Reflection;
 using System.Runtime.InteropServices;
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]
 namespace Hospital_Call_Light_System
 {
 
@@ -30,6 +30,7 @@ namespace Hospital_Call_Light_System
             圖片,
             不顯示
         }
+        public static string currentDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
         OpenFileDialog openFileDialog_LoadImage = new OpenFileDialog();
         private string last_keyData = "";
@@ -252,7 +253,7 @@ namespace Hospital_Call_Light_System
         }
 
         #region DBConfigClass
-        private const string DBConfigFileName = "DBConfig.txt";
+        private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         public DBConfigClass dBConfigClass = new DBConfigClass();
         public class DBConfigClass
         {
@@ -262,14 +263,20 @@ namespace Hospital_Call_Light_System
         }
         private void LoadDBConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{DBConfigFileName}");
+
+            //this.LoadcommandLineArgs();
+            string jsonstr = MyFileStream.LoadFileAllText($"{DBConfigFileName}");
+
+            Console.WriteLine($"[LoadDBConfig] path : {MyConfigFileName} ");
+            Console.WriteLine($"[LoadDBConfig] jsonstr : {jsonstr} ");
+
             if (jsonstr.StringIsEmpty())
             {
 
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(new DBConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
                 }
@@ -283,18 +290,16 @@ namespace Hospital_Call_Light_System
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{DBConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{DBConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{DBConfigFileName}檔案失敗!");
                 }
 
             }
-
-
         }
         #endregion
         #region MyConfigClass
-        private const string MyConfigFileName = "MyConfig.txt";
+        private static string MyConfigFileName = $@"{currentDirectory}\MyConfig.txt";
         public MyConfigClass myConfigClass = new MyConfigClass();
         public class MyConfigClass
         {
@@ -349,13 +354,14 @@ namespace Hospital_Call_Light_System
         }
         private void LoadMyConfig()
         {
-            string jsonstr = MyFileStream.LoadFileAllText($".//{MyConfigFileName}");
+            string jsonstr = MyFileStream.LoadFileAllText($"{MyConfigFileName}");
+
             if (jsonstr.StringIsEmpty())
             {
                 jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
                 }
@@ -369,7 +375,7 @@ namespace Hospital_Call_Light_System
                 jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
                 list_jsonstring.Add(jsonstr);
-                if (!MyFileStream.SaveFile($".//{MyConfigFileName}", list_jsonstring))
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
                 {
                     MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
                 }
