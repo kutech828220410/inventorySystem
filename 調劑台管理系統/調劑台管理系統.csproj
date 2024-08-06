@@ -825,6 +825,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\light-off-removebg-preview1.png" />
     <None Include="Resources\warnning-message-removebg-preview.png" />
     <None Include="Resources\plus-removebg-preview.png" />
     <None Include="Resources\medicine-shift-handover-checklist--add-data-plus-removebg-preview.png" />

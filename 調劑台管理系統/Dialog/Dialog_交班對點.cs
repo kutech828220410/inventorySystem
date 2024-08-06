@@ -394,7 +394,14 @@ namespace 調劑台管理系統
         void cnt_Program_交班對點_選擇下一筆(ref int cnt)
         { 
             int selectRow =  this.sqL_DataGridView_交班藥品.GetSelectRow();
-            if(selectRow == this.sqL_DataGridView_交班藥品.GetAllRows().Count - 1)
+            List<object[]> list_value = this.sqL_DataGridView_交班藥品.Get_All_Select_RowsValues();
+            if(list_value.Count > 0)
+            {
+                string 藥碼 = list_value[0][(int)enum_交班藥品.藥碼].ObjectToString();
+                Main_Form.Function_儲位亮燈(藥碼, Color.Black);
+            }
+            
+            if (selectRow == this.sqL_DataGridView_交班藥品.GetAllRows().Count - 1)
             {
                 this.stepViewer.Next();
                 cnt++;

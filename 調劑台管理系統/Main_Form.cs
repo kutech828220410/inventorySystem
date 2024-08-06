@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.82")]
-[assembly: AssemblyFileVersion("1.2.1.82")]
+[assembly: AssemblyVersion("1.2.1.86")]
+[assembly: AssemblyFileVersion("1.2.1.86")]
 namespace 調劑台管理系統
 {
 
@@ -390,9 +390,11 @@ namespace 調劑台管理系統
             }
         }
 
- 
 
-      
+
+
+
+
 
         #region Event
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)

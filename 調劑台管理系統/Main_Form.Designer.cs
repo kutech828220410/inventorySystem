@@ -136,6 +136,7 @@
             this.plC_RJ_Button_收支確認 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_調劑作業_藥品調出 = new MyUI.PLC_RJ_Button();
             this.panel117 = new System.Windows.Forms.Panel();
+            this.plC_RJ_Button_全部滅燈 = new MyUI.PLC_RJ_Button();
             this.plC_RJ_Button_調劑作業_指紋登入 = new MyUI.PLC_RJ_Button();
             this.label_版本 = new System.Windows.Forms.Label();
             this.plC_RJ_Button_調劑作業_條碼輸入 = new MyUI.PLC_RJ_Button();
@@ -1671,6 +1672,7 @@
             this.panel124.SuspendLayout();
             this.rJ_Pannel24.SuspendLayout();
             this.panel118.SuspendLayout();
+            this.panel117.SuspendLayout();
             this.panel112.SuspendLayout();
             this.管制抽屜.SuspendLayout();
             this.後台登入.SuspendLayout();
@@ -4629,11 +4631,66 @@
             // 
             // panel117
             // 
+            this.panel117.Controls.Add(this.plC_RJ_Button_全部滅燈);
             this.panel117.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel117.Location = new System.Drawing.Point(418, 10);
             this.panel117.Name = "panel117";
             this.panel117.Size = new System.Drawing.Size(184, 102);
             this.panel117.TabIndex = 135;
+            // 
+            // plC_RJ_Button_全部滅燈
+            // 
+            this.plC_RJ_Button_全部滅燈.AutoResetState = true;
+            this.plC_RJ_Button_全部滅燈.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_全部滅燈.Bool = false;
+            this.plC_RJ_Button_全部滅燈.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_全部滅燈.BorderRadius = 15;
+            this.plC_RJ_Button_全部滅燈.BorderSize = 1;
+            this.plC_RJ_Button_全部滅燈.but_press = false;
+            this.plC_RJ_Button_全部滅燈.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_全部滅燈.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_全部滅燈.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_Button_全部滅燈.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_全部滅燈.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_全部滅燈.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_全部滅燈.GUID = "";
+            this.plC_RJ_Button_全部滅燈.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_全部滅燈.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
+            this.plC_RJ_Button_全部滅燈.Location = new System.Drawing.Point(0, 0);
+            this.plC_RJ_Button_全部滅燈.Name = "plC_RJ_Button_全部滅燈";
+            this.plC_RJ_Button_全部滅燈.OFF_文字內容 = "全部滅燈";
+            this.plC_RJ_Button_全部滅燈.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_全部滅燈.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_全部滅燈.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_全部滅燈.ON_BorderSize = 1;
+            this.plC_RJ_Button_全部滅燈.ON_文字內容 = "全部滅燈";
+            this.plC_RJ_Button_全部滅燈.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_全部滅燈.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_全部滅燈.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_全部滅燈.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_全部滅燈.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_全部滅燈.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_全部滅燈.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_全部滅燈.ShadowSize = 3;
+            this.plC_RJ_Button_全部滅燈.ShowLoadingForm = false;
+            this.plC_RJ_Button_全部滅燈.Size = new System.Drawing.Size(102, 102);
+            this.plC_RJ_Button_全部滅燈.State = false;
+            this.plC_RJ_Button_全部滅燈.TabIndex = 135;
+            this.plC_RJ_Button_全部滅燈.Text = "全部滅燈";
+            this.plC_RJ_Button_全部滅燈.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_全部滅燈.TextHeight = 35;
+            this.plC_RJ_Button_全部滅燈.Texts = "全部滅燈";
+            this.plC_RJ_Button_全部滅燈.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_全部滅燈.字型鎖住 = false;
+            this.plC_RJ_Button_全部滅燈.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_全部滅燈.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_全部滅燈.文字鎖住 = false;
+            this.plC_RJ_Button_全部滅燈.背景圖片 = global::調劑台管理系統.Properties.Resources.light_off_removebg_preview;
+            this.plC_RJ_Button_全部滅燈.讀取位元反向 = false;
+            this.plC_RJ_Button_全部滅燈.讀寫鎖住 = false;
+            this.plC_RJ_Button_全部滅燈.音效 = true;
+            this.plC_RJ_Button_全部滅燈.顯示 = false;
+            this.plC_RJ_Button_全部滅燈.顯示狀態 = false;
             // 
             // plC_RJ_Button_調劑作業_指紋登入
             // 
@@ -9840,7 +9897,7 @@
             this.sqL_DataGridView_交易記錄查詢.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_交易記錄查詢.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_交易記錄查詢.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.sqL_DataGridView_交易記錄查詢.columnHeadersHeight = 17;
+            this.sqL_DataGridView_交易記錄查詢.columnHeadersHeight = 18;
             this.sqL_DataGridView_交易記錄查詢.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_交易記錄查詢.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.sqL_DataGridView_交易記錄查詢.DataKeyEnable = false;
@@ -45119,6 +45176,7 @@
             this.panel124.ResumeLayout(false);
             this.rJ_Pannel24.ResumeLayout(false);
             this.panel118.ResumeLayout(false);
+            this.panel117.ResumeLayout(false);
             this.panel112.ResumeLayout(false);
             this.管制抽屜.ResumeLayout(false);
             this.後台登入.ResumeLayout(false);
@@ -47211,6 +47269,7 @@
         private MyUI.PLC_RJ_Button plC_RJ_Button_藥檔資料_藥品群組;
         private MyUI.RJ_Pannel ContentsPanel;
         private MyUI.PLC_RJ_Button plC_RJ_Button_異常通知;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_全部滅燈;
     }
 }
 

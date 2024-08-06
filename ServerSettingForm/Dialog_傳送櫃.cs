@@ -160,7 +160,7 @@ namespace ServerSettingForm
             Panel_CheckBox.LoadAll(this.FindForm(), serverSettingClasses);
 
             this.comboBox_單位.DataSource = serverSettingClasses.Get_department_types();
-            ServerSettingClass serverSettingClass = serverSettingClasses.myFind(comboBox_名稱.Text, enum_ServerSetting_Type.傳送櫃.GetEnumName(), "一般資料");
+            ServerSettingClass serverSettingClass = serverSettingClasses.myFind(comboBox_名稱.Text, enum_ServerSetting_Type.傳送櫃.GetEnumName(), "VM端");
             this.comboBox_單位.Text = serverSettingClass.單位;
         }
         private void Button_刪除_Click(object sender, EventArgs e)

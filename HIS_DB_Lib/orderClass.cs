@@ -95,7 +95,7 @@ namespace HIS_DB_Lib
         領藥ID,
         [Description("狀態,VARCHAR,15,NONE")]
         狀態,
-        [Description("備註,VARCHAR,300,INDEX")]
+        [Description("備註,VARCHAR,300,NONE")]
         備註,
     }
     public class OrderClass

@@ -91,6 +91,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_領藥台_01_取消作業.MouseDownEvent += PlC_RJ_Button_領藥台_01_取消作業_MouseDownEvent;
             this.plC_Button_領藥台_01_領.ValueChangeEvent += PlC_Button_領藥台_01_領_ValueChangeEvent;
             this.plC_Button_領藥台_01_退.ValueChangeEvent += PlC_Button_領藥台_01_退_ValueChangeEvent;
+            this.plC_RJ_Button_全部滅燈.MouseDownEvent += PlC_RJ_Button_全部滅燈_MouseDownEvent;
+
 
             this.MyThread_領藥台_01 = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥台_01.Add_Method(this.sub_Program_領藥台_01);
@@ -99,6 +101,9 @@ namespace 調劑台管理系統
             this.MyThread_領藥台_01.SetSleepTime(20);
             this.MyThread_領藥台_01.Trigger();
         }
+
+     
+
         private void Program_調劑作業_領藥台_02_Init()
         {
             Table table = new Table(new enum_取藥堆疊母資料());
@@ -8987,6 +8992,68 @@ namespace 調劑台管理系統
         {
             Dialog_藥品調入 dialog_藥品調入 = new Dialog_藥品調入();
             dialog_藥品調入.ShowDialog();
+        }
+        private void PlC_RJ_Button_全部滅燈_MouseDownEvent(MouseEventArgs mevent)
+        {
+            if (MyMessageBox.ShowDialog("是否全部滅燈?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
+            LoadingForm.ShowLoadingForm();
+            try
+            {
+                List<Drawer> drawers_epd583 = new List<Drawer>();
+                List<Storage> storages_epd266 = new List<Storage>();
+                List<RowsLED> rowsLEDs = new List<RowsLED>();
+
+                List<CommonSapceClass> commonSapceClasses = Function_取得共用區所有儲位();
+                for (int i = 0; i < commonSapceClasses.Count; i++)
+                {
+                    drawers_epd583.LockAdd(commonSapceClasses[i].List_EPD583);
+                    storages_epd266.LockAdd(commonSapceClasses[i].List_EPD266);
+                    rowsLEDs.LockAdd(commonSapceClasses[i].List_RowsLED);
+                }
+                drawers_epd583.LockAdd(List_EPD583_本地資料);
+                storages_epd266.LockAdd(List_EPD266_本地資料);
+                rowsLEDs.LockAdd(List_RowsLED_本地資料);
+
+                List<Task> tasks = new List<Task>();
+
+                for (int i = 0; i < drawers_epd583.Count; i++)
+                {
+                    Drawer drawer = drawers_epd583[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
+                    })));
+                }
+
+
+                for (int i = 0; i < storages_epd266.Count; i++)
+                {
+                    Storage storage = storages_epd266[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
+                    })));
+                }
+
+                for (int i = 0; i < rowsLEDs.Count; i++)
+                {
+                    RowsLED rowsLED = rowsLEDs[i];
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        rowsLEDUI.Set_Rows_LED_Clear_UDP(rowsLED);
+                    })));
+                }
+                Task.WhenAll(tasks).Wait();
+            }
+            catch
+            { 
+            }
+            finally
+            {
+                LoadingForm.CloseLoadingForm();
+            }
+        
+
         }
         private void PlC_RJ_Button_交班對點_MouseDownEvent(MouseEventArgs mevent)
         {

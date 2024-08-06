@@ -253,6 +253,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap light_off_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("light-off-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap LOCK {
             get {
                 object obj = ResourceManager.GetObject("LOCK", resourceCulture);
