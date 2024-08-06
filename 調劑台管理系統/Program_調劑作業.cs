@@ -61,10 +61,10 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(40, DataGridViewContentAlignment.MiddleCenter, enum_取藥堆疊母資料.序號);
             //this.sqL_DataGridView_領藥台_01_手輸醫令.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.動作);
-            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(110, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(360, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
-            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
 
@@ -101,9 +101,6 @@ namespace 調劑台管理系統
             this.MyThread_領藥台_01.SetSleepTime(20);
             this.MyThread_領藥台_01.Trigger();
         }
-
-     
-
         private void Program_調劑作業_領藥台_02_Init()
         {
             Table table = new Table(new enum_取藥堆疊母資料());
@@ -112,10 +109,10 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(40, DataGridViewContentAlignment.MiddleCenter, enum_取藥堆疊母資料.序號);
             //this.sqL_DataGridView_領藥台_02_手輸醫令.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.動作);
-            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(110, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(360, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
-            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
 
@@ -158,10 +155,10 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(40, DataGridViewContentAlignment.MiddleCenter, enum_取藥堆疊母資料.序號);
             //this.sqL_DataGridView_領藥台_03_手輸醫令.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.動作);
-            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(110, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(360, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
-            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
 
@@ -202,10 +199,10 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(40, DataGridViewContentAlignment.MiddleCenter, enum_取藥堆疊母資料.序號);
             //this.sqL_DataGridView_領藥台_04_手輸醫令.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.動作);
-            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(110, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(360, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
-            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
 
@@ -277,7 +274,6 @@ namespace 調劑台管理系統
         }
 
   
-
         bool flag_調劑作業_頁面更新 = false;
         private void Program_調劑作業()
         {
