@@ -174,7 +174,32 @@ namespace HIS_WebApi
                         {
                             medCarInfoClass medCarInfoClass = input_medCarInfo[i];
                             input_medCarInfo[i].GUID = sql_medCart.GUID;
-                            //List<medCpoeClass> medCpoeClasses_new = input_medCarInfo[i].處方.ObjToClass<List<medCpoeClass>>();                            
+                            List<medCpoeClass> Med_update = new List<medCpoeClass>();
+                            List<medCpoeClass> medCpoeClasses_new = input_medCarInfo[i].處方.ObjToClass<List<medCpoeClass>>();
+                            List<medCpoeClass> medCpoeClasses_current = sql_medCart.處方.ObjToClass<List<medCpoeClass>>();
+                            foreach(var newMed in medCpoeClasses_new)
+                            {
+                                var Med_buf = medCpoeClasses_current.FirstOrDefault(temp => temp.藥品名 == newMed.藥品名);
+                                if (Med_buf == null)
+                                {
+                                    Med_update.Add(newMed);
+                                }
+                                else
+                                {
+                                    if (Med_buf.劑量 == newMed.劑量 && Med_buf.調劑狀態 == "已調劑")
+                                    {
+                                         newMed.調劑狀態 = "已調劑"; 
+                                    }
+                                    Med_update.Add(newMed);
+                                }
+                            }
+                            input_medCarInfo[i].處方 = Med_update;
+                            bool allDispensed = Med_update.All(med => med.調劑狀態 == "已調劑");
+
+                            if (allDispensed)
+                            {
+                                input_medCarInfo[i].調劑狀態 = "已全部調劑";
+                            }
                             medCart_sql_replace.Add(input_medCarInfo[i]);
                         }
 
