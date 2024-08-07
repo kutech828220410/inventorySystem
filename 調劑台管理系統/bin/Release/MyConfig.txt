@@ -13,7 +13,7 @@
   "EPD266_Enable": true,
   "RowsLED_Enable": true,
   "RFID_Enable": false,
-  "Pannel35_Enable": false,
+  "Pannel35_Enable": true,
   "帳密登入_Enable": true,
   "藥物辨識網址": "",
   "外部輸出": false,
