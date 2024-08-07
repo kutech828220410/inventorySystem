@@ -801,9 +801,24 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.init_med_qty(HIS_DB_Lib.returnData)">
+             <summary>
+            初始化dbvm.med_qty資料庫
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[""]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.get_patient_by_bedNum(HIS_DB_Lib.returnData)">
              <summary>
-            以護理站和床號取得處方
+            以護理站和床號取得病人資料
              </summary>
              <remarks>
              以下為JSON範例
@@ -818,7 +833,7 @@
         </member>
         <member name="M:HIS_WebApi.med_cart.get_patient_by_hnursta(HIS_DB_Lib.returnData)">
              <summary>
-            以護理站取得病人資料
+            以護理站取得處方
              </summary>
              <remarks>
              以下為JSON範例
@@ -862,6 +877,21 @@
                          }
                      ]
                      "ValueAry":["藥品名"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.get_med_qty(HIS_DB_Lib.returnData)">
+             <summary>
+            以護理站取得藥品總量
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[藥局, 護理站]
                  }
              </code>
              </remarks>

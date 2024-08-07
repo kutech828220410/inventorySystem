@@ -145,87 +145,100 @@ namespace HIS_WebApi
                 }
                 string 藥局 = input_medCarInfo[0].藥局;
                 string 護理站 = input_medCarInfo[0].護理站;
-                //for (int i = 0; i < input_medCarInfo.Count; i++)
-                //{
-                int i = 0;
-                string 床號 = input_medCarInfo[i].床號;
-                string 病歷號 = input_medCarInfo[i].病歷號;
-                medCart_sql_buf = (from temp in medCart_sql
-                                    where temp.藥局 == 藥局
-                                    where temp.護理站 == 護理站
-                                    where temp.床號 == 床號
-                                    select temp).ToList();
-                if (medCart_sql_buf.Count == 0)
+                for (int i = 0; i < input_medCarInfo.Count; i++)
                 {
-                    string GUID = Guid.NewGuid().ToString();
-                    medCarInfoClass medCarInfoClass = input_medCarInfo[i];
-                    medCarInfoClass.GUID = GUID;
-                    medCart_sql_add.Add(medCarInfoClass);
-                }
-                else
-                {
-                    medCarInfoClass sql_medCart = medCart_sql_buf[0];
-                    if (sql_medCart.病歷號 != 病歷號)
+                    //int i = 0;
+                    string 床號 = input_medCarInfo[i].床號;
+                    string 病歷號 = input_medCarInfo[i].病歷號;
+                    medCart_sql_buf = (from temp in medCart_sql
+                                        where temp.藥局 == 藥局
+                                        where temp.護理站 == 護理站
+                                        where temp.床號 == 床號
+                                        select temp).ToList();
+                    if (medCart_sql_buf.Count == 0)
                     {
+                        string GUID = Guid.NewGuid().ToString();
                         medCarInfoClass medCarInfoClass = input_medCarInfo[i];
-                        input_medCarInfo[i].GUID = sql_medCart.GUID;
-                        medCart_sql_replace.Add(input_medCarInfo[i]);
+                        medCarInfoClass.GUID = GUID;
+                        medCart_sql_add.Add(medCarInfoClass);
                     }
                     else
                     {
-                        medCarInfoClass medCarInfoClass = input_medCarInfo[i];
-                        input_medCarInfo[i].GUID = sql_medCart.GUID;
-                        List<medCpoeClass> Med_update = new List<medCpoeClass>();
-                        List<medCpoeClass> medCpoeClasses_new = input_medCarInfo[i].處方.ObjToClass<List<medCpoeClass>>();
-                        List<medCpoeClass> medCpoeClasses_current = sql_medCart.處方.ObjToClass<List<medCpoeClass>>();
-                        if (medCpoeClasses_current == null)
+                        medCarInfoClass sql_medCart = medCart_sql_buf[0];
+                        if (sql_medCart.病歷號 != 病歷號)
                         {
-                            medCpoeClasses_current = new List<medCpoeClass>();
+                            medCarInfoClass medCarInfoClass = input_medCarInfo[i];
+                            input_medCarInfo[i].GUID = sql_medCart.GUID;
+                            medCart_sql_replace.Add(input_medCarInfo[i]);
                         }
-                        if (medCpoeClasses_new == null)
+                        else
                         {
-                            medCpoeClasses_new = new List<medCpoeClass>();
-                        }
-                        foreach (var newMed in medCpoeClasses_new)
-                        {
-                            var Med_buf = medCpoeClasses_current.FirstOrDefault(temp => temp.藥品名 == newMed.藥品名);
-                            if (Med_buf == null)
+                            medCarInfoClass medCarInfoClass = input_medCarInfo[i];
+                            input_medCarInfo[i].GUID = sql_medCart.GUID;
+                            List<medCpoeClass> Med_update = new List<medCpoeClass>();
+                            List<medCpoeClass> medCpoeClasses_new = input_medCarInfo[i].處方.ObjToClass<List<medCpoeClass>>();
+                            List<medCpoeClass> medCpoeClasses_current = sql_medCart.處方.ObjToClass<List<medCpoeClass>>();
+                            if (medCpoeClasses_current == null)
                             {
-                                Med_update.Add(newMed);
+                                medCpoeClasses_current = new List<medCpoeClass>();
                             }
-                            else
+                            if (medCpoeClasses_new == null)
                             {
-                                if (Med_buf.劑量 == newMed.劑量 && Med_buf.調劑狀態 == "已調劑")
+                                medCpoeClasses_new = new List<medCpoeClass>();
+                            }
+                            foreach (var newMed in medCpoeClasses_new)
+                            {
+                                var Med_buf = medCpoeClasses_current.FirstOrDefault(temp => temp.藥品名 == newMed.藥品名);
+                                if (Med_buf == null)
                                 {
-                                        newMed.調劑狀態 = "已調劑"; 
+                                    Med_update.Add(newMed);
                                 }
-                                Med_update.Add(newMed);
+                                else
+                                {
+                                    if (Med_buf.劑量 == newMed.劑量 && Med_buf.調劑狀態 == "已調劑")
+                                    {
+                                            newMed.調劑狀態 = "已調劑"; 
+                                    }
+                                    Med_update.Add(newMed);
+                                }
                             }
-                        }
-                        input_medCarInfo[i].處方 = Med_update;
-                        bool allDispensed = Med_update.All(med => med.調劑狀態 == "已調劑");
+                            input_medCarInfo[i].處方 = Med_update;
+                            bool allDispensed = Med_update.All(med => med.調劑狀態 == "已調劑");
 
-                        if (allDispensed)
-                        {
-                            input_medCarInfo[i].調劑狀態 = "已全部調劑";
+                            if (allDispensed)
+                            {
+                                input_medCarInfo[i].調劑狀態 = "已全部調劑";
+                            }
+                            medCart_sql_replace.Add(input_medCarInfo[i]);
                         }
-                        medCart_sql_replace.Add(input_medCarInfo[i]);
                     }
-
-                   // }
                 }
                 List<object[]> list_medCart_add = new List<object[]>();
                 List<object[]> list_medCart_repalce = new List<object[]>();
 
                 list_medCart_add = medCart_sql_add.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
                 list_medCart_repalce = medCart_sql_replace.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
-                foreach(var medCarInfo in list_medCart_add)
+                if (list_medCart_add.Count > 0)
                 {
-                    object[] value = medCarInfo;
-                    value[32] = value[32].JsonSerializationt();
+                    foreach (var medCarInfo in list_medCart_add)
+                    {
+                        object[] value = medCarInfo;
+                        value[(int)enum_med_carInfo.檢驗結果] = value[(int)enum_med_carInfo.檢驗結果].JsonSerializationt();
+                        value[(int)enum_med_carInfo.處方] = value[(int)enum_med_carInfo.處方].JsonSerializationt();
+                    }
+                    sQLControl_med_carInfo.AddRows(null, list_medCart_add);
                 }
-                if (list_medCart_add.Count > 0) sQLControl_med_carInfo.AddRows(null, list_medCart_add);
-                if (list_medCart_repalce.Count > 0) sQLControl_med_carInfo.UpdateByDefulteExtra(null, list_medCart_repalce);
+
+                if (list_medCart_repalce.Count > 0)
+                {
+                    foreach (var medCarInfo in list_medCart_repalce)
+                    {
+                        object[] value = medCarInfo;
+                        value[(int)enum_med_carInfo.檢驗結果] = value[(int)enum_med_carInfo.檢驗結果].JsonSerializationt();
+                        value[(int)enum_med_carInfo.處方] = value[(int)enum_med_carInfo.處方].JsonSerializationt();
+                    }
+                    sQLControl_med_carInfo.UpdateByDefulteExtra(null, list_medCart_repalce);
+                }
                 string 占床狀態 = "已佔床";
                 List<object[]> list_bedList = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
                 List<medCarInfoClass> bedList = list_bedList.SQLToClass<medCarInfoClass, enum_med_carInfo>();
@@ -239,7 +252,7 @@ namespace HIS_WebApi
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = "";
+                returnData.Data = medCarInfoClasses;
                 returnData.Result = $"病床清單共筆";
                 return returnData.JsonSerializationt(true);
             }
@@ -249,98 +262,7 @@ namespace HIS_WebApi
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
-        }
-        [HttpPost("tttt")]
-        public string tttt([FromBody] returnData returnData)
-        {
-            MyTimerBasic myTimerBasic = new MyTimerBasic();
-            returnData.Method = "update_bed_list";
-            try
-            {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
-                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
-                if (serverSettingClasses.Count == 0)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"找無Server資料";
-                    return returnData.JsonSerializationt();
-                }
-
-                string Server = serverSettingClasses[0].Server;
-                string DB = serverSettingClasses[0].DBName;
-                string UserName = serverSettingClasses[0].User;
-                string Password = serverSettingClasses[0].Password;
-                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                Table table = new Table(new enum_med_carInfo());
-                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
-                
-                List<medCarInfoClass> input_medCarInfo = returnData.Data.ObjToClass<List<medCarInfoClass>>();              
-                List<object[]> list_medCart_add = new List<object[]>();
-                list_medCart_add = input_medCarInfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
-                object[] obj_AllColumnName = sQLControl_med_carInfo.GetAllColumn_Name(table.TableName);
-                if (list_medCart_add.Count > 0 && list_medCart_add[0].Length > 0 && list_medCart_add[0].Length <= obj_AllColumnName.Length)
-                {
-                    var connectionStringBuilder = new MySqlConnectionStringBuilder
-                    {
-                        Server = Server,
-                        Database = DB,
-                        UserID = UserName,
-                        Password = Password,
-                        Port = Port,
-                        SslMode = MySqlSslMode.None, // 禁用 SSL
-                        Pooling = true
-                    };
-                    using (MySqlConnection _MySqlConnection = new MySqlConnection(connectionStringBuilder.ConnectionString))
-                    {
-                        _MySqlConnection.Open();
-                        using (MySqlCommand _MySqlCommand = _MySqlConnection.CreateCommand())
-                        {
-
-                            foreach (var medCarInfo in list_medCart_add)
-                            {
-                                _MySqlCommand.Parameters.Clear(); // 清除之前的參數
-                                object[] value = medCarInfo;
-                                string Command = $@"INSERT INTO {table.TableName} (";
-
-                                for (int k = 0; k < obj_AllColumnName.Length; k++)
-                                {
-                                    Command += obj_AllColumnName[k];
-                                    if (k != obj_AllColumnName.Length - 1) Command += ",";
-                                }
-
-                                Command += ") VALUES (";
-
-                                for (int k = 0; k < obj_AllColumnName.Length; k++)
-                                {
-                                    string paramName = $"@{obj_AllColumnName[k]}";
-                                    Command += paramName;
-                                    if (k == 32) value[k] = value[k].JsonSerializationt();
-                                    _MySqlCommand.Parameters.AddWithValue(paramName, value[k]);
-                                    if (k != obj_AllColumnName.Length - 1) Command += ",";
-                                }
-
-                                Command += ");";
-                                _MySqlCommand.CommandText = Command;
-                                _MySqlCommand.ExecuteNonQuery();
-
-                            }
-                        }
-                    }
-                }
-                returnData.Code = 200;
-                returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = "";
-                returnData.Result = $"病床清單共筆";
-                return returnData.JsonSerializationt(true);
-            }
-            catch (Exception ex)
-            {
-                returnData.Code = -200;
-                returnData.Result = ex.Message;
-                return returnData.JsonSerializationt(true);
-            }
-        }
-
+        }      
         /// <summary>
         ///以護理站和床號取得病人資料
         /// </summary>
@@ -395,17 +317,18 @@ namespace HIS_WebApi
 
                 List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 var targetPatient = sql_medCar.FirstOrDefault(temp => temp.護理站 == 護理站 && temp.床號 == 床號);
-                targetPatient.處方 = targetPatient.處方.ObjToClass<List<medCpoeClass>>();
-                //List<medCarInfoClass> targetPatient = new List<medCarInfoClass>();
-                //targetPatient = (from temp in sql_medCar
-                //                 where temp.護理站 == 護理站
-                //                 where temp.床號 == 床號
-                //                 select temp).ToList();
-
+                if (targetPatient == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "無對應的病人資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                targetPatient.處方 = ((string)targetPatient.處方).JsonDeserializet<List<medCpoeClass>>();
+                targetPatient.檢驗結果 = ((string)targetPatient.檢驗結果).JsonDeserializet<List<testResult>>();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = targetPatient;
-                returnData.Result = $"";
+                returnData.Result = $"取得{藥局} {護理站} 第{床號}病床的資訊";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -440,10 +363,10 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
-                if (returnData.ValueAry.Count != 3)
+                if (returnData.ValueAry.Count != 2)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站, 床號]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
                     return returnData.JsonSerializationt(true);
                 }
                 string 藥局 = returnData.ValueAry[0];
@@ -471,11 +394,17 @@ namespace HIS_WebApi
                 targetPatient = (from temp in sql_medCar
                                  where temp.護理站 == 護理站
                                  select temp).ToList();
+                if(targetPatient.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "無相關資料";
+                    return returnData.JsonSerializationt(true);
+                }
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = targetPatient;
-                returnData.Result = $"";
+                returnData.Result = $"取得{藥局} {護理站} 所有病人資訊";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -614,18 +543,15 @@ namespace HIS_WebApi
                 List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
 
                 List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
-                List<medCarInfoClass> targetPatient = new List<medCarInfoClass>();
-                targetPatient = (from temp in sql_medCar
-                                 where temp.護理站 == 護理站
-                                 where temp.床號 == 床號
-                                 select temp).ToList();
-                if (targetPatient.Count != 1)
+                var targetPatient = sql_medCar.FirstOrDefault(temp => temp.護理站 == 護理站 && temp.床號 == 床號);
+                
+                if (targetPatient == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"資料錯誤";
                     return returnData.JsonSerializationt(true);
                 }
-                List<medCpoeClass> 處方 = ((string)targetPatient[0].處方).JsonDeserializet<List<medCpoeClass>>();
+                List<medCpoeClass> 處方 = ((string)targetPatient.處方).JsonDeserializet<List<medCpoeClass>>();
                 List<medCpoeClass> medCpoeClasses = new List<medCpoeClass>();
 
                 int 處方數量 = 處方.Count;
@@ -646,24 +572,32 @@ namespace HIS_WebApi
                 }
                 if (處方已調劑數量 == 處方數量)
                 {
-                    targetPatient[0].調劑狀態 = "已完成";
+                    targetPatient.調劑狀態 = "已完成";
                 }
                 else
                 {
-                    targetPatient[0].調劑狀態 = "";
+                    targetPatient.調劑狀態 = "";
                 }
 
-                string cpoe = medCpoeClasses.JsonSerializationt();
-                targetPatient[0].處方 = cpoe;
-
+                targetPatient.處方 = medCpoeClasses;
+                List<medCarInfoClass> medCarInfoClasses = new List<medCarInfoClass> { targetPatient };
                 List<object[]> list_medCart_repalce = new List<object[]>();
-                list_medCart_repalce = targetPatient.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
-                if (list_medCart_repalce.Count > 0) sQLControl_med_carInfo.UpdateByDefulteExtra(null, list_medCart_repalce);
+                list_medCart_repalce = medCarInfoClasses.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
+                
+                if (list_medCart_repalce.Count > 0)
+                {
+                    foreach (var medCarInfo in list_medCart_repalce)
+                    {
+                        object[] value = medCarInfo;
+                        value[(int)enum_med_carInfo.處方] = value[(int)enum_med_carInfo.處方].JsonSerializationt();
+                    }
+                    sQLControl_med_carInfo.UpdateByDefulteExtra(null, list_medCart_repalce);
+                }
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = targetPatient;
-                returnData.Result = $"";
+                returnData.Data = list_medCart_repalce;
+                returnData.Result = $"更新{藥局} {護理站} 第{床號}床的處方紀錄";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -725,8 +659,8 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table_med_carInfo.TableName, UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_qty = new SQLControl(Server, DB, table_med_qty.TableName, UserName, Password, Port, SSLMode);
 
-                //List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
-                List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
+                //List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
                 List<object[]> list_medQty = sQLControl_med_qty.GetRowsByDefult(null, (int)enum_藥品總量.藥局, 藥局);
 
                 List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
