@@ -2618,6 +2618,11 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
                     this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
+                {
+                    this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
+                    this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Wheat;
+                }
             }
         }
         private void TextBox_領藥台_01_帳號_KeyPress(object sender, KeyPressEventArgs e)
@@ -4577,6 +4582,11 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
                     this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                     this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].Cells[enum_取藥堆疊母資料.結存量.GetEnumName()].Value = "無";
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
+                {
+                    this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
+                    this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Wheat;
                 }
             }
         }
@@ -6545,6 +6555,11 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_領藥台_03_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                     this.sqL_DataGridView_領藥台_03_領藥內容.dataGridView.Rows[i].Cells[enum_取藥堆疊母資料.結存量.GetEnumName()].Value = "無";
                 }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
+                {
+                    this.sqL_DataGridView_領藥台_03_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
+                    this.sqL_DataGridView_領藥台_03_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Wheat;
+                }
             }
         }
         private void TextBox_領藥台_03_帳號_KeyPress(object sender, KeyPressEventArgs e)
@@ -8499,6 +8514,11 @@ namespace 調劑台管理系統
                     this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Pink;
                     this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                     this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].Cells[enum_取藥堆疊母資料.結存量.GetEnumName()].Value = "無";
+                }
+                else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
+                {
+                    this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
+                    this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Wheat;
                 }
             }
         }
