@@ -13,7 +13,7 @@ namespace HIS_DB_Lib
     //病床處方
     //Computerized Physician Order Entry
     [EnumDescription("med_cpoe")]
-    public enum enum_病床處方
+    public enum enum_med_cpoe
     {
         [Description("調劑狀態,VARCHAR,10,NONE")]
         調劑狀態,

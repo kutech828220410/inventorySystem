@@ -77,8 +77,9 @@ namespace HIS_DB_Lib
         [Description("檢驗結果,LONGTEXT,500,NONE")]
         檢驗結果,
         [Description("處方,LONGTEXT,10,NONE")]
-        處方
-       
+        處方,
+        [Description("管制藥,LONGTEXT,10,NONE")]
+        管制藥           
     }
     public class medCarInfoClass
     {
@@ -148,6 +149,8 @@ namespace HIS_DB_Lib
         public object 檢驗結果 { get; set; }
         [JsonPropertyName("prescription")]
         public object 處方 { get; set; }
+        [JsonPropertyName("control_med")]
+        public object 管制藥 { get; set; }
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
             public int Compare(medCarInfoClass x, medCarInfoClass y)
