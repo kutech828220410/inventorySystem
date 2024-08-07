@@ -466,11 +466,16 @@ namespace 調劑台管理系統
             myThread_program.SetSleepTime(100);
             myThread_program.Trigger();
         }
-
+        string CodeLast = "";
         private void SqL_DataGridView_交班藥品_RowEnterEvent1(object[] RowValue)
         {
+            if(CodeLast.StringIsEmpty() == false)
+            {
+                Main_Form.Function_儲位亮燈(CodeLast, Color.Black);
+            }
             string 藥碼 = RowValue[(int)enum_交班藥品.藥碼].ObjectToString();
             Main_Form.Function_儲位亮燈(藥碼, Color.Blue);
+            CodeLast = 藥碼;
         }
         private void RJ_Button_藥品群組_選擇_MouseDownEvent(MouseEventArgs mevent)
         {
