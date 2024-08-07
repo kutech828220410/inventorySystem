@@ -47,7 +47,7 @@ namespace HIS_WebApi
                     returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                return CheckCreatTable(serverSettingClasses[0], new enum_病床資訊());
+                return CheckCreatTable(serverSettingClasses[0], new enum_med_carInfo());
             }
             catch (Exception ex)
             {
@@ -125,11 +125,11 @@ namespace HIS_WebApi
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                Table table = new Table(new enum_病床資訊());
+                Table table = new Table(new enum_med_carInfo());
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
 
-                List<medCarInfoClass> medCart_sql = list_medCart.SQLToClass<medCarInfoClass, enum_病床資訊>();
+                List<medCarInfoClass> medCart_sql = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCarInfoClass> medCart_sql_buf = new List<medCarInfoClass>();
                 List<medCarInfoClass> medCart_sql_add = new List<medCarInfoClass>();
                 List<medCarInfoClass> medCart_sql_replace = new List<medCarInfoClass>();
@@ -213,14 +213,14 @@ namespace HIS_WebApi
                 List<object[]> list_medCart_add = new List<object[]>();
                 List<object[]> list_medCart_repalce = new List<object[]>();
 
-                list_medCart_add = medCart_sql_add.ClassToSQL<medCarInfoClass, enum_病床資訊>();
-                list_medCart_repalce = medCart_sql_replace.ClassToSQL<medCarInfoClass, enum_病床資訊>();
+                list_medCart_add = medCart_sql_add.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
+                list_medCart_repalce = medCart_sql_replace.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
 
                 if (list_medCart_add.Count > 0) sQLControl_med_carInfo.AddRows(null, list_medCart_add);
                 if (list_medCart_repalce.Count > 0) sQLControl_med_carInfo.UpdateByDefulteExtra(null, list_medCart_repalce);
                 string 占床狀態 = "已佔床";
-                List<object[]> list_bedList = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_病床資訊.藥局, 藥局);
-                List<medCarInfoClass> bedList = list_bedList.SQLToClass<medCarInfoClass, enum_病床資訊>();
+                List<object[]> list_bedList = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
+                List<medCarInfoClass> bedList = list_bedList.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCarInfoClass> medCarInfoClasses = new List<medCarInfoClass>();
                 medCarInfoClasses = (from temp in bedList
                                      where temp.護理站 == 護理站
@@ -290,11 +290,11 @@ namespace HIS_WebApi
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                Table table = new Table(new enum_病床資訊());
+                Table table = new Table(new enum_med_carInfo());
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
-                List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_病床資訊.藥局, 藥局);
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
 
-                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_病床資訊>();
+                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCarInfoClass> targetPatient = new List<medCarInfoClass>();
                 targetPatient = (from temp in sql_medCar
                                  where temp.護理站 == 護理站
@@ -361,11 +361,11 @@ namespace HIS_WebApi
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                Table table = new Table(new enum_病床資訊());
+                Table table = new Table(new enum_med_carInfo());
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
-                List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_病床資訊.藥局, 藥局);
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
 
-                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_病床資訊>();
+                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCarInfoClass> targetPatient = new List<medCarInfoClass>();
                 targetPatient = (from temp in sql_medCar
                                  where temp.護理站 == 護理站
@@ -424,10 +424,10 @@ namespace HIS_WebApi
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                Table table = new Table(new enum_病床資訊());
+                Table table = new Table(new enum_med_carInfo());
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
-                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_病床資訊>();
+                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -483,7 +483,7 @@ namespace HIS_WebApi
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                Table table = new Table(new enum_病床資訊());
+                Table table = new Table(new enum_med_carInfo());
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
                 List<medCarInfoClass> input_medCarInfo = returnData.Data.ObjToClass<List<medCarInfoClass>>();
 
@@ -510,9 +510,9 @@ namespace HIS_WebApi
                 string 護理站 = input_medCarInfo[0].護理站;
                 string 床號 = input_medCarInfo[0].床號;
 
-                List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_病床資訊.藥局, 藥局);
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
 
-                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_病床資訊>();
+                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCarInfoClass> targetPatient = new List<medCarInfoClass>();
                 targetPatient = (from temp in sql_medCar
                                  where temp.護理站 == 護理站
@@ -556,7 +556,7 @@ namespace HIS_WebApi
                 targetPatient[0].處方 = cpoe;
 
                 List<object[]> list_medCart_repalce = new List<object[]>();
-                list_medCart_repalce = targetPatient.ClassToSQL<medCarInfoClass, enum_病床資訊>();
+                list_medCart_repalce = targetPatient.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
                 if (list_medCart_repalce.Count > 0) sQLControl_med_carInfo.UpdateByDefulteExtra(null, list_medCart_repalce);
 
                 returnData.Code = 200;
@@ -619,16 +619,16 @@ namespace HIS_WebApi
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                Table table_med_carInfo = new Table(new enum_病床資訊());
+                Table table_med_carInfo = new Table(new enum_med_carInfo());
                 Table table_med_qty = new Table(new enum_藥品總量());
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table_med_carInfo.TableName, UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_qty = new SQLControl(Server, DB, table_med_qty.TableName, UserName, Password, Port, SSLMode);
 
-                //List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_病床資訊.藥局, 藥局);
+                //List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
                 List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
                 List<object[]> list_medQty = sQLControl_med_qty.GetRowsByDefult(null, (int)enum_藥品總量.藥局, 藥局);
 
-                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_病床資訊>();
+                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medQtyClass> sql_medQty = list_medQty.SQLToClass<medQtyClass, enum_藥品總量>();
                 List<medCarInfoClass> medCarInfoClasses = new List<medCarInfoClass>();
                 List<medQtyClass> medQtyClasses = new List<medQtyClass>();

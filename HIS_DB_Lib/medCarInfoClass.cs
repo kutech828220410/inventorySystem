@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 namespace HIS_DB_Lib
 {
     [EnumDescription("med_carInfo")]
-    public enum enum_病床資訊
+    public enum enum_med_carInfo
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
