@@ -52,23 +52,23 @@ namespace HIS_DB_Lib
         體重,
         [Description("體表面積,VARCHAR,10,NONE")]
         體表面積,
-        [Description("國際疾病分類代碼1,VARCHAR,10,NONE")]
+        [Description("國際疾病分類代碼1,VARCHAR,100,NONE")]
         國際疾病分類代碼1,
-        [Description("疾病說明1,VARCHAR,10,NONE")]
+        [Description("疾病說明1,VARCHAR,100,NONE")]
         疾病說明1,
-        [Description("國際疾病分類代碼2,VARCHAR,10,NONE")]
+        [Description("國際疾病分類代碼2,VARCHAR,100,NONE")]
         國際疾病分類代碼2,
-        [Description("疾病說明2,VARCHAR,10,NONE")]
+        [Description("疾病說明2,VARCHAR,100,NONE")]
         疾病說明2,
-        [Description("國際疾病分類代碼3,VARCHAR,10,NONE")]
+        [Description("國際疾病分類代碼3,VARCHAR,100,NONE")]
         國際疾病分類代碼3,
-        [Description("疾病說明3,VARCHAR,10,NONE")]
+        [Description("疾病說明3,VARCHAR,100,NONE")]
         疾病說明3,
-        [Description("國際疾病分類代碼4,VARCHAR,10,NONE")]
+        [Description("國際疾病分類代碼4,VARCHAR,100,NONE")]
         國際疾病分類代碼4,
-        [Description("疾病說明4,VARCHAR,10,NONE")]
+        [Description("疾病說明4,VARCHAR,100,NONE")]
         疾病說明4,
-        [Description("鼻胃管使用狀況,VARCHAR,10,NONE")]
+        [Description("鼻胃管使用狀況,VARCHAR,100,NONE")]
         鼻胃管使用狀況,
         [Description("其他管路使用狀況,VARCHAR,10,NONE")]
         其他管路使用狀況,
