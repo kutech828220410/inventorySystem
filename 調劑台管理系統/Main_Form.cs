@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.88")]
-[assembly: AssemblyFileVersion("1.2.1.88")]
+[assembly: AssemblyVersion("1.2.1.92")]
+[assembly: AssemblyFileVersion("1.2.1.92")]
 namespace 調劑台管理系統
 {
 
@@ -86,6 +86,7 @@ namespace 調劑台管理系統
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
         PLC_Device PLC_Device_藥物辨識圖片顯示 = new PLC_Device("S1005");
+        PLC_Device PLC_Device_S800 = new PLC_Device("S800");
 
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
@@ -417,7 +418,7 @@ namespace 調劑台管理系統
             PLC_Device_主機扣賬模式.Bool = myConfigClass.主機扣帳模式;
             PLC_Device_掃碼槍COM通訊.Bool = myConfigClass.掃碼槍COM通訊;
             PLC_Device_藥物辨識圖片顯示.Bool = myConfigClass.藥物辨識圖片顯示;
-
+            PLC_Device_S800.Bool = false;
 
 
             if (myConfigClass.Scanner01_COMPort.StringIsEmpty())

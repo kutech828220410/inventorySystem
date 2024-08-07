@@ -217,7 +217,6 @@ namespace 調劑台管理系統
             this.rJ_TextBox_病歷號.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_病歷號.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_病歷號.GUID = "";
-            this.rJ_TextBox_病歷號.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.rJ_TextBox_病歷號.Location = new System.Drawing.Point(5, 10);
             this.rJ_TextBox_病歷號.Multiline = false;
             this.rJ_TextBox_病歷號.Name = "rJ_TextBox_病歷號";
@@ -352,7 +351,6 @@ namespace 調劑台管理系統
             this.rJ_TextBox_領藥號.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_領藥號.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_領藥號.GUID = "";
-            this.rJ_TextBox_領藥號.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.rJ_TextBox_領藥號.Location = new System.Drawing.Point(5, 10);
             this.rJ_TextBox_領藥號.Multiline = false;
             this.rJ_TextBox_領藥號.Name = "rJ_TextBox_領藥號";
@@ -420,7 +418,6 @@ namespace 調劑台管理系統
             this.rJ_TextBox_病房號.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_病房號.ForeColor = System.Drawing.Color.DimGray;
             this.rJ_TextBox_病房號.GUID = "";
-            this.rJ_TextBox_病房號.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.rJ_TextBox_病房號.Location = new System.Drawing.Point(5, 10);
             this.rJ_TextBox_病房號.Multiline = false;
             this.rJ_TextBox_病房號.Name = "rJ_TextBox_病房號";

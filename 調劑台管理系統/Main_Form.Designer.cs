@@ -2553,6 +2553,7 @@
             this.rJ_Lable_領藥台_01_藥名.Text = "-----------------------------------";
             this.rJ_Lable_領藥台_01_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable_領藥台_01_藥名.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_領藥台_01_藥名.Visible = false;
             // 
             // panel154
             // 
@@ -3193,6 +3194,7 @@
             this.rJ_Lable_領藥台_02_藥名.Text = "-----------------------------------";
             this.rJ_Lable_領藥台_02_藥名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.rJ_Lable_領藥台_02_藥名.TextColor = System.Drawing.Color.Black;
+            this.rJ_Lable_領藥台_02_藥名.Visible = false;
             // 
             // panel155
             // 

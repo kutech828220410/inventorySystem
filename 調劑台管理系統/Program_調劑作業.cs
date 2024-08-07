@@ -60,13 +60,21 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_01_領藥內容.Init(table);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnVisible(false, new enum_取藥堆疊母資料().GetEnumNames());
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(40, DataGridViewContentAlignment.MiddleCenter, enum_取藥堆疊母資料.序號);
-            //this.sqL_DataGridView_領藥台_01_手輸醫令.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.動作);
+           
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品碼);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.盤點量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
+            if ( myConfigClass.Scanner02_COMPort.StringIsEmpty()
+                && (myConfigClass.Scanner03_COMPort.StringIsEmpty() && myConfigClass.Scanner04_COMPort.StringIsEmpty()))
+            {
+                this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.動作);
+                this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.狀態);
+            }
+           
 
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnText("No", enum_取藥堆疊母資料.序號);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnText("數量", enum_取藥堆疊母資料.總異動量);
@@ -75,7 +83,6 @@ namespace 調劑台管理系統
 
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnFont(new Font("微軟正黑體", 24, FontStyle.Bold), enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnFont(new Font("微軟正黑體", 20, FontStyle.Bold), enum_取藥堆疊母資料.藥品名稱);
-            //this.sqL_DataGridView_領藥台_01_手輸醫令.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_取藥堆疊母資料.狀態);
 
 
             this.sqL_DataGridView_領藥台_01_領藥內容.DataGridRowsChangeRefEvent += SqL_DataGridView_領藥台_01_領藥內容_DataGridRowsChangeRefEvent;
@@ -1533,6 +1540,7 @@ namespace 調劑台管理系統
                     int 庫存量 = Function_從SQL取得庫存(藥碼);
                     int 差異值 = medRecheckLogClass.get_unresolved_qty_by_code(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, 藥碼);
                     結存量 = 庫存量 + 總異動量 + 差異值;
+                    list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.結存量] = 結存量;
                     if (結存量 == dialog_NumPannel.Value)
                     {
                         Function_取藥堆疊資料_設定作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.盲盤, false);
@@ -1563,6 +1571,7 @@ namespace 調劑台管理系統
             if (list_取藥堆疊母資料_replace.Count > 0)
             {
                 this.sqL_DataGridView_取藥堆疊母資料.SQL_ReplaceExtra(list_取藥堆疊母資料_replace, false);
+                this.sqL_DataGridView_取藥堆疊母資料.ReplaceExtra(list_取藥堆疊母資料, true);
                 cnt = 1;
                 return;
             }
@@ -2471,6 +2480,7 @@ namespace 調劑台管理系統
             //}));
             Funnction_交易記錄查詢_動作紀錄新增(enum_交易記錄查詢動作.取消作業, 領藥台_01_登入者姓名, "01.號使用者");
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
+            Function_調劑作業_醫令資訊更新(1);
             this.sqL_DataGridView_領藥台_01_領藥內容.ClearGrid();
     
         }
@@ -2558,6 +2568,7 @@ namespace 調劑台管理系統
             //{
             //    this.pictureBox_領藥台_01_藥品圖片.Image = null;
             //}));
+            Function_調劑作業_醫令資訊更新(1);
             this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.ClearGrid();
 
@@ -2620,8 +2631,8 @@ namespace 調劑台管理系統
                 }
                 else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
                 {
-                    this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
-                    this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Wheat;
+                    this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    this.sqL_DataGridView_領藥台_01_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
         }
@@ -4585,8 +4596,8 @@ namespace 調劑台管理系統
                 }
                 else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
                 {
-                    this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
-                    this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Wheat;
+                    this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    this.sqL_DataGridView_領藥台_02_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
         }
@@ -6557,8 +6568,8 @@ namespace 調劑台管理系統
                 }
                 else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
                 {
-                    this.sqL_DataGridView_領藥台_03_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
-                    this.sqL_DataGridView_領藥台_03_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Wheat;
+                    this.sqL_DataGridView_領藥台_03_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    this.sqL_DataGridView_領藥台_03_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
         }
@@ -8517,8 +8528,8 @@ namespace 調劑台管理系統
                 }
                 else if (狀態 == enum_取藥堆疊母資料_狀態.已領用過.GetEnumName())
                 {
-                    this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.Silver;
-                    this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Wheat;
+                    this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.White;
+                    this.sqL_DataGridView_領藥台_04_領藥內容.dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
         }
