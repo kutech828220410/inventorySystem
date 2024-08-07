@@ -68,7 +68,7 @@ namespace HIS_DB_Lib
         國際疾病分類代碼4,
         [Description("疾病說明4,VARCHAR,100,NONE")]
         疾病說明4,
-        [Description("鼻胃管使用狀況,VARCHAR,100,NONE")]
+        [Description("鼻胃管使用狀況,VARCHAR,10,NONE")]
         鼻胃管使用狀況,
         [Description("其他管路使用狀況,VARCHAR,10,NONE")]
         其他管路使用狀況,

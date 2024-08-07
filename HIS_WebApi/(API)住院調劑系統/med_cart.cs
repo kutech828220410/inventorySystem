@@ -182,6 +182,10 @@ namespace HIS_WebApi
                             {
                                 medCpoeClasses_current = new List<medCpoeClass>();
                             }
+                            if (medCpoeClasses_new == null)
+                            {
+                                medCpoeClasses_new = new List<medCpoeClass>();
+                            }
                             foreach (var newMed in medCpoeClasses_new)
                             {
                                 var Med_buf = medCpoeClasses_current.FirstOrDefault(temp => temp.藥品名 == newMed.藥品名);
@@ -295,11 +299,13 @@ namespace HIS_WebApi
                 List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
 
                 List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
-                List<medCarInfoClass> targetPatient = new List<medCarInfoClass>();
-                targetPatient = (from temp in sql_medCar
-                                 where temp.護理站 == 護理站
-                                 where temp.床號 == 床號
-                                 select temp).ToList();
+                var targetPatient = sql_medCar.FirstOrDefault(temp => temp.護理站 == 護理站 && temp.床號 == 床號);
+                targetPatient.處方 = targetPatient.處方.ObjToClass<List<medCpoeClass>>();
+                //List<medCarInfoClass> targetPatient = new List<medCarInfoClass>();
+                //targetPatient = (from temp in sql_medCar
+                //                 where temp.護理站 == 護理站
+                //                 where temp.床號 == 床號
+                //                 select temp).ToList();
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
