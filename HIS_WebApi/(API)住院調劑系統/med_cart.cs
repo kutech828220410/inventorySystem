@@ -147,13 +147,14 @@ namespace HIS_WebApi
                 string 護理站 = input_medCarInfo[0].護理站;
                 for (int i = 0; i < input_medCarInfo.Count; i++)
                 {
+                
                     string 床號 = input_medCarInfo[i].床號;
                     string 病歷號 = input_medCarInfo[i].病歷號;
                     medCart_sql_buf = (from temp in medCart_sql
-                                       where temp.藥局 == 藥局
-                                       where temp.護理站 == 護理站
-                                       where temp.床號 == 床號
-                                       select temp).ToList();
+                                        where temp.藥局 == 藥局
+                                        where temp.護理站 == 護理站
+                                        where temp.床號 == 床號
+                                        select temp).ToList();
                     if (medCart_sql_buf.Count == 0)
                     {
                         string GUID = Guid.NewGuid().ToString();
@@ -177,7 +178,11 @@ namespace HIS_WebApi
                             List<medCpoeClass> Med_update = new List<medCpoeClass>();
                             List<medCpoeClass> medCpoeClasses_new = input_medCarInfo[i].處方.ObjToClass<List<medCpoeClass>>();
                             List<medCpoeClass> medCpoeClasses_current = sql_medCart.處方.ObjToClass<List<medCpoeClass>>();
-                            foreach(var newMed in medCpoeClasses_new)
+                            if (medCpoeClasses_current == null)
+                            {
+                                medCpoeClasses_current = new List<medCpoeClass>();
+                            }
+                            foreach (var newMed in medCpoeClasses_new)
                             {
                                 var Med_buf = medCpoeClasses_current.FirstOrDefault(temp => temp.藥品名 == newMed.藥品名);
                                 if (Med_buf == null)
@@ -188,7 +193,7 @@ namespace HIS_WebApi
                                 {
                                     if (Med_buf.劑量 == newMed.劑量 && Med_buf.調劑狀態 == "已調劑")
                                     {
-                                         newMed.調劑狀態 = "已調劑"; 
+                                            newMed.調劑狀態 = "已調劑"; 
                                     }
                                     Med_update.Add(newMed);
                                 }
@@ -213,7 +218,7 @@ namespace HIS_WebApi
 
                 if (list_medCart_add.Count > 0) sQLControl_med_carInfo.AddRows(null, list_medCart_add);
                 if (list_medCart_repalce.Count > 0) sQLControl_med_carInfo.UpdateByDefulteExtra(null, list_medCart_repalce);
-                string 占床狀態 = "已占床";
+                string 占床狀態 = "已佔床";
                 List<object[]> list_bedList = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_病床資訊.藥局, 藥局);
                 List<medCarInfoClass> bedList = list_bedList.SQLToClass<medCarInfoClass, enum_病床資訊>();
                 List<medCarInfoClass> medCarInfoClasses = new List<medCarInfoClass>();
