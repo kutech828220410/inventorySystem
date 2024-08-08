@@ -34,7 +34,7 @@ namespace HIS_DB_Lib
         性別,
         [Description("出生日期,VARCHAR,10,NONE")]
         出生日期,
-        [Description("科別,VARCHAR,10,NONE")]
+        [Description("科別,VARCHAR,20,NONE")]
         科別,
         [Description("財務,VARCHAR,10,NONE")]
         財務,
@@ -146,11 +146,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("hallergy")]
         public string 過敏史 { get; set; }
         [JsonPropertyName("testResult")]
-        public object 檢驗結果 { get; set; }
+        public List<testResult> 檢驗結果 { get; set; }
         [JsonPropertyName("prescription")]
-        public object 處方 { get; set; }
+        public List<medCpoeClass> 處方 { get; set; }
         [JsonPropertyName("control_med")]
-        public object 管制藥 { get; set; }
+        public List<medCpoeClass> 管制藥 { get; set; }
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
             public int Compare(medCarInfoClass x, medCarInfoClass y)
