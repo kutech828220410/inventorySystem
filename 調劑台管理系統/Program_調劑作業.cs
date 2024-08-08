@@ -66,11 +66,12 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
-            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.盤點量);
+      
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
-            if ( myConfigClass.Scanner02_COMPort.StringIsEmpty()
+            if ((myConfigClass.Scanner01_COMPort.StringIsEmpty() == true) && myConfigClass.Scanner02_COMPort.StringIsEmpty()
                 && (myConfigClass.Scanner03_COMPort.StringIsEmpty() && myConfigClass.Scanner04_COMPort.StringIsEmpty()))
             {
+                this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.盤點量);
                 this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.動作);
                 this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.狀態);
             }
@@ -2062,7 +2063,14 @@ namespace 調劑台管理系統
             taskList.Add(Task_取得醫令);
             Task.WhenAll(taskList).Wait();
 
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            taskList.Clear();
+
+            taskList.Add(Task.Run(new Action(delegate 
+            {
+                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+            })));
+     
+            Task.WhenAll(taskList).Wait();
 
             Console.Write($"掃碼完成 , 總耗時{myTimer_total.ToString()}\n");
             if (flag_OK) Voice.MediaPlayAsync($@"{currentDirectory}\sucess_01.wav");
@@ -9009,7 +9017,14 @@ namespace 調劑台管理系統
                     takeMedicineStackClasses.Add(takeMedicineStackClass);
 
                 }
-                this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+                List<Task> taskList = new List<Task>();
+                taskList.Clear();
+
+                taskList.Add(Task.Run(new Action(delegate
+                {
+                    this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
+                })));
+                Task.WhenAll(taskList).Wait();
 
             }));
         }

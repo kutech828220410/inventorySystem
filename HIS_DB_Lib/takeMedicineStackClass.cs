@@ -420,7 +420,7 @@ namespace HIS_DB_Lib
             List<SQLUI.Table> tables = json_out.JsonDeserializet<List<SQLUI.Table>>();
             return tables;
         }
-        static public List<transactionsClass> set_device_tradding(string API_Server, string ServerName, string ServerType, List<takeMedicineStackClass> takeMedicineStackClasses)
+        static public void set_device_tradding(string API_Server, string ServerName, string ServerType, List<takeMedicineStackClass> takeMedicineStackClasses)
         {
             string url = $"{API_Server}/api/OutTakeMed/set_device_tradding";
 
@@ -435,15 +435,14 @@ namespace HIS_DB_Lib
             returnData returnData_out = json_out.JsonDeserializet<returnData>();
             if (returnData_out == null)
             {
-                return null;
+                return;
             }
             if (returnData_out.Data == null)
             {
-                return null;
+                return;
             }
             Console.WriteLine($"{returnData_out}");
-            List<transactionsClass> transactions = returnData_out.Data.ObjToClass<List<transactionsClass>>();
-            return transactions;
+
         }
     }
 }

@@ -20,6 +20,31 @@ using SQLUI;
 
 namespace 調劑台管理系統
 {
+    static public class CommonSapceMethod
+    {
+        public static void WriteTakeMedicineStack(this List<CommonSapceClass> commonSapceClasses ,List<object[]> list_堆疊母資料_add)
+        {
+            Table table = new Table(new enum_取藥堆疊母資料());
+            SQLControl sQLControl = new SQLControl();
+            for (int i = 0; i < commonSapceClasses.Count; i++)
+            {
+                table.Server = commonSapceClasses[0].serverSettingClass.Server;
+                table.Username = commonSapceClasses[0].serverSettingClass.User;
+                table.Password = commonSapceClasses[0].serverSettingClass.Password;
+                table.Port = commonSapceClasses[0].serverSettingClass.Port;
+                table.DBName = commonSapceClasses[0].serverSettingClass.DBName;
+                sQLControl.Init(table);
+                sQLControl.AddRows(null ,list_堆疊母資料_add);
+            }
+        }
+        public static void WriteTakeMedicineStack(this List<CommonSapceClass> commonSapceClasses, List<takeMedicineStackClass> takeMedicineStackClasses)
+        {
+            for (int i = 0; i < commonSapceClasses.Count; i++)
+            {
+                commonSapceClasses[i].WriteTakeMedicineStack(takeMedicineStackClasses);
+            }
+        }
+    }
     public class CommonSapceClass
     {
         public override string ToString()
@@ -31,9 +56,15 @@ namespace 調劑台管理系統
         public List<Drawer> List_EPD583 = new List<Drawer>();
         public List<RowsLED> List_RowsLED = new List<RowsLED>();
 
+        
         public CommonSapceClass(ServerSettingClass serverSettingClass)
         {
             this.serverSettingClass = serverSettingClass;
+        }
+
+        public void WriteTakeMedicineStack(List<takeMedicineStackClass> takeMedicineStackClasses)
+        {
+            takeMedicineStackClass.set_device_tradding(Main_Form.API_Server, serverSettingClass.設備名稱, Main_Form.ServerType, takeMedicineStackClasses);
         }
         public static Drawer GetEPD583(string IP , ref List<CommonSapceClass> commonSapceClasses)
         {
@@ -95,7 +126,7 @@ namespace 調劑台管理系統
             table.Port = dBConfigClass.DB_Basic.Port.ToString();
             table.Username = dBConfigClass.DB_Basic.UserName;
             table.Password = dBConfigClass.DB_Basic.Password;
-            table.DBName = "dps01";
+            table.DBName = dBConfigClass.DB_Basic.DataBaseName;
             table.TableName = "common_space_setup";
             table.AddColumnList("GUID", Table.StringType.VARCHAR, Table.IndexType.PRIMARY);
             table.AddColumnList("共用區名稱", Table.StringType.VARCHAR, 200 ,Table.IndexType.None);

@@ -289,7 +289,12 @@ namespace 調劑台管理系統
 
             Function_抽屜解鎖(list_lock_IP);
 
-            if (list_堆疊母資料_add.Count > 0) this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
+            if (list_堆疊母資料_add.Count > 0)
+            {
+
+                commonSapceClasses.WriteTakeMedicineStack(list_堆疊母資料_add);
+                this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
+            }
 
             List<object[]> list_value_delete = new List<object[]>();
             for (int i = 0; i < takeMedicineStackClasses.Count; i++)
@@ -316,7 +321,7 @@ namespace 調劑台管理系統
             value[(int)enum_取藥堆疊子資料.GUID] = Guid.NewGuid().ToString();
             value[(int)enum_取藥堆疊子資料.Master_GUID] = Master_GUID;
             value[(int)enum_取藥堆疊子資料.Device_GUID] = Device_GUID;
-            value[(int)enum_取藥堆疊子資料.序號] = this.sqL_DataGridView_取藥堆疊子資料.SQL_GetTimeNow_6();
+            value[(int)enum_取藥堆疊子資料.序號] = SQLControl.GetTimeNow_6();
             value[(int)enum_取藥堆疊子資料.調劑台名稱] = 調劑台名稱;
             value[(int)enum_取藥堆疊子資料.藥品碼] = 藥品碼;
             value[(int)enum_取藥堆疊子資料.IP] = IP;
