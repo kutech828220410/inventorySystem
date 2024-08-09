@@ -859,6 +859,72 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
+        [HttpPost("ttt")]
+        public string ttt([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 3)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站, 床號]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 藥局 = returnData.ValueAry[0];
+                string 護理站 = returnData.ValueAry[1];
+                string 床號 = returnData.ValueAry[2];
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                Table table = new Table(new enum_med_carInfo());
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
+
+                List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
+                var targetPatient = sql_medCar.FirstOrDefault(temp => temp.護理站 == 護理站 && temp.床號 == 床號);
+                if (targetPatient == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "無對應的病人資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                //targetPatient.檢驗結果 = targetPatient.檢驗結果.
+                //targetPatient.處方 = targetPatient.處方.JsonSerializationt();
+                //targetPatient.處方 = (targetPatient.處方).ObjToClass<List<medCpoeClass>>();
+                //targetPatient.檢驗結果 = (targetPatient.檢驗結果).ObjToClass<List<testResult>>();
+                targetPatient.處方 = ((string)targetPatient.處方).JsonDeserializet<List<medCpoeClass>>();
+                targetPatient.檢驗結果 = ((string)targetPatient.檢驗結果).JsonDeserializet<List<testResult>>();
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = targetPatient;
+                returnData.Result = $"取得{藥局} {護理站} 第{床號}病床的資訊";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
 
     }
 

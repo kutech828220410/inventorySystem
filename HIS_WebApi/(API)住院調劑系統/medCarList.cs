@@ -341,6 +341,19 @@ namespace HIS_WebApi._API_住院調劑系統
             }
 
         }
+        /// <summary>
+        ///取得藥局護理站資料
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":[]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
         [HttpPost("get_phar")]
         public string get_phar([FromBody] returnData returnData)
         {
@@ -348,23 +361,46 @@ namespace HIS_WebApi._API_住院調劑系統
             returnData.Method = "get_phar";
             try
             {
-                List<medCarListClass> medCarListClasses = new List<medCarListClass>();
-                //Dictionary<string, string> pharList = new PharmacyData.PharmacyDictionary();
-                foreach (var row in PharmacyData.PharmacyDictionary)
+   
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                Table table = new Table(new enum_med_carList());
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
+
+                List<medCarListClass> medCart_sql = list_medCart.SQLToClass<medCarListClass, enum_med_carList>();
+
+                List<medCarListClass> medCart_sql_buf = medCart_sql
+                    .GroupBy(medCart => medCart.藥局)
+                    .Select(group => group.First())
+                    .ToList();
+                List<medCarListClass> medCarList = new List<medCarListClass>();
+                foreach (var value in medCart_sql_buf)
                 {
                     medCarListClass medCarListClass = new medCarListClass
                     {
-                        藥局 = row.Key,
-                        藥局名 = row.Value
+                        藥局 = value.藥局,
+                        藥局名 = value.藥局名
                     };
-                    medCarListClasses.Add(medCarListClass);
+                    medCarList.Add(medCarListClass);
                 }
-
-
+                
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medCarListClasses;
-                returnData.Result = $"取得藥局資料共{medCarListClasses.Count}";
+                returnData.Data = medCarList;
+                returnData.Result = $"取得藥局資料共{medCarList.Count}";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -375,5 +411,6 @@ namespace HIS_WebApi._API_住院調劑系統
             }
 
         }
+
     }
 }

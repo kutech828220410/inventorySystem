@@ -38,7 +38,7 @@ namespace HIS_DB_Lib
         科別,
         [Description("財務,VARCHAR,10,NONE")]
         財務,
-        [Description("入院日期,VARCHAR,10,NONE")]
+        [Description("入院日期,DATETIME,50,INDEX")]
         入院日期,
         [Description("訪視號碼,VARCHAR,10,NONE")]
         訪視號碼,
