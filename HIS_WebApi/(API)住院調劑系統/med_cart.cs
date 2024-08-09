@@ -33,6 +33,9 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("init_med_carinfo")]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCarInfoClass物件", typeof(medCarInfoClass))]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "testResult物件", typeof(testResult))]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCpoeClass物件", typeof(medCpoeClass))]
         public string init_med_carinfo([FromBody] returnData returnData)
         {
 
@@ -328,8 +331,12 @@ namespace HIS_WebApi
                     returnData.Result = "無對應的病人資料";
                     return returnData.JsonSerializationt(true);
                 }
+                //targetPatient.檢驗結果 = targetPatient.檢驗結果.
+                //targetPatient.處方 = targetPatient.處方.JsonSerializationt();
                 //targetPatient.處方 = (targetPatient.處方).ObjToClass<List<medCpoeClass>>();
                 //targetPatient.檢驗結果 = (targetPatient.檢驗結果).ObjToClass<List<testResult>>();
+                targetPatient.處方 = ((string)targetPatient.處方).JsonDeserializet<List<medCpoeClass>>();
+                targetPatient.檢驗結果 = ((string)targetPatient.檢驗結果).JsonDeserializet<List<testResult>>();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = targetPatient;
@@ -408,8 +415,8 @@ namespace HIS_WebApi
                 targetPatient.Sort(new medCarInfoClass.ICP_By_bedNum());
                 foreach (var medCarInfoClass in targetPatient)
                 {
-                    medCarInfoClass.處方 = medCarInfoClass.處方.ObjToClass<List<medCpoeClass>>();
-                    medCarInfoClass.檢驗結果 = medCarInfoClass.檢驗結果.ObjToClass<List<testResult>>();
+                    medCarInfoClass.處方 = ((string)medCarInfoClass.處方).JsonDeserializet<List<medCpoeClass>>();
+                    medCarInfoClass.檢驗結果 = ((string)medCarInfoClass.檢驗結果).JsonDeserializet<List<testResult>>();
                 }
 
                 returnData.Code = 200;
@@ -471,9 +478,10 @@ namespace HIS_WebApi
                 List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 foreach (var medCarInfoClass in sql_medCar)
                 {
-                    medCarInfoClass.處方 = medCarInfoClass.處方.ObjToClass<List<medCpoeClass>>();
-                    medCarInfoClass.檢驗結果 = medCarInfoClass.檢驗結果.ObjToClass<List<testResult>>();
-
+                    //medCarInfoClass.處方 = medCarInfoClass.處方.ObjToClass<List<medCpoeClass>>();
+                    //medCarInfoClass.檢驗結果 = medCarInfoClass.檢驗結果.ObjToClass<List<testResult>>();
+                    medCarInfoClass.處方 = ((string)medCarInfoClass.處方).JsonDeserializet<List<medCpoeClass>>();
+                    medCarInfoClass.檢驗結果 = ((string)medCarInfoClass.檢驗結果).JsonDeserializet<List<testResult>>();
                 }
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
