@@ -9,6 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace HIS_DB_Lib
 {
+
     [EnumDescription("med_carInfo")]
     public enum enum_med_carInfo
     {
@@ -146,11 +147,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("hallergy")]
         public string 過敏史 { get; set; }
         [JsonPropertyName("testResult")]
-        public object 檢驗結果 { get; set; }
+        public List<testResult> 檢驗結果 { get; set; }
         [JsonPropertyName("prescription")]
-        public object 處方 { get; set; }
+        public List<medCpoeClass> 處方 { get; set; }
         [JsonPropertyName("control_med")]
-        public object 管制藥 { get; set; }
+        public List<medCpoeClass> 管制藥 { get; set; }
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
             public int Compare(medCarInfoClass x, medCarInfoClass y)
@@ -257,11 +258,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("rtna")]
         public string 鈉離子 { get; set; }
         [JsonPropertyName("rtwbc")]
-        public string 白血球計數 { get; set; }
+        public string 白血球 { get; set; }
         [JsonPropertyName("rthgb")]
         public string 血紅素 { get; set; }
         [JsonPropertyName("rtptl")]
-        public string 血小板計數 { get; set; }
+        public string 血小板 { get; set; }
         [JsonPropertyName("rtinr")]
         public string 國際標準化比率 { get; set; }
     }

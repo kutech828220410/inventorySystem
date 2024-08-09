@@ -335,8 +335,10 @@ namespace HIS_WebApi
                 //targetPatient.處方 = targetPatient.處方.JsonSerializationt();
                 //targetPatient.處方 = (targetPatient.處方).ObjToClass<List<medCpoeClass>>();
                 //targetPatient.檢驗結果 = (targetPatient.檢驗結果).ObjToClass<List<testResult>>();
-                targetPatient.處方 = ((string)targetPatient.處方).JsonDeserializet<List<medCpoeClass>>();
-                targetPatient.檢驗結果 = ((string)targetPatient.檢驗結果).JsonDeserializet<List<testResult>>();
+
+                //targetPatient.處方 = ((string)targetPatient.處方).JsonDeserializet<List<medCpoeClass>>();
+
+                //targetPatient.檢驗結果 = ((string)targetPatient.檢驗結果).JsonDeserializet<List<testResult>>();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = targetPatient;
@@ -415,8 +417,8 @@ namespace HIS_WebApi
                 targetPatient.Sort(new medCarInfoClass.ICP_By_bedNum());
                 foreach (var medCarInfoClass in targetPatient)
                 {
-                    medCarInfoClass.處方 = ((string)medCarInfoClass.處方).JsonDeserializet<List<medCpoeClass>>();
-                    medCarInfoClass.檢驗結果 = ((string)medCarInfoClass.檢驗結果).JsonDeserializet<List<testResult>>();
+                    //medCarInfoClass.處方 = ((string)medCarInfoClass.處方).JsonDeserializet<List<medCpoeClass>>();
+                    //medCarInfoClass.檢驗結果 = ((string)medCarInfoClass.檢驗結果).JsonDeserializet<List<testResult>>();
                 }
 
                 returnData.Code = 200;
@@ -480,8 +482,10 @@ namespace HIS_WebApi
                 {
                     //medCarInfoClass.處方 = medCarInfoClass.處方.ObjToClass<List<medCpoeClass>>();
                     //medCarInfoClass.檢驗結果 = medCarInfoClass.檢驗結果.ObjToClass<List<testResult>>();
-                    medCarInfoClass.處方 = ((string)medCarInfoClass.處方).JsonDeserializet<List<medCpoeClass>>();
-                    medCarInfoClass.檢驗結果 = ((string)medCarInfoClass.檢驗結果).JsonDeserializet<List<testResult>>();
+
+                    //medCarInfoClass.處方 = ((string)medCarInfoClass.處方).JsonDeserializet<List<medCpoeClass>>();
+
+                    //medCarInfoClass.檢驗結果 = ((string)medCarInfoClass.檢驗結果).JsonDeserializet<List<testResult>>();
                 }
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -897,7 +901,11 @@ namespace HIS_WebApi
                 Table table = new Table(new enum_med_carInfo());
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
                 List<object[]> list_medCart = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
-
+                foreach( var row in list_medCart)
+                {
+                    List<medCpoeClass> medCpoeClasses = ((string)row[(int)enum_med_carInfo.處方]).JsonDeserializet<List<medCpoeClass>>();
+                    row[(int)enum_med_carInfo.處方] = medCpoeClasses;
+                }
                 List<medCarInfoClass> sql_medCar = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 var targetPatient = sql_medCar.FirstOrDefault(temp => temp.護理站 == 護理站 && temp.床號 == 床號);
                 if (targetPatient == null)
@@ -910,8 +918,10 @@ namespace HIS_WebApi
                 //targetPatient.處方 = targetPatient.處方.JsonSerializationt();
                 //targetPatient.處方 = (targetPatient.處方).ObjToClass<List<medCpoeClass>>();
                 //targetPatient.檢驗結果 = (targetPatient.檢驗結果).ObjToClass<List<testResult>>();
-                targetPatient.處方 = ((string)targetPatient.處方).JsonDeserializet<List<medCpoeClass>>();
-                targetPatient.檢驗結果 = ((string)targetPatient.檢驗結果).JsonDeserializet<List<testResult>>();
+
+                //targetPatient.處方 = ((string)targetPatient.處方).JsonDeserializet<List<medCpoeClass>>();
+
+                //targetPatient.檢驗結果 = ((string)targetPatient.檢驗結果).JsonDeserializet<List<testResult>>();
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = targetPatient;
@@ -920,6 +930,65 @@ namespace HIS_WebApi
             }
             catch (Exception ex)
             {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        [HttpPost("add")]
+        public string add([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {               
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+                Table table = new Table(new enum_med_carInfo());
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
+
+                List<medCarInfoClass> input_medCarInfo = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+                foreach (var medCarInfoClass in input_medCarInfo)
+                {
+                    string GUID = Guid.NewGuid().ToString();
+                    medCarInfoClass.GUID = GUID;
+                }
+                List<object[]> obj_medCartInfo = new List<object[]>();
+                obj_medCartInfo = input_medCarInfo.ClassToSQL<medCarInfoClass, enum_med_carInfo>();
+                //foreach (var medCarInfo in obj_medCartInfo)
+                //{
+                //    object[] value = medCarInfo;
+                //    value[(int)enum_med_carInfo.處方] = value[(int)enum_med_carInfo.處方].JsonSerializationt();
+                //}
+               
+                sQLControl_med_carInfo.AddRows(null, obj_medCartInfo);
+
+                List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
+               
+
+                List<medCarInfoClass> medCarInfoClasses = list_medCart.SQLToClass<medCarInfoClass, enum_med_carInfo>();
+                
+
+
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Data = medCarInfoClasses;
+                returnData.Result = $"";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Data = "";
                 returnData.Code = -200;
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);

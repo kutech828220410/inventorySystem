@@ -118,6 +118,7 @@
     <Compile Include="deviceApiClass.cs" />
     <Compile Include="drugDispatchClass.cs" />
     <Compile Include="materialRequisitionClass.cs" />
+    <Compile Include="medCarClass.cs" />
     <Compile Include="medCarInfoClass.cs" />
     <Compile Include="medCarListClass.cs" />
     <Compile Include="medCpoeClass.cs" />
