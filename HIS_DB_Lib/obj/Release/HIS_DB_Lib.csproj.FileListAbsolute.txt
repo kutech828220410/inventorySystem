@@ -613,7 +613,6 @@ C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Syste
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Newtonsoft.Json.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Interop.SpeechLib.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\MySql.Data.dll
-C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\zxing.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\DrawingClass.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Microsoft.Office.Interop.Excel.dll
 C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\PopupControl.dll
@@ -762,3 +761,4 @@ C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\SunnyUI.C
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\stdole.dll
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\Basic.xml
 C:\Users\useradmin\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\SQLUI.xml
+C:\Users\Administrator\source\repos\inventorySystem\HIS_DB_Lib\bin\Release\zxing.dll

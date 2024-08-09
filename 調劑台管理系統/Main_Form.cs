@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.92")]
-[assembly: AssemblyFileVersion("1.2.1.92")]
+[assembly: AssemblyVersion("1.2.1.96")]
+[assembly: AssemblyFileVersion("1.2.1.96")]
 namespace 調劑台管理系統
 {
 
@@ -196,6 +196,13 @@ namespace 調劑台管理系統
             private bool rowsLED_Enable = true;
             private bool rFID_Enable = true;
             private bool pannel35_Enable = true;
+
+            private int ePD583_Port = 29005;
+            private int ePD266_Port = 29000;
+            private int ePD1020_Port = 29012;
+            private int rowsLED_Port = 29001;
+            private int pannel35_Port = 29020;
+
             private bool _帳密登入_Enable = true;
             private bool _外部輸出 = false;
             private bool _全螢幕顯示 = true;
@@ -231,6 +238,11 @@ namespace 調劑台管理系統
             public bool EPD1020_Enable { get => ePD1020_Enable; set => ePD1020_Enable = value; }
             public bool 全螢幕顯示 { get => _全螢幕顯示; set => _全螢幕顯示 = value; }
             public bool 鍵盤掃碼模式 { get => _鍵盤掃碼模式; set => _鍵盤掃碼模式 = value; }
+            public int EPD583_Port { get => ePD583_Port; set => ePD583_Port = value; }
+            public int EPD266_Port { get => ePD266_Port; set => ePD266_Port = value; }
+            public int EPD1020_Port { get => ePD1020_Port; set => ePD1020_Port = value; }
+            public int RowsLED_Port { get => rowsLED_Port; set => rowsLED_Port = value; }
+            public int Pannel35_Port { get => pannel35_Port; set => pannel35_Port = value; }
         }
         private void LoadMyConfig()
         {
@@ -392,11 +404,6 @@ namespace 調劑台管理系統
         }
 
 
-
-
-
-
-
         #region Event
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
         {
@@ -411,7 +418,6 @@ namespace 調劑台管理系統
             {
                 this.WindowState = FormWindowState.Maximized;
             }
-
             this.PLC = this.lowerMachine_Panel.GetlowerMachine();
 
             PLC_Device_主機輸出模式.Bool = myConfigClass.主機輸出模式;
@@ -453,7 +459,9 @@ namespace 調劑台管理系統
                 PLC_Device_主機輸出模式.Bool = false;
                 PLC_Device_主機扣賬模式.Bool = false;
                 PLC_Device_掃碼槍COM通訊.Bool = false;
+
                 PLC_Device_藥物辨識圖片顯示.Bool = false;
+                myConfigClass.RFID使用 = false;
                 this.plC_RJ_ScreenButton_調劑作業.顯示讀取位置 = "M8001";
                 this.plC_RJ_ScreenButton_管制抽屜.顯示讀取位置 = "M8001";
                 this.plC_RJ_ScreenButton_交班作業.顯示讀取位置 = "M8000";
@@ -743,6 +751,7 @@ namespace 調劑台管理系統
                 if (commandLineArgs.Length == 4)
                 {
                     this.ControlMode = (commandLineArgs[3] == true.ToString());
+           
                 }
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
@@ -790,12 +799,13 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_雲端藥檔.SQL_Reset();
             this.sqL_DataGridView_交易記錄查詢.SQL_Reset();
 
-            this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30005, myConfigClass.EPD583_Port);
+            this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30012, myConfigClass.EPD1020_Port);
+            this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30000, myConfigClass.EPD266_Port);
+            this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30001, myConfigClass.RowsLED_Port);
             this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.storageUI_WT32.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            this.storageUI_WT32.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30020, myConfigClass.Pannel35_Port);
+          
             if (flag_DBConfigInit == true)
             {
                 this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);

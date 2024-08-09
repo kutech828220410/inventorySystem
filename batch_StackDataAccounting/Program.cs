@@ -472,10 +472,11 @@ namespace batch_StackDataAccounting
             table.DBName = serverSettingClass.DBName;
             sQLControl_Locker_Index_Table.Init(table);
       
-            drawerUI_EPD_583.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None);
-            storageUI_EPD_266.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None);
-            storageUI_WT32.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None);
-            rowsLEDUI.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None);
+            drawerUI_EPD_583.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None ,0 , 28005);
+            storageUI_EPD_266.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 28000);
+            storageUI_WT32.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 28020);
+            rowsLEDUI.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 28001);
+           
             Function_從SQL取得儲位到本地資料();
             Function_從SQL取得儲位到雲端資料();
 
@@ -483,6 +484,7 @@ namespace batch_StackDataAccounting
             MyThread_取藥堆疊資料_儲位亮燈.AutoRun(true);
             MyThread_取藥堆疊資料_儲位亮燈.AutoStop(true);
             MyThread_取藥堆疊資料_儲位亮燈.Add_Method(sub_Program_取藥堆疊資料_儲位亮燈);
+            MyThread_取藥堆疊資料_儲位亮燈.SetSleepTime(50);
             MyThread_取藥堆疊資料_儲位亮燈.Trigger();
 
             while (true)
@@ -492,12 +494,13 @@ namespace batch_StackDataAccounting
                 sub_Program_取藥堆疊資料_狀態更新();
                 sub_Program_取藥堆疊資料_流程作業檢查();
                 sub_Program_取藥堆疊資料_入賬檢查();
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(10);
             }
         }
 
         static public List<object> Function_從入賬資料取得儲位(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object>();
             List<object> list_value = new List<object>();
             List<Box> boxes = List_EPD583_入賬資料.SortByCode(藥品碼);
             List<Storage> storages = List_EPD266_入賬資料.SortByCode(藥品碼);
@@ -526,6 +529,7 @@ namespace batch_StackDataAccounting
         }
         static public void Function_從入賬資料取得儲位(string 藥品碼, ref List<string> TYPE, ref List<object> values)
         {
+            if (藥品碼.StringIsEmpty()) return;
             List<object> list_value = Function_從入賬資料取得儲位(藥品碼);
             TYPE.Clear();
             values.Clear();
@@ -542,6 +546,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object[]> Function_取得異動儲位資訊從入賬資料(string 藥品碼, string 效期, string 批號, int 異動量)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object[]>();
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
             Function_從入賬資料取得儲位(藥品碼, ref 儲位_TYPE, ref 儲位);
@@ -655,6 +660,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object> Function_從本地資料取得儲位(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object>();
             List<object> list_value = new List<object>();
             List<Box> boxes = List_EPD583_本地資料.SortByCode(藥品碼);
             List<Storage> storages = List_EPD266_本地資料.SortByCode(藥品碼);
@@ -758,6 +764,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object> Function_從SQL取得儲位到雲端資料(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object>();
             List<object> list_value = new List<object>();
             List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
             List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
@@ -794,6 +801,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object> Function_從雲端資料取得儲位(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object>();
             List<object> list_value = new List<object>();
             List<Box> boxes = List_EPD583_雲端資料.SortByCode(藥品碼);
             List<Storage> storages = List_EPD266_雲端資料.SortByCode(藥品碼);
@@ -822,6 +830,7 @@ namespace batch_StackDataAccounting
         }
         static public int Function_從雲端資料取得庫存(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return 0;
             int 庫存 = 0;
             List<object> list_value = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
@@ -839,6 +848,7 @@ namespace batch_StackDataAccounting
         }
         static public void Function_從雲端資料取得儲位(string 藥品碼, ref List<string> TYPE, ref List<object> values)
         {
+            if (藥品碼.StringIsEmpty()) return;
             List<object> list_value = Function_從雲端資料取得儲位(藥品碼);
             TYPE.Clear();
             values.Clear();
@@ -855,6 +865,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object[]> Function_新增效期至雲端資料(string 藥品碼, int 異動量, string 效期, string 批號)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object[]>();
             object value_device = new object();
             List<object[]> 儲位資訊 = new List<object[]>();
             List<string> TYPE = new List<string>();
@@ -955,6 +966,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, int 異動量, string 效期, string IP)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object[]>();
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
             Function_從雲端資料取得儲位(藥品碼, ref 儲位_TYPE, ref 儲位);
@@ -988,6 +1000,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, int 異動量, string 效期)
         {
+            if(藥品碼.StringIsEmpty()) return new List<object[]>();
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
             Function_從雲端資料取得儲位(藥品碼, ref 儲位_TYPE, ref 儲位);
@@ -1021,6 +1034,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object[]> Function_取得異動儲位資訊從雲端資料(string 藥品碼, int 異動量)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object[]>();
             List<object> 儲位 = new List<object>();
             List<string> 儲位_TYPE = new List<string>();
             Function_從雲端資料取得儲位(藥品碼, ref 儲位_TYPE, ref 儲位);
@@ -1282,6 +1296,7 @@ namespace batch_StackDataAccounting
         }
         static public List<object> Function_從SQL取得儲位到本地資料(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return new List<object>();
             List<object> list_value = new List<object>();
             List<Box> boxes = List_EPD583_本地資料.SortByCode(藥品碼);
 
@@ -1319,6 +1334,7 @@ namespace batch_StackDataAccounting
         }
         static public int Function_從SQL取得庫存(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return 0;
             int 庫存 = 0;
             List<object> list_value = Function_從SQL取得儲位到本地資料(藥品碼);
             for (int i = 0; i < list_value.Count; i++)
@@ -1339,6 +1355,7 @@ namespace batch_StackDataAccounting
         }
         static public int Function_從本地資料取得庫存(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return 0;
             int 庫存 = 0;
             List<object> list_value = Function_從本地資料取得儲位(藥品碼);
             for (int i = 0; i < list_value.Count; i++)
@@ -1359,11 +1376,13 @@ namespace batch_StackDataAccounting
 
         static public void Function_儲位刷新(string 藥品碼)
         {
+            if (藥品碼.StringIsEmpty()) return;
             List<string> list_lock_IP = new List<string>();
             Function_儲位刷新(藥品碼, ref list_lock_IP);
         }
         static public void Function_儲位刷新(string 藥品碼, ref List<string> list_lock_IP)
         {
+            if (藥品碼.StringIsEmpty()) return;
             List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
             List<Task> taskList = new List<Task>();
             List<string> list_IP = new List<string>();
@@ -1445,7 +1464,7 @@ namespace batch_StackDataAccounting
 
         static public void Function_儲位亮燈(string 藥品碼, Color color)
         {
-
+            if (藥品碼.StringIsEmpty()) return;
             List<string> list_lock_IP = new List<string>();
             Function_儲位亮燈(藥品碼, color, ref list_lock_IP);
         }
@@ -2248,6 +2267,42 @@ namespace batch_StackDataAccounting
             }
             sQLControl_取藥堆疊子資料.UpdateByDefulteExtra(null, list_serch_values);
         }
+        static public void Function_設定配藥完成()
+        {
+            List<object[]> list_取藥堆疊母資料 = Function_取藥堆疊資料_取得母資料();
+            List<object[]> list_取藥堆疊子資料 = Function_取藥堆疊資料_取得子資料();
+            List<object[]> list_取藥堆疊子資料_buf = new List<object[]>();
+            List<object[]> list_取藥堆疊子資料_replace = new List<object[]>();
+            List<object[]> list_取藥堆疊母資料_replace = new List<object[]>();
+            list_取藥堆疊母資料 = list_取藥堆疊母資料.GetRows((int)enum_取藥堆疊母資料.狀態, enum_取藥堆疊母資料_狀態.作業完成.GetEnumName());
+            for (int i = 0; i < list_取藥堆疊母資料.Count; i++)
+            {
+                string Master_GUID = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.GUID].ObjectToString();
+                string 藥碼 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品碼].ObjectToString();
+                string 藥名 = list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.藥品名稱].ObjectToString();
+                //if (Function_取藥堆疊資料_取得作業模式(list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.複盤))
+                //{
+                //    voice.SpeakOnTask("請輸入盤點數量");
+                //    Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel($"藥碼:{藥碼} 藥名:{藥名}  請輸入盤點數量");
+                //    dialog_NumPannel.ShowDialog();
+                //    list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.盤點量] = dialog_NumPannel.Value.ToString();
+                //    list_取藥堆疊母資料_replace.Add(list_取藥堆疊母資料[i]);
+                //}
+
+                list_取藥堆疊子資料_buf = list_取藥堆疊子資料.GetRows((int)enum_取藥堆疊子資料.Master_GUID, Master_GUID);
+                for (int k = 0; k < list_取藥堆疊子資料_buf.Count; k++)
+                {
+                    list_取藥堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.致能] = true.ToString();
+                    list_取藥堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.流程作業完成] = true.ToString();
+                    list_取藥堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.配藥完成] = true.ToString();
+                    list_取藥堆疊子資料_buf[k][(int)enum_取藥堆疊子資料.調劑結束] = true.ToString();
+                    list_取藥堆疊子資料_replace.Add(list_取藥堆疊子資料_buf[k]);
+                }
+            }
+            if (list_取藥堆疊母資料_replace.Count > 0) sQLControl_取藥堆疊母資料.UpdateByDefulteExtra(null ,list_取藥堆疊母資料_replace);
+            if (list_取藥堆疊子資料_replace.Count > 0) sQLControl_取藥堆疊子資料.UpdateByDefulteExtra(null, list_取藥堆疊子資料_replace);
+        }
+
 
         static public void Function_從SQL取得儲位到入賬資料(string 藥品碼)
         {
@@ -2297,8 +2352,6 @@ namespace batch_StackDataAccounting
             if (list_value.Count == 0) return -999;
             return 庫存;
         }
-
-
 
         #region PLC_取藥堆疊資料_檢查資料
         static public bool PLC_Device_取藥堆疊資料_檢查資料 = false;
@@ -3409,6 +3462,8 @@ namespace batch_StackDataAccounting
                     cnt_Program_取藥堆疊資料_流程作業檢查 = 65535;
                 }
             }
+
+            Function_設定配藥完成();
         }
         static public void cnt_Program_取藥堆疊資料_流程作業檢查_檢查按下(ref int cnt)
         {

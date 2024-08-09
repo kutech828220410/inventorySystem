@@ -288,10 +288,10 @@ namespace 調劑台管理系統
             allTask.Wait();
 
             Function_抽屜解鎖(list_lock_IP);
-
+            Console.WriteLine($"#1 commonSapceClasses : {commonSapceClasses.Count}");
             if (list_堆疊母資料_add.Count > 0)
             {
-
+             
                 commonSapceClasses.WriteTakeMedicineStack(list_堆疊母資料_add);
                 this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
             }
@@ -1295,11 +1295,11 @@ namespace 調劑台管理系統
         {
             if (藥品碼.StringIsEmpty()) return new List<string>();
             List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
-            List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
-            for (int i = 0; i < list_commonSpace_device.Count; i++)
-            {
-                list_Device.Add(list_commonSpace_device[i]);
-            }
+            //List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
+            //for (int i = 0; i < list_commonSpace_device.Count; i++)
+            //{
+            //    list_Device.Add(list_commonSpace_device[i]);
+            //}
             bool flag_led_refresh = true;
             List<string> list_IP = new List<string>();
             for (int i = 0; i < list_Device.Count; i++)
@@ -1449,11 +1449,11 @@ namespace 調劑台管理系統
         {
             if (藥品碼.StringIsEmpty()) return new List<string>();
             List<object> list_Device = this.Function_從本地資料取得儲位(藥品碼);
-            List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
-            for (int i = 0; i < list_commonSpace_device.Count; i++)
-            {
-                list_Device.Add(list_commonSpace_device[i]);
-            }
+            //List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
+            //for (int i = 0; i < list_commonSpace_device.Count; i++)
+            //{
+            //    list_Device.Add(list_commonSpace_device[i]);
+            //}
             bool flag_led_refresh = true;
             List<string> list_IP = new List<string>();
             for (int i = 0; i < list_Device.Count; i++)

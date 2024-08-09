@@ -34,16 +34,22 @@ namespace 調劑台管理系統
                 table.Port = commonSapceClasses[0].serverSettingClass.Port;
                 table.DBName = commonSapceClasses[0].serverSettingClass.DBName;
                 sQLControl.Init(table);
-                sQLControl.AddRows(null ,list_堆疊母資料_add);
+                List<string> list_str = (from temp in list_堆疊母資料_add
+                                         select temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString()).ToList();
+
+                for (int k = 0; k < list_str.Count; k++)
+                {
+                    Console.WriteLine($"刪除共用台資料,名稱 : {list_str[k]}");
+                    sQLControl.DeleteByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, list_str[k]);
+                }
+
+ 
+              
+                sQLControl.AddRows(null, list_堆疊母資料_add);
+                Console.WriteLine($"新增共用台資料,共<{list_堆疊母資料_add.Count}>筆");
             }
         }
-        public static void WriteTakeMedicineStack(this List<CommonSapceClass> commonSapceClasses, List<takeMedicineStackClass> takeMedicineStackClasses)
-        {
-            for (int i = 0; i < commonSapceClasses.Count; i++)
-            {
-                commonSapceClasses[i].WriteTakeMedicineStack(takeMedicineStackClasses);
-            }
-        }
+
     }
     public class CommonSapceClass
     {

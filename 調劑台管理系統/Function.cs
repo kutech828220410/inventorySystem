@@ -1342,7 +1342,7 @@ namespace 調劑台管理系統
 
             List<object> list_Device = new List<object>();
             list_Device.LockAdd(Function_從雲端資料取得儲位(藥品碼));
-            list_Device.LockAdd(Function_從共用區取得儲位(藥品碼));
+            //list_Device.LockAdd(Function_從共用區取得儲位(藥品碼));
             Task allTask;
             List<Task> taskList = new List<Task>();
             List<string> list_IP = new List<string>();
