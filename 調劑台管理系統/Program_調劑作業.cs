@@ -65,9 +65,9 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.庫存量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(90, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.總異動量);
-            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量);
-      
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(75, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.結存量); 
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
+
             if ((myConfigClass.Scanner01_COMPort.StringIsEmpty() == true) && myConfigClass.Scanner02_COMPort.StringIsEmpty()
                 && (myConfigClass.Scanner03_COMPort.StringIsEmpty() && myConfigClass.Scanner04_COMPort.StringIsEmpty()))
             {
