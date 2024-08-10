@@ -116,7 +116,7 @@ namespace 中藥調劑系統
                 {
                     Storage storage = storages[i];
                     storages[i].LED_Bytes = storages[i].LED_Bytes_buf;
-                    Console.WriteLine($"[StorageUI_EPD_266 上傳亮燈資料]({rowsLEDs[i].IP})");
+                    Console.WriteLine($"[StorageUI_EPD_266 上傳亮燈資料]({storages[i].IP})");
                     tasks.Add(Task.Run(new Action(delegate
                     {
                         _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, storages[i].LightState.LightColor);

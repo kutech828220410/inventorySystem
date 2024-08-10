@@ -472,10 +472,10 @@ namespace batch_StackDataAccounting
             table.DBName = serverSettingClass.DBName;
             sQLControl_Locker_Index_Table.Init(table);
       
-            drawerUI_EPD_583.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None ,0 , 28005);
-            storageUI_EPD_266.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 28000);
-            storageUI_WT32.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 28020);
-            rowsLEDUI.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 28001);
+            drawerUI_EPD_583.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None ,0 , 29005);
+            storageUI_EPD_266.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 29000);
+            storageUI_WT32.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 29020);
+            rowsLEDUI.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 29001);
            
             Function_從SQL取得儲位到本地資料();
             Function_從SQL取得儲位到雲端資料();
