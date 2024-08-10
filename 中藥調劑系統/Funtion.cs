@@ -115,11 +115,11 @@ namespace 中藥調劑系統
                 if (StorageUI_EPD_266.Check_LEDBytesBuf_Diff(storages[i]))
                 {
                     Storage storage = storages[i];
-                    storages[i].LED_Bytes = storages[i].LED_Bytes_buf;
-                    Console.WriteLine($"[StorageUI_EPD_266 上傳亮燈資料]({storages[i].IP})");
+                    storage.LED_Bytes = storage.LED_Bytes_buf;
+                    Console.WriteLine($"[StorageUI_EPD_266 上傳亮燈資料]({storage.IP})");
                     tasks.Add(Task.Run(new Action(delegate
                     {
-                        _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, storages[i].LightState.LightColor);
+                        _storageUI_EPD_266.Set_Stroage_LED_UDP(storage.IP, storage.Port, storage.LED_Bytes);
                     })));
                 }
             }
