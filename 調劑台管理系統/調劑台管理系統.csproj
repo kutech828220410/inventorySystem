@@ -447,6 +447,12 @@
     <Compile Include="Dialog\Dialog_藥品群組_新增群組.Designer.cs">
       <DependentUpon>Dialog_藥品群組_新增群組.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_藥品搜索.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_藥品搜索.Designer.cs">
+      <DependentUpon>Dialog_藥品搜索.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -725,6 +731,9 @@
     <EmbeddedResource Include="Dialog\Dialog_藥品群組_新增群組.resx">
       <DependentUpon>Dialog_藥品群組_新增群組.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_藥品搜索.resx">
+      <DependentUpon>Dialog_藥品搜索.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -825,6 +834,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\icon-for-medicine-map-papper-removebg-preview.png" />
     <None Include="Resources\light-off-removebg-preview1.png" />
     <None Include="Resources\warnning-message-removebg-preview.png" />
     <None Include="Resources\plus-removebg-preview.png" />

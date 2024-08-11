@@ -24,6 +24,8 @@ namespace 調劑台管理系統
         {
             [Description("日期時間,VARCHAR,50,None")]
             日期時間,
+            [Description("領藥號,VARCHAR,50,None")]
+            領藥號,
             [Description("床號,VARCHAR,50,None")]
             床號,
             [Description("病人姓名,VARCHAR,50,None")]
@@ -38,6 +40,10 @@ namespace 調劑台管理系統
             結存量,
             [Description("盤點量,VARCHAR,50,None")]
             盤點量,
+            [Description("使用時間,VARCHAR,50,None")]
+            使用時間,
+            [Description("備註,VARCHAR,50,None")]
+            備註,
         }
         private int _交班對點_管制結存_現在頁面 = 0;
         public  int 交班對點_管制結存_現在頁面
@@ -67,16 +73,20 @@ namespace 調劑台管理系統
 
 
             SQLUI.Table table = new SQLUI.Table(new enum_交班對點_管制結存_紀錄顯示());
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.RowsHeight = 50;
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Init(table);
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnVisible(false, new enum_交班對點_管制結存_紀錄顯示().GetEnumNames());
-            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleCenter, enum_交班對點_管制結存_紀錄顯示.日期時間);
-            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_交班對點_管制結存_紀錄顯示.床號);
-            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.病人姓名);
-            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.病歷號);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_交班對點_管制結存_紀錄顯示.日期時間);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班對點_管制結存_紀錄顯示.領藥號);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_交班對點_管制結存_紀錄顯示.床號);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.病人姓名);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.病歷號);
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.調劑人);
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.交易量);
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.結存量);
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.盤點量);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.使用時間);
+            this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleRight, enum_交班對點_管制結存_紀錄顯示.備註);
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.DataGridRefreshEvent += SqL_DataGridView_交班對點_管制結存_紀錄顯示_DataGridRefreshEvent;
             this.sqL_DataGridView_交班對點_管制結存_紀錄顯示.DataGridRowsChangeRefEvent += SqL_DataGridView_交班對點_管制結存_紀錄顯示_DataGridRowsChangeRefEvent;
             this.plC_UI_Init.Add_Method(this.sub_Program_交班作業_管制結存);
@@ -294,8 +304,11 @@ namespace 調劑台管理系統
                 value[(int)enum_交班對點_管制結存_紀錄顯示.交易量] = transactionsClasses[i].交易量;
                 value[(int)enum_交班對點_管制結存_紀錄顯示.結存量] = transactionsClasses[i].結存量;
                 value[(int)enum_交班對點_管制結存_紀錄顯示.盤點量] = transactionsClasses[i].盤點量;
+                value[(int)enum_交班對點_管制結存_紀錄顯示.使用時間] = transactionsClasses[i].領用時間;
+                value[(int)enum_交班對點_管制結存_紀錄顯示.領藥號] = transactionsClasses[i].領藥號;
+                value[(int)enum_交班對點_管制結存_紀錄顯示.備註] = transactionsClasses[i].備註;
 
-                if(transactionsClasses[i].交易量.StringIsInt32())
+                if (transactionsClasses[i].交易量.StringIsInt32())
                 {
                     總消耗量 += transactionsClasses[i].交易量.StringToInt32();
                 }

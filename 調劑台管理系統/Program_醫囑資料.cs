@@ -41,7 +41,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.Set_ColumnVisible(false, new enum_醫囑資料().GetEnumNames());
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥局代碼);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥袋類型);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥袋條碼);
+            //this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥袋條碼);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品碼);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.藥品名稱);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.領藥號);
@@ -53,12 +53,13 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.費用別);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病房);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(50, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.床號);
-            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病人姓名);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病人姓名);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.病歷號);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_醫囑資料.交易量);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.開方日期);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.過帳時間);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.展藥時間);
+            this.sqL_DataGridView_醫令資料.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_醫囑資料.藥師姓名);
             this.sqL_DataGridView_醫令資料.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_醫囑資料.備註);
 
             this.sqL_DataGridView_醫令資料.DataGridRowsChangeRefEvent += SqL_DataGridView_醫令資料_DataGridRowsChangeRefEvent;

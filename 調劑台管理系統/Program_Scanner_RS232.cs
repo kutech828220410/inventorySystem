@@ -70,10 +70,10 @@ namespace 調劑台管理系統
             get
             {
                 int index = 0;
-                if (MySerialPort_Scanner01.IsConnected) index++;
-                if (MySerialPort_Scanner02.IsConnected) index++;
-                if (MySerialPort_Scanner03.IsConnected) index++;
-                if (MySerialPort_Scanner04.IsConnected) index++;
+                if (myConfigClass.Scanner01_COMPort.StringIsEmpty() == false) index++;
+                if (myConfigClass.Scanner02_COMPort.StringIsEmpty() == false) index++;
+                if (myConfigClass.Scanner03_COMPort.StringIsEmpty() == false) index++;
+                if (myConfigClass.Scanner04_COMPort.StringIsEmpty() == false) index++;
                 return index;
             }
         }

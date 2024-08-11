@@ -256,10 +256,9 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_調劑作業_手輸醫令.MouseDownEvent += PlC_RJ_Button_調劑作業_手輸醫令_MouseDownEvent;
             this.plC_RJ_Button_調劑作業_條碼輸入.MouseDownEvent += PlC_RJ_Button_調劑作業_條碼輸入_MouseDownEvent;
             this.plC_RJ_Button_調劑作業_病歷號輸入.MouseDownEvent += PlC_RJ_Button_調劑作業_病歷號輸入_MouseDownEvent;
-            this.plC_RJ_Button_調劑作業_藥品調出.MouseDownEvent += PlC_RJ_Button_調劑作業_藥品調出_MouseDownEvent;
             this.plC_RJ_Button_調劑作業_藥品調入.MouseDownEvent += PlC_RJ_Button_調劑作業_藥品調入_MouseDownEvent;
             this.plC_RJ_Button_交班對點.MouseDownEvent += PlC_RJ_Button_交班對點_MouseDownEvent;
-
+            this.plC_RJ_Button_藥品搜索.MouseDownEvent += PlC_RJ_Button_藥品搜索_MouseDownEvent;
             this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
             this.MyThread_領藥_RFID.AutoRun(true);
@@ -281,7 +280,8 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(Program_調劑作業);
         }
 
-  
+     
+
         bool flag_調劑作業_頁面更新 = false;
         private void Program_調劑作業()
         {
@@ -303,6 +303,7 @@ namespace 調劑台管理系統
 
         private void sub_Program_領藥台_01()
         {
+            if (Dialog_藥品搜索.IsShown) return;
             if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 if (PLC_Device_領藥台_01_閒置登出時間.Value != 0)
@@ -372,6 +373,7 @@ namespace 調劑台管理系統
         }
         private void sub_Program_領藥台_02()
         {
+            if (Dialog_藥品搜索.IsShown) return;
             if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 this.Invoke(new Action(delegate
@@ -468,6 +470,7 @@ namespace 調劑台管理系統
         }
         private void sub_Program_領藥台_03()
         {
+            if (Dialog_藥品搜索.IsShown) return;
             if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 this.Invoke(new Action(delegate
@@ -562,6 +565,7 @@ namespace 調劑台管理系統
         }
         private void sub_Program_領藥台_04()
         {
+            if (Dialog_藥品搜索.IsShown) return;
             if (this.plC_ScreenPage_Main.PageText == "調劑作業" || true)
             {
                 this.Invoke(new Action(delegate
@@ -1964,7 +1968,11 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
-
+                List<string> Codes = (from temp in list_醫令資料
+                                      select temp[(int)enum_醫囑資料.藥品碼].ObjectToString()).Distinct().ToList();
+                List<medClass> medClasses = medClass.get_med_clouds_by_codes(API_Server, Codes);
+                List<medClass> medClasses_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
 
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
@@ -2040,7 +2048,21 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.效期 = 效期;
                     takeMedicineStackClass.收支原因 = 收支原因;
 
-                    if (pLC_Device.Bool == false)
+                    bool flag_檢查過帳 = false;
+                    medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(藥品碼);
+                    if (medClasses_buf.Count > 0)
+                    {
+                        if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                        if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                    }
+
+                    if (pLC_Device.Bool == false || flag_檢查過帳 == true)
                     {
                         if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
@@ -3940,7 +3962,11 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
-
+                List<string> Codes = (from temp in list_醫令資料
+                                      select temp[(int)enum_醫囑資料.藥品碼].ObjectToString()).Distinct().ToList();
+                List<medClass> medClasses = medClass.get_med_clouds_by_codes(API_Server, Codes);
+                List<medClass> medClasses_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
 
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
@@ -4016,7 +4042,21 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.收支原因 = 收支原因;
                     takeMedicineStackClass.ID = ID;
 
-                    if (pLC_Device.Bool == false)
+                    bool flag_檢查過帳 = false;
+                    medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(藥品碼);
+                    if (medClasses_buf.Count > 0)
+                    {
+                        if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                        if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                    }
+
+                    if (pLC_Device.Bool == false || flag_檢查過帳 == true)
                     {
                         if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
@@ -5918,7 +5958,11 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
-
+                List<string> Codes = (from temp in list_醫令資料
+                                      select temp[(int)enum_醫囑資料.藥品碼].ObjectToString()).Distinct().ToList();
+                List<medClass> medClasses = medClass.get_med_clouds_by_codes(API_Server, Codes);
+                List<medClass> medClasses_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
 
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
@@ -5993,7 +6037,21 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.收支原因 = 收支原因;
                     takeMedicineStackClass.ID = ID;
 
-                    if (pLC_Device.Bool == false)
+                    bool flag_檢查過帳 = false;
+                    medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(藥品碼);
+                    if (medClasses_buf.Count > 0)
+                    {
+                        if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                        if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                    }
+
+                    if (pLC_Device.Bool == false || flag_檢查過帳 == true)
                     {
                         if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
@@ -7880,7 +7938,11 @@ namespace 調劑台管理系統
 
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
 
-
+                List<string> Codes = (from temp in list_醫令資料
+                                      select temp[(int)enum_醫囑資料.藥品碼].ObjectToString()).Distinct().ToList();
+                List<medClass> medClasses = medClass.get_med_clouds_by_codes(API_Server, Codes);
+                List<medClass> medClasses_buf = new List<medClass>();
+                Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
 
                 for (int i = 0; i < list_醫令資料.Count; i++)
                 {
@@ -7955,7 +8017,21 @@ namespace 調劑台管理系統
                     takeMedicineStackClass.收支原因 = 收支原因;
                     takeMedicineStackClass.ID = ID;
 
-                    if (pLC_Device.Bool == false)
+                    bool flag_檢查過帳 = false;
+                    medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(藥品碼);
+                    if (medClasses_buf.Count > 0)
+                    {
+                        if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                        if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
+                        {
+                            flag_檢查過帳 = true;
+                        }
+                    }
+
+                    if (pLC_Device.Bool == false || flag_檢查過帳 == true)
                     {
                         if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                         {
@@ -8848,6 +8924,13 @@ namespace 調劑台管理系統
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
             PLC_Device pLC_Device = new PLC_Device(plC_CheckBox_領藥不檢查是否掃碼領藥過.讀取元件位置);
+
+            List<string> Codes = (from temp in list_醫令資料
+                                  select temp[(int)enum_醫囑資料.藥品碼].ObjectToString()).Distinct().ToList();
+            List<medClass> medClasses = medClass.get_med_clouds_by_codes(API_Server, Codes);
+            List<medClass> medClasses_buf = new List<medClass>();
+            Dictionary<string, List<medClass>> keyValuePairs_medcloud = medClasses.CoverToDictionaryByCode();
+
             for (int i = 0; i < list_醫令資料.Count; i++)
             {
 
@@ -8896,7 +8979,21 @@ namespace 調劑台管理系統
                 takeMedicineStackClass.收支原因 = 收支原因;
                 takeMedicineStackClass.ID = ID;
 
-                if (pLC_Device.Bool == false)
+                bool flag_檢查過帳 = false;
+                medClasses_buf = keyValuePairs_medcloud.SortDictionaryByCode(藥品碼);
+                if (medClasses_buf.Count > 0)
+                {
+                    if (medClasses_buf[0].高價藥品.ToUpper() == true.ToString().ToUpper())
+                    {
+                        flag_檢查過帳 = true;
+                    }
+                    if (medClasses_buf[0].管制級別.StringIsEmpty() == false && medClasses_buf[0].管制級別 != "N")
+                    {
+                        flag_檢查過帳 = true;
+                    }
+                }
+
+                if (pLC_Device.Bool == false || flag_檢查過帳 == true)
                 {
                     if (list_醫令資料[i][(int)enum_醫囑資料.狀態].ObjectToString() == enum_醫囑資料_狀態.已過帳.GetEnumName())
                     {
@@ -9028,11 +9125,6 @@ namespace 調劑台管理系統
 
             }));
         }
-        private void PlC_RJ_Button_調劑作業_藥品調出_MouseDownEvent(MouseEventArgs mevent)
-        {
-            Dialog_藥品調出 dialog_藥品調出 = new Dialog_藥品調出();
-            dialog_藥品調出.ShowDialog();
-        }
         private void PlC_RJ_Button_調劑作業_藥品調入_MouseDownEvent(MouseEventArgs mevent)
         {
             Dialog_藥品調入 dialog_藥品調入 = new Dialog_藥品調入();
@@ -9104,6 +9196,11 @@ namespace 調劑台管理系統
         {
             Dialog_交班對點 dialog_交班對點 = new Dialog_交班對點();
             dialog_交班對點.ShowDialog();
+        }
+        private void PlC_RJ_Button_藥品搜索_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_藥品搜索 dialog_藥品搜索 = new Dialog_藥品搜索();
+            dialog_藥品搜索.ShowDialog();
         }
         private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
         {

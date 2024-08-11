@@ -172,8 +172,6 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(this.sub_Program_藥品資料_藥檔資料);
         }
 
- 
-
         bool flag_藥品資料_藥檔資料_頁面更新 = false;
         private void sub_Program_藥品資料_藥檔資料()
         {
@@ -225,6 +223,7 @@ namespace 調劑台管理系統
                 this.flag_藥品資料_藥檔資料_頁面更新 = false;
             }
         }
+
         #region Function
     
         public string Function_藥品資料_藥檔資料_從藥品條碼取得藥品碼(string 藥品條碼)
@@ -892,6 +891,7 @@ namespace 調劑台管理系統
                 PlC_RJ_Button_藥品資料_藥品條碼_搜尋_MouseDownEvent(null);
             }
         }
+
         private void PlC_RJ_Button_藥品資料_顯示全部_MouseDownEvent(MouseEventArgs mevent)
         {
             this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(true);
