@@ -21,7 +21,7 @@ namespace HIS_DB_Lib
         住院號,
         [Description("病歷號,VARCHAR,50,NONE")]
         病歷號,
-        [Description("藥局,VARCHAR,10,NONE")]
+        [Description("藥局,VARCHAR,10,INDEX")]
         藥局,
         [Description("護理站,VARCHAR,10,NONE")]
         護理站,
@@ -39,7 +39,7 @@ namespace HIS_DB_Lib
         科別,
         [Description("財務,VARCHAR,10,NONE")]
         財務,
-        [Description("入院日期,DATETIME,50,INDEX")]
+        [Description("入院日期,DATETIME,30,INDEX")]
         入院日期,
         [Description("訪視號碼,VARCHAR,10,NONE")]
         訪視號碼,
@@ -81,6 +81,8 @@ namespace HIS_DB_Lib
         肌酸酐,
         [Description("估算腎小球過濾率,VARCHAR,10,NONE")]
         估算腎小球過濾率,
+        [Description("丙氨酸氨基轉移酶,VARCHAR,10,NONE")]
+        丙氨酸氨基轉移酶,
         [Description("鉀離子,VARCHAR,10,NONE")]
         鉀離子,
         [Description("鈣離子,VARCHAR,10,NONE")]
@@ -110,11 +112,11 @@ namespace HIS_DB_Lib
         public string 住院號 { get; set; }
         [JsonPropertyName("histno")]
         public string 病歷號 { get; set; }
-        [JsonPropertyName("pharm_code")]
+        [JsonPropertyName("pharm")]
         public string 藥局 { get; set; }
         [JsonPropertyName("nurnum")]
         public string 護理站 { get; set; }
-        [JsonPropertyName("hbedno")]
+        [JsonPropertyName("bednum")]
         public string 床號 { get; set; }
         [JsonPropertyName("bed_status")]
         public string 占床狀態 { get; set; }
@@ -164,30 +166,33 @@ namespace HIS_DB_Lib
         public string 其他管路使用狀況 { get; set; }
         [JsonPropertyName("hallergy")]
         public string 過敏史 { get; set; }
-        [JsonPropertyName("rtalb")]
+        [JsonPropertyName("alb")]
         public string 白蛋白 { get; set; }
-        [JsonPropertyName("rtcrea")]
+        [JsonPropertyName("scr")]
         public string 肌酸酐 { get; set; }
-        [JsonPropertyName("rtegfrm")]
+        [JsonPropertyName("egfr")]
         public string 估算腎小球過濾率 { get; set; }
-        [JsonPropertyName("rtalt")]
+        [JsonPropertyName("alt")]
         public string 丙氨酸氨基轉移酶 { get; set; }
-        [JsonPropertyName("rtk")]
+        [JsonPropertyName("k")]
         public string 鉀離子 { get; set; }
-        [JsonPropertyName("rtca")]
+        [JsonPropertyName("ca")]
         public string 鈣離子 { get; set; }
-        [JsonPropertyName("rttb")]
+        [JsonPropertyName("tb")]
         public string 總膽紅素 { get; set; }
-        [JsonPropertyName("rtna")]
+        [JsonPropertyName("na")]
         public string 鈉離子 { get; set; }
-        [JsonPropertyName("rtwbc")]
+        [JsonPropertyName("wbc")]
         public string 白血球 { get; set; }
-        [JsonPropertyName("rthgb")]
+        [JsonPropertyName("hgb")]
         public string 血紅素 { get; set; }
-        [JsonPropertyName("rtptl")]
+        [JsonPropertyName("plt")]
         public string 血小板 { get; set; }
-        [JsonPropertyName("rtinr")]
+        [JsonPropertyName("inr")]
         public string 國際標準化比率 { get; set; }
+        [JsonPropertyName("cpoe")]
+        public List<medCpoeClass> 處方 { get; set; }
+
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
             public int Compare(medCarInfoClass x, medCarInfoClass y)
@@ -195,14 +200,13 @@ namespace HIS_DB_Lib
                 return (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
             }
         }
-        static public List<medCarInfoClass> update_bed_list(string API_Server, List<medCarInfoClass> medCarInfoClasses)
+        static public List<medCarInfoClass> update_med_carinfo(string API_Server, List<medCarInfoClass> medCarInfoClasses)
         {
             List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
-            string url = $"{API_Server}/api/med_cart/update_bed_list";
+            string url = $"{API_Server}/api/med_cart/update_med_carinfo";
 
             returnData returnData = new returnData();
             returnData.Data = medCarInfoClasses;
-            //returnData.ServerName = ServerName;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
@@ -214,6 +218,7 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCarInfoClass;
         }
+        
         static public List<medCarInfoClass> get_patient_by_bedNum(string API_Server, List<string> Info)
         {
             List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();

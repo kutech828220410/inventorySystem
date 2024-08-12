@@ -21,6 +21,8 @@ namespace HIS_DB_Lib
         Master_GUID,
         [Description("調劑狀態,VARCHAR,10,INDEX")]
         調劑狀態,
+        [Description("藥局,VARCHAR,10,INDEX")]
+        藥局,
         [Description("護理站,VARCHAR,10,INDEX")]
         護理站,
         [Description("住院號,VARCHAR,50,INDEX")]
@@ -29,13 +31,9 @@ namespace HIS_DB_Lib
         序號,
         [Description("狀態,VARCHAR,10,NONE")]
         狀態,
-        [Description("開始日期,VARCHAR,10,NONE")]
-        開始日期,
-        [Description("開始時間,VARCHAR,10,NONE")]
+        [Description("開始時間,DATETIME,20,NONE")]
         開始時間,
-        [Description("結束日期,VARCHAR,10,NONE")]
-        結束日期,
-        [Description("結束時間,VARCHAR,10,NONE")]
+        [Description("結束時間,DATETIME,20,NONE")]
         結束時間,
         [Description("藥碼,VARCHAR,10,NONE")]
         藥碼,
@@ -99,9 +97,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
         [JsonPropertyName("MAster_GUID")]
-        public string MAster_GUID { get; set; }
+        public string Master_GUID { get; set; }
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        [JsonPropertyName("pharm")]
+        public string 藥局 { get; set; }
         [JsonPropertyName("nurnum")]
         public string 護理站 { get; set; }
         [JsonPropertyName("caseno")]
@@ -170,5 +170,23 @@ namespace HIS_DB_Lib
         public string 交互作用 { get; set; }
         [JsonPropertyName("ddic")]
         public string 交互作用等級 { get; set; }
+        static public List<medCpoeClass> update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses, List<string> valueAry)
+        {
+            List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
+            string url = $"{API_Server}/api/med_cart/update_med_cpoe";
+
+            returnData returnData = new returnData();
+            returnData.Data = medCpoeClasses;
+            returnData.ValueAry = valueAry;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medCpoeClass;
+        }
     }
 }
