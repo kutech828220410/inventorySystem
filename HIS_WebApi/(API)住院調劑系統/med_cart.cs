@@ -158,6 +158,7 @@ namespace HIS_WebApi
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
 
                 List<medCarInfoClass> sql_medCar = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
+
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
 
 
@@ -188,7 +189,7 @@ namespace HIS_WebApi
                         List<medCpoeClass> targetCpoes = (from temp in sql_medCpoe
                                                           where temp.住院號 == 住院號
                                                           select temp).ToList();
-                            
+                        if (targetCpoes.Count == 0) continue;                          
                         bool allDispensed = targetCpoes.All(med => med.調劑狀態 == "已調劑");
                         if (allDispensed) medCarInfoClass.調劑狀態 = "已全部調劑";
                         medCart_sql_replace.Add(medCarInfoClass);                                                                                   

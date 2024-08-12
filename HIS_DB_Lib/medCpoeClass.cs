@@ -41,7 +41,7 @@ namespace HIS_DB_Lib
         頻次代碼,
         [Description("頻次屬性,VARCHAR,10,NONE")]
         頻次屬性,
-        [Description("藥品名,VARCHAR,10,NONE")]
+        [Description("藥品名,VARCHAR,150,NONE")]
         藥品名,
         [Description("途徑,VARCHAR,10,NONE")]
         途徑,

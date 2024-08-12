@@ -33,7 +33,7 @@ namespace HIS_DB_Lib
         調劑狀態,
         [Description("性別,VARCHAR,10,NONE")]
         性別,
-        [Description("出生日期,VARCHAR,10,NONE")]
+        [Description("出生日期,DATETIME,30,NONE")]
         出生日期,
         [Description("科別,VARCHAR,20,NONE")]
         科別,
