@@ -15,8 +15,14 @@ namespace HIS_DB_Lib
     [EnumDescription("med_cpoe")]
     public enum enum_med_cpoe
     {
-        [Description("調劑狀態,VARCHAR,10,NONE")]
+        [Description("GUID,VARCHAR,50,PRIMARY")]
+        GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
+        Master_GUID,
+        [Description("調劑狀態,VARCHAR,10,INDEX")]
         調劑狀態,
+        [Description("護理站,VARCHAR,10,INDEX")]
+        護理站,
         [Description("住院號,VARCHAR,50,INDEX")]
         住院號,
         [Description("序號,VARCHAR,10,NONE")]
@@ -90,20 +96,22 @@ namespace HIS_DB_Lib
     }
     public class medCpoeClass
     {
+        [JsonPropertyName("GUID")]
+        public string GUID { get; set; }
+        [JsonPropertyName("MAster_GUID")]
+        public string MAster_GUID { get; set; }
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        [JsonPropertyName("nurnum")]
+        public string 護理站 { get; set; }
         [JsonPropertyName("caseno")]
         public string 住院號 { get; set; }
         [JsonPropertyName("ordseq")]
         public string 序號 { get; set; }
         [JsonPropertyName("status")]
         public string 狀態 { get; set; }
-        [JsonPropertyName("bgndt2")]
-        public string 開始日期 { get; set; }
-        [JsonPropertyName("bgntm")]
+        [JsonPropertyName("starttm")]
         public string 開始時間 { get; set; }
-        [JsonPropertyName("enddt2")]
-        public string 結束日期 { get; set; }
         [JsonPropertyName("endtm")]
         public string 結束時間 { get; set; }
         [JsonPropertyName("code")]
@@ -138,7 +146,7 @@ namespace HIS_DB_Lib
         public string 處方醫師姓名 { get; set; }
         [JsonPropertyName("luser")]
         public string 操作人員 { get; set; }
-        [JsonPropertyName("lrxid")]
+        [JsonPropertyName("pharm_code")]
         public string 藥局代碼 { get; set; }
         [JsonPropertyName("cnt02")]
         public string 大瓶點滴 { get; set; }
@@ -162,6 +170,5 @@ namespace HIS_DB_Lib
         public string 交互作用 { get; set; }
         [JsonPropertyName("ddic")]
         public string 交互作用等級 { get; set; }
-
     }
 }

@@ -268,6 +268,83 @@ namespace HIS_DB_Lib
             [JsonPropertyName("rtinr")]
             public string 國際標準化比率 { get; set; }
 
+            public class medOrderClass
+            {
+                [JsonPropertyName("GUID")]
+                public string GUID { get; set; }
+                [JsonPropertyName("MAster_GUID")]
+                public string MAster_GUID { get; set; }
+                [JsonPropertyName("dispens_status")]
+                public string 調劑狀態 { get; set; }
+                [JsonPropertyName("caseno")]
+                public string 住院號 { get; set; }
+                [JsonPropertyName("ordseq")]
+                public string 序號 { get; set; }
+                [JsonPropertyName("status")]
+                public string 狀態 { get; set; }
+                [JsonPropertyName("starttm")]
+                public string 開始時間 { get; set; }
+                [JsonPropertyName("endtm")]
+                public string 結束時間 { get; set; }
+                [JsonPropertyName("code")]
+                public string 藥碼 { get; set; }
+                [JsonPropertyName("freqn")]
+                public string 頻次代碼 { get; set; }
+                [JsonPropertyName("frqatr")]
+                public string 頻次屬性 { get; set; }
+                [JsonPropertyName("name")]
+                public string 藥品名 { get; set; }
+                [JsonPropertyName("route")]
+                public string 途徑 { get; set; }
+                [JsonPropertyName("lqnty")]
+                public string 數量 { get; set; }
+                [JsonPropertyName("dosage")]
+                public string 劑量 { get; set; }
+                [JsonPropertyName("dunit")]
+                public string 單位 { get; set; }
+                [JsonPropertyName("durat")]
+                public string 期限 { get; set; }
+                [JsonPropertyName("dspmf")]
+                public string 自動包藥機 { get; set; }
+                [JsonPropertyName("chemo")]
+                public string 化癌分類 { get; set; }
+                [JsonPropertyName("self")]
+                public string 自購 { get; set; }
+                [JsonPropertyName("albumi")]
+                public string 血液製劑註記 { get; set; }
+                [JsonPropertyName("orsign")]
+                public string 處方醫師 { get; set; }
+                [JsonPropertyName("signam")]
+                public string 處方醫師姓名 { get; set; }
+                [JsonPropertyName("luser")]
+                public string 操作人員 { get; set; }
+                [JsonPropertyName("pharm_code")]
+                public string 藥局代碼 { get; set; }
+                [JsonPropertyName("cnt02")]
+                public string 大瓶點滴 { get; set; }
+                [JsonPropertyName("brfnm")]
+                public string LKFLAG { get; set; }
+                [JsonPropertyName("rank")]
+                public string 排序 { get; set; }
+                [JsonPropertyName("pharnum")]
+                public string 判讀藥師代碼 { get; set; }
+                [JsonPropertyName("flag")]
+                public string 判讀FLAG { get; set; }
+                [JsonPropertyName("udngt")]
+                public string 勿磨 { get; set; }
+                [JsonPropertyName("anticg")]
+                public string 抗生素等級 { get; set; }
+                [JsonPropertyName("samedg")]
+                public string 重複用藥 { get; set; }
+                [JsonPropertyName("dspdy")]
+                public string 配藥天數 { get; set; }
+                [JsonPropertyName("ddi")]
+                public string 交互作用 { get; set; }
+                [JsonPropertyName("ddic")]
+                public string 交互作用等級 { get; set; }
+            }
+
+            
 
             public class ICP_By_bedNum : IComparer<medCarInfoClass>
             {

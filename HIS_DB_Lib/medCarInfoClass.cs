@@ -75,13 +75,31 @@ namespace HIS_DB_Lib
         其他管路使用狀況,
         [Description("過敏史,VARCHAR,10,NONE")]
         過敏史,
-        [Description("檢驗結果,LONGTEXT,500,NONE")]
-        檢驗結果,
-        [Description("處方,LONGTEXT,10,NONE")]
-        處方,
-        [Description("管制藥,LONGTEXT,10,NONE")]
-        管制藥           
+        [Description("白蛋白,VARCHAR,10,NONE")]
+        白蛋白,
+        [Description("肌酸酐,VARCHAR,10,NONE")]
+        肌酸酐,
+        [Description("估算腎小球過濾率,VARCHAR,10,NONE")]
+        估算腎小球過濾率,
+        [Description("鉀離子,VARCHAR,10,NONE")]
+        鉀離子,
+        [Description("鈣離子,VARCHAR,10,NONE")]
+        鈣離子,
+        [Description("總膽紅素,VARCHAR,10,NONE")]
+        總膽紅素,
+        [Description("鈉離子,VARCHAR,10,NONE")]
+        鈉離子,
+        [Description("白血球,VARCHAR,10,NONE")]
+        白血球,
+        [Description("血紅素,VARCHAR,10,NONE")]
+        血紅素,
+        [Description("血小板,VARCHAR,10,NONE")]
+        血小板,
+        [Description("國際標準化比率,VARCHAR,10,NONE")]
+        國際標準化比率
+
     }
+
     public class medCarInfoClass
     {
         [JsonPropertyName("GUID")]
@@ -94,7 +112,7 @@ namespace HIS_DB_Lib
         public string 病歷號 { get; set; }
         [JsonPropertyName("pharm_code")]
         public string 藥局 { get; set; }
-        [JsonPropertyName("hnursta")]
+        [JsonPropertyName("nurnum")]
         public string 護理站 { get; set; }
         [JsonPropertyName("hbedno")]
         public string 床號 { get; set; }
@@ -104,7 +122,7 @@ namespace HIS_DB_Lib
         public string 調劑狀態 { get; set; }
         [JsonPropertyName("hsexc")]
         public string 性別 { get; set; }
-        [JsonPropertyName("pbirth8")]
+        [JsonPropertyName("birthday")]
         public string 出生日期 { get; set; }
         [JsonPropertyName("psectc")]
         public string 科別 { get; set; }
@@ -118,9 +136,9 @@ namespace HIS_DB_Lib
         public string 診所名稱 { get; set; }
         [JsonPropertyName("prnam")]
         public string 醫生姓名 { get; set; }
-        [JsonPropertyName("pbhight")]
+        [JsonPropertyName("hight")]
         public string 身高 { get; set; }
-        [JsonPropertyName("pbweight")]
+        [JsonPropertyName("weight")]
         public string 體重 { get; set; }
         [JsonPropertyName("pbbsa")]
         public string 體表面積 { get; set; }
@@ -146,12 +164,30 @@ namespace HIS_DB_Lib
         public string 其他管路使用狀況 { get; set; }
         [JsonPropertyName("hallergy")]
         public string 過敏史 { get; set; }
-        [JsonPropertyName("testResult")]
-        public List<testResult> 檢驗結果 { get; set; }
-        [JsonPropertyName("prescription")]
-        public List<medCpoeClass> 處方 { get; set; }
-        [JsonPropertyName("control_med")]
-        public List<medCpoeClass> 管制藥 { get; set; }
+        [JsonPropertyName("rtalb")]
+        public string 白蛋白 { get; set; }
+        [JsonPropertyName("rtcrea")]
+        public string 肌酸酐 { get; set; }
+        [JsonPropertyName("rtegfrm")]
+        public string 估算腎小球過濾率 { get; set; }
+        [JsonPropertyName("rtalt")]
+        public string 丙氨酸氨基轉移酶 { get; set; }
+        [JsonPropertyName("rtk")]
+        public string 鉀離子 { get; set; }
+        [JsonPropertyName("rtca")]
+        public string 鈣離子 { get; set; }
+        [JsonPropertyName("rttb")]
+        public string 總膽紅素 { get; set; }
+        [JsonPropertyName("rtna")]
+        public string 鈉離子 { get; set; }
+        [JsonPropertyName("rtwbc")]
+        public string 白血球 { get; set; }
+        [JsonPropertyName("rthgb")]
+        public string 血紅素 { get; set; }
+        [JsonPropertyName("rtptl")]
+        public string 血小板 { get; set; }
+        [JsonPropertyName("rtinr")]
+        public string 國際標準化比率 { get; set; }
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
             public int Compare(medCarInfoClass x, medCarInfoClass y)
@@ -239,31 +275,5 @@ namespace HIS_DB_Lib
 
     }
 
-    public class testResult
-    {
-        [JsonPropertyName("rtalb")]
-        public string 白蛋白 { get; set; }
-        [JsonPropertyName("rtcrea")]
-        public string 肌酸酐 { get; set; }
-        [JsonPropertyName("rtegfrm")]
-        public string 估算腎小球過濾率 { get; set; }
-        [JsonPropertyName("rtalt")]
-        public string 丙氨酸氨基轉移酶 { get; set; }
-        [JsonPropertyName("rtk")]
-        public string 鉀離子 { get; set; }
-        [JsonPropertyName("rtca")]
-        public string 鈣離子 { get; set; }
-        [JsonPropertyName("rttb")]
-        public string 總膽紅素 { get; set; }
-        [JsonPropertyName("rtna")]
-        public string 鈉離子 { get; set; }
-        [JsonPropertyName("rtwbc")]
-        public string 白血球 { get; set; }
-        [JsonPropertyName("rthgb")]
-        public string 血紅素 { get; set; }
-        [JsonPropertyName("rtptl")]
-        public string 血小板 { get; set; }
-        [JsonPropertyName("rtinr")]
-        public string 國際標準化比率 { get; set; }
-    }
+    
 }
