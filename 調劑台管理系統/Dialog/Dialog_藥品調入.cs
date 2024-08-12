@@ -112,7 +112,7 @@ namespace 調劑台管理系統
             }
             if (flag_IsMedOn == false)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查藥品儲位", 1500);
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無藥品儲位", 1500);
                 dialog_AlarmForm.ShowDialog();
                 return;
             }

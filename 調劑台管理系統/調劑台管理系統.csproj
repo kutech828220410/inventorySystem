@@ -447,10 +447,10 @@
     <Compile Include="Dialog\Dialog_藥品群組_新增群組.Designer.cs">
       <DependentUpon>Dialog_藥品群組_新增群組.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog_藥品搜索.cs">
+    <Compile Include="Dialog\Dialog_藥品搜索.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog_藥品搜索.Designer.cs">
+    <Compile Include="Dialog\Dialog_藥品搜索.Designer.cs">
       <DependentUpon>Dialog_藥品搜索.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
@@ -731,7 +731,7 @@
     <EmbeddedResource Include="Dialog\Dialog_藥品群組_新增群組.resx">
       <DependentUpon>Dialog_藥品群組_新增群組.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog_藥品搜索.resx">
+    <EmbeddedResource Include="Dialog\Dialog_藥品搜索.resx">
       <DependentUpon>Dialog_藥品搜索.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">

@@ -2116,44 +2116,72 @@ namespace HIS_WebApi
                 List<Task> tasks = new List<Task>();
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    medClasses_cloud = Get_med_cloud(serverSettingClasses_med);
+                    string[] Codes = returnData.ValueAry[0].Split(",");
+                    if (Codes.Length == 1)
+                    {
+                        medClass _medClass = Get_med_cloud(serverSettingClasses_med, Codes[0]);
+                        medClasses_cloud.Add(_medClass);
+                    }
+                    else
+                    {
+                        medClasses_cloud = Get_med_cloud(serverSettingClasses_med);
+                    }
+               
                     keyValuePairs_medClasses_cloud = medClasses_cloud.CoverToDictionaryByCode();
                 })));
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    list_med_src = sQLControl_med.GetAllRows(null);
-
                     string[] Codes = returnData.ValueAry[0].Split(",");
-                    for (int i = 0; i < Codes.Length; i++)
+                    if (Codes.Length == 1)
                     {
-                        if (returnData.Value == "前綴")
-                        {
-                            list_med_buf = list_med_src.GetRowsStartWithByLike((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
-                        }
-                        else if (returnData.Value == "標準")
-                        {
-                            list_med_buf = list_med_src.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
-                        }
-                        else
-                        {
-                            list_med_buf = list_med_src.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
-                        }
-
+                        list_med = sQLControl_med.GetRowsByDefult(null, (int)enum_藥品資料_藥檔資料.藥品碼, Codes[0]);
                     }
-                    list_med = list_med_buf;
+                    else
+                    {
+                  
+                        list_med_src = sQLControl_med.GetAllRows(null);
+
+                        for (int i = 0; i < Codes.Length; i++)
+                        {
+                            if (returnData.Value == "前綴")
+                            {
+                                list_med_buf = list_med_src.GetRowsStartWithByLike((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
+                            }
+                            else if (returnData.Value == "標準")
+                            {
+                                list_med_buf = list_med_src.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
+                            }
+                            else
+                            {
+                                list_med_buf = list_med_src.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
+                            }
+
+                        }
+                        list_med = list_med_buf;
+                    }
+
+   
+          
                     medClasses_src = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
                     keyValuePairs_medClasses_src = medClasses_src.CoverToDictionaryByCode();
                 })));
                 tasks.Add(Task.Run(new Action(delegate
                 {
-                    deviceBasics = deviceController.Function_Get_device(serverSettingClasses[0]);
-                    keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
-                })));
-                tasks.Add(Task.Run(new Action(delegate
-                {
+                    string[] Codes = returnData.ValueAry[0].Split(",");
+                    if(Codes.Length == 1)
+                    {
+                        deviceBasics = deviceController.Function_讀取儲位_By_Code(serverSettingClasses[0], Codes[0]);
+                        keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
+                    }
+                    else
+                    {
+                        deviceBasics = deviceController.Function_Get_device(serverSettingClasses[0]);
 
-
+                        keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
+                    }
+              
                 })));
+
                 Task.WhenAll(tasks).Wait();
 
 
