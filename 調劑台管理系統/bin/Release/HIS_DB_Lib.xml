@@ -826,6 +826,16 @@
             儲位描述。
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medClass.ServerName">
+            <summary>
+            ServerName。
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medClass.ServerType">
+            <summary>
+            ServerName。
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medConfigClass.GUID">
             <summary>
             唯一KEY.

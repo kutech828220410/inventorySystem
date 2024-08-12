@@ -2645,7 +2645,127 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 以藥碼搜尋[調劑台藥檔]
+        /// </summary>
+        /// <remarks>
+        /// <code>
+        /// {
+        ///     "Data": 
+        ///     {
+        ///         
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        [藥碼]
+        ///        [servername1,servername2]
+        ///     ]
+        ///     
+        /// }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        [Route("get_datas_dps_medClass_by_code")]
+        [HttpPost]
+        public string POST_get_datas_dps_medClass_by_code([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            string TableName = "medicine_page";
+            returnData.ServerType = "調劑台";
+            returnData.Method = "get_dps_medClass_by_code";
+            //returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
 
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼][ServerName1,ServerName2]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 藥碼 = returnData.ValueAry[0];
+                string[] ServerNames = returnData.ValueAry[1].Split(',');
+
+                //取得雲端藥檔資料
+                medClass medClass_cloud = Get_med_cloud(serverSettingClasses_med, 藥碼);
+                medClass[] medClasses = new medClass[ServerNames.Length];
+                if(medClass_cloud == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"線上藥檔查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<Task> tasks = new List<Task>();
+
+                for (int i = 0; i < ServerNames.Length; i++)
+                {
+                    int index = i;
+                    string serverName = ServerNames[i];
+                    string serverType = "調劑台";
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        List<H_Pannel_lib.DeviceBasic> deviceBasics = new List<H_Pannel_lib.DeviceBasic>();
+                        List<H_Pannel_lib.DeviceBasic> deviceBasics_buf = new List<H_Pannel_lib.DeviceBasic>();
+
+                        Dictionary<string, List<DeviceBasic>> keyValuePairs_deviceBasics = new Dictionary<string, List<DeviceBasic>>();
+
+                        List<ServerSettingClass> _serverSettingClasses = serverSettingClasses.MyFind(serverName, serverType, "本地端");
+                        if (_serverSettingClasses.Count == 0) return;
+                        string Server = _serverSettingClasses[0].Server;
+                        string DB = _serverSettingClasses[0].DBName;
+                        string UserName = _serverSettingClasses[0].User;
+                        string Password = _serverSettingClasses[0].Password;
+                        uint Port = (uint)_serverSettingClasses[0].Port.StringToInt32();
+                        string TableName = "medicine_page";
+                        SQLControl sQLControl_med = new SQLControl(Server, DB, TableName, UserName, Password, Port, SSLMode);
+                        List<object[]> list_med = sQLControl_med.GetRowsByDefult(null, (int)enum_藥品資料_藥檔資料.藥品碼, 藥碼);
+                        if (list_med.Count > 0)
+                        {
+                            medClass _medClass = list_med[0].SQLToClass<medClass, enum_藥品資料_藥檔資料>();
+
+                            deviceBasics = deviceController.Function_讀取儲位_By_Code(_serverSettingClasses[0], 藥碼);
+                            keyValuePairs_deviceBasics = deviceBasics.CoverToDictionaryByCode();
+
+                            deviceBasics_buf = keyValuePairs_deviceBasics.SortDictionaryByCode(藥碼);
+                            int inventory = 0;
+                            _medClass.DeviceBasics = deviceBasics_buf;
+                            for (int k = 0; k < deviceBasics_buf.Count; k++)
+                            {
+                                inventory += deviceBasics_buf[k].Inventory.StringToInt32();
+                            }
+                            _medClass.庫存 = inventory.ToString();
+
+                            _medClass.ServerName = serverName;
+                            _medClass.ServerType = serverType;
+
+                            medClasses[index] = _medClass;
+                        }
+                    })));
+
+
+                }
+                Task.WhenAll(tasks).Wait();
+
+
+
+         
+                returnData.Data = medClasses;
+                returnData.Code = 200;
+                returnData.Result = $"藥碼 : {returnData.ValueAry[0]} ,藥檔取得成功 ,共<{medClasses.Length}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                string json_out = returnData.JsonSerializationt(false);
+                return json_out;
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                return returnData.JsonSerializationt();
+            }
+
+        }
 
         [Route("get_by_code")]
         [HttpPost]
