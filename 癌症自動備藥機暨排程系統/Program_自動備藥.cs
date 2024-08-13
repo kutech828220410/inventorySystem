@@ -670,11 +670,18 @@ namespace 癌症備藥機
 
             List<object[]> list_value_常溫 = new List<object[]>();
             List<object[]> list_value_冷藏 = new List<object[]>();
+            List<StockClass> stockClasses = dialog_備藥清單.stockClasses;
+            List<string> list_IP = new List<string>();
             Function_取得異動儲位資訊從本地資料(dialog_備藥清單.stockClasses, ref list_value_常溫, ref list_value_冷藏);
             list_自動備藥_開始備藥_常溫 = list_value_常溫;
             list_自動備藥_開始備藥_冷藏 = list_value_冷藏;
             if (PLC_Device_自動備藥_開始備藥.Bool == false)
             {
+                for (int i = 0; i < stockClasses.Count; i++)
+                {
+                    list_IP.LockAdd(Function_儲位亮燈_取得層架亮燈IP(stockClasses[i].Code, Color.Blue));
+                }
+                Function_儲位亮燈_層架亮燈(list_IP);
                 PLC_Device_自動備藥_開始備藥.Bool = true;
                 Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("開始備藥", 1500, Color.Green);
                 dialog_AlarmForm.ShowDialog();
