@@ -150,6 +150,14 @@ namespace 癌症備藥機
                     {
                         list_value_冷藏.Add(list_value[i]);
                     }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
                 }
             }
             return list_value;
@@ -272,6 +280,81 @@ namespace 癌症備藥機
             return null;
         }
 
+        public List<string> Function_儲位亮燈_取得層架亮燈IP(string 藥品碼, Color color)
+        {
+            if (藥品碼.StringIsEmpty()) return new List<string>();
+            List<object> list_Device = Function_從本地資料取得儲位(藥品碼);
+            //List<object> list_commonSpace_device = Function_從共用區取得儲位(藥品碼);
+            //for (int i = 0; i < list_commonSpace_device.Count; i++)
+            //{
+            //    list_Device.Add(list_commonSpace_device[i]);
+            //}
+            bool flag_led_refresh = true;
+            List<string> list_IP = new List<string>();
+            for (int i = 0; i < list_Device.Count; i++)
+            {
+                Device device = list_Device[i] as Device;
+                string IP = device.IP;
+
+                if (device == null) continue;
+                if (device.DeviceType == DeviceType.RowsLED)
+                {
+                    RowsDevice rowsDevice = list_Device[i] as RowsDevice;
+                    if (rowsDevice != null)
+                    {
+                        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(rowsDevice.IP);
+                  
+                        rowsLED.LED_Bytes = RowsLEDUI.Get_Rows_LEDBytes(ref rowsLED.LED_Bytes, rowsDevice, color);
+                    }
+
+                    list_IP.Add(IP);
+                }
+
+
+
+            }
+            list_IP = (from temp in list_IP
+                       select temp).Distinct().ToList();
+            return list_IP;
+        }
+        public void Function_儲位亮燈_層架亮燈(List<string> list_IP)
+        {
+            try
+            {
+                list_IP = (from temp in list_IP
+                           select temp).Distinct().ToList();
+                Task allTask;
+                List<Task> taskList = new List<Task>();
+                for (int i = 0; i < list_IP.Count; i++)
+                {
+                    string IP = list_IP[i];
+                    taskList.Add(Task.Run(() =>
+                    {
+                        RowsLED rowsLED = List_RowsLED_本地資料.SortByIP(IP);
+            
+                        taskList.Add(Task.Run(() =>
+                        {
+                            this.rowsLEDUI.Set_Rows_LED_UDP(rowsLED);
+
+                        }));
+
+
+                    }));
+
+                }
+                allTask = Task.WhenAll(taskList);
+                allTask.Wait();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+
+            }
+
+        }
 
         static private List<medClass> Function_取得藥檔資料()
         {

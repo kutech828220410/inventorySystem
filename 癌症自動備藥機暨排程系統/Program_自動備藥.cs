@@ -692,15 +692,22 @@ namespace 癌症備藥機
             Dialog_手動選擇備藥品 dialog_手動選擇備藥 = new Dialog_手動選擇備藥品(this.sqL_DataGridView_出入庫作業);
             dialog_手動選擇備藥.ShowDialog();
             if (dialog_手動選擇備藥.DialogResult != DialogResult.Yes) return;
+            List<StockClass> stockClasses = dialog_手動選擇備藥.Value;
+            List<string> list_IP = new List<string>();
             List<object[]> list_value_常溫 = new List<object[]>();
             List<object[]> list_value_冷藏 = new List<object[]>();
-            List<object[]> list_value = Function_取得異動儲位資訊從本地資料(dialog_手動選擇備藥.Value,ref list_value_常溫,ref list_value_冷藏);
+            List<object[]> list_value = Function_取得異動儲位資訊從本地資料(stockClasses, ref list_value_常溫,ref list_value_冷藏);
             list_自動備藥_開始備藥_常溫 = list_value_常溫;
             list_自動備藥_開始備藥_冷藏 = list_value_冷藏;
             if (PLC_Device_自動備藥_開始備藥.Bool == false)
             {
                 PLC_Device_自動備藥_開始備藥.Bool = true;
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("開始備藥", 1500, Color.Green);
+                for (int i = 0; i < stockClasses.Count; i++)
+                {
+                    list_IP.LockAdd(Function_儲位亮燈_取得層架亮燈IP(stockClasses[i].Code, Color.Blue));
+                }
+                Function_儲位亮燈_層架亮燈(list_IP);
+                  Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("開始備藥", 1500, Color.Green);
                 dialog_AlarmForm.ShowDialog();
                 return;
             }

@@ -270,6 +270,10 @@ namespace 癌症備藥機
         }
         private void Function_登入畫面_登出()
         {
+            for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
+            {
+                rowsLEDUI.Set_Rows_LED_Clear_UDP(List_RowsLED_本地資料[i]);
+            }
             sessionClass_登入畫面 = null;
             this.Invoke(new Action(delegate
             {
