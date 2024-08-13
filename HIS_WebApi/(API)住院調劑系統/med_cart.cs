@@ -620,7 +620,7 @@ namespace HIS_WebApi
         ///     {
         ///         "Value":"GUID"
         ///             
-        ///         "ValueAry":["藥品名"]
+        ///         "ValueAry":["藥品碼"]
         ///     }
         /// </code>
         /// </remarks>
@@ -675,7 +675,7 @@ namespace HIS_WebApi
                 }
                 foreach(var medCpoeClass in sql_medCpoe)
                 {
-                    if (returnData.ValueAry.Contains(medCpoeClass.藥品名))
+                    if (returnData.ValueAry.Contains(medCpoeClass.藥碼))
                     {
                         medCpoeClass.調劑狀態 = "已調劑";
                         medCpoe_sql_replace.Add(medCpoeClass);
