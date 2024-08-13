@@ -680,6 +680,11 @@ namespace HIS_WebApi
                         medCpoeClass.調劑狀態 = "已調劑";
                         medCpoe_sql_replace.Add(medCpoeClass);
                     }
+                    else
+                    {
+                        medCpoeClass.調劑狀態 = "";
+                        medCpoe_sql_replace.Add(medCpoeClass);
+                    }
                 }
                 List<object[]> list_medCpoe_replace = new List<object[]>();
                 list_medCpoe_replace = medCpoe_sql_replace.ClassToSQL<medCpoeClass, enum_med_cpoe>();
@@ -774,6 +779,11 @@ namespace HIS_WebApi
                         }).ToList()
                     })
                     .ToList();
+                foreach(var medQtyClass in medQtyClasses)
+                {
+                    List<bedListClass> bedListClasses = medQtyClass.病床清單;
+                    bedListClasses.Sort(new bedListClass.ICP_By_bedNum());
+                }
 
 
 
@@ -790,6 +800,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }        
+        
 
     }
 

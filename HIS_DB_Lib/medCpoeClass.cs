@@ -250,5 +250,13 @@ namespace HIS_DB_Lib
         public string 劑量 { get; set; }
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        public class ICP_By_bedNum : IComparer<bedListClass>
+        {
+            public int Compare(bedListClass x, bedListClass y)
+            {
+                return (x.床號.StringToInt32()).CompareTo(y.床號.StringToInt32());
+            }
+        }
     }
+
 }
