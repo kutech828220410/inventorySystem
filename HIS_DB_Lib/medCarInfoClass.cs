@@ -41,8 +41,10 @@ namespace HIS_DB_Lib
         財務,
         [Description("入院日期,DATETIME,30,INDEX")]
         入院日期,
-        [Description("訪視號碼,VARCHAR,10,NONE")]
-        訪視號碼,
+        [Description("主治醫師代碼,VARCHAR,10,NONE")]
+        主治醫師代碼,
+        [Description("住院醫師代碼,VARCHAR,10,NONE")]
+        住院醫師代碼,
         [Description("診所名稱,VARCHAR,10,NONE")]
         診所名稱,
         [Description("醫生姓名,VARCHAR,10,NONE")]
@@ -133,7 +135,9 @@ namespace HIS_DB_Lib
         [JsonPropertyName("padmdt")]
         public string 入院日期 { get; set; }
         [JsonPropertyName("pvsdno")]
-        public string 訪視號碼 { get; set; }
+        public string 主治醫師代碼 { get; set; }
+        [JsonPropertyName("prdno")]
+        public string 住院醫師代碼 { get; set; }
         [JsonPropertyName("pvsnam")]
         public string 診所名稱 { get; set; }
         [JsonPropertyName("prnam")]
