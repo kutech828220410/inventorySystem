@@ -137,7 +137,6 @@
     <Compile Include="medPharmacyClass.cs" />
     <Compile Include="medPicClass.cs" />
     <Compile Include="medPriceClass.cs" />
-    <Compile Include="medQty.cs" />
     <Compile Include="MedRecheckLogClass.cs" />
     <Compile Include="medRecheckLogClass.cs" />
     <Compile Include="medShiftConfigClass.cs" />

@@ -245,14 +245,9 @@ namespace HIS_DB_Lib
         {
             List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_patient_by_hnursta";
-            string str = "";
-            for (int i = 0; i < Info.Count; i++)
-            {
-                str += Info[i];
-                if (i != Info.Count - 1) str += ",";
-            }
+            
             returnData returnData = new returnData();
-            returnData.ValueAry.Add(str);
+            returnData.ValueAry = Info;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();

@@ -25,8 +25,12 @@ namespace HIS_DB_Lib
         藥局,
         [Description("護理站,VARCHAR,10,INDEX")]
         護理站,
+        [Description("床號,VARCHAR,10,NONE")]
+        床號,
         [Description("住院號,VARCHAR,50,INDEX")]
         住院號,
+        [Description("調劑台,VARCHAR,30,NONE")]
+        調劑台,
         [Description("序號,VARCHAR,10,NONE")]
         序號,
         [Description("狀態,VARCHAR,10,NONE")]
@@ -104,8 +108,12 @@ namespace HIS_DB_Lib
         public string 藥局 { get; set; }
         [JsonPropertyName("nurnum")]
         public string 護理站 { get; set; }
+        [JsonPropertyName("bednum")]
+        public string 床號 { get; set; }
         [JsonPropertyName("caseno")]
         public string 住院號 { get; set; }
+        [JsonPropertyName("dispens_name")]
+        public string 調劑台 { get; set; }
         [JsonPropertyName("ordseq")]
         public string 序號 { get; set; }
         [JsonPropertyName("status")]
@@ -124,7 +132,7 @@ namespace HIS_DB_Lib
         public string 藥品名 { get; set; }
         [JsonPropertyName("route")]
         public string 途徑 { get; set; }
-        [JsonPropertyName("lqnty")]
+        [JsonPropertyName("qty")]
         public string 數量 { get; set; }
         [JsonPropertyName("dosage")]
         public string 劑量 { get; set; }
@@ -188,5 +196,59 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCpoeClass;
         }
+        static public List<medCpoeClass> check_dispense (string API_Server, string value, List<string> valueAry)
+        {
+            string url = $"{API_Server}/api/med_cart/check_dispense";
+            returnData returnData = new returnData();
+            returnData.Value = value;
+            returnData.ValueAry = valueAry;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
+            out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medCpoeClass;
+        }
+        static public List<medQtyClass> get_med_qty (string API_Server, List<string> valueAry)
+        {
+            string url = $"{API_Server}/api/med_cart/get_med_qty";
+            returnData returnData = new returnData();
+            returnData.ValueAry = valueAry;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medQtyClass> out_medQtyClass = new List<medQtyClass>();
+            out_medQtyClass = returnData.Data.ObjToClass<List<medQtyClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medQtyClass;
+        }
+    }
+    public class medQtyClass
+    {
+        [JsonPropertyName("code")]
+        public string 藥碼 { get; set; }
+        [JsonPropertyName("name")]
+        public string 藥品名 { get; set; }
+        [JsonPropertyName("dunit")]
+        public string 單位 { get; set; }
+        [JsonPropertyName("bed_list")]
+        public List<bedListClass> 病床清單 { get; set; }
+    }
+    public class bedListClass
+    {
+        [JsonPropertyName("bednum")]
+        public string 床號 { get; set; }
+        [JsonPropertyName("lqnty")]
+        public string 數量 { get; set; }
+        [JsonPropertyName("dosage")]
+        public string 劑量 { get; set; }
+        [JsonPropertyName("dispens_status")]
+        public string 調劑狀態 { get; set; }
     }
 }
