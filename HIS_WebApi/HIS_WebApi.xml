@@ -816,7 +816,7 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.med_cart.init_med_qty(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.med_cart.init_med_cpoe(HIS_DB_Lib.returnData)">
              <summary>
             初始化dbvm.med_qty資料庫
              </summary>
@@ -825,6 +825,37 @@
              <code>
                  {
                      "ValueAry":[""]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.update_med_carinfo(HIS_DB_Lib.returnData)">
+             <summary>
+            更新病床資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Data":[medCarInfoClass]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.update_med_cpoe(HIS_DB_Lib.returnData)">
+             <summary>
+            更新處方資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Data":[medCpoeClass]
+                     "ValueAry":["藥局","護理站"]
                  }
              </code>
              </remarks>
@@ -846,7 +877,7 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.med_cart.get_patient_by_hnursta(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.med_cart.get_bed_list_by_cart(HIS_DB_Lib.returnData)">
              <summary>
             以藥局和護理站取得資料
              </summary>
@@ -884,14 +915,9 @@
              以下為JSON範例
              <code>
                  {
-                     "Data":[
-                         {
-                             "phar": "藥車",
-                             "hnursta": "護理站",
-                             "hbedno": "床號"
-                         }
-                     ]
-                     "ValueAry":["藥品名"]
+                     "Value":"GUID"
+                         
+                     "ValueAry":["藥品碼"]
                  }
              </code>
              </remarks>
@@ -901,6 +927,21 @@
         <member name="M:HIS_WebApi.med_cart.get_med_qty(HIS_DB_Lib.returnData)">
              <summary>
             以護理站取得藥品總量
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[藥局, 護理站]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.handover(HIS_DB_Lib.returnData)">
+             <summary>
+            以藥局、護理站確認是否可交車
              </summary>
              <remarks>
              以下為JSON範例

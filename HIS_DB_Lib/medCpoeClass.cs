@@ -47,6 +47,8 @@ namespace HIS_DB_Lib
         頻次屬性,
         [Description("藥品名,VARCHAR,150,NONE")]
         藥品名,
+        [Description("中文名,VARCHAR,150,NONE")]
+        中文名,
         [Description("途徑,VARCHAR,10,NONE")]
         途徑,
         [Description("數量,VARCHAR,10,NONE")]
@@ -96,86 +98,214 @@ namespace HIS_DB_Lib
         [Description("交互作用等級,VARCHAR,10,NONE")]
         交互作用等級
     }
+    /// <summary>
+    /// medCpoeClass資料
+    /// </summary>
     public class medCpoeClass
     {
+        /// <summary>
+        /// GUID
+        /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// Master_GUID
+        /// </summary>
         [JsonPropertyName("MAster_GUID")]
         public string Master_GUID { get; set; }
+        /// <summary>
+        /// 調劑狀態
+        /// </summary>
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        /// <summary>
+        /// 藥局
+        /// </summary>
         [JsonPropertyName("pharm")]
         public string 藥局 { get; set; }
+        /// <summary>
+        /// 護理站
+        /// </summary>
         [JsonPropertyName("nurnum")]
         public string 護理站 { get; set; }
+        /// <summary>
+        /// 床號
+        /// </summary>
         [JsonPropertyName("bednum")]
         public string 床號 { get; set; }
+        /// <summary>
+        /// 住院號
+        /// </summary>
         [JsonPropertyName("caseno")]
         public string 住院號 { get; set; }
+        /// <summary>
+        /// 調劑台
+        /// </summary>
         [JsonPropertyName("dispens_name")]
         public string 調劑台 { get; set; }
+        /// <summary>
+        /// 序號
+        /// </summary>
         [JsonPropertyName("ordseq")]
         public string 序號 { get; set; }
+        /// <summary>
+        /// 狀態
+        /// </summary>
         [JsonPropertyName("status")]
         public string 狀態 { get; set; }
+        /// <summary>
+        /// 開始時間
+        /// </summary>
         [JsonPropertyName("starttm")]
         public string 開始時間 { get; set; }
+        /// <summary>
+        /// 結束時間
+        /// </summary>
         [JsonPropertyName("endtm")]
         public string 結束時間 { get; set; }
+        /// <summary>
+        /// 藥碼
+        /// </summary>
         [JsonPropertyName("code")]
         public string 藥碼 { get; set; }
+        /// <summary>
+        /// 頻次代碼
+        /// </summary>
         [JsonPropertyName("freqn")]
         public string 頻次代碼 { get; set; }
+        /// <summary>
+        /// 頻次屬性
+        /// </summary>
         [JsonPropertyName("frqatr")]
         public string 頻次屬性 { get; set; }
+        /// <summary>
+        /// 藥品名
+        /// </summary>
         [JsonPropertyName("name")]
         public string 藥品名 { get; set; }
+        /// <summary>
+        /// 中文名
+        /// </summary>
+        [JsonPropertyName("cht_name")]
+        public string 中文名 { get; set; }
+        /// <summary>
+        /// 途徑
+        /// </summary>
         [JsonPropertyName("route")]
         public string 途徑 { get; set; }
+        /// <summary>
+        /// 數量
+        /// </summary>
         [JsonPropertyName("qty")]
         public string 數量 { get; set; }
+        /// <summary>
+        /// 劑量
+        /// </summary>
         [JsonPropertyName("dosage")]
         public string 劑量 { get; set; }
+        /// <summary>
+        /// 單位
+        /// </summary>
         [JsonPropertyName("dunit")]
         public string 單位 { get; set; }
+        /// <summary>
+        /// 期限
+        /// </summary>
         [JsonPropertyName("durat")]
         public string 期限 { get; set; }
+        /// <summary>
+        /// 自動包藥機
+        /// </summary>
         [JsonPropertyName("dspmf")]
         public string 自動包藥機 { get; set; }
+        /// <summary>
+        /// 化癌分類
+        /// </summary>
         [JsonPropertyName("chemo")]
         public string 化癌分類 { get; set; }
+        /// <summary>
+        /// 自購
+        /// </summary>
         [JsonPropertyName("self")]
         public string 自購 { get; set; }
+        /// <summary>
+        /// 血液製劑註記
+        /// </summary>
         [JsonPropertyName("albumi")]
         public string 血液製劑註記 { get; set; }
+        /// <summary>
+        /// 處方醫師
+        /// </summary>
         [JsonPropertyName("orsign")]
         public string 處方醫師 { get; set; }
+        /// <summary>
+        /// 處方醫師姓名
+        /// </summary>
         [JsonPropertyName("signam")]
         public string 處方醫師姓名 { get; set; }
+        /// <summary>
+        /// 操作人員
+        /// </summary>
         [JsonPropertyName("luser")]
         public string 操作人員 { get; set; }
+        /// <summary>
+        /// 藥局代碼
+        /// </summary>
         [JsonPropertyName("pharm_code")]
         public string 藥局代碼 { get; set; }
+        /// <summary>
+        /// 大瓶點滴
+        /// </summary>
         [JsonPropertyName("cnt02")]
         public string 大瓶點滴 { get; set; }
+        /// <summary>
+        /// LKFLAG
+        /// </summary>
         [JsonPropertyName("brfnm")]
         public string LKFLAG { get; set; }
+        /// <summary>
+        /// 排序
+        /// </summary>
         [JsonPropertyName("rank")]
         public string 排序 { get; set; }
+        /// <summary>
+        /// 判讀藥師代碼
+        /// </summary>
         [JsonPropertyName("pharnum")]
         public string 判讀藥師代碼 { get; set; }
+        /// <summary>
+        /// 判讀FLAG
+        /// </summary>
         [JsonPropertyName("flag")]
         public string 判讀FLAG { get; set; }
+        /// <summary>
+        /// 勿磨
+        /// </summary>
         [JsonPropertyName("udngt")]
         public string 勿磨 { get; set; }
+        /// <summary>
+        /// 抗生素等級
+        /// </summary>
         [JsonPropertyName("anticg")]
         public string 抗生素等級 { get; set; }
+        /// <summary>
+        /// 重複用藥
+        /// </summary>
         [JsonPropertyName("samedg")]
         public string 重複用藥 { get; set; }
+        /// <summary>
+        /// 配藥天數
+        /// </summary>
         [JsonPropertyName("dspdy")]
         public string 配藥天數 { get; set; }
+        /// <summary>
+        /// 交互作用
+        /// </summary>
         [JsonPropertyName("ddi")]
         public string 交互作用 { get; set; }
+        /// <summary>
+        /// 交互作用等級
+        /// </summary>
         [JsonPropertyName("ddic")]
         public string 交互作用等級 { get; set; }
         static public List<medCpoeClass> update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses, List<string> valueAry)
@@ -228,6 +358,23 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medQtyClass;
         }
+        static public string handover(string API_Server, List<string> valueAry)
+        {
+            string url = $"{API_Server}/api/med_cart/handover";
+            returnData returnData = new returnData();
+            returnData.ValueAry = valueAry;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200)
+            {
+                returnData.Result = $"{valueAry[0]} {valueAry[1]} 尚有調劑未完成";
+                return returnData.JsonSerializationt(true);
+            }
+            return returnData.JsonSerializationt(true); ;
+        }
+       
     }
     public class medQtyClass
     {

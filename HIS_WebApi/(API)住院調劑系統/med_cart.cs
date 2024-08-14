@@ -33,7 +33,6 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("init_med_carinfo")]
-        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCarInfoClass物件", typeof(medCarInfoClass))]
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCpoeClass物件", typeof(medCpoeClass))]
         public string init_med_carinfo([FromBody] returnData returnData)
         {
@@ -72,6 +71,8 @@ namespace HIS_WebApi
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
         [HttpPost("init_med_cpoe")]
+        [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "medCarInfoClass物件", typeof(medCarInfoClass))]
+
         public string init_med_cpoe([FromBody] returnData returnData)
         {
 
@@ -185,13 +186,13 @@ namespace HIS_WebApi
                     {                       
                         medCarInfoClass medCarInfoClass = input_medCarInfo[i];
                         medCarInfoClass.GUID = targetPatient.GUID;
-                        string 住院號 = medCarInfoClass.住院號;
+                        string MasterGUID = targetPatient.GUID;
                         List<medCpoeClass> targetCpoes = (from temp in sql_medCpoe
-                                                          where temp.住院號 == 住院號
+                                                          where temp.Master_GUID == MasterGUID
                                                           select temp).ToList();
                         if (targetCpoes.Count == 0) continue;                          
-                        bool allDispensed = targetCpoes.All(med => med.調劑狀態 == "已調劑");
-                        if (allDispensed) medCarInfoClass.調劑狀態 = "已全部調劑";
+                        bool allDispensed = targetCpoes.All(med => med.調劑狀態 == "O");
+                        if (allDispensed) medCarInfoClass.調劑狀態 = "O";
                         medCart_sql_replace.Add(medCarInfoClass);                                                                                   
                     }
                 }
@@ -677,7 +678,7 @@ namespace HIS_WebApi
                 {
                     if (returnData.ValueAry.Contains(medCpoeClass.藥碼))
                     {
-                        medCpoeClass.調劑狀態 = "已調劑";
+                        medCpoeClass.調劑狀態 = "O";
                         medCpoe_sql_replace.Add(medCpoeClass);
                     }
                     else
@@ -799,8 +800,85 @@ namespace HIS_WebApi
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
-        }        
-        
+        }
+        /// <summary>
+        ///以藥局、護理站確認是否可交車
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "ValueAry":[藥局, 護理站]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("handover")]
+        public string handover([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 2)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 藥局 = returnData.ValueAry[0];
+                string 護理站 = returnData.ValueAry[1];
+
+                SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
+                List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+
+                List<medCpoeClass> medCpoeClasses = (from temp in sql_medCpoe
+                                                     where temp.護理站 == 護理站
+                                                     where temp.調劑狀態 ==""
+                                                     select temp).ToList();
+                if (medCpoeClasses.Count != 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Data = medCpoeClasses;
+                    returnData.Result = $"{藥局} {護理站} 尚有{medCpoeClasses.Count}調劑未完成";
+                    return returnData.JsonSerializationt(true);
+                }
+                                         
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                returnData.Result = $"{藥局} {護理站} 交車完成";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+       
+
 
     }
 

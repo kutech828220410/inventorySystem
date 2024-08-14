@@ -103,97 +103,234 @@ namespace HIS_DB_Lib
         國際標準化比率
 
     }
-
+    /// <summary>
+    /// medCarInfoClass 資料
+    /// </summary>
     public class medCarInfoClass
     {
+        /// <summary>
+        /// 唯一KEY
+        /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// 姓名
+        /// </summary>
         [JsonPropertyName("pnamec")]
         public string 姓名 { get; set; }
+        /// <summary>
+        /// 住院號
+        /// </summary>
         [JsonPropertyName("caseno")]
         public string 住院號 { get; set; }
+        /// <summary>
+        /// 病歷號
+        /// </summary>
         [JsonPropertyName("histno")]
         public string 病歷號 { get; set; }
+        /// <summary>
+        /// 藥局
+        /// </summary>
         [JsonPropertyName("pharm")]
         public string 藥局 { get; set; }
+        /// <summary>
+        /// 護理站
+        /// </summary>
         [JsonPropertyName("nurnum")]
         public string 護理站 { get; set; }
+        /// <summary>
+        /// 床號
+        /// </summary>
         [JsonPropertyName("bednum")]
         public string 床號 { get; set; }
+        /// <summary>
+        /// 占床狀態
+        /// </summary>
         [JsonPropertyName("bed_status")]
         public string 占床狀態 { get; set; }
+        /// <summary>
+        /// 調劑狀態
+        /// </summary>
         [JsonPropertyName("dispens_status")]
         public string 調劑狀態 { get; set; }
+        /// <summary>
+        /// 性別
+        /// </summary>
         [JsonPropertyName("hsexc")]
         public string 性別 { get; set; }
+        /// <summary>
+        /// 出生日期
+        /// </summary>
         [JsonPropertyName("birthday")]
         public string 出生日期 { get; set; }
+        /// <summary>
+        /// 科別
+        /// </summary>
         [JsonPropertyName("psectc")]
         public string 科別 { get; set; }
+        /// <summary>
+        /// 財務
+        /// </summary>
         [JsonPropertyName("pfinc")]
         public string 財務 { get; set; }
+        /// <summary>
+        /// 入院日期
+        /// </summary>
         [JsonPropertyName("padmdt")]
         public string 入院日期 { get; set; }
+        /// <summary>
+        /// 主治醫師代碼
+        /// </summary>
         [JsonPropertyName("pvsdno")]
         public string 主治醫師代碼 { get; set; }
+        /// <summary>
+        /// 住院醫師代碼
+        /// </summary>
         [JsonPropertyName("prdno")]
         public string 住院醫師代碼 { get; set; }
+        /// <summary>
+        /// 診所名稱
+        /// </summary>
         [JsonPropertyName("pvsnam")]
         public string 診所名稱 { get; set; }
+        /// <summary>
+        /// 醫生姓名
+        /// </summary>
         [JsonPropertyName("prnam")]
         public string 醫生姓名 { get; set; }
+        /// <summary>
+        /// 身高
+        /// </summary>
         [JsonPropertyName("hight")]
         public string 身高 { get; set; }
+        /// <summary>
+        /// 體重
+        /// </summary>
         [JsonPropertyName("weight")]
         public string 體重 { get; set; }
+        /// <summary>
+        /// 體表面積
+        /// </summary>
         [JsonPropertyName("pbbsa")]
         public string 體表面積 { get; set; }
+        /// <summary>
+        /// 國際疾病分類代碼1
+        /// </summary>
         [JsonPropertyName("hicd1")]
         public string 國際疾病分類代碼1 { get; set; }
+        /// <summary>
+        /// 疾病說明1
+        /// </summary>
         [JsonPropertyName("hicdtx1")]
         public string 疾病說明1 { get; set; }
+        /// <summary>
+        /// 國際疾病分類代碼2
+        /// </summary>
         [JsonPropertyName("hicd2")]
         public string 國際疾病分類代碼2 { get; set; }
+        /// <summary>
+        /// 疾病說明2
+        /// </summary>
         [JsonPropertyName("hicdtx2")]
         public string 疾病說明2 { get; set; }
+        /// <summary>
+        /// 國際疾病分類代碼3
+        /// </summary>
         [JsonPropertyName("hicd3")]
         public string 國際疾病分類代碼3 { get; set; }
+        /// <summary>
+        /// 疾病說明3
+        /// </summary>
         [JsonPropertyName("hicdtx3")]
         public string 疾病說明3 { get; set; }
+        /// <summary>
+        /// 國際疾病分類代碼4
+        /// </summary>
         [JsonPropertyName("hicd4")]
         public string 國際疾病分類代碼4 { get; set; }
+        /// <summary>
+        /// 疾病說明4
+        /// </summary>
         [JsonPropertyName("hicdtx4")]
         public string 疾病說明4 { get; set; }
+        /// <summary>
+        /// 鼻胃管使用狀況
+        /// </summary>
         [JsonPropertyName("ngtube")]
         public string 鼻胃管使用狀況 { get; set; }
+        /// <summary>
+        /// 其他管路使用狀況
+        /// </summary>
         [JsonPropertyName("tube")]
         public string 其他管路使用狀況 { get; set; }
+        /// <summary>
+        /// 過敏史
+        /// </summary>
         [JsonPropertyName("hallergy")]
         public string 過敏史 { get; set; }
+        /// <summary>
+        /// 白蛋白
+        /// </summary>
         [JsonPropertyName("alb")]
         public string 白蛋白 { get; set; }
+        /// <summary>
+        /// 肌酸酐
+        /// </summary>
         [JsonPropertyName("scr")]
         public string 肌酸酐 { get; set; }
+        /// <summary>
+        /// 估算腎小球過濾率
+        /// </summary>
         [JsonPropertyName("egfr")]
         public string 估算腎小球過濾率 { get; set; }
+        /// <summary>
+        /// 丙氨酸氨基轉移酶
+        /// </summary>
         [JsonPropertyName("alt")]
         public string 丙氨酸氨基轉移酶 { get; set; }
+        /// <summary>
+        /// 鉀離子
+        /// </summary>
         [JsonPropertyName("k")]
         public string 鉀離子 { get; set; }
+        /// <summary>
+        /// 鈣離子
+        /// </summary>
         [JsonPropertyName("ca")]
         public string 鈣離子 { get; set; }
+        /// <summary>
+        /// 總膽紅素
+        /// </summary>
         [JsonPropertyName("tb")]
         public string 總膽紅素 { get; set; }
+        /// <summary>
+        /// 鈉離子
+        /// </summary>
         [JsonPropertyName("na")]
         public string 鈉離子 { get; set; }
+        /// <summary>
+        /// 白血球
+        /// </summary>
         [JsonPropertyName("wbc")]
         public string 白血球 { get; set; }
+        /// <summary>
+        /// 血紅素
+        /// </summary>
         [JsonPropertyName("hgb")]
         public string 血紅素 { get; set; }
+        /// <summary>
+        /// 血小板
+        /// </summary>
         [JsonPropertyName("plt")]
         public string 血小板 { get; set; }
+        /// <summary>
+        /// 國際標準化比率
+        /// </summary>
         [JsonPropertyName("inr")]
         public string 國際標準化比率 { get; set; }
+        /// <summary>
+        /// 處方
+        /// </summary>
         [JsonPropertyName("cpoe")]
         public List<medCpoeClass> 處方 { get; set; }
 
@@ -222,7 +359,6 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCarInfoClass;
         }
-        
         static public List<medCarInfoClass> get_patient_by_bedNum(string API_Server, List<string> Info)
         {
             List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
@@ -276,7 +412,7 @@ namespace HIS_DB_Lib
             out_medCarInfoClass.Sort(new medCarInfoClass.ICP_By_bedNum());
             return out_medCarInfoClass;
         }
-
+        
     }
 
     

@@ -36,7 +36,9 @@ namespace HIS_DB_Lib
         [Description("自定義,VARCHAR,15,NONE")]
         自定義,
     }
-
+    /// <summary>
+    /// medConfigClass
+    /// </summary>
     public class medConfigClass
     {
         /// <summary>

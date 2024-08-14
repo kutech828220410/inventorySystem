@@ -46,7 +46,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <Optimize>false</Optimize>
     <NoWarn>1701;1702;1998;0169;0219;8632</NoWarn>
-    <DocumentationFile>\inventorySystem\HIS_WebApi\HIS_WebApi.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\Administrator\source\repos\inventorySystem\HIS_WebApi\HIS_WebApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
