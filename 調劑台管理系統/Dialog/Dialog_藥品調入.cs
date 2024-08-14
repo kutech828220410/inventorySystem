@@ -100,8 +100,7 @@ namespace 調劑台管理系統
             if (medClasses_Ary == null) return;
             bool flag_IsMedOn = false;
             for(int i = 0; i < medClasses_Ary.Count; i++)
-            {
-             
+            {           
                 藥碼 = medClasses_Ary[0].藥品碼;
                 藥名 = medClasses_Ary[0].藥品名稱;
                 flag_IsMedOn = true;

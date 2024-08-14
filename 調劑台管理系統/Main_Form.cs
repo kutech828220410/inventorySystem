@@ -452,7 +452,7 @@ namespace 調劑台管理系統
             {
                 pictureBox_後台網址_QRCODE.Image = H_Pannel_lib.Communication.CreateQRCode(dBConfigClass.Web_URL, pictureBox_後台網址_QRCODE.Width, pictureBox_後台網址_QRCODE.Height);
             }
-            plC_Button_合併同藥品.Bool = false;
+            plC_CheckBox_調劑畫面合併相同藥品.Bool = false;
             if (this.ControlMode)
             {
                 this.plC_RJ_GroupBox_調劑台切換.Visible = true;
@@ -1018,9 +1018,10 @@ namespace 調劑台管理系統
 
 
 
+
         #endregion
 
-
+ 
     }
 
 

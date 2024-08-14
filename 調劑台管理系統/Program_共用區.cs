@@ -28,11 +28,11 @@ namespace 調劑台管理系統
             SQLControl sQLControl = new SQLControl();
             for (int i = 0; i < commonSapceClasses.Count; i++)
             {
-                table.Server = commonSapceClasses[0].serverSettingClass.Server;
-                table.Username = commonSapceClasses[0].serverSettingClass.User;
-                table.Password = commonSapceClasses[0].serverSettingClass.Password;
-                table.Port = commonSapceClasses[0].serverSettingClass.Port;
-                table.DBName = commonSapceClasses[0].serverSettingClass.DBName;
+                table.Server = commonSapceClasses[i].serverSettingClass.Server;
+                table.Username = commonSapceClasses[i].serverSettingClass.User;
+                table.Password = commonSapceClasses[i].serverSettingClass.Password;
+                table.Port = commonSapceClasses[i].serverSettingClass.Port;
+                table.DBName = commonSapceClasses[i].serverSettingClass.DBName;
                 sQLControl.Init(table);
                 List<string> list_str = (from temp in list_堆疊母資料_add
                                          select temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString()).ToList();

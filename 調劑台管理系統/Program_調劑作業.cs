@@ -1364,7 +1364,7 @@ namespace 調劑台管理系統
 
             }
 
-            if (plC_Button_合併同藥品.Bool)
+            if (plC_CheckBox_調劑畫面合併相同藥品.Bool)
             {
                 List<object[]> list_value_new = new List<object[]>();
                 List<object[]> list_value_buf = new List<object[]>();
@@ -1811,7 +1811,7 @@ namespace 調劑台管理系統
                                select value
                                 ).ToList();
 
-            if (list_取藥堆疊資料.Count == 0 && plC_Button_多醫令模式.Bool == false)
+            if (list_取藥堆疊資料.Count == 0 && plC_CheckBox_多醫令模式.Bool == false)
             {
                 MyTimer_領藥台_01_閒置登出時間.TickStop();
                 MyTimer_領藥台_01_閒置登出時間.StartTickTime();
@@ -1893,7 +1893,7 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (!plC_Button_多醫令模式.Bool)
+                if (!plC_CheckBox_多醫令模式.Bool)
                 {
                     this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
                 }
@@ -2140,7 +2140,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
+                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
@@ -2244,7 +2244,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
+                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
@@ -2368,7 +2368,7 @@ namespace 調劑台管理系統
 
 
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
+            if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -2457,7 +2457,7 @@ namespace 調劑台管理系統
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             總異動量 = dialog_NumPannel.Value;
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
+            if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_01名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
@@ -3356,7 +3356,7 @@ namespace 調劑台管理系統
 
 
             }
-            if (plC_Button_合併同藥品.Bool)
+            if (plC_CheckBox_調劑畫面合併相同藥品.Bool)
             {
                 List<object[]> list_value_new = new List<object[]>();
                 List<object[]> list_value_buf = new List<object[]>();
@@ -3805,7 +3805,7 @@ namespace 調劑台管理系統
                                select value
                                 ).ToList();
 
-            if (list_取藥堆疊資料.Count == 0 && plC_Button_多醫令模式.Bool == false)
+            if (list_取藥堆疊資料.Count == 0 && plC_CheckBox_多醫令模式.Bool == false)
             {
                 MyTimer_領藥台_02_閒置登出時間.TickStop();
                 MyTimer_領藥台_02_閒置登出時間.StartTickTime();
@@ -3887,7 +3887,7 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (!plC_Button_多醫令模式.Bool)
+                if (!plC_CheckBox_多醫令模式.Bool)
                 {
                     this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
                 }
@@ -4127,7 +4127,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
+                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
@@ -4230,7 +4230,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
+                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
@@ -4353,7 +4353,7 @@ namespace 調劑台管理系統
 
 
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
+            if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -4443,7 +4443,7 @@ namespace 調劑台管理系統
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             總異動量 = dialog_NumPannel.Value;
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
+            if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_02名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
@@ -5343,7 +5343,7 @@ namespace 調劑台管理系統
 
             }
 
-            if (plC_Button_合併同藥品.Bool)
+            if (plC_CheckBox_調劑畫面合併相同藥品.Bool)
             {
                 List<object[]> list_value_new = new List<object[]>();
                 List<object[]> list_value_buf = new List<object[]>();
@@ -5800,7 +5800,7 @@ namespace 調劑台管理系統
                                select value
                                 ).ToList();
 
-            if (list_取藥堆疊資料.Count == 0 && plC_Button_多醫令模式.Bool == false)
+            if (list_取藥堆疊資料.Count == 0 && plC_CheckBox_多醫令模式.Bool == false)
             {
                 MyTimer_領藥台_03_閒置登出時間.TickStop();
                 MyTimer_領藥台_03_閒置登出時間.StartTickTime();
@@ -5883,7 +5883,7 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (!plC_Button_多醫令模式.Bool)
+                if (!plC_CheckBox_多醫令模式.Bool)
                 {
                     this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
                 }
@@ -6122,7 +6122,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
+                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
@@ -6226,7 +6226,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
+                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
@@ -6349,7 +6349,7 @@ namespace 調劑台管理系統
 
 
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
+            if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -6439,7 +6439,7 @@ namespace 調劑台管理系統
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             總異動量 = dialog_NumPannel.Value;
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
+            if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_03名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;
@@ -7324,7 +7324,7 @@ namespace 調劑台管理系統
 
             }
 
-            if (plC_Button_合併同藥品.Bool)
+            if (plC_CheckBox_調劑畫面合併相同藥品.Bool)
             {
                 List<object[]> list_value_new = new List<object[]>();
                 List<object[]> list_value_buf = new List<object[]>();
@@ -7781,7 +7781,7 @@ namespace 調劑台管理系統
                                select value
                                 ).ToList();
 
-            if (list_取藥堆疊資料.Count == 0 && plC_Button_多醫令模式.Bool == false)
+            if (list_取藥堆疊資料.Count == 0 && plC_CheckBox_多醫令模式.Bool == false)
             {
                 MyTimer_領藥台_04_閒置登出時間.TickStop();
                 MyTimer_領藥台_04_閒置登出時間.StartTickTime();
@@ -7863,7 +7863,7 @@ namespace 調劑台管理系統
             {
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
-                if (!plC_Button_多醫令模式.Bool)
+                if (!plC_CheckBox_多醫令模式.Bool)
                 {
                     this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
                 }
@@ -8102,7 +8102,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
+                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
@@ -8204,7 +8204,7 @@ namespace 調劑台管理系統
                 List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
                 List<object[]> list_藥品資料_buf = new List<object[]>();
                 Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-                if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
+                if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
                 Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
 
                 string GUID = value[(int)enum_醫囑資料.GUID].ObjectToString();
@@ -8327,7 +8327,7 @@ namespace 調劑台管理系統
 
 
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
+            if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             if (flag_重複領藥) 總異動量 = 0;
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
@@ -8417,7 +8417,7 @@ namespace 調劑台管理系統
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             總異動量 = dialog_NumPannel.Value;
             Console.Write($"取得藥品資料 , 耗時{myTimer.ToString()}\n");
-            if (!plC_Button_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
+            if (!plC_CheckBox_多醫令模式.Bool) this.Function_取藥堆疊資料_刪除指定調劑台名稱母資料(this.領藥台_04名稱);
             Console.Write($"刪除調劑台資料資料 , 耗時{myTimer.ToString()}\n");
             takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
             takeMedicineStackClass.GUID = GUID;

@@ -291,8 +291,12 @@ namespace 調劑台管理系統
             Console.WriteLine($"#1 commonSapceClasses : {commonSapceClasses.Count}");
             if (list_堆疊母資料_add.Count > 0)
             {
-             
-                commonSapceClasses.WriteTakeMedicineStack(list_堆疊母資料_add);
+
+                Task.Run(new Action(delegate 
+                {
+                    commonSapceClasses.WriteTakeMedicineStack(list_堆疊母資料_add);
+                }));
+          
                 this.sqL_DataGridView_取藥堆疊母資料.SQL_AddRows(list_堆疊母資料_add, false);
             }
 
@@ -2256,7 +2260,7 @@ namespace 調劑台管理系統
         {
             if (this.list_取藥堆疊母資料.Count > 0)
             {
-                if (!plC_Button_無庫存自動補足.Bool)
+                if (!plC_CheckBox_無庫存自動補足.Bool)
                 {
                     cnt++;
                     return;
@@ -2447,7 +2451,7 @@ namespace 調劑台管理系統
                     else if (結存量 < 0)
                     {
                         this.list_取藥堆疊母資料[i][(int)enum_取藥堆疊母資料.狀態] = enum_取藥堆疊母資料_狀態.庫存不足.GetEnumName();
-                        if (!plC_Button_無庫存自動補足.Bool) Function_儲位亮燈_Ex(藥品碼, Color.Black);
+                        if (!plC_CheckBox_無庫存自動補足.Bool) Function_儲位亮燈_Ex(藥品碼, Color.Black);
                         // this.Function_取藥堆疊資料_設定作業模式(this.list_取藥堆疊母資料[i], enum_取藥堆疊母資料_作業模式.庫存不足語音提示);
                         flag_取藥堆疊母資料_Update = true;
                     }
@@ -2634,7 +2638,7 @@ namespace 調劑台管理系統
                                   select temp).ToList();
                 if (list_已亮燈藥碼_buf.Count != 0) continue;
 
-                if (!plC_Button_同藥碼全亮.Bool || myConfigClass.系統取藥模式)
+                if (!plC_CheckBox_同藥品全部亮燈.Bool || myConfigClass.系統取藥模式)
                 {
                     if (取藥堆疊資料[(int)enum_取藥堆疊子資料.TYPE].ObjectToString() == DeviceType.EPD583_lock.GetEnumName())
                     {
@@ -2690,7 +2694,7 @@ namespace 調劑台管理系統
                     }
 
                 }
-                else if (plC_Button_同藥碼全亮.Bool)
+                else if (plC_CheckBox_同藥品全部亮燈.Bool)
                 {
 
                     Function_儲位亮燈(藥品碼, color, ref list_lock_IP);
@@ -3042,7 +3046,7 @@ namespace 調劑台管理系統
             List<object[]> list_取藥子堆疊資料 = list_流程作業檢查_取藥子堆疊資料;
             List<object[]> list_取藥子堆疊資料_buf = new List<object[]>();
 
-            if (plC_Button_同藥碼全亮.Bool)
+            if (plC_CheckBox_同藥品全部亮燈.Bool)
             {
                 list_取藥子堆疊資料_buf = (from value in list_取藥子堆疊資料
                                     where value[(int)enum_取藥堆疊子資料.致能].ObjectToString() == true.ToString()
@@ -3276,7 +3280,7 @@ namespace 調劑台管理系統
                     {
                         list_需更新資料.Add(new string[] { 調劑台名稱, 藥品碼, IP });
 
-                        if (plC_Button_同藥碼全亮.Bool)
+                        if (plC_CheckBox_同藥品全部亮燈.Bool)
                         {
 
                             List<RowsDevice> rowsDevices = List_RowsLED_雲端資料.SortByCode(藥品碼);
