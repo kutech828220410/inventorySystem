@@ -266,6 +266,15 @@ namespace HIS_WebApi
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
+                List<medCpoeClass> input_medCpoe = returnData.Data.ObjToClass<List<medCpoeClass>>();
+
+                if (input_medCpoe == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"傳入Data資料異常";
+                    return returnData.JsonSerializationt();
+                }
+
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
 
@@ -277,20 +286,15 @@ namespace HIS_WebApi
 
                 List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                //List<medCarInfoClass> sql_medCarInfo = new List<medCarInfoClass>();
+                //List<medCpoeClass> sql_medCpoe = new List<medCpoeClass>();
 
                 List<medCpoeClass> medCpoe_sql_add = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_delete = new List<medCpoeClass>();
 
-                List<medCpoeClass> input_medCpoe = returnData.Data.ObjToClass<List<medCpoeClass>>();
-
-                if (input_medCpoe == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"傳入Data資料異常";
-                    return returnData.JsonSerializationt();
-                }
-
+                
+                
                 List<medCpoeClass> medCpoe_sql_buf = input_medCpoe
                     .GroupBy(medCart => medCart.住院號)
                     .Select(group => group.First())

@@ -846,6 +846,11 @@
             藥品名
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.中文名">
+            <summary>
+            中文名
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.途徑">
             <summary>
             途徑

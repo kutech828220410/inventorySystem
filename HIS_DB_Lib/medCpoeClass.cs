@@ -374,7 +374,23 @@ namespace HIS_DB_Lib
             }
             return returnData.JsonSerializationt(true); ;
         }
-       
+        static public List<medClass> get_med_clouds_by_codes(string API_Server, List<string> code)
+        {
+            string url = $"{API_Server}/api/MED_page/get_med_clouds_by_codes";
+            returnData returnData = new returnData();
+            returnData.ValueAry = code;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            List<medClass> out_medClass = new List<medClass>();
+            out_medClass = returnData.Data.ObjToClass<List<medClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medClass;
+        }
+
+
     }
     public class medQtyClass
     {
