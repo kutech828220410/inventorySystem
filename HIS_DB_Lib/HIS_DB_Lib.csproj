@@ -134,6 +134,7 @@
     <Compile Include="medCouldClass.cs" />
     <Compile Include="medDrugstoreClass.cs" />
     <Compile Include="medGroupClass.cs" />
+    <Compile Include="medInventoryClass.cs" />
     <Compile Include="medPharmacyClass.cs" />
     <Compile Include="medPicClass.cs" />
     <Compile Include="medPriceClass.cs" />

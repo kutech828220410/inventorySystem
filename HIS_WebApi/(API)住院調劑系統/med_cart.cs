@@ -384,7 +384,6 @@ namespace HIS_WebApi
 
             }
         }
-
         /// <summary>
         ///以藥局、護理站和床號取得病人詳細資料
         /// </summary>
