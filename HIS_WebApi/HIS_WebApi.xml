@@ -864,7 +864,7 @@
         </member>
         <member name="M:HIS_WebApi.med_cart.get_patient_by_bedNum(HIS_DB_Lib.returnData)">
              <summary>
-            以藥局、護理站和床號取得病人資料
+            以藥局、護理站和床號取得病人詳細資料
              </summary>
              <remarks>
              以下為JSON範例
@@ -879,7 +879,7 @@
         </member>
         <member name="M:HIS_WebApi.med_cart.get_bed_list_by_cart(HIS_DB_Lib.returnData)">
              <summary>
-            以藥局和護理站取得資料
+            以藥局和護理站取得占床資料
              </summary>
              <remarks>
              以下為JSON範例
