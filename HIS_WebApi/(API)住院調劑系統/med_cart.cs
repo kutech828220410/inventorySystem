@@ -190,8 +190,9 @@ namespace HIS_WebApi
                         List<medCpoeClass> targetCpoes = (from temp in sql_medCpoe
                                                           where temp.Master_GUID == MasterGUID
                                                           select temp).ToList();
-                        if (targetCpoes.Count == 0) continue;                          
+                       // if (targetCpoes.Count == 0) continue;                          
                         bool allDispensed = targetCpoes.All(med => med.調劑狀態 == "O");
+                        if (targetCpoes.Count == 0) allDispensed = false;
                         if (allDispensed) medCarInfoClass.調劑狀態 = "O";
                         medCart_sql_replace.Add(medCarInfoClass);                                                                                   
                     }
