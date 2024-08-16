@@ -75,6 +75,8 @@ namespace HIS_DB_Lib
         操作人員,
         [Description("藥局代碼,VARCHAR,10,NONE")]
         藥局代碼,
+        [Description("藥局名稱,VARCHAR,20,NONE")]
+        藥局名稱,
         [Description("大瓶點滴,VARCHAR,10,NONE")]
         大瓶點滴,
         [Description("LKFLAG,VARCHAR,10,NONE")]
@@ -253,6 +255,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("pharm_code")]
         public string 藥局代碼 { get; set; }
+        /// <summary>
+        /// 藥局名稱
+        /// </summary>
+        [JsonPropertyName("pharm_name")]
+        public string 藥局名稱 { get; set; }
         /// <summary>
         /// 大瓶點滴
         /// </summary>

@@ -35,6 +35,8 @@ namespace HIS_DB_Lib
         性別,
         [Description("出生日期,DATETIME,30,NONE")]
         出生日期,
+        [Description("年齡,VARCHAR,30,NONE")]
+        年齡,
         [Description("科別,VARCHAR,20,NONE")]
         科別,
         [Description("財務,VARCHAR,10,NONE")]
@@ -45,9 +47,9 @@ namespace HIS_DB_Lib
         主治醫師代碼,
         [Description("住院醫師代碼,VARCHAR,10,NONE")]
         住院醫師代碼,
-        [Description("診所名稱,VARCHAR,10,NONE")]
+        [Description("主治醫師,VARCHAR,10,NONE")]
         診所名稱,
-        [Description("醫生姓名,VARCHAR,10,NONE")]
+        [Description("住院醫師,VARCHAR,10,NONE")]
         醫生姓名,
         [Description("身高,VARCHAR,10,NONE")]
         身高,
@@ -55,22 +57,10 @@ namespace HIS_DB_Lib
         體重,
         [Description("體表面積,VARCHAR,10,NONE")]
         體表面積,
-        [Description("國際疾病分類代碼1,VARCHAR,100,NONE")]
-        國際疾病分類代碼1,
-        [Description("疾病說明1,VARCHAR,100,NONE")]
-        疾病說明1,
-        [Description("國際疾病分類代碼2,VARCHAR,100,NONE")]
-        國際疾病分類代碼2,
-        [Description("疾病說明2,VARCHAR,100,NONE")]
-        疾病說明2,
-        [Description("國際疾病分類代碼3,VARCHAR,100,NONE")]
-        國際疾病分類代碼3,
-        [Description("疾病說明3,VARCHAR,100,NONE")]
-        疾病說明3,
-        [Description("國際疾病分類代碼4,VARCHAR,100,NONE")]
-        國際疾病分類代碼4,
-        [Description("疾病說明4,VARCHAR,100,NONE")]
-        疾病說明4,
+        [Description("疾病代碼,VARCHAR,100,NONE")]
+        疾病代碼,
+        [Description("疾病說明,VARCHAR,400,NONE")]
+        疾病說明,
         [Description("鼻胃管使用狀況,VARCHAR,10,NONE")]
         鼻胃管使用狀況,
         [Description("其他管路使用狀況,VARCHAR,10,NONE")]
@@ -164,6 +154,11 @@ namespace HIS_DB_Lib
         [JsonPropertyName("birthday")]
         public string 出生日期 { get; set; }
         /// <summary>
+        /// 年齡
+        /// </summary>
+        [JsonPropertyName("age")]
+        public string 年齡 { get; set; }
+        /// <summary>
         /// 科別
         /// </summary>
         [JsonPropertyName("psectc")]
@@ -191,13 +186,13 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 診所名稱
         /// </summary>
-        [JsonPropertyName("pvsnam")]
-        public string 診所名稱 { get; set; }
+        [JsonPropertyName("pvsdno_name")]
+        public string 主治醫師 { get; set; }
         /// <summary>
         /// 醫生姓名
         /// </summary>
-        [JsonPropertyName("prnam")]
-        public string 醫生姓名 { get; set; }
+        [JsonPropertyName("prdno_name")]
+        public string 住院醫師 { get; set; }
         /// <summary>
         /// 身高
         /// </summary>
@@ -214,45 +209,15 @@ namespace HIS_DB_Lib
         [JsonPropertyName("pbbsa")]
         public string 體表面積 { get; set; }
         /// <summary>
-        /// 國際疾病分類代碼1
+        /// 疾病代碼
         /// </summary>
-        [JsonPropertyName("hicd1")]
-        public string 國際疾病分類代碼1 { get; set; }
+        [JsonPropertyName("disease_code")]
+        public string 疾病代碼 { get; set; }
         /// <summary>
-        /// 疾病說明1
+        /// 疾病說明
         /// </summary>
-        [JsonPropertyName("hicdtx1")]
-        public string 疾病說明1 { get; set; }
-        /// <summary>
-        /// 國際疾病分類代碼2
-        /// </summary>
-        [JsonPropertyName("hicd2")]
-        public string 國際疾病分類代碼2 { get; set; }
-        /// <summary>
-        /// 疾病說明2
-        /// </summary>
-        [JsonPropertyName("hicdtx2")]
-        public string 疾病說明2 { get; set; }
-        /// <summary>
-        /// 國際疾病分類代碼3
-        /// </summary>
-        [JsonPropertyName("hicd3")]
-        public string 國際疾病分類代碼3 { get; set; }
-        /// <summary>
-        /// 疾病說明3
-        /// </summary>
-        [JsonPropertyName("hicdtx3")]
-        public string 疾病說明3 { get; set; }
-        /// <summary>
-        /// 國際疾病分類代碼4
-        /// </summary>
-        [JsonPropertyName("hicd4")]
-        public string 國際疾病分類代碼4 { get; set; }
-        /// <summary>
-        /// 疾病說明4
-        /// </summary>
-        [JsonPropertyName("hicdtx4")]
-        public string 疾病說明4 { get; set; }
+        [JsonPropertyName("disease")]
+        public string 疾病說明 { get; set; }
         /// <summary>
         /// 鼻胃管使用狀況
         /// </summary>

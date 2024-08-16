@@ -801,6 +801,98 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.init_med_inventory(HIS_DB_Lib.returnData)">
+             <summary>
+            初始化dbvm.med_inventory資料庫
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[""]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.init_med_inventory_log(HIS_DB_Lib.returnData)">
+             <summary>
+            初始化dbvm.med_inventory資料庫
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[""]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.add_med_inventory_log(HIS_DB_Lib.returnData)">
+             <summary>
+            新增藥品調劑LOG
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Value":"操作人ID"
+                     "ValueAry":["處方GUID,處方GUID"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.add_med_inventory(HIS_DB_Lib.returnData)">
+             <summary>
+            新增藥品初盤紀錄
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Data":[medInventoryClass]
+                     
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.get_opid_by_time(HIS_DB_Lib.returnData)">
+             <summary>
+            以藥局、護理站和日期取得操作人ID
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[藥局, 護理站, 日期]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.get_logtime_by_opid(HIS_DB_Lib.returnData)">
+             <summary>
+            以藥局、護理站、日期、操作者ID取得操作人LOG
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[藥局, 護理站, 2024-08-16 13:00:00, 操作者ID]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.init_med_carinfo(HIS_DB_Lib.returnData)">
              <summary>
             初始化dbvm.med_carinfo資料庫
