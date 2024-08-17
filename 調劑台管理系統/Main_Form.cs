@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.96")]
-[assembly: AssemblyFileVersion("1.2.1.96")]
+[assembly: AssemblyVersion("1.2.2.0")]
+[assembly: AssemblyFileVersion("1.2.2.0")]
 namespace 調劑台管理系統
 {
 
@@ -82,6 +82,7 @@ namespace 調劑台管理系統
 
 
         static public PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
+        static public PLC_Device PLC_Device_申領_不需輸入申領量 = new PLC_Device("S5025");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
@@ -356,7 +357,7 @@ namespace 調劑台管理系統
                 Dialog_條碼管理.form = this.FindForm();
                 Dialog_使用者登入.form = this.FindForm();
                 Dialog_盤點數量錯誤.form = this.FindForm();
-                Dialog_調劑作業_病歷號輸入.form = this.FindForm();
+                Dialog_病歷號輸入.form = this.FindForm();
                 Dialog_藥檔維護.form = this.FindForm();
                 Dialog_錯誤提示.form = this.FindForm();
                 Dialog_共用區設置.form = this.FindForm();
@@ -365,6 +366,7 @@ namespace 調劑台管理系統
                 Dialog_交班對點.form = this.FindForm();
                 Dialog_藥品群組.form = this.FindForm();
                 Dialog_異常通知.form = this.FindForm();
+                Dialog_申領.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();
@@ -402,7 +404,6 @@ namespace 調劑台管理系統
                 this.ToolStripMenuItem_隱藏主控台.Click += ToolStripMenuItem_隱藏主控台_Click;
             }
         }
-
 
         #region Event
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)

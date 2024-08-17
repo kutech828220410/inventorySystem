@@ -357,11 +357,11 @@
     <Compile Include="Dialog\Dialog_盤點數量錯誤.Designer.cs">
       <DependentUpon>Dialog_盤點數量錯誤.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\Dialog_調劑作業_病歷號輸入.cs">
+    <Compile Include="Dialog\Dialog_病歷號輸入.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\Dialog_調劑作業_病歷號輸入.Designer.cs">
-      <DependentUpon>Dialog_調劑作業_病歷號輸入.cs</DependentUpon>
+    <Compile Include="Dialog\Dialog_病歷號輸入.Designer.cs">
+      <DependentUpon>Dialog_病歷號輸入.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\Dialog_交班藥品選擇.cs">
       <SubType>Form</SubType>
@@ -452,6 +452,12 @@
     </Compile>
     <Compile Include="Dialog\Dialog_藥品搜索.Designer.cs">
       <DependentUpon>Dialog_藥品搜索.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\Dialog_申領.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_申領.Designer.cs">
+      <DependentUpon>Dialog_申領.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
@@ -655,6 +661,9 @@
     <EmbeddedResource Include="Dialog\Dialog_等待條碼刷入.resx">
       <DependentUpon>Dialog_等待條碼刷入.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_申領.resx">
+      <DependentUpon>Dialog_申領.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_藥檔維護.resx">
       <DependentUpon>Dialog_藥檔維護.cs</DependentUpon>
     </EmbeddedResource>
@@ -701,8 +710,8 @@
     <EmbeddedResource Include="Dialog\Dialog_新增容器設定.resx">
       <DependentUpon>Dialog_新增容器設定.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\Dialog_調劑作業_病歷號輸入.resx">
-      <DependentUpon>Dialog_調劑作業_病歷號輸入.cs</DependentUpon>
+    <EmbeddedResource Include="Dialog\Dialog_病歷號輸入.resx">
+      <DependentUpon>Dialog_病歷號輸入.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_交班藥品選擇.resx">
       <DependentUpon>Dialog_交班藥品選擇.cs</DependentUpon>
@@ -834,6 +843,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\medicine-shift-handover-checklist--add-data-plus-removebg-preview1.png" />
     <None Include="Resources\icon-for-medicine-map-papper-removebg-preview.png" />
     <None Include="Resources\light-off-removebg-preview1.png" />
     <None Include="Resources\warnning-message-removebg-preview.png" />

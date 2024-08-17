@@ -40,16 +40,12 @@ namespace 調劑台管理系統
                     {
                         this.Invoke(new Action(delegate
                         {
-                            plC_RJ_Button_調劑作業_指紋登入.Visible = true;
+                            plC_RJ_Button_指紋登入.Visible = true;
                             plC_Button_人員資料_指紋註冊.Visible = true;
                         }));
-
                     }
-
-                }
-             
+                }            
             }));
-
             this.plC_UI_Init.Add_Method(Program_指紋辨識);
         }
         private void Program_指紋辨識()

@@ -244,7 +244,6 @@ namespace 調劑台管理系統
             this.MyThread_領藥台_04.Trigger();
         }
 
-
         private void Program_調劑作業_Init()
         {
             Program_調劑作業_領藥台_01_Init();
@@ -252,13 +251,14 @@ namespace 調劑台管理系統
             Program_調劑作業_領藥台_03_Init();
             Program_調劑作業_領藥台_04_Init();
             Dialog_使用者登入.myTimerBasic_覆核完成.StartTickTime(1);
-            this.plC_RJ_Button_調劑作業_指紋登入.MouseDownEvent += PlC_RJ_Button_調劑作業_指紋登入_MouseDownEvent;
-            this.plC_RJ_Button_調劑作業_手輸醫令.MouseDownEvent += PlC_RJ_Button_調劑作業_手輸醫令_MouseDownEvent;
-            this.plC_RJ_Button_調劑作業_條碼輸入.MouseDownEvent += PlC_RJ_Button_調劑作業_條碼輸入_MouseDownEvent;
-            this.plC_RJ_Button_調劑作業_病歷號輸入.MouseDownEvent += PlC_RJ_Button_調劑作業_病歷號輸入_MouseDownEvent;
-            this.plC_RJ_Button_調劑作業_藥品調入.MouseDownEvent += PlC_RJ_Button_調劑作業_藥品調入_MouseDownEvent;
+            this.plC_RJ_Button_指紋登入.MouseDownEvent += PlC_RJ_Button_指紋登入_MouseDownEvent;
+            this.plC_RJ_Button_手輸醫令.MouseDownEvent += PlC_RJ_Button_手輸醫令_MouseDownEvent;
+            this.plC_RJ_Button_條碼輸入.MouseDownEvent += PlC_RJ_Button_條碼輸入_MouseDownEvent;
+            this.plC_RJ_Button_病歷號輸入.MouseDownEvent += PlC_RJ_Button_病歷號輸入_MouseDownEvent;
+            this.plC_RJ_Button_藥品調入.MouseDownEvent += PlC_RJ_Button_藥品調入_MouseDownEvent;
             this.plC_RJ_Button_交班對點.MouseDownEvent += PlC_RJ_Button_交班對點_MouseDownEvent;
             this.plC_RJ_Button_藥品搜索.MouseDownEvent += PlC_RJ_Button_藥品搜索_MouseDownEvent;
+            this.plC_RJ_Button_申領.MouseDownEvent += PlC_RJ_Button_申領_MouseDownEvent;
             this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
             this.MyThread_領藥_RFID.AutoRun(true);
@@ -280,7 +280,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(Program_調劑作業);
         }
 
-     
+
 
         bool flag_調劑作業_頁面更新 = false;
         private void Program_調劑作業()
@@ -345,11 +345,11 @@ namespace 調劑台管理系統
                     {
                         if (plC_CheckBox_QRcode_Mode.Checked)
                         {
-                            plC_RJ_Button_調劑作業_條碼輸入.Visible = false;
+                            plC_RJ_Button_條碼輸入.Visible = false;
                         }
                         else
                         {
-                            plC_RJ_Button_調劑作業_條碼輸入.Visible = true;
+                            plC_RJ_Button_條碼輸入.Visible = true;
                         }
                     }));
                     //this.PlC_RJ_Button_領藥台_01_登出_MouseDownEvent(new MouseEventArgs(MouseButtons.Left, 0, 0, 0, 0));
@@ -8884,7 +8884,7 @@ namespace 調劑台管理系統
 
         #endregion
 
-        private void PlC_RJ_Button_調劑作業_指紋登入_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_指紋登入_MouseDownEvent(MouseEventArgs mevent)
         {
             Dialog_AlarmForm dialog_AlarmForm;
             if (fpMatchSoket.IsOpen == false && flag_指紋辨識_Init == false)
@@ -8901,16 +8901,16 @@ namespace 調劑台管理系統
             if (dialog_指紋登入.台號 == 4) FpMatchClass_領藥台_04_指紋資訊 = dialog_指紋登入.Value;
 
         }
-        private void PlC_RJ_Button_調劑作業_病歷號輸入_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_病歷號輸入_MouseDownEvent(MouseEventArgs mevent)
         {
             MyTimer myTimer = new MyTimer();
-            Dialog_調劑作業_病歷號輸入 dialog_調劑作業_病歷號輸入;
+            Dialog_病歷號輸入 dialog_病歷號輸入;
             List<OrderClass> orderClasses = new List<OrderClass>();
             this.Invoke(new Action(delegate
             {
-                dialog_調劑作業_病歷號輸入 = new Dialog_調劑作業_病歷號輸入(this.sqL_DataGridView_雲端藥檔);
-                if (dialog_調劑作業_病歷號輸入.ShowDialog() != DialogResult.Yes) return;
-                orderClasses = dialog_調劑作業_病歷號輸入.Value;
+                dialog_病歷號輸入 = new Dialog_病歷號輸入(this.sqL_DataGridView_雲端藥檔);
+                if (dialog_病歷號輸入.ShowDialog() != DialogResult.Yes) return;
+                orderClasses = dialog_病歷號輸入.Value;
             }));
 
             List<object[]> list_藥品資料 = this.sqL_DataGridView_藥品資料_藥檔資料.SQL_GetAllRows(false);
@@ -9011,7 +9011,7 @@ namespace 調劑台管理系統
             }
             this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
         }
-        private void PlC_RJ_Button_調劑作業_條碼輸入_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_條碼輸入_MouseDownEvent(MouseEventArgs mevent)
         {
 
             Dialog_條碼輸入 dialog_條碼輸入 = new Dialog_條碼輸入();
@@ -9026,7 +9026,7 @@ namespace 調劑台管理系統
                 this.Function_領藥台_01_醫令退藥(Barcode);
             }
         }
-        private void PlC_RJ_Button_調劑作業_手輸醫令_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_手輸醫令_MouseDownEvent(MouseEventArgs mevent)
         {
             this.Invoke(new Action(delegate
             {
@@ -9125,11 +9125,12 @@ namespace 調劑台管理系統
 
             }));
         }
-        private void PlC_RJ_Button_調劑作業_藥品調入_MouseDownEvent(MouseEventArgs mevent)
+        private void PlC_RJ_Button_藥品調入_MouseDownEvent(MouseEventArgs mevent)
         {
             Dialog_藥品調入 dialog_藥品調入 = new Dialog_藥品調入();
             dialog_藥品調入.ShowDialog();
         }
+
         private void PlC_RJ_Button_全部滅燈_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("是否全部滅燈?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
@@ -9202,6 +9203,12 @@ namespace 調劑台管理系統
             Dialog_藥品搜索 dialog_藥品搜索 = new Dialog_藥品搜索();
             dialog_藥品搜索.ShowDialog();
         }
+        private void PlC_RJ_Button_申領_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_申領 dialog_申領 = new Dialog_申領();
+            dialog_申領.ShowDialog();
+        }
+
         private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)
         {
             List<object[]> list_value_buf = new List<object[]>();

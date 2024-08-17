@@ -10,7 +10,7 @@
   "Scanner04_COMPort": "",
   "藥物辨識圖片顯示": true,
   "EPD583_Enable": true,
-  "EPD266_Enable": false,
+  "EPD266_Enable": true,
   "RowsLED_Enable": true,
   "RFID_Enable": false,
   "Pannel35_Enable": false,

@@ -73,6 +73,16 @@ namespace 智能藥庫系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap adjusted_checkmark_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("adjusted_checkmark-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap EDIT {
             get {
                 object obj = ResourceManager.GetObject("EDIT", resourceCulture);

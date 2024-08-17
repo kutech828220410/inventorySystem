@@ -370,6 +370,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\adjusted_checkmark-removebg-preview.png" />
     <None Include="Resources\requesting-operation-removebg-preview.png" />
     <None Include="Resources\login-page-removebg-preview1.png" />
     <None Include="Resources\login-page-removebg-preview.png" />
