@@ -181,22 +181,34 @@ namespace 調劑台管理系統
 
             if (PLC_Device_刷藥袋有相同藥品需警示.Bool)
             {
+                string msg = "";
                 for (int i = 0; i < list_藥品碼.Count; i++)
                 {
-                    string msg = "";
+                
                     takeMedicineStackClasses_buf = (from temp in takeMedicineStackClasses
                                                     where temp.藥品碼 == list_藥品碼[i]
-                                                    where temp.動作 == enum_交易記錄查詢動作.掃碼領藥
+                                                    where temp.動作 == enum_交易記錄查詢動作.手輸領藥
                                                     select temp).ToList();
                     if(takeMedicineStackClasses_buf.Count > 0)
                     {
                         msg += $"{takeMedicineStackClasses_buf[0].藥品名稱}\n";
                     }
-                    if (msg.StringIsEmpty() == false)
+                  
+                }
+                if (msg.StringIsEmpty() == false)
+                {
+                    msg += "請注意,有相同藥品";
+
+                    Task.Run(new Action(delegate 
                     {
-                        msg += "請注意,有相同藥品";
-                        MyMessageBox.ShowDialog(msg);
-                    }
+                        Voice.MediaPlayAsync($@"{currentDirectory}\有相同藥品.wav");
+                        this.Invoke(new Action(delegate
+                        {
+                            MyMessageBox.ShowDialog(msg);
+                        }));
+                    }));
+                   
+
                 }
             }
 
