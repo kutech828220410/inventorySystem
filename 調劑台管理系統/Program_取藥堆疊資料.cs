@@ -187,7 +187,7 @@ namespace 調劑台管理系統
                 
                     takeMedicineStackClasses_buf = (from temp in takeMedicineStackClasses
                                                     where temp.藥品碼 == list_藥品碼[i]
-                                                    where temp.動作 == enum_交易記錄查詢動作.手輸領藥
+                                                    where temp.動作 == enum_交易記錄查詢動作.掃碼領藥
                                                     select temp).ToList();
                     if(takeMedicineStackClasses_buf.Count > 0)
                     {
