@@ -70,7 +70,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -104,7 +104,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -164,7 +164,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -250,7 +250,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -426,7 +426,7 @@ namespace HIS_WebApi
                     returnData.Result = $"搜尋條件[GUID]空白!";
                     return returnData.JsonSerializationt();
                 }
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -517,7 +517,7 @@ namespace HIS_WebApi
                     returnData.Result = $"搜尋條件[GUID]空白!";
                     return returnData.JsonSerializationt();
                 }
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -599,7 +599,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
        
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -704,7 +704,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -808,7 +808,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_med_group = new SQLControl(Server, DB, "med_group", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_med_sub_group = new SQLControl(Server, DB, "med_sub_group", UserName, Password, Port, SSLMode);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
             MED_pageController mED_PageController = new MED_pageController();

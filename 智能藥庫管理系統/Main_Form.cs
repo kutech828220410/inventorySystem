@@ -22,8 +22,8 @@ using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
 using H_Pannel_lib;
-[assembly: AssemblyVersion("1.0.0.3")]
-[assembly: AssemblyFileVersion("1.0.0.3")]
+[assembly: AssemblyVersion("1.0.0.4")]
+[assembly: AssemblyFileVersion("1.0.0.4")]
 namespace 智能藥庫系統
 {
     public partial class Main_Form : Form
@@ -171,9 +171,13 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_儲位管理.MouseDownEvent += PlC_RJ_Button_儲位管理_MouseDownEvent;
             this.plC_RJ_Button_驗收管理.MouseDownEvent += PlC_RJ_Button_驗收管理_MouseDownEvent;
             this.plC_RJ_Button_申領.MouseDownEvent += PlC_RJ_Button_申領_MouseDownEvent;
+            this.plC_RJ_Button_盤點管理_匯入表單.MouseDownEvent += PlC_RJ_Button_盤點管理_匯入表單_MouseDownEvent;
+            this.plC_RJ_Button_盤點管理_表單管理.MouseDownEvent += PlC_RJ_Button_盤點管理_表單管理_MouseDownEvent;
+            this.plC_RJ_Button_盤點管理_表單合併.MouseDownEvent += PlC_RJ_Button_盤點管理_表單合併_MouseDownEvent;
+            Form_Menu_Init();
         }
 
-
+ 
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
@@ -183,8 +187,10 @@ namespace 智能藥庫系統
             MyDialog.form = this.FindForm();
             Dialog_儲位管理.form = this.FindForm();
             Dialog_申領.form = this.FindForm();
-
-
+            Dialog_盤點單匯入.form = this.FindForm();
+            Dialog_盤點明細.form = this.FindForm();
+            Dialog_盤點單合併.form = this.FindForm();
+                
             this.WindowState = FormWindowState.Maximized;
 
             LoadDBConfig();
@@ -213,6 +219,7 @@ namespace 智能藥庫系統
             Program_藥品區域_Init();
             Program_堆疊資料_Init();
             Program_交易紀錄查詢_Init();
+            Program_申領_Init();
         }
 
         private void PlC_RJ_Button_儲位管理_MouseDownEvent(MouseEventArgs mevent)
@@ -248,8 +255,21 @@ namespace 智能藥庫系統
                 dialog_申領.ShowChildForm(panel_MainForm);
             }));
         }
-
-
+        private void PlC_RJ_Button_盤點管理_匯入表單_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_盤點單匯入 dialog_盤點單匯入 = new Dialog_盤點單匯入();
+            dialog_盤點單匯入.ShowDialog();
+        }
+        private void PlC_RJ_Button_盤點管理_表單管理_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_盤點單管理 dialog_盤點單管理 = new Dialog_盤點單管理();
+            dialog_盤點單管理.ShowDialog();
+        }
+        private void PlC_RJ_Button_盤點管理_表單合併_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_盤點單合併 dialog_盤點單合併 = new Dialog_盤點單合併();
+            dialog_盤點單合併.ShowDialog();
+        }
         private void ApiServerSetting(string Name)
         {
             API_Server = dBConfigClass.Api_Server;

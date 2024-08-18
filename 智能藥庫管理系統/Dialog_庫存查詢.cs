@@ -51,6 +51,9 @@ namespace 智能藥庫系統
             [Description("藥局基準量,VARCHAR,15,NONE")]
             藥局基準量,
   
+            [Description("類別,VARCHAR,15,NONE")]
+            類別,
+
         }
         [EnumDescription("")]
         public enum enum_效期及批號
@@ -108,18 +111,21 @@ namespace 智能藥庫系統
         {
             Table table;
             table = new Table(new enum_庫存查詢());
+            table[enum_庫存查詢.類別.GetEnumName()].TypeName = Table.GetTypeName(Table.OtherType.ENUM, new enum_medType().GetEnumNames());
+
             sqL_DataGridView_庫存查詢.Init(table);
             sqL_DataGridView_庫存查詢.Set_ColumnVisible(false, new enum_庫存查詢().GetEnumNames());
             sqL_DataGridView_庫存查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_庫存查詢.藥碼);
-            sqL_DataGridView_庫存查詢.Set_ColumnWidth(280, DataGridViewContentAlignment.MiddleLeft, enum_庫存查詢.藥名);
-            sqL_DataGridView_庫存查詢.Set_ColumnWidth(280, DataGridViewContentAlignment.MiddleLeft, enum_庫存查詢.中文名);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_庫存查詢.藥名);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_庫存查詢.中文名);
             sqL_DataGridView_庫存查詢.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.單位);
-            sqL_DataGridView_庫存查詢.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥庫庫存);
-            sqL_DataGridView_庫存查詢.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥庫安全量);
-            sqL_DataGridView_庫存查詢.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥庫基準量);
-            sqL_DataGridView_庫存查詢.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥局庫存);
-            sqL_DataGridView_庫存查詢.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥局安全量);
-            sqL_DataGridView_庫存查詢.Set_ColumnWidth(70, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥局基準量);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥庫庫存);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥庫安全量);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥庫基準量);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥局庫存);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥局安全量);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.藥局基準量);
+            sqL_DataGridView_庫存查詢.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_庫存查詢.類別);
 
 
             sqL_DataGridView_庫存查詢.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_庫存查詢.藥碼);
@@ -128,6 +134,7 @@ namespace 智能藥庫系統
             sqL_DataGridView_庫存查詢.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_庫存查詢.單位);
             sqL_DataGridView_庫存查詢.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_庫存查詢.藥庫庫存);
             sqL_DataGridView_庫存查詢.Set_ColumnSortMode(DataGridViewColumnSortMode.Automatic, enum_庫存查詢.藥局庫存);
+            sqL_DataGridView_庫存查詢.ComboBoxSelectedIndexChangedEvent += SqL_DataGridView_庫存查詢_ComboBoxSelectedIndexChangedEvent;
             sqL_DataGridView_庫存查詢.RowHeaderPostPaintingEvent += SqL_DataGridView_庫存查詢_RowHeaderPostPaintingEvent;
             sqL_DataGridView_庫存查詢.DataGridRefreshEvent += SqL_DataGridView_庫存查詢_DataGridRefreshEvent;
             sqL_DataGridView_庫存查詢.RowClickEvent += SqL_DataGridView_庫存查詢_RowClickEvent;
@@ -164,12 +171,9 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_藥局_效期及批號_刪除.MouseDownEvent += PlC_RJ_Button_藥局_效期及批號_刪除_MouseDownEvent;
             this.plC_RJ_Button_藥局_效期及批號_修改.MouseDownEvent += PlC_RJ_Button_藥局_效期及批號_修改_MouseDownEvent;
 
-            this.plC_RJ_Button_匯出.MouseDownEvent += PlC_RJ_Button_匯出_MouseDownEvent;
-            this.plC_RJ_Button_進階搜尋.MouseDownEvent += PlC_RJ_Button_進階搜尋_MouseDownEvent;
             IsShown = true;
         }
 
-   
 
         #region Function
         private List<object[]> Function_取得庫存查詢列表()
@@ -239,6 +243,7 @@ namespace 智能藥庫系統
                     value[(int)enum_庫存查詢.中文名] = medClasses_buf[0].中文名稱;
                     if (medClasses_buf[0].包裝單位.StringIsEmpty()) medClasses_buf[0].包裝單位 = "-";
                     value[(int)enum_庫存查詢.單位] = medClasses_buf[0].包裝單位;
+                    value[(int)enum_庫存查詢.類別] = medClasses_buf[0].類別;
 
                     value[(int)enum_庫存查詢.藥庫庫存] = "-";
                     value[(int)enum_庫存查詢.藥局安全量] = "-";
@@ -398,7 +403,7 @@ namespace 智能藥庫系統
 
                 g.FillRectangle(brush_hedder, rect_hedder);
                 g.DrawRectangle(pen, rect_hedder);
-                rectangle = this.sqL_DataGridView_庫存查詢.GetColumnBounds(enum_庫存查詢.藥碼.GetEnumName(), enum_庫存查詢.藥局基準量.GetEnumName());
+                rectangle = this.sqL_DataGridView_庫存查詢.GetColumnBounds(enum_庫存查詢.藥碼.GetEnumName(), enum_庫存查詢.類別.GetEnumName());
                 g.FillRectangle(brush, rectangle);
 
                 rectangle = this.sqL_DataGridView_庫存查詢.GetColumnBounds(enum_庫存查詢.藥碼.GetEnumName());
@@ -457,11 +462,16 @@ namespace 智能藥庫系統
                 rectangle.Height = rectangle.Height / 2;
                 g.DrawRectangle(pen, rectangle);
                 DrawingClass.Draw.DrawString(g, "安全量", new Font("微軟正黑體", 12, FontStyle.Bold), rectangle, Color.Black, DataGridViewContentAlignment.MiddleCenter);
+
                 rectangle = this.sqL_DataGridView_庫存查詢.GetColumnBounds(enum_庫存查詢.藥局基準量.GetEnumName());
                 rectangle.Y = rectangle.Height / 2;
                 rectangle.Height = rectangle.Height / 2;
                 g.DrawRectangle(pen, rectangle);
                 DrawingClass.Draw.DrawString(g, "基準量", new Font("微軟正黑體", 12, FontStyle.Bold), rectangle, Color.Black, DataGridViewContentAlignment.MiddleCenter);
+
+                rectangle = this.sqL_DataGridView_庫存查詢.GetColumnBounds(enum_庫存查詢.類別.GetEnumName());
+                g.DrawRectangle(pen, rectangle);
+                DrawingClass.Draw.DrawString(g, "類別", new Font("微軟正黑體", 15, FontStyle.Bold), rectangle, Color.Black, DataGridViewContentAlignment.MiddleCenter);
 
             }
         }
@@ -536,6 +546,23 @@ namespace 智能藥庫系統
         {
            
         }
+        private void SqL_DataGridView_庫存查詢_ComboBoxSelectedIndexChangedEvent(object sender, string colName, object[] RowValue)
+        {
+            string 藥碼 = RowValue[(int)enum_庫存查詢.藥碼].ObjectToString();
+            string 類別 = RowValue[(int)enum_庫存查詢.類別].ObjectToString();
+            Task.Run(new Action(delegate
+            {
+                medClass medClass = medClass.get_med_clouds_by_code(Main_Form.API_Server, 藥碼);
+                if (medClass != null)
+                {
+                    medClass.類別 = 類別;
+                    medClass.update_med_clouds_by_guid(Main_Form.API_Server, medClass);
+                    this.sqL_DataGridView_庫存查詢.ReplaceExtra(RowValue, true);
+
+                }
+
+            }));
+        }
         private void Dialog_庫存查詢_ShowDialogEvent()
         {
             if (myDialog != null)
@@ -557,10 +584,7 @@ namespace 智能藥庫系統
         {
             myDialog = null;
         }
-        private void PlC_RJ_Button_匯出_MouseDownEvent(MouseEventArgs mevent)
-        {
-         
-        }
+   
         private void RJ_Button_顯示全部_MouseDownEvent(MouseEventArgs mevent)
         {
             LoadingForm.ShowLoadingForm();
@@ -926,12 +950,6 @@ namespace 智能藥庫系統
             }));
         }
 
-        private void PlC_RJ_Button_進階搜尋_MouseDownEvent(MouseEventArgs mevent)
-        {
-            Dialog_ContextMenuStrip dialog_ContextMenuStrip = new Dialog_ContextMenuStrip(new ContextMenuStrip_進階搜尋());
-            dialog_ContextMenuStrip.TitleText = "進階搜尋";
-            if (dialog_ContextMenuStrip.ShowDialog() != DialogResult.Yes) return;
-        }
         #endregion
 
 

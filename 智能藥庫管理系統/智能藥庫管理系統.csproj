@@ -235,17 +235,68 @@
     <Compile Include="Dialog_效期批號輸入.Designer.cs">
       <DependentUpon>Dialog_效期批號輸入.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_新建合併盤點單.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_新建合併盤點單.Designer.cs">
+      <DependentUpon>Dialog_新建合併盤點單.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_申領.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialog_申領.Designer.cs">
       <DependentUpon>Dialog_申領.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog_盤點單合併.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_盤點單合併.Designer.cs">
+      <DependentUpon>Dialog_盤點單合併.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_盤點單合併_設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_盤點單合併_設定.Designer.cs">
+      <DependentUpon>Dialog_盤點單合併_設定.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_盤點單合併_選擇.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_盤點單合併_選擇.Designer.cs">
+      <DependentUpon>Dialog_盤點單合併_選擇.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_盤點明細.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_盤點明細.Designer.cs">
+      <DependentUpon>Dialog_盤點明細.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_盤點單匯入.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_盤點單匯入.Designer.cs">
+      <DependentUpon>Dialog_盤點單匯入.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_盤點單管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_盤點單管理.Designer.cs">
+      <DependentUpon>Dialog_盤點單管理.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog_盤點設定.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog_盤點設定.Designer.cs">
+      <DependentUpon>Dialog_盤點設定.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog_驗收管理.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialog_驗收管理.Designer.cs">
       <DependentUpon>Dialog_驗收管理.cs</DependentUpon>
+    </Compile>
+    <Compile Include="From_Menu.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Function.cs">
       <SubType>Form</SubType>
@@ -261,6 +312,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_取藥堆疊資料.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program_申領.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program_系統.cs">
@@ -288,8 +342,32 @@
     <EmbeddedResource Include="Dialog_效期批號輸入.resx">
       <DependentUpon>Dialog_效期批號輸入.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_新建合併盤點單.resx">
+      <DependentUpon>Dialog_新建合併盤點單.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog_申領.resx">
       <DependentUpon>Dialog_申領.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_盤點單匯入.resx">
+      <DependentUpon>Dialog_盤點單匯入.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_盤點單合併.resx">
+      <DependentUpon>Dialog_盤點單合併.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_盤點單合併_設定.resx">
+      <DependentUpon>Dialog_盤點單合併_設定.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_盤點單合併_選擇.resx">
+      <DependentUpon>Dialog_盤點單合併_選擇.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_盤點單管理.resx">
+      <DependentUpon>Dialog_盤點單管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_盤點明細.resx">
+      <DependentUpon>Dialog_盤點明細.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog_盤點設定.resx">
+      <DependentUpon>Dialog_盤點設定.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog_驗收管理.resx">
       <DependentUpon>Dialog_驗收管理.cs</DependentUpon>
@@ -370,6 +448,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\211690_up_arrow_icon.png" />
+    <None Include="Resources\211687_down_arrow_icon.png" />
+    <None Include="Resources\png-transparent-arrow-computer-icons-down-arrow-angle-hand-logo-thumbnail.png" />
     <None Include="Resources\adjusted_checkmark-removebg-preview.png" />
     <None Include="Resources\requesting-operation-removebg-preview.png" />
     <None Include="Resources\login-page-removebg-preview1.png" />

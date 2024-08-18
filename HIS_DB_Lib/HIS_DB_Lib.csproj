@@ -139,6 +139,7 @@
     <Compile Include="medRecheckLogClass.cs" />
     <Compile Include="medShiftConfigClass.cs" />
     <Compile Include="medSMDSClass.cs" />
+    <Compile Include="medTypeClass.cs" />
     <Compile Include="notifyExceptionClass.cs" />
     <Compile Include="orderClass.cs" />
     <Compile Include="orderTClass.cs" />

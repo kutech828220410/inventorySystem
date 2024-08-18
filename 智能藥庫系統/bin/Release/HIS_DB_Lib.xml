@@ -631,6 +631,11 @@
             合併單明細
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.inv_combinelistClass.Contents">
+            <summary>
+            盤點藥品總表
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.inv_records_Class">
             <summary>
             合併單明細
@@ -654,6 +659,11 @@
         <member name="P:HIS_DB_Lib.inv_records_Class.類型">
             <summary>
             類型
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.inv_records_Class.Creat">
+            <summary>
+            盤點表(完整)
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medClassBasic.GUID">

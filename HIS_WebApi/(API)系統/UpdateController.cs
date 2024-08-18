@@ -38,7 +38,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -59,7 +59,7 @@ namespace HIS_WebApi
             try
             {
                 GET_init();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -90,7 +90,7 @@ namespace HIS_WebApi
             try
             {
                 GET_init();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -159,7 +159,7 @@ namespace HIS_WebApi
             try
             {
                 GET_init();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -210,7 +210,7 @@ namespace HIS_WebApi
             MemoryStream outputStream = new MemoryStream();
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0) return null;
                 List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
@@ -245,7 +245,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0) return null;
                 List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);
@@ -272,7 +272,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(ServerName, ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0) return null;
                 List<updateVersionClass> updateVersionClasses = GetAllUpdateVersion(serverSettingClasses[0]);

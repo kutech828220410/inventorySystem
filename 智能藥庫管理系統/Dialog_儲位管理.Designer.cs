@@ -217,6 +217,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_儲架電子紙列表.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_儲架電子紙列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_儲架電子紙列表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_儲架電子紙列表.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_儲架電子紙列表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_儲架電子紙列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_儲架電子紙列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -224,6 +225,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_儲架電子紙列表.columnHeadersHeight = 18;
             this.sqL_DataGridView_儲架電子紙列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_儲架電子紙列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_儲架電子紙列表.DataKeyEnable = false;
             this.sqL_DataGridView_儲架電子紙列表.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_儲架電子紙列表.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_儲架電子紙列表.ImageBox = false;
@@ -312,6 +314,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_儲架電子紙_藥品資料.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_儲架電子紙_藥品資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_儲架電子紙_藥品資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_儲架電子紙_藥品資料.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -319,6 +322,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_儲架電子紙_藥品資料.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_儲架電子紙_藥品資料.DataKeyEnable = false;
             this.sqL_DataGridView_儲架電子紙_藥品資料.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_儲架電子紙_藥品資料.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_儲架電子紙_藥品資料.ImageBox = false;
@@ -553,11 +557,6 @@ namespace 智能藥庫系統
             // 
             this.comboBox_儲架電子紙列表_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
             this.comboBox_儲架電子紙列表_搜尋內容.FormattingEnabled = true;
-            this.comboBox_儲架電子紙列表_搜尋內容.Items.AddRange(new object[] {
-            "藥碼",
-            "藥名",
-            "IP",
-            "區域"});
             this.comboBox_儲架電子紙列表_搜尋內容.Location = new System.Drawing.Point(174, 313);
             this.comboBox_儲架電子紙列表_搜尋內容.Name = "comboBox_儲架電子紙列表_搜尋內容";
             this.comboBox_儲架電子紙列表_搜尋內容.Size = new System.Drawing.Size(291, 39);
@@ -1815,6 +1814,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_EPD583_藥品資料.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_EPD583_藥品資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_EPD583_藥品資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_EPD583_藥品資料.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_EPD583_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_EPD583_藥品資料.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_EPD583_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -1822,6 +1822,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_EPD583_藥品資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_EPD583_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_EPD583_藥品資料.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_EPD583_藥品資料.DataKeyEnable = false;
             this.sqL_DataGridView_EPD583_藥品資料.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_EPD583_藥品資料.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_EPD583_藥品資料.ImageBox = false;
@@ -2210,6 +2211,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_EPD583_儲位列表.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_EPD583_儲位列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_EPD583_儲位列表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_EPD583_儲位列表.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_EPD583_儲位列表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_EPD583_儲位列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_EPD583_儲位列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -2217,6 +2219,7 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_EPD583_儲位列表.columnHeadersHeight = 18;
             this.sqL_DataGridView_EPD583_儲位列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_EPD583_儲位列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_EPD583_儲位列表.DataKeyEnable = false;
             this.sqL_DataGridView_EPD583_儲位列表.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_EPD583_儲位列表.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_EPD583_儲位列表.ImageBox = false;

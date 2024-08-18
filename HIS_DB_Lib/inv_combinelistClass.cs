@@ -117,8 +117,17 @@ namespace HIS_DB_Lib
         /// 合併單明細
         /// </summary>
         [JsonPropertyName("records_Ary")]
-        public List<inv_records_Class> Records_Ary { get => records_Ary; set => records_Ary = value; }
+        public List<inv_records_Class> Records_Ary { get => records_Ary; set => records_Ary = value; }     
         private List<inv_records_Class> records_Ary = new List<inv_records_Class>();
+
+
+        /// <summary>
+        /// 盤點藥品總表
+        /// </summary>
+        [JsonPropertyName("contents")]
+        public List<inventoryClass.content> Contents { get => contents; set => contents = value; }
+        private List<inventoryClass.content> contents = new List<inventoryClass.content>();
+
 
         public void AddRecord(inventoryClass.creat creat)
         {
@@ -142,6 +151,21 @@ namespace HIS_DB_Lib
                                                        where temp.單號 != SN
                                                        select temp).ToList();
             records_Ary = records_Ary_buf;
+        }
+
+        public void get_all_full_creat(string API_Server)
+        {
+            List<Task> tasks = new List<Task>();
+            for (int i = 0; i < Records_Ary.Count; i++)
+            {
+                inv_records_Class inv_Records_Class = Records_Ary[i];
+                tasks.Add(Task.Run(new Action(delegate 
+                {
+                    inventoryClass.creat creat =  inventoryClass.creat_get_by_IC_SN(API_Server, inv_Records_Class.單號);
+                    inv_Records_Class.Creat = creat;
+                })));
+            }
+            Task.WhenAll(tasks).Wait();
         }
 
         static public List<inv_records_Class> get_all_records(string API_Server)
@@ -224,7 +248,7 @@ namespace HIS_DB_Lib
             if (inv_CombinelistClass == null) return null;
             return inv_CombinelistClass;
         }
-        static public List<inventoryClass.content> get_full_inv_by_SN(string API_Server , string SN)
+        static public inv_combinelistClass get_full_inv_by_SN(string API_Server , string SN)
         {
             string url = $"{API_Server}/api/inv_combinelist/get_full_inv_by_SN";
             returnData returnData = new returnData();
@@ -241,10 +265,8 @@ namespace HIS_DB_Lib
                 Console.WriteLine($"-----------------------------------------------");
                 return null;
             }
-            List<inventoryClass.content> contents = returnData.Data.ObjToClass<List<inventoryClass.content>>();
-            if (contents == null) return null;
-            if (contents.Count == 0) return null;
-            return contents;
+            inv_combinelistClass inv_CombinelistClass = returnData.Data.ObjToClass<inv_combinelistClass>();
+            return inv_CombinelistClass;
         }
         static public byte[] get_full_inv_Excel_by_SN(string API_Server, string SN , params string[] remove_col_name)
         {
@@ -346,5 +368,12 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("TYPE")]
         public string 類型 { get; set; }
+
+        /// <summary>
+        /// 盤點表(完整)
+        /// </summary>
+        [JsonPropertyName("creat")]
+        public inventoryClass.creat Creat { get => creat; set => creat = value; }
+        private inventoryClass.creat creat = new inventoryClass.creat();
     }
 }

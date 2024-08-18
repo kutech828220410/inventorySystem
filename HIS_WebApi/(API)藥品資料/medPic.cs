@@ -57,7 +57,7 @@ namespace HIS_WebApi
             {
                 returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
