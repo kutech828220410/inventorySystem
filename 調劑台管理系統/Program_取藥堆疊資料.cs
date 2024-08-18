@@ -178,6 +178,28 @@ namespace 調劑台管理系統
             bool flag_雙人覆核 = false;
             List<string> list_藥品碼 = (from temp in takeMedicineStackClasses
                                      select temp.藥品碼).Distinct().ToList();
+
+            if (PLC_Device_刷藥袋有相同藥品需警示.Bool)
+            {
+                for (int i = 0; i < list_藥品碼.Count; i++)
+                {
+                    string msg = "";
+                    takeMedicineStackClasses_buf = (from temp in takeMedicineStackClasses
+                                                    where temp.藥品碼 == list_藥品碼[i]
+                                                    where temp.動作 == enum_交易記錄查詢動作.掃碼領藥
+                                                    select temp).ToList();
+                    if(takeMedicineStackClasses_buf.Count > 0)
+                    {
+                        msg += $"{takeMedicineStackClasses_buf[0].藥品名稱}\n";
+                    }
+                    if (msg.StringIsEmpty() == false)
+                    {
+                        msg += "請注意,有相同藥品";
+                        MyMessageBox.ShowDialog(msg);
+                    }
+                }
+            }
+
             string 顏色 = "";
             for (int i = 0; i < takeMedicineStackClasses.Count; i++)
             {

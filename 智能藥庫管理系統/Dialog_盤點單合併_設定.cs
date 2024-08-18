@@ -11,7 +11,6 @@ using Basic;
 using MyUI;
 using SQLUI;
 using HIS_DB_Lib;
-using HIS_WebApi;
 using MyOffice;
 
 namespace 智能藥庫系統

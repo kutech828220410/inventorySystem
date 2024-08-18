@@ -11,7 +11,7 @@ using Basic;
 using MyUI;
 using SQLUI;
 using HIS_DB_Lib;
-using HIS_WebApi;
+
 namespace 智能藥庫系統
 {
     public partial class Dialog_盤點明細 : MyDialog
