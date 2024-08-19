@@ -731,6 +731,100 @@ namespace HIS_WebApi
             }
 
         }
+        /// <summary>
+        /// 取得網頁模組開啟資訊
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///        
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///       [盤點單管理模組不啟用],
+        ///       [條碼建置模組不啟用],
+        ///       [藥品管理模組不啟用]
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("get_web_state")]
+        [HttpPost]
+        public string POST_get_web_state([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+
+            try
+            {
+                returnData.RequestUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.Path}";
+            }
+            catch
+            {
+
+            }
+
+            returnData.Method = "get_web_state";
+            try
+            {
+                this.CheckCreatTable();
+                SQLControl sQLControl = new SQLControl(Server, DB, "ServerSetting", UserName, Password, Port, SSLMode);
+                List<object[]> list_value_returnData = new List<object[]>();
+                List<object[]> list_value_add = new List<object[]>();
+                List<object[]> list_value_replace = new List<object[]>();
+                List<object[]> list_value_buf = new List<object[]>();
+
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                List<ServerSettingClass> serverSettingClasses = GetAllServerSetting();
+
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                if (returnData.ValueAry.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容空白";
+                    return returnData.JsonSerializationt(true);
+                }
+                string 類別 = "網頁";
+                List<ServerSettingClass> serverSettingClasses_buf = (from temp in serverSettingClasses
+                                                                     where temp.類別.ToUpper() == 類別
+                                                                     select temp).ToList();
+                if (serverSettingClasses_buf.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"查無資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                returnData.Code = 200;
+                returnData.Result = $"取得伺服器服務端,共<{serverSettingClasses_buf.Count}>筆";
+                returnData.Data = serverSettingClasses_buf;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Result = e.Message;
+                returnData.TimeTaken = $"{myTimerBasic}";
+                return returnData.JsonSerializationt(true);
+            }
+
+        }
 
         private string CheckCreatTable()
         {
