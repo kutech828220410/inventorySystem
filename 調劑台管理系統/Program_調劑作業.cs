@@ -2217,26 +2217,27 @@ namespace 調劑台管理系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
-                for (int i = 0; i < list_醫令資料.Count; i++)
-                {
-                    藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                    if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
-                    {
-                        list_醫令資料_remove.Add(list_醫令資料[i]);
-                    }
-                }
+                //for (int i = 0; i < list_醫令資料.Count; i++)
+                //{
+                //    藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
+                //    if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+                //    {
+                //        list_醫令資料_remove.Add(list_醫令資料[i]);
+                //    }
+                //}
                 for (int i = 0; i < list_醫令資料_remove.Count; i++)
                 {
                     list_醫令資料.RemoveByGUID(list_醫令資料_remove[i]);
                 }
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
-                if (list_醫令資料.Count == 0)
-                {
-                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
-                    dialog_AlarmForm.ShowDialog();
-                    return;
-                }
+
+                //if (list_醫令資料.Count == 0)
+                //{
+                //    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                //    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                //    dialog_AlarmForm.ShowDialog();
+                //    return;
+                //}
 
                 Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料, this.sqL_DataGridView_醫令資料);
                 if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
@@ -4203,26 +4204,26 @@ namespace 調劑台管理系統
                     dialog_AlarmForm.ShowDialog();
                     return;
                 }
-                for (int i = 0; i < list_醫令資料.Count; i++)
-                {
-                    藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
-                    if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
-                    {
-                        list_醫令資料_remove.Add(list_醫令資料[i]);
-                    }
-                }
+                //for (int i = 0; i < list_醫令資料.Count; i++)
+                //{
+                //    藥品碼 = list_醫令資料[i][(int)enum_醫囑資料.藥品碼].ObjectToString();
+                //    if (this.Function_從本地資料取得儲位(藥品碼).Count == 0)
+                //    {
+                //        list_醫令資料_remove.Add(list_醫令資料[i]);
+                //    }
+                //}
                 for (int i = 0; i < list_醫令資料_remove.Count; i++)
                 {
                     list_醫令資料.RemoveByGUID(list_醫令資料_remove[i]);
                 }
                 Console.Write($"取得醫令資料 , 耗時{myTimer.ToString()}\n");
-                if (list_醫令資料.Count == 0)
-                {
-                    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
-                    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
-                    dialog_AlarmForm.ShowDialog();
-                    return;
-                }
+                //if (list_醫令資料.Count == 0)
+                //{
+                //    Voice.MediaPlayAsync($@"{currentDirectory}\找不到儲位.wav");
+                //    Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("找不到儲位", 1500);
+                //    dialog_AlarmForm.ShowDialog();
+                //    return;
+                //}
 
                 Dialog_醫令退藥 dialog_醫令退藥 = new Dialog_醫令退藥(list_醫令資料, this.sqL_DataGridView_醫令資料);
                 if (dialog_醫令退藥.ShowDialog() != DialogResult.Yes) return;
