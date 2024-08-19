@@ -57,7 +57,7 @@ namespace HIS_DB_Lib
         體重,
         [Description("體表面積,VARCHAR,10,NONE")]
         體表面積,
-        [Description("疾病代碼,VARCHAR,100,NONE")]
+        [Description("疾病代碼,VARCHAR,500,NONE")]
         疾病代碼,
         [Description("疾病說明,VARCHAR,400,NONE")]
         疾病說明,
