@@ -90,7 +90,9 @@ namespace HIS_DB_Lib
         [Description("血小板,VARCHAR,10,NONE")]
         血小板,
         [Description("國際標準化比率,VARCHAR,10,NONE")]
-        國際標準化比率
+        國際標準化比率,
+        [Description("檢驗數值異常,VARCHAR,150,NONE")]
+        檢驗數值異常
 
     }
     /// <summary>
@@ -294,16 +296,21 @@ namespace HIS_DB_Lib
         [JsonPropertyName("inr")]
         public string 國際標準化比率 { get; set; }
         /// <summary>
-        /// 處方
+        /// 檢驗數值異常
         /// </summary>
-        [JsonPropertyName("cpoe")]
-        public List<medCpoeClass> 處方 { get; set; }
+        [JsonPropertyName("abnormal")]
+        public string 檢驗數值異常 { get; set; }
         /// <summary>
         /// 診斷病名
         /// </summary>
         [JsonPropertyName("disease")]
         public List<diseaseOut> 診斷病名 { get; set; }
-
+        /// <summary>
+        /// 處方
+        /// </summary>
+        [JsonPropertyName("cpoe")]
+        public List<medCpoeClass> 處方 { get; set; }
+        
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
             public int Compare(medCarInfoClass x, medCarInfoClass y)

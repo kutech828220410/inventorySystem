@@ -444,6 +444,9 @@ namespace HIS_WebApi
 
 
                 var targetPatient = sql_medCarInfo.FirstOrDefault(temp => temp.護理站 == 護理站 && temp.床號 == 床號);
+
+
+                
                 if (targetPatient == null)
                 {
                     returnData.Code = -200;
@@ -454,13 +457,13 @@ namespace HIS_WebApi
                 List<medCpoeClass> targetPatientCpoe = (from temp in sql_medCpoe
                                                         where temp.住院號 == 住院號
                                                         select temp).ToList();
-
+                targetPatientCpoe.Sort(new medCpoeClass.ICP_By_Rank());
                 targetPatient.處方 = targetPatientCpoe;
                // string[] diseaseCode = targetPatient.疾病代碼.Split(",");
                 //string[] diseaseDescrip = targetPatient.疾病說明.Split(",");
 
-                List<string> diseaseCode = new List<string> (targetPatient.疾病代碼.Split(","));
-                List<string> diseaseDescrip = new List<string>(targetPatient.疾病說明.Split(","));
+                List<string> diseaseCode = new List<string> (targetPatient.疾病代碼.Split(";"));
+                List<string> diseaseDescrip = new List<string>(targetPatient.疾病說明.Split(";"));
                 if (diseaseCode.Count != diseaseDescrip.Count)
                 {
                     returnData.Code = -200;
@@ -477,7 +480,13 @@ namespace HIS_WebApi
                     };
                     diseaseOuts.Add(diseaseOut);
                 }
-                targetPatient.診斷病名 = diseaseOuts;
+                //targetPatient.診斷病名 = diseaseOuts;
+
+                //abnormal(targetPatient);
+
+
+
+
 
 
                 returnData.Code = 200;
@@ -583,13 +592,7 @@ namespace HIS_WebApi
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<medCarInfoClass> input_medCarInfo = returnData.Data.ObjToClass<List<medCarInfoClass>>();
-                if (input_medCarInfo == null)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"傳入Data資料異常";
-                    return returnData.JsonSerializationt();
-                }
+                
 
                 List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
@@ -607,6 +610,10 @@ namespace HIS_WebApi
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetAllRows(null);
                 List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
+                //foreach(var medCarInfoClass in sql_medCarInfo)
+                //{
+                //    string abnorString = abnormal(medCarInfoClass);
+                //}
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -879,7 +886,7 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-       
+        
 
 
     }

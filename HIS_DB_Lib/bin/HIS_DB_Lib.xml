@@ -731,14 +731,19 @@
             國際標準化比率
             </summary>
         </member>
-        <member name="P:HIS_DB_Lib.medCarInfoClass.處方">
+        <member name="P:HIS_DB_Lib.medCarInfoClass.檢驗數值異常">
             <summary>
-            處方
+            檢驗數值異常
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.診斷病名">
             <summary>
             診斷病名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.處方">
+            <summary>
+            處方
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.diseaseOut.疾病代碼">

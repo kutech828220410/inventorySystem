@@ -315,6 +315,13 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("ddic")]
         public string 交互作用等級 { get; set; }
+        public class ICP_By_Rank : IComparer<medCpoeClass>
+        {
+            public int Compare(medCpoeClass x, medCpoeClass y)
+            {
+                return string.Compare(x.排序, y.排序);
+            }
+        }
         static public List<medCpoeClass> update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses, List<string> valueAry)
         {
             List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
