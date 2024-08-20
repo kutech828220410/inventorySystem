@@ -48,9 +48,9 @@ namespace HIS_DB_Lib
         [Description("住院醫師代碼,VARCHAR,10,NONE")]
         住院醫師代碼,
         [Description("主治醫師,VARCHAR,10,NONE")]
-        診所名稱,
+        主治醫師,
         [Description("住院醫師,VARCHAR,10,NONE")]
-        醫生姓名,
+        住院醫師,
         [Description("身高,VARCHAR,10,NONE")]
         身高,
         [Description("體重,VARCHAR,10,NONE")]
