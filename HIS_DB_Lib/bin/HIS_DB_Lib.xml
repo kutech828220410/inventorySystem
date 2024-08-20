@@ -94,6 +94,81 @@
             回傳觸發請求網址
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.庫別">
+            <summary>
+            庫別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.單位">
+            <summary>
+            單位
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.數量">
+            <summary>
+            出庫人員
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.效期">
+            <summary>
+            入庫人員
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.批號">
+            <summary>
+            出庫庫別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.建表人員">
+            <summary>
+            入庫庫別
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.建表時間">
+            <summary>
+            出庫庫存
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.入庫人員">
+            <summary>
+            入庫人員
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.入庫時間">
+            <summary>
+            入庫時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.收支原因">
+            <summary>
+            收支原因
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.狀態">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.batch_inventory_importClass.備註">
+            <summary>
+            備註
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.drugStotreArea.GUID">
             <summary>
             唯一KEY

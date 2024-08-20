@@ -85,7 +85,7 @@
       <HintPath>bin\Release\System.Json.Text\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="MyOffice">
-      <HintPath>0.DLL\MyOffice.dll</HintPath>
+      <HintPath>..\0.DLL\MyOffice.dll</HintPath>
     </Reference>
     <Reference Include="MySQL_Login">
       <HintPath>0.DLL\MySQL_Login.dll</HintPath>
@@ -95,6 +95,15 @@
     </Reference>
     <Reference Include="NPOI">
       <HintPath>0.DLL\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\0.DLL\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\0.DLL\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\0.DLL\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="SQLUI">
       <HintPath>0.DLL\SQLUI.dll</HintPath>
