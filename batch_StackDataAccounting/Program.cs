@@ -95,8 +95,57 @@ namespace batch_StackDataAccounting
                 return (R == r && G == g && B == b);
             }
         }
+        #region MyConfigClass
+        private static string MyConfigFileName = $@"{currentDirectory}\MyConfig.txt";
+        static public MyConfigClass myConfigClass = new MyConfigClass();
+        public class MyConfigClass
+        {
 
-        static int 處方存在時間 = 20000;
+
+            private int ePD583_Port = 29005;
+            private int ePD266_Port = 29000;
+            private int ePD1020_Port = 29012;
+            private int rowsLED_Port = 29001;
+            private int pannel35_Port = 29020;
+
+
+            public int EPD583_Port { get => ePD583_Port; set => ePD583_Port = value; }
+            public int EPD266_Port { get => ePD266_Port; set => ePD266_Port = value; }
+            public int EPD1020_Port { get => ePD1020_Port; set => ePD1020_Port = value; }
+            public int RowsLED_Port { get => rowsLED_Port; set => rowsLED_Port = value; }
+            public int Pannel35_Port { get => pannel35_Port; set => pannel35_Port = value; }
+        }
+        static private void LoadMyConfig()
+        {
+            string jsonstr = MyFileStream.LoadFileAllText($"{MyConfigFileName}");
+            if (jsonstr.StringIsEmpty())
+            {
+                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(new MyConfigClass(), true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
+                }
+                MyMessageBox.ShowDialog($"未建立參數文件!請至子目錄設定{MyConfigFileName}");
+            }
+            else
+            {
+                myConfigClass = Basic.Net.JsonDeserializet<MyConfigClass>(jsonstr);
+
+                jsonstr = Basic.Net.JsonSerializationt<MyConfigClass>(myConfigClass, true);
+                List<string> list_jsonstring = new List<string>();
+                list_jsonstring.Add(jsonstr);
+                if (!MyFileStream.SaveFile($"{MyConfigFileName}", list_jsonstring))
+                {
+                    MyMessageBox.ShowDialog($"建立{MyConfigFileName}檔案失敗!");
+                }
+
+            }
+
+        }
+        #endregion
+        static int 處方存在時間 = 120000;
         static private List<LightOn> lightOns = new List<LightOn>();
 
 
@@ -447,6 +496,7 @@ namespace batch_StackDataAccounting
         static public void Main(string[] args)
         {
             LoadDBConfig();
+            LoadMyConfig();
             API_Server = dBConfigClass.Api_Server;
             ServerName = dBConfigClass.Name;
             List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}/api/serversetting");
@@ -471,12 +521,17 @@ namespace batch_StackDataAccounting
             table.Port = serverSettingClass.Port;
             table.DBName = serverSettingClass.DBName;
             sQLControl_Locker_Index_Table.Init(table);
-      
-            drawerUI_EPD_583.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None ,0 , 29005);
-            storageUI_EPD_266.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 29000);
-            storageUI_WT32.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 29020);
-            rowsLEDUI.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , 29001);
-           
+
+            Console.WriteLine($"EPD583_Port : {myConfigClass.EPD583_Port} \n");
+            Console.WriteLine($"EPD266_Port : {myConfigClass.EPD266_Port} \n");
+            Console.WriteLine($"Pannel35_Port : {myConfigClass.Pannel35_Port} \n");
+            Console.WriteLine($"RowsLED_Port : {myConfigClass.RowsLED_Port} \n");
+
+            drawerUI_EPD_583.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None ,0 , myConfigClass.EPD583_Port);
+            storageUI_EPD_266.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , myConfigClass.EPD266_Port);
+            storageUI_WT32.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , myConfigClass.Pannel35_Port);
+            rowsLEDUI.Console_Init(serverSettingClass_儲位資料.DBName, serverSettingClass_儲位資料.User, serverSettingClass_儲位資料.Password, serverSettingClass_儲位資料.Server, serverSettingClass_儲位資料.Port.StringToUInt32(), MySql.Data.MySqlClient.MySqlSslMode.None , 0 , myConfigClass.RowsLED_Port);
+
             Function_從SQL取得儲位到本地資料();
             Function_從SQL取得儲位到雲端資料();
 
