@@ -309,28 +309,29 @@ namespace HIS_WebApi._API_住院調劑系統
                 string UserName = serverSettingClasses[0].User;
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
-                Table table = new Table(new enum_med_carList());
-                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, table.TableName, UserName, Password, Port, SSLMode);
-                List<object[]> list_medCart = sQLControl_med_carInfo.GetAllRows(null);
-
+                SQLControl sQLControl_med_carList = new SQLControl(Server, DB, "med_carList", UserName, Password, Port, SSLMode);
+                List<object[]> list_medCart = sQLControl_med_carList.GetRowsByDefult(null, (int)enum_med_carList.藥局, 藥局);
                 List<medCarListClass> medCart_sql = list_medCart.SQLToClass<medCarListClass, enum_med_carList>();
-                List<medCarListClass> medCart_sql_buf = new List<medCarListClass>();
-                List<medCarListClass> medCart_sql_delete = new List<medCarListClass>();
-
-                medCart_sql_buf = (from temp in medCart_sql
-                                   where temp.藥局 == 藥局
-                                   select temp).ToList();
-                if (medCart_sql_buf.Count == 0)
+                List<medCarListClass> medCarListClasses = new List<medCarListClass>();
+                DateTime today = DateTime.Now.Date;
+                foreach (var medCarListClass in medCart_sql)
                 {
-                    returnData.Code = -200;
-                    returnData.Result = "資料不存在";
-                    return returnData.JsonSerializationt(true);
+                    DateTime handTime = medCarListClass.交車時間.StringToDateTime();
+
+                    if (handTime.Date != today)
+                    {
+                        medCarListClass.交車狀態 = "";
+                        medCarListClasses.Add(medCarListClass);
+                    }
                 }
+                List<object[]> medCarList_sql_update = new List<object[]>();
+                medCarList_sql_update = medCarListClasses.ClassToSQL<medCarListClass, enum_med_carList>();
+                sQLControl_med_carList.UpdateByDefulteExtra(null, medCarList_sql_update);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medCart_sql_buf;
-                returnData.Result = $"取得{藥局}的護理站共{medCart_sql_buf.Count}筆";
+                returnData.Data = medCart_sql;
+                returnData.Result = $"取得{藥局}的護理站共{medCart_sql.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)

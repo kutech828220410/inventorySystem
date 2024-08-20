@@ -442,10 +442,7 @@ namespace HIS_WebApi
                 List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
 
-
                 var targetPatient = sql_medCarInfo.FirstOrDefault(temp => temp.護理站 == 護理站 && temp.床號 == 床號);
-
-
                 
                 if (targetPatient == null)
                 {
@@ -459,36 +456,7 @@ namespace HIS_WebApi
                                                         select temp).ToList();
                 targetPatientCpoe.Sort(new medCpoeClass.ICP_By_Rank());
                 targetPatient.處方 = targetPatientCpoe;
-               // string[] diseaseCode = targetPatient.疾病代碼.Split(",");
-                //string[] diseaseDescrip = targetPatient.疾病說明.Split(",");
-
-                List<string> diseaseCode = new List<string> (targetPatient.疾病代碼.Split(";"));
-                List<string> diseaseDescrip = new List<string>(targetPatient.疾病說明.Split(";"));
-                if (diseaseCode.Count != diseaseDescrip.Count)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = "資料儲存錯誤";
-                    return returnData.JsonSerializationt(true);
-                }
-                List<diseaseOut> diseaseOuts = new List<diseaseOut>();
-                for (int i = 0; i < diseaseCode.Count; i++)
-                {
-                    diseaseOut diseaseOut = new diseaseOut
-                    {
-                       疾病代碼 = diseaseCode[i],
-                       疾病說明 = diseaseDescrip[i]
-                    };
-                    diseaseOuts.Add(diseaseOut);
-                }
-                //targetPatient.診斷病名 = diseaseOuts;
-
-                //abnormal(targetPatient);
-
-
-
-
-
-
+               
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = targetPatient;
@@ -859,8 +827,11 @@ namespace HIS_WebApi
                 string 護理站 = returnData.ValueAry[1];
 
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
+                SQLControl sQLControl_med_carlist = new SQLControl(Server, DB, "med_carlist", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetRowsByDefult(null, (int)enum_med_cpoe.藥局, 藥局);
+                List<object[]> list_med_carlist = sQLControl_med_carlist.GetRowsByDefult(null, (int)enum_med_carList.藥局, 藥局);
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                List<medCarListClass> sql_medCarList = list_med_carlist.SQLToClass<medCarListClass, enum_med_carList>();
 
                 List<medCpoeClass> medCpoeClasses = (from temp in sql_medCpoe
                                                      where temp.護理站 == 護理站
@@ -873,7 +844,17 @@ namespace HIS_WebApi
                     returnData.Result = $"{藥局} {護理站} 尚有{medCpoeClasses.Count}調劑未完成";
                     return returnData.JsonSerializationt(true);
                 }
-                                         
+                var medCarList = sql_medCarList.FirstOrDefault(temp => temp.護理站 == 護理站);
+                medCarList.交車時間 = DateTime.Now.ToDateTimeString();
+                medCarList.交車狀態 = "已交車";
+                List<medCarListClass> medCarListClasses = new List<medCarListClass> { medCarList };
+                List<object[]> medCarList_sql_update = new List<object[]>();
+                medCarList_sql_update = medCarListClasses.ClassToSQL<medCarListClass, enum_med_carList>();
+                sQLControl_med_carlist.UpdateByDefulteExtra(null, medCarList_sql_update);
+
+
+
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Result = $"{藥局} {護理站} 交車完成";

@@ -17,9 +17,13 @@ namespace HIS_DB_Lib
         [Description("藥局,VARCHAR,30,INDEX")]
         藥局,
         [Description("藥局名,VARCHAR,30,NONE")]
-        藥局名,
-        [Description("護理站,VARCHAR,30,INDEX")]
-        護理站
+        藥局名, 
+        [Description("護理站,VARCHAR,10,NONE")]
+        護理站,
+        [Description("交車時間,DATETIME,10,NONE")]
+        交車時間,
+        [Description("交車狀態,VARCHAR,10,NONE")]
+        交車狀態,
     }
     public class medCarListClass
     {
@@ -31,6 +35,11 @@ namespace HIS_DB_Lib
         public string 藥局名 { get; set; }
         [JsonPropertyName("hnursta")]
         public string 護理站 { get; set; }
+        [JsonPropertyName("hand_time")]
+        public string 交車時間 { get; set; }
+        [JsonPropertyName("hand_status")]
+        public string 交車狀態 { get; set; }
+
     }
     public static class PharmacyData
     {
