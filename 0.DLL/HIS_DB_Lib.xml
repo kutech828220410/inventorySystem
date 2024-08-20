@@ -736,6 +736,21 @@
             處方
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.診斷病名">
+            <summary>
+            診斷病名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.diseaseOut.疾病代碼">
+            <summary>
+            疾病代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.diseaseOut.疾病說明">
+            <summary>
+            疾病說明
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medCpoeClass">
             <summary>
             medCpoeClass資料

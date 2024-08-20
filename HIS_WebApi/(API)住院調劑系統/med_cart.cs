@@ -455,8 +455,31 @@ namespace HIS_WebApi
                                                         where temp.住院號 == 住院號
                                                         select temp).ToList();
 
-                targetPatient.處方 = targetPatientCpoe;    
-                
+                targetPatient.處方 = targetPatientCpoe;
+               // string[] diseaseCode = targetPatient.疾病代碼.Split(",");
+                //string[] diseaseDescrip = targetPatient.疾病說明.Split(",");
+
+                List<string> diseaseCode = new List<string> (targetPatient.疾病代碼.Split(","));
+                List<string> diseaseDescrip = new List<string>(targetPatient.疾病說明.Split(","));
+                if (diseaseCode.Count != diseaseDescrip.Count)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = "資料儲存錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<diseaseOut> diseaseOuts = new List<diseaseOut>();
+                for (int i = 0; i < diseaseCode.Count; i++)
+                {
+                    diseaseOut diseaseOut = new diseaseOut
+                    {
+                       疾病代碼 = diseaseCode[i],
+                       疾病說明 = diseaseDescrip[i]
+                    };
+                    diseaseOuts.Add(diseaseOut);
+                }
+                targetPatient.診斷病名 = diseaseOuts;
+
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Data = targetPatient;

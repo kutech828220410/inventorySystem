@@ -216,7 +216,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 疾病說明
         /// </summary>
-        [JsonPropertyName("disease")]
+        [JsonPropertyName("disease_descrip")]
         public string 疾病說明 { get; set; }
         /// <summary>
         /// 鼻胃管使用狀況
@@ -298,6 +298,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("cpoe")]
         public List<medCpoeClass> 處方 { get; set; }
+        /// <summary>
+        /// 診斷病名
+        /// </summary>
+        [JsonPropertyName("disease")]
+        public List<diseaseOut> 診斷病名 { get; set; }
 
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
@@ -379,6 +384,21 @@ namespace HIS_DB_Lib
         }
         
     }
+    public class diseaseOut
+    {
+        /// <summary>
+        /// 疾病代碼
+        /// </summary>
+        [JsonPropertyName("disease_code")]
+        public string 疾病代碼 { get; set; }
+        /// <summary>
+        /// 疾病說明
+        /// </summary>
+        [JsonPropertyName("disease_descrip")]
+        public string 疾病說明 { get; set; }
+
+    }
+    
 
     
 }
