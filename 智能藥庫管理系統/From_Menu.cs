@@ -39,7 +39,7 @@ namespace 智能藥庫系統
             if (menuExpand_盤點單管理 == false)
             {
                 flowLayoutPanel_盤點單管理.Height += 10;
-                if (flowLayoutPanel_盤點單管理.Height == 210)
+                if (flowLayoutPanel_盤點單管理.Height == 290)
                 {
                     timer_盤點單管理.Stop();
                     menuExpand_盤點單管理 = true;

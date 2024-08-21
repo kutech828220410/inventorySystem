@@ -273,9 +273,9 @@ namespace 調劑台管理系統
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.CaptionHeight = 40;
+            this.CaptionHeight = 60;
             this.ClientSize = new System.Drawing.Size(1500, 900);
-            this.CloseBoxSize = new System.Drawing.Size(40, 40);
+            this.CloseBoxSize = new System.Drawing.Size(60, 60);
             this.ControlBox = true;
             this.Controls.Add(this.sqL_DataGridView_申領);
             this.Controls.Add(this.panel1);

@@ -1,11 +1,11 @@
 {
   "主機扣帳模式": true,
   "主機輸出模式": true,
-  "RFID使用": false,
-  "掃碼槍COM通訊": false,
+  "RFID使用": true,
+  "掃碼槍COM通訊": true,
   "RFID_COMPort": "COM1",
-  "Scanner01_COMPort": "COM2",
-  "Scanner02_COMPort": "",
+  "Scanner01_COMPort": "COM10",
+  "Scanner02_COMPort": "COM2",
   "Scanner03_COMPort": "",
   "Scanner04_COMPort": "",
   "藥物辨識圖片顯示": true,
@@ -19,12 +19,12 @@
   "外部輸出": false,
   "系統取藥模式": false,
   "EPD1020_Enable": false,
-  "全螢幕顯示": false,
+  "全螢幕顯示": true,
   "鍵盤掃碼模式": false,
   "EPD583_Port": 29005,
   "EPD266_Port": 29000,
   "EPD1020_Port": 29012,
   "RowsLED_Port": 29001,
   "Pannel35_Port": 29020,
-  "ControlMode": false
+  "ControlMode": true
 }

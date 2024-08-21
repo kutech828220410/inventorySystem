@@ -174,10 +174,12 @@ namespace 智能藥庫系統
             this.plC_RJ_Button_盤點管理_匯入表單.MouseDownEvent += PlC_RJ_Button_盤點管理_匯入表單_MouseDownEvent;
             this.plC_RJ_Button_盤點管理_表單管理.MouseDownEvent += PlC_RJ_Button_盤點管理_表單管理_MouseDownEvent;
             this.plC_RJ_Button_盤點管理_表單合併.MouseDownEvent += PlC_RJ_Button_盤點管理_表單合併_MouseDownEvent;
+
+            this.plC_RJ_Button_盤點管理_覆盤建議設定.MouseDownEvent += PlC_RJ_Button_盤點管理_覆盤建議設定_MouseDownEvent;
             Form_Menu_Init();
         }
 
- 
+    
 
         private void Main_Form_Load(object sender, EventArgs e)
         {
@@ -269,6 +271,11 @@ namespace 智能藥庫系統
         {
             Dialog_盤點單合併 dialog_盤點單合併 = new Dialog_盤點單合併();
             dialog_盤點單合併.ShowDialog();
+        }
+        private void PlC_RJ_Button_盤點管理_覆盤建議設定_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_盤點單覆盤建議設定 dialog_盤點單覆盤建議設定 = new Dialog_盤點單覆盤建議設定();
+            dialog_盤點單覆盤建議設定.ShowDialog();
         }
         private void ApiServerSetting(string Name)
         {

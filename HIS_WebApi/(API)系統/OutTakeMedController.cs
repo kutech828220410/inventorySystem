@@ -793,12 +793,7 @@ namespace HIS_WebApi
                     string 顏色 = data[i].顏色;
                    
                     if (顏色.StringIsEmpty()) 顏色 = list_devicelist_buf[0][(int)enum_設備資料.顏色].ObjectToString();
-                    medClass medClass1 = medClass.get_med_clouds_by_code("http://127.0.0.1:4433", 藥品碼);
-                    if(medClass1 != null)
-                    {
-                        藥品名稱 = medClass1.藥品名稱;
-                        單位 = medClass1.包裝單位;
-                    }
+                 
                     string 類別 = data[i].類別;
                     string 床號 = data[i].床號;
                     string 領藥號 = data[i].領藥號;

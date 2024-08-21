@@ -1181,6 +1181,11 @@
             唯一KEY.
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.OrderClass.天數">
+            <summary>
+            天數
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.OrderClass.實際調劑量">
             <summary>
             實際調劑量
