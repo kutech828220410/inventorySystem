@@ -50,7 +50,7 @@ namespace HIS_DB_Lib
         入庫人員,
         [Description("入庫時間,DATETIME,50,INDEX")]
         入庫時間,
-        [Description("收支原因,DATETIME,200,NONE")]
+        [Description("收支原因,VARCHAR,200,NONE")]
         收支原因,
         [Description("狀態,VARCHAR,20,NONE")]
         狀態,
@@ -83,27 +83,27 @@ namespace HIS_DB_Lib
         [JsonPropertyName("PAKAGE")]
         public string 單位 { get; set; }
         /// <summary>
-        /// 出庫人員
+        /// 數量
         /// </summary>
         [JsonPropertyName("QTY")]
         public string 數量 { get; set; }
         /// <summary>
-        /// 入庫人員
+        /// 效期
         /// </summary>
         [JsonPropertyName("VAL")]
         public string 效期 { get; set; }
         /// <summary>
-        /// 出庫庫別
+        /// 批號
         /// </summary>
         [JsonPropertyName("LOT")]
         public string 批號 { get; set; }
         /// <summary>
-        /// 入庫庫別
+        /// 建表人員
         /// </summary>
         [JsonPropertyName("CT_OP")]
         public string 建表人員 { get; set; }
         /// <summary>
-        /// 出庫庫存
+        /// 建表時間
         /// </summary>
         [JsonPropertyName("CT_TIME")]
         public string 建表時間 { get; set; }

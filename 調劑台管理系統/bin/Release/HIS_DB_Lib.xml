@@ -121,27 +121,27 @@
         </member>
         <member name="P:HIS_DB_Lib.batch_inventory_importClass.數量">
             <summary>
-            出庫人員
+            數量
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.batch_inventory_importClass.效期">
             <summary>
-            入庫人員
+            效期
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.batch_inventory_importClass.批號">
             <summary>
-            出庫庫別
+            批號
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.batch_inventory_importClass.建表人員">
             <summary>
-            入庫庫別
+            建表人員
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.batch_inventory_importClass.建表時間">
             <summary>
-            出庫庫存
+            建表時間
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.batch_inventory_importClass.入庫人員">
