@@ -771,6 +771,11 @@
             Master_GUID
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCpoeClass.更新時間">
+            <summary>
+            更新時間
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCpoeClass.調劑狀態">
             <summary>
             調劑狀態

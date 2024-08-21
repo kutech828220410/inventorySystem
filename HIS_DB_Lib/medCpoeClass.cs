@@ -19,6 +19,8 @@ namespace HIS_DB_Lib
         GUID,
         [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("更新時間,DATETINE,10,NONE")]
+        更新時間,
         [Description("調劑狀態,VARCHAR,10,INDEX")]
         調劑狀態,
         [Description("藥局,VARCHAR,10,INDEX")]
@@ -115,6 +117,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("MAster_GUID")]
         public string Master_GUID { get; set; }
+        /// <summary>
+        /// 更新時間
+        /// </summary>
+        [JsonPropertyName("update_time")]
+        public string 更新時間 { get; set; }
         /// <summary>
         /// 調劑狀態
         /// </summary>
