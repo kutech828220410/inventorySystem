@@ -185,6 +185,7 @@ namespace 調劑台管理系統
         public class MyConfigClass
         {
 
+            private bool _ControlMode = false;
             private bool _主機扣帳模式 = false;
             private bool _主機輸出模式 = false;
             private bool _系統取藥模式 = false;
@@ -244,6 +245,7 @@ namespace 調劑台管理系統
             public int EPD1020_Port { get => ePD1020_Port; set => ePD1020_Port = value; }
             public int RowsLED_Port { get => rowsLED_Port; set => rowsLED_Port = value; }
             public int Pannel35_Port { get => pannel35_Port; set => pannel35_Port = value; }
+            public bool ControlMode { get => _ControlMode; set => _ControlMode = value; }
         }
         private void LoadMyConfig()
         {
@@ -370,6 +372,8 @@ namespace 調劑台管理系統
 
                 LoadDBConfig();
                 LoadMyConfig();
+
+                if (myConfigClass.ControlMode) ControlMode = true;
 
                 ApiServerSetting();
 
@@ -822,6 +826,7 @@ namespace 調劑台管理系統
         }
         private void ApiServerSetting()
         {
+            
             if (ControlMode)
             {
                 this.ApiServerSetting(dBConfigClass.Name, "一般資料");
