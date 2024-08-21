@@ -124,9 +124,6 @@ namespace HIS_DB_Lib
         public string 就醫類別 { get; set; }
         [JsonPropertyName("DOS")]
         public string 批序 { get; set; }
-        /// <summary>
-        /// 天數
-        /// </summary>
         [JsonPropertyName("DAYS")]
         public string 天數 { get; set; }
         [JsonPropertyName("SD")]
