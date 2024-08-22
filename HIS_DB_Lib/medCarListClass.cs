@@ -39,6 +39,8 @@ namespace HIS_DB_Lib
         public string 交車時間 { get; set; }
         [JsonPropertyName("hand_status")]
         public string 交車狀態 { get; set; }
+        [JsonPropertyName("note")]
+        public string 備註 { get; set; }
 
     }
     public static class PharmacyData
