@@ -1366,6 +1366,11 @@
             ServerName。
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.medConfigClass">
+            <summary>
+            medConfigClass
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medConfigClass.GUID">
             <summary>
             唯一KEY.

@@ -1610,7 +1610,7 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
         </member>
-        <member name="M:HIS_WebApi.drugDispatch.GET_init(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.batch_inventory_import.POST_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化資料庫
             </summary>
@@ -1618,11 +1618,9 @@
             以下為範例JSON範例
             <code>
               {
-                "ServerName" : "A5",
-                "ServerType" : "調劑台",
                 "Data": 
-                { 
-                    
+                {
+                
                 }
               }
             </code>
@@ -1630,47 +1628,128 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.drugDispatch.POST_add(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.batch_inventory_import.Post_download_sample_excel(HIS_DB_Lib.returnData)">
             <summary>
-            新增資料
+            下載範例Excel
             </summary>
             <remarks>
-             --------------------------------------------<br/> 
             以下為範例JSON範例
             <code>
               {
-                "ServerName" : "A5",
-                "ServerType" : "調劑台",
                 "Data": 
                 {
-                   [drugDispatchClass]
+                
                 }
               }
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
-            <returns>[returnData.Data]</returns>
+            <returns></returns>
         </member>
-        <member name="M:HIS_WebApi.drugDispatch.POST_datas_posting(HIS_DB_Lib.returnData)">
+        <member name="M:HIS_WebApi.batch_inventory_import.POST_excel(Microsoft.AspNetCore.Http.IFormFile,System.String)">
             <summary>
-            新增過帳資料集
+            上傳Excel表單
             </summary>
             <remarks>
-             --------------------------------------------<br/> 
+            [必要輸入參數說明]<br/> 
+             1.[file] : 上傳xls/xlsx <br/> 
+             1.[CT_NAME] : 建表人員 <br/> 
+            </remarks>
+            <returns>Excel</returns>
+        </member>
+        <member name="M:HIS_WebApi.batch_inventory_import.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增批次入庫資料
+            </summary>
+            <remarks>
             以下為範例JSON範例
             <code>
               {
-                "ServerName" : "A5",
-                "ServerType" : "調劑台",
                 "Data": 
                 {
-                   [drugDispatchClass]
-                }
+                    [batch_inventory_importClassAry]
+                },
+                "ValueAry" : 
+                [
+                   "建表人員"
+                ]
+                
               }
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
-            <returns>[returnData.Data]</returns>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.batch_inventory_import.POST_delete_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            刪除批次入庫資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                    [batch_inventory_importClassAry]
+                },
+                "ValueAry" : 
+                [
+                 
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.batch_inventory_import.POST_get_by_CT_TIME(HIS_DB_Lib.returnData)">
+            <summary>
+            以建表時間取得批次入庫資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                  "建表起始時間",
+                  "建表結束時間",
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.batch_inventory_import.POST_get_by_RECEIVE_TIME(HIS_DB_Lib.returnData)">
+            <summary>
+            以入庫時間取得批次入庫資料
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                  "建表起始時間",
+                  "建表結束時間",
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
         </member>
         <member name="M:HIS_WebApi.drugStotreDistribution.POST_init(HIS_DB_Lib.returnData)">
             <summary>
@@ -3786,6 +3865,51 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.ServerSettingController.POST_get_web_peremeter(HIS_DB_Lib.returnData)">
+            <summary>
+            取得網頁模組開啟資訊
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                  [盤點單管理模組不啟用],
+                  [條碼建置模組不啟用],
+                  [藥品管理模組不啟用]
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.ServerSettingController.POST_get_web_peremeter_name(HIS_DB_Lib.returnData)">
+            <summary>
+            取得網頁模組參數名稱
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                   
+                },
+                "ValueAry" : 
+                [
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.medConfig.GET_init(HIS_DB_Lib.returnData)">
             <summary>
             初始化資料庫
@@ -4877,6 +5001,90 @@
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi.MED_pageController.POST_get_datas_dps_medClass_by_code(HIS_DB_Lib.returnData)">
+            <summary>
+            以藥碼搜尋[調劑台藥檔]
+            </summary>
+            <remarks>
+            <code>
+            {
+                "Data": 
+                {
+                    
+                },
+                "ValueAry" : 
+                [
+                   [藥碼]
+                   [servername1,servername2]
+                ]
+                
+            }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+        </member>
+        <member name="M:HIS_WebApi.drugDispatch.GET_init(HIS_DB_Lib.returnData)">
+            <summary>
+            初始化資料庫
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "A5",
+                "ServerType" : "調劑台",
+                "Data": 
+                { 
+                    
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.drugDispatch.POST_add(HIS_DB_Lib.returnData)">
+            <summary>
+            新增資料
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "A5",
+                "ServerType" : "調劑台",
+                "Data": 
+                {
+                   [drugDispatchClass]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.drugDispatch.POST_datas_posting(HIS_DB_Lib.returnData)">
+            <summary>
+            新增過帳資料集
+            </summary>
+            <remarks>
+             --------------------------------------------<br/> 
+            以下為範例JSON範例
+            <code>
+              {
+                "ServerName" : "A5",
+                "ServerType" : "調劑台",
+                "Data": 
+                {
+                   [drugDispatchClass]
+                }
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>[returnData.Data]</returns>
         </member>
         <member name="M:HIS_WebApi.order.GET_init(HIS_DB_Lib.returnData)">
             <summary>
