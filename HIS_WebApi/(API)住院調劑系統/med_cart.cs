@@ -485,12 +485,12 @@ namespace HIS_WebApi
                     .GroupBy(medCart => medCart.Master_GUID)
                     .Select(group => group.First())
                     .ToList();
-                for (int i = 0; i < medCpoe_sql_buf.Count; i++)
-                {
-                    string Master_GUID = medCpoe_sql_buf[i].Master_GUID;
-                    sQLControl_med_cpoe_rec.DeleteByIn(null, (int)enum_med_cpoe_rec.Master_GUID, Master_GUID);
+                //for (int i = 0; i < medCpoe_sql_buf.Count; i++)
+                //{
+                //    string Master_GUID = medCpoe_sql_buf[i].Master_GUID;
+                //    sQLControl_med_cpoe_rec.DeleteByIn(null, (int)enum_med_cpoe_rec.Master_GUID, Master_GUID);
 
-                }
+                //}
                 List<medCpoeClass> medCpoe_sql_add = new List<medCpoeClass>();
                 List<object[]> list_medCpoe_add = input_medCpoe_rec.ClassToSQL<medCpoeRecClass, enum_med_cpoe_rec>();
                 sQLControl_med_cpoe_rec.AddRows(null, list_medCpoe_add);
