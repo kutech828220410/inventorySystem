@@ -9,7 +9,6 @@ using System.Text.Json.Serialization;
 
 namespace HIS_DB_Lib
 {
-
     [EnumDescription("med_carInfo")]
     public enum enum_med_carInfo
     {
@@ -310,7 +309,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("cpoe")]
         public List<medCpoeClass> 處方 { get; set; }
-        
+
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
             public int Compare(medCarInfoClass x, medCarInfoClass y)
@@ -336,12 +335,12 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCarInfoClass;
         }
-        
+
         static public List<medCarInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
         {
             List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
-            
+
             returnData returnData = new returnData();
             returnData.ValueAry = Info;
             string json_in = returnData.JsonSerializationt();
@@ -382,7 +381,7 @@ namespace HIS_DB_Lib
             out_medCarInfoClass.Sort(new medCarInfoClass.ICP_By_bedNum());
             return out_medCarInfoClass;
         }
-        
+
     }
     public class diseaseOut
     {
@@ -398,7 +397,5 @@ namespace HIS_DB_Lib
         public string 疾病說明 { get; set; }
 
     }
-    
 
-    
 }

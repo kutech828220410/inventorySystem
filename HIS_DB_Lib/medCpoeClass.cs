@@ -347,7 +347,7 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCpoeClass;
         }
-        static public List<medCpoeClass> check_dispense (string API_Server, string value, List<string> valueAry)
+        static public List<medCpoeClass> check_dispense(string API_Server, string value, List<string> valueAry)
         {
             string url = $"{API_Server}/api/med_cart/check_dispense";
             returnData returnData = new returnData();
@@ -364,7 +364,7 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCpoeClass;
         }
-        static public List<medQtyClass> get_med_qty (string API_Server, List<string> valueAry)
+        static public List<medQtyClass> get_med_qty(string API_Server, List<string> valueAry)
         {
             string url = $"{API_Server}/api/med_cart/get_med_qty";
             returnData returnData = new returnData();
@@ -442,5 +442,4 @@ namespace HIS_DB_Lib
             }
         }
     }
-
 }

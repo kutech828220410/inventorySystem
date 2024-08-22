@@ -119,9 +119,8 @@
     <Compile Include="deviceApiClass.cs" />
     <Compile Include="drugDispatchClass.cs" />
     <Compile Include="materialRequisitionClass.cs" />
-    <Compile Include="medCarClass.cs" />
     <Compile Include="medCarInfoClass.cs" />
-    <Compile Include="medCarListClass.cs" />
+    <Compile Include="medCarList.cs" />
     <Compile Include="medCpoeClass.cs" />
     <Compile Include="medGeneralConfigClass.cs" />
     <Compile Include="IncomeReasonsClass.cs" />
@@ -139,7 +138,6 @@
     <Compile Include="medPharmacyClass.cs" />
     <Compile Include="medPicClass.cs" />
     <Compile Include="medPriceClass.cs" />
-    <Compile Include="MedRecheckLogClass.cs" />
     <Compile Include="medRecheckLogClass.cs" />
     <Compile Include="medShiftConfigClass.cs" />
     <Compile Include="medSMDSClass.cs" />

@@ -38,7 +38,7 @@ namespace HIS_DB_Lib
         劑量,
         [Description("單位,VARCHAR,10,NONE")]
         單位,
-       
+
     }
     [EnumDescription("med_inventory")]
     public enum enum_med_inventory
@@ -125,7 +125,7 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("dunit")]
         public string 單位 { get; set; }
-        
+
     }
     /// <summary>
     ///  medInventoryClass資料
@@ -184,7 +184,7 @@ namespace HIS_DB_Lib
         public string 藥碼 { get; set; }
         [JsonPropertyName("name")]
         public string 藥品名 { get; set; }
- 
+
         [JsonPropertyName("cht_name")]
         public string 中文名 { get; set; }
 
@@ -195,6 +195,4 @@ namespace HIS_DB_Lib
         [JsonPropertyName("dunit")]
         public string 單位 { get; set; }
     }
-        
-    
 }
