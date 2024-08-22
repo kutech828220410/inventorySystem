@@ -33,7 +33,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -59,7 +59,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -95,7 +95,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "本地端");
                 if (serverSettingClasses.Count == 0)
                 {

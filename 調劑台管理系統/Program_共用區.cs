@@ -20,6 +20,34 @@ using SQLUI;
 
 namespace 調劑台管理系統
 {
+    static public class CommonSapceMethod
+    {
+        public static void WriteTakeMedicineStack(this List<CommonSapceClass> commonSapceClasses ,List<object[]> list_堆疊母資料_add)
+        {
+            Table table = new Table(new enum_取藥堆疊母資料());
+            SQLControl sQLControl = new SQLControl();
+            for (int i = 0; i < commonSapceClasses.Count; i++)
+            {
+                table.Server = commonSapceClasses[i].serverSettingClass.Server;
+                table.Username = commonSapceClasses[i].serverSettingClass.User;
+                table.Password = commonSapceClasses[i].serverSettingClass.Password;
+                table.Port = commonSapceClasses[i].serverSettingClass.Port;
+                table.DBName = commonSapceClasses[i].serverSettingClass.DBName;
+                sQLControl.Init(table);
+                List<string> list_str = (from temp in list_堆疊母資料_add
+                                         select temp[(int)enum_取藥堆疊母資料.調劑台名稱].ObjectToString()).ToList();
+                for (int k = 0; k < list_str.Count; k++)
+                {
+                    Console.WriteLine($"刪除共用台資料,名稱 : {list_str[k]}");
+                    sQLControl.DeleteByDefult(null, (int)enum_取藥堆疊母資料.調劑台名稱, list_str[k]);
+                }            
+                
+                sQLControl.AddRows(null, list_堆疊母資料_add);
+                Console.WriteLine($"新增共用台資料,共<{list_堆疊母資料_add.Count}>筆");
+            }
+        }
+
+    }
     public class CommonSapceClass
     {
         public override string ToString()
@@ -31,9 +59,15 @@ namespace 調劑台管理系統
         public List<Drawer> List_EPD583 = new List<Drawer>();
         public List<RowsLED> List_RowsLED = new List<RowsLED>();
 
+        
         public CommonSapceClass(ServerSettingClass serverSettingClass)
         {
             this.serverSettingClass = serverSettingClass;
+        }
+
+        public void WriteTakeMedicineStack(List<takeMedicineStackClass> takeMedicineStackClasses)
+        {
+            takeMedicineStackClass.set_device_tradding(Main_Form.API_Server, serverSettingClass.設備名稱, Main_Form.ServerType, takeMedicineStackClasses);
         }
         public static Drawer GetEPD583(string IP , ref List<CommonSapceClass> commonSapceClasses)
         {
@@ -95,7 +129,7 @@ namespace 調劑台管理系統
             table.Port = dBConfigClass.DB_Basic.Port.ToString();
             table.Username = dBConfigClass.DB_Basic.UserName;
             table.Password = dBConfigClass.DB_Basic.Password;
-            table.DBName = "dps01";
+            table.DBName = dBConfigClass.DB_Basic.DataBaseName;
             table.TableName = "common_space_setup";
             table.AddColumnList("GUID", Table.StringType.VARCHAR, Table.IndexType.PRIMARY);
             table.AddColumnList("共用區名稱", Table.StringType.VARCHAR, 200 ,Table.IndexType.None);

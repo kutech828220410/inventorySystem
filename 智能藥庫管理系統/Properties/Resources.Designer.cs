@@ -63,9 +63,39 @@ namespace 智能藥庫系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap _211687_down_arrow_icon {
+            get {
+                object obj = ResourceManager.GetObject("211687_down_arrow_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap _211690_up_arrow_icon {
+            get {
+                object obj = ResourceManager.GetObject("211690_up_arrow_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap add_new_plus_512 {
             get {
                 object obj = ResourceManager.GetObject("add-new-plus-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap adjusted_checkmark_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("adjusted_checkmark-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +196,16 @@ namespace 智能藥庫系統.Properties {
         internal static System.Drawing.Bitmap panel_storage_location_setup {
             get {
                 object obj = ResourceManager.GetObject("panel-storage-location-setup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap png_transparent_arrow_computer_icons_down_arrow_angle_hand_logo_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("png-transparent-arrow-computer-icons-down-arrow-angle-hand-logo-thumbnail", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

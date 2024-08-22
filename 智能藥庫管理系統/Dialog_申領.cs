@@ -64,21 +64,23 @@ namespace 智能藥庫系統
         private void Dialog_申領_Load(object sender, EventArgs e)
         {
             Table table = materialRequisitionClass.init(Main_Form.API_Server);
+            sqL_DataGridView_申領品項.RowsHeight = 50;
             sqL_DataGridView_申領品項.Init(table);
             sqL_DataGridView_申領品項.Set_ColumnVisible(false, new enum_materialRequisition().GetEnumNames());
-            sqL_DataGridView_申領品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.申領類別);
-            sqL_DataGridView_申領品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.藥碼);
-            sqL_DataGridView_申領品項.Set_ColumnWidth(300, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.藥名);
+            sqL_DataGridView_申領品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.申領類別);
+            sqL_DataGridView_申領品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.藥碼);
+            sqL_DataGridView_申領品項.Set_ColumnWidth(450, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.藥名);
             sqL_DataGridView_申領品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.包裝量);
             sqL_DataGridView_申領品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.包裝單位);
             sqL_DataGridView_申領品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.申領量);
-            sqL_DataGridView_申領品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.申領時間);
-            sqL_DataGridView_申領品項.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.申領單位);
-            sqL_DataGridView_申領品項.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.核撥單位);
+            sqL_DataGridView_申領品項.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.申領時間);
+            sqL_DataGridView_申領品項.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.申領單位);
+            //sqL_DataGridView_申領品項.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.核撥單位);
             sqL_DataGridView_申領品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.實撥庫庫存);
-            sqL_DataGridView_申領品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.狀態);
-
-
+            sqL_DataGridView_申領品項.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.狀態);
+            sqL_DataGridView_申領品項.Set_ColumnText("單位", enum_materialRequisition.包裝單位);
+            sqL_DataGridView_申領品項.Set_ColumnText("藥庫庫存", enum_materialRequisition.實撥庫庫存);
+            dateTimeIntervelPicker_報表日期.SetDateTime(DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
             this.rJ_Button_搜尋.MouseDownEvent += RJ_Button_搜尋_MouseDownEvent;
             this.comboBox_搜尋條件.SelectedIndex = 0;
         }
@@ -101,18 +103,42 @@ namespace 智能藥庫系統
                 DateTime dateTime_end = dateTimeIntervelPicker_報表日期.EndTime;
 
                  materialRequisitionClasses = materialRequisitionClass.get_by_requestTime(Main_Form.API_Server, dateTime_st, dateTime_end);
-                if (this.comboBox_搜尋條件.Text == "藥碼")
+                if (this.comboBox_搜尋條件.GetComboBoxText() == "藥碼")
                 {
-
+                    if(comboBox_搜尋內容.GetComboBoxText().StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("未輸入搜尋條件");
+                        return;
+                    }
+                    materialRequisitionClasses = (from temp in materialRequisitionClasses
+                                                  where temp.藥碼.StartsWith(comboBox_搜尋內容.GetComboBoxText())
+                                                  select temp).ToList();
                 }
-                if (this.comboBox_搜尋條件.Text == "藥名")
+                if (this.comboBox_搜尋條件.GetComboBoxText() == "藥名")
                 {
-
+                    if (comboBox_搜尋內容.GetComboBoxText().StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("未輸入搜尋條件");
+                        return;
+                    }
+                    materialRequisitionClasses = (from temp in materialRequisitionClasses
+                                                  where temp.藥名.StartsWith(comboBox_搜尋內容.GetComboBoxText())
+                                                  select temp).ToList();
                 }
-                if (this.comboBox_搜尋條件.Text == "申領單位")
+                if (this.comboBox_搜尋條件.GetComboBoxText() == "申領單位")
                 {
-
+                    if (comboBox_搜尋內容.GetComboBoxText().StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("未輸入搜尋條件");
+                        return;
+                    }
+                    materialRequisitionClasses = (from temp in materialRequisitionClasses
+                                                  where temp.申領單位.StartsWith(comboBox_搜尋內容.GetComboBoxText())
+                                                  select temp).ToList();
                 }
+                materialRequisitionClasses.Sort(new materialRequisitionClass.ICP_By_requestTime());
+                List<object[]> list_value = materialRequisitionClasses.ClassToSQL<materialRequisitionClass, enum_materialRequisition>();
+                sqL_DataGridView_申領品項.RefreshGrid(list_value);
             }
             catch
             {

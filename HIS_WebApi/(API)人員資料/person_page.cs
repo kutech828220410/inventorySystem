@@ -44,7 +44,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -114,7 +114,7 @@ namespace HIS_WebApi
             try
             {
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -170,7 +170,7 @@ namespace HIS_WebApi
             try
             {
              
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -239,7 +239,7 @@ namespace HIS_WebApi
             try
             {
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -308,7 +308,7 @@ namespace HIS_WebApi
             try
             {
                 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
                 if (serverSettingClasses.Count == 0)
                 {

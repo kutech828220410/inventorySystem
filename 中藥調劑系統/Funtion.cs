@@ -105,24 +105,24 @@ namespace 中藥調劑系統
                     Console.WriteLine($"[RowsLED 上傳亮燈資料]({rowsLEDs[i].IP})");
                     tasks.Add(Task.Run(new Action(delegate 
                     {
-                        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED,false);
+                        _rowsLEDUI.Set_Rows_LED_UDP(rowsLED, false);
                     })));                
                 }
             }
-            //for (int i = 0; i < storages.Count; i++)
-            //{
-            //    storages[i].LED_Bytes_buf = StorageUI_EPD_266.Get_LightStateLEDBytes(storages[i]);
-            //    if (StorageUI_EPD_266.Check_LEDBytesBuf_Diff(storages[i]))
-            //    {
-            //        Storage storage = storages[i];
-            //        storages[i].LED_Bytes = storages[i].LED_Bytes_buf;
-            //        Console.WriteLine($"[StorageUI_EPD_266 上傳亮燈資料]({rowsLEDs[i].IP})");
-            //        tasks.Add(Task.Run(new Action(delegate
-            //        {
-            //            _storageUI_EPD_266.Set_Stroage_LED_UDP(storage, storages[i].LightState.LightColor);
-            //        })));
-            //    }
-            //}
+            for (int i = 0; i < storages.Count; i++)
+            {
+                storages[i].LED_Bytes_buf = StorageUI_EPD_266.Get_LightStateLEDBytes(storages[i]);
+                if (StorageUI_EPD_266.Check_LEDBytesBuf_Diff(storages[i]))
+                {
+                    Storage storage = storages[i];
+                    storage.LED_Bytes = storage.LED_Bytes_buf;
+                    Console.WriteLine($"[StorageUI_EPD_266 上傳亮燈資料]({storage.IP})");
+                    tasks.Add(Task.Run(new Action(delegate
+                    {
+                        _storageUI_EPD_266.Set_Stroage_LED_UDP(storage.IP, storage.Port, storage.LED_Bytes);
+                    })));
+                }
+            }
 
             Task.WhenAll(tasks).Wait();
         }

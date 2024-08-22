@@ -224,6 +224,17 @@ namespace HIS_DB_Lib
   
     public class medClass : medClassBasic
     {
+        /// <summary>
+        /// ServerName。
+        /// </summary>
+        [JsonPropertyName("ServerName")]
+        public string ServerName { get; set; }
+        /// <summary>
+        /// ServerName。
+        /// </summary>
+        [JsonPropertyName("ServerType")]
+        public string ServerType { get; set; }
+
         public enum StoreType
         {
             藥庫,
@@ -488,6 +499,31 @@ namespace HIS_DB_Lib
             returnData.ValueAry.Add(name);
             returnData.Value = serchType.GetEnumName();
             returnData.ServerName = ServerName;
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            medClasses = returnData.Data.ObjToClass<List<medClass>>();
+            medClasses.Sort(new ICP_By_Code());
+            Console.WriteLine($"{returnData}");
+            return medClasses;
+        }
+        static public List<medClass> get_datas_dps_medClass_by_code(string API_Server, List<string> serverNames, string Code)
+        {
+            List<medClass> medClasses = new List<medClass>();
+            string url = $"{API_Server}/api/MED_page/get_datas_dps_medClass_by_code";
+
+            returnData returnData = new returnData();
+            string str_serverNames = "";
+            for (int i = 0; i < serverNames.Count; i++)
+            {
+                str_serverNames += serverNames[i];
+                if (i != serverNames.Count - 1) str_serverNames += ",";
+            }
+            returnData.ValueAry.Add(Code);
+            returnData.ValueAry.Add(str_serverNames);
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);

@@ -36,6 +36,7 @@ namespace 智能藥庫系統
             this.rJ_Lable1 = new MyUI.RJ_Lable();
             this.dateTimeIntervelPicker_報表日期 = new MyUI.DateTimeIntervelPicker();
             this.sqL_DataGridView_申領品項 = new SQLUI.SQL_DataGridView();
+            this.plC_RJ_Button_核撥 = new MyUI.PLC_RJ_Button();
             this.rJ_Pannel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@ namespace 智能藥庫系統
             this.rJ_Pannel1.BorderColor = System.Drawing.Color.Black;
             this.rJ_Pannel1.BorderRadius = 10;
             this.rJ_Pannel1.BorderSize = 2;
+            this.rJ_Pannel1.Controls.Add(this.plC_RJ_Button_核撥);
             this.rJ_Pannel1.Controls.Add(this.rJ_Button_搜尋);
             this.rJ_Pannel1.Controls.Add(this.comboBox_搜尋內容);
             this.rJ_Pannel1.Controls.Add(this.comboBox_搜尋條件);
@@ -56,6 +58,7 @@ namespace 智能藥庫系統
             this.rJ_Pannel1.IsSelected = false;
             this.rJ_Pannel1.Location = new System.Drawing.Point(4, 28);
             this.rJ_Pannel1.Name = "rJ_Pannel1";
+            this.rJ_Pannel1.Padding = new System.Windows.Forms.Padding(10);
             this.rJ_Pannel1.ShadowColor = System.Drawing.Color.DimGray;
             this.rJ_Pannel1.ShadowSize = 3;
             this.rJ_Pannel1.Size = new System.Drawing.Size(1668, 155);
@@ -97,11 +100,6 @@ namespace 智能藥庫系統
             // 
             this.comboBox_搜尋內容.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
             this.comboBox_搜尋內容.FormattingEnabled = true;
-            this.comboBox_搜尋內容.Items.AddRange(new object[] {
-            "藥碼",
-            "藥名",
-            "IP",
-            "區域"});
             this.comboBox_搜尋內容.Location = new System.Drawing.Point(523, 64);
             this.comboBox_搜尋內容.Name = "comboBox_搜尋內容";
             this.comboBox_搜尋內容.Size = new System.Drawing.Size(291, 39);
@@ -170,15 +168,17 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_申領品項.CellBorderColor = System.Drawing.Color.Silver;
             this.sqL_DataGridView_申領品項.cellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.sqL_DataGridView_申領品項.cellStylBackColor = System.Drawing.Color.LightBlue;
-            this.sqL_DataGridView_申領品項.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.sqL_DataGridView_申領品項.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_申領品項.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_申領品項.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_申領品項.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_申領品項.columnHeaderBorderColor = System.Drawing.Color.DimGray;
-            this.sqL_DataGridView_申領品項.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.sqL_DataGridView_申領品項.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_申領品項.columnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_申領品項.columnHeadersHeight = 18;
             this.sqL_DataGridView_申領品項.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_申領品項.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_申領品項.DataKeyEnable = false;
             this.sqL_DataGridView_申領品項.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_申領品項.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_申領品項.ImageBox = false;
@@ -207,22 +207,81 @@ namespace 智能藥庫系統
             this.sqL_DataGridView_申領品項.自動換行 = true;
             this.sqL_DataGridView_申領品項.表單字體 = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_申領品項.邊框樣式 = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.sqL_DataGridView_申領品項.顯示CheckBox = false;
+            this.sqL_DataGridView_申領品項.顯示CheckBox = true;
             this.sqL_DataGridView_申領品項.顯示首列 = true;
             this.sqL_DataGridView_申領品項.顯示首行 = true;
             this.sqL_DataGridView_申領品項.首列樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
             this.sqL_DataGridView_申領品項.首行樣式 = System.Windows.Forms.DataGridViewHeaderBorderStyle.Raised;
+            // 
+            // plC_RJ_Button_核撥
+            // 
+            this.plC_RJ_Button_核撥.AutoResetState = true;
+            this.plC_RJ_Button_核撥.BackgroundColor = System.Drawing.Color.White;
+            this.plC_RJ_Button_核撥.Bool = false;
+            this.plC_RJ_Button_核撥.BorderColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_核撥.BorderRadius = 15;
+            this.plC_RJ_Button_核撥.BorderSize = 1;
+            this.plC_RJ_Button_核撥.but_press = false;
+            this.plC_RJ_Button_核撥.buttonType = MyUI.RJ_Button.ButtonType.Toggle;
+            this.plC_RJ_Button_核撥.DisenableColor = System.Drawing.Color.Gray;
+            this.plC_RJ_Button_核撥.Dock = System.Windows.Forms.DockStyle.Right;
+            this.plC_RJ_Button_核撥.FlatAppearance.BorderSize = 0;
+            this.plC_RJ_Button_核撥.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.plC_RJ_Button_核撥.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_核撥.GUID = "";
+            this.plC_RJ_Button_核撥.Icon = System.Windows.Forms.MessageBoxIcon.Warning;
+            this.plC_RJ_Button_核撥.Image_padding = new System.Windows.Forms.Padding(18, 7, 23, 5);
+            this.plC_RJ_Button_核撥.Location = new System.Drawing.Point(1532, 10);
+            this.plC_RJ_Button_核撥.Name = "plC_RJ_Button_核撥";
+            this.plC_RJ_Button_核撥.OFF_文字內容 = "核撥";
+            this.plC_RJ_Button_核撥.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_核撥.OFF_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_核撥.OFF_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_核撥.ON_BorderSize = 1;
+            this.plC_RJ_Button_核撥.ON_文字內容 = "核撥";
+            this.plC_RJ_Button_核撥.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_Button_核撥.ON_文字顏色 = System.Drawing.Color.Black;
+            this.plC_RJ_Button_核撥.ON_背景顏色 = System.Drawing.Color.White;
+            this.plC_RJ_Button_核撥.ProhibitionBorderLineWidth = 1;
+            this.plC_RJ_Button_核撥.ProhibitionLineWidth = 4;
+            this.plC_RJ_Button_核撥.ProhibitionSymbolSize = 30;
+            this.plC_RJ_Button_核撥.ShadowColor = System.Drawing.Color.DimGray;
+            this.plC_RJ_Button_核撥.ShadowSize = 3;
+            this.plC_RJ_Button_核撥.ShowLoadingForm = false;
+            this.plC_RJ_Button_核撥.Size = new System.Drawing.Size(126, 135);
+            this.plC_RJ_Button_核撥.State = false;
+            this.plC_RJ_Button_核撥.TabIndex = 146;
+            this.plC_RJ_Button_核撥.Text = "核撥";
+            this.plC_RJ_Button_核撥.TextColor = System.Drawing.Color.Black;
+            this.plC_RJ_Button_核撥.TextHeight = 35;
+            this.plC_RJ_Button_核撥.Texts = "核撥";
+            this.plC_RJ_Button_核撥.UseVisualStyleBackColor = false;
+            this.plC_RJ_Button_核撥.Visible = false;
+            this.plC_RJ_Button_核撥.字型鎖住 = false;
+            this.plC_RJ_Button_核撥.按鈕型態 = MyUI.PLC_RJ_Button.StatusEnum.保持型;
+            this.plC_RJ_Button_核撥.按鍵方式 = MyUI.PLC_RJ_Button.PressEnum.Mouse_左鍵;
+            this.plC_RJ_Button_核撥.文字鎖住 = false;
+            this.plC_RJ_Button_核撥.背景圖片 = global::智能藥庫系統.Properties.Resources.adjusted_checkmark_removebg_preview;
+            this.plC_RJ_Button_核撥.讀取位元反向 = false;
+            this.plC_RJ_Button_核撥.讀寫鎖住 = false;
+            this.plC_RJ_Button_核撥.音效 = false;
+            this.plC_RJ_Button_核撥.顯示 = false;
+            this.plC_RJ_Button_核撥.顯示狀態 = false;
             // 
             // Dialog_申領
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.CaptionHeight = 60;
             this.ClientSize = new System.Drawing.Size(1676, 1057);
+            this.CloseBoxSize = new System.Drawing.Size(60, 60);
             this.ControlBox = true;
             this.Controls.Add(this.sqL_DataGridView_申領品項);
             this.Controls.Add(this.rJ_Pannel1);
+            this.MaxSize = new System.Drawing.Size(60, 60);
             this.MinimizeBox = true;
+            this.MiniSize = new System.Drawing.Size(60, 60);
             this.Name = "Dialog_申領";
             this.ShowInTaskbar = true;
             this.Text = "申領";
@@ -240,5 +299,6 @@ namespace 智能藥庫系統
         private System.Windows.Forms.ComboBox comboBox_搜尋內容;
         private System.Windows.Forms.ComboBox comboBox_搜尋條件;
         private SQLUI.SQL_DataGridView sqL_DataGridView_申領品項;
+        private MyUI.PLC_RJ_Button plC_RJ_Button_核撥;
     }
 }

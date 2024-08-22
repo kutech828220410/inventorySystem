@@ -122,8 +122,6 @@ namespace 中藥調劑系統
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
 
-   
-
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
@@ -1307,7 +1305,7 @@ namespace 中藥調劑系統
             }
             for (int i = 0; i < List_RowsLED_本地資料.Count; i++)
             {
-                List_RowsLED_本地資料[i].LED_Bytes_buf = new byte[H_Pannel_lib.RowsLED.NumOfLED  * 3];
+                List_RowsLED_本地資料[i] = H_Pannel_lib.RowsLEDUI.ResetLightStateLEDBytes(List_RowsLED_本地資料[i]);
             }
             Function_儲位亮燈(Codes, Color.Black);
         }

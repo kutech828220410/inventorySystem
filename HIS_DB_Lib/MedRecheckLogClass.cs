@@ -311,6 +311,7 @@ namespace HIS_DB_Lib
             //Console.WriteLine($"{returnData_out}");
 
             List<medRecheckLogClass> medRecheckLogClasses = returnData_out.Data.ObjToClass<List<medRecheckLogClass>>();
+            if (medRecheckLogClasses == null) return new List<medRecheckLogClass>();
             medRecheckLogClasses.Sort(new ICP_By_occurrence_time());
             return medRecheckLogClasses;
         }

@@ -223,6 +223,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap icon_for_medicine_map_papper_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("icon-for-medicine-map-papper-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap icon_for_searching_medicine_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("icon-for-searching-medicine-removebg-preview", resourceCulture);
@@ -246,6 +256,16 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap left_arrow_icon {
             get {
                 object obj = ResourceManager.GetObject("left_arrow_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap light_off_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("light-off-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -336,6 +356,16 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap medicine_shift_handover_checklist__add_data_plus_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("medicine-shift-handover-checklist--add-data-plus-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medicine_shift_handover_checklist__add_data_plus_removebg_preview1 {
+            get {
+                object obj = ResourceManager.GetObject("medicine-shift-handover-checklist--add-data-plus-removebg-preview1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

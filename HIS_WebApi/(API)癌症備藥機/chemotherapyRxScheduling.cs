@@ -48,7 +48,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -113,7 +113,7 @@ namespace HIS_WebApi
             {
 
                 ctclistClass ctclistClass = returnData.Data.ObjToClass<ctclistClass>();
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -221,7 +221,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -283,7 +283,7 @@ namespace HIS_WebApi
             returnData.Method = "add_udnoectc";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -409,7 +409,7 @@ namespace HIS_WebApi
             returnData.Method = "get_udnoectc_by_ctdate_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -518,7 +518,7 @@ namespace HIS_WebApi
             returnData.Method = "get_udnoectc_by_GUID";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -607,7 +607,7 @@ namespace HIS_WebApi
             returnData.Method = "update_udnoectc_orders_comp";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -698,7 +698,7 @@ namespace HIS_WebApi
             returnData.Method = "update_udnoectc_confirm_ph";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -784,7 +784,7 @@ namespace HIS_WebApi
             returnData.Method = "update_udnoectc_disp_ph";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -870,7 +870,7 @@ namespace HIS_WebApi
             returnData.Method = "update_udnoectc_check_ph";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -953,7 +953,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -1015,7 +1015,7 @@ namespace HIS_WebApi
             returnData.Method = "add_udphnoph";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "排程醫令資料");
                 if (serverSettingClasses.Count == 0)
                 {

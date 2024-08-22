@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json.Serialization;
 using Basic;
+using System.ComponentModel;
+
 namespace HIS_DB_Lib
 {
     public enum enum_盤點定盤_Excel
@@ -23,6 +25,16 @@ namespace HIS_DB_Lib
         結存金額,
         誤差量,
         誤差金額
+    }
+    public enum enum_盤點明細_Excel
+    {
+        藥碼,
+        料號,
+        藥名,
+        單位,
+        盤點量,
+        盤點人員,
+        盤點時間,
     }
     public enum enum_盤點覆盤_Excel
     {
@@ -54,49 +66,88 @@ namespace HIS_DB_Lib
         等待盤點,
         鎖定,
     }
+    [EnumDescription("inventory_creat")]
     public enum enum_盤點單號
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("盤點名稱,VARCHAR,500,NONE")]
         盤點名稱,
+        [Description("盤點單號,VARCHAR,50,NONE")]
         盤點單號,
+        [Description("建表人,VARCHAR,50,NONE")]
         建表人,
+        [Description("建表時間,DATETIME,50,NONE")]
         建表時間,
+        [Description("盤點開始時間,DATETIME,50,NONE")]
         盤點開始時間,
+        [Description("盤點結束時間,DATETIME,50,NONE")]
         盤點結束時間,
+        [Description("盤點狀態,VARCHAR,50,NONE")]
         盤點狀態,
+        [Description("預設盤點人,VARCHAR,300,NONE")]
         預設盤點人,
+        [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
+    [EnumDescription("inventory_content")]
     public enum enum_盤點內容
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("序號,VARCHAR,10,NONE")]
         序號,
+        [Description("盤點單號,VARCHAR,50,INDEX")]
         盤點單號,
+        [Description("藥品碼,VARCHAR,20,INDEX")]
         藥品碼,
+        [Description("料號,VARCHAR,20,INDEX")]
         料號,
+        [Description("藥品條碼1,VARCHAR,50,NONE")]
         藥品條碼1,
+        [Description("藥品條碼2,TEXT,50,NONE")]
         藥品條碼2,
+        [Description("儲位名稱,VARCHAR,50,NONE")]
         儲位名稱,
+        [Description("理論值,VARCHAR,10,NONE")]
         理論值,
+        [Description("新增時間,DATETIME,50,NONE")]
         新增時間,
+        [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
+    [EnumDescription("inventory_sub_content")]
     public enum enum_盤點明細
     {
+        [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("Master_GUID,VARCHAR,50,INDEX")]
         Master_GUID,
+        [Description("盤點單號,VARCHAR,50,INDEX")]
         盤點單號,
+        [Description("藥品碼,VARCHAR,20,INDEX")]
         藥品碼,
+        [Description("料號,VARCHAR,20,INDEX")]
         料號,
+        [Description("藥品條碼1,VARCHAR,50,NONE")]
         藥品條碼1,
+        [Description("藥品條碼2,TEXT,50,NONE")]
         藥品條碼2,
+        [Description("盤點量,VARCHAR,10,NONE")]
         盤點量,
+        [Description("效期,DATETIME,50,NONE")]
         效期,
+        [Description("批號,VARCHAR,50,NONE")]
         批號,
+        [Description("操作時間,DATETIME,50,INDEX")]
         操作時間,
+        [Description("操作人,VARCHAR,50,INDEX")]
         操作人,
+        [Description("狀態,VARCHAR,50,NONE")]
         狀態,
+        [Description("備註,VARCHAR,200,NONE")]
         備註,
     }
     public class inventoryClass
@@ -138,7 +189,42 @@ namespace HIS_DB_Lib
                     Contents.Add(content);
                 }
             }
-          
+
+            public System.Data.DataTable get_all_sub_contents_dt()
+            {
+                List<object[]> list_value = new List<object[]>();
+                List<sub_content> sub_Contents = get_all_sub_contents();
+                for (int i = 0; i < sub_Contents.Count; i++)
+                {
+                    object[] value = new object[new enum_盤點明細_Excel().GetLength()];
+                    value[(int)enum_盤點明細_Excel.藥碼] = sub_Contents[i].藥品碼;
+                    value[(int)enum_盤點明細_Excel.藥名] = sub_Contents[i].藥品名稱;
+                    value[(int)enum_盤點明細_Excel.料號] = sub_Contents[i].料號;
+                    value[(int)enum_盤點明細_Excel.盤點人員] = sub_Contents[i].操作人;
+                    value[(int)enum_盤點明細_Excel.盤點時間] = sub_Contents[i].操作時間;
+                    value[(int)enum_盤點明細_Excel.盤點量] = sub_Contents[i].盤點量;
+                    list_value.Add(value);
+                }
+
+                System.Data.DataTable dataTable = list_value.ToDataTable(new enum_盤點明細_Excel());
+                dataTable.TableName = $"{盤點名稱}({盤點單號})";
+                return dataTable;
+            }
+
+            public List<sub_content> get_all_sub_contents()
+            {
+                List<sub_content> sub_Contents = new List<sub_content>();
+                for (int i = 0; i < Contents.Count; i++)
+                {
+                    for (int k = 0; k < Contents[i].Sub_content.Count; k++)
+                    {
+                        sub_Contents.Add(Contents[i].Sub_content[k]);
+                    }
+                }
+                return sub_Contents;
+            }
+
+
         }
         public class content
         {
@@ -387,56 +473,5 @@ namespace HIS_DB_Lib
 
     }
 
-    public enum enum_inv_combinelist
-    {
-        GUID,
-        Master_GUID,
-        合併單號,
-        合併單名稱,
-        建表姓名,
-        建表時間,
-    }
-    public class inv_combinelist
-    {
-        [JsonPropertyName("GUID")]
-        public string GUID { get; set; }
-        [JsonPropertyName("Master_GUID")]
-        public string Master_GUID { get; set; }
-        [JsonPropertyName("ICB_SN")]
-        public string 合併單號 { get; set; }
-        [JsonPropertyName("ICB_NAME")]
-        public string 合併單名稱 { get; set; }
-        [JsonPropertyName("CT")]
-        public string 建表姓名 { get; set; }
-        [JsonPropertyName("CT_TIME")]
-        public string 建表時間 { get; set; }
-        [JsonPropertyName("ICB_ARY")]
-        List<ICB_ARY_Class> ICB_ARY { get; set; }
-        public enum enum_ICB_ARY
-        {
-            GUID,
-            Master_GUID,
-            合併子單號,
-            合併子單名稱,
-            合併單類型,
-            加入表單姓名,
-            加入表單時間,
-        }
-        public class ICB_ARY_Class
-        {
-            [JsonPropertyName("GUID")]
-            public string GUID { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string 合併子單號 { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string 合併子單名稱 { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string 合併單類型 { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string 加入表單姓名 { get; set; }
-            [JsonPropertyName("Master_GUID")]
-            public string 加入表單時間 { get; set; }
-        }
-
-    }
+  
 }

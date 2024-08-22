@@ -61,7 +61,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -102,7 +102,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -168,7 +168,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -237,7 +237,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -322,7 +322,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -403,7 +403,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -496,7 +496,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -574,7 +574,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
                 if (serverSettingClasses_buf.Count == 0)
@@ -741,7 +741,7 @@ namespace HIS_WebApi
             myTimer.StartTickTime(50000);
             GET_init(returnData);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -892,7 +892,7 @@ namespace HIS_WebApi
             try
             {
                 GET_init(returnData);
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 List<ServerSettingClass> serverSettingClasses_buf = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses_buf.Count == 0)
                 {
@@ -1001,7 +1001,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1080,7 +1080,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1159,7 +1159,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1235,7 +1235,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1306,7 +1306,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1370,7 +1370,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1501,7 +1501,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1572,7 +1572,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1667,7 +1667,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1788,7 +1788,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -1883,7 +1883,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -1973,7 +1973,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -2090,7 +2090,7 @@ namespace HIS_WebApi
                 MyTimer myTimer = new MyTimer();
                 myTimer.StartTickTime(50000);
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -2219,7 +2219,7 @@ namespace HIS_WebApi
             MyTimer myTimer = new MyTimer();
             myTimer.StartTickTime(50000);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
             if (serverSettingClasses.Count == 0)
             {
@@ -2364,7 +2364,7 @@ namespace HIS_WebApi
             myTimerBasic.StartTickTime(50000);
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "VM端")[0];
 
 
@@ -2514,7 +2514,7 @@ namespace HIS_WebApi
             SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
             SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             ServerSettingClass serverSettingClasses_med = serverSettingClasses.MyFind("Main", "網頁", "藥檔資料")[0];
 
             MED_pageController mED_PageController = new MED_pageController();
@@ -2616,72 +2616,10 @@ namespace HIS_WebApi
         static private string CheckCreatTable(ServerSettingClass serverSettingClass)
         {
 
-            string Server = serverSettingClass.Server;
-            string DB = serverSettingClass.DBName;
-            string UserName = serverSettingClass.User;
-            string Password = serverSettingClass.Password;
-            uint Port = (uint)serverSettingClass.Port.StringToInt32();
-
-            SQLControl sQLControl_inventory_creat = new SQLControl(Server, DB, "inventory_creat", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inventory_content = new SQLControl(Server, DB, "inventory_content", UserName, Password, Port, SSLMode);
-            SQLControl sQLControl_inventory_sub_content = new SQLControl(Server, DB, "inventory_sub_content", UserName, Password, Port, SSLMode);
-
             List<Table> tables = new List<Table>();
-            Table table_inventory_creat;
-            table_inventory_creat = new Table("inventory_creat");
-            table_inventory_creat.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inventory_creat.AddColumnList("盤點名稱", Table.StringType.VARCHAR, 500, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("建表人", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("建表時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("盤點開始時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("盤點結束時間", Table.DateType.DATETIME, 50, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("盤點狀態", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("預設盤點人", Table.StringType.VARCHAR, 300, Table.IndexType.None);
-            table_inventory_creat.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            if (!sQLControl_inventory_creat.IsTableCreat()) sQLControl_inventory_creat.CreatTable(table_inventory_creat);
-            else sQLControl_inventory_creat.CheckAllColumnName(table_inventory_creat, true);
-            tables.Add(table_inventory_creat);
-
-            Table table_inventory_content;
-            table_inventory_content = new Table("inventory_content");
-            table_inventory_content.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inventory_content.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table_inventory_content.AddColumnList("序號", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table_inventory_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inventory_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inventory_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inventory_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inventory_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
-            table_inventory_content.AddColumnList("儲位名稱", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inventory_content.AddColumnList("理論值", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table_inventory_content.AddColumnList("新增時間", Table.DateType.DATETIME, 30, Table.IndexType.None);
-            table_inventory_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            if (!sQLControl_inventory_content.IsTableCreat()) sQLControl_inventory_content.CreatTable(table_inventory_content);
-            else sQLControl_inventory_content.CheckAllColumnName(table_inventory_content, true);
-            tables.Add(table_inventory_content);
-
-            Table table_inventory_sub_content;
-            table_inventory_sub_content = new Table("inventory_sub_content");
-            table_inventory_sub_content.AddColumnList("GUID", Table.StringType.VARCHAR, 50, Table.IndexType.PRIMARY);
-            table_inventory_sub_content.AddColumnList("Master_GUID", Table.StringType.VARCHAR, 50, Table.IndexType.INDEX);
-            table_inventory_sub_content.AddColumnList("盤點單號", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inventory_sub_content.AddColumnList("藥品碼", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-            table_inventory_sub_content.AddColumnList("料號", Table.StringType.VARCHAR, 20, Table.IndexType.INDEX);
-
-            table_inventory_sub_content.AddColumnList("藥品條碼1", Table.StringType.VARCHAR, 30, Table.IndexType.None);
-            table_inventory_sub_content.AddColumnList("藥品條碼2", Table.StringType.TEXT, 30, Table.IndexType.None);
-            table_inventory_sub_content.AddColumnList("盤點量", Table.StringType.VARCHAR, 10, Table.IndexType.None);
-            table_inventory_sub_content.AddColumnList("效期", Table.DateType.DATETIME, 30, Table.IndexType.None);
-            table_inventory_sub_content.AddColumnList("批號", Table.StringType.VARCHAR, 20, Table.IndexType.None);
-            table_inventory_sub_content.AddColumnList("操作時間", Table.DateType.DATETIME, 30, Table.IndexType.INDEX);
-            table_inventory_sub_content.AddColumnList("操作人", Table.StringType.VARCHAR, 30, Table.IndexType.INDEX);
-            table_inventory_sub_content.AddColumnList("狀態", Table.StringType.VARCHAR, 50, Table.IndexType.None);
-            table_inventory_sub_content.AddColumnList("備註", Table.StringType.VARCHAR, 200, Table.IndexType.None);
-            if (!sQLControl_inventory_sub_content.IsTableCreat()) sQLControl_inventory_sub_content.CreatTable(table_inventory_sub_content);
-            else sQLControl_inventory_sub_content.CheckAllColumnName(table_inventory_sub_content, true);
-            tables.Add(table_inventory_sub_content);
-
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_盤點單號()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_盤點內容()));
+            tables.Add(MethodClass.CheckCreatTable(serverSettingClass, new enum_盤點明細()));
             return tables.JsonSerializationt(true);
         }
         [ApiExplorerSettings(IgnoreApi = true)]

@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicClass.cs" />
+    <Compile Include="batch_inventory_importClass.cs" />
     <Compile Include="drugStotreArea.cs" />
     <Compile Include="LoggerClass.cs" />
     <Compile Include="CMPM_StorageConfig_Class.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="medRecheckLogClass.cs" />
     <Compile Include="medShiftConfigClass.cs" />
     <Compile Include="medSMDSClass.cs" />
+    <Compile Include="medTypeClass.cs" />
     <Compile Include="notifyExceptionClass.cs" />
     <Compile Include="orderClass.cs" />
     <Compile Include="orderTClass.cs" />

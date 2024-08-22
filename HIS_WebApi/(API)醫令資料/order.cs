@@ -43,7 +43,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -90,7 +90,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_rx_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 
@@ -181,7 +181,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_op_time_st_end";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 
@@ -269,7 +269,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_pri_key";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 
@@ -349,7 +349,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_guid";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 
@@ -435,7 +435,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_MED_BAG_NUM";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 
@@ -518,7 +518,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_PATCODE";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 
@@ -601,7 +601,7 @@ namespace HIS_WebApi
             returnData.Method = "get_by_PATNAME";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 
@@ -684,7 +684,7 @@ namespace HIS_WebApi
             returnData.Method = "updete_by_guid";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
@@ -755,7 +755,7 @@ namespace HIS_WebApi
             returnData.Method = "add";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
                 serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
@@ -835,7 +835,7 @@ namespace HIS_WebApi
             returnData.Method = "header_by_MED_BAG_NUM";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 
@@ -968,7 +968,7 @@ namespace HIS_WebApi
             returnData.Method = "get_header_by_PATCODE";
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 string serverName = returnData.ServerName;
                 string serverType = returnData.ServerType;
 

@@ -22,6 +22,7 @@ namespace ServerSettingForm
             {
                 ServerSettingClass serverSettingClass = new ServerSettingClass();
                 serverSettingClass.設備名稱 = "";
+                serverSettingClass.程式類別 = "peremeter";
                 serverSettingClass.類別 = this.ServerSetting_Type.GetEnumName();
                 serverSettingClass.內容 = this.Content;
                 serverSettingClass.Value = this.checkBox.Checked.ToString();

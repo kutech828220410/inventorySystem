@@ -59,7 +59,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -102,7 +102,7 @@ namespace HIS_WebApi
             try
             {
                 returnData.Method = "POST_add";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -180,7 +180,7 @@ namespace HIS_WebApi
             try
             {
                 returnData.Method = "POST_replace_by_guid";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -261,7 +261,7 @@ namespace HIS_WebApi
             try
             {
                 returnData.Method = "get_by_occurrence_time_st_end";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -338,7 +338,7 @@ namespace HIS_WebApi
             try
             {
                 returnData.Method = "get_by_occurrence_time_st_end";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -415,7 +415,7 @@ namespace HIS_WebApi
             try
             {
                 returnData.Method = "get_ng_state_data";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -477,7 +477,7 @@ namespace HIS_WebApi
             try
             {
                 returnData.Method = "get_unresolved_qty_by_code";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -554,7 +554,7 @@ namespace HIS_WebApi
             try
             {
                 returnData.Method = "set_unresolved_data_by_code";
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {

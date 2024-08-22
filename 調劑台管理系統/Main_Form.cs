@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.1.82")]
-[assembly: AssemblyFileVersion("1.2.1.82")]
+[assembly: AssemblyVersion("1.2.2.4")]
+[assembly: AssemblyFileVersion("1.2.2.4")]
 namespace 調劑台管理系統
 {
 
@@ -82,11 +82,13 @@ namespace 調劑台管理系統
 
 
         static public PLC_Device PLC_Device_主機輸出模式 = new PLC_Device("S1001");
+        static public PLC_Device PLC_Device_申領_不需輸入申領量 = new PLC_Device("S5025");
         PLC_Device PLC_Device_主機扣賬模式 = new PLC_Device("S1002");
         PLC_Device PLC_Device_掃碼槍COM通訊 = new PLC_Device("S1003");
         PLC_Device PLC_Device_抽屜不鎖上 = new PLC_Device("S1004");
         PLC_Device PLC_Device_藥物辨識圖片顯示 = new PLC_Device("S1005");
-
+        PLC_Device PLC_Device_S800 = new PLC_Device("S800");
+        PLC_Device PLC_Device_刷藥袋有相同藥品需警示 = new PLC_Device("S5026");
         #region DBConfigClass
         private static string DBConfigFileName = $@"{currentDirectory}\DBConfig.txt";
         static public DBConfigClass dBConfigClass = new DBConfigClass();
@@ -183,6 +185,7 @@ namespace 調劑台管理系統
         public class MyConfigClass
         {
 
+            private bool _ControlMode = false;
             private bool _主機扣帳模式 = false;
             private bool _主機輸出模式 = false;
             private bool _系統取藥模式 = false;
@@ -195,6 +198,13 @@ namespace 調劑台管理系統
             private bool rowsLED_Enable = true;
             private bool rFID_Enable = true;
             private bool pannel35_Enable = true;
+
+            private int ePD583_Port = 29005;
+            private int ePD266_Port = 29000;
+            private int ePD1020_Port = 29012;
+            private int rowsLED_Port = 29001;
+            private int pannel35_Port = 29020;
+
             private bool _帳密登入_Enable = true;
             private bool _外部輸出 = false;
             private bool _全螢幕顯示 = true;
@@ -230,6 +240,12 @@ namespace 調劑台管理系統
             public bool EPD1020_Enable { get => ePD1020_Enable; set => ePD1020_Enable = value; }
             public bool 全螢幕顯示 { get => _全螢幕顯示; set => _全螢幕顯示 = value; }
             public bool 鍵盤掃碼模式 { get => _鍵盤掃碼模式; set => _鍵盤掃碼模式 = value; }
+            public int EPD583_Port { get => ePD583_Port; set => ePD583_Port = value; }
+            public int EPD266_Port { get => ePD266_Port; set => ePD266_Port = value; }
+            public int EPD1020_Port { get => ePD1020_Port; set => ePD1020_Port = value; }
+            public int RowsLED_Port { get => rowsLED_Port; set => rowsLED_Port = value; }
+            public int Pannel35_Port { get => pannel35_Port; set => pannel35_Port = value; }
+            public bool ControlMode { get => _ControlMode; set => _ControlMode = value; }
         }
         private void LoadMyConfig()
         {
@@ -343,7 +359,7 @@ namespace 調劑台管理系統
                 Dialog_條碼管理.form = this.FindForm();
                 Dialog_使用者登入.form = this.FindForm();
                 Dialog_盤點數量錯誤.form = this.FindForm();
-                Dialog_調劑作業_病歷號輸入.form = this.FindForm();
+                Dialog_病歷號輸入.form = this.FindForm();
                 Dialog_藥檔維護.form = this.FindForm();
                 Dialog_錯誤提示.form = this.FindForm();
                 Dialog_共用區設置.form = this.FindForm();
@@ -352,9 +368,12 @@ namespace 調劑台管理系統
                 Dialog_交班對點.form = this.FindForm();
                 Dialog_藥品群組.form = this.FindForm();
                 Dialog_異常通知.form = this.FindForm();
+                Dialog_申領.form = this.FindForm();
 
                 LoadDBConfig();
                 LoadMyConfig();
+
+                if (myConfigClass.ControlMode) ControlMode = true;
 
                 ApiServerSetting();
 
@@ -390,10 +409,6 @@ namespace 調劑台管理系統
             }
         }
 
- 
-
-      
-
         #region Event
         private void PlC_ScreenPage_Main_TabChangeEvent(string PageText)
         {
@@ -408,14 +423,13 @@ namespace 調劑台管理系統
             {
                 this.WindowState = FormWindowState.Maximized;
             }
-
             this.PLC = this.lowerMachine_Panel.GetlowerMachine();
 
             PLC_Device_主機輸出模式.Bool = myConfigClass.主機輸出模式;
             PLC_Device_主機扣賬模式.Bool = myConfigClass.主機扣帳模式;
             PLC_Device_掃碼槍COM通訊.Bool = myConfigClass.掃碼槍COM通訊;
             PLC_Device_藥物辨識圖片顯示.Bool = myConfigClass.藥物辨識圖片顯示;
-
+            PLC_Device_S800.Bool = false;
 
 
             if (myConfigClass.Scanner01_COMPort.StringIsEmpty())
@@ -443,14 +457,16 @@ namespace 調劑台管理系統
             {
                 pictureBox_後台網址_QRCODE.Image = H_Pannel_lib.Communication.CreateQRCode(dBConfigClass.Web_URL, pictureBox_後台網址_QRCODE.Width, pictureBox_後台網址_QRCODE.Height);
             }
-            plC_Button_合併同藥品.Bool = false;
+            plC_CheckBox_調劑畫面合併相同藥品.Bool = false;
             if (this.ControlMode)
             {
                 this.plC_RJ_GroupBox_調劑台切換.Visible = true;
                 PLC_Device_主機輸出模式.Bool = false;
                 PLC_Device_主機扣賬模式.Bool = false;
                 PLC_Device_掃碼槍COM通訊.Bool = false;
+
                 PLC_Device_藥物辨識圖片顯示.Bool = false;
+                myConfigClass.RFID使用 = false;
                 this.plC_RJ_ScreenButton_調劑作業.顯示讀取位置 = "M8001";
                 this.plC_RJ_ScreenButton_管制抽屜.顯示讀取位置 = "M8001";
                 this.plC_RJ_ScreenButton_交班作業.顯示讀取位置 = "M8000";
@@ -740,6 +756,7 @@ namespace 調劑台管理系統
                 if (commandLineArgs.Length == 4)
                 {
                     this.ControlMode = (commandLineArgs[3] == true.ToString());
+           
                 }
                 jsonstr = Basic.Net.JsonSerializationt<DBConfigClass>(dBConfigClass, true);
                 List<string> list_jsonstring = new List<string>();
@@ -787,12 +804,13 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_雲端藥檔.SQL_Reset();
             this.sqL_DataGridView_交易記錄查詢.SQL_Reset();
 
-            this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            this.drawerUI_EPD_583.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30005, myConfigClass.EPD583_Port);
+            this.drawerUI_EPD_1020.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30012, myConfigClass.EPD1020_Port);
+            this.storageUI_EPD_266.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30000, myConfigClass.EPD266_Port);
+            this.rowsLEDUI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30001, myConfigClass.RowsLED_Port);
             this.rfiD_UI.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
-            this.storageUI_WT32.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode);
+            this.storageUI_WT32.Init(dBConfigClass.DB_Basic.DataBaseName, dBConfigClass.DB_Basic.UserName, dBConfigClass.DB_Basic.Password, dBConfigClass.DB_Basic.IP, dBConfigClass.DB_Basic.Port, dBConfigClass.DB_Basic.MySqlSslMode, 30020, myConfigClass.Pannel35_Port);
+          
             if (flag_DBConfigInit == true)
             {
                 this.sqL_DataGridView_儲位管理_EPD266_藥品資料_藥檔資料.Init(this.sqL_DataGridView_藥品資料_藥檔資料);
@@ -808,6 +826,7 @@ namespace 調劑台管理系統
         }
         private void ApiServerSetting()
         {
+            
             if (ControlMode)
             {
                 this.ApiServerSetting(dBConfigClass.Name, "一般資料");
@@ -1005,9 +1024,10 @@ namespace 調劑台管理系統
 
 
 
+
         #endregion
 
-
+ 
     }
 
 

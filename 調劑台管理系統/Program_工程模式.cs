@@ -21,13 +21,14 @@ namespace 調劑台管理系統
         private void Program_工程模式_Init()
         {
             this.plC_Button_工程模式_全部開鎖.btnClick += PlC_Button_工程模式_全部開鎖_btnClick;
+            this.button_工程模式_調劑台名稱儲存.Click += Button_工程模式_調劑台名稱儲存_Click;
             this.plC_UI_Init.Add_Method(this.sub_Program_工程模式);
 
             panel_工程模式_領藥台_03_顏色.Click += Panel_工程模式_領藥台_03_顏色_Click;
             panel_工程模式_領藥台_04_顏色.Click += Panel_工程模式_領藥台_04_顏色_Click;
         }
 
-    
+
 
         bool flag_工程模式_頁面更新 = false;
         private void sub_Program_工程模式()
@@ -204,7 +205,7 @@ namespace 調劑台管理系統
         #endregion
         #region Event
 
-        private void button_工程模式_調劑台名稱儲存_Click(object sender, EventArgs e)
+        private void Button_工程模式_調劑台名稱儲存_Click(object sender, EventArgs e)
         {
             this.SaveConfig工程模式();
             PLC.properties.Device.Set_Device("S8", true);

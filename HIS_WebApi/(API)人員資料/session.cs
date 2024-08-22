@@ -31,7 +31,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
                 if (serverSettingClasses.Count == 0)
                 {
@@ -192,7 +192,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
                 if (serverSettingClasses.Count == 0)
                 {
@@ -241,7 +241,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
                 if (serverSettingClasses.Count == 0)
                 {
@@ -313,7 +313,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
                 if (serverSettingClasses.Count == 0)
                 {
@@ -361,7 +361,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
                 if (serverSettingClasses.Count == 0)
                 {
@@ -425,7 +425,7 @@ namespace HIS_WebApi
 
         private List<PermissionsClass> GetPermissions(int level)
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
             if (serverSettingClasses.Count == 0)
             {
@@ -495,7 +495,7 @@ namespace HIS_WebApi
         }
         private void Check_Table()
         {
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             serverSettingClasses = serverSettingClasses.MyFind(enum_ServerSetting_Type.網頁, enum_ServerSetting_網頁.人員資料);
             if (serverSettingClasses.Count == 0)
             {

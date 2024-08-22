@@ -415,7 +415,7 @@ namespace HIS_WebApi
             myTimerBasic.StartTickTime(50000);
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
 
                 List<medClass> medClasses = medClass.get_med_cloud("http://127.0.0.1:4433");
                 if (medClasses == null)

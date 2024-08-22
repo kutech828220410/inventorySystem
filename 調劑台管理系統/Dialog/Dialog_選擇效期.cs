@@ -104,12 +104,12 @@ namespace 調劑台管理系統
                 pLC_RJ_Button.OFF_文字內容 = $"{list_效期[i]} [{list_批號[i]}]";
                 pLC_RJ_Button.OFF_文字字體 = new System.Drawing.Font("微軟正黑體", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
                 pLC_RJ_Button.OFF_文字顏色 = System.Drawing.Color.White;
-                pLC_RJ_Button.OFF_背景顏色 = System.Drawing.SystemColors.Control;
+                pLC_RJ_Button.OFF_背景顏色 = System.Drawing.Color.DarkRed;
                 pLC_RJ_Button.ON_BorderSize = 5;
                 pLC_RJ_Button.ON_文字內容 = $"{list_效期[i]} [{list_批號[i]}]";
                 pLC_RJ_Button.ON_文字字體 = new System.Drawing.Font("微軟正黑體", 21.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-                pLC_RJ_Button.ON_文字顏色 = System.Drawing.Color.Black;
-                pLC_RJ_Button.ON_背景顏色 = System.Drawing.SystemColors.Control;
+                pLC_RJ_Button.ON_文字顏色 = System.Drawing.Color.White;
+                pLC_RJ_Button.ON_背景顏色 = System.Drawing.Color.DarkRed;
                 pLC_RJ_Button.Size = new System.Drawing.Size(709, 89);
                 pLC_RJ_Button.State = false;
                 pLC_RJ_Button.TabIndex = 1;

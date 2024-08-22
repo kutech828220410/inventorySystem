@@ -56,8 +56,6 @@ namespace 調劑台管理系統
             }));
         }
 
-     
-
         public void Function_SerchByBarCode(string barCode)
         {
             
@@ -77,21 +75,18 @@ namespace 調劑台管理系統
                                         select temp.設備名稱.Trim()).Distinct().OrderBy(name => name).ToList();
             serverNames.Remove(Main_Form.ServerName);
             List<Task> tasks = new List<Task>();
-            List<medClass>[] medClasses_Ary = new List<medClass>[serverNames.Count];
+            List<medClass> medClasses_Ary = new List<medClass>();
             tasks.Add(Task.Run(new Action(delegate
             {
                 medClasses_local = medClass.get_dps_medClass_by_code(Main_Form.API_Server, Main_Form.ServerName, medClasses[0].藥品碼);
             })));
-            for (int i = 0; i < serverNames.Count; i++)
+
+            tasks.Add(Task.Run(new Action(delegate
             {
-                int index = i;
-                string serverName = serverNames[i];
                 string Code = medClasses[0].藥品碼;
-                tasks.Add(Task.Run(new Action(delegate
-                {
-                    medClasses_Ary[index] = medClass.get_dps_medClass_by_code(Main_Form.API_Server, serverName, Code);
-                })));
-            }
+
+                medClasses_Ary = medClass.get_datas_dps_medClass_by_code(Main_Form.API_Server, serverNames, Code);
+            })));
             Task.WhenAll(tasks).Wait();
             if (medClasses_local[0].DeviceBasics.Count == 0)
             {
@@ -100,19 +95,17 @@ namespace 調劑台管理系統
                 return;
             }
 
-
+            if (medClasses_Ary == null) return;
             bool flag_IsMedOn = false;
-            for(int i = 0; i < medClasses_Ary.Length; i++)
-            {
-                if (medClasses_Ary[i] == null) continue;
-                if (medClasses_Ary[i].Count == 0) continue;
-                藥碼 = medClasses_Ary[i][0].藥品碼;
-                藥名 = medClasses_Ary[i][0].藥品名稱;
+            for(int i = 0; i < medClasses_Ary.Count; i++)
+            {           
+                藥碼 = medClasses_Ary[0].藥品碼;
+                藥名 = medClasses_Ary[0].藥品名稱;
                 flag_IsMedOn = true;
             }
             if (flag_IsMedOn == false)
             {
-                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查藥品儲位", 1500);
+                Dialog_AlarmForm dialog_AlarmForm = new Dialog_AlarmForm("查無藥品儲位", 1500);
                 dialog_AlarmForm.ShowDialog();
                 return;
             }
@@ -159,7 +152,7 @@ namespace 調劑台管理系統
                 this.rJ_Lable_藥名.Text = "------------------------------";
             }));
         }
-        public void RefreshUI(List<string> serverNames ,List<medClass>[] medClasses_Ary)
+        public void RefreshUI(List<string> serverNames ,List<medClass> medClasses_Ary)
         {
 
             this.Invoke(new Action(delegate 
@@ -171,14 +164,14 @@ namespace 調劑台管理系統
                 this.flowLayoutPanel_調劑台選擇.Controls.Clear();
                 this.flowLayoutPanel_調劑台選擇.Refresh();
 
-                for (int i = 0; i < medClasses_Ary.Length; i++)
+                for (int i = 0; i < medClasses_Ary.Count; i++)
                 {
-                    if (medClasses_Ary[i] == null) continue;
-                    if (medClasses_Ary[i].Count == 0) continue;
+                    if (medClasses_Ary == null) continue;
+                    if (medClasses_Ary.Count == 0) continue;
 
-                    rJ_Lable_藥碼.Text = $"({medClasses_Ary[i][0].藥品碼})";
-                    rJ_Lable_藥名.Text = $"{medClasses_Ary[i][0].藥品名稱}";
-                    this.單位 = $"{medClasses_Ary[i][0].包裝單位}";
+                    rJ_Lable_藥碼.Text = $"({medClasses_Ary[i].藥品碼})";
+                    rJ_Lable_藥名.Text = $"{medClasses_Ary[i].藥品名稱}";
+                    this.單位 = $"{medClasses_Ary[i].包裝單位}";
 
                     RJ_Lable rJ_Lable_庫存 = new RJ_Lable();
                     RJ_Lable rJ_Lable_台號 = new RJ_Lable();
@@ -218,7 +211,7 @@ namespace 調劑台管理系統
                     rJ_Lable_庫存.ShadowColor = System.Drawing.Color.DimGray;
                     rJ_Lable_庫存.ShadowSize = 0;
                     rJ_Lable_庫存.Size = new System.Drawing.Size(177, 68);
-                    rJ_Lable_庫存.Text = $"{medClasses_Ary[i][0].庫存}";
+                    rJ_Lable_庫存.Text = $"{medClasses_Ary[i].庫存}";
                     rJ_Lable_庫存.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                     rJ_Lable_庫存.TextColor = System.Drawing.Color.Black;
 
@@ -236,7 +229,7 @@ namespace 調劑台管理系統
                     rJ_Lable_台號.ShadowColor = System.Drawing.Color.DimGray;
                     rJ_Lable_台號.ShadowSize = 0;
                     rJ_Lable_台號.Size = new System.Drawing.Size(177, 52);
-                    rJ_Lable_台號.Text = $"{serverNames[i]}";
+                    rJ_Lable_台號.Text = $"{medClasses_Ary[i].ServerName}";
                     rJ_Lable_台號.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                     rJ_Lable_台號.TextColor = System.Drawing.Color.White;
 
@@ -372,9 +365,9 @@ namespace 調劑台管理系統
         private void RJ_Button_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
             Dialog_藥品搜尋 dialog_藥品搜尋 = new Dialog_藥品搜尋();
+            dialog_藥品搜尋.IsDeviceSerch = true;
             if (dialog_藥品搜尋.ShowDialog() != DialogResult.Yes) return;
             medClass medClass = dialog_藥品搜尋.Value;
-
             Function_SerchByBarCode(medClass.藥品碼);
         }
         private void RJ_Button_確認送出_MouseDownEvent(MouseEventArgs mevent)

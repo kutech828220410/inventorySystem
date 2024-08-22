@@ -205,6 +205,7 @@ namespace HIS_DB_Lib
         [JsonPropertyName("remarks")]
         public string 備註 { get; set; }
 
+
         [JsonIgnore]
         private static readonly JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
         {

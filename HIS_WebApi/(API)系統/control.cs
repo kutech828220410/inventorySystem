@@ -51,7 +51,7 @@ namespace HIS_WebApi
             try
             {
 
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(value, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
                 if (serverSettingClass == null)
                 {

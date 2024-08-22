@@ -71,7 +71,6 @@ namespace 智能藥庫系統
             sqL_DataGridView_驗收品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品碼);
             sqL_DataGridView_驗收品項.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.藥品名稱);
             sqL_DataGridView_驗收品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_驗收內容.應收數量);
-            sqL_DataGridView_驗收品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_驗收內容.贈品註記);
             sqL_DataGridView_驗收品項.RowEnterEvent += SqL_DataGridView_驗收品項_RowEnterEvent;
 
             sqL_DataGridView_驗收品項.Set_ColumnText("藥碼", enum_驗收內容.藥品碼);

@@ -101,7 +101,7 @@ namespace 調劑台管理系統
                     {
                         this.storageUI_EPD_266.Set_Stroage_LED_UDP(storage, Color.Black);
                         storage.ActionDone = true;
-                        if (plC_Button_同藥碼全亮.Bool) return;
+                        if (plC_CheckBox_同藥品全部亮燈.Bool) return;
                  
                         //List_EPD266_雲端資料.Add_NewStorage(storage);
                         this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
@@ -110,7 +110,7 @@ namespace 調劑台管理系統
                     {
                         this.storageUI_WT32.Set_Stroage_LED_UDP(storage, Color.Black);
                         storage.ActionDone = true;
-                        if (plC_Button_同藥碼全亮.Bool) return;
+                        if (plC_CheckBox_同藥品全部亮燈.Bool) return;
               
                         //List_Pannel35_雲端資料.Add_NewStorage(storage);
                         this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
@@ -132,7 +132,7 @@ namespace 調劑台管理系統
                                 this.drawerUI_EPD_583.Set_LED_Clear_UDP(drawer);
                             }
                          
-                            if (plC_Button_同藥碼全亮.Bool) return;
+                            if (plC_CheckBox_同藥品全部亮燈.Bool) return;
                          
                             //List_EPD583_雲端資料.Add_NewDrawer(drawer);
                             this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);
@@ -141,7 +141,7 @@ namespace 調劑台管理系統
                         {
                             drawer.ActionDone = true;
                             this.drawerUI_EPD_1020.Set_LED_Clear_UDP(drawer);
-                            if (plC_Button_同藥碼全亮.Bool) return;
+                            if (plC_CheckBox_同藥品全部亮燈.Bool) return;
                           
                             //List_EPD1020_雲端資料.Add_NewDrawer(drawer);
                             this.Function_取藥堆疊子資料_設定配藥完成ByIP("None", IP, Num);

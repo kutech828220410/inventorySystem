@@ -44,7 +44,7 @@ namespace HIS_WebApi
         {
             try
             {
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -226,7 +226,7 @@ namespace HIS_WebApi
                     returnData.Result = "Value格式錯誤,請輸入[藥碼,R,G,B,亮燈時間]!";
                     return returnData.JsonSerializationt();
                 }
-                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
                 serverSettingClasses = serverSettingClasses.MyFind(returnData.ServerName, returnData.ServerType, "一般資料");
                 if (serverSettingClasses.Count == 0)
                 {
@@ -491,7 +491,7 @@ namespace HIS_WebApi
                 if (num >= 1) return "OK";
                 else return "NG";
             }
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
             ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.VM端);
             if (serverSettingClass == null)
@@ -692,7 +692,7 @@ namespace HIS_WebApi
                 }
             }
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.本地端);
             ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.VM端);
             ServerSettingClass serverSettingClass_雲端藥檔 = serverSettingClasses.myFind("Main", "網頁", "藥檔資料");
@@ -1131,7 +1131,7 @@ namespace HIS_WebApi
         private List<DeviceBasic> Function_讀取儲位(string name)
         {
 
-            List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+            List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
             ServerSettingClass serverSettingClass = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.一般資料);
             ServerSettingClass serverSettingClass_人員資料 = serverSettingClasses.MyFind(name, enum_ServerSetting_Type.調劑台, enum_ServerSetting_調劑台.人員資料);
             if (serverSettingClass == null)
