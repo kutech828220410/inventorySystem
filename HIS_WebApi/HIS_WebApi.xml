@@ -954,6 +954,22 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.update_med_cpoe_rec(HIS_DB_Lib.returnData)">
+             <summary>
+            更新處方DC/NEW紀錄資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Data":[medCpoeRecClass]
+                     "ValueAry":["藥局","護理站"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.get_bed_list_by_cart(HIS_DB_Lib.returnData)">
              <summary>
             以藥局和護理站取得占床資料
@@ -984,7 +1000,37 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.get_patient_GUID(HIS_DB_Lib.returnData)">
+             <summary>
+            以GUID取得病人詳細資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":[GUID]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.get_all(HIS_DB_Lib.returnData)">
+             <summary>
+            取得所有資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Data":[]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.get_medChange_by_GUID(HIS_DB_Lib.returnData)">
              <summary>
             取得所有資料
              </summary>
@@ -1007,9 +1053,9 @@
              以下為JSON範例
              <code>
                  {
-                     "Value":"GUID"
+                     "Value":"病床GUID"
                          
-                     "ValueAry":["藥品碼1;藥品碼2;藥品碼3"]
+                     "ValueAry":["藥品GUID;藥品GUID;藥品GUID"]
                  }
              </code>
              </remarks>

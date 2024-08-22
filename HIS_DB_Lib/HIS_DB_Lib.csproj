@@ -122,6 +122,7 @@
     <Compile Include="medCarInfoClass.cs" />
     <Compile Include="medCarList.cs" />
     <Compile Include="medCpoeClass.cs" />
+    <Compile Include="medCpoeRecClass.cs" />
     <Compile Include="medGeneralConfigClass.cs" />
     <Compile Include="IncomeReasonsClass.cs" />
     <Compile Include="inspectionClass.cs" />

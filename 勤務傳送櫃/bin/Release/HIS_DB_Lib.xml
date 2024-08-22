@@ -821,6 +821,11 @@
             處方
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.處方異動">
+            <summary>
+            處方異動
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.diseaseOut.疾病代碼">
             <summary>
             疾病代碼
@@ -1049,6 +1054,131 @@
         <member name="P:HIS_DB_Lib.medCpoeClass.交互作用等級">
             <summary>
             交互作用等級
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.medCpoeRecClass">
+            <summary>
+            medCpoeClass資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.GUID">
+            <summary>
+            GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.Master_GUID">
+            <summary>
+            Master_GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.更新時間">
+            <summary>
+            更新時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.藥局">
+            <summary>
+            藥局
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.護理站">
+            <summary>
+            護理站
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.床號">
+            <summary>
+            床號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.住院號">
+            <summary>
+            住院號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.調劑台">
+            <summary>
+            調劑台
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.序號">
+            <summary>
+            序號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.狀態">
+            <summary>
+            狀態
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.開始時間">
+            <summary>
+            開始時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.結束時間">
+            <summary>
+            結束時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.藥品名">
+            <summary>
+            藥品名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.中文名">
+            <summary>
+            中文名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.劑量">
+            <summary>
+            劑量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.單位">
+            <summary>
+            單位
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.處方醫師">
+            <summary>
+            處方醫師
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.處方醫師姓名">
+            <summary>
+            處方醫師姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.操作人員">
+            <summary>
+            操作人員
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.藥局代碼">
+            <summary>
+            藥局代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.藥局名稱">
+            <summary>
+            藥局名稱
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCpoeRecClass.大瓶點滴">
+            <summary>
+            大瓶點滴
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medGeneralConfigClass.GUID">
@@ -1419,6 +1549,106 @@
         <member name="P:HIS_DB_Lib.medConfigClass.自定義">
             <summary>
             自定義
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.medInventoryLogClass">
+            <summary>
+            medCpoeClass資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.GUID">
+            <summary>
+            GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.Master_GUID">
+            <summary>
+            Master_GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.藥局">
+            <summary>
+            藥局
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.護理站">
+            <summary>
+            護理站
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.床號">
+            <summary>
+            床號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.操作者代號">
+            <summary>
+            操作者代號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.操作時間">
+            <summary>
+            操作時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.藥品名">
+            <summary>
+            藥品名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.中文名">
+            <summary>
+            中文名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.劑量">
+            <summary>
+            劑量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.單位">
+            <summary>
+            單位
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.medInventoryClass">
+            <summary>
+             medInventoryClass資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryClass.GUID">
+            <summary>
+            GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryClass.藥局">
+            <summary>
+            藥局
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryClass.護理站">
+            <summary>
+            護理站
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryClass.操作者代號">
+            <summary>
+            GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryClass.操作時間">
+            <summary>
+            操作時間
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medPicClass.GUID">

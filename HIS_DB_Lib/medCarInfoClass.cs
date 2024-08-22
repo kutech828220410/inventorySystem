@@ -309,6 +309,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("cpoe")]
         public List<medCpoeClass> 處方 { get; set; }
+        /// <summary>
+        /// 處方異動
+        /// </summary>
+        [JsonPropertyName("cpoe_change")]
+        public List<medCpoeRecClass> 處方異動 { get; set; }
 
         public class ICP_By_bedNum : IComparer<medCarInfoClass>
         {
@@ -356,6 +361,21 @@ namespace HIS_DB_Lib
         {
             List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_patient_by_bedNum";
+            returnData returnData = new returnData();
+            returnData.ValueAry = Info;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+            return out_medCarInfoClass;
+
+        }
+        static public List<medCarInfoClass> get_patient_by_GUID(string API_Server, List<string> Info)
+        {
+            List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
+            string url = $"{API_Server}/api/med_cart/get_patient_GUID";
             returnData returnData = new returnData();
             returnData.ValueAry = Info;
             string json_in = returnData.JsonSerializationt();
