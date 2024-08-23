@@ -244,15 +244,18 @@ namespace HIS_WebApi
                 List<object[]> list_bedList = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
                 List<medCarInfoClass> bedList = list_bedList.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCarInfoClass> medCarInfoClasses = new List<medCarInfoClass>();
+                //medCarInfoClasses = (from temp in bedList
+                //                     where temp.護理站 == 護理站
+                //                     where temp.占床狀態 == 占床狀態
+                //                     select temp).ToList();
                 medCarInfoClasses = (from temp in bedList
                                      where temp.護理站 == 護理站
-                                     where temp.占床狀態 == 占床狀態
                                      select temp).ToList();
                 medCarInfoClasses.Sort(new medCarInfoClass.ICP_By_bedNum());
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = "";
+                returnData.Data = medCarInfoClasses;
                 returnData.Result = $"病床清單共筆";
                 return returnData.JsonSerializationt(true);
             }
