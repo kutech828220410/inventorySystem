@@ -779,9 +779,11 @@ namespace HIS_WebApi
                 string 護理站 = sql_medCarInfo[0].護理站;
                 string 床號 = sql_medCarInfo[0].床號;
 
+                var medCarInfoClass = new medCarInfoClass();
+                medCarInfoClass = sql_medCarInfo[0];
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = sql_medCarInfo;
+                returnData.Data = medCarInfoClass;
                 returnData.Result = $"取得{藥局} {護理站} 第{床號}病床的資訊";
                 return returnData.JsonSerializationt(true);
             }
