@@ -347,6 +347,22 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCpoeClass;
         }
+        static public List<medCpoeClass> add_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
+        {
+            List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
+            string url = $"{API_Server}/api/med_cart/add_med_cpoe";
+
+            returnData returnData = new returnData();
+            returnData.Data = medCpoeClasses;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData = json_out.JsonDeserializet<returnData>();
+            if (returnData == null) return null;
+            if (returnData.Code != 200) return null;
+            out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+            Console.WriteLine($"{returnData}");
+            return out_medCpoeClass;
+        }
         static public List<medCpoeClass> check_dispense(string API_Server, string value, List<string> valueAry)
         {
             string url = $"{API_Server}/api/med_cart/check_dispense";

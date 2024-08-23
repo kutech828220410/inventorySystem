@@ -14,6 +14,10 @@ namespace HIS_DB_Lib
     {
         [Description("GUID,VARCHAR,50,PRIMARY")]
         GUID,
+        [Description("更新時間,DATETIME,10,NONE")]
+        更新時間,
+        [Description("異動,VARCHAR,10,NONE")]
+        異動,
         [Description("姓名,VARCHAR,30,NONE")]
         姓名,
         [Description("住院號,VARCHAR,50,INDEX")]
@@ -104,6 +108,16 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("GUID")]
         public string GUID { get; set; }
+        /// <summary>
+        /// 更新時間
+        /// </summary>
+        [JsonPropertyName("update_time")]
+        public string 更新時間 { get; set; }
+        /// <summary>
+        /// 異動
+        /// </summary>
+        [JsonPropertyName("abnormal")]
+        public string 異動 { get; set; }
         /// <summary>
         /// 姓名
         /// </summary>

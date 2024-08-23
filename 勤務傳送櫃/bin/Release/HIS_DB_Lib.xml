@@ -616,6 +616,16 @@
             唯一KEY
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.更新時間">
+            <summary>
+            更新時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medCarInfoClass.異動">
+            <summary>
+            異動
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medCarInfoClass.姓名">
             <summary>
             姓名
