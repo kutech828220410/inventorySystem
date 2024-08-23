@@ -309,8 +309,8 @@ namespace HIS_WebApi
                     return returnData.JsonSerializationt();
                 }
 
-                string 藥局 = returnData.ValueAry[0];
-                string 護理站 = returnData.ValueAry[1];
+                string 藥局 = input_medCpoe[0].藥局;
+                string 護理站 = input_medCpoe[0].護理站;
 
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_carInfo", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
@@ -331,9 +331,6 @@ namespace HIS_WebApi
                 List<medCpoeClass> medCpoe_sql_replace = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_delete_buf = new List<medCpoeClass>();
                 List<medCpoeClass> medCpoe_sql_delete = new List<medCpoeClass>();
-
-
-
 
                 List<medCpoeClass> medCpoe_sql_buf = input_medCpoe
                     .GroupBy(medCart => medCart.Master_GUID)
@@ -371,50 +368,20 @@ namespace HIS_WebApi
                                 newMed.GUID = Guid.NewGuid().ToString();
                                 newMed.Master_GUID = targetPatient.GUID;
                                 medCpoe_sql_add.Add(newMed);
-                            }
-                            else
-                            {
-                                if (Med_buf.劑量 != newMed.劑量 || Med_buf.數量 != newMed.數量)
-                                {
-                                    newMed.GUID = Med_buf.GUID;
-                                    newMed.Master_GUID = targetPatient.GUID;
-                                    newMed.更新時間 = DateTime.Now.ToDateTimeString();
-
-                                }
-                                else
-                                {
-                                    DateTime 處方更新時間 = Med_buf.更新時間.StringToDateTime();
-                                    if (處方更新時間.Date != today)
-                                    {
-                                        newMed.GUID = Med_buf.GUID;
-                                        newMed.Master_GUID = targetPatient.GUID;
-                                        newMed.更新時間 = DateTime.Now.ToDateTimeString();
-                                    }
-                                }
-                                medCpoe_sql_replace.Add(newMed);
-                            }
+                            }                           
                         }
                         medCpoe_sql_delete_buf = (from temp in medCpoeClasses_current
                                               where !(from @new in medCpoeClasses_new
-                                                      select @new.藥品名)
-                                                      .Contains(temp.藥品名)
+                                                      select @new.序號)
+                                                      .Contains(temp.序號)
                                               select temp).ToList();
                         foreach(var medcpoe in medCpoe_sql_delete_buf)
-                        {
-                            DateTime 處方更新時間 = medcpoe.更新時間.StringToDateTime();
-                            if (處方更新時間.Date != today)
-                            {
-                                medCpoe_sql_delete.Add(medcpoe);
-                            }
-                            else
-                            {
-                                medcpoe.數量 = "0";
-                                medcpoe.劑量 = "0";
-                                medcpoe.調劑狀態 = "Y";
-                                medcpoe.排序 = "Z";
-                                medCpoe_sql_replace.Add(medcpoe);
-                            }
-                            
+                        {                         
+                            medcpoe.數量 = "0";
+                            medcpoe.劑量 = "0";
+                            medcpoe.調劑狀態 = "Y";
+                            medcpoe.排序 = "Z";
+                            medCpoe_sql_replace.Add(medcpoe);                                                       
                         }
                     }       
                 }

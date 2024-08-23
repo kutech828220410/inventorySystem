@@ -329,14 +329,13 @@ namespace HIS_DB_Lib
                 return string.Compare(x.排序, y.排序);
             }
         }
-        static public List<medCpoeClass> update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses, List<string> valueAry)
+        static public List<medCpoeClass> update_med_cpoe(string API_Server, List<medCpoeClass> medCpoeClasses)
         {
             List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
             string url = $"{API_Server}/api/med_cart/update_med_cpoe";
 
             returnData returnData = new returnData();
             returnData.Data = medCpoeClasses;
-            returnData.ValueAry = valueAry;
 
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);

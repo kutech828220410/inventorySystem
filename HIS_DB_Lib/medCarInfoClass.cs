@@ -116,7 +116,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// 異動
         /// </summary>
-        [JsonPropertyName("abnormal")]
+        [JsonPropertyName("change")]
         public string 異動 { get; set; }
         /// <summary>
         /// 姓名
