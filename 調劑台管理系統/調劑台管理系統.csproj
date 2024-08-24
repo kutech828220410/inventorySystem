@@ -459,6 +459,12 @@
     <Compile Include="Dialog\Dialog_申領.Designer.cs">
       <DependentUpon>Dialog_申領.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_批次入庫.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_批次入庫.Designer.cs">
+      <DependentUpon>Dialog_批次入庫.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -638,6 +644,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_共用區設置.resx">
       <DependentUpon>Dialog_共用區設置.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_批次入庫.resx">
+      <DependentUpon>Dialog_批次入庫.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_指紋登入.resx">
       <DependentUpon>Dialog_指紋登入.cs</DependentUpon>
@@ -843,6 +852,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="aoqr1-zsymb-001.ico" />
+    <None Include="Resources\excell-file-upload-to-server-removebg-preview.png" />
+    <None Include="Resources\exsample-excell-file-download-removebg-preview.png" />
+    <None Include="Resources\匯入資料.png" />
+    <None Include="Resources\medication-transfer-to-dispensing-counter-with-arr-removebg-preview1.png" />
+    <None Include="Resources\設定-removebg-preview.png" />
     <None Include="Resources\medicine-shift-handover-checklist--add-data-plus-removebg-preview1.png" />
     <None Include="Resources\icon-for-medicine-map-papper-removebg-preview.png" />
     <None Include="Resources\light-off-removebg-preview1.png" />

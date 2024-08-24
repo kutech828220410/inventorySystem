@@ -625,7 +625,7 @@ namespace 調劑台管理系統
                     Device device = (Device)value_device;
                     for (int i = 0; i < device.List_Validity_period.Count; i++)
                     {
-                        if (device.List_Validity_period[i] == 效期 && device.IP == IP)
+                        if ((device.List_Validity_period[i].StringToDateTime().ToDateString() == 效期.StringToDateTime().ToDateString()) && device.IP == IP)
                         {
                             value[(int)enum_儲位資訊.IP] = device.IP;
                             value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];
@@ -658,7 +658,7 @@ namespace 調劑台管理系統
                     Device device = (Device)value_device;
                     for (int i = 0; i < device.List_Validity_period.Count; i++)
                     {
-                        if (device.List_Validity_period[i] == 效期)
+                        if (device.List_Validity_period[i].StringToDateTime().ToDateString() == 效期.StringToDateTime().ToDateString())
                         {
                             value[(int)enum_儲位資訊.IP] = device.IP;
                             value[(int)enum_儲位資訊.TYPE] = 儲位_TYPE[k];

@@ -64,6 +64,10 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.儲位型式);
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_收支作業_單品入庫_儲位搜尋.庫存);
 
+            sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnText("藥碼", enum_收支作業_單品入庫_儲位搜尋.藥品碼);
+            sqL_DataGridView_收支作業_單品入庫_儲位搜尋.Set_ColumnText("藥名", enum_收支作業_單品入庫_儲位搜尋.藥品名稱);
+
+
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RowDoubleClickEvent += SqL_DataGridView_收支作業_單品入庫_儲位搜尋_RowDoubleClickEvent;
 
             this.sqL_DataGridView_收支作業_入庫狀態.Init(this.sqL_DataGridView_取藥堆疊母資料);
@@ -78,6 +82,12 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_收支作業_入庫狀態.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.狀態);
             this.sqL_DataGridView_收支作業_入庫狀態.DataGridRefreshEvent += SqL_DataGridView_收支作業_入庫狀態_DataGridRefreshEvent;
             this.sqL_DataGridView_收支作業_入庫狀態.DataGridRowsChangeEvent += SqL_DataGridView_收支作業_入庫狀態_DataGridRowsChangeEvent;
+
+            sqL_DataGridView_收支作業_入庫狀態.Set_ColumnText("藥碼", enum_取藥堆疊母資料.藥品碼);
+            sqL_DataGridView_收支作業_入庫狀態.Set_ColumnText("藥名", enum_取藥堆疊母資料.藥品名稱);
+            sqL_DataGridView_收支作業_入庫狀態.Set_ColumnText("庫存", enum_取藥堆疊母資料.庫存量);
+            sqL_DataGridView_收支作業_入庫狀態.Set_ColumnText("異動", enum_取藥堆疊母資料.總異動量);
+            sqL_DataGridView_收支作業_入庫狀態.Set_ColumnText("結存", enum_取藥堆疊母資料.結存量);
 
             this.rJ_TextBox_收支作業_單品入庫_藥品碼.KeyPress += RJ_TextBox_收支作業_單品入庫_藥品碼_KeyPress;
             this.rJ_TextBox_收支作業_單品入庫_藥品名稱.KeyPress += RJ_TextBox_收支作業_單品入庫_藥品名稱_KeyPress;
@@ -102,7 +112,8 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_收支作業_調出.MouseDownEvent += PlC_RJ_Button_收支作業_調出_MouseDownEvent;
 
             this.plC_RJ_Button_收支作業_設定.MouseDownEvent += PlC_RJ_Button_收支作業_設定_MouseDownEvent;
-            
+
+            this.plC_RJ_Button_收支作業_批次入庫.MouseDownEvent += PlC_RJ_Button_收支作業_批次入庫_MouseDownEvent;
 
             this.plC_UI_Init.Add_Method(this.sub_Program_收支作業);
         }
@@ -621,10 +632,6 @@ namespace 調劑台管理系統
   
             this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.RefreshGrid(list_value);
         }
-        private void SqL_DataGridView_收支作業_儲位資料_RowEnterEvent(object[] RowValue)
-        {
-          
-        }
         private void PlC_RJ_Button_收支作業_選擇儲位_MouseDownEvent(MouseEventArgs mevent)
         {
             object[] value = sqL_DataGridView_收支作業_單品入庫_儲位搜尋.GetRowValues();
@@ -744,9 +751,7 @@ namespace 調劑台管理系統
             takeMedicineStackClass.總異動量 = 總異動量.ToString();
             takeMedicineStackClass.效期 = 效期;
             takeMedicineStackClass.批號 = 批號;
-            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);
-            //this.sqL_DataGridView_收支作業_單品入庫_儲位搜尋.ClearGrid();
-           
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClass);           
           
         }
 
@@ -830,6 +835,36 @@ namespace 調劑台管理系統
             plC_RJ_Button_收支作業_出庫.Bool = true;
             plC_RJ_Button_收支作業_調入.Bool = false;
             plC_RJ_Button_收支作業_調出.Bool = false;
+        }
+
+        private void PlC_RJ_Button_收支作業_批次入庫_MouseDownEvent(MouseEventArgs mevent)
+        {
+            Dialog_批次入庫 dialog_批次入庫 = new Dialog_批次入庫();
+            dialog_批次入庫.ShowDialog();
+
+            List<takeMedicineStackClass> takeMedicineStackClasses = new List<takeMedicineStackClass>();
+            List<batch_inventory_importClass> batch_Inventory_ImportClasses = dialog_批次入庫.Value;
+            for (int i = 0; i < batch_Inventory_ImportClasses.Count; i++)
+            {
+                batch_inventory_importClass batch_Inventory_ImportClass = batch_Inventory_ImportClasses[i];
+                string 調劑台名稱 = this.textBox_工程模式_領藥台_名稱.Text;
+                takeMedicineStackClass takeMedicineStackClass = new takeMedicineStackClass();
+                takeMedicineStackClass.調劑台名稱 = 調劑台名稱;
+                takeMedicineStackClass.動作 = enum_交易記錄查詢動作.入庫作業;
+                takeMedicineStackClass.藥品碼 = batch_Inventory_ImportClass.藥碼;
+                takeMedicineStackClass.藥品名稱 = batch_Inventory_ImportClass.藥名;
+                takeMedicineStackClass.單位 = batch_Inventory_ImportClass.單位;
+                takeMedicineStackClass.開方時間 = batch_Inventory_ImportClass.入庫時間;
+                takeMedicineStackClass.收支原因 = batch_Inventory_ImportClass.收支原因;
+                takeMedicineStackClass.操作人 = Main_Form._登入者名稱;
+                takeMedicineStackClass.ID = Main_Form._登入者ID;
+                takeMedicineStackClass.顏色 = 登入者顏色;
+                takeMedicineStackClass.總異動量 = batch_Inventory_ImportClass.數量;
+                takeMedicineStackClass.效期 = batch_Inventory_ImportClass.效期;
+                takeMedicineStackClass.批號 = batch_Inventory_ImportClass.批號;
+                takeMedicineStackClasses.Add(takeMedicineStackClass);
+            }
+            this.Function_取藥堆疊資料_新增母資料(takeMedicineStackClasses);
         }
         #endregion
     }

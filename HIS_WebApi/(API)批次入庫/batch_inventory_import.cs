@@ -311,19 +311,192 @@ namespace HIS_WebApi
                 string Password = serverSettingClass.Password;
                 uint Port = (uint)serverSettingClass.Port.StringToInt32();
 
-  
 
-         
+
+
                 List<batch_inventory_importClass> batch_Inventory_ImportClasses = returnData.Data.ObjToClass<List<batch_inventory_importClass>>();
                 List<object[]> list_batch_Inventory_ImportClasses = batch_Inventory_ImportClasses.ClassToSQL<batch_inventory_importClass, enum_batch_inventory_import>();
 
                 SQLControl sQLControl_batch_inventory_import = new SQLControl(Server, DB, new enum_batch_inventory_import().GetEnumDescription(), UserName, Password, Port, SSLMode);
 
-         
+
                 sQLControl_batch_inventory_import.DeleteExtra(null, list_batch_Inventory_ImportClasses);
 
                 returnData.Data = batch_Inventory_ImportClasses;
                 returnData.Result = $"刪除批次入庫資料成功,共<{list_batch_Inventory_ImportClasses.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Code = 200;
+                Logger.LogAddLine($"batch_inventory_import");
+                Logger.Log($"batch_inventory_import", $"{ returnData.JsonSerializationt(true)}");
+                Logger.LogAddLine($"batch_inventory_import");
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"drugstotreDistribution", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 更新批次入庫資料數量
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         [batch_inventory_importClassAry]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///      
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("update_QTY_by_GUID")]
+        [HttpPost]
+        public string POST_update_QTY_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_QTY_by_GUID";
+            try
+            {
+                POST_init(returnData);
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+
+
+
+                List<batch_inventory_importClass> batch_Inventory_ImportClasses = returnData.Data.ObjToClass<List<batch_inventory_importClass>>();
+
+                SQLControl sQLControl_batch_inventory_import = new SQLControl(Server, DB, new enum_batch_inventory_import().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                List<object[]> list_replace = new List<object[]>();
+                for (int i = 0; i < batch_Inventory_ImportClasses.Count; i++)
+                {
+                    List<object[]> list_value = sQLControl_batch_inventory_import.GetRowsByDefult(null, (int)enum_batch_inventory_import.GUID, batch_Inventory_ImportClasses[i].GUID);
+                    if(list_value.Count > 0)
+                    {
+                        if (batch_Inventory_ImportClasses[i].數量.StringIsDouble() == false) continue;
+                        list_value[0][(int)enum_batch_inventory_import.數量] = batch_Inventory_ImportClasses[i].數量;
+                        list_replace.Add(list_value[0]);
+                    }
+                }
+                sQLControl_batch_inventory_import.UpdateByDefulteExtra(null, list_replace);
+                List<batch_inventory_importClass> batch_Inventory_ImportClasses_replace = list_replace.SQLToClass<batch_inventory_importClass, enum_batch_inventory_import>();
+                returnData.Data = batch_Inventory_ImportClasses_replace;
+                returnData.Result = $"更新批次入庫資料成功,共<{list_replace.Count}>筆資料";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                returnData.Code = 200;
+                Logger.LogAddLine($"batch_inventory_import");
+                Logger.Log($"batch_inventory_import", $"{ returnData.JsonSerializationt(true)}");
+                Logger.LogAddLine($"batch_inventory_import");
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception e)
+            {
+                returnData.Code = -200;
+                returnData.Data = null;
+                returnData.Result = $"{e.Message}";
+                Logger.Log($"drugstotreDistribution", $"[異常] { returnData.Result}");
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        /// 更新批次入庫資料為"過帳完成"
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///         [batch_inventory_importClassAry]
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///         "入庫人員"
+        ///     ]
+        ///     
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [Route("update_state_done_by_GUID")]
+        [HttpPost]
+        public string POST_update_state_done_by_GUID([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            myTimerBasic.StartTickTime(50000);
+            returnData.Method = "update_state_done_by_GUID";
+            try
+            {
+                POST_init(returnData);
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料!";
+                    return returnData.JsonSerializationt();
+                }
+                ServerSettingClass serverSettingClass = serverSettingClasses[0];
+                string Server = serverSettingClass.Server;
+                string DB = serverSettingClass.DBName;
+                string UserName = serverSettingClass.User;
+                string Password = serverSettingClass.Password;
+                uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[入庫人員]";
+                    return returnData.JsonSerializationt(true);
+                }
+
+                string 入庫人員 = returnData.ValueAry[0];
+
+                List<batch_inventory_importClass> batch_Inventory_ImportClasses = returnData.Data.ObjToClass<List<batch_inventory_importClass>>();
+
+                SQLControl sQLControl_batch_inventory_import = new SQLControl(Server, DB, new enum_batch_inventory_import().GetEnumDescription(), UserName, Password, Port, SSLMode);
+                List<object[]> list_replace = new List<object[]>();
+                for (int i = 0; i < batch_Inventory_ImportClasses.Count; i++)
+                {
+                    List<object[]> list_value = sQLControl_batch_inventory_import.GetRowsByDefult(null, (int)enum_batch_inventory_import.GUID, batch_Inventory_ImportClasses[i].GUID);
+                    if (list_value.Count > 0)
+                    {
+                        list_value[0][(int)enum_batch_inventory_import.入庫人員] = 入庫人員;
+                        list_value[0][(int)enum_batch_inventory_import.入庫時間] = DateTime.Now.ToDateTimeString_6();
+                        list_value[0][(int)enum_batch_inventory_import.狀態] = "過帳完成";
+                        list_replace.Add(list_value[0]);
+                    }
+                }
+                sQLControl_batch_inventory_import.UpdateByDefulteExtra(null, list_replace);
+                List<batch_inventory_importClass> batch_Inventory_ImportClasses_replace = list_replace.SQLToClass<batch_inventory_importClass, enum_batch_inventory_import>();
+                returnData.Data = batch_Inventory_ImportClasses_replace;
+                returnData.Result = $"更新批次入庫資料成功,共<{list_replace.Count}>筆資料";
                 returnData.TimeTaken = myTimerBasic.ToString();
                 returnData.Code = 200;
                 Logger.LogAddLine($"batch_inventory_import");
@@ -353,8 +526,8 @@ namespace HIS_WebApi
         ///     },
         ///     "ValueAry" : 
         ///     [
-        ///       "建表起始時間",
-        ///       "建表結束時間",
+        ///       "起始時間",
+        ///       "結束時間",
         ///     ]
         ///     
         ///   }
@@ -435,8 +608,8 @@ namespace HIS_WebApi
         ///     },
         ///     "ValueAry" : 
         ///     [
-        ///       "建表起始時間",
-        ///       "建表結束時間",
+        ///       "起始時間",
+        ///       "結束時間",
         ///     ]
         ///     
         ///   }

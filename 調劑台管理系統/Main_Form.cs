@@ -21,8 +21,8 @@ using System.Runtime.InteropServices;
 using MyPrinterlib;
 using MyOffice;
 using HIS_DB_Lib;
-[assembly: AssemblyVersion("1.2.2.4")]
-[assembly: AssemblyFileVersion("1.2.2.4")]
+[assembly: AssemblyVersion("1.2.2.5")]
+[assembly: AssemblyFileVersion("1.2.2.5")]
 namespace 調劑台管理系統
 {
 
@@ -369,6 +369,8 @@ namespace 調劑台管理系統
                 Dialog_藥品群組.form = this.FindForm();
                 Dialog_異常通知.form = this.FindForm();
                 Dialog_申領.form = this.FindForm();
+                Dialog_批次入庫.form = this.FindForm();
+
 
                 LoadDBConfig();
                 LoadMyConfig();

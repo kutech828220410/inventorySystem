@@ -569,6 +569,7 @@ namespace HIS_DB_Lib
             {
                 tableName = "EPD290_Jsonstring";
             }
+         
             returnData.TableName = tableName;
 
             string json_in = returnData.JsonSerializationt();

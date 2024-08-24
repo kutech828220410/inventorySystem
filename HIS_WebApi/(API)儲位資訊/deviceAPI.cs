@@ -461,8 +461,8 @@ namespace HIS_WebApi
         /// 以下為範例JSON範例
         /// <code>
         ///   {
-        ///     "ServerName" : "",
-        ///     "ServerType" : "",
+        ///     "ServerName" : "ServerName",
+        ///     "ServerType" : "ServerType",
         ///     "TableName" : "",
         ///     "ValueAry" : 
         ///     [

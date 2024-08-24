@@ -323,6 +323,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_已選藥品.cellStylBackColor = System.Drawing.Color.Silver;
             this.sqL_DataGridView_已選藥品.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_已選藥品.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_已選藥品.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_已選藥品.columnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.sqL_DataGridView_已選藥品.columnHeaderBorderColor = System.Drawing.Color.Gainsboro;
             this.sqL_DataGridView_已選藥品.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
@@ -330,6 +331,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_已選藥品.columnHeadersHeight = 18;
             this.sqL_DataGridView_已選藥品.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_已選藥品.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.NotSet;
+            this.sqL_DataGridView_已選藥品.DataKeyEnable = false;
             this.sqL_DataGridView_已選藥品.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_已選藥品.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_已選藥品.ImageBox = false;
