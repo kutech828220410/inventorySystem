@@ -362,7 +362,7 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCpoeClass;
         }
-        static public List<medCpoeClass> check_dispense(string API_Server, string value, List<string> valueAry)
+        static public List<medCarInfoClass> check_dispense(string API_Server, string value, List<string> valueAry)
         {
             string url = $"{API_Server}/api/med_cart/check_dispense";
             returnData returnData = new returnData();
@@ -374,10 +374,9 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            List<medCpoeClass> out_medCpoeClass = new List<medCpoeClass>();
-            out_medCpoeClass = returnData.Data.ObjToClass<List<medCpoeClass>>();
+            List<medCarInfoClass> out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
             Console.WriteLine($"{returnData}");
-            return out_medCpoeClass;
+            return out_medCarInfoClass;
         }
         static public List<medQtyClass> get_med_qty(string API_Server, List<string> valueAry)
         {
@@ -389,26 +388,25 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            List<medQtyClass> out_medQtyClass = new List<medQtyClass>();
-            out_medQtyClass = returnData.Data.ObjToClass<List<medQtyClass>>();
+            List<medQtyClass>  out_medQtyClass = returnData.Data.ObjToClass<List<medQtyClass>>();
             Console.WriteLine($"{returnData}");
             return out_medQtyClass;
         }
-        static public string handover(string API_Server, List<string> valueAry)
+        static public returnData handover(string API_Server, List<string> valueAry)
         {
             string url = $"{API_Server}/api/med_cart/handover";
+
             returnData returnData = new returnData();
             returnData.ValueAry = valueAry;
+
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
-            if (returnData == null) return null;
-            if (returnData.Code != 200)
-            {
-                returnData.Result = $"{valueAry[0]} {valueAry[1]} 尚有調劑未完成";
-                return returnData.JsonSerializationt(true);
-            }
-            return returnData.JsonSerializationt(true); ;
+            //if (returnData == null) return returnData;
+            //if (returnData.Code != 200) return returnData;
+
+            //medCarListClass medCarListClass = returnData.Data.ObjToClass<medCarListClass>();
+            return returnData;
         }
         static public List<medClass> get_med_clouds_by_codes(string API_Server, List<string> code)
         {

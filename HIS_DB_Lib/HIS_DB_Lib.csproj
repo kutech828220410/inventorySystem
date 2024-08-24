@@ -110,7 +110,7 @@
     <Compile Include="BasicClass.cs" />
     <Compile Include="batch_inventory_importClass.cs" />
     <Compile Include="drugStotreArea.cs" />
-    <Compile Include="LoggerClass.cs" />
+    <Compile Include="loggerClass.cs" />
     <Compile Include="CMPM_StorageConfig_Class.cs" />
     <Compile Include="commonSpaceSetup.cs" />
     <Compile Include="computerConfigClass.cs" />

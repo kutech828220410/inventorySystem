@@ -338,7 +338,6 @@ namespace HIS_DB_Lib
         }
         static public List<medCarInfoClass> update_med_carinfo(string API_Server, List<medCarInfoClass> medCarInfoClasses)
         {
-            List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
             string url = $"{API_Server}/api/med_cart/update_med_carinfo";
 
             returnData returnData = new returnData();
@@ -349,27 +348,26 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
-            out_medCarInfoClass.Sort(new medCarInfoClass.ICP_By_bedNum());
+            List<medCarInfoClass>  out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
             Console.WriteLine($"{returnData}");
             return out_medCarInfoClass;
         }
 
         static public List<medCarInfoClass> get_bed_list_by_cart(string API_Server, List<string> Info)
         {
-            List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
             string url = $"{API_Server}/api/med_cart/get_bed_list_by_cart";
 
             returnData returnData = new returnData();
             returnData.ValueAry = Info;
+
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+            List<medCarInfoClass>  out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+            Console.WriteLine($"{returnData}");
             return out_medCarInfoClass;
-
         }
         static public List<medCarInfoClass> get_patient_by_bedNum(string API_Server, List<string> Info)
         {

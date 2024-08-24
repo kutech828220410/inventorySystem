@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SQLUI;
 using Basic;
 using HIS_DB_Lib;
+using MySql.Data.MySqlClient;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,8 +15,10 @@ namespace HIS_WebApi.Anna_Logger
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoggerController : ControllerBase
+    public class Logger : ControllerBase
     {
+        static private string API_Server = "http://127.0.0.1:4433/api/serversetting";
+        static private MySqlSslMode SSLMode = MySqlSslMode.None;
         [HttpGet("test")]
         public string test()
         {
@@ -44,21 +48,19 @@ namespace HIS_WebApi.Anna_Logger
         [Swashbuckle.AspNetCore.Annotations.SwaggerResponse(200, "loggerClass物件", typeof(loggerClass))]
         public string init([FromBody] returnData returnData)
         {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                List<Table> tables = TableManager.CheckCreateTable();
-                Table table = tables.GetTable(new enum_logger());
-                if (table == null)
+                List<ServerSettingClass> serverSettingClasses = ServerSettingController.GetAllServerSetting();
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (serverSettingClasses.Count == 0)
                 {
                     returnData.Code = -200;
-                    returnData.Result = "table 空白，請檢查使用者!";
+                    returnData.Result = $"找無Server資料!";
                     return returnData.JsonSerializationt();
                 }
-                //returnData.Result = "創建表單成功";
-                //returnData.Method = "init";
-                //returnData.Data = table;
-
-                return table.JsonSerializationt();
+                return CheckCreatTable(serverSettingClasses[0], new enum_logger());
+                
             }
             catch (Exception ex)
             {
@@ -66,6 +68,17 @@ namespace HIS_WebApi.Anna_Logger
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
+        }
+        private string CheckCreatTable(ServerSettingClass serverSettingClass, Enum enumInstance)
+        {
+            string Server = serverSettingClass.Server;
+            string DB = serverSettingClass.DBName;
+            string UserName = serverSettingClass.User;
+            string Password = serverSettingClass.Password;
+            uint Port = (uint)serverSettingClass.Port.StringToInt32();
+
+            Table table = MethodClass.CheckCreatTable(serverSettingClass, enumInstance);
+            return table.JsonSerializationt(true);
         }
         /// <summary>
         ///取得所有Logger資料
@@ -86,13 +99,25 @@ namespace HIS_WebApi.Anna_Logger
             returnData.Method = "get_all";
             try
             {
-                Table table = new Table(new enum_logger());
-                string tableName = table.TableName;
-                SQLControl sqlControl = new SQLControl("127.0.0.1", "anna_test", "user", "66437068");
-                List<object[]> row_value = sqlControl.GetAllRows(tableName);
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+        
+                SQLControl sqlControl = new SQLControl(Server, DB, "logger", UserName, Password, Port, SSLMode);
+                List<object[]> row_value = sqlControl.GetAllRows(null);
                 List<loggerClass> loggerClasses = row_value.SQLToClass<loggerClass, enum_logger>();
-
                 loggerClasses.Sort(new loggerClass.ICP_By_OP_Time());
+
                 returnData.Result = $"取得資料共<{loggerClasses.Count}>筆";
                 returnData.Data = loggerClasses;
                 returnData.TimeTaken = $"{myTimerBasic}";
@@ -135,8 +160,23 @@ namespace HIS_WebApi.Anna_Logger
                     returnData.Result = "returnData.Data 空白，請輸入對應欄位資料!";
                     return returnData.JsonSerializationt();
                 }
-                Table table = new Table(new enum_logger());
-                SQLControl sqlControl = new SQLControl("127.0.0.1", "anna_test", "user", "66437068");
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sqlControl = new SQLControl(Server, DB, "logger", UserName, Password, Port, SSLMode);
+
                 List<loggerClass> profile_sql_add = new List<loggerClass>();
                 List<loggerClass> profile_input = returnData.Data.ObjToClass<List<loggerClass>>();
 
@@ -153,8 +193,8 @@ namespace HIS_WebApi.Anna_Logger
 
                 List<object[]> list_profile_add = new List<object[]>();
                 list_profile_add = profile_sql_add.ClassToSQL<loggerClass, enum_logger>();
-                if (list_profile_add.Count > 0) sqlControl.AddRows(table.TableName, list_profile_add);
-                returnData.Data = "";
+                if (list_profile_add.Count > 0) sqlControl.AddRows(null, list_profile_add);
+                returnData.Data = profile_sql_add;
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Method = "add";
@@ -205,13 +245,23 @@ namespace HIS_WebApi.Anna_Logger
                 }
                 string 操作者姓名 = returnData.ValueAry[0];
 
-                Table table = new Table(new enum_logger());
-                string tableName = table.TableName;
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
+                SQLControl sqlControl = new SQLControl(Server, DB, "logger", UserName, Password, Port, SSLMode);
 
-                SQLControl sQLControl = new SQLControl("127.0.0.1", "anna_test", "user", "66437068");
-
-                List<object[]> rows_value = sQLControl.GetRowsByDefult(tableName, (int)enum_logger.操作者姓名, 操作者姓名);
+                List<object[]> rows_value = sqlControl.GetRowsByDefult(null, (int)enum_logger.操作者姓名, 操作者姓名);
                 if (rows_value.Count == 0)
                 {
                     returnData.Code = -200;
@@ -220,7 +270,6 @@ namespace HIS_WebApi.Anna_Logger
                 }
 
                 List<loggerClass> loggerClasses = rows_value.SQLToClass<loggerClass, enum_logger>();
-
                 loggerClasses.Sort(new loggerClass.ICP_By_OP_Time());
 
                 returnData.Result = $"取得資料共<{loggerClasses.Count}>筆";
@@ -235,7 +284,6 @@ namespace HIS_WebApi.Anna_Logger
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
-
         }
         /// <summary>
         ///以操作時間取得Logger資料
@@ -269,8 +317,6 @@ namespace HIS_WebApi.Anna_Logger
                     returnData.Result = "returnDate.ValueAry 需為[起始時間,結束時間]";
                     return returnData.JsonSerializationt();
                 }
-                Table table = new Table(new enum_logger());
-                string tableName = table.TableName;
 
                 string 起始時間 = returnData.ValueAry[0];
                 string 結束時間 = returnData.ValueAry[1];
@@ -278,8 +324,23 @@ namespace HIS_WebApi.Anna_Logger
                 DateTime date_st = 起始時間.StringToDateTime();
                 DateTime date_end = 結束時間.StringToDateTime();
 
-                SQLControl sQLControl = new SQLControl("127.0.0.1", "anna_test", "user", "66437068");
-                List<object[]> rows_value = sQLControl.GetRowsByBetween(tableName, (int)enum_logger.操作時間, date_st.ToDateString(), date_end.ToDateString());
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sqlControl = new SQLControl(Server, DB, "logger", UserName, Password, Port, SSLMode);
+
+                List<object[]> rows_value = sqlControl.GetRowsByBetween(null, (int)enum_logger.操作時間, date_st.ToDateString(), date_end.ToDateString());
                 List<loggerClass> loggerClasses = rows_value.SQLToClass<loggerClass, enum_logger>();
 
                 var sortedLoggerClasses = (from data in loggerClasses
@@ -331,12 +392,25 @@ namespace HIS_WebApi.Anna_Logger
                     returnData.Result = "returnDate.ValueAry 需為[項目]";
                     return returnData.JsonSerializationt();
                 }
-                Table table = new Table(new enum_logger());
-                SQLControl sQLControl = new SQLControl("127.0.0.1", "anna_test", "user", "66437068");
+
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "人員資料");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sqlControl = new SQLControl(Server, DB, "logger", UserName, Password, Port, SSLMode);
 
                 string value = returnData.ValueAry[0];
-                string tableName = table.TableName;
-                List<object[]> row_values = sQLControl.GetRowsByDefult(tableName, (int)enum_logger.項目, value);
+                List<object[]> row_values = sqlControl.GetRowsByDefult(null, (int)enum_logger.項目, value);
                 if (row_values.Count == 0)
                 {
                     returnData.Code = -200;
@@ -344,7 +418,7 @@ namespace HIS_WebApi.Anna_Logger
                     return returnData.JsonSerializationt();
                 }
 
-                sQLControl.DeleteExtra(tableName, row_values);
+                sqlControl.DeleteExtra(null, row_values);
                 returnData.Result = $"刪除資料共<{row_values.Count}>筆";
                 returnData.Data = "";
                 returnData.Method = "delete_by_item";
@@ -357,56 +431,6 @@ namespace HIS_WebApi.Anna_Logger
                 returnData.Result = $"Exception : {ex.Message}";
                 return returnData.JsonSerializationt(true);
             }
-
-
         }
-
-
-    }
-
-    public static class TableMethod
-    {
-        public static Table GetTable(this List<Table> tables, Enum _enum)
-        {
-            string name = _enum.GetEnumDescription();
-            for (int i = 0; i < tables.Count; i++)
-            {
-                if (tables[i].TableName == name) return tables[i];
-            }
-            return null;
-        }
-    }
-    static public class TableManager
-    {
-        static public List<Table> CheckCreateTable()
-        {
-            List<Table> tables = new List<Table>();
-            tables.Add(CheckCreateTable("127.0.0.1", "anna_test", "user", "66437068", 3306, new enum_logger()));
-            return tables;
-        }
-
-
-        static public Table CheckCreateTable(string server, string db, string user, string password, uint port, Enum Enum)
-        {
-            Table table = new Table(Enum);
-
-            string Server = server;
-            string DB = db;
-            string UserName = user;
-            string Password = password;
-            uint Port = port;
-            table.Server = Server;
-            table.DBName = DB;
-            table.Username = UserName;
-            table.Password = Password;
-            table.Port = Port.ToString();
-
-            SQLControl sQLControl = new SQLControl(Server, DB, UserName, Password, Port, MySql.Data.MySqlClient.MySqlSslMode.Disabled);
-
-            if (!sQLControl.IsTableCreat()) sQLControl.CreatTable(table);
-            else sQLControl.CheckAllColumnName(table, true);
-            return table;
-        }
-
-    }
+    }   
 }
