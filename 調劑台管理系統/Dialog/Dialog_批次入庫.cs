@@ -55,6 +55,9 @@ namespace 調劑台管理系統
             LoadingForm.ShowLoadingForm();
 
             List<batch_inventory_importClass> batch_Inventory_ImportClasses = batch_inventory_importClass.get_by_CT_TIME(Main_Form.API_Server, DateTime.Now.GetStartDate(), DateTime.Now.GetEndDate());
+            batch_Inventory_ImportClasses = (from temp in batch_Inventory_ImportClasses
+                                             where temp.庫別 == Main_Form.ServerName
+                                             select temp).ToList();
             List<object[]> list_value = batch_Inventory_ImportClasses.ClassToSQL<batch_inventory_importClass, enum_batch_inventory_import>();
             sqL_DataGridView_批次入庫.RefreshGrid(list_value);
             LoadingForm.CloseLoadingForm();
