@@ -465,7 +465,31 @@ namespace HIS_DB_Lib
             ServerSettingClass value = returnData_out.Data.ObjToClass<ServerSettingClass>();
             return value;
         }
-      
+        static public string get_api_url(string API_Server, string 名稱, string 類別, string 內容)
+        {
+            string url = $"{API_Server}/api/ServerSetting/get_server";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(名稱);
+            returnData.ValueAry.Add(類別);
+            returnData.ValueAry.Add(內容);
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+            if (returnData_out == null)
+            {
+                return null;
+            }
+            if (returnData_out.Data == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
+            ServerSettingClass value = returnData_out.Data.ObjToClass<ServerSettingClass>();
+            if (value == null) return null;
+            return value.Server;
+        }
+
         static public SQLUI.Table Init(string API_Server)
         {
             string url = $"{API_Server}/api/ServerSetting/init";
