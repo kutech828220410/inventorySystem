@@ -74,7 +74,14 @@ namespace HIS_DB_Lib
 
             return medGroupClasses;
         }
-        
+        static public List<string> get_all_group_name(string API_Server)
+        {
+            List<medGroupClass> medGroupClasses = get_all_group(API_Server);
+            List<string> vs = (from temp in medGroupClasses
+                               select temp.名稱).Distinct().ToList();
+            return vs;
+        }
+
         static public void add_group(string API_Server, medGroupClass medGroupClass)
         {
             string url = $"{API_Server}/api/medGroup/add_group";

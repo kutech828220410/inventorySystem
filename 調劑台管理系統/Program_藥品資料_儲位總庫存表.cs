@@ -13,59 +13,38 @@ using H_Pannel_lib;
 using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using SQLUI;
-
+using HIS_DB_Lib;
 namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
-        public enum enum_儲位總庫存表_儲位型式 : int
-        {
-            EPD583,
-            小抽屜,
-            面板層架,
-            LED層架,
-        }
-        [EnumDescription("")]
-        public enum enum_儲位總庫存表 : int
-        {
-            [Description("儲位名稱,VARCHAR,300,NONE")]
-            儲位名稱,
-            [Description("藥品碼,VARCHAR,300,NONE")]
-            藥品碼,
-            [Description("藥品名稱,VARCHAR,300,NONE")]
-            藥品名稱,
-            [Description("單位,VARCHAR,300,NONE")]
-            單位,
-            [Description("庫存,VARCHAR,300,NONE")]
-            庫存,
-            [Description("儲位型式,VARCHAR,300,NONE")]
-            儲位型式,
-            [Description("IP,VARCHAR,300,NONE")]
-            IP,
-        }
+
 
         private void Program_藥品資料_儲位總庫存表_Init()
         {
-            Table table = new Table(new enum_儲位總庫存表());
+            Table table = medClass.init(Main_Form.API_Server, Main_Form.ServerName, Main_Form.ServerType, medClass.StoreType.調劑台);
             this.sqL_DataGridView_藥品資料_儲位總庫存表.Init(table);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnVisible(false, new enum_儲位總庫存表().GetEnumNames());
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位總庫存表.儲位名稱);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_儲位總庫存表.藥品碼);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(350, DataGridViewContentAlignment.MiddleLeft, enum_儲位總庫存表.藥品名稱);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_儲位總庫存表.單位);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleRight, enum_儲位總庫存表.庫存);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_儲位總庫存表.儲位型式);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnVisible(false, new enum_藥品資料_藥檔資料().GetEnumNames());
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品碼);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.藥品名稱);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(500, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.中文名稱);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_藥品資料_藥檔資料.包裝單位);
+            this.sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleCenter, enum_藥品資料_藥檔資料.庫存);
+
+            sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnText("藥碼", enum_藥品資料_藥檔資料.藥品碼);
+            sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnText("藥名", enum_藥品資料_藥檔資料.藥品名稱);
+            sqL_DataGridView_藥品資料_儲位總庫存表.Set_ColumnText("中文名", enum_藥品資料_藥檔資料.中文名稱);
 
             this.sqL_DataGridView_藥品資料_儲位總庫存表.Init();
             this.sqL_DataGridView_藥品資料_儲位總庫存表.DataGridRowsChangeRefEvent += SqL_DataGridView_藥品資料_儲位總庫存表_DataGridRowsChangeRefEvent;
+            this.comboBox_藥品資料_儲位總庫存表_搜尋條件.SelectedIndex = 0;
+            this.comboBox_藥品資料_儲位總庫存表_搜尋條件.SelectedIndexChanged += ComboBox_藥品資料_儲位總庫存表_搜尋條件_SelectedIndexChanged;
+            this.rJ_Button_藥品資料_儲位總庫存表_搜尋.MouseDownEvent += RJ_Button_藥品資料_儲位總庫存表_搜尋_MouseDownEvent;
             this.plC_RJ_Button_藥品資料_儲位總庫存表_匯出資料.MouseDownEvent += PlC_RJ_Button_藥品資料_儲位總庫存表_匯出資料_MouseDownEvent;
-            this.plC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋_MouseDownEvent;
-            this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋_MouseDownEvent;
-            this.plC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋.MouseDownEvent += PlC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋_MouseDownEvent;
-            this.plC_RJ_Button_藥品資料_儲位總庫存表_顯示全部.MouseDownEvent += PlC_RJ_Button_藥品資料_儲位總庫存表_顯示全部_MouseDownEvent;
+
         }
 
-   
+     
 
         bool flag_藥品資料_儲位總庫存表_頁面更新 = false;
         private void sub_Program_藥品資料_儲位總庫存表()
@@ -85,61 +64,137 @@ namespace 調劑台管理系統
         }
 
         #region Function
-        private List<object[]> Function_藥品資料_儲位總庫存表_取得資料()
-        {
-            MyTimer myTimer = new MyTimer();
-            myTimer.StartTickTime(5000);
-            List<Device> devices = this.Function_從SQL取得所有儲位();
-            Console.Write($"取得所有儲位,耗時{myTimer.ToString()}ms\n");
-            List<object[]> list_value = new List<object[]>();
-            for (int i = 0; i < devices.Count; i++)
-            {
-                object[] value = new object[new enum_儲位總庫存表().GetLength()];
-                if (devices[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString().StringIsEmpty()) continue;
-                value[(int)enum_儲位總庫存表.IP] = devices[i].GetValue(Device.ValueName.IP, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位總庫存表.儲位名稱] = devices[i].GetValue(Device.ValueName.儲位名稱, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位總庫存表.藥品碼] = devices[i].GetValue(Device.ValueName.藥品碼, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位總庫存表.藥品名稱] = devices[i].GetValue(Device.ValueName.藥品名稱, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位總庫存表.單位] = devices[i].GetValue(Device.ValueName.包裝單位, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位總庫存表.庫存] = devices[i].GetValue(Device.ValueName.庫存, Device.ValueType.Value).ObjectToString();
-                value[(int)enum_儲位總庫存表.儲位型式] = devices[i].DeviceType.GetEnumName();
-                list_value.Add(value);
-            }
-            Console.Write($"計算所有儲位庫存,耗時{myTimer.ToString()}ms\n");
-            return list_value;
-        }
+   
         #endregion
         #region Event
         private void SqL_DataGridView_藥品資料_儲位總庫存表_DataGridRowsChangeRefEvent(ref List<object[]> RowsList)
         {
-            RowsList = RowsList.OrderBy(r => r[(int)enum_儲位總庫存表.儲位名稱].ObjectToString()).ToList();
+      
         }
-        private void PlC_RJ_Button_藥品資料_儲位總庫存表_藥品名稱搜尋_MouseDownEvent(MouseEventArgs mevent)
+        private void ComboBox_藥品資料_儲位總庫存表_搜尋條件_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<object[]> list_value = this.Function_藥品資料_儲位總庫存表_取得資料();
-
-            list_value = list_value.GetRowsByLike((int)enum_儲位總庫存表.藥品名稱, rJ_TextBox_藥品資料_儲位總庫存表_藥品名稱搜尋.Texts);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.RefreshGrid(list_value);
+            if (this.comboBox_藥品資料_儲位總庫存表_搜尋條件.Text == "全部顯示")
+            {
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = false;
+            }
+            else if (this.comboBox_藥品資料_儲位總庫存表_搜尋條件.Text == "管制級別")
+            {
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = null;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = new string[] { "1", "2", "3", "4", "N" };
+                if (comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Count > 0) comboBox_藥品資料_儲位總庫存表_搜尋內容.SelectedIndex = 0;
+            }
+            else if (this.comboBox_藥品資料_儲位總庫存表_搜尋條件.Text == "藥品群組")
+            {
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDown;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = null;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = medGroupClass.get_all_group_name(API_Server).ToArray();
+                if (comboBox_藥品資料_儲位總庫存表_搜尋內容.Items.Count > 0) comboBox_藥品資料_儲位總庫存表_搜尋內容.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.Enabled = true;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.DataSource = null;
+                comboBox_藥品資料_儲位總庫存表_搜尋內容.Text = "";
+            }
         }
-        private void PlC_RJ_Button_藥品資料_儲位總庫存表_藥品碼搜尋_MouseDownEvent(MouseEventArgs mevent)
-        {
-            List<object[]> list_value = this.Function_藥品資料_儲位總庫存表_取得資料();
 
-            list_value = list_value.GetRowsByLike((int)enum_儲位總庫存表.藥品碼, rJ_TextBox_藥品資料_儲位總庫存表_藥品碼搜尋.Texts);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.RefreshGrid(list_value);
-        }
-        private void PlC_RJ_Button_藥品資料_儲位總庫存表_儲位名稱搜尋_MouseDownEvent(MouseEventArgs mevent)
+        private void RJ_Button_藥品資料_儲位總庫存表_搜尋_MouseDownEvent(MouseEventArgs mevent)
         {
-            List<object[]> list_value = this.Function_藥品資料_儲位總庫存表_取得資料();
+            LoadingForm.ShowLoadingForm();
+            try
+            {
+                List<object[]> list_value = new List<object[]>();
+                List<medClass> medClasses = medClass.get_dps_medClass(API_Server, ServerName);
+                medClasses = (from temp in medClasses
+                              where temp.DeviceBasics.Count > 0
+                              select temp).ToList();
+                if (comboBox_藥品資料_儲位總庫存表_搜尋條件.GetComboBoxText() == "全部顯示")
+                {
+                    list_value = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                }
+                if (comboBox_藥品資料_儲位總庫存表_搜尋條件.GetComboBoxText() == "藥碼")
+                {
+                    if(comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("查無資料");
+                        return;
+                    }
+                    medClasses = (from temp in medClasses
+                                  where temp.藥品碼.ToUpper().Contains(comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().ToUpper())
+                                  select temp).ToList();
+                    list_value = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                }
+                if (comboBox_藥品資料_儲位總庫存表_搜尋條件.GetComboBoxText() == "藥名")
+                {
+                    if (comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("搜尋內容空白");
+                        return;
+                    }
+                    medClasses = (from temp in medClasses
+                                  where temp.藥品名稱.ToUpper().Contains(comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().ToUpper())
+                                  select temp).ToList();
+                    list_value = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                }
+                if (comboBox_藥品資料_儲位總庫存表_搜尋條件.GetComboBoxText() == "中文名")
+                {
+                    if (comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("搜尋內容空白");
+                        return;
+                    }
+                    medClasses = (from temp in medClasses
+                                  where temp.中文名稱.ToUpper().Contains(comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().ToUpper())
+                                  select temp).ToList();
+                    list_value = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                }
+                if (comboBox_藥品資料_儲位總庫存表_搜尋條件.GetComboBoxText() == "管制級別")
+                {
+                    if (comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("搜尋內容空白");
+                        return;
+                    }
+                    medClasses = (from temp in medClasses
+                                  where temp.管制級別.ToUpper().Contains(comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().ToUpper())
+                                  select temp).ToList();
+                    list_value = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                }
+                if (comboBox_藥品資料_儲位總庫存表_搜尋條件.GetComboBoxText() == "藥品群組")
+                {
+                    if (comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText().StringIsEmpty())
+                    {
+                        MyMessageBox.ShowDialog("搜尋內容空白");
+                        return;
+                    }
+                    medGroupClass medGroupClass =  medGroupClass.get_all_group(API_Server, comboBox_藥品資料_儲位總庫存表_搜尋內容.GetComboBoxText());
+                    Dictionary<string, List<medClass>> keyValuePairs_medGroup = medGroupClass.MedClasses.CoverToDictionaryByCode();
 
-            list_value = list_value.GetRowsByLike((int)enum_儲位總庫存表.儲位名稱, rJ_TextBox_藥品資料_儲位總庫存表_儲位名稱搜尋.Texts);
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.RefreshGrid(list_value);
-        }
-        private void PlC_RJ_Button_藥品資料_儲位總庫存表_顯示全部_MouseDownEvent(MouseEventArgs mevent)
-        {
-            List<object[]> list_value = this.Function_藥品資料_儲位總庫存表_取得資料();
-
-            this.sqL_DataGridView_藥品資料_儲位總庫存表.RefreshGrid(list_value);
+                    medClasses = (from temp in medClasses
+                                  where (keyValuePairs_medGroup.SortDictionaryByCode(temp.藥品碼).Count > 0)
+                                  select temp).ToList();
+                    list_value = medClasses.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                }
+                sqL_DataGridView_藥品資料_儲位總庫存表.RefreshGrid(list_value);
+            
+                if (list_value.Count == 0)
+                {
+                    MyMessageBox.ShowDialog("查無資料");
+                }
+            }
+            catch
+            {
+             
+            }
+            finally
+            {
+                LoadingForm.CloseLoadingForm();
+            }
+        
         }
         private void PlC_RJ_Button_藥品資料_儲位總庫存表_匯出資料_MouseDownEvent(MouseEventArgs mevent)
         {

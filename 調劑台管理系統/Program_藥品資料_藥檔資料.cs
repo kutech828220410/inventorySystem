@@ -138,6 +138,10 @@ namespace 調劑台管理系統
             //this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.廠牌);
             this.sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_藥品資料_藥檔資料.開檔狀態);
 
+            sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("藥碼", enum_藥品資料_藥檔資料.藥品碼);
+            sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("藥名", enum_藥品資料_藥檔資料.藥品名稱);
+            sqL_DataGridView_藥品資料_藥檔資料.Set_ColumnText("中文名", enum_藥品資料_藥檔資料.中文名稱);
+
             this.sqL_DataGridView_藥品資料_藥檔資料.RowEnterEvent += SqL_DataGridView_藥品資料_藥檔資料_RowEnterEvent;
             this.sqL_DataGridView_藥品資料_藥檔資料.RowDoubleClickEvent += SqL_DataGridView_藥品資料_藥檔資料_RowDoubleClickEvent;
             this.sqL_DataGridView_藥品資料_藥檔資料.MouseDown += SqL_DataGridView_藥品資料_藥檔資料_MouseDown;
@@ -1215,11 +1219,11 @@ namespace 調劑台管理系統
 
 
             List<object[]> list_雲端藥檔_all = this.sqL_DataGridView_雲端藥檔.SQL_GetAllRows(false);
-            List<object[]> list_雲端藥檔_中藥 = list_雲端藥檔_all.GetRows((int)enum_雲端藥檔.類別, "中藥");
-            List<object[]> list_雲端藥檔_西藥 = list_雲端藥檔_all.GetRows((int)enum_雲端藥檔.類別, "西藥");
+            List<object[]> list_雲端藥檔_中藥 = list_雲端藥檔_all.GetRows((int)enum_雲端藥檔.中西藥, "中藥");
+            List<object[]> list_雲端藥檔_西藥 = list_雲端藥檔_all.GetRows((int)enum_雲端藥檔.中西藥, "西藥");
             List<object[]> list_雲端藥檔 = new List<object[]>();
-            list_雲端藥檔.LockAdd(list_雲端藥檔_中藥);
-            list_雲端藥檔.LockAdd(list_雲端藥檔_西藥);
+            if (dialog_中西藥選擇.flag_中藥) list_雲端藥檔.LockAdd(list_雲端藥檔_中藥);
+            if (dialog_中西藥選擇.flag_西藥) list_雲端藥檔.LockAdd(list_雲端藥檔_西藥);
 
             Console.WriteLine($"取得西藥藥品<{list_雲端藥檔_西藥.Count}>筆,中藥藥品<{list_雲端藥檔_中藥.Count}>筆");
 
