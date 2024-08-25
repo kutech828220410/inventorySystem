@@ -632,8 +632,7 @@ namespace 調劑台管理系統
             System.Environment.Exit(0);
         }
         private void PlC_ScreenPage_調劑樣式_Resize(object sender, EventArgs e)
-        {
-        
+        {     
             Control control = sender as Control;
             int basic_width = 1660;
             int offset_width = (control.Width -basic_width) / 2;
