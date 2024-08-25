@@ -200,6 +200,25 @@ namespace HIS_DB_Lib
 
             return returnData_out.Data.ObjToClass<List<batch_inventory_importClass>>();
         }
+        static public List<batch_inventory_importClass> add(string API_Server, List<batch_inventory_importClass> batch_Inventory_ImportClasses, string CT_NAME)
+        {
+            string url = $"{API_Server}/api/batch_inventory_import/add";
+
+            returnData returnData = new returnData();
+            returnData.Data = batch_Inventory_ImportClasses;
+            returnData.ValueAry.Add(CT_NAME);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+
+            return returnData_out.Data.ObjToClass<List<batch_inventory_importClass>>();
+        }
         static public List<batch_inventory_importClass> update_state_done_by_GUID(string API_Server, List<batch_inventory_importClass> batch_Inventory_ImportClasses , string RECEIVER)
         {
             string url = $"{API_Server}/api/batch_inventory_import/update_state_done_by_GUID";
