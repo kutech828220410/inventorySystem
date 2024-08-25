@@ -656,6 +656,8 @@ namespace 調劑台管理系統
                 rJ_Pannel_領藥台_04.Width = width;
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
+                panel_領藥台_01_藥品資訊.Visible = false;
+                panel_領藥台_02_藥品資訊.Visible = false;
             }
             else if (NumOfConnectedScanner == 3)
             {
@@ -667,6 +669,8 @@ namespace 調劑台管理系統
                 rJ_Pannel_領藥台_04.Width = width;
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
+                panel_領藥台_01_藥品資訊.Visible = false;
+                panel_領藥台_02_藥品資訊.Visible = false;
             }
             else if (NumOfConnectedScanner == 2)
             {
@@ -678,6 +682,12 @@ namespace 調劑台管理系統
                 rJ_Pannel_領藥台_04.Width = width;
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
+
+                pictureBox_領藥台_01_藥品圖片01.Width = panel_領藥台_01_藥品圖片.Width / 2;
+                pictureBox_領藥台_01_藥品圖片02.Width = panel_領藥台_01_藥品圖片.Width / 2;
+
+                pictureBox_領藥台_02_藥品圖片01.Width = panel_領藥台_02_藥品圖片.Width / 2;
+                pictureBox_領藥台_02_藥品圖片02.Width = panel_領藥台_02_藥品圖片.Width / 2;
             }
             else if (NumOfConnectedScanner == 1)
             {
@@ -689,6 +699,12 @@ namespace 調劑台管理系統
                 rJ_Pannel_領藥台_04.Width = width;
                 panel_領藥台_01_02.Height = height;
                 panel_領藥台_03_04.Height = height;
+
+                pictureBox_領藥台_01_藥品圖片01.Width = panel_領藥台_01_藥品圖片.Width / 2;
+                pictureBox_領藥台_01_藥品圖片02.Width = panel_領藥台_01_藥品圖片.Width / 2;
+
+                pictureBox_領藥台_02_藥品圖片01.Width = panel_領藥台_02_藥品圖片.Width / 2;
+                pictureBox_領藥台_02_藥品圖片02.Width = panel_領藥台_02_藥品圖片.Width / 2;
             }
         }
         private void ToolStripMenuItem_顯示主控台_Click(object sender, EventArgs e)
@@ -953,7 +969,6 @@ namespace 調劑台管理系統
             }
         }
         #endregion
-
         #region PLC_Method
         PLC_Device PLC_Device_Method = new PLC_Device("");
         PLC_Device PLC_Device_Method_OK = new PLC_Device("");

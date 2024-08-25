@@ -13,6 +13,7 @@ using System.Diagnostics;//記得取用 FileVersionInfo繼承
 using System.Reflection;//記得取用 Assembly繼承
 using H_Pannel_lib;
 using HIS_DB_Lib;
+using SQLUI;
 namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
@@ -269,6 +270,15 @@ namespace 調劑台管理系統
             public Color 領藥台_02_Color = Color.Black;
             public Color 領藥台_03_Color = Color.Black;
             public Color 領藥台_04_Color = Color.Black;
+
+            public string 領藥台_01_columns_jsonStr;
+            public string 領藥台_02_columns_jsonStr;
+            public string 領藥台_03_columns_jsonStr;
+            public string 領藥台_04_columns_jsonStr;
+
+            public int 領藥台_01_藥品資訊_Height = 275;
+            public int 領藥台_02_藥品資訊_Height = 275;
+
         }
         public void SaveConfig工程模式()
         {
@@ -280,6 +290,14 @@ namespace 調劑台管理系統
             saveConfig.領藥台_02_Color = this.panel_工程模式_領藥台_02_顏色.BackColor;
             saveConfig.領藥台_03_Color = this.panel_工程模式_領藥台_03_顏色.BackColor;
             saveConfig.領藥台_04_Color = this.panel_工程模式_領藥台_04_顏色.BackColor;
+
+            saveConfig.領藥台_01_columns_jsonStr = _sqL_DataGridView_領藥台_01_領藥內容.GetColumnsJsonStr();
+            saveConfig.領藥台_02_columns_jsonStr = _sqL_DataGridView_領藥台_02_領藥內容.GetColumnsJsonStr();
+            saveConfig.領藥台_03_columns_jsonStr = _sqL_DataGridView_領藥台_03_領藥內容.GetColumnsJsonStr();
+            saveConfig.領藥台_04_columns_jsonStr = _sqL_DataGridView_領藥台_04_領藥內容.GetColumnsJsonStr();
+
+            saveConfig.領藥台_01_藥品資訊_Height = _panel_領藥台_01_藥品資訊.Height;
+            saveConfig.領藥台_02_藥品資訊_Height = _panel_領藥台_02_藥品資訊.Height;
             Basic.FileIO.SaveProperties(saveConfig, StreamName);
         }
         public void LoadConfig工程模式()
@@ -289,25 +307,29 @@ namespace 調劑台管理系統
             Basic.FileIO.LoadProperties(ref temp, StreamName);
             if(temp is SaveConfig工程模式Class)
             {
-                this.Invoke(new Action(delegate 
+                SaveConfig工程模式Class saveConfig = (SaveConfig工程模式Class)temp;
+               this.Invoke(new Action(delegate 
                 {
 
-                    this.panel_工程模式_領藥台_01_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_01_Color;
-                    this.panel_工程模式_領藥台_02_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_02_Color;
-                    this.panel_工程模式_領藥台_03_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_03_Color;
-                    this.panel_工程模式_領藥台_04_顏色.BackColor = ((SaveConfig工程模式Class)temp).領藥台_04_Color;
+                    this.panel_工程模式_領藥台_01_顏色.BackColor = saveConfig.領藥台_01_Color;
+                    this.panel_工程模式_領藥台_02_顏色.BackColor = saveConfig.領藥台_02_Color;
+                    this.panel_工程模式_領藥台_03_顏色.BackColor = saveConfig.領藥台_03_Color;
+                    this.panel_工程模式_領藥台_04_顏色.BackColor = saveConfig.領藥台_04_Color;
 
-                    //this.rJ_GroupBox_領藥台_01.PannelBorderColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
-                    //this.rJ_GroupBox_領藥台_01.TitleBackColor = this.panel_工程模式_領藥台_01_顏色.BackColor;
+                    _sqL_DataGridView_領藥台_01_領藥內容.SetColumnsJsonStr(saveConfig.領藥台_01_columns_jsonStr);
+                    _sqL_DataGridView_領藥台_02_領藥內容.SetColumnsJsonStr(saveConfig.領藥台_02_columns_jsonStr);
+                    _sqL_DataGridView_領藥台_03_領藥內容.SetColumnsJsonStr(saveConfig.領藥台_03_columns_jsonStr);
+                    _sqL_DataGridView_領藥台_04_領藥內容.SetColumnsJsonStr(saveConfig.領藥台_04_columns_jsonStr);
 
-                    //this.rJ_GroupBox_領藥台_02.PannelBorderColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
-                    //this.rJ_GroupBox_領藥台_02.TitleBackColor = this.panel_工程模式_領藥台_02_顏色.BackColor;
+                    _sqL_DataGridView_領藥台_01_領藥內容.Init();
+                    _sqL_DataGridView_領藥台_02_領藥內容.Init();
+                    _sqL_DataGridView_領藥台_03_領藥內容.Init();
+                    _sqL_DataGridView_領藥台_04_領藥內容.Init();
+                    if (saveConfig.領藥台_01_藥品資訊_Height == 0) saveConfig.領藥台_01_藥品資訊_Height = 275;
+                    if (saveConfig.領藥台_02_藥品資訊_Height == 0) saveConfig.領藥台_02_藥品資訊_Height = 275;
+                    _panel_領藥台_01_藥品資訊.Height = saveConfig.領藥台_01_藥品資訊_Height;
+                    _panel_領藥台_02_藥品資訊.Height = saveConfig.領藥台_02_藥品資訊_Height;
 
-                    //this.rJ_GroupBox_領藥台_03.PannelBorderColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
-                    //this.rJ_GroupBox_領藥台_03.TitleBackColor = this.panel_工程模式_領藥台_03_顏色.BackColor;
-
-                    //this.rJ_GroupBox_領藥台_04.PannelBorderColor = this.panel_工程模式_領藥台_04_顏色.BackColor;
-                    //this.rJ_GroupBox_領藥台_04.TitleBackColor = this.panel_工程模式_領藥台_04_顏色.BackColor;
                 }));
             }
 

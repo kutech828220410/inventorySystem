@@ -20,6 +20,12 @@ namespace 調劑台管理系統
 {
     public partial class Main_Form : Form
     {
+        static public SQL_DataGridView _sqL_DataGridView_領藥台_01_領藥內容;
+        static public SQL_DataGridView _sqL_DataGridView_領藥台_02_領藥內容;
+        static public SQL_DataGridView _sqL_DataGridView_領藥台_03_領藥內容;
+        static public SQL_DataGridView _sqL_DataGridView_領藥台_04_領藥內容;
+        static public Panel _panel_領藥台_01_藥品資訊;
+        static public Panel _panel_領藥台_02_藥品資訊;
         static public string[] LoginUsers
         {
             get
@@ -75,9 +81,11 @@ namespace 調劑台管理系統
                 this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_取藥堆疊母資料.動作);
                 this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnWidth(120, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.狀態);
             }
-           
+
 
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnText("No", enum_取藥堆疊母資料.序號);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnText("藥碼", enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnText("藥名", enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnText("數量", enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnText("結存", enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_領藥台_01_領藥內容.Set_ColumnText("庫存", enum_取藥堆疊母資料.庫存量);
@@ -125,6 +133,8 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
 
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnText("No", enum_取藥堆疊母資料.序號);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnText("藥碼", enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnText("藥名", enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnText("數量", enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnText("結存", enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_領藥台_02_領藥內容.Set_ColumnText("庫存", enum_取藥堆疊母資料.庫存量);
@@ -171,6 +181,8 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
 
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnText("No", enum_取藥堆疊母資料.序號);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnText("藥碼", enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnText("藥名", enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnText("數量", enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnText("結存", enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_領藥台_03_領藥內容.Set_ColumnText("庫存", enum_取藥堆疊母資料.庫存量);
@@ -215,6 +227,8 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnWidth(60, DataGridViewContentAlignment.MiddleRight, enum_取藥堆疊母資料.單位);
 
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnText("No", enum_取藥堆疊母資料.序號);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnText("藥碼", enum_取藥堆疊母資料.藥品碼);
+            this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnText("藥名", enum_取藥堆疊母資料.藥品名稱);
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnText("數量", enum_取藥堆疊母資料.總異動量);
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnText("結存", enum_取藥堆疊母資料.結存量);
             this.sqL_DataGridView_領藥台_04_領藥內容.Set_ColumnText("庫存", enum_取藥堆疊母資料.庫存量);
@@ -250,6 +264,14 @@ namespace 調劑台管理系統
             Program_調劑作業_領藥台_02_Init();
             Program_調劑作業_領藥台_03_Init();
             Program_調劑作業_領藥台_04_Init();
+
+            _sqL_DataGridView_領藥台_01_領藥內容 = this.sqL_DataGridView_領藥台_01_領藥內容;
+            _sqL_DataGridView_領藥台_02_領藥內容 = this.sqL_DataGridView_領藥台_02_領藥內容;
+            _sqL_DataGridView_領藥台_03_領藥內容 = this.sqL_DataGridView_領藥台_03_領藥內容;
+            _sqL_DataGridView_領藥台_04_領藥內容 = this.sqL_DataGridView_領藥台_04_領藥內容;
+            _panel_領藥台_01_藥品資訊 = panel_領藥台_01_藥品資訊;
+            _panel_領藥台_02_藥品資訊 = panel_領藥台_02_藥品資訊;
+
             Dialog_使用者登入.myTimerBasic_覆核完成.StartTickTime(1);
             this.plC_RJ_Button_指紋登入.MouseDownEvent += PlC_RJ_Button_指紋登入_MouseDownEvent;
             this.plC_RJ_Button_手輸醫令.MouseDownEvent += PlC_RJ_Button_手輸醫令_MouseDownEvent;
@@ -259,6 +281,7 @@ namespace 調劑台管理系統
             this.plC_RJ_Button_交班對點.MouseDownEvent += PlC_RJ_Button_交班對點_MouseDownEvent;
             this.plC_RJ_Button_藥品搜索.MouseDownEvent += PlC_RJ_Button_藥品搜索_MouseDownEvent;
             this.plC_RJ_Button_申領.MouseDownEvent += PlC_RJ_Button_申領_MouseDownEvent;
+            this.toolStripMenuItem_調劑畫面_顯示設定.Click += ToolStripMenuItem_調劑畫面_顯示設定_Click;
             this.MyThread_領藥_RFID = new Basic.MyThread(this.FindForm());
             this.MyThread_領藥_RFID.Add_Method(this.sub_Program_領藥_RFID);
             this.MyThread_領藥_RFID.AutoRun(true);
@@ -280,7 +303,7 @@ namespace 調劑台管理系統
             this.plC_UI_Init.Add_Method(Program_調劑作業);
         }
 
-
+   
 
         bool flag_調劑作業_頁面更新 = false;
         private void Program_調劑作業()
@@ -299,7 +322,6 @@ namespace 調劑台管理系統
                 this.flag_調劑作業_頁面更新 = false;
             }
         }
-
 
         private void sub_Program_領藥台_01()
         {
@@ -9131,7 +9153,6 @@ namespace 調劑台管理系統
             Dialog_藥品調入 dialog_藥品調入 = new Dialog_藥品調入();
             dialog_藥品調入.ShowDialog();
         }
-
         private void PlC_RJ_Button_全部滅燈_MouseDownEvent(MouseEventArgs mevent)
         {
             if (MyMessageBox.ShowDialog("是否全部滅燈?", MyMessageBox.enum_BoxType.Warning, MyMessageBox.enum_Button.Confirm_Cancel) != DialogResult.Yes) return;
@@ -9208,6 +9229,36 @@ namespace 調劑台管理系統
         {
             Dialog_申領 dialog_申領 = new Dialog_申領();
             dialog_申領.ShowDialog();
+        }
+
+        private void ToolStripMenuItem_調劑畫面_顯示設定_Click(object sender, EventArgs e)
+        {
+            Control control = contextMenuStrip_調劑畫面.SourceControl;
+
+            if (control.Name == "sqL_DataGridView_領藥台_01_領藥內容")
+            {
+                Dialog_調劑畫面顯示調整 dialog_調劑畫面顯示調整 = new Dialog_調劑畫面顯示調整(0);
+                if (dialog_調劑畫面顯示調整.ShowDialog() != DialogResult.Yes) return;
+                SaveConfig工程模式();
+            }
+            if (control.Name == "sqL_DataGridView_領藥台_02_領藥內容")
+            {
+                Dialog_調劑畫面顯示調整 dialog_調劑畫面顯示調整 = new Dialog_調劑畫面顯示調整(1);
+                if (dialog_調劑畫面顯示調整.ShowDialog() != DialogResult.Yes) return;
+                SaveConfig工程模式();
+            }
+            if (control.Name == "sqL_DataGridView_領藥台_03_領藥內容")
+            {
+                Dialog_調劑畫面顯示調整 dialog_調劑畫面顯示調整 = new Dialog_調劑畫面顯示調整(2);
+                if (dialog_調劑畫面顯示調整.ShowDialog() != DialogResult.Yes) return;
+                SaveConfig工程模式();
+            }
+            if (control.Name == "sqL_DataGridView_領藥台_04_領藥內容")
+            {
+                Dialog_調劑畫面顯示調整 dialog_調劑畫面顯示調整 = new Dialog_調劑畫面顯示調整(3);
+                if (dialog_調劑畫面顯示調整.ShowDialog() != DialogResult.Yes) return;
+                SaveConfig工程模式();
+            }
         }
 
         private List<object[]> Function_領藥內容_重新排序(List<object[]> list_value)

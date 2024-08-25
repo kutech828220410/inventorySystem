@@ -48,8 +48,6 @@ namespace 調劑台管理系統
 
                     this.rJ_Lable_領藥台_01_領藥住院號.Text = "-----------------";
                     this.rJ_Lable_領藥台_01_病歷號.Text = "-----------------";
-                    this.rJ_Lable_領藥台_01_藥名.Text = "-------------------------";
-                    this.rJ_Lable_領藥台_01_開方時間.Text = "-----------------";
                 }
                 if (台號 == 2)
                 {
@@ -61,8 +59,6 @@ namespace 調劑台管理系統
 
                     this.rJ_Lable_領藥台_02_領藥住院號.Text = "-------------------------";
                     this.rJ_Lable_領藥台_02_病歷號.Text = "-----------------";
-                    this.rJ_Lable_領藥台_02_藥名.Text = "-------------------------";
-                    this.rJ_Lable_領藥台_02_開方時間.Text = "-----------------";
                 }
             }));
             
@@ -111,8 +107,6 @@ namespace 調劑台管理系統
 
                         this.rJ_Lable_領藥台_01_領藥住院號.Text = 領藥住院號;
                         this.rJ_Lable_領藥台_01_病歷號.Text = 病歷號;
-                        this.rJ_Lable_領藥台_01_藥名.Text = 藥名;
-                        this.rJ_Lable_領藥台_01_開方時間.Text = 開方時間;
                     }
                     if (台號 == 2)
                     {
@@ -143,8 +137,6 @@ namespace 調劑台管理系統
 
                         this.rJ_Lable_領藥台_02_領藥住院號.Text = 領藥住院號;
                         this.rJ_Lable_領藥台_02_病歷號.Text = 病歷號;
-                        this.rJ_Lable_領藥台_02_藥名.Text = 藥名;
-                        this.rJ_Lable_領藥台_02_開方時間.Text = 開方時間;
                     }
                 }));
       

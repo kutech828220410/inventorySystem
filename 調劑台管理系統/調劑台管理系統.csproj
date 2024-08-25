@@ -465,6 +465,12 @@
     <Compile Include="Dialog\Dialog_批次入庫.Designer.cs">
       <DependentUpon>Dialog_批次入庫.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\Dialog_調劑畫面顯示調整.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\Dialog_調劑畫面顯示調整.Designer.cs">
+      <DependentUpon>Dialog_調劑畫面顯示調整.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -751,6 +757,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\Dialog_藥品搜索.resx">
       <DependentUpon>Dialog_藥品搜索.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\Dialog_調劑畫面顯示調整.resx">
+      <DependentUpon>Dialog_調劑畫面顯示調整.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
