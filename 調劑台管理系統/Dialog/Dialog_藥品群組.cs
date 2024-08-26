@@ -204,6 +204,19 @@ namespace 調劑台管理系統
                 {
                     medClasses = medClass.get_med_clouds_by_durgkind(Main_Form.API_Server, comboBox_藥品資料_搜尋內容.GetComboBoxText());
                 }
+                if (comboBox_藥品資料_搜尋條件.GetComboBoxText() == "有儲位藥品")
+                {
+                    medClasses = medClass.get_med_cloud(Main_Form.API_Server);
+                    List<medClass> medClasses_dps = medClass.get_dps_medClass(Main_Form.API_Server, Main_Form.ServerName);
+                    medClasses_dps = (from temp in medClasses_dps
+                                      where temp.DeviceBasics.Count > 0
+                                      select temp).ToList();
+                    Dictionary<string, List<medClass>> keyValuePairs_medClasses_dps = medClasses_dps.CoverToDictionaryByCode();
+
+                    medClasses = (from temp in medClasses
+                                  where keyValuePairs_medClasses_dps.SortDictionaryByCode(temp.藥品碼).Count > 0
+                                  select temp).ToList();
+                }
                 if (comboBox_藥品資料_搜尋條件.GetComboBoxText() == "已選藥品")
                 {
                     medGroupClass medGroupClass = medGroupClass.get_all_group(Main_Form.API_Server, comboBox_藥品群組.GetComboBoxText());

@@ -173,6 +173,26 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap excell_file_upload_to_server_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("excell-file-upload-to-server-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap exsample_excell_file_download_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("exsample-excell-file-download-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap Files_and_Folders_file_export_arrow_512 {
             get {
                 object obj = ResourceManager.GetObject("Files_and_Folders_file_export_arrow-512", resourceCulture);
@@ -316,6 +336,16 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap medication_transfer_to_dispensing_counter_with_arr_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("medication-transfer-to-dispensing-counter-with-arr-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap medication_transfer_to_dispensing_counter_with_arr_removebg_preview1 {
+            get {
+                object obj = ResourceManager.GetObject("medication-transfer-to-dispensing-counter-with-arr-removebg-preview1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -553,6 +583,16 @@ namespace 調劑台管理系統.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap 匯入資料 {
+            get {
+                object obj = ResourceManager.GetObject("匯入資料", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap 手輸領藥 {
             get {
                 object obj = ResourceManager.GetObject("手輸領藥", resourceCulture);
@@ -596,6 +636,16 @@ namespace 調劑台管理系統.Properties {
         internal static System.Drawing.Bitmap 病歷號 {
             get {
                 object obj = ResourceManager.GetObject("病歷號", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 設定_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("設定-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

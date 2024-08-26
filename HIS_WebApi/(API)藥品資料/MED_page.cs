@@ -1996,19 +1996,19 @@ namespace HIS_WebApi
 
 
                 string 藥碼 = "";
-                for (int i = 0; i < medClasses_cloud.Count; i++)
-                {
-                    藥碼 = medClasses_cloud[i].藥品碼;
-                    medClasses_src = keyValuePairs_medClasses_src.SortDictionaryByCode(藥碼);
-                    if (medClasses_src.Count == 0)
-                    {
-                        object[] value = medClasses_cloud[i].ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
-                        value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
-                        list_med_add.Add(value);
-                    }
-                }
-                sQLControl_med.AddRows(null, list_med_add);
-                list_med.LockAdd(list_med_add);
+                //for (int i = 0; i < medClasses_cloud.Count; i++)
+                //{
+                //    藥碼 = medClasses_cloud[i].藥品碼;
+                //    medClasses_src = keyValuePairs_medClasses_src.SortDictionaryByCode(藥碼);
+                //    if (medClasses_src.Count == 0)
+                //    {
+                //        object[] value = medClasses_cloud[i].ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
+                //        value[(int)enum_藥品資料_藥檔資料.GUID] = Guid.NewGuid().ToString();
+                //        list_med_add.Add(value);
+                //    }
+                //}
+                //sQLControl_med.AddRows(null, list_med_add);
+                //list_med.LockAdd(list_med_add);
                 list_med.Sort(new Icp_藥品資料_藥檔資料());
                 List<medClass> medClasses = list_med.SQLToClass<medClass, enum_藥品資料_藥檔資料>();
                 for (int i = 0; i < medClasses.Count; i++)

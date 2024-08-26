@@ -42,7 +42,7 @@ namespace ServerSettingForm
             this.label_標題.ForeColor = System.Drawing.Color.White;
             this.label_標題.Location = new System.Drawing.Point(0, 0);
             this.label_標題.Name = "label_標題";
-            this.label_標題.Size = new System.Drawing.Size(344, 36);
+            this.label_標題.Size = new System.Drawing.Size(390, 36);
             this.label_標題.TabIndex = 18;
             this.label_標題.Text = "標題";
             this.label_標題.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -50,7 +50,7 @@ namespace ServerSettingForm
             // button_測試
             // 
             this.button_測試.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button_測試.Location = new System.Drawing.Point(824, 0);
+            this.button_測試.Location = new System.Drawing.Point(901, 0);
             this.button_測試.Name = "button_測試";
             this.button_測試.Size = new System.Drawing.Size(40, 36);
             this.button_測試.TabIndex = 23;
@@ -69,7 +69,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_URL.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.rJ_TextBox_API_URL.ForeColor = System.Drawing.Color.Black;
             this.rJ_TextBox_API_URL.GUID = "";
-            this.rJ_TextBox_API_URL.Location = new System.Drawing.Point(344, 0);
+            this.rJ_TextBox_API_URL.Location = new System.Drawing.Point(390, 0);
             this.rJ_TextBox_API_URL.Multiline = false;
             this.rJ_TextBox_API_URL.Name = "rJ_TextBox_API_URL";
             this.rJ_TextBox_API_URL.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -77,7 +77,7 @@ namespace ServerSettingForm
             this.rJ_TextBox_API_URL.PlaceholderColor = System.Drawing.Color.DarkGray;
             this.rJ_TextBox_API_URL.PlaceholderText = "http://XXX.XXX.XXX.XXX:4433";
             this.rJ_TextBox_API_URL.ShowTouchPannel = false;
-            this.rJ_TextBox_API_URL.Size = new System.Drawing.Size(480, 36);
+            this.rJ_TextBox_API_URL.Size = new System.Drawing.Size(511, 36);
             this.rJ_TextBox_API_URL.TabIndex = 24;
             this.rJ_TextBox_API_URL.TextAlgin = System.Windows.Forms.HorizontalAlignment.Left;
             this.rJ_TextBox_API_URL.Texts = "";
@@ -91,7 +91,7 @@ namespace ServerSettingForm
             this.Controls.Add(this.button_測試);
             this.Controls.Add(this.label_標題);
             this.Name = "Panel_API_URL";
-            this.Size = new System.Drawing.Size(864, 36);
+            this.Size = new System.Drawing.Size(941, 36);
             this.ResumeLayout(false);
             this.PerformLayout();
 

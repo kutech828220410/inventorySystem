@@ -49,7 +49,7 @@ namespace 調劑台管理系統
             this.panel1.Controls.Add(this.rJ_RatioButton_緊急申領);
             this.panel1.Controls.Add(this.rJ_RatioButton_一般申領);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(4, 44);
+            this.panel1.Location = new System.Drawing.Point(4, 64);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1492, 103);
             this.panel1.TabIndex = 0;
@@ -236,7 +236,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_申領.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_申領.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_申領.ImageBox = false;
-            this.sqL_DataGridView_申領.Location = new System.Drawing.Point(4, 147);
+            this.sqL_DataGridView_申領.Location = new System.Drawing.Point(4, 167);
             this.sqL_DataGridView_申領.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sqL_DataGridView_申領.Name = "sqL_DataGridView_申領";
             this.sqL_DataGridView_申領.OnlineState = SQLUI.SQL_DataGridView.OnlineEnum.Online;
@@ -252,7 +252,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_申領.selectedRowBorderColor = System.Drawing.Color.Blue;
             this.sqL_DataGridView_申領.selectedRowForeColor = System.Drawing.Color.White;
             this.sqL_DataGridView_申領.Server = "localhost";
-            this.sqL_DataGridView_申領.Size = new System.Drawing.Size(1492, 749);
+            this.sqL_DataGridView_申領.Size = new System.Drawing.Size(1492, 729);
             this.sqL_DataGridView_申領.SSLMode = MySql.Data.MySqlClient.MySqlSslMode.None;
             this.sqL_DataGridView_申領.TabIndex = 125;
             this.sqL_DataGridView_申領.UserName = "root";

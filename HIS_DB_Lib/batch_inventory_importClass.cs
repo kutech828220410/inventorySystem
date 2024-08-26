@@ -145,6 +145,130 @@ namespace HIS_DB_Lib
             return table;
         }
 
+        static public List<batch_inventory_importClass> get_by_CT_TIME(string API_Server, DateTime st_datetime, DateTime end_datetime)
+        {
+            string url = $"{API_Server}/api/batch_inventory_import/get_by_CT_TIME";
 
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(st_datetime.ToString("yyyy-MM-ddTHH:mm:ss"));
+            returnData.ValueAry.Add(end_datetime.ToString("yyyy-MM-ddTHH:mm:ss"));
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+
+            return returnData_out.Data.ObjToClass<List<batch_inventory_importClass>>();
+        }
+        static public List<batch_inventory_importClass> get_by_RECEIVE_TIME(string API_Server, DateTime st_datetime, DateTime end_datetime)
+        {
+            string url = $"{API_Server}/api/batch_inventory_import/get_by_RECEIVE_TIME";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(st_datetime.ToString("yyyy-MM-ddTHH:mm:ss"));
+            returnData.ValueAry.Add(end_datetime.ToString("yyyy-MM-ddTHH:mm:ss"));
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+
+            return returnData_out.Data.ObjToClass<List<batch_inventory_importClass>>();
+        }
+        static public List<batch_inventory_importClass> update_QTY_by_GUID(string API_Server, List<batch_inventory_importClass> batch_Inventory_ImportClasses)
+        {
+            string url = $"{API_Server}/api/batch_inventory_import/update_QTY_by_GUID";
+
+            returnData returnData = new returnData();
+            returnData.Data = batch_Inventory_ImportClasses;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+
+            return returnData_out.Data.ObjToClass<List<batch_inventory_importClass>>();
+        }
+        static public List<batch_inventory_importClass> add(string API_Server, List<batch_inventory_importClass> batch_Inventory_ImportClasses, string CT_NAME)
+        {
+            string url = $"{API_Server}/api/batch_inventory_import/add";
+
+            returnData returnData = new returnData();
+            returnData.Data = batch_Inventory_ImportClasses;
+            returnData.ValueAry.Add(CT_NAME);
+
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+
+            return returnData_out.Data.ObjToClass<List<batch_inventory_importClass>>();
+        }
+        static public List<batch_inventory_importClass> update_state_done_by_GUID(string API_Server, List<batch_inventory_importClass> batch_Inventory_ImportClasses , string RECEIVER)
+        {
+            string url = $"{API_Server}/api/batch_inventory_import/update_state_done_by_GUID";
+
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(RECEIVER);
+            returnData.Data = batch_Inventory_ImportClasses;
+            string json_in = returnData.JsonSerializationt();
+            string json_out = Net.WEBApiPostJson(url, json_in);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+
+            return returnData_out.Data.ObjToClass<List<batch_inventory_importClass>>();
+        }
+        static public byte[] download_sample_excel(string API_Server)
+        {
+            string url = $"{API_Server}/api/batch_inventory_import/download_sample_excel";
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
+        }
+
+
+        static public List<batch_inventory_importClass> excel_upload(string API_Server , byte[] bytes, string CT_NAME)
+        {
+            string api_url_server = ServerSettingClass.get_api_url(API_Server, "Main", "網頁", "batch_inventory_import_excel_upload");
+            string url = $"{API_Server}/api/batch_inventory_import/excel_upload";
+            if (api_url_server.StringIsEmpty() == false) url = api_url_server;
+            returnData returnData = new returnData();
+            string json_in = returnData.JsonSerializationt();
+            List<string> names = new List<string>();
+            List<string> values = new List<string>();
+            names.Add("CT_NAME");
+            values.Add(CT_NAME);
+
+            string json_out = Basic.Net.WEBApiPost(url, "batch_inventory_import.xlsx", bytes, names, values);
+            returnData returnData_out = json_out.JsonDeserializet<returnData>();
+
+            if (returnData_out == null || returnData_out.Code != 200)
+            {
+                return null;
+            }
+            List<batch_inventory_importClass> batch_Inventory_ImportClasses = returnData_out.Data.ObjToClass<List<batch_inventory_importClass>>();
+            if (batch_Inventory_ImportClasses == null) return new List<batch_inventory_importClass>();
+            return batch_Inventory_ImportClasses;
+        }
     }
 }

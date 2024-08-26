@@ -753,6 +753,7 @@ namespace HIS_WebApi
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
+        [Route("get_web_peremeter")]
         [Route("et_web_peremeter")]
         [HttpPost]
         public string POST_get_web_peremeter([FromBody] returnData returnData)

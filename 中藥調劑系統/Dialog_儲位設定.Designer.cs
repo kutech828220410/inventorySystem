@@ -391,6 +391,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -398,6 +399,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeadersHeight = 18;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.DataKeyEnable = false;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Dock = System.Windows.Forms.DockStyle.Top;
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_儲位管理_RowsLED_效期及批號.ImageBox = false;
@@ -445,6 +447,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_儲位資料.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_RowsLED_儲位資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_RowsLED_儲位資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_RowsLED_儲位資料.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_RowsLED_儲位資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_RowsLED_儲位資料.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_RowsLED_儲位資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -452,6 +455,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_儲位資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_RowsLED_儲位資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_RowsLED_儲位資料.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_RowsLED_儲位資料.DataKeyEnable = false;
             this.sqL_DataGridView_RowsLED_儲位資料.Dock = System.Windows.Forms.DockStyle.Left;
             this.sqL_DataGridView_RowsLED_儲位資料.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_RowsLED_儲位資料.ImageBox = false;
@@ -561,6 +565,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_藥品資料.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_RowsLED_藥品資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_RowsLED_藥品資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_RowsLED_藥品資料.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_RowsLED_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_RowsLED_藥品資料.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_RowsLED_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -568,6 +573,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_藥品資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_RowsLED_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_RowsLED_藥品資料.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_RowsLED_藥品資料.DataKeyEnable = false;
             this.sqL_DataGridView_RowsLED_藥品資料.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_RowsLED_藥品資料.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_RowsLED_藥品資料.ImageBox = false;
@@ -1005,6 +1011,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_層架列表.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_RowsLED_層架列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_RowsLED_層架列表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_RowsLED_層架列表.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_RowsLED_層架列表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_RowsLED_層架列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_RowsLED_層架列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -1012,6 +1019,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_RowsLED_層架列表.columnHeadersHeight = 18;
             this.sqL_DataGridView_RowsLED_層架列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_RowsLED_層架列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_RowsLED_層架列表.DataKeyEnable = false;
             this.sqL_DataGridView_RowsLED_層架列表.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_RowsLED_層架列表.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_RowsLED_層架列表.ImageBox = false;
@@ -1201,6 +1209,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲架電子紙列表.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_儲架電子紙列表.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_儲架電子紙列表.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_儲架電子紙列表.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_儲架電子紙列表.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_儲架電子紙列表.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_儲架電子紙列表.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -1208,6 +1217,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲架電子紙列表.columnHeadersHeight = 18;
             this.sqL_DataGridView_儲架電子紙列表.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_儲架電子紙列表.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_儲架電子紙列表.DataKeyEnable = false;
             this.sqL_DataGridView_儲架電子紙列表.Dock = System.Windows.Forms.DockStyle.Left;
             this.sqL_DataGridView_儲架電子紙列表.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_儲架電子紙列表.ImageBox = false;
@@ -1296,6 +1306,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲架電子紙_藥品資料.cellStylBackColor = System.Drawing.Color.LightBlue;
             this.sqL_DataGridView_儲架電子紙_藥品資料.cellStyleFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
             this.sqL_DataGridView_儲架電子紙_藥品資料.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_儲架電子紙_藥品資料.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeaderBackColor = System.Drawing.Color.SkyBlue;
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeaderBorderColor = System.Drawing.Color.DimGray;
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold);
@@ -1303,6 +1314,7 @@ namespace 中藥調劑系統
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeadersHeight = 18;
             this.sqL_DataGridView_儲架電子紙_藥品資料.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_儲架電子紙_藥品資料.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.sqL_DataGridView_儲架電子紙_藥品資料.DataKeyEnable = false;
             this.sqL_DataGridView_儲架電子紙_藥品資料.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_儲架電子紙_藥品資料.Font = new System.Drawing.Font("新細明體", 9F);
             this.sqL_DataGridView_儲架電子紙_藥品資料.ImageBox = false;

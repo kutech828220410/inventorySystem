@@ -310,8 +310,14 @@ namespace HIS_DB_Lib
         [JsonPropertyName("NOTE")]
         public string 備註 { get; set; }
 
+        static public byte[] download_cdmis_datas_excel(string API_Server, string Code, DateTime dateTime_st, DateTime dateTime_end, List<string> serverNames, List<string> serverTypes)
+        {
+            List<string> Codes = new List<string>();
+            Codes.Add(Code);
+            return download_cdmis_datas_excel(API_Server, Codes, dateTime_st, dateTime_end, serverNames, serverTypes);
+        }
 
-        static public byte[] download_cdmis_datas_excel(string API_Server, string 藥碼, DateTime dateTime_st, DateTime dateTime_end, List<string> serverNames, List<string> serverTypes)
+        static public byte[] download_cdmis_datas_excel(string API_Server, List<string> Codes, DateTime dateTime_st, DateTime dateTime_end, List<string> serverNames, List<string> serverTypes)
         {
             string url = $"{API_Server}/api/transactions/download_cdmis_datas_excel";
             string str_serverNames = "";
@@ -326,6 +332,14 @@ namespace HIS_DB_Lib
                 str_serverTypes += serverTypes[i];
                 if (i != serverTypes.Count - 1) str_serverTypes += ",";
             }
+            string 藥碼 = "";
+            for (int i = 0; i < Codes.Count; i++)
+            {
+                藥碼 += Codes[i];
+                if (i != Codes.Count - 1) 藥碼 += ",";
+            }
+
+
             returnData returnData = new returnData();
             returnData.ValueAry.Add(藥碼);
             returnData.ValueAry.Add(dateTime_st.ToDateTimeString());
@@ -339,18 +353,14 @@ namespace HIS_DB_Lib
 
             return bytes;
         }
-        static public byte[] download_datas_excel(string API_Server, List<transactionsClass> transactionsClasses)
-        {
-            string url = $"{API_Server}/api/transactions/download_datas_excel";
-      
-            returnData returnData = new returnData();
-            returnData.Data = transactionsClasses;
 
-            string json_in = returnData.JsonSerializationt();
-            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
-            return bytes;
+        static public List<MyOffice.SheetClass> get_cdmis_datas_sheet(string API_Server, string Code, DateTime dateTime_st, DateTime dateTime_end, List<string> serverNames, List<string> serverTypes)
+        {
+            List<string> Codes = new List<string>();
+            Codes.Add(Code);
+            return get_cdmis_datas_sheet(API_Server, Codes, dateTime_st, dateTime_end, serverNames, serverTypes);
         }
-        static public List<MyOffice.SheetClass> get_cdmis_datas_sheet(string API_Server, string 藥碼, DateTime dateTime_st, DateTime dateTime_end, List<string> serverNames, List<string> serverTypes)
+        static public List<MyOffice.SheetClass> get_cdmis_datas_sheet(string API_Server, List<string> Codes, DateTime dateTime_st, DateTime dateTime_end, List<string> serverNames, List<string> serverTypes)
         {
             string url = $"{API_Server}/api/transactions/get_cdmis_datas_sheet";
             string str_serverNames = "";
@@ -364,6 +374,12 @@ namespace HIS_DB_Lib
             {
                 str_serverTypes += serverTypes[i];
                 if (i != serverTypes.Count - 1) str_serverTypes += ",";
+            }
+            string 藥碼 = "";
+            for (int i = 0; i < Codes.Count; i++)
+            {
+                藥碼 += Codes[i];
+                if (i != Codes.Count - 1) 藥碼 += ",";
             }
             returnData returnData = new returnData();
             returnData.ValueAry.Add(藥碼);
@@ -387,6 +403,17 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
             List<MyOffice.SheetClass> sheetClasses = returnData_out.Data.ObjToClass<List<MyOffice.SheetClass>>();
             return sheetClasses;
+        }
+        static public byte[] download_datas_excel(string API_Server, List<transactionsClass> transactionsClasses)
+        {
+            string url = $"{API_Server}/api/transactions/download_datas_excel";
+
+            returnData returnData = new returnData();
+            returnData.Data = transactionsClasses;
+
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
         }
         static public List<transactionsClass> get_datas_by_code(string API_Server, string 藥碼, string serverName, string serverType)
         {
