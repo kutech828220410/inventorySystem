@@ -24,6 +24,8 @@ namespace HIS_DB_Lib
         床號,
         [Description("操作者代號,VARCHAR,20,NONE")]
         操作者代號,
+        [Description("操作者姓名,VARCHAR,20,NONE")]
+        操作者姓名,
         [Description("操作時間,DATETIME,20,NONE")]
         操作時間,
         [Description("藥碼,VARCHAR,10,NONE")]
@@ -51,6 +53,8 @@ namespace HIS_DB_Lib
         護理站,
         [Description("操作者代號,VARCHAR,20,NONE")]
         操作者代號,
+        [Description("操作者姓名,VARCHAR,20,NONE")]
+        操作者姓名,
         [Description("操作時間,DATETIME,20,NONE")]
         操作時間
     }
@@ -90,6 +94,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("op_id")]
         public string 操作者代號 { get; set; }
+        /// <summary>
+        /// 操作者姓名
+        /// </summary>
+        [JsonPropertyName("op_name")]
+        public string 操作者姓名 { get; set; }
         /// <summary>
         /// 操作時間
         /// </summary>
@@ -148,10 +157,15 @@ namespace HIS_DB_Lib
         [JsonPropertyName("nurnum")]
         public string 護理站 { get; set; }
         /// <summary>
-        /// GUID
+        /// 操作者代號
         /// </summary>
         [JsonPropertyName("op_id")]
         public string 操作者代號 { get; set; }
+        /// <summary>
+        /// 操作者姓名
+        /// </summary>
+        [JsonPropertyName("op_name")]
+        public string 操作者姓名 { get; set; }
         /// <summary>
         /// 操作時間
         /// </summary>

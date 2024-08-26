@@ -839,7 +839,11 @@
              以下為JSON範例
              <code>
                  {
-                     "Value":"操作人ID"
+                     "Data":[
+                     {
+                     "op_id":"",
+                     "op_name:""
+                     }]
                      "ValueAry":["處方GUID;處方GUID"]
                  }
              </code>
@@ -865,7 +869,7 @@
         </member>
         <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.get_opid_by_time(HIS_DB_Lib.returnData)">
              <summary>
-            以藥局、護理站和日期取得操作人ID
+            以藥局、護理站和日期取得操作人姓名
              </summary>
              <remarks>
              以下為JSON範例
@@ -878,6 +882,26 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.get_time_by_op_id(HIS_DB_Lib.returnData)">
+             <summary>
+            以藥局、護理站和日期取得操作人姓名
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 "Data": [
+                     {
+                        "pharm":"UC02",
+                        "nurnum":"C109",
+                        "op_id": "HS001",
+                        "op_time": "2024-08-26"
+                     }
+                  ]
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi._API_住院調劑系統.med_inventory.get_logtime_by_opid(HIS_DB_Lib.returnData)">
              <summary>
             以藥局、護理站、日期、操作者ID取得操作人LOG
@@ -885,9 +909,14 @@
              <remarks>
              以下為JSON範例
              <code>
-                 {
-                     "ValueAry":[藥局, 護理站, 2024-08-16 13:00:00, 操作者ID]
-                 }
+                 "Data": [
+                     {
+                        "pharm":"UC02",
+                        "nurnum":"C109",
+                        "op_id": "HS001",
+                        "op_time": "2024-08-26"
+                     }
+                  ]
              </code>
              </remarks>
              <param name="returnData">共用傳遞資料結構</param>

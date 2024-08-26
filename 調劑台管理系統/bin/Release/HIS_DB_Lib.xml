@@ -1596,6 +1596,11 @@
             操作者代號
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.操作者姓名">
+            <summary>
+            操作者姓名
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.medInventoryLogClass.操作時間">
             <summary>
             操作時間
@@ -1653,7 +1658,12 @@
         </member>
         <member name="P:HIS_DB_Lib.medInventoryClass.操作者代號">
             <summary>
-            GUID
+            操作者代號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryClass.操作者姓名">
+            <summary>
+            操作者姓名
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medInventoryClass.操作時間">

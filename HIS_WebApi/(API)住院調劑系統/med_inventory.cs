@@ -110,7 +110,11 @@ namespace HIS_WebApi._API_住院調劑系統
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "Value":"操作人ID"
+        ///         "Data":[
+        ///         {
+        ///         "op_id":"",
+        ///         "op_name:""
+        ///         }]
         ///         "ValueAry":["處方GUID;處方GUID"]
         ///     }
         /// </code>
@@ -137,10 +141,10 @@ namespace HIS_WebApi._API_住院調劑系統
                 string Password = serverSettingClasses[0].Password;
                 uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
 
-                if (returnData.Value == null)
+                if (returnData.Data == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為操作人ID";
+                    returnData.Result = $"returnData.Data ";
                     return returnData.JsonSerializationt(true);
                 }
                 if (returnData.ValueAry == null)
@@ -149,8 +153,10 @@ namespace HIS_WebApi._API_住院調劑系統
                     returnData.Result = $"returnData.ValueAry 內容應為[處方GUID]";
                     return returnData.JsonSerializationt(true);
                 }
+                List<medInventoryLogClass> input_medInventoryLogClass = returnData.Data.ObjToClass<List<medInventoryLogClass>>();
+                string 操作人ID = input_medInventoryLogClass[0].操作者代號;
+                string 操作人姓名 = input_medInventoryLogClass[0].操作者姓名;
 
-                string 操作人ID = returnData.Value;
                 string[] GUID = returnData.ValueAry[0].Split(";");
 
 
@@ -178,6 +184,7 @@ namespace HIS_WebApi._API_住院調劑系統
                         護理站 = medCpoeClass.護理站,
                         床號 = medCpoeClass.床號,
                         操作者代號 = 操作人ID,
+                        操作者姓名 = 操作人姓名,
                         操作時間 = DateTime.Now.ToDateTimeString(),
                         藥碼 = medCpoeClass.藥碼,
                         藥品名 = medCpoeClass.藥品名,
@@ -268,7 +275,7 @@ namespace HIS_WebApi._API_住院調劑系統
             }
         }
         /// <summary>
-        ///以藥局、護理站和日期取得操作人ID
+        ///以藥局、護理站和日期取得操作人姓名
         /// </summary>
         /// <remarks>
         /// 以下為JSON範例
@@ -320,14 +327,93 @@ namespace HIS_WebApi._API_住院調劑系統
                 SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_inventory", UserName, Password, Port, SSLMode);
                 List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByBetween(null, (int)enum_med_inventory.操作時間, dateStart, dateEnd);
                 List<medInventoryClass> sql_medInvent = list_med_carInfo.SQLToClass<medInventoryClass, enum_med_inventory>();
-                List<string> result = sql_medInvent
+                List<medInventoryClass> result = sql_medInvent
                     .Where(temp => temp.護理站 == 護理站 && temp.藥局 == 藥局)
-                    .Select(value => value.操作者代號)
+                    .GroupBy(value => value.操作者代號)
+                    .Select(group => group.First())
                     .ToList();
-                returnData.ValueAry = result;
+                returnData.Data = result;
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
              
+                returnData.Result = $"取得{操作時間.ToDateString()} {藥局} {護理站} 的操作人員ID";
+                return returnData.JsonSerializationt(true);
+            }
+            catch (Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+        /// <summary>
+        ///以藥局、護理站和日期取得操作人姓名
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     "Data": [
+        ///         {
+        ///            "pharm":"UC02",
+        ///            "nurnum":"C109",
+        ///            "op_id": "HS001",
+        ///            "op_time": "2024-08-26"
+        ///         }
+        ///      ]
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+        [HttpPost("get_time_by_op_id")]
+        public string get_time_by_op_id([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                if (returnData.Data == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Data 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<medInventoryClass> medInventoryClass = returnData.Data.ObjToClass<List<medInventoryClass>>();
+                string 藥局 = medInventoryClass[0].藥局;
+                string 護理站 = medInventoryClass[0].護理站;
+                string 操作者代號 = medInventoryClass[0].操作者代號;
+                DateTime 操作時間 = medInventoryClass[0].操作時間.StringToDateTime();
+
+                string dateStart = 操作時間.GetStartDate().ToDateTimeString();
+                string dateEnd = 操作時間.GetEndDate().ToDateTimeString();
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "VM端");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                string DB = serverSettingClasses[0].DBName;
+                string UserName = serverSettingClasses[0].User;
+                string Password = serverSettingClasses[0].Password;
+                uint Port = (uint)serverSettingClasses[0].Port.StringToInt32();
+
+                SQLControl sQLControl_med_carInfo = new SQLControl(Server, DB, "med_inventory", UserName, Password, Port, SSLMode);
+                List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByBetween(null, (int)enum_med_inventory.操作時間, dateStart, dateEnd);
+                List<medInventoryClass> sql_medInvent = list_med_carInfo.SQLToClass<medInventoryClass, enum_med_inventory>();
+                List<medInventoryClass> result = sql_medInvent
+                    .Where(temp => temp.護理站 == 護理站 && temp.藥局 == 藥局 && temp.操作者代號 == 操作者代號)
+                    .ToList();
+
+                foreach (var value in result)
+                {
+                    DateTime opTime = value.操作時間.StringToDateTime();
+                    value.操作時間 = opTime.ToString("HH:mm:ss");
+                }
+                returnData.Data = result;
+                returnData.Code = 200;
+                returnData.TimeTaken = $"{myTimerBasic}";
+
                 returnData.Result = $"取得{操作時間.ToDateString()} {藥局} {護理站} 的操作人員ID";
                 return returnData.JsonSerializationt(true);
             }
@@ -344,9 +430,14 @@ namespace HIS_WebApi._API_住院調劑系統
         /// <remarks>
         /// 以下為JSON範例
         /// <code>
-        ///     {
-        ///         "ValueAry":[藥局, 護理站, 2024-08-16 13:00:00, 操作者ID]
-        ///     }
+        ///     "Data": [
+        ///         {
+        ///            "pharm":"UC02",
+        ///            "nurnum":"C109",
+        ///            "op_id": "HS001",
+        ///            "op_time": "2024-08-26"
+        ///         }
+        ///      ]
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
@@ -357,22 +448,19 @@ namespace HIS_WebApi._API_住院調劑系統
             MyTimerBasic myTimerBasic = new MyTimerBasic();
             try
             {
-                if (returnData.ValueAry == null)
+                if (returnData.Data == null)
                 {
                     returnData.Code = -200;
                     returnData.Result = $"returnData.ValueAry 無傳入資料";
                     return returnData.JsonSerializationt(true);
                 }
-                if (returnData.ValueAry.Count != 4)
-                {
-                    returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站, 日期, 操作者ID]";
-                    return returnData.JsonSerializationt(true);
-                }
-                string 藥局 = returnData.ValueAry[0];
-                string 護理站 = returnData.ValueAry[1];
-                DateTime 操作時間 = returnData.ValueAry[2].StringToDateTime();
-                string 操作者ID = returnData.ValueAry[3];
+                List<medInventoryLogClass> input_medInventoryLogClass = returnData.Data.ObjToClass<List<medInventoryLogClass>>();
+
+
+                string 藥局 = input_medInventoryLogClass[0].藥局;
+                string 護理站 = input_medInventoryLogClass[0].護理站;
+                DateTime 操作時間 = input_medInventoryLogClass[0].操作時間.StringToDateTime();
+                string 操作者ID = input_medInventoryLogClass[0].操作者代號;
                 string dateStart = 操作時間.GetStartDate().ToDateTimeString();
                 string dateEnd = 操作時間.ToDateTimeString();
 
