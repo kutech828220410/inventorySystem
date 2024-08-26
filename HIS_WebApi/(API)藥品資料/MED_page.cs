@@ -2140,24 +2140,19 @@ namespace HIS_WebApi
                     {
                   
                         list_med_src = sQLControl_med.GetAllRows(null);
-
+                        List<medClass> medClasses_src = list_med_src.SQLToClass<medClass , enum_藥品資料_藥檔資料>();
+                        List<medClass> medClasses_src_buf = new List<medClass>();
+                        List<medClass> medClasses_src_temp = new List<medClass>();
+                        keyValuePairs_medClasses_src = medClasses_src.CoverToDictionaryByCode();
                         for (int i = 0; i < Codes.Length; i++)
                         {
-                            if (returnData.Value == "前綴")
+                            medClasses_src_buf = keyValuePairs_medClasses_src.SortDictionaryByCode(Codes[i]);
+                            if (medClasses_src_buf.Count > 0)
                             {
-                                list_med_buf = list_med_src.GetRowsStartWithByLike((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
+                                medClasses_src_temp.Add(medClasses_src_buf[0]);
                             }
-                            else if (returnData.Value == "標準")
-                            {
-                                list_med_buf = list_med_src.GetRows((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
-                            }
-                            else
-                            {
-                                list_med_buf = list_med_src.GetRowsByLike((int)enum_藥品資料_藥檔資料.藥品碼, Codes[i]);
-                            }
-
                         }
-                        list_med = list_med_buf;
+                        list_med = medClasses_src_temp.ClassToSQL<medClass, enum_藥品資料_藥檔資料>();
                     }
 
    

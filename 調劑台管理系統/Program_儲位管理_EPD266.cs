@@ -30,10 +30,10 @@ namespace 調劑台管理系統
         [EnumDescription("")]
         private enum enum_儲位管理_EPD266_匯出儲位表
         {
+            IP,
             藥碼,
             藥名,
             單位,
-            儲位名稱,
         }
 
         static public List<Storage> List_EPD266_本地資料 = new List<Storage>();
@@ -1491,13 +1491,19 @@ namespace 調劑台管理系統
                 dialogResult = this.openFileDialog_LoadExcel.ShowDialog();
             }));
             if (dialogResult != DialogResult.OK) return;
-            SheetClass sheetClass = MyOffice.ExcelClass.NPOI_LoadToSheetClass(this.openFileDialog_LoadExcel.FileName);
-            for (int k = 0; k < sheetClass.Rows.Count; k++)
+            DataTable dataTable = MyOffice.ExcelClass.NPOI_LoadFile(this.openFileDialog_LoadExcel.FileName);
+            if (dataTable == null)
             {
-                string SotrageName = sheetClass.Rows[k].Cell[0].Text;
-                string Code = sheetClass.Rows[k].Cell[1].Text;
+                MyMessageBox.ShowDialog("匯入失敗");
+                return;
+            }
+
+            for (int k = 0; k < dataTable.Rows.Count; k++)
+            {
+                string IP = dataTable.Rows[k]["IP"].ToString();
+                string Code = dataTable.Rows[k]["藥碼"].ToString();
                 Code = RemoveParenthesesContent(Code);
-                Storage storage = List_EPD266_本地資料.SortByIP(SotrageName);
+                Storage storage = List_EPD266_本地資料.SortByIP(IP);
                 if (storage == null) continue;
                 storage.Code = Code;
                 List_EPD266_本地資料.Add_NewStorage(storage);
@@ -1510,6 +1516,7 @@ namespace 調劑台管理系統
                 if (PLC_Device_儲位管理_EPD266_資料更新.Bool == false) break;
                 System.Threading.Thread.Sleep(10);
             }
+            MyMessageBox.ShowDialog("匯入完成");
         }
         private void PlC_RJ_Button_儲位管理_EPD266_匯出_MouseDownEvent(MouseEventArgs mevent)
         {
@@ -1524,22 +1531,19 @@ namespace 調劑台管理系統
                         dialogResult = this.saveFileDialog_SaveExcel.ShowDialog();
                     }));
                     if (dialogResult != DialogResult.OK) return;
-                    List<SheetClass> sheetClasses = new List<SheetClass>();
-                    SheetClass sheetClass = new SheetClass("EPD266");
-                    List<object[]> list_儲位列表 = this.sqL_DataGridView_儲位管理_EPD266_儲位資料.GetAllRows();
-                    for (int d = 0; d < list_儲位列表.Count; d++)
+                    List<object[]> list_value = new List<object[]>();
+                    for (int i = 0; i < List_EPD266_本地資料.Count; i++)
                     {
-                        string IP = list_儲位列表[d][(int)enum_儲位管理_EPD266_儲位資料.IP].ObjectToString();
-                        Storage storage = List_EPD266_本地資料.SortByIP(IP);
-                        if (storage == null) continue;
-
-                        sheetClass.ColumnsWidth.Add(5000);
-                        sheetClass.ColumnsWidth.Add(30000);
-                        sheetClass.AddNewCell(d, 0, $"{storage.IP}", new Font("微軟正黑體", 14), 500);
-                        sheetClass.AddNewCell(d, 1, $"{storage.Code}({storage.Name})", new Font("微軟正黑體", 14), NPOI_Color.BLACK, NPOI.SS.UserModel.HorizontalAlignment.Left);
+                        Storage storage = List_EPD266_本地資料[i];
+                        object[] value = new object[new enum_儲位管理_EPD266_匯出儲位表().GetLength()];
+                        value[(int)enum_儲位管理_EPD266_匯出儲位表.IP] = storage.IP;
+                        value[(int)enum_儲位管理_EPD266_匯出儲位表.藥碼] = storage.Code;
+                        value[(int)enum_儲位管理_EPD266_匯出儲位表.藥名] = storage.Name;
+                        value[(int)enum_儲位管理_EPD266_匯出儲位表.單位] = storage.Package;
+                        list_value.Add(value);
                     }
-                    sheetClasses.Add(sheetClass);
-                    sheetClasses.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
+                    DataTable dataTable = list_value.ToDataTable(new enum_儲位管理_EPD266_匯出儲位表());           
+                    dataTable.NPOI_SaveFile(this.saveFileDialog_SaveExcel.FileName);
                     MyMessageBox.ShowDialog("匯出完成!");
                 }
                 if (dialog_ContextMenuStrip.Value == ContextMenuStrip_儲位管理_EPD266_匯出.匯出儲位表.GetEnumName())
