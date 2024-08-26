@@ -2496,6 +2496,91 @@
             診別
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.textVisionClass">
+            <summary>
+            TextVision 資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.操作者姓名">
+            <summary>
+            操作者姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.操作者ID">
+            <summary>
+            操作者ID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.圖片">
+            <summary>
+            base64
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.操作時間">
+            <summary>
+            操作時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.Log">
+            <summary>
+            Log
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.座標">
+            <summary>
+            座標
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.op_keyword">
+            <summary>
+            keyword
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.UI結果">
+            <summary>
+            UI結果
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.批號">
+            <summary>
+            批號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.單號">
+            <summary>
+            單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.中文名">
+            <summary>
+            中文名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.效期">
+            <summary>
+            效期
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.藥品碼">
+            <summary>
+            藥品碼
+            </summary>
+        </member>
         <member name="P:HIS_DB_Lib.transactionsClass.GUID">
             <summary>
             唯一KEY

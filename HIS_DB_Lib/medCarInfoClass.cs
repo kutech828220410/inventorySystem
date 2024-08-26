@@ -384,10 +384,10 @@ namespace HIS_DB_Lib
             return out_medCarInfoClass;
 
         }
-        static public List<medCarInfoClass> get_patient_by_GUID(string API_Server, List<string> Info)
+        static public medCarInfoClass get_patient_by_GUID(string API_Server, List<string> Info)
         {
-            List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
-            string url = $"{API_Server}/api/med_cart/get_patient_GUID";
+            //List<medCarInfoClass> out_medCarInfoClass = new List<medCarInfoClass>();
+            string url = $"{API_Server}/api/med_cart/get_patient_by_GUID";
             returnData returnData = new returnData();
             returnData.ValueAry = Info;
             string json_in = returnData.JsonSerializationt();
@@ -395,7 +395,7 @@ namespace HIS_DB_Lib
             returnData = json_out.JsonDeserializet<returnData>();
             if (returnData == null) return null;
             if (returnData.Code != 200) return null;
-            out_medCarInfoClass = returnData.Data.ObjToClass<List<medCarInfoClass>>();
+            medCarInfoClass out_medCarInfoClass = returnData.Data.ObjToClass<medCarInfoClass>();
             return out_medCarInfoClass;
 
         }

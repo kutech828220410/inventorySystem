@@ -115,7 +115,7 @@ namespace HIS_DB_Lib
         /// <summary>
         /// Master_GUID
         /// </summary>
-        [JsonPropertyName("MAster_GUID")]
+        [JsonPropertyName("Master_GUID")]
         public string Master_GUID { get; set; }
         /// <summary>
         /// 更新時間

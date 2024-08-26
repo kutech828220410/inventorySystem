@@ -387,7 +387,7 @@
                 },
                 "ValueAry" : 
                 [
-                  "藥碼",
+                  "藥碼1,藥碼2,藥碼",
                   "起始時間",
                   "結束時間",
                   "口服1,口服2",
@@ -1184,8 +1184,8 @@
             以下為範例JSON範例
             <code>
               {
-                "ServerName" : "",
-                "ServerType" : "",
+                "ServerName" : "ServerName",
+                "ServerType" : "ServerType",
                 "TableName" : "",
                 "ValueAry" : 
                 [
@@ -1749,6 +1749,52 @@
             <param name="returnData">共用傳遞資料結構</param>
             <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.batch_inventory_import.POST_update_QTY_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            更新批次入庫資料數量
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                    [batch_inventory_importClassAry]
+                },
+                "ValueAry" : 
+                [
+                 
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.batch_inventory_import.POST_update_state_done_by_GUID(HIS_DB_Lib.returnData)">
+            <summary>
+            更新批次入庫資料為"過帳完成"
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                    [batch_inventory_importClassAry]
+                },
+                "ValueAry" : 
+                [
+                    "入庫人員"
+                ]
+                
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.batch_inventory_import.POST_get_by_CT_TIME(HIS_DB_Lib.returnData)">
             <summary>
             以建表時間取得批次入庫資料
@@ -1763,8 +1809,8 @@
                 },
                 "ValueAry" : 
                 [
-                  "建表起始時間",
-                  "建表結束時間",
+                  "起始時間",
+                  "結束時間",
                 ]
                 
               }
@@ -1787,8 +1833,8 @@
                 },
                 "ValueAry" : 
                 [
-                  "建表起始時間",
-                  "建表結束時間",
+                  "起始時間",
+                  "結束時間",
                 ]
                 
               }

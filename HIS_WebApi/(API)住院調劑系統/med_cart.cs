@@ -687,7 +687,10 @@ namespace HIS_WebApi
                 List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
 
-                
+                string API = $"http://{Server}:4436";
+                medCarInfoClass targetPatient = HIS_DB_Lib.medCarInfoClass.get_patient_by_GUID(API, returnData.ValueAry);
+
+
                 if (sql_medCarInfo == null)
                 {
                     returnData.Code = 200;
@@ -944,7 +947,7 @@ namespace HIS_WebApi
 
                 string API = $"http://{Server}:4436";
                 List<string> ValueAry = new List<string> { Master_GUID };
-                List<medCarInfoClass> targetPatient = medCarInfoClass.get_patient_by_GUID(API, ValueAry);
+                medCarInfoClass targetPatient = medCarInfoClass.get_patient_by_GUID(API, ValueAry);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
