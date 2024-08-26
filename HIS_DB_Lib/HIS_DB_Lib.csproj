@@ -155,6 +155,7 @@
     <Compile Include="stockRecordClass.cs" />
     <Compile Include="storagelistClass.cs" />
     <Compile Include="takeMedicineStackClass.cs" />
+    <Compile Include="textVisionClass.cs" />
     <Compile Include="transactionsClass.cs" />
     <Compile Include="udnoectc.cs" />
     <Compile Include="udphnoph.cs" />
