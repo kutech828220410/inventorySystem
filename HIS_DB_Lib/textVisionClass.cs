@@ -132,7 +132,7 @@ namespace HIS_DB_Lib
         public string 藥品碼 { get; set; }
         static public List<textVisionClass> ai_analyze(List<textVisionClass> textVisionClasses)
         {
-            string url = $"";
+            string url = $"https://8a40-220-135-128-247.ngrok-free.app/ROI_input";
 
             returnData returnData = new returnData();
             returnData.Data = textVisionClasses;

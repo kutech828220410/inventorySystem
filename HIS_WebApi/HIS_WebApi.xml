@@ -840,7 +840,7 @@
              <code>
                  {
                      "Value":"操作人ID"
-                     "ValueAry":["處方GUID,處方GUID"]
+                     "ValueAry":["處方GUID;處方GUID"]
                  }
              </code>
              </remarks>

@@ -88,7 +88,7 @@ namespace HIS_WebApi._API_TextVision
 
 
                 returnData.Code = 200;
-                returnData.Data = "";
+                returnData.Data = aiResult;
                 returnData.TimeTaken = $"{myTimerBasic}";
                 returnData.Method = "";
                 returnData.Result = $"";

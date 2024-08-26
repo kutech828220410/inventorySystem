@@ -188,7 +188,6 @@ namespace HIS_WebApi
                 string 護理站 = input_medCarInfo[0].護理站;
 
                 List<object[]> list_med_carInfo = sQLControl_med_carInfo.GetRowsByDefult(null, (int)enum_med_carInfo.藥局, 藥局);
-
                 List<medCarInfoClass> sql_medCar = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
 
 
@@ -687,8 +686,8 @@ namespace HIS_WebApi
                 List<medCarInfoClass> sql_medCarInfo = list_med_carInfo.SQLToClass<medCarInfoClass, enum_med_carInfo>();
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
 
-                string API = $"http://{Server}:4436";
-                medCarInfoClass targetPatient = HIS_DB_Lib.medCarInfoClass.get_patient_by_GUID(API, returnData.ValueAry);
+                //string API = $"http://{Server}:4436";
+                //medCarInfoClass targetPatient = HIS_DB_Lib.medCarInfoClass.get_patient_by_GUID(API, returnData.ValueAry);
 
 
                 if (sql_medCarInfo == null)

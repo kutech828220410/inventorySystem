@@ -111,7 +111,7 @@ namespace HIS_WebApi._API_住院調劑系統
         /// <code>
         ///     {
         ///         "Value":"操作人ID"
-        ///         "ValueAry":["處方GUID,處方GUID"]
+        ///         "ValueAry":["處方GUID;處方GUID"]
         ///     }
         /// </code>
         /// </remarks>
@@ -151,7 +151,7 @@ namespace HIS_WebApi._API_住院調劑系統
                 }
 
                 string 操作人ID = returnData.Value;
-                string[] GUID = returnData.ValueAry[0].Split(",");
+                string[] GUID = returnData.ValueAry[0].Split(";");
 
 
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
