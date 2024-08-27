@@ -215,6 +215,7 @@ namespace HIS_WebApi
                         {
                             medCarInfoClass medCarInfoClass = input_medCarInfo[i];
                             medCarInfoClass.GUID = targetPatient.GUID;
+                            medCarInfoClass.調劑狀態 = targetPatient.調劑狀態;
                             medCart_sql_replace.Add(medCarInfoClass);
                         }
                     }
@@ -633,6 +634,7 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
+        ///         "Value":"調劑台"
         ///         "ValueAry":[GUID]
         ///     }
         /// </code>
@@ -692,6 +694,8 @@ namespace HIS_WebApi
                     returnData.Result = "無對應的病人資料";
                     return returnData.JsonSerializationt(true);
                 }
+                
+
                 sql_medCpoe.Sort(new medCpoeClass.ICP_By_Rank());
 
                 string 藥局 = sql_medCarInfo[0].藥局;
@@ -699,7 +703,7 @@ namespace HIS_WebApi
                 string 床號 = sql_medCarInfo[0].床號;
 
                 
-                if (!string.IsNullOrWhiteSpace(returnData.Value))
+                if (!string.IsNullOrWhiteSpace(returnData.Value) && sql_medCpoe != null && returnData.Value != "all")
                 {
                     List<string> Codes = new List<string>();
                     for (int i = 0; i < sql_medCpoe.Count; i++) Codes.Add(sql_medCpoe[i].藥碼); 
@@ -714,6 +718,11 @@ namespace HIS_WebApi
                         }
                     }
 
+                }
+                if(returnData.Value == "all")
+                {
+                    foreach (var medCpoeClass in sql_medCpoe) medCpoeClass.調劑台 = "Y";
+                   
                 }
 
                 sql_medCarInfo[0].處方 = sql_medCpoe;
@@ -795,7 +804,7 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
-        ///         "Data":[]
+        ///         "ValueAry":["病床GUID"]
         ///     }
         /// </code>
         /// </remarks>

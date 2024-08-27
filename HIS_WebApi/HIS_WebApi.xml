@@ -1037,6 +1037,7 @@
              以下為JSON範例
              <code>
                  {
+                     "Value":"調劑台"
                      "ValueAry":[GUID]
                  }
              </code>
@@ -1067,7 +1068,7 @@
              以下為JSON範例
              <code>
                  {
-                     "Data":[]
+                     "ValueAry":["病床GUID"]
                  }
              </code>
              </remarks>
