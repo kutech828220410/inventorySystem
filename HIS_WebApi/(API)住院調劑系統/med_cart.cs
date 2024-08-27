@@ -235,8 +235,8 @@ namespace HIS_WebApi
                                      select temp).ToList();
                 medCarInfoClasses.Sort(new medCarInfoClass.ICP_By_bedNum());
 
-                string API = $"http://{Server}:4436";
-                List<medCarInfoClass> update_medCarInfoClass = medCarInfoClass.update_med_carinfo(API, medCart_sql_replace);
+                //string API = $"http://{Server}:4436";
+                //List<medCarInfoClass> update_medCarInfoClass = medCarInfoClass.update_med_carinfo(API, medCart_sql_replace);
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
