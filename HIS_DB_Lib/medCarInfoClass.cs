@@ -18,7 +18,7 @@ namespace HIS_DB_Lib
         更新時間,
         [Description("異動,VARCHAR,10,NONE")]
         異動,
-        [Description("姓名,VARCHAR,30,NONE")]
+        [Description("姓名,VARCHAR,50,NONE")]
         姓名,
         [Description("住院號,VARCHAR,50,INDEX")]
         住院號,
@@ -36,7 +36,7 @@ namespace HIS_DB_Lib
         調劑狀態,
         [Description("性別,VARCHAR,10,NONE")]
         性別,
-        [Description("出生日期,DATETIME,30,NONE")]
+        [Description("出生日期,VARCHAR,10,NONE")]
         出生日期,
         [Description("年齡,VARCHAR,30,NONE")]
         年齡,
