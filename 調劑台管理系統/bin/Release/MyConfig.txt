@@ -26,5 +26,5 @@
   "EPD1020_Port": 29012,
   "RowsLED_Port": 29001,
   "Pannel35_Port": 29020,
-  "ControlMode": true
+  "ControlMode": false
 }

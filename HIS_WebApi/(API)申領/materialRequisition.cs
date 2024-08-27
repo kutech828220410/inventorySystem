@@ -526,7 +526,7 @@ namespace HIS_WebApi
         }
 
         /// <summary>
-        /// 以盤點單號下載
+        /// 以請領時間範圍下載請領單
         /// </summary>
         /// <remarks>
         /// 以下為範例JSON範例
@@ -566,7 +566,7 @@ namespace HIS_WebApi
 
                 List<object[]> list_materialRequisitionClasses = materialRequisitionClasses.ClassToSQL<materialRequisitionClass,enum_materialRequisition>();
                 System.Data.DataTable dataTable = list_materialRequisitionClasses.ToDataTable(new enum_materialRequisition());
-                dataTable = dataTable.ReorderTable(new enum_batch_inventory_import_Excel());
+                dataTable = dataTable.ReorderTable(new enum_materialRequisition_Excel_Export());
                 string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
                 string xls_command = "application/vnd.ms-excel";
 

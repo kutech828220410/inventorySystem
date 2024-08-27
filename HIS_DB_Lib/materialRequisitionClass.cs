@@ -518,7 +518,16 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
         }
 
-
+        static public byte[] download_excel_by_requestTime(string API_Server, DateTime st_datetime, DateTime end_datetime)
+        {
+            string url = $"{API_Server}/api/materialRequisition/download_excel_by_requestTime";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(st_datetime.ToDateTimeString());
+            returnData.ValueAry.Add(end_datetime.ToDateTimeString());
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
+        }
 
         /// <summary>
         /// 比較藥碼的比較器。
