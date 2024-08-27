@@ -983,6 +983,22 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.update_large_in_med_cpoe(HIS_DB_Lib.returnData)">
+             <summary>
+            更新處方大瓶點滴紀錄
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     
+                     "ValueAry":[處方GUID]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.update_med_cpoe_rec(HIS_DB_Lib.returnData)">
              <summary>
             更新處方DC/NEW紀錄資料
