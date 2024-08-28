@@ -113,7 +113,7 @@ namespace HIS_WebApi._API_住院調劑系統
         ///         "Data":[
         ///         {
         ///         "op_id":"",
-        ///         "op_name:""
+        ///         "op_name":""
         ///         }]
         ///         "ValueAry":["處方GUID;處方GUID"]
         ///     }
@@ -158,14 +158,22 @@ namespace HIS_WebApi._API_住院調劑系統
                 string 操作人姓名 = input_medInventoryLogClass[0].操作者姓名;
 
                 string[] GUID = returnData.ValueAry[0].Split(";");
+                DateTime today = DateTime.Now;
+                string strat = today.GetStartDate().ToDateTimeString();
+                string end = today.GetEndDate().ToDateTimeString();
 
 
                 SQLControl sQLControl_med_cpoe = new SQLControl(Server, DB, "med_cpoe", UserName, Password, Port, SSLMode);
                 SQLControl sQLControl_med_inventoryLog = new SQLControl(Server, DB, "med_inventory_log", UserName, Password, Port, SSLMode);
 
                 List<object[]> list_med_cpoe = sQLControl_med_cpoe.GetAllRows(null);
+                List<object[]> list_med_inventoryLog = sQLControl_med_inventoryLog.GetRowsByBetween(null, (int)enum_med_inventory_log.操作時間, strat, end);
+
                 List<medCpoeClass> sql_medCpoe = list_med_cpoe.SQLToClass<medCpoeClass, enum_med_cpoe>();
+                List<medInventoryLogClass> sql_med_inventoryLog = list_med_inventoryLog.SQLToClass<medInventoryLogClass, enum_med_inventory_log>();
+
                 List<medCpoeClass> filterMedCpoe = sql_medCpoe.Where(data => GUID.Contains(data.GUID)).ToList();
+                List<medInventoryLogClass> filterMedInvenLog = sql_med_inventoryLog.Where(data => data.操作者代號 == 操作人ID).ToList();
 
                 if (filterMedCpoe.Count == 0)
                 {
@@ -173,37 +181,52 @@ namespace HIS_WebApi._API_住院調劑系統
                     returnData.Result = "無對應處方";
                     return returnData.JsonSerializationt(true);
                 }
-                List<medInventoryLogClass> medInventoryLogClasses = new List<medInventoryLogClass>();
-                foreach(var medCpoeClass in filterMedCpoe)
+                List<medInventoryLogClass> add_medInventoryLogClass = new List<medInventoryLogClass>();
+                List<medInventoryLogClass> update_medInventoryLogClass = new List<medInventoryLogClass>();
+
+                foreach (var medCpoeClass in filterMedCpoe)
                 {
-                    medInventoryLogClass medInventoryLogClass = new medInventoryLogClass
+                    List<medInventoryLogClass> target_log = filterMedInvenLog.Where(data => data.Master_GUID == medCpoeClass.GUID).ToList();
+                    if(target_log.Count == 0)
                     {
-                        GUID = Guid.NewGuid().ToString(),
-                        Master_GUID = medCpoeClass.GUID,
-                        藥局 = medCpoeClass.藥局,
-                        護理站 = medCpoeClass.護理站,
-                        床號 = medCpoeClass.床號,
-                        操作者代號 = 操作人ID,
-                        操作者姓名 = 操作人姓名,
-                        操作時間 = DateTime.Now.ToDateTimeString(),
-                        藥碼 = medCpoeClass.藥碼,
-                        藥品名 = medCpoeClass.藥品名,
-                        中文名 = medCpoeClass.中文名,
-                        單位 = medCpoeClass.單位,
-                        劑量 = medCpoeClass.劑量,
-                        數量 = medCpoeClass.數量,                                           
-                    };
-                    medInventoryLogClasses.Add(medInventoryLogClass);
+                        medInventoryLogClass medInventoryLogClass = new medInventoryLogClass
+                        {
+                            GUID = Guid.NewGuid().ToString(),
+                            Master_GUID = medCpoeClass.GUID,
+                            藥局 = medCpoeClass.藥局,
+                            護理站 = medCpoeClass.護理站,
+                            床號 = medCpoeClass.床號,
+                            操作者代號 = 操作人ID,
+                            操作者姓名 = 操作人姓名,
+                            操作時間 = DateTime.Now.ToDateTimeString(),
+                            藥碼 = medCpoeClass.藥碼,
+                            藥品名 = medCpoeClass.藥品名,
+                            中文名 = medCpoeClass.中文名,
+                            單位 = medCpoeClass.單位,
+                            劑量 = medCpoeClass.劑量,
+                            數量 = medCpoeClass.數量,
+                        };
+                        add_medInventoryLogClass.Add(medInventoryLogClass);
+                    }
+                    else if(target_log.Count == 1)
+                    {
+                        target_log[0].操作時間 = DateTime.Now.ToDateTimeString();
+                        update_medInventoryLogClass.Add(target_log[0]);
+                    }
+                    
                 }
-                List<object[]> list_medInventoryLog = new List<object[]>();
-                list_medInventoryLog = medInventoryLogClasses.ClassToSQL<medInventoryLogClass, enum_med_inventory_log>();
-                sQLControl_med_inventoryLog.AddRows(null, list_medInventoryLog);
+                List<object[]> list_add_medInventoryLog = new List<object[]>();
+                List<object[]> list_update_medInventoryLog = new List<object[]>();
+
+                list_add_medInventoryLog = add_medInventoryLogClass.ClassToSQL<medInventoryLogClass, enum_med_inventory_log>();
+                list_update_medInventoryLog = update_medInventoryLogClass.ClassToSQL<medInventoryLogClass, enum_med_inventory_log>();
+                sQLControl_med_inventoryLog.AddRows(null, list_add_medInventoryLog);
+                sQLControl_med_inventoryLog.UpdateByDefulteExtra(null, list_update_medInventoryLog);
 
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medInventoryLogClasses;
-                returnData.Result = $"新增藥品處方調劑LOG共{medInventoryLogClasses.Count}筆";
+                returnData.Result = $"新增藥品處方調劑LOG共{add_medInventoryLogClass.Count}筆 更新藥品處方調劑LOG共{update_medInventoryLogClass.Count}筆";
                 return returnData.JsonSerializationt(true);
             }
             catch (Exception ex)
@@ -507,8 +530,6 @@ namespace HIS_WebApi._API_住院調劑系統
                             單位 = m.單位
                         }).ToList()
                     }).ToList();
-
-
 
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";

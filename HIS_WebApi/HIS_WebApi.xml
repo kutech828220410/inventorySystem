@@ -842,7 +842,7 @@
                      "Data":[
                      {
                      "op_id":"",
-                     "op_name:""
+                     "op_name":""
                      }]
                      "ValueAry":["處方GUID;處方GUID"]
                  }
@@ -1015,6 +1015,21 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.update_med_info(HIS_DB_Lib.returnData)">
+             <summary>
+            更新藥品資訊資料
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Data":[medInfoClass]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.med_cart.get_bed_list_by_cart(HIS_DB_Lib.returnData)">
              <summary>
             以藥局和護理站取得占床資料
@@ -1085,6 +1100,21 @@
              <code>
                  {
                      "ValueAry":["病床GUID"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
+        <member name="M:HIS_WebApi.med_cart.get_medInfo_by_code(HIS_DB_Lib.returnData)">
+             <summary>
+            由藥碼取得藥品資訊
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "ValueAry":["code"]
                  }
              </code>
              </remarks>

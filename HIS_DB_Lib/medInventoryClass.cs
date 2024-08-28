@@ -60,7 +60,7 @@ namespace HIS_DB_Lib
     }
 
     /// <summary>
-    /// medCpoeClass資料
+    /// medInventoryLogClass 資料
     /// </summary>
     public class medInventoryLogClass
     {
@@ -198,10 +198,8 @@ namespace HIS_DB_Lib
         public string 藥碼 { get; set; }
         [JsonPropertyName("name")]
         public string 藥品名 { get; set; }
-
         [JsonPropertyName("cht_name")]
         public string 中文名 { get; set; }
-
         [JsonPropertyName("qty")]
         public string 數量 { get; set; }
         [JsonPropertyName("dosage")]
