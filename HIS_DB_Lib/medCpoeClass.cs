@@ -457,4 +457,13 @@ namespace HIS_DB_Lib
             }
         }
     }
+    public class dispensClass
+    {
+        [JsonPropertyName("code")]
+        public string 藥碼 { get; set; }
+        [JsonPropertyName("server_name")]
+        public string ServerName { get; set; }
+        [JsonPropertyName("server_type")]
+        public string ServerType { get; set; }
+    }
 }

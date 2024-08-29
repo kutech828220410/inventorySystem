@@ -1168,6 +1168,22 @@
              <param name="returnData">共用傳遞資料結構</param>
              <returns></returns>
         </member>
+        <member name="M:HIS_WebApi.med_cart.get_dispens_by_code(HIS_DB_Lib.returnData)">
+             <summary>
+            以藥碼搜尋存在所屬的調劑台
+             </summary>
+             <remarks>
+             以下為JSON範例
+             <code>
+                 {
+                     "Value":"code"
+                     "ValueAry":["長青樓U1,長青樓U2,長青樓U3"]
+                 }
+             </code>
+             </remarks>
+             <param name="returnData">共用傳遞資料結構</param>
+             <returns></returns>
+        </member>
         <member name="M:HIS_WebApi.deviceController.POST_all(HIS_DB_Lib.returnData)">
             <summary>
             查詢儲位資料
@@ -2512,6 +2528,29 @@
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
             <returns>[returnData.Data]</returns>
+        </member>
+        <member name="M:HIS_WebApi.materialRequisition.Post_download_excel_by_requestTime(HIS_DB_Lib.returnData)">
+            <summary>
+            以請領時間範圍下載請領單
+            </summary>
+            <remarks>
+            以下為範例JSON範例
+            <code>
+              {
+                "Data": 
+                {
+                
+                },
+                "ValueAry" : 
+                [
+                   "起始時間",
+                   "結束時間"
+                ]
+              }
+            </code>
+            </remarks>
+            <param name="returnData">共用傳遞資料結構</param>
+            <returns>Excel</returns>
         </member>
         <member name="M:HIS_WebApi.materialRequisition.UpdateStatus(HIS_DB_Lib.returnData,System.String)">
             <summary>

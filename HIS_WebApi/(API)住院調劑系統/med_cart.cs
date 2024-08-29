@@ -1445,7 +1445,95 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }
-        
+        /// <summary>
+        ///以藥碼搜尋存在所屬的調劑台
+        /// </summary>
+        /// <remarks>
+        /// 以下為JSON範例
+        /// <code>
+        ///     {
+        ///         "Value":"code"
+        ///         "ValueAry":["長青樓U1,長青樓U2,長青樓U3"]
+        ///     }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns></returns>
+
+        [HttpPost("get_dispens_by_code")]
+        public string get_dispens_by_code([FromBody] returnData returnData)
+        {
+            MyTimerBasic myTimerBasic = new MyTimerBasic();
+            try
+            {
+                List<ServerSettingClass> serverSettingClasses = ServerSettingClassMethod.WebApiGet($"{API_Server}");
+                serverSettingClasses = serverSettingClasses.MyFind("Main", "網頁", "API01");
+                if (serverSettingClasses.Count == 0)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"找無Server資料";
+                    return returnData.JsonSerializationt();
+                }
+                string Server = serverSettingClasses[0].Server;
+                if (returnData.ValueAry == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"長青樓U1,長青樓U2,長青樓U3,....\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.ValueAry.Count != 1)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"長青樓U1;長青樓U2;長青樓U3,....\"]";
+                    return returnData.JsonSerializationt(true);
+                }
+                if (returnData.Value == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 內容應為\"code\"";
+                    return returnData.JsonSerializationt(true);
+                }
+                List<Task> tasks = new List<Task>();
+                List<dispensClass> dispensClasses = new List<dispensClass>();
+                List<string> code = new List<string> {returnData.Value};
+                List<string> dispens = returnData.ValueAry[0].Split(";").ToList();
+                string API = $"http://127.0.0.1:4436";
+                List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, "長青樓U1", code);
+                List<medClass> medClasses1 = medClass.get_dps_medClass_by_code(API, "長青樓U2", code);
+
+                foreach (var disp in dispens)
+                {
+                    tasks.Add(Task.Run(() =>
+                    {
+                        List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, disp, code);
+                        if(medClasses != null)
+                        {
+                            dispensClass dispensClass = new dispensClass
+                            {
+                                藥碼 = code[0],
+                                ServerName = disp,
+                                ServerType = "調劑台"
+                            };
+                            dispensClasses.Add(dispensClass);
+                        }
+                    }));
+                }
+                returnData.Data = dispensClasses;
+                returnData.Code = 200;
+                returnData.Result = $"藥碼{code[0]} 在{dispensClasses.Count}個調劑台裡有";
+                returnData.TimeTaken = myTimerBasic.ToString();
+                return returnData.JsonSerializationt(true);
+
+            }
+            catch(Exception ex)
+            {
+                returnData.Code = -200;
+                returnData.Result = ex.Message;
+                return returnData.JsonSerializationt(true);
+            }
+        }
+
+
 
 
     }
