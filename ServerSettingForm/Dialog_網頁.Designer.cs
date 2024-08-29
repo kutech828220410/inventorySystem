@@ -38,6 +38,7 @@ namespace ServerSettingForm
             HIS_DB_Lib.ServerSettingClass serverSettingClass7 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass8 = new HIS_DB_Lib.ServerSettingClass();
             HIS_DB_Lib.ServerSettingClass serverSettingClass9 = new HIS_DB_Lib.ServerSettingClass();
+            HIS_DB_Lib.ServerSettingClass serverSettingClass10 = new HIS_DB_Lib.ServerSettingClass();
             this.label1 = new System.Windows.Forms.Label();
             this.rJ_TextBox_API_Server = new MyUI.RJ_TextBox();
             this.button_測試 = new System.Windows.Forms.Button();
@@ -55,6 +56,7 @@ namespace ServerSettingForm
             this.panel_API_URL2 = new ServerSettingForm.Panel_API_URL();
             this.panel_API_URL1 = new ServerSettingForm.Panel_API_URL();
             this.panel_SQLContent1 = new ServerSettingForm.Panel_SQLContent();
+            this.panel_API_URL7 = new ServerSettingForm.Panel_API_URL();
             this.SuspendLayout();
             // 
             // label1
@@ -174,7 +176,7 @@ namespace ServerSettingForm
             // 
             this.panel_SQLContent3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_SQLContent3.Content = "藥檔資料";
-            this.panel_SQLContent3.Location = new System.Drawing.Point(401, 338);
+            this.panel_SQLContent3.Location = new System.Drawing.Point(401, 471);
             this.panel_SQLContent3.Name = "panel_SQLContent3";
             serverSettingClass2.DBName = "";
             serverSettingClass2.GUID = null;
@@ -198,7 +200,7 @@ namespace ServerSettingForm
             // 
             this.panel_SQLContent2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_SQLContent2.Content = "VM端";
-            this.panel_SQLContent2.Location = new System.Drawing.Point(221, 338);
+            this.panel_SQLContent2.Location = new System.Drawing.Point(221, 471);
             this.panel_SQLContent2.Name = "panel_SQLContent2";
             serverSettingClass3.DBName = "";
             serverSettingClass3.GUID = null;
@@ -337,7 +339,7 @@ namespace ServerSettingForm
             // 
             this.panel_SQLContent1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_SQLContent1.Content = "人員資料";
-            this.panel_SQLContent1.Location = new System.Drawing.Point(40, 338);
+            this.panel_SQLContent1.Location = new System.Drawing.Point(40, 471);
             this.panel_SQLContent1.Name = "panel_SQLContent1";
             serverSettingClass9.DBName = "";
             serverSettingClass9.GUID = null;
@@ -357,12 +359,36 @@ namespace ServerSettingForm
             this.panel_SQLContent1.Size = new System.Drawing.Size(175, 309);
             this.panel_SQLContent1.TabIndex = 57;
             // 
+            // panel_API_URL7
+            // 
+            this.panel_API_URL7.Content = "download_excel_by_requestTime";
+            this.panel_API_URL7.Location = new System.Drawing.Point(40, 324);
+            this.panel_API_URL7.Name = "panel_API_URL7";
+            serverSettingClass10.DBName = null;
+            serverSettingClass10.GUID = null;
+            serverSettingClass10.Password = null;
+            serverSettingClass10.Port = null;
+            serverSettingClass10.Server = "";
+            serverSettingClass10.TableName = null;
+            serverSettingClass10.User = null;
+            serverSettingClass10.Value = null;
+            serverSettingClass10.內容 = "download_excel_by_requestTime";
+            serverSettingClass10.單位 = null;
+            serverSettingClass10.程式類別 = null;
+            serverSettingClass10.設備名稱 = "";
+            serverSettingClass10.類別 = "網頁";
+            this.panel_API_URL7.ServerSetting = serverSettingClass10;
+            this.panel_API_URL7.ServerSetting_Type = HIS_DB_Lib.enum_ServerSetting_Type.網頁;
+            this.panel_API_URL7.Size = new System.Drawing.Size(1034, 36);
+            this.panel_API_URL7.TabIndex = 72;
+            // 
             // Dialog_網頁
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1431, 659);
+            this.ClientSize = new System.Drawing.Size(1601, 911);
+            this.Controls.Add(this.panel_API_URL7);
             this.Controls.Add(this.panel_API_URL6);
             this.Controls.Add(this.panel_SQLContent3);
             this.Controls.Add(this.panel_SQLContent2);
@@ -410,5 +436,6 @@ namespace ServerSettingForm
         private Panel_SQLContent panel_SQLContent2;
         private Panel_SQLContent panel_SQLContent3;
         private Panel_API_URL panel_API_URL6;
+        private Panel_API_URL panel_API_URL7;
     }
 }

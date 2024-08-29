@@ -526,6 +526,67 @@ namespace HIS_WebApi
         }
 
         /// <summary>
+        /// 以請領時間範圍下載請領單
+        /// </summary>
+        /// <remarks>
+        /// 以下為範例JSON範例
+        /// <code>
+        ///   {
+        ///     "Data": 
+        ///     {
+        ///     
+        ///     },
+        ///     "ValueAry" : 
+        ///     [
+        ///        "起始時間",
+        ///        "結束時間"
+        ///     ]
+        ///   }
+        /// </code>
+        /// </remarks>
+        /// <param name="returnData">共用傳遞資料結構</param>
+        /// <returns>Excel</returns>
+        [Route("download_excel_by_requestTime")]
+        [HttpPost]
+        public async Task<ActionResult> Post_download_excel_by_requestTime([FromBody] returnData returnData)
+        {
+            MyTimer myTimer = new MyTimer();
+            myTimer.StartTickTime(50000);
+            returnData.Method = "download_excel_by_requestTime";
+            try
+            {
+                string json_result = POST_get_by_requestTime(returnData);
+
+                if (json_result.StringIsEmpty()) return null;
+
+                returnData returnData_result = json_result.JsonDeserializet<returnData>();
+
+                List<materialRequisitionClass> materialRequisitionClasses = returnData_result.Data.ObjToClass<List<materialRequisitionClass>>();
+                if (materialRequisitionClasses == null) return null;
+
+                List<object[]> list_materialRequisitionClasses = materialRequisitionClasses.ClassToSQL<materialRequisitionClass,enum_materialRequisition>();
+                System.Data.DataTable dataTable = list_materialRequisitionClasses.ToDataTable(new enum_materialRequisition());
+                dataTable = dataTable.ReorderTable(new enum_materialRequisition_Excel_Export());
+                string xlsx_command = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string xls_command = "application/vnd.ms-excel";
+
+                byte[] excelData = dataTable.NPOI_GetBytes(Excel_Type.xlsx);
+                Stream stream = new MemoryStream(excelData);
+                return await Task.FromResult(File(stream, xlsx_command, $"{DateTime.Now.ToDateString("-")}_申領明細.xlsx"));
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+      
+            }  
+     
+        }
+
+
+        /// <summary>
         /// 更新狀態的通用方法。
         /// </summary>
         /// <param name="returnData">共用傳遞資料結構</param>

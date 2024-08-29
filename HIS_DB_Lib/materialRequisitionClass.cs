@@ -13,6 +13,51 @@ using System.Text.Json;
 
 namespace HIS_DB_Lib
 {
+    public enum enum_materialRequisition_Excel_Export
+    {
+        [Description("申領類別,VARCHAR,50,INDEX")]
+        申領類別,
+        [Description("申領單號,VARCHAR,50,INDEX")]
+        申領單號,
+        [Description("藥碼,VARCHAR,50,INDEX")]
+        藥碼,
+        [Description("藥名,VARCHAR,300,NONE")]
+        藥名,
+        [Description("包裝單位,VARCHAR,50,NONE")]
+        包裝單位,
+        [Description("包裝量,VARCHAR,10,NONE")]
+        包裝量,
+        [Description("申領庫庫存,VARCHAR,10,NONE")]
+        申領庫庫存,
+        [Description("申領量,VARCHAR,10,NONE")]
+        申領量,
+        [Description("申領庫結存,VARCHAR,10,NONE")]
+        申領庫結存,
+        [Description("實撥庫庫存,VARCHAR,10,NONE")]
+        實撥庫庫存,
+        [Description("實撥量,VARCHAR,10,NONE")]
+        實撥量,
+        [Description("實撥庫結存,VARCHAR,10,NONE")]
+        實撥庫結存,
+        [Description("申領單位,VARCHAR,10,NONE")]
+        申領單位,
+        [Description("申領人員,VARCHAR,50,NONE")]
+        申領人員,
+        [Description("申領人員ID,VARCHAR,10,NONE")]
+        申領人員ID,
+        [Description("申領時間,DATETIME,10,INDEX")]
+        申領時間,
+        [Description("核撥單位,VARCHAR,10,NONE")]
+        核撥單位,
+        [Description("核撥人員,VARCHAR,50,NONE")]
+        核撥人員,
+        [Description("核撥人員ID,VARCHAR,10,NONE")]
+        核撥人員ID,
+        [Description("核撥時間,DATETIME,10,INDEX")]
+        核撥時間,
+        [Description("狀態,VARCHAR,20,NONE")]
+        狀態,
+    }
     [EnumDescription("materialRequisition")]
     public enum enum_materialRequisition
     {
@@ -473,7 +518,16 @@ namespace HIS_DB_Lib
             Console.WriteLine($"[{returnData_out.Method}]:{returnData_out.Result}");
         }
 
-
+        static public byte[] download_excel_by_requestTime(string API_Server, DateTime st_datetime, DateTime end_datetime)
+        {
+            string url = $"{API_Server}/api/materialRequisition/download_excel_by_requestTime";
+            returnData returnData = new returnData();
+            returnData.ValueAry.Add(st_datetime.ToDateTimeString());
+            returnData.ValueAry.Add(end_datetime.ToDateTimeString());
+            string json_in = returnData.JsonSerializationt();
+            byte[] bytes = Basic.Net.WEBApiPostDownloaFile(url, json_in);
+            return bytes;
+        }
 
         /// <summary>
         /// 比較藥碼的比較器。
