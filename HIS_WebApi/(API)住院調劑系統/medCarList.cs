@@ -328,9 +328,13 @@ namespace HIS_WebApi._API_住院調劑系統
                 medCarList_sql_update = medCarListClasses.ClassToSQL<medCarListClass, enum_med_carList>();
                 sQLControl_med_carList.UpdateByDefulteExtra(null, medCarList_sql_update);
 
+                List<object[]> list_medCartList = sQLControl_med_carList.GetRowsByDefult(null, (int)enum_med_carList.藥局, 藥局);
+                List<medCarListClass> medCartList_sql = list_medCartList.SQLToClass<medCarListClass, enum_med_carList>();
+                medCartList_sql.Sort(new medCarListClass.ICP_By_phar_name());
+
                 returnData.Code = 200;
                 returnData.TimeTaken = $"{myTimerBasic}";
-                returnData.Data = medCart_sql;
+                returnData.Data = medCartList_sql;
                 returnData.Result = $"取得{藥局}的護理站共{medCart_sql.Count}筆";
                 return returnData.JsonSerializationt(true);
             }

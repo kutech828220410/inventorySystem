@@ -41,7 +41,13 @@ namespace HIS_DB_Lib
         public string 交車狀態 { get; set; }
         [JsonPropertyName("note")]
         public string 備註 { get; set; }
-
+        public class ICP_By_phar_name : IComparer<medCarListClass>
+        {
+            public int Compare(medCarListClass x, medCarListClass y)
+            {
+                return (x.護理站).CompareTo(y.護理站);
+            }
+        }
     }
     public static class PharmacyData
     {
