@@ -434,6 +434,8 @@ namespace HIS_DB_Lib
         public string 藥品名 { get; set; }
         [JsonPropertyName("dunit")]
         public string 單位 { get; set; }
+        [JsonPropertyName("dispens_name")]
+        public string 調劑台 { get; set; }
         [JsonPropertyName("bed_list")]
         public List<bedListClass> 病床清單 { get; set; }
     }

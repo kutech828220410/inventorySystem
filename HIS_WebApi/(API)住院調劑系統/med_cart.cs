@@ -918,8 +918,9 @@ namespace HIS_WebApi
                 
                 if (!string.IsNullOrWhiteSpace(returnData.Value) && sql_medCpoe != null && returnData.Value != "all")
                 {
-                    List<string> Codes = new List<string>();
-                    for (int i = 0; i < sql_medCpoe.Count; i++) Codes.Add(sql_medCpoe[i].藥碼); 
+                    //List<string> Codes = new List<string>();
+                    //for (int i = 0; i < sql_medCpoe.Count; i++) Codes.Add(sql_medCpoe[i].藥碼);
+                    List<string> Codes = sql_medCpoe.Select(temp => temp.藥碼).Distinct().ToList();
                     string API = $"http://{Server}:4436";
                     List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, Codes);
             
@@ -1266,6 +1267,7 @@ namespace HIS_WebApi
         /// 以下為JSON範例
         /// <code>
         ///     {
+        ///         "Value":"長青樓U1"
         ///         "ValueAry":[藥局, 護理站]
         ///     }
         /// </code>
@@ -1332,7 +1334,17 @@ namespace HIS_WebApi
                         }).ToList()
                     })
                     .ToList();
-                foreach(var medQtyClass in medQtyClasses)
+                List<string> codes = medQtyClasses.Select(temp => temp.藥碼).Distinct().ToList();
+                string API = $"http://{Server}:4436";
+                List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
+                foreach (var medQtyClass in medQtyClasses)
+                {
+                    if (medClasses.Any(@new => @new.藥品碼 == medQtyClass.藥碼))
+                    {
+                        medQtyClass.調劑台 = "Y";
+                    }
+                }
+                foreach (var medQtyClass in medQtyClasses)
                 {
                     List<bedListClass> bedListClasses = medQtyClass.病床清單;
                     bedListClasses.Sort(new bedListClass.ICP_By_bedNum());
@@ -1453,13 +1465,12 @@ namespace HIS_WebApi
         /// <code>
         ///     {
         ///         "Value":"code"
-        ///         "ValueAry":["長青樓U1,長青樓U2,長青樓U3"]
+        ///         "ValueAry":["長青樓U1;長青樓U2;長青樓U3"]
         ///     }
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
         /// <returns></returns>
-
         [HttpPost("get_dispens_by_code")]
         public string get_dispens_by_code([FromBody] returnData returnData)
         {
@@ -1478,13 +1489,13 @@ namespace HIS_WebApi
                 if (returnData.ValueAry == null)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[\"長青樓U1,長青樓U2,長青樓U3,....\"]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"長青樓U1;長青樓U2;長青樓U3;....\"]";
                     return returnData.JsonSerializationt(true);
                 }
                 if (returnData.ValueAry.Count != 1)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[\"長青樓U1;長青樓U2;長青樓U3,....\"]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[\"長青樓U1;長青樓U2;長青樓U3;....\"]";
                     return returnData.JsonSerializationt(true);
                 }
                 if (returnData.Value == null)
@@ -1498,15 +1509,13 @@ namespace HIS_WebApi
                 List<string> code = new List<string> {returnData.Value};
                 List<string> dispens = returnData.ValueAry[0].Split(";").ToList();
                 string API = $"http://127.0.0.1:4436";
-                List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, "長青樓U1", code);
-                List<medClass> medClasses1 = medClass.get_dps_medClass_by_code(API, "長青樓U2", code);
-
+                object lockObj = new object();
                 foreach (var disp in dispens)
                 {
-                    tasks.Add(Task.Run(() =>
+                    tasks.Add(Task.Run(new Action(delegate
                     {
                         List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, disp, code);
-                        if(medClasses != null)
+                        if (medClasses != null)
                         {
                             dispensClass dispensClass = new dispensClass
                             {
@@ -1514,10 +1523,14 @@ namespace HIS_WebApi
                                 ServerName = disp,
                                 ServerType = "調劑台"
                             };
-                            dispensClasses.Add(dispensClass);
+                            lock (lockObj)
+                            {
+                                dispensClasses.Add(dispensClass);
+                            }
                         }
-                    }));
+                    })));
                 }
+                Task.WhenAll(tasks).Wait();
                 returnData.Data = dispensClasses;
                 returnData.Code = 200;
                 returnData.Result = $"藥碼{code[0]} 在{dispensClasses.Count}個調劑台裡有";

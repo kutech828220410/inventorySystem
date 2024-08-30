@@ -1146,6 +1146,7 @@
              以下為JSON範例
              <code>
                  {
+                     "Value":"長青樓U1"
                      "ValueAry":[藥局, 護理站]
                  }
              </code>
@@ -1177,7 +1178,7 @@
              <code>
                  {
                      "Value":"code"
-                     "ValueAry":["長青樓U1,長青樓U2,長青樓U3"]
+                     "ValueAry":["長青樓U1;長青樓U2;長青樓U3"]
                  }
              </code>
              </remarks>
