@@ -1306,6 +1306,12 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.ValueAry 內容應為[藥局, 護理站]";
                     return returnData.JsonSerializationt(true);
                 }
+                if (returnData.Value == null)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"returnData.Value 無傳入資料";
+                    return returnData.JsonSerializationt(true);
+                }
                 string 藥局 = returnData.ValueAry[0];
                 string 護理站 = returnData.ValueAry[1];
 
@@ -1336,12 +1342,22 @@ namespace HIS_WebApi
                     .ToList();
                 List<string> codes = medQtyClasses.Select(temp => temp.藥碼).Distinct().ToList();
                 string API = $"http://{Server}:4436";
-                List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
-                foreach (var medQtyClass in medQtyClasses)
+                if(returnData.Value == "all")
                 {
-                    if (medClasses.Any(@new => @new.藥品碼 == medQtyClass.藥碼))
+                    foreach (var medQtyClass in medQtyClasses)
                     {
                         medQtyClass.調劑台 = "Y";
+                    }
+                }
+                else
+                {
+                    List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, returnData.Value, codes);
+                    foreach (var medQtyClass in medQtyClasses)
+                    {
+                        if (medClasses.Any(@new => @new.藥品碼 == medQtyClass.藥碼))
+                        {
+                            medQtyClass.調劑台 = "Y";
+                        }
                     }
                 }
                 foreach (var medQtyClass in medQtyClasses)
