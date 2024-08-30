@@ -2186,7 +2186,7 @@ namespace HIS_WebApi
                 List<Task> tasks = new List<Task>();
                 string str_codes = returnData.ValueAry[0];
                 string str_color = returnData.ValueAry[1];
-                string str_time = returnData.ValueAry[3];
+                string str_time = returnData.ValueAry[2];
                 if (str_time.StringIsDouble() == false)
                 {
                     returnData.Code = -200;

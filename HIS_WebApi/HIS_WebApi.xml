@@ -1740,14 +1740,15 @@
                 "ValueAry" : 
                 [
                   [藥碼1,藥碼2....],
-                  [顏色]
+                  [顏色],
+                  [亮燈時間(s)]
                 ]
                 
               }
             </code>
             </remarks>
             <param name="returnData">共用傳遞資料結構</param>
-            <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+            <returns></returns>
         </member>
         <member name="M:HIS_WebApi.batch_inventory_import.POST_init(HIS_DB_Lib.returnData)">
             <summary>
