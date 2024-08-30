@@ -1520,11 +1520,53 @@ namespace HIS_WebApi
                     returnData.Result = $"returnData.Value 內容應為\"code\"";
                     return returnData.JsonSerializationt(true);
                 }
-                List<Task> tasks = new List<Task>();
+                //List<Task<List<medClass>>> tasks = new List<Task<List<medClass>>>();
                 List<dispensClass> dispensClasses = new List<dispensClass>();
-                List<string> code = new List<string> {returnData.Value};
+                string codes = $"{returnData.Value},";
+                List<string> code = new List<string> { codes };
                 List<string> dispens = returnData.ValueAry[0].Split(";").ToList();
-                string API = $"http://127.0.0.1:4436";
+                string API = Server;
+                //foreach (var disp in dispens)
+                //{
+                //    tasks.Add(Task.Run(() =>
+                //    {
+                //        string dispname = disp;
+                //        return medClass.get_dps_medClass_by_code(API, dispname, code);
+                //    }));
+                //}
+
+
+                //Task.WaitAll(tasks.ToArray());
+
+
+                //List<medClass> combinedMedClasses = new List<medClass>();
+
+                //foreach (var task in tasks)
+                //{
+                //    if (task.Result != null)
+                //    {
+                //        combinedMedClasses.AddRange(task.Result);
+                //    }
+                //}
+
+
+                //foreach (var med in combinedMedClasses)
+                //{
+                //    if(med.ServerName != null)
+                //    {
+                //        dispensClass dispensClass = new dispensClass
+                //        {
+                //            藥碼 = code[0],
+                //            ServerName = med.ServerName,
+                //            ServerType = "調劑台"
+                //        };
+                //        dispensClasses.Add(dispensClass);
+                //    }
+
+                //}
+
+                List<Task> tasks = new List<Task>();
+                //string API = $"http://127.0.0.1:4436";
                 object lockObj = new object();
                 foreach (var disp in dispens)
                 {
@@ -1547,6 +1589,71 @@ namespace HIS_WebApi
                     })));
                 }
                 Task.WhenAll(tasks).Wait();
+
+
+
+                //foreach (var disp in dispens)
+                //{
+                //    List<medClass> medClasses = medClass.get_dps_medClass_by_code(API, disp, code);
+                //    if (medClasses != null)
+                //    {
+                //        dispensClass dispensClass = new dispensClass
+                //        {
+                //            藥碼 = code[0],
+                //            ServerName = disp,
+                //            ServerType = "調劑台"
+                //        };
+                //        dispensClasses.Add(dispensClass);
+                //    }
+
+                //}
+                //List<medClass> medClasses1 = medClass.get_dps_medClass_by_code(API, "長青樓U1", code);
+                //List<medClass> medClasses2 = medClass.get_dps_medClass_by_code(API, "長青樓U2", code);
+                //List<medClass> medClasses3 = medClass.get_dps_medClass_by_code(API, "長青樓U3", code);
+                //List<medClass> medClasses4 = medClass.get_dps_medClass_by_code(API, "長青UD01", code);
+                //if (medClasses1 != null)
+                //{
+                //    dispensClass dispensClass = new dispensClass
+                //    {
+                //        藥碼 = code[0],
+                //        ServerName = "長青樓U1",
+                //        ServerType = "調劑台"
+                //    };
+                //    dispensClasses.Add(dispensClass);
+                //}
+                //if (medClasses2 != null)
+                //{
+                //    dispensClass dispensClass = new dispensClass
+                //    {
+                //        藥碼 = code[0],
+                //        ServerName = "長青樓U2",
+                //        ServerType = "調劑台"
+                //    };
+                //    dispensClasses.Add(dispensClass);
+                //}
+                //if (medClasses3 != null)
+                //{
+                //    dispensClass dispensClass = new dispensClass
+                //    {
+                //        藥碼 = code[0],
+                //        ServerName = "長青樓U3",
+                //        ServerType = "調劑台"
+                //    };
+                //    dispensClasses.Add(dispensClass);
+                //}
+                //if (medClasses4 != null)
+                //{
+                //    dispensClass dispensClass = new dispensClass
+                //    {
+                //        藥碼 = code[0],
+                //        ServerName = "長青UD01",
+                //        ServerType = "調劑台"
+                //    };
+                //    dispensClasses.Add(dispensClass);
+                //}
+
+
+
                 returnData.Data = dispensClasses;
                 returnData.Code = 200;
                 returnData.Result = $"藥碼{code[0]} 在{dispensClasses.Count}個調劑台裡有";
@@ -1554,17 +1661,13 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 returnData.Code = -200;
                 returnData.Result = ex.Message;
                 return returnData.JsonSerializationt(true);
             }
         }
-
-
-
-
     }
 
 }
