@@ -1325,7 +1325,6 @@ namespace HIS_WebApi
 
 
         }
-
         /// <summary>
         /// 取得儲位資料(EPD266)
         /// </summary>
@@ -1725,8 +1724,6 @@ namespace HIS_WebApi
 
 
         }
-
-
         /// <summary>
         /// 取得儲位資料(Panel35)
         /// </summary>
@@ -2137,14 +2134,15 @@ namespace HIS_WebApi
         ///     "ValueAry" : 
         ///     [
         ///       [藥碼1,藥碼2....],
-        ///       [顏色]
+        ///       [顏色],
+        ///       [亮燈時間(s)]
         ///     ]
         ///     
         ///   }
         /// </code>
         /// </remarks>
         /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns>[returnData.Data]為[DeviceBasic]陣列結構</returns>
+        /// <returns></returns>
         [Route("light_on_by_code")]
         [HttpPost]
         public string POST_light_on_by_code(returnData returnData)
@@ -2177,10 +2175,10 @@ namespace HIS_WebApi
                 }
                 serverSettingClass_堆疊資料 = serverSettingClasses_buf[0];
 
-                if (returnData.ValueAry.Count != 2)
+                if (returnData.ValueAry.Count != 3)
                 {
                     returnData.Code = -200;
-                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼1,藥碼2....][顏色]";
+                    returnData.Result = $"returnData.ValueAry 內容應為[藥碼1,藥碼2....][顏色][亮燈時間(s)]";
                     return returnData.JsonSerializationt(true);
                 }
                 
@@ -2188,7 +2186,13 @@ namespace HIS_WebApi
                 List<Task> tasks = new List<Task>();
                 string str_codes = returnData.ValueAry[0];
                 string str_color = returnData.ValueAry[1];
-
+                string str_time = returnData.ValueAry[3];
+                if (str_time.StringIsDouble() == false)
+                {
+                    returnData.Code = -200;
+                    returnData.Result = $"亮燈時間(s) 輸入內容錯誤";
+                    return returnData.JsonSerializationt(true);
+                }
                 string Server = serverSettingClass_儲位資料.Server;
                 string DB = serverSettingClass_儲位資料.DBName;
                 string UserName = serverSettingClass_儲位資料.User;
@@ -2203,36 +2207,18 @@ namespace HIS_WebApi
                     returnData.Result = $"傳入資料無可用藥碼";
                     return returnData.JsonSerializationt(true);
                 }
-                List<DeviceBasic> storages_epd266 = new List<DeviceBasic>();
-                tasks.Add(Task.Run(new Action(delegate 
-                {
-                    SQLControl sQLControl_device = new SQLControl(Server, DB, "epd266_jsonstring", UserName, Password, Port, SSLMode);
-                    List<Storage> storages_buf = new List<Storage>();
-                    List<object[]> list_value = sQLControl_device.GetAllRows(null);
-                    for (int i = 0; i < codes.Length; i++)
-                    {
-                        storages_buf = StorageMethod.SQL_GetStorageByCode(list_value, codes[i]);
-                        foreach(DeviceBasic deviceBasic in storages_buf)
-                        {
-                            storages_epd266.Add(deviceBasic);
-                        }                     
-                    }
-                })));
-
-                Task.WhenAll(tasks).Wait();
+           
 
                 Color color = str_color.ToColor();
-                List<DeviceBasic> deviceBasics = new List<DeviceBasic>();
-                deviceBasics.LockAdd(storages_epd266);
-                for (int i = 0; i < deviceBasics.Count; i++)
+                for (int i = 0; i < codes.Length; i++)
                 {
-                    string IP = deviceBasics[i].IP;
                     object[] value = new object[new enum_取藥堆疊母資料().GetLength()];
                     value[(int)enum_取藥堆疊母資料.GUID] = Guid.NewGuid().ToString();
                     value[(int)enum_取藥堆疊母資料.顏色] = color.ToColorString();
-                    value[(int)enum_取藥堆疊母資料.IP] = IP;
-                    value[(int)enum_取藥堆疊母資料.藥品碼] = deviceBasics[i].Code;
-                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "更新亮燈";
+                    value[(int)enum_取藥堆疊母資料.藥品碼] = codes[i];
+                    value[(int)enum_取藥堆疊母資料.調劑台名稱] = "儲位亮燈";
+                    value[(int)enum_取藥堆疊母資料.狀態] = "None";
+                    value[(int)enum_取藥堆疊母資料.總異動量] = str_time;
                     list_add.Add(value);
                 }
                 SQLControl sQLControl_take_medicine_stack_new = new SQLControl(serverSettingClass_堆疊資料.Server, serverSettingClass_堆疊資料.DBName, "take_medicine_stack_new", 
@@ -2241,7 +2227,7 @@ namespace HIS_WebApi
                 sQLControl_take_medicine_stack_new.AddRows(null, list_add);
 
                 returnData.Code = 200;
-                returnData.Result = $"設備更新亮燈完成!";
+                returnData.Result = $"設備更新亮燈完成,共<{codes.Length}>筆";
                 returnData.TimeTaken = myTimer.ToString();
                 return returnData.JsonSerializationt();
 
