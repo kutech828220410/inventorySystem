@@ -121,14 +121,12 @@ namespace 中藥調劑系統
 
             plC_UI_Init.Add_Method(Program_調劑畫面);
         }
-
         private void RJ_Lable_實調_DoubleClick(object sender, EventArgs e)
         {
             Dialog_NumPannel dialog_NumPannel = new Dialog_NumPannel();
             if (dialog_NumPannel.ShowDialog() != DialogResult.Yes) return;
             this.rJ_Lable_實調.Text = dialog_NumPannel.Value.ToString("0.00");
         }
-
         private void sub_Progran_更新處方()
         {
             orderDate = plC_NumBox_更新前幾天醫令.Value;
@@ -359,10 +357,8 @@ namespace 中藥調劑系統
             }
 
         }
-
         private bool flag_MySerialPort_Scanner01_enable = true;
-        private MyTimer myTimer_MySerialPort_Scanner01 = new MyTimer();
-        
+        private MyTimer myTimer_MySerialPort_Scanner01 = new MyTimer();      
         private void Program_調劑畫面()
         {
             if (plC_NumBox_檢核上限_克.Value < 1) plC_NumBox_檢核上限_克.Value = 1;
@@ -599,6 +595,7 @@ namespace 中藥調劑系統
             }
 
         }
+
         #region Function
         public void Function_重置處方()
         {
@@ -676,6 +673,7 @@ namespace 中藥調劑系統
                     {
                         orderTClasses[i].實際調劑量 = "1";
                         orderTClasses[i].過帳時間 = DateTime.Now.ToDateTimeString_6();
+                        orderTClasses[i].交易量 = "0";
                         OrderTClass.updete_by_guid(Main_Form.API_Server, orderTClasses[i]);
                         orderTClasses.Remove(orderTClasses[i]);
                         flag_水劑處方待製 = true;
@@ -748,6 +746,7 @@ namespace 中藥調劑系統
             if (orderTClass.頻次.ToUpper() == "TID") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "TIDAC") 包數 = "3";
             if (orderTClass.頻次.ToUpper() == "ASORDER") 包數 = "1";
+            if (orderTClass.頻次.ToUpper() == "QD") 包數 = "1";
             string 天數 = orderTClasses[0].天數;
 
             for (int i = 0; i < orderTClasses.Count; i++)
