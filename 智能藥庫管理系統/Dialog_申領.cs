@@ -36,8 +36,6 @@ namespace 智能藥庫系統
             form.Invoke(new Action(delegate { InitializeComponent(); }));
           
 
-
-
             this.Load += Dialog_申領_Load;
             this.LoadFinishedEvent += Dialog_申領_LoadFinishedEvent;
             this.ShowDialogEvent += Dialog_申領_ShowDialogEvent;
@@ -69,10 +67,11 @@ namespace 智能藥庫系統
             sqL_DataGridView_申領品項.Set_ColumnVisible(false, new enum_materialRequisition().GetEnumNames());
             sqL_DataGridView_申領品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.申領類別);
             sqL_DataGridView_申領品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.藥碼);
-            sqL_DataGridView_申領品項.Set_ColumnWidth(450, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.藥名);
+            sqL_DataGridView_申領品項.Set_ColumnWidth(400, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.藥名);
             sqL_DataGridView_申領品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.包裝量);
             sqL_DataGridView_申領品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.包裝單位);
             sqL_DataGridView_申領品項.Set_ColumnWidth(80, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.申領量);
+            sqL_DataGridView_申領品項.Set_ColumnWidth(100, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.申領人員);
             sqL_DataGridView_申領品項.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleCenter, enum_materialRequisition.申領時間);
             sqL_DataGridView_申領品項.Set_ColumnWidth(150, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.申領單位);
             //sqL_DataGridView_申領品項.Set_ColumnWidth(200, DataGridViewContentAlignment.MiddleLeft, enum_materialRequisition.核撥單位);
