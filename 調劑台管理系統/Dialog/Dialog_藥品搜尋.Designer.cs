@@ -115,10 +115,10 @@ namespace 調劑台管理系統
             this.comboBox_搜尋條件.Font = new System.Drawing.Font("微軟正黑體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_搜尋條件.FormattingEnabled = true;
             this.comboBox_搜尋條件.Items.AddRange(new object[] {
-            "全部顯示",
-            "藥碼",
             "藥名",
-            "中文名"});
+            "藥碼",
+            "中文名",
+            "全部顯示"});
             this.comboBox_搜尋條件.Location = new System.Drawing.Point(24, 35);
             this.comboBox_搜尋條件.Name = "comboBox_搜尋條件";
             this.comboBox_搜尋條件.Size = new System.Drawing.Size(202, 35);
@@ -210,6 +210,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品搜尋.cellStylBackColor = System.Drawing.Color.Silver;
             this.sqL_DataGridView_藥品搜尋.cellStyleFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.sqL_DataGridView_藥品搜尋.cellStylForeColor = System.Drawing.Color.Black;
+            this.sqL_DataGridView_藥品搜尋.checkedRowBackColor = System.Drawing.Color.YellowGreen;
             this.sqL_DataGridView_藥品搜尋.columnHeaderBackColor = System.Drawing.SystemColors.Control;
             this.sqL_DataGridView_藥品搜尋.columnHeaderBorderColor = System.Drawing.Color.Gainsboro;
             this.sqL_DataGridView_藥品搜尋.columnHeaderFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
@@ -217,6 +218,7 @@ namespace 調劑台管理系統
             this.sqL_DataGridView_藥品搜尋.columnHeadersHeight = 18;
             this.sqL_DataGridView_藥品搜尋.columnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sqL_DataGridView_藥品搜尋.DataGridViewAutoSizeColumnMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.NotSet;
+            this.sqL_DataGridView_藥品搜尋.DataKeyEnable = false;
             this.sqL_DataGridView_藥品搜尋.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqL_DataGridView_藥品搜尋.Font = new System.Drawing.Font("新細明體", 12F);
             this.sqL_DataGridView_藥品搜尋.ImageBox = false;

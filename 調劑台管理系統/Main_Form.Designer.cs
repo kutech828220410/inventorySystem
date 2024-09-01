@@ -519,6 +519,7 @@
             this.plC_RJ_Button_藥品資料_儲位效期表_匯出資料 = new MyUI.PLC_RJ_Button();
             this.sqL_DataGridView_藥品資料_儲位效期表 = new SQLUI.SQL_DataGridView();
             this.panel_藥品資料 = new System.Windows.Forms.Panel();
+            this.plC_RJ_ScreenButton14 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_儲位效期表 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_儲位總庫存表 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton11 = new MyUI.PLC_RJ_ScreenButton();
@@ -1595,7 +1596,6 @@
             this.plC_RJ_ScreenButton_系統 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton_調劑作業 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_RJ_ScreenButton143 = new MyUI.PLC_RJ_ScreenButton();
-            this.plC_RJ_ScreenButton14 = new MyUI.PLC_RJ_ScreenButton();
             this.plC_ScreenPage_Main.SuspendLayout();
             this.調劑作業.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -14831,6 +14831,45 @@
             this.panel_藥品資料.Name = "panel_藥品資料";
             this.panel_藥品資料.Size = new System.Drawing.Size(1653, 51);
             this.panel_藥品資料.TabIndex = 114;
+            // 
+            // plC_RJ_ScreenButton14
+            // 
+            this.plC_RJ_ScreenButton14.but_press = false;
+            this.plC_RJ_ScreenButton14.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plC_RJ_ScreenButton14.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.plC_RJ_ScreenButton14.IconSize = 32;
+            this.plC_RJ_ScreenButton14.Location = new System.Drawing.Point(516, 0);
+            this.plC_RJ_ScreenButton14.Margin = new System.Windows.Forms.Padding(0);
+            this.plC_RJ_ScreenButton14.Name = "plC_RJ_ScreenButton14";
+            this.plC_RJ_ScreenButton14.OffBackColor = System.Drawing.Color.DarkCyan;
+            this.plC_RJ_ScreenButton14.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton14.OffForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton14.OffIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton14.OffText = "管藥設定";
+            this.plC_RJ_ScreenButton14.OnBackColor = System.Drawing.Color.LightSeaGreen;
+            this.plC_RJ_ScreenButton14.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
+            this.plC_RJ_ScreenButton14.OnForeColor = System.Drawing.Color.White;
+            this.plC_RJ_ScreenButton14.OnIconColor = System.Drawing.Color.Black;
+            this.plC_RJ_ScreenButton14.OnText = "管藥設定";
+            this.plC_RJ_ScreenButton14.ShowIcon = false;
+            this.plC_RJ_ScreenButton14.Size = new System.Drawing.Size(172, 51);
+            this.plC_RJ_ScreenButton14.TabIndex = 13;
+            this.plC_RJ_ScreenButton14.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
+            this.plC_RJ_ScreenButton14.寫入位置註解 = "";
+            this.plC_RJ_ScreenButton14.寫入元件位置 = "";
+            this.plC_RJ_ScreenButton14.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
+            this.plC_RJ_ScreenButton14.控制位址 = "D0";
+            this.plC_RJ_ScreenButton14.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
+            this.plC_RJ_ScreenButton14.致能讀取位置 = "";
+            this.plC_RJ_ScreenButton14.讀取位元反向 = false;
+            this.plC_RJ_ScreenButton14.讀取位置註解 = "";
+            this.plC_RJ_ScreenButton14.讀取元件位置 = "";
+            this.plC_RJ_ScreenButton14.音效 = true;
+            this.plC_RJ_ScreenButton14.頁面名稱 = "管藥設定";
+            this.plC_RJ_ScreenButton14.頁面編號 = 0;
+            this.plC_RJ_ScreenButton14.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
+            this.plC_RJ_ScreenButton14.顯示狀態 = false;
+            this.plC_RJ_ScreenButton14.顯示讀取位置 = "";
             // 
             // plC_RJ_ScreenButton_儲位效期表
             // 
@@ -44181,45 +44220,6 @@
             this.plC_RJ_ScreenButton143.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
             this.plC_RJ_ScreenButton143.顯示狀態 = false;
             this.plC_RJ_ScreenButton143.顯示讀取位置 = "";
-            // 
-            // plC_RJ_ScreenButton14
-            // 
-            this.plC_RJ_ScreenButton14.but_press = false;
-            this.plC_RJ_ScreenButton14.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plC_RJ_ScreenButton14.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.plC_RJ_ScreenButton14.IconSize = 32;
-            this.plC_RJ_ScreenButton14.Location = new System.Drawing.Point(516, 0);
-            this.plC_RJ_ScreenButton14.Margin = new System.Windows.Forms.Padding(0);
-            this.plC_RJ_ScreenButton14.Name = "plC_RJ_ScreenButton14";
-            this.plC_RJ_ScreenButton14.OffBackColor = System.Drawing.Color.DarkCyan;
-            this.plC_RJ_ScreenButton14.OffFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButton14.OffForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButton14.OffIconColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButton14.OffText = "管藥設定";
-            this.plC_RJ_ScreenButton14.OnBackColor = System.Drawing.Color.LightSeaGreen;
-            this.plC_RJ_ScreenButton14.OnFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Bold);
-            this.plC_RJ_ScreenButton14.OnForeColor = System.Drawing.Color.White;
-            this.plC_RJ_ScreenButton14.OnIconColor = System.Drawing.Color.Black;
-            this.plC_RJ_ScreenButton14.OnText = "管藥設定";
-            this.plC_RJ_ScreenButton14.ShowIcon = false;
-            this.plC_RJ_ScreenButton14.Size = new System.Drawing.Size(172, 51);
-            this.plC_RJ_ScreenButton14.TabIndex = 13;
-            this.plC_RJ_ScreenButton14.字元長度 = MyUI.PLC_RJ_ScreenButton.WordLengthEnum.單字元;
-            this.plC_RJ_ScreenButton14.寫入位置註解 = "";
-            this.plC_RJ_ScreenButton14.寫入元件位置 = "";
-            this.plC_RJ_ScreenButton14.按鈕型態 = MyUI.PLC_RJ_ScreenButton.StatusEnum.保持型;
-            this.plC_RJ_ScreenButton14.控制位址 = "D0";
-            this.plC_RJ_ScreenButton14.換頁選擇方式 = MyUI.PLC_RJ_ScreenButton.換頁選擇方式Enum.名稱;
-            this.plC_RJ_ScreenButton14.致能讀取位置 = "";
-            this.plC_RJ_ScreenButton14.讀取位元反向 = false;
-            this.plC_RJ_ScreenButton14.讀取位置註解 = "";
-            this.plC_RJ_ScreenButton14.讀取元件位置 = "";
-            this.plC_RJ_ScreenButton14.音效 = true;
-            this.plC_RJ_ScreenButton14.頁面名稱 = "管藥設定";
-            this.plC_RJ_ScreenButton14.頁面編號 = 0;
-            this.plC_RJ_ScreenButton14.顯示方式 = MyUI.PLC_RJ_ScreenButton.StateEnum.顯示為OFF;
-            this.plC_RJ_ScreenButton14.顯示狀態 = false;
-            this.plC_RJ_ScreenButton14.顯示讀取位置 = "";
             // 
             // Main_Form
             // 
