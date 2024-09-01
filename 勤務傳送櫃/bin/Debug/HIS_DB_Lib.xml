@@ -1561,9 +1561,99 @@
             自定義
             </summary>
         </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.GUID">
+            <summary>
+            GUID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.藥碼">
+            <summary>
+            藥碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.藥品名">
+            <summary>
+            藥品名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.頻次代碼">
+            <summary>
+            頻次代碼
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.劑量">
+            <summary>
+            劑量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.序號">
+            <summary>
+            序號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.分類號">
+            <summary>
+            分類號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.類別名">
+            <summary>
+            類別名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.藥品通名">
+            <summary>
+            藥品通名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.藥品商品名">
+            <summary>
+            藥品商品名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.藥品分類">
+            <summary>
+            藥品分類
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.藥品治療分類">
+            <summary>
+            藥品治療分類
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.適應症">
+            <summary>
+            適應症
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.用法劑量">
+            <summary>
+            用法劑量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.備註">
+            <summary>
+            備註
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.售價">
+            <summary>
+            售價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.健保價">
+            <summary>
+            健保價
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInfoClass.更新時間">
+            <summary>
+            更新時間
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medInventoryLogClass">
             <summary>
-            medCpoeClass資料
+            medInventoryLogClass 資料
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medInventoryLogClass.GUID">
@@ -1594,6 +1684,11 @@
         <member name="P:HIS_DB_Lib.medInventoryLogClass.操作者代號">
             <summary>
             操作者代號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryLogClass.操作者姓名">
+            <summary>
+            操作者姓名
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medInventoryLogClass.操作時間">
@@ -1653,7 +1748,12 @@
         </member>
         <member name="P:HIS_DB_Lib.medInventoryClass.操作者代號">
             <summary>
-            GUID
+            操作者代號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInventoryClass.操作者姓名">
+            <summary>
+            操作者姓名
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.medInventoryClass.操作時間">
@@ -2494,6 +2594,91 @@
         <member name="P:HIS_DB_Lib.takeMedicineStackClass.診別">
             <summary>
             診別
+            </summary>
+        </member>
+        <member name="T:HIS_DB_Lib.textVisionClass">
+            <summary>
+            TextVision 資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.操作者姓名">
+            <summary>
+            操作者姓名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.操作者ID">
+            <summary>
+            操作者ID
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.圖片">
+            <summary>
+            base64
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.操作時間">
+            <summary>
+            操作時間
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.Log">
+            <summary>
+            Log
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.座標">
+            <summary>
+            座標
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.op_keyword">
+            <summary>
+            keyword
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.UI結果">
+            <summary>
+            UI結果
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.批號">
+            <summary>
+            批號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.單號">
+            <summary>
+            單號
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.藥名">
+            <summary>
+            藥名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.中文名">
+            <summary>
+            中文名
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.數量">
+            <summary>
+            數量
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.效期">
+            <summary>
+            效期
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.textVisionClass.藥品碼">
+            <summary>
+            藥品碼
             </summary>
         </member>
         <member name="P:HIS_DB_Lib.transactionsClass.GUID">

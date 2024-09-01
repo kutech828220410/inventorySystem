@@ -378,11 +378,12 @@ namespace HIS_DB_Lib
             Console.WriteLine($"{returnData}");
             return out_medCarInfoClass;
         }
-        static public List<medQtyClass> get_med_qty(string API_Server, List<string> valueAry)
+        static public List<medQtyClass> get_med_qty(string API_Server, string value, List<string> valueAry)
         {
             string url = $"{API_Server}/api/med_cart/get_med_qty";
             returnData returnData = new returnData();
             returnData.ValueAry = valueAry;
+            returnData.Value = value;
             string json_in = returnData.JsonSerializationt();
             string json_out = Net.WEBApiPostJson(url, json_in);
             returnData = json_out.JsonDeserializet<returnData>();
