@@ -1066,6 +1066,7 @@
             交互作用等級
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "P:HIS_DB_Lib.medCpoeClass.雲端藥檔" -->
         <member name="T:HIS_DB_Lib.medCpoeRecClass">
             <summary>
             medCpoeClass資料

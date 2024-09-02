@@ -322,6 +322,11 @@ namespace HIS_DB_Lib
         /// </summary>
         [JsonPropertyName("ddic")]
         public string 交互作用等級 { get; set; }
+        /// <summary>
+        /// 雲端藥檔
+        /// </summary
+        [JsonPropertyName("med_cloud")]
+        public List<medClass> 雲端藥檔 { get; set; }
         public class ICP_By_Rank : IComparer<medCpoeClass>
         {
             public int Compare(medCpoeClass x, medCpoeClass y)
