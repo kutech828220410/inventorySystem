@@ -58,19 +58,6 @@ namespace HIS_WebApi
                 return returnData.JsonSerializationt(true);
             }
         }        
-        /// <summary>
-        ///初始化dbvm.med_qty資料庫
-        /// </summary>
-        /// <remarks>
-        /// 以下為JSON範例
-        /// <code>
-        ///     {
-        ///         "ValueAry":[""]
-        ///     }
-        /// </code>
-        /// </remarks>
-        /// <param name="returnData">共用傳遞資料結構</param>
-        /// <returns></returns>
         [HttpPost("init_med_cpoe")]
         public string init_med_cpoe([FromBody] returnData returnData)
         {

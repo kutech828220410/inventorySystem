@@ -1652,6 +1652,21 @@
             更新時間
             </summary>
         </member>
+        <member name="T:HIS_DB_Lib.medInterClass">
+            <summary>
+            medInterClass 資料
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.GUID">
+            <summary>
+            唯一KEY
+            </summary>
+        </member>
+        <member name="P:HIS_DB_Lib.medInterClass.ATC">
+            <summary>
+            ATC
+            </summary>
+        </member>
         <member name="T:HIS_DB_Lib.medInventoryLogClass">
             <summary>
             medInventoryLogClass 資料
